@@ -1,0 +1,9 @@
+{
+  "name": "Español A1 – DELE Prüfungstrainer",
+  "short_name": "Español A1",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "description": "Spanisch-A1-Trainer für deutschsprachige Lernende, ausgerichtet am DELE A1."
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Almanca A1" />
+  <title>Almanca A1 – Goethe A1 Sınav Eğitimi</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <script>window.A1_APP_META={course:"deutsch-a1-tr",stateBaseKey:"deutschA1TurkishState_v1"};</script>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">TR → DE · A1 PRÜFUNGSTRAINER</div>
+        <a href="../" class="course-home-link" aria-label="Dil seçimine dön">
+          <h1>Deutsch A1 🇩🇪</h1>
+        </a>
+      </div>
+      <div class="header-actions">
+        <button id="audioToggle" class="switch-btn" aria-label="Sesi otomatik oynat">🔊 Auto</button>
+        <button id="resetBtn" class="ghost-btn" aria-label="İlerlemeyi sıfırla">↻</button>
+      </div>
+    </header>
+    <main id="view" class="view"></main>
+    <nav class="bottom-nav" aria-label="Ana menü">
+      <button data-route="home" class="nav-item active"><span>⌂</span><small>Ana sayfa</small></button>
+      <button data-route="learn" class="nav-item"><span>▤</span><small>Kurslar</small></button>
+      <button data-route="practice" class="nav-item"><span>◎</span><small>Alıştırmalar</small></button>
+      <button data-route="exam" class="nav-item"><span>✓</span><small>Sınav</small></button>
+    </nav>
+  </div>
+  <script src="../shared/config.js"></script>
+  <script src="../shared/profile.js"></script>
+  <script src="../shared/learning.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

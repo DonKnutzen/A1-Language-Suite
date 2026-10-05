@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Deutsch A1" />
+  <title>Deutsch A1 – Prüfungstrainer</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <script>window.A1_APP_META={course:"deutsch-a1",stateBaseKey:"deutschA1GoetheFormatState_v6"};</script>
+  <div class="app-shell">
+    <header class="topbar">
+  <div>
+    <div class="eyebrow">FR → DE · A1 PRÜFUNGSTRAINER</div>
+
+    <a href="../" class="course-home-link" aria-label="Retour au choix de la langue">
+      <h1>Deutsch A1 🇩🇪</h1>
+    </a>
+  </div>
+
+  <div class="header-actions">
+    <button id="audioToggle" class="switch-btn" aria-label="Audio automatisch abspielen">🔊 Auto</button>
+    <button id="resetBtn" class="ghost-btn" aria-label="Fortschritt zurücksetzen">↻</button>
+  </div>
+</header>
+
+    <main id="view" class="view"></main>
+
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <button data-route="home" class="nav-item active"><span>⌂</span><small>Accueil</small></button>
+      <button data-route="learn" class="nav-item"><span>▤</span><small>Cours</small></button>
+      <button data-route="practice" class="nav-item"><span>◎</span><small>Exercices</small></button>
+      <button data-route="exam" class="nav-item"><span>✓</span><small>Examen</small></button>
+    </nav>
+  </div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/profile.js"></script>
+  <script src="../shared/learning.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

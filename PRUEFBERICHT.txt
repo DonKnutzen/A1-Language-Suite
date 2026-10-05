@@ -1,0 +1,65 @@
+A1 LANGUAGE SUITE – PRÜFBERICHT
+Stand: 05.10.2026
+
+BESTANDEN
+
+Inhalt und Projektstruktur:
+- 24 überarbeitete Französischlektionen, 224 Phrasen und 240 Lektionsfragen.
+- 12 französische Grammatiksets mit 104 Fragen; 81 Hör- und 81 Leseaufgaben.
+- Alle 15 französischen Schreibbeispiele enthalten mindestens 40 Wörter.
+- Antwortpositionen, eindeutige Aufgaben-IDs und Optionen ohne Duplikate.
+- JavaScript-Syntax aller Dateien, JSON-Manifeste und notwendige lokale Links.
+- shared/config.js und shared/supabase.sql sind bytegleich zur Ausgangs-ZIP.
+
+DOM-Interaktionen mit dem gemeinsamen Profilmodul:
+- Alle 96 Lektionen der vier Kurse und insgesamt 840 Lektionsfragen durchlaufen.
+- Fortschritt wird unter den bestehenden Kurs- und Profil-Schlüsseln gespeichert.
+- Zurücksetzen liefert einen frischen Zustand und verändert keine zweite
+  Profilablage.
+- Zurück-Buttons, Profilmenüs und die Sprachauswahl DE / FR / TR funktionieren.
+- Die Startseite jedes Kurses behält die drei gewünschten Inhaltskarten.
+- Die 48 neuen französischen Hör- und Leseaufgaben funktionieren.
+- Mehr als 50 Wörter im französischen Schreibtraining sind erlaubt.
+- Schreiben verwendet tatsächliche Trainingswerte aus Formular und
+  Selbstbewertung; kein pauschaler 60-Prozent-Wert.
+- Sprechsimulationen erzeugen keine Punktzahl allein durch Beenden.
+- Leere türkische Formulare und Nachrichten werden nicht als erledigt gespeichert.
+
+Gemeinsame Aufnahmefunktion mit nachgebildeter Mikrofon-API:
+- Seitenwechsel schließt Mikrofonspuren.
+- Abgebrochene und leere Aufnahmen zählen nicht als Sprechleistung.
+- Fertige Aufnahmen erhalten eine Audio-Wiedergabe.
+- Ersetzte Aufnahmen und entfernte Wiedergaben geben ihre Objekt-URLs frei.
+- Eine verspätet erteilte Mikrofonfreigabe startet keine Aufnahme in einer
+  bereits verlassenen Ansicht.
+
+Cloud-Synchronisierung mit nachgebildeten API-Antworten:
+- Die Kurscodes de, fr, es und de-tr bleiben getrennt.
+- Fortschritts- und Bestenlistenzeilen verwenden die eigene Nutzerkennung.
+- Ein alter verzögerter Speichervorgang schreibt nicht ins neu gewählte Profil.
+
+Service Worker mit nachgebildeter Cache-API:
+- Alle benötigten Dateien einschließlich shared/learning.js sind vorhanden.
+- Der Deutschkurs löscht nicht die Caches des Türkischkurses.
+- Ein Root-Update löscht keine Caches unabhängiger Anwendungen.
+- Offline-Nutzung und HTTP-Fehler verwenden vorhandene erfolgreiche Antworten
+  aus dem eigenen Kurscache.
+
+Chromium-Browser:
+- Französischlektionen am Desktop (1280 px) und mobil (390 px) geöffnet.
+- Lernziele, Grammatik, Ausspracheabschnitte, Dialoge und Quiz bedienbar.
+- Kein horizontaler Überlauf in den geprüften mobilen Ansichten.
+- Alle vier Kurs-Startseiten geöffnet, ohne JavaScript-Laufzeitfehler.
+- Landingpage mit vier Kurskarten in DE, FR und TR geprüft; Mobilansicht 360 px.
+- Französische Mobilansicht im Dark Mode geprüft.
+
+GRENZEN
+
+Die produktive Supabase-Datenbank wurde nicht verändert oder angesprochen.
+Cloud- und Mikrofon-Sonderfälle wurden mit nachgebildeten APIs getestet; echte
+Gerätestimmen und physische Mikrofone hängen weiterhin vom Browser ab.
+Die Browseransicht wurde in Chromium geprüft, nicht auf einem physischen iPhone.
+Freies Schreiben und Sprechen werden nicht automatisch sprachlich bewertet.
+Es gibt keine offizielle A1-Zertifizierung oder Garantie für ein Prüfungsergebnis.
+Der Volltext von Niveau A1 pour le français lag nicht vor; der Kurs behauptet
+keinen vollständigen Abgleich mit dessen sprachlichem Inventar.

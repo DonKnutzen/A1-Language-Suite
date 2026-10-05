@@ -1,0 +1,9 @@
+{
+  "name": "Deutsch A1 – Prüfungstrainer",
+  "short_name": "Deutsch A1",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "description": "A1-Deutschtrainer für französischsprachige Lernende mit Hören, Lesen, Schreiben und Sprechen."
+}

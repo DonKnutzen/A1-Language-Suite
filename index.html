@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A1 Sprachtrainer</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#0f172a;background:#f8fafc}
+.shell{max-width:980px;margin:auto;padding:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.header-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.lang-toggle{order:-1}
+.lang-toggle{display:flex;gap:4px;background:#e2e8f0;padding:4px;border-radius:14px}
+.lang-toggle button{border:0;background:transparent;border-radius:10px;padding:7px 9px;font-weight:900;color:#475569;cursor:pointer}
+.lang-toggle button.active{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(15,23,42,.08)}
+.hero{margin:34px 0 18px;padding:26px;border-radius:24px;background:linear-gradient(135deg,#0f172a,#1e3a8a);color:white;box-shadow:0 20px 60px rgba(15,23,42,.16)}
+.hero p{color:#cbd5e1;line-height:1.55}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.course{display:block;text-decoration:none;color:inherit;background:white;border:1px solid #e2e8f0;border-radius:22px;padding:22px;box-shadow:0 12px 30px rgba(15,23,42,.07);transition:transform .15s ease,box-shadow .15s ease}
+.course:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(15,23,42,.11)}
+.flag{font-size:38px}
+.course h2{margin:12px 0 6px}
+.course p{color:#64748b;line-height:1.5;margin:0}
+.pill{display:inline-block;margin-top:14px;background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}
+.note{margin-top:18px;background:white;border:1px solid #e2e8f0;border-radius:18px;padding:16px;color:#475569;line-height:1.5}
+
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .shell{padding:16px}
+  .top{align-items:flex-start}
+}
+
+/* ===== DARK MODE STARTSEITE ===== */
+
+html.dark-mode,
+html.dark-mode body{
+  background:#0f172a;
+  color:#f8fafc;
+}
+
+html.dark-mode .course{
+  background:#1e293b;
+  color:#f8fafc;
+  border-color:#334155;
+  box-shadow:0 12px 30px rgba(0,0,0,.20);
+}
+
+html.dark-mode .course p{
+  color:#94a3b8;
+}
+
+html.dark-mode .note{
+  background:#1e293b;
+  color:#cbd5e1;
+  border-color:#334155;
+}
+
+html.dark-mode .lang-toggle{
+  background:#1e293b;
+}
+
+html.dark-mode .lang-toggle button{
+  color:#94a3b8;
+}
+
+html.dark-mode .lang-toggle button.active{
+  background:#334155;
+  color:#f8fafc;
+  box-shadow:none;
+}
+
+html.dark-mode .pill{
+  background:#1e3a5f;
+  color:#93c5fd;
+}
+
+html.dark-mode #pageTitle{
+  color:#f8fafc;
+}
+
+html.dark-mode .top small{
+  color:#94a3b8 !important;
+}
+
+html.dark-mode .profile-chip,
+html.dark-mode .theme-toggle{
+  background:#1e293b !important;
+  color:#f8fafc !important;
+  border-color:#475569 !important;
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div><small style="font-weight:800;letter-spacing:.08em;color:#64748b">A1 LANGUAGE SUITE</small><h1 id="pageTitle" style="margin:4px 0">Sprachtrainer</h1></div>
+    <div class="header-actions"><div class="lang-toggle" aria-label="Display language"><button type="button" data-lang="de">DE</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="tr">TR</button></div></div>
+  </div>
+
+  <div class="hero">
+    <h2 id="heroTitle">Ein Profil. Vier A1-Kurse.</h2>
+    <p id="heroText"></p>
+  </div>
+
+  <div class="grid">
+    <a class="course" href="deutsch/">
+      <div class="flag">🇩🇪</div>
+      <h2>Deutsch A1</h2>
+      <p id="deCourseText"></p>
+      <span class="pill" id="deCoursePill"></span>
+    </a>
+
+    <a class="course" href="francais/">
+      <div class="flag">🇫🇷</div>
+      <h2>Français A1</h2>
+      <p id="frCourseText"></p>
+      <span class="pill" id="frCoursePill"></span>
+    </a>
+
+    <a class="course" href="spanisch/">
+      <div class="flag">🇪🇸</div>
+      <h2>Español A1</h2>
+      <p id="esCourseText"></p>
+      <span class="pill" id="esCoursePill"></span>
+    </a>
+    <a class="course" href="turkisch-deutsch/">
+      <div class="flag">🇹🇷 → 🇩🇪</div>
+      <h2>Deutsch A1 · Türkçe</h2>
+      <p id="trDeCourseText"></p>
+      <span class="pill" id="trDeCoursePill"></span>
+    </a>
+  </div>
+
+  <div class="note" id="profileNote"></div>
+</div>
+
+<script>window.A1_APP_META={};</script>
+<script src="shared/config.js"></script><script src="shared/profile.js"></script>
+<script>
+const UI={
+  de:{
+    title:'Sprachtrainer',
+    heroTitle:'Ein Profil. Vier A1-Kurse.',
+    heroText:'Wähle, welche Sprache du lernen möchtest. Dein Fortschritt wird pro Profil und Kurs getrennt gespeichert.',
+    deText:'Französisch → Deutsch · Goethe A1 · Hören, Lesen, Schreiben und Sprechen.',dePill:'Deutsch lernen',
+    frText:'Deutsch → Französisch · DELF A1 · Audio, Prüfungstraining und Sprechen.',frPill:'Französisch lernen',
+    esText:'Deutsch → Spanisch · DELE A1 · Audio, Prüfungstraining und Sprechen.',esPill:'Spanisch lernen',
+    trDeText:'Türkisch → Deutsch · Goethe A1 · Hören, Lesen, Schreiben und Sprechen.',trDePill:'Deutsch auf Türkisch lernen',
+    noteLocal:'<strong>Profile:</strong> Benutzername + PIN, ohne E-Mail. Der Fortschritt wird auf diesem Gerät gespeichert.',
+    noteCloud:'<strong>Profile:</strong> Benutzername + PIN, ohne E-Mail. Cloud-Sync ist aktiv und funktioniert geräteübergreifend.'
+  },
+  fr:{
+    title:'Entraîneur de langues',
+    heroTitle:'Un profil. Quatre cours A1.',
+    heroText:'Choisis la langue que tu veux apprendre. Ta progression est enregistrée séparément pour chaque profil et chaque cours.',
+    deText:'Français → allemand · Goethe A1 · compréhension orale, lecture, écriture et expression orale.',dePill:"Apprendre l’allemand",
+    frText:'Allemand → français · DELF A1 · audio, préparation à l’examen et expression orale.',frPill:'Apprendre le français',
+    esText:'Allemand → espagnol · DELE A1 · audio, préparation à l’examen et expression orale.',esPill:"Apprendre l’espagnol",
+    trDeText:'Turc → allemand · Goethe A1 · compréhension orale, lecture, écriture et expression orale.',trDePill:"Apprendre l’allemand en turc",
+    noteLocal:"<strong>Profils :</strong> nom d’utilisateur + PIN, sans e-mail. La progression est enregistrée sur cet appareil.",
+    noteCloud:"<strong>Profils :</strong> nom d’utilisateur + PIN, sans e-mail. La synchronisation cloud est active sur plusieurs appareils."
+  },
+  tr:{
+    title:'Dil eğitmeni',
+    heroTitle:'Bir profil. Dört A1 kursu.',
+    heroText:'Öğrenmek istediğin dili seç. İlerlemen her profil ve kurs için ayrı kaydedilir.',
+    deText:'Fransızca → Almanca · Goethe A1 · dinleme, okuma, yazma ve konuşma.',dePill:'Almanca öğren',
+    frText:'Almanca → Fransızca · DELF A1 · ses, sınav çalışması ve konuşma.',frPill:'Fransızca öğren',
+    esText:'Almanca → İspanyolca · DELE A1 · ses, sınav çalışması ve konuşma.',esPill:'İspanyolca öğren',
+    trDeText:'Türkçe → Almanca · Goethe A1 · dinleme, okuma, yazma ve konuşma.',trDePill:'Türkçe ile Almanca öğren',
+    noteLocal:'<strong>Profiller:</strong> Kullanıcı adı + PIN, e-posta gerekmez. İlerleme bu cihazda kaydedilir.',
+    noteCloud:'<strong>Profiller:</strong> Kullanıcı adı + PIN, e-posta gerekmez. Bulut senkronizasyonu etkin ve cihazlar arasında çalışır.'
+  }
+};
+
+function currentLang(){
+  const l=(navigator.language||'de').toLowerCase(); return window.A1Profile?.getUiLang?.()||(l.startsWith('tr')?'tr':l.startsWith('fr')?'fr':'de');
+}
+
+function renderUi(){
+  const l=currentLang(),t=UI[l];
+  document.documentElement.lang=l;
+  document.getElementById('pageTitle').textContent=t.title;
+  document.title=`A1 · ${t.title}`;
+  document.getElementById('heroTitle').textContent=t.heroTitle;
+  document.getElementById('heroText').textContent=t.heroText;
+  document.getElementById('deCourseText').textContent=t.deText;
+  document.getElementById('deCoursePill').textContent=t.dePill;
+  document.getElementById('frCourseText').textContent=t.frText;
+  document.getElementById('frCoursePill').textContent=t.frPill;
+  document.getElementById('esCourseText').textContent=t.esText;
+  document.getElementById('esCoursePill').textContent=t.esPill;
+  document.getElementById('trDeCourseText').textContent=t.trDeText;
+  document.getElementById('trDeCoursePill').textContent=t.trDePill;
+  document.getElementById('profileNote').innerHTML=A1Profile.cloudConfigured?t.noteCloud:t.noteLocal;
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+}
+
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',async()=>{
+  await A1Profile.setUiLang(b.dataset.lang);
+  renderUi();
+}));
+
+window.addEventListener('a1suite:languagechange',renderUi);
+document.addEventListener('DOMContentLoaded',renderUi);
+</script>
+</body>
+</html>

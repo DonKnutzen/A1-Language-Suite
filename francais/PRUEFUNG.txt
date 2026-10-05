@@ -1,0 +1,2 @@
+Aktueller Prüfbericht: ../PRUEFBERICHT.txt
+Französisch-Lehrplan: LEHRPLAN-A1.md
