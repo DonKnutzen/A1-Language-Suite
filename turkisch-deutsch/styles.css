@@ -1,4 +1,5 @@
 :root {
+  color-scheme:light;
   --bg:#f8fafc; --panel:#fff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0;
   --accent:#2563eb; --accent-soft:#dbeafe; --accent-ink:#1d4ed8; --success:#15803d;
   --success-soft:#f0fdf4; --danger:#b91c1c; --danger-soft:#fef2f2; --warning:#b45309;
@@ -45,94 +46,7 @@ hr.soft{border:0;border-top:1px solid var(--line);margin:16px 0}.spacer{height:1
 .course-home-link:active{
   opacity:.65;
 }
-/* ===== DARK MODE ===== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --panel: #1e293b;
-    --ink: #f8fafc;
-    --muted: #94a3b8;
-    --line: #334155;
-
-    --accent: #3b82f6;
-    --accent-soft: #1e3a5f;
-    --accent-ink: #93c5fd;
-
-    --success-soft: #14532d;
-    --danger-soft: #450a0a;
-    --warning-soft: #422006;
-  }
-
-  html,
-  body {
-    background: var(--bg);
-    color: var(--ink);
-  }
-
-  .topbar {
-    background: rgba(15, 23, 42, .92);
-    border-bottom-color: var(--line);
-  }
-
-  .card,
-  .lesson,
-  .practice-card,
-  .option-btn,
-  .switch-btn,
-  .ad-box,
-  .sign,
-  .tab-btn,
-  .text-input,
-  .text-area,
-  .select-input {
-    background: var(--panel);
-    color: var(--ink);
-    border-color: var(--line);
-  }
-
-  .metric,
-  .feedback,
-  .audio-panel,
-  .transcript,
-  .reading-text {
-    background: #172033;
-    color: var(--ink);
-    border-color: var(--line);
-  }
-
-  .soft-btn {
-    background: #172033;
-    color: var(--ink);
-    border-color: var(--line);
-  }
-
-  .bottom-nav {
-    background: rgba(15, 23, 42, .96);
-    border-top-color: var(--line);
-  }
-
-  .nav-item.active {
-    background: #1e3a5f;
-    color: #93c5fd;
-  }
-
-  .progress {
-    background: #334155;
-  }
-
-  .phrase-row {
-    border-color: var(--line);
-  }
-
-  .speaking-card {
-    background: linear-gradient(135deg, #1e293b, #172033);
-    border-color: var(--line);
-  }
-
-  .check-item {
-    border-color: var(--line);
-  }
-  /* ===== MANUELLER DARK MODE ===== */
+/* ===== THEME BUTTON ===== */
 
 .theme-toggle{
   width:42px;
@@ -149,7 +63,10 @@ hr.soft{border:0;border-top:1px solid var(--line);margin:16px 0}.spacer{height:1
   box-shadow:0 4px 12px rgba(15,23,42,.05);
 }
 
+/* ===== MANUELLER DARK MODE ===== */
+
 html.dark-mode{
+  color-scheme:dark;
   --bg:#0f172a;
   --panel:#1e293b;
   --ink:#f8fafc;
@@ -163,6 +80,8 @@ html.dark-mode{
   --success-soft:#14532d;
   --danger-soft:#450a0a;
   --warning-soft:#422006;
+
+  --shadow:0 10px 30px rgba(0,0,0,.22);
 }
 
 html.dark-mode,
@@ -176,6 +95,7 @@ html.dark-mode .topbar{
   border-bottom-color:var(--line);
 }
 
+/* Profil + Dark-Mode-Button */
 html.dark-mode .profile-chip,
 html.dark-mode .theme-toggle{
   background:#1e293b !important;
@@ -183,7 +103,8 @@ html.dark-mode .theme-toggle{
   border-color:#475569 !important;
 }
 
-html.dark-mode .card,
+/* Hauptkarten */
+html.dark-mode .card:not(.hero),
 html.dark-mode .lesson,
 html.dark-mode .practice-card,
 html.dark-mode .option-btn,
@@ -199,6 +120,7 @@ html.dark-mode .select-input{
   border-color:var(--line);
 }
 
+/* Sekundäre Flächen */
 html.dark-mode .metric,
 html.dark-mode .feedback,
 html.dark-mode .audio-panel,
@@ -210,9 +132,14 @@ html.dark-mode .soft-btn{
   border-color:var(--line);
 }
 
+/* Navigation */
 html.dark-mode .bottom-nav{
   background:rgba(15,23,42,.96);
   border-top-color:var(--line);
+}
+
+html.dark-mode .nav-item{
+  color:var(--muted);
 }
 
 html.dark-mode .nav-item.active{
@@ -220,17 +147,112 @@ html.dark-mode .nav-item.active{
   color:#93c5fd;
 }
 
+/* Fortschritt */
 html.dark-mode .progress{
   background:#334155;
 }
 
+/* Linien */
 html.dark-mode .phrase-row,
-html.dark-mode .check-item{
+html.dark-mode .check-item,
+html.dark-mode .exam-line{
   border-color:var(--line);
 }
 
+/* Speaking */
 html.dark-mode .speaking-card{
   background:linear-gradient(135deg,#1e293b,#172033);
   border-color:var(--line);
 }
+
+/* Kleine Buttons */
+html.dark-mode .speak-btn,
+html.dark-mode .tiny-btn{
+  background:#1e3a5f;
+  color:#bfdbfe;
+  border-color:#334155;
+}
+
+/* Pills */
+html.dark-mode .pill{
+  background:#312e81;
+  color:#c7d2fe;
+}
+
+html.dark-mode .pill.green{
+  background:#14532d;
+  color:#bbf7d0;
+}
+
+html.dark-mode .pill.amber{
+  background:#422006;
+  color:#fde68a;
+}
+
+html.dark-mode .pill.gray{
+  background:#334155;
+  color:#cbd5e1;
+}
+
+/* Notices */
+html.dark-mode .notice{
+  background:#172554;
+  color:#dbeafe;
+}
+
+html.dark-mode .notice.warning{
+  background:#422006;
+  color:#fde68a;
+}
+
+html.dark-mode .notice.success{
+  background:#14532d;
+  color:#bbf7d0;
+}
+
+/* Antworten / Lösungen */
+html.dark-mode .option-btn.correct,
+html.dark-mode .feedback.good,
+html.dark-mode .solution{
+  background:#14532d;
+  color:#dcfce7;
+  border-color:#166534;
+}
+
+html.dark-mode .option-btn.wrong,
+html.dark-mode .feedback.bad{
+  background:#450a0a;
+  color:#fee2e2;
+  border-color:#7f1d1d;
+}
+
+/* Inputs */
+html.dark-mode .text-input:focus,
+html.dark-mode .text-area:focus,
+html.dark-mode .select-input:focus{
+  border-color:#60a5fa;
+  box-shadow:0 0 0 3px rgba(59,130,246,.22);
+}
+
+/* Keep selected and completed states distinct from neutral controls. */
+html.dark-mode .primary-btn,
+html.dark-mode .tab-btn.active{
+  background:#2563eb;
+  color:#fff;
+}
+html.dark-mode .tab-btn.active{border-color:#2563eb}
+html.dark-mode .lesson.done{
+  background:var(--success-soft);
+  color:var(--ink);
+  border-color:#166534;
+}
+html.dark-mode .hero .eyebrow{color:#cbd5e1}
+html.dark-mode .hero .pill{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
+html.dark-mode .text-input::placeholder,
+html.dark-mode .text-area::placeholder{
+  color:var(--muted);
+  opacity:1;
 }

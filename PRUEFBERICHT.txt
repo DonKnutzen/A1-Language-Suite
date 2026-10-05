@@ -53,6 +53,17 @@ Chromium-Browser:
 - Landingpage mit vier Kurskarten in DE, FR und TR geprüft; Mobilansicht 360 px.
 - Französische Mobilansicht im Dark Mode geprüft.
 
+Nachtrag: Dark Mode Türkisch → Deutsch
+- Manuelle Hell-/Dunkel-Auswahl unabhängig vom Farbschema des Geräts.
+- Alle vier Kombinationen aus Gerätefarbschema und gespeicherter Auswahl
+  in Chromium geprüft; Umschalten und Auswahl nach Neuladen funktionieren.
+- Karten, Hinweise, Lösungen, richtige/falsche Antworten, Eingabefelder,
+  Audioflächen, Sprechkarten und aktive Navigation verwenden passende Farben.
+- Ausgewählte Tabs und abgeschlossene Lektionen bleiben erkennbar.
+- Startseite, Lektion, Schreiben, Hören, Lesen, Sprechen und Prüfungsmenü geprüft.
+- Mobile Ansicht 390 px und Desktop 1280 px; keine JavaScript-Laufzeitfehler.
+- Türkischer Kurscache auf deutsch-a1-tr-darkmode-v12 aktualisiert.
+
 GRENZEN
 
 Die produktive Supabase-Datenbank wurde nicht verändert oder angesprochen.
@@ -63,3 +74,16 @@ Freies Schreiben und Sprechen werden nicht automatisch sprachlich bewertet.
 Es gibt keine offizielle A1-Zertifizierung oder Garantie für ein Prüfungsergebnis.
 Der Volltext von Niveau A1 pour le français lag nicht vor; der Kurs behauptet
 keinen vollständigen Abgleich mit dessen sprachlichem Inventar.
+
+Nachtrag v12: Erneute Prüfung nach Rückmeldung zur Hell-Umschaltung
+- Das gemeldete Verhalten mit der alten unversionierten CSS-Datei und dunklem
+  Gerätefarbschema nachgestellt: Trotz gespeicherter Hell-Auswahl bleibt die
+  Seite dunkel.
+- Türkischer Kurseinstieg, CSS-Datei, Kurs-App und Profilskript erhalten
+  versionierte URLs (tr-theme-12), um ältere Browserantworten zu umgehen.
+- Neue Version mit weiterhin veralteter Antwort für styles.css ohne Version
+  getestet: Die Seite und Inhaltskarten wechseln vollständig zwischen Hell
+  und Dunkel, auch bei dunkler Geräteeinstellung und nach Neuladen.
+- Service-Worker-Vorablage enthält die neuen URLs einschließlich Kurseinstieg;
+  Aktualisierung des Worker-Skripts erfolgt mit updateViaCache: none.
+- Die produktiv veröffentlichte Website wurde mangels Link nicht geprüft.

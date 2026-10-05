@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-tr-review-v10";
+const CACHE="deutsch-a1-tr-darkmode-v12";
 const PREFIX="deutsch-a1-tr-";
-const ASSETS=["./", "./index.html", "./styles.css", "./app.js", "./manifest.json", "../shared/config.js", "../shared/profile.js", "../shared/learning.js"];
+const ASSETS=["./", "./?v=tr-theme-12", "./index.html", "./styles.css?v=tr-theme-12", "./app.js?v=tr-theme-12", "./manifest.json", "../shared/config.js", "../shared/profile.js?v=tr-theme-12", "../shared/learning.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

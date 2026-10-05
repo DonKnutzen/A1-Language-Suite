@@ -55,6 +55,6 @@ function startQuickMock(){const qs=[...shuffle(D.listening).slice(0,15).map(x=>(
 
 audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('trDeA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('Guten Tag! Willkommen beim Deutschtraining.',true);else if('speechSynthesis'in window)speechSynthesis.cancel();};
 document.getElementById('resetBtn').onclick=()=>{if(confirm('Bu profildeki Türkçe → Almanca A1 ilerlemesi sıfırlansın mı?')){localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);}};
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js', {updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{}));
 if('speechSynthesis'in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
 updateAudioButton();setRoute('home');

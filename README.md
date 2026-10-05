@@ -2,6 +2,8 @@
 
 Stand: 5. Oktober 2026. Vier getrennte Kurse mit gemeinsamen Profilen, Dark Mode und deutscher, französischer oder türkischer Oberfläche für Startseite und Profilmenüs.
 
+Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktioniert unabhängig vom Gerätefarbschema. Hinweise, Lösungen, Antwortmarkierungen, Eingabefelder und aktive Bedienelemente erhalten passende dunkle Farben. Die Kursdateien werden über neue URLs mit tr-theme-12 geladen; der Kurscache wurde auf v12 aktualisiert.
+
 | Kurs | Verzeichnis | Cloud-Kennung | Fortschritts-Schlüssel |
 |---|---|---|---|
 | Französisch → Deutsch | deutsch/ | de | deutschA1GoetheFormatState_v6 |
