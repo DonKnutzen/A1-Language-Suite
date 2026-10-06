@@ -4,6 +4,11 @@ label.mixed-type{display:block}
 .mixed-order-answer{border-color:var(--line)}
 .lesson-part-status{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .lesson-flow-requirements{font-size:.9rem;line-height:1.6;color:var(--muted)}
+.lesson-dialogue-help{margin-top:18px}
+.lesson-dialogue-help details{margin:0;border:1px solid var(--line);border-radius:14px;background:var(--accent-soft);overflow:hidden}
+.lesson-dialogue-help summary{padding:13px 14px!important;color:var(--accent-ink)}
+.lesson-dialogue-help details[open]>summary{border-bottom:1px solid var(--line)}
+.lesson-dialogue-help .phrase-row{margin:10px 12px;background:var(--panel)}
 .lesson-flow .between{gap:12px;align-items:flex-start}
 .lesson-flow h3{margin:0}
 .lesson-task-prompt{display:block;font-weight:750;line-height:1.6;margin:16px 0}

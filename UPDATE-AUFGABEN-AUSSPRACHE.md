@@ -1,4 +1,4 @@
-# Aufgaben, Lektionsabschluss und Aussprache – v20
+# Aufgaben, Lektionsabschluss und Aussprache – v21
 
 Stand: 6. Oktober 2026. Grundlage ist die bereitgestellte `A1-Language-Suite-main(4).zip`.
 
@@ -17,6 +17,8 @@ In allen vier Kursen folgt nach der zehnten Übung direkt der Bereich **Sprechen
 3. die Schreibaufgabe ausreichend bearbeitet, mit dem Beispiel verglichen und selbst geprüft wurde.
 
 Unter der Sprechaufgabe führt ein Button zur Schreibaufgabe. Erst am Ende steht der Button zur nächsten Lektion. Bei weniger als 70 % kann das Quiz wiederholt werden; die erledigten Selbstaufgaben bleiben gespeichert.
+
+Der Alltagsdialog steht nicht mehr unverbunden am Ende des Lerninhalts. Er befindet sich jetzt im Bereich **Sprechen und Schreiben üben** und ist dort als **Hilfe · Beispieldialog** eingeklappt. Die Lernenden können ihn bei beiden freien Aufgaben als Erinnerung öffnen und jede Dialogzeile weiterhin anhören.
 
 Sprechen funktioniert mit Aufnahme oder ohne Mikrofon. „Überspringen“ zählt nicht mehr als erledigte Sprechaufgabe. Eine nicht leere Aufnahme erhält weiterhin den üblichen Tagesaktivitätsnachweis, beendet aber allein weder die Sprechaufgabe noch die Lektion. Freie Antworten werden durch den Lernenden geprüft, nicht automatisch benotet.
 
@@ -47,7 +49,7 @@ Quellen für diese Grenze und die Systemoptionen:
 
 ## Upload und Prüfung
 
-Den vollständigen ZIP-Inhalt ins bestehende Projekt übernehmen. Besonders wichtig sind die neuen Dateien `shared/lesson-flow.js`, `shared/pronunciation.js` und `shared/course-updates.css` sowie die aktualisierten HTML-, App- und Worker-Dateien aller vier Kurse. Die geänderten Ressourcen verwenden `flow-20`; die vier Kurscaches wurden erhöht. `shared/config.js` und `shared/supabase.sql` bleiben unverändert.
+Den vollständigen ZIP-Inhalt ins bestehende Projekt übernehmen. Besonders wichtig sind die neuen Dateien `shared/lesson-flow.js`, `shared/pronunciation.js` und `shared/course-updates.css` sowie die aktualisierten HTML-, App- und Worker-Dateien aller vier Kurse. Die geänderten Ressourcen verwenden `dialog-21`; die vier Kurscaches wurden erhöht. `shared/config.js` und `shared/supabase.sql` bleiben unverändert.
 
 Geprüft wurden alle 96 Lektionen mit ihren zehn generierten Aufgaben, beide Selbstaufgaben, gesperrter/freigegebener Abschluss, alte Erfolge, Neuladen und der neue Status im Cloud-Speicherpayload. Mikrofonprüfungen decken Abbruch, leere/nicht leere Aufnahme, Wiedergabe, Selbstprüfung, Streak und Ressourcenfreigabe ab. Browserprüfungen decken 320–1280 Pixel, beide Farbschemata, Navigation und Offline-Cache ab. Stimmwahl und Buchstabenfolgen wurden mit nachgebildeten Apple- und Windows-Stimmlisten geprüft.
 

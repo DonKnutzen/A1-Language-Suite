@@ -28,11 +28,12 @@ nicht gegen deine produktive Supabase-Datenbank. Details zum aktuellen Update:
 UPDATE-AUFGABEN-AUSSPRACHE.md. Lernserie: UPDATE-LERNSERIE.md.
 Frühere Prüfungen: PRUEFBERICHT.txt.
 
-AUFGABEN UND AUSSPRACHE – AKTUELLE KURSCACHES flow-v20
+AUFGABEN UND AUSSPRACHE – AKTUELLE KURSCACHES dialog-v21
 Zehn gemischte Übungen, danach Sprechen und Schreiben in derselben Lektion.
 Neue Abschlüsse benötigen mindestens 70 % plus beide selbst geprüften Aufgaben.
 Bereits abgeschlossene Lektionen behalten ihren Status. Schreibentwürfe bleiben
 gespeichert. Buchstabennamen und Aussprachebeispiele sind einzeln hörbar.
+Der Alltagsdialog steht eingeklappt als Hilfe bei Sprechen und Schreiben.
 Das Schallwellen-Symbol öffnet Stimmwahl, Hörprobe und Tempo. Die App nutzt
 weiterhin kostenlose Browserstimmen, ohne zusätzliche Audio-/Modelldateien.
 Die Qualität auf Apple-Geräten hängt von den angebotenen Stimmen ab.
