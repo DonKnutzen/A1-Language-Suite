@@ -24,6 +24,15 @@
       <details class="lesson-explanation"><summary><strong>${w.check}</strong></summary><ul>${c.selfCheck.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></details>
     </section>`;
   }
+
+  function parts(id,lang,esc,speakBtn){
+    const c=content(id),w=words[lang];
+    return {
+      pronunciation:`<details class="lesson-explanation"><summary><strong>${w.pronunciation} · ${esc(c.pronunciation.focus)}</strong></summary><p class="muted">${esc(c.pronunciation.explanation)}</p><p class="muted">${w.repeat}</p>${c.pronunciation.samples.map(t=>row([t,''],esc,speakBtn)).join('')}</details>`,
+      dialogue:`<details class="lesson-explanation"><summary><strong>${w.dialogue}</strong></summary>${c.dialogue.map((p,i)=>row(p,esc,speakBtn,w.person+' '+(i%2?'B':'A'))).join('')}</details>`,
+      transfer:c.transfer
+    };
+  }
   function goal(id,esc){return esc(content(id).canDo[0]);}
-  window.A1LessonGuide={intro,extras,goal};
+  window.A1LessonGuide={intro,extras,parts,goal};
 })();

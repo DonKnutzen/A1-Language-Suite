@@ -267,3 +267,21 @@ html.dark-mode .text-area::placeholder{
 .lesson-tip{padding:12px;border-radius:12px;background:var(--accent-soft);color:var(--ink)}
 .lesson-goal-preview{font-size:.84rem;color:var(--muted);margin:8px 0;line-height:1.5;text-align:left;white-space:normal}
 .lesson-guide{min-width:0}
+
+/* Lesson application layout */
+.lesson-application{margin-top:14px}
+.lesson-application>summary{padding:6px 0}
+.application-block{display:grid;gap:0;margin-top:10px}
+.application-block h3{margin:18px 0 8px}
+.application-block h3:first-child{margin-top:8px}
+.practice-task{display:grid;gap:12px}
+.practice-task>.button-row{margin-top:2px}
+.lesson-skip-speaking{margin-top:2px}
+.special-char-wrap{margin-top:4px}
+.special-char-label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:4px}
+.special-char-bar{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.special-char-btn{min-width:30px;height:32px;padding:0 5px;border:1px solid var(--border);border-radius:7px;background:var(--card);color:var(--text);font:inherit;font-size:.92rem;font-weight:700;line-height:1;cursor:pointer;flex:0 0 auto}
+.special-char-btn:hover{background:var(--soft)}
+
+.special-char-shift{min-width:30px;height:32px;padding:0 5px;border:1px solid var(--border);border-radius:7px;background:var(--soft);color:var(--text);font:inherit;font-size:1rem;font-weight:800;line-height:1;cursor:pointer;flex:0 0 auto}
+.special-char-shift:hover,.special-char-shift.active{background:var(--primary);color:#fff;border-color:var(--primary)}

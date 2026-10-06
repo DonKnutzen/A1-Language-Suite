@@ -127,9 +127,43 @@ function renderLearn(){
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));
 }
 
+const LESSON_APPLICATIONS={1:{speakModel:"Bonjour, je m’appelle Léa. J’habite à Halifax. Je parle allemand et un peu français. Comment vous appelez-vous ? Vous habitez où ?",writeModel:"Je m’appelle Léa.\\nJ’habite à Halifax.\\nJe parle allemand et un peu français.",placeholder:"Écris trois phrases simples…"},2:{speakModel:"Je m’appelle Léa Martin. L-E-A, M-A-R-T-I-N. Pouvez-vous parler plus lentement, s’il vous plaît ?",writeModel:"Léa Martin",placeholder:"Écris le nom que tu entends…"},3:{speakModel:"J’ai trente ans. Mon numéro de téléphone est le 902 555 0142.",writeModel:"Nom : Léa Martin\\nÂge : 30 ans\\nTéléphone : 902 555 0142\\nE-mail : lea@example.com",placeholder:"Complète le mini-formulaire…"},4:{speakModel:"Vous êtes disponible mardi à quinze heures ? Rendez-vous devant la bibliothèque.",writeModel:"Rendez-vous mardi à 15 h devant la bibliothèque.",placeholder:"Écris une confirmation de rendez-vous…"},5:{speakModel:"Ma sœur s’appelle Emma. Elle a vingt-six ans et elle est sympa. Mon père s’appelle Marc. Il a cinquante-huit ans et il est calme.",writeModel:"Ma sœur s’appelle Emma. Elle a 26 ans et elle est sympa.\\nMon père s’appelle Marc. Il a 58 ans et il est calme.",placeholder:"Écris quatre phrases sur une famille…"},6:{speakModel:"Bonjour, je voudrais un café et un croissant, s’il vous plaît. C’est combien ? Merci.",writeModel:"Bonjour, je voudrais un café et un croissant, s’il vous plaît. Merci !",placeholder:"Écris ta commande…"},7:{speakModel:"Je voudrais un kilo de pommes et deux bouteilles d’eau, s’il vous plaît. C’est combien au total ?",writeModel:"1 kg de pommes\\n2 bouteilles d’eau\\n500 g de tomates\\n1 litre de lait",placeholder:"Écris une liste avec quatre quantités…"},8:{speakModel:"Dans mon appartement, il y a un salon et une chambre. La lampe est sur la table.",writeModel:"Dans mon appartement, il y a un salon, une chambre et une cuisine. La lampe est sur la table.",placeholder:"Décris un logement avec il y a…"},9:{speakModel:"Excusez-moi, où est la gare ? Allez tout droit, puis tournez à gauche.",writeModel:"Allez tout droit. Puis tournez à gauche. Le café est à droite.",placeholder:"Écris deux indications…"},10:{speakModel:"Quel est votre métier ? Où travaillez-vous ? Vous travaillez quels jours ?",writeModel:"Je suis développeur. Je travaille à Halifax. Je travaille du lundi au vendredi. J’aime mon travail.",placeholder:"Écris quatre phrases sur le travail ou les études…"},11:{speakModel:"Le matin, je me lève à sept heures. Je prends le petit-déjeuner à sept heures et demie, puis je vais au travail à huit heures.",writeModel:"Je me lève à 7 h. Je prends le petit-déjeuner, puis je me douche. Je vais au travail à 8 h et je commence à 9 h.",placeholder:"Écris cinq phrases sur ta journée…"},12:{speakModel:"J’ai mal à la tête et j’ai de la fièvre. Pouvez-vous m’aider ? Pardon, pouvez-vous répéter ?",writeModel:"Bonjour, je suis malade et je ne peux pas venir aujourd’hui. Je suis désolé. À demain.",placeholder:"Écris un message pour dire que tu es malade…"},13:{speakModel:"Bonjour, je cherche cette chemise en bleu, taille M, s’il vous plaît.",writeModel:"Aujourd’hui, il fait froid et il pleut. Je porte un manteau et des chaussures fermées.",placeholder:"Décris la météo et les vêtements…"},14:{speakModel:"Qu’est-ce que tu fais le week-end ? Tu aimes le sport ? Moi, j’aime jouer au football.",writeModel:"Le week-end, je joue au football et je cuisine. J’aime aussi regarder des films. Le dimanche, je me repose.",placeholder:"Écris quatre phrases sur ton week-end…"},15:{speakModel:"Bonjour, je voudrais réserver une chambre pour deux personnes, pour deux nuits. Le petit-déjeuner est inclus ? C’est combien ?",writeModel:"Bonjour, je voudrais réserver une chambre pour deux personnes du 10 au 12 juillet. Merci de confirmer la disponibilité et le prix.",placeholder:"Écris une demande de réservation…"},16:{speakModel:"Tu veux venir au cinéma samedi à vingt heures ? Oui, avec plaisir ! / Désolé, je ne peux pas, je travaille.",writeModel:"Salut ! Tu veux venir chez moi samedi à 19 h ? À bientôt !",placeholder:"Écris une invitation ou une réponse…"},17:{speakModel:"Excusez-moi, que dois-je écrire ici ? Mon adresse est 10, rue du Port.",writeModel:"Nom : Léa Martin\\nAdresse : 10, rue du Port\\nTéléphone : 902 555 0142\\n\\nBonjour, je voudrais des informations sur votre cours de français. Je suis disponible le soir et je voudrais connaître les horaires et le prix. Merci beaucoup pour votre réponse.",placeholder:"Complète le formulaire puis écris au moins 40 mots…"},18:{speakModel:"Pardon, pouvez-vous répéter, s’il vous plaît ? Pouvez-vous parler plus lentement, s’il vous plaît ?",writeModel:"Bonjour, je voudrais des informations sur votre cours de français : les horaires, le prix et la date de début. Merci d’avance.",placeholder:"Écris une demande polie d’informations…"},19:{speakModel:"C’est un livre. C’est une tasse. Ce sont des clés. Ce sont des stylos. C’est une table.",writeModel:"C’est un ordinateur. C’est une tasse. Ce sont des livres.",placeholder:"Décris trois objets avec c’est / ce sont…"},20:{speakModel:"Aujourd’hui, je travaille et je cuisine. Je ne fais pas de sport et je ne regarde pas la télévision.",writeModel:"Je travaille aujourd’hui. Je cuisine ce soir. Je parle français.\\nJe ne travaille pas demain. Je ne joue pas au tennis. Je ne regarde pas la télévision.",placeholder:"Écris trois phrases positives et trois négatives…"},21:{speakModel:"Comment tu t’appelles ? Où habites-tu ? Quel est ton métier ? Quand commence le cours ? Pourquoi apprends-tu le français ?",writeModel:"Comment vous appelez-vous ? Où habitez-vous ? Quel est votre métier ? Quelles langues parlez-vous ?",placeholder:"Écris quatre questions…"},22:{speakModel:"Hier, j’ai travaillé. Aujourd’hui, je suis à la maison. Demain, je vais voir des amis.",writeModel:"Hier, j’ai travaillé. Aujourd’hui, je suis à la maison. Demain, je vais voir des amis.",placeholder:"Écris un message avec hier, aujourd’hui et demain…"},23:{speakModel:"Il faut deux œufs et 200 grammes de farine. Combien de lait faut-il ?",writeModel:"2 œufs\\n200 g de farine\\n250 ml de lait\\nMélangez les ingrédients. Puis faites cuire la préparation.",placeholder:"Écris les ingrédients et deux étapes…"},24:{speakModel:"Je voudrais aller en France en juillet. Je vais à Paris en train et je reste trois jours.",writeModel:"Bonjour ! En juillet, je vais à Paris avec un ami. Nous partons en train et nous restons trois jours. Nous voulons visiter la ville, manger au restaurant et voir un musée. À bientôt !",placeholder:"Écris au moins 40 mots sur un voyage…"}};
+
 function renderLesson(id){
   const l=lessons.find(x=>x.id===id);
   let qi=0,score=0;
+  const app=LESSON_APPLICATIONS[id];
+  const recId=`LessonApply${id}`;
+
+  function applicationHtml(){
+    return `<details class="lesson-application"><summary><strong>Jetzt selbst anwenden</strong></summary>
+      <div class="application-block">
+        <h3>🎤 Sprechen</h3>
+        <div class="practice-task">
+          <strong>${esc(l.transfer.speaking)}</strong>
+          <p class="muted">Sprich die Aufgabe frei ins Mikrofon. Danach kannst du deine Aufnahme und eine mögliche Musterantwort anhören.</p>
+          ${recorderHtml(recId)}
+          <div class="button-row"><button class="soft-btn lesson-skip-speaking" id="skipSpeaking">Sprechaufgabe überspringen</button></div>
+          <div id="skipFeedback"></div>
+          <div class="lesson-model" id="speakingModel" hidden>
+            <div class="solution"><strong>Mögliche Antwort:</strong><br>${esc(app.speakModel)}</div>
+            <div class="button-row"><button class="soft-btn" data-speak="${encodeURIComponent(app.speakModel)}">🔊 Beispiel anhören</button></div>
+            <p><strong>Wie war deine Antwort?</strong></p>
+            <div class="button-row"><button class="secondary-btn self-check" data-good="0">↻ Noch einmal üben</button><button class="primary-btn self-check" data-good="1">✓ Das war gut</button></div>
+          </div>
+        </div>
+        <h3>✍️ Schreiben</h3>
+        <div class="practice-task">
+          <strong>${esc(l.transfer.writing)}</strong>
+          <textarea class="text-area lesson-writing" id="lessonWriting" placeholder="${esc(app.placeholder)}"></textarea>
+          <div class="special-char-wrap"><span class="special-char-label">Sonderzeichen</span><div class="special-char-bar"><button type="button" class="special-char-shift" aria-label="Groß-/Kleinschreibung umschalten" aria-pressed="false">⇧</button><button type="button" class="special-char-btn" data-lower="à" data-upper="À" data-char="à">à</button><button type="button" class="special-char-btn" data-lower="â" data-upper="Â" data-char="â">â</button><button type="button" class="special-char-btn" data-lower="æ" data-upper="Æ" data-char="æ">æ</button><button type="button" class="special-char-btn" data-lower="ç" data-upper="Ç" data-char="ç">ç</button><button type="button" class="special-char-btn" data-lower="é" data-upper="É" data-char="é">é</button><button type="button" class="special-char-btn" data-lower="è" data-upper="È" data-char="è">è</button><button type="button" class="special-char-btn" data-lower="ê" data-upper="Ê" data-char="ê">ê</button><button type="button" class="special-char-btn" data-lower="ë" data-upper="Ë" data-char="ë">ë</button><button type="button" class="special-char-btn" data-lower="î" data-upper="Î" data-char="î">î</button><button type="button" class="special-char-btn" data-lower="ï" data-upper="Ï" data-char="ï">ï</button><button type="button" class="special-char-btn" data-lower="ô" data-upper="Ô" data-char="ô">ô</button><button type="button" class="special-char-btn" data-lower="œ" data-upper="Œ" data-char="œ">œ</button><button type="button" class="special-char-btn" data-lower="ù" data-upper="Ù" data-char="ù">ù</button><button type="button" class="special-char-btn" data-lower="û" data-upper="Û" data-char="û">û</button><button type="button" class="special-char-btn" data-lower="ü" data-upper="Ü" data-char="ü">ü</button><button type="button" class="special-char-btn" data-lower="ÿ" data-upper="Ÿ" data-char="ÿ">ÿ</button></div></div>
+          <div class="button-row"><button class="soft-btn" id="showWritingModel">Mit Musterlösung vergleichen</button></div>
+          <div id="writingModel"></div>
+        </div>
+      </div>
+    </details>`;
+  }
+
   function drawLesson(){
     view.innerHTML=`
       <div class="between"><button class="tiny-btn" id="backLearn">← Lektionen</button><span class="pill">${esc(l.topic)}</span></div>
@@ -140,58 +174,58 @@ function renderLesson(id){
         <p class="muted">Höre jede französische Phrase mehrfach und sprich sie laut nach.</p>
         ${l.phrases.map(([fr,de])=>`<div class="phrase-row"><div><strong>${esc(fr)}</strong><small>${esc(de)}</small></div>${speakBtn(fr)}</div>`).join('')}
         <details><summary><strong>Aussprache · ${esc(l.pronunciation.focus)}</strong></summary><p class="muted">${esc(l.pronunciation.explanation)}</p>${speakBtn(l.pronunciation.focus)}</details>
+        <div class="spacer"></div><button class="primary-btn" id="startQuiz">10-Fragen-Übung starten</button><div class="spacer"></div>
         <details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small>${i%2?'Person B':'Person A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>
-        <details><summary><strong>Jetzt selbst anwenden</strong></summary><p><strong>Sprechen:</strong> ${esc(l.transfer.speaking)}</p><p><strong>Schreiben:</strong> ${esc(l.transfer.writing)}</p><p class="muted">Prüfe anschließend: Kann ich das ohne Vorlage? Wiederhole bei Bedarf den Dialog und trainiere die passende Hör-, Lese- oder Schreibaufgabe unter Übungen.</p></details>
-        <div class="spacer"></div>
-        <button class="primary-btn" id="startQuiz">10-Fragen-Übung starten</button>
+        ${applicationHtml()}
       </section>`;
     document.getElementById('backLearn').onclick=renderLearn;
     document.getElementById('startQuiz').onclick=()=>{qi=0;score=0;drawQuiz();};
     wireSpeakButtons();
-    if(audioEnabled)setTimeout(()=>speak(l.phrases[0][0]),180);
+    wireApplication();
   }
+
+  function wireApplication(){
+    function completeSkip(){
+      A1Streak.completeExercise();
+      document.getElementById('skipFeedback').innerHTML='<div class="feedback good">✓ Übersprungen · als erledigt markiert.</div>';
+      document.getElementById('speakingModel').hidden=false;wireSpeakButtons();
+    }
+    function askSkip(message){if(confirm(message))completeSkip();}
+    A1Learning.wireRecorder(recId,()=>{A1Streak.completeExercise();document.getElementById('speakingModel').hidden=false;wireSpeakButtons();},{"unavailable":"Mikrofon hier nicht verfügbar. Verwende HTTPS und einen unterstützten Browser.","denied":"Mikrofon konnte nicht geöffnet werden. Prüfe HTTPS und die Berechtigung.","recording":"● Aufnahme läuft…","done":"Aufnahme fertig. Höre deine Antwort an.","empty":"Keine Aufnahme gespeichert. Versuche es erneut."},()=>askSkip('Das Mikrofon konnte nicht geöffnet werden. Möchtest du diese Sprechaufgabe überspringen und als erledigt markieren?'));
+    document.getElementById('skipSpeaking').onclick=()=>askSkip('Möchtest du diese Sprechaufgabe überspringen? Sie wird dann als erledigt markiert.');
+    document.querySelectorAll('.self-check').forEach(b=>b.onclick=()=>{
+      const good=b.dataset.good==='1',box=b.closest('.lesson-model');let msg=box.querySelector('.self-check-feedback');
+      if(!msg){msg=document.createElement('div');msg.className='self-check-feedback';box.appendChild(msg);}
+      msg.className=`feedback ${good?'good':'bad'} self-check-feedback`;
+      msg.textContent=good?'✓ Gut – weiter so.':'↻ Höre das Beispiel noch einmal und nimm dich erneut auf.';
+    });
+    const shift=document.querySelector('.special-char-shift');const charBtns=[...document.querySelectorAll('.special-char-btn')];if(shift)shift.onclick=()=>{const upper=shift.getAttribute('aria-pressed')!=='true';shift.setAttribute('aria-pressed',String(upper));shift.classList.toggle('active',upper);charBtns.forEach(b=>{const ch=upper?b.dataset.upper:b.dataset.lower;b.dataset.char=ch;b.textContent=ch;});document.getElementById('lessonWriting')?.focus();};charBtns.forEach(b=>b.onclick=()=>{const t=document.getElementById('lessonWriting');const ch=b.dataset.char;const a=t.selectionStart??t.value.length,z=t.selectionEnd??a;t.value=t.value.slice(0,a)+ch+t.value.slice(z);t.focus();t.setSelectionRange(a+ch.length,a+ch.length);});
+    document.getElementById('showWritingModel').onclick=()=>{
+      const text=document.getElementById('lessonWriting').value.trim(),target=document.getElementById('writingModel');
+      target.innerHTML=`${text?`<div class="solution"><strong>Deine Antwort:</strong><br>${esc(text).replace(/\n/g,'<br>')}</div>`:'<div class="feedback bad">Bearbeite zuerst die Schreibaufgabe.</div>'}
+      ${text?`<div class="solution"><strong>Mögliche Musterlösung:</strong><br>${esc(app.writeModel).replace(/\n/g,'<br>')}</div><p><strong>Passt deine Antwort zur Aufgabe?</strong></p><div class="button-row"><button class="secondary-btn" id="writingAgain">↻ Noch einmal bearbeiten</button><button class="primary-btn" id="writingGood">✓ Passt gut</button></div><div id="writingSelfFeedback"></div>`:''}`;
+      if(text){
+        document.getElementById('writingAgain').onclick=()=>document.getElementById('lessonWriting').focus();
+        document.getElementById('writingGood').onclick=()=>{A1Streak.completeExercise();document.getElementById('writingSelfFeedback').innerHTML='<div class="feedback good">✓ Als selbst geprüft markiert.</div>';};
+      }
+    };
+  }
+
   function drawQuiz(){
     const q=l.quiz[qi];
-    view.innerHTML=`
-      <div class="between"><button class="tiny-btn" id="backLesson">← Lektion</button><span class="pill">${qi+1}/${l.quiz.length}</span></div>
-      <section class="card" style="margin-top:12px">
-        <div class="quiz-q">${esc(q.q)}</div>
-        <div class="options">${q.o.map((o,i)=>`<button class="option-btn" data-o="${i}">${esc(o)}</button>`).join('')}</div>
-        <div id="quizFeedback"></div>
-      </section>`;
+    view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLesson">← Lektion</button><span class="pill">${qi+1}/${l.quiz.length}</span></div><section class="card" style="margin-top:12px"><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((o,i)=>`<button class="option-btn" data-o="${i}">${esc(o)}</button>`).join('')}</div><div id="quizFeedback"></div></section>`;
     document.getElementById('backLesson').onclick=drawLesson;
     document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{
-      const chosen=+b.dataset.o,ok=chosen===q.a;
-      if(ok){score++;playCorrectAudio(q.audio||q.o[q.a]);}
-      document.querySelectorAll('[data-o]').forEach((x,i)=>{
-        x.disabled=true;
-        if(i===q.a)x.classList.add('correct');
-        else if(i===chosen)x.classList.add('wrong');
-      });
-      document.getElementById('quizFeedback').innerHTML=`
-        <div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig · Aussprache wird abgespielt':'✗ Richtig ist: '+esc(q.o[q.a])}${q.explanation?'<p>'+esc(q.explanation)+'</p>':''}</div>
-        <div class="spacer"></div>
-        <button class="primary-btn" id="nextQuiz">${qi<l.quiz.length-1?'Weiter':'Ergebnis'}</button>`;
-      document.getElementById('nextQuiz').onclick=()=>{
-        qi++;
-        if(qi<l.quiz.length)drawQuiz(); else finishQuiz();
-      };
+      const chosen=+b.dataset.o,ok=chosen===q.a;if(ok)score++;playCorrectAudio(q.audio||q.o[q.a]);
+      document.querySelectorAll('[data-o]').forEach((x,i)=>{x.disabled=true;if(i===q.a)x.classList.add('correct');else if(i===chosen)x.classList.add('wrong');});
+      document.getElementById('quizFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig · Aussprache wird abgespielt':'✗ Richtig ist: '+esc(q.o[q.a])}${q.explanation?'<p>'+esc(q.explanation)+'</p>':''}</div><div class="spacer"></div><button class="primary-btn" id="nextQuiz">${qi<l.quiz.length-1?'Weiter':'Ergebnis'}</button>`;
+      document.getElementById('nextQuiz').onclick=()=>{qi++;if(qi<l.quiz.length)drawQuiz();else finishQuiz();};
     });
   }
   function finishQuiz(){
-    const pct=Math.round(score/l.quiz.length*100);
-    state.lessonQuizBest[l.id]=Math.max(state.lessonQuizBest[l.id]||0,pct);
-    if(pct>=70&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);
-    save(true);
-    view.innerHTML=`
-      <section class="card center">
-        <span class="pill ${pct>=70?'green':'amber'}">${pct>=70?'LEKTION BESTANDEN':'NOCH EINMAL'}</span>
-        <div class="score">${pct}%</div><h2>${score}/${l.quiz.length}</h2>
-        <p class="muted">${pct>=70?'Fortschritt gespeichert.':'Höre die Phrasen erneut und wiederhole die Übung.'}</p>
-        <div class="button-row"><button class="secondary-btn" id="repeatLesson">Wiederholen</button><button class="primary-btn" id="nextLesson">${id<lessons.length?'Nächste Lektion':'Lektionen'}</button></div>
-      </section>`;
-    document.getElementById('repeatLesson').onclick=drawLesson;
-    document.getElementById('nextLesson').onclick=()=>id<lessons.length?renderLesson(id+1):renderLearn();
+    const pct=Math.round(score/l.quiz.length*100);state.lessonQuizBest[l.id]=Math.max(state.lessonQuizBest[l.id]||0,pct);if(!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);save(true);
+    view.innerHTML=`<section class="card center"><span class="pill green">LEKTION ABGESCHLOSSEN</span><h2>${score}/${l.quiz.length} richtig</h2><p class="muted">Bester Wert: ${state.lessonQuizBest[l.id]}%</p><div class="button-row"><button class="secondary-btn" id="repeatLesson">Zurück zur Lektion</button><button class="primary-btn" id="nextLesson">${id<lessons.length?'Nächste Lektion':'Lektionen'}</button></div></section>`;
+    document.getElementById('repeatLesson').onclick=drawLesson;document.getElementById('nextLesson').onclick=()=>id<lessons.length?renderLesson(id+1):renderLearn();
   }
   drawLesson();
 }
@@ -277,7 +311,7 @@ function startGrammarSet(id){
     document.getElementById('backGrammar').onclick=renderGrammarMenu;
     document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
       const chosen=+btn.dataset.o,ok=chosen===q.a;
-      if(ok){score++;playCorrectAudio(q.audio||q.o[q.a]);}
+      if(ok)score++;playCorrectAudio(q.audio||q.o[q.a]);
       document.querySelectorAll('[data-o]').forEach((b,j)=>{
         b.disabled=true;
         if(j===q.a)b.classList.add('correct');

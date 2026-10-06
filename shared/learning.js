@@ -50,14 +50,14 @@
     }
   }
 
-  function wireRecorder(id, onRecorded, labels) {
+  function wireRecorder(id, onRecorded, labels, onUnavailable) {
     const start = document.getElementById('startRec' + id);
     const stop = document.getElementById('stopRec' + id);
     const status = document.getElementById('recStatus' + id);
     const playback = document.getElementById('playback' + id);
     if (!start || !stop || !status || !playback) return;
     if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
-      start.onclick = () => { status.textContent = labels.unavailable; };
+      start.onclick = () => { status.textContent = labels.unavailable; if (onUnavailable) onUnavailable('unavailable'); };
       return;
     }
     start.onclick = async () => {
@@ -102,7 +102,7 @@
       } catch {
         session.stream?.getTracks().forEach(track => track.stop());
         if (current === session) current = null;
-        if (start.isConnected) { start.disabled = false; stop.disabled = true; status.textContent = labels.denied; }
+        if (start.isConnected) { start.disabled = false; stop.disabled = true; status.textContent = labels.denied; if (onUnavailable) onUnavailable('denied'); }
       }
     };
     stop.onclick = () => {

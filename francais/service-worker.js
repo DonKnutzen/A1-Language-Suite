@@ -1,4 +1,4 @@
-const CACHE="francais-a1-streak-v15";
+const CACHE="francais-a1-streak-v16";
 const PREFIX="francais-a1-";
 const ASSETS=["../shared/streak.js?v=streak-15", "./", "./index.html", "./styles.css", "./app.js?v=streak-15", "./manifest.json", "../shared/config.js", "../shared/profile.js?v=streak-15", "../shared/learning.js", "./data.js"];
 self.addEventListener('install', event => {
