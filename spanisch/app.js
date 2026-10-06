@@ -198,7 +198,7 @@ const LESSON_GRAMMAR_REFS={
   24:[['g3',[0]],['g6',[0]]]
 };
 function lessonGrammarReferenceHtml(id){
-  return A1GrammarUI.pickDetails(GRAMMAR_GUIDES,LESSON_GRAMMAR_REFS[id]||[]);
+  return A1GrammarUI.pickDetails(GRAMMAR_GUIDES,LESSON_GRAMMAR_REFS[id]||[])+A1LessonTopicInfo.render('spanisch',id);
 }
 
 function renderGrammarIntro(id){

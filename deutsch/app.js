@@ -1,164 +1,1343 @@
 const lessons = [
   {
-    id:1,title:'Saluer et se présenter',topic:'Identité',skills:['Sprechen','Schreiben'],note:"Apprends à donner les informations personnelles les plus simples avec sein, heißen, kommen et wohnen.",
-    phrases:[['Guten Tag!','Bonjour !'],['Ich heiße Claire.','Je m’appelle Claire.'],['Mein Name ist Claire Martin.','Mon nom est Claire Martin.'],['Ich komme aus Kanada.','Je viens du Canada.'],['Ich wohne in Halifax.','J’habite à Halifax.'],['Ich spreche Französisch und ein bisschen Deutsch.','Je parle français et un peu allemand.'],['Ich bin Studentin.','Je suis étudiante.'],['Mein Hobby ist Volleyball.','Mon passe-temps est le volleyball.']],
-    quiz:[
-      {q:'Comment dit-on « Je m’appelle Léa » ?',o:['Ich heiße Léa.','Ich wohne Léa.','Ich komme Léa.'],a:0},
-      {q:'Que signifie « Ich komme aus Kanada » ?',o:["J'habite au Canada.",'Je viens du Canada.','Je vais au Canada.'],a:1},
-      {q:'Quel mot introduit le lieu où tu habites ?',o:['wohnen','heißen','sprechen'],a:0}
+    "id": 1,
+    "title": "Saluer et se présenter",
+    "topic": "Identité",
+    "skills": [
+      "Sprechen",
+      "Schreiben"
+    ],
+    "note": "Apprends à donner les informations personnelles les plus simples avec sein, heißen, kommen et wohnen.",
+    "phrases": [
+      [
+        "Guten Tag!",
+        "Bonjour !"
+      ],
+      [
+        "Ich heiße Claire.",
+        "Je m’appelle Claire."
+      ],
+      [
+        "Mein Name ist Claire Martin.",
+        "Mon nom est Claire Martin."
+      ],
+      [
+        "Ich komme aus Kanada.",
+        "Je viens du Canada."
+      ],
+      [
+        "Ich wohne in Halifax.",
+        "J’habite à Halifax."
+      ],
+      [
+        "Ich spreche Französisch und ein bisschen Deutsch.",
+        "Je parle français et un peu allemand."
+      ],
+      [
+        "Ich bin Studentin.",
+        "Je suis étudiante."
+      ],
+      [
+        "Mein Hobby ist Volleyball.",
+        "Mon passe-temps est le volleyball."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "Comment dit-on « Je m’appelle Léa » ?",
+        "o": [
+          "Ich heiße Léa.",
+          "Ich wohne Léa.",
+          "Ich komme Léa."
+        ],
+        "a": 0
+      },
+      {
+        "q": "Que signifie « Ich komme aus Kanada » ?",
+        "o": [
+          "J'habite au Canada.",
+          "Je viens du Canada.",
+          "Je vais au Canada."
+        ],
+        "a": 1
+      },
+      {
+        "q": "Quel mot introduit le lieu où tu habites ?",
+        "o": [
+          "wohnen",
+          "heißen",
+          "sprechen"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:2,title:'Alphabet et épellation',topic:'Épeler',skills:['Hören','Sprechen'],note:"À l’oral, tu dois pouvoir épeler un nom ou un lieu et comprendre des lettres isolées.",
-    phrases:[['Wie schreibt man das?','Comment ça s’écrit ?'],['Können Sie das bitte buchstabieren?','Pouvez-vous épeler, s’il vous plaît ?'],['M – A – R – T – I – N','M – A – R – T – I – N'],['mit Doppel-L','avec deux L'],['mit Umlaut','avec tréma allemand'],['A wie Anton','A comme Anton'],['Wie ist Ihr Familienname?','Quel est votre nom de famille ?'],['Mein Familienname ist Dubois.','Mon nom de famille est Dubois.']],
-    quiz:[
-      {q:'« buchstabieren » signifie…',o:['compter','épeler','payer'],a:1},
-      {q:'Que demandes-tu si tu veux savoir l’orthographe ?',o:['Wie spät ist es?','Wie schreibt man das?','Wie viel kostet das?'],a:1},
-      {q:'« Familienname » signifie…',o:['prénom','nom de famille','adresse'],a:1}
+    "id": 2,
+    "title": "Alphabet et épellation",
+    "topic": "Épeler",
+    "skills": [
+      "Hören",
+      "Sprechen"
+    ],
+    "note": "À l’oral, tu dois pouvoir épeler un nom ou un lieu et comprendre des lettres isolées.",
+    "phrases": [
+      [
+        "Wie schreibt man das?",
+        "Comment ça s’écrit ?"
+      ],
+      [
+        "Können Sie das bitte buchstabieren?",
+        "Pouvez-vous épeler, s’il vous plaît ?"
+      ],
+      [
+        "M – A – R – T – I – N",
+        "M – A – R – T – I – N"
+      ],
+      [
+        "mit Doppel-L",
+        "avec deux L"
+      ],
+      [
+        "mit Umlaut",
+        "avec tréma allemand"
+      ],
+      [
+        "A wie Anton",
+        "A comme Anton"
+      ],
+      [
+        "Wie ist Ihr Familienname?",
+        "Quel est votre nom de famille ?"
+      ],
+      [
+        "Mein Familienname ist Dubois.",
+        "Mon nom de famille est Dubois."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« buchstabieren » signifie…",
+        "o": [
+          "compter",
+          "épeler",
+          "payer"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Que demandes-tu si tu veux savoir l’orthographe ?",
+        "o": [
+          "Wie spät ist es?",
+          "Wie schreibt man das?",
+          "Wie viel kostet das?"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« Familienname » signifie…",
+        "o": [
+          "prénom",
+          "nom de famille",
+          "adresse"
+        ],
+        "a": 1
+      }
     ]
   },
   {
-    id:3,title:'Nombres, téléphones et dates',topic:'Nombres',skills:['Hören','Sprechen','Schreiben'],note:"Les nombres sont essentiels pour téléphone, date de naissance, prix, adresse et numéros de chambre.",
-    phrases:[['null, eins, zwei, drei','zéro, un, deux, trois'],['zehn, zwanzig, dreißig','dix, vingt, trente'],['hundert','cent'],['Meine Telefonnummer ist 902 555 1840.','Mon numéro est 902 555 1840.'],['Ich bin am 17. April geboren.','Je suis né(e) le 17 avril.'],['Meine Hausnummer ist 28.','Mon numéro de maison est 28.'],['Die Postleitzahl ist 12345.','Le code postal est 12345.'],['Das Zimmer ist Nummer 305.','La chambre est le numéro 305.']],
-    quiz:[
-      {q:'« dreißig » =',o:['13','30','300'],a:1},
-      {q:'« Hausnummer » =',o:['numéro de téléphone','numéro de maison','code postal'],a:1},
-      {q:'Comment dit-on « chambre 305 » ?',o:['Zimmer 305','Straße 305','Uhr 305'],a:0}
+    "id": 3,
+    "title": "Nombres, téléphones et dates",
+    "topic": "Nombres",
+    "skills": [
+      "Hören",
+      "Sprechen",
+      "Schreiben"
+    ],
+    "note": "Les nombres sont essentiels pour téléphone, date de naissance, prix, adresse et numéros de chambre.",
+    "phrases": [
+      [
+        "null, eins, zwei, drei",
+        "zéro, un, deux, trois"
+      ],
+      [
+        "vier, fünf, sechs, sieben, acht, neun",
+        "quatre, cinq, six, sept, huit, neuf"
+      ],
+      [
+        "zehn, elf, zwölf",
+        "dix, onze, douze"
+      ],
+      [
+        "dreizehn, vierzehn, fünfzehn, sechzehn, siebzehn, achtzehn, neunzehn",
+        "treize, quatorze, quinze, seize, dix-sept, dix-huit, dix-neuf"
+      ],
+      [
+        "zwanzig, einundzwanzig, zweiundzwanzig, dreiundzwanzig",
+        "vingt, vingt et un, vingt-deux, vingt-trois"
+      ],
+      [
+        "dreißig, vierzig, fünfzig, sechzig",
+        "trente, quarante, cinquante, soixante"
+      ],
+      [
+        "siebzig, achtzig, neunzig, hundert",
+        "soixante-dix, quatre-vingts, quatre-vingt-dix, cent"
+      ],
+      [
+        "Meine Telefonnummer ist 902 555 1840.",
+        "Mon numéro est 902 555 1840."
+      ],
+      [
+        "Ich bin am 17. April geboren.",
+        "Je suis né(e) le 17 avril."
+      ],
+      [
+        "Meine Hausnummer ist 28.",
+        "Mon numéro de maison est 28."
+      ],
+      [
+        "Die Postleitzahl ist 12345.",
+        "Le code postal est 12345."
+      ],
+      [
+        "Das Zimmer ist Nummer 305.",
+        "La chambre est le numéro 305."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« dreißig » =",
+        "o": [
+          "13",
+          "30",
+          "300"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« Hausnummer » =",
+        "o": [
+          "numéro de téléphone",
+          "numéro de maison",
+          "code postal"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Comment dit-on « chambre 305 » ?",
+        "o": [
+          "Zimmer 305",
+          "Straße 305",
+          "Uhr 305"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:4,title:'Heure et rendez-vous',topic:'Heure',skills:['Hören','Lesen','Sprechen'],note:"En A1, il faut comprendre et dire les heures, jours, rendez-vous et horaires d’ouverture.",
-    phrases:[['Wie spät ist es?','Quelle heure est-il ?'],['Es ist halb fünf.','Il est quatre heures et demie.'],['Um wie viel Uhr?','À quelle heure ?'],['Der Termin ist am Mittwoch um 10 Uhr.','Le rendez-vous est mercredi à 10 h.'],['Ich komme später.','Je viens plus tard.'],['Von 9 bis 12 Uhr','de 9 h à 12 h'],['Heute / morgen / übermorgen','aujourd’hui / demain / après-demain'],['Montag bis Freitag','du lundi au vendredi']],
-    quiz:[
-      {q:'En allemand, « halb fünf » signifie…',o:['4 h 30','5 h 30','5 h'],a:0},
-      {q:'« Um wie viel Uhr? » demande…',o:['le prix','l’heure','le lieu'],a:1},
-      {q:'« später » signifie…',o:['plus tard','plus tôt','hier'],a:0}
+    "id": 4,
+    "title": "Heure et rendez-vous",
+    "topic": "Heure",
+    "skills": [
+      "Hören",
+      "Lesen",
+      "Sprechen"
+    ],
+    "note": "En A1, il faut comprendre et dire les heures, jours, rendez-vous et horaires d’ouverture.",
+    "phrases": [
+      [
+        "Wie spät ist es?",
+        "Quelle heure est-il ?"
+      ],
+      [
+        "Es ist halb fünf.",
+        "Il est quatre heures et demie."
+      ],
+      [
+        "Um wie viel Uhr?",
+        "À quelle heure ?"
+      ],
+      [
+        "Der Termin ist am Mittwoch um 10 Uhr.",
+        "Le rendez-vous est mercredi à 10 h."
+      ],
+      [
+        "Ich komme später.",
+        "Je viens plus tard."
+      ],
+      [
+        "Von 9 bis 12 Uhr",
+        "de 9 h à 12 h"
+      ],
+      [
+        "Heute / morgen / übermorgen",
+        "aujourd’hui / demain / après-demain"
+      ],
+      [
+        "Montag bis Freitag",
+        "du lundi au vendredi"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "En allemand, « halb fünf » signifie…",
+        "o": [
+          "4 h 30",
+          "5 h 30",
+          "5 h"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Um wie viel Uhr? » demande…",
+        "o": [
+          "le prix",
+          "l’heure",
+          "le lieu"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« später » signifie…",
+        "o": [
+          "plus tard",
+          "plus tôt",
+          "hier"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:5,title:'Famille et informations personnelles',topic:'Famille',skills:['Lesen','Sprechen','Schreiben'],note:"Savoir parler de la famille et remplir des données personnelles dans un formulaire.",
-    phrases:[['meine Mutter / mein Vater','ma mère / mon père'],['mein Bruder / meine Schwester','mon frère / ma sœur'],['Ich bin verheiratet.','Je suis marié(e).'],['Ich bin ledig.','Je suis célibataire.'],['Wir haben zwei Kinder.','Nous avons deux enfants.'],['Wie viele Personen?','Combien de personnes ?'],['Geburtsort','lieu de naissance'],['Geburtsdatum','date de naissance']],
-    quiz:[
-      {q:'« ledig » =',o:['marié','célibataire','divorcé'],a:1},
-      {q:'« Geburtsort » =',o:['lieu de naissance','date de naissance','domicile'],a:0},
-      {q:'« zwei Kinder » =',o:['deux enfants','deux parents','deux amis'],a:0}
+    "id": 5,
+    "title": "Famille et informations personnelles",
+    "topic": "Famille",
+    "skills": [
+      "Lesen",
+      "Sprechen",
+      "Schreiben"
+    ],
+    "note": "Savoir parler de la famille et remplir des données personnelles dans un formulaire.",
+    "phrases": [
+      [
+        "meine Mutter / mein Vater",
+        "ma mère / mon père"
+      ],
+      [
+        "mein Bruder / meine Schwester",
+        "mon frère / ma sœur"
+      ],
+      [
+        "Ich bin verheiratet.",
+        "Je suis marié(e)."
+      ],
+      [
+        "Ich bin ledig.",
+        "Je suis célibataire."
+      ],
+      [
+        "Wir haben zwei Kinder.",
+        "Nous avons deux enfants."
+      ],
+      [
+        "Wie viele Personen?",
+        "Combien de personnes ?"
+      ],
+      [
+        "Geburtsort",
+        "lieu de naissance"
+      ],
+      [
+        "Geburtsdatum",
+        "date de naissance"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« ledig » =",
+        "o": [
+          "marié",
+          "célibataire",
+          "divorcé"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« Geburtsort » =",
+        "o": [
+          "lieu de naissance",
+          "date de naissance",
+          "domicile"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« zwei Kinder » =",
+        "o": [
+          "deux enfants",
+          "deux parents",
+          "deux amis"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:6,title:'Manger et boire',topic:'Repas',skills:['Hören','Sprechen'],note:"Commander, exprimer une préférence et comprendre des choix simples au restaurant ou au café.",
-    phrases:[['Ich hätte gern einen Kaffee.','Je voudrais un café.'],['Was möchten Sie?','Que désirez-vous ?'],['Ich nehme die Suppe.','Je prends la soupe.'],['Ohne Fleisch, bitte.','Sans viande, s’il vous plaît.'],['Noch ein Wasser, bitte.','Encore une eau, s’il vous plaît.'],['Die Rechnung, bitte.','L’addition, s’il vous plaît.'],['Was ist Ihr Lieblingsessen?','Quel est votre plat préféré ?'],['Zum Frühstück esse ich Brot.','Au petit-déjeuner, je mange du pain.']],
-    quiz:[
-      {q:'Tu demandes l’addition :',o:['Die Rechnung, bitte.','Die Straße, bitte.','Der Bahnhof, bitte.'],a:0},
-      {q:'« ohne Fleisch » =',o:['avec viande','sans viande','sans pain'],a:1},
-      {q:'« Lieblingsessen » =',o:['plat préféré','boisson froide','petit déjeuner'],a:0}
+    "id": 6,
+    "title": "Manger et boire",
+    "topic": "Repas",
+    "skills": [
+      "Hören",
+      "Sprechen"
+    ],
+    "note": "Commander, exprimer une préférence et comprendre des choix simples au restaurant ou au café.",
+    "phrases": [
+      [
+        "Ich hätte gern einen Kaffee.",
+        "Je voudrais un café."
+      ],
+      [
+        "Was möchten Sie?",
+        "Que désirez-vous ?"
+      ],
+      [
+        "Ich nehme die Suppe.",
+        "Je prends la soupe."
+      ],
+      [
+        "Ohne Fleisch, bitte.",
+        "Sans viande, s’il vous plaît."
+      ],
+      [
+        "Noch ein Wasser, bitte.",
+        "Encore une eau, s’il vous plaît."
+      ],
+      [
+        "Die Rechnung, bitte.",
+        "L’addition, s’il vous plaît."
+      ],
+      [
+        "Was ist Ihr Lieblingsessen?",
+        "Quel est votre plat préféré ?"
+      ],
+      [
+        "Zum Frühstück esse ich Brot.",
+        "Au petit-déjeuner, je mange du pain."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "Tu demandes l’addition :",
+        "o": [
+          "Die Rechnung, bitte.",
+          "Die Straße, bitte.",
+          "Der Bahnhof, bitte."
+        ],
+        "a": 0
+      },
+      {
+        "q": "« ohne Fleisch » =",
+        "o": [
+          "avec viande",
+          "sans viande",
+          "sans pain"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« Lieblingsessen » =",
+        "o": [
+          "plat préféré",
+          "boisson froide",
+          "petit déjeuner"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:7,title:'Achats et prix',topic:'Achats',skills:['Hören','Lesen','Sprechen'],note:"Comprendre les prix, demander un produit, une taille ou un lieu dans un magasin.",
-    phrases:[['Wie viel kostet das?','Combien ça coûte ?'],['Das kostet 19,95 Euro.','Cela coûte 19,95 euros.'],['Ich suche Schuhe.','Je cherche des chaussures.'],['Haben Sie das in Größe 40?','L’avez-vous en taille 40 ?'],['Wo ist die Kasse?','Où est la caisse ?'],['Im zweiten Stock.','Au deuxième étage.'],['Das ist zu teuer.','C’est trop cher.'],['Ich nehme das.','Je prends ça.']],
-    quiz:[
-      {q:'« Kasse » =',o:['caisse','gare','classe'],a:0},
-      {q:'« zweiter Stock » =',o:['deuxième étage','deuxième rue','deuxième train'],a:0},
-      {q:'« zu teuer » =',o:['trop petit','trop cher','trop tard'],a:1}
+    "id": 7,
+    "title": "Achats et prix",
+    "topic": "Achats",
+    "skills": [
+      "Hören",
+      "Lesen",
+      "Sprechen"
+    ],
+    "note": "Comprendre les prix, demander un produit, une taille ou un lieu dans un magasin.",
+    "phrases": [
+      [
+        "Wie viel kostet das?",
+        "Combien ça coûte ?"
+      ],
+      [
+        "Das kostet 19,95 Euro.",
+        "Cela coûte 19,95 euros."
+      ],
+      [
+        "Ich suche Schuhe.",
+        "Je cherche des chaussures."
+      ],
+      [
+        "Haben Sie das in Größe 40?",
+        "L’avez-vous en taille 40 ?"
+      ],
+      [
+        "Wo ist die Kasse?",
+        "Où est la caisse ?"
+      ],
+      [
+        "Im zweiten Stock.",
+        "Au deuxième étage."
+      ],
+      [
+        "Das ist zu teuer.",
+        "C’est trop cher."
+      ],
+      [
+        "Ich nehme das.",
+        "Je prends ça."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« Kasse » =",
+        "o": [
+          "caisse",
+          "gare",
+          "classe"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« zweiter Stock » =",
+        "o": [
+          "deuxième étage",
+          "deuxième rue",
+          "deuxième train"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« zu teuer » =",
+        "o": [
+          "trop petit",
+          "trop cher",
+          "trop tard"
+        ],
+        "a": 1
+      }
     ]
   },
   {
-    id:8,title:'Logement et adresse',topic:'Logement',skills:['Lesen','Schreiben','Sprechen'],note:"Lire une petite annonce, donner une adresse et demander des informations sur un logement.",
-    phrases:[['Ich suche eine Wohnung.','Je cherche un appartement.'],['Wie hoch ist die Miete?','Quel est le loyer ?'],['Die Wohnung hat zwei Zimmer.','L’appartement a deux pièces.'],['mit Balkon','avec balcon'],['Die Adresse ist Gartenstraße 12.','L’adresse est Gartenstraße 12.'],['Wann kann ich die Wohnung sehen?','Quand puis-je visiter le logement ?'],['Die Wohnung ist frei.','Le logement est libre.'],['Nebenkosten inklusive','charges comprises']],
-    quiz:[
-      {q:'« Miete » =',o:['loyer','meuble','métro'],a:0},
-      {q:'« zwei Zimmer » =',o:['deux étages','deux pièces','deux rues'],a:1},
-      {q:'« frei » dans une annonce de logement signifie…',o:['disponible','gratuit dans tous les cas','fermé'],a:0}
+    "id": 8,
+    "title": "Logement et adresse",
+    "topic": "Logement",
+    "skills": [
+      "Lesen",
+      "Schreiben",
+      "Sprechen"
+    ],
+    "note": "Lire une petite annonce, donner une adresse et demander des informations sur un logement.",
+    "phrases": [
+      [
+        "Ich suche eine Wohnung.",
+        "Je cherche un appartement."
+      ],
+      [
+        "Wie hoch ist die Miete?",
+        "Quel est le loyer ?"
+      ],
+      [
+        "Die Wohnung hat zwei Zimmer.",
+        "L’appartement a deux pièces."
+      ],
+      [
+        "mit Balkon",
+        "avec balcon"
+      ],
+      [
+        "Die Adresse ist Gartenstraße 12.",
+        "L’adresse est Gartenstraße 12."
+      ],
+      [
+        "Wann kann ich die Wohnung sehen?",
+        "Quand puis-je visiter le logement ?"
+      ],
+      [
+        "Die Wohnung ist frei.",
+        "Le logement est libre."
+      ],
+      [
+        "Nebenkosten inklusive",
+        "charges comprises"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« Miete » =",
+        "o": [
+          "loyer",
+          "meuble",
+          "métro"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« zwei Zimmer » =",
+        "o": [
+          "deux étages",
+          "deux pièces",
+          "deux rues"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« frei » dans une annonce de logement signifie…",
+        "o": [
+          "disponible",
+          "gratuit dans tous les cas",
+          "fermé"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:9,title:'Ville, itinéraire et transports',topic:'Déplacements',skills:['Hören','Lesen','Sprechen'],note:"Demander et comprendre un chemin, un quai, une ligne, un changement ou un moyen de transport.",
-    phrases:[['Wo ist der Bahnhof?','Où est la gare ?'],['Gehen Sie geradeaus.','Allez tout droit.'],['Dann links / rechts.','Puis à gauche / à droite.'],['Nehmen Sie die Linie 8.','Prenez la ligne 8.'],['Welches Gleis?','Quel quai ?'],['Ich fahre mit dem Bus.','Je vais en bus.'],['Sie müssen umsteigen.','Vous devez changer.'],['Der Zug hat Verspätung.','Le train a du retard.']],
-    quiz:[
-      {q:'« Gleis » =',o:['quai/voie','rue','billet'],a:0},
-      {q:'« umsteigen » =',o:['changer de transport','descendre les escaliers','acheter'],a:0},
-      {q:'« Verspätung » =',o:['retard','départ','vacances'],a:0}
+    "id": 9,
+    "title": "Ville, itinéraire et transports",
+    "topic": "Déplacements",
+    "skills": [
+      "Hören",
+      "Lesen",
+      "Sprechen"
+    ],
+    "note": "Demander et comprendre un chemin, un quai, une ligne, un changement ou un moyen de transport.",
+    "phrases": [
+      [
+        "Wo ist der Bahnhof?",
+        "Où est la gare ?"
+      ],
+      [
+        "Gehen Sie geradeaus.",
+        "Allez tout droit."
+      ],
+      [
+        "Dann links / rechts.",
+        "Puis à gauche / à droite."
+      ],
+      [
+        "Nehmen Sie die Linie 8.",
+        "Prenez la ligne 8."
+      ],
+      [
+        "Welches Gleis?",
+        "Quel quai ?"
+      ],
+      [
+        "Ich fahre mit dem Bus.",
+        "Je vais en bus."
+      ],
+      [
+        "Sie müssen umsteigen.",
+        "Vous devez changer."
+      ],
+      [
+        "Der Zug hat Verspätung.",
+        "Le train a du retard."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« Gleis » =",
+        "o": [
+          "quai/voie",
+          "rue",
+          "billet"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« umsteigen » =",
+        "o": [
+          "changer de transport",
+          "descendre les escaliers",
+          "acheter"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Verspätung » =",
+        "o": [
+          "retard",
+          "départ",
+          "vacances"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:10,title:'Travail et lieu de travail',topic:'Travail',skills:['Lesen','Sprechen','Schreiben'],note:"Parler de son métier, des horaires, collègues, tâches et lire de petites offres simples.",
-    phrases:[['Was sind Sie von Beruf?','Quelle est votre profession ?'],['Ich arbeite als Verkäuferin.','Je travaille comme vendeuse.'],['Meine Arbeitszeit ist von 8 bis 16 Uhr.','Mes heures de travail sont de 8 h à 16 h.'],['Ich arbeite im Büro.','Je travaille au bureau.'],['Meine Kollegen sind nett.','Mes collègues sont gentils.'],['Ich habe heute frei.','Je suis en congé aujourd’hui.'],['Ich komme später ins Büro.','J’arrive plus tard au bureau.'],['Kann ich Ihnen helfen?','Puis-je vous aider ?']],
-    quiz:[
-      {q:'« von Beruf » concerne…',o:['la profession','le prix','l’adresse'],a:0},
-      {q:'« heute frei » =',o:['libre/congé aujourd’hui','travail gratuit','aujourd’hui fermé'],a:0},
-      {q:'« Kollegen » =',o:['collègues','clients','parents'],a:0}
+    "id": 10,
+    "title": "Travail et lieu de travail",
+    "topic": "Travail",
+    "skills": [
+      "Lesen",
+      "Sprechen",
+      "Schreiben"
+    ],
+    "note": "Parler de son métier, des horaires, collègues, tâches et lire de petites offres simples.",
+    "phrases": [
+      [
+        "Was sind Sie von Beruf?",
+        "Quelle est votre profession ?"
+      ],
+      [
+        "Ich arbeite als Verkäuferin.",
+        "Je travaille comme vendeuse."
+      ],
+      [
+        "Meine Arbeitszeit ist von 8 bis 16 Uhr.",
+        "Mes heures de travail sont de 8 h à 16 h."
+      ],
+      [
+        "Ich arbeite im Büro.",
+        "Je travaille au bureau."
+      ],
+      [
+        "Meine Kollegen sind nett.",
+        "Mes collègues sont gentils."
+      ],
+      [
+        "Ich habe heute frei.",
+        "Je suis en congé aujourd’hui."
+      ],
+      [
+        "Ich komme später ins Büro.",
+        "J’arrive plus tard au bureau."
+      ],
+      [
+        "Kann ich Ihnen helfen?",
+        "Puis-je vous aider ?"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« von Beruf » concerne…",
+        "o": [
+          "la profession",
+          "le prix",
+          "l’adresse"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« heute frei » =",
+        "o": [
+          "libre/congé aujourd’hui",
+          "travail gratuit",
+          "aujourd’hui fermé"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Kollegen » =",
+        "o": [
+          "collègues",
+          "clients",
+          "parents"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:11,title:'École et cours de langue',topic:'École',skills:['Lesen','Sprechen','Schreiben'],note:"Comprendre des informations de cours et parler des langues, devoirs, enseignants et horaires.",
-    phrases:[['Ich lerne Deutsch.','J’apprends l’allemand.'],['Seit sechs Monaten.','Depuis six mois.'],['Der Kurs ist am Vormittag.','Le cours est le matin.'],['Wer ist Ihr Lehrer?','Qui est votre professeur ?'],['Ich mache Hausaufgaben.','Je fais mes devoirs.'],['Ich brauche ein Wörterbuch.','J’ai besoin d’un dictionnaire.'],['Wann beginnt der Kurs?','Quand commence le cours ?'],['Anmeldung zum Deutschkurs','inscription au cours d’allemand']],
-    quiz:[
-      {q:'« seit sechs Monaten » =',o:['pendant six minutes','depuis six mois','dans six mois'],a:1},
-      {q:'« Wörterbuch » =',o:['dictionnaire','cahier','journal'],a:0},
-      {q:'« Anmeldung » =',o:['inscription','annulation','examen oral'],a:0}
+    "id": 11,
+    "title": "École et cours de langue",
+    "topic": "École",
+    "skills": [
+      "Lesen",
+      "Sprechen",
+      "Schreiben"
+    ],
+    "note": "Comprendre des informations de cours et parler des langues, devoirs, enseignants et horaires.",
+    "phrases": [
+      [
+        "Ich lerne Deutsch.",
+        "J’apprends l’allemand."
+      ],
+      [
+        "Seit sechs Monaten.",
+        "Depuis six mois."
+      ],
+      [
+        "Der Kurs ist am Vormittag.",
+        "Le cours est le matin."
+      ],
+      [
+        "Wer ist Ihr Lehrer?",
+        "Qui est votre professeur ?"
+      ],
+      [
+        "Ich mache Hausaufgaben.",
+        "Je fais mes devoirs."
+      ],
+      [
+        "Ich brauche ein Wörterbuch.",
+        "J’ai besoin d’un dictionnaire."
+      ],
+      [
+        "Wann beginnt der Kurs?",
+        "Quand commence le cours ?"
+      ],
+      [
+        "Anmeldung zum Deutschkurs",
+        "inscription au cours d’allemand"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« seit sechs Monaten » =",
+        "o": [
+          "pendant six minutes",
+          "depuis six mois",
+          "dans six mois"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« Wörterbuch » =",
+        "o": [
+          "dictionnaire",
+          "cahier",
+          "journal"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Anmeldung » =",
+        "o": [
+          "inscription",
+          "annulation",
+          "examen oral"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:12,title:'Loisirs, sport et week-end',topic:'Loisirs',skills:['Sprechen','Lesen'],note:"Les cartes de l’oral utilisent souvent des thèmes quotidiens comme sport, week-end et loisirs.",
-    phrases:[['Was machen Sie am Wochenende?','Que faites-vous le week-end ?'],['Ich spiele Fußball.','Je joue au football.'],['Ich gehe schwimmen.','Je vais nager.'],['Mein Lieblingssport ist Tennis.','Mon sport préféré est le tennis.'],['Am Sonntag mache ich einen Ausflug.','Dimanche, je fais une excursion.'],['Ich treffe Freunde.','Je rencontre des amis.'],['Abends sehe ich einen Film.','Le soir, je regarde un film.'],['Haben Sie am Samstag Zeit?','Avez-vous le temps samedi ?']],
-    quiz:[
-      {q:'« Ausflug » =',o:['excursion','travail','cours'],a:0},
-      {q:'« Lieblingssport » =',o:['sport préféré','sport scolaire','sport cher'],a:0},
-      {q:'« Freunde treffen » =',o:['rencontrer des amis','travailler avec des collègues','prendre le train'],a:0}
+    "id": 12,
+    "title": "Loisirs, sport et week-end",
+    "topic": "Loisirs",
+    "skills": [
+      "Sprechen",
+      "Lesen"
+    ],
+    "note": "Les cartes de l’oral utilisent souvent des thèmes quotidiens comme sport, week-end et loisirs.",
+    "phrases": [
+      [
+        "Was machen Sie am Wochenende?",
+        "Que faites-vous le week-end ?"
+      ],
+      [
+        "Ich spiele Fußball.",
+        "Je joue au football."
+      ],
+      [
+        "Ich gehe schwimmen.",
+        "Je vais nager."
+      ],
+      [
+        "Mein Lieblingssport ist Tennis.",
+        "Mon sport préféré est le tennis."
+      ],
+      [
+        "Am Sonntag mache ich einen Ausflug.",
+        "Dimanche, je fais une excursion."
+      ],
+      [
+        "Ich treffe Freunde.",
+        "Je rencontre des amis."
+      ],
+      [
+        "Abends sehe ich einen Film.",
+        "Le soir, je regarde un film."
+      ],
+      [
+        "Haben Sie am Samstag Zeit?",
+        "Avez-vous le temps samedi ?"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« Ausflug » =",
+        "o": [
+          "excursion",
+          "travail",
+          "cours"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Lieblingssport » =",
+        "o": [
+          "sport préféré",
+          "sport scolaire",
+          "sport cher"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Freunde treffen » =",
+        "o": [
+          "rencontrer des amis",
+          "travailler avec des collègues",
+          "prendre le train"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:13,title:'Voyage, hôtel et vacances',topic:'Voyage',skills:['Hören','Lesen','Schreiben'],note:"Comprendre départs, arrivées, durée, réservations, hôtels et informations touristiques.",
-    phrases:[['Ich möchte ein Zimmer reservieren.','Je voudrais réserver une chambre.'],['Für zwei Nächte.','Pour deux nuits.'],['Wann fährt der Bus ab?','Quand part le bus ?'],['Wann kommt der Zug an?','Quand arrive le train ?'],['Ich mache Urlaub am Meer.','Je passe mes vacances à la mer.'],['mit Frühstück','avec petit-déjeuner'],['Wie lange dauert die Fahrt?','Combien de temps dure le trajet ?'],['Touristeninformation','office de tourisme']],
-    quiz:[
-      {q:'« abfahren » =',o:['partir','arriver','payer'],a:0},
-      {q:'« ankommen » =',o:['arriver','changer','réserver'],a:0},
-      {q:'« zwei Nächte » =',o:['deux nuits','deux jours','deux chambres'],a:0}
+    "id": 13,
+    "title": "Voyage, hôtel et vacances",
+    "topic": "Voyage",
+    "skills": [
+      "Hören",
+      "Lesen",
+      "Schreiben"
+    ],
+    "note": "Comprendre départs, arrivées, durée, réservations, hôtels et informations touristiques.",
+    "phrases": [
+      [
+        "Ich möchte ein Zimmer reservieren.",
+        "Je voudrais réserver une chambre."
+      ],
+      [
+        "Für zwei Nächte.",
+        "Pour deux nuits."
+      ],
+      [
+        "Wann fährt der Bus ab?",
+        "Quand part le bus ?"
+      ],
+      [
+        "Wann kommt der Zug an?",
+        "Quand arrive le train ?"
+      ],
+      [
+        "Ich mache Urlaub am Meer.",
+        "Je passe mes vacances à la mer."
+      ],
+      [
+        "mit Frühstück",
+        "avec petit-déjeuner"
+      ],
+      [
+        "Wie lange dauert die Fahrt?",
+        "Combien de temps dure le trajet ?"
+      ],
+      [
+        "Touristeninformation",
+        "office de tourisme"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« abfahren » =",
+        "o": [
+          "partir",
+          "arriver",
+          "payer"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« ankommen » =",
+        "o": [
+          "arriver",
+          "changer",
+          "réserver"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« zwei Nächte » =",
+        "o": [
+          "deux nuits",
+          "deux jours",
+          "deux chambres"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:14,title:'Santé et médecin',topic:'Santé',skills:['Hören','Sprechen','Schreiben'],note:"Décrire très simplement un problème, comprendre un conseil et fournir des données au médecin.",
-    phrases:[['Ich bin krank.','Je suis malade.'],['Ich habe Fieber.','J’ai de la fièvre.'],['Ich habe Kopfschmerzen.','J’ai mal à la tête.'],['Seit gestern.','Depuis hier.'],['Sie sollen viel trinken.','Vous devez boire beaucoup.'],['Nehmen Sie diese Tabletten.','Prenez ces comprimés.'],['Ich brauche einen Termin.','J’ai besoin d’un rendez-vous.'],['Die Apotheke ist geschlossen.','La pharmacie est fermée.']],
-    quiz:[
-      {q:'« Fieber » =',o:['fièvre','faim','fatigue'],a:0},
-      {q:'« seit gestern » =',o:['depuis hier','demain','avant-hier seulement'],a:0},
-      {q:'« Apotheke » =',o:['pharmacie','hôpital','bureau'],a:0}
+    "id": 14,
+    "title": "Santé et médecin",
+    "topic": "Santé",
+    "skills": [
+      "Hören",
+      "Sprechen",
+      "Schreiben"
+    ],
+    "note": "Décrire très simplement un problème, comprendre un conseil et fournir des données au médecin.",
+    "phrases": [
+      [
+        "Ich bin krank.",
+        "Je suis malade."
+      ],
+      [
+        "Ich habe Fieber.",
+        "J’ai de la fièvre."
+      ],
+      [
+        "Ich habe Kopfschmerzen.",
+        "J’ai mal à la tête."
+      ],
+      [
+        "Seit gestern.",
+        "Depuis hier."
+      ],
+      [
+        "Sie sollen viel trinken.",
+        "Vous devez boire beaucoup."
+      ],
+      [
+        "Nehmen Sie diese Tabletten.",
+        "Prenez ces comprimés."
+      ],
+      [
+        "Ich brauche einen Termin.",
+        "J’ai besoin d’un rendez-vous."
+      ],
+      [
+        "Die Apotheke ist geschlossen.",
+        "La pharmacie est fermée."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« Fieber » =",
+        "o": [
+          "fièvre",
+          "faim",
+          "fatigue"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« seit gestern » =",
+        "o": [
+          "depuis hier",
+          "demain",
+          "avant-hier seulement"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Apotheke » =",
+        "o": [
+          "pharmacie",
+          "hôpital",
+          "bureau"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:15,title:'Invitations et messages courts',topic:'Messages',skills:['Lesen','Schreiben'],note:"Pour l’écrit A1, il faut rédiger un court message avec trois points, une formule d’appel et une salutation.",
-    phrases:[['Vielen Dank für die Einladung.','Merci pour l’invitation.'],['Ich komme gern.','Je viendrai volontiers.'],['Leider komme ich später.','Malheureusement, j’arrive plus tard.'],['Wann und wo feiern wir?','Quand et où fêtons-nous ?'],['Kann ich etwas mitbringen?','Puis-je apporter quelque chose ?'],['Bitte ruf mich an.','Appelle-moi, s’il te plaît.'],['Liebe Anna, … Viele Grüße','Chère Anna, … Amitiés'],['Sehr geehrter Herr Müller, … Mit freundlichen Grüßen','Monsieur Müller, … Cordialement']],
-    quiz:[
-      {q:'Quel élément appartient à un e-mail poli ?',o:['Anrede und Gruß','nur Zahlen','kein Empfänger'],a:0},
-      {q:'« Leider komme ich später » =',o:["Malheureusement j'arrive plus tard",'Je ne viens jamais','Je suis déjà là'],a:0},
-      {q:'« mitbringen » =',o:['apporter','payer','écrire'],a:0}
+    "id": 15,
+    "title": "Invitations et messages courts",
+    "topic": "Messages",
+    "skills": [
+      "Lesen",
+      "Schreiben"
+    ],
+    "note": "Pour l’écrit A1, il faut rédiger un court message avec trois points, une formule d’appel et une salutation.",
+    "phrases": [
+      [
+        "Vielen Dank für die Einladung.",
+        "Merci pour l’invitation."
+      ],
+      [
+        "Ich komme gern.",
+        "Je viendrai volontiers."
+      ],
+      [
+        "Leider komme ich später.",
+        "Malheureusement, j’arrive plus tard."
+      ],
+      [
+        "Wann und wo feiern wir?",
+        "Quand et où fêtons-nous ?"
+      ],
+      [
+        "Kann ich etwas mitbringen?",
+        "Puis-je apporter quelque chose ?"
+      ],
+      [
+        "Bitte ruf mich an.",
+        "Appelle-moi, s’il te plaît."
+      ],
+      [
+        "Liebe Anna, … Viele Grüße",
+        "Chère Anna, … Amitiés"
+      ],
+      [
+        "Sehr geehrter Herr Müller, … Mit freundlichen Grüßen",
+        "Monsieur Müller, … Cordialement"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "Quel élément appartient à un e-mail poli ?",
+        "o": [
+          "Anrede und Gruß",
+          "nur Zahlen",
+          "kein Empfänger"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Leider komme ich später » =",
+        "o": [
+          "Malheureusement j'arrive plus tard",
+          "Je ne viens jamais",
+          "Je suis déjà là"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« mitbringen » =",
+        "o": [
+          "apporter",
+          "payer",
+          "écrire"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:16,title:'Panneaux, annonces et messages publics',topic:'Informations publiques',skills:['Hören','Lesen'],note:"L’examen utilise des panneaux, petites annonces et annonces publiques où tu dois repérer une information précise.",
-    phrases:[['Öffnungszeiten','heures d’ouverture'],['Rauchen verboten','interdiction de fumer'],['Heute geschlossen','fermé aujourd’hui'],['Eingang / Ausgang','entrée / sortie'],['Nur für Kunden','réservé aux clients'],['Bitte nicht aussteigen.','Ne descendez pas, s’il vous plaît.'],['Der Zug fällt heute aus.','Le train est annulé aujourd’hui.'],['Sonderangebot','offre spéciale']],
-    quiz:[
-      {q:'« Rauchen verboten » =',o:['fumer ici','interdiction de fumer','vente de cigarettes'],a:1},
-      {q:'« Ausgang » =',o:['sortie','entrée','ascenseur'],a:0},
-      {q:'« fällt aus » =',o:['est annulé','arrive tôt','coûte moins cher'],a:0}
+    "id": 16,
+    "title": "Panneaux, annonces et messages publics",
+    "topic": "Informations publiques",
+    "skills": [
+      "Hören",
+      "Lesen"
+    ],
+    "note": "L’examen utilise des panneaux, petites annonces et annonces publiques où tu dois repérer une information précise.",
+    "phrases": [
+      [
+        "Öffnungszeiten",
+        "heures d’ouverture"
+      ],
+      [
+        "Rauchen verboten",
+        "interdiction de fumer"
+      ],
+      [
+        "Heute geschlossen",
+        "fermé aujourd’hui"
+      ],
+      [
+        "Eingang / Ausgang",
+        "entrée / sortie"
+      ],
+      [
+        "Nur für Kunden",
+        "réservé aux clients"
+      ],
+      [
+        "Bitte nicht aussteigen.",
+        "Ne descendez pas, s’il vous plaît."
+      ],
+      [
+        "Der Zug fällt heute aus.",
+        "Le train est annulé aujourd’hui."
+      ],
+      [
+        "Sonderangebot",
+        "offre spéciale"
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "« Rauchen verboten » =",
+        "o": [
+          "fumer ici",
+          "interdiction de fumer",
+          "vente de cigarettes"
+        ],
+        "a": 1
+      },
+      {
+        "q": "« Ausgang » =",
+        "o": [
+          "sortie",
+          "entrée",
+          "ascenseur"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« fällt aus » =",
+        "o": [
+          "est annulé",
+          "arrive tôt",
+          "coûte moins cher"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:17,title:'Demandes et réponses polies',topic:'Demandes',skills:['Sprechen'],note:"La troisième partie de l’oral demande de formuler une demande liée à un objet du quotidien et d’y répondre.",
-    phrases:[['Ein Glas Wasser, bitte.','Un verre d’eau, s’il vous plaît.'],['Können Sie mir bitte helfen?','Pouvez-vous m’aider, s’il vous plaît ?'],['Geben Sie mir bitte den Stift.','Donnez-moi le stylo, s’il vous plaît.'],['Kann ich das Fenster öffnen?','Puis-je ouvrir la fenêtre ?'],['Ja, natürlich.','Oui, bien sûr.'],['Gern. Hier, bitte.','Avec plaisir. Voilà.'],['Tut mir leid, das geht nicht.','Désolé, ce n’est pas possible.'],['Noch einmal, bitte.','Encore une fois, s’il vous plaît.']],
-    quiz:[
-      {q:'Quelle phrase est une demande polie ?',o:['Geben Sie mir bitte den Stift.','Stift nein.','Ich bin Stift.'],a:0},
-      {q:'« Ja, natürlich » est une…',o:['réponse positive','adresse','heure'],a:0},
-      {q:'« Noch einmal, bitte » =',o:['encore une fois, s’il vous plaît','plus tard','combien ça coûte'],a:0}
+    "id": 17,
+    "title": "Demandes et réponses polies",
+    "topic": "Demandes",
+    "skills": [
+      "Sprechen"
+    ],
+    "note": "La troisième partie de l’oral demande de formuler une demande liée à un objet du quotidien et d’y répondre.",
+    "phrases": [
+      [
+        "Ein Glas Wasser, bitte.",
+        "Un verre d’eau, s’il vous plaît."
+      ],
+      [
+        "Können Sie mir bitte helfen?",
+        "Pouvez-vous m’aider, s’il vous plaît ?"
+      ],
+      [
+        "Geben Sie mir bitte den Stift.",
+        "Donnez-moi le stylo, s’il vous plaît."
+      ],
+      [
+        "Kann ich das Fenster öffnen?",
+        "Puis-je ouvrir la fenêtre ?"
+      ],
+      [
+        "Ja, natürlich.",
+        "Oui, bien sûr."
+      ],
+      [
+        "Gern. Hier, bitte.",
+        "Avec plaisir. Voilà."
+      ],
+      [
+        "Tut mir leid, das geht nicht.",
+        "Désolé, ce n’est pas possible."
+      ],
+      [
+        "Noch einmal, bitte.",
+        "Encore une fois, s’il vous plaît."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "Quelle phrase est une demande polie ?",
+        "o": [
+          "Geben Sie mir bitte den Stift.",
+          "Stift nein.",
+          "Ich bin Stift."
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Ja, natürlich » est une…",
+        "o": [
+          "réponse positive",
+          "adresse",
+          "heure"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Noch einmal, bitte » =",
+        "o": [
+          "encore une fois, s’il vous plaît",
+          "plus tard",
+          "combien ça coûte"
+        ],
+        "a": 0
+      }
     ]
   },
   {
-    id:18,title:'Stratégie pour l’examen A1',topic:'Examen',skills:['Hören','Lesen','Schreiben','Sprechen'],note:"Travaille le format : écouter l’information demandée, lire la consigne avant le texte, couvrir les trois points à l’écrit et rester compréhensible à l’oral.",
-    phrases:[['Lesen Sie zuerst die Aufgabe.','Lisez d’abord la consigne.'],['Kreuzen Sie die richtige Lösung an.','Cochez la bonne réponse.'],['Richtig oder falsch?','Vrai ou faux ?'],['Schreiben Sie circa 30 Wörter.','Écrivez environ 30 mots.'],['Stellen Sie eine Frage.','Posez une question.'],['Antworten Sie kurz.','Répondez brièvement.'],['Sprechen Sie deutlich.','Parlez clairement.'],['Bitten Sie um Wiederholung.','Demandez de répéter.']],
-    quiz:[
-      {q:'À l’écrit court, que faut-il surtout couvrir ?',o:['les trois points demandés','une page entière','des mots très difficiles'],a:0},
-      {q:'À l’oral A1, l’objectif principal est…',o:['être compréhensible et accomplir la tâche','parler sans aucune erreur','utiliser du vocabulaire C1'],a:0},
-      {q:'« Richtig oder falsch? » =',o:['vrai ou faux ?','cher ou bon marché ?','oui ou non ?'],a:0}
+    "id": 18,
+    "title": "Stratégie pour l’examen A1",
+    "topic": "Examen",
+    "skills": [
+      "Hören",
+      "Lesen",
+      "Schreiben",
+      "Sprechen"
+    ],
+    "note": "Travaille le format : écouter l’information demandée, lire la consigne avant le texte, couvrir les trois points à l’écrit et rester compréhensible à l’oral.",
+    "phrases": [
+      [
+        "Lesen Sie zuerst die Aufgabe.",
+        "Lisez d’abord la consigne."
+      ],
+      [
+        "Kreuzen Sie die richtige Lösung an.",
+        "Cochez la bonne réponse."
+      ],
+      [
+        "Richtig oder falsch?",
+        "Vrai ou faux ?"
+      ],
+      [
+        "Schreiben Sie circa 30 Wörter.",
+        "Écrivez environ 30 mots."
+      ],
+      [
+        "Stellen Sie eine Frage.",
+        "Posez une question."
+      ],
+      [
+        "Antworten Sie kurz.",
+        "Répondez brièvement."
+      ],
+      [
+        "Sprechen Sie deutlich.",
+        "Parlez clairement."
+      ],
+      [
+        "Bitten Sie um Wiederholung.",
+        "Demandez de répéter."
+      ]
+    ],
+    "quiz": [
+      {
+        "q": "À l’écrit court, que faut-il surtout couvrir ?",
+        "o": [
+          "les trois points demandés",
+          "une page entière",
+          "des mots très difficiles"
+        ],
+        "a": 0
+      },
+      {
+        "q": "À l’oral A1, l’objectif principal est…",
+        "o": [
+          "être compréhensible et accomplir la tâche",
+          "parler sans aucune erreur",
+          "utiliser du vocabulaire C1"
+        ],
+        "a": 0
+      },
+      {
+        "q": "« Richtig oder falsch? » =",
+        "o": [
+          "vrai ou faux ?",
+          "cher ou bon marché ?",
+          "oui ou non ?"
+        ],
+        "a": 0
+      }
     ]
   }
 ];
@@ -682,7 +1861,7 @@ const LESSON_GRAMMAR_REFS={
   24:[['g4',[1]],['g7',[0,1]]]
 };
 function lessonGrammarReferenceHtml(id){
-  return A1GrammarUI.pickDetails(GRAMMAR_GUIDES,LESSON_GRAMMAR_REFS[id]||[]);
+  return A1GrammarUI.pickDetails(GRAMMAR_GUIDES,LESSON_GRAMMAR_REFS[id]||[])+A1LessonTopicInfo.render('deutsch-fr',id);
 }
 
 function renderGrammarIntro(id){

@@ -304,7 +304,8 @@ const LESSON_GRAMMAR_REFS={
 function lessonGrammarHtml(l){
   const ref=LESSON_GRAMMAR_REFS[l.id]||{};
   const refs=A1GrammarUI.pickDetails(GRAMMAR_GUIDES,ref.refs||[]);
-  return `<details class="lesson-explanation" open><summary><strong>${esc(ref.title||l.grammar.title)}</strong></summary><p class="muted">${esc(l.grammar.explanation)}</p>${refs}</details>`;
+  const topicInfo=A1LessonTopicInfo.render('francais',l.id);
+  return `<details class="lesson-explanation" open><summary><strong>${esc(ref.title||l.grammar.title)}</strong></summary><p class="muted">${esc(l.grammar.explanation)}</p>${refs}${topicInfo}</details>`;
 }
 
 function renderGrammarIntro(id){

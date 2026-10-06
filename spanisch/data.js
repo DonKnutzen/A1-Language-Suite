@@ -301,12 +301,44 @@ window.ES_A1_DATA = {
       ],
       "phrases": [
         [
-          "uno, dos, tres",
-          "eins, zwei, drei"
+          "cero, uno, dos, tres",
+          "null, eins, zwei, drei"
         ],
         [
-          "veinte, treinta, cuarenta",
-          "zwanzig, dreißig, vierzig"
+          "cuatro, cinco, seis, siete, ocho, nueve",
+          "vier, fünf, sechs, sieben, acht, neun"
+        ],
+        [
+          "diez, once, doce, trece, catorce, quince",
+          "zehn, elf, zwölf, dreizehn, vierzehn, fünfzehn"
+        ],
+        [
+          "dieciséis, diecisiete, dieciocho, diecinueve",
+          "sechzehn, siebzehn, achtzehn, neunzehn"
+        ],
+        [
+          "veinte, veintiuno, veintidós, veintitrés",
+          "zwanzig, einundzwanzig, zweiundzwanzig, dreiundzwanzig"
+        ],
+        [
+          "treinta, cuarenta, cincuenta, sesenta",
+          "dreißig, vierzig, fünfzig, sechzig"
+        ],
+        [
+          "setenta, ochenta, noventa, cien",
+          "siebzig, achtzig, neunzig, hundert"
+        ],
+        [
+          "treinta y uno, cuarenta y dos, cincuenta y tres",
+          "einunddreißig, zweiundvierzig, dreiundfünfzig"
+        ],
+        [
+          "Tengo treinta y un años.",
+          "Ich bin 31 Jahre alt."
+        ],
+        [
+          "¿Qué número de teléfono tienes?",
+          "Welche Telefonnummer hast du?"
         ],
         [
           "Mi número es el 902 555 1840.",
@@ -317,20 +349,12 @@ window.ES_A1_DATA = {
           "Ich bin am 17. April geboren."
         ],
         [
-          "Tengo treinta y un años.",
-          "Ich bin einunddreißig Jahre alt."
-        ],
-        [
-          "Son quince euros.",
-          "Es sind fünfzehn Euro."
-        ],
-        [
           "Mi código postal es 28013.",
           "Meine Postleitzahl ist 28013."
         ],
         [
-          "¿Qué número de teléfono tienes?",
-          "Welche Telefonnummer hast du?"
+          "Son quince euros.",
+          "Das sind fünfzehn Euro."
         ]
       ],
       "quiz": [

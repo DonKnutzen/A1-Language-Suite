@@ -393,12 +393,48 @@ window.FR_A1_DATA = {
           "null, eins, zwei, drei"
         ],
         [
-          "dix, vingt, trente",
-          "zehn, zwanzig, dreißig"
+          "quatre, cinq, six, sept, huit, neuf",
+          "vier, fünf, sechs, sieben, acht, neun"
+        ],
+        [
+          "dix, onze, douze, treize, quatorze, quinze, seize",
+          "zehn, elf, zwölf, dreizehn, vierzehn, fünfzehn, sechzehn"
+        ],
+        [
+          "dix-sept, dix-huit, dix-neuf, vingt",
+          "siebzehn, achtzehn, neunzehn, zwanzig"
+        ],
+        [
+          "vingt et un, vingt-deux, vingt-trois",
+          "einundzwanzig, zweiundzwanzig, dreiundzwanzig"
+        ],
+        [
+          "trente, quarante, cinquante, soixante",
+          "dreißig, vierzig, fünfzig, sechzig"
+        ],
+        [
+          "soixante-dix, soixante et onze, soixante-douze",
+          "siebzig, einundsiebzig, zweiundsiebzig"
+        ],
+        [
+          "quatre-vingts, quatre-vingt-un, quatre-vingt-deux",
+          "achtzig, einundachtzig, zweiundachtzig"
+        ],
+        [
+          "quatre-vingt-dix, quatre-vingt-onze, quatre-vingt-douze",
+          "neunzig, einundneunzig, zweiundneunzig"
         ],
         [
           "cent",
           "hundert"
+        ],
+        [
+          "J’ai vingt-six ans.",
+          "Ich bin 26 Jahre alt."
+        ],
+        [
+          "Quel est votre numéro de téléphone ?",
+          "Wie lautet Ihre Telefonnummer?"
         ],
         [
           "Mon numéro de téléphone est…",
@@ -411,34 +447,6 @@ window.FR_A1_DATA = {
         [
           "Mon code postal est B3V 1L2.",
           "Meine Postleitzahl ist B3V 1L2."
-        ],
-        [
-          "J’ai vingt-six ans.",
-          "Ich bin 26 Jahre alt."
-        ],
-        [
-          "Quel est votre numéro de téléphone ?",
-          "Wie lautet Ihre Telefonnummer?"
-        ],
-        [
-          "quatre, cinq, six, sept, huit, neuf",
-          "vier, fünf, sechs, sieben, acht, neun"
-        ],
-        [
-          "onze, douze, treize, quatorze, quinze, seize",
-          "elf, zwölf, dreizehn, vierzehn, fünfzehn, sechzehn"
-        ],
-        [
-          "dix-sept, dix-huit, dix-neuf, vingt",
-          "siebzehn, achtzehn, neunzehn, zwanzig"
-        ],
-        [
-          "quarante, cinquante, soixante",
-          "vierzig, fünfzig, sechzig"
-        ],
-        [
-          "soixante-dix, quatre-vingts, quatre-vingt-dix, cent",
-          "siebzig, achtzig, neunzig, hundert"
         ]
       ],
       "quiz": [
@@ -550,7 +558,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Alter mit avoir: j’ai, tu as, il/elle a, nous avons, vous avez, ils/elles ont. J’ai vingt ans, nicht je suis vingt ans. Zahlen: 70 = soixante-dix, 80 = quatre-vingts, 90 = quatre-vingt-dix."
+        "explanation": "Alter wird mit avoir gebildet: j’ai vingt-six ans. Bei Zahlen lohnt es sich, zuerst 0–20 und die Zehner bis 60 sicher zu lernen; ab 70 folgt im Französischen eine eigene Zahlenlogik. Die Details kannst du unten aufklappen."
       },
       "pronunciation": {
         "focus": "vingt / trente / cent",

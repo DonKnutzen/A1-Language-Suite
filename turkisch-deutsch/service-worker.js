@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-tr-grammar-v16";
+const CACHE="deutsch-a1-tr-grammar-v17";
 const PREFIX="deutsch-a1-tr-";
-const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css","./app.js","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/grammar-ui.js","../shared/exercise-engine.js"];
+const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css","./app.js","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
