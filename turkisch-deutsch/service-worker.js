@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-tr-darkmode-v12";
+const CACHE="deutsch-a1-tr-curriculum-v14";
 const PREFIX="deutsch-a1-tr-";
-const ASSETS=["./", "./?v=tr-theme-12", "./index.html", "./styles.css?v=tr-theme-12", "./app.js?v=tr-theme-12", "./manifest.json", "../shared/config.js", "../shared/profile.js?v=tr-theme-12", "../shared/learning.js"];
+const ASSETS=["./lesson-content.js?v=curriculum-14", "../shared/lesson-guide.js?v=curriculum-14", "./", "./?v=tr-theme-12", "./index.html", "./styles.css?v=curriculum-14", "./app.js?v=curriculum-14", "./manifest.json", "../shared/config.js", "../shared/profile.js?v=tr-theme-12", "../shared/learning.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

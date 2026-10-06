@@ -714,3 +714,14 @@ html.dark-mode .select-input:focus{
 .quick-test-card {
   margin-top: 16px;
 }
+
+/* Explanations in the learner's language. */
+.lesson-goals{margin-top:16px}
+.lesson-goals ul,.lesson-guide ul{margin:10px 0 0;padding-left:22px}
+.lesson-goals li,.lesson-guide li{margin:6px 0;line-height:1.55}
+.lesson-explanation{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.lesson-explanation summary{cursor:pointer;line-height:1.5;overflow-wrap:anywhere}
+.lesson-explanation p{line-height:1.65;overflow-wrap:anywhere}
+.lesson-tip{padding:12px;border-radius:12px;background:var(--accent-soft);color:var(--ink)}
+.lesson-goal-preview{font-size:.84rem;color:var(--muted);margin:8px 0;line-height:1.5;text-align:left;white-space:normal}
+.lesson-guide{min-width:0}

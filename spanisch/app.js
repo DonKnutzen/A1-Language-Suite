@@ -111,6 +111,7 @@ function renderLearn(){
     <div class="list">
       ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}">
         <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>
+        <p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p>
         <div class="lesson-meta">${l.skills.map(s=>`<span class="pill gray">${s}</span>`).join('')}${state.doneLessons.includes(l.id)?'<span class="pill green">✓ fertig</span>':''}</div>
       </button>`).join('')}
     </div>`;
@@ -125,9 +126,11 @@ function renderLesson(id){
       <div class="between"><button class="tiny-btn" id="backLearn">← Lektionen</button><span class="pill">${esc(l.topic)}</span></div>
       <section class="card" style="margin-top:12px">
         <h2>${l.id}. ${esc(l.title)}</h2>
+        ${A1LessonGuide.intro(l.id,'de',esc,speakBtn)}
         <p class="muted">Höre die spanischen Ausdrücke an und sprich sie laut nach.</p>
         ${l.phrases.map(([es,de])=>`<div class="phrase-row"><div><strong>${esc(es)}</strong><small>${esc(de)}</small></div>${speakBtn(es)}</div>`).join('')}
         <div class="spacer"></div>
+        ${A1LessonGuide.extras(l.id,'de',esc,speakBtn)}
         <button class="primary-btn" id="startQuiz">10-Fragen-Übung starten</button>
       </section>`;
     document.getElementById('backLearn').onclick=renderLearn;
@@ -355,4 +358,4 @@ audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('esA1Au
 document.getElementById('resetBtn').onclick=()=>{if(confirm('Fortschritt für Spanisch A1 in diesem Profil zurücksetzen?')){localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);}};
 updateAudioButton();
 setRoute('home');
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js', {updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{}));
