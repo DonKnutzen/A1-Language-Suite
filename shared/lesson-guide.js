@@ -10,10 +10,12 @@
   function row(pair,esc,speakBtn,label=''){
     return `<div class="phrase-row"><div>${label?`<small>${esc(label)}</small>`:''}<strong>${esc(pair[0])}</strong><small>${esc(pair[1])}</small></div>${speakBtn(pair[0])}</div>`;
   }
-  function intro(id,lang,esc,speakBtn){
+  function intro(id,lang,esc,speakBtn,options={}){
     const c=content(id),w=words[lang];
+    const title=options.title||c.grammar.title;
+    const referencesHtml=options.referencesHtml||'';
     return `<div class="notice lesson-goals"><strong>${w.goals}</strong><ul>${c.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-      <details class="lesson-explanation" open><summary><strong>${esc(c.grammar.title)}</strong></summary><p class="muted">${esc(c.grammar.explanation)}</p>${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p></details>`;
+      <details class="lesson-explanation" open><summary><strong>${esc(title)}</strong></summary><p class="muted">${esc(c.grammar.explanation)}</p>${referencesHtml}${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p></details>`;
   }
   function extras(id,lang,esc,speakBtn){
     const c=content(id),w=words[lang];

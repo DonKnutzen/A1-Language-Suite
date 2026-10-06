@@ -36,4 +36,3 @@ DARK-MODE-FIX v12 – TÜRKISCH → DEUTSCH (bereits enthalten)
 Auch turkisch-deutsch/index.html und die index.html im Hauptverzeichnis
 ersetzen. Der neue Kurseinstieg und die neuen Dateiversionen umgehen alte
 Browserantworten. Erst nach abgeschlossener GitHub-Pages-Veröffentlichung
-neu öffnen. Optional den Kurs mit /turkisch-deutsch/?v=tr-theme-12 aufrufen.

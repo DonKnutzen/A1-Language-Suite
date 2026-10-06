@@ -285,3 +285,19 @@ html.dark-mode .text-area::placeholder{
 
 .special-char-shift{min-width:30px;height:32px;padding:0 5px;border:1px solid var(--border);border-radius:7px;background:var(--soft);color:var(--text);font:inherit;font-size:1rem;font-weight:800;line-height:1;cursor:pointer;flex:0 0 auto}
 .special-char-shift:hover,.special-char-shift.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+/* Mixed lesson exercises */
+.mixed-type{font-weight:800;margin-bottom:14px}.mixed-input{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid var(--border,#d9dee7);border-radius:10px;font:inherit}.mixed-char-wrap{margin-top:8px}.mixed-char-wrap>span{display:block;font-size:12px;color:var(--muted,#667085);margin-bottom:5px}.mixed-char-bar{display:flex;flex-wrap:wrap;gap:4px}.mixed-char,.mixed-shift{min-width:30px;height:30px;padding:0 6px;border:1px solid var(--border,#d9dee7);border-radius:7px;background:var(--card,#fff);font:inherit;cursor:pointer}.mixed-shift.active{font-weight:900;box-shadow:inset 0 0 0 2px currentColor}.mixed-listen{font-size:22px;margin-bottom:14px}.mixed-order-answer{min-height:48px;border:1px dashed var(--border,#cbd5e1);border-radius:10px;padding:12px;margin-bottom:12px;font-weight:700}.mixed-tokens{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}.mixed-token{margin:0}
+/* Expandable grammar reference blocks */
+.grammar-detail{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:rgba(148,163,184,.07);overflow:hidden}
+.grammar-detail summary{cursor:pointer;padding:11px 13px;font-weight:800;line-height:1.35;list-style-position:inside}
+.grammar-detail[open] summary{border-bottom:1px solid var(--line)}
+.grammar-detail-body{padding:11px 13px;line-height:1.6}
+.grammar-detail-body p:first-child{margin-top:0}.grammar-detail-body p:last-child{margin-bottom:0}
+.grammar-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px 0}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.94rem;min-width:420px}
+.grammar-table th,.grammar-table td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;white-space:nowrap}
+.grammar-table th{font-weight:800;background:rgba(148,163,184,.09)}
+.grammar-table tr:last-child td{border-bottom:0}
+.grammar-study-hint{margin-top:14px;padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.18);font-size:.93rem;line-height:1.5}
+@media(max-width:560px){.grammar-detail summary{padding:10px 11px}.grammar-detail-body{padding:10px 11px}.grammar-table{font-size:.88rem;min-width:390px}.grammar-table th,.grammar-table td{padding:7px 8px}}
+

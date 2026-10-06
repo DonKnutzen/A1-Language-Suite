@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-live-streak-v15";
+const CACHE="deutsch-a1-live-grammar-v16";
 const PREFIX="deutsch-a1-live-";
-const ASSETS=["../shared/streak.js?v=streak-15", "./lesson-content.js?v=curriculum-14", "../shared/lesson-guide.js?v=curriculum-14", "./", "./index.html", "./styles.css?v=curriculum-14", "./app.js?v=streak-15", "./manifest.json", "../shared/config.js", "../shared/profile.js?v=streak-15", "../shared/learning.js"];
+const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css","./app.js","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/grammar-ui.js","../shared/exercise-engine.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
