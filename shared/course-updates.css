@@ -1,0 +1,40 @@
+.mixed-context{padding:12px;border-left:3px solid var(--accent);background:var(--accent-soft);color:var(--ink);border-radius:8px;line-height:1.6}
+label.mixed-type{display:block}
+.mixed-input,.mixed-char,.mixed-shift{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.mixed-order-answer{border-color:var(--line)}
+.lesson-part-status{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lesson-flow-requirements{font-size:.9rem;line-height:1.6;color:var(--muted)}
+.lesson-flow .between{gap:12px;align-items:flex-start}
+.lesson-flow h3{margin:0}
+.lesson-task-prompt{display:block;font-weight:750;line-height:1.6;margin:16px 0}
+.lesson-check{display:flex;gap:10px;align-items:flex-start;margin:16px 0;line-height:1.5;cursor:pointer}
+.lesson-check input{width:19px;height:19px;margin:2px 0 0;flex:0 0 19px;accent-color:var(--accent)}
+.lesson-flow .solution{overflow-wrap:anywhere;line-height:1.6;margin-top:16px}
+.lesson-flow button:disabled,.lesson-flow-finish button:disabled{opacity:.5;cursor:default}
+.lesson-flow #continueWriting{margin-top:20px}
+.lesson-flow #lessonWriting{margin-top:12px;min-height:150px;width:100%}
+.lesson-flow-finish{margin-top:18px}
+.lesson-completion{font-weight:750;line-height:1.5;margin-bottom:16px}
+.lesson-flow,.lesson-flow-finish{scroll-margin-top:145px}
+.pronunciation-words{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pronunciation-word{margin:0;max-width:100%;overflow-wrap:anywhere}
+.pronunciation-alphabet{padding-top:12px}
+.alphabet-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.alphabet-letter{border:1px solid var(--line);border-radius:12px;padding:12px 5px;background:var(--panel);color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+.alphabet-letter strong{font-size:1.4rem}.alphabet-letter span{font-size:.85rem}
+.alphabet-important{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pronunciation-alphabet #spellName{width:100%;margin:8px 0 12px}
+.a1-voice-trigger{width:36px;padding:0!important;flex:0 0 36px}
+.a1-voice-dialog{border:1px solid var(--line);border-radius:20px;width:calc(100% - 28px);max-width:520px;max-height:85dvh;padding:24px;background:var(--panel);color:var(--ink);box-shadow:var(--shadow);overflow:auto}
+.a1-voice-dialog::backdrop{background:rgba(15,23,42,.6)}
+.a1-voice-dialog h2{margin-top:0}.a1-voice-dialog .between{gap:10px}
+.a1-voice-dialog label{display:block;margin:16px 0 7px;font-weight:700}
+.a1-voice-dialog select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-size:16px}
+.a1-voice-dialog input[type=range]{width:100%;accent-color:var(--accent)}
+.a1-voice-dialog .button-row{margin-top:18px}
+.a1-voice-dialog .voice-status{font-size:.9rem;line-height:1.6;margin:14px 0}
+.a1-voice-dialog p{line-height:1.6}
+html.dark-mode .a1-voice-dialog,html.dark-mode .alphabet-letter{background:#1e293b;color:#e2e8f0;border-color:#475569}
+html.dark-mode .a1-voice-dialog select,html.dark-mode .mixed-input,html.dark-mode .mixed-char,html.dark-mode .mixed-shift{background:#0f172a;color:#e2e8f0;border-color:#475569}
+html.dark-mode .mixed-context,html.dark-mode .alphabet-important{background:#172554;color:#dbeafe;border-color:#60a5fa}
+@media(max-width:420px){.alphabet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.lesson-flow .button-row,.lesson-flow-finish .button-row{flex-direction:column}.lesson-flow .button-row button,.lesson-flow-finish .button-row button{width:100%}.a1-voice-dialog{padding:18px}.header-actions{gap:6px;flex-wrap:wrap;justify-content:flex-end}.a1-voice-trigger{width:32px;flex-basis:32px}.mixed-context{font-size:.95rem}}

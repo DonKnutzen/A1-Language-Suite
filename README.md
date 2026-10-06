@@ -2,7 +2,13 @@
 
 Stand: 6. Oktober 2026. Vier getrennte Kurse mit gemeinsamen Profilen, Lernserie, Dark Mode und deutscher, französischer oder türkischer Oberfläche für Startseite und Profilmenüs.
 
-Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktioniert unabhängig vom Gerätefarbschema. Hinweise, Lösungen, Antwortmarkierungen, Eingabefelder und aktive Bedienelemente erhalten passende dunkle Farben. Die aktuellen Kursdateien verwenden die Version streak-15; die Kurscaches wurden auf streak-v15 aktualisiert.
+Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktioniert unabhängig vom Gerätefarbschema. Hinweise, Lösungen, Antwortmarkierungen, Eingabefelder und aktive Bedienelemente erhalten passende dunkle Farben. Die aktualisierten Aufgaben-, Ablauf- und Audiodateien verwenden flow-20; die Kurscaches wurden entsprechend erhöht.
+
+## Aufgaben und Aussprache
+
+Die zehn gemischten Übungen zeigen bei Eingabeaufgaben eine konkrete Frage und einen passenden Bedeutungshinweis. Danach folgen direkt die Selbstaufgaben für Sprechen und Schreiben. Neue Lektionen benötigen mindestens 70 % im Quiz und beide selbst geprüften Aufgaben; vorhandene Abschlüsse bleiben erhalten. Schreibentwürfe und Aufgabenstatus werden gespeichert.
+
+Französische Aussprachebeispiele sind einzeln hörbar. Die Alphabetlektion enthält Buchstabennamen, Akzente und Buchstabierübungen. Über das Schallwellen-Symbol oben kannst du die verfügbare Browserstimme auswählen und eine Hörprobe abspielen. Es gibt keine zusätzlichen Audiodateien oder TTS-Modelle. Apple kann die Auswahl hochwertiger Stimmen begrenzen. Einzelheiten und Tests stehen in UPDATE-AUFGABEN-AUSSPRACHE.md.
 
 ## Lernserie
 

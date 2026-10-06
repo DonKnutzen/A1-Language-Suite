@@ -2,7 +2,7 @@ const D=window.ES_A1_DATA;
 const lessons=D.lessons;
 
 const defaultState={
-  doneLessons:[],
+  doneLessons:[],lessonWork:{},
   lessonQuizBest:{},
   grammarBest:{},
   masteredListening:[],
@@ -112,20 +112,17 @@ function renderLearn(){
 }
 
 function renderLesson(id){
-  const l=lessons.find(x=>x.id===id), c=window.A1_COURSE_CONTENT.find(x=>x.id===id), parts=A1LessonGuide.parts(id,'de',esc,speakBtn);let qi=0,score=0,quizTotal=10;const recId=`LessonApply${id}`;
+  const l=lessons.find(x=>x.id===id),c=window.A1_COURSE_CONTENT.find(x=>x.id===id);
+  const introHtml=A1LessonGuide.intro(id,'de',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
+  const dialogueHtml=A1LessonGuide.parts(id,'de',esc,speakBtn).dialogue;
   const model=(c.grammar.examples?.[0]?.[0]||l.phrases[0][0])+' '+l.phrases.slice(1,4).map(p=>p[0]).join(' ');
-  function applyHtml(){return `<details class="lesson-application"><summary><strong>Jetzt selbst anwenden</strong></summary><div class="application-block"><h3>🎤 Sprechen</h3><div class="practice-task"><strong>${esc(c.transfer.speaking)}</strong><p class="muted">Sprich die Aufgabe frei ins Mikrofon. Danach kannst du deine Aufnahme und eine mögliche sprachliche Orientierung anhören.</p>${recorderHtml(recId)}<div class="button-row"><button class="soft-btn" id="skipSpeaking">Sprechaufgabe überspringen</button></div><div id="skipFeedback"></div><div id="speakingModel" hidden><div class="solution"><strong>Mögliche Orientierung:</strong><br>${esc(model)}</div><div class="button-row"><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 Beispiel anhören</button></div><p><strong>Wie war deine Antwort?</strong></p><div class="button-row"><button class="secondary-btn self-check" data-good="0">↻ Noch einmal üben</button><button class="primary-btn self-check" data-good="1">✓ Das war gut</button></div></div></div><h3>✍️ Schreiben</h3><div class="practice-task"><strong>${esc(c.transfer.writing)}</strong><textarea class="text-area" id="lessonWriting" placeholder="Schreibe deine Antwort hier…"></textarea><div class="special-char-wrap"><span class="special-char-label">Sonderzeichen</span><div class="special-char-bar"><button type="button" class="special-char-shift" aria-label="Groß-/Kleinschreibung umschalten" aria-pressed="false">⇧</button><button type="button" class="special-char-btn" data-lower="á" data-upper="Á" data-char="á">á</button><button type="button" class="special-char-btn" data-lower="é" data-upper="É" data-char="é">é</button><button type="button" class="special-char-btn" data-lower="í" data-upper="Í" data-char="í">í</button><button type="button" class="special-char-btn" data-lower="ó" data-upper="Ó" data-char="ó">ó</button><button type="button" class="special-char-btn" data-lower="ú" data-upper="Ú" data-char="ú">ú</button><button type="button" class="special-char-btn" data-lower="ü" data-upper="Ü" data-char="ü">ü</button><button type="button" class="special-char-btn" data-lower="ñ" data-upper="Ñ" data-char="ñ">ñ</button><button type="button" class="special-char-btn" data-lower="¿" data-upper="¿" data-char="¿">¿</button><button type="button" class="special-char-btn" data-lower="¡" data-upper="¡" data-char="¡">¡</button></div></div><div class="button-row"><button class="soft-btn" id="showWritingModel">Mit Musterlösung vergleichen</button></div><div id="writingModel"></div></div></div></details>`;}
-  function wireApp(){const show=()=>{document.getElementById('speakingModel').hidden=false;wireSpeakButtons();};const completeSkip=()=>{A1Streak.completeExercise();document.getElementById('skipFeedback').innerHTML='<div class="feedback good">✓ Übersprungen · als erledigt markiert.</div>';show();};const ask=m=>{if(confirm(m))completeSkip();};A1Learning.wireRecorder(recId,()=>{A1Streak.completeExercise();show();},{unavailable:'Mikrofon hier nicht verfügbar. Verwende HTTPS und einen unterstützten Browser.',denied:'Mikrofon konnte nicht geöffnet werden. Prüfe HTTPS und die Berechtigung.',recording:'● Aufnahme läuft…',done:'Aufnahme fertig. Höre deine Antwort an.',empty:'Keine Aufnahme gespeichert. Versuche es erneut.'},()=>ask('Das Mikrofon konnte nicht geöffnet werden. Möchtest du diese Sprechaufgabe überspringen und als erledigt markieren?'));skipSpeaking.onclick=()=>ask('Möchtest du diese Sprechaufgabe überspringen? Sie wird dann als erledigt markiert.');document.querySelectorAll('.self-check').forEach(b=>b.onclick=()=>{b.closest('div[id="speakingModel"]').insertAdjacentHTML('beforeend',`<div class="feedback ${b.dataset.good==='1'?'good':'bad'}">${b.dataset.good==='1'?'✓ Gut – weiter so.':'↻ Höre das Beispiel noch einmal und versuche es erneut.'}</div>`);});const shift=document.querySelector('.special-char-shift');const charBtns=[...document.querySelectorAll('.special-char-btn')];if(shift)shift.onclick=()=>{const upper=shift.getAttribute('aria-pressed')!=='true';shift.setAttribute('aria-pressed',String(upper));shift.classList.toggle('active',upper);charBtns.forEach(b=>{const ch=upper?b.dataset.upper:b.dataset.lower;b.dataset.char=ch;b.textContent=ch;});document.getElementById('lessonWriting')?.focus();};charBtns.forEach(b=>b.onclick=()=>{const t=document.getElementById('lessonWriting');const ch=b.dataset.char;const a=t.selectionStart??t.value.length,z=t.selectionEnd??a;t.value=t.value.slice(0,a)+ch+t.value.slice(z);t.focus();t.setSelectionRange(a+ch.length,a+ch.length);});showWritingModel.onclick=()=>{const t=lessonWriting.value.trim();writingModel.innerHTML=t?`<div class="solution"><strong>Deine Antwort:</strong><br>${esc(t).replace(/\n/g,'<br>')}</div><div class="solution"><strong>Mögliche sprachliche Orientierung:</strong><br>${esc(model)}</div><div class="button-row"><button class="primary-btn" id="writingGood">✓ Passt gut</button></div><div id="writingSelfFeedback"></div>`:'<div class="feedback bad">Bearbeite zuerst die Schreibaufgabe.</div>';if(t)writingGood.onclick=()=>{A1Streak.completeExercise();writingSelfFeedback.innerHTML='<div class="feedback good">✓ Als selbst geprüft markiert.</div>';};};}
-  function drawLesson(){view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLearn">← Lektionen</button><span class="pill">${esc(l.topic)}</span></div><section class="card" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2>${A1LessonGuide.intro(l.id,'de',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(l.id)})}<p class="muted">Höre die spanischen Ausdrücke an und sprich sie laut nach.</p>${l.phrases.map(([es,de])=>`<div class="phrase-row"><div><strong>${esc(es)}</strong><small>${esc(de)}</small></div>${speakBtn(es)}</div>`).join('')}${parts.pronunciation}<div class="spacer"></div><button class="primary-btn" id="startQuiz">10 gemischte Übungen starten</button><div class="spacer"></div>${parts.dialogue}${applyHtml()}</section>`;backLearn.onclick=renderLearn;startQuiz.onclick=()=>{qi=0;score=0;drawQuiz();};wireSpeakButtons();wireApp();}
-  function drawQuiz(){
-    A1ExerciseEngine.run({
-      lesson:l, view, targetLang:'es', uiLang:'de',
-      playAudio:(text)=>playCorrectAudio(text),
-      onBack:drawLesson,
-      onFinish:(finalScore,total)=>{score=finalScore;quizTotal=total;finishQuiz();}
-    });
-  }
-  function finishQuiz(){const pct=Math.round(score/quizTotal*100);state.lessonQuizBest[l.id]=Math.max(state.lessonQuizBest[l.id]||0,pct);if(pct>=70&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${pct>=70?'LEKTION BESTANDEN':'NOCH EINMAL'}</span><div class="score">${pct}%</div><h2>${score}/${quizTotal}</h2><div class="button-row"><button class="secondary-btn" id="repeatLesson">Zurück zur Lektion</button><button class="primary-btn" id="nextLesson">${id<lessons.length?'Nächste Lektion':'Lektionen'}</button></div></section>`;repeatLesson.onclick=drawLesson;nextLesson.onclick=()=>id<lessons.length?renderLesson(id+1):renderLearn();}drawLesson();}
+  A1LessonFlow.render({
+    lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'es',uiLang:'de',
+    introHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'es','de'),
+    model,recorderHtml:recorderHtml,
+    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
+  });
+}
 
 function renderPractice(){
   view.innerHTML=`
@@ -353,6 +350,7 @@ function startQuickMock(){
   next();
 }
 
+A1Voice.mount({lang:'es-ES',uiLang:'de'});
 audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('esA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('¡Hola! La lectura automática está activada.',true);else A1Voice.cancel();};
 document.getElementById('resetBtn').onclick=()=>{if(confirm('Fortschritt für Spanisch A1 in diesem Profil zurücksetzen?')){localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);}};
 updateAudioButton();

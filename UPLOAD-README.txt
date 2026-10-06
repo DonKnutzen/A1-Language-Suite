@@ -16,6 +16,8 @@ Enthalten:
 - gemeinsame Profile, Lernserie, Audio, Dark Mode, Fortschritt und Prüfungstraining
 
 shared/learning.js und shared/streak.js müssen mit hochgeladen werden.
+Auch shared/lesson-flow.js, shared/pronunciation.js, shared/course-updates.css,
+shared/exercise-engine.js und shared/voice-selection.js mit übernehmen.
 Kurskennungen und Fortschritts-Schlüssel bleiben unverändert.
 shared/config.js und shared/supabase.sql wurden unverändert übernommen.
 Keine Datenbankänderung ist für dieses Update vorgesehen. Falls du eine neuere
@@ -23,9 +25,19 @@ persönliche Konfiguration hast, behalte diese beim Upload.
 
 Die Tests wurden lokal und mit nachgebildeten Cloud-Anfragen ausgeführt,
 nicht gegen deine produktive Supabase-Datenbank. Details zum aktuellen Update:
-UPDATE-LERNSERIE.md. Frühere Prüfungen: PRUEFBERICHT.txt.
+UPDATE-AUFGABEN-AUSSPRACHE.md. Lernserie: UPDATE-LERNSERIE.md.
+Frühere Prüfungen: PRUEFBERICHT.txt.
 
-LERNSERIE – AKTUELLE VERSION streak-v15
+AUFGABEN UND AUSSPRACHE – AKTUELLE KURSCACHES flow-v20
+Zehn gemischte Übungen, danach Sprechen und Schreiben in derselben Lektion.
+Neue Abschlüsse benötigen mindestens 70 % plus beide selbst geprüften Aufgaben.
+Bereits abgeschlossene Lektionen behalten ihren Status. Schreibentwürfe bleiben
+gespeichert. Buchstabennamen und Aussprachebeispiele sind einzeln hörbar.
+Das Schallwellen-Symbol öffnet Stimmwahl, Hörprobe und Tempo. Die App nutzt
+weiterhin kostenlose Browserstimmen, ohne zusätzliche Audio-/Modelldateien.
+Die Qualität auf Apple-Geräten hängt von den angebotenen Stimmen ab.
+
+LERNSERIE – UNVERÄNDERT ENTHALTEN
 Eine gemeinsame Serie pro Profil in allen vier Kursen. Ein Pausentag ist erlaubt
 und zählt nicht mit. Nach zwei aufeinanderfolgenden Pausentagen verfällt die Serie;
 die nächste abgeschlossene Übung beginnt wieder bei 1. Bei 0 bleibt die Anzeige
