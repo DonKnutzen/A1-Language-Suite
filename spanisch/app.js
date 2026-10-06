@@ -22,7 +22,7 @@ let state=loadState();
 function lessonPct(){return Math.round((state.doneLessons.length/Math.max(lessons.length,1))*100);}
 window.A1CourseProgressPercent=lessonPct;
 
-function save(){
+function save(completed=false){if(completed)A1Streak.completeExercise();
   localStorage.setItem(stateKey,JSON.stringify(state));
   A1Profile.saveProgress('spanisch-a1',state,lessonPct());
 }
@@ -81,13 +81,13 @@ document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.datas
 function renderHome(){
   const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];
   view.innerHTML=`
-    <section class="card hero">
+    <section class="card hero" data-streak-anchor>
       <div class="eyebrow">KURSFORTSCHRITT</div>
       <h2 style="margin-top:12px">Spanisch A1 🇪🇸</h2>
       <p class="muted">${state.doneLessons.length}/${lessons.length} Lektionen abgeschlossen</p>
       <div class="progress"><div style="width:${lessonPct()}%"></div></div>
       <div class="between" style="margin-top:10px"><small>DEUTSCH → SPANISCH · DELE A1</small><strong>${lessonPct()}%</strong></div>
-    </section>
+    ${A1Streak.render('de')}</section>
     <section class="card">
       <div class="between"><div><div class="eyebrow">WEITERLERNEN</div><h3>${esc(next.title)}</h3></div><span class="pill gray">Lektion ${next.id}</span></div>
       <p class="muted">${esc(next.topic)} · ${next.skills.join(' · ')}</p>
@@ -160,7 +160,7 @@ function renderLesson(id){
     const pct=Math.round(score/l.quiz.length*100);
     state.lessonQuizBest[l.id]=Math.max(state.lessonQuizBest[l.id]||0,pct);
     if(pct>=70&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);
-    save();
+    save(true);
     view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${pct>=70?'LEKTION BESTANDEN':'NOCH EINMAL'}</span><div class="score">${pct}%</div><h2>${score}/${l.quiz.length}</h2><p class="muted">${pct>=70?'Fortschritt gespeichert.':'Wiederhole die Phrasen und versuche es erneut.'}</p><div class="button-row"><button class="secondary-btn" id="repeatLesson">Wiederholen</button><button class="primary-btn" id="nextLesson">${id<lessons.length?'Nächste Lektion':'Lektionen'}</button></div></section>`;
     document.getElementById('repeatLesson').onclick=drawLesson;
     document.getElementById('nextLesson').onclick=()=>id<lessons.length?renderLesson(id+1):renderLearn();
@@ -197,7 +197,7 @@ function renderVocab(){
     wireSpeakButtons();
     document.getElementById('backPractice').onclick=renderPractice;
     if(!reveal)document.getElementById('reveal').onclick=()=>{reveal=true;draw();};
-    else{const next=()=>{idx=(idx+1)%cards.length;reveal=false;localStorage.setItem(key,idx);draw();};document.getElementById('again').onclick=next;document.getElementById('known').onclick=next;}
+    else{const next=()=>{A1Streak.completeExercise();idx=(idx+1)%cards.length;reveal=false;localStorage.setItem(key,idx);draw();};document.getElementById('again').onclick=next;document.getElementById('known').onclick=next;}
     if(audioEnabled)setTimeout(()=>speak(c.es),180);
   }
   draw();
@@ -211,7 +211,7 @@ function renderGrammarMenu(){
 function startGrammarSet(id){
   const set=D.grammarSets.find(x=>x.id===id),qs=shuffle(set.questions).slice(0,10);let i=0,score=0;
   function draw(){
-    if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.grammarBest[id]=Math.max(state.grammarBest[id]||0,pct);save();view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Richtige Antworten werden auf Spanisch vorgelesen.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Noch einmal</button><button class="primary-btn" id="backGrammar">Alle Sets</button></div></section>`;document.getElementById('againGrammar').onclick=()=>startGrammarSet(id);document.getElementById('backGrammar').onclick=renderGrammarMenu;return;}
+    if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.grammarBest[id]=Math.max(state.grammarBest[id]||0,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Richtige Antworten werden auf Spanisch vorgelesen.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Noch einmal</button><button class="primary-btn" id="backGrammar">Alle Sets</button></div></section>`;document.getElementById('againGrammar').onclick=()=>startGrammarSet(id);document.getElementById('backGrammar').onclick=renderGrammarMenu;return;}
     const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backGrammar">← Grammatik</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="eyebrow">${esc(set.title)}</div><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div><div id="grammarFeedback"></div></section>`;
     document.getElementById('backGrammar').onclick=renderGrammarMenu;
     document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{const chosen=+btn.dataset.o,ok=chosen===q.a;if(ok){score++;playCorrectAudio(q.audio||q.o[q.a]);}document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('grammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(q.o[q.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextGrammar">${i<qs.length-1?'Weiter':'Ergebnis'}</button>`;document.getElementById('nextGrammar').onclick=()=>{i++;draw();};});
@@ -230,7 +230,7 @@ function renderListeningMenu(){
 }
 function startListeningPractice(part){
   const tasks=shuffle(D.listening['part'+part]).slice(0,10);let i=0,score=0;
-  function next(ok){if(typeof ok==='boolean'){if(ok)score++;i++;}if(i>=tasks.length){const pct=Math.round(score/tasks.length*100);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">HÖREN · TAREA ${part}</span><div class="score">${pct}%</div><h2>${score}/${tasks.length}</h2><p class="muted">Neue Runde = neue Auswahl aus dem Aufgabenpool.</p><div class="button-row"><button class="secondary-btn" id="againHear">Noch einmal</button><button class="primary-btn" id="backHearMenu">Hören</button></div></section>`;document.getElementById('againHear').onclick=()=>startListeningPractice(part);document.getElementById('backHearMenu').onclick=renderListeningMenu;return;}renderListeningTask(part,false,next,tasks[i],`${i+1}/${tasks.length}`);}
+  function next(ok){if(typeof ok==='boolean'){if(ok)score++;i++;}if(i>=tasks.length){A1Streak.completeExercise();const pct=Math.round(score/tasks.length*100);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">HÖREN · TAREA ${part}</span><div class="score">${pct}%</div><h2>${score}/${tasks.length}</h2><p class="muted">Neue Runde = neue Auswahl aus dem Aufgabenpool.</p><div class="button-row"><button class="secondary-btn" id="againHear">Noch einmal</button><button class="primary-btn" id="backHearMenu">Hören</button></div></section>`;document.getElementById('againHear').onclick=()=>startListeningPractice(part);document.getElementById('backHearMenu').onclick=renderListeningMenu;return;}renderListeningTask(part,false,next,tasks[i],`${i+1}/${tasks.length}`);}
   next();
 }
 function renderListeningTask(part,examMode=false,onDone=null,forced=null,progressLabel='',timerText=''){
@@ -252,7 +252,7 @@ function renderReadingMenu(){
 }
 function startReadingPractice(part){
   const tasks=shuffle(D.reading['part'+part]).slice(0,10);let i=0,score=0;
-  function next(ok){if(typeof ok==='boolean'){if(ok)score++;i++;}if(i>=tasks.length){const pct=Math.round(score/tasks.length*100);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">LESEN · TAREA ${part}</span><div class="score">${pct}%</div><h2>${score}/${tasks.length}</h2><p class="muted">Neue Runde = neue Auswahl aus dem Aufgabenpool.</p><div class="button-row"><button class="secondary-btn" id="againRead">Noch einmal</button><button class="primary-btn" id="backReadMenu">Lesen</button></div></section>`;document.getElementById('againRead').onclick=()=>startReadingPractice(part);document.getElementById('backReadMenu').onclick=renderReadingMenu;return;}renderReadingTask(part,next,tasks[i],`${i+1}/${tasks.length}`);}
+  function next(ok){if(typeof ok==='boolean'){if(ok)score++;i++;}if(i>=tasks.length){A1Streak.completeExercise();const pct=Math.round(score/tasks.length*100);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">LESEN · TAREA ${part}</span><div class="score">${pct}%</div><h2>${score}/${tasks.length}</h2><p class="muted">Neue Runde = neue Auswahl aus dem Aufgabenpool.</p><div class="button-row"><button class="secondary-btn" id="againRead">Noch einmal</button><button class="primary-btn" id="backReadMenu">Lesen</button></div></section>`;document.getElementById('againRead').onclick=()=>startReadingPractice(part);document.getElementById('backReadMenu').onclick=renderReadingMenu;return;}renderReadingTask(part,next,tasks[i],`${i+1}/${tasks.length}`);}
   next();
 }
 function renderReadingTask(part,onDone=null,forced=null,progressLabel='',examMode=false,timerText=''){
@@ -270,7 +270,7 @@ function renderFormTask(onDone=null,forced=null,timerText=''){
   const task=forced||rand(D.forms);
   view.innerHTML=`${timerText?`<div class="notice" style="margin-bottom:10px">⏱ ${esc(timerText)}</div>`:''}<div class="between"><button class="tiny-btn" id="backWrite">← Schreiben</button><span class="pill">TAREA 1 · FORMULAR</span></div><section class="card" style="margin-top:12px"><h3>Situation</h3><p>${esc(task.context)}</p><div class="form-grid">${task.fields.map((f,i)=>`<div class="field"><label>${esc(f.label)}</label><input class="text-input" id="field${i}"></div>`).join('')}</div><div class="spacer"></div><button class="primary-btn" id="checkForm">Überprüfen</button><div id="formFeedback"></div></section>`;
   document.getElementById('backWrite').onclick=renderWritingMenu;
-  document.getElementById('checkForm').onclick=()=>{let correct=0;const details=task.fields.map((f,i)=>{const val=normalize(document.getElementById('field'+i).value);const ok=f.answers.some(a=>normalize(a)===val);if(ok)correct++;return `<div>${ok?'✓':'✗'} <strong>${esc(f.label)}:</strong> ${ok?'passt':esc(f.answers[0])}</div>`;}).join('');const passed=correct>=Math.ceil(task.fields.length*.7);if(passed&&!state.writingDone.includes(task.id)){state.writingDone.push(task.id);save();}document.getElementById('formFeedback').innerHTML=`<div class="feedback ${passed?'good':'bad'}"><strong>${correct}/${task.fields.length}</strong><div style="margin-top:8px;line-height:1.7">${details}</div></div><p class="muted">Hinweis: Bei der echten Prüfung werden freie Antworten von Prüfern bewertet; diese Kontrolle ist nur Training.</p><div class="spacer"></div><button class="primary-btn" id="nextForm">${onDone?'Weiter':'Neues Formular'}</button>`;document.getElementById('nextForm').onclick=()=>onDone?onDone(correct):renderFormTask();};
+  document.getElementById('checkForm').onclick=()=>{if(task.fields.every((_,i)=>document.getElementById('field'+i).value.trim()))A1Streak.completeExercise();let correct=0;const details=task.fields.map((f,i)=>{const val=normalize(document.getElementById('field'+i).value);const ok=f.answers.some(a=>normalize(a)===val);if(ok)correct++;return `<div>${ok?'✓':'✗'} <strong>${esc(f.label)}:</strong> ${ok?'passt':esc(f.answers[0])}</div>`;}).join('');const passed=correct>=Math.ceil(task.fields.length*.7);if(passed&&!state.writingDone.includes(task.id)){state.writingDone.push(task.id);save();}document.getElementById('formFeedback').innerHTML=`<div class="feedback ${passed?'good':'bad'}"><strong>${correct}/${task.fields.length}</strong><div style="margin-top:8px;line-height:1.7">${details}</div></div><p class="muted">Hinweis: Bei der echten Prüfung werden freie Antworten von Prüfern bewertet; diese Kontrolle ist nur Training.</p><div class="spacer"></div><button class="primary-btn" id="nextForm">${onDone?'Weiter':'Neues Formular'}</button>`;document.getElementById('nextForm').onclick=()=>onDone?onDone(correct):renderFormTask();};
 }
 function rubricSelect(label,max,description){let options='';for(let v=0;v<=max;v++)options+=`<option value="${v}">${v}</option>`;return `<div class="field"><label>${esc(label)} · max. ${max}</label><select class="select-input" data-rubric>${options}</select><small class="muted">${esc(description)}</small></div>`;}
 function renderMessageTask(onDone=null,forced=null,timerText=''){
@@ -278,13 +278,13 @@ function renderMessageTask(onDone=null,forced=null,timerText=''){
   view.innerHTML=`${timerText?`<div class="notice" style="margin-bottom:10px">⏱ ${esc(timerText)}</div>`:''}<div class="between"><button class="tiny-btn" id="backWrite">← Schreiben</button><span class="pill">TAREA 2 · 30–40 WÖRTER</span></div><section class="card" style="margin-top:12px"><h3>Aufgabe</h3><p>${esc(task.prompt)}</p><textarea class="text-area" id="messageText" placeholder="Escribe tu texto aquí…"></textarea><div class="word-count" id="wordCount">0 Wörter</div><div class="spacer"></div><button class="primary-btn" id="openRubric">Selbstkontrolle öffnen</button><div id="messageFeedback"></div></section>`;
   const ta=document.getElementById('messageText'),wc=document.getElementById('wordCount');const count=()=>A1Learning.countWords(ta.value);ta.oninput=()=>{wc.textContent=`${count()} Wörter`;document.getElementById('messageFeedback').replaceChildren();};document.getElementById('backWrite').onclick=renderWritingMenu;
   document.getElementById('openRubric').onclick=()=>{const words=count(),inRange=words>=30&&words<=40;document.getElementById('messageFeedback').innerHTML=`<hr class="soft"><h3>DELE-orientierte Selbstkontrolle</h3><p class="muted">Keine offizielle Bewertung. Prüfe, ob du die verlangten Inhalte einfach und verständlich ausdrückst.</p><div class="form-grid">${rubricSelect('Aufgabenbezug',3,'Alle geforderten Punkte enthalten.')}${rubricSelect('Verständlichkeit',3,'Einfache, klare Sätze.')}${rubricSelect('Wortschatz',3,'Passender A1-Wortschatz.')}${rubricSelect('Grammatik',3,'Grundstrukturen überwiegend verständlich.')}${rubricSelect('Verknüpfung',3,'Einfache Verbindungen wie y, pero, porque.')}</div><div class="notice ${inRange?'success':'warning'}" style="margin-top:12px">Du hast <strong>${words} Wörter</strong> geschrieben. Empfohlen: <strong>30–40 Wörter</strong>.</div><div class="spacer"></div><button class="secondary-btn" id="calcWrite">Punkte berechnen</button><div id="writeScore"></div><div class="spacer"></div><button class="soft-btn" id="showModel">Beispielantwort zeigen</button><div id="modelAnswer"></div>`;
-    document.getElementById('calcWrite').onclick=()=>{const words=count();const pts=[...document.querySelectorAll('[data-rubric]')].reduce((s,c)=>s+(+c.value||0),0);if(pts>=10&&words>=30&&!state.writingDone.includes(task.id)){state.writingDone.push(task.id);save();}document.getElementById('writeScore').innerHTML=`<div class="feedback ${pts>=10&&words>=30?'good':'bad'}"><strong>${pts}/15</strong> · Selbstbewertung</div>${onDone?'<div class="spacer"></div><button class="primary-btn" id="continueWrite">Weiter</button>':'<div class="spacer"></div><button class="primary-btn" id="nextMsg">Neues Thema</button>'}`;document.getElementById(onDone?'continueWrite':'nextMsg').onclick=()=>onDone?onDone(pts):renderMessageTask();};
+    document.getElementById('calcWrite').onclick=()=>{const words=count();if(words>=30)A1Streak.completeExercise();const pts=[...document.querySelectorAll('[data-rubric]')].reduce((s,c)=>s+(+c.value||0),0);if(pts>=10&&words>=30&&!state.writingDone.includes(task.id)){state.writingDone.push(task.id);save();}document.getElementById('writeScore').innerHTML=`<div class="feedback ${pts>=10&&words>=30?'good':'bad'}"><strong>${pts}/15</strong> · Selbstbewertung</div>${onDone?'<div class="spacer"></div><button class="primary-btn" id="continueWrite">Weiter</button>':'<div class="spacer"></div><button class="primary-btn" id="nextMsg">Neues Thema</button>'}`;document.getElementById(onDone?'continueWrite':'nextMsg').onclick=()=>onDone?onDone(pts):renderMessageTask();};
     document.getElementById('showModel').onclick=()=>document.getElementById('modelAnswer').innerHTML=`<div class="solution"><strong>Beispiel:</strong><br>${esc(task.model).replace(/\n/g,'<br>')}</div>`;
   };
 }
 
 function recorderHtml(id){return `<div class="recorder"><button class="secondary-btn" id="startRec${id}">● Aufnehmen</button><button class="soft-btn" id="stopRec${id}" disabled>■ Stop</button></div><div class="record-status" id="recStatus${id}">Sprich deine Antwort laut.</div><div class="playback" id="playback${id}"></div>`;}
-function wireRecorder(id,onRecorded){return A1Learning.wireRecorder(id,onRecorded,{"unavailable": "Mikrofon hier nicht verfügbar. Verwende HTTPS und einen unterstützten Browser.", "denied": "Mikrofon konnte nicht geöffnet werden. Prüfe HTTPS und die Berechtigung.", "recording": "● Aufnahme läuft…", "done": "Aufnahme fertig. Höre deine Antwort an.", "empty": "Keine Aufnahme gespeichert. Versuche es erneut."});}
+function wireRecorder(id,onRecorded){return A1Learning.wireRecorder(id,()=>{A1Streak.completeExercise();if(onRecorded)onRecorded();},{"unavailable": "Mikrofon hier nicht verfügbar. Verwende HTTPS und einen unterstützten Browser.", "denied": "Mikrofon konnte nicht geöffnet werden. Prüfe HTTPS und die Berechtigung.", "recording": "● Aufnahme läuft…", "done": "Aufnahme fertig. Höre deine Antwort an.", "empty": "Keine Aufnahme gespeichert. Versuche es erneut."});}
 
 function renderSpeakingMenu(){
   view.innerHTML=`<div class="between"><button class="tiny-btn" id="backP">← Üben</button><span class="pill">EXPRESIÓN E INTERACCIÓN ORALES</span></div><section class="card" style="margin-top:12px"><h2>Sprechen</h2><p class="muted">DELE A1: persönliche Präsentation, kurzer Themenmonolog und Gespräch mit dem Prüfer. Zusätzlich kannst du typische Alltagssituationen trainieren.</p></section><div class="list"><button class="practice-card" id="sp1"><strong>1 · Persönliche Präsentation</strong><small>Name, Alter, Nationalität, Wohnort, Beruf/Studium, Persönlichkeit, Sprachen</small></button><button class="practice-card" id="sp2"><strong>2 · Thema vorstellen</strong><small>Wähle 3 von 5 Aspekten und sprich 2–3 Minuten</small></button><button class="practice-card" id="sp3"><strong>3 · Gespräch</strong><small>Fragen beantworten und selbst zwei Fragen stellen</small></button><button class="practice-card" id="sp4"><strong>Alltag · Rollenspiele</strong><small>${D.roleplays.length} Situationen mit Modellantwort und Aufnahme</small></button></div>`;
@@ -322,12 +322,12 @@ function renderExam(){
 }
 function startListeningExam(){
   const counts=[5,5,8,7],tasks=[];counts.forEach((n,idx)=>shuffle(D.listening['part'+(idx+1)]).slice(0,n).forEach(t=>tasks.push([idx+1,t])));let i=0,score=0,start=Date.now();
-  function next(){if(i>=tasks.length){const pct=Math.round(score/tasks.length*100);state.examScores.listening=Math.max(state.examScores.listening||0,pct);save();return examResult('Hören',score,tasks.length,pct);}const [p,t]=tasks[i++];renderListeningTask(p,true,ok=>{if(ok)score++;next();},t,`${i}/${tasks.length}`,`DELE Hören · ca. ${minsLeft(start,25)} Min. verbleibend`);}
+  function next(){if(i>=tasks.length){const pct=Math.round(score/tasks.length*100);state.examScores.listening=Math.max(state.examScores.listening||0,pct);save(true);return examResult('Hören',score,tasks.length,pct);}const [p,t]=tasks[i++];renderListeningTask(p,true,ok=>{if(ok)score++;next();},t,`${i}/${tasks.length}`,`DELE Hören · ca. ${minsLeft(start,25)} Min. verbleibend`);}
   next();
 }
 function startReadingExam(){
   const counts=[5,6,6,8],tasks=[];counts.forEach((n,idx)=>shuffle(D.reading['part'+(idx+1)]).slice(0,n).forEach(t=>tasks.push([idx+1,t])));let i=0,score=0,start=Date.now();
-  function next(){if(i>=tasks.length){const pct=Math.round(score/tasks.length*100);state.examScores.reading=Math.max(state.examScores.reading||0,pct);save();return examResult('Lesen',score,tasks.length,pct);}const [p,t]=tasks[i++];renderReadingTask(p,ok=>{if(ok)score++;next();},t,`${i}/${tasks.length}`,true,`DELE Lesen · ca. ${minsLeft(start,45)} Min. verbleibend`);}
+  function next(){if(i>=tasks.length){const pct=Math.round(score/tasks.length*100);state.examScores.reading=Math.max(state.examScores.reading||0,pct);save(true);return examResult('Lesen',score,tasks.length,pct);}const [p,t]=tasks[i++];renderReadingTask(p,ok=>{if(ok)score++;next();},t,`${i}/${tasks.length}`,true,`DELE Lesen · ca. ${minsLeft(start,45)} Min. verbleibend`);}
   next();
 }
 function startWritingExam(){
@@ -350,7 +350,7 @@ function examResult(name,score,total,pct){
 }
 function startQuickMock(){
   const qs=[];for(let p=1;p<=4;p++)shuffle(D.listening['part'+p]).slice(0,4).forEach(t=>qs.push({kind:'l',part:p,t}));for(let p=1;p<=4;p++)shuffle(D.reading['part'+p]).slice(0,4).forEach(t=>qs.push({kind:'r',part:p,t}));let i=0,score=0;
-  function next(){if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.bestMock=Math.max(state.bestMock,pct);save();view.innerHTML=`<section class="card center"><span class="pill ${pct>=60?'green':'amber'}">SCHNELLTEST</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Hören + Lesen. Für vollständige DELE-A1-Vorbereitung zusätzlich Schreiben und Sprechen trainieren.</p><div class="button-row"><button class="secondary-btn" id="againMock">Noch einmal</button><button class="primary-btn" id="backExam">Prüfung</button></div></section>`;document.getElementById('againMock').onclick=startQuickMock;document.getElementById('backExam').onclick=renderExam;return;}const q=qs[i++];if(q.kind==='l')renderListeningTask(q.part,true,ok=>{if(ok)score++;next();},q.t,`${i}/${qs.length}`);else renderReadingTask(q.part,ok=>{if(ok)score++;next();},q.t,`${i}/${qs.length}`,true);}
+  function next(){if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.bestMock=Math.max(state.bestMock,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=60?'green':'amber'}">SCHNELLTEST</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Hören + Lesen. Für vollständige DELE-A1-Vorbereitung zusätzlich Schreiben und Sprechen trainieren.</p><div class="button-row"><button class="secondary-btn" id="againMock">Noch einmal</button><button class="primary-btn" id="backExam">Prüfung</button></div></section>`;document.getElementById('againMock').onclick=startQuickMock;document.getElementById('backExam').onclick=renderExam;return;}const q=qs[i++];if(q.kind==='l')renderListeningTask(q.part,true,ok=>{if(ok)score++;next();},q.t,`${i}/${qs.length}`);else renderReadingTask(q.part,ok=>{if(ok)score++;next();},q.t,`${i}/${qs.length}`,true);}
   next();
 }
 

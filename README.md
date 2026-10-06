@@ -1,8 +1,14 @@
 # A1 Language Suite – vollständiges Upload-Projekt
 
-Stand: 5. Oktober 2026. Vier getrennte Kurse mit gemeinsamen Profilen, Dark Mode und deutscher, französischer oder türkischer Oberfläche für Startseite und Profilmenüs.
+Stand: 6. Oktober 2026. Vier getrennte Kurse mit gemeinsamen Profilen, Lernserie, Dark Mode und deutscher, französischer oder türkischer Oberfläche für Startseite und Profilmenüs.
 
-Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktioniert unabhängig vom Gerätefarbschema. Hinweise, Lösungen, Antwortmarkierungen, Eingabefelder und aktive Bedienelemente erhalten passende dunkle Farben. Die Kursdateien werden über neue URLs mit tr-theme-12 geladen; der Kurscache wurde auf v12 aktualisiert.
+Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktioniert unabhängig vom Gerätefarbschema. Hinweise, Lösungen, Antwortmarkierungen, Eingabefelder und aktive Bedienelemente erhalten passende dunkle Farben. Die aktuellen Kursdateien verwenden die Version streak-15; die Kurscaches wurden auf streak-v15 aktualisiert.
+
+## Lernserie
+
+Eine gemeinsame Serie pro Profil zählt die Kalendertage mit einer abgeschlossenen Übung in einem der vier Kurse. Die erste Übung startet bei 1; weitere Übungen am selben Tag erhöhen die Zahl nicht. Ein aufeinanderfolgender Pausentag ist erlaubt und zählt nicht mit. Nach zwei aufeinanderfolgenden Pausentagen verfällt die Serie; die nächste abgeschlossene Übung beginnt wieder bei 1. Eine verfallene Serie wird nicht wiederhergestellt.
+
+Bei 0 bleibt die Anzeige vollständig leer. Ab 1 erscheinen nur Flamme und Zahl oben rechts im Fortschrittsfeld auf der Startseite jedes Kurses. Regeln, Beispiele und Prüfungen dieses Updates stehen in UPDATE-LERNSERIE.md.
 
 | Kurs | Verzeichnis | Cloud-Kennung | Fortschritts-Schlüssel |
 |---|---|---|---|
@@ -13,7 +19,7 @@ Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktionie
 
 ## Fertiger Upload
 
-Den aktuellen Stand vorher als Git-Commit oder ZIP sichern. ZIP entpacken und ihren Inhalt ins Hauptverzeichnis des bestehenden GitHub-Pages-Projekts hochladen. index.html, shared/ und die vier Kursordner liegen auf derselben Ebene. Alle Dateien mit übernehmen, insbesondere die neue gemeinsame Datei shared/learning.js.
+Den aktuellen Stand vorher als Git-Commit oder ZIP sichern. ZIP entpacken und ihren Inhalt ins Hauptverzeichnis des bestehenden GitHub-Pages-Projekts hochladen. index.html, shared/ und die vier Kursordner liegen auf derselben Ebene. Alle Dateien mit übernehmen, insbesondere shared/learning.js und die neue gemeinsame Datei shared/streak.js.
 
 Die Supabase-Konfiguration und das bestehende Schema wurden unverändert übernommen. Für dieses Update ist keine Datenbankmigration vorgesehen. Eigene neuere Änderungen an shared/config.js vor dem Upload beibehalten. Die Fortschritts-Schlüssel, Kurskennungen und Profil-Namensräume wurden nicht geändert. Der Upload selbst setzt keine Leistungen zurück.
 

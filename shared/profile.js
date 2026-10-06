@@ -359,6 +359,27 @@ applyTheme();
     );
   }
 
+  // Private shared activity; it never creates a leaderboard entry.
+  function dailyActivityProfile(expected){
+    const p=getCurrent();
+    if(!cloudConfigured||!p||p.mode!=='cloud')return null;
+    if(expected&&(expected.profileKey!==p.profileKey||expected.userId!==p.userId))return null;
+    return p;
+  }
+  async function getDailyActivity(expected){
+    const p=dailyActivityProfile(expected);
+    if(!p)return null;
+    const rows=await restGet(`course_progress?user_id=eq.${encodeURIComponent(p.userId)}&course=eq.a1-daily-streak&select=progress_data&limit=1`);
+    return rows[0]?.progress_data||null;
+  }
+  async function saveDailyActivity(payload,expected){
+    const p=dailyActivityProfile(expected);
+    if(!p)return;
+    await restUpsert('course_progress','user_id,course',{
+      user_id:p.userId,course:'a1-daily-streak',progress_data:payload,percent:0,updated_at:new Date().toISOString()
+    });
+  }
+
   async function createProfile(username, pin, uiLang=getUiLang()){
     username = (username || '').trim();
     pin = String(pin || '').trim();
@@ -929,6 +950,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setUiLang,
     namespacedKey,
     saveProgress,
+    getDailyActivity,
+    saveDailyActivity,
     logout,
     open:() => profileModal(false),
     hydrateCourse,
