@@ -56,19 +56,6 @@
     const status = document.getElementById('recStatus' + id);
     const playback = document.getElementById('playback' + id);
     if (!start || !stop || !status || !playback) return;
-    // Optional self-confirmation for the skill practice menus, including devices without a microphone.
-    if(onRecorded && labels.manual){
-      const manual=document.createElement('details');manual.className='recorder-selfcheck';
-      const summary=document.createElement('summary');summary.textContent=labels.manual;
-      const hint=document.createElement('p');hint.className='muted';hint.textContent=labels.manualHint;
-      const label=document.createElement('label');label.className='lesson-check';
-      const check=document.createElement('input');check.type='checkbox';
-      const span=document.createElement('span');span.textContent=labels.manualCheck;label.append(check,span);
-      const button=document.createElement('button');button.className='soft-btn';button.type='button';button.disabled=true;button.textContent=labels.manualDone;
-      check.onchange=()=>button.disabled=!check.checked;
-      button.onclick=()=>{if(!check.checked)return;onRecorded();button.disabled=true;status.textContent=labels.manualDone;};
-      manual.append(summary,hint,label,button);playback.after(manual);
-    }
     if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
       start.onclick = () => { status.textContent = labels.unavailable; if (onUnavailable) onUnavailable('unavailable'); };
       return;

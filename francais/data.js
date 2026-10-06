@@ -187,12 +187,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Beim ersten Kennenlernen reichen kurze Angaben: dein Name, deine Herkunft und dein Wohnort. Danach gibst du das Gespräch mit einer Rückfrage weiter.",
-        "application": "„Je viens d’Allemagne“ sagt, woher du kommst; „J’habite à Halifax“ sagt, wo du jetzt wohnst. Das können verschiedene Orte sein. „Et vous ?“ lädt dein Gegenüber ein, ebenfalls zu antworten.",
-        "hint": "Mit „Bonjour“ und „vous“ kannst du ein Gespräch höflich beginnen. „Salut“ und „tu“ passen eher unter Freunden; bleibe innerhalb des Gesprächs bei einer Anrede."
-      }
+      ]
     },
     {
       "id": 2,
@@ -382,12 +377,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Wenn ein Name am Telefon oder am Empfang nicht verstanden wird, hilft Buchstabieren. Hier übst du außerdem, um Wiederholung und langsameres Sprechen zu bitten.",
-        "application": "„Comment ça s’écrit ?“ fragt nach der Schreibweise. Mit „Vous pouvez épeler, s’il vous plaît ?“ lässt du dir die Buchstaben einzeln nennen, statt den Namen zu erraten.",
-        "hint": "Buchstabennamen sind nicht dieselben Laute wie im Wort. Höre G und J sowie U besonders genau an und kontrolliere den notierten Namen durch Rücklesen."
-      }
+      ]
     },
     {
       "id": 3,
@@ -588,12 +578,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Für eine Anmeldung brauchst du Zahlen als konkrete Angaben: Alter, Telefonnummer und persönliche Daten. Entscheidend ist, die richtige Zahl zu verstehen, nicht möglichst schnell zu zählen.",
-        "application": "„J’ai trente ans“ bedeutet „Ich bin dreißig Jahre alt“: Französisch verwendet dafür „haben“. Bei Telefonnummern kannst du die Ziffern zunächst einzeln nennen und die Angabe wiederholen lassen.",
-        "hint": "Übe 0–20 zuerst sicher, dann größere Zahlen. Die Muster ab 70 stehen in der Zahlenübersicht; prüfe besonders leicht verwechselbare Zahlen, bevor du sie einträgst."
-      }
+      ]
     },
     {
       "id": 4,
@@ -786,12 +771,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Eine Verabredung ist erst eindeutig, wenn Tag, Uhrzeit und Treffpunkt feststehen. Hier lernst du, diese Angaben zu erfragen und zu bestätigen.",
-        "application": "„Il est quatre heures et demie“ nennt die aktuelle Uhrzeit, „à quatre heures et demie“ die Zeit eines Termins. „Mardi“ kann einen konkreten Dienstag meinen; „le mardi“ beschreibt normalerweise eine regelmäßige Aktivität.",
-        "hint": "Nenne für wichtige Termine bei Bedarf auch das Datum. „À 15 h devant la gare“ ist genauer als nur „mardi après-midi“."
-      }
+      ]
     },
     {
       "id": 5,
@@ -964,12 +944,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Wenn du von deiner Familie erzählst, braucht dein Gegenüber vor allem eine Beziehung und eine Information zur Person. Namen, Alter und eine einfache Eigenschaft reichen für eine kurze Vorstellung.",
-        "application": "„Ma sœur s’appelle Emma. Elle a vingt-six ans.“ verbindet die Beziehung mit zwei Angaben. „Mon“ und „ma“ richten sich nach dem folgenden französischen Nomen, nicht nach dem Geschlecht der Person, die spricht.",
-        "hint": "Verwende reale oder erfundene Personen. Achte beim Beschreiben auf passende Formen wie „petit/petite“ und unterscheide „marié(e)“ von „célibataire“."
-      }
+      ]
     },
     {
       "id": 6,
@@ -1154,12 +1129,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Im Café oder Restaurant möchtest du eine Bestellung verständlich aufgeben und auf Rückfragen reagieren. Du übst eine Bestellung, Wünsche zum Essen und die Bitte um die Rechnung.",
-        "application": "„Je voudrais un café, s’il vous plaît“ ist eine höfliche Bestellung. „Sans viande“ nennt einen Wunsch; „J’aime le café“ beschreibt dagegen eine allgemeine Vorliebe und bestellt noch nichts.",
-        "hint": "Ergänze konkrete Produkte und Mengen. Frage bei Unklarheit nach, bevor du bestellst; ein kurzer höflicher Satz reicht."
-      }
+      ]
     },
     {
       "id": 7,
@@ -1316,7 +1286,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "euros / deux euros",
-        "explanation": "In deux euros ist /z/ hörbar. Bei Eurobeträgen erst ganze Euro, dann Cent erfassen; Höre: deux euros cinquante."
+        "explanation": "In deux euros ist /z/ hörbar. Bei Eurobeträgen erst ganze Euro, dann Cent erfassen; écoute: deux euros cinquante."
       },
       "dialogue": [
         "Je voudrais un kilo de pommes.",
@@ -1332,12 +1302,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Beim Einkaufen müssen Produkt, Menge und Preis zusammenpassen. Du lernst, Mengen zu nennen und Einzelpreis und Gesamtpreis auseinanderzuhalten.",
-        "application": "„Un kilo de pommes“ und „deux bouteilles d’eau“ sagen genau, was du möchtest. „C’est combien au total ?“ fragt nach dem Gesamtbetrag; „Combien coûte ce produit ?“ nach einem einzelnen Produkt.",
-        "hint": "Notiere Zahlen zusammen mit ihrer Einheit. 500 g, ein Kilo und zwei Flaschen sind unterschiedliche Angaben; nach einer Mengenangabe brauchst du meist „de“ oder „d’“."
-      }
+      ]
     },
     {
       "id": 8,
@@ -1518,12 +1483,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Bei der Wohnungssuche beschreibst du Ausstattung, fragst nach Miete und Verfügbarkeit und nennst eine Adresse. Beim Beschreiben eines Zimmers kommt außerdem der Standort von Gegenständen hinzu.",
-        "application": "„Il y a un lit“ sagt, dass ein Bett vorhanden ist; „Le lit est dans la chambre“ sagt, wo es steht. In einer Anfrage helfen „Quel est le loyer ?“ und eine konkrete Frage nach einem Besichtigungstermin.",
-        "hint": "In französischen Wohnungsanzeigen meint „pièces“ normalerweise Hauptwohnräume; Küche und Bad werden üblicherweise gesondert genannt. Prüfe die Beschreibung statt nur die Zahl."
-      }
+      ]
     },
     {
       "id": 9,
@@ -1696,12 +1656,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Unterwegs musst du einen Ort finden und kurze Anweisungen in der richtigen Reihenfolge verstehen. Bei Bus und Bahn sind Ziel, Linie, Gleis und mögliche Verspätungen besonders wichtig.",
-        "application": "„Où est la gare ?“ fragt nach einem Ort. „Allez tout droit, puis tournez à gauche“ gibt zwei Schritte an. Lies oder höre zuerst die Richtung, dann den nächsten Orientierungspunkt.",
-        "hint": "„À gauche“ und „à droite“ sind leicht zu verwechseln. Wiederhole eine entscheidende Angabe oder bitte um Wiederholung, bevor du losgehst."
-      }
+      ]
     },
     {
       "id": 10,
@@ -1874,12 +1829,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Wenn du über Arbeit oder Studium sprichst, genügen zunächst Tätigkeit, Ort und Zeiten. Du übst außerdem Rückfragen, mit denen du die Angaben einer anderen Person erfährst.",
-        "application": "„Je suis étudiant“ nennt den Status; „Je travaille dans un bureau“ den Arbeitsort. „Quel est votre métier ?“ und „Vous travaillez quels jours ?“ fragen unterschiedliche Informationen ab.",
-        "hint": "Ein Beruf steht nach „être“ in einer einfachen Berufsangabe meist ohne Artikel: „Je suis médecin“. Passe die Form an die Person an; die Tabellen helfen beim Nachschlagen."
-      }
+      ]
     },
     {
       "id": 11,
@@ -2052,12 +2002,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Ein Tagesablauf wird verständlich, wenn du Tätigkeiten mit Zeiten und einer Reihenfolge verbindest. Du erzählst hier von deinem Morgen und regelmäßigen Gewohnheiten.",
-        "application": "„Je me lève à sept heures, puis je prends le petit-déjeuner“ verknüpft zwei Schritte. „Souvent“ bedeutet oft, „toujours“ immer; wähle das Wort, das wirklich zu deiner Routine passt.",
-        "hint": "Nicht jedes Alltagsverb ist reflexiv: „je me lève“, aber „je prends“. Lerne kurze vollständige Sätze und ersetze anschließend die Uhrzeiten durch deine eigenen."
-      }
+      ]
     },
     {
       "id": 12,
@@ -2230,12 +2175,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Beim Arzt oder in der Apotheke soll dein Gegenüber verstehen, was dir fehlt und welche Hilfe du brauchst. Du übst einfache Beschwerden und eine Nachricht wegen Krankheit.",
-        "application": "„J’ai mal à la tête“ nennt die schmerzende Stelle, „J’ai de la fièvre“ ein anderes Symptom. Mit „Vous pouvez m’aider ?“ bittest du um Hilfe; bei Unverständnis kannst du um Wiederholung bitten.",
-        "hint": "Wenn du die Dauer nennen kannst, ergänze „depuis hier“ (seit gestern). Prüfe bei Rückfragen die entscheidenden Angaben: die schmerzende Stelle, das Symptom und die gewünschte Hilfe."
-      }
+      ]
     },
     {
       "id": 13,
@@ -2400,7 +2340,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "beau / chaud / froid",
-        "explanation": "Eau in beau ergibt zusammen den Laut /o/; es sind keine einzeln gesprochenen Vokale. Auch chaud enthält /o/. Das d am Ende von chaud und froid bleibt normalerweise stumm. Höre il fait froid als ganze Wortgruppe."
+        "explanation": "Endbuchstaben sind in beau, chaud und froid stumm. Höre die Wortgruppe il fait froid und sprich sie zusammen."
       },
       "dialogue": [
         "Vous avez cette veste en bleu ?",
@@ -2416,12 +2356,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Wetter und Kleidung gehören zusammen, wenn du einen Ausflug planst oder im Geschäft etwas suchst. Du übst Wetterangaben und Wünsche zu Farbe und Größe.",
-        "application": "„Il fait froid“ beschreibt das Wetter; „Je porte un manteau“ deine Kleidung. „Je cherche cette chemise en bleu, taille M“ nennt dem Verkaufspersonal ein konkretes Produkt mit zwei gewünschten Merkmalen.",
-        "hint": "„Il pleut“ bedeutet „Es regnet“ und braucht kein zusätzliches „fait“. Beim Beschreiben passt sich die Farbe häufig an, etwa „une robe bleue“."
-      }
+      ]
     },
     {
       "id": 14,
@@ -2594,12 +2529,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Bei einem Gespräch über Freizeit geht es um Tätigkeiten, Vorlieben und gemeinsame Möglichkeiten. Hier lernst du, darüber zu fragen und selbst eine kurze Antwort zu geben.",
-        "application": "„J’aime lire“ nennt eine gern ausgeübte Tätigkeit; „Je joue au football le dimanche“ ergänzt, was du regelmäßig machst. Mit „Qu’est-ce que tu fais le week-end ?“ öffnest du das Gespräch.",
-        "hint": "Nach „aimer“ bleibt ein weiteres Verb im Infinitiv. Gib bei einer Rückfrage eine eigene Information dazu, damit aus einzelnen Antworten ein Gespräch wird."
-      }
+      ]
     },
     {
       "id": 15,
@@ -2772,12 +2702,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Für eine Hotelreservierung brauchst du einen Zimmerwunsch, Personenzahl und Zeitraum. Du lernst außerdem, nach Leistungen und Preis zu fragen.",
-        "application": "„Une chambre pour deux personnes, pour deux nuits“ unterscheidet Gäste und Dauer. „Le petit-déjeuner est inclus ?“ klärt eine Leistung; eine Reservierungsanfrage nennt am besten auch Anreise- und Abreisedatum.",
-        "hint": "Bitte um Bestätigung von Verfügbarkeit und Preis. Ein Satz über Reisepläne wie „Je vais visiter Paris“ ersetzt diese konkreten Reservierungsangaben nicht."
-      }
+      ]
     },
     {
       "id": 16,
@@ -2962,12 +2887,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Eine Einladung enthält eine Aktivität, einen Zeitpunkt und möglichst einen Ort. Du übst, einen Vorschlag anzunehmen oder höflich mit einem einfachen Grund abzusagen.",
-        "application": "„Tu veux venir samedi à 19 h ?“ macht einen Vorschlag. „Avec plaisir !“ nimmt ihn an; „Désolé, je ne peux pas, je travaille“ sagt ab und erklärt kurz warum.",
-        "hint": "Wenn du zusagst, bestätige fehlende Angaben. „On se retrouve où ?“ klärt den Treffpunkt; bei einer Absage kannst du einen anderen Termin vorschlagen."
-      }
+      ]
     },
     {
       "id": 17,
@@ -3140,12 +3060,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "In einem Formular werden einzelne Daten verlangt, in einer Nachricht dagegen zusammenhängende Informationen. Hier übst du beide Textsorten mit einem klaren Anliegen.",
-        "application": "„Nom“ fragt nach dem Nachnamen, „prénom“ nach dem Vornamen. Eine kurze Kursanfrage braucht eine Anrede, deinen Wunsch und konkrete Fragen, etwa nach Zeiten und Preis, sowie einen Abschluss.",
-        "hint": "Arbeite die verlangten Punkte einzeln ab und prüfe danach Namen, Zahlen und Kontaktdaten. Eine Mindestwortzahl allein zeigt noch nicht, dass dein Text die Aufgabe erfüllt."
-      }
+      ]
     },
     {
       "id": 18,
@@ -3326,12 +3241,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Wenn du etwas nicht verstehst, brauchst du eine gezielte Bitte um Hilfe. Du übst, Wiederholung, langsameres Sprechen und fehlende Informationen höflich einzufordern.",
-        "application": "„Je ne comprends pas“ beschreibt das Problem. „Pouvez-vous répéter ?“ bittet um Wiederholung; „Pouvez-vous parler plus lentement ?“ um ein anderes Tempo. Wähle die Bitte, die dir tatsächlich hilft.",
-        "hint": "Du musst nicht jedes Wort verstehen. Suche zuerst die gefragte Information und prüfe den ganzen Satz; ein bekanntes Wort allein macht eine Antwort noch nicht richtig."
-      }
+      ]
     },
     {
       "id": 19,
@@ -3504,12 +3414,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Du lernst, Dinge zu benennen und zwischen einem neuen Gegenstand und einem bereits bekannten zu unterscheiden. Die Mehrzahl brauchst du, sobald du mehrere Dinge beschreibst.",
-        "application": "„C’est un livre“ stellt ein Buch vor; „Le livre est sur la table“ spricht von einem bestimmten Buch. „Ce sont des livres“ nennt mehrere. Artikel und Nomen bilden dabei eine Lern­einheit.",
-        "hint": "Das französische Geschlecht entspricht nicht immer dem deutschen. Lerne „une table“ und „un livre“ samt Artikel; das geschriebene Plural-s ist meist nicht hörbar."
-      }
+      ]
     },
     {
       "id": 20,
@@ -3682,12 +3587,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Hier machst du aus bekannten Wörtern eigene Aussagen über den Alltag und verneinst sie. Entscheidend ist, dass Subjekt, Verb und gemeinte Information zusammenpassen.",
-        "application": "„Je travaille aujourd’hui“ sagt, was du machst; „Je ne travaille pas demain“ verneint dieselbe Tätigkeit für einen anderen Tag. Die Verneinung umschließt im einfachen Präsens das konjugierte Verb.",
-        "hint": "In Gesprächen wird „ne“ oft weggelassen. Für dieses Training und deine geschriebenen Sätze übst du die vollständige Form „ne … pas“."
-      }
+      ]
     },
     {
       "id": 21,
@@ -3844,7 +3744,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
-        "explanation": "Das h von habiter ist stumm. In Où habitez-vous ? hörst du das z zwischen habitez und vous. Sprich die Frage als zusammenhängende Gruppe und vergleiche sie mit Vous habitez où ?."
+        "explanation": "Das h von habiter ist stumm. Höre die Verbindung zwischen où und habitez; betone die ganze Fragegruppe statt jedes Einzelwort."
       },
       "dialogue": [
         "Où est votre voiture ?",
@@ -3860,12 +3760,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Mit einer passenden Frage erhältst du die Information, die dir fehlt: Ort, Zeit, Tätigkeit oder Besitz. Du übst unterschiedliche Fragen für ein Kennenlerngespräch.",
-        "application": "„Où habitez-vous ?“ fragt nach dem Wohnort, „Quand commence le cours ?“ nach dem Beginn. Mit „Est-ce que vous travaillez ?“ fragst du dagegen etwas, das mit Ja oder Nein beantwortet werden kann.",
-        "hint": "Wähle erst die gesuchte Information, dann das Fragewort. Bei „votre adresse“ und „vos langues“ richtet sich die Form nach der Zahl des folgenden Nomens."
-      }
+      ]
     },
     {
       "id": 22,
@@ -4038,12 +3933,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Eine kurze Nachricht kann gestern, heute und morgen verbinden. Du übst vertraute Vergangenheitsformen und einfache Pläne, ohne dafür schon alle Vergangenheitsregeln lernen zu müssen.",
-        "application": "„Hier, j’ai travaillé“ blickt zurück; „Aujourd’hui, je suis à la maison“ nennt die Gegenwart; „Demain, je vais voir des amis“ einen Plan. Die Zeitwörter helfen beim Einordnen, ersetzen aber keine passende Verbform.",
-        "hint": "Beschränke dich zunächst auf die geübten Wendungen mit „avoir“. Bei „j’ai mangé“ und „je vais manger“ klingen die Enden ähnlich; der Satzanfang zeigt den Unterschied."
-      }
+      ]
     },
     {
       "id": 23,
@@ -4224,12 +4114,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "In einer Zutatenliste brauchst du Produkte mit Mengen; beim Kochen außerdem kurze Schritte in der richtigen Reihenfolge. Hier wendest du Mengenangaben und Teilungsartikel praktisch an.",
-        "application": "„Il faut de la farine“ nennt eine unbestimmte Menge; „Il faut 200 grammes de farine“ nennt eine genaue. „Je n’ai pas de lait“ sagt, dass eine Zutat fehlt.",
-        "hint": "Lies Zahl und Einheit zusammen und kontrolliere die Reihenfolge der Anweisungen. Nach Mengen steht meist „de“; die Artikelübersicht bleibt eine Hilfe für neue Zutaten."
-      }
+      ]
     },
     {
       "id": 24,
@@ -4386,7 +4271,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "France / français",
-        "explanation": "France und français enthalten beide den Nasalvokal /ɑ̃/. Français endet mit /ɛ/; das geschriebene s bleibt stumm. Sprich das n nicht als eigenen Konsonanten und vergleiche beide Wörter."
+        "explanation": "Vergleiche /ɑ̃/ in France mit /ɛ̃/ in français. Der letzte Konsonant von français ist stumm."
       },
       "dialogue": [
         "Tu vas où en vacances ?",
@@ -4402,12 +4287,7 @@ window.FR_A1_DATA = {
         "Mündliche Interaktion",
         "Mündliche Rezeption",
         "Schriftliche Produktion"
-      ],
-      "introduction": {
-        "context": "Beim Planen einer Reise beantwortest du: Wohin, wann, wie und wie lange? Du kombinierst Länderangaben mit einfachen Plänen und einer kurzen Reisenachricht.",
-        "application": "„Je viens du Canada“ nennt Herkunft, „Je vais en France“ das Ziel. „Je pars lundi en train“ ergänzt Zeitpunkt und Verkehrsmittel; „Je reste trois jours“ die Dauer.",
-        "hint": "Lerne häufige Länder samt Präposition. Ergänze konkrete Daten und Wünsche, wenn du jemandem schreibst; eine Liste von Ländern allein ergibt noch keinen Reiseplan."
-      }
+      ]
     }
   ],
   "listening": {

@@ -43,20 +43,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Kendini dört cümleyle tanıt; sonra karşındaki kişinin adını ve yaşadığı şehri sor.",
-      "writing": "Heißen, kommen, wohnen ve sprechen ile kendin hakkında dört cümle yaz.",
-      "speakModel": "Guten Tag! Ich heiße Ayşe. Ich komme aus der Türkei. Ich wohne in Berlin. Wie heißen Sie? Wo wohnen Sie?",
-      "writeModel": "Ich heiße Ayşe. Ich komme aus der Türkei. Ich wohne in Berlin. Ich spreche Türkisch und ein bisschen Deutsch."
+      "writing": "Heißen, kommen, wohnen ve sprechen ile kendin hakkında dört cümle yaz."
     },
     "selfCheck": [
       "Kendimi metne bakmadan tanıtabilirim.",
       "Ich ile başlayan cümlede fiili doğru konuma yerleştiririm."
     ],
-    "tip": "Nereden geldiğin için aus Kanada, yaşadığın şehir için in Halifax kullan.",
-    "introduction": {
-      "context": "İlk tanışmada adını, nereden geldiğini ve yaşadığın şehri söylemen yeterlidir. Ardından karşıdaki kişiye soru sorarak konuşmayı sürdürürsün.",
-      "application": "“Ich komme aus der Türkei” geldiğin ülkeyi, “Ich wohne in Berlin” şu an yaşadığın şehri belirtir. Bu iki yer farklı olabilir. “Und Sie?” soruyu karşıya yöneltir.",
-      "hint": "Tanımadığın biriyle “Guten Tag” ve “Sie” kullanabilirsin. Aynı konuşmada samimi ve kibar hitabı karıştırmamaya dikkat et."
-    }
+    "tip": "Nereden geldiğin için aus Kanada, yaşadığın şehir için in Halifax kullan."
   },
   {
     "id": 2,
@@ -102,20 +95,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Adını ve soyadını harf harf söyle; partnerin yazıp tekrar okusun.",
-      "writing": "Bir adın yazılışını öğrenmek için iki farklı rica yaz.",
-      "speakModel": "Mein Vorname ist Alex: A–L–E–X. Mein Familienname ist Martin: M–A–R–T–I–N. Können Sie das bitte wiederholen?",
-      "writeModel": "Können Sie das bitte buchstabieren? Können Sie das bitte wiederholen?"
+      "writing": "Bir adın yazılışını öğrenmek için iki farklı rica yaz."
     },
     "selfCheck": [
       "Adımı yavaşça harf harf söyleyebilirim.",
       "Anlamadığımda açıklama isteyebilirim."
     ],
-    "tip": "Bir harfi tahmin etmek yerine Wie bitte? diyerek tekrar iste.",
-    "introduction": {
-      "context": "Telefonda veya kayıt sırasında bir adın doğru yazılması için harf harf söylemek gerekebilir. Yazılışı sormayı ve anlaşılmayan harfi tekrar ettirmeyi çalışırsın.",
-      "application": "“Wie schreibt man das?” yazılışı sorar. “Können Sie das bitte buchstabieren?” harflerin tek tek söylenmesini ister. “mit Doppel-L” iki L bulunduğunu belirtir.",
-      "hint": "Almanca harf adları Türkçeden farklı olabilir. Yazdığın adı geri okuyarak kontrol et; anlamadığın harfi tahmin etme."
-    }
+    "tip": "Bir harfi tahmin etmek yerine Wie bitte? diyerek tekrar iste."
   },
   {
     "id": 3,
@@ -162,20 +148,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "20–99 arasında beş sayı ve hayali bir telefon numarası söyle.",
-      "writing": "Hayali doğum tarihi, telefon numarası ve posta kodu içeren bir bilgi kartı doldur.",
-      "speakModel": "Einundzwanzig, zweiunddreißig, siebenundvierzig, achtundfünfzig, neunundneunzig. Meine Telefonnummer ist null, drei, null, fünf, fünf, fünf, eins, acht, vier, null.",
-      "writeModel": "Geburtsdatum: 17. April 1995\nTelefon: 030 555 1840\nPostleitzahl: 12345"
+      "writing": "Hayali doğum tarihi, telefon numarası ve posta kodu içeren bir bilgi kartı doldur."
     },
     "selfCheck": [
       "Birler basamağının önce söylendiğini bilirim.",
       "Doğum tarihimi söyleyebilirim."
     ],
-    "tip": "21, einundzwanzig olarak söylenir; Türkçedeki yirmi bir sırası kullanılmaz.",
-    "introduction": {
-      "context": "Telefon, adres ve doğum tarihi verirken sayıları doğru anlamak ve doğru yere yazmak gerekir. Burada sayıları gerçek bir bilgi ile birlikte kullanırsın.",
-      "application": "Telefonu rakam rakam söyleyebilirsin. “am siebzehnten April” 17 Nisan demektir. “einundzwanzig” gibi sayılarda önce birler, sonra onlar söylenir.",
-      "hint": "“vierzehn” ve “vierzig” gibi yakın sayıları karşılaştır. Telefon ve posta kodlarında sıfırları atlama; gerektiğinde bilgiyi tekrar ettir."
-    }
+    "tip": "21, einundzwanzig olarak söylenir; Türkçedeki yirmi bir sırası kullanılmaz."
   },
   {
     "id": 4,
@@ -221,20 +200,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki farklı saat öner ve partnerinle bir randevuyu kesinleştir.",
-      "writing": "Randevunun gününü, saatini ve yerini belirten kısa bir mesaj yaz.",
-      "speakModel": "Haben Sie am Mittwoch um zehn Uhr Zeit? Oder am Donnerstag um vierzehn Uhr? Gut, dann am Donnerstag um vierzehn Uhr.",
-      "writeModel": "Hallo Ayşe, unser Termin ist am Donnerstag um 14 Uhr vor der Bibliothek. Bis dann!"
+      "writing": "Randevunun gününü, saatini ve yerini belirten kısa bir mesaj yaz."
     },
     "selfCheck": [
       "Halb fünf ifadesinin anlamını bilirim.",
       "Am ve um kullanımını ayırt ederim."
     ],
-    "tip": "Halb fünf, beş buçuk değil dört buçuktur.",
-    "introduction": {
-      "context": "Bir randevu için gün, saat ve yer açık olmalıdır. Saat sormayı, zaman önermeyi ve anladığın bilgiyi onaylamayı öğrenirsin.",
-      "application": "“Wie spät ist es?” şu anki saati, “Um wie viel Uhr?” bir olayın saatini sorar. “am Mittwoch um zehn Uhr” gün ile saati birlikte verir.",
-      "hint": "“halb fünf” 4.30 demektir. Karışıklığı önlemek için “vier Uhr dreißig” diye veya yazılı saatle tekrar onaylayabilirsin."
-    }
+    "tip": "Halb fünf, beş buçuk değil dört buçuktur."
   },
   {
     "id": 5,
@@ -280,20 +252,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Gerçek veya hayali ailenden üç kişiyi tanıt.",
-      "writing": "Ad, soyad, medeni durum, doğum tarihi ve doğum yeri içeren bir form doldur.",
-      "speakModel": "Meine Mutter heißt Anna. Sie wohnt in Berlin. Mein Vater heißt Marc. Er ist Lehrer. Meine Schwester heißt Emma. Sie ist Studentin.",
-      "writeModel": "Familienname: Yılmaz\nVorname: Ayşe\nFamilienstand: ledig\nGeburtsdatum: 17. April 1995\nGeburtsort: Halifax"
+      "writing": "Ad, soyad, medeni durum, doğum tarihi ve doğum yeri içeren bir form doldur."
     },
     "selfCheck": [
       "Mein Vater ve meine Mutter ifadelerini ayırt ederim.",
       "Geburtsort ve Geburtsdatum sözcüklerini anlarım."
     ],
-    "tip": "Geburtsort doğum yeri; Geburtsdatum doğum tarihidir.",
-    "introduction": {
-      "context": "Aileni tanıtırken akrabalık ilişkisine bir bilgi eklemek konuşmayı anlaşılır kılar. Bir formda ise medeni durum, doğum yeri ve doğum tarihi ayrı bilgilerdir.",
-      "application": "“Meine Mutter heißt Anna” bir kişiyi tanıtır. “Wir haben zwei Kinder” aile hakkında bilgi verir. “mein Vater” ve “meine Mutter” sonraki isme göre farklı biçimdedir.",
-      "hint": "“Geburtsort” doğum yeri, “Geburtsdatum” doğum tarihidir. Kişisel bilgi kullanmak istemezsen hayali bir aileyle çalışabilirsin."
-    }
+    "tip": "Geburtsort doğum yeri; Geburtsdatum doğum tarihidir."
   },
   {
     "id": 6,
@@ -339,20 +304,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki ürün sipariş et, bir tercih belirt ve hesabı iste.",
-      "writing": "Ich hätte gern ile üç ürün içeren bir sipariş yaz.",
-      "speakModel": "Ich hätte gern einen Kaffee und eine Suppe, bitte. Ohne Fleisch, bitte. Die Rechnung, bitte.",
-      "writeModel": "Ich hätte gern einen Kaffee, ein Wasser und einen Salat, bitte."
+      "writing": "Ich hätte gern ile üç ürün içeren bir sipariş yaz."
     },
     "selfCheck": [
       "Metne bakmadan sipariş verebilirim.",
       "Etsiz ve hesap ifadelerini söyleyebilirim."
     ],
-    "tip": "Kaffee bu cümlede erkek cinsiyetli doğrudan nesnedir; einen Kaffee kullanılır.",
-    "introduction": {
-      "context": "Kafede veya restoranda ne istediğini açıkça söylemek, bir tercih belirtmek ve hesabı istemek gerekir. Kısa, kibar bir cümle sipariş için yeterli olabilir.",
-      "application": "“Ich hätte gern einen Kaffee” kibar bir sipariştir. “Ohne Fleisch, bitte” bir tercihi belirtir. “Die Rechnung, bitte” hesabı ister.",
-      "hint": "Ürünleri artikelleriyle öğren. Bu siparişte “Kaffee” erkek isim ve doğrudan nesne olduğu için “einen Kaffee” kullanılır."
-    }
+    "tip": "Kaffee bu cümlede erkek cinsiyetli doğrudan nesnedir; einen Kaffee kullanılır."
   },
   {
     "id": 7,
@@ -398,20 +356,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Hayali bir mağazada iki ürünün fiyatını ve bedenini sor.",
-      "writing": "Miktar ve fiyat içeren kısa bir alışveriş listesi yaz.",
-      "speakModel": "Wie viel kosten diese Schuhe? Haben Sie die Schuhe in Größe 40? Wie viel kostet diese Jacke? Haben Sie die Jacke in Größe M?",
-      "writeModel": "Zwei Äpfel: 1 Euro\nEine Flasche Wasser: 2 Euro\nEin Brot: 3 Euro"
+      "writing": "Miktar ve fiyat içeren kısa bir alışveriş listesi yaz."
     },
     "selfCheck": [
       "Kostet ile kosten arasındaki farkı bilirim.",
       "Bir beden ve fiyatı anlayabilirim."
     ],
-    "tip": "Almancada isimler büyük harfle başlar: Schuhe, Größe, Preis.",
-    "introduction": {
-      "context": "Mağazada aradığın ürünü, bedenini ve fiyatını sormayı öğrenirsin. Satın almadan önce istediğin özellikleri ve ödeyeceğin tutarı netleştirirsin.",
-      "application": "“Ich suche Schuhe” ne aradığını söyler. “Haben Sie das in Größe 40?” beden sorar. “Wie viel kostet das?” gösterdiğin ürünün fiyatını sorar.",
-      "hint": "Fiyatı para birimiyle birlikte dinle. “19,95 Euro” on dokuz avro doksan beş senttir; beden numarası ile fiyatı birbirinden ayır."
-    }
+    "tip": "Almancada isimler büyük harfle başlar: Schuhe, Größe, Preis."
   },
   {
     "id": 8,
@@ -457,20 +408,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Bir evi üç cümleyle tanıt; sonra kirayı ve görme zamanını sor.",
-      "writing": "Tarih ve iletişim bilgileri içeren bir ev görme talebi yaz.",
-      "speakModel": "Die Wohnung hat zwei Zimmer. Sie hat einen Balkon. Die Adresse ist Gartenstraße 12. Wie hoch ist die Miete? Wann kann ich die Wohnung sehen?",
-      "writeModel": "Guten Tag, ich möchte die Wohnung gern sehen. Haben Sie am Mittwoch um 15 Uhr Zeit? Sie erreichen mich unter 030 555 1840. Vielen Dank! Ayşe Yılmaz"
+      "writing": "Tarih ve iletişim bilgileri içeren bir ev görme talebi yaz."
     },
     "selfCheck": [
       "Oda sayısını söyleyebilirim.",
       "Kira ve ek gider bilgilerini anlayabilirim."
     ],
-    "tip": "Ev ilanında frei, otomatik olarak ücretsiz anlamına gelmez.",
-    "introduction": {
-      "context": "Ev ararken kira, oda sayısı ve müsaitlik bilgilerini karşılaştırırsın. Sonra bir tarih önererek evi görme talebini ifade edersin.",
-      "application": "“Die Wohnung hat zwei Zimmer” evi tanımlar. “Wie hoch ist die Miete?” kirayı sorar. “Wann kann ich die Wohnung sehen?” görüşme için bir sonraki adımı başlatır.",
-      "hint": "Bir ev ilanında “frei” müsait demektir, ücretsiz değil. Yan giderlerin dâhil olup olmadığını ve hangi odaların sayıldığını kontrol et."
-    }
+    "tip": "Ev ilanında frei, otomatik olarak ücretsiz anlamına gelmez."
   },
   {
     "id": 9,
@@ -516,20 +460,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Üç adımlı bir yol tarifi yap ve bir hat ya da peron sor.",
-      "writing": "Evinden yakın bir yere kısa bir yol tarifi yaz.",
-      "speakModel": "Gehen Sie geradeaus. Dann gehen Sie nach links. Der Bahnhof ist rechts. Welche Linie fährt zum Bahnhof? Welches Gleis hat der Zug?",
-      "writeModel": "Gehen Sie von meinem Haus geradeaus bis zur Kreuzung. Dann gehen Sie nach rechts. Die Bibliothek ist links."
+      "writing": "Evinden yakın bir yere kısa bir yol tarifi yaz."
     },
     "selfCheck": [
       "Links ve rechts sözcüklerini ayırt ederim.",
       "Mit dem Bus ifadesini kullanabilirim."
     ],
-    "tip": "Gleis tren yolu veya peronla ilgilidir; sokak anlamına gelmez.",
-    "introduction": {
-      "context": "Şehirde bir yere ulaşmak için yol sorar ve yönleri sırayla takip edersin. Ulaşımda hat, peron ve saat gibi belirli bilgileri ayırt edersin.",
-      "application": "“Wo ist der Bahnhof?” bir yer sorar. “Gehen Sie geradeaus, dann links” yol tarif eder. “Nehmen Sie die Linie 8” kullanacağın hattı belirtir.",
-      "hint": "“Gleis” trenin kullandığı yol veya istasyondaki hatla, “Linie” ulaşım hattıyla ilgilidir. Sağ ile solu karıştırırsan hareket etmeden önce tekrar sor."
-    }
+    "tip": "Gleis tren yolu veya peronla ilgilidir; sokak anlamına gelmez."
   },
   {
     "id": 10,
@@ -575,20 +512,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Gerçek veya hayali mesleğini, iş yerini ve çalışma saatlerini anlat.",
-      "writing": "İşe geç geleceğini haber veren kısa bir mesaj yaz.",
-      "speakModel": "Ich arbeite als Verkäufer. Ich arbeite in einem Geschäft in Berlin. Meine Arbeitszeit ist von acht bis sechzehn Uhr.",
-      "writeModel": "Guten Morgen, ich komme heute später ins Büro. Ich habe einen Termin und bin um zehn Uhr da. Vielen Dank! Ayşe"
+      "writing": "İşe geç geleceğini haber veren kısa bir mesaj yaz."
     },
     "selfCheck": [
       "Von Beruf sorusunu yanıtlayabilirim.",
       "Saat aralığı verebilirim."
     ],
-    "tip": "Sein veya als sonrasında meslek çoğu kez artikelsizdir: Ich bin Lehrer.",
-    "introduction": {
-      "context": "İşinden söz ederken meslek, iş yeri ve çalışma saatleri kısa bir tanıtım sağlar. Geç kalacağını haber vermek için de açık bir zaman bilgisi gerekir.",
-      "application": "“Ich arbeite als Verkäuferin” mesleği, “Ich arbeite im Büro” iş yerini söyler. “von acht bis sechzehn Uhr” çalışma aralığını verir.",
-      "hint": "Basit meslek bildiriminde genellikle artikel kullanılmaz: “Ich bin Lehrer.” Gecikme mesajında mümkünse yeni varış saatini de ekle."
-    }
+    "tip": "Sein veya als sonrasında meslek çoğu kez artikelsizdir: Ich bin Lehrer."
   },
   {
     "id": 11,
@@ -608,7 +538,7 @@ window.A1_COURSE_CONTENT=[
     },
     "pronunciation": {
       "focus": "eu ve ch",
-      "explanation": "Deutsch içindeki eu, oy sesine benzer; tsch ise ç gibi okunur. Sprechen başındaki spr, şpr; e sonrasındaki ch ise hafif bir sürtünme sesidir. Önce sözcüğü, sonra bütün cümleyi tekrar et.",
+      "explanation": "Deutsch içindeki eu, oy sesine benzer; ardından tsch gelir. Sprechen içindeki ch, e sonrasında hafif bir sürtünme sesidir. Rahat bir hızda tekrar et.",
       "samples": [
         "Deutsch",
         "sprechen"
@@ -634,20 +564,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Kursunu tanıt ve başka bir öğrenciye iki soru sor.",
-      "writing": "Öğrenme düzenin hakkında üç cümle ve bir yardım talebi yaz.",
-      "speakModel": "Ich lerne seit sechs Monaten Deutsch. Mein Kurs ist am Vormittag. Wann beginnt Ihr Kurs? Wer ist Ihr Lehrer?",
-      "writeModel": "Ich lerne jeden Tag Deutsch. Ich höre die Beispiele. Dann mache ich Hausaufgaben. Können Sie mir bitte helfen?"
+      "writing": "Öğrenme düzenin hakkında üç cümle ve bir yardım talebi yaz."
     },
     "selfCheck": [
       "Ne kadar zamandır öğrendiğimi söyleyebilirim.",
       "Tekrar edilmesini isteyebilirim."
     ],
-    "tip": "Seit ile hâlâ devam eden bir durum için Präsens kullanılır.",
-    "introduction": {
-      "context": "Bir dil kursunda başlangıç, saatler ve ihtiyaç duyduğun yardım hakkında soru sorarsın. Ne kadar süredir öğrendiğini de kısa bir cümleyle anlatırsın.",
-      "application": "“Ich lerne seit sechs Monaten Deutsch” altı ay önce başlayıp hâlâ süren öğrenmeyi anlatır. “Wann beginnt der Kurs?” başlangıcı, “Ich brauche ein Wörterbuch” bir ihtiyacı belirtir.",
-      "hint": "Devam eden etkinlik için “seit” ile burada Präsens kullanılır. “Seit sechs Monaten” kursun bitmiş olduğunu söylemez."
-    }
+    "tip": "Seit ile hâlâ devam eden bir durum için Präsens kullanılır."
   },
   {
     "id": 12,
@@ -693,20 +616,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki hobini anlat ve gün belirterek bir etkinlik öner.",
-      "writing": "Hafta sonun hakkında dört cümle yaz; birine Am Samstag ile başla.",
-      "speakModel": "Ich spiele gern Fußball und ich gehe gern schwimmen. Haben Sie am Samstag Zeit? Wir können um zehn Uhr schwimmen gehen.",
-      "writeModel": "Am Samstag spiele ich Fußball. Danach treffe ich Freunde. Am Sonntag mache ich einen Ausflug. Abends sehe ich einen Film."
+      "writing": "Hafta sonun hakkında dört cümle yaz; birine Am Samstag ile başla."
     },
     "selfCheck": [
       "Gern ile sevdiğim bir etkinliği söyleyebilirim.",
       "Zaman ifadesinden sonra fiili doğru yerleştiririm."
     ],
-    "tip": "Am Sonntag ich spiele yerine Am Sonntag spiele ich denir.",
-    "introduction": {
-      "context": "Hobilerden söz etmek birini tanımaya ve ortak etkinlik önermeye yardımcı olur. Bir etkinliği sevdiğini söyleyip hafta sonu için somut bir zaman eklersin.",
-      "application": "“Ich spiele gern Fußball” sevdiğin etkinliği söyler. “Am Sonntag mache ich einen Ausflug” gün bilgisi ekler. “Haben Sie am Samstag Zeit?” bir daveti başlatabilir.",
-      "hint": "Gün başa geldiğinde fiil ikinci konumda kalır: “Am Samstag spiele ich …”. Birinci konum birden fazla sözcükten oluşabilir."
-    }
+    "tip": "Am Sonntag ich spiele yerine Am Sonntag spiele ich denir."
   },
   {
     "id": 13,
@@ -752,20 +668,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Kişi ve gece sayısı içeren bir oda rezervasyonu canlandır.",
-      "writing": "Tarih, oda türü ve bir soru içeren rezervasyon talebi yaz.",
-      "speakModel": "Guten Tag, ich möchte ein Doppelzimmer für zwei Personen und für zwei Nächte reservieren. Ist das Frühstück inklusive?",
-      "writeModel": "Guten Tag, ich möchte ein Doppelzimmer für zwei Personen vom 10. bis zum 12. Juli reservieren. Ist das Frühstück inklusive? Bitte bestätigen Sie den Preis und die Reservierung. Vielen Dank! Ayşe Yılmaz"
+      "writing": "Tarih, oda türü ve bir soru içeren rezervasyon talebi yaz."
     },
     "selfCheck": [
       "Bir oda ayırtabilirim.",
       "Abfahren ön ekini cümlenin sonunda tanırım."
     ],
-    "tip": "Wann fährt der Bus ab? cümlesinde ab atılmaz; sona yerleşir.",
-    "introduction": {
-      "context": "Otel rezervasyonunda oda türü, kişi sayısı ve tarihler net olmalıdır. Yolculuk için hareket ve varış saatlerini sormayı da çalışırsın.",
-      "application": "“Ich möchte ein Zimmer reservieren” isteğini söyler. “für zwei Nächte” süreyi belirtir. “Wann fährt der Bus ab?” hareket saatini sorar; “ab” cümle sonunda kalır.",
-      "hint": "İki gece demek tek başına tarihleri belirtmez. Varış ve ayrılış tarihlerini yaz, ardından müsaitlik ve fiyat için onay iste."
-    }
+    "tip": "Wann fährt der Bus ab? cümlesinde ab atılmaz; sona yerleşir."
   },
   {
     "id": 14,
@@ -811,20 +720,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki hayali belirti ve süre belirterek randevu aramasını canlandır.",
-      "writing": "Hastalık nedeniyle gelemeyeceğini açıklayan kısa bir mesaj yaz.",
-      "speakModel": "Guten Tag, ich habe seit gestern Fieber und Kopfschmerzen. Ich brauche einen Termin. Haben Sie heute einen Termin frei?",
-      "writeModel": "Guten Morgen, ich bin krank. Ich habe Fieber und kann heute nicht zur Arbeit kommen. Vielen Dank für Ihr Verständnis. Ayşe"
+      "writing": "Hastalık nedeniyle gelemeyeceğini açıklayan kısa bir mesaj yaz."
     },
     "selfCheck": [
       "Ich bin krank ve ich habe Fieber ifadelerini ayırt ederim.",
       "Seit gestern diyebilirim."
     ],
-    "tip": "Ateş için Ich habe Fieber; hasta olduğun için Ich bin krank kullan.",
-    "introduction": {
-      "context": "Doktor randevusu isterken belirtini ve ne kadar süredir devam ettiğini anlatırsın. Hastalık nedeniyle gelemeyeceğini bildiren kısa bir mesaj da yazarsın.",
-      "application": "“Ich habe Fieber” bir belirti, “Ich bin krank” genel durum bildirir. “seit gestern” sürenin başlangıcını ekler. “Ich brauche einen Termin” randevu talep eder.",
-      "hint": "Buradaki amaç durumunu anlaşılır biçimde ifade etmektir. Dil çalışması için hayali belirtiler kullanabilirsin; tıbbi değerlendirme yapılmaz."
-    }
+    "tip": "Ateş için Ich habe Fieber; hasta olduğun için Ich bin krank kullan."
   },
   {
     "id": 15,
@@ -870,20 +772,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Birini davet et; saat sor; sonra basit bir gerekçeyle kabul et veya reddet.",
-      "writing": "Teşekkür, yanıt, bir ayrıntı ve selamlama içeren dört cümlelik mesaj yaz.",
-      "speakModel": "Möchten Sie am Samstag zum Essen kommen? Um wie viel Uhr? Um neunzehn Uhr. Ja, ich komme gern. / Leider kann ich nicht kommen, ich muss arbeiten.",
-      "writeModel": "Hallo Emma, vielen Dank für die Einladung. Ich komme gern am Samstag um 19 Uhr. Ich bringe einen Kuchen mit. Bis Samstag! Ayşe"
+      "writing": "Teşekkür, yanıt, bir ayrıntı ve selamlama içeren dört cümlelik mesaj yaz."
     },
     "selfCheck": [
       "Mesajım istenen bilgilere yanıt verir.",
       "Daveti kibarca kabul edip reddedebilirim."
     ],
-    "tip": "Kişisel mesajın sonunda uygun kapanış ve adını yazmayı unutma.",
-    "introduction": {
-      "context": "Bir davete cevap verirken gelip gelmeyeceğini söylemek ve gerekli bir ayrıntıyı eklemek gerekir. Kabul, gecikme ve kibar ret ifadelerini çalışırsın.",
-      "application": "“Ich komme gern” kabul eder. “Leider kann ich nicht kommen” reddeder. “Ich bringe einen Kuchen mit” ne getireceğini söyler; “mit” sona gider.",
-      "hint": "Mesajda hitap, yanıt ve kapanış bulunsun. Yalnızca teşekkür etmek, davet sahibine katılıp katılmayacağını bildirmez."
-    }
+    "tip": "Kişisel mesajın sonunda uygun kapanış ve adını yazmayı unutma."
   },
   {
     "id": 16,
@@ -930,20 +825,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Üç basit tabelanın anlamını partnerine açıkla.",
-      "writing": "Çalışma saatleri içeren bir tabela ve yasak bildiren başka bir tabela yaz.",
-      "speakModel": "Hier steht „Heute geschlossen“: Heute ist das Geschäft zu. „Rauchen verboten“: Hier darf man nicht rauchen. „Nur für Kunden“: Der Eingang ist nur für Kunden.",
-      "writeModel": "Öffnungszeiten: Montag bis Freitag, 9–18 Uhr.\nRauchen verboten."
+      "writing": "Çalışma saatleri içeren bir tabela ve yasak bildiren başka bir tabela yaz."
     },
     "selfCheck": [
       "Nur, nicht ve kein sözcüklerini fark ederim.",
       "Açılış saatlerini anlayabilirim."
     ],
-    "tip": "Geschlossen kapalı; geöffnet açık demektir.",
-    "introduction": {
-      "context": "Tabela ve duyurularda birkaç sözcük önemli bir kural veya saat bilgisi verir. Burada bu bilgiyi anlayıp ona göre davranmayı çalışırsın.",
-      "application": "“Heute geschlossen” bugün kapalı, “Rauchen verboten” sigara içmek yasak demektir. “Nur für Kunden” yalnızca müşteriler için anlamındadır; “nur” erişimi sınırlar.",
-      "hint": "Tabelada fiil olmayabilir; bu her zaman hata değildir. Bütün sözcükleri tek tek çevirmek yerine hangi davranışın istendiğini belirle."
-    }
+    "tip": "Geschlossen kapalı; geöffnet açık demektir."
   },
   {
     "id": 17,
@@ -989,20 +877,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Bir nesne, yardım ve izin için üç farklı rica kur.",
-      "writing": "Kibar bir rica ile bir olumlu ve bir olumsuz yanıt yaz.",
-      "speakModel": "Geben Sie mir bitte den Stift. Können Sie mir bitte helfen? Darf ich hier sitzen?",
-      "writeModel": "Können Sie mir bitte helfen?\nJa, gern.\nTut mir leid, ich habe gerade keine Zeit."
+      "writing": "Kibar bir rica ile bir olumlu ve bir olumsuz yanıt yaz."
     },
     "selfCheck": [
       "Können ile mastarı sona koyarım.",
       "Kibar yanıt verebilirim."
     ],
-    "tip": "Kibar hitap olan Sie büyük harfle yazılır.",
-    "introduction": {
-      "context": "Nesne, yardım veya izin isterken uygun bir rica kurarsın. İsteğe olumlu cevap vermeyi veya kibarca reddetmeyi de öğrenirsin.",
-      "application": "“Können Sie mir bitte helfen?” yardım ister. “Geben Sie mir bitte den Stift” bir nesne ister. Duruma göre “Ja, gern” veya “Leider nicht” diye yanıt verebilirsin.",
-      "hint": "“bitte” ricayı yumuşatır ama istediğin eylemin yerini tutmaz. Kibar hitap “Sie” büyük harfle yazılır."
-    }
+    "tip": "Kibar hitap olan Sie büyük harfle yazılır."
   },
   {
     "id": 18,
@@ -1048,20 +929,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Zuerst ve dann ile bir alıştırmanın üç adımını Almanca anlat.",
-      "writing": "Dinlemeden önce, dinlerken ve yazıyı teslim etmeden önce yapacaklarını listele.",
-      "speakModel": "Lesen Sie zuerst die Frage. Dann hören Sie den Text. Danach kreuzen Sie die richtige Antwort an.",
-      "writeModel": "Vor dem Hören: die Frage lesen.\nBeim Hören: die wichtige Zahl notieren.\nVor der Abgabe: die Antwort und alle Textpunkte prüfen."
+      "writing": "Dinlemeden önce, dinlerken ve yazıyı teslim etmeden önce yapacaklarını listele."
     },
     "selfCheck": [
       "Her sözcüğü çevirmeden yönergeyi anlarım.",
       "Görevin ne istediğini kontrol ederim."
     ],
-    "tip": "Bir sözcük kayıtta geçti diye cevabı seçme; cümlenin anlamını kontrol et.",
-    "introduction": {
-      "context": "Alıştırmaya başlamadan önce senden istenen eylemi ve aranan bilgiyi belirlemelisin. Yönergeleri anlamayı ve yanıtını bu hedefe göre hazırlamayı çalışırsın.",
-      "application": "“Kreuzen Sie … an” işaretlemeyi, “Schreiben Sie …” yazmayı ister. Dinlerken bütün metni çevirmek yerine sorulan fiyat, yer veya saati bul.",
-      "hint": "Bir sözcük kayıtta geçiyor diye yanıtı seçme. Kim, ne zaman, ne yapıyor kontrol et; olumsuzluk anlamı değiştirebilir."
-    }
+    "tip": "Bir sözcük kayıtta geçti diye cevabı seçme; cümlenin anlamını kontrol et."
   },
   {
     "id": 19,
@@ -1107,20 +981,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki saat bilgisi ekleyerek normal bir gününü beş cümleyle anlat.",
-      "writing": "Zuerst, dann ve danach kullanarak günlük düzenini yaz.",
-      "speakModel": "Ich stehe um sieben Uhr auf. Um halb acht frühstücke ich. Dann dusche ich. Um acht Uhr fahre ich zur Arbeit. Abends lese ich ein Buch.",
-      "writeModel": "Zuerst stehe ich um sieben Uhr auf. Dann frühstücke ich. Danach dusche ich. Um acht Uhr fahre ich zur Arbeit. Abends lese ich ein Buch."
+      "writing": "Zuerst, dann ve danach kullanarak günlük düzenini yaz."
     },
     "selfCheck": [
       "Auf ön ekini cümlenin sonunda kullanırım.",
       "Zaman ifadesinden sonra fiili doğru yerleştiririm."
     ],
-    "tip": "Um sieben Uhr ich stehe auf yerine Um sieben Uhr stehe ich auf denir.",
-    "introduction": {
-      "context": "Günlük düzenini anlatırken saatleri ve etkinlikleri bir sıraya koyarsın. Ayrılabilen fiilleri bu anlamlı cümleler içinde kullanmayı çalışırsın.",
-      "application": "“Ich stehe um sieben Uhr auf” kalkma saatini verir. “Dann frühstücke ich” sonraki adımı ekler. “Um acht Uhr fahre ich zur Arbeit” günün ilerleyişini açıklar.",
-      "hint": "“Um sieben Uhr” başa gelirse “Um sieben Uhr stehe ich auf” denir. Çekimli fiili sona atma; yalnızca ayrılan ön ek sonda kalır."
-    }
+    "tip": "Um sieben Uhr ich stehe auf yerine Um sieben Uhr stehe ich auf denir."
   },
   {
     "id": 20,
@@ -1167,20 +1034,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki günün hava durumunu anlat ve uygun kıyafet öner.",
-      "writing": "Hava durumuna göre bir gezi hazırlığı hakkında dört cümle yaz.",
-      "speakModel": "Heute regnet es. Ich brauche eine Jacke. Morgen ist es sonnig. Dann brauche ich eine Sonnenbrille.",
-      "writeModel": "Morgen ist es kalt. Ich brauche einen Mantel. Ich nehme auch eine Mütze mit. Am Nachmittag regnet es, deshalb nehme ich einen Regenschirm mit."
+      "writing": "Hava durumuna göre bir gezi hazırlığı hakkında dört cümle yaz."
     },
     "selfCheck": [
       "Hava durumunu anlatabilirim.",
       "Heute sonrasında fiili doğru konuma koyarım."
     ],
-    "tip": "Yağmur yağıyor demek için Es regnet yeterlidir; kişi öznesi kullanılmaz.",
-    "introduction": {
-      "context": "Bir gezi için hava durumunu anlatır ve buna uygun kıyafet seçersin. Böylece hava bilgisini günlük bir kararla birleştirirsin.",
-      "application": "“Es regnet” yağmur yağdığını, “Ich brauche eine Jacke” ihtiyacını söyler. “Morgen ist es kalt” yarının havasını anlatır ve fiili zaman ifadesinden sonra getirir.",
-      "hint": "“Mir ist kalt” üşüdüğünü, “Es ist kalt” havanın veya ortamın soğuk olduğunu belirtir. Kıyafet listesini anlatılan havaya göre hazırla."
-    }
+    "tip": "Yağmur yağıyor demek için Es regnet yeterlidir; kişi öznesi kullanılmaz."
   },
   {
     "id": 21,
@@ -1226,20 +1086,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Postada veya bankada bir istek belirt ve iki soru sor.",
-      "writing": "Hayali ad, adres, doğum tarihi ve iletişim bilgileriyle bir form doldur.",
-      "speakModel": "Guten Tag, ich möchte ein Konto eröffnen. Welche Unterlagen brauche ich? Wann kann ich einen Termin bekommen?",
-      "writeModel": "Familienname: Yılmaz\nVorname: Ayşe\nAnschrift: Gartenstraße 12, 12345 Berlin\nGeburtsdatum: 17. April 1995\nTelefon: 030 555 1840"
+      "writing": "Hayali ad, adres, doğum tarihi ve iletişim bilgileriyle bir form doldur."
     },
     "selfCheck": [
       "Bir işlem için kibar istek belirtebilirim.",
       "Adres ve imza alanını ayırt ederim."
     ],
-    "tip": "Anschrift adres; Unterschrift imza demektir.",
-    "introduction": {
-      "context": "Banka, posta veya resmî bir işlemde ne yapmak istediğini açıkça söylersin. Gerekli belgeyi ister ve form alanlarını doğru bilgilerle doldurursun.",
-      "application": "“Ich möchte ein Konto eröffnen” hesap açmak istediğini belirtir. “Ich brauche eine Briefmarke” pul ister. Formda “Anschrift” adres, “Unterschrift” imzadır.",
-      "hint": "Ad, soyad, tarih ve iletişim alanlarını ayrı ayrı kontrol et. Çalışma sırasında gerçek bilgiler yerine hayali veriler kullanabilirsin."
-    }
+    "tip": "Anschrift adres; Unterschrift imza demektir."
   },
   {
     "id": 22,
@@ -1285,20 +1138,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Ad, sorun ve geri arama isteği içeren kısa bir sesli mesaj canlandır.",
-      "writing": "Saat, yer ve yanıt isteği içeren bir mesaj yaz.",
-      "speakModel": "Hallo, hier ist Ayşe Yılmaz. Ich habe eine Frage zu unserem Termin. Bitte rufen Sie mich zurück. Sie erreichen mich heute ab vierzehn Uhr unter 030 555 1840.",
-      "writeModel": "Hallo Emma, wir treffen uns am Freitag um 18 Uhr vor dem Kino. Passt das für dich? Bitte antworte mir kurz. Viele Grüße! Ayşe"
+      "writing": "Saat, yer ve yanıt isteği içeren bir mesaj yaz."
     },
     "selfCheck": [
       "Telefonda kendimi tanıtabilirim.",
       "Geri arama isteyebilirim."
     ],
-    "tip": "Du/dir ile samimi hitap; Sie/Ihnen ile kibar hitap kullanılır. Mesaj içinde tutarlı ol.",
-    "introduction": {
-      "context": "Telefon veya dijital mesajda adını, sorununu ve beklediğin yanıtı belirtirsin. Kısa bir geri arama talebi, karşıdaki kişiye bir sonraki adımı açıklar.",
-      "application": "“Hallo, hier ist Mehmet” arayanı tanıtır. “Bitte rufen Sie mich zurück” geri arama ister. “Ich schicke dir eine Nachricht” mesaj göndereceğini söyler.",
-      "hint": "Samimi hitapta “du/dir”, kibar hitapta “Sie/Ihnen” kullan. Aynı kişiye yazarken biçimi tutarlı tut ve gerekiyorsa ulaşılabileceğin saati ekle."
-    }
+    "tip": "Du/dir ile samimi hitap; Sie/Ihnen ile kibar hitap kullanılır. Mesaj içinde tutarlı ol."
   },
   {
     "id": 23,
@@ -1344,20 +1190,13 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "İki ev işi ve hayali bir ev sorunu anlat; yardım iste.",
-      "writing": "Bir ev sahibine sorunu, zamanını ve isteğini belirten kısa mesaj yaz.",
-      "speakModel": "Ich muss die Küche putzen und die Wäsche waschen. Die Waschmaschine ist kaputt. Können Sie mir bitte helfen?",
-      "writeModel": "Guten Tag Frau Becker, die Waschmaschine funktioniert seit gestern nicht. Können Sie bitte einen Termin für die Reparatur machen? Ich bin am Mittwoch ab 15 Uhr zu Hause. Vielen Dank! Ayşe Yılmaz"
+      "writing": "Bir ev sahibine sorunu, zamanını ve isteğini belirten kısa mesaj yaz."
     },
     "selfCheck": [
       "Bir eşyanın çalışmadığını söyleyebilirim.",
       "Modal fiilden sonra mastarı sona koyarım."
     ],
-    "tip": "Die Waschmaschine funktioniert nicht cümlesinde olumsuzluk sözcüğü nicht kullanılır.",
-    "introduction": {
-      "context": "Evde bir sorun olduğunda hangi eşyanın bozuk olduğunu ve nasıl yardım istediğini söylemen gerekir. Ev işleri ile onarım taleplerini birbirinden ayırırsın.",
-      "application": "“Ich muss die Küche putzen” yapman gereken işi anlatır. “Die Waschmaschine ist kaputt” sorunu belirtir. “Können Sie mir helfen?” yardım ister.",
-      "hint": "Ev sahibine yazarken sorunu, ne zamandır sürdüğünü ve talebini ekle. “funktioniert nicht” çalışmıyor demektir; yalnızca eşyanın adını yazmak sorunu açıklamaz."
-    }
+    "tip": "Die Waschmaschine funktioniert nicht cümlesinde olumsuzluk sözcüğü nicht kullanılır."
   },
   {
     "id": 24,
@@ -1403,19 +1242,12 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Bir dakika kendini tanıt, iki soru sor ve bir rica kur.",
-      "writing": "Neden, tarih ve istek gibi üç noktaya yanıt veren kısa bir mesaj yaz.",
-      "speakModel": "Guten Tag! Ich heiße Ayşe und komme aus der Türkei. Ich wohne in Berlin und arbeite als Verkäufer. Ich lerne Deutsch, weil ich hier wohne. In meiner Freizeit spiele ich Fußball und koche gern. Am Wochenende treffe ich Freunde. Wie heißen Sie? Wo wohnen Sie? Können Sie mir bitte den Stift geben?",
-      "writeModel": "Guten Tag, ich möchte mich für den Deutschkurs anmelden. Haben Sie am Montag um 10 Uhr einen Termin für mich? Bitte schicken Sie mir Informationen zu den Kurszeiten. Vielen Dank! Ayşe Yılmaz"
+      "writing": "Neden, tarih ve istek gibi üç noktaya yanıt veren kısa bir mesaj yaz."
     },
     "selfCheck": [
       "İstenen noktaları kopyalamadan yanıtlayabilirim.",
       "Tekrar etmem gereken konuları bilirim."
     ],
-    "tip": "Test puanı tek başına yeterli değildir; konuşma ve yazmayı da örneğe bakmadan dene.",
-    "introduction": {
-      "context": "Genel tekrarda anlama, tanıtma, soru sorma ve rica etme becerilerini bir araya getirirsin. Kısa bir mesajı da istenen noktalara göre kendin oluşturursun.",
-      "application": "Önce görevde hangi bilginin istendiğini belirle. “und” bilgi ekler, “aber” karşıtlık belirtir. Bildiğin kısa cümlelerle her noktaya ayrı bir cevap ver.",
-      "hint": "Test puanı serbest yanıtın tamamını göstermez. Önce örneksiz konuş veya yaz; sonra içerik, fiiller ve önemli bilgiler açısından karşılaştır."
-    }
+    "tip": "Test puanı tek başına yeterli değildir; konuşma ve yazmayı da örneğe bakmadan dene."
   }
 ];
