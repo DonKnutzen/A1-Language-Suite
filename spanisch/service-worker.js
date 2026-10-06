@@ -1,6 +1,6 @@
-const CACHE="spanisch-a1-dialog-v21";
+const CACHE="spanisch-a1-lesson-review-v22";
 const PREFIX="spanisch-a1-";
-const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-21","./app.js?v=dialog-21","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-21","../shared/lesson-flow.js?v=dialog-21","../shared/pronunciation.js?v=dialog-21","../shared/course-updates.css?v=dialog-21","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js?v=dialog-21","./data.js"];
+const ASSETS=["./", "./index.html", "./manifest.json", "styles.css?v=lesson-review-22", "../shared/course-updates.css?v=lesson-review-22", "../shared/config.js?v=lesson-review-22", "../shared/profile.js?v=lesson-review-22", "../shared/streak.js?v=lesson-review-22", "../shared/learning.js?v=lesson-review-22", "data.js?v=lesson-review-22", "lesson-content.js?v=lesson-review-22", "../shared/lesson-guide.js?v=lesson-review-22", "../shared/lesson-topic-info.js?v=lesson-review-22", "../shared/grammar-ui.js?v=lesson-review-22", "../shared/exercise-engine.js?v=lesson-review-22", "../shared/pronunciation.js?v=lesson-review-22", "../shared/voice-selection.js?v=lesson-review-22", "../shared/lesson-flow.js?v=lesson-review-22", "../shared/practice-progress.js?v=lesson-review-22", "app.js?v=lesson-review-22"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

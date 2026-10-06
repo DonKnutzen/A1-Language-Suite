@@ -43,13 +43,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Présente-toi en quatre phrases, puis demande le nom et la ville de ton partenaire.",
-      "writing": "Écris quatre phrases sur toi avec heißen, kommen, wohnen et sprechen."
+      "writing": "Écris quatre phrases sur toi avec heißen, kommen, wohnen et sprechen.",
+      "speakModel": "Guten Tag! Ich heiße Alex. Ich komme aus Kanada. Ich wohne in Berlin. Wie heißen Sie? Wo wohnen Sie?",
+      "writeModel": "Ich heiße Alex. Ich komme aus Kanada. Ich wohne in Berlin. Ich spreche Französisch und ein bisschen Deutsch."
     },
     "selfCheck": [
       "Je peux me présenter sans lire.",
       "Je place le verbe après ich."
     ],
-    "tip": "Pour l’origine : aus Kanada. Pour la ville où tu habites : in Halifax."
+    "tip": "Pour l’origine : aus Kanada. Pour la ville où tu habites : in Halifax.",
+    "introduction": {
+      "context": "Lors d’une première rencontre, donne ton nom, ton origine et ta ville, puis invite l’autre personne à répondre. Ces informations suffisent pour ouvrir une conversation simple.",
+      "application": "« Ich komme aus Kanada » indique l’origine ; « Ich wohne in Halifax » le lieu de résidence. « Und Sie? » permet de retourner la question sans répéter toute la phrase.",
+      "hint": "Avec une personne inconnue, « Guten Tag » et « Sie » sont un bon point de départ. Garde la même façon de t’adresser à elle dans tes questions."
+    }
   },
   {
     "id": 2,
@@ -95,13 +102,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Épelle ton prénom et ton nom ; ton partenaire les écrit puis les relit.",
-      "writing": "Écris deux demandes pour faire répéter ou épeler un nom."
+      "writing": "Écris deux demandes pour faire répéter ou épeler un nom.",
+      "speakModel": "Mein Vorname ist Alex: A–L–E–X. Mein Familienname ist Martin: M–A–R–T–I–N. Können Sie das bitte wiederholen?",
+      "writeModel": "Können Sie das bitte buchstabieren? Können Sie das bitte wiederholen?"
     },
     "selfCheck": [
       "Je peux épeler mon nom lentement.",
       "Je peux demander une clarification."
     ],
-    "tip": "Ne devine pas une lettre : Wie bitte? permet de demander de répéter."
+    "tip": "Ne devine pas une lettre : Wie bitte? permet de demander de répéter.",
+    "introduction": {
+      "context": "À l’accueil ou au téléphone, un nom doit parfois être épelé pour être bien noté. Tu apprends à demander son orthographe et à faire répéter une lettre.",
+      "application": "« Wie schreibt man das? » demande comment cela s’écrit. « Können Sie das bitte buchstabieren? » demande les lettres une à une. « mit Doppel-L » précise qu’il y a deux L.",
+      "hint": "Les noms des lettres diffèrent du français. Fais relire le nom noté ; ne devine pas une lettre que tu n’as pas comprise."
+    }
   },
   {
     "id": 3,
@@ -148,13 +162,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Dicte cinq nombres entre 20 et 99, puis ton numéro chiffre par chiffre.",
-      "writing": "Remplis une fiche avec une date de naissance, un numéro et un code postal fictifs."
+      "writing": "Remplis une fiche avec une date de naissance, un numéro et un code postal fictifs.",
+      "speakModel": "Einundzwanzig, zweiunddreißig, siebenundvierzig, achtundfünfzig, neunundneunzig. Meine Telefonnummer ist null, drei, null, fünf, fünf, fünf, eins, acht, vier, null.",
+      "writeModel": "Geburtsdatum: 17. April 1995\nTelefon: 030 555 1840\nPostleitzahl: 12345"
     },
     "selfCheck": [
       "Je reconnais les unités avant les dizaines.",
       "Je sais dire ma date de naissance."
     ],
-    "tip": "21 est einundzwanzig : on ne conserve pas l’ordre français vingt-et-un."
+    "tip": "21 est einundzwanzig : on ne conserve pas l’ordre français vingt-et-un.",
+    "introduction": {
+      "context": "Les nombres servent à transmettre un téléphone, une adresse ou une date de naissance. Tu dois surtout comprendre la bonne valeur et la noter au bon endroit.",
+      "application": "Dans un numéro, tu peux dire les chiffres séparément. Pour une date, « am siebzehnten April » signifie le 17 avril. À partir de 21, « einundzwanzig » place l’unité avant la dizaine.",
+      "hint": "Compare les nombres proches, notamment « vierzehn » et « vierzig ». Vérifie aussi les zéros dans les téléphones et les codes postaux."
+    }
   },
   {
     "id": 4,
@@ -200,13 +221,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Propose deux horaires et confirme un rendez-vous avec ton partenaire.",
-      "writing": "Écris un message donnant le jour, l’heure et le lieu d’un rendez-vous."
+      "writing": "Écris un message donnant le jour, l’heure et le lieu d’un rendez-vous.",
+      "speakModel": "Haben Sie am Mittwoch um zehn Uhr Zeit? Oder am Donnerstag um vierzehn Uhr? Gut, dann am Donnerstag um vierzehn Uhr.",
+      "writeModel": "Hallo Alex, unser Termin ist am Donnerstag um 14 Uhr vor der Bibliothek. Bis dann!"
     },
     "selfCheck": [
       "Je peux expliquer halb fünf.",
       "Je distingue am et um."
     ],
-    "tip": "Ne traduis pas halb fünf par cinq heures et demie : c’est quatre heures et demie."
+    "tip": "Ne traduis pas halb fünf par cinq heures et demie : c’est quatre heures et demie.",
+    "introduction": {
+      "context": "Un rendez-vous doit préciser un jour, une heure et un lieu. Tu apprends à demander ces informations et à confirmer ce que tu as compris.",
+      "application": "« Wie spät ist es? » demande l’heure actuelle ; « Um wie viel Uhr? » l’heure d’un événement. « am Mittwoch um zehn Uhr » relie le jour et l’heure du rendez-vous.",
+      "hint": "« halb fünf » signifie 4 h 30, pas 5 h 30. Pour éviter une ambiguïté, tu peux confirmer avec « vier Uhr dreißig » ou une heure écrite."
+    }
   },
   {
     "id": 5,
@@ -216,7 +244,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Mein, meine et haben",
-      "explanation": "Les possessifs s’accordent avec le nom : mein Vater, meine Mutter, meine Kinder. Au présent : ich habe, du hast, wir haben. Le nombre allemand de Kinder est un pluriel, même si le possessif reste meine.",
+      "explanation": "Les possessifs dépendent du nom qui suit : mein Vater, meine Mutter, meine Kinder. Le sexe de la personne qui parle ne change pas ces formes. Haben permet de donner une information sur la famille : Wir haben zwei Kinder.",
       "examples": [
         [
           "Wir haben zwei Kinder.",
@@ -252,13 +280,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Présente trois personnes de ta famille réelle ou imaginaire.",
-      "writing": "Remplis une fiche avec nom, prénom, état civil, date et lieu de naissance."
+      "writing": "Remplis une fiche avec nom, prénom, état civil, date et lieu de naissance.",
+      "speakModel": "Meine Mutter heißt Anna. Sie wohnt in Berlin. Mein Vater heißt Marc. Er ist Lehrer. Meine Schwester heißt Emma. Sie ist Studentin.",
+      "writeModel": "Familienname: Martin\nVorname: Alex\nFamilienstand: ledig\nGeburtsdatum: 17. April 1995\nGeburtsort: Halifax"
     },
     "selfCheck": [
       "Je distingue mein Vater et meine Mutter.",
       "Je comprends Geburtsort et Geburtsdatum."
     ],
-    "tip": "Geburtsort est le lieu de naissance ; Geburtsdatum est la date de naissance."
+    "tip": "Geburtsort est le lieu de naissance ; Geburtsdatum est la date de naissance.",
+    "introduction": {
+      "context": "Pour présenter une famille, indique la relation puis une information sur chaque personne. Dans un formulaire, distingue aussi l’état civil, la date et le lieu de naissance.",
+      "application": "« Meine Mutter heißt Anna » présente une personne ; « Wir haben zwei Kinder » donne une information sur la famille. « mein Vater » et « meine Mutter » changent selon le nom qui suit.",
+      "hint": "« Geburtsort » demande un lieu et « Geburtsdatum » une date. Tu peux inventer une famille et ses données pour t’entraîner."
+    }
   },
   {
     "id": 6,
@@ -304,13 +339,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Joue une commande avec deux produits, une préférence et une demande d’addition.",
-      "writing": "Écris une commande de trois produits en utilisant ich hätte gern."
+      "writing": "Écris une commande de trois produits en utilisant ich hätte gern.",
+      "speakModel": "Ich hätte gern einen Kaffee und eine Suppe, bitte. Ohne Fleisch, bitte. Die Rechnung, bitte.",
+      "writeModel": "Ich hätte gern einen Kaffee, ein Wasser und einen Salat, bitte."
     },
     "selfCheck": [
       "Je peux commander sans lire.",
       "Je sais dire sans viande et l’addition."
     ],
-    "tip": "On dit einen Kaffee dans cette commande, car Kaffee est masculin et objet du verbe."
+    "tip": "On dit einen Kaffee dans cette commande, car Kaffee est masculin et objet du verbe.",
+    "introduction": {
+      "context": "Au café ou au restaurant, tu veux commander clairement, préciser un souhait et demander l’addition. Tu apprends des formulations courtes qui permettent au service de répondre.",
+      "application": "« Ich hätte gern einen Kaffee » est une commande polie. « Ohne Fleisch, bitte » précise un choix ; « Die Rechnung, bitte » demande l’addition. Une préférence générale ne remplace pas une commande précise.",
+      "hint": "Apprends tes produits avec leur article. Dans « einen Kaffee », la forme change parce que le nom masculin est le complément de cette commande."
+    }
   },
   {
     "id": 7,
@@ -356,13 +398,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Demande le prix et la taille de deux articles dans un magasin imaginaire.",
-      "writing": "Écris une courte liste d’achats avec les quantités et les prix."
+      "writing": "Écris une courte liste d’achats avec les quantités et les prix.",
+      "speakModel": "Wie viel kosten diese Schuhe? Haben Sie die Schuhe in Größe 40? Wie viel kostet diese Jacke? Haben Sie die Jacke in Größe M?",
+      "writeModel": "Zwei Äpfel: 1 Euro\nEine Flasche Wasser: 2 Euro\nEin Brot: 3 Euro"
     },
     "selfCheck": [
       "Je distingue kostet et kosten.",
       "Je comprends une taille et un prix."
     ],
-    "tip": "Le nom allemand prend une majuscule : Schuhe, Größe, Preis."
+    "tip": "Le nom allemand prend une majuscule : Schuhe, Größe, Preis.",
+    "introduction": {
+      "context": "Dans un magasin, précise le produit recherché, demande sa taille et vérifie le prix avant de choisir. Tu apprends aussi à trouver la caisse.",
+      "application": "« Ich suche Schuhe » annonce ton besoin. « Haben Sie das in Größe 40? » précise la taille. « Wie viel kostet das? » demande le prix d’un article montré.",
+      "hint": "Lis le montant avec sa monnaie. « 19,95 Euro » signifie dix-neuf euros et quatre-vingt-quinze centimes ; une quantité et un prix ne sont pas la même information."
+    }
   },
   {
     "id": 8,
@@ -408,13 +457,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Décris un logement en trois phrases, puis demande le loyer et une visite.",
-      "writing": "Écris une demande de visite avec une date et tes coordonnées."
+      "writing": "Écris une demande de visite avec une date et tes coordonnées.",
+      "speakModel": "Die Wohnung hat zwei Zimmer. Sie hat einen Balkon. Die Adresse ist Gartenstraße 12. Wie hoch ist die Miete? Wann kann ich die Wohnung sehen?",
+      "writeModel": "Guten Tag, ich möchte die Wohnung gern sehen. Haben Sie am Mittwoch um 15 Uhr Zeit? Sie erreichen mich unter 030 555 1840. Vielen Dank! Alex Martin"
     },
     "selfCheck": [
       "Je peux décrire le nombre de pièces.",
       "Je comprends le loyer et les charges."
     ],
-    "tip": "Frei dans une annonce ne signifie pas automatiquement gratuit."
+    "tip": "Frei dans une annonce ne signifie pas automatiquement gratuit.",
+    "introduction": {
+      "context": "Pour chercher un logement, repère le loyer, le nombre de pièces et la disponibilité. Ensuite, formule une demande de visite avec une date possible.",
+      "application": "« Die Wohnung hat zwei Zimmer » décrit le logement ; « Wie hoch ist die Miete? » demande le loyer. « Wann kann ich die Wohnung sehen? » propose la suite de l’échange.",
+      "hint": "« frei » signifie ici disponible, pas gratuit. Dans une annonce, vérifie si les charges sont comprises et quels espaces sont comptés comme pièces."
+    }
   },
   {
     "id": 9,
@@ -460,13 +516,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Explique un chemin avec trois étapes et demande un quai ou une ligne.",
-      "writing": "Écris un itinéraire de ta maison à un lieu proche."
+      "writing": "Écris un itinéraire de ta maison à un lieu proche.",
+      "speakModel": "Gehen Sie geradeaus. Dann gehen Sie nach links. Der Bahnhof ist rechts. Welche Linie fährt zum Bahnhof? Welches Gleis hat der Zug?",
+      "writeModel": "Gehen Sie von meinem Haus geradeaus bis zur Kreuzung. Dann gehen Sie nach rechts. Die Bibliothek ist links."
     },
     "selfCheck": [
       "Je distingue links et rechts.",
       "Je sais dire mit dem Bus."
     ],
-    "tip": "Gleis désigne une voie ou un quai de gare, pas une rue."
+    "tip": "Gleis désigne une voie ou un quai de gare, pas une rue.",
+    "introduction": {
+      "context": "En déplacement, tu demandes un chemin ou une information sur les transports. Tu dois repérer les étapes et les chiffres utiles : ligne, voie et heure.",
+      "application": "« Wo ist der Bahnhof? » demande un lieu. « Gehen Sie geradeaus, dann links » donne un parcours. « Nehmen Sie die Linie 8 » indique quel transport prendre.",
+      "hint": "« Gleis » désigne la voie en gare ; « Linie » la ligne. Si tu hésites entre gauche et droite, fais répéter avant de partir."
+    }
   },
   {
     "id": 10,
@@ -512,13 +575,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Dis ton métier réel ou imaginaire, ton lieu de travail et tes horaires.",
-      "writing": "Écris un message pour prévenir que tu arriveras plus tard au travail."
+      "writing": "Écris un message pour prévenir que tu arriveras plus tard au travail.",
+      "speakModel": "Ich arbeite als Verkäufer. Ich arbeite in einem Geschäft in Berlin. Meine Arbeitszeit ist von acht bis sechzehn Uhr.",
+      "writeModel": "Guten Morgen, ich komme heute später ins Büro. Ich habe einen Termin und bin um zehn Uhr da. Vielen Dank! Alex"
     },
     "selfCheck": [
       "Je peux répondre à von Beruf.",
       "Je peux donner un intervalle horaire."
     ],
-    "tip": "En allemand, le métier après sein ou als s’emploie souvent sans article : Ich bin Lehrer."
+    "tip": "En allemand, le métier après sein ou als s’emploie souvent sans article : Ich bin Lehrer.",
+    "introduction": {
+      "context": "Pour parler de ton travail, donne ton métier, ton lieu et tes horaires. Tu apprends aussi à signaler un retard avec une courte information utile.",
+      "application": "« Ich arbeite als Verkäuferin » indique un métier ; « Ich arbeite im Büro » un lieu. « von acht bis sechzehn Uhr » donne une plage horaire.",
+      "hint": "Dans une simple indication de métier, on dit généralement « Ich bin Lehrer » sans article. Pour prévenir d’un retard, ajoute si possible ta nouvelle heure d’arrivée."
+    }
   },
   {
     "id": 11,
@@ -538,7 +608,7 @@ window.A1_COURSE_CONTENT=[
     },
     "pronunciation": {
       "focus": "eu et ch",
-      "explanation": "Deutsch contient eu, proche de « oï », puis tsch. Dans sprechen, ch après e est un souffle léger. Écoute puis répète à une vitesse confortable.",
+      "explanation": "Dans Deutsch, eu forme un son proche de « oï » et tsch se prononce comme « tch ». Dans sprechen, le début spr se prononce « chpr » et le ch après e est un souffle léger. Répète les mots, puis une phrase complète.",
       "samples": [
         "Deutsch",
         "sprechen"
@@ -564,13 +634,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Présente ton cours et pose deux questions à un autre apprenant.",
-      "writing": "Écris trois phrases sur ta routine d’apprentissage et une demande d’aide."
+      "writing": "Écris trois phrases sur ta routine d’apprentissage et une demande d’aide.",
+      "speakModel": "Ich lerne seit sechs Monaten Deutsch. Mein Kurs ist am Vormittag. Wann beginnt Ihr Kurs? Wer ist Ihr Lehrer?",
+      "writeModel": "Ich lerne jeden Tag Deutsch. Ich höre die Beispiele. Dann mache ich Hausaufgaben. Können Sie mir bitte helfen?"
     },
     "selfCheck": [
       "Je peux dire depuis combien de temps j’apprends.",
       "Je peux demander de répéter."
     ],
-    "tip": "Pour une activité qui continue, garde le présent après seit."
+    "tip": "Pour une activité qui continue, garde le présent après seit.",
+    "introduction": {
+      "context": "Dans un cours de langue, tu demandes le début, les horaires et l’aide dont tu as besoin. Tu peux aussi expliquer depuis combien de temps tu apprends.",
+      "application": "« Ich lerne seit sechs Monaten Deutsch » décrit une activité commencée avant et toujours actuelle. « Wann beginnt der Kurs? » demande le début ; « Ich brauche ein Wörterbuch » exprime un besoin.",
+      "hint": "Avec « seit », garde ici le présent. « Seit sechs Monaten » ne signifie pas que le cours est déjà terminé."
+    }
   },
   {
     "id": 12,
@@ -616,13 +693,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Présente deux loisirs et propose une activité avec un jour.",
-      "writing": "Écris quatre phrases sur ton week-end en commençant une phrase par Am Samstag."
+      "writing": "Écris quatre phrases sur ton week-end en commençant une phrase par Am Samstag.",
+      "speakModel": "Ich spiele gern Fußball und ich gehe gern schwimmen. Haben Sie am Samstag Zeit? Wir können um zehn Uhr schwimmen gehen.",
+      "writeModel": "Am Samstag spiele ich Fußball. Danach treffe ich Freunde. Am Sonntag mache ich einen Ausflug. Abends sehe ich einen Film."
     },
     "selfCheck": [
       "Je peux exprimer un goût avec gern.",
       "Je place le verbe après le complément initial."
     ],
-    "tip": "Évite Am Sonntag ich spiele : dis Am Sonntag spiele ich."
+    "tip": "Évite Am Sonntag ich spiele : dis Am Sonntag spiele ich.",
+    "introduction": {
+      "context": "Parler de loisirs permet de mieux connaître quelqu’un et de proposer une sortie. Tu relies une activité à une préférence ou à un moment du week-end.",
+      "application": "« Ich spiele gern Fußball » indique une activité appréciée. « Am Sonntag mache ich einen Ausflug » précise un projet ; « Haben Sie am Samstag Zeit? » ouvre une invitation.",
+      "hint": "Quand le jour vient au début, le verbe reste en deuxième position : « Am Samstag spiele ich … ». Le premier élément peut être un groupe de plusieurs mots."
+    }
   },
   {
     "id": 13,
@@ -668,13 +752,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Joue une réservation en donnant le nombre de personnes et de nuits.",
-      "writing": "Écris une demande de réservation avec dates, type de chambre et une question."
+      "writing": "Écris une demande de réservation avec dates, type de chambre et une question.",
+      "speakModel": "Guten Tag, ich möchte ein Doppelzimmer für zwei Personen und für zwei Nächte reservieren. Ist das Frühstück inklusive?",
+      "writeModel": "Guten Tag, ich möchte ein Doppelzimmer für zwei Personen vom 10. bis zum 12. Juli reservieren. Ist das Frühstück inklusive? Bitte bestätigen Sie den Preis und die Reservierung. Vielen Dank! Alex Martin"
     },
     "selfCheck": [
       "Je peux réserver une chambre.",
       "Je reconnais le préfixe à la fin de abfahren."
     ],
-    "tip": "Dans Wann fährt der Bus ab?, ab ne disparaît pas : il se place à la fin."
+    "tip": "Dans Wann fährt der Bus ab?, ab ne disparaît pas : il se place à la fin.",
+    "introduction": {
+      "context": "Une réservation doit donner le type de chambre, le nombre de personnes et les dates. En voyage, tu demandes aussi les horaires de départ et d’arrivée.",
+      "application": "« Ich möchte ein Zimmer reservieren » annonce ton intention. « für zwei Nächte » donne la durée. « Wann fährt der Bus ab? » demande le départ, avec « ab » à la fin.",
+      "hint": "Une durée seule ne fixe pas les dates. Dans ton message, précise l’arrivée et le départ et demande une confirmation de disponibilité."
+    }
   },
   {
     "id": 14,
@@ -720,13 +811,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Joue un appel pour un rendez-vous en donnant deux symptômes et leur durée.",
-      "writing": "Écris un message simple pour expliquer une absence pour maladie."
+      "writing": "Écris un message simple pour expliquer une absence pour maladie.",
+      "speakModel": "Guten Tag, ich habe seit gestern Fieber und Kopfschmerzen. Ich brauche einen Termin. Haben Sie heute einen Termin frei?",
+      "writeModel": "Guten Morgen, ich bin krank. Ich habe Fieber und kann heute nicht zur Arbeit kommen. Vielen Dank für Ihr Verständnis. Alex"
     },
     "selfCheck": [
       "Je distingue ich bin krank et ich habe Fieber.",
       "Je peux préciser seit gestern."
     ],
-    "tip": "Pour une fièvre, dis Ich habe Fieber ; pour ton état général, Ich bin krank."
+    "tip": "Pour une fièvre, dis Ich habe Fieber ; pour ton état général, Ich bin krank.",
+    "introduction": {
+      "context": "Pour demander un rendez-vous médical, donne un symptôme et sa durée. Pour signaler une absence, explique simplement que tu es malade et que tu ne peux pas venir.",
+      "application": "« Ich habe Fieber » indique un symptôme ; « Ich bin krank » un état général. « seit gestern » ajoute depuis quand. « Ich brauche einen Termin » formule la demande.",
+      "hint": "Les phrases servent ici à communiquer une situation fictive ou réelle. Tu n’as pas besoin de connaître tous les termes médicaux pour demander de l’aide."
+    }
   },
   {
     "id": 15,
@@ -772,13 +870,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Invite une personne, demande l’heure et accepte ou refuse avec une raison simple.",
-      "writing": "Écris un message de quatre phrases : remercie, réponds, précise un détail et salue."
+      "writing": "Écris un message de quatre phrases : remercie, réponds, précise un détail et salue.",
+      "speakModel": "Möchten Sie am Samstag zum Essen kommen? Um wie viel Uhr? Um neunzehn Uhr. Ja, ich komme gern. / Leider kann ich nicht kommen, ich muss arbeiten.",
+      "writeModel": "Hallo Emma, vielen Dank für die Einladung. Ich komme gern am Samstag um 19 Uhr. Ich bringe einen Kuchen mit. Bis Samstag! Alex"
     },
     "selfCheck": [
       "Mon message répond à toutes les demandes.",
       "Je peux accepter et décliner poliment."
     ],
-    "tip": "N’oublie pas la formule finale et ton prénom dans un message personnel."
+    "tip": "N’oublie pas la formule finale et ton prénom dans un message personnel.",
+    "introduction": {
+      "context": "Une réponse à une invitation doit dire si tu viens et préciser un détail utile. Tu apprends à accepter, à annoncer un retard ou à refuser poliment.",
+      "application": "« Ich komme gern » accepte ; « Leider kann ich nicht kommen » refuse. « Ich bringe einen Kuchen mit » indique ce que tu apportes et garde « mit » en fin de phrase.",
+      "hint": "Dans un message, pense à la formule d’appel, à ta réponse et à la formule finale. Un merci seul ne dit pas à l’hôte si tu seras présent."
+    }
   },
   {
     "id": 16,
@@ -825,13 +930,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Explique trois panneaux simples à ton partenaire.",
-      "writing": "Rédige un panneau avec un horaire et un autre avec une interdiction."
+      "writing": "Rédige un panneau avec un horaire et un autre avec une interdiction.",
+      "speakModel": "Hier steht „Heute geschlossen“: Heute ist das Geschäft zu. „Rauchen verboten“: Hier darf man nicht rauchen. „Nur für Kunden“: Der Eingang ist nur für Kunden.",
+      "writeModel": "Öffnungszeiten: Montag bis Freitag, 9–18 Uhr.\nRauchen verboten."
     },
     "selfCheck": [
       "Je repère nur, nicht et kein.",
       "Je peux comprendre une plage d’ouverture."
     ],
-    "tip": "Geschlossen veut dire fermé ; geöffnet veut dire ouvert."
+    "tip": "Geschlossen veut dire fermé ; geöffnet veut dire ouvert.",
+    "introduction": {
+      "context": "Sur une porte ou dans une annonce, quelques mots peuvent donner une information essentielle : horaires, accès ou interdiction. Tu apprends à agir selon cette information.",
+      "application": "« Heute geschlossen » signifie fermé aujourd’hui. « Rauchen verboten » interdit de fumer. « Nur für Kunden » limite l’accès aux clients ; le mot « nur » change donc le sens.",
+      "hint": "Il manque souvent un verbe dans les panneaux, sans que la phrase soit incorrecte. Cherche le message pratique plutôt que de traduire chaque mot isolément."
+    }
   },
   {
     "id": 17,
@@ -877,13 +989,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Formule trois demandes : un objet, de l’aide et une permission.",
-      "writing": "Écris une demande polie et deux réponses, l’une positive et l’autre négative."
+      "writing": "Écris une demande polie et deux réponses, l’une positive et l’autre négative.",
+      "speakModel": "Geben Sie mir bitte den Stift. Können Sie mir bitte helfen? Darf ich hier sitzen?",
+      "writeModel": "Können Sie mir bitte helfen?\nJa, gern.\nTut mir leid, ich habe gerade keine Zeit."
     },
     "selfCheck": [
       "Je place l’infinitif à la fin avec können.",
       "Je peux répondre poliment."
     ],
-    "tip": "Avec Sie, garde la majuscule du pronom de politesse."
+    "tip": "Avec Sie, garde la majuscule du pronom de politesse.",
+    "introduction": {
+      "context": "Pour demander un objet, de l’aide ou une permission, choisis une formulation adaptée à ton interlocuteur. Tu apprends aussi à répondre positivement ou à refuser.",
+      "application": "« Können Sie mir bitte helfen? » demande de l’aide. « Geben Sie mir bitte den Stift » demande un objet. « Ja, gern » ou « Leider nicht » donne une réponse brève selon la situation.",
+      "hint": "« bitte » rend la demande plus polie, mais ne remplace pas l’action demandée. Avec « Sie », garde la majuscule de la forme de politesse."
+    }
   },
   {
     "id": 18,
@@ -929,13 +1048,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Explique en allemand trois actions d’un exercice avec zuerst et dann.",
-      "writing": "Prépare une liste personnelle : avant l’écoute, pendant l’écoute, avant de rendre un texte."
+      "writing": "Prépare une liste personnelle : avant l’écoute, pendant l’écoute, avant de rendre un texte.",
+      "speakModel": "Lesen Sie zuerst die Frage. Dann hören Sie den Text. Danach kreuzen Sie die richtige Antwort an.",
+      "writeModel": "Vor dem Hören: die Frage lesen.\nBeim Hören: die wichtige Zahl notieren.\nVor der Abgabe: die Antwort und alle Textpunkte prüfen."
     },
     "selfCheck": [
       "Je comprends une consigne sans tout traduire.",
       "Je vérifie ce que la tâche demande."
     ],
-    "tip": "Ne choisis pas une réponse seulement parce qu’un mot apparaît dans l’enregistrement ; vérifie le sens."
+    "tip": "Ne choisis pas une réponse seulement parce qu’un mot apparaît dans l’enregistrement ; vérifie le sens.",
+    "introduction": {
+      "context": "Avant de répondre à une tâche, identifie l’action demandée et l’information à chercher. Tu apprends à reconnaître les consignes et à organiser ta réponse.",
+      "application": "« Kreuzen Sie … an » demande de cocher ; « Schreiben Sie … » de produire un texte. À l’écoute, cherche le prix, le lieu ou l’heure demandé, même si tu ne comprends pas tout.",
+      "hint": "Ne choisis pas une réponse uniquement parce qu’un mot apparaît dans le texte. Vérifie qui fait quoi, à quel moment, et si une négation change l’information."
+    }
   },
   {
     "id": 19,
@@ -981,13 +1107,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Décris deux douleurs fictives, une au singulier et une au pluriel.",
-      "writing": "Écris trois phrases sur un problème fictif et une demande de rendez-vous."
+      "writing": "Écris trois phrases sur un problème fictif et une demande de rendez-vous.",
+      "speakModel": "Mein Hals tut weh. Meine Beine tun weh.",
+      "writeModel": "Ich habe seit gestern Kopfschmerzen. Mein Hals tut weh. Ich habe auch Fieber. Kann ich heute einen Termin bekommen?"
     },
     "selfCheck": [
       "Je distingue tut et tun.",
       "Je sais dire ich habe kein Fieber."
     ],
-    "tip": "Ne dis pas meine Beine tut weh : le sujet pluriel demande tun."
+    "tip": "Ne dis pas meine Beine tut weh : le sujet pluriel demande tun.",
+    "introduction": {
+      "context": "Pour décrire une douleur, nomme la partie du corps et précise le problème. Tu compares les phrases pour une seule partie du corps et pour plusieurs.",
+      "application": "« Mein Hals tut weh » parle de la gorge ; « Meine Beine tun weh » des jambes. Le nom de la partie du corps est le sujet : c’est lui qui détermine « tut » ou « tun ».",
+      "hint": "Ajoute une durée ou une demande de rendez-vous pour rendre ton message utile. Tu peux utiliser des douleurs fictives pour pratiquer les formes."
+    }
   },
   {
     "id": 20,
@@ -1034,13 +1167,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Présente la météo de deux jours et propose les vêtements adaptés.",
-      "writing": "Écris quatre phrases pour préparer une sortie selon la météo."
+      "writing": "Écris quatre phrases pour préparer une sortie selon la météo.",
+      "speakModel": "Heute regnet es. Ich brauche eine Jacke. Morgen ist es sonnig. Dann brauche ich eine Sonnenbrille.",
+      "writeModel": "Morgen ist es kalt. Ich brauche einen Mantel. Ich nehme auch eine Mütze mit. Am Nachmittag regnet es, deshalb nehme ich einen Regenschirm mit."
     },
     "selfCheck": [
       "Je peux décrire la météo.",
       "Je place le verbe après Heute."
     ],
-    "tip": "Es regnet suffit pour il pleut ; on n’ajoute pas un sujet personnel."
+    "tip": "Es regnet suffit pour il pleut ; on n’ajoute pas un sujet personnel.",
+    "introduction": {
+      "context": "Pour préparer une sortie, décris le temps puis les vêtements nécessaires. Tu relis ainsi une information de météo à une décision du quotidien.",
+      "application": "« Es regnet » signifie qu’il pleut ; « Ich brauche eine Jacke » indique ce qu’il te faut. « Morgen ist es kalt » place le moment au début et garde le verbe juste après.",
+      "hint": "« Mir ist kalt » décrit ce que tu ressens ; « Es ist kalt » décrit le temps ou l’environnement. La liste de vêtements doit correspondre à la météo annoncée."
+    }
   },
   {
     "id": 21,
@@ -1086,13 +1226,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Propose une sortie culturelle et fixe un horaire de rencontre.",
-      "writing": "Écris trois phrases sur tes goûts et une invitation à une sortie."
+      "writing": "Écris trois phrases sur tes goûts et une invitation à une sortie.",
+      "speakModel": "Ich gehe gern ins Kino. Möchten Sie am Samstag mitkommen? Der Film beginnt um zwanzig Uhr. Wir treffen uns um neunzehn Uhr dreißig vor dem Kino.",
+      "writeModel": "Ich lese gern Bücher. Ich höre gern Musik. Ich gehe lieber ins Kino als ins Theater. Möchtest du am Samstag um 20 Uhr mit ins Kino kommen?"
     },
     "selfCheck": [
       "Je peux exprimer une préférence.",
       "Je comprends le début d’un film ou d’un concert."
     ],
-    "tip": "Ich lese devient du liest : cette forme ne suit pas le modèle régulier du lesest."
+    "tip": "Ich lese devient du liest : cette forme ne suit pas le modèle régulier du lesest.",
+    "introduction": {
+      "context": "Une sortie culturelle se prépare avec un choix d’activité, une heure et un lieu. Tu apprends à parler de tes goûts et à proposer une rencontre concrète.",
+      "application": "« Ich gehe gern ins Kino » exprime un goût ; « Das Konzert beginnt um zwanzig Uhr » un horaire. « Haben Sie am Samstag Zeit? » permet de proposer la sortie.",
+      "hint": "« lieber » sert à comparer une préférence, par exemple cinéma plutôt que télévision. Confirme le lieu de rencontre, pas seulement l’heure du spectacle."
+    }
   },
   {
     "id": 22,
@@ -1138,13 +1285,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Laisse un message avec ton nom, un problème et une demande de rappel.",
-      "writing": "Écris un SMS indiquant une heure, un lieu et une demande de réponse."
+      "writing": "Écris un SMS indiquant une heure, un lieu et une demande de réponse.",
+      "speakModel": "Hallo, hier ist Alex Martin. Ich habe eine Frage zu unserem Termin. Bitte rufen Sie mich zurück. Sie erreichen mich heute ab vierzehn Uhr unter 030 555 1840.",
+      "writeModel": "Hallo Emma, wir treffen uns am Freitag um 18 Uhr vor dem Kino. Passt das für dich? Bitte antworte mir kurz. Viele Grüße! Alex"
     },
     "selfCheck": [
       "Je peux me présenter au téléphone.",
       "Je peux demander un rappel."
     ],
-    "tip": "Handy signifie téléphone portable en allemand, pas pratique ou utile comme en anglais."
+    "tip": "Handy signifie téléphone portable en allemand, pas pratique ou utile comme en anglais.",
+    "introduction": {
+      "context": "Au téléphone ou par SMS, identifie-toi, indique ton problème et précise la réponse attendue. Tu apprends notamment à demander un rappel.",
+      "application": "« Hallo, hier ist Marie » présente la personne qui appelle. « Bitte rufen Sie mich zurück » demande un rappel ; « Ich schicke dir eine Nachricht » annonce l’envoi d’un message.",
+      "hint": "Choisis « du/dir » pour une personne familière et « Sie/Ihnen » pour la politesse. « Handy » signifie téléphone portable en allemand."
+    }
   },
   {
     "id": 23,
@@ -1190,13 +1344,20 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Joue une démarche avec une demande de formulaire et une question sur un champ.",
-      "writing": "Remplis cinq champs fictifs : nom, prénom, adresse, date de naissance et téléphone."
+      "writing": "Remplis cinq champs fictifs : nom, prénom, adresse, date de naissance et téléphone.",
+      "speakModel": "Guten Tag, ich möchte mich anmelden. Wo bekomme ich das Formular? Was muss ich hier bei „Anschrift“ schreiben?",
+      "writeModel": "Familienname: Martin\nVorname: Alex\nAnschrift: Gartenstraße 12, 12345 Berlin\nGeburtsdatum: 17. April 1995\nTelefon: 030 555 1840"
     },
     "selfCheck": [
       "Je comprends Anschrift et Unterschrift.",
       "Je peux demander où écrire une information."
     ],
-    "tip": "Anschrift veut dire adresse ; Unterschrift veut dire signature."
+    "tip": "Anschrift veut dire adresse ; Unterschrift veut dire signature.",
+    "introduction": {
+      "context": "Pour une démarche, dis ce que tu souhaites faire et demande le bon formulaire. Tu apprends à reconnaître les champs pour remplir les données demandées.",
+      "application": "« Ich möchte mich anmelden » indique une inscription. « Wo bekomme ich das Formular? » demande le document. « Anschrift » est l’adresse et « Unterschrift » la signature.",
+      "hint": "N’écris pas une signature dans le champ d’adresse. Vérifie séparément nom, prénom, date et coordonnées ; des données fictives conviennent pour l’exercice."
+    }
   },
   {
     "id": 24,
@@ -1242,12 +1403,19 @@ window.A1_COURSE_CONTENT=[
     ],
     "transfer": {
       "speaking": "Fais une présentation d’une minute, pose deux questions et formule une demande.",
-      "writing": "Écris un message répondant à trois points choisis : raison, date et demande."
+      "writing": "Écris un message répondant à trois points choisis : raison, date et demande.",
+      "speakModel": "Guten Tag! Ich heiße Alex und komme aus Kanada. Ich wohne in Berlin und arbeite als Verkäufer. Ich lerne Deutsch, weil ich hier wohne. In meiner Freizeit spiele ich Fußball und koche gern. Am Wochenende treffe ich Freunde. Wie heißen Sie? Wo wohnen Sie? Können Sie mir bitte den Stift geben?",
+      "writeModel": "Guten Tag, ich möchte mich für den Deutschkurs anmelden. Haben Sie am Montag um 10 Uhr einen Termin für mich? Bitte schicken Sie mir Informationen zu den Kurszeiten. Vielen Dank! Alex Martin"
     },
     "selfCheck": [
       "Je peux répondre aux points demandés sans copier.",
       "Je connais les thèmes que je dois encore revoir."
     ],
-    "tip": "Un bon score au quiz ne suffit pas : vérifie aussi si tu peux parler et écrire sans modèle."
+    "tip": "Un bon score au quiz ne suffit pas : vérifie aussi si tu peux parler et écrire sans modèle.",
+    "introduction": {
+      "context": "La révision assemble les compétences : comprendre une consigne, te présenter, poser une question et écrire un message adapté. Tu réutilises les expressions apprises dans un échange complet.",
+      "application": "Construis de courtes phrases pour répondre aux points demandés. « und » ajoute une information, « aber » marque un contraste ; chaque proposition doit rester compréhensible.",
+      "hint": "Un bon résultat au quiz ne garantit pas une réponse libre. Essaie sans modèle, puis compare ton contenu, tes verbes et les informations essentielles."
+    }
   }
 ];

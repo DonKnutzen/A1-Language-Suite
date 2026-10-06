@@ -2,9 +2,9 @@
 (() => {
   'use strict';
   const words={
-    fr:{goals:'Après cette leçon, je peux…',pronunciation:'Prononciation',dialogue:'Dialogue du quotidien',apply:'À toi de pratiquer',speaking:'À l’oral',writing:'À l’écrit',check:'Avant de passer à la suite',tip:'À retenir',person:'Personne',repeat:'Écoute les exemples, puis répète-les à voix haute.',instruction:'Réponds sans regarder le modèle. Si une phrase reste difficile, reviens aux exemples et au dialogue.'},
-    tr:{goals:'Bu dersin sonunda…',pronunciation:'Telaffuz',dialogue:'Günlük konuşma',apply:'Şimdi kendin uygula',speaking:'Konuşma',writing:'Yazma',check:'Sonraki derse geçmeden önce',tip:'Aklında tut',person:'Kişi',repeat:'Örnekleri dinle ve yüksek sesle tekrar et.',instruction:'Örneğe bakmadan yanıtla. Bir cümle zor gelirse örneklere ve konuşmaya geri dön.'},
-    de:{goals:'Das kann ich nach dieser Lektion',pronunciation:'Aussprache',dialogue:'Alltagsdialog',apply:'Jetzt selbst anwenden',speaking:'Sprechen',writing:'Schreiben',check:'Bevor ich weiterlerne',tip:'Merke dir',person:'Person',repeat:'Höre die Beispiele an und sprich sie laut nach.',instruction:'Antworte ohne Vorlage. Wenn eine Formulierung noch schwerfällt, wiederhole die Beispiele und den Dialog.'}
+    fr:{intro:'Dans cette leçon',reference:'Aide-mémoire',goals:'Après cette leçon, je peux…',pronunciation:'Prononciation',dialogue:'Dialogue du quotidien',apply:'À toi de pratiquer',speaking:'À l’oral',writing:'À l’écrit',check:'Avant de passer à la suite',tip:'À retenir',person:'Personne',repeat:'Écoute les exemples, puis répète-les à voix haute.',instruction:'Réponds sans regarder le modèle. Si une phrase reste difficile, reviens aux exemples et au dialogue.'},
+    tr:{intro:'Bu derste',reference:'Başvuru bilgileri',goals:'Bu dersin sonunda…',pronunciation:'Telaffuz',dialogue:'Günlük konuşma',apply:'Şimdi kendin uygula',speaking:'Konuşma',writing:'Yazma',check:'Sonraki derse geçmeden önce',tip:'Aklında tut',person:'Kişi',repeat:'Örnekleri dinle ve yüksek sesle tekrar et.',instruction:'Örneğe bakmadan yanıtla. Bir cümle zor gelirse örneklere ve konuşmaya geri dön.'},
+    de:{intro:'In dieser Lektion',reference:'Nachschlagen',goals:'Das kann ich nach dieser Lektion',pronunciation:'Aussprache',dialogue:'Alltagsdialog',apply:'Jetzt selbst anwenden',speaking:'Sprechen',writing:'Schreiben',check:'Bevor ich weiterlerne',tip:'Merke dir',person:'Person',repeat:'Höre die Beispiele an und sprich sie laut nach.',instruction:'Antworte ohne Vorlage. Wenn eine Formulierung noch schwerfällt, wiederhole die Beispiele und den Dialog.'}
   };
   function content(id){return window.A1_COURSE_CONTENT.find(l=>l.id===id);}
   function row(pair,esc,speakBtn,label=''){
@@ -14,8 +14,13 @@
     const c=content(id),w=words[lang];
     const title=options.title||c.grammar.title;
     const referencesHtml=options.referencesHtml||'';
-    return `<div class="notice lesson-goals"><strong>${w.goals}</strong><ul>${c.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-      <details class="lesson-explanation" open><summary><strong>${esc(title)}</strong></summary><p class="muted">${esc(c.grammar.explanation)}</p>${referencesHtml}${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p></details>`;
+    return introduction(c,lang,esc)+`<div class="notice lesson-goals"><strong>${w.goals}</strong><ul>${c.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+      <details class="lesson-explanation lesson-reference"><summary><strong>${w.reference} · ${esc(title)}</strong></summary>${referencesHtml}${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}</details>`;
+  }
+  function introduction(c,lang,esc){
+    const w=words[lang],i=c.introduction;
+    if(!i)return '';
+    return `<section class="lesson-introduction"><h3>${w.intro}</h3><p>${esc(i.context)}</p><p>${esc(i.application)}</p><p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(i.hint)}</p></section>`;
   }
   function extras(id,lang,esc,speakBtn){
     const c=content(id),w=words[lang];
@@ -36,5 +41,5 @@
     };
   }
   function goal(id,esc){return esc(content(id).canDo[0]);}
-  window.A1LessonGuide={intro,extras,parts,goal};
+  window.A1LessonGuide={intro,introduction,extras,parts,goal};
 })();

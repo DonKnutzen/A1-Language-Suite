@@ -43,3 +43,23 @@ html.dark-mode .a1-voice-dialog,html.dark-mode .alphabet-letter{background:#1e29
 html.dark-mode .a1-voice-dialog select,html.dark-mode .mixed-input,html.dark-mode .mixed-char,html.dark-mode .mixed-shift{background:#0f172a;color:#e2e8f0;border-color:#475569}
 html.dark-mode .mixed-context,html.dark-mode .alphabet-important{background:#172554;color:#dbeafe;border-color:#60a5fa}
 @media(max-width:420px){.alphabet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.lesson-flow .button-row,.lesson-flow-finish .button-row{flex-direction:column}.lesson-flow .button-row button,.lesson-flow-finish .button-row button{width:100%}.a1-voice-dialog{padding:18px}.header-actions{gap:6px;flex-wrap:wrap;justify-content:flex-end}.a1-voice-trigger{width:32px;flex-basis:32px}.mixed-context{font-size:.95rem}}
+
+/* Application-first lesson introductions and distinct exercise progress. */
+.lesson-introduction { margin: 18px 0; line-height: 1.65; }
+.lesson-introduction h3 { margin-bottom: 10px; }
+.lesson-introduction p { margin: 10px 0; }
+.lesson-reference { margin: 16px 0; }
+.practice-progress { display: block; margin-top: 10px; line-height: 1.5; font-size: .82rem; font-weight: 600; }
+.practice-progress .progress { margin-top: 6px; height: 6px; }
+.practice-readiness .between { flex-wrap: wrap; gap: 8px; }
+.practice-count-note { line-height: 1.55; margin-bottom: 0; }
+@media (max-width: 420px) {
+  .practice-card { min-width: 0; overflow-wrap: anywhere; }
+  .practice-readiness .skill-row { gap: 6px; }
+}
+
+.practice-count-info { margin-top: 12px; font-size: .85rem; line-height: 1.5; }
+.practice-count-info summary { cursor: pointer; }
+
+.recorder-selfcheck { margin: 12px 0; line-height: 1.5; }
+.recorder-selfcheck summary { cursor: pointer; font-weight: 600; }
