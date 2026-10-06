@@ -6,8 +6,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander ces informations à une autre personne."
     ],
     "grammar": {
-      "title": "Sein et les verbes de présentation",
-      "explanation": "Le verbe change avec le sujet : ich bin, du bist, Sie sind. Au présent, heißen et wohnen donnent ich heiße / wohne, du heißt / wohnst, Sie heißen / wohnen. Dans une phrase simple, le verbe conjugué occupe la deuxième position.",
+      "title": "Se présenter : sein, heißen et wohnen",
+      "explanation": "Pour te présenter, retiens surtout trois blocs : « Ich heiße … » (je m’appelle), « Ich komme aus … » (je viens de) et « Ich wohne in … » (j’habite à). Dans une phrase simple, le verbe conjugué reste en deuxième position.",
       "examples": [
         [
           "Ich wohne in Halifax.",
@@ -49,7 +49,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux me présenter sans lire.",
       "Je place le verbe après ich."
     ],
-    "tip": "Pour l’origine : aus Kanada. Pour la ville où tu habites : in Halifax."
+    "tip": "Pour l’origine : aus Kanada. Pour le lieu où tu habites : in Halifax."
   },
   {
     "id": 2,
@@ -58,8 +58,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander à quelqu’un de répéter ou d’épeler."
     ],
     "grammar": {
-      "title": "Questions avec wie et demande polie",
-      "explanation": "Une question avec un mot interrogatif suit le modèle wie + verbe + sujet. Pour une demande polie, utilise Können Sie …? et place l’infinitif à la fin : Können Sie das buchstabieren?",
+      "title": "Épeler et demander de répéter",
+      "explanation": "Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Avec können, l’autre verbe reste à la fin.",
       "examples": [
         [
           "Wie schreibt man das?",
@@ -101,7 +101,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux épeler mon nom lentement.",
       "Je peux demander une clarification."
     ],
-    "tip": "Ne devine pas une lettre : Wie bitte? permet de demander de répéter."
+    "tip": "Si tu n’as pas compris une lettre, demande de répéter au lieu de la deviner."
   },
   {
     "id": 3,
@@ -110,8 +110,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux indiquer ma date de naissance."
     ],
     "grammar": {
-      "title": "Nombres composés et date",
-      "explanation": "À partir de 21, on dit l’unité puis und puis la dizaine : einundzwanzig. Dans un numéro de téléphone, on peut dire les chiffres un par un. Pour une date, utilise am et un ordinal : am siebzehnten April.",
+      "title": "Nombres, téléphone et date",
+      "explanation": "À partir de 21, l’allemand dit l’unité avant la dizaine : ein-und-zwanzig. Un numéro peut être dicté chiffre par chiffre. Pour une date, retiens le bloc « am + ordinal + mois » : am siebzehnten April.",
       "examples": [
         [
           "Ich bin am siebzehnten April geboren.",
@@ -154,7 +154,7 @@ window.A1_COURSE_CONTENT=[
       "Je reconnais les unités avant les dizaines.",
       "Je sais dire ma date de naissance."
     ],
-    "tip": "21 est einundzwanzig : on ne conserve pas l’ordre français vingt-et-un."
+    "tip": "21 se dit einundzwanzig : l’ordre est l’inverse du français vingt-et-un."
   },
   {
     "id": 4,
@@ -163,8 +163,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux fixer un rendez-vous avec un jour et une heure."
     ],
     "grammar": {
-      "title": "Am, um et von … bis",
-      "explanation": "Utilise am pour les jours et um pour une heure précise : am Mittwoch um zehn Uhr. Von … bis indique un intervalle. Attention : halb fünf signifie une demi-heure avant cinq heures, donc 4 h 30.",
+      "title": "Jour, heure et rendez-vous",
+      "explanation": "Utilise « am » avec un jour et « um » avec une heure précise : am Mittwoch um zehn Uhr. « von … bis … » donne une plage horaire. « halb fünf » signifie 4 h 30, pas 5 h 30.",
       "examples": [
         [
           "Der Termin ist am Mittwoch um zehn Uhr.",
@@ -206,7 +206,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux expliquer halb fünf.",
       "Je distingue am et um."
     ],
-    "tip": "Ne traduis pas halb fünf par cinq heures et demie : c’est quatre heures et demie."
+    "tip": "Pour fixer un rendez-vous, donne d’abord le jour, puis l’heure : am Dienstag um 14 Uhr."
   },
   {
     "id": 5,
@@ -215,8 +215,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux donner les informations personnelles demandées dans un formulaire."
     ],
     "grammar": {
-      "title": "Mein, meine et haben",
-      "explanation": "Les possessifs s’accordent avec le nom : mein Vater, meine Mutter, meine Kinder. Au présent : ich habe, du hast, wir haben. Le nombre allemand de Kinder est un pluriel, même si le possessif reste meine.",
+      "title": "Famille et informations personnelles",
+      "explanation": "Pour présenter ta famille, apprends le nom avec le possessif : mein Vater, meine Mutter, meine Eltern. Avec haben : ich habe, du hast, wir haben. Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.",
       "examples": [
         [
           "Wir haben zwei Kinder.",
@@ -258,7 +258,7 @@ window.A1_COURSE_CONTENT=[
       "Je distingue mein Vater et meine Mutter.",
       "Je comprends Geburtsort et Geburtsdatum."
     ],
-    "tip": "Geburtsort est le lieu de naissance ; Geburtsdatum est la date de naissance."
+    "tip": "Geburtsort = lieu de naissance ; Geburtsdatum = date de naissance."
   },
   {
     "id": 6,
@@ -267,8 +267,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander l’addition et préciser une préférence."
     ],
     "grammar": {
-      "title": "Commander avec möchten et l’accusatif",
-      "explanation": "Ich möchte et ich hätte gern permettent de commander poliment. Un nom masculin objet change ein en einen : einen Kaffee. Le féminin et le neutre restent eine Suppe et ein Wasser.",
+      "title": "Commander poliment",
+      "explanation": "« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ». Dans la commande, un nom masculin objet prend souvent « einen » : einen Kaffee ; le féminin et le neutre restent ici eine Suppe et ein Wasser.",
       "examples": [
         [
           "Ich hätte gern einen Kaffee.",
@@ -310,7 +310,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux commander sans lire.",
       "Je sais dire sans viande et l’addition."
     ],
-    "tip": "On dit einen Kaffee dans cette commande, car Kaffee est masculin et objet du verbe."
+    "tip": "Pour demander l’addition : « Die Rechnung, bitte. »"
   },
   {
     "id": 7,
@@ -319,8 +319,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux décider d’acheter ou de refuser poliment."
     ],
     "grammar": {
-      "title": "Wie viel, welches et das",
-      "explanation": "Wie viel kostet das? demande le prix d’un objet ; Wie viel kosten die Schuhe? concerne un pluriel. Das peut désigner l’article que tu montres. Apprends chaque nouveau nom avec son article : der Preis, die Größe, das Hemd.",
+      "title": "Prix, taille et achat",
+      "explanation": "Pour le prix : « Wie viel kostet das? » ; pour la taille : « Welche Größe? ». Pour acheter, « Ich nehme das. » suffit ; pour refuser poliment : « Nein, danke. ». Apprends les noms de produits avec leur article.",
       "examples": [
         [
           "Wie viel kosten die Schuhe?",
@@ -362,7 +362,7 @@ window.A1_COURSE_CONTENT=[
       "Je distingue kostet et kosten.",
       "Je comprends une taille et un prix."
     ],
-    "tip": "Le nom allemand prend une majuscule : Schuhe, Größe, Preis."
+    "tip": "Le nom allemand prend une majuscule : Preis, Größe, Schuhe."
   },
   {
     "id": 8,
@@ -371,8 +371,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander le loyer et organiser une visite."
     ],
     "grammar": {
-      "title": "Articles et description avec haben",
-      "explanation": "Un appartement se dit eine Wohnung. Avec haben, le masculin objet change : einen Balkon ; le féminin reste eine Wohnung. Les nombres permettent de décrire les pièces : zwei Zimmer. Frei signifie ici disponible.",
+      "title": "Décrire un logement",
+      "explanation": "Pour dire ce qu’un logement possède, utilise « Die Wohnung hat … » ou « Es gibt … ». « zwei Zimmer » = deux pièces et « frei » signifie disponible dans une annonce. Pour le loyer : « Wie hoch ist die Miete? ».",
       "examples": [
         [
           "Die Wohnung hat einen Balkon.",
@@ -414,7 +414,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux décrire le nombre de pièces.",
       "Je comprends le loyer et les charges."
     ],
-    "tip": "Frei dans une annonce ne signifie pas automatiquement gratuit."
+    "tip": "Dans une annonce, frei signifie disponible, pas forcément gratuit."
   },
   {
     "id": 9,
@@ -423,8 +423,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux nommer un moyen de transport et reconnaître un changement."
     ],
     "grammar": {
-      "title": "Impératif poli et mit",
-      "explanation": "Pour donner un itinéraire avec Sie, le verbe vient d’abord : Gehen Sie … ; Nehmen Sie …. Mit est suivi du datif : mit dem Bus, mit der Bahn. Apprends ces groupes comme des expressions complètes.",
+      "title": "Demander et expliquer un chemin",
+      "explanation": "Pour demander : « Wie komme ich zum Bahnhof? ». Dans une indication polie, le verbe vient d’abord : Gehen Sie…, Nehmen Sie…. Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».",
       "examples": [
         [
           "Ich fahre mit dem Bus.",
@@ -466,7 +466,7 @@ window.A1_COURSE_CONTENT=[
       "Je distingue links et rechts.",
       "Je sais dire mit dem Bus."
     ],
-    "tip": "Gleis désigne une voie ou un quai de gare, pas une rue."
+    "tip": "Gleis désigne la voie/le quai d’un train, pas une rue."
   },
   {
     "id": 10,
@@ -475,8 +475,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux décrire simplement mon lieu de travail."
     ],
     "grammar": {
-      "title": "Als et le présent de arbeiten",
-      "explanation": "Pour un métier, utilise als : Ich arbeite als Verkäuferin. Arbeiten ajoute un e dans certaines formes : du arbeitest, er arbeitet. Von … bis donne les horaires ; im est la contraction de in dem.",
+      "title": "Métier, lieu de travail et horaires",
+      "explanation": "Pour le métier : « Ich bin Lehrer. » ou « Ich arbeite als Verkäuferin. » ; le métier reste souvent sans article. Pour le lieu : « Ich arbeite in … », et pour les horaires : « von acht bis sechzehn Uhr ».",
       "examples": [
         [
           "Ich arbeite von acht bis sechzehn Uhr.",
@@ -518,7 +518,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux répondre à von Beruf.",
       "Je peux donner un intervalle horaire."
     ],
-    "tip": "En allemand, le métier après sein ou als s’emploie souvent sans article : Ich bin Lehrer."
+    "tip": "Après sein ou als, le métier s’emploie généralement sans article."
   },
   {
     "id": 11,
@@ -527,8 +527,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander de répéter ou d’expliquer."
     ],
     "grammar": {
-      "title": "Depuis : seit et le présent",
-      "explanation": "Une activité commencée avant et encore actuelle s’exprime avec seit et le présent : Ich lerne seit sechs Monaten Deutsch. Dans une question avec wer, wo ou wann, le verbe suit le mot interrogatif.",
+      "title": "Cours, durée et clarification",
+      "explanation": "Pour une activité commencée avant et toujours actuelle, utilise « seit + présent » : Ich lerne seit sechs Monaten Deutsch. Pour demander de l’aide : « Können Sie das wiederholen? » ou « Was bedeutet das? ».",
       "examples": [
         [
           "Ich lerne seit sechs Monaten Deutsch.",
@@ -570,7 +570,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux dire depuis combien de temps j’apprends.",
       "Je peux demander de répéter."
     ],
-    "tip": "Pour une activité qui continue, garde le présent après seit."
+    "tip": "Avec seit, garde le présent si l’activité continue encore maintenant."
   },
   {
     "id": 12,
@@ -579,8 +579,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux proposer une activité pour le week-end."
     ],
     "grammar": {
-      "title": "Gern et la place du verbe",
-      "explanation": "Gern indique qu’on aime faire une activité : Ich spiele gern Fußball. Si un complément vient au début, le verbe reste en deuxième position : Am Sonntag mache ich einen Ausflug. Le sujet vient alors après le verbe.",
+      "title": "Loisirs et préférences",
+      "explanation": "« gern » indique qu’on aime faire quelque chose : Ich spiele gern Fußball. « lieber » marque une préférence : Ich gehe lieber ins Kino. Si tu commences par « Am Samstag », le verbe reste en deuxième position : Am Samstag spiele ich…",
       "examples": [
         [
           "Am Sonntag spiele ich Fußball.",
@@ -622,7 +622,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux exprimer un goût avec gern.",
       "Je place le verbe après le complément initial."
     ],
-    "tip": "Évite Am Sonntag ich spiele : dis Am Sonntag spiele ich."
+    "tip": "Dis « Am Sonntag spiele ich … », pas « Am Sonntag ich spiele … »."
   },
   {
     "id": 13,
@@ -631,8 +631,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux comprendre une heure de départ ou d’arrivée."
     ],
     "grammar": {
-      "title": "Verbes séparables et möchten",
-      "explanation": "Abfahren et ankommen sont séparables : le préfixe va à la fin au présent. Avec möchten, l’infinitif reste entier à la fin : Ich möchte ein Zimmer reservieren. Für donne ici la durée : für zwei Nächte.",
+      "title": "Hôtel, départ et arrivée",
+      "explanation": "Pour réserver : « Ich möchte ein Zimmer reservieren. ». Les verbes abfahren et ankommen se séparent au présent : Der Zug fährt um 9 Uhr ab. / kommt um 11 Uhr an. Avec möchten, l’infinitif reste entier à la fin.",
       "examples": [
         [
           "Wann fährt der Bus ab?",
@@ -674,7 +674,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux réserver une chambre.",
       "Je reconnais le préfixe à la fin de abfahren."
     ],
-    "tip": "Dans Wann fährt der Bus ab?, ab ne disparaît pas : il se place à la fin."
+    "tip": "Dans « Wann fährt der Bus ab? », le préfixe ab reste à la fin."
   },
   {
     "id": 14,
@@ -683,8 +683,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander un rendez-vous médical."
     ],
     "grammar": {
-      "title": "Haben, sein et depuis quand",
-      "explanation": "Utilise haben pour un symptôme : Ich habe Fieber. Utilise sein pour un état : Ich bin krank. Seit gestern indique que la situation a commencé hier et continue. Wie lange? demande sa durée.",
+      "title": "Symptômes, durée et rendez-vous",
+      "explanation": "Pour un symptôme, utilise souvent « Ich habe … » : Ich habe Fieber / Husten. Pour l’état général : « Ich bin krank. ». « seit gestern » indique depuis quand le problème dure ; « Wie lange? » demande la durée.",
       "examples": [
         [
           "Ich habe seit gestern Fieber.",
@@ -726,7 +726,7 @@ window.A1_COURSE_CONTENT=[
       "Je distingue ich bin krank et ich habe Fieber.",
       "Je peux préciser seit gestern."
     ],
-    "tip": "Pour une fièvre, dis Ich habe Fieber ; pour ton état général, Ich bin krank."
+    "tip": "Fieber se construit avec haben : Ich habe Fieber."
   },
   {
     "id": 15,
@@ -735,8 +735,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux écrire un court message avec les informations utiles."
     ],
     "grammar": {
-      "title": "Invitation, négation et verbe séparable",
-      "explanation": "Ich komme gern accepte ; Leider kann ich nicht kommen décline. Avec können, l’infinitif va à la fin. Mitbringen se sépare seul au présent : Ich bringe einen Kuchen mit.",
+      "title": "Inviter, accepter et refuser",
+      "explanation": "Pour accepter : « Ja, gern. » ou « Ich komme gern. ». Pour refuser poliment : « Leider kann ich nicht kommen. ». Dans un message, donne clairement le jour, l’heure et le lieu avant la formule de fin.",
       "examples": [
         [
           "Ich bringe einen Kuchen mit.",
@@ -778,7 +778,7 @@ window.A1_COURSE_CONTENT=[
       "Mon message répond à toutes les demandes.",
       "Je peux accepter et décliner poliment."
     ],
-    "tip": "N’oublie pas la formule finale et ton prénom dans un message personnel."
+    "tip": "Une réponse courte et claire vaut mieux qu’une justification compliquée."
   },
   {
     "id": 16,
@@ -787,8 +787,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux repérer une interdiction ou une restriction."
     ],
     "grammar": {
-      "title": "Expressions sans verbe et négation",
-      "explanation": "Les panneaux omettent souvent un verbe : Heute geschlossen. Kein accompagne un nom : kein Eingang. Nicht nie une action ou une propriété. Nur signifie seulement et limite l’accès : nur für Kunden.",
+      "title": "Comprendre panneaux et restrictions",
+      "explanation": "Les panneaux utilisent souvent des fragments : « Heute geschlossen » = fermé aujourd’hui, « Kein Eingang » = pas d’entrée, « Nur für Kunden » = réservé aux clients. Lis d’abord le mot qui indique l’action, l’interdiction ou la restriction.",
       "examples": [
         [
           "Das Geschäft ist heute geschlossen.",
@@ -831,7 +831,7 @@ window.A1_COURSE_CONTENT=[
       "Je repère nur, nicht et kein.",
       "Je peux comprendre une plage d’ouverture."
     ],
-    "tip": "Geschlossen veut dire fermé ; geöffnet veut dire ouvert."
+    "tip": "geschlossen = fermé ; geöffnet = ouvert."
   },
   {
     "id": 17,
@@ -840,8 +840,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux accepter ou refuser une demande."
     ],
     "grammar": {
-      "title": "Können et impératif avec Sie",
-      "explanation": "Können Sie …? met le verbe modal au début et l’infinitif à la fin. L’impératif poli suit le modèle verbe + Sie : Geben Sie mir bitte …. Bitte rend la demande plus polie, sans remplacer la structure.",
+      "title": "Demander quelque chose poliment",
+      "explanation": "« Können Sie mir bitte … geben? » permet de demander un objet ou de l’aide. Une autre forme polie est « Geben Sie mir bitte … ». Pour répondre : « Ja, natürlich. » ou « Tut mir leid. ».",
       "examples": [
         [
           "Können Sie mir bitte helfen?",
@@ -883,7 +883,7 @@ window.A1_COURSE_CONTENT=[
       "Je place l’infinitif à la fin avec können.",
       "Je peux répondre poliment."
     ],
-    "tip": "Avec Sie, garde la majuscule du pronom de politesse."
+    "tip": "Avec la forme de politesse, Sie s’écrit avec une majuscule."
   },
   {
     "id": 18,
@@ -892,8 +892,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux choisir une stratégie pour écouter, lire et écrire."
     ],
     "grammar": {
-      "title": "Consignes avec Sie",
-      "explanation": "Les consignes utilisent souvent l’impératif poli : Lesen Sie, Schreiben Sie, Stellen Sie …. Dans Kreuzen Sie … an, le verbe ankreuzen est séparé. Richtig ou falsch demande une décision vrai/faux, pas une traduction mot à mot.",
+      "title": "Comprendre les consignes",
+      "explanation": "Repère d’abord le verbe de consigne : Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » demande vrai/faux. Comprendre l’action demandée évite de perdre des points avant même de traiter le contenu.",
       "examples": [
         [
           "Kreuzen Sie die richtige Lösung an.",
@@ -935,7 +935,7 @@ window.A1_COURSE_CONTENT=[
       "Je comprends une consigne sans tout traduire.",
       "Je vérifie ce que la tâche demande."
     ],
-    "tip": "Ne choisis pas une réponse seulement parce qu’un mot apparaît dans l’enregistrement ; vérifie le sens."
+    "tip": "Ne choisis pas une réponse seulement parce qu’un mot identique apparaît dans l’audio ou le texte."
   },
   {
     "id": 19,
@@ -944,8 +944,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux préciser l’endroit où j’ai mal."
     ],
     "grammar": {
-      "title": "Tut weh et tun weh",
-      "explanation": "Avec un sujet singulier : Mein Hals tut weh. Avec un pluriel : Meine Beine tun weh. Les possessifs suivent le nom : mein Kopf, meine Hand. Le nom de la partie du corps est le sujet de ces phrases.",
+      "title": "Dire où tu as mal",
+      "explanation": "La partie du corps est le sujet : « Mein Hals tut weh » au singulier, « Meine Beine tun weh » au pluriel. Pour préciser un endroit, nomme directement la partie du corps plutôt que de traduire mot à mot le français.",
       "examples": [
         [
           "Meine Beine tun weh.",
@@ -987,7 +987,7 @@ window.A1_COURSE_CONTENT=[
       "Je distingue tut et tun.",
       "Je sais dire ich habe kein Fieber."
     ],
-    "tip": "Ne dis pas meine Beine tut weh : le sujet pluriel demande tun."
+    "tip": "Singulier : tut weh. Pluriel : tun weh."
   },
   {
     "id": 20,
@@ -996,8 +996,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux dire ce dont j’ai besoin selon la météo."
     ],
     "grammar": {
-      "title": "Es pour la météo et brauchen",
-      "explanation": "La météo utilise souvent es : Es regnet, es ist kalt. Avec brauchen, l’objet est à l’accusatif : einen Mantel, eine Jacke, ein Hemd. Aujourd’hui et demain peuvent commencer la phrase ; le verbe reste en deuxième position.",
+      "title": "Météo et vêtements",
+      "explanation": "Pour la météo : « Es ist kalt/warm » et « Es regnet ». Pour dire ce qu’il te faut : « Ich brauche … » : einen Mantel, eine Jacke, ein Hemd. Si « Heute » commence la phrase, le verbe reste en deuxième position.",
       "examples": [
         [
           "Heute brauche ich eine Jacke.",
@@ -1040,7 +1040,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux décrire la météo.",
       "Je place le verbe après Heute."
     ],
-    "tip": "Es regnet suffit pour il pleut ; on n’ajoute pas un sujet personnel."
+    "tip": "« Es regnet » suffit pour dire qu’il pleut."
   },
   {
     "id": 21,
@@ -1049,8 +1049,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux proposer une sortie et comprendre son horaire."
     ],
     "grammar": {
-      "title": "Gern, lieber et lesen",
-      "explanation": "Gern indique une activité appréciée ; lieber exprime une préférence : Ich gehe lieber ins Kino. Lesen est irrégulier : ich lese, du liest, er liest. Ins est la contraction de in das lorsqu’on parle d’aller au cinéma.",
+      "title": "Cinéma, musique et lecture",
+      "explanation": "Pour dire ce que tu aimes faire : « Ich höre gern Musik / Ich lese gern. ». « lieber » compare deux préférences : Ich gehe lieber ins Kino. Pour proposer une sortie : « Möchtest du …? ».",
       "examples": [
         [
           "Ich lese gern Bücher.",
@@ -1092,7 +1092,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux exprimer une préférence.",
       "Je comprends le début d’un film ou d’un concert."
     ],
-    "tip": "Ich lese devient du liest : cette forme ne suit pas le modèle régulier du lesest."
+    "tip": "lesen change de voyelle : ich lese, du liest, er/sie liest."
   },
   {
     "id": 22,
@@ -1101,8 +1101,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux décrire un problème simple avec mon téléphone."
     ],
     "grammar": {
-      "title": "Rappeler et envoyer",
-      "explanation": "Zurückrufen est séparable : Ich rufe Sie zurück. Avec können, il reste entier à la fin : Können Sie mich zurückrufen? Pour envoyer : Ich schicke dir eine Nachricht. Dir signifie à toi ; Ihnen signifie à vous, forme polie.",
+      "title": "Téléphone et message",
+      "explanation": "Pour demander un rappel : « Können Sie mich zurückrufen? ». Au présent, zurückrufen se sépare : Ich rufe Sie zurück. Pour un message : « Ich schicke dir/Ihnen eine Nachricht. » ; garde la même forme d’adresse pendant tout l’échange.",
       "examples": [
         [
           "Ich rufe Sie morgen zurück.",
@@ -1144,7 +1144,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux me présenter au téléphone.",
       "Je peux demander un rappel."
     ],
-    "tip": "Handy signifie téléphone portable en allemand, pas pratique ou utile comme en anglais."
+    "tip": "dir = à toi ; Ihnen = à vous, forme polie."
   },
   {
     "id": 23,
@@ -1153,8 +1153,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux comprendre des champs et des horaires."
     ],
     "grammar": {
-      "title": "Formulaire et verbes séparables",
-      "explanation": "Ausfüllen et anmelden se séparent au présent : Ich fülle das Formular aus ; Ich melde mich an. Avec möchten, l’infinitif reste entier. Le verbe réflexif anmelden demande ici mich lorsque le sujet est ich.",
+      "title": "Formulaire et service postal",
+      "explanation": "Pour demander un formulaire : « Ich brauche ein Formular. ». « ausfüllen » = remplir, « unterschreiben » = signer, « sich anmelden » = s’inscrire. Avec möchten, l’infinitif reste entier à la fin : Ich möchte mich anmelden.",
       "examples": [
         [
           "Ich möchte mich anmelden.",
@@ -1196,7 +1196,7 @@ window.A1_COURSE_CONTENT=[
       "Je comprends Anschrift et Unterschrift.",
       "Je peux demander où écrire une information."
     ],
-    "tip": "Anschrift veut dire adresse ; Unterschrift veut dire signature."
+    "tip": "Anschrift = adresse ; Unterschrift = signature."
   },
   {
     "id": 24,
@@ -1205,8 +1205,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux produire un message simple en vérifiant les consignes."
     ],
     "grammar": {
-      "title": "Relier des phrases et réviser l’ordre",
-      "explanation": "Und ajoute une information ; aber marque un contraste. Dans les phrases principales reliées, garde un verbe conjugué dans chaque partie. Révise le verbe en deuxième position, les questions et l’infinitif final après un modal.",
+      "title": "Révision : répondre clairement",
+      "explanation": "Pour une réponse A1, construis des phrases courtes : une information par phrase, verbe conjugué en deuxième position, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.",
       "examples": [
         [
           "Ich komme gern, aber ich komme später.",
@@ -1248,6 +1248,6 @@ window.A1_COURSE_CONTENT=[
       "Je peux répondre aux points demandés sans copier.",
       "Je connais les thèmes que je dois encore revoir."
     ],
-    "tip": "Un bon score au quiz ne suffit pas : vérifie aussi si tu peux parler et écrire sans modèle."
+    "tip": "Vérifie surtout que tu as répondu à chaque point de la consigne, pas seulement que la phrase est grammaticale."
   }
 ];

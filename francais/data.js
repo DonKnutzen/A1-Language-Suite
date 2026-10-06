@@ -98,7 +98,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Je suis allemand.",
-          "explanation": "Personalpronomen + être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Vor Vokal wird je zu j’: j’habite."
+          "explanation": "Mit je lautet être: je suis = „ich bin“."
         },
         {
           "q": "Lies den Dialog: Bonjour, je m’appelle Anna. Et vous ? / Je m’appelle Marc. Vous habitez où ? / J’habite à Lyon. Et vous ? / Moi, j’habite à Paris.\nAnna wohnt in …",
@@ -108,8 +108,8 @@ window.FR_A1_DATA = {
             "Paris"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Moi, j’habite à Paris."
+          "explanation": "Anna sagt „J’habite à Lyon.“ = „Ich wohne in Lyon.“",
+          "audio": "J’habite à Lyon."
         },
         {
           "q": "Wie sagst du „Guten Tag“ auf Französisch?",
@@ -167,7 +167,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Personalpronomen + être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont. Vor Vokal wird je zu j’: j’habite."
+        "explanation": "Für die Vorstellung reichen wenige feste Muster: Je m’appelle… = „Ich heiße…“, J’habite à… = „Ich wohne in…“, Je viens de… = „Ich komme aus…“ und Je suis… = „Ich bin…“. Vor Vokal wird je zu j’: j’habite."
       },
       "pronunciation": {
         "focus": "bonjour / salut",
@@ -287,7 +287,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Vous pouvez épeler, s’il vous plaît ?",
-          "explanation": "Höfliche Bitte: Vous pouvez + Infinitiv + s’il vous plaît ? Informell: Tu peux… ? Frage nach Schreibweise: Comment ça s’écrit ?"
+          "explanation": "Nach Vous pouvez steht der Infinitiv: Vous pouvez épeler… = „Können Sie buchstabieren…?“"
         },
         {
           "q": "Lies den Dialog: Votre nom, s’il vous plaît ? / Morel. / Vous pouvez épeler ? / M-O-R-E-L.\nDer Nachname lautet …",
@@ -297,7 +297,7 @@ window.FR_A1_DATA = {
             "Morin"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
+          "explanation": "Morel wird im Dialog als M-O-R-E-L buchstabiert.",
           "audio": "M-O-R-E-L."
         },
         {
@@ -357,7 +357,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Höfliche Bitte: Vous pouvez + Infinitiv + s’il vous plaît ? Informell: Tu peux… ? Frage nach Schreibweise: Comment ça s’écrit ?"
+        "explanation": "Beim Buchstabieren heißt épeler „buchstabieren“. Höflich fragst du: Vous pouvez épeler, s’il vous plaît ? = „Können Sie bitte buchstabieren?“ Comment ça s’écrit ? bedeutet „Wie schreibt man das?“"
       },
       "pronunciation": {
         "focus": "u / ou : tu, vous",
@@ -489,7 +489,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Tu as vingt ans.",
-          "explanation": "Alter mit avoir: j’ai, tu as, il/elle a, nous avons, vous avez, ils/elles ont. J’ai vingt ans, nicht je suis vingt ans. Zahlen: 70 = soixante-dix, 80 = quatre-vingts, 90 = quatre-vingt-dix."
+          "explanation": "Das Alter steht mit avoir: tu as vingt ans = „du bist 20 Jahre alt“."
         },
         {
           "q": "Lies den Dialog: Quel âge avez-vous ? / J’ai trente et un ans. / Votre numéro ? / Zéro six, douze, vingt, trente, quarante.\nDie Person ist … Jahre alt.",
@@ -499,8 +499,8 @@ window.FR_A1_DATA = {
             "31"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "trente"
+          "explanation": "J’ai trente et un ans bedeutet „Ich bin 31 Jahre alt.“",
+          "audio": "J’ai trente et un ans."
         },
         {
           "q": "Wie sagst du „null, eins, zwei, drei“ auf Französisch?",
@@ -558,7 +558,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Alter wird mit avoir gebildet: j’ai vingt-six ans. Bei Zahlen lohnt es sich, zuerst 0–20 und die Zehner bis 60 sicher zu lernen; ab 70 folgt im Französischen eine eigene Zahlenlogik. Die Details kannst du unten aufklappen."
+        "explanation": "Das Alter steht im Französischen mit avoir („haben“): J’ai vingt ans = „Ich bin 20 Jahre alt.“ Für Telefonnummern und persönliche Daten musst du Zahlen sicher erkennen; ab 70 folgt die besondere französische Zahlenlogik."
       },
       "pronunciation": {
         "focus": "vingt / trente / cent",
@@ -682,7 +682,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Le rendez-vous est à dix heures.",
-          "explanation": "Uhrzeit: il est + Zahl + heure(s). Termin: à dix heures. Wochentag ohne le für einen konkreten Tag; le lundi für jeden Montag. Et demie: eine halbe Stunde."
+          "explanation": "Vor einer Uhrzeit steht bei einem Termin à: à dix heures = „um zehn Uhr“."
         },
         {
           "q": "Lies den Dialog: On se voit quand ? / Mercredi à quatre heures et demie. / À la gare ? / Oui, devant la gare.\nDer Termin ist …",
@@ -692,8 +692,8 @@ window.FR_A1_DATA = {
             "Mittwoch um 15:30"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, devant la gare."
+          "explanation": "mercredi bedeutet „Mittwoch“; quatre heures et demie ist 16:30 Uhr.",
+          "audio": "Mercredi à quatre heures et demie."
         },
         {
           "q": "Wie sagst du „Wie spät ist es“ auf Französisch?",
@@ -751,7 +751,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Uhrzeit: il est + Zahl + heure(s). Termin: à dix heures. Wochentag ohne le für einen konkreten Tag; le lundi für jeden Montag. Et demie: eine halbe Stunde."
+        "explanation": "Für die Uhrzeit benutzt du il est: Il est quatre heures = „Es ist vier Uhr.“ Bei Terminen steht à: à dix heures = „um zehn Uhr“. Quatre heures et demie ist 4:30 Uhr; ein Wochentag ohne le meint meist einen konkreten Tag."
       },
       "pronunciation": {
         "focus": "deux heures / dix heures",
@@ -855,7 +855,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "C’est ma mère.",
-          "explanation": "Possessivbegleiter richten sich nach dem Besitzwort: mon père, ma mère, mes parents; ton/ta/tes, son/sa/ses. Vor weiblichem Wort mit Vokal: mon amie. Adjektive oft mit -e: petit/petite."
+          "explanation": "mère ist feminin; „meine Mutter“ heißt deshalb ma mère."
         },
         {
           "q": "Lies den Dialog: Tu as des frères et sœurs ? / Oui, une sœur. Elle s’appelle Julie. / Elle a quel âge ? / Elle a dix-neuf ans.\nJulie ist …",
@@ -865,8 +865,8 @@ window.FR_A1_DATA = {
             "die Tochter"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Elle a dix-neuf ans."
+          "explanation": "une sœur bedeutet „eine Schwester“; im Dialog heißt diese Schwester Julie.",
+          "audio": "Oui, une sœur. Elle s’appelle Julie."
         },
         {
           "q": "Wie sagst du „meine Mutter / mein Vater“ auf Französisch?",
@@ -924,7 +924,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Possessivbegleiter richten sich nach dem Besitzwort: mon père, ma mère, mes parents; ton/ta/tes, son/sa/ses. Vor weiblichem Wort mit Vokal: mon amie. Adjektive oft mit -e: petit/petite."
+        "explanation": "mon / ma / mes richten sich nach dem folgenden französischen Nomen: mon père, ma mère, mes parents. Vor einem femininen Wort mit Vokal steht mon: mon amie. Beim Beschreiben bekommt ein Adjektiv in der femininen Form oft -e: petit → petite."
       },
       "pronunciation": {
         "focus": "petit / petite",
@@ -1040,7 +1040,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Je voudrais de l’eau.",
-          "explanation": "Je voudrais ist eine feste höfliche Wendung. Teilungsartikel: du pain, de la soupe, de l’eau. Vorliebe mit bestimmtem Artikel: j’aime le café."
+          "explanation": "Vor einem Vokal steht de l’: de l’eau."
         },
         {
           "q": "Lies den Dialog: Bonjour, vous désirez ? / Un café et un sandwich, s’il vous plaît. / Au fromage ? / Oui, merci.\nDie Person bestellt …",
@@ -1050,8 +1050,8 @@ window.FR_A1_DATA = {
             "Kaffee und Sandwich"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, merci."
+          "explanation": "Un café et un sandwich bedeutet „ein Kaffee und ein Sandwich“.",
+          "audio": "Un café et un sandwich, s’il vous plaît."
         },
         {
           "q": "Wie sagst du „Ich hätte gern einen Kaffee“ auf Französisch?",
@@ -1109,7 +1109,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Je voudrais ist eine feste höfliche Wendung. Teilungsartikel: du pain, de la soupe, de l’eau. Vorliebe mit bestimmtem Artikel: j’aime le café."
+        "explanation": "Je voudrais… bedeutet „Ich hätte gern…“ und ist eine Standardform zum höflichen Bestellen; s’il vous plaît bedeutet „bitte“. Bei nicht abgezählten Lebensmitteln oder Getränken brauchst du oft du, de la oder de l’: du pain, de la soupe, de l’eau."
       },
       "pronunciation": {
         "focus": "café / eau / lait",
@@ -1213,7 +1213,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Un kilo de pommes, s’il vous plaît.",
-          "explanation": "Nach Mengenangaben steht de: un kilo de pommes, une bouteille d’eau. Combien coûte… ? für ein einzelnes Produkt; combien coûtent… ? für mehrere."
+          "explanation": "Nach einer konkreten Menge steht de: un kilo de pommes."
         },
         {
           "q": "Lies den Dialog: Je voudrais un kilo de pommes. / Ça fait trois euros. / Et deux bananes ? / Un euro de plus.\nEin Kilo Äpfel kostet …",
@@ -1223,8 +1223,8 @@ window.FR_A1_DATA = {
             "1 €"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Un euro de plus."
+          "explanation": "Ça fait trois euros bedeutet „Das macht drei Euro“.",
+          "audio": "Ça fait trois euros."
         },
         {
           "q": "Wie sagst du „Wie viel kostet das“ auf Französisch?",
@@ -1282,7 +1282,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Nach Mengenangaben steht de: un kilo de pommes, une bouteille d’eau. Combien coûte… ? für ein einzelnes Produkt; combien coûtent… ? für mehrere."
+        "explanation": "Nach einer konkreten Menge oder Verpackung steht de / d’: un kilo de pommes, une bouteille d’eau. Combien ça coûte ? bedeutet „Wie viel kostet das?“ Bei einem genannten Produkt heißt es im Singular combien coûte… ?, im Plural combien coûtent… ?"
       },
       "pronunciation": {
         "focus": "euros / deux euros",
@@ -1394,7 +1394,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Dans ma chambre, il y a un lit.",
-          "explanation": "Il y a = es gibt; c’est = das ist. Ortspräpositionen: dans, sur, sous, devant, derrière. Dans ma chambre, il y a un lit."
+          "explanation": "„Es gibt“ heißt il y a: Dans ma chambre, il y a un lit."
         },
         {
           "q": "Lies den Dialog: Tu habites dans une maison ? / Non, dans un appartement. / Il y a combien de pièces ? / Trois : deux chambres et un salon.\nDie Wohnung hat …",
@@ -1404,7 +1404,7 @@ window.FR_A1_DATA = {
             "vier Zimmer"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
+          "explanation": "Trois : deux chambres et un salon nennt insgesamt drei Zimmer.",
           "audio": "Trois : deux chambres et un salon."
         },
         {
@@ -1463,7 +1463,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Il y a = es gibt; c’est = das ist. Ortspräpositionen: dans, sur, sous, devant, derrière. Dans ma chambre, il y a un lit."
+        "explanation": "Il y a bedeutet „es gibt“: Dans ma chambre, il y a un lit. Für die Lage brauchst du vor allem dans („in“), sur („auf“), sous („unter“), devant („vor“) und derrière („hinter“)."
       },
       "pronunciation": {
         "focus": "un / une",
@@ -1567,7 +1567,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Je vais au cinéma.",
-          "explanation": "Imperativ als Weganweisung: allez, tournez, prenez. Ortsverbindungen: à + le = au; à + les = aux. Au cinéma, à la gare."
+          "explanation": "à + le wird zu au: au cinéma."
         },
         {
           "q": "Lies den Dialog: La pharmacie, s’il vous plaît ? / Allez tout droit, puis tournez à gauche. / C’est loin ? / Non, c’est à deux minutes.\nNach geradeaus geht es …",
@@ -1577,8 +1577,8 @@ window.FR_A1_DATA = {
             "nach links"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Non, c’est à deux minutes."
+          "explanation": "puis tournez à gauche bedeutet „dann biegen Sie links ab“.",
+          "audio": "Allez tout droit, puis tournez à gauche."
         },
         {
           "q": "Wie sagst du „Wo ist der Bahnhof“ auf Französisch?",
@@ -1636,7 +1636,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Imperativ als Weganweisung: allez, tournez, prenez. Ortsverbindungen: à + le = au; à + les = aux. Au cinéma, à la gare."
+        "explanation": "Wegbeschreibungen bestehen meist aus kurzen Anweisungen: Allez… = „Gehen Sie…“, Tournez… = „Biegen Sie… ab“, Prenez… = „Nehmen Sie…“. Bei Orten wird à + le zu au und à + les zu aux: au cinéma, aux toilettes."
       },
       "pronunciation": {
         "focus": "rue / roue",
@@ -1740,7 +1740,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Nous travaillons dans une école.",
-          "explanation": "Beruf ohne Artikel nach être: je suis médecin. Regelmäßige -er-Verben: je travaille, tu travailles, il travaille, nous travaillons, vous travaillez, ils travaillent."
+          "explanation": "travailler mit nous lautet nous travaillons."
         },
         {
           "q": "Lies den Dialog: Vous travaillez où ? / Dans une école. / Vous êtes professeur ? / Oui, je travaille du lundi au vendredi.\nDie Person arbeitet …",
@@ -1750,8 +1750,8 @@ window.FR_A1_DATA = {
             "in einem Hotel"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, je travaille du lundi au vendredi."
+          "explanation": "Dans une école bedeutet „in einer Schule“.",
+          "audio": "Dans une école."
         },
         {
           "q": "Wie sagst du „Was ist Ihr Beruf“ auf Französisch?",
@@ -1809,7 +1809,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Beruf ohne Artikel nach être: je suis médecin. Regelmäßige -er-Verben: je travaille, tu travailles, il travaille, nous travaillons, vous travaillez, ils travaillent."
+        "explanation": "Nach être steht ein Beruf normalerweise ohne Artikel: Je suis médecin = „Ich bin Arzt/Ärztin.“ travailler ist ein regelmäßiges -er-Verb; für diese Lektion sind besonders je travaille, vous travaillez und nous travaillons wichtig."
       },
       "pronunciation": {
         "focus": "travaille / travaillent / travaillez",
@@ -1913,7 +1913,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Je me lève à sept heures.",
-          "explanation": "Reflexive Verben: je me lève, tu te lèves, il se lève, nous nous levons, vous vous levez. Häufigkeit: toujours, souvent, parfois. Reihenfolge: d’abord, puis."
+          "explanation": "se lever ist reflexiv: mit je heißt es je me lève."
         },
         {
           "q": "Lies den Dialog: Tu te lèves à quelle heure ? / À sept heures. / Et après ? / Je prends le petit déjeuner, puis je vais au travail.\nDie Person steht auf um …",
@@ -1923,8 +1923,8 @@ window.FR_A1_DATA = {
             "6 Uhr"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Je prends le petit déjeuner, puis je vais au travail."
+          "explanation": "À sept heures bedeutet „um sieben Uhr“.",
+          "audio": "À sept heures."
         },
         {
           "q": "Wie sagst du „Ich stehe um sieben auf“ auf Französisch?",
@@ -1982,7 +1982,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Reflexive Verben: je me lève, tu te lèves, il se lève, nous nous levons, vous vous levez. Häufigkeit: toujours, souvent, parfois. Reihenfolge: d’abord, puis."
+        "explanation": "Bei reflexiven Verben gehört ein kleines Pronomen zum Verb: je me lève = „ich stehe auf“. Einen Tagesablauf ordnest du mit d’abord („zuerst“), puis („dann“) und ensuite („danach“); souvent und parfois geben Häufigkeit an."
       },
       "pronunciation": {
         "focus": "je me lève / je m’appelle",
@@ -2086,7 +2086,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "J’ai mal au dos.",
-          "explanation": "Avoir mal à: j’ai mal au dos, à la tête, aux dents. Avoir besoin de + Nomen. Einfache Bitte: je voudrais… / vous pouvez m’aider ?"
+          "explanation": "à + le wird zu au: J’ai mal au dos."
         },
         {
           "q": "Lies den Dialog: Bonjour, j’ai mal à la tête. / Depuis quand ? / Depuis ce matin. / D’accord. Vous avez de la fièvre ?\nDie Beschwerden bestehen seit …",
@@ -2096,8 +2096,8 @@ window.FR_A1_DATA = {
             "heute Morgen"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "D’accord. Vous avez de la fièvre ?"
+          "explanation": "Depuis ce matin bedeutet „seit heute Morgen“.",
+          "audio": "Depuis ce matin."
         },
         {
           "q": "Wie sagst du „Ich bin krank“ auf Französisch?",
@@ -2155,7 +2155,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Avoir mal à: j’ai mal au dos, à la tête, aux dents. Avoir besoin de + Nomen. Einfache Bitte: je voudrais… / vous pouvez m’aider ?"
+        "explanation": "Für Schmerzen benutzt du avoir mal à: J’ai mal à la tête = „Ich habe Kopfschmerzen“, J’ai mal au dos = „Ich habe Rückenschmerzen“. In der Apotheke helfen feste Bitten wie Je voudrais… und Vous pouvez m’aider ?"
       },
       "pronunciation": {
         "focus": "tête / thé",
@@ -2267,7 +2267,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Je voudrais cette robe.",
-          "explanation": "Wetter mit il fait: il fait froid/chaud/beau. Farben stimmen häufig überein: un pantalon bleu, une robe bleue. Ce pantalon, cette robe, ces chaussures."
+          "explanation": "robe ist feminin und Singular: cette robe."
         },
         {
           "q": "Lies den Dialog: Vous avez cette veste en bleu ? / Oui. Quelle taille ? / Taille quarante. / Voilà. Vous voulez essayer ?\nGesucht wird die Jacke in …",
@@ -2277,8 +2277,8 @@ window.FR_A1_DATA = {
             "Rot, Größe 40"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Voilà. Vous voulez essayer ?"
+          "explanation": "en bleu bedeutet „in Blau“ und taille quarante „Größe 40“.",
+          "audio": "Vous avez cette veste en bleu ? Taille quarante."
         },
         {
           "q": "Wie sagst du „Das Wetter ist schön“ auf Französisch?",
@@ -2336,7 +2336,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Wetter mit il fait: il fait froid/chaud/beau. Farben stimmen häufig überein: un pantalon bleu, une robe bleue. Ce pantalon, cette robe, ces chaussures."
+        "explanation": "Wetter hat mehrere feste Muster: il fait froid / chaud, aber il pleut = „es regnet“. Beim Zeigen auf Kleidung benutzt du ce, cette oder ces: ce pantalon, cette robe, ces chaussures. Farben passen sich häufig an: bleu → bleue."
       },
       "pronunciation": {
         "focus": "beau / chaud / froid",
@@ -2440,7 +2440,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Vous faites du sport ?",
-          "explanation": "Aimer + Infinitiv: j’aime lire. Faire: je fais, tu fais, il fait, nous faisons, vous faites, ils font. Faire du sport; jouer au football."
+          "explanation": "faire mit vous lautet vous faites: Vous faites du sport ?"
         },
         {
           "q": "Lies den Dialog: Tu aimes le sport ? / Oui, je joue au tennis. / Le dimanche ? / Non, le samedi matin.\nTennis wird gespielt …",
@@ -2450,7 +2450,7 @@ window.FR_A1_DATA = {
             "samstagabends"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
+          "explanation": "le samedi matin bedeutet „samstagmorgens“.",
           "audio": "Non, le samedi matin."
         },
         {
@@ -2509,7 +2509,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Aimer + Infinitiv: j’aime lire. Faire: je fais, tu fais, il fait, nous faisons, vous faites, ils font. Faire du sport; jouer au football."
+        "explanation": "Für Vorlieben steht aimer vor einem Nomen oder Infinitiv: J’aime le football = „Ich mag Fußball“, J’aime voyager = „Ich reise gern“. Aktivitäten stehen oft mit faire de oder jouer à: faire du sport, jouer au tennis."
       },
       "pronunciation": {
         "focus": "j’aime / j’ai",
@@ -2613,7 +2613,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Demain, je vais visiter Paris.",
-          "explanation": "Aller: je vais, tu vas, il va, nous allons, vous allez, ils vont. Zukunft für einfache Pläne: aller + Infinitiv, je vais visiter Paris."
+          "explanation": "Für den nahen Plan steht aller + Infinitiv: je vais visiter."
         },
         {
           "q": "Lies den Dialog: Bonjour, une chambre pour deux nuits, s’il vous plaît. / Pour une personne ? / Oui. Le petit déjeuner est compris ? / Oui, à partir de sept heures.\nDas Zimmer wird gebraucht für …",
@@ -2623,8 +2623,8 @@ window.FR_A1_DATA = {
             "zwei Nächte"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, à partir de sept heures."
+          "explanation": "pour deux nuits bedeutet „für zwei Nächte“.",
+          "audio": "Une chambre pour deux nuits, s’il vous plaît."
         },
         {
           "q": "Wie sagst du „Ich habe eine Reservierung“ auf Französisch?",
@@ -2682,7 +2682,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Aller: je vais, tu vas, il va, nous allons, vous allez, ils vont. Zukunft für einfache Pläne: aller + Infinitiv, je vais visiter Paris."
+        "explanation": "Für einen nahen Plan benutzt du aller + Infinitiv: Je vais visiter Paris = „Ich werde Paris besuchen“. Für Hotel und Reise sind außerdem feste Wendungen wie J’ai une réservation und Je voudrais un billet… besonders nützlich."
       },
       "pronunciation": {
         "focus": "chambre / jambes",
@@ -2798,7 +2798,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Tu peux venir samedi ?",
-          "explanation": "Pouvoir: je peux, tu peux, il peut, nous pouvons, vous pouvez, ils peuvent. Vouloir: je veux, vous voulez. Danach Infinitiv: tu peux venir ?"
+          "explanation": "Nach peux steht der Infinitiv: Tu peux venir ?"
         },
         {
           "q": "Lies den Dialog: Tu veux venir dîner samedi ? / Oui, avec plaisir. À quelle heure ? / À dix-neuf heures. / D’accord, à samedi !\nDie Einladung ist für …",
@@ -2808,8 +2808,8 @@ window.FR_A1_DATA = {
             "Sonntag um 19 Uhr"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "D’accord, à samedi !"
+          "explanation": "samedi ist Samstag; à dix-neuf heures bedeutet „um 19 Uhr“.",
+          "audio": "À dix-neuf heures."
         },
         {
           "q": "Wie sagst du „Willst du Samstag kommen“ auf Französisch?",
@@ -2867,7 +2867,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Pouvoir: je peux, tu peux, il peut, nous pouvons, vous pouvez, ils peuvent. Vouloir: je veux, vous voulez. Danach Infinitiv: tu peux venir ?"
+        "explanation": "pouvoir („können“) und vouloir („wollen“) stehen vor einem Infinitiv: Tu peux venir ? = „Kannst du kommen?“ Tu veux venir ? = „Willst du kommen?“ Zum Absagen reicht: Je suis désolé, je ne peux pas venir."
       },
       "pronunciation": {
         "focus": "tu peux / vous pouvez",
@@ -2971,7 +2971,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Quelle est votre adresse ?",
-          "explanation": "Fragen mit quel: quel nom, quelle adresse, quels jours, quelles langues. Kurze Nachrichten brauchen Anrede, Information und Gruß. Et verbindet einfache Angaben."
+          "explanation": "adresse ist feminin; deshalb: Quelle est votre adresse ?"
         },
         {
           "q": "Lies den Dialog: Bonjour, le cours commence lundi à neuf heures. / Dans quelle salle ? / Salle dix-huit. / Merci, à lundi.\nDer Kurs beginnt …",
@@ -2981,8 +2981,8 @@ window.FR_A1_DATA = {
             "Dienstag um 9 Uhr in Raum 18"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Merci, à lundi."
+          "explanation": "lundi à neuf heures bedeutet „Montag um 9 Uhr“; salle dix-huit ist Raum 18.",
+          "audio": "Le cours commence lundi à neuf heures. Salle dix-huit."
         },
         {
           "q": "Wie sagst du „Nachname“ auf Französisch?",
@@ -3040,7 +3040,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Fragen mit quel: quel nom, quelle adresse, quels jours, quelles langues. Kurze Nachrichten brauchen Anrede, Information und Gruß. Et verbindet einfache Angaben."
+        "explanation": "quel / quelle bedeutet „welcher / welche“ und richtet sich nach dem Nomen: quel nom, quelle adresse. Bei Formularen musst du vor allem typische Felder erkennen; eine kurze Nachricht braucht nur Anrede, die wichtige Information und einen Gruß."
       },
       "pronunciation": {
         "focus": "adresse / e-mail",
@@ -3151,7 +3151,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Je ne comprends pas.",
-          "explanation": "Verneinung: ne/n’ + Verb + pas. Je ne comprends pas. Bitte um Hilfe: répétez, s’il vous plaît; plus lentement. In diesem Kurs üben wir die vollständige Verneinung."
+          "explanation": "Die vollständige Verneinung lautet ne / n’ + Verb + pas: Je ne comprends pas."
         },
         {
           "q": "Lies den Dialog: Excusez-moi, je ne comprends pas. / Vous voulez un café ? / Vous pouvez répéter plus lentement ? / Un café ? / Oui, merci.\nWarum wird um Wiederholung gebeten?",
@@ -3161,8 +3161,8 @@ window.FR_A1_DATA = {
             "Die Frage wurde nicht verstanden."
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, merci."
+          "explanation": "Je ne comprends pas bedeutet „Ich verstehe nicht“; deshalb bittet die Person um Wiederholung.",
+          "audio": "Excusez-moi, je ne comprends pas."
         },
         {
           "q": "Wie sagst du „Können Sie das bitte wiederholen“ auf Französisch?",
@@ -3220,7 +3220,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Verneinung: ne/n’ + Verb + pas. Je ne comprends pas. Bitte um Hilfe: répétez, s’il vous plaît; plus lentement. In diesem Kurs üben wir die vollständige Verneinung."
+        "explanation": "Wenn du etwas nicht verstehst, helfen feste Sätze: Je ne comprends pas = „Ich verstehe nicht“, Pouvez-vous répéter, s’il vous plaît ? = „Können Sie bitte wiederholen?“ und Plus lentement, s’il vous plaît = „Bitte langsamer.“"
       },
       "pronunciation": {
         "focus": "s’il vous plaît / pardon",
@@ -3325,7 +3325,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Ce sont des livres.",
-          "explanation": "Un/une/des: ein/eine/mehrere. Le/la/l’/les: bestimmte Dinge. Plural meist mit -s: une table, des tables. C’est un livre; ce sont des livres. Genus mit dem Nomen lernen."
+          "explanation": "Im Plural heißt es ce sont: Ce sont des livres."
         },
         {
           "q": "Lies den Dialog: C’est un livre ? / Oui, c’est mon livre. / Et ce sont tes clés ? / Oui, merci !\nDie Schlüssel gehören …",
@@ -3335,8 +3335,8 @@ window.FR_A1_DATA = {
             "einem Lehrer"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, merci !"
+          "explanation": "tes clés bedeutet „deine Schlüssel“; sie gehören also der angesprochenen Person.",
+          "audio": "Et ce sont tes clés ?"
         },
         {
           "q": "Welche Form ist korrekt?",
@@ -3394,7 +3394,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Un/une/des: ein/eine/mehrere. Le/la/l’/les: bestimmte Dinge. Plural meist mit -s: une table, des tables. C’est un livre; ce sont des livres. Genus mit dem Nomen lernen."
+        "explanation": "un / une stehen für „ein / eine“, le / la / l’ für „der / die / das“; im Plural stehen des bzw. les. Lerne neue Nomen am besten mit Artikel: un café, une baguette, la gare. Der regelmäßige Plural bekommt meist -s."
       },
       "pronunciation": {
         "focus": "les amis / les livres",
@@ -3498,7 +3498,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Nous prenons le train.",
-          "explanation": "Satz: Subjekt + Verb + Ergänzung. Je parle français. Verneinung um das Verb: je ne parle pas français. Prendre: je prends, tu prends, il prend, nous prenons, vous prenez, ils prennent."
+          "explanation": "prendre mit nous lautet nous prenons."
         },
         {
           "q": "Lies den Dialog: Tu prends le bus ? / Non, je ne prends pas le bus. / Tu vas à pied ? / Oui, j’habite près du travail.\nDie Person geht zur Arbeit …",
@@ -3508,8 +3508,8 @@ window.FR_A1_DATA = {
             "mit dem Zug"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Oui, j’habite près du travail."
+          "explanation": "Tu vas à pied ? — Oui. zeigt: Die Person geht zu Fuß.",
+          "audio": "Tu vas à pied ? Oui."
         },
         {
           "q": "Wie verneinst du „J’ai une voiture“?",
@@ -3567,7 +3567,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Satz: Subjekt + Verb + Ergänzung. Je parle français. Verneinung um das Verb: je ne parle pas français. Prendre: je prends, tu prends, il prend, nous prenons, vous prenez, ils prennent."
+        "explanation": "Der einfache Aussagesatz folgt meist Subjekt + Verb + Ergänzung: Je parle français. Für die Verneinung steht ne / n’ vor und pas nach dem Verb: Je ne parle pas français. prendre ist unregelmäßig: je prends, nous prenons."
       },
       "pronunciation": {
         "focus": "parle / parles / parlent",
@@ -3671,7 +3671,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Combien coûte ce billet ?",
-          "explanation": "Fragen: Où… ? Quand… ? Combien… ? Pourquoi… ? Est-ce que + Aussagesatz: est-ce que vous travaillez ? Besitz: notre/nos, votre/vos, leur/leurs."
+          "explanation": "Combien bedeutet „wie viel“: Combien coûte ce billet ?"
         },
         {
           "q": "Lies den Dialog: Où est votre voiture ? / Devant la maison. / Et vos vélos ? / Dans le garage.\nDie Fahrräder stehen …",
@@ -3681,7 +3681,7 @@ window.FR_A1_DATA = {
             "in der Garage"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
+          "explanation": "Dans le garage bedeutet „in der Garage“.",
           "audio": "Dans le garage."
         },
         {
@@ -3740,7 +3740,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Fragen: Où… ? Quand… ? Combien… ? Pourquoi… ? Est-ce que + Aussagesatz: est-ce que vous travaillez ? Besitz: notre/nos, votre/vos, leur/leurs."
+        "explanation": "Mit est-ce que machst du aus einer Aussage eine Ja/Nein-Frage: Vous travaillez. → Est-ce que vous travaillez ? Fragewörter wie où, quand und combien liefern gezielte Informationen. Besitz: notre/nos = unser/e, votre/vos = Ihr/e."
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
@@ -3844,7 +3844,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Hier, j’ai visité un musée.",
-          "explanation": "Begrenzter Einstieg: j’ai travaillé, j’ai mangé, j’ai visité. Passé composé hier mit avoir + vertrautem Partizip; keine vollständige Vergangenheitsgrammatik. Hier/demain/aujourd’hui helfen beim Zeitbezug."
+          "explanation": "Das passé composé steht hier mit avoir + Partizip: j’ai visité."
         },
         {
           "q": "Lies den Dialog: Tu as fait quoi hier ? / J’ai travaillé le matin. / Et le soir ? / J’ai regardé un film à la maison.\nAm Abend hat die Person …",
@@ -3854,7 +3854,7 @@ window.FR_A1_DATA = {
             "gearbeitet"
           ],
           "a": 1,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
+          "explanation": "J’ai regardé un film bedeutet „Ich habe einen Film gesehen“.",
           "audio": "J’ai regardé un film à la maison."
         },
         {
@@ -3913,7 +3913,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Begrenzter Einstieg: j’ai travaillé, j’ai mangé, j’ai visité. Passé composé hier mit avoir + vertrautem Partizip; keine vollständige Vergangenheitsgrammatik. Hier/demain/aujourd’hui helfen beim Zeitbezug."
+        "explanation": "Für eine einfache abgeschlossene Handlung benutzt du hier avoir + Partizip: j’ai travaillé, nous avons mangé, elle a visité. Das französische hier bedeutet „gestern“, aujourd’hui „heute“ und demain „morgen“; diese Wörter machen den Zeitbezug sofort klar."
       },
       "pronunciation": {
         "focus": "manger / mangé",
@@ -4025,7 +4025,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Je n’ai pas de lait.",
-          "explanation": "Du/de la/de l’/des für unbestimmte Mengen. Nach Verneinung meist de/d’: je n’ai pas de lait. Nach einer Mengenangabe: un litre de lait. Einfache Anweisungen: ajoutez, mélangez."
+          "explanation": "Nach der Verneinung wird der Teilungsartikel meist zu de: Je n’ai pas de lait."
         },
         {
           "q": "Lies den Dialog: Il faut quoi pour la soupe ? / Deux carottes, une pomme de terre et de l’eau. / Du lait aussi ? / Non, pas de lait.\nWas kommt nicht in die Suppe?",
@@ -4035,7 +4035,7 @@ window.FR_A1_DATA = {
             "Wasser"
           ],
           "a": 0,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
+          "explanation": "Non, pas de lait bedeutet „Nein, keine Milch“.",
           "audio": "Non, pas de lait."
         },
         {
@@ -4094,7 +4094,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Du/de la/de l’/des für unbestimmte Mengen. Nach Verneinung meist de/d’: je n’ai pas de lait. Nach einer Mengenangabe: un litre de lait. Einfache Anweisungen: ajoutez, mélangez."
+        "explanation": "Für nicht abgezählte Lebensmittelmengen stehen du, de la, de l’ oder des: du pain, de la farine, des œufs. Nach einer konkreten Menge steht de: un litre de lait. Nach Verneinung wird daraus meist de / d’: Je n’ai pas de lait."
       },
       "pronunciation": {
         "focus": "lait / les",
@@ -4168,7 +4168,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Je vais au Canada.",
-          "explanation": "Länder: en France/en Allemagne, au Canada, aux États-Unis. Herkunft: de France/d’Allemagne, du Canada. Devoir + Infinitiv: je dois partir. Orts- und Zeitangaben kombinieren."
+          "explanation": "Bei einem maskulinen Land steht au: au Canada."
         },
         {
           "q": "Lies den Dialog: Tu vas où en vacances ? / En France, à Lyon. / Tu pars quand ? / Lundi. Je prends le train.\nDie Reise geht …",
@@ -4178,8 +4178,8 @@ window.FR_A1_DATA = {
             "nach Lyon am Montag"
           ],
           "a": 2,
-          "explanation": "Suche die konkrete Angabe im Dialog.",
-          "audio": "Lundi. Je prends le train."
+          "explanation": "En France, à Lyon nennt das Ziel; lundi nennt den Reisetag.",
+          "audio": "En France, à Lyon. Lundi. Je prends le train."
         },
         {
           "q": "Wie sagst du „Ich fahre nach Frankreich.“?",
@@ -4267,7 +4267,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Länder: en France/en Allemagne, au Canada, aux États-Unis. Herkunft: de France/d’Allemagne, du Canada. Devoir + Infinitiv: je dois partir. Orts- und Zeitangaben kombinieren."
+        "explanation": "Für Reiseziele: en France / en Allemagne, au Canada, aux États-Unis. Für Herkunft ändern sich die Formen: de France, d’Allemagne, du Canada, des États-Unis. devoir + Infinitiv bedeutet „müssen“: Je dois partir."
       },
       "pronunciation": {
         "focus": "France / français",

@@ -2,170 +2,170 @@
 
 24 Lektionen / leçons / dersler
 
-## 1. Sein et les verbes de présentation
+## 1. Se présenter : sein, heißen et wohnen
 
 - Je peux me présenter avec mon nom, mon origine et ma ville.
 - Je peux demander ces informations à une autre personne.
 
-Le verbe change avec le sujet : ich bin, du bist, Sie sind. Au présent, heißen et wohnen donnent ich heiße / wohne, du heißt / wohnst, Sie heißen / wohnen. Dans une phrase simple, le verbe conjugué occupe la deuxième position.
+Pour te présenter, retiens surtout trois blocs : « Ich heiße … » (je m’appelle), « Ich komme aus … » (je viens de) et « Ich wohne in … » (j’habite à). Dans une phrase simple, le verbe conjugué reste en deuxième position.
 
-## 2. Questions avec wie et demande polie
+## 2. Épeler et demander de répéter
 
 - Je peux épeler mon nom et reconnaître des lettres.
 - Je peux demander à quelqu’un de répéter ou d’épeler.
 
-Une question avec un mot interrogatif suit le modèle wie + verbe + sujet. Pour une demande polie, utilise Können Sie …? et place l’infinitif à la fin : Können Sie das buchstabieren?
+Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Avec können, l’autre verbe reste à la fin.
 
-## 3. Nombres composés et date
+## 3. Nombres, téléphone et date
 
 - Je peux donner un numéro de téléphone et comprendre des nombres.
 - Je peux indiquer ma date de naissance.
 
-À partir de 21, on dit l’unité puis und puis la dizaine : einundzwanzig. Dans un numéro de téléphone, on peut dire les chiffres un par un. Pour une date, utilise am et un ordinal : am siebzehnten April.
+À partir de 21, l’allemand dit l’unité avant la dizaine : ein-und-zwanzig. Un numéro peut être dicté chiffre par chiffre. Pour une date, retiens le bloc « am + ordinal + mois » : am siebzehnten April.
 
-## 4. Am, um et von … bis
+## 4. Jour, heure et rendez-vous
 
 - Je peux comprendre et donner une heure.
 - Je peux fixer un rendez-vous avec un jour et une heure.
 
-Utilise am pour les jours et um pour une heure précise : am Mittwoch um zehn Uhr. Von … bis indique un intervalle. Attention : halb fünf signifie une demi-heure avant cinq heures, donc 4 h 30.
+Utilise « am » avec un jour et « um » avec une heure précise : am Mittwoch um zehn Uhr. « von … bis … » donne une plage horaire. « halb fünf » signifie 4 h 30, pas 5 h 30.
 
-## 5. Mein, meine et haben
+## 5. Famille et informations personnelles
 
 - Je peux présenter ma famille.
 - Je peux donner les informations personnelles demandées dans un formulaire.
 
-Les possessifs s’accordent avec le nom : mein Vater, meine Mutter, meine Kinder. Au présent : ich habe, du hast, wir haben. Le nombre allemand de Kinder est un pluriel, même si le possessif reste meine.
+Pour présenter ta famille, apprends le nom avec le possessif : mein Vater, meine Mutter, meine Eltern. Avec haben : ich habe, du hast, wir haben. Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.
 
-## 6. Commander avec möchten et l’accusatif
+## 6. Commander poliment
 
 - Je peux commander un repas et une boisson.
 - Je peux demander l’addition et préciser une préférence.
 
-Ich möchte et ich hätte gern permettent de commander poliment. Un nom masculin objet change ein en einen : einen Kaffee. Le féminin et le neutre restent eine Suppe et ein Wasser.
+« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ». Dans la commande, un nom masculin objet prend souvent « einen » : einen Kaffee ; le féminin et le neutre restent ici eine Suppe et ein Wasser.
 
-## 7. Wie viel, welches et das
+## 7. Prix, taille et achat
 
 - Je peux demander un prix, une taille et un produit.
 - Je peux décider d’acheter ou de refuser poliment.
 
-Wie viel kostet das? demande le prix d’un objet ; Wie viel kosten die Schuhe? concerne un pluriel. Das peut désigner l’article que tu montres. Apprends chaque nouveau nom avec son article : der Preis, die Größe, das Hemd.
+Pour le prix : « Wie viel kostet das? » ; pour la taille : « Welche Größe? ». Pour acheter, « Ich nehme das. » suffit ; pour refuser poliment : « Nein, danke. ». Apprends les noms de produits avec leur article.
 
-## 8. Articles et description avec haben
+## 8. Décrire un logement
 
 - Je peux décrire un logement avec quelques mots.
 - Je peux demander le loyer et organiser une visite.
 
-Un appartement se dit eine Wohnung. Avec haben, le masculin objet change : einen Balkon ; le féminin reste eine Wohnung. Les nombres permettent de décrire les pièces : zwei Zimmer. Frei signifie ici disponible.
+Pour dire ce qu’un logement possède, utilise « Die Wohnung hat … » ou « Es gibt … ». « zwei Zimmer » = deux pièces et « frei » signifie disponible dans une annonce. Pour le loyer : « Wie hoch ist die Miete? ».
 
-## 9. Impératif poli et mit
+## 9. Demander et expliquer un chemin
 
 - Je peux demander et comprendre un itinéraire simple.
 - Je peux nommer un moyen de transport et reconnaître un changement.
 
-Pour donner un itinéraire avec Sie, le verbe vient d’abord : Gehen Sie … ; Nehmen Sie …. Mit est suivi du datif : mit dem Bus, mit der Bahn. Apprends ces groupes comme des expressions complètes.
+Pour demander : « Wie komme ich zum Bahnhof? ». Dans une indication polie, le verbe vient d’abord : Gehen Sie…, Nehmen Sie…. Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».
 
-## 10. Als et le présent de arbeiten
+## 10. Métier, lieu de travail et horaires
 
 - Je peux dire mon métier et mes horaires.
 - Je peux décrire simplement mon lieu de travail.
 
-Pour un métier, utilise als : Ich arbeite als Verkäuferin. Arbeiten ajoute un e dans certaines formes : du arbeitest, er arbeitet. Von … bis donne les horaires ; im est la contraction de in dem.
+Pour le métier : « Ich bin Lehrer. » ou « Ich arbeite als Verkäuferin. » ; le métier reste souvent sans article. Pour le lieu : « Ich arbeite in … », et pour les horaires : « von acht bis sechzehn Uhr ».
 
-## 11. Depuis : seit et le présent
+## 11. Cours, durée et clarification
 
 - Je peux parler de mon cours et de mon apprentissage.
 - Je peux demander de répéter ou d’expliquer.
 
-Une activité commencée avant et encore actuelle s’exprime avec seit et le présent : Ich lerne seit sechs Monaten Deutsch. Dans une question avec wer, wo ou wann, le verbe suit le mot interrogatif.
+Pour une activité commencée avant et toujours actuelle, utilise « seit + présent » : Ich lerne seit sechs Monaten Deutsch. Pour demander de l’aide : « Können Sie das wiederholen? » ou « Was bedeutet das? ».
 
-## 12. Gern et la place du verbe
+## 12. Loisirs et préférences
 
 - Je peux parler de mes loisirs et de mes goûts.
 - Je peux proposer une activité pour le week-end.
 
-Gern indique qu’on aime faire une activité : Ich spiele gern Fußball. Si un complément vient au début, le verbe reste en deuxième position : Am Sonntag mache ich einen Ausflug. Le sujet vient alors après le verbe.
+« gern » indique qu’on aime faire quelque chose : Ich spiele gern Fußball. « lieber » marque une préférence : Ich gehe lieber ins Kino. Si tu commences par « Am Samstag », le verbe reste en deuxième position : Am Samstag spiele ich…
 
-## 13. Verbes séparables et möchten
+## 13. Hôtel, départ et arrivée
 
 - Je peux réserver une chambre et demander une information.
 - Je peux comprendre une heure de départ ou d’arrivée.
 
-Abfahren et ankommen sont séparables : le préfixe va à la fin au présent. Avec möchten, l’infinitif reste entier à la fin : Ich möchte ein Zimmer reservieren. Für donne ici la durée : für zwei Nächte.
+Pour réserver : « Ich möchte ein Zimmer reservieren. ». Les verbes abfahren et ankommen se séparent au présent : Der Zug fährt um 9 Uhr ab. / kommt um 11 Uhr an. Avec möchten, l’infinitif reste entier à la fin.
 
-## 14. Haben, sein et depuis quand
+## 14. Symptômes, durée et rendez-vous
 
 - Je peux décrire des symptômes simples et leur durée.
 - Je peux demander un rendez-vous médical.
 
-Utilise haben pour un symptôme : Ich habe Fieber. Utilise sein pour un état : Ich bin krank. Seit gestern indique que la situation a commencé hier et continue. Wie lange? demande sa durée.
+Pour un symptôme, utilise souvent « Ich habe … » : Ich habe Fieber / Husten. Pour l’état général : « Ich bin krank. ». « seit gestern » indique depuis quand le problème dure ; « Wie lange? » demande la durée.
 
-## 15. Invitation, négation et verbe séparable
+## 15. Inviter, accepter et refuser
 
 - Je peux accepter ou décliner une invitation.
 - Je peux écrire un court message avec les informations utiles.
 
-Ich komme gern accepte ; Leider kann ich nicht kommen décline. Avec können, l’infinitif va à la fin. Mitbringen se sépare seul au présent : Ich bringe einen Kuchen mit.
+Pour accepter : « Ja, gern. » ou « Ich komme gern. ». Pour refuser poliment : « Leider kann ich nicht kommen. ». Dans un message, donne clairement le jour, l’heure et le lieu avant la formule de fin.
 
-## 16. Expressions sans verbe et négation
+## 16. Comprendre panneaux et restrictions
 
 - Je peux comprendre des panneaux et des horaires.
 - Je peux repérer une interdiction ou une restriction.
 
-Les panneaux omettent souvent un verbe : Heute geschlossen. Kein accompagne un nom : kein Eingang. Nicht nie une action ou une propriété. Nur signifie seulement et limite l’accès : nur für Kunden.
+Les panneaux utilisent souvent des fragments : « Heute geschlossen » = fermé aujourd’hui, « Kein Eingang » = pas d’entrée, « Nur für Kunden » = réservé aux clients. Lis d’abord le mot qui indique l’action, l’interdiction ou la restriction.
 
-## 17. Können et impératif avec Sie
+## 17. Demander quelque chose poliment
 
 - Je peux demander un objet ou une aide poliment.
 - Je peux accepter ou refuser une demande.
 
-Können Sie …? met le verbe modal au début et l’infinitif à la fin. L’impératif poli suit le modèle verbe + Sie : Geben Sie mir bitte …. Bitte rend la demande plus polie, sans remplacer la structure.
+« Können Sie mir bitte … geben? » permet de demander un objet ou de l’aide. Une autre forme polie est « Geben Sie mir bitte … ». Pour répondre : « Ja, natürlich. » ou « Tut mir leid. ».
 
-## 18. Consignes avec Sie
+## 18. Comprendre les consignes
 
 - Je peux comprendre les consignes allemandes les plus fréquentes.
 - Je peux choisir une stratégie pour écouter, lire et écrire.
 
-Les consignes utilisent souvent l’impératif poli : Lesen Sie, Schreiben Sie, Stellen Sie …. Dans Kreuzen Sie … an, le verbe ankreuzen est séparé. Richtig ou falsch demande une décision vrai/faux, pas une traduction mot à mot.
+Repère d’abord le verbe de consigne : Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » demande vrai/faux. Comprendre l’action demandée évite de perdre des points avant même de traiter le contenu.
 
-## 19. Tut weh et tun weh
+## 19. Dire où tu as mal
 
 - Je peux nommer des parties du corps et expliquer une douleur.
 - Je peux préciser l’endroit où j’ai mal.
 
-Avec un sujet singulier : Mein Hals tut weh. Avec un pluriel : Meine Beine tun weh. Les possessifs suivent le nom : mein Kopf, meine Hand. Le nom de la partie du corps est le sujet de ces phrases.
+La partie du corps est le sujet : « Mein Hals tut weh » au singulier, « Meine Beine tun weh » au pluriel. Pour préciser un endroit, nomme directement la partie du corps plutôt que de traduire mot à mot le français.
 
-## 20. Es pour la météo et brauchen
+## 20. Météo et vêtements
 
 - Je peux décrire le temps et choisir des vêtements.
 - Je peux dire ce dont j’ai besoin selon la météo.
 
-La météo utilise souvent es : Es regnet, es ist kalt. Avec brauchen, l’objet est à l’accusatif : einen Mantel, eine Jacke, ein Hemd. Aujourd’hui et demain peuvent commencer la phrase ; le verbe reste en deuxième position.
+Pour la météo : « Es ist kalt/warm » et « Es regnet ». Pour dire ce qu’il te faut : « Ich brauche … » : einen Mantel, eine Jacke, ein Hemd. Si « Heute » commence la phrase, le verbe reste en deuxième position.
 
-## 21. Gern, lieber et lesen
+## 21. Cinéma, musique et lecture
 
 - Je peux parler de cinéma, de musique et de lecture.
 - Je peux proposer une sortie et comprendre son horaire.
 
-Gern indique une activité appréciée ; lieber exprime une préférence : Ich gehe lieber ins Kino. Lesen est irrégulier : ich lese, du liest, er liest. Ins est la contraction de in das lorsqu’on parle d’aller au cinéma.
+Pour dire ce que tu aimes faire : « Ich höre gern Musik / Ich lese gern. ». « lieber » compare deux préférences : Ich gehe lieber ins Kino. Pour proposer une sortie : « Möchtest du …? ».
 
-## 22. Rappeler et envoyer
+## 22. Téléphone et message
 
 - Je peux commencer un appel et laisser un message.
 - Je peux décrire un problème simple avec mon téléphone.
 
-Zurückrufen est séparable : Ich rufe Sie zurück. Avec können, il reste entier à la fin : Können Sie mich zurückrufen? Pour envoyer : Ich schicke dir eine Nachricht. Dir signifie à toi ; Ihnen signifie à vous, forme polie.
+Pour demander un rappel : « Können Sie mich zurückrufen? ». Au présent, zurückrufen se sépare : Ich rufe Sie zurück. Pour un message : « Ich schicke dir/Ihnen eine Nachricht. » ; garde la même forme d’adresse pendant tout l’échange.
 
-## 23. Formulaire et verbes séparables
+## 23. Formulaire et service postal
 
 - Je peux demander un formulaire et un service à la poste.
 - Je peux comprendre des champs et des horaires.
 
-Ausfüllen et anmelden se séparent au présent : Ich fülle das Formular aus ; Ich melde mich an. Avec möchten, l’infinitif reste entier. Le verbe réflexif anmelden demande ici mich lorsque le sujet est ich.
+Pour demander un formulaire : « Ich brauche ein Formular. ». « ausfüllen » = remplir, « unterschreiben » = signer, « sich anmelden » = s’inscrire. Avec möchten, l’infinitif reste entier à la fin : Ich möchte mich anmelden.
 
-## 24. Relier des phrases et réviser l’ordre
+## 24. Révision : répondre clairement
 
 - Je peux combiner présentation, question et demande.
 - Je peux produire un message simple en vérifiant les consignes.
 
-Und ajoute une information ; aber marque un contraste. Dans les phrases principales reliées, garde un verbe conjugué dans chaque partie. Révise le verbe en deuxième position, les questions et l’infinitif final après un modal.
+Pour une réponse A1, construis des phrases courtes : une information par phrase, verbe conjugué en deuxième position, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.

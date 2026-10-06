@@ -1,4 +1,4 @@
-const CACHE="spanisch-a1-dialog-v21";
+const CACHE="spanisch-a1-dialog-v22";
 const PREFIX="spanisch-a1-";
 const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-21","./app.js?v=dialog-21","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-21","../shared/lesson-flow.js?v=dialog-21","../shared/pronunciation.js?v=dialog-21","../shared/course-updates.css?v=dialog-21","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js?v=dialog-21","./data.js"];
 self.addEventListener('install', event => {

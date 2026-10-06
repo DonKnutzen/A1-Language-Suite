@@ -1,171 +1,171 @@
-# Spanisch A1 — Lernplan mit deutschen Erklärungen
+# Spanisch A1 Lernplan — deutsche Erklärungen
 
 24 Lektionen / leçons / dersler
 
-## 1. Llamarse, ser und vivir
+## 1. Sich vorstellen: me llamo, soy de, vivo en
 
 - Ich kann mich mit Namen, Herkunft und Wohnort vorstellen.
 - Ich kann dieselben Informationen erfragen.
 
-Me llamo heißt ich heiße. Für Herkunft nutzt du soy de, für den Wohnort vivo en. Spanische Personalpronomen können entfallen, wenn die Verbform klar ist. Soy, eres und es sind Formen von ser.
+Für eine Vorstellung reichen drei sichere Bausteine: « Me llamo … » (ich heiße), « Soy de … » (ich komme aus) und « Vivo en … » (ich wohne in). Das Personalpronomen kann meist wegfallen, weil die Verbform die Person zeigt.
 
-## 2. Fragen und höfliche Bitten
+## 2. Buchstabieren und nachfragen
 
 - Ich kann meinen Namen buchstabieren.
 - Ich kann um Wiederholung bitten und wichtige Laute unterscheiden.
 
-Cómo fragt nach der Art und Weise. ¿Cómo se escribe? bedeutet Wie schreibt man das? Puedes ist die du-Form von poder. Mit ¿Puedes repetir? bittest du um Wiederholung; die höfliche Sie-Form lautet ¿Puede repetir?
+« ¿Cómo se escribe? » heißt „Wie schreibt man das?“. Mit « ¿Puede repetir, por favor? » bittest du höflich um Wiederholung. Beim Buchstabieren zählt vor allem, die spanischen Buchstabennamen sicher zu erkennen.
 
-## 3. Zahlen und Datumsangaben
+## 3. Zahlen, Telefonnummer und Datum
 
 - Ich kann Zahlen und eine Telefonnummer nennen.
 - Ich kann ein Datum verstehen und angeben.
 
-Von 21 bis 29 werden Zahlen als ein Wort geschrieben, zum Beispiel veintidós. Ab 31 verbindet y die Zehner mit den Einern: treinta y dos. Ein Datum folgt dem Muster el + Zahl + de + Monat.
+16–19 und 21–29 werden zusammengeschrieben, z. B. dieciséis und veintidós. Ab 31 steht meist « Zehner + y + Einer »: treinta y dos. Ein Datum folgt « el + Zahl + de + Monat ».
 
-## 4. Ser, estar und hay unterscheiden
+## 4. Ser, estar und hay im Alltag
 
 - Ich kann Personen beschreiben und sagen, wo sie sind.
 - Ich kann sagen, was an einem Ort vorhanden ist.
 
-Ser beschreibt unter anderem Identität und Herkunft. Estar beschreibt einen Standort oder einen Zustand. Hay bedeutet es gibt; seine Form bleibt bei Einzahl und Mehrzahl gleich. Die Faustregel dauerhaft oder vorübergehend erklärt nicht alle Fälle.
+Nutze ser für Identität/Herkunft, estar für Standort/Zustand und hay für „es gibt“. Wichtig: « Hay una farmacia » nennt etwas Vorhandenes; « La farmacia está aquí » nennt den Ort einer bestimmten Sache.
 
-## 5. Possessivbegleiter und tener
+## 5. Familie: tener und Possessivbegleiter
 
 - Ich kann meine Familie vorstellen.
 - Ich kann ausdrücken, wem etwas gehört.
 
-Mi und tu stehen vor einem einzelnen Besitz, mis und tus vor mehreren: mi hermana, mis hermanos. Sie richten sich nach dem Besitz, nicht nach der besitzenden Person. Tener bedeutet haben: tengo, tienes, tiene.
+Mit tener sagst du, wen du in der Familie hast: « Tengo dos hermanos. ». Mi/mis und tu/tus richten sich nach dem Besitz: mi hermana, mis hermanos. Lerne Familienwörter am besten direkt mit dem passenden Possessiv.
 
-## 6. Reflexive Verben
+## 6. Tagesablauf mit Reflexivverben
 
 - Ich kann meinen Tagesablauf beschreiben.
 - Ich kann sagen, wann ich aufstehe und ins Bett gehe.
 
-Bei levantarse gehört ein Reflexivpronomen zum Verb: me levanto, te levantas, se levanta. Das Pronomen steht im einfachen Aussagesatz vor dem Verb. Andere Routineverben sind nicht reflexiv, etwa desayuno und trabajo.
+Bei levantarse gehört das Reflexivpronomen dazu: me levanto, te levantas, se levanta. Im einfachen Aussagesatz steht es vor dem Verb. Nicht jedes Routineverb ist reflexiv: desayuno und trabajo stehen ohne me/te/se.
 
-## 7. Es la una, son las und a las
+## 7. Uhrzeit und Termin
 
 - Ich kann Uhrzeiten und Wochentage nennen.
 - Ich kann einen Termin vereinbaren.
 
-Für ein Uhr ist es la una, für andere Stunden son las dos, tres usw. Ein Termin findet a la una oder a las dos statt. El lunes heißt am Montag; los lunes bedeutet montags, also regelmäßig.
+Für 1 Uhr: « Es la una »; ab 2 Uhr: « Son las dos/tres… ». Ein Termin ist « a la una » oder « a las dos ». « el lunes » meint diesen/am Montag, « los lunes » regelmäßig montags.
 
-## 8. Gustar und bestellen
+## 8. Bestellen und Vorlieben
 
 - Ich kann Essen bestellen und Vorlieben ausdrücken.
 - Ich kann um die Rechnung bitten.
 
-Bei gustar ist das, was gefällt, das grammatische Subjekt: me gusta el café, me gustan las manzanas. Ein Infinitiv verwendet gusta: me gusta cocinar. Quiero und quisiera sind hilfreiche Formen zum Bestellen; quisiera ist höflicher.
+Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form. Bei gustar richtet sich das Verb nach dem, was gefällt: « Me gusta el café », aber « Me gustan las manzanas ». Vor einem Infinitiv steht gusta: « Me gusta cocinar ».
 
-## 9. Cuánto und die Verbzahl
+## 9. Preis, Menge und Größe
 
 - Ich kann Preise, Mengen und Größen erfragen.
 - Ich kann etwas kaufen oder höflich ablehnen.
 
-¿Cuánto cuesta? fragt nach einem einzelnen Preis, ¿cuánto cuestan? nach dem Preis mehrerer Dinge. Cuánto verändert sich vor einem Nomen: cuánta leche, cuántos tomates. Necesito bedeutet ich brauche.
+Für einen Preis: « ¿Cuánto cuesta? », bei mehreren Dingen « ¿Cuánto cuestan? ». Vor einem Nomen passt sich cuánto an: cuánta leche, cuántos tomates. Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».
 
-## 10. Hay und estar im Wohnraum
+## 10. Wohnung: hay und estar
 
 - Ich kann eine Wohnung einfach beschreiben.
 - Ich kann nach Zimmern und Miete fragen.
 
-Mit hay sagst du, was vorhanden ist. Mit estar sagst du, wo etwas steht: La mesa está en la cocina. Ein Adjektiv folgt häufig dem Nomen und passt sich an: una cocina pequeña, dos habitaciones pequeñas.
+Mit hay sagst du, was vorhanden ist: « Hay dos habitaciones ». Mit estar sagst du, wo etwas ist: « La mesa está en la cocina ». Für die Miete: « ¿Cuánto cuesta al mes? ».
 
-## 11. Richtung mit a und Standort mit en
+## 11. Weg und Verkehrsmittel
 
 - Ich kann nach einem Weg fragen und Richtungen verstehen.
 - Ich kann ein Verkehrsmittel nennen.
 
-Voy a la estación beschreibt das Ziel. Estoy en la estación beschreibt den Standort. A + el wird zu al. Bei Wegangaben helfen sigue recto, a la derecha und a la izquierda.
+Für ein Ziel steht a: « Voy a la estación »; für den aktuellen Ort en: « Estoy en la estación ». Typische Richtungen sind « todo recto », « a la derecha » und « a la izquierda ».
 
-## 12. Trabajar und estudiar im Präsens
+## 12. Beruf, Studium und Arbeitsort
 
 - Ich kann meinen Beruf und mein Studium beschreiben.
 - Ich kann einfache Fragen zu Arbeitsort und Zeit beantworten.
 
-Regelmäßige Verben auf -ar bilden yo -o, tú -as und él/ella -a: trabajo, trabajas, trabaja. Für den Beruf ist soy profesor üblich, ohne un. En nennt einen Arbeitsort: trabajo en una oficina.
+Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Studium und Arbeit helfen « Estudio … » und « Trabajo en … ». Regelmäßige -ar-Verben wie trabajar folgen demselben Präsensmuster.
 
-## 13. Gustar mit Infinitiv und ir a
+## 13. Freizeit, Vorlieben und Pläne
 
 - Ich kann von Freizeit und Sport erzählen.
 - Ich kann eine gemeinsame Aktivität vorschlagen.
 
-Me gusta + Infinitiv beschreibt eine Vorliebe: me gusta nadar. Voy a + Infinitiv kann einen Plan ausdrücken: voy a jugar. Mit ¿Quieres …? fragst du, ob jemand etwas möchte.
+« Me gusta + Infinitiv » beschreibt eine Aktivität, die du gern machst: Me gusta nadar. « Voy a + Infinitiv » nennt einen Plan: Voy a jugar al tenis. « ¿Quieres …? » eignet sich für einen Vorschlag.
 
-## 14. Hace, hay und Kleidung
+## 14. Wetter und Kleidung
 
 - Ich kann das Wetter beschreiben.
 - Ich kann passende Kleidung nennen und auswählen.
 
-Für viele Wetterangaben steht hace: hace frío, hace calor. Llueve heißt es regnet; hay nubes heißt es gibt Wolken. Bei Kleidung stimmt das Adjektiv mit dem Nomen überein: una chaqueta roja.
+Für Wetter nutzt du häufig hace: hace frío/calor/sol. Eigene Verben sind llueve und nieva; mit Zuständen steht estar: está nublado. Kleidung beschreibst du mit passendem Genus: una chaqueta roja.
 
-## 15. Querer und ir a für Pläne
+## 15. Hotel und Reisepläne
 
 - Ich kann ein Zimmer reservieren und nach Leistungen fragen.
 - Ich kann Reisepläne ausdrücken.
 
-Quiero reservar enthält das konjugierte Verb und einen Infinitiv. Ir a + Infinitiv drückt einen Plan aus: voy a viajar. Para dos personas nennt hier die Personenzahl, por dos noches die Dauer.
+Für eine Reservierung: « Quisiera reservar una habitación … ». « por dos noches » nennt die Dauer; « para dos personas » die Personenzahl. Mit « voy a + Infinitiv » kannst du einen Reiseplan ausdrücken.
 
-## 16. Doler und tener
+## 16. Beschwerden und Apotheke
 
 - Ich kann Körperteile und einfache Beschwerden nennen.
 - Ich kann in einer Apotheke um Hilfe bitten.
 
-Doler funktioniert ähnlich wie gustar: me duele la cabeza, me duelen los pies. Das Verb richtet sich nach der schmerzenden Körperstelle. Andere Beschwerden verwenden tener: tengo fiebre, tengo tos.
+Doler richtet sich nach der schmerzenden Körperstelle: « Me duele la cabeza », aber « Me duelen los pies ». Andere Beschwerden stehen oft mit tener: tengo fiebre, tengo tos. In der Apotheke hilft « Necesito algo para … ».
 
-## 17. Te, me und eine Bitte mit poder
+## 17. Anrufen und Nachricht hinterlassen
 
 - Ich kann einen Anruf beginnen und eine Nachricht hinterlassen.
 - Ich kann eine einfache E-Mail schreiben.
 
-¿Puedes llamarme? heißt Kannst du mich anrufen? Bei einem Infinitiv kann me angehängt werden. In der einfachen Aussage steht das Pronomen vor dem Verb: te llamo. Die höfliche Anrede verwendet puede statt puedes.
+« ¿Puedes llamarme? » ist informell, « ¿Puede llamarme? » höflich. Bei einem Infinitiv kann das Pronomen angehängt werden: llamarme. In einer normalen Aussage steht es davor: « Te llamo mañana ».
 
-## 18. Necesitar und querer mit Nomen oder Infinitiv
+## 18. Am Schalter: Wunsch und Öffnungszeit
 
 - Ich kann am Schalter einen einfachen Wunsch äußern.
 - Ich kann Öffnungszeiten und Formulare verstehen.
 
-Necesito un formulario steht mit einem Nomen. Quiero enviar una carta steht mit einem Infinitiv. ¿A qué hora abre? fragt nach der Öffnungszeit. Abre und cierra sind Verbformen für öffnet und schließt.
+Mit « Necesito … » brauchst du ein Nomen; mit « Quiero + Infinitiv » nennst du eine Handlung: Quiero enviar una carta. « ¿A qué hora abre/cierra? » fragt nach Öffnungs- oder Schließzeit.
 
-## 19. Drei Verbgruppen im Präsens
+## 19. Regelmäßige Verben im Präsens
 
 - Ich kann regelmäßige Verben auf -ar, -er und -ir bilden.
 - Ich kann einfache Sätze über Alltagstätigkeiten schreiben.
 
-Entferne -ar, -er oder -ir und ergänze die passende Endung. Für yo haben alle drei Gruppen -o: hablo, como, vivo. Für tú stehen -as bei -ar und -es bei -er/-ir. Für nosotros: hablamos, comemos, vivimos.
+Entferne -ar, -er oder -ir und setze die passende Endung. Für yo endet jede Gruppe auf -o; bei tú steht -as für -ar und -es für -er/-ir. Übe die Formen immer in kurzen ganzen Sätzen.
 
-## 20. Tener, ir, querer und poder
+## 20. Häufige unregelmäßige Verben
 
 - Ich kann wichtige unregelmäßige Verben verwenden.
 - Ich kann Fähigkeit, Wunsch und Bewegung ausdrücken.
 
-Diese häufigen Verben lernst du als Formen: tengo/tienes, voy/vas, quiero/quieres und puedo/puedes. Querer und poder stehen oft vor einem Infinitiv. Bei ir folgt für ein Ziel a, für eine geplante Handlung a + Infinitiv.
+Lerne die häufigsten Formen als feste Bausteine: tengo, voy, quiero, puedo. Querer und poder stehen oft vor einem Infinitiv; ir a + Infinitiv beschreibt einen Plan.
 
-## 21. Genus, Plural und Adjektive
+## 21. Artikel, Plural und Adjektiv
 
 - Ich kann Artikel und Adjektive an ein Nomen anpassen.
 - Ich kann Einzahl und Mehrzahl unterscheiden.
 
-El/un stehen bei maskulinen, la/una bei femininen Nomen. Der Plural erhält oft -s nach einem Vokal und -es nach einem Konsonanten. Viele Adjektive auf -o wechseln zu -a und erhalten im Plural -s; andere, etwa grande, ändern nur die Zahl.
+Artikel und Adjektiv müssen zum Nomen passen: una casa blanca / dos casas blancas. Der Plural bekommt meist -s nach Vokal und -es nach Konsonant. Bei Ausnahmen wie la mano oder el día hilft nur das Lernen mit Artikel.
 
-## 22. Qué, dónde, de dónde und a dónde
+## 22. Gezielt fragen: dónde, de dónde, a dónde
 
 - Ich kann mit Fragewörtern gezielt Informationen erfragen.
 - Ich kann Orte, Ziele und Herkunft unterscheiden.
 
-Qué fragt was, quién wer, cuándo wann, cómo wie und por qué warum. Dónde fragt nach dem Ort, de dónde nach Herkunft und a dónde nach dem Ziel. De + el wird del, a + el wird al.
+« dónde » fragt nach dem Ort, « de dónde » nach der Herkunft und « a dónde » nach dem Ziel. Weitere zentrale Fragewörter sind qué, quién, cuándo, cómo und por qué.
 
-## 23. Angaben und einfache Verbindungen
+## 23. Formular und kurzer Aufgabentext
 
 - Ich kann ein einfaches Formular ausfüllen.
 - Ich kann einen kurzen Text passend zu einer konkreten Aufgabe schreiben.
 
-In Formularen genügen meist einzelne Angaben, etwa nombre oder dirección. In einem kurzen Text brauchst du ganze Sätze. Y verbindet Informationen, pero einen Gegensatz. Prüfe jeden verlangten Inhalt, statt einen allgemeinen Text auswendig zu lernen.
+Im Formular reichen einzelne Angaben in die passenden Felder. Bei einer Schreibaufgabe prüfst du zuerst die geforderten Punkte und beantwortest jeden mit einem kurzen Satz. Y verbindet Informationen, pero einen Gegensatz.
 
-## 24. Wiederholung: Aussagen, Fragen und Verknüpfung
+## 24. Wiederholen und gezielt antworten
 
 - Ich kann Vorstellung, Fragen und Alltagssituationen verbinden.
 - Ich kann gezielt meine noch unsicheren Themen wiederholen.
 
-Verbformen, ser/estar/hay und die Übereinstimmung von Nomen und Adjektiv helfen in allen Aufgaben. Baue kurze verständliche Sätze. Verknüpfe passende Informationen mit y oder pero und prüfe, ob deine Antwort die konkrete Frage trifft.
+Baue sichere A1-Sätze statt unnötig komplizierter Sätze. Prüfe bei jeder Aufgabe: richtige Verbform, passendes ser/estar/hay, passende Artikel/Adjektive und vor allem, ob du wirklich auf die Frage geantwortet hast.

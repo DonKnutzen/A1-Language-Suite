@@ -2,170 +2,170 @@
 
 24 Lektionen / leçons / dersler
 
-## 1. Sein ve tanışma fiilleri
+## 1. Kendini tanıtma: sein, heißen ve wohnen
 
 - Adımı, nereden geldiğimi ve nerede yaşadığımı söyleyebilirim.
 - Başka birine aynı bilgileri sorabilirim.
 
-Fiil özneye göre değişir: ich bin, du bist, Sie sind. Heißen ve wohnen fiilleriyle ich heiße / wohne, du heißt / wohnst, Sie heißen / wohnen kullanılır. Basit bir bildirme cümlesinde çekimli fiil ikinci konumdadır.
+Kendini tanıtmak için üç temel kalıbı güvenli kullan: « Ich heiße … » (adım …), « Ich komme aus … » (…’dan geliyorum) ve « Ich wohne in … » (…’da yaşıyorum). Basit cümlede çekimli fiil ikinci konumdadır.
 
-## 2. Wie ile soru ve kibar rica
+## 2. Harf harf söyleme ve tekrar isteme
 
 - Adımı harf harf söyleyebilirim.
 - Birinden tekrar etmesini veya adını harf harf söylemesini isteyebilirim.
 
-Soru sözcüğünden sonra çekimli fiil gelir: Wie schreibt man das? Kibar bir rica için Können Sie …? kullanılır; mastar sona gider: Können Sie das buchstabieren?
+Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini istemek için « Können Sie das bitte buchstabieren? » kullan. Anlamadıysan « Wie bitte? » ile tekrar isteyebilirsin.
 
-## 3. Birleşik sayılar ve tarihler
+## 3. Sayı, telefon ve tarih
 
 - Sayıları ve telefon numaramı söyleyebilirim.
 - Doğum tarihimi belirtip basit tarihleri anlayabilirim.
 
-21’den itibaren önce birler, sonra und, ardından onlar söylenir: einundzwanzig. Telefon numarası rakam rakam okunabilir. Tarihte am ve sıra sayısı kullanılır: am siebzehnten April.
+21’den sonra önce birler, sonra und, sonra onlar gelir: ein-und-zwanzig. Telefon numarası rakam rakam söylenebilir. Tarih için « am + sıra sayısı + ay » kalıbını öğren: am siebzehnten April.
 
-## 4. Am, um ve von … bis
+## 4. Gün, saat ve randevu
 
 - Saati sorup söyleyebilirim.
 - Bir gün ve saat belirterek randevu ayarlayabilirim.
 
-Günler için am, kesin saat için um kullanılır: am Mittwoch um zehn Uhr. Von … bis bir zaman aralığı belirtir. Halb fünf, saat beşe yarım saat kaldığını söyler: 4.30.
+Gün için am, kesin saat için um kullan: am Mittwoch um zehn Uhr. « von … bis … » saat aralığı verir. « halb fünf » 4.30 demektir, 5.30 değil.
 
-## 5. Mein, meine ve haben
+## 5. Aile ve kişisel bilgiler
 
 - Aile üyelerimi tanıtabilirim.
 - Bir formda istenen kişisel bilgileri verebilirim.
 
-İyelik sözcüğü isme göre değişir: mein Vater, meine Mutter, meine Kinder. Haben fiilinde ich habe, du hast, wir haben kullanılır. Çoğul Kinder için meine gerekir.
+Aileyi anlatırken iyelik sözcüğünü isimle birlikte öğren: mein Vater, meine Mutter, meine Eltern. Haben için temel biçimler ich habe, du hast, wir haben. Formlarda Vorname, Familienname, Geburtsort ve Geburtsdatum alanlarını ayırt et.
 
-## 6. Kibar sipariş ve Akkusativ
+## 6. Kibar sipariş verme
 
 - Yiyecek ve içecek sipariş edebilirim.
 - Bir tercih belirtip hesabı isteyebilirim.
 
-Ich möchte ve ich hätte gern, kibar sipariş vermek için kullanılır. Erkek isim doğrudan nesne olduğunda ein, einen olur: einen Kaffee. Dişil ve nötr örnekler eine Suppe ve ein Wasser biçimindedir.
+« Ich möchte … » ve « Ich hätte gern … » kibar sipariş kalıplarıdır. Erkek isim doğrudan nesne olduğunda « einen » kullanılır: einen Kaffee; dişil/nötr örneklerde eine Suppe, ein Wasser.
 
-## 7. Wie viel ve tekil-çoğul fiil
+## 7. Fiyat, beden ve satın alma
 
 - Fiyat, beden ve ürün sorabilirim.
 - Bir ürünü satın alabilir veya kibarca vazgeçebilirim.
 
-Tek ürün için Wie viel kostet das?, çoğul için Wie viel kosten die Schuhe? kullanılır. Das, gösterdiğin ürünü ifade edebilir. Yeni isimleri artikel ile öğren: der Preis, die Größe, das Hemd.
+Fiyat için « Wie viel kostet das? », beden için « Welche Größe? » sor. Satın almak için « Ich nehme das. », kibarca vazgeçmek için « Nein, danke. » yeterlidir.
 
-## 8. Artikel ve haben ile anlatım
+## 8. Evi anlatma
 
 - Bir evi birkaç basit cümleyle tarif edebilirim.
 - Kirayı sorup evi görmek için randevu isteyebilirim.
 
-Daire için eine Wohnung kullanılır. Haben sonrasında erkek isim nesne olduğunda einen Balkon denir; dişil isim eine Wohnung olarak kalır. Zwei Zimmer, iki oda anlamındadır. İlanda frei, müsait demektir.
+Bir evde ne olduğunu « Die Wohnung hat … » veya « Es gibt … » ile söyleyebilirsin. « zwei Zimmer » iki oda, ilandaki « frei » ise müsait demektir. Kira için « Wie hoch ist die Miete? » sorusu kullanılır.
 
-## 9. Sie ile emir ve mit
+## 9. Yol sorma ve tarif anlama
 
 - Basit bir yol tarifi isteyip anlayabilirim.
 - Ulaşım aracı ve aktarma bilgisini söyleyebilirim.
 
-Kibar yol tarifinde fiil başta gelir: Gehen Sie …, Nehmen Sie …. Mit sonrasında Dativ kullanılır: mit dem Bus, mit der Bahn. Bu ifadeleri bütün olarak öğren.
+Yol sormak için « Wie komme ich zum Bahnhof? ». Kibar tarifte fiil başta gelir: Gehen Sie…, Nehmen Sie…. Ulaşım için « mit dem Bus / mit der Bahn » kalıplarını bütün olarak öğren.
 
-## 10. Als ve arbeiten fiili
+## 10. Meslek, iş yeri ve saatler
 
 - Mesleğimi, iş yerimi ve çalışma saatlerimi söyleyebilirim.
 - İşle ilgili basit soruları yanıtlayabilirim.
 
-Meslek belirtirken als kullanılır: Ich arbeite als Verkäuferin. Arbeiten bazı çekimlerde e alır: du arbeitest, er arbeitet. Saat aralığı için von … bis kullanılır. Im, in dem birleşimidir.
+Meslek için « Ich bin Lehrer. » veya « Ich arbeite als Verkäuferin. »; iş yeri için « Ich arbeite in … ». Çalışma saatleri « von acht bis sechzehn Uhr » gibi verilir.
 
-## 11. Seit ve şimdiki zaman
+## 11. Kurs, süre ve açıklama isteme
 
 - Dil kursum ve öğrenme sürem hakkında konuşabilirim.
 - Tekrar veya açıklama isteyebilirim.
 
-Geçmişte başlayıp hâlâ süren bir etkinlik, seit ve Präsens ile anlatılır: Ich lerne seit sechs Monaten Deutsch. Wer, wo veya wann ile başlayan soruda fiil soru sözcüğünden sonra gelir.
+Geçmişte başlayıp hâlâ süren bir durum için « seit + Präsens » kullan: Ich lerne seit sechs Monaten Deutsch. Anlamadığında « Können Sie das wiederholen? » veya « Was bedeutet das? » diyebilirsin.
 
-## 12. Gern ve fiilin konumu
+## 12. Hobiler ve tercihler
 
 - Hobilerimi ve sevdiğim etkinlikleri anlatabilirim.
 - Hafta sonu için bir etkinlik önerebilirim.
 
-Gern, bir etkinliği severek yaptığını anlatır: Ich spiele gern Fußball. Cümle zaman ifadesiyle başlarsa çekimli fiil ikinci konumda kalır: Am Sonntag mache ich einen Ausflug. Özne bu durumda fiilden sonra gelir.
+« gern » bir etkinliği severek yaptığını söyler: Ich spiele gern Fußball. « lieber » iki seçenek arasında tercihi gösterir. Zaman ifadesi baştaysa fiil yine ikinci konumdadır: Am Sonntag spiele ich…
 
-## 13. Ayrılabilen fiiller ve möchten
+## 13. Otel, kalkış ve varış
 
 - Otel odası ayırtıp bilgi isteyebilirim.
 - Kalkış ve varış saatini anlayabilirim.
 
-Abfahren ve ankommen ayrılabilen fiillerdir; Präsens cümlesinde ön ek sona gider. Möchten ile mastar bölünmeden sonda kalır: Ich möchte ein Zimmer reservieren. Für zwei Nächte burada iki gecelik süreyi belirtir.
+Rezervasyon için « Ich möchte ein Zimmer reservieren. ». Abfahren ve ankommen ayrılabilir: Der Zug fährt … ab / kommt … an. Möchten ile diğer fiil mastar olarak sonda ve bölünmeden kalır.
 
-## 14. Haben, sein ve süre
+## 14. Belirti, süre ve doktor randevusu
 
 - Basit belirtileri ve sürelerini anlatabilirim.
 - Doktordan randevu isteyebilirim.
 
-Belirti için haben kullanılır: Ich habe Fieber. Durum için sein kullanılır: Ich bin krank. Seit gestern, dün başlayıp devam eden bir durumu anlatır. Wie lange? süresini sorar.
+Belirti için sıkça haben kullanılır: Ich habe Fieber / Husten. Genel durum için « Ich bin krank. ». « seit gestern » ne zamandan beri sürdüğünü, « Wie lange? » süresini sorar.
 
-## 15. Davet ve ayrılabilen fiil
+## 15. Davet, kabul ve ret
 
 - Bir daveti kabul edebilir veya kibarca reddedebilirim.
 - Gerekli bilgileri içeren kısa bir mesaj yazabilirim.
 
-Ich komme gern daveti kabul eder. Leider kann ich nicht kommen kibar bir ret olabilir. Können sonrasında mastar sona gider. Mitbringen tek başına çekildiğinde ayrılır: Ich bringe einen Kuchen mit.
+Kabul için « Ja, gern. / Ich komme gern. ». Kibar ret için « Leider kann ich nicht kommen. ». Kısa mesajda gün, saat ve yeri açıkça belirt.
 
-## 16. Fiilsiz ifadeler ve olumsuzluk
+## 16. Tabela ve kısıtlamaları anlama
 
 - Tabela ve çalışma saatlerini anlayabilirim.
 - Bir yasak veya sınırlamayı fark edebilirim.
 
-Tabelalarda fiil bulunmayabilir: Heute geschlossen. Kein bir ismi olumsuz yapar: kein Eingang. Nicht bir eylemi veya niteliği olumsuzlar. Nur, yalnızca anlamındadır: nur für Kunden.
+Tabelalarda tam cümle olmayabilir: « Heute geschlossen » = bugün kapalı, « Kein Eingang » = giriş yok, « Nur für Kunden » = yalnız müşteriler için. Önce yasak veya kısıtlamayı bildiren ana sözcüğü bul.
 
-## 17. Können ve Sie ile kibar emir
+## 17. Kibar rica ve yardım isteme
 
 - Bir nesneyi veya yardımı kibarca isteyebilirim.
 - Bir ricayı kabul edebilir veya reddedebilirim.
 
-Können Sie …? cümlesinde modal fiil başta, mastar sondadır. Kibar emir, fiil + Sie biçimindedir: Geben Sie mir bitte …. Bitte, cümleyi yumuşatır ama fiilin yerini değiştirmez.
+« Können Sie mir bitte … geben? » ile nesne veya yardım isteyebilirsin. Kibar emir biçimi de « Geben Sie mir bitte … » şeklindedir. Yanıt için « Ja, natürlich. » veya « Tut mir leid. » yeterlidir.
 
-## 18. Sie ile yönergeler
+## 18. Sınav yönergelerini anlama
 
 - Sık kullanılan Almanca yönergeleri anlayabilirim.
 - Dinleme, okuma ve yazma için bir yöntem seçebilirim.
 
-Yönergelerde sıkça Lesen Sie, Schreiben Sie, Stellen Sie kullanılır. Kreuzen Sie … an cümlesinde ankreuzen ayrılır. Richtig oder falsch, doğru-yanlış seçimi ister; bütün metni çevirmek şart değildir.
+Önce görev fiilini tanı: Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » doğru/yanlış kararı ister. Yönergeyi anlamak, içerik sorusuna geçmeden önce ilk adımdır.
 
-## 19. Günlük rutin ve ayrılabilen fiiller
+## 19. Günlük düzen ve sıra
 
 - Günlük düzenimi basit cümlelerle anlatabilirim.
 - Bir etkinliğin saatini ve sırasını söyleyebilirim.
 
-Aufstehen ayrılabilir: Ich stehe um sieben Uhr auf. Cümle zaman ifadesiyle başlarsa çekimli fiil ikinci konumda kalır: Um sieben Uhr stehe ich auf. Zuerst, dann ve danach etkinlikleri sıralar.
+Ayrılabilen fiilde ön ek sona gider: Ich stehe um sieben Uhr auf. Olayları sıraya koymak için zuerst, dann, danach kullan. Zaman ifadesi baştaysa fiil yine ikinci konumdadır.
 
-## 20. Hava için es ve brauchen
+## 20. Hava ve kıyafet
 
 - Hava durumunu anlatabilirim.
 - Havaya uygun kıyafetleri ve ihtiyacımı söyleyebilirim.
 
-Hava anlatımında sıkça es kullanılır: Es regnet, es ist kalt. Brauchen sonrasında nesne Akkusativ olur: einen Mantel, eine Jacke, ein Hemd. Heute ile başlanan cümlede fiil ikinci konumdadır.
+Hava için « Es ist kalt/warm » ve « Es regnet » kullan. İhtiyacını « Ich brauche … » ile söyle: einen Mantel, eine Jacke, ein Hemd. « Heute » başta olsa da fiil ikinci konumda kalır.
 
-## 21. Möchten, brauchen ve form alanları
+## 21. Banka/posta ve form alanları
 
 - Banka veya postada basit bir işlem isteyebilirim.
 - Bir formdaki alanları ve çalışma saatlerini anlayabilirim.
 
-Ich möchte ein Konto eröffnen cümlesinde möchten çekimlidir, eröffnen mastarı sondadır. Ich brauche eine Briefmarke bir nesne ihtiyacını belirtir. Form alanlarında Name, Vorname, Anschrift ve Unterschrift farklı bilgiler ister.
+İşlem istemek için « Ich möchte … »; ihtiyaç için « Ich brauche … » kullan. Formda Name, Vorname, Anschrift, Geburtsdatum ve Unterschrift farklı bilgiler ister.
 
-## 22. Zurückrufen ve schicken
+## 22. Telefon ve dijital mesaj
 
 - Telefonda kendimi tanıtabilir ve mesaj bırakabilirim.
 - Kısa bir dijital mesaj yazabilirim.
 
-Zurückrufen ayrılabilir: Ich rufe Sie zurück. Können ile bölünmeden sona gider: Können Sie mich zurückrufen? Dir, sana; Ihnen, kibar hitapla size anlamındadır: Ich schicke dir eine Nachricht.
+Geri arama istemek için « Können Sie mich zurückrufen? ». Zurückrufen tek başına çekildiğinde ayrılır: Ich rufe Sie zurück. Mesajda du/dir veya Sie/Ihnen hitabını tutarlı kullan.
 
-## 23. Kaputt, nicht ve modal fiiller
+## 23. Evde sorun bildirme
 
 - Ev işlerini ve günlük sorunları anlatabilirim.
 - Bir sorun için yardım veya çözüm isteyebilirim.
 
-Kaputt bozuk anlamındadır: Die Waschmaschine ist kaputt. Eylemi olumsuzlamak için nicht kullanılır: Sie funktioniert nicht. Müssen zorunluluk, können yapabilme veya rica belirtir. Modal fiilden sonra mastar sona gider.
+Önce sorunu açıkça söyle: « Die Waschmaschine ist kaputt. / Sie funktioniert nicht. ». Sonra isteğini ekle: « Können Sie mir helfen? ». Modal fiilden sonra mastar sonda kalır.
 
-## 24. Cümleleri bağlama ve sıra tekrarı
+## 24. Tekrar: kısa ve doğru yanıt
 
 - Kendimi tanıtma, soru ve rica kurma becerilerimi birleştirebilirim.
 - Hangi konuları tekrar etmem gerektiğini belirleyebilirim.
 
-Und bilgi ekler; aber karşıtlık gösterir. Bağlanan ana cümlelerin her birinde çekimli fiil bulunur. Fiilin ikinci konumunu, soru sırasını ve modal fiilden sonra mastarın sona gitmesini tekrar et.
+A1’de karmaşık cümle yerine güvenli kısa cümleler kur. Her ana cümlede çekimli fiilin yerini kontrol et; sonra und ile bilgi ekle, aber ile karşıtlık kur. En önemlisi görevin her noktasına cevap ver.

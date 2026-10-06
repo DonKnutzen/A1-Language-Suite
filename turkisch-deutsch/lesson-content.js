@@ -6,8 +6,8 @@ window.A1_COURSE_CONTENT=[
       "Başka birine aynı bilgileri sorabilirim."
     ],
     "grammar": {
-      "title": "Sein ve tanışma fiilleri",
-      "explanation": "Fiil özneye göre değişir: ich bin, du bist, Sie sind. Heißen ve wohnen fiilleriyle ich heiße / wohne, du heißt / wohnst, Sie heißen / wohnen kullanılır. Basit bir bildirme cümlesinde çekimli fiil ikinci konumdadır.",
+      "title": "Kendini tanıtma: sein, heißen ve wohnen",
+      "explanation": "Kendini tanıtmak için üç temel kalıbı güvenli kullan: « Ich heiße … » (adım …), « Ich komme aus … » (…’dan geliyorum) ve « Ich wohne in … » (…’da yaşıyorum). Basit cümlede çekimli fiil ikinci konumdadır.",
       "examples": [
         [
           "Ich wohne in Halifax.",
@@ -49,7 +49,7 @@ window.A1_COURSE_CONTENT=[
       "Kendimi metne bakmadan tanıtabilirim.",
       "Ich ile başlayan cümlede fiili doğru konuma yerleştiririm."
     ],
-    "tip": "Nereden geldiğin için aus Kanada, yaşadığın şehir için in Halifax kullan."
+    "tip": "Köken için aus, yaşadığın yer için in kullan."
   },
   {
     "id": 2,
@@ -58,8 +58,8 @@ window.A1_COURSE_CONTENT=[
       "Birinden tekrar etmesini veya adını harf harf söylemesini isteyebilirim."
     ],
     "grammar": {
-      "title": "Wie ile soru ve kibar rica",
-      "explanation": "Soru sözcüğünden sonra çekimli fiil gelir: Wie schreibt man das? Kibar bir rica için Können Sie …? kullanılır; mastar sona gider: Können Sie das buchstabieren?",
+      "title": "Harf harf söyleme ve tekrar isteme",
+      "explanation": "Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini istemek için « Können Sie das bitte buchstabieren? » kullan. Anlamadıysan « Wie bitte? » ile tekrar isteyebilirsin.",
       "examples": [
         [
           "Wie schreibt man das?",
@@ -101,7 +101,7 @@ window.A1_COURSE_CONTENT=[
       "Adımı yavaşça harf harf söyleyebilirim.",
       "Anlamadığımda açıklama isteyebilirim."
     ],
-    "tip": "Bir harfi tahmin etmek yerine Wie bitte? diyerek tekrar iste."
+    "tip": "Bir harfi tahmin etmek yerine tekrar iste."
   },
   {
     "id": 3,
@@ -110,8 +110,8 @@ window.A1_COURSE_CONTENT=[
       "Doğum tarihimi belirtip basit tarihleri anlayabilirim."
     ],
     "grammar": {
-      "title": "Birleşik sayılar ve tarihler",
-      "explanation": "21’den itibaren önce birler, sonra und, ardından onlar söylenir: einundzwanzig. Telefon numarası rakam rakam okunabilir. Tarihte am ve sıra sayısı kullanılır: am siebzehnten April.",
+      "title": "Sayı, telefon ve tarih",
+      "explanation": "21’den sonra önce birler, sonra und, sonra onlar gelir: ein-und-zwanzig. Telefon numarası rakam rakam söylenebilir. Tarih için « am + sıra sayısı + ay » kalıbını öğren: am siebzehnten April.",
       "examples": [
         [
           "Ich bin am siebzehnten April geboren.",
@@ -154,7 +154,7 @@ window.A1_COURSE_CONTENT=[
       "Birler basamağının önce söylendiğini bilirim.",
       "Doğum tarihimi söyleyebilirim."
     ],
-    "tip": "21, einundzwanzig olarak söylenir; Türkçedeki yirmi bir sırası kullanılmaz."
+    "tip": "21 = einundzwanzig; Türkçedeki yirmi bir sırası kullanılmaz."
   },
   {
     "id": 4,
@@ -163,8 +163,8 @@ window.A1_COURSE_CONTENT=[
       "Bir gün ve saat belirterek randevu ayarlayabilirim."
     ],
     "grammar": {
-      "title": "Am, um ve von … bis",
-      "explanation": "Günler için am, kesin saat için um kullanılır: am Mittwoch um zehn Uhr. Von … bis bir zaman aralığı belirtir. Halb fünf, saat beşe yarım saat kaldığını söyler: 4.30.",
+      "title": "Gün, saat ve randevu",
+      "explanation": "Gün için am, kesin saat için um kullan: am Mittwoch um zehn Uhr. « von … bis … » saat aralığı verir. « halb fünf » 4.30 demektir, 5.30 değil.",
       "examples": [
         [
           "Der Termin ist am Mittwoch um zehn Uhr.",
@@ -206,7 +206,7 @@ window.A1_COURSE_CONTENT=[
       "Halb fünf ifadesinin anlamını bilirim.",
       "Am ve um kullanımını ayırt ederim."
     ],
-    "tip": "Halb fünf, beş buçuk değil dört buçuktur."
+    "tip": "Randevuda gün ve saati birlikte söyle: am Dienstag um 14 Uhr."
   },
   {
     "id": 5,
@@ -215,8 +215,8 @@ window.A1_COURSE_CONTENT=[
       "Bir formda istenen kişisel bilgileri verebilirim."
     ],
     "grammar": {
-      "title": "Mein, meine ve haben",
-      "explanation": "İyelik sözcüğü isme göre değişir: mein Vater, meine Mutter, meine Kinder. Haben fiilinde ich habe, du hast, wir haben kullanılır. Çoğul Kinder için meine gerekir.",
+      "title": "Aile ve kişisel bilgiler",
+      "explanation": "Aileyi anlatırken iyelik sözcüğünü isimle birlikte öğren: mein Vater, meine Mutter, meine Eltern. Haben için temel biçimler ich habe, du hast, wir haben. Formlarda Vorname, Familienname, Geburtsort ve Geburtsdatum alanlarını ayırt et.",
       "examples": [
         [
           "Wir haben zwei Kinder.",
@@ -258,7 +258,7 @@ window.A1_COURSE_CONTENT=[
       "Mein Vater ve meine Mutter ifadelerini ayırt ederim.",
       "Geburtsort ve Geburtsdatum sözcüklerini anlarım."
     ],
-    "tip": "Geburtsort doğum yeri; Geburtsdatum doğum tarihidir."
+    "tip": "Geburtsort = doğum yeri; Geburtsdatum = doğum tarihi."
   },
   {
     "id": 6,
@@ -267,8 +267,8 @@ window.A1_COURSE_CONTENT=[
       "Bir tercih belirtip hesabı isteyebilirim."
     ],
     "grammar": {
-      "title": "Kibar sipariş ve Akkusativ",
-      "explanation": "Ich möchte ve ich hätte gern, kibar sipariş vermek için kullanılır. Erkek isim doğrudan nesne olduğunda ein, einen olur: einen Kaffee. Dişil ve nötr örnekler eine Suppe ve ein Wasser biçimindedir.",
+      "title": "Kibar sipariş verme",
+      "explanation": "« Ich möchte … » ve « Ich hätte gern … » kibar sipariş kalıplarıdır. Erkek isim doğrudan nesne olduğunda « einen » kullanılır: einen Kaffee; dişil/nötr örneklerde eine Suppe, ein Wasser.",
       "examples": [
         [
           "Ich hätte gern einen Kaffee.",
@@ -310,7 +310,7 @@ window.A1_COURSE_CONTENT=[
       "Metne bakmadan sipariş verebilirim.",
       "Etsiz ve hesap ifadelerini söyleyebilirim."
     ],
-    "tip": "Kaffee bu cümlede erkek cinsiyetli doğrudan nesnedir; einen Kaffee kullanılır."
+    "tip": "Hesap istemek için: « Die Rechnung, bitte. »"
   },
   {
     "id": 7,
@@ -319,8 +319,8 @@ window.A1_COURSE_CONTENT=[
       "Bir ürünü satın alabilir veya kibarca vazgeçebilirim."
     ],
     "grammar": {
-      "title": "Wie viel ve tekil-çoğul fiil",
-      "explanation": "Tek ürün için Wie viel kostet das?, çoğul için Wie viel kosten die Schuhe? kullanılır. Das, gösterdiğin ürünü ifade edebilir. Yeni isimleri artikel ile öğren: der Preis, die Größe, das Hemd.",
+      "title": "Fiyat, beden ve satın alma",
+      "explanation": "Fiyat için « Wie viel kostet das? », beden için « Welche Größe? » sor. Satın almak için « Ich nehme das. », kibarca vazgeçmek için « Nein, danke. » yeterlidir.",
       "examples": [
         [
           "Wie viel kosten die Schuhe?",
@@ -362,7 +362,7 @@ window.A1_COURSE_CONTENT=[
       "Kostet ile kosten arasındaki farkı bilirim.",
       "Bir beden ve fiyatı anlayabilirim."
     ],
-    "tip": "Almancada isimler büyük harfle başlar: Schuhe, Größe, Preis."
+    "tip": "Almancada isimler büyük harfle başlar: Preis, Größe, Schuhe."
   },
   {
     "id": 8,
@@ -371,8 +371,8 @@ window.A1_COURSE_CONTENT=[
       "Kirayı sorup evi görmek için randevu isteyebilirim."
     ],
     "grammar": {
-      "title": "Artikel ve haben ile anlatım",
-      "explanation": "Daire için eine Wohnung kullanılır. Haben sonrasında erkek isim nesne olduğunda einen Balkon denir; dişil isim eine Wohnung olarak kalır. Zwei Zimmer, iki oda anlamındadır. İlanda frei, müsait demektir.",
+      "title": "Evi anlatma",
+      "explanation": "Bir evde ne olduğunu « Die Wohnung hat … » veya « Es gibt … » ile söyleyebilirsin. « zwei Zimmer » iki oda, ilandaki « frei » ise müsait demektir. Kira için « Wie hoch ist die Miete? » sorusu kullanılır.",
       "examples": [
         [
           "Die Wohnung hat einen Balkon.",
@@ -414,7 +414,7 @@ window.A1_COURSE_CONTENT=[
       "Oda sayısını söyleyebilirim.",
       "Kira ve ek gider bilgilerini anlayabilirim."
     ],
-    "tip": "Ev ilanında frei, otomatik olarak ücretsiz anlamına gelmez."
+    "tip": "İlanda frei, ücretsiz değil müsait anlamına gelebilir."
   },
   {
     "id": 9,
@@ -423,8 +423,8 @@ window.A1_COURSE_CONTENT=[
       "Ulaşım aracı ve aktarma bilgisini söyleyebilirim."
     ],
     "grammar": {
-      "title": "Sie ile emir ve mit",
-      "explanation": "Kibar yol tarifinde fiil başta gelir: Gehen Sie …, Nehmen Sie …. Mit sonrasında Dativ kullanılır: mit dem Bus, mit der Bahn. Bu ifadeleri bütün olarak öğren.",
+      "title": "Yol sorma ve tarif anlama",
+      "explanation": "Yol sormak için « Wie komme ich zum Bahnhof? ». Kibar tarifte fiil başta gelir: Gehen Sie…, Nehmen Sie…. Ulaşım için « mit dem Bus / mit der Bahn » kalıplarını bütün olarak öğren.",
       "examples": [
         [
           "Ich fahre mit dem Bus.",
@@ -466,7 +466,7 @@ window.A1_COURSE_CONTENT=[
       "Links ve rechts sözcüklerini ayırt ederim.",
       "Mit dem Bus ifadesini kullanabilirim."
     ],
-    "tip": "Gleis tren yolu veya peronla ilgilidir; sokak anlamına gelmez."
+    "tip": "Gleis tren peronu/hat bilgisidir; sokak değildir."
   },
   {
     "id": 10,
@@ -475,8 +475,8 @@ window.A1_COURSE_CONTENT=[
       "İşle ilgili basit soruları yanıtlayabilirim."
     ],
     "grammar": {
-      "title": "Als ve arbeiten fiili",
-      "explanation": "Meslek belirtirken als kullanılır: Ich arbeite als Verkäuferin. Arbeiten bazı çekimlerde e alır: du arbeitest, er arbeitet. Saat aralığı için von … bis kullanılır. Im, in dem birleşimidir.",
+      "title": "Meslek, iş yeri ve saatler",
+      "explanation": "Meslek için « Ich bin Lehrer. » veya « Ich arbeite als Verkäuferin. »; iş yeri için « Ich arbeite in … ». Çalışma saatleri « von acht bis sechzehn Uhr » gibi verilir.",
       "examples": [
         [
           "Ich arbeite von acht bis sechzehn Uhr.",
@@ -518,7 +518,7 @@ window.A1_COURSE_CONTENT=[
       "Von Beruf sorusunu yanıtlayabilirim.",
       "Saat aralığı verebilirim."
     ],
-    "tip": "Sein veya als sonrasında meslek çoğu kez artikelsizdir: Ich bin Lehrer."
+    "tip": "Meslek, sein veya als sonrasında çoğu zaman artikelsiz kullanılır."
   },
   {
     "id": 11,
@@ -527,8 +527,8 @@ window.A1_COURSE_CONTENT=[
       "Tekrar veya açıklama isteyebilirim."
     ],
     "grammar": {
-      "title": "Seit ve şimdiki zaman",
-      "explanation": "Geçmişte başlayıp hâlâ süren bir etkinlik, seit ve Präsens ile anlatılır: Ich lerne seit sechs Monaten Deutsch. Wer, wo veya wann ile başlayan soruda fiil soru sözcüğünden sonra gelir.",
+      "title": "Kurs, süre ve açıklama isteme",
+      "explanation": "Geçmişte başlayıp hâlâ süren bir durum için « seit + Präsens » kullan: Ich lerne seit sechs Monaten Deutsch. Anlamadığında « Können Sie das wiederholen? » veya « Was bedeutet das? » diyebilirsin.",
       "examples": [
         [
           "Ich lerne seit sechs Monaten Deutsch.",
@@ -570,7 +570,7 @@ window.A1_COURSE_CONTENT=[
       "Ne kadar zamandır öğrendiğimi söyleyebilirim.",
       "Tekrar edilmesini isteyebilirim."
     ],
-    "tip": "Seit ile hâlâ devam eden bir durum için Präsens kullanılır."
+    "tip": "Seit ile devam eden durumlarda Almanca Präsens kullanır."
   },
   {
     "id": 12,
@@ -579,8 +579,8 @@ window.A1_COURSE_CONTENT=[
       "Hafta sonu için bir etkinlik önerebilirim."
     ],
     "grammar": {
-      "title": "Gern ve fiilin konumu",
-      "explanation": "Gern, bir etkinliği severek yaptığını anlatır: Ich spiele gern Fußball. Cümle zaman ifadesiyle başlarsa çekimli fiil ikinci konumda kalır: Am Sonntag mache ich einen Ausflug. Özne bu durumda fiilden sonra gelir.",
+      "title": "Hobiler ve tercihler",
+      "explanation": "« gern » bir etkinliği severek yaptığını söyler: Ich spiele gern Fußball. « lieber » iki seçenek arasında tercihi gösterir. Zaman ifadesi baştaysa fiil yine ikinci konumdadır: Am Sonntag spiele ich…",
       "examples": [
         [
           "Am Sonntag spiele ich Fußball.",
@@ -622,7 +622,7 @@ window.A1_COURSE_CONTENT=[
       "Gern ile sevdiğim bir etkinliği söyleyebilirim.",
       "Zaman ifadesinden sonra fiili doğru yerleştiririm."
     ],
-    "tip": "Am Sonntag ich spiele yerine Am Sonntag spiele ich denir."
+    "tip": "« Am Sonntag ich spiele … » değil, « Am Sonntag spiele ich … » de."
   },
   {
     "id": 13,
@@ -631,8 +631,8 @@ window.A1_COURSE_CONTENT=[
       "Kalkış ve varış saatini anlayabilirim."
     ],
     "grammar": {
-      "title": "Ayrılabilen fiiller ve möchten",
-      "explanation": "Abfahren ve ankommen ayrılabilen fiillerdir; Präsens cümlesinde ön ek sona gider. Möchten ile mastar bölünmeden sonda kalır: Ich möchte ein Zimmer reservieren. Für zwei Nächte burada iki gecelik süreyi belirtir.",
+      "title": "Otel, kalkış ve varış",
+      "explanation": "Rezervasyon için « Ich möchte ein Zimmer reservieren. ». Abfahren ve ankommen ayrılabilir: Der Zug fährt … ab / kommt … an. Möchten ile diğer fiil mastar olarak sonda ve bölünmeden kalır.",
       "examples": [
         [
           "Wann fährt der Bus ab?",
@@ -674,7 +674,7 @@ window.A1_COURSE_CONTENT=[
       "Bir oda ayırtabilirim.",
       "Abfahren ön ekini cümlenin sonunda tanırım."
     ],
-    "tip": "Wann fährt der Bus ab? cümlesinde ab atılmaz; sona yerleşir."
+    "tip": "Wann fährt der Bus ab? cümlesinde ab sona gider."
   },
   {
     "id": 14,
@@ -683,8 +683,8 @@ window.A1_COURSE_CONTENT=[
       "Doktordan randevu isteyebilirim."
     ],
     "grammar": {
-      "title": "Haben, sein ve süre",
-      "explanation": "Belirti için haben kullanılır: Ich habe Fieber. Durum için sein kullanılır: Ich bin krank. Seit gestern, dün başlayıp devam eden bir durumu anlatır. Wie lange? süresini sorar.",
+      "title": "Belirti, süre ve doktor randevusu",
+      "explanation": "Belirti için sıkça haben kullanılır: Ich habe Fieber / Husten. Genel durum için « Ich bin krank. ». « seit gestern » ne zamandan beri sürdüğünü, « Wie lange? » süresini sorar.",
       "examples": [
         [
           "Ich habe seit gestern Fieber.",
@@ -726,7 +726,7 @@ window.A1_COURSE_CONTENT=[
       "Ich bin krank ve ich habe Fieber ifadelerini ayırt ederim.",
       "Seit gestern diyebilirim."
     ],
-    "tip": "Ateş için Ich habe Fieber; hasta olduğun için Ich bin krank kullan."
+    "tip": "Ateş için « Ich habe Fieber » de."
   },
   {
     "id": 15,
@@ -735,8 +735,8 @@ window.A1_COURSE_CONTENT=[
       "Gerekli bilgileri içeren kısa bir mesaj yazabilirim."
     ],
     "grammar": {
-      "title": "Davet ve ayrılabilen fiil",
-      "explanation": "Ich komme gern daveti kabul eder. Leider kann ich nicht kommen kibar bir ret olabilir. Können sonrasında mastar sona gider. Mitbringen tek başına çekildiğinde ayrılır: Ich bringe einen Kuchen mit.",
+      "title": "Davet, kabul ve ret",
+      "explanation": "Kabul için « Ja, gern. / Ich komme gern. ». Kibar ret için « Leider kann ich nicht kommen. ». Kısa mesajda gün, saat ve yeri açıkça belirt.",
       "examples": [
         [
           "Ich bringe einen Kuchen mit.",
@@ -778,7 +778,7 @@ window.A1_COURSE_CONTENT=[
       "Mesajım istenen bilgilere yanıt verir.",
       "Daveti kibarca kabul edip reddedebilirim."
     ],
-    "tip": "Kişisel mesajın sonunda uygun kapanış ve adını yazmayı unutma."
+    "tip": "A1 düzeyinde kısa ve açık bir ret, uzun bir açıklamadan daha iyidir."
   },
   {
     "id": 16,
@@ -787,8 +787,8 @@ window.A1_COURSE_CONTENT=[
       "Bir yasak veya sınırlamayı fark edebilirim."
     ],
     "grammar": {
-      "title": "Fiilsiz ifadeler ve olumsuzluk",
-      "explanation": "Tabelalarda fiil bulunmayabilir: Heute geschlossen. Kein bir ismi olumsuz yapar: kein Eingang. Nicht bir eylemi veya niteliği olumsuzlar. Nur, yalnızca anlamındadır: nur für Kunden.",
+      "title": "Tabela ve kısıtlamaları anlama",
+      "explanation": "Tabelalarda tam cümle olmayabilir: « Heute geschlossen » = bugün kapalı, « Kein Eingang » = giriş yok, « Nur für Kunden » = yalnız müşteriler için. Önce yasak veya kısıtlamayı bildiren ana sözcüğü bul.",
       "examples": [
         [
           "Das Geschäft ist heute geschlossen.",
@@ -831,7 +831,7 @@ window.A1_COURSE_CONTENT=[
       "Nur, nicht ve kein sözcüklerini fark ederim.",
       "Açılış saatlerini anlayabilirim."
     ],
-    "tip": "Geschlossen kapalı; geöffnet açık demektir."
+    "tip": "geschlossen = kapalı; geöffnet = açık."
   },
   {
     "id": 17,
@@ -840,8 +840,8 @@ window.A1_COURSE_CONTENT=[
       "Bir ricayı kabul edebilir veya reddedebilirim."
     ],
     "grammar": {
-      "title": "Können ve Sie ile kibar emir",
-      "explanation": "Können Sie …? cümlesinde modal fiil başta, mastar sondadır. Kibar emir, fiil + Sie biçimindedir: Geben Sie mir bitte …. Bitte, cümleyi yumuşatır ama fiilin yerini değiştirmez.",
+      "title": "Kibar rica ve yardım isteme",
+      "explanation": "« Können Sie mir bitte … geben? » ile nesne veya yardım isteyebilirsin. Kibar emir biçimi de « Geben Sie mir bitte … » şeklindedir. Yanıt için « Ja, natürlich. » veya « Tut mir leid. » yeterlidir.",
       "examples": [
         [
           "Können Sie mir bitte helfen?",
@@ -892,8 +892,8 @@ window.A1_COURSE_CONTENT=[
       "Dinleme, okuma ve yazma için bir yöntem seçebilirim."
     ],
     "grammar": {
-      "title": "Sie ile yönergeler",
-      "explanation": "Yönergelerde sıkça Lesen Sie, Schreiben Sie, Stellen Sie kullanılır. Kreuzen Sie … an cümlesinde ankreuzen ayrılır. Richtig oder falsch, doğru-yanlış seçimi ister; bütün metni çevirmek şart değildir.",
+      "title": "Sınav yönergelerini anlama",
+      "explanation": "Önce görev fiilini tanı: Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » doğru/yanlış kararı ister. Yönergeyi anlamak, içerik sorusuna geçmeden önce ilk adımdır.",
       "examples": [
         [
           "Kreuzen Sie die richtige Lösung an.",
@@ -935,7 +935,7 @@ window.A1_COURSE_CONTENT=[
       "Her sözcüğü çevirmeden yönergeyi anlarım.",
       "Görevin ne istediğini kontrol ederim."
     ],
-    "tip": "Bir sözcük kayıtta geçti diye cevabı seçme; cümlenin anlamını kontrol et."
+    "tip": "Kayıtta aynı sözcüğü duymak tek başına doğru cevap olduğu anlamına gelmez."
   },
   {
     "id": 19,
@@ -944,8 +944,8 @@ window.A1_COURSE_CONTENT=[
       "Bir etkinliğin saatini ve sırasını söyleyebilirim."
     ],
     "grammar": {
-      "title": "Günlük rutin ve ayrılabilen fiiller",
-      "explanation": "Aufstehen ayrılabilir: Ich stehe um sieben Uhr auf. Cümle zaman ifadesiyle başlarsa çekimli fiil ikinci konumda kalır: Um sieben Uhr stehe ich auf. Zuerst, dann ve danach etkinlikleri sıralar.",
+      "title": "Günlük düzen ve sıra",
+      "explanation": "Ayrılabilen fiilde ön ek sona gider: Ich stehe um sieben Uhr auf. Olayları sıraya koymak için zuerst, dann, danach kullan. Zaman ifadesi baştaysa fiil yine ikinci konumdadır.",
       "examples": [
         [
           "Ich stehe um sieben Uhr auf.",
@@ -987,7 +987,7 @@ window.A1_COURSE_CONTENT=[
       "Auf ön ekini cümlenin sonunda kullanırım.",
       "Zaman ifadesinden sonra fiili doğru yerleştiririm."
     ],
-    "tip": "Um sieben Uhr ich stehe auf yerine Um sieben Uhr stehe ich auf denir."
+    "tip": "« Um sieben Uhr stehe ich auf » doğru sıradır."
   },
   {
     "id": 20,
@@ -996,8 +996,8 @@ window.A1_COURSE_CONTENT=[
       "Havaya uygun kıyafetleri ve ihtiyacımı söyleyebilirim."
     ],
     "grammar": {
-      "title": "Hava için es ve brauchen",
-      "explanation": "Hava anlatımında sıkça es kullanılır: Es regnet, es ist kalt. Brauchen sonrasında nesne Akkusativ olur: einen Mantel, eine Jacke, ein Hemd. Heute ile başlanan cümlede fiil ikinci konumdadır.",
+      "title": "Hava ve kıyafet",
+      "explanation": "Hava için « Es ist kalt/warm » ve « Es regnet » kullan. İhtiyacını « Ich brauche … » ile söyle: einen Mantel, eine Jacke, ein Hemd. « Heute » başta olsa da fiil ikinci konumda kalır.",
       "examples": [
         [
           "Heute brauche ich eine Jacke.",
@@ -1040,7 +1040,7 @@ window.A1_COURSE_CONTENT=[
       "Hava durumunu anlatabilirim.",
       "Heute sonrasında fiili doğru konuma koyarım."
     ],
-    "tip": "Yağmur yağıyor demek için Es regnet yeterlidir; kişi öznesi kullanılmaz."
+    "tip": "Yağmur için « Es regnet » yeterlidir."
   },
   {
     "id": 21,
@@ -1049,8 +1049,8 @@ window.A1_COURSE_CONTENT=[
       "Bir formdaki alanları ve çalışma saatlerini anlayabilirim."
     ],
     "grammar": {
-      "title": "Möchten, brauchen ve form alanları",
-      "explanation": "Ich möchte ein Konto eröffnen cümlesinde möchten çekimlidir, eröffnen mastarı sondadır. Ich brauche eine Briefmarke bir nesne ihtiyacını belirtir. Form alanlarında Name, Vorname, Anschrift ve Unterschrift farklı bilgiler ister.",
+      "title": "Banka/posta ve form alanları",
+      "explanation": "İşlem istemek için « Ich möchte … »; ihtiyaç için « Ich brauche … » kullan. Formda Name, Vorname, Anschrift, Geburtsdatum ve Unterschrift farklı bilgiler ister.",
       "examples": [
         [
           "Ich möchte ein Konto eröffnen.",
@@ -1092,7 +1092,7 @@ window.A1_COURSE_CONTENT=[
       "Bir işlem için kibar istek belirtebilirim.",
       "Adres ve imza alanını ayırt ederim."
     ],
-    "tip": "Anschrift adres; Unterschrift imza demektir."
+    "tip": "Anschrift = adres; Unterschrift = imza."
   },
   {
     "id": 22,
@@ -1101,8 +1101,8 @@ window.A1_COURSE_CONTENT=[
       "Kısa bir dijital mesaj yazabilirim."
     ],
     "grammar": {
-      "title": "Zurückrufen ve schicken",
-      "explanation": "Zurückrufen ayrılabilir: Ich rufe Sie zurück. Können ile bölünmeden sona gider: Können Sie mich zurückrufen? Dir, sana; Ihnen, kibar hitapla size anlamındadır: Ich schicke dir eine Nachricht.",
+      "title": "Telefon ve dijital mesaj",
+      "explanation": "Geri arama istemek için « Können Sie mich zurückrufen? ». Zurückrufen tek başına çekildiğinde ayrılır: Ich rufe Sie zurück. Mesajda du/dir veya Sie/Ihnen hitabını tutarlı kullan.",
       "examples": [
         [
           "Ich rufe Sie morgen zurück.",
@@ -1144,7 +1144,7 @@ window.A1_COURSE_CONTENT=[
       "Telefonda kendimi tanıtabilirim.",
       "Geri arama isteyebilirim."
     ],
-    "tip": "Du/dir ile samimi hitap; Sie/Ihnen ile kibar hitap kullanılır. Mesaj içinde tutarlı ol."
+    "tip": "dir = sana; Ihnen = kibar biçimde size."
   },
   {
     "id": 23,
@@ -1153,8 +1153,8 @@ window.A1_COURSE_CONTENT=[
       "Bir sorun için yardım veya çözüm isteyebilirim."
     ],
     "grammar": {
-      "title": "Kaputt, nicht ve modal fiiller",
-      "explanation": "Kaputt bozuk anlamındadır: Die Waschmaschine ist kaputt. Eylemi olumsuzlamak için nicht kullanılır: Sie funktioniert nicht. Müssen zorunluluk, können yapabilme veya rica belirtir. Modal fiilden sonra mastar sona gider.",
+      "title": "Evde sorun bildirme",
+      "explanation": "Önce sorunu açıkça söyle: « Die Waschmaschine ist kaputt. / Sie funktioniert nicht. ». Sonra isteğini ekle: « Können Sie mir helfen? ». Modal fiilden sonra mastar sonda kalır.",
       "examples": [
         [
           "Ich muss die Küche putzen.",
@@ -1196,7 +1196,7 @@ window.A1_COURSE_CONTENT=[
       "Bir eşyanın çalışmadığını söyleyebilirim.",
       "Modal fiilden sonra mastarı sona koyarım."
     ],
-    "tip": "Die Waschmaschine funktioniert nicht cümlesinde olumsuzluk sözcüğü nicht kullanılır."
+    "tip": "Sorun bildirirken kısa, somut iki cümle A1 için yeterlidir."
   },
   {
     "id": 24,
@@ -1205,8 +1205,8 @@ window.A1_COURSE_CONTENT=[
       "Hangi konuları tekrar etmem gerektiğini belirleyebilirim."
     ],
     "grammar": {
-      "title": "Cümleleri bağlama ve sıra tekrarı",
-      "explanation": "Und bilgi ekler; aber karşıtlık gösterir. Bağlanan ana cümlelerin her birinde çekimli fiil bulunur. Fiilin ikinci konumunu, soru sırasını ve modal fiilden sonra mastarın sona gitmesini tekrar et.",
+      "title": "Tekrar: kısa ve doğru yanıt",
+      "explanation": "A1’de karmaşık cümle yerine güvenli kısa cümleler kur. Her ana cümlede çekimli fiilin yerini kontrol et; sonra und ile bilgi ekle, aber ile karşıtlık kur. En önemlisi görevin her noktasına cevap ver.",
       "examples": [
         [
           "Ich komme gern, aber ich komme später.",
@@ -1248,6 +1248,6 @@ window.A1_COURSE_CONTENT=[
       "İstenen noktaları kopyalamadan yanıtlayabilirim.",
       "Tekrar etmem gereken konuları bilirim."
     ],
-    "tip": "Test puanı tek başına yeterli değildir; konuşma ve yazmayı da örneğe bakmadan dene."
+    "tip": "Sadece test puanına değil, örneksiz konuşma ve yazmaya da bak."
   }
 ];

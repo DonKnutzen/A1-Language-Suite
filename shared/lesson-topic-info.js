@@ -4,42 +4,55 @@
   const I={
     francais:{
       2:[
-        ['Buchstabieren: wichtige französische Buchstabennamen',`<p>Beim Buchstabieren zählt der <strong>Name des Buchstabens</strong>, nicht sein Laut im Wort. Besonders ungewohnt sind z. B. <strong>G = gé</strong>, <strong>J = ji</strong>, <strong>H = hache</strong>, <strong>Q = qu</strong>, <strong>U = u</strong>, <strong>W = double vé</strong> und <strong>Y = i grec</strong>.</p><p>Akzente werden mitgenannt: <strong>é = e accent aigu</strong>, <strong>è = e accent grave</strong>, <strong>ê = e accent circonflexe</strong>, <strong>ç = c cédille</strong>.</p>`]
+        ['Buchstabieren: wichtige Buchstabennamen',`<p>Beim Buchstabieren sagst du den <strong>Namen des Buchstabens</strong>. Besonders nützlich: <strong>G = gé</strong>, <strong>J = ji</strong>, <strong>H = hache</strong>, <strong>Q = qu</strong>, <strong>W = double vé</strong> und <strong>Y = i grec</strong>.</p><p>Akzente kannst du mitnennen: <strong>é = e accent aigu</strong>, <strong>è = e accent grave</strong>, <strong>ç = c cédille</strong>.</p>`]
       ],
       3:[
-        ['Zahlen 0–69: erst Grundzahlen, dann Muster',`<p>Lerne zuerst <strong>0–20</strong> sicher. Danach sind 30, 40, 50 und 60 regelmäßige Bausteine.</p><div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Zahl</th><th>Französisch</th><th>Muster</th></tr></thead><tbody><tr><td>21</td><td>vingt et un</td><td>20 + et + 1</td></tr><tr><td>22</td><td>vingt-deux</td><td>20 + 2</td></tr><tr><td>31</td><td>trente et un</td><td>30 + et + 1</td></tr><tr><td>42</td><td>quarante-deux</td><td>40 + 2</td></tr><tr><td>61</td><td>soixante et un</td><td>60 + et + 1</td></tr></tbody></table></div><p><strong>Merke:</strong> Bei 21, 31, 41, 51 und 61 steht normalerweise <em>et un</em>.</p>`],
-        ['70–99: die französische Zahlenlogik',`<p>Ab 70 wird nicht einfach ein neuer Zehnername verwendet:</p><div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Zahl</th><th>Französisch</th><th>Gedanke</th></tr></thead><tbody><tr><td>70</td><td>soixante-dix</td><td>60 + 10</td></tr><tr><td>71</td><td>soixante et onze</td><td>60 + 11</td></tr><tr><td>72</td><td>soixante-douze</td><td>60 + 12</td></tr><tr><td>80</td><td>quatre-vingts</td><td>4 × 20</td></tr><tr><td>81</td><td>quatre-vingt-un</td><td>80 + 1</td></tr><tr><td>90</td><td>quatre-vingt-dix</td><td>80 + 10</td></tr><tr><td>91</td><td>quatre-vingt-onze</td><td>80 + 11</td></tr></tbody></table></div><p><strong>Wichtig:</strong> <em>quatre-vingts</em> hat bei genau 80 ein <strong>-s</strong>. Sobald noch eine Zahl folgt, fällt es weg: <em>quatre-vingt-un</em>.</p>`],
-        ['Telefonnummern und Zahlen im Alltag',`<p>Telefonnummern können je nach Land unterschiedlich gruppiert werden. In Frankreich hört man häufig Zweiergruppen, z. B. <em>06 12 20 30 40</em> → <em>zéro six, douze, vingt, trente, quarante</em>. Für Postleitzahlen, Zimmer- oder Hausnummern musst du Zahlen außerdem einzeln oder als ganze Zahl erkennen können.</p>`]
+        ['Zahlen bis 69: das Grundmuster',`<p>Lerne <strong>0–20</strong> sicher. Danach werden die Zehner regelmäßig kombiniert: <em>vingt-deux</em> (22), <em>trente et un</em> (31), <em>quarante-deux</em> (42). Bei 21, 31, 41, 51 und 61 steht normalerweise <strong>et un</strong>.</p>`],
+        ['70–99: die besondere Zahlenlogik',`<p><strong>70 = soixante-dix</strong> (60 + 10), <strong>80 = quatre-vingts</strong> (4 × 20), <strong>90 = quatre-vingt-dix</strong> (80 + 10). Bei genau 80 steht ein <strong>-s</strong>; mit weiterer Zahl fällt es weg: <em>quatre-vingt-un</em>.</p>`],
+        ['Telefonnummern verstehen',`<p>In Frankreich werden Telefonnummern häufig in Zweiergruppen gesprochen: <em>06 12 20 30 40</em> → <em>zéro six, douze, vingt, trente, quarante</em>. Deshalb solltest du sowohl einzelne Ziffern als auch kleine Zahlengruppen erkennen.</p>`]
       ],
       4:[
-        ['Uhrzeit und Datum richtig lesen',`<p>Für die Uhrzeit steht <strong>il est</strong>: <em>Il est neuf heures.</em> Häufig sind auch <em>et quart</em>, <em>et demie</em> und <em>moins le quart</em>. Für einen Termin benutzt du <strong>à</strong>: <em>à dix heures</em>.</p><p>Ein Datum wird mit Artikel gesprochen: <em>Nous sommes le cinq octobre.</em> Nur der erste Tag eines Monats ist <em>le premier</em>.</p>`]
+        ['Uhrzeit: drei häufige Formen',`<p><em>quatre heures et quart</em> = 4:15, <em>quatre heures et demie</em> = 4:30, <em>cinq heures moins le quart</em> = 4:45. Für einen Termin steht <strong>à</strong>: <em>à dix heures</em> = „um zehn Uhr“.</p>`]
       ],
       6:[
-        ['Bestellen, Mengen und Vorlieben unterscheiden',`<p><strong>Je voudrais…</strong> ist eine höfliche Bestellung. Für unbestimmte Mengen verwendest du oft <em>du / de la / de l’</em>: <em>du pain, de la soupe, de l’eau</em>. Nach einer Mengenangabe folgt dagegen <strong>de</strong>: <em>un verre de lait</em>.</p><p>Bei einer allgemeinen Vorliebe steht meist der bestimmte Artikel: <em>J’aime le café.</em></p>`]
+        ['Höflich im Restaurant bestellen',`<p><strong>Je voudrais…</strong> = „Ich hätte gern…“ und <strong>s’il vous plaît</strong> = „bitte“. Für die Rechnung reicht <em>L’addition, s’il vous plaît.</em> Für eine einfache Vorliebe kannst du sagen: <em>Mon plat préféré, c’est la pizza.</em> = „Mein Lieblingsgericht ist Pizza.“</p>`]
       ],
       7:[
-        ['Preise und Mengen verstehen',`<p>Bei Preisen hörst du häufig Euro und Centime getrennt: <em>19,50 €</em> kann als <em>dix-neuf euros cinquante</em> gesprochen werden. Nach Gewicht oder Behälter steht <strong>de</strong>: <em>un kilo de pommes, une bouteille d’eau, deux cents grammes de fromage</em>.</p>`]
+        ['Preise richtig verstehen',`<p><em>19,50 €</em> kann als <em>dix-neuf euros cinquante</em> gesprochen werden. Für die Frage nach dem Preis ist <strong>Combien ça coûte ?</strong> die einfachste sichere Form.</p>`]
       ],
       9:[
-        ['Wegbeschreibung als Reihenfolge verstehen',`<p>Eine typische Wegbeschreibung besteht aus kurzen Schritten: <strong>d’abord</strong> (zuerst), <strong>puis</strong> (dann), <strong>ensuite</strong> (anschließend). Häufige Formen sind <em>allez tout droit</em>, <em>tournez à gauche/droite</em> und <em>prenez la ligne 8</em>.</p>`]
+        ['Wegbeschreibung als Reihenfolge verstehen',`<p>Höre auf die Reihenfolge: <strong>d’abord</strong> = zuerst, <strong>puis</strong> = dann, <strong>ensuite</strong> = danach. Typische Anweisungen sind <em>allez tout droit</em>, <em>tournez à gauche / à droite</em> und <em>prenez la ligne 8</em>.</p>`]
+      ],
+      10:[
+        ['travailler als regelmäßiges -er-Verb',`<p>Bei regelmäßigen <strong>-er-Verben</strong> fällt <em>-er</em> weg. Für diese Lektion reichen vor allem: <em>je travaille</em>, <em>tu travailles</em>, <em>il/elle travaille</em>, <em>nous travaillons</em>, <em>vous travaillez</em>, <em>ils/elles travaillent</em>.</p>`]
+      ],
+      12:[
+        ['avoir mal à: die Formen',`<p><strong>à + le → au</strong>: <em>J’ai mal au dos.</em> · <strong>à la</strong> bleibt: <em>J’ai mal à la tête.</em> · <strong>à + les → aux</strong>: <em>J’ai mal aux dents.</em></p>`]
       ],
       13:[
-        ['Wetter: il fait, il y a oder eigenes Verb?',`<p><strong>Il fait</strong> steht bei vielen Wetterbeschreibungen: <em>il fait froid / chaud / beau</em>. <strong>Il y a</strong> steht bei Nomen: <em>il y a du vent</em>. Regen hat ein eigenes Verb: <em>il pleut</em>.</p>`]
+        ['Wetter: welches Muster?',`<p><strong>il fait</strong> + Beschreibung: <em>il fait froid / chaud / beau</em>. <strong>il y a</strong> + Nomen: <em>il y a du vent</em>. Für Regen benutzt du das eigene Verb <em>il pleut</em>.</p>`]
+      ],
+      14:[
+        ['Vorlieben und Aktivitäten unterscheiden',`<p><strong>aimer + Nomen:</strong> <em>J’aime le football.</em> · <strong>aimer + Infinitiv:</strong> <em>J’aime voyager.</em> Für Aktivitäten begegnen dir häufig <em>faire du sport</em> und <em>jouer au tennis</em>.</p>`]
+      ],
+      16:[
+        ['Zusage und Absage als feste Sätze',`<p><em>Oui, avec plaisir.</em> = „Ja, gerne.“ · <em>Ça me va.</em> = „Das passt mir.“ · <em>Je suis désolé, je ne peux pas venir.</em> = „Tut mir leid, ich kann nicht kommen.“</p>`]
       ],
       17:[
-        ['Formulare: typische Felder',`<div class="grammar-table-wrap"><table class="grammar-table"><tbody><tr><td><strong>Nom</strong></td><td>Nachname</td></tr><tr><td><strong>Prénom</strong></td><td>Vorname</td></tr><tr><td><strong>Date de naissance</strong></td><td>Geburtsdatum</td></tr><tr><td><strong>Nationalité</strong></td><td>Staatsangehörigkeit</td></tr><tr><td><strong>Adresse électronique</strong></td><td>E-Mail-Adresse</td></tr><tr><td><strong>Signature</strong></td><td>Unterschrift</td></tr></tbody></table></div>`]
+        ['Typische Formularfelder',`<div class="grammar-table-wrap"><table class="grammar-table"><tbody><tr><td><strong>Nom</strong></td><td>Nachname</td></tr><tr><td><strong>Prénom</strong></td><td>Vorname</td></tr><tr><td><strong>Date de naissance</strong></td><td>Geburtsdatum</td></tr><tr><td><strong>Nationalité</strong></td><td>Staatsangehörigkeit</td></tr><tr><td><strong>Adresse électronique</strong></td><td>E-Mail-Adresse</td></tr><tr><td><strong>Signature</strong></td><td>Unterschrift</td></tr></tbody></table></div>`],
+        ['Kurze Nachricht: was wirklich nötig ist',`<p>Für A1 reicht eine klare Struktur: <strong>Anrede → wichtige Information → ggf. Frage/Bitte → Gruß</strong>. Kurze, korrekte Sätze sind besser als komplizierte Formulierungen.</p>`]
       ],
       18:[
-        ['Wenn du etwas nicht verstehst',`<p>Für A1 ist es völlig legitim, um Wiederholung zu bitten. Lerne diese Sätze als feste Werkzeuge: <em>Pouvez-vous répéter, s’il vous plaît ?</em>, <em>Plus lentement, s’il vous plaît.</em>, <em>Qu’est-ce que ça veut dire ?</em> und <em>Comment dit-on … en français ?</em></p>`]
+        ['Vier Sätze für Verständnisprobleme',`<p><em>Pouvez-vous répéter, s’il vous plaît ?</em> = „Können Sie bitte wiederholen?“ · <em>Plus lentement, s’il vous plaît.</em> = „Bitte langsamer.“ · <em>Qu’est-ce que ça veut dire ?</em> = „Was bedeutet das?“ · <em>Comment dit-on … en français ?</em> = „Wie sagt man … auf Französisch?“</p>`]
       ],
       22:[
-        ['Passé composé: nur der A1-Grundgedanke',`<p>Für eine abgeschlossene Handlung verwendest du hier <strong>avoir + participe passé</strong>: <em>j’ai travaillé, nous avons mangé, elle a visité</em>. Zeitwörter wie <em>hier</em> oder <em>ce matin</em> zeigen klar, dass es um Vergangenes geht. In dieser Lektion musst du noch nicht alle Ausnahmen beherrschen.</p>`]
+        ['Passé composé: nur das Muster dieser Lektion',`<p>Für die hier geübten abgeschlossenen Handlungen verwendest du <strong>avoir + Partizip</strong>: <em>j’ai travaillé</em>, <em>nous avons mangé</em>, <em>elle a visité</em>. Du musst in dieser Lektion noch nicht alle Vergangenheitsformen und Ausnahmen beherrschen.</p>`]
       ],
       23:[
-        ['Rezeptmengen lesen',`<p>Nach einer konkreten Menge steht <strong>de</strong>: <em>200 grammes de farine, un litre de lait</em>. Bei einer unbestimmten Menge stehen Teilungsartikel: <em>du sucre, de la farine, de l’eau</em>. Bei Anweisungen begegnen dir Imperative wie <em>ajoutez</em> und <em>mélangez</em>.</p>`]
+        ['Rezeptmengen lesen',`<p><strong>Konkrete Menge + de:</strong> <em>200 grammes de farine, un litre de lait</em>. <strong>Nicht abgezählte Menge:</strong> <em>du sucre, de la farine, de l’eau</em>. In Anweisungen begegnen dir Formen wie <em>ajoutez</em> („geben Sie hinzu“) und <em>mélangez</em> („mischen Sie“).</p>`]
       ],
       24:[
-        ['Länder: en, au, aux und Herkunft',`<p>Bei vielen femininen Ländern steht <strong>en</strong>: <em>en France, en Allemagne</em>. Bei maskulinen Ländern steht oft <strong>au</strong>: <em>au Canada</em>; im Plural <strong>aux</strong>: <em>aux États-Unis</em>. Für Herkunft ändern sich die Formen: <em>de France, d’Allemagne, du Canada, des États-Unis</em>.</p>`]
+        ['Länder: Ziel und Herkunft',`<p><strong>Ziel:</strong> <em>en France, en Allemagne, au Canada, aux États-Unis</em>. <strong>Herkunft:</strong> <em>de France, d’Allemagne, du Canada, des États-Unis</em>. Lerne Ziel und Herkunft als zwei getrennte Muster.</p>`]
       ]
     },
     spanisch:{
