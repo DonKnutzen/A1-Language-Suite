@@ -40,15 +40,8 @@ const totalListening=()=>Object.values(D.listening).reduce((s,a)=>s+a.length,0);
 const totalReading=()=>Object.values(D.reading).reduce((s,a)=>s+a.length,0);
 
 function speak(text,force=false,rate=.82){
-  if((!audioEnabled&&!force)||!('speechSynthesis' in window)||!text)return;
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='es-ES';
-  u.rate=rate;
-  const voices=speechSynthesis.getVoices();
-  const v=voices.find(x=>x.lang?.toLowerCase()==='es-es')||voices.find(x=>x.lang?.toLowerCase().startsWith('es'));
-  if(v)u.voice=v;
-  speechSynthesis.speak(u);
+  if((!audioEnabled&&!force)||!text)return;
+  A1Voice.speak(text,{lang:'es-ES',rate});
 }
 function playCorrectAudio(text){if(audioEnabled&&text)setTimeout(()=>speak(text,true,.80),120);}
 function speakBtn(text){return `<button class="speak-btn" data-speak="${encodeURIComponent(text)}" aria-label="Aussprache anhören">🔊</button>`;}
@@ -360,7 +353,7 @@ function startQuickMock(){
   next();
 }
 
-audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('esA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('¡Hola! La lectura automática está activada.',true);else if('speechSynthesis' in window)speechSynthesis.cancel();};
+audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('esA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('¡Hola! La lectura automática está activada.',true);else A1Voice.cancel();};
 document.getElementById('resetBtn').onclick=()=>{if(confirm('Fortschritt für Spanisch A1 in diesem Profil zurücksetzen?')){localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);}};
 updateAudioButton();
 setRoute('home');

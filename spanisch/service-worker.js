@@ -1,6 +1,6 @@
-const CACHE="spanisch-a1-grammar-v17";
+const CACHE="spanisch-a1-grammar-v18";
 const PREFIX="spanisch-a1-";
-const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css","./app.js","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js","./data.js"];
+const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css","./app.js","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js","./data.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

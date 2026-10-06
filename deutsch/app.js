@@ -1770,8 +1770,7 @@ function skillPct(kind){
 }
 function readiness(){return Math.round((skillPct('Hören')+skillPct('Lesen')+skillPct('Schreiben')+skillPct('Sprechen'))/4);}
 function updateAudioButton(){audioToggle.textContent=audioEnabled?'🔊 Auto':'🔇 Auto';audioToggle.classList.toggle('audio-off',!audioEnabled);}
-function getGermanVoice(){const voices=speechSynthesis.getVoices();return voices.find(v=>v.lang==='de-DE')||voices.find(v=>v.lang?.startsWith('de'))||null;}
-function speak(text,force=false,rate=.82){if(!('speechSynthesis'in window)||(!audioEnabled&&!force)||!text)return; speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='de-DE';u.rate=rate;const v=getGermanVoice();if(v)u.voice=v;speechSynthesis.speak(u);}
+function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)return;A1Voice.speak(text,{lang:'de-DE',rate});}
 function playCorrectAudio(text){if(!audioEnabled||!text)return;setTimeout(()=>speak(text,true,.80),120);}
 function speakBtn(text,label='Écouter la prononciation'){return `<button class="speak-btn" data-speak="${esc(text)}" aria-label="${esc(label)}">🔊</button>`;}
 function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(b.dataset.speak,true));}
@@ -2001,8 +2000,8 @@ function startQuickMock(){const set=[...makeListeningSet().map(x=>({...x,kind:'H
 }
 
 navButtons.forEach(b=>b.onclick=()=>setRoute(b.dataset.route));
-audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('deA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('Guten Tag! Willkommen beim Deutschtraining.',true);else if('speechSynthesis'in window)speechSynthesis.cancel();};
+audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('deA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('Guten Tag! Willkommen beim Deutschtraining.',true);else A1Voice.cancel();};
 document.getElementById('resetBtn').onclick=()=>{if(confirm('Toute la progression de Deutsch A1 sera supprimée. Continuer ?')){localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);}};
 if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js', {updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{}));}
-if('speechSynthesis'in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
+
 updateAudioButton();setRoute('home');

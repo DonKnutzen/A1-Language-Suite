@@ -42,15 +42,8 @@ function overallCompletionPct(){
 }
 
 function speak(text,force=false,rate=.82){
-  if((!audioEnabled&&!force)||!('speechSynthesis' in window)||!text)return;
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='fr-FR';
-  u.rate=rate;
-  const voices=speechSynthesis.getVoices();
-  const v=voices.find(x=>x.lang?.toLowerCase().startsWith('fr-fr'))||voices.find(x=>x.lang?.toLowerCase().startsWith('fr'));
-  if(v)u.voice=v;
-  speechSynthesis.speak(u);
+  if((!audioEnabled&&!force)||!text)return;
+  A1Voice.speak(text,{lang:'fr-FR',rate});
 }
 function playCorrectAudio(text){
   if(!audioEnabled||!text)return;
@@ -826,7 +819,7 @@ audioToggle.onclick=()=>{
   localStorage.setItem('frA1AudioEnabled',String(audioEnabled));
   updateAudioButton();
   if(audioEnabled)speak('Bonjour ! La lecture automatique est activée.',true);
-  else if('speechSynthesis' in window)speechSynthesis.cancel();
+  else A1Voice.cancel();
 };
 document.getElementById('resetBtn').onclick=()=>{
   if(confirm('Fortschritt für Französisch A1 in diesem Profil zurücksetzen?')){
