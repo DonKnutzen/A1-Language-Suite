@@ -250,7 +250,7 @@
 
   function productionHelpHtml(l) {
     const g=productionGuide(l);
-    return `<details class="production-help" open>
+    return `<details class="production-help">
       <summary>💡 Yardım: Görevde ne isteniyor?</summary>
       <div class="production-help-body">
         <div class="production-help-grid">
