@@ -103,7 +103,7 @@
   }
 
   function sourceNote() {
-    return `<div class="source-note"><strong>Kaynak uyumu:</strong> Kursun ana sınav hedefi Deutsch-Test für den Beruf C1 (1. überarbeitete Auflage 2020, yayımlanmış 2022) olarak güncellendi. İşyeri odaklı okuma, dinleme, entegre Mediation/yazma görevleri ve hazırlıksız sözlü sınav yapısı işlendi. Goethe C1 bölümü yalnızca ek genel C1 antrenmanı olarak korunur.</div>`;
+    return `<div class="source-note"><strong>Sınav uyumu:</strong> Kurs, Deutsch-Test für den Beruf C1’in güncel model formatına göre yapılandırılmıştır. İşyeri odaklı okuma ve dinleme, entegre Mediation/yazma görevleri ve hazırlıksız sözlü sınav bu yapıya göre çalışılır. Goethe C1 bölümü ek genel C1 antrenmanı sunar.</div>`;
   }
 
   function averageBest(prefixes) {
@@ -127,22 +127,32 @@
   function renderHome() {
     const skills = skillReadiness();
     const cp = coursePercent();
+    const nextLesson = D.lessons.find(l => !state.doneLessons.includes(l.id)) || null;
+    const continueTitle = nextLesson ? (state.doneLessons.length ? 'Derse devam et' : 'Kursa başla') : 'Dersleri tekrar et';
+    const continueKicker = nextLesson ? (state.doneLessons.length ? 'ŞİMDİ DEVAM ET' : 'BURADAN BAŞLA') : 'KURS TAMAMLANDI';
+    const continueDetail = nextLesson ? `Sıradaki: ${nextLesson.id}. ${nextLesson.title}` : '30 ders tamamlandı · istediğin dersi yeniden aç';
     setView(`
       <section class="card hero">
         <div class="eyebrow">TÜRKÇE → ALMANCA · C1</div>
         <h2>Deutsch C1</h2>
-        <p class="muted">Artık odak tek tek temel kelimeler değil: karmaşık metinleri çözmek, nüansları fark etmek, doğal bağlaçlar ve eşdizimler kullanmak, akademik/mesleki kayıtları yönetmek ve düşünceyi ikna edici biçimde yapılandırmak.</p>
+        <p class="muted">Bu kurs; karmaşık metinleri anlama, nüansları ayırt etme, bağlaç ve eşdizimleri doğal kullanma, mesleki iletişimde uygun kayıt seçme ve düşünceleri açık, yapılandırılmış ve ikna edici biçimde ifade etme becerilerini geliştirir.</p>
         <div class="pill">Deutsch-Test für den Beruf C1 · hedef sınav</div>
       </section>
-      <section class="card">
+      <section class="card course-progress-card">
         <div class="between"><div><strong>Toplam kurs ilerlemesi</strong><div class="muted">30 ders + hedefli alıştırmalar + sınav simülasyonları</div></div><strong>${cp}%</strong></div>
         <div class="spacer"></div>${progressBar(cp)}
         <div class="grid metric-grid" style="margin-top:14px">
           <div class="metric"><strong>${state.doneLessons.length}/30</strong><small>Ders tamamlandı</small></div>
           <div class="metric"><strong>${examCheckpointCount()}/4</strong><small>DTB becerisi puanlandı</small></div>
         </div>
+        <button class="continue-course-btn" id="continueLearn">
+          <span class="continue-course-icon">▶</span>
+          <span class="continue-course-copy"><small>${continueKicker}</small><strong>${continueTitle}</strong><span>${esc(continueDetail)}</span></span>
+          <span class="continue-course-arrow">→</span>
+        </button>
       </section>
-      <section class="card">
+      <button class="practice-card exam-home-card" id="openExam"><span class="icon">✓</span><strong>Sınav merkezine git</strong><small>Hedef DTB C1 formatını tam olarak çalış; Goethe C1 ek antrenman olarak kalır.</small></button>
+      <section class="card readiness-card">
         <div class="section-title" style="margin-top:0"><h3>C1 hazırlık göstergeleri</h3><small>son en iyi sonuçlar</small></div>
         ${skillRow('Okuma', skills.reading)}
         ${skillRow('Dinleme', skills.listening)}
@@ -150,13 +160,14 @@
         ${skillRow('Konuşma', skills.speaking)}
         <div class="notice warning" style="margin-top:14px">Bu göstergeler çalışma ilerlemesini özetler; resmi sınav sonucunun yerine geçmez. DTB C1 için toplam en az 144/240 puan ve dört becerinin en az üçünde 36/60 gerekir.</div>
       </section>
-      <section class="grid">
-        <button class="practice-card" id="continueLearn"><span class="icon">▤</span><strong>Derslere devam et</strong><small>Bağlaşıklık, C1 gramer, okuma, dinleme, yazma ve konuşma.</small></button>
-        <button class="practice-card" id="openExam"><span class="icon">✓</span><strong>Sınav merkezine git</strong><small>Hedef DTB C1 formatını tam olarak çalış; Goethe C1 ek antrenman olarak kalır.</small></button>
-      </section>
       ${sourceNote()}
     `, () => {
-      byId('continueLearn').onclick = () => setRoute('learn');
+      byId('continueLearn').onclick = () => {
+        state.lastRoute = 'learn';
+        save();
+        nav.forEach(b => b.classList.toggle('active', b.dataset.route === 'learn'));
+        if (nextLesson) renderLesson(nextLesson.id); else renderLearn();
+      };
       byId('openExam').onclick = () => setRoute('exam');
     });
   }
@@ -551,7 +562,7 @@
 
   function renderExam() {
     setView(`
-      <section class="card"><div class="eyebrow">SINAV MERKEZİ</div><h2>Hedef sınav: Deutsch-Test für den Beruf C1</h2><p class="muted">Yeni gönderilen belge telc Deutsch C1 Hochschule'nin yeni baskısı değil, ayrı bir sınav olan <strong>Deutsch-Test für den Beruf C1</strong>'dir. Bu nedenle ana simülasyon artık işyeri odaklı DTB C1 formatını kullanır. Goethe C1 genel C1 becerileri için ek çalışma olarak korunur.</p></section>
+      <section class="card"><div class="eyebrow">SINAV MERKEZİ</div><h2>Hedef sınav: Deutsch-Test für den Beruf C1</h2><p class="muted"><strong>Deutsch-Test für den Beruf C1</strong>, işyerindeki genel mesleki Almanca kullanımını ölçer. Ana simülasyon; DTB C1’in okuma, dinleme, entegre yazma/Mediation ve hazırlıksız konuşma görevlerine göre yapılandırılmıştır. Goethe C1 bölümü genel C1 becerileri için ek çalışma sunar.</p></section>
       <section class="exam-provider-card"><div><span class="provider-badge alt">DTB C1</span><h2>Deutsch-Test für den Beruf C1</h2><p>Yazılı sınav 135 dk · sözlü sınav ≈16–17 dk · hazırlık yok · Lesen/Hören/Schreiben/Sprechen ayrı ayrı 60 puan. Entegre Lesen+Schreiben ve Hören+Schreiben görevleri vardır.</p></div><button class="primary-btn" id="dtbOpen">DTB C1 sınav antrenmanı</button></section>
       <section class="exam-provider-card secondary-provider"><div><span class="provider-badge">GOETHE · EK</span><h2>Goethe-Zertifikat C1</h2><p>Genel C1 okuma, dinleme, yazma ve konuşma için ek antrenman. DTB C1'in yerine geçmez ve kurs ilerlemesindeki sınav puanına dahil edilmez.</p></div><button class="soft-btn" id="goetheOpen">Goethe ek antrenmanı</button></section>
       ${sourceNote()}

@@ -2,9 +2,9 @@
 
 ## Ana hedef
 
-Bu sürümün ana sınav hedefi **Deutsch-Test für den Beruf C1 (DTB C1)**'dir. Önceki sürümde kullanılan **telc Deutsch C1 Hochschule** aynı sınavın eski baskısı değildir; üniversite/akademik bağlama yönelik ayrı bir sınavdır. Kullanıcının gönderdiği yeni belge ise BAMF/BMAS bağlamındaki, işyeri odaklı **Deutsch-Test für den Beruf C1** model testidir.
+Kursun ana sınav hedefi **Deutsch-Test für den Beruf C1 (DTB C1)**'dir. Bu sınav, BAMF/BMAS bağlamında işyeri odaklı genel mesleki Almanca kullanımını ölçer. **telc Deutsch C1 Hochschule** ise üniversite/akademik bağlama yönelik ayrı bir sınavdır ve bu kursun ana sınav hedefi değildir.
 
-Goethe-Zertifikat C1 modülleri uygulamada yalnızca ek genel C1 antrenmanı olarak korunur; kurs ilerlemesinin ana sınav puanına dahil edilmez.
+Goethe-Zertifikat C1 modülleri ek genel C1 antrenmanı sunar; kurs ilerlemesinin ana DTB sınav puanına dahil edilmez.
 
 ## DTB C1 sınav mimarisi
 
