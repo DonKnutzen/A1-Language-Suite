@@ -7,7 +7,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Kendini tanıtma: sein, heißen ve wohnen",
-      "explanation": "Kendini tanıtmak için üç temel kalıbı güvenli kullan: « Ich heiße … » (adım …), « Ich komme aus … » (…’dan geliyorum) ve « Ich wohne in … » (…’da yaşıyorum). Basit cümlede çekimli fiil ikinci konumdadır.",
+      "explanation": "Kendini tanıtmak için « Ich heiße … » (adım …), « Ich komme aus … » (…’dan geliyorum) ve « Ich wohne in … » (…’da yaşıyorum) kalıplarını güvenli kullan. Yararlı mastarlar: sein = olmak, heißen = adı olmak, kommen = gelmek, wohnen = ikamet etmek/yaşamak, arbeiten = çalışmak, sprechen = konuşmak. Basit cümlede çekimli fiil ikinci konumdadır.",
       "examples": [
         [
           "Ich wohne in Halifax.",
@@ -59,7 +59,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Harf harf söyleme ve tekrar isteme",
-      "explanation": "Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini istemek için « Können Sie das bitte buchstabieren? » kullan. Anlamadıysan « Wie bitte? » ile tekrar isteyebilirsin.",
+      "explanation": "Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini istemek için « Können Sie das bitte buchstabieren? » kullan. « Wie ist Ihr Familienname? » cümlesindeki büyük harfli Ihr, resmî Sie hitabının iyelik belirleyicisidir: « sizin » anlamına gelir ve büyük yazılır. Küçük harfli ihr, « Ihr seid … » örneğinde birden fazla kişiye samimi « siz » diye hitap eden kişi zamiridir. İyelik sözcüğü olarak ayrıca « onun (kadın) » veya « onların » anlamına da gelebilir; bu kullanımları ileride göreceksin.",
       "examples": [
         [
           "Wie schreibt man das?",

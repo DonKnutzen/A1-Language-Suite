@@ -70,7 +70,7 @@
       24:[['Prüfungsanweisungen als feste Wörter lernen',`<p>Erkenne Verben wie <em>lea</em> (lesen Sie), <em>escuche</em> (hören Sie), <em>marque</em> (ankreuzen/markieren Sie), <em>escriba</em> (schreiben Sie) und <em>hable</em> (sprechen Sie). So verstehst du die Aufgabe, bevor du den Inhalt löst.</p>`]]
     },
     'deutsch-fr':{
-      2:[['Alphabet allemand et signes spéciaux',`<p>En allemand, <strong>ä, ö, ü</strong> sont des voyelles distinctes et <strong>ß</strong> s’appelle <em>Eszett</em> ou <em>scharfes S</em>. En épelant, tu peux préciser <em>mit Umlaut</em>, <em>mit Doppel-L</em> ou utiliser des mots-repères comme <em>A wie Anton</em>.</p>`]],
+      2:[['Alphabet allemand et signes spéciaux',`<p>En allemand, <strong>ä, ö, ü</strong> sont des voyelles distinctes et <strong>ß</strong> s’appelle <em>Eszett</em> ou <em>scharfes S</em>. Pour épeler, tu peux préciser <em>mit Umlaut</em> ou utiliser un mot-repère comme <em>A wie Anton</em>.</p>`]],
       3:[
         ['Former les nombres allemands',`<p>Apprends d’abord 0–20. À partir de 21, l’allemand dit <strong>l’unité avant la dizaine</strong> : <em>ein-und-zwanzig</em>, littéralement « un-et-vingt ».</p><div class="grammar-table-wrap"><table class="grammar-table"><tbody><tr><td>21</td><td><strong>einundzwanzig</strong></td></tr><tr><td>32</td><td><strong>zweiunddreißig</strong></td></tr><tr><td>47</td><td><strong>siebenundvierzig</strong></td></tr><tr><td>58</td><td><strong>achtundfünfzig</strong></td></tr></tbody></table></div>`],
         ['Formes à mémoriser',`<p>Quelques formes changent légèrement : <strong>sechzehn</strong> (pas *sechszehn), <strong>siebzehn</strong> (pas *siebenzehn), <strong>dreißig</strong> avec ß. Dans les composés, <em>eins</em> devient généralement <strong>ein-</strong> : <em>einundzwanzig</em>.</p>`],
@@ -84,7 +84,7 @@
       18:[['Verbes d’instruction à reconnaître',`<p>Dans un exercice, repère d’abord l’action demandée : <em>Lesen Sie</em>, <em>Hören Sie</em>, <em>Schreiben Sie</em>, <em>Kreuzen Sie an</em>, <em>Ordnen Sie zu</em>. Comprendre la consigne évite de perdre des points sans problème de langue.</p>`]]
     },
     'deutsch-tr':{
-      2:[['Alman alfabesi ve özel işaretler',`<p><strong>ä, ö, ü</strong> ayrı seslerdir; <strong>ß</strong> harfine <em>Eszett</em> veya <em>scharfes S</em> denir. Harf harf söylerken <em>mit Umlaut</em>, <em>mit Doppel-L</em> veya <em>A wie Anton</em> gibi ifadeler kullanılabilir.</p>`]],
+      2:[['Alman alfabesi ve özel işaretler',`<p><strong>ä, ö, ü</strong> ayrı seslerdir; <strong>ß</strong> harfine <em>Eszett</em> veya <em>scharfes S</em> denir. Harf harf söylerken <em>mit Umlaut</em> veya <em>A wie Anton</em> gibi ifadeler kullanılabilir.</p>`]],
       3:[
         ['Almanca sayılar nasıl kurulur?',`<p>Önce 0–20’yi öğren. 21’den sonra Almanca, <strong>önce birleri sonra und ve onlar basamağını</strong> söyler: <em>ein-und-zwanzig</em>.</p><div class="grammar-table-wrap"><table class="grammar-table"><tbody><tr><td>21</td><td><strong>einundzwanzig</strong></td></tr><tr><td>32</td><td><strong>zweiunddreißig</strong></td></tr><tr><td>47</td><td><strong>siebenundvierzig</strong></td></tr><tr><td>58</td><td><strong>achtundfünfzig</strong></td></tr></tbody></table></div>`],
         ['Ezberlenmesi gereken biçimler',`<p><strong>sechzehn</strong> (*sechszehn değil), <strong>siebzehn</strong> (*siebenzehn değil) ve <strong>dreißig</strong> yazımlarına dikkat et. Birleşik sayıda <em>eins</em> genellikle <strong>ein-</strong> olur: <em>einundzwanzig</em>.</p>`],

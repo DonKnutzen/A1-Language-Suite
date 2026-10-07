@@ -211,10 +211,6 @@ window.FR_A1_DATA = {
           "M – A – R – T – I – N"
         ],
         [
-          "avec deux L",
-          "mit zwei L"
-        ],
-        [
           "Mon nom de famille est Dupont.",
           "Mein Nachname ist Dupont."
         ],
@@ -314,7 +310,7 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Können Sie das bitte buchstabieren“ auf Französisch?",
           "o": [
             "Vous pouvez épeler, s’il vous plaît ?",
-            "avec deux L",
+            "Comment ça s’écrit ?",
             "Mon prénom est Sophie."
           ],
           "a": 0,
@@ -330,16 +326,6 @@ window.FR_A1_DATA = {
           "a": 0,
           "audio": "Vous pouvez épeler, s’il vous plaît ?",
           "explanation": "Épeler bedeutet buchstabieren. Frage bei Namen gezielt nach den einzelnen Buchstaben."
-        },
-        {
-          "q": "Wie sagst du „mit zwei L“ auf Französisch?",
-          "o": [
-            "Ça s’écrit S-O-P-H-I-E.",
-            "M – A – R – T – I – N",
-            "avec deux L"
-          ],
-          "a": 2,
-          "audio": "avec deux L"
         },
         {
           "q": "Wie sagst du „Mein Nachname ist Dupont“ auf Französisch?",
@@ -844,7 +830,7 @@ window.FR_A1_DATA = {
             "Ich bin 30 Jahre alt."
           ],
           "a": 2,
-          "audio": "trente"
+          "audio": "J’ai trente ans."
         },
         {
           "q": "C’est ___ mère.",
@@ -1546,7 +1532,7 @@ window.FR_A1_DATA = {
             "Gleis/Bahnsteig"
           ],
           "a": 2,
-          "audio": "Où est la gare ?"
+          "audio": "C’est quel quai ?"
         },
         {
           "q": "„retard“ =",
@@ -1892,7 +1878,7 @@ window.FR_A1_DATA = {
             "ich öffne"
           ],
           "a": 0,
-          "audio": "ich komme zurück"
+          "audio": "Je rentre."
         },
         {
           "q": "„le soir“ =",
@@ -2602,7 +2588,7 @@ window.FR_A1_DATA = {
             "nur Hinfahrt"
           ],
           "a": 1,
-          "audio": "Hin- und Rückfahrt"
+          "audio": "aller-retour"
         },
         {
           "q": "Demain, je ___ visiter Paris.",

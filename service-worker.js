@@ -1,4 +1,4 @@
-// A1 Language Suite V11 root compatibility worker.
+// A1 Language Suite V13 root compatibility worker.
 // Replaces older root service workers and clears stale app caches once.
 self.addEventListener('install', event => { self.skipWaiting(); });
 self.addEventListener('activate', event => {

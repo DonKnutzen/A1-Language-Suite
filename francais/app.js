@@ -241,7 +241,7 @@ function startGrammarSet(id){
       const pct=Math.round(score/qs.length*100);
       state.grammarBest[id]=Math.max(state.grammarBest[id]||0,pct);
       save(true);
-      view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Richtige Antworten wurden automatisch auf Französisch vorgelesen.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Noch einmal</button><button class="primary-btn" id="backGrammar">Alle Sets</button></div></section>`;
+      view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Audio wird nur abgespielt, wenn es eindeutig zur französischen Aufgabe gehört.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Noch einmal</button><button class="primary-btn" id="backGrammar">Alle Sets</button></div></section>`;
       document.getElementById('againGrammar').onclick=()=>startGrammarSet(id);
       document.getElementById('backGrammar').onclick=renderGrammarMenu;
       return;
@@ -258,7 +258,7 @@ function startGrammarSet(id){
     document.getElementById('backGrammar').onclick=renderGrammarMenu;
     document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
       const chosen=+btn.dataset.o,ok=chosen===q.a;
-      if(ok)score++;playCorrectAudio(q.audio||q.o[q.a]);
+      if(ok)score++;if(q.audio)playCorrectAudio(q.audio);
       document.querySelectorAll('[data-o]').forEach((b,j)=>{
         b.disabled=true;
         if(j===q.a)b.classList.add('correct');
@@ -328,7 +328,6 @@ function renderListeningTask(part,examMode=false,onDone=null,forced=null,progres
     const chosen=+btn.dataset.o,correct=part===2?(task.a?0:1):task.a,ok=chosen===correct;
     if(ok){
       if(!state.masteredListening.includes(task.id)){state.masteredListening.push(task.id);save();}
-      playCorrectAudio(task.audio||task.speech);
     }
     document.querySelectorAll('[data-o]').forEach((b,j)=>{
       b.disabled=true;
@@ -336,7 +335,7 @@ function renderListeningTask(part,examMode=false,onDone=null,forced=null,progres
       else if(j===chosen)b.classList.add('wrong');
     });
     document.getElementById('hearFeedback').innerHTML=`
-      <div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig · Antwort wird kurz vorgelesen':'✗ Falsch'}</div>
+      <div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Falsch'}</div>
       ${examMode?'':`<div class="transcript"><strong>Transkript:</strong><br>${esc(task.speech)}</div>`}
       <div class="spacer"></div><button class="primary-btn" id="nextHear">${onDone?'Weiter':'Neue Aufgabe'}</button>`;
     document.getElementById('nextHear').onclick=()=>onDone?onDone(ok):renderListeningTask(part,false);
@@ -401,7 +400,7 @@ function renderReadingTask(part,onDone=null,forced=null,progressLabel=''){
     const chosen=+btn.dataset.o,ok=chosen===correct;
     if(ok){
       if(!state.masteredReading.includes(task.id)){state.masteredReading.push(task.id);save();}
-      playCorrectAudio(task.audio);
+      
     }
     document.querySelectorAll('[data-o]').forEach((b,j)=>{
       b.disabled=true;

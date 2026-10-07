@@ -7,7 +7,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Se présenter : sein, heißen et wohnen",
-      "explanation": "Pour te présenter, retiens surtout trois blocs : « Ich heiße … » (je m’appelle), « Ich komme aus … » (je viens de) et « Ich wohne in … » (j’habite à). Dans une phrase simple, le verbe conjugué reste en deuxième position.",
+      "explanation": "Pour te présenter, retiens surtout les blocs « Ich heiße … » (je m’appelle), « Ich komme aus … » (je viens de) et « Ich wohne in … » (j’habite à). Formes de base utiles : sein = être, heißen = s’appeler, kommen = venir, wohnen = habiter, arbeiten = travailler, sprechen = parler. Dans une phrase simple, le verbe conjugué reste en deuxième position.",
       "examples": [
         [
           "Ich wohne in Halifax.",
@@ -59,7 +59,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Épeler et demander de répéter",
-      "explanation": "Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Avec können, l’autre verbe reste à la fin.",
+      "explanation": "Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Dans « Wie ist Ihr Familienname? », Ihr est le déterminant possessif de la forme de politesse Sie : il signifie « votre » et prend une majuscule. En minuscule, ihr peut être le pronom personnel « vous » adressé familièrement à plusieurs personnes, par exemple « Ihr seid … ». Comme possessif, ihr peut aussi signifier « son/sa/ses à elle » ou « leur(s) » ; ces emplois viendront plus tard.",
       "examples": [
         [
           "Wie schreibt man das?",
