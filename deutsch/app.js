@@ -83,6 +83,14 @@ const lessons = [
     "note": "À l’oral, tu dois pouvoir épeler un nom ou un lieu et comprendre des lettres isolées.",
     "phrases": [
       [
+        "Wie ist Ihr Familienname?",
+        "Quel est votre nom de famille ?"
+      ],
+      [
+        "Mein Familienname ist Dubois.",
+        "Mon nom de famille est Dubois."
+      ],
+      [
         "Wie schreibt man das?",
         "Comment ça s’écrit ?"
       ],
@@ -95,20 +103,12 @@ const lessons = [
         "M – A – R – T – I – N"
       ],
       [
-        "mit Umlaut",
-        "avec tréma allemand"
-      ],
-      [
         "A wie Anton",
         "A comme Anton"
       ],
       [
-        "Wie ist Ihr Familienname?",
-        "Quel est votre nom de famille ?"
-      ],
-      [
-        "Mein Familienname ist Dubois.",
-        "Mon nom de famille est Dubois."
+        "mit Umlaut",
+        "avec tréma allemand"
       ]
     ],
     "quiz": [
@@ -255,14 +255,6 @@ const lessons = [
         "À quelle heure ?"
       ],
       [
-        "Der Termin ist am Mittwoch um 10 Uhr.",
-        "Le rendez-vous est mercredi à 10 h."
-      ],
-      [
-        "Ich komme später.",
-        "Je viens plus tard."
-      ],
-      [
         "Von 9 bis 12 Uhr",
         "de 9 h à 12 h"
       ],
@@ -273,6 +265,14 @@ const lessons = [
       [
         "Montag bis Freitag",
         "du lundi au vendredi"
+      ],
+      [
+        "Der Termin ist am Mittwoch um 10 Uhr.",
+        "Le rendez-vous est mercredi à 10 h."
+      ],
+      [
+        "Ich komme später.",
+        "Je viens plus tard."
       ]
     ],
     "quiz": [
@@ -390,12 +390,20 @@ const lessons = [
     "note": "Commander, exprimer une préférence et comprendre des choix simples au restaurant ou au café.",
     "phrases": [
       [
-        "Ich hätte gern einen Kaffee.",
-        "Je voudrais un café."
+        "Was ist Ihr Lieblingsessen?",
+        "Quel est votre plat préféré ?"
+      ],
+      [
+        "Zum Frühstück esse ich Brot.",
+        "Au petit-déjeuner, je mange du pain."
       ],
       [
         "Was möchten Sie?",
         "Que désirez-vous ?"
+      ],
+      [
+        "Ich hätte gern einen Kaffee.",
+        "Je voudrais un café."
       ],
       [
         "Ich nehme die Suppe.",
@@ -412,14 +420,6 @@ const lessons = [
       [
         "Die Rechnung, bitte.",
         "L’addition, s’il vous plaît."
-      ],
-      [
-        "Was ist Ihr Lieblingsessen?",
-        "Quel est votre plat préféré ?"
-      ],
-      [
-        "Zum Frühstück esse ich Brot.",
-        "Au petit-déjeuner, je mange du pain."
       ]
     ],
     "quiz": [
@@ -464,14 +464,6 @@ const lessons = [
     "note": "Comprendre les prix, demander un produit, une taille ou un lieu dans un magasin.",
     "phrases": [
       [
-        "Wie viel kostet das?",
-        "Combien ça coûte ?"
-      ],
-      [
-        "Das kostet 19,95 Euro.",
-        "Cela coûte 19,95 euros."
-      ],
-      [
         "Ich suche Schuhe.",
         "Je cherche des chaussures."
       ],
@@ -480,12 +472,12 @@ const lessons = [
         "L’avez-vous en taille 40 ?"
       ],
       [
-        "Wo ist die Kasse?",
-        "Où est la caisse ?"
+        "Wie viel kostet das?",
+        "Combien ça coûte ?"
       ],
       [
-        "Im zweiten Stock.",
-        "Au deuxième étage."
+        "Das kostet 19,95 Euro.",
+        "Cela coûte 19,95 euros."
       ],
       [
         "Das ist zu teuer.",
@@ -494,6 +486,14 @@ const lessons = [
       [
         "Ich nehme das.",
         "Je prends ça."
+      ],
+      [
+        "Wo ist die Kasse?",
+        "Où est la caisse ?"
+      ],
+      [
+        "Im zweiten Stock.",
+        "Au deuxième étage."
       ]
     ],
     "quiz": [
@@ -542,8 +542,8 @@ const lessons = [
         "Je cherche un appartement."
       ],
       [
-        "Wie hoch ist die Miete?",
-        "Quel est le loyer ?"
+        "Die Wohnung ist frei.",
+        "Le logement est libre."
       ],
       [
         "Die Wohnung hat zwei Zimmer.",
@@ -554,20 +554,20 @@ const lessons = [
         "avec balcon"
       ],
       [
+        "Nebenkosten inklusive",
+        "charges comprises"
+      ],
+      [
+        "Wie hoch ist die Miete?",
+        "Quel est le loyer ?"
+      ],
+      [
         "Die Adresse ist Gartenstraße 12.",
         "L’adresse est Gartenstraße 12."
       ],
       [
         "Wann kann ich die Wohnung sehen?",
         "Quand puis-je visiter le logement ?"
-      ],
-      [
-        "Die Wohnung ist frei.",
-        "Le logement est libre."
-      ],
-      [
-        "Nebenkosten inklusive",
-        "charges comprises"
       ]
     ],
     "quiz": [
@@ -624,20 +624,20 @@ const lessons = [
         "Puis à gauche / à droite."
       ],
       [
-        "Nehmen Sie die Linie 8.",
-        "Prenez la ligne 8."
-      ],
-      [
-        "Welches Gleis?",
-        "Quel quai ?"
-      ],
-      [
         "Ich fahre mit dem Bus.",
         "Je vais en bus."
       ],
       [
+        "Nehmen Sie die Linie 8.",
+        "Prenez la ligne 8."
+      ],
+      [
         "Sie müssen umsteigen.",
         "Vous devez changer."
+      ],
+      [
+        "Welches Gleis?",
+        "Quel quai ?"
       ],
       [
         "Der Zug hat Verspätung.",
@@ -694,12 +694,12 @@ const lessons = [
         "Je travaille comme vendeuse."
       ],
       [
-        "Meine Arbeitszeit ist von 8 bis 16 Uhr.",
-        "Mes heures de travail sont de 8 h à 16 h."
-      ],
-      [
         "Ich arbeite im Büro.",
         "Je travaille au bureau."
+      ],
+      [
+        "Meine Arbeitszeit ist von 8 bis 16 Uhr.",
+        "Mes heures de travail sont de 8 h à 16 h."
       ],
       [
         "Meine Kollegen sind nett.",
@@ -768,8 +768,16 @@ const lessons = [
         "Depuis six mois."
       ],
       [
+        "Anmeldung zum Deutschkurs",
+        "inscription au cours d’allemand"
+      ],
+      [
         "Der Kurs ist am Vormittag.",
         "Le cours est le matin."
+      ],
+      [
+        "Wann beginnt der Kurs?",
+        "Quand commence le cours ?"
       ],
       [
         "Wer ist Ihr Lehrer?",
@@ -782,14 +790,6 @@ const lessons = [
       [
         "Ich brauche ein Wörterbuch.",
         "J’ai besoin d’un dictionnaire."
-      ],
-      [
-        "Wann beginnt der Kurs?",
-        "Quand commence le cours ?"
-      ],
-      [
-        "Anmeldung zum Deutschkurs",
-        "inscription au cours d’allemand"
       ]
     ],
     "quiz": [
@@ -849,12 +849,12 @@ const lessons = [
         "Mon sport préféré est le tennis."
       ],
       [
-        "Am Sonntag mache ich einen Ausflug.",
-        "Dimanche, je fais une excursion."
-      ],
-      [
         "Ich treffe Freunde.",
         "Je rencontre des amis."
+      ],
+      [
+        "Am Sonntag mache ich einen Ausflug.",
+        "Dimanche, je fais une excursion."
       ],
       [
         "Abends sehe ich einen Film.",
@@ -915,20 +915,20 @@ const lessons = [
         "Pour deux nuits."
       ],
       [
-        "Wann fährt der Bus ab?",
-        "Quand part le bus ?"
-      ],
-      [
-        "Wann kommt der Zug an?",
-        "Quand arrive le train ?"
+        "mit Frühstück",
+        "avec petit-déjeuner"
       ],
       [
         "Ich mache Urlaub am Meer.",
         "Je passe mes vacances à la mer."
       ],
       [
-        "mit Frühstück",
-        "avec petit-déjeuner"
+        "Wann fährt der Bus ab?",
+        "Quand part le bus ?"
+      ],
+      [
+        "Wann kommt der Zug an?",
+        "Quand arrive le train ?"
       ],
       [
         "Wie lange dauert die Fahrt?",
@@ -997,16 +997,16 @@ const lessons = [
         "Depuis hier."
       ],
       [
+        "Ich brauche einen Termin.",
+        "J’ai besoin d’un rendez-vous."
+      ],
+      [
         "Sie sollen viel trinken.",
         "Vous devez boire beaucoup."
       ],
       [
         "Nehmen Sie diese Tabletten.",
         "Prenez ces comprimés."
-      ],
-      [
-        "Ich brauche einen Termin.",
-        "J’ai besoin d’un rendez-vous."
       ],
       [
         "Die Apotheke ist geschlossen.",
@@ -1062,16 +1062,16 @@ const lessons = [
         "Je viendrai volontiers."
       ],
       [
-        "Leider komme ich später.",
-        "Malheureusement, j’arrive plus tard."
-      ],
-      [
         "Wann und wo feiern wir?",
         "Quand et où fêtons-nous ?"
       ],
       [
         "Kann ich etwas mitbringen?",
         "Puis-je apporter quelque chose ?"
+      ],
+      [
+        "Leider komme ich später.",
+        "Malheureusement, j’arrive plus tard."
       ],
       [
         "Bitte ruf mich an.",
@@ -1131,10 +1131,6 @@ const lessons = [
         "heures d’ouverture"
       ],
       [
-        "Rauchen verboten",
-        "interdiction de fumer"
-      ],
-      [
         "Heute geschlossen",
         "fermé aujourd’hui"
       ],
@@ -1147,16 +1143,20 @@ const lessons = [
         "réservé aux clients"
       ],
       [
+        "Rauchen verboten",
+        "interdiction de fumer"
+      ],
+      [
+        "Sonderangebot",
+        "offre spéciale"
+      ],
+      [
         "Bitte nicht aussteigen.",
         "Ne descendez pas, s’il vous plaît."
       ],
       [
         "Der Zug fällt heute aus.",
         "Le train est annulé aujourd’hui."
-      ],
-      [
-        "Sonderangebot",
-        "offre spéciale"
       ]
     ],
     "quiz": [
@@ -1215,6 +1215,10 @@ const lessons = [
         "Puis-je ouvrir la fenêtre ?"
       ],
       [
+        "Noch einmal, bitte.",
+        "Encore une fois, s’il vous plaît."
+      ],
+      [
         "Ja, natürlich.",
         "Oui, bien sûr."
       ],
@@ -1225,10 +1229,6 @@ const lessons = [
       [
         "Tut mir leid, das geht nicht.",
         "Désolé, ce n’est pas possible."
-      ],
-      [
-        "Noch einmal, bitte.",
-        "Encore une fois, s’il vous plaît."
       ]
     ],
     "quiz": [

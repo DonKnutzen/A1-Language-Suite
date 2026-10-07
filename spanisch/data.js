@@ -18,8 +18,16 @@ window.ES_A1_DATA = {
           "Guten Morgen."
         ],
         [
+          "¿Cómo te llamas?",
+          "Wie heißt du?"
+        ],
+        [
           "Me llamo Laura.",
           "Ich heiße Laura."
+        ],
+        [
+          "Mucho gusto.",
+          "Freut mich."
         ],
         [
           "Soy de Alemania.",
@@ -32,14 +40,6 @@ window.ES_A1_DATA = {
         [
           "Hablo alemán y un poco de español.",
           "Ich spreche Deutsch und ein bisschen Spanisch."
-        ],
-        [
-          "Mucho gusto.",
-          "Freut mich."
-        ],
-        [
-          "¿Cómo te llamas?",
-          "Wie heißt du?"
         ]
       ],
       "quiz": [
@@ -155,24 +155,12 @@ window.ES_A1_DATA = {
       ],
       "phrases": [
         [
-          "¿Cómo se escribe?",
-          "Wie schreibt man das?"
-        ],
-        [
-          "¿Puedes deletrearlo?",
-          "Kannst du das buchstabieren?"
-        ],
-        [
-          "La letra h no se pronuncia.",
-          "Der Buchstabe h wird nicht ausgesprochen."
-        ],
-        [
-          "La jota suena fuerte.",
-          "Das j wird kräftig ausgesprochen."
-        ],
-        [
           "Mi apellido es Müller.",
           "Mein Nachname ist Müller."
+        ],
+        [
+          "¿Cómo se escribe?",
+          "Wie schreibt man das?"
         ],
         [
           "Se escribe M-U-L-L-E-R.",
@@ -183,8 +171,20 @@ window.ES_A1_DATA = {
           "Mit b oder mit v?"
         ],
         [
+          "¿Puedes deletrearlo?",
+          "Kannst du das buchstabieren?"
+        ],
+        [
           "Repita, por favor.",
           "Wiederholen Sie bitte."
+        ],
+        [
+          "La letra h no se pronuncia.",
+          "Der Buchstabe h wird nicht ausgesprochen."
+        ],
+        [
+          "La jota suena fuerte.",
+          "Das j wird kräftig ausgesprochen."
         ]
       ],
       "quiz": [
@@ -474,6 +474,10 @@ window.ES_A1_DATA = {
           "Ich bin Student/in."
         ],
         [
+          "La casa es grande.",
+          "Das Haus ist groß."
+        ],
+        [
           "Estoy cansado.",
           "Ich bin müde."
         ],
@@ -482,20 +486,16 @@ window.ES_A1_DATA = {
           "Madrid liegt in Spanien."
         ],
         [
-          "Hay un banco aquí.",
-          "Hier gibt es eine Bank."
-        ],
-        [
-          "La casa es grande.",
-          "Das Haus ist groß."
-        ],
-        [
           "La puerta está abierta.",
           "Die Tür ist offen."
         ],
         [
           "¿Dónde está el hotel?",
           "Wo ist das Hotel?"
+        ],
+        [
+          "Hay un banco aquí.",
+          "Hier gibt es eine Bank."
         ],
         [
           "No hay farmacia cerca.",
@@ -620,8 +620,16 @@ window.ES_A1_DATA = {
           "Das ist meine Mutter."
         ],
         [
+          "¿Tienes hermanos?",
+          "Hast du Geschwister?"
+        ],
+        [
           "Tengo un hermano.",
           "Ich habe einen Bruder."
+        ],
+        [
+          "Mi hermana tiene veinticinco años.",
+          "Meine Schwester ist fünfundzwanzig Jahre alt."
         ],
         [
           "Mis padres viven en Berlín.",
@@ -638,14 +646,6 @@ window.ES_A1_DATA = {
         [
           "No tengo hijos.",
           "Ich habe keine Kinder."
-        ],
-        [
-          "Mi hermana tiene veinticinco años.",
-          "Meine Schwester ist fünfundzwanzig Jahre alt."
-        ],
-        [
-          "¿Tienes hermanos?",
-          "Hast du Geschwister?"
         ]
       ],
       "quiz": [
@@ -915,14 +915,6 @@ window.ES_A1_DATA = {
           "Es ist halb fünf."
         ],
         [
-          "La cita es el miércoles.",
-          "Der Termin ist am Mittwoch."
-        ],
-        [
-          "Nos vemos a las diez.",
-          "Wir sehen uns um zehn."
-        ],
-        [
           "Hoy es lunes.",
           "Heute ist Montag."
         ],
@@ -933,6 +925,14 @@ window.ES_A1_DATA = {
         [
           "De nueve a doce.",
           "Von neun bis zwölf."
+        ],
+        [
+          "La cita es el miércoles.",
+          "Der Termin ist am Mittwoch."
+        ],
+        [
+          "Nos vemos a las diez.",
+          "Wir sehen uns um zehn."
         ],
         [
           "Llego un poco tarde.",
@@ -1060,6 +1060,14 @@ window.ES_A1_DATA = {
           "Ich mag Fleisch nicht."
         ],
         [
+          "Prefiero pescado.",
+          "Ich bevorzuge Fisch."
+        ],
+        [
+          "¿Qué quieres comer?",
+          "Was möchtest du essen?"
+        ],
+        [
           "Quiero una ensalada.",
           "Ich möchte einen Salat."
         ],
@@ -1068,20 +1076,12 @@ window.ES_A1_DATA = {
           "Für mich Wasser, bitte."
         ],
         [
-          "La cuenta, por favor.",
-          "Die Rechnung, bitte."
-        ],
-        [
-          "¿Qué quieres comer?",
-          "Was möchtest du essen?"
-        ],
-        [
-          "Prefiero pescado.",
-          "Ich bevorzuge Fisch."
-        ],
-        [
           "Está muy rico.",
           "Es schmeckt sehr gut."
+        ],
+        [
+          "La cuenta, por favor.",
+          "Die Rechnung, bitte."
         ]
       ],
       "quiz": [
@@ -1198,14 +1198,6 @@ window.ES_A1_DATA = {
       ],
       "phrases": [
         [
-          "¿Cuánto cuesta?",
-          "Wie viel kostet das?"
-        ],
-        [
-          "Cuesta veinte euros.",
-          "Es kostet zwanzig Euro."
-        ],
-        [
           "Busco una chaqueta.",
           "Ich suche eine Jacke."
         ],
@@ -1214,8 +1206,12 @@ window.ES_A1_DATA = {
           "Haben Sie eine größere Größe?"
         ],
         [
-          "Quiero pagar con tarjeta.",
-          "Ich möchte mit Karte bezahlen."
+          "¿Cuánto cuesta?",
+          "Wie viel kostet das?"
+        ],
+        [
+          "Cuesta veinte euros.",
+          "Es kostet zwanzig Euro."
         ],
         [
           "Es demasiado caro.",
@@ -1224,6 +1220,10 @@ window.ES_A1_DATA = {
         [
           "Me llevo este.",
           "Ich nehme diesen."
+        ],
+        [
+          "Quiero pagar con tarjeta.",
+          "Ich möchte mit Karte bezahlen."
         ],
         [
           "¿Dónde está la caja?",
@@ -1348,6 +1348,10 @@ window.ES_A1_DATA = {
           "Ich suche eine Wohnung."
         ],
         [
+          "Se alquila todo el año.",
+          "Ganzjährig zu vermieten."
+        ],
+        [
           "El piso tiene dos dormitorios.",
           "Die Wohnung hat zwei Schlafzimmer."
         ],
@@ -1356,24 +1360,20 @@ window.ES_A1_DATA = {
           "Es gibt einen Balkon."
         ],
         [
-          "El alquiler es de 700 euros.",
-          "Die Miete beträgt 700 Euro."
+          "La cocina es pequeña.",
+          "Die Küche ist klein."
         ],
         [
           "Está cerca del centro.",
           "Sie ist nahe am Zentrum."
         ],
         [
-          "La cocina es pequeña.",
-          "Die Küche ist klein."
+          "El alquiler es de 700 euros.",
+          "Die Miete beträgt 700 Euro."
         ],
         [
           "¿Cuándo puedo visitar el piso?",
           "Wann kann ich die Wohnung besichtigen?"
-        ],
-        [
-          "Se alquila todo el año.",
-          "Ganzjährig zu vermieten."
         ]
       ],
       "quiz": [
@@ -1502,6 +1502,10 @@ window.ES_A1_DATA = {
           "Biegen Sie rechts ab."
         ],
         [
+          "Está a cinco minutos a pie.",
+          "Es ist fünf Minuten zu Fuß."
+        ],
+        [
           "Tome el autobús número ocho.",
           "Nehmen Sie den Bus Nummer acht."
         ],
@@ -1510,16 +1514,12 @@ window.ES_A1_DATA = {
           "Ich muss die U-Bahn wechseln."
         ],
         [
-          "El tren llega tarde.",
-          "Der Zug kommt verspätet."
-        ],
-        [
           "Bajo en la próxima parada.",
           "Ich steige an der nächsten Haltestelle aus."
         ],
         [
-          "Está a cinco minutos a pie.",
-          "Es ist fünf Minuten zu Fuß."
+          "El tren llega tarde.",
+          "Der Zug kommt verspätet."
         ]
       ],
       "quiz": [
@@ -1636,12 +1636,12 @@ window.ES_A1_DATA = {
       ],
       "phrases": [
         [
-          "Trabajo en una oficina.",
-          "Ich arbeite in einem Büro."
+          "¿A qué te dedicas?",
+          "Was machst du beruflich?"
         ],
         [
-          "Estudio ingeniería.",
-          "Ich studiere Ingenieurwesen."
+          "Trabajo en una oficina.",
+          "Ich arbeite in einem Büro."
         ],
         [
           "Empiezo a las ocho.",
@@ -1652,20 +1652,20 @@ window.ES_A1_DATA = {
           "Meine Kollegen sind nett."
         ],
         [
-          "Tengo clase por la tarde.",
-          "Ich habe nachmittags Unterricht."
+          "Hoy tengo el día libre.",
+          "Heute habe ich frei."
         ],
         [
           "Busco trabajo.",
           "Ich suche Arbeit."
         ],
         [
-          "¿A qué te dedicas?",
-          "Was machst du beruflich?"
+          "Estudio ingeniería.",
+          "Ich studiere Ingenieurwesen."
         ],
         [
-          "Hoy tengo el día libre.",
-          "Heute habe ich frei."
+          "Tengo clase por la tarde.",
+          "Ich habe nachmittags Unterricht."
         ]
       ],
       "quiz": [
@@ -1781,6 +1781,10 @@ window.ES_A1_DATA = {
       ],
       "phrases": [
         [
+          "¿Qué haces en tu tiempo libre?",
+          "Was machst du in deiner Freizeit?"
+        ],
+        [
           "Juego al fútbol.",
           "Ich spiele Fußball."
         ],
@@ -1793,20 +1797,16 @@ window.ES_A1_DATA = {
           "Ich lese gern."
         ],
         [
+          "Escucho música todos los días.",
+          "Ich höre jeden Tag Musik."
+        ],
+        [
           "Los sábados salgo con amigos.",
           "Samstags gehe ich mit Freunden aus."
         ],
         [
           "A veces voy al cine.",
           "Manchmal gehe ich ins Kino."
-        ],
-        [
-          "Escucho música todos los días.",
-          "Ich höre jeden Tag Musik."
-        ],
-        [
-          "¿Qué haces en tu tiempo libre?",
-          "Was machst du in deiner Freizeit?"
         ],
         [
           "Este fin de semana descanso.",
@@ -1927,6 +1927,10 @@ window.ES_A1_DATA = {
       ],
       "phrases": [
         [
+          "¿Qué tiempo hace mañana?",
+          "Wie wird das Wetter morgen?"
+        ],
+        [
           "Hoy hace sol.",
           "Heute ist es sonnig."
         ],
@@ -1939,24 +1943,20 @@ window.ES_A1_DATA = {
           "Es regnet."
         ],
         [
-          "Necesito un abrigo.",
-          "Ich brauche einen Mantel."
-        ],
-        [
-          "Lleva un paraguas.",
-          "Nimm einen Regenschirm mit."
-        ],
-        [
           "En verano hace calor.",
           "Im Sommer ist es heiß."
         ],
         [
-          "¿Qué tiempo hace mañana?",
-          "Wie wird das Wetter morgen?"
+          "Necesito un abrigo.",
+          "Ich brauche einen Mantel."
         ],
         [
           "Me pongo una chaqueta.",
           "Ich ziehe eine Jacke an."
+        ],
+        [
+          "Lleva un paraguas.",
+          "Nimm einen Regenschirm mit."
         ]
       ],
       "quiz": [
@@ -2081,6 +2081,10 @@ window.ES_A1_DATA = {
           "Für zwei Nächte."
         ],
         [
+          "El desayuno está incluido.",
+          "Das Frühstück ist inklusive."
+        ],
+        [
           "¿A qué hora sale el tren?",
           "Wann fährt der Zug ab?"
         ],
@@ -2089,8 +2093,8 @@ window.ES_A1_DATA = {
           "Wir kommen am Freitag an."
         ],
         [
-          "El desayuno está incluido.",
-          "Das Frühstück ist inklusive."
+          "¿Cuánto dura el viaje?",
+          "Wie lange dauert die Reise?"
         ],
         [
           "Necesito mi pasaporte.",
@@ -2099,10 +2103,6 @@ window.ES_A1_DATA = {
         [
           "Vamos de vacaciones al norte.",
           "Wir fahren in den Norden in Urlaub."
-        ],
-        [
-          "¿Cuánto dura el viaje?",
-          "Wie lange dauert die Reise?"
         ]
       ],
       "quiz": [
@@ -2235,16 +2235,16 @@ window.ES_A1_DATA = {
           "Ich brauche einen Arzttermin."
         ],
         [
+          "¿Dónde hay una farmacia?",
+          "Wo gibt es eine Apotheke?"
+        ],
+        [
           "Tome estas pastillas.",
           "Nehmen Sie diese Tabletten."
         ],
         [
           "Beba mucha agua.",
           "Trinken Sie viel Wasser."
-        ],
-        [
-          "¿Dónde hay una farmacia?",
-          "Wo gibt es eine Apotheke?"
         ],
         [
           "Que te mejores.",
@@ -2369,22 +2369,6 @@ window.ES_A1_DATA = {
           "Hallo, hier ist Ana."
         ],
         [
-          "Llámame esta tarde.",
-          "Ruf mich heute Nachmittag an."
-        ],
-        [
-          "Te mando un mensaje.",
-          "Ich schicke dir eine Nachricht."
-        ],
-        [
-          "He recibido tu correo.",
-          "Ich habe deine E-Mail erhalten."
-        ],
-        [
-          "Mi móvil no funciona.",
-          "Mein Handy funktioniert nicht."
-        ],
-        [
           "¿Puede hablar más despacio?",
           "Können Sie langsamer sprechen?"
         ],
@@ -2395,6 +2379,22 @@ window.ES_A1_DATA = {
         [
           "¿Puede repetirlo?",
           "Können Sie das wiederholen?"
+        ],
+        [
+          "Mi móvil no funciona.",
+          "Mein Handy funktioniert nicht."
+        ],
+        [
+          "Llámame esta tarde.",
+          "Ruf mich heute Nachmittag an."
+        ],
+        [
+          "Te mando un mensaje.",
+          "Ich schicke dir eine Nachricht."
+        ],
+        [
+          "He recibido tu correo.",
+          "Ich habe deine E-Mail erhalten."
         ]
       ],
       "quiz": [
@@ -2523,6 +2523,10 @@ window.ES_A1_DATA = {
           "Wo ist das Rathaus?"
         ],
         [
+          "¿A qué hora abre la oficina?",
+          "Wann öffnet das Büro?"
+        ],
+        [
           "Quiero abrir una cuenta.",
           "Ich möchte ein Konto eröffnen."
         ],
@@ -2537,10 +2541,6 @@ window.ES_A1_DATA = {
         [
           "Necesito mi documento de identidad.",
           "Ich brauche meinen Ausweis."
-        ],
-        [
-          "¿A qué hora abre la oficina?",
-          "Wann öffnet das Büro?"
         ]
       ],
       "quiz": [
@@ -2660,14 +2660,6 @@ window.ES_A1_DATA = {
           "Ich spreche Spanisch."
         ],
         [
-          "Comemos a las dos.",
-          "Wir essen um zwei."
-        ],
-        [
-          "Viven en Valencia.",
-          "Sie wohnen in Valencia."
-        ],
-        [
           "Trabajo los lunes.",
           "Ich arbeite montags."
         ],
@@ -2676,12 +2668,20 @@ window.ES_A1_DATA = {
           "Du lernst schnell."
         ],
         [
+          "Bebo agua.",
+          "Ich trinke Wasser."
+        ],
+        [
+          "Comemos a las dos.",
+          "Wir essen um zwei."
+        ],
+        [
           "Escribimos un mensaje.",
           "Wir schreiben eine Nachricht."
         ],
         [
-          "Bebo agua.",
-          "Ich trinke Wasser."
+          "Viven en Valencia.",
+          "Sie wohnen in Valencia."
         ],
         [
           "Abren a las nueve.",
@@ -2809,20 +2809,20 @@ window.ES_A1_DATA = {
           "Ich fahre mit dem Bus zur Arbeit."
         ],
         [
-          "Hago deporte los martes.",
-          "Ich mache dienstags Sport."
-        ],
-        [
           "Vengo de Alemania.",
           "Ich komme aus Deutschland."
         ],
         [
-          "Puedo pagar con tarjeta.",
-          "Ich kann mit Karte bezahlen."
+          "Hago deporte los martes.",
+          "Ich mache dienstags Sport."
         ],
         [
           "Quiero aprender español.",
           "Ich möchte Spanisch lernen."
+        ],
+        [
+          "Puedo pagar con tarjeta.",
+          "Ich kann mit Karte bezahlen."
         ],
         [
           "Sé un poco de español.",
@@ -3240,20 +3240,20 @@ window.ES_A1_DATA = {
           "Vor- und Nachname"
         ],
         [
-          "Correo electrónico",
-          "E-Mail-Adresse"
-        ],
-        [
           "Dirección",
           "Adresse"
         ],
         [
-          "¿Cómo eres?",
-          "Wie bist du?"
+          "Correo electrónico",
+          "E-Mail-Adresse"
         ],
         [
           "¿A qué te dedicas?",
           "Was machst du beruflich?"
+        ],
+        [
+          "¿Cómo eres?",
+          "Wie bist du?"
         ],
         [
           "En mi tiempo libre…",

@@ -18,8 +18,28 @@ window.FR_A1_DATA = {
           "Hallo!"
         ],
         [
+          "Bonsoir !",
+          "Guten Abend!"
+        ],
+        [
+          "Comment allez-vous ?",
+          "Wie geht es Ihnen?"
+        ],
+        [
+          "Ça va bien, merci.",
+          "Mir geht es gut, danke."
+        ],
+        [
           "Je m’appelle Léa.",
           "Ich heiße Léa."
+        ],
+        [
+          "Enchanté(e) !",
+          "Freut mich!"
+        ],
+        [
+          "Je viens d’Allemagne.",
+          "Ich komme aus Deutschland."
         ],
         [
           "J’habite à Halifax.",
@@ -34,28 +54,8 @@ window.FR_A1_DATA = {
           "Ich spreche Deutsch und ein bisschen Französisch."
         ],
         [
-          "Je viens d’Allemagne.",
-          "Ich komme aus Deutschland."
-        ],
-        [
-          "Enchanté(e) !",
-          "Freut mich!"
-        ],
-        [
-          "Bonsoir !",
-          "Guten Abend!"
-        ],
-        [
           "Au revoir !",
           "Auf Wiedersehen!"
-        ],
-        [
-          "Comment allez-vous ?",
-          "Wie geht es Ihnen?"
-        ],
-        [
-          "Ça va bien, merci.",
-          "Mir geht es gut, danke."
         ]
       ],
       "quiz": [
@@ -199,8 +199,20 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
+          "Mon prénom est Sophie.",
+          "Mein Vorname ist Sophie."
+        ],
+        [
+          "Mon nom de famille est Dupont.",
+          "Mein Nachname ist Dupont."
+        ],
+        [
           "Comment ça s’écrit ?",
           "Wie schreibt man das?"
+        ],
+        [
+          "Ça s’écrit S-O-P-H-I-E.",
+          "Das schreibt man S-O-P-H-I-E."
         ],
         [
           "Vous pouvez épeler, s’il vous plaît ?",
@@ -209,22 +221,6 @@ window.FR_A1_DATA = {
         [
           "M – A – R – T – I – N",
           "M – A – R – T – I – N"
-        ],
-        [
-          "Mon nom de famille est Dupont.",
-          "Mein Nachname ist Dupont."
-        ],
-        [
-          "Quelle est votre adresse ?",
-          "Wie lautet Ihre Adresse?"
-        ],
-        [
-          "Mon prénom est Sophie.",
-          "Mein Vorname ist Sophie."
-        ],
-        [
-          "Ça s’écrit S-O-P-H-I-E.",
-          "Das schreibt man S-O-P-H-I-E."
         ],
         [
           "A, B, C, D, E, F, G, H, I, J, K, L, M",
@@ -241,6 +237,10 @@ window.FR_A1_DATA = {
         [
           "avec une cédille : ç",
           "mit einer Cedille: ç"
+        ],
+        [
+          "Quelle est votre adresse ?",
+          "Wie lautet Ihre Adresse?"
         ]
       ],
       "quiz": [
@@ -584,32 +584,36 @@ window.FR_A1_DATA = {
           "Es ist halb fünf."
         ],
         [
+          "Il est neuf heures moins le quart.",
+          "Es ist Viertel vor neun."
+        ],
+        [
           "À quelle heure ?",
           "Um wie viel Uhr?"
         ],
         [
-          "Le rendez-vous est mercredi à dix heures.",
-          "Der Termin ist Mittwoch um zehn."
-        ],
-        [
-          "Je viens plus tard.",
-          "Ich komme später."
+          "lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche",
+          "Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag"
         ],
         [
           "Du lundi au vendredi.",
           "Von Montag bis Freitag."
         ],
         [
-          "On se voit vendredi soir.",
-          "Wir sehen uns Freitagabend."
-        ],
-        [
           "Je suis libre à partir de quinze heures.",
           "Ich habe ab 15 Uhr Zeit."
         ],
         [
-          "lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche",
-          "Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag"
+          "Le rendez-vous est mercredi à dix heures.",
+          "Der Termin ist Mittwoch um zehn."
+        ],
+        [
+          "On se voit vendredi soir.",
+          "Wir sehen uns Freitagabend."
+        ],
+        [
+          "Je viens plus tard.",
+          "Ich komme später."
         ],
         [
           "janvier, février, mars, avril, mai, juin",
@@ -622,10 +626,6 @@ window.FR_A1_DATA = {
         [
           "Nous sommes le cinq octobre.",
           "Heute ist der fünfte Oktober."
-        ],
-        [
-          "Il est neuf heures moins le quart.",
-          "Es ist Viertel vor neun."
         ]
       ],
       "quiz": [
@@ -777,6 +777,14 @@ window.FR_A1_DATA = {
           "mein Bruder / meine Schwester"
         ],
         [
+          "J’ai deux frères et une sœur.",
+          "Ich habe zwei Brüder und eine Schwester."
+        ],
+        [
+          "Mes parents habitent à Montréal.",
+          "Meine Eltern wohnen in Montréal."
+        ],
+        [
           "Je suis marié(e).",
           "Ich bin verheiratet."
         ],
@@ -791,14 +799,6 @@ window.FR_A1_DATA = {
         [
           "J’ai trente ans.",
           "Ich bin dreißig Jahre alt."
-        ],
-        [
-          "J’ai deux frères et une sœur.",
-          "Ich habe zwei Brüder und eine Schwester."
-        ],
-        [
-          "Mes parents habitent à Montréal.",
-          "Meine Eltern wohnen in Montréal."
         ]
       ],
       "quiz": [
@@ -942,38 +942,6 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
-          "Je voudrais un café, s’il vous plaît.",
-          "Ich hätte gern einen Kaffee."
-        ],
-        [
-          "Qu’est-ce que vous prenez ?",
-          "Was nehmen Sie?"
-        ],
-        [
-          "Je prends la soupe.",
-          "Ich nehme die Suppe."
-        ],
-        [
-          "Sans viande, s’il vous plaît.",
-          "Ohne Fleisch, bitte."
-        ],
-        [
-          "L’addition, s’il vous plaît.",
-          "Die Rechnung, bitte."
-        ],
-        [
-          "Mon plat préféré, c’est la pizza.",
-          "Mein Lieblingsessen ist Pizza."
-        ],
-        [
-          "Je voudrais de l’eau, s’il vous plaît.",
-          "Ich hätte gern Wasser, bitte."
-        ],
-        [
-          "Qu’est-ce qu’il y a comme dessert ?",
-          "Was gibt es als Nachtisch?"
-        ],
-        [
           "du pain, du riz, du fromage",
           "Brot, Reis, Käse"
         ],
@@ -984,6 +952,38 @@ window.FR_A1_DATA = {
         [
           "de l’eau, du lait, du thé",
           "Wasser, Milch, Tee"
+        ],
+        [
+          "Mon plat préféré, c’est la pizza.",
+          "Mein Lieblingsessen ist Pizza."
+        ],
+        [
+          "Qu’est-ce que vous prenez ?",
+          "Was nehmen Sie?"
+        ],
+        [
+          "Je voudrais un café, s’il vous plaît.",
+          "Ich hätte gern einen Kaffee."
+        ],
+        [
+          "Je prends la soupe.",
+          "Ich nehme die Suppe."
+        ],
+        [
+          "Sans viande, s’il vous plaît.",
+          "Ohne Fleisch, bitte."
+        ],
+        [
+          "Je voudrais de l’eau, s’il vous plaît.",
+          "Ich hätte gern Wasser, bitte."
+        ],
+        [
+          "Qu’est-ce qu’il y a comme dessert ?",
+          "Was gibt es als Nachtisch?"
+        ],
+        [
+          "L’addition, s’il vous plaît.",
+          "Die Rechnung, bitte."
         ]
       ],
       "quiz": [
@@ -1139,6 +1139,10 @@ window.FR_A1_DATA = {
           "Ich hätte gern ein Kilo Äpfel."
         ],
         [
+          "Je voudrais deux cents grammes de fromage.",
+          "Ich hätte gern 200 Gramm Käse."
+        ],
+        [
           "Vous avez une taille 40 ?",
           "Haben Sie Größe 40?"
         ],
@@ -1153,10 +1157,6 @@ window.FR_A1_DATA = {
         [
           "Je peux payer par carte ?",
           "Kann ich mit Karte bezahlen?"
-        ],
-        [
-          "Je voudrais deux cents grammes de fromage.",
-          "Ich hätte gern 200 Gramm Käse."
         ]
       ],
       "quiz": [
@@ -1304,16 +1304,28 @@ window.FR_A1_DATA = {
           "Ich suche eine Wohnung."
         ],
         [
-          "Quel est le loyer ?",
-          "Wie hoch ist die Miete?"
-        ],
-        [
           "L’appartement a deux pièces.",
           "Die Wohnung hat zwei Zimmer."
         ],
         [
+          "la cuisine, la salle de bains, le salon",
+          "die Küche, das Badezimmer, das Wohnzimmer"
+        ],
+        [
+          "une table, une chaise, un lit",
+          "ein Tisch, ein Stuhl, ein Bett"
+        ],
+        [
           "avec balcon",
           "mit Balkon"
+        ],
+        [
+          "L’appartement est près du centre.",
+          "Die Wohnung ist nahe dem Zentrum."
+        ],
+        [
+          "Quel est le loyer ?",
+          "Wie hoch ist die Miete?"
         ],
         [
           "L’adresse est 12 rue Victor-Hugo.",
@@ -1326,18 +1338,6 @@ window.FR_A1_DATA = {
         [
           "Il y a une cuisine et une salle de bains.",
           "Es gibt eine Küche und ein Badezimmer."
-        ],
-        [
-          "L’appartement est près du centre.",
-          "Die Wohnung ist nahe dem Zentrum."
-        ],
-        [
-          "une table, une chaise, un lit",
-          "ein Tisch, ein Stuhl, ein Bett"
-        ],
-        [
-          "la cuisine, la salle de bains, le salon",
-          "die Küche, das Badezimmer, das Wohnzimmer"
         ]
       ],
       "quiz": [
@@ -1493,6 +1493,14 @@ window.FR_A1_DATA = {
           "Dann links abbiegen."
         ],
         [
+          "C’est à cinq minutes à pied.",
+          "Es ist fünf Minuten zu Fuß."
+        ],
+        [
+          "Où est l’arrêt de bus ?",
+          "Wo ist die Bushaltestelle?"
+        ],
+        [
           "Prenez la ligne 8.",
           "Nehmen Sie Linie 8."
         ],
@@ -1503,14 +1511,6 @@ window.FR_A1_DATA = {
         [
           "Le train a dix minutes de retard.",
           "Der Zug hat zehn Minuten Verspätung."
-        ],
-        [
-          "C’est à cinq minutes à pied.",
-          "Es ist fünf Minuten zu Fuß."
-        ],
-        [
-          "Où est l’arrêt de bus ?",
-          "Wo ist die Bushaltestelle?"
         ]
       ],
       "quiz": [
@@ -1662,28 +1662,28 @@ window.FR_A1_DATA = {
           "Ich arbeite in einem Büro."
         ],
         [
-          "Je suis étudiant(e).",
-          "Ich bin Student/in."
-        ],
-        [
           "Je commence à huit heures.",
           "Ich beginne um acht Uhr."
-        ],
-        [
-          "J’ai cours le matin.",
-          "Ich habe morgens Unterricht."
-        ],
-        [
-          "Je dois faire mes devoirs.",
-          "Ich muss Hausaufgaben machen."
         ],
         [
           "Je travaille du lundi au vendredi.",
           "Ich arbeite von Montag bis Freitag."
         ],
         [
+          "Je suis étudiant(e).",
+          "Ich bin Student/in."
+        ],
+        [
+          "J’ai cours le matin.",
+          "Ich habe morgens Unterricht."
+        ],
+        [
           "Mon cours commence à neuf heures.",
           "Mein Kurs beginnt um neun Uhr."
+        ],
+        [
+          "Je dois faire mes devoirs.",
+          "Ich muss Hausaufgaben machen."
         ]
       ],
       "quiz": [
@@ -1839,6 +1839,10 @@ window.FR_A1_DATA = {
           "Ich fahre mit dem Bus zur Arbeit."
         ],
         [
+          "Je déjeune vers midi.",
+          "Ich esse gegen Mittag zu Mittag."
+        ],
+        [
           "Je rentre à dix-huit heures.",
           "Ich komme um 18 Uhr nach Hause."
         ],
@@ -1847,16 +1851,12 @@ window.FR_A1_DATA = {
           "Abends sehe ich fern."
         ],
         [
-          "Le week-end, je fais du sport.",
-          "Am Wochenende mache ich Sport."
-        ],
-        [
-          "Je déjeune vers midi.",
-          "Ich esse gegen Mittag zu Mittag."
-        ],
-        [
           "Je me couche vers vingt-trois heures.",
           "Ich gehe gegen 23 Uhr ins Bett."
+        ],
+        [
+          "Le week-end, je fais du sport.",
+          "Am Wochenende mache ich Sport."
         ]
       ],
       "quiz": [
@@ -2012,20 +2012,20 @@ window.FR_A1_DATA = {
           "Ich habe Fieber."
         ],
         [
-          "Où est la pharmacie ?",
-          "Wo ist die Apotheke?"
-        ],
-        [
-          "Je voudrais un médicament contre le rhume.",
-          "Ich hätte gern ein Mittel gegen Erkältung."
+          "Depuis quand êtes-vous malade ?",
+          "Seit wann sind Sie krank?"
         ],
         [
           "J’ai rendez-vous chez le médecin.",
           "Ich habe einen Arzttermin."
         ],
         [
-          "Depuis quand êtes-vous malade ?",
-          "Seit wann sind Sie krank?"
+          "Où est la pharmacie ?",
+          "Wo ist die Apotheke?"
+        ],
+        [
+          "Je voudrais un médicament contre le rhume.",
+          "Ich hätte gern ein Mittel gegen Erkältung."
         ],
         [
           "Prenez ce médicament deux fois par jour.",
@@ -2173,6 +2173,10 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
+          "Quel temps fait-il aujourd’hui ?",
+          "Wie ist das Wetter heute?"
+        ],
+        [
           "Il fait beau.",
           "Das Wetter ist schön."
         ],
@@ -2185,24 +2189,20 @@ window.FR_A1_DATA = {
           "Es ist kalt."
         ],
         [
-          "Prenez une veste.",
-          "Nehmen Sie eine Jacke mit."
-        ],
-        [
-          "J’ai besoin d’un parapluie.",
-          "Ich brauche einen Regenschirm."
+          "Il y a du vent.",
+          "Es ist windig."
         ],
         [
           "Demain, il fera vingt degrés.",
           "Morgen werden es 20 Grad."
         ],
         [
-          "Quel temps fait-il aujourd’hui ?",
-          "Wie ist das Wetter heute?"
+          "Prenez une veste.",
+          "Nehmen Sie eine Jacke mit."
         ],
         [
-          "Il y a du vent.",
-          "Es ist windig."
+          "J’ai besoin d’un parapluie.",
+          "Ich brauche einen Regenschirm."
         ],
         [
           "rouge, bleu, vert, jaune",
@@ -2354,14 +2354,6 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
-          "J’aime le football.",
-          "Ich mag Fußball."
-        ],
-        [
-          "Je n’aime pas courir.",
-          "Ich laufe nicht gern."
-        ],
-        [
           "Qu’est-ce que vous faites le week-end ?",
           "Was machen Sie am Wochenende?"
         ],
@@ -2378,12 +2370,20 @@ window.FR_A1_DATA = {
           "Mein Hobby ist Kochen."
         ],
         [
+          "J’aime le football.",
+          "Ich mag Fußball."
+        ],
+        [
           "J’adore voyager.",
           "Ich liebe es zu reisen."
         ],
         [
           "Je préfère lire à la maison.",
           "Ich lese lieber zu Hause."
+        ],
+        [
+          "Je n’aime pas courir.",
+          "Ich laufe nicht gern."
         ]
       ],
       "quiz": [
@@ -2527,6 +2527,10 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
+          "Je voudrais réserver une chambre.",
+          "Ich möchte ein Zimmer reservieren."
+        ],
+        [
           "J’ai une réservation.",
           "Ich habe eine Reservierung."
         ],
@@ -2539,8 +2543,8 @@ window.FR_A1_DATA = {
           "Ist Frühstück inklusive?"
         ],
         [
-          "À quelle heure part le train ?",
-          "Wann fährt der Zug ab?"
+          "À quelle heure est le petit-déjeuner ?",
+          "Um wie viel Uhr ist das Frühstück?"
         ],
         [
           "Je voudrais un billet pour Paris.",
@@ -2551,12 +2555,8 @@ window.FR_A1_DATA = {
           "Einfach oder Hin- und Rückfahrt?"
         ],
         [
-          "À quelle heure est le petit-déjeuner ?",
-          "Um wie viel Uhr ist das Frühstück?"
-        ],
-        [
-          "Je voudrais réserver une chambre.",
-          "Ich möchte ein Zimmer reservieren."
+          "À quelle heure part le train ?",
+          "Wann fährt der Zug ab?"
         ]
       ],
       "quiz": [
@@ -2708,8 +2708,16 @@ window.FR_A1_DATA = {
           "Treffen wir uns um 19 Uhr?"
         ],
         [
+          "Ça te va à dix-huit heures ?",
+          "Passt dir 18 Uhr?"
+        ],
+        [
           "Merci pour ton invitation.",
           "Danke für deine Einladung."
+        ],
+        [
+          "Désolé, j’ai déjà un rendez-vous.",
+          "Tut mir leid, ich habe schon einen Termin."
         ],
         [
           "Je suis désolé, je ne peux pas venir.",
@@ -2722,14 +2730,6 @@ window.FR_A1_DATA = {
         [
           "À bientôt !",
           "Bis bald!"
-        ],
-        [
-          "Ça te va à dix-huit heures ?",
-          "Passt dir 18 Uhr?"
-        ],
-        [
-          "Désolé, j’ai déjà un rendez-vous.",
-          "Tut mir leid, ich habe schon einen Termin."
         ],
         [
           "Allô, c’est Anna.",
@@ -2905,16 +2905,16 @@ window.FR_A1_DATA = {
           "E-Mail-Adresse"
         ],
         [
-          "Merci de me répondre.",
-          "Bitte antworte mir."
-        ],
-        [
           "Signature",
           "Unterschrift"
         ],
         [
           "Je vous écris pour demander des informations.",
           "Ich schreibe Ihnen, um Informationen zu erfragen."
+        ],
+        [
+          "Merci de me répondre.",
+          "Bitte antworte mir."
         ]
       ],
       "quiz": [
@@ -3057,6 +3057,10 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
+          "Excusez-moi, je ne comprends pas.",
+          "Entschuldigung, ich verstehe nicht."
+        ],
+        [
           "Pouvez-vous répéter, s’il vous plaît ?",
           "Können Sie das bitte wiederholen?"
         ],
@@ -3065,8 +3069,20 @@ window.FR_A1_DATA = {
           "Können Sie langsamer sprechen?"
         ],
         [
-          "Excusez-moi, je ne comprends pas.",
-          "Entschuldigung, ich verstehe nicht."
+          "Qu’est-ce que ça veut dire ?",
+          "Was bedeutet das?"
+        ],
+        [
+          "Comment dit-on … en français ?",
+          "Wie sagt man … auf Französisch?"
+        ],
+        [
+          "Comment on dit « merci » en français ?",
+          "Wie sagt man „Danke“ auf Französisch?"
+        ],
+        [
+          "Vous pouvez m’aider, s’il vous plaît ?",
+          "Können Sie mir bitte helfen?"
         ],
         [
           "Je voudrais…",
@@ -3079,22 +3095,6 @@ window.FR_A1_DATA = {
         [
           "Merci, au revoir.",
           "Danke, auf Wiedersehen."
-        ],
-        [
-          "Comment dit-on … en français ?",
-          "Wie sagt man … auf Französisch?"
-        ],
-        [
-          "Vous pouvez m’aider, s’il vous plaît ?",
-          "Können Sie mir bitte helfen?"
-        ],
-        [
-          "Qu’est-ce que ça veut dire ?",
-          "Was bedeutet das?"
-        ],
-        [
-          "Comment on dit « merci » en français ?",
-          "Wie sagt man „Danke“ auf Französisch?"
         ]
       ],
       "quiz": [
@@ -4112,32 +4112,32 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
-          "Je vais en France.",
-          "Ich fahre nach Frankreich."
-        ],
-        [
           "Je viens du Canada.",
           "Ich komme aus Kanada."
+        ],
+        [
+          "Je vais en France.",
+          "Ich fahre nach Frankreich."
         ],
         [
           "Je pars lundi.",
           "Ich reise am Montag ab."
         ],
         [
-          "Je prends le train.",
-          "Ich nehme den Zug."
-        ],
-        [
-          "Je vais visiter Lyon.",
-          "Ich werde Lyon besuchen."
-        ],
-        [
           "Je dois partir à huit heures.",
           "Ich muss um acht Uhr aufbrechen."
         ],
         [
+          "Je prends le train.",
+          "Ich nehme den Zug."
+        ],
+        [
           "Le billet coûte vingt euros.",
           "Die Fahrkarte kostet zwanzig Euro."
+        ],
+        [
+          "Je vais visiter Lyon.",
+          "Ich werde Lyon besuchen."
         ],
         [
           "Je rentre vendredi.",

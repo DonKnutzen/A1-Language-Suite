@@ -45,8 +45,11 @@
       const goalsHtml=opts.goalsHtml||opts.introHtml||'';
       const grammarHtml=opts.grammarHtml||'';
       if(!Array.isArray(p.heardPhrases))p.heardPhrases=[];
-      const heardSet=new Set(p.heardPhrases.map(Number).filter(Number.isInteger));
-      const corePhrases=`<details class="lesson-explanation lesson-core-phrases" open><summary><strong>${esc(L.core)}</strong></summary><p class="muted">${esc(opts.repeatHint)}</p>${l.phrases.map(([target,native],i)=>`<div class="phrase-row lesson-core-phrase ${heardSet.has(i)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`).join('')}</details>`;
+      // Since v34, listened lesson phrases are stored by target text, not by row index.
+      // Older numeric entries are discarded so reordering a lesson never marks the wrong sentence as heard.
+      if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
+      const heardSet=new Set(p.heardPhrases);
+      const corePhrases=`<details class="lesson-explanation lesson-core-phrases" open><summary><strong>${esc(L.core)}</strong></summary><p class="muted">${esc(opts.repeatHint)}</p>${l.phrases.map(([target,native],i)=>`<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`).join('')}</details>`;
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><section class="card" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2>${goalsHtml}${corePhrases}${opts.pronunciationHtml}${grammarHtml}<p class="lesson-flow-requirements">${esc(L.requirements)}</p>${statuses()}<div class="button-row"><button class="primary-btn" id="startQuiz">${esc(L.start)}</button><button class="secondary-btn" id="startApplication">${esc(L.apply)}</button></div></section>`;
       document.getElementById('backLearn').onclick=opts.renderLearn;
       document.getElementById('startQuiz').onclick=drawQuiz;
@@ -55,8 +58,9 @@
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
         const i=Number(btn.dataset.corePhraseIndex);if(!Number.isInteger(i))return;
         const row=view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`);
-        const firstListen=!p.heardPhrases.includes(i);
-        if(firstListen){p.heardPhrases.push(i);p.heardPhrases.sort((a,b)=>a-b);save();}
+        const phraseKey=l.phrases[i]?.[0];if(!phraseKey)return;
+        const firstListen=!p.heardPhrases.includes(phraseKey);
+        if(firstListen){p.heardPhrases.push(phraseKey);save();}
         row?.classList.add('is-heard');
         if(firstListen&&row){
           row.classList.remove('just-heard');
