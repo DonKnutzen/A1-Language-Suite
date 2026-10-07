@@ -83,3 +83,13 @@ html.dark-mode .mixed-context,html.dark-mode .alphabet-important{background:#172
 }
 .mixed-shift.active{box-shadow:inset 0 0 0 2px currentColor,0 1px 0 rgba(15,23,42,.05)!important}
 html.dark-mode .mixed-shift{background:#172554!important;color:#dbeafe!important;border-color:#60a5fa!important}
+
+
+/* Listening progress is shown only for the main lesson-content phrases. */
+.lesson-core-phrase{transition:border-color .16s ease,background .16s ease}
+.lesson-core-phrase.is-heard{border-color:color-mix(in srgb,var(--success) 38%,var(--line));background:color-mix(in srgb,var(--success-soft) 62%,var(--panel))}
+.lesson-core-phrase.is-heard>div>strong{color:var(--success)}
+.lesson-core-phrase.is-heard .speak-btn{border-color:color-mix(in srgb,var(--success) 58%,var(--line));background:var(--success-soft);box-shadow:0 0 0 1px color-mix(in srgb,var(--success) 14%,transparent)}
+html.dark-mode .lesson-core-phrase.is-heard{background:color-mix(in srgb,var(--success-soft) 36%,var(--panel));border-color:#22c55e}
+html.dark-mode .lesson-core-phrase.is-heard>div>strong{color:#86efac}
+html.dark-mode .lesson-core-phrase.is-heard .speak-btn{background:#14532d;border-color:#22c55e}

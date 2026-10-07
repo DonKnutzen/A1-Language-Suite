@@ -98,7 +98,7 @@ function renderLearn(){
     <section class="card hero">
       <span class="pill">${lessons.length} LEKTIONEN · JE 10 FRAGEN</span>
       <h2 style="margin-top:12px">Spanisch A1 Kurs</h2>
-      <p class="muted">Alltagssprache, A1-Grammatik, Aussprache und gezielte DELE-A1-Vorbereitung.</p>
+      <p class="muted">Dieser Kurs bereitet dich gezielt auf die DELE-A1-Prüfung vor.</p>
       <div class="progress"><div style="width:${lessonPct()}%"></div></div>
     </section>
     <div class="list">
