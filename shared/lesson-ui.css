@@ -43,3 +43,43 @@ html.dark-mode .a1-voice-dialog,html.dark-mode .alphabet-letter{background:#1e29
 html.dark-mode .a1-voice-dialog select,html.dark-mode .mixed-input,html.dark-mode .mixed-char,html.dark-mode .mixed-shift{background:#0f172a;color:#e2e8f0;border-color:#475569}
 html.dark-mode .mixed-context,html.dark-mode .alphabet-important{background:#172554;color:#dbeafe;border-color:#60a5fa}
 @media(max-width:420px){.alphabet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.lesson-flow .button-row,.lesson-flow-finish .button-row{flex-direction:column}.lesson-flow .button-row button,.lesson-flow-finish .button-row button{width:100%}.a1-voice-dialog{padding:18px}.header-actions{gap:6px;flex-wrap:wrap;justify-content:flex-end}.a1-voice-trigger{width:32px;flex-basis:32px}.mixed-context{font-size:.95rem}}
+
+/* Compact audio + base-form helpers inside grammar reference tables. */
+.grammar-audio-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:26px;height:26px;margin-left:5px;padding:0 5px;
+  border:1px solid var(--line);border-radius:8px;background:transparent;
+  color:inherit;cursor:pointer;font-size:.82rem;line-height:1;vertical-align:middle;
+}
+.grammar-audio-btn:hover{background:rgba(148,163,184,.12)}
+.grammar-audio-btn:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.grammar-lemma-line{
+  margin:0 0 10px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;
+  background:rgba(148,163,184,.07);font-size:.92rem;line-height:1.55;
+}
+.grammar-lemma-translation{opacity:.88}
+.grammar-table td .grammar-audio-btn{white-space:normal}
+@media(max-width:560px){
+  .grammar-audio-btn{min-width:25px;height:25px;margin-left:4px;padding:0 4px}
+  .grammar-lemma-line{font-size:.88rem;padding:7px 8px}
+}
+
+
+/* Quieter lesson overview: core phrases and grammar are optional accordions. */
+.lesson-core-phrases,.lesson-deepening{margin-top:12px}
+.lesson-core-phrases>summary,.lesson-deepening>summary{cursor:pointer}
+.lesson-deepening{border-color:color-mix(in srgb,var(--line) 82%,var(--accent) 18%)}
+.lesson-deepening-title{font-weight:800;margin:14px 0 7px;line-height:1.4}
+.lesson-core-phrases[open]>summary,.lesson-deepening[open]>summary{margin-bottom:8px}
+
+/* Shift is a keyboard control, not another character: separate it subtly. */
+.mixed-shift{
+  margin-right:8px!important;
+  min-width:36px!important;
+  border-color:var(--accent)!important;
+  background:var(--accent-soft)!important;
+  color:var(--accent-ink)!important;
+  box-shadow:0 1px 0 rgba(15,23,42,.05);
+}
+.mixed-shift.active{box-shadow:inset 0 0 0 2px currentColor,0 1px 0 rgba(15,23,42,.05)!important}
+html.dark-mode .mixed-shift{background:#172554!important;color:#dbeafe!important;border-color:#60a5fa!important}

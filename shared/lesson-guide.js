@@ -2,20 +2,26 @@
 (() => {
   'use strict';
   const words={
-    fr:{goals:'Après cette leçon, je peux…',pronunciation:'Prononciation',dialogue:'Dialogue du quotidien',apply:'À toi de pratiquer',speaking:'À l’oral',writing:'À l’écrit',check:'Avant de passer à la suite',tip:'À retenir',person:'Personne',repeat:'Écoute les exemples, puis répète-les à voix haute.',instruction:'Réponds sans regarder le modèle. Si une phrase reste difficile, reviens aux exemples et au dialogue.'},
-    tr:{goals:'Bu dersin sonunda…',pronunciation:'Telaffuz',dialogue:'Günlük konuşma',apply:'Şimdi kendin uygula',speaking:'Konuşma',writing:'Yazma',check:'Sonraki derse geçmeden önce',tip:'Aklında tut',person:'Kişi',repeat:'Örnekleri dinle ve yüksek sesle tekrar et.',instruction:'Örneğe bakmadan yanıtla. Bir cümle zor gelirse örneklere ve konuşmaya geri dön.'},
-    de:{goals:'Das kann ich nach dieser Lektion',pronunciation:'Aussprache',dialogue:'Alltagsdialog',apply:'Jetzt selbst anwenden',speaking:'Sprechen',writing:'Schreiben',check:'Bevor ich weiterlerne',tip:'Merke dir',person:'Person',repeat:'Höre die Beispiele an und sprich sie laut nach.',instruction:'Antworte ohne Vorlage. Wenn eine Formulierung noch schwerfällt, wiederhole die Beispiele und den Dialog.'}
+    fr:{goals:'Après cette leçon, je peux…',pronunciation:'Prononciation',dialogue:'Dialogue du quotidien',apply:'À toi de pratiquer',speaking:'À l’oral',writing:'À l’écrit',check:'Avant de passer à la suite',tip:'À retenir',person:'Personne',core:'Phrases importantes',deepen:'Approfondir : grammaire et structures',repeat:'Écoute les exemples, puis répète-les à voix haute.',instruction:'Réponds sans regarder le modèle. Si une phrase reste difficile, reviens aux exemples et au dialogue.'},
+    tr:{goals:'Bu dersin sonunda…',pronunciation:'Telaffuz',dialogue:'Günlük konuşma',apply:'Şimdi kendin uygula',speaking:'Konuşma',writing:'Yazma',check:'Sonraki derse geçmeden önce',tip:'Aklında tut',person:'Kişi',core:'Önemli cümleler',deepen:'Derinleştirme: gramer ve cümle kalıpları',repeat:'Örnekleri dinle ve yüksek sesle tekrar et.',instruction:'Örneğe bakmadan yanıtla. Bir cümle zor gelirse örneklere ve konuşmaya geri dön.'},
+    de:{goals:'Das kann ich nach dieser Lektion',pronunciation:'Aussprache',dialogue:'Alltagsdialog',apply:'Jetzt selbst anwenden',speaking:'Sprechen',writing:'Schreiben',check:'Bevor ich weiterlerne',tip:'Merke dir',person:'Person',core:'Wichtige Sätze',deepen:'Vertiefung: Grammatik & Satzmuster',repeat:'Höre die Beispiele an und sprich sie laut nach.',instruction:'Antworte ohne Vorlage. Wenn eine Formulierung noch schwerfällt, wiederhole die Beispiele und den Dialog.'}
   };
   function content(id){return window.A1_COURSE_CONTENT.find(l=>l.id===id);}
   function row(pair,esc,speakBtn,label=''){
     return `<div class="phrase-row"><div>${label?`<small>${esc(label)}</small>`:''}<strong>${esc(pair[0])}</strong><small>${esc(pair[1])}</small></div>${speakBtn(pair[0])}</div>`;
   }
-  function intro(id,lang,esc,speakBtn,options={}){
+  function goals(id,lang,esc){
+    const c=content(id),w=words[lang];
+    return `<div class="notice lesson-goals"><strong>${w.goals}</strong><ul>${c.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
+  }
+  function grammar(id,lang,esc,speakBtn,options={}){
     const c=content(id),w=words[lang];
     const title=options.title||c.grammar.title;
     const referencesHtml=options.referencesHtml||'';
-    return `<div class="notice lesson-goals"><strong>${w.goals}</strong><ul>${c.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-      <details class="lesson-explanation" open><summary><strong>${esc(title)}</strong></summary><p class="muted">${esc(c.grammar.explanation)}</p>${referencesHtml}${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p></details>`;
+    return `<details class="lesson-explanation lesson-deepening"><summary><strong>${esc(w.deepen)}</strong></summary><div class="lesson-deepening-title">${esc(title)}</div><p class="muted">${esc(c.grammar.explanation)}</p>${referencesHtml}${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p></details>`;
+  }
+  function intro(id,lang,esc,speakBtn,options={}){
+    return goals(id,lang,esc)+grammar(id,lang,esc,speakBtn,options);
   }
   function extras(id,lang,esc,speakBtn){
     const c=content(id),w=words[lang];
@@ -36,5 +42,5 @@
     };
   }
   function goal(id,esc){return esc(content(id).canDo[0]);}
-  window.A1LessonGuide={intro,extras,parts,goal};
+  window.A1LessonGuide={intro,goals,grammar,extras,parts,goal};
 })();

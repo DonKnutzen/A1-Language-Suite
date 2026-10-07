@@ -124,11 +124,12 @@ const LESSON_APPLICATIONS={1:{speakModel:"Bonjour, je m’appelle Léa. J’habi
 
 function renderLesson(id){
   const l=lessons.find(x=>x.id===id),c=l,app=LESSON_APPLICATIONS[id];
-  const introHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>${lessonGrammarHtml(l)}`;
+  const goalsHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
+  const grammarHtml=lessonGrammarHtml(l);
   const dialogueHtml=`<details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small>Person ${i%2?'B':'A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>`;
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
-    introHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
+    goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
     model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,fullModel:true,recorderHtml,
     repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });
@@ -212,7 +213,7 @@ function lessonGrammarHtml(l){
   const ref=LESSON_GRAMMAR_REFS[l.id]||{};
   const refs=A1GrammarUI.pickDetails(GRAMMAR_GUIDES,ref.refs||[]);
   const topicInfo=A1LessonTopicInfo.render('francais',l.id);
-  return `<details class="lesson-explanation" open><summary><strong>${esc(ref.title||l.grammar.title)}</strong></summary><p class="muted">${esc(l.grammar.explanation)}</p>${refs}${topicInfo}</details>`;
+  return `<details class="lesson-explanation lesson-deepening"><summary><strong>Vertiefung: Grammatik & Satzmuster</strong></summary><div class="lesson-deepening-title">${esc(ref.title||l.grammar.title)}</div><p class="muted">${esc(l.grammar.explanation)}</p>${refs}${topicInfo}</details>`;
 }
 
 function renderGrammarIntro(id){

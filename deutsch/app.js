@@ -1808,12 +1808,13 @@ function renderLearn(){
 
 function renderLesson(id){
   const l=lessons.find(x=>x.id===id),c=window.A1_COURSE_CONTENT.find(x=>x.id===id);
-  const introHtml=A1LessonGuide.intro(id,'fr',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
+  const goalsHtml=A1LessonGuide.goals(id,'fr',esc);
+  const grammarHtml=A1LessonGuide.grammar(id,'fr',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
   const dialogueHtml=A1LessonGuide.parts(id,'fr',esc,speakBtn).dialogue;
   const model=(c.grammar.examples?.[0]?.[0]||l.phrases[0][0])+' '+l.phrases.slice(1,4).map(p=>p[0]).join(' ');
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'fr',
-    introHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'de','fr'),
+    goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'de','fr'),
     model,recorderHtml:recorderUI,
     repeatHint:'Écoute les exemples et répète-les à voix haute.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });

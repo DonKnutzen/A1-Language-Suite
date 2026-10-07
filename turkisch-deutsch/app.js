@@ -30,12 +30,13 @@ function renderHome(){const next=lessons.find(l=>!state.doneLessons.includes(l.i
 function renderLearn(){view.innerHTML=`<section class="card hero"><h2>24 A1 dersi</h2><p class="muted">Temel günlük durumlar, Almanca örnekler, Türkçe açıklamalar ve kısa testler.</p></section><div class="list">${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-id="${l.id}"><span class="num">${l.id}</span><strong>${esc(l.title)}</strong><p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p><div class="lesson-meta"><span class="pill gray">${esc(l.topic)}</span>${l.skills.map(s=>`<span class="pill">${s}</span>`).join('')}</div></button>`).join('')}</div>`;document.querySelectorAll('.lesson[data-id]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.id));}
 function renderLesson(id){
   const l=lessons.find(x=>x.id===id),c=window.A1_COURSE_CONTENT.find(x=>x.id===id);
-  const introHtml=A1LessonGuide.intro(id,'tr',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
+  const goalsHtml=A1LessonGuide.goals(id,'tr',esc);
+  const grammarHtml=A1LessonGuide.grammar(id,'tr',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
   const dialogueHtml=A1LessonGuide.parts(id,'tr',esc,speakBtn).dialogue;
   const model=(c.grammar.examples?.[0]?.[0]||l.phrases[0][0])+' '+l.phrases.slice(1,4).map(p=>p[0]).join(' ');
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'tr',
-    introHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'de','tr'),
+    goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'de','tr'),
     model,recorderHtml:recorderUI,
     repeatHint:'Örnekleri dinle ve yüksek sesle tekrar et.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:text=>{if(audioEnabled)speak(text,true);},renderLesson,renderLearn
   });
