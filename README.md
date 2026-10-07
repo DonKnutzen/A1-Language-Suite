@@ -1,62 +1,46 @@
-# A1 Language Suite – vollständiges Upload-Projekt
+# A1 Language Suite
 
-Stand: 6. Oktober 2026. Vier getrennte Kurse mit gemeinsamen Profilen, Lernserie, Dark Mode und deutscher, französischer oder türkischer Oberfläche für Startseite und Profilmenüs.
+Browserbasierte Sprachlern-App mit vier getrennten A1-Kursen und gemeinsamen Profilfunktionen.
 
-Dark-Mode-Korrektur im Türkisch–Deutsch-Kurs: Die manuelle Auswahl funktioniert unabhängig vom Gerätefarbschema. Hinweise, Lösungen, Antwortmarkierungen, Eingabefelder und aktive Bedienelemente erhalten passende dunkle Farben. Die aktualisierten Aufgaben-, Ablauf- und Audiodateien verwenden dialog-21; die Kurscaches wurden entsprechend erhöht.
+## Kurse
 
-## Aufgaben und Aussprache
+| Kurs | Verzeichnis |
+|---|---|
+| Französisch → Deutsch | `deutsch/` |
+| Deutsch → Französisch | `francais/` |
+| Deutsch → Spanisch | `spanisch/` |
+| Türkisch → Deutsch | `turkisch-deutsch/` |
 
-Die zehn gemischten Übungen zeigen bei Eingabeaufgaben eine konkrete Frage und einen passenden Bedeutungshinweis. Danach folgen direkt die Selbstaufgaben für Sprechen und Schreiben. Der Alltagsdialog ist dort als eingeklappte Hilfe verfügbar. Neue Lektionen benötigen mindestens 70 % im Quiz und beide selbst geprüften Aufgaben; vorhandene Abschlüsse bleiben erhalten. Schreibentwürfe und Aufgabenstatus werden gespeichert.
+## Funktionen
 
-Französische Aussprachebeispiele sind einzeln hörbar. Die Alphabetlektion enthält Buchstabennamen, Akzente und Buchstabierübungen. Über das Schallwellen-Symbol oben kannst du die verfügbare Browserstimme auswählen und eine Hörprobe abspielen. Es gibt keine zusätzlichen Audiodateien oder TTS-Modelle. Apple kann die Auswahl hochwertiger Stimmen begrenzen. Einzelheiten und Tests stehen in UPDATE-AUFGABEN-AUSSPRACHE.md.
+- 24 Lektionen pro Kurs
+- gemischte Übungssätze
+- Hören, Lesen, Schreiben und Sprechen
+- Browser-Sprachausgabe mit auswählbaren Stimmen
+- Hilfen für Satzaufgaben und toleranteres Feedback bei kleinen Schreibfehlern
+- kursbezogener Lernfortschritt
+- gemeinsame Profile und Lernserie
+- Dark Mode
+- responsive Nutzung auf Desktop und Smartphone
+- Offline-Unterstützung über getrennte Service-Worker-Caches
 
-## Lernserie
+## Projektstruktur
 
-Eine gemeinsame Serie pro Profil zählt die Kalendertage mit einer abgeschlossenen Übung in einem der vier Kurse. Die erste Übung startet bei 1; weitere Übungen am selben Tag erhöhen die Zahl nicht. Ein aufeinanderfolgender Pausentag ist erlaubt und zählt nicht mit. Nach zwei aufeinanderfolgenden Pausentagen verfällt die Serie; die nächste abgeschlossene Übung beginnt wieder bei 1. Eine verfallene Serie wird nicht wiederhergestellt.
+- `index.html` – Startseite und Kursauswahl
+- `shared/` – gemeinsame Funktionen und UI-Bausteine
+- `deutsch/` – Französisch → Deutsch
+- `francais/` – Deutsch → Französisch
+- `spanisch/` – Deutsch → Spanisch
+- `turkisch-deutsch/` – Türkisch → Deutsch
 
-Bei 0 bleibt die Anzeige vollständig leer. Ab 1 erscheinen nur Flamme und Zahl oben rechts im Fortschrittsfeld auf der Startseite jedes Kurses. Regeln, Beispiele und Prüfungen dieses Updates stehen in UPDATE-LERNSERIE.md.
+Kursbezogene Lehrpläne oder fachliche Dokumentation liegen direkt im jeweiligen Kursordner.
 
-| Kurs | Verzeichnis | Cloud-Kennung | Fortschritts-Schlüssel |
-|---|---|---|---|
-| Französisch → Deutsch | deutsch/ | de | deutschA1GoetheFormatState_v6 |
-| Deutsch → Französisch | francais/ | fr | francaisA1DelfState_v1 |
-| Deutsch → Spanisch | spanisch/ | es | spanischA1DeleState_v1 |
-| Türkisch → Deutsch | turkisch-deutsch/ | de-tr | deutschA1TurkishState_v1 |
+## Veröffentlichung
 
-## Fertiger Upload
+Für GitHub Pages den Inhalt dieses Projektordners als zusammenhängenden Stand hochladen. `index.html`, `shared/` und die vier Kursordner müssen auf derselben Ebene bleiben.
 
-Den aktuellen Stand vorher als Git-Commit oder ZIP sichern. ZIP entpacken und ihren Inhalt ins Hauptverzeichnis des bestehenden GitHub-Pages-Projekts hochladen. index.html, shared/ und die vier Kursordner liegen auf derselben Ebene. Alle Dateien mit übernehmen, insbesondere shared/learning.js und die neue gemeinsame Datei shared/streak.js.
+Die App benötigt für die vorhandenen Lernfunktionen keine kostenpflichtige API und keine zusätzlichen TTS-Modelle. Die Aussprache verwendet die im Browser bzw. Betriebssystem verfügbaren Stimmen.
 
-Die Supabase-Konfiguration und das bestehende Schema wurden unverändert übernommen. Für dieses Update ist keine Datenbankmigration vorgesehen. Eigene neuere Änderungen an shared/config.js vor dem Upload beibehalten. Die Fortschritts-Schlüssel, Kurskennungen und Profil-Namensräume wurden nicht geändert. Der Upload selbst setzt keine Leistungen zurück.
+## Daten und Fortschritt
 
-## Französischkurs
-
-24 kompetenzorientierte Lektionen mit je einem Lernziel, Sprachbaustein, Aussprachefokus, Alltagsdialog sowie freier Sprech- und Schreibaufgabe. 224 Phrasen, 240 Lektionsfragen, 12 Grammatiksets mit 104 Fragen und je 81 Hör- und 81 Leseaufgaben. Dazu 10 Formularaufgaben, 15 Schreibaufgaben, 30 persönliche Sprechfragen, 60 Informationskarten und 18 Rollenspiele.
-
-Das Alphabet, Zahlen, Wochentage, Monate und grundlegende Kommunikationsstrategien sind ausdrücklich enthalten. Schreibtraining verlangt mindestens 40 Wörter. Umfang und Zuordnung stehen in francais/LEHRPLAN-A1.md. Die App behauptet keine offizielle Zertifizierung und keinen vollständigen Abgleich mit dem nicht vorliegenden Volltext von Niveau A1 pour le français.
-
-## Weitere Korrekturen
-
-- Zurück-Buttons in Hörübungen öffnen wieder das Menü.
-- Das Zurücksetzen erzeugt einen frischen Zustand und speichert ihn für das aktuelle Profil.
-- Die Französisch-Anzeige für erledigte Sprechübungen verwendet den vollständigen Aufgabenpool.
-- Französisch und Spanisch vergeben keine pauschalen 60 Prozent fürs Beenden einer Schreib- oder Sprechsimulation. Schreibwerte kombinieren Formularergebnis und ausdrückliche Selbstbewertung.
-- Türkische Grammatikfragen unterscheiden jetzt eindeutiger zwischen Einzahl, Mehrzahl und höflicher Anrede. Buchstabieren wird mit harf harf söylemek beschrieben.
-- Leere türkische Formulare und Nachrichten werden nicht mehr als bearbeitet gespeichert. Freie Formularantworten werden damit nicht automatisch sprachlich bewertet.
-- Aufnahmefreigabe, Stoppen, Seitenwechsel und Wiedergabe werden gemeinsam behandelt; abgebrochene und leere Aufnahmen zählen nicht als Sprechleistung.
-- Lernaufgaben werden ohne verzerrten Sortiervergleich gemischt.
-- Caches der einzelnen Kurse bleiben getrennt. Ein Update des französischsprachigen Deutschkurses löscht nicht den Türkischkurs-Cache. Unabhängige Anwendungen auf derselben Domain bleiben geschützt.
-- Bei Offline-Nutzung oder einem Serverfehler werden vorhandene erfolgreiche Seiten aus dem jeweiligen Kurscache verwendet.
-
-## Grenzen der Bewertung
-
-Die Prozentbalken unter Prüfungsreife zeigen bearbeitete Übungen, keine standardisierte A1-Messung. Freies Schreiben und Sprechen brauchen Selbstkontrolle oder eine Lehrperson. Die App verwendet Browser-Sprachsynthese statt offizieller Prüfungsaufnahmen. Die Simulationen sind Training; die tatsächlichen Prüfungsvorgaben stehen in den verlinkten Originalquellen.
-
-## Quellen
-
-- GER/CEFR Companion Volume, Europarat (2020): https://rm.coe.int/common-european-framework-of-reference-for-languages-learning-teaching/16809ea0d4
-- DELF A1 tout public, France Éducation international: https://www.france-education-international.fr/diplome/delf-tout-public/niveau-a1
-- Goethe A1, offizielle Übungsmaterialien: https://www.goethe.de/ins/de/de/prf/prf/gzsd1/ueb.html
-- Das Spanischmodul verwendet weiterhin die bereits integrierte Struktur des vom Nutzer bereitgestellten DELE-A1-Modells ab 2020.
-
-Die frühere Dokumentation zu Zwischenversionen ist in den Kursordnern vorhanden und mit einem Archivhinweis versehen. Aktuell sind diese README, UPLOAD-README.txt, francais/LEHRPLAN-A1.md und PRUEFBERICHT.txt.
+Fortschritt wird pro Profil und Kurs getrennt gespeichert. Wenn eine Cloud-Konfiguration vorhanden ist, kann der bestehende Sync verwendet werden. Die aktuellen Änderungen erfordern keine Datenbankmigration und setzen vorhandenen Lernfortschritt nicht zurück.

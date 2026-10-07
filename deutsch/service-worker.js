@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-live-dialog-v25";
+const CACHE="deutsch-a1-live-dialog-v26";
 const PREFIX="deutsch-a1-live-";
-const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-25","./app.js?v=dialog-25","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-25","../shared/lesson-flow.js?v=dialog-25","../shared/pronunciation.js?v=dialog-25","../shared/course-updates.css?v=dialog-25","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js?v=dialog-25"];
+const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-27","./app.js?v=dialog-27","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-27","../shared/lesson-flow.js?v=dialog-27","../shared/pronunciation.js?v=dialog-27","../shared/lesson-ui.css?v=dialog-27","../shared/lesson-topic-info.js","../shared/grammar-ui.js","../shared/exercise-engine.js?v=dialog-27"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

@@ -47,7 +47,7 @@ function speak(text,force=false,rate=.82){
 }
 function playCorrectAudio(text){
   if(!audioEnabled||!text)return;
-  setTimeout(()=>speak(text,true,.80),120);
+  speak(text,true,.80);
 }
 function speakBtn(text){
   return `<button class="speak-btn" data-speak="${encodeURIComponent(text)}" aria-label="Aussprache anhören">🔊</button>`;

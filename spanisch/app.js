@@ -43,7 +43,7 @@ function speak(text,force=false,rate=.82){
   if((!audioEnabled&&!force)||!text)return;
   A1Voice.speak(text,{lang:'es-ES',rate});
 }
-function playCorrectAudio(text){if(audioEnabled&&text)setTimeout(()=>speak(text,true,.80),120);}
+function playCorrectAudio(text){if(audioEnabled&&text)speak(text,true,.80);}
 function speakBtn(text){return `<button class="speak-btn" data-speak="${encodeURIComponent(text)}" aria-label="Aussprache anhören">🔊</button>`;}
 function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(decodeURIComponent(b.dataset.speak),true));}
 function updateAudioButton(){

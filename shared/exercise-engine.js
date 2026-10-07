@@ -15,24 +15,41 @@
     const answer=clean(q?.o?.[q.a]);
     const rawQuestion=clean(q?.q),question=norm(rawQuestion);
     const explicit=clean(q?.audio);
+    const asksForTarget=/wie sagst du|wie heißt .* (?:auf|in) (?:französisch|spanisch|deutsch)|auf (?:französisch|spanisch|deutsch)|comment (?:dit|dis)|nasıl (?:söy|denir)/i.test(rawQuestion);
+    const targets=ps.map(p=>clean(p?.[0])).filter(Boolean);
+    const targetNorms=targets.map(t=>norm(t));
     const byTarget=ps.find(p=>norm(p?.[0])===norm(answer));
     const byNative=ps.find(p=>norm(p?.[1])===norm(answer));
     const inQuestion=ps.find(p=>{
       const target=norm(p?.[0]);
       return target.length>2&&question.includes(target);
     });
-    const inferred=clean(byTarget?.[0]||byNative?.[0]||inQuestion?.[0]);
+    const answerNorm=norm(answer);
+    const answerIsTarget=answerNorm&&targetNorms.some(t=>t===answerNorm||(answerNorm.length>2&&(` ${t} `).includes(` ${answerNorm} `)));
+
+    // Many vocabulary questions contain only the German/French/Spanish target word in quotes,
+    // e.g. « buchstabieren » signifie … . Play that exact word instead of an unrelated phrase.
+    const quoted=[];
+    for(const re of [/«\s*([^»]{1,140}?)\s*»/g,/“\s*([^”]{1,140}?)\s*”/g,/„\s*([^“”]{1,140}?)\s*[“”]/g,/"\s*([^"\n]{1,140}?)\s*"/g]){
+      let m;while((m=re.exec(rawQuestion)))quoted.push(clean(m[1]));
+    }
+    const quotedTarget=quoted.find(part=>{
+      const n=norm(part);if(!n)return false;
+      return targetNorms.some(t=>t===n||(n.length>2&&(` ${t} `).includes(` ${n} `))||(t.length>3&&n.includes(t)));
+    });
+    const asksMeaning=/signifie|bedeutet|ne demektir|que signifie|was heißt|=\s*$/i.test(rawQuestion);
+    // In a direct meaning question, the quoted expression itself is what should be pronounced.
+    // Translation-production questions are handled first so a quoted native-language prompt is never spoken.
+    const meaningQuoted=!asksForTarget&&asksMeaning?quoted[0]:'';
+
+    const inferred=clean(byTarget?.[0]||byNative?.[0]||(asksForTarget?answer:'')||quotedTarget||meaningQuoted||inQuestion?.[0]||(answerIsTarget?answer:''));
     if(explicit){
       const e=norm(explicit);
       const completed=rawQuestion.includes('___')?norm(rawQuestion.replace('___',answer)):'';
-      const targetRelated=ps.some(p=>{
-        const target=norm(p?.[0]);
-        return target&&(e===target||(e.length>3&&target.includes(e))||(target.length>3&&e.includes(target)));
-      });
+      const targetRelated=targetNorms.some(target=>target&&(e===target||(e.length>3&&target.includes(e))||(target.length>3&&e.includes(target))));
       // Never trust an audio string merely because it equals the selected option:
       // in translation questions that option may be in the learner's native language.
-      const asksForTarget=/wie sagst du|auf (?:französisch|spanisch|deutsch)|comment (?:dit|dis)|nasıl (?:söy|denir)/i.test(rawQuestion);
-      const safe=question.includes(e)||e===norm(inferred)||targetRelated||(completed&&e===completed)||(asksForTarget&&e===norm(answer));
+      const safe=question.includes(e)||e===norm(inferred)||targetRelated||(completed&&e===completed)||(asksForTarget&&e===answerNorm);
       if(safe)return explicit;
     }
     return inferred;
