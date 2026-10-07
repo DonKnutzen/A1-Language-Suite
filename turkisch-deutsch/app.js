@@ -397,7 +397,6 @@
       </section>
       <section class="card">
         <h3>Almanca örnekler & derinleştirme</h3>
-        <p class="muted">Örnekleri dinle; yalnızca telaffuzu değil, cümle yapısını ve kullanılan işyeri dilini de fark etmeye çalış.</p>
         ${examples.map((e,i)=>`<div class="example-box ${w.heardExamples.includes(e[0])?'is-heard':''}" data-example-row="${i}"><div class="between"><strong>${esc(e[0])}</strong><button class="speak-btn" data-example="${i}" aria-label="Dinle">🔊</button></div><div class="muted">${esc(e[1])}</div>${e[2]?`<small>${esc(e[2])}</small>`:''}</div>`).join('')}
       </section>
       <section class="card">

@@ -1,6 +1,6 @@
-const CACHE="spanisch-a1-dialog-v44";
+const CACHE="spanisch-a1-dialog-v46";
 const PREFIX="spanisch-a1-";
-const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-44","./app.js?v=dialog-44","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-44","../shared/lesson-flow.js?v=dialog-44","../shared/pronunciation.js?v=dialog-44","../shared/lesson-ui.css?v=dialog-44","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-44","../shared/exercise-engine.js?v=dialog-44","./data.js"];
+const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-45","./app.js?v=dialog-45","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-45","../shared/lesson-flow.js?v=dialog-45","../shared/pronunciation.js?v=dialog-45","../shared/lesson-ui.css?v=dialog-45","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-45","../shared/exercise-engine.js?v=dialog-45","./data.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
