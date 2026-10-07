@@ -196,6 +196,63 @@
     </button>`;
   }
 
+  const PRODUCTION_GUIDES = {
+    1:{task:'3–5 cümlede bir işyeri durumunu C1 düzeyinde özetle ve ne yapılması gerektiğini belirt.',target:'Bilgiyi yalnızca aktarma; ana noktayı seç, sonucu veya sonraki adımı açıkça belirt.',example:'Die Lieferung verspätet sich voraussichtlich um zwei Tage. Da der Kunde die Ware dringend benötigt, sollten wir ihn sofort informieren. Anders ausgedrückt: Eine frühe Rückmeldung ist hier wichtiger als eine perfekte Lösung.'},
+    2:{task:'3–5 cümlelik kısa bir paragraf yaz ve cümleleri gönderim ifadeleriyle birbirine bağla.',target:'dies, dadurch, dabei, letzteres, ein solcher Ansatz gibi gönderim araçlarından en az birini kullan.',example:'Das Team hat zwei Modelle geprüft: feste Präsenztage und flexible Anwesenheit. Letzteres bietet mehr Spielraum. Dadurch lässt sich die Planung besser an unterschiedliche Aufgaben anpassen.'},
+    3:{task:'Bir görüşü 3–5 cümlede savun; karşıtlık, neden veya sonuç ilişkisini açıkça göster.',target:'aber/weil ile yetinme; örneğin zwar … jedoch, wenngleich, während, folglich, demgegenüber kullan.',example:'Zwar verursacht die Umstellung zunächst zusätzliche Kosten, jedoch spart sie langfristig Zeit. Wenngleich nicht alle Mitarbeitenden überzeugt sind, überwiegen aus meiner Sicht die Vorteile.'},
+    4:{task:'Aynı fikri iki farklı biçimde ifade eden 3–5 cümle yaz.',target:'İkinci ifade ilk cümlenin kelimelerini sadece tekrarlamasın; eşanlamlı sözcük veya farklı bir yapı kullan.',example:'Die Maßnahme ist mit erheblichen Kosten verbunden. Anders ausgedrückt: Das Unternehmen müsste dafür deutlich mehr Geld einplanen. Dennoch könnte sich die Investition langfristig lohnen.'},
+    5:{task:'Resmî veya yarı resmî bir işyeri bağlamında 3–5 cümle yaz.',target:'Kayıt tutarlı olsun: nazik, mesafeli ve duruma uygun ifadeler kullan; konuşma diline kayma.',example:'Ich möchte Sie darauf aufmerksam machen, dass die vereinbarte Frist bereits abgelaufen ist. Dennoch bin ich zuversichtlich, dass wir gemeinsam eine Lösung finden können.'},
+    6:{task:'3–5 cümlede en az iki doğal eşdizim veya Nomen-Verb-Verbindung kullan.',target:'Kelimeyi tek başına değil doğal birleşimiyle kullan: eine Entscheidung treffen, Maßnahmen ergreifen, zur Verfügung stehen, Kritik üben.',example:'Die Geschäftsleitung muss zeitnah eine Entscheidung treffen. Um weitere Verzögerungen zu vermeiden, sollten wir konkrete Maßnahmen ergreifen. Dafür stehen bereits zusätzliche Ressourcen zur Verfügung.'},
+    7:{task:'3–5 cümlede en az iki Vorgangspassiv örneği kullan.',target:'Sürece odaklan: werden + Partizip II; Perfektte ist/sind … worden yapısını kullan.',example:'Die neuen Richtlinien werden nächste Woche eingeführt. Alle Mitarbeitenden werden vorher informiert. Die wichtigsten Änderungen sind bereits mehrfach geprüft worden.'},
+    8:{task:'3–5 cümlede süreç ile sonuç durumunu karşılaştır.',target:'Vorgangspassiv (wird gemacht) ve Zustandspassiv (ist gemacht) farkını bilinçli kullan; mümkünse öznesiz pasif ekle.',example:'Die Tür wird gerade repariert. Am Nachmittag ist sie wieder geschlossen. Während der Arbeiten wird im Nebeneingang gewartet.'},
+    9:{task:'3–5 cümlede en az iki Nomen-Verb-Verbindung kullan ve birini basit fiille yeniden ifade et.',target:'Örn. eine Entscheidung treffen → entscheiden; Kritik üben → kritisieren; zur Verfügung stellen → bereitstellen.',example:'Die Leitung hat eine Entscheidung getroffen. Anders ausgedrückt: Sie hat entschieden, das Projekt fortzusetzen. Gleichzeitig wurde Kritik an der bisherigen Planung geübt.'},
+    10:{task:'3–5 cümlede zorunluluk, izin veya olanak ifade et.',target:'müssen, dürfen, können, sollen, wollen arasındaki anlam farkını doğru seç.',example:'Die Mitarbeitenden müssen die Sicherheitsregeln beachten. Sie dürfen den Bereich nur mit Ausweis betreten, können Fragen aber jederzeit an die Teamleitung richten.'},
+    11:{task:'3–5 cümlede bir bilginin ne kadar kesin olduğunu modal fiillerle derecelendir.',target:'könnte/dürfte = olasılık, muss = güçlü çıkarım, soll = duyum, will = kişinin kendi iddiası.',example:'Der Lieferant dürfte die Ware bereits verschickt haben. Die Sendung muss also unterwegs sein. Laut Spedition soll es gestern jedoch eine Verzögerung gegeben haben.'},
+    12:{task:'3–5 cümlede varsayım, temkinli öneri veya geçmiş pişmanlık ifade et.',target:'Konjunktiv II kullan: wäre/würde/könnte/sollte; geçmiş için hätte/wäre + Partizip II.',example:'Es wäre sinnvoll, den Kunden früher zu informieren. Wir könnten ihm zunächst eine Zwischenlösung anbieten. Rückblickend hätten wir die Frist realistischer planen sollen.'},
+    13:{task:'Bir kişinin sözünü 3–5 cümlede dolaylı anlatımla aktar.',target:'Konjunktiv I kullan: er sei, habe, werde, könne; gerekirse anlamı koruyarak yeniden ifade et.',example:'Die Projektleiterin erklärte, der Termin sei weiterhin realistisch. Sie habe bereits zusätzliche Ressourcen beantragt und werde das Team morgen informieren.'},
+    14:{task:'3–5 cümlede bir fiil cümlesini adlaştır ve sonra daha açık bir fiil yapısıyla yeniden yaz.',target:'Nominalisierung ve Verbalisierung arasında bilinçli geçiş yap.',example:'Nach der Prüfung der Unterlagen wurde der Antrag genehmigt. Nachdem die Unterlagen geprüft worden waren, genehmigte die Abteilung den Antrag.'},
+    15:{task:'Bir işyeri bilgisini başka bir kişiye 3–5 cümlede aktar ve yapılacak işi belirt.',target:'Mediation: ayrıntıları kopyalamak yerine alıcı için önemli bilgiyi seç, açıklaştır ve eyleme dönüştür.',example:'Der Kunde hat mitgeteilt, dass er die Lieferung bereits am Donnerstag benötigt. Das bedeutet für uns, dass wir den Termin prüfen müssen. Bitte gib ihm anschließend kurz Bescheid.'},
+    16:{task:'Bir kişinin ihtiyacını 3–5 cümlede farklı kelimelerle özetle ve hangi tür metnin uygun olacağını açıkla.',target:'Ana fikri parafraz et; metindeki kelimeleri aynen aramak yerine anlam eşleşmesine odaklan.',example:'Die Person sucht keine allgemeine Karriereberatung, sondern konkrete Hilfe beim Umgang mit hoher Arbeitsbelastung. Passend wäre daher ein Beitrag, der Strategien gegen Stress am Arbeitsplatz beschreibt.'},
+    17:{task:'Bir işyeri kuralını 3–5 cümlede kendi sözlerinle açıkla.',target:'Kural, istisna ve sonucu birbirinden ayır; dürfen/müssen/sollen gibi modal ifadeleri doğru kullan.',example:'Mitarbeitende müssen ihren Firmenausweis auf dem Gelände mitführen. Dadurch kann die Zugehörigkeit jederzeit überprüft werden. Ohne Ausweis dürfen bestimmte Bereiche nicht betreten werden.'},
+    18:{task:'Bir işyeri sorununa 3–5 cümlede uygun bir tavsiye ver ve nedenini açıkla.',target:'Sorunla gerçekten örtüşen tavsiyeyi seç; sollte/könnte, an deiner Stelle gibi öneri yapıları kullan.',example:'An deiner Stelle würde ich zunächst das Gespräch mit der Teamleitung suchen. Dadurch lässt sich klären, ob die Aufgaben anders verteilt werden können. Ein sofortiger Stellenwechsel wäre dagegen voreilig.'},
+    19:{task:'Kısa bir toplantı sonucunu 3–5 cümlede özetle: karar, sorumlu kişi ve son tarih.',target:'Wer macht was bis wann? Bu üç bilgiyi açıkça ayır ve itiraz/karar farkını koru.',example:'Die Abteilungsleitungen haben beschlossen, die Telefonanlage zu überprüfen. Die IT soll bis Ende Juni einen Projektplan vorlegen. Der Vertrieb hat außerdem darum gebeten, frühzeitig einbezogen zu werden.'},
+    20:{task:'4–6 cümlelik kısa ve profesyonel bir müşteri e-postası yaz.',target:'Sorunu kabul et, suçlayıcı dilden kaçın, çözüm veya sonraki adımı belirt ve ekip liderinin talimatını uygun dille aktar.',example:'Sehr geehrter Herr Weber, vielen Dank für Ihre Nachricht. Wir bedauern die entstandenen Unannehmlichkeiten und prüfen den Vorgang derzeit. Obwohl die Ursache noch nicht abschließend geklärt ist, werden wir uns heute mit der Kundin in Verbindung setzen. Anschließend informieren wir Sie über das weitere Vorgehen.'},
+    21:{task:'Duyduğun bir işyeri konuşmasını 3–5 cümlede özetliyormuş gibi yaz: sorun, öneri ve karar.',target:'Ana durum ile ayrıntıyı ayır; konuşmacının önerisini kendi sözlerinle aktar.',example:'Im Team fehlen derzeit zwei Mitarbeitende. Deshalb wird über eine Übergangslösung gesprochen. Die Teamleiterin schlägt vor, Aufgaben vorübergehend neu zu verteilen.'},
+    22:{task:'Bir konuşmacının temel argümanını 3–5 cümlede kendi sözlerinle yeniden kur.',target:'Örneklerden ziyade ana iddiayı yakala; görüş, gerekçe ve olası sonucu ayır.',example:'Der Sprecher hält einen Abteilungswechsel nicht grundsätzlich für problematisch. Entscheidend sei vielmehr, ob die Person ihre Stärken im neuen Bereich besser einsetzen könne. Dadurch könnten beide Teams profitieren.'},
+    23:{task:'Bir şirket sunumunun 3–5 cümlelik yönetici özetini yaz.',target:'Rakam/sonuç, neden ve sonraki adımı birbirinden ayır; ayrıntıya boğulma.',example:'Der Umsatz ist gegenüber dem Vorjahr gestiegen, vor allem wegen höherer Preise. Bei den Serviceverträgen wurde das Ziel dagegen noch nicht erreicht. Deshalb plant der Vertrieb für das zweite Halbjahr eine gezielte Kampagne.'},
+    24:{task:'Bir telefon mesajını 3–5 cümlede meslektaşına aktar.',target:'Kim aradı, neden aradı ve senden ne yapılmasını bekliyor? Gereksiz ayrıntıları çıkar.',example:'Frau Berger aus der Personalabteilung hat angerufen. Die Unterweisung beginnt morgen erst um zehn Uhr. Bitte informiere auch Herrn Yilmaz über die neue Uhrzeit.'},
+    25:{task:'Kısa bir telefon notu yaz: Name, Kontakt, wichtige Information, zu erledigen.',target:'Bilgiyi eksiksiz fakat kısa aktar; özellikle yapılacak işi eylem fiiliyle yaz.',example:'Anja Reuter, Tel. 040 731 8842. Bestellung 7814 soll bereits Donnerstagvormittag geliefert werden. Zu erledigen: früheren Liefertermin prüfen und Frau Reuter zurückrufen.'},
+    26:{task:'3–5 cümlelik resmî bir iş e-postası yaz ve en az iki doğru Rektion/eşdizim kullan.',target:'Kelime seçimini bağlama ve sabit tamamlayıcıya göre yap: auf etwas verzichten, unter Bedingungen, zu einem Gespräch kommen.',example:'Mein derzeitiger Arbeitgeber ist bereit, auf einen Teil der Kündigungsfrist zu verzichten. Unter diesen Bedingungen könnte ich früher anfangen. Gerne komme ich zu einem weiteren Gespräch in Ihr Unternehmen.'},
+    27:{task:'3–5 cümlede resmî ve doğal C1 ifadeleri kullan.',target:'Deyimsel ve yapısal kalıpları doğal seç: wie befürchtet, aus meiner Sicht, in Kauf nehmen, ob sich das … lässt.',example:'Wie befürchtet verzögert sich die Freigabe. Aus meiner Sicht sollten wir die zusätzlichen Abstimmungen in Kauf nehmen. Bitte prüfe, ob sich der Termin trotzdem halten lässt.'},
+    28:{task:'6–8 cümlelik mini Stellungnahme yaz: avantaj, dezavantaj, örnek, kendi görüşün ve sonuç.',target:'Argümanları bağla; sadece listeleme yapma. En az bir karşıtlık ve bir sonuç bağlayıcısı kullan.',example:'Ein verpflichtender Weiterbildungstag kann die Qualität der Arbeit erhöhen. Zwar entstehen dadurch kurzfristig Kosten, jedoch profitieren Unternehmen langfristig von besser qualifizierten Mitarbeitenden. Aus meiner Sicht überwiegen daher die Vorteile, sofern die Inhalte praxisnah gewählt werden.'},
+    29:{task:'Hazırlıksız konuşuyormuş gibi 5–7 cümlelik kısa bir monolog yaz; ardından olası bir soruya 1–2 cümle cevap ekle.',target:'Giriş → ana fikir → örnek → sonuç yapısını kullan. Partnerin sözünü aktarırken kendi kelimelerini kullan.',example:'Ich möchte kurz über Weiterbildung im Berufsleben sprechen. Meiner Erfahrung nach wird sie immer wichtiger, weil sich Arbeitsabläufe schnell verändern. Ein konkretes Beispiel ist der Einsatz neuer Software. Abschließend würde ich sagen, dass Weiterbildung sowohl den Beschäftigten als auch dem Unternehmen nutzt.'},
+    30:{task:'4–6 cümlede bir işyeri sorununa çözüm geliştir: hemen ne yapılacak, uzun vadede ne değişecek, kim neyi üstlenecek?',target:'Partnerle etkileşim dilini düşün: Vorschlag machen, zustimmen/widersprechen, Aufgabe verteilen, Ergebnis festhalten.',example:'Zunächst sollten wir den Kunden anrufen und die Situation offen erklären. Danach könnte die Logistik eine Ersatzlieferung organisieren. Ich übernehme die Kundenkommunikation, während du die Verfügbarkeit prüfst. Langfristig sollten wir den Kontrollprozess vor dem Versand verbessern.'}
+  };
+
+  function productionGuide(l) {
+    return PRODUCTION_GUIDES[l.id] || {
+      task:'3–5 C1 düzeyinde Almanca cümle yaz.',
+      target:l.goal || 'Dersin hedef yapısını bilinçli biçimde kullan.',
+      example:'Obwohl die Situation schwierig ist, lässt sich eine Lösung finden. Anders ausgedrückt: Wir haben mehrere Handlungsmöglichkeiten. Daher sollten wir die nächsten Schritte klar festlegen.'
+    };
+  }
+
+  function productionHelpHtml(l) {
+    const g=productionGuide(l);
+    return `<details class="production-help" open>
+      <summary>💡 Yardım: Görevde ne isteniyor?</summary>
+      <div class="production-help-body">
+        <div class="production-help-grid">
+          <div class="production-help-item"><strong>Bağlaç / bağlayıcı</strong><p><b>Konjunktion/Konnektor</b>, iki düşünce arasındaki ilişkiyi gösterir. Örn. <i>obwohl, weil, während, sodass</i>; ayrıca <i>dennoch, daher, folglich</i>.</p></div>
+          <div class="production-help-item"><strong>Yeniden ifade etme</strong><p><b>Paraphrase</b>, aynı fikri aynen tekrarlamak değil, başka kelime veya yapıyla yeniden anlatmaktır. Örn. <i>anders ausgedrückt, mit anderen Worten, das heißt</i>.</p></div>
+          <div class="production-help-item"><strong>Dersin hedef yapısı</strong><p>${esc(g.target)}</p></div>
+        </div>
+        <div class="production-mini-example"><strong>Mini örnek</strong><p lang="de">${esc(g.example)}</p></div>
+        <div class="production-checklist"><span>✓ Görev uzunluğuna uy</span><span>✓ En az 1 bağlaç/bağlayıcı</span><span>✓ En az 1 parafraz veya eşdeğer yeniden anlatım</span><span>✓ Bu dersin hedef yapısı</span></div>
+      </div>
+    </details>`;
+  }
+
   function renderLesson(id) {
     const l = D.lessons.find(x => x.id === id);
     if (!l) return renderLearn();
@@ -236,7 +293,8 @@
       </section>
       <section class="card">
         <h3>Aktif üretim</h3>
-        <p class="muted">Konuyu yalnızca tanımak yetmez. Aşağıya 3–5 C1 düzeyinde Almanca cümle yaz: en az bir bağlaç, bir yeniden ifade etme ve mümkünse dersin hedef yapısını kullan.</p>
+        <p class="muted">${esc(productionGuide(l).task)}</p>
+        ${productionHelpHtml(l)}
         <textarea class="text-area" id="lessonProduction" placeholder="Buraya Almanca yaz …">${esc(w.productionDraft||'')}</textarea>
         <button class="secondary-btn" id="completeLesson" style="margin-top:10px">Dersi tamamlandı olarak işaretle</button>
       </section>

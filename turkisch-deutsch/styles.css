@@ -350,3 +350,22 @@ html.dark-mode .radio-option.wrong{background:#450a0a;border-color:#7f1d1d;color
 .example-box.is-heard .speak-btn{border-color:#22c55e;box-shadow:0 0 0 1px rgba(34,197,94,.18)}
 html.dark-mode .lesson-mini-step,html.dark-mode .lesson-roadmap{background:#172033;border-color:#334155}html.dark-mode .lesson-mini-step.done{background:#163125;border-color:#166534}html.dark-mode .lesson-mini-step.done .lesson-mini-icon{background:#14532d;color:#bbf7d0}
 @media(max-width:430px){.lesson-mini-progress{gap:6px}.lesson-mini-step{padding:7px 8px;gap:6px}.lesson-mini-icon{width:21px;height:21px;flex-basis:21px}.lesson-mini-step small{font-size:.65rem}.lesson-mini-step strong{font-size:.78rem}.lesson-roadmap-steps{font-size:.8rem}}
+
+/* Contextual help for C1 active production tasks. */
+.production-help{margin:12px 0 14px;border:1px solid var(--line);border-radius:14px;background:#f8fafc;overflow:hidden}
+.production-help summary{cursor:pointer;padding:11px 13px;font-weight:850;line-height:1.4;list-style-position:inside}
+.production-help[open] summary{border-bottom:1px solid var(--line)}
+.production-help-body{padding:12px 13px}
+.production-help-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.production-help-item{padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:var(--panel)}
+.production-help-item strong{display:block;font-size:.86rem;margin-bottom:5px}
+.production-help-item p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.5}
+.production-mini-example{margin-top:10px;padding:10px 12px;border-left:3px solid var(--accent);border-radius:9px;background:rgba(59,130,246,.07)}
+.production-mini-example strong{font-size:.82rem}
+.production-mini-example p{margin:5px 0 0;line-height:1.55;font-size:.9rem}
+.production-checklist{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:10px}
+.production-checklist span{padding:5px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-size:.75rem;font-weight:750}
+html.dark-mode .production-help{background:#172033;border-color:#334155}
+html.dark-mode .production-help-item{background:var(--panel);border-color:#334155}
+html.dark-mode .production-mini-example{background:rgba(59,130,246,.1)}
+@media(max-width:720px){.production-help-grid{grid-template-columns:1fr}.production-help-body{padding:10px 11px}.production-help summary{padding:10px 11px}}
