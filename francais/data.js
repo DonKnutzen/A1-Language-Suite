@@ -167,7 +167,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für die Vorstellung reichen wenige feste Muster: Je m’appelle… = „Ich heiße…“, J’habite à… = „Ich wohne in…“, Je viens de… = „Ich komme aus…“ und Je suis… = „Ich bin…“. Vor Vokal wird je zu j’: j’habite."
+        "explanation": "Vor Vokal wird je zu j’: j’habite."
       },
       "pronunciation": {
         "focus": "bonjour / salut",
@@ -180,7 +180,7 @@ window.FR_A1_DATA = {
         "Moi, j’habite à Paris."
       ],
       "transfer": {
-        "speaking": "Stelle dich in drei Sätzen vor und frage dein Gegenüber nach Name und Wohnort.",
+        "speaking": "Stelle dich in drei Sätzen vor und formuliere anschließend die Fragen nach Name und Wohnort.",
         "writing": "Schreibe Name, Wohnort und eine Sprache in drei einfachen Sätzen."
       },
       "cefrDomains": [
@@ -343,7 +343,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Beim Buchstabieren heißt épeler „buchstabieren“. Höflich fragst du: Vous pouvez épeler, s’il vous plaît ? = „Können Sie bitte buchstabieren?“ Comment ça s’écrit ? bedeutet „Wie schreibt man das?“"
+        "explanation": "Beim Buchstabieren heißt épeler „buchstabieren“. Comment ça s’écrit ? bedeutet „Wie schreibt man das?“"
       },
       "pronunciation": {
         "focus": "u / ou : tu, vous",
@@ -544,7 +544,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Das Alter steht im Französischen mit avoir („haben“): J’ai vingt ans = „Ich bin 20 Jahre alt.“ Für Telefonnummern und persönliche Daten musst du Zahlen sicher erkennen; ab 70 folgt die besondere französische Zahlenlogik."
+        "explanation": "Das Alter steht im Französischen mit avoir („haben“): J’ai vingt ans = „Ich bin 20 Jahre alt.“"
       },
       "pronunciation": {
         "focus": "vingt / trente / cent",
@@ -557,7 +557,7 @@ window.FR_A1_DATA = {
         "Zéro six, douze, vingt, trente, quarante."
       ],
       "transfer": {
-        "speaking": "Nenne Alter und Telefonnummer. Dein Partner wiederholt die Angaben.",
+        "speaking": "Nenne Alter und Telefonnummer laut und wiederhole beide Angaben anschließend noch einmal langsam und deutlich.",
         "writing": "Trage Name, Alter, Telefonnummer und E-Mail in ein Mini-Formular ein."
       },
       "cefrDomains": [
@@ -737,7 +737,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für die Uhrzeit benutzt du il est: Il est quatre heures = „Es ist vier Uhr.“ Bei Terminen steht à: à dix heures = „um zehn Uhr“. Quatre heures et demie ist 4:30 Uhr; ein Wochentag ohne le meint meist einen konkreten Tag."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "deux heures / dix heures",
@@ -910,7 +910,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "mon / ma / mes richten sich nach dem folgenden französischen Nomen: mon père, ma mère, mes parents. Vor einem femininen Wort mit Vokal steht mon: mon amie. Beim Beschreiben bekommt ein Adjektiv in der femininen Form oft -e: petit → petite."
+        "explanation": "Vor einem femininen Wort mit Vokal steht mon: mon amie. Beim Beschreiben bekommt ein Adjektiv in der femininen Form oft -e: petit → petite."
       },
       "pronunciation": {
         "focus": "petit / petite",
@@ -1095,7 +1095,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Je voudrais… bedeutet „Ich hätte gern…“ und ist eine Standardform zum höflichen Bestellen; s’il vous plaît bedeutet „bitte“. Bei nicht abgezählten Lebensmitteln oder Getränken brauchst du oft du, de la oder de l’: du pain, de la soupe, de l’eau."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "café / eau / lait",
@@ -1268,7 +1268,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Nach einer konkreten Menge oder Verpackung steht de / d’: un kilo de pommes, une bouteille d’eau. Combien ça coûte ? bedeutet „Wie viel kostet das?“ Bei einem genannten Produkt heißt es im Singular combien coûte… ?, im Plural combien coûtent… ?"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "euros / deux euros",
@@ -1449,7 +1449,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Il y a bedeutet „es gibt“: Dans ma chambre, il y a un lit. Für die Lage brauchst du vor allem dans („in“), sur („auf“), sous („unter“), devant („vor“) und derrière („hinter“)."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "un / une",
@@ -1622,7 +1622,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Wegbeschreibungen bestehen meist aus kurzen Anweisungen: Allez… = „Gehen Sie…“, Tournez… = „Biegen Sie… ab“, Prenez… = „Nehmen Sie…“. Bei Orten wird à + le zu au und à + les zu aux: au cinéma, aux toilettes."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "rue / roue",
@@ -1795,7 +1795,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Nach être steht ein Beruf normalerweise ohne Artikel: Je suis médecin = „Ich bin Arzt/Ärztin.“ travailler ist ein regelmäßiges -er-Verb; für diese Lektion sind besonders je travaille, vous travaillez und nous travaillons wichtig."
+        "explanation": "Nach être steht ein Beruf normalerweise ohne Artikel: Je suis médecin = „Ich bin Arzt/Ärztin.“"
       },
       "pronunciation": {
         "focus": "travaille / travaillent / travaillez",
@@ -1968,7 +1968,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Bei reflexiven Verben gehört ein kleines Pronomen zum Verb: je me lève = „ich stehe auf“. Einen Tagesablauf ordnest du mit d’abord („zuerst“), puis („dann“) und ensuite („danach“); souvent und parfois geben Häufigkeit an."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "je me lève / je m’appelle",
@@ -2141,7 +2141,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für Schmerzen benutzt du avoir mal à: J’ai mal à la tête = „Ich habe Kopfschmerzen“, J’ai mal au dos = „Ich habe Rückenschmerzen“. In der Apotheke helfen feste Bitten wie Je voudrais… und Vous pouvez m’aider ?"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "tête / thé",
@@ -2322,7 +2322,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Wetter hat mehrere feste Muster: il fait froid / chaud, aber il pleut = „es regnet“. Beim Zeigen auf Kleidung benutzt du ce, cette oder ces: ce pantalon, cette robe, ces chaussures. Farben passen sich häufig an: bleu → bleue."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "beau / chaud / froid",
@@ -2495,7 +2495,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für Vorlieben steht aimer vor einem Nomen oder Infinitiv: J’aime le football = „Ich mag Fußball“, J’aime voyager = „Ich reise gern“. Aktivitäten stehen oft mit faire de oder jouer à: faire du sport, jouer au tennis."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "j’aime / j’ai",
@@ -2668,7 +2668,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für einen nahen Plan benutzt du aller + Infinitiv: Je vais visiter Paris = „Ich werde Paris besuchen“. Für Hotel und Reise sind außerdem feste Wendungen wie J’ai une réservation und Je voudrais un billet… besonders nützlich."
+        "explanation": "Für Hotel und Reise sind außerdem feste Wendungen wie J’ai une réservation und Je voudrais un billet… besonders nützlich."
       },
       "pronunciation": {
         "focus": "chambre / jambes",
@@ -2853,7 +2853,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "pouvoir („können“) und vouloir („wollen“) stehen vor einem Infinitiv: Tu peux venir ? = „Kannst du kommen?“ Tu veux venir ? = „Willst du kommen?“ Zum Absagen reicht: Je suis désolé, je ne peux pas venir."
+        "explanation": "vouloir („wollen“) steht vor einem Infinitiv: Tu veux venir ? = „Willst du kommen?“"
       },
       "pronunciation": {
         "focus": "tu peux / vous pouvez",
@@ -3026,7 +3026,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "quel / quelle bedeutet „welcher / welche“ und richtet sich nach dem Nomen: quel nom, quelle adresse. Bei Formularen musst du vor allem typische Felder erkennen; eine kurze Nachricht braucht nur Anrede, die wichtige Information und einen Gruß."
+        "explanation": "quel / quelle bedeutet „welcher / welche“ und richtet sich nach dem Nomen: quel nom, quelle adresse."
       },
       "pronunciation": {
         "focus": "adresse / e-mail",
@@ -3206,7 +3206,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Wenn du etwas nicht verstehst, helfen feste Sätze: Je ne comprends pas = „Ich verstehe nicht“, Pouvez-vous répéter, s’il vous plaît ? = „Können Sie bitte wiederholen?“ und Plus lentement, s’il vous plaît = „Bitte langsamer.“"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "s’il vous plaît / pardon",
@@ -3380,7 +3380,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "un / une stehen für „ein / eine“, le / la / l’ für „der / die / das“; im Plural stehen des bzw. les. Lerne neue Nomen am besten mit Artikel: un café, une baguette, la gare. Der regelmäßige Plural bekommt meist -s."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "les amis / les livres",
@@ -3553,7 +3553,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Der einfache Aussagesatz folgt meist Subjekt + Verb + Ergänzung: Je parle français. Für die Verneinung steht ne / n’ vor und pas nach dem Verb: Je ne parle pas français. prendre ist unregelmäßig: je prends, nous prenons."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "parle / parles / parlent",
@@ -3726,7 +3726,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Mit est-ce que machst du aus einer Aussage eine Ja/Nein-Frage: Vous travaillez. → Est-ce que vous travaillez ? Fragewörter wie où, quand und combien liefern gezielte Informationen. Besitz: notre/nos = unser/e, votre/vos = Ihr/e."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
@@ -3899,7 +3899,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für eine einfache abgeschlossene Handlung benutzt du hier avoir + Partizip: j’ai travaillé, nous avons mangé, elle a visité. Das französische hier bedeutet „gestern“, aujourd’hui „heute“ und demain „morgen“; diese Wörter machen den Zeitbezug sofort klar."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "manger / mangé",
@@ -4080,7 +4080,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für nicht abgezählte Lebensmittelmengen stehen du, de la, de l’ oder des: du pain, de la farine, des œufs. Nach einer konkreten Menge steht de: un litre de lait. Nach Verneinung wird daraus meist de / d’: Je n’ai pas de lait."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "lait / les",
@@ -4253,7 +4253,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für Reiseziele: en France / en Allemagne, au Canada, aux États-Unis. Für Herkunft ändern sich die Formen: de France, d’Allemagne, du Canada, des États-Unis. devoir + Infinitiv bedeutet „müssen“: Je dois partir."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "France / français",

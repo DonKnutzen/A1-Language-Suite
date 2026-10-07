@@ -69,7 +69,11 @@ html.dark-mode .mixed-context,html.dark-mode .alphabet-important{background:#172
 .lesson-core-phrases,.lesson-deepening{margin-top:12px}
 .lesson-core-phrases>summary,.lesson-deepening>summary{cursor:pointer}
 .lesson-deepening{border-color:color-mix(in srgb,var(--line) 82%,var(--accent) 18%)}
-.lesson-deepening-title{font-weight:800;margin:14px 0 7px;line-height:1.4}
+.lesson-deepening-title{font-weight:800;margin:14px 0 8px;line-height:1.4}
+.lesson-deepening-points{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:7px;color:var(--muted)}
+.lesson-deepening-points li{position:relative;margin:0;padding-left:15px;line-height:1.58;overflow-wrap:anywhere}
+.lesson-deepening-points li::before{content:"•";position:absolute;left:1px;top:0;color:var(--accent);font-weight:900}
+.lesson-deepening-points+ .grammar-detail,.lesson-deepening-title+ .grammar-detail{margin-top:8px}
 .lesson-core-phrases[open]>summary,.lesson-deepening[open]>summary{margin-bottom:8px}
 
 /* Shift is a keyboard control, not another character: separate it subtly. */
@@ -99,3 +103,11 @@ html.dark-mode .lesson-core-phrase.is-heard .speak-btn{border-color:#22c55e;box-
   100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--success) 18%,transparent);transform:scale(1)}
 }
 @media (prefers-reduced-motion:reduce){.lesson-core-phrase.just-heard .speak-btn{animation:none}}
+
+
+.grammar-concept-note{
+  margin:8px 0 10px;
+  line-height:1.55;
+  color:var(--muted);
+}
+.grammar-lemma-line + .grammar-concept-note{margin-top:6px}

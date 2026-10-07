@@ -4910,7 +4910,7 @@ window.ES_A1_DATA = {
   "forms": [
     {
       "id": "f1",
-      "context": "DELE-Training: Du registrierst dich auf einer Website für spanische Sprachpartner. Daten: Anna Weber, 29 Jahre, weiblich, anna@example.com, Lindenstraße 12, Berlin, Mobil 0176 1234567. Sie ist freundlich und ruhig, arbeitet als Designerin, liest und macht Sport. Sie möchte Leute zwischen 25 und 35 kennenlernen, die gern reisen und Sprachen lernen.",
+      "context": "DELE-Training: Du registrierst dich auf einer Website zum gemeinsamen Spanischlernen. Daten: Anna Weber, 29 Jahre, weiblich, anna@example.com, Lindenstraße 12, Berlin, Mobil 0176 1234567. Sie ist freundlich und ruhig, arbeitet als Designerin, liest und macht Sport. Sie möchte Leute zwischen 25 und 35 kennenlernen, die gern reisen und Sprachen lernen.",
       "fields": [
         {
           "label": "Nombre",
@@ -4992,7 +4992,7 @@ window.ES_A1_DATA = {
     },
     {
       "id": "f2",
-      "context": "Sprachpartner-Profil für Lukas Klein, 34, Hamburg, lukas@mail.de. Er ist ruhig, arbeitet als Koch und spielt am Wochenende Fußball.",
+      "context": "Lernprofil für Lukas Klein, 34, Hamburg, lukas@mail.de. Er ist ruhig, arbeitet als Koch und spielt am Wochenende Fußball.",
       "fields": [
         {
           "label": "Nombre",
@@ -5359,7 +5359,7 @@ window.ES_A1_DATA = {
     },
     {
       "id": "f10",
-      "context": "Sprachpartner-Profil: Paul Neumann, 30, freundlich und sportlich, Informatiker; Freizeit: Wandern und Kochen; sucht Leute zwischen 25 und 35, die Reisen mögen.",
+      "context": "Lernprofil: Paul Neumann, 30, freundlich und sportlich, Informatiker; Freizeit: Wandern und Kochen; sucht Leute zwischen 25 und 35, die Reisen mögen.",
       "fields": [
         {
           "label": "Nombre",
@@ -5412,7 +5412,7 @@ window.ES_A1_DATA = {
     },
     {
       "id": "w2",
-      "prompt": "Du suchst einen Sprachpartner. Schreibe 30–40 Wörter über dich, deine Sprachen, Freizeit und wen du kennenlernen möchtest.",
+      "prompt": "Du suchst Kontakte zum gemeinsamen Sprachenlernen. Schreibe 30–40 Wörter über dich, deine Sprachen, Freizeit und wen du kennenlernen möchtest.",
       "model": "Hola, me llamo Anna y soy alemana. Hablo alemán e inglés y estudio español. En mi tiempo libre leo y hago deporte. Quiero conocer a una persona simpática para practicar español por internet."
     },
     {

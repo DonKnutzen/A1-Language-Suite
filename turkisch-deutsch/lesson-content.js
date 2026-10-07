@@ -6,8 +6,8 @@ window.A1_COURSE_CONTENT=[
       "Başka birine aynı bilgileri sorabilirim."
     ],
     "grammar": {
-      "title": "Kendini tanıtma: sein, heißen ve wohnen",
-      "explanation": "Kendini tanıtmak için « Ich heiße … » (adım …), « Ich komme aus … » (…’dan geliyorum) ve « Ich wohne in … » (…’da yaşıyorum) kalıplarını güvenli kullan. Yararlı mastarlar: sein = olmak, heißen = adı olmak, kommen = gelmek, wohnen = ikamet etmek/yaşamak, arbeiten = çalışmak, sprechen = konuşmak. Basit cümlede çekimli fiil ikinci konumdadır.",
+      "title": "Kendini tanıtma",
+      "explanation": "Kendini tanıtmak için « Ich heiße … », « Ich komme aus … » ve « Ich wohne in … » kalıplarını güvenli kullan. Basit cümlede çekimli fiil ikinci konumdadır.",
       "examples": [
         [
           "Ich wohne in Halifax.",
@@ -42,7 +42,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Kendini dört cümleyle tanıt; sonra karşındaki kişinin adını ve yaşadığı şehri sor.",
+      "speaking": "Kendini dört cümleyle tanıt; sonra ad ve yaşanılan şehri sormak için iki soru kur.",
       "writing": "Heißen, kommen, wohnen ve sprechen ile kendin hakkında dört cümle yaz."
     },
     "selfCheck": [
@@ -59,7 +59,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Harf harf söyleme ve tekrar isteme",
-      "explanation": "Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini istemek için « Können Sie das bitte buchstabieren? » kullan. « Wie ist Ihr Familienname? » cümlesindeki büyük harfli Ihr, resmî Sie hitabının iyelik belirleyicisidir: « sizin » anlamına gelir ve büyük yazılır. Küçük harfli ihr, « Ihr seid … » örneğinde birden fazla kişiye samimi « siz » diye hitap eden kişi zamiridir. İyelik sözcüğü olarak ayrıca « onun (kadın) » veya « onların » anlamına da gelebilir; bu kullanımları ileride göreceksin.",
+      "explanation": "Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini istemek için « Können Sie das bitte buchstabieren? » kullan. « Wie ist Ihr Familienname? » cümlesindeki büyük harfli Ihr, resmî Sie hitabının iyelik belirleyicisidir: « sizin » anlamına gelir ve büyük yazılır. Küçük harfli ihr, « Ihr seid … » örneğinde birden fazla kişiye samimi « siz » diye hitap eden kişi zamiridir.",
       "examples": [
         [
           "Wie schreibt man das?",
@@ -94,7 +94,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Adını ve soyadını harf harf söyle; partnerin yazıp tekrar okusun.",
+      "speaking": "Adını ve soyadını yüksek sesle harf harf söyle; sonra bir kez daha yavaşça tekrarla.",
       "writing": "Bir adın yazılışını öğrenmek için iki farklı rica yaz."
     },
     "selfCheck": [
@@ -111,7 +111,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Sayı, telefon ve tarih",
-      "explanation": "21’den sonra önce birler, sonra und, sonra onlar gelir: ein-und-zwanzig. Telefon numarası rakam rakam söylenebilir. Tarih için « am + sıra sayısı + ay » kalıbını öğren: am siebzehnten April.",
+      "explanation": "",
       "examples": [
         [
           "Ich bin am siebzehnten April geboren.",
@@ -154,7 +154,7 @@ window.A1_COURSE_CONTENT=[
       "Birler basamağının önce söylendiğini bilirim.",
       "Doğum tarihimi söyleyebilirim."
     ],
-    "tip": "21 = einundzwanzig; Türkçedeki yirmi bir sırası kullanılmaz."
+    "tip": ""
   },
   {
     "id": 4,
@@ -164,7 +164,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Gün, saat ve randevu",
-      "explanation": "Gün için am, kesin saat için um kullan: am Mittwoch um zehn Uhr. « von … bis … » saat aralığı verir. « halb fünf » 4.30 demektir, 5.30 değil.",
+      "explanation": "",
       "examples": [
         [
           "Der Termin ist am Mittwoch um zehn Uhr.",
@@ -199,14 +199,14 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "İki farklı saat öner ve partnerinle bir randevuyu kesinleştir.",
+      "speaking": "İki farklı saat öner; sonra birini seçip randevuyu kesinleştiren cümleyi söyle.",
       "writing": "Randevunun gününü, saatini ve yerini belirten kısa bir mesaj yaz."
     },
     "selfCheck": [
       "Halb fünf ifadesinin anlamını bilirim.",
       "Am ve um kullanımını ayırt ederim."
     ],
-    "tip": "Randevuda gün ve saati birlikte söyle: am Dienstag um 14 Uhr."
+    "tip": ""
   },
   {
     "id": 5,
@@ -216,7 +216,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Aile ve kişisel bilgiler",
-      "explanation": "Aileyi anlatırken iyelik sözcüğünü isimle birlikte öğren: mein Vater, meine Mutter, meine Eltern. Haben için temel biçimler ich habe, du hast, wir haben. Formlarda Vorname, Familienname, Geburtsort ve Geburtsdatum alanlarını ayırt et.",
+      "explanation": "Formlarda Vorname, Familienname, Geburtsort ve Geburtsdatum alanlarını ayırt et.",
       "examples": [
         [
           "Wir haben zwei Kinder.",
@@ -268,7 +268,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Kibar sipariş verme",
-      "explanation": "« Ich möchte … » ve « Ich hätte gern … » kibar sipariş kalıplarıdır. Erkek isim doğrudan nesne olduğunda « einen » kullanılır: einen Kaffee; dişil/nötr örneklerde eine Suppe, ein Wasser.",
+      "explanation": "« Ich möchte … » ve « Ich hätte gern … » kibar sipariş kalıplarıdır.",
       "examples": [
         [
           "Ich hätte gern einen Kaffee.",
@@ -424,7 +424,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Yol sorma ve tarif anlama",
-      "explanation": "Yol sormak için « Wie komme ich zum Bahnhof? ». Kibar tarifte fiil başta gelir: Gehen Sie…, Nehmen Sie…. Ulaşım için « mit dem Bus / mit der Bahn » kalıplarını bütün olarak öğren.",
+      "explanation": "Yol sormak için « Wie komme ich zum Bahnhof? ». Ulaşım için « mit dem Bus / mit der Bahn » kalıplarını bütün olarak öğren.",
       "examples": [
         [
           "Ich fahre mit dem Bus.",
@@ -563,7 +563,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Kursunu tanıt ve başka bir öğrenciye iki soru sor.",
+      "speaking": "Kursunu tanıt ve ardından sorabileceğin iki soruyu yüksek sesle kur.",
       "writing": "Öğrenme düzenin hakkında üç cümle ve bir yardım talebi yaz."
     },
     "selfCheck": [
@@ -632,7 +632,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Otel, kalkış ve varış",
-      "explanation": "Rezervasyon için « Ich möchte ein Zimmer reservieren. ». Abfahren ve ankommen ayrılabilir: Der Zug fährt … ab / kommt … an. Möchten ile diğer fiil mastar olarak sonda ve bölünmeden kalır.",
+      "explanation": "Rezervasyon için « Ich möchte ein Zimmer reservieren. ».",
       "examples": [
         [
           "Wann fährt der Bus ab?",
@@ -674,7 +674,7 @@ window.A1_COURSE_CONTENT=[
       "Bir oda ayırtabilirim.",
       "Abfahren ön ekini cümlenin sonunda tanırım."
     ],
-    "tip": "Wann fährt der Bus ab? cümlesinde ab sona gider."
+    "tip": ""
   },
   {
     "id": 14,
@@ -771,7 +771,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Birini davet et; saat sor; sonra basit bir gerekçeyle kabul et veya reddet.",
+      "speaking": "Bir davet ve saat sorusu kur; ardından basit bir gerekçeyle kabul veya ret cevabı ver.",
       "writing": "Teşekkür, yanıt, bir ayrıntı ve selamlama içeren dört cümlelik mesaj yaz."
     },
     "selfCheck": [
@@ -788,7 +788,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Tabela ve kısıtlamaları anlama",
-      "explanation": "Tabelalarda tam cümle olmayabilir: « Heute geschlossen » = bugün kapalı, « Kein Eingang » = giriş yok, « Nur für Kunden » = yalnız müşteriler için. Önce yasak veya kısıtlamayı bildiren ana sözcüğü bul.",
+      "explanation": "",
       "examples": [
         [
           "Das Geschäft ist heute geschlossen.",
@@ -824,7 +824,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Üç basit tabelanın anlamını partnerine açıkla.",
+      "speaking": "Üç basit tabelanın anlamını yüksek sesle açıkla.",
       "writing": "Çalışma saatleri içeren bir tabela ve yasak bildiren başka bir tabela yaz."
     },
     "selfCheck": [
@@ -893,7 +893,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Sınav yönergelerini anlama",
-      "explanation": "Önce görev fiilini tanı: Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » doğru/yanlış kararı ister. Yönergeyi anlamak, içerik sorusuna geçmeden önce ilk adımdır.",
+      "explanation": "",
       "examples": [
         [
           "Kreuzen Sie die richtige Lösung an.",
@@ -945,7 +945,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Günlük düzen ve sıra",
-      "explanation": "Ayrılabilen fiilde ön ek sona gider: Ich stehe um sieben Uhr auf. Olayları sıraya koymak için zuerst, dann, danach kullan. Zaman ifadesi baştaysa fiil yine ikinci konumdadır.",
+      "explanation": "",
       "examples": [
         [
           "Ich stehe um sieben Uhr auf.",
@@ -987,7 +987,7 @@ window.A1_COURSE_CONTENT=[
       "Auf ön ekini cümlenin sonunda kullanırım.",
       "Zaman ifadesinden sonra fiili doğru yerleştiririm."
     ],
-    "tip": "« Um sieben Uhr stehe ich auf » doğru sıradır."
+    "tip": ""
   },
   {
     "id": 20,
@@ -1050,7 +1050,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Banka/posta ve form alanları",
-      "explanation": "İşlem istemek için « Ich möchte … »; ihtiyaç için « Ich brauche … » kullan. Formda Name, Vorname, Anschrift, Geburtsdatum ve Unterschrift farklı bilgiler ister.",
+      "explanation": "İşlem istemek için « Ich möchte … »; ihtiyaç için « Ich brauche … » kullan.",
       "examples": [
         [
           "Ich möchte ein Konto eröffnen.",
@@ -1154,7 +1154,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Evde sorun bildirme",
-      "explanation": "Önce sorunu açıkça söyle: « Die Waschmaschine ist kaputt. / Sie funktioniert nicht. ». Sonra isteğini ekle: « Können Sie mir helfen? ». Modal fiilden sonra mastar sonda kalır.",
+      "explanation": "Modal fiilden sonra mastar sonda kalır.",
       "examples": [
         [
           "Ich muss die Küche putzen.",
@@ -1206,7 +1206,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Tekrar: kısa ve doğru yanıt",
-      "explanation": "A1’de karmaşık cümle yerine güvenli kısa cümleler kur. Her ana cümlede çekimli fiilin yerini kontrol et; sonra und ile bilgi ekle, aber ile karşıtlık kur. En önemlisi görevin her noktasına cevap ver.",
+      "explanation": "A1’de karmaşık cümle yerine güvenli kısa cümleler kur. Sonra und ile bilgi ekle, aber ile karşıtlık kur. En önemlisi görevin her noktasına cevap ver.",
       "examples": [
         [
           "Ich komme gern, aber ich komme später.",

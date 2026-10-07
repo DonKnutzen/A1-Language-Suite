@@ -14,11 +14,33 @@
     const c=content(id),w=words[lang];
     return `<div class="notice lesson-goals"><strong>${w.goals}</strong><ul>${c.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
   }
+  function explanationParts(text){
+    if(!text)return [];
+    const protectedText=String(text)
+      .replaceAll('z. B.','z§B§')
+      .replaceAll('z.B.','z§B§')
+      .replaceAll('d. h.','d§h§')
+      .replaceAll('bzw.','bzw§')
+      .replaceAll('etc.','etc§');
+    return protectedText
+      .replace(/([.!?])\s+(?=[A-ZÀ-ÖØ-ÞÄÖÜİÇÉÈÊÂÎÔÛ«„“¿¡])/g,'$1\n')
+      .split('\n')
+      .map(x=>x.replaceAll('z§B§','z. B.').replaceAll('d§h§','d. h.').replaceAll('bzw§','bzw.').replaceAll('etc§','etc.').trim())
+      .filter(Boolean);
+  }
+  function explanationHtml(text,esc){
+    const parts=explanationParts(text);
+    if(!parts.length)return '';
+    return `<ul class="lesson-deepening-points">${parts.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+  }
   function grammar(id,lang,esc,speakBtn,options={}){
     const c=content(id),w=words[lang];
     const title=options.title||c.grammar.title;
     const referencesHtml=options.referencesHtml||'';
-    return `<details class="lesson-explanation lesson-deepening"><summary><strong>${esc(w.deepen)}</strong></summary><div class="lesson-deepening-title">${esc(title)}</div><p class="muted">${esc(c.grammar.explanation)}</p>${referencesHtml}${c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('')}<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p></details>`;
+    const hasReferences=referencesHtml.trim().length>0;
+    const examplesHtml=hasReferences?'':c.grammar.examples.map(p=>row(p,esc,speakBtn)).join('');
+    const tipHtml=c.tip?`<p class="lesson-tip"><strong>${w.tip}:</strong> ${esc(c.tip)}</p>`:'';
+    return `<details class="lesson-explanation lesson-deepening"><summary><strong>${esc(w.deepen)}</strong></summary><div class="lesson-deepening-title">${esc(title)}</div>${explanationHtml(c.grammar.explanation,esc)}${referencesHtml}${examplesHtml}${tipHtml}</details>`;
   }
   function intro(id,lang,esc,speakBtn,options={}){
     return goals(id,lang,esc)+grammar(id,lang,esc,speakBtn,options);
@@ -42,5 +64,5 @@
     };
   }
   function goal(id,esc){return esc(content(id).canDo[0]);}
-  window.A1LessonGuide={intro,goals,grammar,extras,parts,goal};
+  window.A1LessonGuide={intro,goals,grammar,extras,parts,goal,explanationHtml};
 })();

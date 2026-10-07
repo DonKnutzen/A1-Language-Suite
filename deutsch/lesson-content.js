@@ -6,8 +6,8 @@ window.A1_COURSE_CONTENT=[
       "Je peux demander ces informations à une autre personne."
     ],
     "grammar": {
-      "title": "Se présenter : sein, heißen et wohnen",
-      "explanation": "Pour te présenter, retiens surtout les blocs « Ich heiße … » (je m’appelle), « Ich komme aus … » (je viens de) et « Ich wohne in … » (j’habite à). Formes de base utiles : sein = être, heißen = s’appeler, kommen = venir, wohnen = habiter, arbeiten = travailler, sprechen = parler. Dans une phrase simple, le verbe conjugué reste en deuxième position.",
+      "title": "Se présenter",
+      "explanation": "Pour te présenter, retiens surtout les blocs « Ich heiße … », « Ich komme aus … » et « Ich wohne in … ». Dans une phrase simple, le verbe conjugué reste en deuxième position.",
       "examples": [
         [
           "Ich wohne in Halifax.",
@@ -42,7 +42,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Présente-toi en quatre phrases, puis demande le nom et la ville de ton partenaire.",
+      "speaking": "Présente-toi en quatre phrases, puis formule à voix haute les questions pour demander le nom et la ville.",
       "writing": "Écris quatre phrases sur toi avec heißen, kommen, wohnen et sprechen."
     },
     "selfCheck": [
@@ -59,7 +59,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Épeler et demander de répéter",
-      "explanation": "Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Dans « Wie ist Ihr Familienname? », Ihr est le déterminant possessif de la forme de politesse Sie : il signifie « votre » et prend une majuscule. En minuscule, ihr peut être le pronom personnel « vous » adressé familièrement à plusieurs personnes, par exemple « Ihr seid … ». Comme possessif, ihr peut aussi signifier « son/sa/ses à elle » ou « leur(s) » ; ces emplois viendront plus tard.",
+      "explanation": "Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Dans « Wie ist Ihr Familienname? », Ihr est le déterminant possessif de la forme de politesse Sie : il signifie « votre » et prend une majuscule. En minuscule, ihr peut être le pronom personnel « vous » adressé familièrement à plusieurs personnes, par exemple « Ihr seid … ».",
       "examples": [
         [
           "Wie schreibt man das?",
@@ -94,7 +94,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Épelle ton prénom et ton nom ; ton partenaire les écrit puis les relit.",
+      "speaking": "Épelle ton prénom et ton nom à voix haute, puis répète-les une seconde fois lentement.",
       "writing": "Écris deux demandes pour faire répéter ou épeler un nom."
     },
     "selfCheck": [
@@ -111,7 +111,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Nombres, téléphone et date",
-      "explanation": "À partir de 21, l’allemand dit l’unité avant la dizaine : ein-und-zwanzig. Un numéro peut être dicté chiffre par chiffre. Pour une date, retiens le bloc « am + ordinal + mois » : am siebzehnten April.",
+      "explanation": "",
       "examples": [
         [
           "Ich bin am siebzehnten April geboren.",
@@ -154,7 +154,7 @@ window.A1_COURSE_CONTENT=[
       "Je reconnais les unités avant les dizaines.",
       "Je sais dire ma date de naissance."
     ],
-    "tip": "21 se dit einundzwanzig : l’ordre est l’inverse du français vingt-et-un."
+    "tip": ""
   },
   {
     "id": 4,
@@ -164,7 +164,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Jour, heure et rendez-vous",
-      "explanation": "Utilise « am » avec un jour et « um » avec une heure précise : am Mittwoch um zehn Uhr. « von … bis … » donne une plage horaire. « halb fünf » signifie 4 h 30, pas 5 h 30.",
+      "explanation": "",
       "examples": [
         [
           "Der Termin ist am Mittwoch um zehn Uhr.",
@@ -199,14 +199,14 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Propose deux horaires et confirme un rendez-vous avec ton partenaire.",
+      "speaking": "Propose deux horaires à voix haute, puis choisis-en un et confirme le rendez-vous.",
       "writing": "Écris un message donnant le jour, l’heure et le lieu d’un rendez-vous."
     },
     "selfCheck": [
       "Je peux expliquer halb fünf.",
       "Je distingue am et um."
     ],
-    "tip": "Pour fixer un rendez-vous, donne d’abord le jour, puis l’heure : am Dienstag um 14 Uhr."
+    "tip": ""
   },
   {
     "id": 5,
@@ -216,7 +216,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Famille et informations personnelles",
-      "explanation": "Pour présenter ta famille, apprends le nom avec le possessif : mein Vater, meine Mutter, meine Eltern. Avec haben : ich habe, du hast, wir haben. Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.",
+      "explanation": "Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.",
       "examples": [
         [
           "Wir haben zwei Kinder.",
@@ -268,7 +268,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Commander poliment",
-      "explanation": "« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ». Dans la commande, un nom masculin objet prend souvent « einen » : einen Kaffee ; le féminin et le neutre restent ici eine Suppe et ein Wasser.",
+      "explanation": "« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ».",
       "examples": [
         [
           "Ich hätte gern einen Kaffee.",
@@ -424,7 +424,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Demander et expliquer un chemin",
-      "explanation": "Pour demander : « Wie komme ich zum Bahnhof? ». Dans une indication polie, le verbe vient d’abord : Gehen Sie…, Nehmen Sie…. Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».",
+      "explanation": "Pour demander : « Wie komme ich zum Bahnhof? ». Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».",
       "examples": [
         [
           "Ich fahre mit dem Bus.",
@@ -563,7 +563,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Présente ton cours et pose deux questions à un autre apprenant.",
+      "speaking": "Présente ton cours, puis formule deux questions que tu pourrais poser à un autre apprenant.",
       "writing": "Écris trois phrases sur ta routine d’apprentissage et une demande d’aide."
     },
     "selfCheck": [
@@ -632,7 +632,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Hôtel, départ et arrivée",
-      "explanation": "Pour réserver : « Ich möchte ein Zimmer reservieren. ». Les verbes abfahren et ankommen se séparent au présent : Der Zug fährt um 9 Uhr ab. / kommt um 11 Uhr an. Avec möchten, l’infinitif reste entier à la fin.",
+      "explanation": "Pour réserver : « Ich möchte ein Zimmer reservieren. ».",
       "examples": [
         [
           "Wann fährt der Bus ab?",
@@ -674,7 +674,7 @@ window.A1_COURSE_CONTENT=[
       "Je peux réserver une chambre.",
       "Je reconnais le préfixe à la fin de abfahren."
     ],
-    "tip": "Dans « Wann fährt der Bus ab? », le préfixe ab reste à la fin."
+    "tip": ""
   },
   {
     "id": 14,
@@ -771,7 +771,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Invite une personne, demande l’heure et accepte ou refuse avec une raison simple.",
+      "speaking": "Formule une invitation et une question sur l’heure, puis donne une réponse d’acceptation ou de refus avec une raison simple.",
       "writing": "Écris un message de quatre phrases : remercie, réponds, précise un détail et salue."
     },
     "selfCheck": [
@@ -788,7 +788,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Comprendre panneaux et restrictions",
-      "explanation": "Les panneaux utilisent souvent des fragments : « Heute geschlossen » = fermé aujourd’hui, « Kein Eingang » = pas d’entrée, « Nur für Kunden » = réservé aux clients. Lis d’abord le mot qui indique l’action, l’interdiction ou la restriction.",
+      "explanation": "",
       "examples": [
         [
           "Das Geschäft ist heute geschlossen.",
@@ -824,7 +824,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Explique trois panneaux simples à ton partenaire.",
+      "speaking": "Explique à voix haute la signification de trois panneaux simples.",
       "writing": "Rédige un panneau avec un horaire et un autre avec une interdiction."
     },
     "selfCheck": [
@@ -893,7 +893,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Comprendre les consignes",
-      "explanation": "Repère d’abord le verbe de consigne : Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » demande vrai/faux. Comprendre l’action demandée évite de perdre des points avant même de traiter le contenu.",
+      "explanation": "",
       "examples": [
         [
           "Kreuzen Sie die richtige Lösung an.",
@@ -1206,7 +1206,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Révision : répondre clairement",
-      "explanation": "Pour une réponse A1, construis des phrases courtes : une information par phrase, verbe conjugué en deuxième position, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.",
+      "explanation": "Pour une réponse A1, construis des phrases courtes : une information par phrase, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.",
       "examples": [
         [
           "Ich komme gern, aber ich komme später.",

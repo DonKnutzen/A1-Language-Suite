@@ -2,7 +2,7 @@
 
 24 Lektionen / leçons / dersler
 
-## 1. Kendini tanıtma: sein, heißen ve wohnen
+## 1. Kendini tanıtma
 
 - Adımı, nereden geldiğimi ve nerede yaşadığımı söyleyebilirim.
 - Başka birine aynı bilgileri sorabilirim.
@@ -21,28 +21,28 @@ Yazılışı sormak için « Wie schreibt man das? », harf harf söylemesini is
 - Sayıları ve telefon numaramı söyleyebilirim.
 - Doğum tarihimi belirtip basit tarihleri anlayabilirim.
 
-21’den sonra önce birler, sonra und, sonra onlar gelir: ein-und-zwanzig. Telefon numarası rakam rakam söylenebilir. Tarih için « am + sıra sayısı + ay » kalıbını öğren: am siebzehnten April.
+
 
 ## 4. Gün, saat ve randevu
 
 - Saati sorup söyleyebilirim.
 - Bir gün ve saat belirterek randevu ayarlayabilirim.
 
-Gün için am, kesin saat için um kullan: am Mittwoch um zehn Uhr. « von … bis … » saat aralığı verir. « halb fünf » 4.30 demektir, 5.30 değil.
+
 
 ## 5. Aile ve kişisel bilgiler
 
 - Aile üyelerimi tanıtabilirim.
 - Bir formda istenen kişisel bilgileri verebilirim.
 
-Aileyi anlatırken iyelik sözcüğünü isimle birlikte öğren: mein Vater, meine Mutter, meine Eltern. Haben için temel biçimler ich habe, du hast, wir haben. Formlarda Vorname, Familienname, Geburtsort ve Geburtsdatum alanlarını ayırt et.
+Formlarda Vorname, Familienname, Geburtsort ve Geburtsdatum alanlarını ayırt et.
 
 ## 6. Kibar sipariş verme
 
 - Yiyecek ve içecek sipariş edebilirim.
 - Bir tercih belirtip hesabı isteyebilirim.
 
-« Ich möchte … » ve « Ich hätte gern … » kibar sipariş kalıplarıdır. Erkek isim doğrudan nesne olduğunda « einen » kullanılır: einen Kaffee; dişil/nötr örneklerde eine Suppe, ein Wasser.
+« Ich möchte … » ve « Ich hätte gern … » kibar sipariş kalıplarıdır.
 
 ## 7. Fiyat, beden ve satın alma
 
@@ -63,7 +63,7 @@ Bir evde ne olduğunu « Die Wohnung hat … » veya « Es gibt … » ile söyl
 - Basit bir yol tarifi isteyip anlayabilirim.
 - Ulaşım aracı ve aktarma bilgisini söyleyebilirim.
 
-Yol sormak için « Wie komme ich zum Bahnhof? ». Kibar tarifte fiil başta gelir: Gehen Sie…, Nehmen Sie…. Ulaşım için « mit dem Bus / mit der Bahn » kalıplarını bütün olarak öğren.
+Yol sormak için « Wie komme ich zum Bahnhof? ». Ulaşım için « mit dem Bus / mit der Bahn » kalıplarını bütün olarak öğren.
 
 ## 10. Meslek, iş yeri ve saatler
 
@@ -91,7 +91,7 @@ Geçmişte başlayıp hâlâ süren bir durum için « seit + Präsens » kullan
 - Otel odası ayırtıp bilgi isteyebilirim.
 - Kalkış ve varış saatini anlayabilirim.
 
-Rezervasyon için « Ich möchte ein Zimmer reservieren. ». Abfahren ve ankommen ayrılabilir: Der Zug fährt … ab / kommt … an. Möchten ile diğer fiil mastar olarak sonda ve bölünmeden kalır.
+Rezervasyon için « Ich möchte ein Zimmer reservieren. ».
 
 ## 14. Belirti, süre ve doktor randevusu
 
@@ -112,7 +112,7 @@ Kabul için « Ja, gern. / Ich komme gern. ». Kibar ret için « Leider kann ic
 - Tabela ve çalışma saatlerini anlayabilirim.
 - Bir yasak veya sınırlamayı fark edebilirim.
 
-Tabelalarda tam cümle olmayabilir: « Heute geschlossen » = bugün kapalı, « Kein Eingang » = giriş yok, « Nur für Kunden » = yalnız müşteriler için. Önce yasak veya kısıtlamayı bildiren ana sözcüğü bul.
+
 
 ## 17. Kibar rica ve yardım isteme
 
@@ -126,14 +126,14 @@ Tabelalarda tam cümle olmayabilir: « Heute geschlossen » = bugün kapalı, «
 - Sık kullanılan Almanca yönergeleri anlayabilirim.
 - Dinleme, okuma ve yazma için bir yöntem seçebilirim.
 
-Önce görev fiilini tanı: Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » doğru/yanlış kararı ister. Yönergeyi anlamak, içerik sorusuna geçmeden önce ilk adımdır.
+
 
 ## 19. Günlük düzen ve sıra
 
 - Günlük düzenimi basit cümlelerle anlatabilirim.
 - Bir etkinliğin saatini ve sırasını söyleyebilirim.
 
-Ayrılabilen fiilde ön ek sona gider: Ich stehe um sieben Uhr auf. Olayları sıraya koymak için zuerst, dann, danach kullan. Zaman ifadesi baştaysa fiil yine ikinci konumdadır.
+
 
 ## 20. Hava ve kıyafet
 
@@ -147,7 +147,7 @@ Hava için « Es ist kalt/warm » ve « Es regnet » kullan. İhtiyacını « Ic
 - Banka veya postada basit bir işlem isteyebilirim.
 - Bir formdaki alanları ve çalışma saatlerini anlayabilirim.
 
-İşlem istemek için « Ich möchte … »; ihtiyaç için « Ich brauche … » kullan. Formda Name, Vorname, Anschrift, Geburtsdatum ve Unterschrift farklı bilgiler ister.
+İşlem istemek için « Ich möchte … »; ihtiyaç için « Ich brauche … » kullan.
 
 ## 22. Telefon ve dijital mesaj
 
@@ -161,11 +161,11 @@ Geri arama istemek için « Können Sie mich zurückrufen? ». Zurückrufen tek 
 - Ev işlerini ve günlük sorunları anlatabilirim.
 - Bir sorun için yardım veya çözüm isteyebilirim.
 
-Önce sorunu açıkça söyle: « Die Waschmaschine ist kaputt. / Sie funktioniert nicht. ». Sonra isteğini ekle: « Können Sie mir helfen? ». Modal fiilden sonra mastar sonda kalır.
+Modal fiilden sonra mastar sonda kalır.
 
 ## 24. Tekrar: kısa ve doğru yanıt
 
 - Kendimi tanıtma, soru ve rica kurma becerilerimi birleştirebilirim.
 - Hangi konuları tekrar etmem gerektiğini belirleyebilirim.
 
-A1’de karmaşık cümle yerine güvenli kısa cümleler kur. Her ana cümlede çekimli fiilin yerini kontrol et; sonra und ile bilgi ekle, aber ile karşıtlık kur. En önemlisi görevin her noktasına cevap ver.
+A1’de karmaşık cümle yerine güvenli kısa cümleler kur. Sonra und ile bilgi ekle, aber ile karşıtlık kur. En önemlisi görevin her noktasına cevap ver.

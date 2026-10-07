@@ -2,12 +2,12 @@
 
 24 Lektionen / leçons / dersler
 
-## 1. Sich vorstellen: me llamo, soy de, vivo en
+## 1. Sich vorstellen
 
 - Ich kann mich mit Namen, Herkunft und Wohnort vorstellen.
 - Ich kann dieselben Informationen erfragen.
 
-Für eine Vorstellung reichen drei sichere Bausteine: « Me llamo … » (ich heiße), « Soy de … » (ich komme aus) und « Vivo en … » (ich wohne in). Das Personalpronomen kann meist wegfallen, weil die Verbform die Person zeigt.
+Das Personalpronomen kann meist wegfallen, weil die Verbform die Person zeigt.
 
 ## 2. Buchstabieren und nachfragen
 
@@ -21,14 +21,14 @@ Für eine Vorstellung reichen drei sichere Bausteine: « Me llamo … » (ich he
 - Ich kann Zahlen und eine Telefonnummer nennen.
 - Ich kann ein Datum verstehen und angeben.
 
-16–19 und 21–29 werden zusammengeschrieben, z. B. dieciséis und veintidós. Ab 31 steht meist « Zehner + y + Einer »: treinta y dos. Ein Datum folgt « el + Zahl + de + Monat ».
+Ein Datum folgt « el + Zahl + de + Monat ».
 
 ## 4. Ser, estar und hay im Alltag
 
 - Ich kann Personen beschreiben und sagen, wo sie sind.
 - Ich kann sagen, was an einem Ort vorhanden ist.
 
-Nutze ser für Identität/Herkunft, estar für Standort/Zustand und hay für „es gibt“. Wichtig: « Hay una farmacia » nennt etwas Vorhandenes; « La farmacia está aquí » nennt den Ort einer bestimmten Sache.
+Nutze ser für Identität/Herkunft und estar für Standort/Zustand.
 
 ## 5. Familie: tener und Possessivbegleiter
 
@@ -49,42 +49,42 @@ Bei levantarse gehört das Reflexivpronomen dazu: me levanto, te levantas, se le
 - Ich kann Uhrzeiten und Wochentage nennen.
 - Ich kann einen Termin vereinbaren.
 
-Für 1 Uhr: « Es la una »; ab 2 Uhr: « Son las dos/tres… ». Ein Termin ist « a la una » oder « a las dos ». « el lunes » meint diesen/am Montag, « los lunes » regelmäßig montags.
+« el lunes » meint diesen/am Montag, « los lunes » regelmäßig montags.
 
 ## 8. Bestellen und Vorlieben
 
 - Ich kann Essen bestellen und Vorlieben ausdrücken.
 - Ich kann um die Rechnung bitten.
 
-Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form. Bei gustar richtet sich das Verb nach dem, was gefällt: « Me gusta el café », aber « Me gustan las manzanas ». Vor einem Infinitiv steht gusta: « Me gusta cocinar ».
+Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form.
 
 ## 9. Preis, Menge und Größe
 
 - Ich kann Preise, Mengen und Größen erfragen.
 - Ich kann etwas kaufen oder höflich ablehnen.
 
-Für einen Preis: « ¿Cuánto cuesta? », bei mehreren Dingen « ¿Cuánto cuestan? ». Vor einem Nomen passt sich cuánto an: cuánta leche, cuántos tomates. Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».
+Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».
 
 ## 10. Wohnung: hay und estar
 
 - Ich kann eine Wohnung einfach beschreiben.
 - Ich kann nach Zimmern und Miete fragen.
 
-Mit hay sagst du, was vorhanden ist: « Hay dos habitaciones ». Mit estar sagst du, wo etwas ist: « La mesa está en la cocina ». Für die Miete: « ¿Cuánto cuesta al mes? ».
+Für die Miete: « ¿Cuánto cuesta al mes? ».
 
 ## 11. Weg und Verkehrsmittel
 
 - Ich kann nach einem Weg fragen und Richtungen verstehen.
 - Ich kann ein Verkehrsmittel nennen.
 
-Für ein Ziel steht a: « Voy a la estación »; für den aktuellen Ort en: « Estoy en la estación ». Typische Richtungen sind « todo recto », « a la derecha » und « a la izquierda ».
+
 
 ## 12. Beruf, Studium und Arbeitsort
 
 - Ich kann meinen Beruf und mein Studium beschreiben.
 - Ich kann einfache Fragen zu Arbeitsort und Zeit beantworten.
 
-Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Studium und Arbeit helfen « Estudio … » und « Trabajo en … ». Regelmäßige -ar-Verben wie trabajar folgen demselben Präsensmuster.
+Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Studium und Arbeit helfen « Estudio … » und « Trabajo en … ».
 
 ## 13. Freizeit, Vorlieben und Pläne
 
@@ -98,7 +98,7 @@ Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Stud
 - Ich kann das Wetter beschreiben.
 - Ich kann passende Kleidung nennen und auswählen.
 
-Für Wetter nutzt du häufig hace: hace frío/calor/sol. Eigene Verben sind llueve und nieva; mit Zuständen steht estar: está nublado. Kleidung beschreibst du mit passendem Genus: una chaqueta roja.
+
 
 ## 15. Hotel und Reisepläne
 
@@ -133,35 +133,35 @@ Mit « Necesito … » brauchst du ein Nomen; mit « Quiero + Infinitiv » nenns
 - Ich kann regelmäßige Verben auf -ar, -er und -ir bilden.
 - Ich kann einfache Sätze über Alltagstätigkeiten schreiben.
 
-Entferne -ar, -er oder -ir und setze die passende Endung. Für yo endet jede Gruppe auf -o; bei tú steht -as für -ar und -es für -er/-ir. Übe die Formen immer in kurzen ganzen Sätzen.
+Übe die Formen immer in kurzen ganzen Sätzen.
 
 ## 20. Häufige unregelmäßige Verben
 
 - Ich kann wichtige unregelmäßige Verben verwenden.
 - Ich kann Fähigkeit, Wunsch und Bewegung ausdrücken.
 
-Lerne die häufigsten Formen als feste Bausteine: tengo, voy, quiero, puedo. Querer und poder stehen oft vor einem Infinitiv; ir a + Infinitiv beschreibt einen Plan.
+Querer und poder stehen oft vor einem Infinitiv; ir a + Infinitiv beschreibt einen Plan.
 
 ## 21. Artikel, Plural und Adjektiv
 
 - Ich kann Artikel und Adjektive an ein Nomen anpassen.
 - Ich kann Einzahl und Mehrzahl unterscheiden.
 
-Artikel und Adjektiv müssen zum Nomen passen: una casa blanca / dos casas blancas. Der Plural bekommt meist -s nach Vokal und -es nach Konsonant. Bei Ausnahmen wie la mano oder el día hilft nur das Lernen mit Artikel.
+
 
 ## 22. Gezielt fragen: dónde, de dónde, a dónde
 
 - Ich kann mit Fragewörtern gezielt Informationen erfragen.
 - Ich kann Orte, Ziele und Herkunft unterscheiden.
 
-« dónde » fragt nach dem Ort, « de dónde » nach der Herkunft und « a dónde » nach dem Ziel. Weitere zentrale Fragewörter sind qué, quién, cuándo, cómo und por qué.
+
 
 ## 23. Formular und kurzer Aufgabentext
 
 - Ich kann ein einfaches Formular ausfüllen.
 - Ich kann einen kurzen Text passend zu einer konkreten Aufgabe schreiben.
 
-Im Formular reichen einzelne Angaben in die passenden Felder. Bei einer Schreibaufgabe prüfst du zuerst die geforderten Punkte und beantwortest jeden mit einem kurzen Satz. Y verbindet Informationen, pero einen Gegensatz.
+Bei einer Schreibaufgabe prüfst du zuerst die geforderten Punkte und beantwortest jeden mit einem kurzen Satz. Y verbindet Informationen, pero einen Gegensatz.
 
 ## 24. Wiederholen und gezielt antworten
 

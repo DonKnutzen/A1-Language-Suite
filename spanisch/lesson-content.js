@@ -6,8 +6,8 @@ window.A1_COURSE_CONTENT=[
       "Ich kann dieselben Informationen erfragen."
     ],
     "grammar": {
-      "title": "Sich vorstellen: me llamo, soy de, vivo en",
-      "explanation": "Für eine Vorstellung reichen drei sichere Bausteine: « Me llamo … » (ich heiße), « Soy de … » (ich komme aus) und « Vivo en … » (ich wohne in). Das Personalpronomen kann meist wegfallen, weil die Verbform die Person zeigt.",
+      "title": "Sich vorstellen",
+      "explanation": "Das Personalpronomen kann meist wegfallen, weil die Verbform die Person zeigt.",
       "examples": [
         [
           "Soy de Alemania y vivo en Halifax.",
@@ -42,7 +42,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Stelle dich in vier Sätzen vor und frage eine zweite Person nach Herkunft und Wohnort.",
+      "speaking": "Stelle dich in vier Sätzen vor und formuliere anschließend die Fragen nach Herkunft und Wohnort.",
       "writing": "Schreibe vier Sätze über eine echte oder erfundene Person."
     },
     "selfCheck": [
@@ -95,7 +95,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Buchstabiere deinen Namen und bitte deinen Partner, einen Namen zu wiederholen.",
+      "speaking": "Buchstabiere deinen Namen und formuliere anschließend die Bitte, einen Namen zu wiederholen.",
       "writing": "Schreibe zwei Bitten um Wiederholung und zwei Namen mit ihren Buchstaben."
     },
     "selfCheck": [
@@ -112,7 +112,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Zahlen, Telefonnummer und Datum",
-      "explanation": "16–19 und 21–29 werden zusammengeschrieben, z. B. dieciséis und veintidós. Ab 31 steht meist « Zehner + y + Einer »: treinta y dos. Ein Datum folgt « el + Zahl + de + Monat ».",
+      "explanation": "Ein Datum folgt « el + Zahl + de + Monat ».",
       "examples": [
         [
           "Mi cumpleaños es el diecisiete de abril.",
@@ -165,7 +165,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Ser, estar und hay im Alltag",
-      "explanation": "Nutze ser für Identität/Herkunft, estar für Standort/Zustand und hay für „es gibt“. Wichtig: « Hay una farmacia » nennt etwas Vorhandenes; « La farmacia está aquí » nennt den Ort einer bestimmten Sache.",
+      "explanation": "Nutze ser für Identität/Herkunft und estar für Standort/Zustand.",
       "examples": [
         [
           "Hay una farmacia. La farmacia está aquí.",
@@ -207,7 +207,7 @@ window.A1_COURSE_CONTENT=[
       "Ich unterscheide es gibt von befindet sich.",
       "Ich kann einen Ort mit estar nennen."
     ],
-    "tip": "hay bleibt gleich: hay una cafetería / hay dos cafeterías."
+    "tip": ""
   },
   {
     "id": 5,
@@ -321,7 +321,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Uhrzeit und Termin",
-      "explanation": "Für 1 Uhr: « Es la una »; ab 2 Uhr: « Son las dos/tres… ». Ein Termin ist « a la una » oder « a las dos ». « el lunes » meint diesen/am Montag, « los lunes » regelmäßig montags.",
+      "explanation": "« el lunes » meint diesen/am Montag, « los lunes » regelmäßig montags.",
       "examples": [
         [
           "La cita es el lunes a las dos.",
@@ -363,7 +363,7 @@ window.A1_COURSE_CONTENT=[
       "Ich unterscheide Uhrzeit und Terminzeit.",
       "Ich verstehe y media."
     ],
-    "tip": "cuatro y media = 4:30, also halb fünf."
+    "tip": ""
   },
   {
     "id": 8,
@@ -373,7 +373,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Bestellen und Vorlieben",
-      "explanation": "Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form. Bei gustar richtet sich das Verb nach dem, was gefällt: « Me gusta el café », aber « Me gustan las manzanas ». Vor einem Infinitiv steht gusta: « Me gusta cocinar ».",
+      "explanation": "Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form.",
       "examples": [
         [
           "Me gustan las manzanas.",
@@ -425,7 +425,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Preis, Menge und Größe",
-      "explanation": "Für einen Preis: « ¿Cuánto cuesta? », bei mehreren Dingen « ¿Cuánto cuestan? ». Vor einem Nomen passt sich cuánto an: cuánta leche, cuántos tomates. Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».",
+      "explanation": "Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».",
       "examples": [
         [
           "¿Cuánto cuestan estos zapatos?",
@@ -477,7 +477,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Wohnung: hay und estar",
-      "explanation": "Mit hay sagst du, was vorhanden ist: « Hay dos habitaciones ». Mit estar sagst du, wo etwas ist: « La mesa está en la cocina ». Für die Miete: « ¿Cuánto cuesta al mes? ».",
+      "explanation": "Für die Miete: « ¿Cuánto cuesta al mes? ».",
       "examples": [
         [
           "En mi piso hay dos habitaciones.",
@@ -519,7 +519,7 @@ window.A1_COURSE_CONTENT=[
       "Ich nutze hay für vorhanden.",
       "Ich passe pequeña und pequeñas an."
     ],
-    "tip": "Erst „es gibt“ mit hay, dann den genauen Ort mit estar."
+    "tip": ""
   },
   {
     "id": 11,
@@ -529,7 +529,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Weg und Verkehrsmittel",
-      "explanation": "Für ein Ziel steht a: « Voy a la estación »; für den aktuellen Ort en: « Estoy en la estación ». Typische Richtungen sind « todo recto », « a la derecha » und « a la izquierda ».",
+      "explanation": "",
       "examples": [
         [
           "Voy al banco en autobús.",
@@ -581,7 +581,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Beruf, Studium und Arbeitsort",
-      "explanation": "Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Studium und Arbeit helfen « Estudio … » und « Trabajo en … ». Regelmäßige -ar-Verben wie trabajar folgen demselben Präsensmuster.",
+      "explanation": "Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Studium und Arbeit helfen « Estudio … » und « Trabajo en … ».",
       "examples": [
         [
           "Estudio español y trabajo en una oficina.",
@@ -668,7 +668,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Erzähle von zwei Hobbys und schlage eine gemeinsame Aktivität vor.",
+      "speaking": "Erzähle von zwei Hobbys und formuliere anschließend einen Vorschlag für eine gemeinsame Aktivität.",
       "writing": "Schreibe einen Wochenendplan mit zwei Sätzen über Vorlieben und zwei über Pläne."
     },
     "selfCheck": [
@@ -685,7 +685,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Wetter und Kleidung",
-      "explanation": "Für Wetter nutzt du häufig hace: hace frío/calor/sol. Eigene Verben sind llueve und nieva; mit Zuständen steht estar: está nublado. Kleidung beschreibst du mit passendem Genus: una chaqueta roja.",
+      "explanation": "",
       "examples": [
         [
           "Hace frío y necesito una chaqueta.",
@@ -946,7 +946,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Regelmäßige Verben im Präsens",
-      "explanation": "Entferne -ar, -er oder -ir und setze die passende Endung. Für yo endet jede Gruppe auf -o; bei tú steht -as für -ar und -es für -er/-ir. Übe die Formen immer in kurzen ganzen Sätzen.",
+      "explanation": "Übe die Formen immer in kurzen ganzen Sätzen.",
       "examples": [
         [
           "Hablo español, como pan y vivo en Halifax.",
@@ -988,7 +988,7 @@ window.A1_COURSE_CONTENT=[
       "Ich kenne die yo- und tú-Endungen.",
       "Ich unterscheide comemos und vivimos."
     ],
-    "tip": "nosotros: -amos bei -ar, -emos bei -er, -imos bei -ir."
+    "tip": ""
   },
   {
     "id": 20,
@@ -998,7 +998,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Häufige unregelmäßige Verben",
-      "explanation": "Lerne die häufigsten Formen als feste Bausteine: tengo, voy, quiero, puedo. Querer und poder stehen oft vor einem Infinitiv; ir a + Infinitiv beschreibt einen Plan.",
+      "explanation": "Querer und poder stehen oft vor einem Infinitiv; ir a + Infinitiv beschreibt einen Plan.",
       "examples": [
         [
           "No puedo ir hoy, pero quiero ir mañana.",
@@ -1042,7 +1042,7 @@ window.A1_COURSE_CONTENT=[
       "Ich bilde tengo und voy sicher.",
       "Ich setze nach puedo einen Infinitiv."
     ],
-    "tip": "Merke besonders die yo-Formen: tengo, voy, quiero, puedo."
+    "tip": ""
   },
   {
     "id": 21,
@@ -1052,7 +1052,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Artikel, Plural und Adjektiv",
-      "explanation": "Artikel und Adjektiv müssen zum Nomen passen: una casa blanca / dos casas blancas. Der Plural bekommt meist -s nach Vokal und -es nach Konsonant. Bei Ausnahmen wie la mano oder el día hilft nur das Lernen mit Artikel.",
+      "explanation": "",
       "examples": [
         [
           "Una casa blanca y dos coches blancos.",
@@ -1095,7 +1095,7 @@ window.A1_COURSE_CONTENT=[
       "Ich stimme Artikel und Adjektiv ab.",
       "Ich kann den Plural häufiger Wörter bilden."
     ],
-    "tip": "Lerne neue Nomen direkt als el + Wort oder la + Wort."
+    "tip": ""
   },
   {
     "id": 22,
@@ -1105,7 +1105,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Gezielt fragen: dónde, de dónde, a dónde",
-      "explanation": "« dónde » fragt nach dem Ort, « de dónde » nach der Herkunft und « a dónde » nach dem Ziel. Weitere zentrale Fragewörter sind qué, quién, cuándo, cómo und por qué.",
+      "explanation": "",
       "examples": [
         [
           "¿De dónde eres y dónde vives?",
@@ -1140,7 +1140,7 @@ window.A1_COURSE_CONTENT=[
       ]
     ],
     "transfer": {
-      "speaking": "Stelle deinem Partner sechs Fragen mit verschiedenen Fragewörtern.",
+      "speaking": "Formuliere sechs Fragen mit verschiedenen Fragewörtern und sprich sie laut aus.",
       "writing": "Schreibe drei Paare aus Frage und Antwort zu Herkunft, Standort und Ziel."
     },
     "selfCheck": [
@@ -1157,7 +1157,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Formular und kurzer Aufgabentext",
-      "explanation": "Im Formular reichen einzelne Angaben in die passenden Felder. Bei einer Schreibaufgabe prüfst du zuerst die geforderten Punkte und beantwortest jeden mit einem kurzen Satz. Y verbindet Informationen, pero einen Gegensatz.",
+      "explanation": "Bei einer Schreibaufgabe prüfst du zuerst die geforderten Punkte und beantwortest jeden mit einem kurzen Satz. Y verbindet Informationen, pero einen Gegensatz.",
       "examples": [
         [
           "Busco un piso pequeño y tranquilo.",

@@ -2,7 +2,7 @@
 
 24 Lektionen / leçons / dersler
 
-## 1. Se présenter : sein, heißen et wohnen
+## 1. Se présenter
 
 - Je peux me présenter avec mon nom, mon origine et ma ville.
 - Je peux demander ces informations à une autre personne.
@@ -21,28 +21,28 @@ Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire �
 - Je peux donner un numéro de téléphone et comprendre des nombres.
 - Je peux indiquer ma date de naissance.
 
-À partir de 21, l’allemand dit l’unité avant la dizaine : ein-und-zwanzig. Un numéro peut être dicté chiffre par chiffre. Pour une date, retiens le bloc « am + ordinal + mois » : am siebzehnten April.
+
 
 ## 4. Jour, heure et rendez-vous
 
 - Je peux comprendre et donner une heure.
 - Je peux fixer un rendez-vous avec un jour et une heure.
 
-Utilise « am » avec un jour et « um » avec une heure précise : am Mittwoch um zehn Uhr. « von … bis … » donne une plage horaire. « halb fünf » signifie 4 h 30, pas 5 h 30.
+
 
 ## 5. Famille et informations personnelles
 
 - Je peux présenter ma famille.
 - Je peux donner les informations personnelles demandées dans un formulaire.
 
-Pour présenter ta famille, apprends le nom avec le possessif : mein Vater, meine Mutter, meine Eltern. Avec haben : ich habe, du hast, wir haben. Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.
+Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.
 
 ## 6. Commander poliment
 
 - Je peux commander un repas et une boisson.
 - Je peux demander l’addition et préciser une préférence.
 
-« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ». Dans la commande, un nom masculin objet prend souvent « einen » : einen Kaffee ; le féminin et le neutre restent ici eine Suppe et ein Wasser.
+« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ».
 
 ## 7. Prix, taille et achat
 
@@ -63,7 +63,7 @@ Pour dire ce qu’un logement possède, utilise « Die Wohnung hat … » ou « 
 - Je peux demander et comprendre un itinéraire simple.
 - Je peux nommer un moyen de transport et reconnaître un changement.
 
-Pour demander : « Wie komme ich zum Bahnhof? ». Dans une indication polie, le verbe vient d’abord : Gehen Sie…, Nehmen Sie…. Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».
+Pour demander : « Wie komme ich zum Bahnhof? ». Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».
 
 ## 10. Métier, lieu de travail et horaires
 
@@ -91,7 +91,7 @@ Pour une activité commencée avant et toujours actuelle, utilise « seit + pré
 - Je peux réserver une chambre et demander une information.
 - Je peux comprendre une heure de départ ou d’arrivée.
 
-Pour réserver : « Ich möchte ein Zimmer reservieren. ». Les verbes abfahren et ankommen se séparent au présent : Der Zug fährt um 9 Uhr ab. / kommt um 11 Uhr an. Avec möchten, l’infinitif reste entier à la fin.
+Pour réserver : « Ich möchte ein Zimmer reservieren. ».
 
 ## 14. Symptômes, durée et rendez-vous
 
@@ -112,7 +112,7 @@ Pour accepter : « Ja, gern. » ou « Ich komme gern. ». Pour refuser poliment 
 - Je peux comprendre des panneaux et des horaires.
 - Je peux repérer une interdiction ou une restriction.
 
-Les panneaux utilisent souvent des fragments : « Heute geschlossen » = fermé aujourd’hui, « Kein Eingang » = pas d’entrée, « Nur für Kunden » = réservé aux clients. Lis d’abord le mot qui indique l’action, l’interdiction ou la restriction.
+
 
 ## 17. Demander quelque chose poliment
 
@@ -126,7 +126,7 @@ Les panneaux utilisent souvent des fragments : « Heute geschlossen » = fermé 
 - Je peux comprendre les consignes allemandes les plus fréquentes.
 - Je peux choisir une stratégie pour écouter, lire et écrire.
 
-Repère d’abord le verbe de consigne : Lesen Sie, Schreiben Sie, Hören Sie, Kreuzen Sie … an. « richtig oder falsch » demande vrai/faux. Comprendre l’action demandée évite de perdre des points avant même de traiter le contenu.
+
 
 ## 19. Dire où tu as mal
 
@@ -168,4 +168,4 @@ Pour demander un formulaire : « Ich brauche ein Formular. ». « ausfüllen » 
 - Je peux combiner présentation, question et demande.
 - Je peux produire un message simple en vérifiant les consignes.
 
-Pour une réponse A1, construis des phrases courtes : une information par phrase, verbe conjugué en deuxième position, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.
+Pour une réponse A1, construis des phrases courtes : une information par phrase, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.
