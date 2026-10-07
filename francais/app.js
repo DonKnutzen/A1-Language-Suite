@@ -3,6 +3,9 @@ const lessons=D.lessons;
 const defaultState={
   doneLessons:[],lessonWork:{},
   lessonQuizBest:{},
+  lessonMasteryBest:{},
+  lessonMasteryLast:{},
+  courseMasteryBest:{},
   grammarBest:{},
   masteredListening:[],
   masteredReading:[],
@@ -103,7 +106,7 @@ function renderHome(){
     <section class="card hero" data-streak-anchor>
       <div class="eyebrow">KURSFORTSCHRITT</div>
       <h2 style="margin-top:12px">Französisch A1 🇫🇷</h2>
-      <p class="muted">${state.doneLessons.length}/${lessons.length} Lektionen abgeschlossen</p>
+      <p class="muted">${state.doneLessons.length}/${lessons.length} Lektionen bearbeitet · Wissenscheck ${FR_A1_MASTERY.passedCount(state)}/${lessons.length}</p>
       <div class="progress"><div style="width:${lessonPct()}%"></div></div>
       <div class="between" style="margin-top:10px"><small>DEUTSCH → FRANZÖSISCH · DELF A1</small><strong>${lessonPct()}%</strong></div>
     ${A1Streak.render('de')}</section>
@@ -122,9 +125,9 @@ function renderHome(){
 function renderLearn(){
   view.innerHTML=`
     <section class="card hero">
-      <span class="pill">${lessons.length} LEKTIONEN · JE 10 FRAGEN</span>
+      <span class="pill">${lessons.length} LEKTIONEN · TRAINING + ABSCHLUSSTEST</span>
       <h2 style="margin-top:12px">Französisch A1 Kurs</h2>
-      <p class="muted">Dieser Kurs bereitet dich gezielt auf die DELF-A1-Prüfung vor.</p>
+      <p class="muted">Dieser Kurs bereitet dich gezielt auf die DELF-A1-Prüfung vor. ${FR_A1_MASTERY.passedCount(state)}/${lessons.length} Lektions-Abschlusstests bestanden.</p>
       <div class="progress"><div style="width:${lessonPct()}%"></div></div>
     </section>
     <div class="list">
@@ -341,10 +344,12 @@ function renderLesson(id){
   const l=lessons.find(x=>x.id===id),c=l,app=LESSON_APPLICATIONS[id];
   const goalsHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
   const grammarHtml=lessonGrammarHtml(l);
+  const masteryHtml=FR_A1_MASTERY.introHtml(l,state);
   const dialogueHtml=`<details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small>Person ${i%2?'B':'A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>`;
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
-    goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
+    goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
+    renderMastery:({onBack})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak}),
     model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints,writingHelpText:app.writingHelpText,fullModel:true,recorderHtml,
     repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });
@@ -860,11 +865,13 @@ function renderExam(){
       <button class="practice-card" id="examWrite"><span class="icon">✍️</span><strong>Schreiben Simulation</strong><small>10-Felder-Formular + mindestens 40 Wörter</small></button>
       <button class="practice-card" id="examSpeak"><span class="icon">🎤</span><strong>Sprechen Simulation</strong><small>3 Prüfungsteile</small></button>
     </div>
+    <section class="card"><div class="between"><div><div class="eyebrow">WISSENSABDECKUNG</div><h3>A1-Abschlusscheck</h3></div><span class="pill ${FR_A1_MASTERY.passedCount(state)===lessons.length?'green':'gray'}">${FR_A1_MASTERY.passedCount(state)}/${lessons.length} Lektionen</span></div><p class="muted">Die 24 Lektions-Abschlusstests prüfen das definierte Pflichtwissen vollständig. Zusätzlich gibt es vier kumulative Kursblöcke à 30 Aufgaben.</p><button class="primary-btn" id="courseMastery">Kursweiten Abschlusscheck öffnen</button></section>
     <section class="card quick-test-card"><div class="between"><h3>Schnelltest</h3><span class="pill gray">Bestwert ${state.bestMock}%</span></div><p class="muted">32 zufällige Hören-/Lesen-Aufgaben für eine schnelle Standortbestimmung.</p><button class="primary-btn" id="quickMock">Schnelltest starten</button></section>`;
   document.getElementById('examListen').onclick=startListeningExam;
   document.getElementById('examRead').onclick=startReadingExam;
   document.getElementById('examWrite').onclick=startWritingExam;
   document.getElementById('examSpeak').onclick=startSpeakingExam;
+  document.getElementById('courseMastery').onclick=()=>FR_A1_MASTERY.renderCourseMenu({view,state,save,onBack:renderExam,speak});
   document.getElementById('quickMock').onclick=startQuickMock;
 }
 

@@ -62,11 +62,14 @@ Die vorhandenen Lektionsnummern bleiben erhalten, damit gespeicherter Fortschrit
 2. Phrasen hören und nachsprechen.
 3. Grammatikvertiefung bei Bedarf aufklappen.
 4. Den Dialog in beiden Rollen sprechen.
-5. Zehn Fragen bearbeiten und die Rückmeldungen lesen.
+5. Zehn interaktive Trainingsfragen bearbeiten und die Rückmeldungen lesen.
 6. Freie Sprech- und Schreibaufgabe ohne Vorlage versuchen.
-7. Passende Übungen und Grammatiksets wiederholen.
+7. Den vollständigen Lektions-Abschlusstest bearbeiten. Seine Länge hängt vom Pflichtwissen der Lektion ab; kein definierter Pflichtpunkt wird zufällig ausgelassen.
+8. Passende Übungen und Grammatiksets wiederholen.
 
-70 % im Lektionsquiz zählt weiterhin als abgeschlossen. Das Quiz kann freie Kommunikation nicht vollständig messen. Sprechaufnahmen werden nicht automatisch sprachlich bewertet.
+Die zehn interaktiven Fragen sind bewusst ein kurzer Trainingsblock und kein Vollständigkeitsnachweis. Der neue Abschlusstest prüft dagegen alle Kernphrasen der jeweiligen Lektion sowie die ausdrücklich als Pflichtwissen definierten Grammatik- und Satzmuster. Die Bestehensgrenze des Wissenschecks liegt bei 80 %. Frühe Lektionen verlangen nur die für die jeweilige Kommunikation nötigen Verbformen; in späteren Grammatiklektionen werden zentrale Paradigmen systematisch über alle sechs Personen geprüft.
+
+Nach Lektion 24 gibt es zusätzlich vier kumulative A1-Abschlussblöcke à 30 Aufgaben. Jeder Block umfasst sechs Lektionen und enthält aus jeder Lektion fünf Aufgaben. Die vollständige Detailabdeckung bleibt jedoch Aufgabe der 24 einzelnen Lektions-Abschlusstests. Sprechaufnahmen werden weiterhin nicht automatisch sprachlich bewertet.
 
 ## Quellen
 

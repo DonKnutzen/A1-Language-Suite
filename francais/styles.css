@@ -775,3 +775,14 @@ html.dark-mode .select-input:focus{
 .practice-count-note{margin-top:10px}
 .practice-count-info{margin-top:10px}
 .practice-count-info summary{cursor:pointer;font-weight:700}
+
+/* v48: lesson mastery / complete knowledge checks */
+.lesson-list-progress{grid-template-columns:repeat(4,minmax(0,1fr))}
+.lesson-mini-progress{grid-template-columns:repeat(4,minmax(0,1fr))}
+.lesson-mastery-intro{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(59,130,246,.06)}
+.lesson-mastery-intro ul{margin:10px 0 8px;padding-left:20px;line-height:1.55}
+.lesson-mastery-intro li+li{margin-top:4px}
+@media(max-width:560px){
+  .lesson-list-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lesson-mini-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
