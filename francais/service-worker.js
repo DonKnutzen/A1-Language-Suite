@@ -1,6 +1,6 @@
-const CACHE="francais-a1-dialog-v42";
+const CACHE="francais-a1-dialog-v43";
 const PREFIX="francais-a1-";
-const ASSETS=["../shared/streak.js","./","./index.html","./styles.css?v=dialog-42","./app.js?v=dialog-42","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-42","../shared/lesson-flow.js?v=dialog-42","../shared/pronunciation.js?v=dialog-42","../shared/lesson-ui.css?v=dialog-42","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-42","../shared/exercise-engine.js?v=dialog-42","./data.js"];
+const ASSETS=["../shared/streak.js","./","./index.html","./styles.css?v=dialog-43","./app.js?v=dialog-43","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-43","../shared/lesson-flow.js?v=dialog-43","../shared/pronunciation.js?v=dialog-43","../shared/lesson-ui.css?v=dialog-43","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-43","../shared/exercise-engine.js?v=dialog-43","./data.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
