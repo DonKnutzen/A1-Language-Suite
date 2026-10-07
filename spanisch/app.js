@@ -105,7 +105,7 @@ function renderLearn(){
       ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}">
         <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>
         <p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p>
-        <div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'de')}</div>
+        <div class="lesson-meta">${l.skills.map(s=>`<span class="pill gray">${s}</span>`).join('')}${state.doneLessons.includes(l.id)?'<span class="pill green">✓ fertig</span>':''}</div>
       </button>`).join('')}
     </div>`;
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));

@@ -183,7 +183,6 @@ applyTheme();
     if(course === 'fr' || course === 'francais-a1') return 'fr';
     if(course === 'es' || course === 'spanisch-a1') return 'es';
     if(course === 'de-tr' || course === 'deutsch-a1-tr') return 'de-tr';
-    if(course === 'de-c1-tr' || course === 'deutsch-c1-tr') return 'de-c1-tr';
     return null;
   }
 
@@ -705,8 +704,7 @@ applyTheme();
           de:{flag:'🇩🇪',title:'Deutsch'},
           fr:{flag:'🇫🇷',title:'Français'},
           es:{flag:'🇪🇸',title:'Español'},
-          'de-tr':{flag:'🇩🇪',title:'Deutsch A1 · Türkçe'},
-          'de-c1-tr':{flag:'🇩🇪',title:'Deutsch C1 · Türkçe'}
+          'de-tr':{flag:'🇩🇪',title:'Deutsch · Türkçe'}
         }[row.course] || {flag:'🌐',title:row.course};
         const mine = row.userId === current.userId ? ' leaderboard-me' : '';
         return `<tr class="${mine}">

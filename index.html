@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Sprachtrainer</title>
+<title>A1 Sprachtrainer</title>
 <style>
 :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#0f172a;background:#f8fafc}
 .shell{max-width:980px;margin:auto;padding:24px}
@@ -92,12 +92,12 @@ html.dark-mode .theme-toggle{
 <body>
 <div class="shell">
   <div class="top">
-    <div><small style="font-weight:800;letter-spacing:.08em;color:#64748b">LANGUAGE SUITE</small><h1 id="pageTitle" style="margin:4px 0">Sprachtrainer</h1></div>
+    <div><small style="font-weight:800;letter-spacing:.08em;color:#64748b">A1 LANGUAGE SUITE</small><h1 id="pageTitle" style="margin:4px 0">Sprachtrainer</h1></div>
     <div class="header-actions"><div class="lang-toggle" aria-label="Display language"><button type="button" data-lang="de">DE</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="tr">TR</button></div></div>
   </div>
 
   <div class="hero">
-    <h2 id="heroTitle">Ein Profil. Drei A1-Kurse und ein C1-Kurs.</h2>
+    <h2 id="heroTitle">Ein Profil. Vier A1-Kurse.</h2>
     <p id="heroText"></p>
   </div>
 
@@ -122,9 +122,9 @@ html.dark-mode .theme-toggle{
       <p id="esCourseText"></p>
       <span class="pill" id="esCoursePill"></span>
     </a>
-    <a class="course" href="turkisch-deutsch/?v=c1-4-dtb">
+    <a class="course" href="turkisch-deutsch/">
       <div class="flag">🇹🇷 → 🇩🇪</div>
-      <h2>Deutsch C1 · Türkçe</h2>
+      <h2>Deutsch A1 · Türkçe</h2>
       <p id="trDeCourseText"></p>
       <span class="pill" id="trDeCoursePill"></span>
     </a>
@@ -139,34 +139,34 @@ html.dark-mode .theme-toggle{
 const UI={
   de:{
     title:'Sprachtrainer',
-    heroTitle:'Ein Profil. Drei A1-Kurse und ein C1-Kurs.',
+    heroTitle:'Ein Profil. Vier A1-Kurse.',
     heroText:'Wähle, welche Sprache du lernen möchtest. Dein Fortschritt wird pro Profil und Kurs getrennt gespeichert.',
     deText:'Gezielte Vorbereitung auf das Goethe-Zertifikat A1 – mit französischen Erklärungen.',dePill:'Deutsch lernen',
     frText:'Gezielte Vorbereitung auf die DELF-A1-Prüfung.',frPill:'Französisch lernen',
     esText:'Gezielte Vorbereitung auf die DELE-A1-Prüfung.',esPill:'Spanisch lernen',
-    trDeText:'Türkische Erklärungen, C1-Grammatik und gezielte Vorbereitung auf den Deutsch-Test für den Beruf C1; Goethe C1 bleibt als Zusatztraining verfügbar.',trDePill:'Deutsch C1 auf Türkisch lernen',
+    trDeText:'Gezielte Vorbereitung auf das Goethe-Zertifikat A1 – mit türkischen Erklärungen.',trDePill:'Deutsch auf Türkisch lernen',
     noteLocal:'<strong>Profile:</strong> Benutzername + PIN, ohne E-Mail. Der Fortschritt wird auf diesem Gerät gespeichert.',
     noteCloud:'<strong>Profile:</strong> Benutzername + PIN, ohne E-Mail. Cloud-Sync ist aktiv und funktioniert geräteübergreifend.'
   },
   fr:{
     title:'Entraîneur de langues',
-    heroTitle:'Un profil. Trois cours A1 et un cours C1.',
+    heroTitle:'Un profil. Quatre cours A1.',
     heroText:'Choisis la langue que tu veux apprendre. Ta progression est enregistrée séparément pour chaque profil et chaque cours.',
     deText:'Préparation ciblée au Goethe-Zertifikat A1, avec des explications en français.',dePill:"Apprendre l’allemand",
     frText:'Préparation ciblée au DELF A1.',frPill:'Apprendre le français',
     esText:'Préparation ciblée au DELE A1.',esPill:"Apprendre l’espagnol",
-    trDeText:'Explications en turc, grammaire C1 et préparation ciblée au Deutsch-Test für den Beruf C1 ; Goethe C1 reste disponible comme entraînement complémentaire.',trDePill:"Apprendre l’allemand C1 en turc",
+    trDeText:'Préparation ciblée au Goethe-Zertifikat A1, avec des explications en turc.',trDePill:"Apprendre l’allemand en turc",
     noteLocal:"<strong>Profils :</strong> nom d’utilisateur + PIN, sans e-mail. La progression est enregistrée sur cet appareil.",
     noteCloud:"<strong>Profils :</strong> nom d’utilisateur + PIN, sans e-mail. La synchronisation cloud est active sur plusieurs appareils."
   },
   tr:{
     title:'Dil eğitmeni',
-    heroTitle:'Bir profil. Üç A1 kursu ve bir C1 kursu.',
+    heroTitle:'Bir profil. Dört A1 kursu.',
     heroText:'Öğrenmek istediğin dili seç. İlerlemen her profil ve kurs için ayrı kaydedilir.',
     deText:'Fransızca açıklamalarla Goethe-Zertifikat A1 sınavına hedefli hazırlık.',dePill:'Almanca öğren',
     frText:'DELF A1 sınavına hedefli hazırlık.',frPill:'Fransızca öğren',
     esText:'DELE A1 sınavına hedefli hazırlık.',esPill:'İspanyolca öğren',
-    trDeText:'Türkçe açıklamalar, C1 grameri ve Deutsch-Test für den Beruf C1 sınavına hedefli hazırlık; Goethe C1 ek antrenman olarak korunur.',trDePill:'Türkçe ile Almanca C1 öğren',
+    trDeText:'Türkçe açıklamalarla Goethe-Zertifikat A1 sınavına hedefli hazırlık.',trDePill:'Türkçe ile Almanca öğren',
     noteLocal:'<strong>Profiller:</strong> Kullanıcı adı + PIN, e-posta gerekmez. İlerleme bu cihazda kaydedilir.',
     noteCloud:'<strong>Profiller:</strong> Kullanıcı adı + PIN, e-posta gerekmez. Bulut senkronizasyonu etkin ve cihazlar arasında çalışır.'
   }
@@ -180,7 +180,7 @@ function renderUi(){
   const l=currentLang(),t=UI[l];
   document.documentElement.lang=l;
   document.getElementById('pageTitle').textContent=t.title;
-  document.title=t.title;
+  document.title=`A1 · ${t.title}`;
   document.getElementById('heroTitle').textContent=t.heroTitle;
   document.getElementById('heroText').textContent=t.heroText;
   document.getElementById('deCourseText').textContent=t.deText;

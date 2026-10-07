@@ -1,888 +1,124 @@
-(() => {
-  'use strict';
+const D={"lessons":[{"id":1,"title":"Selamlaşma ve tanışma","topic":"Kimlik","skills":["Konuşma","Yazma"],"note":"En temel kişisel bilgileri sein, heißen, kommen ve wohnen ile söylemeyi öğren.","phrases":[["Guten Tag!","İyi günler!"],["Ich heiße Anna.","Benim adım Anna."],["Mein Name ist Anna Meyer.","Benim adım Anna Meyer."],["Ich komme aus der Türkei.","Türkiye’den geliyorum."],["Ich wohne in Berlin.","Berlin’de yaşıyorum."],["Ich spreche Türkisch und ein bisschen Deutsch.","Türkçe ve biraz Almanca konuşuyorum."],["Ich bin Studentin.","Öğrenciyim."],["Mein Hobby ist Volleyball.","Hobim voleybol."]],"quiz":[{"q":"“Guten Tag!” ne demektir?","o":["İyi günler!","Benim adım Anna.","Benim adım Anna Meyer."],"a":0,"audio":"Guten Tag!"},{"q":"“Ich heiße Anna.” ne demektir?","o":["Benim adım Anna Meyer.","Türkiye’den geliyorum.","Benim adım Anna."],"a":2,"audio":"Ich heiße Anna."},{"q":"“Mein Name ist Anna Meyer.” ne demektir?","o":["Berlin’de yaşıyorum.","Benim adım Anna Meyer.","Türkiye’den geliyorum."],"a":1,"audio":"Mein Name ist Anna Meyer."},{"q":"“Ich komme aus der Türkei.” ne demektir?","o":["Türkiye’den geliyorum.","Berlin’de yaşıyorum.","Türkçe ve biraz Almanca konuşuyorum."],"a":0,"audio":"Ich komme aus der Türkei."},{"q":"“Ich wohne in Berlin.” ne demektir?","o":["Türkçe ve biraz Almanca konuşuyorum.","Öğrenciyim.","Berlin’de yaşıyorum."],"a":2,"audio":"Ich wohne in Berlin."}]},{"id":2,"title":"Alfabe ve harf harf söyleme","topic":"Harfler","skills":["Dinleme","Konuşma"],"note":"Sözlü bölümde bir adı veya yeri harf harf söyleyebilmen ve tek tek harfleri anlayabilmen gerekir.","phrases":[["Wie ist Ihr Familienname?","Soyadınız nedir?"],["Mein Familienname ist Meyer.","Soyadım Meyer."],["Wie schreibt man das?","Bu nasıl yazılır?"],["Können Sie das bitte buchstabieren?","Bunu lütfen harf harf söyleyebilir misiniz?"],["M – A – R – T – I – N","M – A – R – T – I – N"],["A wie Anton","Anton’daki A gibi"],["mit Umlaut","Umlaut ile"]],"quiz":[{"q":"“Wie schreibt man das?” ne demektir?","o":["Bu nasıl yazılır?","Bunu lütfen harf harf söyleyebilir misiniz?","M – A – R – T – I – N"],"a":0,"audio":"Wie schreibt man das?"},{"q":"“Können Sie das bitte buchstabieren?” ne demektir?","o":["M – A – R – T – I – N","Umlaut ile","Bunu lütfen harf harf söyleyebilir misiniz?"],"a":2,"audio":"Können Sie das bitte buchstabieren?"},{"q":"Bir soyadını harf harf söylemesini nasıl istersin?","o":["Können Sie das bitte buchstabieren?","Wie spät ist es?","Wie viel kostet das?"],"a":0,"audio":"Können Sie das bitte buchstabieren?"},{"q":"“mit Umlaut” ne demektir?","o":["Anton’daki A gibi","Soyadınız nedir?","Umlaut ile"],"a":2,"audio":"mit Umlaut"}]},{"id":3,"title":"Sayılar, telefonlar ve tarihler","topic":"Sayılar","skills":["Dinleme","Konuşma","Yazma"],"note":"Telefon, doğum tarihi, fiyat, adres ve oda numaraları için sayılar çok önemlidir.","phrases":[["null, eins, zwei, drei","sıfır, bir, iki, üç"],["vier, fünf, sechs, sieben, acht, neun","dört, beş, altı, yedi, sekiz, dokuz"],["zehn, elf, zwölf","on, on bir, on iki"],["dreizehn, vierzehn, fünfzehn, sechzehn, siebzehn, achtzehn, neunzehn","on üç, on dört, on beş, on altı, on yedi, on sekiz, on dokuz"],["zwanzig, einundzwanzig, zweiundzwanzig, dreiundzwanzig","yirmi, yirmi bir, yirmi iki, yirmi üç"],["dreißig, vierzig, fünfzig, sechzig","otuz, kırk, elli, altmış"],["siebzig, achtzig, neunzig, hundert","yetmiş, seksen, doksan, yüz"],["Meine Telefonnummer ist 030 555 1840.","Telefon numaram 030 555 1840."],["Ich bin am 17. April geboren.","17 Nisan’da doğdum."],["Meine Hausnummer ist 28.","Kapı numaram 28."],["Die Postleitzahl ist 12345.","Posta kodu 12345."],["Das Zimmer ist Nummer 305.","Oda numarası 305."]],"quiz":[{"q":"“null, eins, zwei, drei” ne demektir?","o":["sıfır, bir, iki, üç","on, yirmi, otuz","yüz"],"a":0,"audio":"null, eins, zwei, drei"},{"q":"“zehn, zwanzig, dreißig” ne demektir?","o":["yüz","Telefon numaram 030 555 1840.","on, yirmi, otuz"],"a":2,"audio":"zehn, zwanzig, dreißig"},{"q":"“hundert” ne demektir?","o":["17 Nisan’da doğdum.","yüz","Telefon numaram 030 555 1840."],"a":1,"audio":"hundert"},{"q":"“Meine Telefonnummer ist 030 555 1840.” ne demektir?","o":["Telefon numaram 030 555 1840.","17 Nisan’da doğdum.","Kapı numaram 28."],"a":0,"audio":"Meine Telefonnummer ist 030 555 1840."},{"q":"“Ich bin am 17. April geboren.” ne demektir?","o":["Kapı numaram 28.","Posta kodu 12345.","17 Nisan’da doğdum."],"a":2,"audio":"Ich bin am 17. April geboren."}]},{"id":4,"title":"Saat ve randevular","topic":"Saat","skills":["Dinleme","Okuma","Konuşma"],"note":"A1 düzeyinde saatleri, günleri, randevuları ve açılış saatlerini anlayıp söylemelisin.","phrases":[["Wie spät ist es?","Saat kaç?"],["Es ist halb fünf.","Saat dört buçuk."],["Um wie viel Uhr?","Saat kaçta?"],["Von 9 bis 12 Uhr","Saat 9’dan 12’ye kadar"],["Heute / morgen / übermorgen","bugün / yarın / öbür gün"],["Montag bis Freitag","pazartesiden cumaya"],["Der Termin ist am Mittwoch um 10 Uhr.","Randevu çarşamba saat 10’da."],["Ich komme später.","Daha sonra geleceğim."]],"quiz":[{"q":"“Wie spät ist es?” ne demektir?","o":["Saat kaç?","Saat dört buçuk.","Saat kaçta?"],"a":0,"audio":"Wie spät ist es?"},{"q":"“Es ist halb fünf.” ne demektir?","o":["Saat kaçta?","Randevu çarşamba saat 10’da.","Saat dört buçuk."],"a":2,"audio":"Es ist halb fünf."},{"q":"“Um wie viel Uhr?” ne demektir?","o":["Daha sonra geleceğim.","Saat kaçta?","Randevu çarşamba saat 10’da."],"a":1,"audio":"Um wie viel Uhr?"},{"q":"“Der Termin ist am Mittwoch um 10 Uhr.” ne demektir?","o":["Randevu çarşamba saat 10’da.","Daha sonra geleceğim.","Saat 9’dan 12’ye kadar"],"a":0,"audio":"Der Termin ist am Mittwoch um 10 Uhr."},{"q":"“Ich komme später.” ne demektir?","o":["Saat 9’dan 12’ye kadar","bugün / yarın / öbür gün","Daha sonra geleceğim."],"a":2,"audio":"Ich komme später."}]},{"id":5,"title":"Aile ve kişisel bilgiler","topic":"Aile","skills":["Okuma","Konuşma","Yazma"],"note":"Aile hakkında konuşmayı ve bir formdaki temel kişisel bilgileri doldurmayı öğren.","phrases":[["meine Mutter / mein Vater","annem / babam"],["mein Bruder / meine Schwester","erkek kardeşim / kız kardeşim"],["Ich bin verheiratet.","Evliyim."],["Ich bin ledig.","Bekârım."],["Wir haben zwei Kinder.","İki çocuğumuz var."],["Wie viele Personen?","Kaç kişi?"],["Geburtsort","doğum yeri"],["Geburtsdatum","doğum tarihi"]],"quiz":[{"q":"“meine Mutter / mein Vater” ne demektir?","o":["annem / babam","erkek kardeşim / kız kardeşim","Evliyim."],"a":0,"audio":"meine Mutter / mein Vater"},{"q":"“mein Bruder / meine Schwester” ne demektir?","o":["Evliyim.","Bekârım.","erkek kardeşim / kız kardeşim"],"a":2,"audio":"mein Bruder / meine Schwester"},{"q":"“Ich bin verheiratet.” ne demektir?","o":["İki çocuğumuz var.","Evliyim.","Bekârım."],"a":1,"audio":"Ich bin verheiratet."},{"q":"“Ich bin ledig.” ne demektir?","o":["Bekârım.","İki çocuğumuz var.","Kaç kişi?"],"a":0,"audio":"Ich bin ledig."},{"q":"“Wir haben zwei Kinder.” ne demektir?","o":["Kaç kişi?","doğum yeri","İki çocuğumuz var."],"a":2,"audio":"Wir haben zwei Kinder."}]},{"id":6,"title":"Yeme ve içme","topic":"Yemek","skills":["Konuşma","Yazma"],"note":"Restoranda veya kafede sipariş vermeyi, tercih belirtmeyi ve basit seçenekleri anlamayı öğren.","phrases":[["Was ist Ihr Lieblingsessen?","En sevdiğiniz yemek nedir?"],["Zum Frühstück esse ich Brot.","Kahvaltıda ekmek yerim."],["Was möchten Sie?","Ne arzu edersiniz?"],["Ich hätte gern einen Kaffee.","Bir kahve istiyorum."],["Ich nehme die Suppe.","Çorbayı alıyorum."],["Ohne Fleisch, bitte.","Etsiz olsun, lütfen."],["Noch ein Wasser, bitte.","Bir su daha, lütfen."],["Die Rechnung, bitte.","Hesap, lütfen."]],"quiz":[{"q":"“Ich hätte gern einen Kaffee.” ne demektir?","o":["Bir kahve istiyorum.","Ne arzu edersiniz?","Çorbayı alıyorum."],"a":0,"audio":"Ich hätte gern einen Kaffee."},{"q":"“Was möchten Sie?” ne demektir?","o":["Çorbayı alıyorum.","Etsiz olsun, lütfen.","Ne arzu edersiniz?"],"a":2,"audio":"Was möchten Sie?"},{"q":"“Ich nehme die Suppe.” ne demektir?","o":["Bir su daha, lütfen.","Çorbayı alıyorum.","Etsiz olsun, lütfen."],"a":1,"audio":"Ich nehme die Suppe."},{"q":"“Ohne Fleisch, bitte.” ne demektir?","o":["Etsiz olsun, lütfen.","Bir su daha, lütfen.","Hesap, lütfen."],"a":0,"audio":"Ohne Fleisch, bitte."},{"q":"“Noch ein Wasser, bitte.” ne demektir?","o":["Hesap, lütfen.","En sevdiğiniz yemek nedir?","Bir su daha, lütfen."],"a":2,"audio":"Noch ein Wasser, bitte."}]},{"id":7,"title":"Alışveriş ve fiyatlar","topic":"Alışveriş","skills":["Dinleme","Konuşma"],"note":"Fiyatları anlamayı, ürün, beden ve mağazada yer sormayı öğren.","phrases":[["Ich suche Schuhe.","Ayakkabı arıyorum."],["Haben Sie das in Größe 40?","Bunun 40 bedeni var mı?"],["Wie viel kostet das?","Bu ne kadar?"],["Das kostet 19,95 Euro.","Bu 19,95 avro."],["Das ist zu teuer.","Bu çok pahalı."],["Ich nehme das.","Bunu alıyorum."],["Wo ist die Kasse?","Kasa nerede?"],["Im zweiten Stock.","İkinci katta."]],"quiz":[{"q":"“Wie viel kostet das?” ne demektir?","o":["Bu ne kadar?","Bu 19,95 avro.","Ayakkabı arıyorum."],"a":0,"audio":"Wie viel kostet das?"},{"q":"“Das kostet 19,95 Euro.” ne demektir?","o":["Ayakkabı arıyorum.","Bunun 40 bedeni var mı?","Bu 19,95 avro."],"a":2,"audio":"Das kostet 19,95 Euro."},{"q":"“Ich suche Schuhe.” ne demektir?","o":["Kasa nerede?","Ayakkabı arıyorum.","Bunun 40 bedeni var mı?"],"a":1,"audio":"Ich suche Schuhe."},{"q":"“Haben Sie das in Größe 40?” ne demektir?","o":["Bunun 40 bedeni var mı?","Kasa nerede?","İkinci katta."],"a":0,"audio":"Haben Sie das in Größe 40?"},{"q":"“Wo ist die Kasse?” ne demektir?","o":["İkinci katta.","Bu çok pahalı.","Kasa nerede?"],"a":2,"audio":"Wo ist die Kasse?"}]},{"id":8,"title":"Ev ve adres","topic":"Konut","skills":["Dinleme","Konuşma","Yazma"],"note":"Kısa bir ilanı okumayı, adres vermeyi ve ev hakkında bilgi sormayı öğren.","phrases":[["Ich suche eine Wohnung.","Bir daire arıyorum."],["Die Wohnung ist frei.","Daire müsait."],["Die Wohnung hat zwei Zimmer.","Dairenin iki odası var."],["mit Balkon","balkonlu"],["Nebenkosten inklusive","yan giderler dâhil"],["Wie hoch ist die Miete?","Kira ne kadar?"],["Die Adresse ist Gartenstraße 12.","Adres Gartenstraße 12."],["Wann kann ich die Wohnung sehen?","Daireyi ne zaman görebilirim?"]],"quiz":[{"q":"“Ich suche eine Wohnung.” ne demektir?","o":["Bir daire arıyorum.","Kira ne kadar?","Dairenin iki odası var."],"a":0,"audio":"Ich suche eine Wohnung."},{"q":"“Wie hoch ist die Miete?” ne demektir?","o":["Dairenin iki odası var.","balkonlu","Kira ne kadar?"],"a":2,"audio":"Wie hoch ist die Miete?"},{"q":"“Die Wohnung hat zwei Zimmer.” ne demektir?","o":["Adres Gartenstraße 12.","Dairenin iki odası var.","balkonlu"],"a":1,"audio":"Die Wohnung hat zwei Zimmer."},{"q":"“mit Balkon” ne demektir?","o":["balkonlu","Adres Gartenstraße 12.","Daireyi ne zaman görebilirim?"],"a":0,"audio":"mit Balkon"},{"q":"“Die Adresse ist Gartenstraße 12.” ne demektir?","o":["Daireyi ne zaman görebilirim?","Daire müsait.","Adres Gartenstraße 12."],"a":2,"audio":"Die Adresse ist Gartenstraße 12."}]},{"id":9,"title":"Şehir, yol tarifi ve ulaşım","topic":"Ulaşım","skills":["Dinleme","Okuma","Konuşma"],"note":"Yol, peron, hat, aktarma veya ulaşım aracı sormayı ve verilen bilgiyi anlamayı öğren.","phrases":[["Wo ist der Bahnhof?","Tren istasyonu nerede?"],["Gehen Sie geradeaus.","Dümdüz gidin."],["Dann links / rechts.","Sonra sola / sağa."],["Ich fahre mit dem Bus.","Otobüsle gidiyorum."],["Nehmen Sie die Linie 8.","8 numaralı hattı kullanın."],["Sie müssen umsteigen.","Aktarma yapmanız gerekiyor."],["Welches Gleis?","Hangi peron?"],["Der Zug hat Verspätung.","Tren gecikmeli."]],"quiz":[{"q":"“Wo ist der Bahnhof?” ne demektir?","o":["Tren istasyonu nerede?","Dümdüz gidin.","Sonra sola / sağa."],"a":0,"audio":"Wo ist der Bahnhof?"},{"q":"“Gehen Sie geradeaus.” ne demektir?","o":["Sonra sola / sağa.","8 numaralı hattı kullanın.","Dümdüz gidin."],"a":2,"audio":"Gehen Sie geradeaus."},{"q":"“Dann links / rechts.” ne demektir?","o":["Hangi peron?","Sonra sola / sağa.","8 numaralı hattı kullanın."],"a":1,"audio":"Dann links / rechts."},{"q":"“Nehmen Sie die Linie 8.” ne demektir?","o":["8 numaralı hattı kullanın.","Hangi peron?","Otobüsle gidiyorum."],"a":0,"audio":"Nehmen Sie die Linie 8."},{"q":"“Welches Gleis?” ne demektir?","o":["Otobüsle gidiyorum.","Aktarma yapmanız gerekiyor.","Hangi peron?"],"a":2,"audio":"Welches Gleis?"}]},{"id":10,"title":"İş ve iş yeri","topic":"İş","skills":["Okuma","Konuşma","Yazma"],"note":"Meslek, çalışma saatleri, iş arkadaşları ve görevler hakkında konuşmayı öğren.","phrases":[["Was sind Sie von Beruf?","Mesleğiniz nedir?"],["Ich arbeite als Verkäuferin.","Satış görevlisi olarak çalışıyorum."],["Ich arbeite im Büro.","Ofiste çalışıyorum."],["Meine Arbeitszeit ist von 8 bis 16 Uhr.","Çalışma saatlerim 8 ile 16 arası."],["Meine Kollegen sind nett.","İş arkadaşlarım iyi."],["Ich habe heute frei.","Bugün izinliyim."],["Ich komme später ins Büro.","Ofise daha sonra geleceğim."],["Kann ich Ihnen helfen?","Size yardımcı olabilir miyim?"]],"quiz":[{"q":"“Was sind Sie von Beruf?” ne demektir?","o":["Mesleğiniz nedir?","Satış görevlisi olarak çalışıyorum.","Çalışma saatlerim 8 ile 16 arası."],"a":0,"audio":"Was sind Sie von Beruf?"},{"q":"“Ich arbeite als Verkäuferin.” ne demektir?","o":["Çalışma saatlerim 8 ile 16 arası.","Ofiste çalışıyorum.","Satış görevlisi olarak çalışıyorum."],"a":2,"audio":"Ich arbeite als Verkäuferin."},{"q":"“Meine Arbeitszeit ist von 8 bis 16 Uhr.” ne demektir?","o":["İş arkadaşlarım iyi.","Çalışma saatlerim 8 ile 16 arası.","Ofiste çalışıyorum."],"a":1,"audio":"Meine Arbeitszeit ist von 8 bis 16 Uhr."},{"q":"“Ich arbeite im Büro.” ne demektir?","o":["Ofiste çalışıyorum.","İş arkadaşlarım iyi.","Bugün izinliyim."],"a":0,"audio":"Ich arbeite im Büro."},{"q":"“Meine Kollegen sind nett.” ne demektir?","o":["Bugün izinliyim.","Ofise daha sonra geleceğim.","İş arkadaşlarım iyi."],"a":2,"audio":"Meine Kollegen sind nett."}]},{"id":11,"title":"Okul ve dil kursu","topic":"Okul","skills":["Konuşma","Yazma"],"note":"Kurs bilgilerini anlamayı; diller, ödevler, öğretmenler ve saatler hakkında konuşmayı öğren.","phrases":[["Ich lerne Deutsch.","Almanca öğreniyorum."],["Seit sechs Monaten.","Altı aydır."],["Anmeldung zum Deutschkurs","Almanca kursuna kayıt"],["Der Kurs ist am Vormittag.","Kurs sabah saatlerinde."],["Wann beginnt der Kurs?","Kurs ne zaman başlıyor?"],["Wer ist Ihr Lehrer?","Öğretmeniniz kim?"],["Ich mache Hausaufgaben.","Ödev yapıyorum."],["Ich brauche ein Wörterbuch.","Bir sözlüğe ihtiyacım var."]],"quiz":[{"q":"“Ich lerne Deutsch.” ne demektir?","o":["Almanca öğreniyorum.","Altı aydır.","Kurs sabah saatlerinde."],"a":0,"audio":"Ich lerne Deutsch."},{"q":"“Seit sechs Monaten.” ne demektir?","o":["Kurs sabah saatlerinde.","Öğretmeniniz kim?","Altı aydır."],"a":2,"audio":"Seit sechs Monaten."},{"q":"“Der Kurs ist am Vormittag.” ne demektir?","o":["Ödev yapıyorum.","Kurs sabah saatlerinde.","Öğretmeniniz kim?"],"a":1,"audio":"Der Kurs ist am Vormittag."},{"q":"“Wer ist Ihr Lehrer?” ne demektir?","o":["Öğretmeniniz kim?","Ödev yapıyorum.","Bir sözlüğe ihtiyacım var."],"a":0,"audio":"Wer ist Ihr Lehrer?"},{"q":"“Ich mache Hausaufgaben.” ne demektir?","o":["Bir sözlüğe ihtiyacım var.","Kurs ne zaman başlıyor?","Ödev yapıyorum."],"a":2,"audio":"Ich mache Hausaufgaben."}]},{"id":12,"title":"Boş zaman, spor ve hafta sonu","topic":"Boş zaman","skills":["Dinleme","Konuşma"],"note":"Spor, hafta sonu ve boş zaman gibi günlük konularda kısa cümleler kurmayı öğren.","phrases":[["Was machen Sie am Wochenende?","Hafta sonu ne yapıyorsunuz?"],["Ich spiele Fußball.","Futbol oynuyorum."],["Ich gehe schwimmen.","Yüzmeye gidiyorum."],["Mein Lieblingssport ist Tennis.","En sevdiğim spor tenis."],["Ich treffe Freunde.","Arkadaşlarımla buluşuyorum."],["Am Sonntag mache ich einen Ausflug.","Pazar günü geziye çıkıyorum."],["Abends sehe ich einen Film.","Akşamları film izliyorum."],["Haben Sie am Samstag Zeit?","Cumartesi vaktiniz var mı?"]],"quiz":[{"q":"“Was machen Sie am Wochenende?” ne demektir?","o":["Hafta sonu ne yapıyorsunuz?","Futbol oynuyorum.","Yüzmeye gidiyorum."],"a":0,"audio":"Was machen Sie am Wochenende?"},{"q":"“Ich spiele Fußball.” ne demektir?","o":["Yüzmeye gidiyorum.","En sevdiğim spor tenis.","Futbol oynuyorum."],"a":2,"audio":"Ich spiele Fußball."},{"q":"“Ich gehe schwimmen.” ne demektir?","o":["Pazar günü geziye çıkıyorum.","Yüzmeye gidiyorum.","En sevdiğim spor tenis."],"a":1,"audio":"Ich gehe schwimmen."},{"q":"“Mein Lieblingssport ist Tennis.” ne demektir?","o":["En sevdiğim spor tenis.","Pazar günü geziye çıkıyorum.","Arkadaşlarımla buluşuyorum."],"a":0,"audio":"Mein Lieblingssport ist Tennis."},{"q":"“Am Sonntag mache ich einen Ausflug.” ne demektir?","o":["Arkadaşlarımla buluşuyorum.","Akşamları film izliyorum.","Pazar günü geziye çıkıyorum."],"a":2,"audio":"Am Sonntag mache ich einen Ausflug."}]},{"id":13,"title":"Seyahat, otel ve tatil","topic":"Seyahat","skills":["Dinleme","Konuşma","Yazma"],"note":"Kalkış, varış, süre, rezervasyon, otel ve turistik bilgileri anlamayı öğren.","phrases":[["Ich möchte ein Zimmer reservieren.","Bir oda ayırtmak istiyorum."],["Für zwei Nächte.","İki gece için."],["mit Frühstück","kahvaltı dâhil"],["Ich mache Urlaub am Meer.","Deniz kenarında tatil yapıyorum."],["Wann fährt der Bus ab?","Otobüs ne zaman kalkıyor?"],["Wann kommt der Zug an?","Tren ne zaman varıyor?"],["Wie lange dauert die Fahrt?","Yolculuk ne kadar sürüyor?"],["Touristeninformation","turist danışma merkezi"]],"quiz":[{"q":"“Ich möchte ein Zimmer reservieren.” ne demektir?","o":["Bir oda ayırtmak istiyorum.","İki gece için.","Otobüs ne zaman kalkıyor?"],"a":0,"audio":"Ich möchte ein Zimmer reservieren."},{"q":"“Für zwei Nächte.” ne demektir?","o":["Otobüs ne zaman kalkıyor?","Tren ne zaman varıyor?","İki gece için."],"a":2,"audio":"Für zwei Nächte."},{"q":"“Wann fährt der Bus ab?” ne demektir?","o":["Deniz kenarında tatil yapıyorum.","Otobüs ne zaman kalkıyor?","Tren ne zaman varıyor?"],"a":1,"audio":"Wann fährt der Bus ab?"},{"q":"“Wann kommt der Zug an?” ne demektir?","o":["Tren ne zaman varıyor?","Deniz kenarında tatil yapıyorum.","kahvaltı dâhil"],"a":0,"audio":"Wann kommt der Zug an?"},{"q":"“Ich mache Urlaub am Meer.” ne demektir?","o":["kahvaltı dâhil","Yolculuk ne kadar sürüyor?","Deniz kenarında tatil yapıyorum."],"a":2,"audio":"Ich mache Urlaub am Meer."}]},{"id":14,"title":"Sağlık ve doktor","topic":"Sağlık","skills":["Dinleme","Okuma","Konuşma"],"note":"Basit bir sağlık sorununu anlatmayı, tavsiyeyi anlamayı ve doktora bilgi vermeyi öğren.","phrases":[["Ich bin krank.","Hastayım."],["Ich habe Fieber.","Ateşim var."],["Ich habe Kopfschmerzen.","Başım ağrıyor."],["Sie müssen viel trinken.","Bol sıvı içmelisiniz."],["Ich brauche einen Termin.","Randevuya ihtiyacım var."],["Nehmen Sie diese Tabletten.","Bu tabletleri alın."],["Die Apotheke ist geschlossen.","Eczane kapalı."],["Seit gestern.","Dünden beri."]],"quiz":[{"q":"“Ich bin krank.” ne demektir?","o":["Hastayım.","Ateşim var.","Başım ağrıyor."],"a":0,"audio":"Ich bin krank."},{"q":"“Ich habe Fieber.” ne demektir?","o":["Başım ağrıyor.","Bol sıvı içmelisiniz.","Ateşim var."],"a":2,"audio":"Ich habe Fieber."},{"q":"“Ich habe Kopfschmerzen.” ne demektir?","o":["Bu tabletleri alın.","Başım ağrıyor.","Bol sıvı içmelisiniz."],"a":1,"audio":"Ich habe Kopfschmerzen."},{"q":"“Sie müssen viel trinken.” ne demektir?","o":["Bol sıvı içmelisiniz.","Bu tabletleri alın.","Eczane kapalı."],"a":0,"audio":"Sie müssen viel trinken."},{"q":"“Nehmen Sie diese Tabletten.” ne demektir?","o":["Eczane kapalı.","Randevuya ihtiyacım var.","Bu tabletleri alın."],"a":2,"audio":"Nehmen Sie diese Tabletten."}]},{"id":15,"title":"Davetler ve kısa mesajlar","topic":"Mesajlar","skills":["Okuma","Konuşma","Yazma"],"note":"A1 yazma bölümünde kısa bir mesajı selamlama, üç içerik noktası ve kapanışla yazmayı öğren.","phrases":[["Vielen Dank für die Einladung.","Davet için çok teşekkür ederim."],["Ich komme gern.","Memnuniyetle gelirim."],["Wann und wo feiern wir?","Ne zaman ve nerede kutluyoruz?"],["Kann ich etwas mitbringen?","Bir şey getirebilir miyim?"],["Leider komme ich später.","Ne yazık ki daha sonra geleceğim."],["Ruf mich bitte an.","Lütfen beni ara."],["Liebe Anna, … Viele Grüße","Sevgili Anna, … Sevgiler"],["Sehr geehrter Herr Müller, … Mit freundlichen Grüßen","Sayın Bay Müller, … Saygılarımla"]],"quiz":[{"q":"“Vielen Dank für die Einladung.” ne demektir?","o":["Davet için çok teşekkür ederim.","Memnuniyetle gelirim.","Ne yazık ki daha sonra geleceğim."],"a":0,"audio":"Vielen Dank für die Einladung."},{"q":"“Ich komme gern.” ne demektir?","o":["Ne yazık ki daha sonra geleceğim.","Ne zaman ve nerede kutluyoruz?","Memnuniyetle gelirim."],"a":2,"audio":"Ich komme gern."},{"q":"“Leider komme ich später.” ne demektir?","o":["Bir şey getirebilir miyim?","Ne yazık ki daha sonra geleceğim.","Ne zaman ve nerede kutluyoruz?"],"a":1,"audio":"Leider komme ich später."},{"q":"“Wann und wo feiern wir?” ne demektir?","o":["Ne zaman ve nerede kutluyoruz?","Bir şey getirebilir miyim?","Lütfen beni ara."],"a":0,"audio":"Wann und wo feiern wir?"},{"q":"“Kann ich etwas mitbringen?” ne demektir?","o":["Lütfen beni ara.","Sevgili Anna, … Sevgiler","Bir şey getirebilir miyim?"],"a":2,"audio":"Kann ich etwas mitbringen?"}]},{"id":16,"title":"Tabelalar, ilanlar ve duyurular","topic":"Duyurular","skills":["Konuşma","Yazma"],"note":"Sınavdaki tabela, kısa ilan ve kamu duyurularında belirli bilgileri bulmayı öğren.","phrases":[["Öffnungszeiten","açılış saatleri"],["Heute geschlossen","bugün kapalı"],["Eingang / Ausgang","giriş / çıkış"],["Nur für Kunden","yalnızca müşteriler için"],["Rauchen verboten","sigara içmek yasaktır"],["Sonderangebot","özel teklif"],["Bitte nicht aussteigen.","Lütfen inmeyin."],["Der Zug fällt heute aus.","Tren bugün iptal."]],"quiz":[{"q":"“Öffnungszeiten” ne demektir?","o":["açılış saatleri","sigara içmek yasaktır","bugün kapalı"],"a":0,"audio":"Öffnungszeiten"},{"q":"“Rauchen verboten” ne demektir?","o":["bugün kapalı","giriş / çıkış","sigara içmek yasaktır"],"a":2,"audio":"Rauchen verboten"},{"q":"“Heute geschlossen” ne demektir?","o":["yalnızca müşteriler için","bugün kapalı","giriş / çıkış"],"a":1,"audio":"Heute geschlossen"},{"q":"“Eingang / Ausgang” ne demektir?","o":["giriş / çıkış","yalnızca müşteriler için","Lütfen inmeyin."],"a":0,"audio":"Eingang / Ausgang"},{"q":"“Nur für Kunden” ne demektir?","o":["Lütfen inmeyin.","Tren bugün iptal.","yalnızca müşteriler için"],"a":2,"audio":"Nur für Kunden"}]},{"id":17,"title":"Kibar rica ve yanıtlar","topic":"Ricalar","skills":["Dinleme","Konuşma"],"note":"Günlük bir nesne veya durumla ilgili kibar bir rica ve uygun bir yanıt oluşturmayı öğren.","phrases":[["Ein Glas Wasser, bitte.","Bir bardak su, lütfen."],["Können Sie mir bitte helfen?","Bana yardımcı olabilir misiniz?"],["Geben Sie mir bitte den Stift.","Kalemi bana verir misiniz?"],["Darf ich das Fenster öffnen?","Pencereyi açabilir miyim?"],["Noch einmal, bitte.","Bir kez daha, lütfen."],["Ja, natürlich.","Evet, tabii."],["Gern. Hier, bitte.","Memnuniyetle. Buyurun."],["Tut mir leid, das geht nicht.","Üzgünüm, bu mümkün değil."]],"quiz":[{"q":"“Ein Glas Wasser, bitte.” ne demektir?","o":["Bir bardak su, lütfen.","Bana yardımcı olabilir misiniz?","Kalemi bana verir misiniz?"],"a":0,"audio":"Ein Glas Wasser, bitte."},{"q":"“Können Sie mir bitte helfen?” ne demektir?","o":["Kalemi bana verir misiniz?","Pencereyi açabilir miyim?","Bana yardımcı olabilir misiniz?"],"a":2,"audio":"Können Sie mir bitte helfen?"},{"q":"“Geben Sie mir bitte den Stift.” ne demektir?","o":["Evet, tabii.","Kalemi bana verir misiniz?","Pencereyi açabilir miyim?"],"a":1,"audio":"Geben Sie mir bitte den Stift."},{"q":"“Darf ich das Fenster öffnen?” ne demektir?","o":["Pencereyi açabilir miyim?","Evet, tabii.","Memnuniyetle. Buyurun."],"a":0,"audio":"Darf ich das Fenster öffnen?"},{"q":"“Ja, natürlich.” ne demektir?","o":["Memnuniyetle. Buyurun.","Üzgünüm, bu mümkün değil.","Evet, tabii."],"a":2,"audio":"Ja, natürlich."}]},{"id":18,"title":"A1 sınav stratejisi","topic":"Sınav","skills":["Dinleme","Konuşma","Yazma"],"note":"İstenen bilgiyi dinleme, yönergeyi önce okuma, yazıda tüm noktaları tamamlama ve anlaşılır konuşma stratejisini çalış.","phrases":[["Lesen Sie zuerst die Aufgabe.","Önce görevi okuyun."],["Kreuzen Sie die richtige Antwort an.","Doğru cevabı işaretleyin."],["Schreiben Sie etwa 30 Wörter.","Yaklaşık 30 kelime yazın."],["Stellen Sie eine Frage.","Bir soru sorun."],["Antworten Sie kurz.","Kısa cevap verin."],["Bitten Sie um Wiederholung.","Tekrar edilmesini isteyin."],["Ich habe die Frage nicht verstanden.","Soruyu anlamadım."],["Können Sie das bitte wiederholen?","Bunu lütfen tekrarlar mısınız?"]],"quiz":[{"q":"“Lesen Sie zuerst die Aufgabe.” ne demektir?","o":["Önce görevi okuyun.","Doğru cevabı işaretleyin.","Yaklaşık 30 kelime yazın."],"a":0,"audio":"Lesen Sie zuerst die Aufgabe."},{"q":"“Kreuzen Sie die richtige Antwort an.” ne demektir?","o":["Yaklaşık 30 kelime yazın.","Bir soru sorun.","Doğru cevabı işaretleyin."],"a":2,"audio":"Kreuzen Sie die richtige Antwort an."},{"q":"“Schreiben Sie etwa 30 Wörter.” ne demektir?","o":["Kısa cevap verin.","Yaklaşık 30 kelime yazın.","Bir soru sorun."],"a":1,"audio":"Schreiben Sie etwa 30 Wörter."},{"q":"“Stellen Sie eine Frage.” ne demektir?","o":["Bir soru sorun.","Kısa cevap verin.","Tekrar edilmesini isteyin."],"a":0,"audio":"Stellen Sie eine Frage."},{"q":"“Antworten Sie kurz.” ne demektir?","o":["Tekrar edilmesini isteyin.","Soruyu anlamadım.","Kısa cevap verin."],"a":2,"audio":"Antworten Sie kurz."}]},{"id":19,"title":"Günlük rutin","topic":"Günlük yaşam","skills":["Dinleme","Okuma","Konuşma"],"note":"Günün farklı saatlerinde yaptığın rutin işleri basit zaman ifadeleriyle anlatmayı öğren.","phrases":[["Ich stehe um sieben Uhr auf.","Saat yedide kalkıyorum."],["Dann frühstücke ich.","Sonra kahvaltı yapıyorum."],["Um acht Uhr fahre ich zur Arbeit.","Saat sekizde işe gidiyorum."],["Mittags esse ich in der Kantine.","Öğlen kantinde yemek yiyorum."],["Nachmittags lerne ich Deutsch.","Öğleden sonra Almanca çalışıyorum."],["Abends koche ich.","Akşam yemek yapıyorum."],["Danach sehe ich fern.","Sonra televizyon izliyorum."],["Um elf Uhr gehe ich schlafen.","Saat on birde yatıyorum."]],"quiz":[{"q":"“Ich stehe um sieben Uhr auf.” ne demektir?","o":["Saat yedide kalkıyorum.","Sonra kahvaltı yapıyorum.","Saat sekizde işe gidiyorum."],"a":0,"audio":"Ich stehe um sieben Uhr auf."},{"q":"“Dann frühstücke ich.” ne demektir?","o":["Saat sekizde işe gidiyorum.","Öğlen kantinde yemek yiyorum.","Sonra kahvaltı yapıyorum."],"a":2,"audio":"Dann frühstücke ich."},{"q":"“Um acht Uhr fahre ich zur Arbeit.” ne demektir?","o":["Öğleden sonra Almanca çalışıyorum.","Saat sekizde işe gidiyorum.","Öğlen kantinde yemek yiyorum."],"a":1,"audio":"Um acht Uhr fahre ich zur Arbeit."},{"q":"“Mittags esse ich in der Kantine.” ne demektir?","o":["Öğlen kantinde yemek yiyorum.","Öğleden sonra Almanca çalışıyorum.","Akşam yemek yapıyorum."],"a":0,"audio":"Mittags esse ich in der Kantine."},{"q":"“Nachmittags lerne ich Deutsch.” ne demektir?","o":["Akşam yemek yapıyorum.","Sonra televizyon izliyorum.","Öğleden sonra Almanca çalışıyorum."],"a":2,"audio":"Nachmittags lerne ich Deutsch."}]},{"id":20,"title":"Hava durumu ve kıyafet","topic":"Hava","skills":["Okuma","Konuşma","Yazma"],"note":"Basit hava durumu bilgilerini anlamayı ve uygun kıyafetler hakkında konuşmayı öğren.","phrases":[["Wie ist das Wetter heute?","Bugün hava nasıl?"],["Die Sonne scheint.","Güneş parlıyor."],["Es ist kalt und windig.","Hava soğuk ve rüzgârlı."],["Im Sommer ist es warm.","Yazın hava sıcaktır."],["Im Winter schneit es oft.","Kışın sık sık kar yağar."],["Morgen regnet es.","Yarın yağmur yağacak."],["Ich brauche eine Jacke.","Bir cekete ihtiyacım var."],["Nimm einen Regenschirm mit.","Yanına şemsiye al."]],"quiz":[{"q":"“Wie ist das Wetter heute?” ne demektir?","o":["Bugün hava nasıl?","Hava soğuk ve rüzgârlı.","Yarın yağmur yağacak."],"a":0,"audio":"Wie ist das Wetter heute?"},{"q":"“Es ist kalt und windig.” ne demektir?","o":["Yarın yağmur yağacak.","Güneş parlıyor.","Hava soğuk ve rüzgârlı."],"a":2,"audio":"Es ist kalt und windig."},{"q":"“Morgen regnet es.” ne demektir?","o":["Bir cekete ihtiyacım var.","Yarın yağmur yağacak.","Güneş parlıyor."],"a":1,"audio":"Morgen regnet es."},{"q":"“Die Sonne scheint.” ne demektir?","o":["Güneş parlıyor.","Bir cekete ihtiyacım var.","Yanına şemsiye al."],"a":0,"audio":"Die Sonne scheint."},{"q":"“Ich brauche eine Jacke.” ne demektir?","o":["Yanına şemsiye al.","Yazın hava sıcaktır.","Bir cekete ihtiyacım var."],"a":2,"audio":"Ich brauche eine Jacke."}]},{"id":21,"title":"Banka, posta ve resmi işlemler","topic":"Hizmetler","skills":["Konuşma","Yazma"],"note":"Postane, banka veya resmi bir gişede temel ihtiyaçlarını ifade etmeyi öğren.","phrases":[["Wo ist die Post?","Postane nerede?"],["Ich möchte einen Brief schicken.","Bir mektup göndermek istiyorum."],["Ich brauche eine Briefmarke.","Bir pula ihtiyacım var."],["Ich möchte Geld abheben.","Para çekmek istiyorum."],["Wo kann ich bezahlen?","Nerede ödeme yapabilirim?"],["Bitte füllen Sie das Formular aus.","Lütfen formu doldurun."],["Unterschreiben Sie hier.","Burayı imzalayın."],["Ich brauche meinen Ausweis.","Kimliğime ihtiyacım var."]],"quiz":[{"q":"“Wo ist die Post?” ne demektir?","o":["Postane nerede?","Bir mektup göndermek istiyorum.","Bir pula ihtiyacım var."],"a":0,"audio":"Wo ist die Post?"},{"q":"“Ich möchte einen Brief schicken.” ne demektir?","o":["Bir pula ihtiyacım var.","Para çekmek istiyorum.","Bir mektup göndermek istiyorum."],"a":2,"audio":"Ich möchte einen Brief schicken."},{"q":"“Ich brauche eine Briefmarke.” ne demektir?","o":["Nerede ödeme yapabilirim?","Bir pula ihtiyacım var.","Para çekmek istiyorum."],"a":1,"audio":"Ich brauche eine Briefmarke."},{"q":"“Ich möchte Geld abheben.” ne demektir?","o":["Para çekmek istiyorum.","Nerede ödeme yapabilirim?","Lütfen formu doldurun."],"a":0,"audio":"Ich möchte Geld abheben."},{"q":"“Wo kann ich bezahlen?” ne demektir?","o":["Lütfen formu doldurun.","Burayı imzalayın.","Nerede ödeme yapabilirim?"],"a":2,"audio":"Wo kann ich bezahlen?"}]},{"id":22,"title":"Telefon ve dijital iletişim","topic":"İletişim","skills":["Dinleme","Konuşma"],"note":"Telefonla ve dijital ortamda kısa, basit iletişim kurmayı öğren.","phrases":[["Hallo, hier ist Martin.","Merhaba, ben Martin."],["Kann ich Frau Becker sprechen?","Bayan Becker ile görüşebilir miyim?"],["Einen Moment, bitte.","Bir dakika, lütfen."],["Die Verbindung ist schlecht.","Bağlantı kötü."],["Ruf mich später an.","Beni daha sonra ara."],["Ich schicke dir eine Nachricht.","Sana bir mesaj göndereceğim."],["Wie ist deine E-Mail-Adresse?","E-posta adresin nedir?"],["Ich habe kein Internet.","İnternetim yok."]],"quiz":[{"q":"“Hallo, hier ist Martin.” ne demektir?","o":["Merhaba, ben Martin.","Bayan Becker ile görüşebilir miyim?","Bir dakika, lütfen."],"a":0,"audio":"Hallo, hier ist Martin."},{"q":"“Kann ich Frau Becker sprechen?” ne demektir?","o":["Bir dakika, lütfen.","Bağlantı kötü.","Bayan Becker ile görüşebilir miyim?"],"a":2,"audio":"Kann ich Frau Becker sprechen?"},{"q":"“Einen Moment, bitte.” ne demektir?","o":["Sana bir mesaj göndereceğim.","Bir dakika, lütfen.","Bağlantı kötü."],"a":1,"audio":"Einen Moment, bitte."},{"q":"“Die Verbindung ist schlecht.” ne demektir?","o":["Bağlantı kötü.","Sana bir mesaj göndereceğim.","E-posta adresin nedir?"],"a":0,"audio":"Die Verbindung ist schlecht."},{"q":"“Ich schicke dir eine Nachricht.” ne demektir?","o":["E-posta adresin nedir?","İnternetim yok.","Sana bir mesaj göndereceğim."],"a":2,"audio":"Ich schicke dir eine Nachricht."}]},{"id":23,"title":"Ev işleri ve günlük sorunlar","topic":"Ev","skills":["Dinleme","Konuşma","Yazma"],"note":"Evdeki basit işleri ve günlük küçük sorunları anlatmayı öğren.","phrases":[["Ich muss die Küche putzen.","Mutfağı temizlemem gerekiyor."],["Ich kaufe Lebensmittel ein.","Market alışverişi yapıyorum."],["Wir räumen das Zimmer auf.","Odayı topluyoruz."],["Die Waschmaschine ist kaputt.","Çamaşır makinesi bozuk."],["Das Licht funktioniert nicht.","Işık çalışmıyor."],["Der Schlüssel ist weg.","Anahtar kayıp."],["Kannst du mir helfen?","Bana yardım edebilir misin?"],["Ich rufe den Hausmeister an.","Kapıcıyı / bina görevlisini arıyorum."]],"quiz":[{"q":"“Ich muss die Küche putzen.” ne demektir?","o":["Mutfağı temizlemem gerekiyor.","Çamaşır makinesi bozuk.","Işık çalışmıyor."],"a":0,"audio":"Ich muss die Küche putzen."},{"q":"“Die Waschmaschine ist kaputt.” ne demektir?","o":["Işık çalışmıyor.","Bana yardım edebilir misin?","Çamaşır makinesi bozuk."],"a":2,"audio":"Die Waschmaschine ist kaputt."},{"q":"“Das Licht funktioniert nicht.” ne demektir?","o":["Market alışverişi yapıyorum.","Işık çalışmıyor.","Bana yardım edebilir misin?"],"a":1,"audio":"Das Licht funktioniert nicht."},{"q":"“Kannst du mir helfen?” ne demektir?","o":["Bana yardım edebilir misin?","Market alışverişi yapıyorum.","Odayı topluyoruz."],"a":0,"audio":"Kannst du mir helfen?"},{"q":"“Ich kaufe Lebensmittel ein.” ne demektir?","o":["Odayı topluyoruz.","Anahtar kayıp.","Market alışverişi yapıyorum."],"a":2,"audio":"Ich kaufe Lebensmittel ein."}]},{"id":24,"title":"Genel tekrar","topic":"Tekrar","skills":["Dinleme","Okuma","Konuşma"],"note":"A1 düzeyindeki temel günlük durumları birleştir ve sınav öncesi eksiklerini belirle.","phrases":[["Wie heißen Sie?","Adınız nedir?"],["Wo wohnen Sie?","Nerede yaşıyorsunuz?"],["Was möchten Sie trinken?","Ne içmek istersiniz?"],["Wie viel kostet das?","Bu ne kadar?"],["Wann fährt der Zug?","Tren ne zaman kalkıyor?"],["Ich brauche einen Termin.","Randevuya ihtiyacım var."],["Können Sie mir bitte helfen?","Bana yardımcı olabilir misiniz?"],["Vielen Dank. Auf Wiedersehen!","Çok teşekkürler. Hoşça kalın!"]],"quiz":[{"q":"“Wie heißen Sie?” ne demektir?","o":["Adınız nedir?","Nerede yaşıyorsunuz?","Ne içmek istersiniz?"],"a":0,"audio":"Wie heißen Sie?"},{"q":"“Wo wohnen Sie?” ne demektir?","o":["Ne içmek istersiniz?","Bu ne kadar?","Nerede yaşıyorsunuz?"],"a":2,"audio":"Wo wohnen Sie?"},{"q":"“Was möchten Sie trinken?” ne demektir?","o":["Tren ne zaman kalkıyor?","Ne içmek istersiniz?","Bu ne kadar?"],"a":1,"audio":"Was möchten Sie trinken?"},{"q":"“Wie viel kostet das?” ne demektir?","o":["Bu ne kadar?","Tren ne zaman kalkıyor?","Randevuya ihtiyacım var."],"a":0,"audio":"Wie viel kostet das?"},{"q":"“Wann fährt der Zug?” ne demektir?","o":["Randevuya ihtiyacım var.","Bana yardımcı olabilir misiniz?","Tren ne zaman kalkıyor?"],"a":2,"audio":"Wann fährt der Zug?"}]}],"grammarSets":[{"id":"g1","title":"sein ve haben","subtitle":"temel fiiller","questions":[{"q":"Ich ___ müde.","o":["bin","bist","sind"],"a":0},{"q":"Du ___ 20 Jahre alt.","o":["bin","bist","ist"],"a":1},{"q":"Wir ___ aus Ankara.","o":["seid","sind","ist"],"a":1},{"q":"Er ___ Lehrer.","o":["ist","bin","habt"],"a":0},{"q":"Ihr ___ sehr nett.","o":["seid","sind","bist"],"a":0},{"q":"Ich ___ einen Bruder.","o":["habe","hast","hat"],"a":0},{"q":"Die Nachbarn ___ zwei Kinder.","o":["hat","haben","hast"],"a":1},{"q":"Du ___ heute Zeit.","o":["hast","habe","haben"],"a":0},{"q":"Wir ___ ein Auto.","o":["hat","haben","seid"],"a":1},{"q":"Anna ___ eine Frage.","o":["habe","hat","hast"],"a":1}]},{"id":"g2","title":"Präsens","subtitle":"şimdiki/geniş zaman çekimi","questions":[{"q":"Ich ___ in Berlin.","o":["wohne","wohnt","wohnst"],"a":0},{"q":"Du ___ Deutsch.","o":["lerne","lernst","lernt"],"a":1},{"q":"Er ___ im Büro.","o":["arbeite","arbeitet","arbeitest"],"a":1},{"q":"Wir ___ Fußball.","o":["spielen","spielt","spielst"],"a":0},{"q":"Ihr ___ Kaffee.","o":["trinkt","trinken","trinkst"],"a":0},{"q":"Die Eltern ___ aus der Türkei.","o":["kommt","kommen","kommst"],"a":1},{"q":"Ich ___ gern Musik.","o":["höre","hörst","hört"],"a":0},{"q":"Du ___ heute Suppe.","o":["esse","isst","esst"],"a":1},{"q":"Maria ___ nach Hause.","o":["geht","gehe","gehen"],"a":0},{"q":"Wir ___ einen Film.","o":["sehen","sieht","seht"],"a":0}]},{"id":"g3","title":"W-Fragen","subtitle":"soru kelimeleri","questions":[{"q":"___ heißen Sie?","o":["Wie","Wo","Wann"],"a":0},{"q":"___ wohnen Sie?","o":["Was","Wo","Wer"],"a":1},{"q":"___ kostet das?","o":["Wie viel","Warum","Welche"],"a":0},{"q":"___ beginnt der Kurs?","o":["Wann","Wohin","Wer"],"a":0},{"q":"___ ist dein Lehrer?","o":["Wer","Wie viel","Woher"],"a":0},{"q":"___ kommst du? (Nereden geliyorsun?)","o":["Woher","Wann","Was"],"a":0},{"q":"___ machst du am Wochenende?","o":["Was","Woher","Wie alt"],"a":0},{"q":"___ fährst du zur Arbeit?","o":["Wie","Wer","Welche"],"a":0},{"q":"___ ist der Bahnhof?","o":["Wo","Was","Wann"],"a":0},{"q":"___ lernst du Deutsch?","o":["Warum","Wohin","Wie viel"],"a":0}]},{"id":"g4","title":"Artikel","subtitle":"der, die, das / ein, eine","questions":[{"q":"___ Tisch","o":["der","die","das"],"a":0},{"q":"___ Wohnung","o":["der","die","das"],"a":1},{"q":"___ Kind","o":["der","die","das"],"a":2},{"q":"Das ist ___ Mann.","o":["ein","eine","einen"],"a":0},{"q":"Das ist ___ Frau.","o":["ein","eine","einen"],"a":1},{"q":"Ich habe ___ Auto.","o":["ein","eine","einen"],"a":0},{"q":"___ Bahnhof ist dort.","o":["Der","Die","Das"],"a":0},{"q":"___ Straße ist lang.","o":["Der","Die","Das"],"a":1},{"q":"___ Hotel ist neu.","o":["Der","Die","Das"],"a":2},{"q":"Das ist ___ Tasche.","o":["ein","eine","einen"],"a":1}]},{"id":"g5","title":"Akkusativ","subtitle":"belirtme durumu","questions":[{"q":"Ich kaufe ___ Kaffee.","o":["einen","ein","eine"],"a":0},{"q":"Ich sehe ___ Mann.","o":["den","der","die"],"a":0},{"q":"Sie nimmt ___ Tasche.","o":["die","der","den"],"a":0},{"q":"Wir brauchen ___ Auto.","o":["ein","einen","eine"],"a":0},{"q":"Er bestellt ___ Suppe.","o":["eine","einen","ein"],"a":0},{"q":"Ich habe ___ Termin.","o":["einen","ein","eine"],"a":0},{"q":"Sie sucht ___ Bahnhof.","o":["den","die","das"],"a":0},{"q":"Wir kaufen ___ Brot.","o":["das","den","die"],"a":0},{"q":"Ich nehme ___ Bus.","o":["den","die","das"],"a":0},{"q":"Er liest ___ Zeitung.","o":["die","den","das"],"a":0}]},{"id":"g6","title":"Modal fiiller","subtitle":"können, müssen, möchten","questions":[{"q":"Ich ___ Deutsch lernen.","o":["möchte","möchtest","möchtet"],"a":0},{"q":"Du ___ hier warten.","o":["musst","muss","müssen"],"a":0},{"q":"Wir ___ morgen kommen.","o":["können","kann","könnt"],"a":0},{"q":"___ Sie mir helfen?","o":["Können","Kann","Könnt"],"a":0},{"q":"Er ___ heute arbeiten.","o":["muss","musst","müssen"],"a":0},{"q":"Ich ___ einen Kaffee.","o":["möchte","möchten","möchtest"],"a":0},{"q":"Ihr ___ hier nicht rauchen.","o":["dürft","darf","dürfen"],"a":0},{"q":"Sie ___ das Formular ausfüllen. (kibar hitap: siz)","o":["müssen","muss","musst"],"a":0},{"q":"Du ___ die Tür öffnen.","o":["kannst","kann","können"],"a":0},{"q":"Wir ___ ein Zimmer reservieren.","o":["möchten","möchte","möchtet"],"a":0}]},{"id":"g7","title":"İyelik sözcükleri","subtitle":"mein, dein, sein, ihr","questions":[{"q":"Das ist ___ Mutter. (ich)","o":["meine","mein","deine"],"a":0},{"q":"Wo ist ___ Pass? (du)","o":["dein","deine","sein"],"a":0},{"q":"Er sucht ___ Schlüssel. (tek bir anahtar, kendisinin)","o":["seinen","seine","ihr"],"a":0},{"q":"Anna besucht ___ Freundin. (Anna’nın arkadaşı)","o":["ihre","ihr","seine"],"a":0},{"q":"Wir machen ___ Hausaufgaben.","o":["unsere","unser","eure"],"a":0},{"q":"Ist das ___ Auto? (ihr)","o":["euer","eure","unser"],"a":0},{"q":"Ich liebe ___ Familie. (kendi ailem)","o":["meine","mein","dein"],"a":0},{"q":"Du kennst ___ Lehrer.","o":["deinen","deine","mein"],"a":0},{"q":"Sie zeigt ___ Wohnung. (sie)","o":["ihre","ihr","seine"],"a":0},{"q":"Wir besuchen ___ Eltern.","o":["unsere","unseren","unser"],"a":0}]},{"id":"g8","title":"Cümle yapısı ve ayrılabilen fiiller","subtitle":"sözcük dizimi","questions":[{"q":"Ich ___ um sieben Uhr ___.","o":["stehe / auf","auf / stehe","steht / auf"],"a":0},{"q":"Wann ___ der Zug ___?","o":["fährt / ab","ab / fährt","fahren / ab"],"a":0},{"q":"Ich ___ heute meine Mutter ___.","o":["rufe / an","an / rufe","ruft / an"],"a":0},{"q":"Am Montag ___ ich Deutsch.","o":["lerne","ich lerne","lernen"],"a":0},{"q":"Heute ___ wir keine Zeit.","o":["haben","wir haben","hat"],"a":0},{"q":"Er ___ um acht Uhr ___.","o":["kommt / an","ankommt / —","kommen / an"],"a":0},{"q":"Wir ___ im Supermarkt ___.","o":["kaufen / ein","einkaufen / —","kauft / ein"],"a":0},{"q":"Abends ___ Anna ___.","o":["sieht / fern","fernsieht / —","sehen / fern"],"a":0},{"q":"Ich ___ die Tür ___.","o":["mache / auf","aufmache / —","macht / auf"],"a":0},{"q":"Morgen ___ der Kurs um neun Uhr ___.","o":["fängt / an","anfängt / —","fangen / an"],"a":0}]}],"listening":[{"id":"l1","q":"Wo fährt die Frau heute hin?","text":"Ich fahre heute mit meiner Schwester zum Bahnhof.","o":["İstasyona.","Okula.","Hastaneye."],"a":0},{"id":"l2","q":"Saat kaçta buluşuyorlar?","text":"Treffen wir uns um halb sechs vor dem Kino?","o":["17:30","18:30","16:30"],"a":0},{"id":"l3","q":"Adam ne satın almak istiyor?","text":"Ich brauche Brot, Milch und zwei Äpfel.","o":["Yiyecek.","Bir bilet.","Bir ceket."],"a":0},{"id":"l4","q":"Tren hangi perondan kalkıyor?","text":"Der Zug nach Köln fährt heute von Gleis sieben.","o":["7. perondan.","5. perondan.","17. perondan."],"a":0},{"id":"l5","q":"Kadın bugün ne yiyor?","text":"Ich nehme die Suppe und danach einen Salat.","o":["Çorba ve salata.","Pizza.","Sadece ekmek."],"a":0},{"id":"l6","q":"Randevu ne zaman?","text":"Ihr Termin ist am Donnerstag um zehn Uhr.","o":["Perşembe 10:00.","Salı 10:00.","Perşembe 12:00."],"a":0},{"id":"l7","q":"Mağaza ne zaman kapanıyor?","text":"Heute schließen wir schon um achtzehn Uhr.","o":["18:00.","20:00.","16:00."],"a":0},{"id":"l8","q":"Otobüs neden gecikiyor?","text":"Wegen des starken Verkehrs kommt der Bus zehn Minuten später.","o":["Yoğun trafik nedeniyle.","Kar nedeniyle.","Şoför hasta olduğu için."],"a":0},{"id":"l9","q":"Kadın nereye gitmek istiyor?","text":"Entschuldigung, wie komme ich zur Apotheke?","o":["Eczaneye.","Bankaya.","Postaneye."],"a":0},{"id":"l10","q":"Otel kaç gecelik?","text":"Ich möchte ein Einzelzimmer für drei Nächte.","o":["Üç gece.","İki gece.","Bir hafta."],"a":0},{"id":"l11","q":"Hangi içeceği istiyor?","text":"Für mich bitte einen Tee ohne Zucker.","o":["Şekersiz çay.","Sütlü kahve.","Su."],"a":0},{"id":"l12","q":"Doktor ne öneriyor?","text":"Bleiben Sie heute zu Hause und trinken Sie viel Wasser.","o":["Evde kalıp bol su içmeyi.","Koşmayı.","İşe gitmeyi."],"a":0},{"id":"l13","q":"Ders ne zaman başlıyor?","text":"Der Deutschkurs beginnt am Montag um neun Uhr.","o":["Pazartesi 09:00.","Cuma 09:00.","Pazartesi 19:00."],"a":0},{"id":"l14","q":"Adam hangi ulaşım aracını kullanıyor?","text":"Normalerweise fahre ich mit der Straßenbahn zur Arbeit.","o":["Tramvay.","Bisiklet.","Araba."],"a":0},{"id":"l15","q":"Hava nasıl olacak?","text":"Morgen wird es kalt und am Nachmittag regnet es.","o":["Soğuk ve yağmurlu.","Sıcak ve güneşli.","Karlı."],"a":0},{"id":"l16","q":"Kadın ne arıyor?","text":"Ich finde meinen Schlüssel nicht. Hast du ihn gesehen?","o":["Anahtarını.","Telefonunu.","Çantasını."],"a":0},{"id":"l17","q":"Adam neden arıyor?","text":"Ich rufe an, weil ich morgen später zur Arbeit komme.","o":["Yarın işe geç geleceğini söylemek için.","İzin istemek için.","Adres sormak için."],"a":0},{"id":"l18","q":"Fiyat ne kadar?","text":"Das Hemd kostet heute nur fünfundzwanzig Euro.","o":["25 avro.","15 avro.","35 avro."],"a":0},{"id":"l19","q":"Kadın hafta sonu ne yapıyor?","text":"Am Samstag treffe ich Freunde und am Sonntag bleibe ich zu Hause.","o":["Cumartesi arkadaşlarıyla buluşuyor.","İki gün çalışıyor.","Seyahate gidiyor."],"a":0},{"id":"l20","q":"Adam nerede yaşıyor?","text":"Ich wohne seit einem Jahr in Hamburg, aber ich komme aus Izmir.","o":["Hamburg’da.","İzmir’de.","Berlin’de."],"a":0},{"id":"l21","q":"Duyuru ne söylüyor?","text":"Achtung: Der Zug nach München fällt heute aus.","o":["Münih treni iptal.","Tren peron değiştirdi.","Tren erken kalkıyor."],"a":0},{"id":"l22","q":"Kadın ne istiyor?","text":"Können Sie mir bitte das Fenster öffnen?","o":["Pencerenin açılmasını.","Kapının kapanmasını.","Bir kahve."],"a":0},{"id":"l23","q":"Kaç çocukları var?","text":"Wir haben einen Sohn und zwei Töchter.","o":["Üç.","İki.","Bir."],"a":0},{"id":"l24","q":"Telefon numarasının sonu nedir?","text":"Meine Nummer ist 0176 445 32 18.","o":["32 18","23 81","32 80"],"a":0},{"id":"l25","q":"Kurs nerede?","text":"Der Kurs ist im Raum zwölf im zweiten Stock.","o":["2. kattaki 12 numaralı odada.","1. kattaki 20 numaralı odada.","Giriş katta."],"a":0},{"id":"l26","q":"Ne zaman açık?","text":"Die Apotheke ist von acht bis zwanzig Uhr geöffnet.","o":["08:00–20:00.","08:00–12:00.","10:00–20:00."],"a":0},{"id":"l27","q":"Kadın hangi bedeni arıyor?","text":"Haben Sie diese Hose auch in Größe achtunddreißig?","o":["38.","40.","36."],"a":0},{"id":"l28","q":"Adam ne zaman doğmuş?","text":"Ich bin am dritten Mai neunzehnhundertneunundneunzig geboren.","o":["3 Mayıs 1999.","13 Mayıs 1999.","3 Mart 1999."],"a":0},{"id":"l29","q":"Ne yapmak gerekiyor?","text":"Bitte füllen Sie zuerst dieses Formular aus und unterschreiben Sie unten.","o":["Formu doldurup imzalamak.","Sadece ödeme yapmak.","Telefon etmek."],"a":0},{"id":"l30","q":"Akşam ne yapıyor?","text":"Heute Abend koche ich und danach sehe ich einen Film.","o":["Yemek yapıp film izliyor.","Spor yapıyor.","Arkadaşına gidiyor."],"a":0}],"reading":[{"id":"r1","text":"Öffnungszeiten: Montag–Freitag 8–18 Uhr. Samstag 9–13 Uhr. Sonntag geschlossen.","q":"Pazar günü açık mı?","o":["Hayır.","Evet, 13:00’e kadar.","Sadece sabah."],"a":0},{"id":"r2","text":"Zimmer frei ab 1. Mai. 450 Euro warm. Nähe Bahnhof.","q":"Daire ne zaman müsait?","o":["1 Mayıs’tan itibaren.","1 Mart’tan itibaren.","Hemen."],"a":0},{"id":"r3","text":"Bitte hier nicht rauchen.","q":"Burada ne yasak?","o":["Sigara içmek.","Telefon kullanmak.","Yemek yemek."],"a":0},{"id":"r4","text":"Deutschkurs A1: Dienstag und Donnerstag, 18:00–20:00 Uhr.","q":"Kurs hangi günler?","o":["Salı ve perşembe.","Pazartesi ve çarşamba.","Cuma ve cumartesi."],"a":0},{"id":"r5","text":"Heute alle Jacken 20 % günstiger.","q":"Bugün ne daha ucuz?","o":["Ceketler.","Ayakkabılar.","Çantalar."],"a":0},{"id":"r6","text":"Zug RE 5 nach Bonn: Abfahrt 14:35, Gleis 4.","q":"Tren saat kaçta kalkıyor?","o":["14:35.","15:35.","14:45."],"a":0},{"id":"r7","text":"Liebe Sara, ich komme am Samstag um 19 Uhr zu deiner Party. Ich bringe einen Kuchen mit.","q":"Kişi ne getiriyor?","o":["Kek.","İçecek.","Çiçek."],"a":0},{"id":"r8","text":"Arztpraxis Dr. Klein: Heute wegen Krankheit geschlossen.","q":"Muayenehane neden kapalı?","o":["Hastalık nedeniyle.","Tatil nedeniyle.","Tadilat nedeniyle."],"a":0},{"id":"r9","text":"Bus 23 fährt heute nur bis Hauptbahnhof.","q":"23 numaralı otobüs bugün nereye kadar gidiyor?","o":["Ana istasyona kadar.","Havaalanına kadar.","Üniversiteye kadar."],"a":0},{"id":"r10","text":"Kino City: Filmstart 20:15. Eintritt 9 Euro.","q":"Bilet ne kadar?","o":["9 avro.","20 avro.","15 avro."],"a":0},{"id":"r11","text":"Supermarkt: Milch 1,19 €, Brot 2,49 €, Äpfel 2,99 €/kg.","q":"Ekmek ne kadar?","o":["2,49 €.","1,19 €.","2,99 €."],"a":0},{"id":"r12","text":"Hotel Adler: Frühstück von 7 bis 10 Uhr im Erdgeschoss.","q":"Kahvaltı nerede?","o":["Giriş katta.","İkinci katta.","Odada."],"a":0},{"id":"r13","text":"Wohnung: 3 Zimmer, Balkon, 850 Euro, keine Haustiere.","q":"Evcil hayvan serbest mi?","o":["Hayır.","Evet.","Sadece kedi."],"a":0},{"id":"r14","text":"Bibliothek: Bitte Handys ausschalten.","q":"Ne yapılmalı?","o":["Telefon kapatılmalı.","Sessizce telefonla konuşulmalı.","Fotoğraf çekilmeli."],"a":0},{"id":"r15","text":"Terminbestätigung: Mittwoch, 12. Oktober, 11:30 Uhr.","q":"Randevu hangi gün?","o":["Çarşamba.","Perşembe.","Salı."],"a":0},{"id":"r16","text":"Café Morgenrot: Frühstück täglich bis 11 Uhr.","q":"Kahvaltı ne zamana kadar?","o":["11:00’e kadar.","10:00’a kadar.","12:00’ye kadar."],"a":0},{"id":"r17","text":"Parkplatz nur für Kunden.","q":"Kim park edebilir?","o":["Müşteriler.","Herkes.","Sadece çalışanlar."],"a":0},{"id":"r18","text":"Achtung! Aufzug außer Betrieb. Bitte Treppe benutzen.","q":"Ne çalışmıyor?","o":["Asansör.","Merdiven.","Kapı."],"a":0},{"id":"r19","text":"Postfiliale: Samstag geschlossen.","q":"Postane cumartesi açık mı?","o":["Hayır.","Evet.","Sadece öğleden sonra."],"a":0},{"id":"r20","text":"Schwimmbad: Kinder unter 6 Jahren frei.","q":"6 yaşından küçük çocuklar için ücret?","o":["Ücretsiz.","5 avro.","Yarım fiyat."],"a":0},{"id":"r21","text":"Morgen kein Unterricht. Die Lehrerin ist krank.","q":"Yarın neden ders yok?","o":["Öğretmen hasta.","Tatil.","Sınav var."],"a":0},{"id":"r22","text":"Restaurant Bella: Küche bis 22 Uhr geöffnet.","q":"Mutfak ne zamana kadar açık?","o":["22:00.","20:00.","23:00."],"a":0},{"id":"r23","text":"Bitte die Tür immer schließen.","q":"Kapıyla ilgili ne isteniyor?","o":["Her zaman kapatılması.","Açık bırakılması.","Kilitlenmemesi."],"a":0},{"id":"r24","text":"Fahrräder bitte draußen abstellen.","q":"Bisikletler nereye bırakılmalı?","o":["Dışarıya.","Koridora.","Bodruma."],"a":0},{"id":"r25","text":"Praxis: Neue Telefonnummer 030 445566.","q":"Ne değişmiş?","o":["Telefon numarası.","Adres.","Çalışma saati."],"a":0},{"id":"r26","text":"Heute: Suppe + Salat 8,50 Euro.","q":"Menüde ne var?","o":["Çorba ve salata.","Pizza ve kola.","Makarna."],"a":0},{"id":"r27","text":"Liebe Kunden, Kartenzahlung heute nicht möglich.","q":"Bugün nasıl ödeme yapılamıyor?","o":["Kartla.","Nakit.","Kuponla."],"a":0},{"id":"r28","text":"Flug LH123: Boarding 16:20, Gate B7.","q":"Biniş kapısı hangisi?","o":["B7.","B17.","A7."],"a":0},{"id":"r29","text":"Waschmaschine zu verkaufen, 80 Euro, funktioniert gut.","q":"Ürün ne durumda?","o":["İyi çalışıyor.","Bozuk.","Yeni ve ücretsiz."],"a":0},{"id":"r30","text":"Bitte melden Sie sich zuerst an der Rezeption.","q":"İlk olarak nereye gidilmeli?","o":["Resepsiyona.","Restorana.","Odaya."],"a":0}],"forms":[{"id":"f1","title":"Dil kursu kayıt formu","fields":["Vorname","Nachname","Geburtsdatum","Adresse","Telefon","E-Mail","Muttersprache","Beruf"],"hint":"Kendine ait veya hayalî basit bilgilerle doldur."},{"id":"f2","title":"Otel kayıt formu","fields":["Vorname","Nachname","Anreisedatum","Abreisedatum","Adresse","Telefon","Zimmerart","Unterschrift"],"hint":"Kısa ve okunaklı bilgiler yaz."},{"id":"f3","title":"Doktor hasta formu","fields":["Name","Geburtsdatum","Adresse","Telefon","Krankenkasse","Beschwerden","Seit wann?","Unterschrift"],"hint":"Şikâyeti çok basit Almanca yaz."},{"id":"f4","title":"Kütüphane üyeliği","fields":["Vorname","Nachname","Geburtsort","Geburtsdatum","Adresse","E-Mail","Telefon","Unterschrift"],"hint":"Temel kişisel bilgileri kullan."},{"id":"f5","title":"Spor kulübü kaydı","fields":["Name","Alter","Adresse","Telefon","Sportart","Trainingstag","E-Mail","Unterschrift"],"hint":"Bir spor dalı ve uygun gün seç."},{"id":"f6","title":"Daire başvuru formu","fields":["Name","Beruf","Personenzahl","Telefon","E-Mail","Einzugsdatum","Haustiere","Unterschrift"],"hint":"Kısa cevaplar yeterli."},{"id":"f7","title":"Etkinlik kaydı","fields":["Name","Datum","Teilnehmerzahl","Telefon","E-Mail","Uhrzeit","Bemerkung","Unterschrift"],"hint":"Tarih ve saat yazımına dikkat et."},{"id":"f8","title":"Kurs değerlendirme formu","fields":["Name","Kurs","Lehrer","Datum","Was war gut?","Was war schwierig?","Wunsch","Unterschrift"],"hint":"Çok basit A1 ifadeleri kullan."}],"writing":[{"id":"w1","title":"Arkadaşına doğum günü mesajı","prompt":"Arkadaşın seni doğum gününe davet etti. 30–40 kelimelik kısa bir mesaj yaz.","points":["teşekkür et","gelip gelemeyeceğini söyle","saat veya adres sor"],"model":"Liebe Anna,\nvielen Dank für die Einladung. Ich komme sehr gern. Um wie viel Uhr beginnt die Party und wie ist deine Adresse? Soll ich etwas mitbringen?\nViele Grüße\nAnna"},{"id":"w2","title":"Dil kursuna e-posta","prompt":"Dil kursuna kısa bir e-posta yaz.","points":["A1 kursu hakkında bilgi iste","başlangıç tarihini sor","fiyatı sor"],"model":"Guten Tag,\nich interessiere mich für einen Deutschkurs A1. Wann beginnt der nächste Kurs? Wie viel kostet der Kurs? Vielen Dank für Ihre Antwort.\nMit freundlichen Grüßen\nMartin Meyer"},{"id":"w3","title":"Otele mesaj","prompt":"Bir otele 30–40 kelimelik mesaj yaz.","points":["iki gecelik oda iste","kahvaltıyı sor","fiyatı sor"],"model":"Guten Tag,\nich möchte ein Einzelzimmer für zwei Nächte reservieren. Ist Frühstück im Preis dabei? Wie viel kostet das Zimmer pro Nacht?\nMit freundlichen Grüßen\nAnna Schmidt"},{"id":"w4","title":"İşe geç kalma mesajı","prompt":"İş yerine kısa bir mesaj yaz.","points":["geç kalacağını söyle","nedenini söyle","ne zaman geleceğini yaz"],"model":"Guten Morgen,\nich komme heute leider später ins Büro, weil mein Bus Verspätung hat. Ich bin ungefähr um zehn Uhr da. Entschuldigung und bis später.\nViele Grüße\nMartin"},{"id":"w5","title":"Daire hakkında soru","prompt":"Bir ev ilanına cevap yaz.","points":["daireyle ilgilendiğini söyle","kirayı sor","ne zaman görebileceğini sor"],"model":"Guten Tag,\nich interessiere mich für Ihre Wohnung. Wie hoch ist die Miete mit Nebenkosten? Wann kann ich die Wohnung besichtigen?\nMit freundlichen Grüßen\nElif Kaya"},{"id":"w6","title":"Doktor randevusu","prompt":"Muayenehaneye kısa bir mesaj yaz.","points":["randevu iste","şikâyetini söyle","uygun zamanı sor"],"model":"Guten Tag,\nich brauche bitte einen Termin. Ich habe seit gestern starke Kopfschmerzen. Haben Sie morgen Vormittag noch einen Termin frei?\nMit freundlichen Grüßen\nAli"},{"id":"w7","title":"Hafta sonu planı","prompt":"Bir arkadaşına hafta sonu için mesaj yaz.","points":["bir etkinlik öner","zaman öner","buluşma yerini sor"],"model":"Hallo Ece,\nhast du am Samstag Zeit? Wir können zusammen ins Kino gehen. Der Film beginnt um 19 Uhr. Treffen wir uns um 18:30 vor dem Kino?\nLiebe Grüße\nMert"},{"id":"w8","title":"Kursu kaçırma","prompt":"Öğretmenine kısa bir mesaj yaz.","points":["bugün gelemeyeceğini söyle","nedenini söyle","ödevi sor"],"model":"Guten Tag Frau Becker,\nich kann heute leider nicht zum Kurs kommen, weil ich krank bin. Welche Hausaufgaben haben wir für Donnerstag? Vielen Dank.\nViele Grüße\nZeynep"},{"id":"w9","title":"Seyahat bilgisi","prompt":"Arkadaşına yolculuğunla ilgili mesaj yaz.","points":["ne zaman geleceğini söyle","ulaşım aracını söyle","karşılamasını iste"],"model":"Hallo Can,\nich komme am Freitag nach Berlin. Mein Zug kommt um 17:20 Uhr am Hauptbahnhof an. Kannst du mich dort abholen?\nViele Grüße\nDeniz"},{"id":"w10","title":"Restoran rezervasyonu","prompt":"Bir restorana kısa mesaj yaz.","points":["masa ayırt","kişi sayısını yaz","saat belirt"],"model":"Guten Tag,\nich möchte für Samstagabend einen Tisch reservieren. Wir sind vier Personen und möchten um 19:30 Uhr kommen. Ist das möglich?\nVielen Dank\nSelin"}],"interview":[{"q":"Wie heißen Sie?","a":"Ich heiße Anna Meyer."},{"q":"Wie alt sind Sie?","a":"Ich bin 28 Jahre alt."},{"q":"Woher kommen Sie?","a":"Ich komme aus der Türkei."},{"q":"Wo wohnen Sie?","a":"Ich wohne in Berlin."},{"q":"Was sind Sie von Beruf?","a":"Ich arbeite als Verkäuferin."},{"q":"Welche Sprachen sprechen Sie?","a":"Ich spreche Türkisch und ein bisschen Deutsch."},{"q":"Haben Sie Geschwister?","a":"Ja, ich habe einen Bruder."},{"q":"Sind Sie verheiratet?","a":"Nein, ich bin ledig."},{"q":"Was machen Sie gern?","a":"Ich spiele gern Volleyball."},{"q":"Was machen Sie am Wochenende?","a":"Ich treffe Freunde und gehe spazieren."},{"q":"Wann stehen Sie auf?","a":"Ich stehe um sieben Uhr auf."},{"q":"Was essen Sie zum Frühstück?","a":"Ich esse Brot und Käse."},{"q":"Wie fahren Sie zur Arbeit?","a":"Ich fahre mit dem Bus."},{"q":"Wann beginnt Ihre Arbeit?","a":"Meine Arbeit beginnt um acht Uhr."},{"q":"Was machen Sie abends?","a":"Ich koche und sehe fern."},{"q":"Haben Sie ein Hobby?","a":"Ja, mein Hobby ist Fußball."},{"q":"Was ist Ihr Lieblingsessen?","a":"Mein Lieblingsessen ist Pasta."},{"q":"Trinken Sie gern Kaffee?","a":"Ja, ich trinke gern Kaffee."},{"q":"Welche Musik hören Sie gern?","a":"Ich höre gern Popmusik."},{"q":"Haben Sie Haustiere?","a":"Nein, ich habe keine Haustiere."},{"q":"Wo kaufen Sie Lebensmittel?","a":"Ich kaufe im Supermarkt ein."},{"q":"Wie ist Ihre Wohnung?","a":"Meine Wohnung ist klein und hell."},{"q":"Welche Jahreszeit mögen Sie?","a":"Ich mag den Sommer."},{"q":"Was machen Sie im Urlaub?","a":"Ich fahre gern ans Meer."},{"q":"Wann lernen Sie Deutsch?","a":"Ich lerne am Abend Deutsch."},{"q":"Warum lernen Sie Deutsch?","a":"Ich brauche Deutsch für meine Arbeit."},{"q":"Was machen Sie bei gutem Wetter?","a":"Ich gehe spazieren."},{"q":"Kochen Sie gern?","a":"Ja, ich koche sehr gern."},{"q":"Wie oft machen Sie Sport?","a":"Ich mache zweimal pro Woche Sport."},{"q":"Was möchten Sie heute machen?","a":"Ich möchte Freunde treffen."}],"infoCards":[{"theme":"Arbeit","cue":"Arbeitszeit","q":"Wann arbeiten Sie?","a":"Ich arbeite von acht bis sechzehn Uhr."},{"theme":"Arbeit","cue":"Pause","q":"Wann machen Sie Pause?","a":"Um zwölf Uhr."},{"theme":"Arbeit","cue":"Kollegen","q":"Wie sind Ihre Kollegen?","a":"Sie sind sehr nett."},{"theme":"Arbeit","cue":"Ort","q":"Wo arbeiten Sie?","a":"Ich arbeite im Zentrum."},{"theme":"Arbeit","cue":"Beruf","q":"Was sind Sie von Beruf?","a":"Ich bin Verkäufer."},{"theme":"Arbeit","cue":"Urlaub","q":"Wann haben Sie Urlaub?","a":"Im August."},{"theme":"Wohnen","cue":"Miete","q":"Wie hoch ist die Miete?","a":"Die Miete ist 700 Euro."},{"theme":"Wohnen","cue":"Zimmer","q":"Wie viele Zimmer hat die Wohnung?","a":"Sie hat drei Zimmer."},{"theme":"Wohnen","cue":"Balkon","q":"Hat die Wohnung einen Balkon?","a":"Ja, sie hat einen Balkon."},{"theme":"Wohnen","cue":"Adresse","q":"Wie ist Ihre Adresse?","a":"Meine Adresse ist Gartenstraße 12."},{"theme":"Wohnen","cue":"Nachbarn","q":"Wie sind Ihre Nachbarn?","a":"Sie sind freundlich."},{"theme":"Wohnen","cue":"Haustiere","q":"Haben Sie Haustiere?","a":"Nein, ich habe keine Haustiere."},{"theme":"Freizeit","cue":"Sport","q":"Welchen Sport machen Sie?","a":"Ich spiele Fußball."},{"theme":"Freizeit","cue":"Kino","q":"Wie oft gehen Sie ins Kino?","a":"Einmal im Monat."},{"theme":"Freizeit","cue":"Wochenende","q":"Was machen Sie am Wochenende?","a":"Ich treffe Freunde."},{"theme":"Freizeit","cue":"Freunde","q":"Wann treffen Sie Freunde?","a":"Am Samstag."},{"theme":"Freizeit","cue":"Musik","q":"Welche Musik hören Sie?","a":"Ich höre Popmusik."},{"theme":"Freizeit","cue":"Reisen","q":"Wohin reisen Sie gern?","a":"Ich reise gern ans Meer."},{"theme":"Essen","cue":"Frühstück","q":"Was essen Sie zum Frühstück?","a":"Ich esse Brot und Käse."},{"theme":"Essen","cue":"Restaurant","q":"Gehen Sie gern ins Restaurant?","a":"Ja, manchmal."},{"theme":"Essen","cue":"Lieblingsessen","q":"Was ist Ihr Lieblingsessen?","a":"Mein Lieblingsessen ist Pasta."},{"theme":"Essen","cue":"Getränke","q":"Was trinken Sie gern?","a":"Ich trinke gern Tee."},{"theme":"Essen","cue":"Kochen","q":"Kochen Sie gern?","a":"Ja, sehr gern."},{"theme":"Essen","cue":"Preis","q":"Wie viel kostet das?","a":"Das kostet zehn Euro."},{"theme":"Verkehr","cue":"Bus","q":"Welchen Bus nehmen Sie?","a":"Ich nehme den Bus 12."},{"theme":"Verkehr","cue":"Bahnhof","q":"Wo ist der Bahnhof?","a":"Der Bahnhof ist im Zentrum."},{"theme":"Verkehr","cue":"Gleis","q":"Von welchem Gleis fährt der Zug?","a":"Von Gleis fünf."},{"theme":"Verkehr","cue":"Fahrkarte","q":"Wo kauft man die Fahrkarte?","a":"Am Automaten."},{"theme":"Verkehr","cue":"Abfahrt","q":"Wann fährt der Zug ab?","a":"Um neun Uhr."},{"theme":"Verkehr","cue":"Verspätung","q":"Hat der Zug Verspätung?","a":"Ja, zehn Minuten."}],"requests":[{"cue":"Wasser","request":"Können Sie mir bitte ein Glas Wasser geben?","response":"Ja, natürlich."},{"cue":"Fenster","request":"Darf ich bitte das Fenster öffnen?","response":"Ja, gern."},{"cue":"Stift","request":"Geben Sie mir bitte einen Stift.","response":"Natürlich, hier bitte."},{"cue":"Telefon","request":"Darf ich kurz Ihr Telefon benutzen?","response":"Ja, kein Problem."},{"cue":"Tür","request":"Können Sie bitte die Tür schließen?","response":"Ja, natürlich."},{"cue":"Salz","request":"Können Sie mir bitte das Salz geben?","response":"Gern, hier bitte."},{"cue":"Rechnung","request":"Die Rechnung, bitte.","response":"Ja, einen Moment."},{"cue":"Hilfe","request":"Können Sie mir bitte helfen?","response":"Ja, gern."},{"cue":"Wiederholung","request":"Können Sie das bitte wiederholen?","response":"Ja, natürlich."},{"cue":"Langsam","request":"Können Sie bitte langsamer sprechen?","response":"Ja, gern."},{"cue":"Fahrkarte","request":"Eine Fahrkarte nach Bonn, bitte.","response":"Einfach oder hin und zurück?"},{"cue":"Kaffee","request":"Einen Kaffee, bitte.","response":"Mit Milch oder ohne?"},{"cue":"Brot","request":"Zwei Brötchen, bitte.","response":"Gern. Sonst noch etwas?"},{"cue":"Termin","request":"Ich brauche bitte einen Termin.","response":"Wann haben Sie Zeit?"},{"cue":"Zimmer","request":"Ich möchte ein Zimmer reservieren.","response":"Für wie viele Nächte?"},{"cue":"Adresse","request":"Können Sie mir bitte die Adresse geben?","response":"Ja, natürlich."},{"cue":"Taxi","request":"Können Sie mir bitte ein Taxi rufen?","response":"Ja, einen Moment."},{"cue":"Foto","request":"Können Sie bitte ein Foto machen?","response":"Ja, gern."},{"cue":"Tasche","request":"Können Sie kurz meine Tasche halten?","response":"Natürlich."},{"cue":"Platz","request":"Ist dieser Platz frei?","response":"Ja, bitte."},{"cue":"Speisekarte","request":"Die Speisekarte, bitte.","response":"Ja, sofort."},{"cue":"Quittung","request":"Kann ich bitte eine Quittung bekommen?","response":"Ja, natürlich."},{"cue":"Karte","request":"Kann ich mit Karte bezahlen?","response":"Ja, das geht."},{"cue":"Toilette","request":"Wo ist bitte die Toilette?","response":"Hinten links."},{"cue":"Bahnhof","request":"Wie komme ich bitte zum Bahnhof?","response":"Gehen Sie geradeaus."},{"cue":"Uhrzeit","request":"Wie spät ist es bitte?","response":"Es ist halb fünf."},{"cue":"Preis","request":"Wie viel kostet das bitte?","response":"Das kostet 20 Euro."},{"cue":"Größe","request":"Haben Sie das bitte in Größe 40?","response":"Ja, einen Moment."},{"cue":"Apotheke","request":"Wo ist die nächste Apotheke?","response":"In der Hauptstraße."},{"cue":"Internet","request":"Wie ist das WLAN-Passwort?","response":"Es steht auf der Karte."}]};
+const lessons=D.lessons;
+const defaultState={doneLessons:[],lessonWork:{},lessonQuizBest:{},grammarBest:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],bestMock:0,examScores:{}};
+const stateKey=A1Profile.namespacedKey('deutschA1TurkishState_v1');
+function loadState(){return A1Learning.loadState(stateKey,defaultState);}
+
+let state=loadState();
+function lessonPct(){return Math.round((state.doneLessons||[]).length/lessons.length*100);}
+window.A1CourseProgressPercent=lessonPct;
+function save(completed=false){if(completed)A1Streak.completeExercise();localStorage.setItem(stateKey,JSON.stringify(state));A1Profile.saveProgress('deutsch-a1-tr',state,lessonPct());}
+let audioEnabled=localStorage.getItem('trDeA1AudioEnabled')!=='false';
+let currentRoute='home';
+let activeRecorder=null;
+const view=document.getElementById('view');
+const audioToggle=document.getElementById('audioToggle');
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const shuffle=A1Learning.shuffle;
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)return;A1Voice.speak(text,{lang:'de-DE',rate});}
+function speakBtn(text){return `<button class="speak-btn" data-speak="${encodeURIComponent(text)}" aria-label="Telaffuzu dinle">🔊</button>`;}
+function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(decodeURIComponent(b.dataset.speak),true));}
+function updateAudioButton(){audioToggle.textContent=audioEnabled?'🔊 Auto':'🔇 Auto';audioToggle.classList.toggle('audio-off',!audioEnabled);}
+function skillPct(k){if(k==='Dinleme')return Math.round(clamp(state.masteredListening.length/D.listening.length*100,0,100));if(k==='Okuma')return Math.round(clamp(state.masteredReading.length/D.reading.length*100,0,100));if(k==='Yazma')return Math.round(clamp(state.writingDone.length/(D.forms.length+D.writing.length)*100,0,100));if(k==='Konuşma')return Math.round(clamp(new Set(state.speakingDone).size/(D.interview.length+D.infoCards.length+D.requests.length)*100,0,100));return 0;}
+function skillBar(k){const p=skillPct(k);return `<div class="skill-row"><strong>${k}</strong><div class="progress"><div style="width:${p}%"></div></div><span>${p}%</span></div>`;}
+function setRoute(r){currentRoute=r;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.route===r));({home:renderHome,learn:renderLearn,practice:renderPractice,exam:renderExam}[r]||renderHome)();window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.dataset.route));
+
+function renderHome(){const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];view.innerHTML=`<section class="card hero" data-streak-anchor><div class="eyebrow">KURS İLERLEMESİ</div><h2 style="margin-top:12px">Almanca A1 🇩🇪</h2><p class="muted">${state.doneLessons.length}/${lessons.length} ders tamamlandı</p><div class="progress"><div style="width:${lessonPct()}%"></div></div><div class="between" style="margin-top:10px"><small>TÜRKÇE → ALMANCA · A1</small><strong>${lessonPct()}%</strong></div>${A1Streak.render('tr')}</section><section class="card"><div class="between"><div><div class="eyebrow">DEVAM ET</div><h3>${esc(next.title)}</h3></div><span class="pill gray">Ders ${next.id}</span></div><p class="muted">${esc(next.topic)} · ${next.skills.join(' · ')}</p><button class="primary-btn" id="continueLesson">Devam et</button></section><section class="card"><div class="between"><h3>Sınava hazırlık</h3><span class="pill gray">En iyi hızlı test: ${state.bestMock}%</span></div>${['Dinleme','Okuma','Yazma','Konuşma'].map(skillBar).join('')}</section>`;document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);}
+function renderLearn(){view.innerHTML=`<section class="card hero"><h2>Almanca A1 kursu</h2><p class="muted">Bu kurs seni Goethe-Zertifikat A1 sınavına hedefli şekilde hazırlar.</p></section><div class="list">${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-id="${l.id}"><span class="num">${l.id}</span><strong>${esc(l.title)}</strong><p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p><div class="lesson-meta"><span class="pill gray">${esc(l.topic)}</span>${l.skills.map(s=>`<span class="pill">${s}</span>`).join('')}</div></button>`).join('')}</div>`;document.querySelectorAll('.lesson[data-id]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.id));}
+
+const LESSON_WRITING_SUPPORT={
+  1:{helpText:'Bu dört cümle kalıbını kullan ve kişisel bilgileri değiştir.',hints:[['Ich heiße …','Benim adım …'],['Ich komme aus …','…’den geliyorum'],['Ich wohne in …','…’de yaşıyorum'],['Ich spreche …','… konuşuyorum']],model:'Ich heiße Anna.\nIch komme aus der Türkei.\nIch wohne in Berlin.\nIch spreche Türkisch und ein bisschen Deutsch.',placeholder:'Dört basit cümle yaz…'},
+  2:{helpText:'Adın yazılışını öğrenmek için doğrudan bu iki rica kalıbını kullanabilirsin.',hints:[['Wie schreibt man das?','Bu nasıl yazılır?'],['Können Sie das bitte buchstabieren?','Bunu lütfen harf harf söyleyebilir misiniz?']],model:'Wie schreibt man das?\nKönnen Sie das bitte buchstabieren?',placeholder:'İki farklı rica yaz…'},
+  3:{helpText:'Her bilgiyi doğru alanın yanına yaz.',hints:[['Geburtsdatum: …','doğum tarihi'],['Telefonnummer: …','telefon numarası'],['Postleitzahl: …','posta kodu']],model:'Geburtsdatum: 17. April 2000\nTelefonnummer: 030 555 1840\nPostleitzahl: 12345',placeholder:'Bilgi kartındaki üç alanı doldur…'},
+  4:{helpText:'Kısa mesajda gün, saat ve buluşma yeri bulunmalı.',hints:[['Der Termin ist am … um …','Randevu … günü saat …’de'],['Treffpunkt: …','Buluşma yeri: …']],model:'Der Termin ist am Mittwoch um 10 Uhr.\nTreffpunkt: Bibliothek.',placeholder:'Gün, saat ve yeri yaz…'},
+  5:{helpText:'Formdaki her başlığın yanına uygun bir bilgi ekle.',hints:[['Name: …','soyadı'],['Vorname: …','adı'],['Familienstand: …','medeni durum'],['Geburtsdatum: …','doğum tarihi'],['Geburtsort: …','doğum yeri']],model:'Name: Meyer\nVorname: Anna\nFamilienstand: ledig\nGeburtsdatum: 17. April 2000\nGeburtsort: Ankara',placeholder:'Form alanlarını doldur…'},
+  6:{helpText:'Sipariş verirken istenen kalıbı ürünlerle birlikte kullan.',hints:[['Ich hätte gern …','… istiyorum'],['…, bitte.','…, lütfen.']],model:'Ich hätte gern einen Kaffee, eine Suppe und ein Wasser, bitte.',placeholder:'Üç ürün içeren bir sipariş yaz…'}
+};
+
+function renderLesson(id){
+  const l=lessons.find(x=>x.id===id),c=window.A1_COURSE_CONTENT.find(x=>x.id===id);
+  const goalsHtml=A1LessonGuide.goals(id,'tr',esc);
+  const grammarHtml=A1LessonGuide.grammar(id,'tr',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
+  const dialogueHtml=A1LessonGuide.parts(id,'tr',esc,speakBtn).dialogue;
+  const model=(c.grammar.examples?.[0]?.[0]||l.phrases[0][0])+' '+l.phrases.slice(1,4).map(p=>p[0]).join(' ');
+  const writingSupport=LESSON_WRITING_SUPPORT[id]||{};
+  A1LessonFlow.render({
+    lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'tr',
+    goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'de','tr'),
+    model,writingModel:writingSupport.model,placeholder:writingSupport.placeholder,writingHints:writingSupport.hints,writingHelpText:writingSupport.helpText,recorderHtml:recorderUI,
+    repeatHint:'Örnekleri dinle ve yüksek sesle tekrar et.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:text=>{if(audioEnabled)speak(text,true);},renderLesson,renderLearn
+  });
+}
+
+function renderPractice(){view.innerHTML=`<section class="card hero"><h2>Alıştırmalar</h2><p class="muted">Goethe A1 becerilerini ayrı ayrı çalış.</p></section><div class="grid"><button class="practice-card" id="pGrammar"><span class="icon">🧩</span><strong>Gramer</strong><small>8 konu · her biri 10 soru</small></button><button class="practice-card" id="pListen"><span class="icon">🎧</span><strong>Dinleme</strong><small>Almanca ses · her tur 10 soru</small></button><button class="practice-card" id="pRead"><span class="icon">📖</span><strong>Okuma</strong><small>İlanlar, mesajlar ve günlük metinler</small></button><button class="practice-card" id="pWrite"><span class="icon">✍️</span><strong>Yazma</strong><small>Form + kısa mesaj</small></button><button class="practice-card" id="pSpeak"><span class="icon">🎤</span><strong>Konuşma</strong><small>3 bölüm + ses kaydı</small></button></div>`;pGrammar.onclick=renderGrammarMenu;pListen.onclick=()=>runListening(false);pRead.onclick=()=>runReading(false);pWrite.onclick=renderWritingMenu;pSpeak.onclick=renderSpeakingMenu;}
+const GRAMMAR_GUIDES={"g1":"<p><strong>sein</strong> (olmak) ve <strong>haben</strong> (sahip olmak) Almancanın en temel iki fiilidir ve düzensiz çekilir.</p><ul class=\"grammar-points\"><li>Kişiye göre fiil biçimi değişir.</li><li>Yaş söylerken Almancada <strong>sein</strong> kullanılır: <em>Ich bin 20 Jahre alt.</em></li><li>Sahiplikte <strong>haben</strong> kullanılır.</li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Ich bin müde.</strong><small>Yorgunum.</small></div></div><div class=\"phrase-row\"><div><strong>Du bist 20 Jahre alt.</strong><small>20 yaşındasın.</small></div></div><div class=\"phrase-row\"><div><strong>Wir haben ein Auto.</strong><small>Bir arabamız var.</small></div></div><details class=\"grammar-detail\"><summary>sein – çekim</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Kişi</th><th>Biçim</th></tr></thead><tbody><tr><td>ich</td><td>bin</td></tr><tr><td>du</td><td>bist</td></tr><tr><td>er / sie / es</td><td>ist</td></tr><tr><td>wir</td><td>sind</td></tr><tr><td>ihr</td><td>seid</td></tr><tr><td>sie / Sie</td><td>sind</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>haben – çekim</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Kişi</th><th>Biçim</th></tr></thead><tbody><tr><td>ich</td><td>habe</td></tr><tr><td>du</td><td>hast</td></tr><tr><td>er / sie / es</td><td>hat</td></tr><tr><td>wir</td><td>haben</td></tr><tr><td>ihr</td><td>habt</td></tr><tr><td>sie / Sie</td><td>haben</td></tr></tbody></table></div></div></details>","g2":"<p>Almancada düzenli fiillerde mastar sonundaki <strong>-en</strong> kaldırılır ve kişiye uygun ek getirilir.</p><ul class=\"grammar-points\"><li>Temel ekler: <strong>-e, -st, -t, -en, -t, -en</strong>.</li><li>Bazı sık fiiller kök değiştirir: <em>essen → du isst</em>, <em>sehen → du siehst</em>.</li><li><strong>gehen</strong> düzenli son ekler alır ama kökü kısa olduğu için biçimleri ayrıca tanımak yararlıdır.</li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Ich wohne in Berlin.</strong><small>Berlin’de oturuyorum.</small></div></div><div class=\"phrase-row\"><div><strong>Wir spielen Fußball.</strong><small>Futbol oynuyoruz.</small></div></div><div class=\"phrase-row\"><div><strong>Du isst heute Suppe.</strong><small>Bugün çorba yiyorsun.</small></div></div><details class=\"grammar-detail\"><summary>Düzenli fiil ekleri</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Kişi</th><th>Ek</th><th>lernen örneği</th></tr></thead><tbody><tr><td>ich</td><td>-e</td><td>lerne</td></tr><tr><td>du</td><td>-st</td><td>lernst</td></tr><tr><td>er/sie/es</td><td>-t</td><td>lernt</td></tr><tr><td>wir</td><td>-en</td><td>lernen</td></tr><tr><td>ihr</td><td>-t</td><td>lernt</td></tr><tr><td>sie/Sie</td><td>-en</td><td>lernen</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Alıştırmadaki sık fiiller</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Fiil</th><th>Kişi</th><th>Biçim</th></tr></thead><tbody><tr><td>wohnen</td><td>ich</td><td>wohne</td></tr><tr><td>wohnen</td><td>du</td><td>wohnst</td></tr><tr><td>wohnen</td><td>er</td><td>wohnt</td></tr><tr><td>arbeiten</td><td>ich</td><td>arbeite</td></tr><tr><td>arbeiten</td><td>du</td><td>arbeitest</td></tr><tr><td>arbeiten</td><td>er</td><td>arbeitet</td></tr><tr><td>kommen</td><td>wir</td><td>kommen</td></tr><tr><td>kommen</td><td>sie</td><td>kommen</td></tr><tr><td>trinken</td><td>ihr</td><td>trinkt</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Kök değiştiren önemli biçimler</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Kişi</th><th>essen</th><th>sehen</th><th>gehen</th></tr></thead><tbody><tr><td>ich</td><td>esse</td><td>sehe</td><td>gehe</td></tr><tr><td>du</td><td>isst</td><td>siehst</td><td>gehst</td></tr><tr><td>er/sie</td><td>isst</td><td>sieht</td><td>geht</td></tr><tr><td>wir</td><td>essen</td><td>sehen</td><td>gehen</td></tr></tbody></table></div></div></details>","g3":"<p>W-Fragen, belirli bir bilgi sormak için kullanılan soru cümleleridir. Soru kelimesinden hemen sonra çekimli fiil gelir.</p><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Wo wohnen Sie?</strong><small>Nerede oturuyorsunuz?</small></div></div><div class=\"phrase-row\"><div><strong>Wann beginnt der Kurs?</strong><small>Kurs ne zaman başlıyor?</small></div></div><div class=\"phrase-row\"><div><strong>Wie viel kostet das?</strong><small>Bu ne kadar?</small></div></div><details class=\"grammar-detail\"><summary>Soru kelimeleri</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Almanca</th><th>Türkçe</th></tr></thead><tbody><tr><td>wer</td><td>kim</td></tr><tr><td>was</td><td>ne</td></tr><tr><td>wo</td><td>nerede</td></tr><tr><td>woher</td><td>nereden</td></tr><tr><td>wohin</td><td>nereye</td></tr><tr><td>wann</td><td>ne zaman</td></tr><tr><td>wie</td><td>nasıl</td></tr><tr><td>wie viel</td><td>ne kadar</td></tr><tr><td>warum</td><td>neden</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Cümle yapısı</summary><div class=\"grammar-detail-body\"><p><strong>W-kelimesi + çekimli fiil + özne …?</strong><br><em>Wo wohnen Sie?</em><br><em>Warum lernen Sie Deutsch?</em></p></div></details>","g4":"<p>Almancada isimlerin gramatik cinsiyeti vardır ve artikel isimle birlikte öğrenilmelidir.</p><ul class=\"grammar-points\"><li><strong>der</strong> = eril, <strong>die</strong> = dişil, <strong>das</strong> = nötr.</li><li>Belirsiz artikel: eril/nötr <strong>ein</strong>, dişil <strong>eine</strong>.</li><li>Çoğulda belirli artikel <strong>die</strong> olur.</li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>der Bahnhof</strong><small>tren istasyonu</small></div></div><div class=\"phrase-row\"><div><strong>die Wohnung</strong><small>daire</small></div></div><div class=\"phrase-row\"><div><strong>das Zimmer</strong><small>oda</small></div></div><details class=\"grammar-detail\"><summary>Nominativ artikel tablosu</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th></th><th>eril</th><th>dişil</th><th>nötr</th><th>çoğul</th></tr></thead><tbody><tr><td>belirli</td><td>der</td><td>die</td><td>das</td><td>die</td></tr><tr><td>belirsiz</td><td>ein</td><td>eine</td><td>ein</td><td>—</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>İsimleri artikel ile öğren</summary><div class=\"grammar-detail-body\"><p>Artikel her zaman kelimenin sonundan tahmin edilemez. Yeni kelimeyi <strong>der Tisch, die Straße, das Hotel</strong> şeklinde öğrenmek en güvenlisidir.</p></div></details>","g5":"<p>Akkusativ özellikle doğrudan nesnelerde kullanılır. A1 seviyesinde en belirgin değişiklik eril artikeldedir.</p><ul class=\"grammar-points\"><li>Eril: <strong>der → den</strong>, <strong>ein → einen</strong>.</li><li>Dişil ve nötr biçimler temel örneklerde aynı kalır.</li><li><em>kaufen, sehen, brauchen, bestellen, haben, suchen, nehmen, lesen</em> gibi fiillerle sık görülür.</li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Ich kaufe einen Kaffee.</strong><small>Bir kahve alıyorum.</small></div></div><div class=\"phrase-row\"><div><strong>Sie nimmt die Tasche.</strong><small>Çantayı alıyor.</small></div></div><div class=\"phrase-row\"><div><strong>Wir brauchen ein Auto.</strong><small>Bir arabaya ihtiyacımız var.</small></div></div><details class=\"grammar-detail\"><summary>Akkusativ artikel tablosu</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th></th><th>eril</th><th>dişil</th><th>nötr</th></tr></thead><tbody><tr><td>belirli</td><td>den</td><td>die</td><td>das</td></tr><tr><td>belirsiz</td><td>einen</td><td>eine</td><td>ein</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Nominativ ile karşılaştır</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Nominativ</th><th>Akkusativ</th></tr></thead><tbody><tr><td>Der Mann ist hier.</td><td>Ich sehe den Mann.</td></tr><tr><td>Ein Kaffee ist hier.</td><td>Ich kaufe einen Kaffee.</td></tr></tbody></table></div></div></details>","g6":"<p>Modal fiiller istek, zorunluluk, izin ve beceri gibi anlamlar verir.</p><ul class=\"grammar-points\"><li>Modal fiil çekimlenir; diğer fiil mastar olarak cümlenin sonuna gider.</li><li><strong>können</strong> = yapabilmek, <strong>müssen</strong> = zorunda olmak, <strong>möchten</strong> = istemek, <strong>dürfen</strong> = izinli olmak.</li><li>Resmî hitapta <strong>Sie</strong> için çoğul biçim kullanılır.</li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Ich kann schwimmen.</strong><small>Yüzebilirim.</small></div></div><div class=\"phrase-row\"><div><strong>Ich muss arbeiten.</strong><small>Çalışmak zorundayım.</small></div></div><div class=\"phrase-row\"><div><strong>Ich möchte einen Tee.</strong><small>Bir çay istiyorum.</small></div></div><details class=\"grammar-detail\"><summary>Modal fiil çekimleri</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Kişi</th><th>können</th><th>müssen</th><th>möchten</th><th>dürfen</th></tr></thead><tbody><tr><td>ich</td><td>kann</td><td>muss</td><td>möchte</td><td>darf</td></tr><tr><td>du</td><td>kannst</td><td>musst</td><td>möchtest</td><td>darfst</td></tr><tr><td>er/sie</td><td>kann</td><td>muss</td><td>möchte</td><td>darf</td></tr><tr><td>wir</td><td>können</td><td>müssen</td><td>möchten</td><td>dürfen</td></tr><tr><td>ihr</td><td>könnt</td><td>müsst</td><td>möchtet</td><td>dürft</td></tr><tr><td>sie/Sie</td><td>können</td><td>müssen</td><td>möchten</td><td>dürfen</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Cümle kalıbı</summary><div class=\"grammar-detail-body\"><p><strong>Özne + modal fiil + … + mastar.</strong><br><em>Du musst hier warten.</em><br><em>Wir können morgen kommen.</em><br><em>Können Sie mir helfen?</em></p></div></details>","g7":"<p>İyelik sözcükleri bir şeyin kime ait olduğunu gösterir ve artikel gibi çekimlenir.</p><ul class=\"grammar-points\"><li><strong>mein</strong> = benim, <strong>dein</strong> = senin, <strong>sein</strong> = onun (erkek/nötr), <strong>ihr</strong> = onun (kadın) / onların.</li><li>Dişil ve çoğul nominativde genellikle <strong>-e</strong> gelir: <em>meine Mutter, unsere Eltern</em>.</li><li>Eril Akkusativde <strong>-en</strong> gelir: <em>deinen Lehrer, seinen Schlüssel</em>.</li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Das ist meine Mutter.</strong><small>Bu benim annem.</small></div></div><div class=\"phrase-row\"><div><strong>Wo ist dein Pass?</strong><small>Pasaportun nerede?</small></div></div><div class=\"phrase-row\"><div><strong>Er sucht seinen Schlüssel.</strong><small>Kendi anahtarını arıyor.</small></div></div><details class=\"grammar-detail\"><summary>Temel iyelik kökleri</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Kişi</th><th>Kök</th></tr></thead><tbody><tr><td>ich</td><td>mein-</td></tr><tr><td>du</td><td>dein-</td></tr><tr><td>er/es</td><td>sein-</td></tr><tr><td>sie (tekil)</td><td>ihr-</td></tr><tr><td>wir</td><td>unser-</td></tr><tr><td>ihr</td><td>euer-</td></tr><tr><td>sie/Sie</td><td>ihr- / Ihr-</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Nominativ: temel sonlar</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th></th><th>eril</th><th>dişil</th><th>nötr</th><th>çoğul</th></tr></thead><tbody><tr><td>mein-</td><td>mein Bruder</td><td>meine Mutter</td><td>mein Auto</td><td>meine Eltern</td></tr><tr><td>dein-</td><td>dein Pass</td><td>deine Tasche</td><td>dein Kind</td><td>deine Freunde</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Eril Akkusativ</summary><div class=\"grammar-detail-body\"><p>Eril doğrudan nesnede <strong>-en</strong>: <em>deinen Lehrer, seinen Schlüssel, meinen Bruder</em>. Dişil biçim genellikle <strong>-e</strong> olarak kalır: <em>ihre Freundin</em>.</p></div></details>","g8":"<p>Almancada fiilin yeri çok önemlidir. Ayrılabilen fiillerde ön ek ana cümlenin sonuna gider.</p><ul class=\"grammar-points\"><li>Düz cümlede çekimli fiil genellikle <strong>2. konumdadır</strong>.</li><li>Evet/hayır sorusunda çekimli fiil <strong>1. konuma</strong> gelir.</li><li>Ayrılabilen fiilde ön ek sona gider: <em>aufstehen → Ich stehe … auf.</em></li></ul><h3>Örnekler</h3><div class=\"phrase-row\"><div><strong>Heute arbeite ich nicht.</strong><small>Bugün çalışmıyorum.</small></div></div><div class=\"phrase-row\"><div><strong>Kommen Sie morgen?</strong><small>Yarın geliyor musunuz?</small></div></div><div class=\"phrase-row\"><div><strong>Ich stehe um sieben Uhr auf.</strong><small>Saat yedide kalkıyorum.</small></div></div><details class=\"grammar-detail\"><summary>Fiil 2. konumda</summary><div class=\"grammar-detail-body\"><p>Cümle zaman ifadesiyle başlasa bile fiil 2. konumdadır: <em>Am Montag <strong>lerne</strong> ich Deutsch.</em> · <em>Heute <strong>haben</strong> wir keine Zeit.</em></p></div></details><details class=\"grammar-detail\"><summary>Ayrılabilen fiiller – alıştırmadaki biçimler</summary><div class=\"grammar-detail-body\"><div class=\"grammar-table-wrap\"><table class=\"grammar-table\"><thead><tr><th>Mastar</th><th>Cümlede</th></tr></thead><tbody><tr><td>aufstehen</td><td>ich stehe … auf</td></tr><tr><td>abfahren</td><td>der Zug fährt … ab</td></tr><tr><td>anrufen</td><td>ich rufe … an</td></tr><tr><td>ankommen</td><td>er kommt … an</td></tr><tr><td>einkaufen</td><td>wir kaufen … ein</td></tr><tr><td>fernsehen</td><td>Anna sieht … fern</td></tr><tr><td>aufmachen</td><td>ich mache … auf</td></tr><tr><td>anfangen</td><td>der Kurs fängt … an</td></tr></tbody></table></div></div></details><details class=\"grammar-detail\"><summary>Soru kalıbı</summary><div class=\"grammar-detail-body\"><p>Evet/hayır sorusu: <strong>çekimli fiil + özne + …?</strong><br><em>Kommt der Zug pünktlich?</em></p></div></details>"};
+
+const LESSON_GRAMMAR_REFS={
+  1:[['g1',[0]],['g2',[0]]],
+  2:[],
+  3:[],
+  4:[],
+  5:[['g7',[0,1]],['g1',[1]]],
+  6:[],
+  7:[],
+  8:[['g5',[0]]],
+  9:[],
+  10:[['g2',[0]]],
+  11:[],
+  12:[],
+  13:[],
+  14:[],
+  15:[],
+  16:[],
+  17:[],
+  18:[],
+  19:[],
+  20:[['g5',[0]]],
+  21:[],
+  22:[],
+  23:[],
+  24:[['g8',[0]]]
+};
+function lessonGrammarReferenceHtml(id){
+  return A1GrammarUI.pickDetails(GRAMMAR_GUIDES,LESSON_GRAMMAR_REFS[id]||[])+A1LessonTopicInfo.render('deutsch-tr',id);
+}
+
+function renderGrammarIntro(id){
+  const set=D.grammarSets.find(x=>x.id===id);
+  if(!set)return renderGrammarMenu();
+  view.innerHTML=`<div class="between"><button class="tiny-btn" id="backGrammarIntro">← Gramer</button><span class="pill">${esc(set.title)}</span></div><section class="card" style="margin-top:12px"><h2>${esc(set.title)}</h2><p class="muted">${esc(set.subtitle)}</p><hr class="soft">${A1GrammarUI.reorderGuide(GRAMMAR_GUIDES[id]||'')}<div class="grammar-study-hint">💡 Bir biçimi kontrol etmek istersen tabloları aç. Sonraki alıştırmalar için gerekli bilgiler bu sayfada bulunur.</div><div class="spacer"></div><button class="primary-btn" id="startGrammarPractice">10 soruyu çöz</button></section>`;
+  document.getElementById('backGrammarIntro').onclick=renderGrammarMenu;
+  document.getElementById('startGrammarPractice').onclick=()=>runGrammar(set);
+}
+
+function renderGrammarMenu(){view.innerHTML=`<div class="between"><button class="tiny-btn" id="backP">← Alıştırmalar</button><span class="pill">🧩 Gramer</span></div><div class="list" style="margin-top:12px">${D.grammarSets.map(g=>`<button class="practice-card" data-g="${g.id}"><strong>${esc(g.title)}</strong><small>${esc(g.subtitle)} · En iyi: ${state.grammarBest[g.id]||0}%</small></button>`).join('')}</div>`;backP.onclick=renderPractice;document.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>renderGrammarIntro(b.dataset.g));}
+function runGrammar(g){const qs=shuffle(g.questions);let i=0,score=0;function draw(){if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.grammarBest[g.id]=Math.max(state.grammarBest[g.id]||0,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill">GRAMER</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><button class="primary-btn" id="backG">Gramer konularına dön</button></section>`;backG.onclick=renderGrammarMenu;return;}const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backG">← Gramer</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="gf"></div></section>`;backG.onclick=renderGrammarMenu;document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;if(ok)score++;document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});gf.innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Doğru':'✗ Doğru cevap: '+esc(q.o[q.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextG">Devam</button>`;nextG.onclick=()=>{i++;draw();};});}draw();}
+
+function runListening(examMode=false,onFinish=null){const qs=shuffle(D.listening).slice(0,examMode?15:10);let i=0,score=0;function draw(){if(i>=qs.length){A1Streak.completeExercise();const pct=Math.round(score/qs.length*100);if(onFinish)return onFinish(score,qs.length,pct);view.innerHTML=`<section class="card center"><span class="pill">🎧 DİNLEME</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><button class="primary-btn" id="backP">Alıştırmalara dön</button></section>`;backP.onclick=renderPractice;return;}const q=qs[i];let plays=0;view.innerHTML=`<div class="between"><button class="tiny-btn" id="backListen">← ${examMode?'Sınav':'Alıştırmalar'}</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="audio-panel"><button class="speak-btn large" id="playAudio">▶</button><div class="play-count" id="playCount">En fazla 2 kez dinle</div></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="lf"></div></section>`;backListen.onclick=()=>examMode?renderExam():renderPractice();playAudio.onclick=()=>{if(plays>=2)return;plays++;speak(q.text,true,.78);playCount.textContent=`${plays}/2 kez dinlendi`;if(plays>=2)playAudio.disabled=true;};document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;if(ok){score++;if(!state.masteredListening.includes(q.id))state.masteredListening.push(q.id);save();}document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});lf.innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Doğru':'✗ Doğru cevap: '+esc(q.o[q.a])}</div><div class="transcript"><strong>Dinleme metni:</strong><br>${esc(q.text)}</div><div class="spacer"></div><button class="primary-btn" id="nextListen">Devam</button>`;nextListen.onclick=()=>{i++;draw();};});}draw();}
+function runReading(examMode=false,onFinish=null){const qs=shuffle(D.reading).slice(0,examMode?15:10);let i=0,score=0;function draw(){if(i>=qs.length){A1Streak.completeExercise();const pct=Math.round(score/qs.length*100);if(onFinish)return onFinish(score,qs.length,pct);view.innerHTML=`<section class="card center"><span class="pill">📖 OKUMA</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><button class="primary-btn" id="backP">Alıştırmalara dön</button></section>`;backP.onclick=renderPractice;return;}const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backRead">← ${examMode?'Sınav':'Alıştırmalar'}</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="reading-text">${esc(q.text)}</div><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="rf"></div></section>`;backRead.onclick=()=>examMode?renderExam():renderPractice();document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;if(ok){score++;if(!state.masteredReading.includes(q.id))state.masteredReading.push(q.id);save();}document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});rf.innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Doğru':'✗ Doğru cevap: '+esc(q.o[q.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextRead">Devam</button>`;nextRead.onclick=()=>{i++;draw();};});}draw();}
 
-  const D = window.C1_DATA;
-  const view = document.getElementById('view');
-  const nav = [...document.querySelectorAll('[data-route]')];
-  const COURSE_ID = 'deutsch-c1-tr';
-  const STATE_BASE = 'deutschC1TurkishState_v1';
-  const stateKey = window.A1Profile?.namespacedKey?.(STATE_BASE) || STATE_BASE;
-  const defaults = {
-    doneLessons: [],
-    lessonQuizBest: {},
-    lessonActivityScores: {},
-    lessonWork: {},
-    curriculumVersion: 0,
-    practiceBest: {},
-    writingDone: [],
-    speakingDone: [],
-    goetheBest: { reading: 0, listening: 0, writing: 0, speaking: 0 },
-    telcBest: { readingLanguage: 0, listening: 0, writing: 0, speaking: 0 },
-    dtbBest: { reading: 0, listening: 0, writing: 0, speaking: 0 },
-    dtbScores: { reading: null, listening: null, writing: null, speaking: null },
-    dtbComponents: { emailGrade: '', emailDraft: '', phoneNotePoints: 0, languagePoints: 0, statementDraft: '', statementGrades: null },
-    examAttempts: {},
-    lastRoute: 'home'
-  };
-  let state = window.A1Learning.loadState(stateKey, defaults);
-  // v10 changes the meaning/order of lessons 15–40. Keep genuine foundation progress,
-  // but do not let old v1–v9 completion flags falsely complete the rebuilt DTB course.
-  if (Number(state.curriculumVersion || 0) < 10) {
-    state.doneLessons = (state.doneLessons || []).filter(id => Number(id) <= 14);
-    state.lessonQuizBest = Object.fromEntries(Object.entries(state.lessonQuizBest || {}).filter(([k]) => Number(k) <= 14));
-    state.lessonWork = Object.fromEntries(Object.entries(state.lessonWork || {}).filter(([k]) => Number(k) <= 14));
-    state.lessonActivityScores = {};
-    state.curriculumVersion = 10;
-    localStorage.setItem(stateKey, JSON.stringify(state));
-  }
-  if (!state.lessonActivityScores || typeof state.lessonActivityScores !== 'object') state.lessonActivityScores = {};
-  let activeTimer = null;
+function renderWritingMenu(){view.innerHTML=`<div class="between"><button class="tiny-btn" id="backP">← Alıştırmalar</button><span class="pill">✍️ Yazma</span></div><section class="card hero" style="margin-top:12px"><h2>Yazma çalışması</h2><p class="muted">Form doldurma ve kısa mesaj yazma.</p></section><div class="grid"><button class="practice-card" id="formTask"><strong>Form doldur</strong><small>${D.forms.length} farklı form</small></button><button class="practice-card" id="msgTask"><strong>Kısa mesaj yaz</strong><small>${D.writing.length} farklı görev</small></button></div>`;backP.onclick=renderPractice;formTask.onclick=()=>renderForm(rand(D.forms));msgTask.onclick=()=>renderMessage(rand(D.writing));}
+function renderForm(f,onDone=null){view.innerHTML=`<div class="between"><button class="tiny-btn" id="backW">← Yazma</button><span class="pill">FORM</span></div><section class="card" style="margin-top:12px"><h2>${esc(f.title)}</h2><p class="muted">${esc(f.hint)}</p><div class="form-grid">${f.fields.map((x,i)=>`<label class="field"><span>${esc(x)}</span><input class="text-input" id="field${i}"></label>`).join('')}</div><div class="spacer"></div><button class="primary-btn" id="doneForm">Tamamladım</button></section>`;backW.onclick=()=>onDone?renderExam():renderWritingMenu();doneForm.onclick=()=>{if(f.fields.some((x,i)=>!document.getElementById('field'+i).value.trim())){let error=document.getElementById('formError');if(!error){error=document.createElement('p');error.id='formError';error.className='feedback bad';doneForm.before(error);}error.textContent='Lütfen her alanı kendine ait veya hayalî bilgilerle doldur. Bu alıştırma yanıtların doğruluğunu otomatik olarak değerlendirmez.';return;}if(!state.writingDone.includes(f.id))state.writingDone.push(f.id);save(true);if(onDone)onDone();else view.innerHTML=`<section class="card center"><span class="pill green">FORM TAMAMLANDI</span><h2>İyi iş!</h2><button class="primary-btn" id="backW2">Yazmaya dön</button></section>`,backW2.onclick=renderWritingMenu;};}
+function renderMessage(w,onDone=null){view.innerHTML=`<div class="between"><button class="tiny-btn" id="backW">← Yazma</button><span class="pill">MESAJ</span></div><section class="card" style="margin-top:12px"><h2>${esc(w.title)}</h2><p>${esc(w.prompt)}</p><div class="notice"><strong>Şunları yaz:</strong><br>• ${w.points.map(esc).join('<br>• ')}</div><div class="spacer"></div><textarea class="text-area" id="msgText" rows="8" placeholder="Almanca mesajını buraya yaz…"></textarea><div class="between" style="margin-top:8px"><small id="wc">0 kelime</small><button class="soft-btn" style="width:auto" id="showModel">Örnek göster</button></div><div id="model"></div><div class="spacer"></div><button class="primary-btn" id="doneMsg">Tamamladım</button></section>`;backW.onclick=()=>onDone?renderExam():renderWritingMenu();msgText.oninput=()=>wc.textContent=(msgText.value.trim()?msgText.value.trim().split(/\s+/).length:0)+' kelime';showModel.onclick=()=>model.innerHTML=`<div class="solution"><strong>Örnek:</strong><br>${esc(w.model).replace(/\n/g,'<br>')}</div>`;doneMsg.onclick=()=>{if(A1Learning.countWords(msgText.value)<30){let error=document.getElementById('msgError');if(!error){error=document.createElement('p');error.id='msgError';error.className='feedback bad';doneMsg.before(error);}error.textContent='Yaklaşık 30 kelimelik bir mesaj yaz. Sonra üç içerik noktasını kendin kontrol et; metin otomatik olarak dil açısından değerlendirilmez.';return;}if(!state.writingDone.includes(w.id))state.writingDone.push(w.id);save(true);if(onDone)onDone();else renderWritingMenu();};}
 
-  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const pct = (n, d) => d ? Math.round((Number(n) || 0) / d * 100) : 0;
-  const clamp = (n, lo=0, hi=100) => Math.max(lo, Math.min(hi, Number(n) || 0));
-  const checked = (v) => v ? 'checked' : '';
-  const selected = (v) => v ? 'selected' : '';
-  const byId = (id) => document.getElementById(id);
-  const uniq = (xs) => [...new Set(xs)];
+function recorderUI(id){return `<div class="recorder"><button class="secondary-btn" id="startRec${id}">● Kaydı başlat</button><button class="soft-btn" id="stopRec${id}" disabled>■ Durdur</button></div><div class="record-status" id="recStatus${id}">Sonra kaydını dinle ve anlaşılır olup olmadığını kontrol et.</div><div class="playback" id="playback${id}"></div>`;}
+function wireRecorder(id,onRecorded){return A1Learning.wireRecorder(id,()=>{A1Streak.completeExercise();if(onRecorded)onRecorded();},{"unavailable": "Mikrofon kullanılamıyor. HTTPS bağlantısı ve desteklenen bir tarayıcı kullan.", "denied": "Mikrofon açılamadı. HTTPS bağlantısını ve tarayıcı iznini kontrol et.", "recording": "● Kayıt yapılıyor…", "done": "Kayıt tamamlandı. Yanıtını dinle.", "empty": "Ses kaydedilmedi. Lütfen tekrar dene."});}
 
-  function save() {
-    state.doneLessons = uniq(state.doneLessons);
-    state.writingDone = uniq(state.writingDone);
-    state.speakingDone = uniq(state.speakingDone);
-    localStorage.setItem(stateKey, JSON.stringify(state));
-    window.A1Profile?.saveProgress?.(COURSE_ID, state, coursePercent());
-  }
+function renderSpeakingMenu(){view.innerHTML=`<div class="between"><button class="tiny-btn" id="backP">← Alıştırmalar</button><span class="pill">🎤 Konuşma</span></div><section class="card hero" style="margin-top:12px"><h2>Konuşma çalışması</h2><p class="muted">Kendini tanıtma, bilgi sorma ve kibar rica oluşturma.</p></section><div class="list"><button class="practice-card" id="sp1"><strong>Bölüm 1 · Kendini tanıt</strong><small>${D.interview.length} soru</small></button><button class="practice-card" id="sp2"><strong>Bölüm 2 · Bilgi sor</strong><small>${D.infoCards.length} kart</small></button><button class="practice-card" id="sp3"><strong>Bölüm 3 · Rica et</strong><small>${D.requests.length} kart</small></button></div><section class="notice warning">Mikrofon kaydı en iyi HTTPS üzerinde çalışır (ör. GitHub Pages).</section>`;backP.onclick=renderPractice;sp1.onclick=runInterview;sp2.onclick=runInfo;sp3.onclick=runRequests;}
+function runInterview(){const cards=shuffle(D.interview).slice(0,10);let i=0;function draw(){if(i>=cards.length){view.innerHTML=`<section class="card center"><span class="pill green">10 SORU TAMAMLANDI</span><h2>Kendini tanıtma</h2><button class="primary-btn" id="backS">Konuşmaya dön</button></section>`;backS.onclick=renderSpeakingMenu;return;}const c=cards[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backS">← Konuşma</button><span class="pill">${i+1}/${cards.length}</span></div><section class="card" style="margin-top:12px"><div class="speaking-card"><div class="theme">Sınav görevlisinin sorusu</div><div class="cue">${esc(c.q)}</div>${speakBtn(c.q)}</div><p class="muted">Bir veya iki basit cümleyle cevap ver.</p>${recorderUI('I')}<div class="spacer"></div><button class="soft-btn" id="modelI">Örnek cevap</button><div id="ansI"></div><div class="spacer"></div><button class="primary-btn" id="nextI">Sonraki</button></section>`;backS.onclick=renderSpeakingMenu;modelI.onclick=()=>{ansI.innerHTML=`<div class="solution">${esc(c.a)} ${speakBtn(c.a)}</div>`;wireSpeakButtons();};nextI.onclick=()=>{i++;draw();};wireRecorder('I',()=>{const id='i-'+c.q;if(!state.speakingDone.includes(id)){state.speakingDone.push(id);save();}});wireSpeakButtons();if(audioEnabled)setTimeout(()=>speak(c.q),150);}draw();}
+function runInfo(){const cards=shuffle(D.infoCards).slice(0,10);let i=0;function draw(){if(i>=cards.length){view.innerHTML=`<section class="card center"><span class="pill green">10 KART TAMAMLANDI</span><h2>Bilgi sorma</h2><button class="primary-btn" id="backS">Konuşmaya dön</button></section>`;backS.onclick=renderSpeakingMenu;return;}const c=cards[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backS">← Konuşma</button><span class="pill">${i+1}/${cards.length}</span></div><section class="card" style="margin-top:12px"><h2>Bir soru oluştur</h2><div class="speaking-card"><div class="theme">Konu: ${esc(c.theme)}</div><div class="cue">${esc(c.cue)}</div></div><p class="muted">Konuya ve anahtar kelimeye uygun basit bir soru sor.</p>${recorderUI('N')}<div class="spacer"></div><button class="soft-btn" id="modelN">Örnek soru + cevap</button><div id="ansN"></div><div class="spacer"></div><button class="primary-btn" id="nextN">Sonraki</button></section>`;backS.onclick=renderSpeakingMenu;modelN.onclick=()=>{ansN.innerHTML=`<div class="solution"><strong>Soru:</strong> ${esc(c.q)} ${speakBtn(c.q)}<br><br><strong>Cevap:</strong> ${esc(c.a)} ${speakBtn(c.a)}</div>`;wireSpeakButtons();};nextN.onclick=()=>{i++;draw();};wireRecorder('N',()=>{const id='n-'+c.cue;if(!state.speakingDone.includes(id)){state.speakingDone.push(id);save();}});}draw();}
+function runRequests(){const cards=shuffle(D.requests).slice(0,10);let i=0;function draw(){if(i>=cards.length){view.innerHTML=`<section class="card center"><span class="pill green">10 RİCA TAMAMLANDI</span><h2>Kibar rica</h2><button class="primary-btn" id="backS">Konuşmaya dön</button></section>`;backS.onclick=renderSpeakingMenu;return;}const c=cards[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backS">← Konuşma</button><span class="pill">${i+1}/${cards.length}</span></div><section class="card" style="margin-top:12px"><h2>Kibar bir rica oluştur</h2><div class="speaking-card"><div class="theme">Eylem kartı</div><div class="cue">${esc(c.cue)}</div></div>${recorderUI('R')}<div class="spacer"></div><button class="soft-btn" id="modelR">Örnek göster</button><div id="ansR"></div><div class="spacer"></div><button class="primary-btn" id="nextR">Sonraki</button></section>`;backS.onclick=renderSpeakingMenu;modelR.onclick=()=>{ansR.innerHTML=`<div class="solution"><strong>Rica:</strong> ${esc(c.request)} ${speakBtn(c.request)}<br><br><strong>Yanıt:</strong> ${esc(c.response)} ${speakBtn(c.response)}</div>`;wireSpeakButtons();};nextR.onclick=()=>{i++;draw();};wireRecorder('R',()=>{const id='r-'+c.cue;if(!state.speakingDone.includes(id)){state.speakingDone.push(id);save();}});}draw();}
 
-  function practiceCheckpointCount() {
-    const scored = Object.values(state.practiceBest || {}).filter(v => Number(v) > 0).length;
-    return scored + state.writingDone.length + state.speakingDone.length;
-  }
+function renderExam(){view.innerHTML=`<section class="card hero"><span class="pill">SINAV MODU</span><h2 style="margin-top:12px">A1 simülasyonu</h2><p class="muted">Dinleme, okuma, yazma ve konuşma bölümlerini Goethe A1 tarzında çalış.</p></section><section class="card exam-structure"><div class="exam-line"><strong>Dinleme</strong><small>15 görev · ses en fazla 2×</small><button class="tiny-btn" id="examL">Başlat</button></div><div class="exam-line"><strong>Okuma</strong><small>15 görev</small><button class="tiny-btn" id="examR">Başlat</button></div><div class="exam-line"><strong>Yazma</strong><small>1 form + 1 kısa mesaj</small><button class="tiny-btn" id="examW">Başlat</button></div><div class="exam-line"><strong>Konuşma</strong><small>3 yönlendirilmiş bölüm</small><button class="tiny-btn" id="examS">Başlat</button></div></section><section class="card quick-test-card"><div class="between"><h3>Hızlı test</h3><span class="pill gray">En iyi ${state.bestMock}%</span></div><p class="muted">15 dinleme + 15 okuma sorusu.</p><button class="primary-btn" id="quick">Hızlı testi başlat</button></section>`;examL.onclick=()=>runListening(true,(s,t,p)=>examResult('Dinleme',s,t,p));examR.onclick=()=>runReading(true,(s,t,p)=>examResult('Okuma',s,t,p));examW.onclick=()=>{const f=rand(D.forms),w=rand(D.writing);renderForm(f,()=>renderMessage(w,()=>{view.innerHTML=`<section class="card center"><h2>Yazma simülasyonu tamamlandı ✓</h2><p class="muted">Bir form ve bir kısa mesaj tamamladın.</p><button class="primary-btn" id="backE">Sınava dön</button></section>`;backE.onclick=renderExam;}));};examS.onclick=()=>{renderSpeakingMenu();const n=document.createElement('section');n.className='notice';n.style.marginTop='12px';n.textContent='Sınav simülasyonu için sırayla üç konuşma bölümünü tamamla.';view.appendChild(n);};quick.onclick=startQuickMock;}
+function examResult(name,s,t,p){state.examScores[name]=Math.max(state.examScores[name]||0,p);save();view.innerHTML=`<section class="card center"><span class="pill">${name.toUpperCase()}</span><div class="score">${p}%</div><h2>${s}/${t}</h2><p class="muted">Bu bölüm için antrenman sonucu.</p><div class="button-row"><button class="secondary-btn" id="retry">Tekrar</button><button class="primary-btn" id="backE">Sınav</button></div></section>`;retry.onclick=()=>name==='Dinleme'?runListening(true,(s,t,p)=>examResult(name,s,t,p)):runReading(true,(s,t,p)=>examResult(name,s,t,p));backE.onclick=renderExam;}
+function startQuickMock(){const qs=[...shuffle(D.listening).slice(0,15).map(x=>({kind:'l',x})),...shuffle(D.reading).slice(0,15).map(x=>({kind:'r',x}))];let i=0,score=0;function next(){if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.bestMock=Math.max(state.bestMock,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=60?'green':'amber'}">HIZLI TEST</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Dinleme + okuma. Tam hazırlık için yazma ve konuşmayı da ayrıca çalış.</p><div class="button-row"><button class="secondary-btn" id="againQ">Tekrar</button><button class="primary-btn" id="backE">Sınav</button></div></section>`;againQ.onclick=startQuickMock;backE.onclick=renderExam;return;}const q=qs[i++];if(q.kind==='l')quickListen(q.x,next);else quickRead(q.x,next);}function quickListen(q,done){let plays=0;view.innerHTML=`<div class="between"><span class="pill">Dinleme · ${i}/30</span></div><section class="card"><div class="audio-panel"><button class="speak-btn large" id="pa">▶</button><div id="pc" class="play-count">En fazla 2 kez</div></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div></section>`;pa.onclick=()=>{if(plays<2){plays++;speak(q.text,true,.78);pc.textContent=plays+'/2';if(plays===2)pa.disabled=true;}};document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(+b.dataset.o===q.a)score++;done();});}function quickRead(q,done){view.innerHTML=`<div class="between"><span class="pill">Okuma · ${i}/30</span></div><section class="card"><div class="reading-text">${esc(q.text)}</div><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div></section>`;document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(+b.dataset.o===q.a)score++;done();});}next();}
 
-  function ensureDtbState() {
-    if (!state.dtbBest || typeof state.dtbBest !== 'object') state.dtbBest = {reading:0,listening:0,writing:0,speaking:0};
-    if (!state.dtbScores || typeof state.dtbScores !== 'object') state.dtbScores = {reading:null,listening:null,writing:null,speaking:null};
-    if (!state.dtbComponents || typeof state.dtbComponents !== 'object') state.dtbComponents = {emailGrade:'',emailDraft:'',phoneNotePoints:0,languagePoints:0,statementDraft:'',statementGrades:null};
-  }
+A1Voice.mount({lang:'de-DE',uiLang:'tr'});
+audioToggle.onclick=()=>{audioEnabled=!audioEnabled;localStorage.setItem('trDeA1AudioEnabled',String(audioEnabled));updateAudioButton();if(audioEnabled)speak('Guten Tag! Willkommen beim Deutschtraining.',true);else A1Voice.cancel();};
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Bu profildeki Türkçe → Almanca A1 ilerlemesi sıfırlansın mı?')){localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);}};
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js', {updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{}));
 
-  function examCheckpointCount() {
-    ensureDtbState();
-    return ['reading','listening','writing','speaking'].filter(k => state.dtbScores[k] !== null && state.dtbScores[k] !== undefined).length;
-  }
-
-  function coursePercent() {
-    const lessonPart = (state.doneLessons.length / D.lessons.length) * 60;
-    const practicePart = Math.min(practiceCheckpointCount(), 16) / 16 * 20;
-    const examPart = examCheckpointCount() / 4 * 20;
-    return Math.round(clamp(lessonPart + practicePart + examPart));
-  }
-  window.A1CourseProgressPercent = coursePercent;
-
-  function clearRuntime() {
-    if (activeTimer) { clearInterval(activeTimer); activeTimer = null; }
-    window.A1Voice?.cancel?.();
-  }
-
-  function setView(html, binder) {
-    clearRuntime();
-    view.innerHTML = html;
-    if (binder) binder();
-    window.scrollTo({top:0, behavior:'instant'});
-  }
-
-  function setRoute(route) {
-    state.lastRoute = route;
-    save();
-    nav.forEach(b => b.classList.toggle('active', b.dataset.route === route));
-    if (route === 'learn') return renderLearn();
-    if (route === 'practice') return renderPractice();
-    if (route === 'exam') return renderExam();
-    renderHome();
-  }
-
-  nav.forEach(b => b.addEventListener('click', () => setRoute(b.dataset.route)));
-
-  function speakLong(text, rate=.88) {
-    const parts = String(text || '')
-      .split(/(?<=[.!?])\s+|\n+/)
-      .map(s => s.trim())
-      .filter(Boolean);
-    window.A1Voice?.speakSequence?.(parts.length ? parts : [text], {lang:'de-DE', rate});
-  }
-
-  function progressBar(value) {
-    const p = clamp(value);
-    return `<div class="progress" aria-label="${p}%"><div style="width:${p}%"></div></div>`;
-  }
-
-  function sourceNote() {
-    return `<div class="source-note"><strong>Sınav uyumu:</strong> Kurs, Deutsch-Test für den Beruf C1’in güncel model formatına göre yapılandırılmıştır. İşyeri odaklı okuma ve dinleme, entegre Mediation/yazma görevleri ve hazırlıksız sözlü sınav bu yapıya göre çalışılır. Goethe C1 bölümü ek genel C1 antrenmanı sunar.</div>`;
-  }
-
-  function averageBest(prefixes) {
-    const vals = Object.entries(state.practiceBest || {})
-      .filter(([k,v]) => prefixes.some(p => k.startsWith(p)) && Number(v) > 0)
-      .map(([,v]) => Number(v));
-    return vals.length ? Math.round(vals.reduce((a,b)=>a+b,0) / vals.length) : 0;
-  }
-
-  function skillReadiness() {
-    ensureDtbState();
-    const reading = Math.max(Number(state.dtbBest.reading)||0, averageBest(['reading:']));
-    const listening = Math.max(Number(state.dtbBest.listening)||0, averageBest(['listening:']));
-    const writingTotal = D.writingForum.length + D.writingEmail.length;
-    const speakingTotal = D.speakingPresentations.length + D.speakingDiscussions.length;
-    const writing = Math.max(Number(state.dtbBest.writing)||0, pct(state.writingDone.length, writingTotal));
-    const speaking = Math.max(Number(state.dtbBest.speaking)||0, pct(state.speakingDone.length, speakingTotal));
-    return {reading,listening,writing,speaking};
-  }
-
-  function renderHome() {
-    const skills = skillReadiness();
-    const cp = coursePercent();
-    const nextLesson = D.lessons.find(l => !state.doneLessons.includes(l.id)) || null;
-    const continueTitle = nextLesson ? (state.doneLessons.length ? 'Derse devam et' : 'Kursa başla') : 'Dersleri tekrar et';
-    const continueKicker = nextLesson ? (state.doneLessons.length ? 'ŞİMDİ DEVAM ET' : 'BURADAN BAŞLA') : 'KURS TAMAMLANDI';
-    const continueDetail = nextLesson ? `Sıradaki: ${nextLesson.id}. ${nextLesson.title}` : `${D.lessons.length} ders tamamlandı · istediğin dersi yeniden aç`;
-    setView(`
-      <section class="card hero">
-        <div class="eyebrow">TÜRKÇE → ALMANCA · C1</div>
-        <h2>Deutsch C1</h2>
-        <p class="muted">Bu kurs; karmaşık metinleri anlama, nüansları ayırt etme, bağlaç ve eşdizimleri doğal kullanma, mesleki iletişimde uygun kayıt seçme ve düşünceleri açık, yapılandırılmış ve ikna edici biçimde ifade etme becerilerini geliştirir.</p>
-        <div class="pill">Deutsch-Test für den Beruf C1 · hedef sınav</div>
-      </section>
-      <section class="card course-progress-card">
-        <div class="between"><div><strong>Toplam kurs ilerlemesi</strong><div class="muted">${D.lessons.length} ders + hedefli alıştırmalar + sınav simülasyonları</div></div><strong>${cp}%</strong></div>
-        <div class="spacer"></div>${progressBar(cp)}
-        <div class="grid metric-grid" style="margin-top:14px">
-          <div class="metric"><strong>${state.doneLessons.length}/${D.lessons.length}</strong><small>Ders tamamlandı</small></div>
-          <div class="metric"><strong>${examCheckpointCount()}/4</strong><small>DTB becerisi puanlandı</small></div>
-        </div>
-        <button class="continue-course-btn" id="continueLearn">
-          <span class="continue-course-icon">▶</span>
-          <span class="continue-course-copy"><small>${continueKicker}</small><strong>${continueTitle}</strong><span>${esc(continueDetail)}</span></span>
-          <span class="continue-course-arrow">→</span>
-        </button>
-      </section>
-      <button class="practice-card exam-home-card" id="openExam"><span class="icon">✓</span><strong>Sınav merkezine git</strong><small>Hedef DTB C1 formatını tam olarak çalış; Goethe C1 ek antrenman olarak kalır.</small></button>
-      <section class="card readiness-card">
-        <div class="section-title" style="margin-top:0"><h3>C1 hazırlık göstergeleri</h3><small>son en iyi sonuçlar</small></div>
-        ${skillRow('Okuma', skills.reading)}
-        ${skillRow('Dinleme', skills.listening)}
-        ${skillRow('Yazma', skills.writing)}
-        ${skillRow('Konuşma', skills.speaking)}
-        <div class="notice warning" style="margin-top:14px">Bu göstergeler çalışma ilerlemesini özetler; resmi sınav sonucunun yerine geçmez. DTB C1 için toplam en az 144/240 puan ve dört becerinin en az üçünde 36/60 gerekir.</div>
-      </section>
-      ${sourceNote()}
-    `, () => {
-      byId('continueLearn').onclick = () => {
-        state.lastRoute = 'learn';
-        save();
-        nav.forEach(b => b.classList.toggle('active', b.dataset.route === 'learn'));
-        if (nextLesson) renderLesson(nextLesson.id); else renderLearn();
-      };
-      byId('openExam').onclick = () => setRoute('exam');
-    });
-  }
-
-  function skillRow(label, value) {
-    return `<div class="skill-row"><strong>${esc(label)}</strong>${progressBar(value)}<span>${Math.round(value)}%</span></div>`;
-  }
-
-  function renderLearn() {
-    const groups = [];
-    for (const l of D.lessons) {
-      let g = groups.find(x => x.unit === l.unit);
-      if (!g) { g = {unit:l.unit, lessons:[]}; groups.push(g); }
-      g.lessons.push(l);
-    }
-    setView(`
-      <section class="card">
-        <div class="between"><div><div class="eyebrow">C1 ÖĞRENME YOLU</div><h2>${D.lessons.length} derslik yapı</h2></div><strong>${state.doneLessons.length}/${D.lessons.length}</strong></div>
-        <p class="muted">İlk bloklar dil araçlarını güçlendirir; daha sonra sınav becerileri ve gerçek sınav görevleri devreye girer. C1'de gramer tek başına amaç değil, daha kesin ve esnek ifade üretmek için araçtır.</p>
-        ${progressBar(pct(state.doneLessons.length,D.lessons.length))}
-      </section>
-      ${groups.map(g => `
-        <div class="unit-heading"><span>${esc(g.unit)}</span><small>${g.lessons.filter(l=>state.doneLessons.includes(l.id)).length}/${g.lessons.length}</small></div>
-        <div class="list">${g.lessons.map(lessonCard).join('')}</div>
-      `).join('')}
-    `, () => {
-      document.querySelectorAll('[data-lesson]').forEach(b => b.onclick = () => renderLesson(Number(b.dataset.lesson)));
-    });
-  }
-
-  function activityItemCount(a) {
-    if (!a) return 0;
-    if (a.type === 'mc' || a.type === 'reading' || a.type === 'listening') return (a.questions || []).length;
-    if (a.type === 'tf') return (a.statements || []).length;
-    if (a.type === 'match') return (a.prompts || []).length;
-    if (a.type === 'cloze') return (a.blanks || []).length;
-    return 0;
-  }
-
-  function scoredActivities(l) { return (l.activities || []).filter(a => a.type !== 'info' && activityItemCount(a) > 0); }
-  function activityKey(lid, aid) { return `${lid}:${aid}`; }
-
-  function lessonActivitySummary(l) {
-    const acts = scoredActivities(l);
-    let itemTotal = 0, attemptedItems = 0, weightedBest = 0;
-    const w = state.lessonWork?.[l.id] || {};
-    const attempted = Array.isArray(w.activityAttempted) ? w.activityAttempted : [];
-    acts.forEach(a => {
-      const n = activityItemCount(a); itemTotal += n;
-      if (attempted.includes(a.id)) attemptedItems += n;
-      const rec = state.lessonActivityScores?.[activityKey(l.id,a.id)];
-      const best = typeof rec === 'object' ? Number(rec.best || 0) : Number(rec || 0);
-      weightedBest += n * best;
-    });
-    return {activities:acts.length,itemTotal,attemptedItems,best:itemTotal?Math.round(weightedBest/itemTotal):0,complete:acts.length>0 && acts.every(a=>attempted.includes(a.id))};
-  }
-
-  function lessonOverviewProgress(l) {
-    const w = state.lessonWork?.[l.id] || {};
-    const examples = l.examples || [];
-    const audioTargets = [...new Set(examples.map(e=>e?.[0]).filter(Boolean))];
-    const heard = audioTargets.filter(t => Array.isArray(w.heardExamples) && w.heardExamples.includes(t)).length;
-    const listeningActs = (l.activities || []).filter(a => a.type === 'listening');
-    const playedListening = listeningActs.filter(a => Number(w.activityPlays?.[a.id] || 0) >= 1).length;
-    const summary = lessonActivitySummary(l);
-    const g = productionGuide(l);
-    const productionDone = g.mode === 'speak' ? !!w.productionRecorded : String(w.productionDraft || '').trim().length >= Number(g.minChars || 40);
-    const title = String(l.title || '').toLocaleLowerCase('tr-TR');
-    const skills = (l.skills || []).map(x => String(x).toLocaleLowerCase('tr-TR'));
-
-    let firstLabel='Örnekler', firstValue=audioTargets.length ? `${heard}/${audioTargets.length}` : '—', firstDone=audioTargets.length===0 || heard>=audioTargets.length;
-    if (listeningActs.length) {
-      firstLabel='Dinleme'; firstValue=`${playedListening}/${listeningActs.length}`; firstDone=playedListening>=listeningActs.length;
-    }
-
-    let productionLabel='Üretim';
-    if (g.mode === 'speak') productionLabel='Konuşma';
-    else if (/notiz|telefon|mediation|aktarım/.test(title)) productionLabel='Not';
-    else if (skills.includes('yazma') || /schreiben|stellungnahme|e-mail|e‑mail|mail/.test(title)) productionLabel='Yazma';
-
-    const step=(label,value,done)=>`<span class="lesson-overview-step ${done?'done':''}"><small>${esc(label)}</small><strong>${done?'✓':esc(value)}</strong></span>`;
-    return `<div class="lesson-overview-progress" aria-label="Ders ilerlemesi">${step(firstLabel,firstValue,firstDone)}${step('Alıştırma',summary.itemTotal?`${summary.attemptedItems}/${summary.itemTotal}`:'—',summary.complete)}${step(productionLabel,'—',productionDone)}</div>`;
-  }
-
-  function lessonCard(l) {
-    const done = state.doneLessons.includes(l.id);
-    return `<button class="lesson ${done?'done':''}" data-lesson="${l.id}">
-      <div class="row"><span class="num">${l.id}</span><div><strong>${esc(l.title)}</strong><div class="lesson-goal-preview">${esc(l.goal)}</div></div></div>
-      ${lessonOverviewProgress(l)}
-    </button>`;
-  }
-
-  function productionGuide(l) {
-    return l.production || {
-      task:'3–5 C1 düzeyinde Almanca cümle yaz.',
-      target:l.goal || 'Dersin hedef yapısını bilinçli biçimde kullan.',
-      example:'Obwohl die Situation schwierig ist, lässt sich eine Lösung finden. Daher sollten wir die nächsten Schritte klar festlegen.',
-      mode:'write', minChars:60, checklist:[]
-    };
-  }
-
-  function productionHelpHtml(l) {
-    const g=productionGuide(l);
-    const checklist=(g.checklist||[]).length ? g.checklist : ['Görevi eksiksiz yerine getir','Dersin hedef stratejisini bilinçli kullan','Cümleleri açık ve doğal biçimde bağla'];
-    return `<details class="production-help">
-      <summary>💡 Yardım: Görevde ne isteniyor?</summary>
-      <div class="production-help-body">
-        <div class="production-help-grid">
-          <div class="production-help-item"><strong>Görev</strong><p>${esc(g.task)}</p></div>
-          <div class="production-help-item"><strong>Nelere dikkat?</strong><p>${esc(g.target)}</p></div>
-          <div class="production-help-item"><strong>C1 araçları</strong><p>Bağlaçlar fikirler arasındaki ilişkiyi gösterir; <b>parafraz</b> ise aynı anlamı başka kelime veya yapıyla aktarır. Bunları yalnızca görev gerçekten gerektiriyorsa kullan.</p></div>
-        </div>
-        <div class="production-mini-example"><strong>Mini örnek</strong><p lang="de">${esc(g.example)}</p></div>
-        <div class="production-checklist">${checklist.map(x=>`<span>✓ ${esc(x)}</span>`).join('')}</div>
-      </div>
-    </details>`;
-  }
-
-  function activityQuestions(a) {
-    if (a.type === 'tf') return (a.statements||[]).map(x=>({q:x.q,o:['Doğru','Yanlış'],a:x.a?0:1,why:x.why}));
-    return a.questions || [];
-  }
-
-  function activityTypeLabel(a) {
-    return ({mc:'Çoktan seçmeli',tf:'Doğru / Yanlış',match:'Eşleştirme',cloze:'Boşluk doldurma',reading:'Bağlamlı okuma',listening:'Tek dinleme',info:'Kaynak / strateji'})[a.type] || 'Alıştırma';
-  }
-
-  function renderActivityBlock(l,a,w,index) {
-    const group=`act-${l.id}-${a.id}`;
-    const done=Array.isArray(w.activityAttempted)&&w.activityAttempted.includes(a.id);
-    const rec=state.lessonActivityScores?.[activityKey(l.id,a.id)];
-    const best=typeof rec==='object'?Number(rec.best||0):Number(rec||0);
-    let body='';
-    if (a.type==='mc' || a.type==='reading' || a.type==='listening' || a.type==='tf') {
-      if(a.type==='reading') body += `<div class="activity-text" lang="de">${esc(a.text||'')}</div>`;
-      if(a.type==='listening') {
-        const plays=Number(a.plays||1), used=Number(w.activityPlays?.[a.id]||0);
-        body += `<div class="activity-audio"><button class="speak-btn large" data-listen-activity="${esc(a.id)}" ${used>=plays?'disabled':''}>▶</button><div><strong>Dinleme</strong><small id="listenCount-${l.id}-${esc(a.id)}">${used}/${plays} oynatıldı</small></div></div>`;
-      }
-      const qs=activityQuestions(a);
-      body += qs.map((q,i)=>mcHtml(q,group,i)).join('');
-      if(a.type==='listening') body += `<details class="activity-transcript" id="transcript-${l.id}-${esc(a.id)}" ${done?'':'hidden'}><summary>Dinledikten sonra transkripti incele</summary><p lang="de">${esc(a.script||'')}</p></details>`;
-    } else if(a.type==='match') {
-      body += `<div class="activity-match-options">${(a.options||[]).map((o,i)=>`<span><b>${String.fromCharCode(65+i)}</b> ${esc(o)}</span>`).join('')}</div>`;
-      body += (a.prompts||[]).map((prompt,i)=>`<label class="activity-select-row"><span>${i+1}. ${esc(prompt)}</span><select class="select-input" data-act-select="${i}"><option value="">— seç —</option>${(a.options||[]).map((o,j)=>`<option value="${j}">${String.fromCharCode(65+j)} · ${esc(o)}</option>`).join('')}</select><small class="activity-explain" id="ax-${l.id}-${esc(a.id)}-${i}" hidden></small></label>`).join('');
-    } else if(a.type==='cloze') {
-      body += `<div class="activity-text" lang="de">${esc(a.text||'')}</div>`;
-      body += (a.blanks||[]).map((b,i)=>`<label class="activity-select-row"><span>Boşluk ${esc(b.label||i+1)}</span><select class="select-input" data-act-select="${i}"><option value="">— seç —</option>${(b.options||[]).map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join('')}</select><small class="activity-explain" id="ax-${l.id}-${esc(a.id)}-${i}" hidden></small></label>`).join('');
-    } else if(a.type==='info') {
-      body += `<div class="activity-text"><p>${esc(a.body||'')}</p>${(a.items||[]).length?`<ul class="activity-list">${a.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}</div>`;
-    }
-    return `<section class="lesson-activity ${done?'is-attempted':''}" data-activity-block="${esc(a.id)}">
-      <div class="activity-head"><div><span class="activity-type">${index+1}. ${activityTypeLabel(a)}</span><h4>${esc(a.title||'Alıştırma')}</h4></div>${a.type!=='info'?`<span class="pill ${done?'green':'gray'}">${best?`En iyi ${best}%`:done?'denendi':'bekliyor'}</span>`:''}</div>
-      ${a.intro?`<p class="muted">${esc(a.intro)}</p>`:''}${body}
-      ${a.type!=='info'?`<button class="soft-btn activity-grade-btn" data-grade-activity="${esc(a.id)}">Kontrol et</button><div id="activityResult-${l.id}-${esc(a.id)}"></div>`:''}
-    </section>`;
-  }
-
-  function gradeStructuredActivity(l,a,w) {
-    const block=document.querySelector(`[data-activity-block="${CSS.escape(a.id)}"]`);
-    if(!block) return null;
-    if(a.type==='listening' && Number(w.activityPlays?.[a.id]||0) < 1) {
-      const box=byId(`activityResult-${l.id}-${a.id}`); if(box) box.innerHTML='<div class="feedback near">Önce sesi bir kez dinle. Bu görev sınavdaki tek-dinleme baskısını çalıştırır.</div>';
-      return null;
-    }
-    if(['mc','tf','reading','listening'].includes(a.type)) return gradeMC(`act-${l.id}-${a.id}`,activityQuestions(a));
-    let score=0,total=0;
-    const selects=[...block.querySelectorAll('[data-act-select]')];
-    selects.forEach((sel,i)=>{
-      const correct = a.type==='match' ? Number((a.answers||[])[i]) : Number((a.blanks||[])[i]?.a);
-      const hit=sel.value!=='' && Number(sel.value)===correct;
-      if(hit) score++; total++;
-      sel.classList.toggle('correct-select',hit);
-      sel.classList.toggle('wrong-select',!hit);
-      sel.disabled=true;
-      const exp=byId(`ax-${l.id}-${a.id}-${i}`);
-      if(exp){
-        const opts=a.type==='match'?(a.options||[]):((a.blanks||[])[i]?.options||[]);
-        const why=a.type==='match'?((a.why||[])[i]||''):((a.blanks||[])[i]?.why||'');
-        exp.textContent=`Doğru: ${opts[correct]||''}${why?' · '+why:''}`; exp.hidden=false;
-      }
-    });
-    return {score,total};
-  }
-
-  function renderLesson(id) {
-    const l = D.lessons.find(x => x.id === id);
-    if (!l) return renderLearn();
-    if (!state.lessonWork || typeof state.lessonWork !== 'object' || Array.isArray(state.lessonWork)) state.lessonWork = {};
-    const w = state.lessonWork[id] && typeof state.lessonWork[id] === 'object' && !Array.isArray(state.lessonWork[id]) ? state.lessonWork[id] : (state.lessonWork[id] = {});
-    if (!Array.isArray(w.heardExamples)) w.heardExamples = [];
-    if (!Array.isArray(w.activityAttempted)) w.activityAttempted = [];
-    if (!w.activityPlays || typeof w.activityPlays !== 'object') w.activityPlays = {};
-    const examples = l.examples || [];
-    const audioTargets = [...new Set(examples.map(e=>e?.[0]).filter(Boolean))];
-    const g=productionGuide(l);
-    const activityStats=()=>lessonActivitySummary(l);
-    const heardCount = () => audioTargets.filter(t=>w.heardExamples.includes(t)).length;
-    const productionDone=()=>g.mode==='speak' ? !!w.productionRecorded : String(w.productionDraft||'').trim().length>=Number(g.minChars||40);
-    // Lektionsfortschritt wird bewusst nur in der Kursübersicht gezeigt,
-    // damit die eigentliche Lernseite ruhig und inhaltsorientiert bleibt.
-    const refreshTracker=()=>{};
-    const acts=l.activities||[];
-    const controlled=scoredActivities(l);
-    setView(`
-      <button class="tiny-btn" id="backLearn">← Kurslar</button>
-      <section class="card" style="margin-top:12px">
-        <div class="eyebrow">DERS ${l.id} · ${esc(l.unit)}</div>
-        <h2>${esc(l.title)}</h2>
-        <div class="lesson-roadmap"><div class="lesson-roadmap-title">Ders içeriği</div><div class="lesson-roadmap-steps"><span><b>1</b>Açıklama & örnekler</span><span><b>2</b>${activityStats().itemTotal || controlled.length} hedefli alıştırma</span><span><b>3</b>${g.mode==='speak'?'Konuşma provası':'Aktif üretim'}</span></div></div>
-        <div class="lesson-meta">${(l.skills||[]).map(s=>`<span class="pill">${esc(s)}</span>`).join('')}</div>
-        <div class="lesson-goals"><strong>Hedef</strong><p>${esc(l.goal)}</p></div>
-        <div class="lesson-explanation"><strong>Türkçe açıklama</strong><p>${esc(l.explanation)}</p></div>
-      </section>
-      <section class="card">
-        <h3>Almanca örnekler & derinleştirme</h3>
-        ${examples.map((e,i)=>`<div class="example-box ${w.heardExamples.includes(e[0])?'is-heard':''}" data-example-row="${i}"><div class="between"><strong>${esc(e[0])}</strong><button class="speak-btn" data-example="${i}" aria-label="Dinle">🔊</button></div><div class="muted">${esc(e[1])}</div>${e[2]?`<small>${esc(e[2])}</small>`:''}</div>`).join('')}
-      </section>
-      <section class="card">
-        <div class="between"><div><h3>Hedefli alıştırmalar</h3><p class="muted">Bu dersin görevi neyi ölçüyorsa alıştırma biçimi de ona göre değişir.</p></div><span class="pill gray">${activityStats().itemTotal} madde</span></div>
-        <div class="activity-stack">${acts.map((a,i)=>renderActivityBlock(l,a,w,i)).join('') || '<p class="muted">Bu ders için kontrollü alıştırma yok.</p>'}</div>
-      </section>
-      <section class="card">
-        <h3>${g.mode==='speak'?'Konuşma üretimi':'Aktif üretim'}</h3>
-        <p class="muted">${esc(g.task)}</p>
-        ${productionHelpHtml(l)}
-        ${g.mode==='speak' ? `${recorderHtml('LessonProduction')}<textarea class="text-area compact-notes" id="lessonProduction" placeholder="İstersen anahtar kelimelerini veya kısa öz değerlendirmeni buraya yaz …">${esc(w.productionDraft||'')}</textarea>` : `<textarea class="text-area" id="lessonProduction" placeholder="Buraya Almanca yaz …">${esc(w.productionDraft||'')}</textarea><div class="production-requirement">En az ${Number(g.minChars||40)} karakter · amaç uzunluk değil, görevin bütününü C1 düzeyinde gerçekleştirmek.</div>`}
-        <button class="secondary-btn" id="completeLesson" style="margin-top:10px">Dersi tamamla</button>
-        <div id="completeLessonFeedback"></div>
-      </section>
-    `, () => {
-      byId('backLearn').onclick = renderLearn;
-      document.querySelectorAll('[data-example]').forEach(b => b.onclick = () => {
-        const i=+b.dataset.example, target=examples[i]?.[0];
-        if(target && !w.heardExamples.includes(target)){w.heardExamples.push(target);save();refreshTracker();document.querySelector(`[data-example-row="${i}"]`)?.classList.add('is-heard');}
-        window.A1Voice?.speak?.(target,{lang:'de-DE',rate:.9});
-      });
-      document.querySelectorAll('[data-listen-activity]').forEach(b=>b.onclick=()=>{
-        const a=acts.find(x=>x.id===b.dataset.listenActivity); if(!a)return;
-        const max=Number(a.plays||1), used=Number(w.activityPlays[a.id]||0); if(used>=max)return;
-        w.activityPlays[a.id]=used+1; save(); speakLong(a.script,.9);
-        const c=byId(`listenCount-${l.id}-${a.id}`); if(c)c.textContent=`${w.activityPlays[a.id]}/${max} oynatıldı`;
-        if(w.activityPlays[a.id]>=max)b.disabled=true;
-      });
-      document.querySelectorAll('[data-grade-activity]').forEach(b=>b.onclick=()=>{
-        const a=acts.find(x=>x.id===b.dataset.gradeActivity); if(!a)return;
-        const r=gradeStructuredActivity(l,a,w); if(!r)return;
-        const p=pct(r.score,r.total), key=activityKey(l.id,a.id), old=state.lessonActivityScores[key]||{};
-        const oldBest=typeof old==='object'?Number(old.best||0):Number(old||0);
-        state.lessonActivityScores[key]={best:Math.max(oldBest,p),last:p,score:r.score,total:r.total};
-        if(!w.activityAttempted.includes(a.id))w.activityAttempted.push(a.id);
-        const transcript=byId(`transcript-${l.id}-${a.id}`); if(transcript)transcript.hidden=false;
-        const st=lessonActivitySummary(l); state.lessonQuizBest[l.id]=st.best;
-        save();
-        const out=byId(`activityResult-${l.id}-${a.id}`); if(out)out.innerHTML=scoreResult(r.score,r.total,p);
-        b.closest('.lesson-activity')?.classList.add('is-attempted'); refreshTracker();
-      });
-      const production=byId('lessonProduction');
-      if(production) production.oninput=e=>{w.productionDraft=e.target.value.slice(0,16000);save();refreshTracker();};
-      if(g.mode==='speak') {
-        window.A1Learning.wireRecorder('LessonProduction',()=>{w.productionRecorded=true;save();refreshTracker();},recorderLabels,()=>{});
-      }
-      byId('completeLesson').onclick = () => {
-        if(production) w.productionDraft=production.value.slice(0,16000);
-        const missing=controlled.filter(a=>!w.activityAttempted.includes(a.id));
-        const feedback=byId('completeLessonFeedback');
-        if(missing.length){feedback.innerHTML=`<div class="feedback near">Önce ${missing.length} hedefli alıştırmayı tamamla. Bu ders yalnızca “tamamlandı” düğmesine basılarak geçilmez.</div>`;return;}
-        if(g.mode==='speak' && !w.productionRecorded){feedback.innerHTML='<div class="feedback near">Bu derste aktif üretim konuşmadır. Önce kısa bir ses kaydı yap.</div>';return;}
-        if(g.mode!=='speak' && String(w.productionDraft||'').trim().length<Number(g.minChars||40)){feedback.innerHTML=`<div class="feedback near">Aktif üretimi biraz daha geliştir. Bu görev için en az ${Number(g.minChars||40)} karakterlik anlamlı bir taslak bekleniyor.</div>`;return;}
-        if (!state.doneLessons.includes(id)) state.doneLessons.push(id);
-        save(); byId('completeLesson').textContent='✓ Tamamlandı'; byId('completeLesson').disabled=true; feedback.innerHTML='<div class="feedback good">Ders tamamlandı. Kontrollü alıştırma ve aktif üretim birlikte kaydedildi.</div>'; refreshTracker();
-      };
-      if (state.doneLessons.includes(id)) { byId('completeLesson').textContent='✓ Tamamlandı'; byId('completeLesson').disabled=true; }
-    });
-  }
-
-  function mcHtml(q, group, i, label) {
-    return `<div class="question-block"><div class="quiz-q">${label?esc(label):`${i+1}. ${esc(q.q)}`}</div><div class="options">${(q.o||[]).map((o,j)=>`<label class="radio-option"><input type="radio" name="${esc(group)}-${i}" value="${j}"><span>${esc(o)}</span></label>`).join('')}</div>${q.why?`<div class="answer-explanation" id="why-${group}-${i}" hidden>${esc(q.why)}</div>`:''}</div>`;
-  }
-
-  function gradeMC(group, questions, reveal=true) {
-    let score=0;
-    questions.forEach((q,i) => {
-      const hit = document.querySelector(`input[name="${CSS.escape(group+'-'+i)}"]:checked`);
-      if (hit && Number(hit.value)===Number(q.a)) score++;
-      if (reveal) {
-        document.querySelectorAll(`input[name="${CSS.escape(group+'-'+i)}"]`).forEach(r => {
-          const row=r.closest('.radio-option');
-          row.classList.toggle('correct',Number(r.value)===Number(q.a));
-          row.classList.toggle('wrong',r.checked && Number(r.value)!==Number(q.a));
-          r.disabled=true;
-        });
-        const why=byId(`why-${group}-${i}`); if(why) why.hidden=false;
-      }
-    });
-    return {score,total:questions.length};
-  }
-
-  function scoreResult(score,total,result,passLine=60) {
-    if (!total) return `<div class="feedback good">Tamamlandı.</div>`;
-    const cls=result>=passLine?'good':result>=50?'near':'bad';
-    return `<div class="feedback ${cls}"><strong>${score}/${total} · ${result}%</strong><br>${result>=passLine?'Hedef eşiğe ulaştın.':'Yanlışları gerekçeleriyle tekrar incele.'}</div>`;
-  }
-
-  function renderPractice() {
-    setView(`
-      <section class="card"><div class="eyebrow">HEDEFLİ ANTRENMAN</div><h2>C1 becerileri</h2><p class="muted">Zayıf alanları ayrı ayrı çalış. Gramer ve üslup bankaları genel C1 içindir; okuma/dinlemede ek C1 görevleri bulunur. Deutsch-Test für den Beruf C1'in resmî görev akışı ve puanlaması Sınav bölümünde birebir modellenmiştir.</p></section>
-      <div class="grid practice-menu">
-        ${practiceCard('grammar','◫','C1 Gramer','Edilgen yapı, isim-fiil birleşimleri, kip fiilleri, Konjunktiv kipleri, adlaştırma')}
-        ${practiceCard('style','◇','Üslup & İfade','Kayıt, parafraz, eşdizimler, nüans')}
-        ${practiceCard('reading','▤','Okuma','Yoğun metin, parafraz ve eşleştirme · ek C1')}
-        ${practiceCard('listening','◉','Dinleme','Ayrıntı, tutum ve not alma · ek C1')}
-        ${practiceCard('writing','✎','Yazma','Yazılı üretim ve resmî/yarı resmî kayıt')}
-        ${practiceCard('speaking','◌','Konuşma','Spontan anlatım, etkileşim ve sorun çözme')}
-      </div>
-      ${sourceNote()}
-    `, () => document.querySelectorAll('[data-practice]').forEach(b => b.onclick=()=>openPractice(b.dataset.practice)));
-  }
-
-  function practiceCard(id,icon,title,text) {
-    return `<button class="practice-card" data-practice="${id}"><span class="icon">${icon}</span><strong>${esc(title)}</strong><small>${esc(text)}</small></button>`;
-  }
-
-  function openPractice(kind) {
-    if (kind==='grammar') return renderSetMenu('C1 Gramer',D.grammarSets,'grammar');
-    if (kind==='style') return renderSetMenu('Üslup & İfade',D.styleSets,'style');
-    if (kind==='reading') return renderReadingMenu();
-    if (kind==='listening') return renderListeningMenu();
-    if (kind==='writing') return renderWritingMenu();
-    if (kind==='speaking') return renderSpeakingMenu();
-  }
-
-  function backPracticeButton() { return `<button class="tiny-btn" id="backPractice">← Alıştırmalar</button>`; }
-
-  function renderSetMenu(title,sets,prefix) {
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>${esc(title)}</h2><p class="muted">Her set C1 düzeyinde biçim, anlam ve kullanım ayrımını birlikte hedefler.</p></section><div class="list">${sets.map(s=>`<button class="practice-card" data-set="${esc(s.id)}"><strong>${esc(s.title)}</strong><small>${esc(s.subtitle||'8 soru')}</small><span class="pill ${state.practiceBest[prefix+':'+s.id]?'green':'gray'}">${state.practiceBest[prefix+':'+s.id]?`En iyi ${state.practiceBest[prefix+':'+s.id]}%`:'Başla'}</span></button>`).join('')}</div>`,()=>{
-      byId('backPractice').onclick=renderPractice;
-      document.querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>renderQuestionSet(sets.find(s=>s.id===b.dataset.set),prefix));
-    });
-  }
-
-  function renderQuestionSet(set,prefix) {
-    const group=`${prefix}-${set.id}`;
-    setView(`<button class="tiny-btn" id="backSet">← ${prefix==='grammar'?'Gramer':'Üslup'}</button><section class="card" style="margin-top:12px"><h2>${esc(set.title)}</h2><p class="muted">${esc(set.subtitle||'')}</p></section><section class="card">${set.questions.map((q,i)=>mcHtml(q,group,i)).join('')}<button class="primary-btn" id="gradeSet">Sonucu hesapla</button><div id="setResult"></div></section>`,()=>{
-      byId('backSet').onclick=()=>renderSetMenu(prefix==='grammar'?'C1 Gramer':'Üslup & İfade',prefix==='grammar'?D.grammarSets:D.styleSets,prefix);
-      byId('gradeSet').onclick=()=>{
-        const r=gradeMC(group,set.questions); const p=pct(r.score,r.total);
-        state.practiceBest[`${prefix}:${set.id}`]=Math.max(Number(state.practiceBest[`${prefix}:${set.id}`]||0),p); save();
-        byId('setResult').innerHTML=scoreResult(r.score,r.total,p);
-      };
-    });
-  }
-
-  function renderReadingMenu() {
-    const parts=Object.entries(D.readingPractice);
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Okuma</h2><p class="muted">Goethe C1 okuma modülü dört farklı okuma biçimini ölçer: sözcüklerle metin rekonstrüksiyonu, yoğun bilgi metni, cümlelerle metin rekonstrüksiyonu ve görüş/eşleştirme.</p></section><div class="list">${parts.map(([k,p],i)=>`<button class="practice-card" data-reading="${k}"><strong>${i+1}. ${esc(p.title)}</strong><small>${readingPartDescription(k)}</small><span class="pill ${state.practiceBest['reading:'+k]?'green':'gray'}">${state.practiceBest['reading:'+k]?`En iyi ${state.practiceBest['reading:'+k]}%`:'Çalış'}</span></button>`).join('')}</div>`,()=>{
-      byId('backPractice').onclick=renderPractice;
-      document.querySelectorAll('[data-reading]').forEach(b=>b.onclick=()=>renderReadingPractice(b.dataset.reading));
-    });
-  }
-
-  function readingPartDescription(k) {
-    return ({part1:'8 boşluk · 4 seçenek',part2:'7 soru · yoğun bilgi metni',part3:'8 cümle boşluğu · 10 aday',part4:'7 görüş eşleştirmesi'})[k]||'';
-  }
-
-  function readingPartHtml(data,k,group) {
-    if(k==='part1') return `<div class="reading-text">${esc(data.text)}</div>${data.items.map((q,i)=>mcHtml({q:`Boşluk ${i+1}`,o:q.o,a:q.a},group,i,`Boşluk ${i+1}`)).join('')}`;
-    if(k==='part2') return `<div class="reading-text long-text">${esc(data.text)}</div>${data.items.map((q,i)=>mcHtml(q,group,i)).join('')}`;
-    if(k==='part3') return `<div class="candidate-list">${data.candidates.map((c,i)=>`<div><strong>${String.fromCharCode(65+i)}</strong> ${esc(c.replace(/^[A-J]:\s*/,''))}</div>`).join('')}</div><div class="reading-text">${data.segments.map(s=>esc(s)).join('\n\n')}</div>${data.answers.map((a,i)=>`<label class="field gap-field"><span>Boşluk ${i+1}</span><select class="select-input" id="${group}-gap-${i}"><option value="">— seç —</option>${data.candidates.map((_,j)=>`<option value="${j}">${String.fromCharCode(65+j)}</option>`).join('')}</select></label>`).join('')}`;
-    if(k==='part4') return `<div class="speaker-grid">${data.texts.map(t=>`<div class="speaker-card"><strong>${esc(t.name)}</strong><p>${esc(t.text)}</p></div>`).join('')}</div>${data.items.map((q,i)=>mcHtml({q:q.q,o:data.texts.map(t=>t.name.split('·')[0].trim()),a:q.a},group,i)).join('')}`;
-    return '';
-  }
-
-  function gradeReadingPart(data,k,group,reveal=true) {
-    if(k==='part3') {
-      let score=0;
-      data.answers.forEach((a,i)=>{const s=byId(`${group}-gap-${i}`); if(Number(s.value)===Number(a))score++; if(reveal){s.classList.toggle('correct-select',Number(s.value)===Number(a));s.disabled=true;}});
-      return {score,total:data.answers.length};
-    }
-    return gradeMC(group,data.items,reveal);
-  }
-
-  function renderReadingPractice(k) {
-    const data=D.readingPractice[k], group=`read-${k}`;
-    setView(`<button class="tiny-btn" id="backRead">← Okuma</button><section class="card" style="margin-top:12px"><div class="eyebrow">GOETHE C1 ANTRENMANI</div><h2>${esc(data.title)}</h2><p class="muted">${readingPartDescription(k)}</p></section><section class="card">${readingPartHtml(data,k,group)}<button class="primary-btn" id="gradeRead">Kontrol et</button><div id="readResult"></div></section>`,()=>{
-      byId('backRead').onclick=renderReadingMenu;
-      byId('gradeRead').onclick=()=>{const r=gradeReadingPart(data,k,group);const p=pct(r.score,r.total);state.practiceBest[`reading:${k}`]=Math.max(Number(state.practiceBest[`reading:${k}`]||0),p);save();byId('readResult').innerHTML=scoreResult(r.score,r.total,p);};
-    });
-  }
-
-  function renderListeningMenu() {
-    const parts=Object.entries(D.listeningPractice);
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Dinleme</h2><p class="muted">Goethe C1'de 1. ve 3. bölümler bir kez, 2. ve 4. bölümler iki kez dinlenir. Burada oynatma sınırı buna göre uygulanır.</p><div class="notice warning">Tarayıcıdaki Almanca TTS ücretsiz bir çalışma aracıdır; gerçek sınavdaki doğal kayıt, ses çeşitliliği ve konuşma hızını birebir taklit etmez.</div></section><div class="list">${parts.map(([k,p],i)=>`<button class="practice-card" data-listening="${k}"><strong>${i+1}. ${esc(p.title)}</strong><small>${p.plays}× dinleme · ${listeningCount(p)} soru</small><span class="pill ${state.practiceBest['listening:'+k]?'green':'gray'}">${state.practiceBest['listening:'+k]?`En iyi ${state.practiceBest['listening:'+k]}%`:'Çalış'}</span></button>`).join('')}</div>`,()=>{
-      byId('backPractice').onclick=renderPractice;
-      document.querySelectorAll('[data-listening]').forEach(b=>b.onclick=()=>renderListeningPractice(b.dataset.listening));
-    });
-  }
-
-  function listeningCount(p){ return p.items?.length || p.segments?.reduce((n,s)=>n+s.items.length,0) || 0; }
-
-  function audioPanel(id,label,plays) {
-    return `<div class="audio-panel"><button class="speak-btn large" id="${id}">▶</button><div><strong>${esc(label)}</strong></div><div class="play-count" id="${id}-count">${plays} oynatma hakkı</div></div>`;
-  }
-
-  function wireLimitedPlay(id,text,maxPlays) {
-    let used=0; const b=byId(id), status=byId(id+'-count');
-    b.onclick=()=>{ if(used>=maxPlays)return; used++; speakLong(text,.9); status.textContent=`${used}/${maxPlays} oynatıldı`; if(used>=maxPlays)b.disabled=true; };
-  }
-
-  function listeningPartHtml(data,k,group) {
-    if(k==='part3') {
-      let offset=0;
-      return data.segments.map((s,si)=>{
-        const html=`<div class="segment-block"><h3>Bölüm ${si+1}</h3>${audioPanel(`${group}-play-${si}`,`Bölüm ${si+1}`,1)}${s.items.map((q,i)=>mcHtml(q,group,offset+i)).join('')}</div>`;
-        offset += s.items.length; return html;
-      }).join('');
-    }
-    const options = k==='part1' ? data.labels : null;
-    return `${audioPanel(`${group}-play`,'Ses',data.plays)}${data.items.map((q,i)=>mcHtml(options?{q:q.q,o:options,a:q.a}:q,group,i)).join('')}`;
-  }
-
-  function flattenedListeningQuestions(data,k) {
-    if(k==='part3') return data.segments.flatMap(s=>s.items);
-    if(k==='part1') return data.items.map(q=>({q:q.q,o:data.labels,a:q.a}));
-    return data.items;
-  }
-
-  function renderListeningPractice(k) {
-    const data=D.listeningPractice[k], group=`listen-${k}`;
-    setView(`<button class="tiny-btn" id="backListen">← Dinleme</button><section class="card" style="margin-top:12px"><div class="eyebrow">GOETHE C1 ANTRENMANI</div><h2>${esc(data.title)}</h2><p class="muted">Soruları önce oku. Sesi durdurup geri sarma yok; gerçek sınavdaki işlem akışını taklit etmeye çalış.</p></section><section class="card">${listeningPartHtml(data,k,group)}<button class="primary-btn" id="gradeListen">Kontrol et</button><div id="listenResult"></div></section>`,()=>{
-      byId('backListen').onclick=renderListeningMenu;
-      if(k==='part3') data.segments.forEach((s,i)=>wireLimitedPlay(`${group}-play-${i}`,s.script,1)); else wireLimitedPlay(`${group}-play`,data.script,data.plays);
-      byId('gradeListen').onclick=()=>{const qs=flattenedListeningQuestions(data,k);const r=gradeMC(group,qs);const p=pct(r.score,r.total);state.practiceBest[`listening:${k}`]=Math.max(Number(state.practiceBest[`listening:${k}`]||0),p);save();byId('listenResult').innerHTML=scoreResult(r.score,r.total,p);};
-    });
-  }
-
-  function renderWritingMenu() {
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Yazma</h2><p class="muted">Goethe C1'de iki metin yazılır: yaklaşık 230 kelimelik görüş/argümantasyon metni ve yaklaşık 120 kelimelik yarı resmî e-posta. Değerlendirme: görev yerine getirme, bağlaşıklık, kelime dağarcığı ve yapılar.</p></section><div class="grid"><button class="practice-card" id="forumMenu"><span class="icon">✎</span><strong>Bölüm 1 · Forum yazısı</strong><small>≈230 kelime · 4 dil işlevi</small></button><button class="practice-card" id="emailMenu"><span class="icon">✉</span><strong>Bölüm 2 · E-posta</strong><small>≈120 kelime · 4 dil işlevi</small></button></div>`,()=>{
-      byId('backPractice').onclick=renderPractice; byId('forumMenu').onclick=()=>renderWritingPrompts('forum'); byId('emailMenu').onclick=()=>renderWritingPrompts('email');
-    });
-  }
-
-  function renderWritingPrompts(type) {
-    const list=type==='forum'?D.writingForum:D.writingEmail;
-    setView(`<button class="tiny-btn" id="backWriting">← Yazma</button><section class="card" style="margin-top:12px"><h2>${type==='forum'?'Bölüm 1 · Tartışma yazısı':'Bölüm 2 · Yarı resmî e-posta'}</h2></section><div class="list">${list.map(p=>`<button class="practice-card" data-write="${esc(p.id)}"><strong>${esc(p.title)}</strong><small>${esc(p.prompt)}</small><span class="pill ${state.writingDone.includes(p.id)?'green':'gray'}">${state.writingDone.includes(p.id)?'✓ denendi':p.target+' kelime'}</span></button>`).join('')}</div>`,()=>{byId('backWriting').onclick=renderWritingMenu;document.querySelectorAll('[data-write]').forEach(b=>b.onclick=()=>renderWritingTask(type,list.find(x=>x.id===b.dataset.write)));});
-  }
-
-  const gradeScale={A:1,B:.75,C:.5,D:.25,E:0};
-  function writingRubricHtml(prefix,type) {
-    const criteria=['Görev yerine getirme','Bağlaşıklık','Kelime dağarcığı','Yapılar'];
-    return `<div class="rubric-grid">${criteria.map((c,i)=>rubricRow(prefix+'-'+i,c)).join('')}</div><p class="muted rubric-help">A = C1 düzeyine açıkça uygun · B = çoğunlukla uygun · C = hedefin biraz altında · D = belirgin biçimde altında · E = değerlendirilemez/uygunsuz.</p>`;
-  }
-  function rubricRow(id,label) {
-    return `<label class="rubric-row"><span>${esc(label)}</span><select class="select-input" id="${id}"><option value="">—</option>${['A','B','C','D','E'].map(x=>`<option value="${x}">${x}</option>`).join('')}</select></label>`;
-  }
-  function writingWeights(type){return type==='forum'?[14,14,16,16]:[10,10,10,10];}
-  function readRubric(prefix,weights,zeroIfFulfilmentE=true){
-    const grades=weights.map((_,i)=>byId(`${prefix}-${i}`).value);
-    if(grades.some(x=>!x)) return null;
-    if(zeroIfFulfilmentE && grades[0]==='E') return {grades,points:0,max:weights.reduce((a,b)=>a+b,0)};
-    return {grades,points:grades.reduce((sum,g,i)=>sum+weights[i]*gradeScale[g],0),max:weights.reduce((a,b)=>a+b,0)};
-  }
-
-  function renderWritingTask(type,p) {
-    setView(`<button class="tiny-btn" id="backPrompts">← Görevler</button><section class="card" style="margin-top:12px"><div class="eyebrow">${type==='forum'?'GOETHE C1 · YAZMA BÖLÜM 1':'GOETHE C1 · YAZMA BÖLÜM 2'}</div><h2>${esc(p.title)}</h2><p>${esc(p.prompt)}</p><ul class="task-points">${p.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="pill">Hedef: yaklaşık ${p.target} kelime</div></section><section class="card"><textarea class="text-area writing-area" id="writingText" placeholder="Buraya Almanca yaz …"></textarea><div class="word-count"><span id="wordCount">0</span> / ~${p.target} kelime</div><button class="secondary-btn" id="openRubric" style="margin-top:10px">Öz değerlendirme rubriğini aç</button><div id="writingRubric"></div>${p.model?`<details class="grammar-detail"><summary>Örnek çözümü çalışma sonrası göster</summary><div class="grammar-detail-body"><p>${esc(p.model).replace(/\n/g,'<br>')}</p></div></details>`:''}</section>`,()=>{
-      byId('backPrompts').onclick=()=>renderWritingPrompts(type);
-      const ta=byId('writingText'); ta.oninput=()=>byId('wordCount').textContent=window.A1Learning.countWords(ta.value);
-      byId('openRubric').onclick=()=>{
-        const words=window.A1Learning.countWords(ta.value);
-        byId('writingRubric').innerHTML=`${words<p.target*.5?'<div class="notice warning">Metin hedef kelime sayısının %50’sinden kısa. Resmî rubrikte bu, görev yerine getirme kriterinde E sonucuna yol açabilir.</div>':''}<h3 style="margin-top:16px">Goethe rubriği</h3>${writingRubricHtml('wr',type)}<button class="primary-btn" id="saveWritingRubric">Puanı hesapla ve kaydet</button><div id="writingScore"></div>`;
-        byId('saveWritingRubric').onclick=()=>{const r=readRubric('wr',writingWeights(type));if(!r){byId('writingScore').innerHTML='<div class="feedback near">Dört kriterin hepsi için A–E seç.</div>';return;}const percentage=Math.round(r.points/r.max*100);byId('writingScore').innerHTML=`<div class="feedback ${percentage>=60?'good':'near'}"><strong>${formatPoint(r.points)} / ${r.max} puan</strong> · ${percentage}%</div>`;if(!state.writingDone.includes(p.id))state.writingDone.push(p.id);save();};
-      };
-    });
-  }
-
-  function formatPoint(v){return Number.isInteger(v)?String(v):String(Math.round(v*10)/10).replace('.',',');}
-
-  function renderSpeakingMenu() {
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Konuşma</h2><p class="muted">Goethe C1 konuşmada yapılandırılmış sunum, takip soruları ve partnerle gerçek etkileşim beklenir. Tek kişilik uygulamada partner etkileşimi ancak simüle edilebilir; kayıt özelliği akıcılık, yapı ve telaffuzunuzu dinleyerek kontrol etmenizi sağlar.</p></section><div class="grid"><button class="practice-card" id="presentMenu"><span class="icon">◉</span><strong>Sunum</strong><small>≈5 dk + sorular</small></button><button class="practice-card" id="discussMenu"><span class="icon">↔</span><strong>Tartışma</strong><small>≈5 dk · pozisyon ve tepki</small></button></div>`,()=>{byId('backPractice').onclick=renderPractice;byId('presentMenu').onclick=()=>renderSpeakingPrompts('presentation');byId('discussMenu').onclick=()=>renderSpeakingPrompts('discussion');});
-  }
-
-  function renderSpeakingPrompts(type) {
-    const list=type==='presentation'?D.speakingPresentations:D.speakingDiscussions;
-    setView(`<button class="tiny-btn" id="backSpeaking">← Konuşma</button><section class="card" style="margin-top:12px"><h2>${type==='presentation'?'Sunum yap':'Tartışma yürüt'}</h2></section><div class="list">${list.map(p=>`<button class="practice-card" data-speak="${esc(p.id)}"><strong>${esc(p.title)}</strong><small>${esc(p.intro||p.input||'')}</small><span class="pill ${state.speakingDone.includes(p.id)?'green':'gray'}">${state.speakingDone.includes(p.id)?'✓ denendi':'Kaydet'}</span></button>`).join('')}</div>`,()=>{byId('backSpeaking').onclick=renderSpeakingMenu;document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>renderSpeakingTask(type,list.find(x=>x.id===b.dataset.speak)));});
-  }
-
-  const recorderLabels={unavailable:'Bu tarayıcı ses kaydını desteklemiyor.',denied:'Mikrofon izni verilmedi.',recording:'● Kayıt devam ediyor…',done:'Kayıt hazır. Dinleyip öz değerlendirme yap.',empty:'Kayıt boş.'};
-  function recorderHtml(id){return `<div class="recorder"><button class="primary-btn" id="startRec${id}">● Kaydı başlat</button><button class="soft-btn" id="stopRec${id}" disabled>■ Durdur</button></div><div class="record-status" id="recStatus${id}">Hazır</div><div class="playback" id="playback${id}"></div>`;}
-
-  function renderSpeakingTask(type,p) {
-    const points=p.points||[];
-    setView(`<button class="tiny-btn" id="backSpeakPrompts">← Görevler</button><section class="card" style="margin-top:12px"><div class="eyebrow">${type==='presentation'?'SUNUM · ≈5 DK':'TARTIŞMA · ≈5 DK'}</div><h2>${esc(p.title)}</h2><p>${esc(p.intro||p.input||'')}</p><ul class="task-points">${points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${p.questions?.length?`<div class="callout"><strong>Olası takip soruları:</strong><ul>${p.questions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}</section><section class="card speaking-card"><div class="theme">Almanca konuş ve kaydet</div><div class="cue">🎙️</div>${recorderHtml('Practice')}</section><section class="card"><h3>Öz kontrol</h3><div class="checklist">${['Tüm içerik noktalarını yerine getirdim.','Argümanları örnek/gerekçeyle destekledim.','Bağlantıları ve geçişleri açık tuttum.','Kelime dağarcığını tekrar etmeden esnek kullandım.','Cümle yapılarında çeşitlilik kullandım.','Duraksamalar iletişimi bozmadı.'].map((x,i)=>`<label class="check-item"><input type="checkbox" id="spcheck${i}"><span>${esc(x)}</span></label>`).join('')}</div><button class="secondary-btn" id="markSpeak">Bu görevi denendi olarak kaydet</button></section>`,()=>{
-      byId('backSpeakPrompts').onclick=()=>renderSpeakingPrompts(type);
-      window.A1Learning.wireRecorder('Practice',()=>{},recorderLabels);
-      byId('markSpeak').onclick=()=>{if(!state.speakingDone.includes(p.id))state.speakingDone.push(p.id);save();byId('markSpeak').textContent='✓ Kaydedildi';byId('markSpeak').disabled=true;};
-    });
-  }
-
-  function renderExam() {
-    setView(`
-      <section class="card"><div class="eyebrow">SINAV MERKEZİ</div><h2>Hedef sınav: Deutsch-Test für den Beruf C1</h2><p class="muted"><strong>Deutsch-Test für den Beruf C1</strong>, işyerindeki genel mesleki Almanca kullanımını ölçer. Ana simülasyon; DTB C1’in okuma, dinleme, entegre yazma/Mediation ve hazırlıksız konuşma görevlerine göre yapılandırılmıştır. Goethe C1 bölümü genel C1 becerileri için ek çalışma sunar.</p></section>
-      <section class="exam-provider-card"><div><span class="provider-badge alt">DTB C1</span><h2>Deutsch-Test für den Beruf C1</h2><p>Yazılı sınav 135 dk · sözlü sınav ≈16–17 dk · hazırlık yok · Lesen/Hören/Schreiben/Sprechen ayrı ayrı 60 puan. Entegre Lesen+Schreiben ve Hören+Schreiben görevleri vardır.</p></div><button class="primary-btn" id="dtbOpen">DTB C1 sınav antrenmanı</button></section>
-      <section class="exam-provider-card secondary-provider"><div><span class="provider-badge">GOETHE · EK</span><h2>Goethe-Zertifikat C1</h2><p>Genel C1 okuma, dinleme, yazma ve konuşma için ek antrenman. DTB C1'in yerine geçmez ve kurs ilerlemesindeki sınav puanına dahil edilmez.</p></div><button class="soft-btn" id="goetheOpen">Goethe ek antrenmanı</button></section>
-      ${sourceNote()}
-    `,()=>{byId('dtbOpen').onclick=renderDtbHub;byId('goetheOpen').onclick=renderGoetheHub;});
-  }
-
-  function renderGoetheHub() {
-    setView(`<button class="tiny-btn" id="backExam">← Sınav</button><section class="card" style="margin-top:12px"><div class="provider-badge">GOETHE</div><h2>Goethe-Zertifikat C1</h2><div class="exam-structure">${examLine('Okuma','4 bölüm · 30 soru','65 dk',state.goetheBest.reading)}${examLine('Dinleme','4 bölüm · 30 soru','≈40 dk',state.goetheBest.listening)}${examLine('Yazma','2 metin · ≈230 + ≈120 kelime','75 dk',state.goetheBest.writing)}${examLine('Konuşma','Sunum + sorular + tartışma','≈20 dk',state.goetheBest.speaking)}</div><div class="notice">Okuma ve Dinleme için 30 sorudan en az 18 doğru gerekir. Yazma ve Konuşma için 100 üzerinden en az 60 puan gerekir.</div></section><div class="grid"><button class="practice-card" data-goethe="reading"><strong>Okuma simülasyonu</strong><small>30 soru · 65 dakika</small></button><button class="practice-card" data-goethe="listening"><strong>Dinleme simülasyonu</strong><small>30 soru · oynatma kısıtları</small></button><button class="practice-card" data-goethe="writing"><strong>Yazma simülasyonu</strong><small>2 metin · resmî rubrik</small></button><button class="practice-card" data-goethe="speaking"><strong>Konuşma simülasyonu</strong><small>sunum + tartışma + resmî rubrik</small></button></div>`,()=>{byId('backExam').onclick=renderExam;document.querySelectorAll('[data-goethe]').forEach(b=>b.onclick=()=>({reading:renderGoetheReading,listening:renderGoetheListening,writing:renderGoetheWriting,speaking:renderGoetheSpeaking}[b.dataset.goethe])());});
-  }
-
-  function examLine(name,detail,time,best){return `<div class="exam-line"><strong>${esc(name)}</strong><small>${esc(detail)}</small><span>${esc(time)}${best?` · ${best}%`:''}</span></div>`;}
-
-  function timerHtml(minutes){return `<div class="timer-box"><span>Kalan süre</span><strong class="timer" id="moduleTimer">${minutes}:00</strong></div>`;}
-  function startCountdown(minutes,onExpire){
-    let remaining=minutes*60; const el=byId('moduleTimer');
-    const draw=()=>{const m=Math.floor(remaining/60),s=remaining%60; if(el)el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;};
-    draw(); activeTimer=setInterval(()=>{remaining--;draw();if(remaining<=0){clearInterval(activeTimer);activeTimer=null;if(onExpire)onExpire();}},1000);
-  }
-
-  function renderGoetheReading() {
-    const R=D.goetheMock.reading;
-    setView(`<button class="tiny-btn" id="backGoethe">← Goethe</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">GOETHE C1 · OKUMA</div><h2>30 soru</h2></div>${timerHtml(65)}</div><p class="muted">Bölüm 1: 8 · Bölüm 2: 7 · Bölüm 3: 8 · Bölüm 4: 7. Her sorunun tek doğru cevabı vardır.</p></section>${['part1','part2','part3','part4'].map((k,i)=>`<section class="card"><h3>${esc(R[k].title)}</h3>${readingPartHtml(R[k],k,`gread-${k}`)}</section>`).join('')}<section class="card"><button class="primary-btn" id="gradeGoetheRead">Modülü bitir ve puanla</button><div id="goetheReadResult"></div></section>`,()=>{
-      byId('backGoethe').onclick=renderGoetheHub; startCountdown(65,()=>byId('gradeGoetheRead')?.click());
-      byId('gradeGoetheRead').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;for(const k of ['part1','part2','part3','part4']){const r=gradeReadingPart(R[k],k,`gread-${k}`);score+=r.score;total+=r.total;}const p=pct(score,total);state.goetheBest.reading=Math.max(Number(state.goetheBest.reading||0),p);state.examAttempts.goetheReading=(state.examAttempts.goetheReading||0)+1;save();byId('goetheReadResult').innerHTML=`<div class="score">${score}/30</div><div class="feedback ${score>=18?'good':'bad'}"><strong>${score>=18?'Geçme eşiği karşılandı':'Henüz geçme eşiğinin altında'}</strong><br>Resmî eşik: 18/30 (%60). Bu deneme: ${p}%.</div>`;byId('gradeGoetheRead').disabled=true;};
-    });
-  }
-
-  function goetheListeningSection(data,k,group) {
-    return `<section class="card"><h3>${esc(data.title)}</h3><p class="muted">${data.plays}× dinlenir.</p>${listeningPartHtml(data,k,group)}</section>`;
-  }
-
-  function renderGoetheListening() {
-    const L=D.goetheMock.listening;
-    setView(`<button class="tiny-btn" id="backGoethe">← Goethe</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">GOETHE C1 · DİNLEME</div><h2>30 soru</h2></div>${timerHtml(40)}</div><div class="notice warning">Gerçek sınavda doğal kayıtlar ve farklı konuşmacılar duyarsın. Bu uygulama ücretsiz tarayıcı TTS'siyle yalnızca görev formatı, not alma ve dikkat yönetimini simüle eder.</div></section>${goetheListeningSection(L.part1,'part1','glisten-part1')}${goetheListeningSection(L.part2,'part2','glisten-part2')}${goetheListeningSection(L.part3,'part3','glisten-part3')}${goetheListeningSection(L.part4,'part4','glisten-part4')}<section class="card"><button class="primary-btn" id="gradeGoetheListen">Modülü bitir ve puanla</button><div id="goetheListenResult"></div></section>`,()=>{
-      byId('backGoethe').onclick=renderGoetheHub;startCountdown(40,()=>byId('gradeGoetheListen')?.click());
-      for(const k of ['part1','part2','part4'])wireLimitedPlay(`glisten-${k}-play`,L[k].script,L[k].plays);
-      L.part3.segments.forEach((s,i)=>wireLimitedPlay(`glisten-part3-play-${i}`,s.script,1));
-      byId('gradeGoetheListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;for(const k of ['part1','part2','part3','part4']){const qs=flattenedListeningQuestions(L[k],k);const r=gradeMC(`glisten-${k}`,qs);score+=r.score;total+=r.total;}const p=pct(score,total);state.goetheBest.listening=Math.max(Number(state.goetheBest.listening||0),p);state.examAttempts.goetheListening=(state.examAttempts.goetheListening||0)+1;save();byId('goetheListenResult').innerHTML=`<div class="score">${score}/30</div><div class="feedback ${score>=18?'good':'bad'}"><strong>${score>=18?'Geçme eşiği karşılandı':'Henüz geçme eşiğinin altında'}</strong><br>Resmî eşik: 18/30 (%60). Bu deneme: ${p}%.</div>`;byId('gradeGoetheListen').disabled=true;};
-    });
-  }
-
-  function writingTaskExamHtml(p,id) {
-    return `<section class="card"><h3>${esc(p.title)}</h3><p>${esc(p.prompt)}</p><ul class="task-points">${p.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="pill">yaklaşık ${p.target} kelime</div><textarea class="text-area writing-area" id="${id}" placeholder="Buraya Almanca yaz …"></textarea><div class="word-count"><span id="${id}Count">0</span> kelime</div></section>`;
-  }
-
-  function renderGoetheWriting() {
-    const W=D.goetheMock.writing;
-    setView(`<button class="tiny-btn" id="backGoethe">← Goethe</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">GOETHE C1 · YAZMA</div><h2>2 metin</h2></div>${timerHtml(75)}</div><p class="muted">Bölüm 1 ≈230 kelime, Bölüm 2 ≈120 kelime. Toplam 100 puan; geçme eşiği 60.</p></section>${writingTaskExamHtml(W.forum,'gw1')}${writingTaskExamHtml(W.email,'gw2')}<section class="card"><button class="primary-btn" id="finishGoetheWriting">Yazmayı bitir · rubriğe geç</button><div id="goetheWritingRubric"></div></section>`,()=>{
-      byId('backGoethe').onclick=renderGoetheHub;startCountdown(75,()=>byId('finishGoetheWriting')?.click());
-      ['gw1','gw2'].forEach(id=>byId(id).oninput=()=>byId(id+'Count').textContent=window.A1Learning.countWords(byId(id).value));
-      byId('finishGoetheWriting').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}const n1=window.A1Learning.countWords(byId('gw1').value),n2=window.A1Learning.countWords(byId('gw2').value);byId('goetheWritingRubric').innerHTML=`<hr class="soft"><h3>Bölüm 1 değerlendirme</h3>${n1<115?'<div class="notice warning">Bölüm 1 hedefin %50’sinden kısa; görev yerine getirme kriteri E olabilir.</div>':''}${writingRubricHtml('gwr1','forum')}<h3 style="margin-top:18px">Bölüm 2 değerlendirme</h3>${n2<60?'<div class="notice warning">Bölüm 2 hedefin %50’sinden kısa; görev yerine getirme kriteri E olabilir.</div>':''}${writingRubricHtml('gwr2','email')}<button class="primary-btn" id="scoreGoetheWriting">100 üzerinden öz-puanı hesapla</button><div id="gwriteScore"></div>`;byId('scoreGoetheWriting').onclick=()=>{const a=readRubric('gwr1',[14,14,16,16]),b=readRubric('gwr2',[10,10,10,10]);if(!a||!b){byId('gwriteScore').innerHTML='<div class="feedback near">Tüm kriterlerde A–E seç.</div>';return;}const pts=a.points+b.points,p=Math.round(pts);state.goetheBest.writing=Math.max(Number(state.goetheBest.writing||0),p);state.examAttempts.goetheWriting=(state.examAttempts.goetheWriting||0)+1;save();byId('gwriteScore').innerHTML=`<div class="score">${formatPoint(pts)}/100</div><div class="feedback ${pts>=60?'good':'bad'}">${pts>=60?'Öz-değerlendirmede geçme eşiği karşılandı.':'Öz-değerlendirmede 60 puanın altında.'}</div>`;};};
-    });
-  }
-
-  function speakingRubricHtml(prefix) {
-    const rows=[['Bölüm 1 · Görev yerine getirme',10],['Bölüm 1 · Bağlaşıklık',10],['Bölüm 1 · Kelime dağarcığı',10],['Bölüm 1 · Yapılar',10],['Bölüm 1 · Sorular/yanıtlar',12],['Bölüm 2 · Görev yerine getirme',8],['Bölüm 2 · Etkileşim',4],['Bölüm 2 · Kelime dağarcığı',10],['Bölüm 2 · Yapılar',10],['Bölüm 1+2 · Telaffuz',16]];
-    return `<div class="rubric-grid">${rows.map((r,i)=>rubricRow(`${prefix}-${i}`,`${r[0]} · ${r[1]} P`)).join('')}</div>`;
-  }
-  function readSpeakingRubric(prefix) {
-    const weights=[10,10,10,10,12,8,4,10,10,16], grades=weights.map((_,i)=>byId(`${prefix}-${i}`).value);
-    if(grades.some(x=>!x))return null;
-    // Official Goethe rule: if Aufgabenerfüllung is E, that task receives 0 points overall.
-    // The shared pronunciation score applies to both tasks and is therefore kept separate.
-    let part1=grades.slice(0,5).reduce((sum,g,i)=>sum+weights[i]*gradeScale[g],0);
-    let part2=grades.slice(5,9).reduce((sum,g,i)=>sum+weights[i+5]*gradeScale[g],0);
-    if(grades[0]==='E') part1=0;
-    if(grades[5]==='E') part2=0;
-    const pronunciation=weights[9]*gradeScale[grades[9]];
-    return {grades,points:part1+part2+pronunciation,max:100};
-  }
-
-  function renderGoetheSpeaking() {
-    const S=D.goetheMock.speaking;
-    setView(`<button class="tiny-btn" id="backGoethe">← Goethe</button><section class="card"><div class="eyebrow">GOETHE C1 · KONUŞMA</div><h2>Çift sınav simülasyonu</h2><p class="muted">Gerçek sınavda partnerle etkileşim değerlendirilir. Bu tek kullanıcılı simülasyon sunum, soru-cevap ve tartışma yapısını çalıştırır; etkileşim kriterini gerçekçi sınamak için mümkün olduğunda bir çalışma partneriyle tekrar et.</p></section><section class="card"><h3>Bölüm 1 · Sunum</h3><p>${esc(S.presentation.intro)}</p><ul class="task-points">${S.presentation.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="callout"><strong>Sunum sonrası takip soruları:</strong><ul>${S.presentation.questions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>${recorderHtml('GoethePresent')}</section><section class="card"><h3>Bölüm 2 · Tartışma</h3><p>${esc(S.discussion.input)}</p><ul class="task-points">${S.discussion.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${recorderHtml('GoetheDiscuss')}</section><section class="card"><h3>Resmî kriterlerle öz-değerlendirme</h3>${speakingRubricHtml('gsr')}<p class="muted">A–E ölçeği; görev yerine getirme, sunumun bağlaşıklığı/akıcılığı, soru-cevap, tartışma etkileşimi, kelime dağarcığı, yapılar ve telaffuzu kapsar.</p><button class="primary-btn" id="scoreGoetheSpeaking">Puanı hesapla</button><div id="gspeakScore"></div></section>`,()=>{
-      byId('backGoethe').onclick=renderGoetheHub;window.A1Learning.wireRecorder('GoethePresent',()=>{},recorderLabels);window.A1Learning.wireRecorder('GoetheDiscuss',()=>{},recorderLabels);
-      byId('scoreGoetheSpeaking').onclick=()=>{const r=readSpeakingRubric('gsr');if(!r){byId('gspeakScore').innerHTML='<div class="feedback near">Tüm kriterlerde A–E seç.</div>';return;}const p=Math.round(r.points);state.goetheBest.speaking=Math.max(Number(state.goetheBest.speaking||0),p);state.examAttempts.goetheSpeaking=(state.examAttempts.goetheSpeaking||0)+1;save();byId('gspeakScore').innerHTML=`<div class="score">${formatPoint(r.points)}/100</div><div class="feedback ${r.points>=60?'good':'bad'}">${r.points>=60?'Öz-değerlendirmede geçme eşiği karşılandı.':'Öz-değerlendirmede 60 puanın altında.'}</div>`;};
-    });
-  }
-
-  function dtbGradeMap(grade, points) {
-    const maps = {
-      7:{A:7,B:5,C:3,D:0}, 14:{A:14,B:10.5,C:5.5,D:0}, 9:{A:9,B:7,C:3.5,D:0},
-      5:{A:5,B:3.5,C:2,D:0}, 2:{A:2,B:1.5,C:1,D:0}, 8:{A:8,B:6,C:3,D:0}, 10:{A:10,B:7.5,C:4,D:0}
-    };
-    return Number((maps[points]||{})[grade]||0);
-  }
-
-  function dtbGradeSelect(id,label,selectedGrade='') {
-    return `<label class="rubric-row"><span>${esc(label)}</span><select class="select-input" id="${id}"><option value="">—</option>${['A','B','C','D'].map(g=>`<option value="${g}" ${selected(g===selectedGrade)}>${g}</option>`).join('')}</select></label>`;
-  }
-
-  function updateDtbBest(skill, points) {
-    ensureDtbState();
-    if (points===null || points===undefined || Number.isNaN(Number(points))) return;
-    const p=Math.round(Number(points)/60*100);
-    state.dtbScores[skill]=Math.max(Number(state.dtbScores[skill]??0),Number(points));
-    state.dtbBest[skill]=Math.max(Number(state.dtbBest[skill]||0),p);
-  }
-
-  function dtbResultSummary() {
-    ensureDtbState();
-    const labels={reading:'Okuma',listening:'Dinleme',writing:'Yazma',speaking:'Konuşma'};
-    const vals=Object.fromEntries(Object.keys(labels).map(k=>[k,state.dtbScores[k]]));
-    const complete=Object.values(vals).every(v=>v!==null && v!==undefined);
-    const rows=Object.entries(labels).map(([k,l])=>`<div class="exam-line"><strong>${l}</strong><small>60 puan</small><span>${vals[k]===null||vals[k]===undefined?'—':formatPoint(vals[k])+' / 60'}</span></div>`).join('');
-    if(!complete) return `${rows}<div class="notice" style="margin-top:12px">Genel geçme hesabı için dört becerinin de puanlanması gerekir.</div>`;
-    const total=Object.values(vals).reduce((a,b)=>a+Number(b),0);
-    const strong=Object.values(vals).filter(v=>Number(v)>=36).length;
-    const min=Math.min(...Object.values(vals).map(Number));
-    const pass=total>=144 && strong>=3 && min>=24;
-    return `${rows}<div class="score" style="margin-top:12px">${formatPoint(total)} / 240</div><div class="feedback ${pass?'good':'bad'}"><strong>${pass?'Geçme koşulları karşılanıyor':'Geçme koşulları henüz karşılanmıyor'}</strong><br>Gerekli: toplam ≥144; en az 3 beceri ≥36/60; telafi edilen tek beceri ≥24/60.</div>`;
-  }
-
-  function renderDtbHub() {
-    ensureDtbState();
-    setView(`<button class="tiny-btn" id="backExam">← Sınav</button><section class="card" style="margin-top:12px"><div class="provider-badge alt">DTB C1</div><h2>Deutsch-Test für den Beruf C1</h2><p class="muted">İşyeri odaklı genel mesleki Almanca. Görevler okuma/dinleme ile yazmayı yer yer birleştirir ve Mediation gerektirir.</p><div class="exam-structure">${examLine('Lesen','18 item + Lesen/Schreiben içindeki 2 item','65 dk',state.dtbBest.reading)}${examLine('Hören','19 item + Hören/Schreiben içindeki 1 item','≈25 dk',state.dtbBest.listening)}${examLine('Schreiben','E-posta + telefon notu + Sprachbausteine + Stellungnahme','entegre',state.dtbBest.writing)}${examLine('Sprechen','1A/1B/1C + işyeri sohbeti + sorun çözme','≈16–17 dk',state.dtbBest.speaking)}</div><div class="notice warning">Sözlü sınav için hazırlık süresi yoktur. Dinleme kayıtları resmî formatta bir kez dinlenir. Tarayıcı TTS'si yalnızca ücretsiz görev antrenmanıdır.</div></section><div class="grid"><button class="practice-card" data-dtb="reading"><strong>Lesen + Lesen/Schreiben</strong><small>65 dk · 20 okuma itemi + müşteri e-postası</small></button><button class="practice-card" data-dtb="listening"><strong>Hören + Hören/Schreiben</strong><small>≈25 dk · 20 dinleme itemi + telefon notu</small></button><button class="practice-card" data-dtb="writing"><strong>Sprachbausteine + Schreiben</strong><small>45 dk · 12 Sprachbausteine + Stellungnahme + yazma rubriği</small></button><button class="practice-card" data-dtb="speaking"><strong>Sprechen</strong><small>hazırlıksız · 1A/1B/1C + Teil 2 + Teil 3</small></button></div><section class="card"><h3>DTB C1 puan görünümü</h3>${dtbResultSummary()}</section>`,()=>{byId('backExam').onclick=renderExam;document.querySelectorAll('[data-dtb]').forEach(b=>b.onclick=()=>({reading:renderDtbReading,listening:renderDtbListening,writing:renderDtbWriting,speaking:renderDtbSpeaking}[b.dataset.dtb])());});
-  }
-
-  function matchingSelect(id,options,allowX=false) {
-    return `<select class="select-input" id="${id}"><option value="">— seç —</option>${options.map((x,i)=>`<option value="${i}">${String.fromCharCode(65+i)} · ${esc(x.title||x.replace(/^[A-Z]\s*/,'').slice(0,90))}</option>`).join('')}${allowX?'<option value="-1">X · uygun cevap yok</option>':''}</select>`;
-  }
-
-  function renderDtbReading() {
-    ensureDtbState(); const R=D.dtb.reading;
-    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">DTB C1 · LESEN + LESEN/SCHREIBEN</div><h2>65 dakika</h2></div>${timerHtml(65)}</div><p class="muted">Lesen 45 dk + Lesen und Schreiben 20 dk. Okuma puanı: toplam 20 item × 3 = 60.</p></section>
-    <section class="card"><h3>Lesen Teil 1 · 5 eşleştirme</h3><div class="candidate-list">${R.part1.articles.map(a=>`<div><strong>${esc(a.title)}</strong><br>${esc(a.text)}</div>`).join('')}</div>${R.part1.people.map((p,i)=>`<label class="field"><span>${i+1}. ${esc(p)}</span>${matchingSelect('dr1-'+i,R.part1.articles)}</label>`).join('')}</section>
-    <section class="card"><h3>Lesen Teil 2 · Talimatlar</h3>${R.part2.texts.map(t=>`<div class="reading-text">${esc(t)}</div>`).join('')}${R.part2.items.map((q,i)=>mcHtml(q,'dr2',i)).join('')}</section>
-    <section class="card"><h3>Lesen Teil 3 · Çalışma koşulları</h3><div class="candidate-list">${R.part3.tips.map((t,i)=>`<div><strong>${String.fromCharCode(65+i)}</strong> ${esc(t)}</div>`).join('')}</div>${R.part3.questions.map((q,i)=>`<label class="field"><span>${10+i}. ${esc(q)}</span>${matchingSelect('dr3-'+i,R.part3.tips.map((t,j)=>({title:String.fromCharCode(65+j),text:t})),true)}</label>`).join('')}</section>
-    <section class="card"><h3>Lesen Teil 4 · Toplantı tutanağı</h3><div class="reading-text long-text">${esc(R.part4.text)}</div>${R.part4.items.map((q,i)=>mcHtml(q,'dr4',i)).join('')}</section>
-    <section class="card"><h3>Lesen und Schreiben · 20 dakika içinde</h3><div class="reading-text long-text">${esc(R.readWrite.context)}</div>${R.readWrite.items.map((q,i)=>mcHtml(q,'drw',i)).join('')}<div class="callout"><strong>Yazma görevi:</strong> ${esc(R.readWrite.task)}</div><textarea class="text-area writing-area" id="dtbEmail" placeholder="Müşteriye Almanca e-posta yaz …">${esc(state.dtbComponents.emailDraft||'')}</textarea><div class="word-count"><span id="dtbEmailCount">${window.A1Learning.countWords(state.dtbComponents.emailDraft||'')}</span> kelime</div><h4>Yalnızca görev yerine getirme (resmî Kriter I)</h4>${dtbGradeSelect('dtbEmailGrade','E-posta: iletişimsel görev yerine getirme',state.dtbComponents.emailGrade||'')}</section>
-    <section class="card"><button class="primary-btn" id="gradeDtbRead">Bloğu bitir ve okuma puanını hesapla</button><div id="dtbReadResult"></div></section>`,()=>{
-      byId('backDtb').onclick=renderDtbHub; startCountdown(65,()=>byId('gradeDtbRead')?.click());
-      byId('dtbEmail').oninput=()=>{state.dtbComponents.emailDraft=byId('dtbEmail').value.slice(0,16000);byId('dtbEmailCount').textContent=window.A1Learning.countWords(byId('dtbEmail').value);save();};
-      byId('dtbEmailGrade').onchange=()=>{state.dtbComponents.emailGrade=byId('dtbEmailGrade').value;save();};
-      byId('gradeDtbRead').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;
-        R.part1.answers.forEach((a,i)=>{const s=byId('dr1-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
-        const a2=gradeMC('dr2',R.part2.items);score+=a2.score;total+=a2.total;
-        R.part3.answers.forEach((a,i)=>{const s=byId('dr3-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
-        const a4=gradeMC('dr4',R.part4.items);score+=a4.score;total+=a4.total; const arw=gradeMC('drw',R.readWrite.items);score+=arw.score;total+=arw.total;
-        const pts=score*3; updateDtbBest('reading',pts); state.dtbComponents.emailDraft=byId('dtbEmail').value.slice(0,16000); state.dtbComponents.emailGrade=byId('dtbEmailGrade').value; state.examAttempts.dtbReading=(state.examAttempts.dtbReading||0)+1; save();
-        byId('dtbReadResult').innerHTML=`<div class="score">${pts} / 60</div><div class="feedback ${pts>=36?'good':'near'}"><strong>${score}/${total} doğru</strong> · beceri eşiği 36/60. E-posta yazma puanı ayrı olarak Yazma becerisine gider.</div>`;byId('gradeDtbRead').disabled=true;};
-    });
-  }
-
-  function renderDtbListening() {
-    ensureDtbState(); const L=D.dtb.listening;
-    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">DTB C1 · HÖREN + HÖREN/SCHREIBEN</div><h2>≈25 dakika</h2></div>${timerHtml(25)}</div><p class="muted">Resmî formatta tüm konuşmalar/mesajlar bir kez dinlenir. Hören puanı: 20 item × 3 = 60.</p><div class="notice warning">Tarayıcı TTS'si doğal sınav kayıtlarının yerini tutmaz; oynatma limiti görev akışını çalıştırmak içindir.</div></section>
-    <section class="card"><h3>Hören Teil 1 · 3 konuşma / 6 item</h3>${L.part1.conversations.map((c,i)=>`<div class="telc-audio-item"><div class="between"><strong>Gespräch ${i+1}</strong><button class="speak-btn" id="dh1play${i}">▶ 1×</button></div>${c.items.map((q,j)=>mcHtml(q,'dh1-'+i,j)).join('')}</div>`).join('')}</section>
-    <section class="card"><h3>Hören Teil 2 · 4 argüman eşleştirme</h3><div class="candidate-list">${L.part2.options.map(x=>`<div>${esc(x)}</div>`).join('')}</div>${L.part2.scripts.map((s,i)=>`<div class="telc-audio-item"><div class="between"><strong>Gespräch ${i+1}</strong><button class="speak-btn" id="dh2play${i}">▶ 1×</button></div>${matchingSelect('dh2-'+i,L.part2.options.map((x,j)=>({title:String.fromCharCode(65+j),text:x})))}</div>`).join('')}</section>
-    <section class="card"><h3>Hören Teil 3 · Sunum</h3>${audioPanel('dh3play','Betriebspräsentation',1)}${L.part3.items.map((q,i)=>mcHtml(q,'dh3',i)).join('')}</section>
-    <section class="card"><h3>Hören Teil 4 · Telefon mesajları</h3>${L.part4.messages.map((m,i)=>`<div class="telc-audio-item"><div class="between"><strong>Mitteilung ${i+1}</strong><button class="speak-btn" id="dh4play${i}">▶ 1×</button></div>${mcHtml({q:m.q,o:m.o,a:m.a},'dh4',i)}</div>`).join('')}</section>
-    <section class="card"><h3>Hören und Schreiben · Telefonnotiz</h3>${audioPanel('dhwplay','Telefonische Mitteilung',1)}${mcHtml(L.hearWrite.reason,'dhw',0)}<div class="grid"><label class="field"><span>Ad / Name</span><input class="text-input" id="dhnName"></label><label class="field"><span>Telefon</span><input class="text-input" id="dhnPhone"></label></div><label class="field"><span>Weitere Informationen</span><textarea class="text-area" id="dhnInfo"></textarea></label><label class="field"><span>Zu erledigen</span><textarea class="text-area" id="dhnTodo"></textarea></label></section>
-    <section class="card"><button class="primary-btn" id="gradeDtbListen">Bloğu bitir ve puanla</button><div id="dtbListenResult"></div></section>`,()=>{
-      byId('backDtb').onclick=renderDtbHub; startCountdown(25,()=>byId('gradeDtbListen')?.click());
-      L.part1.conversations.forEach((c,i)=>wireLimitedPlay('dh1play'+i,c.script,1));L.part2.scripts.forEach((s,i)=>wireLimitedPlay('dh2play'+i,s,1));wireLimitedPlay('dh3play',L.part3.script,1);L.part4.messages.forEach((m,i)=>wireLimitedPlay('dh4play'+i,m.script,1));wireLimitedPlay('dhwplay',L.hearWrite.script,1);
-      byId('gradeDtbListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;
-        L.part1.conversations.forEach((c,i)=>{const r=gradeMC('dh1-'+i,c.items);score+=r.score;total+=r.total;});
-        L.part2.answers.forEach((a,i)=>{const s=byId('dh2-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
-        const r3=gradeMC('dh3',L.part3.items);score+=r3.score;total+=r3.total; const r4=gradeMC('dh4',L.part4.messages);score+=r4.score;total+=r4.total; const rw=gradeMC('dhw',[L.hearWrite.reason]);score+=rw.score;total+=rw.total;
-        const pts=score*3; updateDtbBest('listening',pts);
-        const E=L.hearWrite.expected; let note=0; const n=normalizeText(byId('dhnName').value),ph=normalizeText(byId('dhnPhone').value),info=normalizeText(byId('dhnInfo').value),todo=normalizeText(byId('dhnTodo').value);
-        if(n.includes(normalizeText(E.name))) note+=0.5; if(ph.replace(/\s/g,'').includes(normalizeText(E.phone).replace(/\s/g,''))) note+=0.5; E.info.forEach(k=>{if(info.includes(normalizeText(k)))note+=1;}); const todoWords=['liefertermin','prüf','rückmeldung']; if(todoWords.filter(k=>todo.includes(normalizeText(k))).length>=2)note+=1; note=Math.min(6,note); state.dtbComponents.phoneNotePoints=note; state.examAttempts.dtbListening=(state.examAttempts.dtbListening||0)+1; save();
-        byId('dtbListenResult').innerHTML=`<div class="score">${pts} / 60</div><div class="feedback ${pts>=36?'good':'near'}"><strong>${score}/${total} dinleme itemi doğru</strong> · beceri eşiği 36/60.<br>Telefon notu yazma bileşeni: ${formatPoint(note)}/6.</div>`;byId('gradeDtbListen').disabled=true;};
-    });
-  }
-
-  function normalizeText(s){return String(s||'').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zäöüß0-9]+/g,' ').trim();}
-
-  function renderDtbWriting() {
-    ensureDtbState(); const W=D.dtb.languageWriting; const C=state.dtbComponents;
-    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">DTB C1 · SPRACHBAUSTEINE + SCHREIBEN</div><h2>45 dakika</h2></div>${timerHtml(45)}</div><p class="muted">12 Sprachbausteine = 6 yazma puanı. Stellungnahme + daha önceki müşteri e-postası ve telefon notuyla birlikte Yazma becerisi toplam 60 puandır.</p></section>
-    <section class="card"><h3>Sprachbausteine Teil 1 · 6 eşleştirme</h3><div class="reading-text">${esc(W.blocks1.text)}</div><div class="candidate-list">${W.blocks1.options.map((x,i)=>`<div><strong>${String.fromCharCode(65+i)}</strong> ${esc(x)}</div>`).join('')}</div>${W.blocks1.answers.map((_,i)=>`<label class="field"><span>Lücke ${46+i}</span>${matchingSelect('db1-'+i,W.blocks1.options.map((x,j)=>({title:String.fromCharCode(65+j),text:x})))}</label>`).join('')}</section>
-    <section class="card"><h3>Sprachbausteine Teil 2 · 6 MC</h3><div class="reading-text">${esc(W.blocks2.text)}</div>${W.blocks2.items.map((q,i)=>mcHtml(q,'db2',i,`Lücke ${52+i}`)).join('')}</section>
-    <section class="card"><h3>Schreiben · Stellungnahme</h3><p class="muted">İki konudan birini seç. Avantaj/dezavantajları tart, örnek ver, kendi görüşünü belirt ve bir sonuç çıkar.</p>${W.statementPrompts.map((p,i)=>`<label class="radio-option"><input type="radio" name="dtbStatementChoice" value="${i}"><span><strong>${esc(p.title)}</strong><br><small>${esc(p.prompt)}</small></span></label>`).join('')}<textarea class="text-area writing-area" id="dtbStatement">${esc(C.statementDraft||'')}</textarea><div class="word-count"><span id="dtbStatementCount">${window.A1Learning.countWords(C.statementDraft||'')}</span> kelime</div></section>
-    <section class="card"><h3>Resmî DTB yazma puan yapısına göre öz değerlendirme</h3><p class="muted">A = C1 gut erfüllt · B = C1 erfüllt · C = B2 erfüllt · D = unter B2. Kriterium II–IV iki uzun yazma performansının genel dil niteliğini değerlendirir.</p><div class="rubric-grid">${dtbGradeSelect('dwEmail','Lesen+Schreiben e-postası · Kriter I (7 P)',C.emailGrade||'')}${dtbGradeSelect('dwStatement','Stellungnahme · Kriter I (14 P)',C.statementGrades?.statement||'')}${dtbGradeSelect('dwComm','Kriter II · Kommunikative Gestaltung (9 P)',C.statementGrades?.comm||'')}${dtbGradeSelect('dwCorrect','Kriter III · Formale Richtigkeit (9 P)',C.statementGrades?.correct||'')}${dtbGradeSelect('dwRange','Kriter IV · Spektrum sprachlicher Mittel (9 P)',C.statementGrades?.range||'')}</div><div class="notice">Telefon notu: ${formatPoint(C.phoneNotePoints||0)}/6 · Sprachbausteine henüz bu denemede puanlanacak.</div><button class="primary-btn" id="gradeDtbWrite">Bloğu bitir ve Yazma puanını hesapla</button><div id="dtbWriteResult"></div></section>`,()=>{
-      byId('backDtb').onclick=renderDtbHub; startCountdown(45,()=>byId('gradeDtbWrite')?.click()); byId('dtbStatement').oninput=()=>{C.statementDraft=byId('dtbStatement').value.slice(0,20000);byId('dtbStatementCount').textContent=window.A1Learning.countWords(byId('dtbStatement').value);save();};
-      byId('gradeDtbWrite').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let b1=0;W.blocks1.answers.forEach((a,i)=>{const s=byId('db1-'+i);if(Number(s.value)===a)b1++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});const b2=gradeMC('db2',W.blocks2.items);const language=(b1+b2.score)*0.5;C.languagePoints=language; C.statementDraft=byId('dtbStatement').value.slice(0,20000); C.emailGrade=byId('dwEmail').value; const grades={statement:byId('dwStatement').value,comm:byId('dwComm').value,correct:byId('dwCorrect').value,range:byId('dwRange').value}; C.statementGrades=grades;
-        if(!C.emailGrade || Object.values(grades).some(x=>!x)){save();byId('dtbWriteResult').innerHTML=`<div class="feedback near">Sprachbausteine: ${formatPoint(language)}/6. Yazma toplam puanı için beş öz-değerlendirme alanının tamamında A–D seç.</div>`;return;}
-        const pts=dtbGradeMap(C.emailGrade,7)+dtbGradeMap(grades.statement,14)+dtbGradeMap(grades.comm,9)+dtbGradeMap(grades.correct,9)+dtbGradeMap(grades.range,9)+Number(C.phoneNotePoints||0)+language; updateDtbBest('writing',pts); state.examAttempts.dtbWriting=(state.examAttempts.dtbWriting||0)+1; save();
-        byId('dtbWriteResult').innerHTML=`<div class="score">${formatPoint(pts)} / 60</div><div class="feedback ${pts>=36?'good':'near'}">E-posta Kriter I + telefon notu + 12 Sprachbausteine + Stellungnahme Kriter I + genel Kriter II–IV birlikte hesaplandı.</div>`;};
-    });
-  }
-
-  function renderDtbSpeaking() {
-    ensureDtbState(); const S=D.dtb.speaking;
-    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card"><div class="eyebrow">DTB C1 · SPRECHEN</div><h2>≈16–17 dakika · hazırlık yok</h2><p class="muted">1A yaklaşık 2 dakikalık spontan anlatım; 1B sınav görevlisi soruları; 1C partnerin bir noktayı kendi sözleriyle açıklaması; Teil 2 işyeri small talk; Teil 3 ortak sorun çözme.</p></section>
-    <section class="card"><h3>Teil 1A · Über ein Thema sprechen</h3><p>İki tema rastgele seçilmiş gibi prova yapmak için aşağıdan bir konu seç:</p><select class="select-input" id="dsTopic">${S.topics.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join('')}</select><p class="muted">Yaklaşık 2 dakika konuş. Giriş → 2–3 nokta → örnek → kısa sonuç.</p>${recorderHtml('Dtb1A')}<div class="callout"><strong>Teil 1B · olası Prüferfragen</strong><ul>${S.examinerQuestions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></section>
-    <section class="card"><h3>Teil 1C · Erläuterung eines Aspekts</h3><p>Partnerin/partnerin söylediklerinden bir noktayı 20–40 saniyede kendi sözlerinle açıkla. Ana fikri koru, kelimeleri kopyalama.</p>${recorderHtml('Dtb1C')}</section>
-    <section class="card"><h3>Teil 2 · Mit Kolleginnen und Kollegen sprechen</h3><p class="muted">≈3 dakika doğal, informel işyeri sohbeti.</p><div class="candidate-list">${S.smallTalk.map(x=>`<div>${esc(x)}</div>`).join('')}</div>${recorderHtml('Dtb2')}</section>
-    <section class="card"><h3>Teil 3 · Lösungswege diskutieren</h3>${S.problems.map((p,i)=>`<label class="radio-option"><input type="radio" name="dtbProblem" value="${i}" ${i===0?'checked':''}><span><strong>${esc(p.title)}</strong><br><small>${esc(p.text)}</small></span></label>`).join('')}<p class="muted">Sofortmaßnahme + langfristige Verbesserung + “kim ne yapacak?” görev paylaşımı konuşulmalı.</p>${recorderHtml('Dtb3')}</section>
-    <section class="card"><h3>Resmî puan ağırlıklarıyla öz değerlendirme</h3><div class="rubric-grid">${dtbGradeSelect('ds1a','1A görev yerine getirme · 5 P')}${dtbGradeSelect('ds1b','1B Prüferfragen · 5 P')}${dtbGradeSelect('ds1c','1C açıklama/aktarım · 2 P')}${dtbGradeSelect('ds2','Teil 2 işyeri sohbeti · 8 P')}${dtbGradeSelect('ds3','Teil 3 sorun çözme · 10 P')}${dtbGradeSelect('dsPron','Kriter II · Aussprache/Intonation · 10 P')}${dtbGradeSelect('dsCorrect','Kriter III · Formale Richtigkeit · 10 P')}${dtbGradeSelect('dsRange','Kriter IV · Spektrum sprachlicher Mittel · 10 P')}</div><button class="primary-btn" id="gradeDtbSpeak">Sprechen puanını hesapla</button><div id="dtbSpeakResult"></div></section>`,()=>{
-      byId('backDtb').onclick=renderDtbHub;['Dtb1A','Dtb1C','Dtb2','Dtb3'].forEach(id=>window.A1Learning.wireRecorder(id,()=>{},recorderLabels));
-      byId('gradeDtbSpeak').onclick=()=>{const ids=['ds1a','ds1b','ds1c','ds2','ds3','dsPron','dsCorrect','dsRange'];const g=ids.map(id=>byId(id).value);if(g.some(x=>!x)){byId('dtbSpeakResult').innerHTML='<div class="feedback near">Sekiz değerlendirme alanının tamamında A–D seç.</div>';return;}const pts=dtbGradeMap(g[0],5)+dtbGradeMap(g[1],5)+dtbGradeMap(g[2],2)+dtbGradeMap(g[3],8)+dtbGradeMap(g[4],10)+dtbGradeMap(g[5],10)+dtbGradeMap(g[6],10)+dtbGradeMap(g[7],10);updateDtbBest('speaking',pts);state.examAttempts.dtbSpeaking=(state.examAttempts.dtbSpeaking||0)+1;save();byId('dtbSpeakResult').innerHTML=`<div class="score">${formatPoint(pts)} / 60</div><div class="feedback ${pts>=36?'good':'near'}">Beceri eşiği 36/60. Bu değer öz-değerlendirmedir; gerçek sınavda iki lisanslı değerlendirici puanlar.</div>`;};
-    });
-  }
-
-  if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {})); }
-
-  // Header audio/settings and navigation boot.
-  window.A1Voice?.mount?.({lang:'de-DE', uiLang:'tr'});
-  const reset=byId('resetBtn');
-  if(reset) reset.onclick=()=>{ if(confirm('Bu C1 kursundaki tüm yerel ilerlemeyi sıfırlamak istiyor musun?')){localStorage.removeItem(stateKey);state=JSON.parse(JSON.stringify(defaults));save();renderHome();} };
-  setRoute(state.lastRoute || 'home');
-})();
+updateAudioButton();setRoute('home');

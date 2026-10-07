@@ -336,6 +336,17 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Mon nom de famille est Dupont."
+        },
+        {
+          "q": "Wie buchstabierst du den Namen „Léa“?",
+          "o": [
+            "L – É – A",
+            "L – A – É",
+            "É – L – A"
+          ],
+          "a": 0,
+          "audio": "L – É – A",
+          "explanation": "Beim Buchstabieren nennst du die Buchstaben in ihrer Reihenfolge."
         }
       ],
       "canDo": [
@@ -1857,6 +1868,10 @@ window.FR_A1_DATA = {
         [
           "Le week-end, je fais du sport.",
           "Am Wochenende mache ich Sport."
+        ],
+        [
+          "Je suis en train de travailler.",
+          "Ich bin gerade am Arbeiten."
         ]
       ],
       "quiz": [
@@ -1953,22 +1968,23 @@ window.FR_A1_DATA = {
           "audio": "Je rentre à dix-huit heures."
         },
         {
-          "q": "Wie sagst du „Abends sehe ich fern“ auf Französisch?",
+          "q": "Wie sagst du „Ich bin gerade am Arbeiten“ auf Französisch?",
           "o": [
-            "Le soir, je regarde la télé.",
-            "Je prends le petit-déjeuner.",
-            "Le week-end, je fais du sport."
+            "Je vais travailler.",
+            "Je suis en train de travailler.",
+            "J’ai travaillé."
           ],
-          "a": 0,
-          "audio": "Le soir, je regarde la télé."
+          "a": 1,
+          "audio": "Je suis en train de travailler.",
+          "explanation": "être en train de + Infinitiv = gerade dabei sein, etwas zu tun."
         }
       ],
       "canDo": [
-        "Ich kann meinen Tagesablauf mit Uhrzeiten und einfachen Reihenfolgewörtern beschreiben."
+        "Ich kann meinen Tagesablauf beschreiben und sagen, was ich gerade tue."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "être en train de + Infinitiv beschreibt eine Handlung, die gerade im Moment läuft: Je suis en train de travailler."
       },
       "pronunciation": {
         "focus": "je me lève / je m’appelle",
@@ -1981,7 +1997,7 @@ window.FR_A1_DATA = {
         "Je prends le petit déjeuner, puis je vais au travail."
       ],
       "transfer": {
-        "speaking": "Erzähle deinen Morgen mit drei Tätigkeiten und zwei Uhrzeiten.",
+        "speaking": "Erzähle deinen Morgen mit drei Tätigkeiten und sage zusätzlich, was du gerade machst.",
         "writing": "Schreibe fünf kurze Sätze mit puis und et über deinen Alltag."
       },
       "cefrDomains": [
@@ -2193,10 +2209,6 @@ window.FR_A1_DATA = {
           "Es ist windig."
         ],
         [
-          "Demain, il fera vingt degrés.",
-          "Morgen werden es 20 Grad."
-        ],
-        [
           "Prenez une veste.",
           "Nehmen Sie eine Jacke mit."
         ],
@@ -2211,6 +2223,18 @@ window.FR_A1_DATA = {
         [
           "un pantalon noir, une veste noire",
           "eine schwarze Hose, eine schwarze Jacke"
+        ],
+        [
+          "Demain, il va faire vingt degrés.",
+          "Morgen wird es zwanzig Grad."
+        ],
+        [
+          "le printemps, l’été, l’automne, l’hiver",
+          "der Frühling, der Sommer, der Herbst, der Winter"
+        ],
+        [
+          "une petite veste bleue",
+          "eine kleine blaue Jacke"
         ]
       ],
       "quiz": [
@@ -2297,32 +2321,32 @@ window.FR_A1_DATA = {
           "audio": "Il fait froid."
         },
         {
-          "q": "Wie sagst du „Nehmen Sie eine Jacke mit“ auf Französisch?",
+          "q": "Wie sagst du „Morgen wird es zwanzig Grad“ mit futur proche?",
           "o": [
-            "Prenez une veste.",
-            "Il y a du vent.",
-            "Il fait froid."
+            "Demain, il va faire vingt degrés.",
+            "Demain, il fait hier vingt degrés.",
+            "Demain, il vient de faire vingt degrés."
           ],
           "a": 0,
-          "audio": "Prenez une veste."
+          "audio": "Demain, il va faire vingt degrés."
         },
         {
-          "q": "Wie sagst du „Ich brauche einen Regenschirm“ auf Französisch?",
+          "q": "Welche Reihe nennt nur Jahreszeiten?",
           "o": [
-            "Demain, il fera vingt degrés.",
-            "J’ai besoin d’un parapluie.",
-            "Il pleut."
+            "le printemps – l’été – l’automne – l’hiver",
+            "le matin – le midi – le soir – la nuit",
+            "lundi – mardi – mercredi – jeudi"
           ],
-          "a": 1,
-          "audio": "J’ai besoin d’un parapluie."
+          "a": 0,
+          "audio": "le printemps, l’été, l’automne, l’hiver"
         }
       ],
       "canDo": [
-        "Ich kann einfaches Wetter verstehen und ein Kleidungsstück mit Farbe und Größe erfragen."
+        "Ich kann einfaches Wetter, Jahreszeiten und Kleidung beschreiben und nach Farbe oder Größe fragen."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "Für einen nahen Plan oder eine Vorhersage auf A1: aller + Infinitiv, z. B. Demain, il va faire vingt degrés. Adjektive richten sich nach dem Nomen; einige stehen davor (une petite veste), Farben meist danach (une veste bleue)."
       },
       "pronunciation": {
         "focus": "beau / chaud / froid",
@@ -2742,6 +2766,22 @@ window.FR_A1_DATA = {
         [
           "Je vous rappelle demain.",
           "Ich rufe Sie morgen zurück."
+        ],
+        [
+          "On peut reporter le rendez-vous à demain ?",
+          "Können wir den Termin auf morgen verschieben?"
+        ],
+        [
+          "Bon anniversaire !",
+          "Alles Gute zum Geburtstag!"
+        ],
+        [
+          "Félicitations !",
+          "Herzlichen Glückwunsch!"
+        ],
+        [
+          "C’est très joli !",
+          "Das ist sehr schön!"
         ]
       ],
       "quiz": [
@@ -2818,14 +2858,14 @@ window.FR_A1_DATA = {
           "audio": "On se retrouve à dix-neuf heures ?"
         },
         {
-          "q": "Wie sagst du „Danke für deine Einladung“ auf Französisch?",
+          "q": "Wie fragst du, ob ihr den Termin auf morgen verschieben könnt?",
           "o": [
-            "À bientôt !",
-            "Tu veux venir samedi ?",
-            "Merci pour ton invitation."
+            "On peut reporter le rendez-vous à demain ?",
+            "Je voudrais annuler hier.",
+            "Le rendez-vous est une veste."
           ],
-          "a": 2,
-          "audio": "Merci pour ton invitation."
+          "a": 0,
+          "audio": "On peut reporter le rendez-vous à demain ?"
         },
         {
           "q": "Wie sagst du „Tut mir leid, ich kann nicht kommen“ auf Französisch?",
@@ -2838,18 +2878,18 @@ window.FR_A1_DATA = {
           "audio": "Je suis désolé, je ne peux pas venir."
         },
         {
-          "q": "Wie sagst du „Ich komme etwas später“ auf Französisch?",
+          "q": "Was sagst du zum Geburtstag?",
           "o": [
-            "À bientôt !",
-            "Je vais arriver un peu plus tard.",
-            "On se retrouve à dix-neuf heures ?"
+            "Bon anniversaire !",
+            "Bon appétit !",
+            "Bonne nuit !"
           ],
-          "a": 1,
-          "audio": "Je vais arriver un peu plus tard."
+          "a": 0,
+          "audio": "Bon anniversaire !"
         }
       ],
       "canDo": [
-        "Ich kann jemanden einladen, einen Vorschlag beantworten und einen Termin einfach absagen."
+        "Ich kann jemanden einladen, einen Termin vereinbaren oder verschieben, höflich absagen und einfache Glückwünsche oder Komplimente äußern."
       ],
       "grammar": {
         "title": "Sprachbaustein",
@@ -2863,10 +2903,10 @@ window.FR_A1_DATA = {
         "Tu veux venir dîner samedi ?",
         "Oui, avec plaisir. À quelle heure ?",
         "À dix-neuf heures.",
-        "D’accord, à samedi !"
+        "D’accord. Et si nécessaire, on peut reporter le rendez-vous à dimanche."
       ],
       "transfer": {
-        "speaking": "Lade jemanden ein. Nimm an oder sage höflich mit einem einfachen Grund ab.",
+        "speaking": "Lade jemanden ein, verschiebe bei Bedarf den Termin und formuliere einen Glückwunsch oder ein einfaches Kompliment.",
         "writing": "Schreibe Einladung oder Absage mit Tag, Zeit und Gruß."
       },
       "cefrDomains": [
@@ -3095,6 +3135,18 @@ window.FR_A1_DATA = {
         [
           "Merci, au revoir.",
           "Danke, auf Wiedersehen."
+        ],
+        [
+          "Pourriez-vous répéter, s’il vous plaît ?",
+          "Könnten Sie bitte wiederholen?"
+        ],
+        [
+          "J’aimerais des informations, s’il vous plaît.",
+          "Ich hätte gern Informationen, bitte."
+        ],
+        [
+          "On pourrait avoir l’addition, s’il vous plaît ?",
+          "Könnten wir bitte die Rechnung bekommen?"
         ]
       ],
       "quiz": [
@@ -3181,32 +3233,32 @@ window.FR_A1_DATA = {
           "audio": "Excusez-moi, je ne comprends pas."
         },
         {
-          "q": "Wie sagst du „Ich möchte …“ auf Französisch?",
+          "q": "Welche Form ist eine besonders höfliche Bitte?",
           "o": [
-            "Excusez-moi, je ne comprends pas.",
-            "Je voudrais…",
-            "Vous pouvez m’aider, s’il vous plaît ?"
+            "Pourriez-vous répéter, s’il vous plaît ?",
+            "Tu répètes maintenant.",
+            "Répète !"
           ],
-          "a": 1,
-          "audio": "Je voudrais…"
+          "a": 0,
+          "audio": "Pourriez-vous répéter, s’il vous plaît ?"
         },
         {
-          "q": "Wie sagst du „Ist/…? (Frageform)“ auf Französisch?",
+          "q": "Wie sagst du höflich „Ich hätte gern Informationen“?",
           "o": [
-            "Pouvez-vous parler plus lentement ?",
-            "Merci, au revoir.",
-            "Est-ce que… ?"
+            "J’aimerais des informations.",
+            "J’ai jamais informations.",
+            "Je suis des informations."
           ],
-          "a": 2,
-          "audio": "Est-ce que… ?"
+          "a": 0,
+          "audio": "J’aimerais des informations."
         }
       ],
       "canDo": [
-        "Ich kann höflich um Wiederholung bitten und ein einfaches Gespräch trotz Verständnisproblemen fortsetzen."
+        "Ich kann höflich um Hilfe, Wiederholung oder Informationen bitten und ein einfaches Gespräch trotz Verständnisproblemen fortsetzen."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "Für besonders höfliche Bitten begegnen dir auf A1 feste Conditionnel-Formen: je voudrais, j’aimerais, pourriez-vous und on pourrait."
       },
       "pronunciation": {
         "focus": "s’il vous plaît / pardon",
@@ -3220,7 +3272,7 @@ window.FR_A1_DATA = {
         "Oui, merci."
       ],
       "transfer": {
-        "speaking": "Bitte zweimal unterschiedlich um Hilfe: Wiederholung und langsameres Sprechen.",
+        "speaking": "Bitte um Wiederholung und langsameres Sprechen. Formuliere danach eine höfliche Bitte mit Pourriez-vous…? oder J’aimerais…",
         "writing": "Schreibe eine höfliche Bitte um Informationen zu einem Sprachkurs."
       },
       "cefrDomains": [
@@ -3269,6 +3321,14 @@ window.FR_A1_DATA = {
         [
           "Ce sont des amis.",
           "Das sind Freunde."
+        ],
+        [
+          "Voici mon passeport.",
+          "Hier ist mein Pass."
+        ],
+        [
+          "Voilà la gare.",
+          "Da ist der Bahnhof."
         ]
       ],
       "quiz": [
@@ -3365,22 +3425,22 @@ window.FR_A1_DATA = {
           "audio": "une baguette"
         },
         {
-          "q": "Wie sagst du „Das ist ein Hotel“?",
+          "q": "Wie sagst du „Hier ist mein Pass“?",
           "o": [
-            "Ce sont un hôtel.",
-            "Il a un hôtel.",
-            "C’est un hôtel."
+            "Voici mon passeport.",
+            "Ce sont mon passeport.",
+            "Voilà mes gare."
           ],
-          "a": 2,
-          "audio": "C’est un hôtel."
+          "a": 0,
+          "audio": "Voici mon passeport."
         }
       ],
       "canDo": [
-        "Ich kann vertraute Gegenstände mit passendem Artikel benennen und Singular und Plural unterscheiden."
+        "Ich kann vertraute Gegenstände mit passendem Artikel benennen, Singular und Plural unterscheiden und mit voici/voilà auf etwas zeigen."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "C’est / ce sont identifizieren etwas. Voici bedeutet „hier ist/sind“, voilà „da ist/sind“."
       },
       "pronunciation": {
         "focus": "les amis / les livres",
@@ -3442,6 +3502,14 @@ window.FR_A1_DATA = {
         [
           "Elle ne travaille pas aujourd’hui.",
           "Sie arbeitet heute nicht."
+        ],
+        [
+          "Je ne regarde jamais la télévision.",
+          "Ich sehe nie fern."
+        ],
+        [
+          "Il ne faut pas fumer ici.",
+          "Hier darf/soll man nicht rauchen."
         ]
       ],
       "quiz": [
@@ -3528,32 +3596,32 @@ window.FR_A1_DATA = {
           "audio": "Vous avez une voiture ?"
         },
         {
-          "q": "Ergänze: Ils ___ étudiants.",
+          "q": "Wie sagst du „Ich sehe nie fern“?",
           "o": [
-            "êtes",
-            "sommes",
-            "sont"
+            "Je ne regarde jamais la télévision.",
+            "Je regarde pas jamais la télévision.",
+            "Je n’ai jamais télévision."
           ],
-          "a": 2,
-          "audio": "Ils sont étudiants."
+          "a": 0,
+          "audio": "Je ne regarde jamais la télévision."
         },
         {
-          "q": "Welche Verneinung ist korrekt?",
+          "q": "Wie sagst du „Hier darf/soll man nicht rauchen“?",
           "o": [
-            "Elle pas travaille.",
-            "Elle ne travaille pas.",
-            "Elle travaille ne pas."
+            "Il ne faut pas fumer ici.",
+            "Il faut fumer ici.",
+            "Je ne fume jamais demain."
           ],
-          "a": 1,
-          "audio": "Elle ne travaille pas."
+          "a": 0,
+          "audio": "Il ne faut pas fumer ici."
         }
       ],
       "canDo": [
-        "Ich kann einfache Aussagen im Präsens bilden und Tätigkeiten verneinen."
+        "Ich kann einfache Aussagen im Präsens bilden und mit ne…pas oder ne…jamais verneinen sowie ein einfaches Verbot mit il ne faut pas ausdrücken."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "ne…pas = nicht; ne…jamais = nie. il faut + Infinitiv bedeutet „man muss/soll“, il ne faut pas + Infinitiv „man darf/soll nicht“."
       },
       "pronunciation": {
         "focus": "parle / parles / parlent",
@@ -3566,7 +3634,7 @@ window.FR_A1_DATA = {
         "Oui, j’habite près du travail."
       ],
       "transfer": {
-        "speaking": "Sage, was du heute machst und was du nicht machst.",
+        "speaking": "Sage, was du heute machst, was du nicht machst und was du nie machst. Formuliere außerdem ein einfaches Verbot mit il ne faut pas.",
         "writing": "Schreibe je drei positive und negative Alltagssätze."
       },
       "cefrDomains": [
@@ -3615,6 +3683,22 @@ window.FR_A1_DATA = {
         [
           "votre adresse",
           "Ihre Adresse"
+        ],
+        [
+          "Qui est-ce ? — C’est Marie.",
+          "Wer ist das? — Das ist Marie."
+        ],
+        [
+          "Qu’est-ce que c’est ? — C’est un livre.",
+          "Was ist das? — Das ist ein Buch."
+        ],
+        [
+          "Moi, j’habite ici. Et toi ?",
+          "Ich wohne hier. Und du?"
+        ],
+        [
+          "moi, toi, lui, elle, nous, vous, eux, elles",
+          "ich/mir, du/dir, er/ihm, sie/ihr, wir/uns, ihr/Ihnen, sie"
         ]
       ],
       "quiz": [
@@ -3701,32 +3785,32 @@ window.FR_A1_DATA = {
           "audio": "ma sœur"
         },
         {
-          "q": "Wie sagst du „meine Eltern“?",
+          "q": "Wie fragst du „Wer ist das?“?",
           "o": [
-            "mes parents",
-            "mon parents",
-            "ma parents"
+            "Qui est-ce ?",
+            "Qu’est-ce que tu fais ?",
+            "Combien est-ce ?"
           ],
           "a": 0,
-          "audio": "mes parents"
+          "audio": "Qui est-ce ?"
         },
         {
-          "q": "„votre adresse“ bedeutet …",
+          "q": "Welche Antwort passt zu „Et toi ?“?",
           "o": [
-            "deine Adresse",
-            "Ihre Adresse",
-            "unsere Adresse"
+            "Moi, j’habite à Lyon.",
+            "Mon adresse est toi.",
+            "Je suis et."
           ],
-          "a": 1,
-          "audio": "votre adresse"
+          "a": 0,
+          "audio": "Moi, j’habite à Lyon."
         }
       ],
       "canDo": [
-        "Ich kann persönliche und praktische Fragen stellen und Besitz einfach ausdrücken."
+        "Ich kann persönliche und praktische Fragen stellen, Personen oder Dinge identifizieren und betonte Personalpronomen in einfachen Wendungen verwenden."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "Qui est-ce ? fragt nach einer Person; Qu’est-ce que c’est ? nach einer Sache. Betonte Pronomen wie moi, toi, lui/elle stehen z. B. nach et oder zur Hervorhebung: Et toi ? Moi, j’habite ici."
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
@@ -3788,6 +3872,30 @@ window.FR_A1_DATA = {
         [
           "Enfin, je rentre à la maison.",
           "Schließlich komme ich nach Hause."
+        ],
+        [
+          "Je suis allé(e) au cinéma.",
+          "Ich bin ins Kino gegangen."
+        ],
+        [
+          "Elle est arrivée à huit heures.",
+          "Sie ist um acht Uhr angekommen."
+        ],
+        [
+          "Je viens de manger.",
+          "Ich habe gerade gegessen."
+        ],
+        [
+          "Je pars dans deux jours.",
+          "Ich fahre in zwei Tagen ab."
+        ],
+        [
+          "Je suis arrivé(e) il y a trois jours.",
+          "Ich bin vor drei Tagen angekommen."
+        ],
+        [
+          "J’habite ici depuis deux ans.",
+          "Ich wohne seit zwei Jahren hier."
         ]
       ],
       "quiz": [
@@ -3844,14 +3952,15 @@ window.FR_A1_DATA = {
           "audio": "J’ai regardé un film à la maison."
         },
         {
-          "q": "Wie sagst du „Ich habe einen Film gesehen“?",
+          "q": "Welche Form verwendet passé composé mit être korrekt?",
           "o": [
-            "J’ai regardé un film.",
-            "Je regarde un film.",
-            "Je vais regarder un film."
+            "Je suis allé(e) au cinéma.",
+            "J’ai allé au cinéma.",
+            "Je vais allé au cinéma."
           ],
           "a": 0,
-          "audio": "J’ai regardé un film."
+          "audio": "Je suis allé(e) au cinéma.",
+          "explanation": "Einige Bewegungsverben bilden das passé composé mit être."
         },
         {
           "q": "Was bedeutet „d’abord“?",
@@ -3864,14 +3973,14 @@ window.FR_A1_DATA = {
           "audio": "D’abord."
         },
         {
-          "q": "Was bedeutet „ensuite“?",
+          "q": "„Je pars dans deux jours“ bedeutet …",
           "o": [
-            "morgens",
-            "danach",
-            "nie"
+            "Ich bin vor zwei Tagen abgereist.",
+            "Ich fahre in zwei Tagen ab.",
+            "Ich fahre seit zwei Tagen."
           ],
           "a": 1,
-          "audio": "Ensuite."
+          "audio": "Je pars dans deux jours."
         },
         {
           "q": "Welche Reihenfolge ist logisch?",
@@ -3884,22 +3993,23 @@ window.FR_A1_DATA = {
           "audio": "D’abord, ensuite, enfin."
         },
         {
-          "q": "Wie sagst du „Ich habe einen Film gesehen“?",
+          "q": "Wie sagst du „Ich habe gerade gegessen“?",
           "o": [
-            "J’ai regardé un film.",
-            "Je regarde un film.",
-            "Je vais regarder un film."
+            "Je viens de manger.",
+            "Je vais manger hier.",
+            "Je suis manger."
           ],
           "a": 0,
-          "audio": "J’ai regardé un film."
+          "audio": "Je viens de manger.",
+          "explanation": "venir de + Infinitiv bezeichnet das passé récent."
         }
       ],
       "canDo": [
-        "Ich kann eine sehr einfache vergangene Aktivität mit vertrauten Wendungen nennen und heute und gestern unterscheiden."
+        "Ich kann eine sehr einfache vergangene oder gerade abgeschlossene Aktivität nennen und mit hier, aujourd’hui, demain, depuis, il y a und dans zeitlich einordnen."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "Passé composé: häufig avoir + Partizip; einige Bewegungsverben verwenden être, z. B. je suis allé(e), elle est arrivée. Passé récent: venir de + Infinitiv = gerade etwas getan haben. Zeit: il y a = vor, dans = in, depuis = seit."
       },
       "pronunciation": {
         "focus": "manger / mangé",
@@ -3907,13 +4017,13 @@ window.FR_A1_DATA = {
       },
       "dialogue": [
         "Tu as fait quoi hier ?",
-        "J’ai travaillé le matin.",
-        "Et le soir ?",
-        "J’ai regardé un film à la maison."
+        "Je suis allé(e) au cinéma.",
+        "Et maintenant ?",
+        "Je viens de rentrer. Demain, je vais voir des amis."
       ],
       "transfer": {
-        "speaking": "Sage mit bekannten Wendungen eine Aktivität von gestern und einen Plan für morgen.",
-        "writing": "Schreibe eine kurze Nachricht mit hier, aujourd’hui und demain."
+        "speaking": "Nenne eine Aktivität von gestern mit passé composé, etwas gerade Abgeschlossenes mit venir de und einen Plan für morgen.",
+        "writing": "Schreibe fünf kurze Sätze mit hier, aujourd’hui, demain sowie einmal il y a oder dans."
       },
       "cefrDomains": [
         "Mündliche Interaktion",
@@ -3969,6 +4079,18 @@ window.FR_A1_DATA = {
         [
           "Mélangez avec une cuillère.",
           "Verrühren Sie es mit einem Löffel."
+        ],
+        [
+          "un peu de lait",
+          "ein wenig Milch"
+        ],
+        [
+          "J’utilise un couteau pour couper les légumes.",
+          "Ich benutze ein Messer, um das Gemüse zu schneiden."
+        ],
+        [
+          "Il ne faut pas ajouter trop de sel.",
+          "Man sollte/darf nicht zu viel Salz hinzufügen."
         ]
       ],
       "quiz": [
@@ -4045,42 +4167,42 @@ window.FR_A1_DATA = {
           "audio": "un kilo de pommes"
         },
         {
-          "q": "Wie sagst du „eine Flasche Wasser“?",
+          "q": "Wie sagst du „ein wenig Milch“?",
           "o": [
-            "un verre eau",
-            "une bouteille d’eau",
-            "une eau bouteille"
+            "un peu de lait",
+            "un peu du lait",
+            "petit lait de"
           ],
-          "a": 1,
-          "audio": "une bouteille d’eau"
+          "a": 0,
+          "audio": "un peu de lait"
         },
         {
-          "q": "Wie sagst du „viel Gemüse“?",
+          "q": "Welche Form bedeutet „um das Gemüse zu schneiden“?",
           "o": [
-            "beaucoup des légumes",
-            "très légumes",
-            "beaucoup de légumes"
+            "pour couper les légumes",
+            "depuis couper les légumes",
+            "il y a couper les légumes"
           ],
-          "a": 2,
-          "audio": "beaucoup de légumes"
+          "a": 0,
+          "audio": "pour couper les légumes"
         },
         {
-          "q": "Nach „pas“ bei Mengen heißt es …",
+          "q": "Wie sagst du „Man sollte/darf nicht zu viel Salz hinzufügen“?",
           "o": [
-            "pas le sucre",
-            "pas du sucre",
-            "pas de sucre"
+            "Il ne faut pas ajouter trop de sel.",
+            "Il faut ajouter toujours trop de sel.",
+            "Je ne sel jamais."
           ],
-          "a": 2,
-          "audio": "pas de sucre"
+          "a": 0,
+          "audio": "Il ne faut pas ajouter trop de sel."
         }
       ],
       "canDo": [
-        "Ich kann einfache Lebensmittelmengen und kurze Anweisungen für eine Zubereitung verstehen."
+        "Ich kann Lebensmittelmengen ausdrücken, den Zweck mit pour + Infinitiv nennen und kurze positive oder negative Kochanweisungen verstehen."
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": ""
+        "explanation": "Mengen wie beaucoup de, un peu de und pas de stehen mit de. pour + Infinitiv nennt einen Zweck: pour couper. il faut / il ne faut pas + Infinitiv drückt eine notwendige bzw. zu vermeidende Handlung aus."
       },
       "pronunciation": {
         "focus": "lait / les",
@@ -4088,12 +4210,12 @@ window.FR_A1_DATA = {
       },
       "dialogue": [
         "Il faut quoi pour la soupe ?",
-        "Deux carottes, une pomme de terre et de l’eau.",
-        "Du lait aussi ?",
-        "Non, pas de lait."
+        "Deux carottes, une pomme de terre et un peu de lait.",
+        "Et beaucoup de sel ?",
+        "Non, il ne faut pas ajouter trop de sel."
       ],
       "transfer": {
-        "speaking": "Frage nach zwei Zutaten und nenne die benötigten Mengen.",
+        "speaking": "Nenne Zutaten mit Mengen und erkläre mit pour + Infinitiv, wozu du ein Küchenutensil brauchst.",
         "writing": "Schreibe eine Zutatenliste und zwei kurze Zubereitungsschritte."
       },
       "cefrDomains": [
@@ -7267,6 +7389,12 @@ window.FR_A1_DATA = {
       "prompt": "Du hast Kopfschmerzen. Bitte um ein Medikament und frage, wie oft du es nehmen sollst.",
       "request": "Bonjour. J’ai mal à la tête. Vous avez un médicament, s’il vous plaît ? Combien de fois par jour dois-je le prendre ?",
       "response": "Oui. Prenez un comprimé deux fois par jour."
+    },
+    {
+      "cue": "Restaurant – Reservierung",
+      "prompt": "Du reservierst telefonisch einen Tisch für zwei Personen. Nenne Tag und Uhrzeit und frage höflich, ob ein Tisch frei ist.",
+      "request": "Bonjour, j’aimerais réserver une table pour deux personnes vendredi à dix-neuf heures, s’il vous plaît. Est-ce que c’est possible ?",
+      "response": "Oui, bien sûr. Une table pour deux vendredi à dix-neuf heures. À quel nom ?"
     }
   ],
   "grammarSets": [
@@ -7507,7 +7635,7 @@ window.FR_A1_DATA = {
     {
       "id": "g3",
       "title": "Fragen & Verneinung",
-      "subtitle": "est-ce que · qu’est-ce que · ne…pas",
+      "subtitle": "est-ce que · qui/qu’est-ce que · ne…pas · ne…jamais",
       "questions": [
         {
           "q": "Wie fragst du „Arbeitest du?“?",
@@ -7587,37 +7715,34 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: Elle ne travaille pas aujourd’hui."
         },
         {
-          "q": "„Pourquoi ?“ bedeutet …",
+          "q": "Wie fragst du „Wer ist das?“?",
           "o": [
-            "Warum?",
-            "Wann?",
-            "Wie viel?"
+            "Qui est-ce ?",
+            "Pourquoi est-ce ?",
+            "Combien est-ce ?"
           ],
           "a": 0,
-          "audio": "Pourquoi ?",
-          "explanation": "Beispiel: Pourquoi ?"
+          "audio": "Qui est-ce ?"
         },
         {
-          "q": "„Depuis quand ?“ bedeutet …",
+          "q": "Wie fragst du „Was ist das?“?",
           "o": [
-            "Wie lange noch?",
-            "Seit wann?",
-            "Bis wann?"
-          ],
-          "a": 1,
-          "audio": "Depuis quand ?",
-          "explanation": "Beispiel: Depuis quand ?"
-        },
-        {
-          "q": "Welche höfliche Frage passt?",
-          "o": [
-            "Vous pouvez répéter, s’il vous plaît ?",
-            "Répète !",
-            "Toi répéter ?"
+            "Qu’est-ce que c’est ?",
+            "Qui habitez-vous ?",
+            "Quand c’est de ?"
           ],
           "a": 0,
-          "audio": "Vous pouvez répéter, s’il vous plaît ?",
-          "explanation": "Beispiel: Vous pouvez répéter, s’il vous plaît ?"
+          "audio": "Qu’est-ce que c’est ?"
+        },
+        {
+          "q": "Verneine mit „nie“: Je regarde la télévision.",
+          "o": [
+            "Je ne regarde jamais la télévision.",
+            "Je regarde ne pas jamais la télévision.",
+            "Je n’ai télévision jamais."
+          ],
+          "a": 0,
+          "audio": "Je ne regarde jamais la télévision."
         }
       ]
     },
@@ -7858,7 +7983,7 @@ window.FR_A1_DATA = {
     {
       "id": "g6",
       "title": "Gestern, heute & morgen",
-      "subtitle": "Einfache Zeitangaben, vertraute Wendungen mit avoir, aller + Infinitiv",
+      "subtitle": "passé composé · passé récent · futur proche · il y a/dans/depuis",
       "questions": [
         {
           "q": "Hier, j’___ mangé.",
@@ -7883,15 +8008,14 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: Nous avons travaillé."
         },
         {
-          "q": "Elle a ___ un film.",
+          "q": "Welche Form ist korrekt?",
           "o": [
-            "regardé",
-            "regarder",
-            "regarde"
+            "Elle est arrivée à huit heures.",
+            "Elle a arrivée à huit heures.",
+            "Elle va arrivée hier."
           ],
           "a": 0,
-          "audio": "Elle a regardé un film.",
-          "explanation": "Beispiel: Elle a regardé un film."
+          "audio": "Elle est arrivée à huit heures."
         },
         {
           "q": "Demain, je ___ visiter Lyon.",
@@ -7905,15 +8029,14 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: Demain, je vais visiter Lyon."
         },
         {
-          "q": "Je ___ vingt ans.",
+          "q": "Wie sagst du „Ich habe gerade gegessen“?",
           "o": [
-            "ai",
-            "suis",
-            "est"
+            "Je viens de manger.",
+            "Je vais manger hier.",
+            "Je suis de manger."
           ],
           "a": 0,
-          "audio": "J’ai vingt ans.",
-          "explanation": "Beispiel: J’ai vingt ans."
+          "audio": "Je viens de manger."
         },
         {
           "q": "Aujourd’hui veut dire …",
@@ -7938,15 +8061,14 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: hier"
         },
         {
-          "q": "Après le matin vient …",
+          "q": "„il y a trois jours“ bedeutet …",
           "o": [
-            "l’après-midi",
-            "la veille",
-            "hier"
+            "in drei Tagen",
+            "seit drei Tagen",
+            "vor drei Tagen"
           ],
-          "a": 0,
-          "audio": "l’après-midi",
-          "explanation": "Beispiel: l’après-midi"
+          "a": 2,
+          "audio": "il y a trois jours"
         },
         {
           "q": "Je vais ___ demain.",
@@ -7960,15 +8082,14 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: Je vais travailler demain."
         },
         {
-          "q": "D’abord, puis, enfin indiquent …",
+          "q": "Welche Form bedeutet „in zwei Tagen“?",
           "o": [
-            "eine Reihenfolge",
-            "einen Preis",
-            "eine Nationalität"
+            "depuis deux jours",
+            "dans deux jours",
+            "il y a deux jours"
           ],
-          "a": 0,
-          "audio": "D’abord, puis, enfin.",
-          "explanation": "Beispiel: D’abord, puis, enfin."
+          "a": 1,
+          "audio": "dans deux jours"
         }
       ]
     },
@@ -8092,7 +8213,7 @@ window.FR_A1_DATA = {
     {
       "id": "g8",
       "title": "Vorlieben, Beschreibung & Höflichkeit",
-      "subtitle": "Alltag ohne verpflichtende Steigerungsformen",
+      "subtitle": "Vorlieben · Beschreibung · höfliche Bitten und Wünsche",
       "questions": [
         {
           "q": "Je voudrais un café, ___.",
@@ -8172,15 +8293,14 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: Je préfère le thé."
         },
         {
-          "q": "Tu ___ venir ?",
+          "q": "Welche Form ist besonders höflich?",
           "o": [
-            "veux",
-            "veut",
-            "voulez"
+            "Pourriez-vous m’aider ?",
+            "Aide-moi maintenant !",
+            "Tu aider moi ?"
           ],
           "a": 0,
-          "audio": "Tu veux venir ?",
-          "explanation": "Beispiel: Tu veux venir ?"
+          "audio": "Pourriez-vous m’aider ?"
         },
         {
           "q": "Ce sont ___ chaussures.",
@@ -8194,22 +8314,21 @@ window.FR_A1_DATA = {
           "explanation": "Beispiel: Ce sont mes chaussures."
         },
         {
-          "q": "Merci ! — ___.",
+          "q": "Wie sagst du höflich „Ich hätte gern Informationen“?",
           "o": [
-            "De rien !",
-            "Pardon ?",
-            "Bonsoir ?"
+            "J’aimerais des informations.",
+            "Je suis informations.",
+            "J’ai jamais information."
           ],
           "a": 0,
-          "audio": "De rien !",
-          "explanation": "Beispiel: De rien !"
+          "audio": "J’aimerais des informations."
         }
       ]
     },
     {
       "id": "g9",
       "title": "Aussage, Negation & Fragen",
-      "subtitle": "Satzstellung, est-ce que und Fragewörter",
+      "subtitle": "Satzstellung · Frageformen · ne…pas / ne…jamais · Identifizieren",
       "questions": [
         {
           "q": "___ vous habitez à Lyon ?",
@@ -8276,6 +8395,46 @@ window.FR_A1_DATA = {
           "a": 1,
           "audio": "Quelle est votre adresse ?",
           "explanation": "Satzstellung, est-ce que und Fragewörter"
+        },
+        {
+          "q": "Wer ist das?",
+          "o": [
+            "Qui est-ce ?",
+            "Qu’est-ce que c’est ?",
+            "Où est-ce ?"
+          ],
+          "a": 0,
+          "audio": "Qui est-ce ?"
+        },
+        {
+          "q": "Was ist das?",
+          "o": [
+            "Qu’est-ce que c’est ?",
+            "Qui est-ce ?",
+            "Quand est-ce ?"
+          ],
+          "a": 0,
+          "audio": "Qu’est-ce que c’est ?"
+        },
+        {
+          "q": "Ich gehe nie sonntags einkaufen.",
+          "o": [
+            "Je ne fais jamais les courses le dimanche.",
+            "Je fais pas les courses jamais dimanche.",
+            "Je ne jamais courses."
+          ],
+          "a": 0,
+          "audio": "Je ne fais jamais les courses le dimanche."
+        },
+        {
+          "q": "Und du?",
+          "o": [
+            "Et toi ?",
+            "Et mon ?",
+            "Avec tu ?"
+          ],
+          "a": 0,
+          "audio": "Et toi ?"
         }
       ]
     },
@@ -8349,13 +8508,53 @@ window.FR_A1_DATA = {
           "a": 1,
           "audio": "Il va à la gare.",
           "explanation": "au, aux, en, à; Herkunft und Ziel"
+        },
+        {
+          "q": "Je viens ___ Canada.",
+          "o": [
+            "du",
+            "au",
+            "en"
+          ],
+          "a": 0,
+          "audio": "Je viens du Canada."
+        },
+        {
+          "q": "Nous venons ___ États-Unis.",
+          "o": [
+            "des",
+            "aux",
+            "de la"
+          ],
+          "a": 0,
+          "audio": "Nous venons des États-Unis."
+        },
+        {
+          "q": "Je vais ___ bus.",
+          "o": [
+            "en",
+            "à",
+            "au"
+          ],
+          "a": 0,
+          "audio": "Je vais en bus."
+        },
+        {
+          "q": "Je vais ___ pied.",
+          "o": [
+            "à",
+            "en",
+            "du"
+          ],
+          "a": 0,
+          "audio": "Je vais à pied."
         }
       ]
     },
     {
       "id": "g11",
       "title": "Pläne, Bitten & Alltag",
-      "subtitle": "aller, pouvoir, devoir und Reflexivverben",
+      "subtitle": "aller · pouvoir · devoir · être en train de · il faut · Reflexivverben",
       "questions": [
         {
           "q": "Demain, nous ___ visiter Paris.",
@@ -8422,13 +8621,53 @@ window.FR_A1_DATA = {
           "a": 1,
           "audio": "Ils prennent le bus.",
           "explanation": "aller, pouvoir, devoir und Reflexivverben"
+        },
+        {
+          "q": "Was bedeutet „Je suis en train de travailler“?",
+          "o": [
+            "Ich arbeite gerade.",
+            "Ich habe gestern gearbeitet.",
+            "Ich werde nie arbeiten."
+          ],
+          "a": 0,
+          "audio": "Je suis en train de travailler."
+        },
+        {
+          "q": "Man muss reservieren.",
+          "o": [
+            "Il faut réserver.",
+            "Il ne faut jamais réservation.",
+            "Je suis réserver."
+          ],
+          "a": 0,
+          "audio": "Il faut réserver."
+        },
+        {
+          "q": "Hier darf/soll man nicht rauchen.",
+          "o": [
+            "Il ne faut pas fumer ici.",
+            "Il faut fumer ici.",
+            "Je ne jamais fumer ici."
+          ],
+          "a": 0,
+          "audio": "Il ne faut pas fumer ici."
+        },
+        {
+          "q": "Welche Form ist eine höfliche Bitte?",
+          "o": [
+            "Pourriez-vous répéter ?",
+            "Répète !",
+            "Tu répéter."
+          ],
+          "a": 0,
+          "audio": "Pourriez-vous répéter ?"
         }
       ]
     },
     {
       "id": "g12",
       "title": "Artikel, Besitz & Beschreibung",
-      "subtitle": "ce/cette, mon/ma/mes, Mengen und Kongruenz",
+      "subtitle": "ce/cette · Besitz · Mengen · Adjektivkongruenz und -stellung",
       "questions": [
         {
           "q": "C’est ___ amie.",
@@ -8495,6 +8734,46 @@ window.FR_A1_DATA = {
           "a": 1,
           "audio": "Ce sont mes parents.",
           "explanation": "ce/cette, mon/ma/mes, Mengen und Kongruenz"
+        },
+        {
+          "q": "Welche Wortstellung ist korrekt?",
+          "o": [
+            "une petite veste bleue",
+            "une bleue veste petite",
+            "une veste petit bleue"
+          ],
+          "a": 0,
+          "audio": "une petite veste bleue"
+        },
+        {
+          "q": "Wie sagst du „ein wenig Wasser“?",
+          "o": [
+            "un peu d’eau",
+            "un peu de l’eau",
+            "petit d’eau"
+          ],
+          "a": 0,
+          "audio": "un peu d’eau"
+        },
+        {
+          "q": "Hier ist mein Pass.",
+          "o": [
+            "Voici mon passeport.",
+            "Ce sont mon passeport.",
+            "Voilà mes passeport."
+          ],
+          "a": 0,
+          "audio": "Voici mon passeport."
+        },
+        {
+          "q": "Welche Form hebt „ich“ hervor?",
+          "o": [
+            "moi",
+            "mon",
+            "me suis"
+          ],
+          "a": 0,
+          "audio": "moi"
         }
       ]
     }

@@ -1802,7 +1802,7 @@ function renderHome(){
 }
 
 function renderLearn(){
-  view.innerHTML=`<section class="card hero"><span class="pill">${lessons.length} LEÇONS · 10 QUESTIONS CHACUNE</span><h2 style="margin-top:12px">Cours d’allemand A1</h2><p class="muted">Ce cours te prépare de façon ciblée au Goethe-Zertifikat A1.</p><div class="progress"><div style="width:${lessonPct()}%"></div></div></section><div class="list">${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}"><div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div><p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p><div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'fr')}</div></button>`).join('')}</div>`;
+  view.innerHTML=`<section class="card hero"><span class="pill">${lessons.length} LEÇONS · 10 QUESTIONS CHACUNE</span><h2 style="margin-top:12px">Cours d’allemand A1</h2><p class="muted">Ce cours te prépare de façon ciblée au Goethe-Zertifikat A1.</p><div class="progress"><div style="width:${lessonPct()}%"></div></div></section><div class="list">${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}"><div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div><p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p><div class="lesson-meta">${l.skills.map(s=>`<span class="pill gray">${({Hören:'Écoute',Lesen:'Lecture',Schreiben:'Écriture',Sprechen:'Oral'})[s]||s}</span>`).join('')}${state.doneLessons.includes(l.id)?'<span class="pill green">✓ terminé</span>':''}</div></button>`).join('')}</div>`;
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));
 }
 
