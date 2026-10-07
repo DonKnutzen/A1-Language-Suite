@@ -33,6 +33,22 @@ const shuffle=A1Learning.shuffle;
 const normalize=s=>String(s||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;:!?]/g,'').replace(/\s+/g,' ');
 const totalListening=()=>Object.values(D.listening).reduce((s,a)=>s+a.length,0);
 const totalReading=()=>Object.values(D.reading).reduce((s,a)=>s+a.length,0);
+const practiceProgress=window.A1PracticeProgress?.create({
+  lang:'de',lessons,grammarSets:D.grammarSets,listening:D.listening,reading:D.reading,forms:D.forms,writing:D.writing,
+  speaking:{
+    interview:D.interview.map(x=>'int-'+x.q),
+    info:D.infoCards.map(x=>'info-'+x.theme+'-'+x.cue),
+    roleplays:D.roleplays.map(x=>'role-'+x.cue)
+  },
+  bindings:{
+    '#pVocab':'vocab','#pGrammar':'grammar','#pListen':'listening','#pRead':'reading','#pWrite':'writing','#pSpeak':'speaking',
+    '[data-lp="1"]':'listening:1','[data-lp="2"]':'listening:2','[data-lp="3"]':'listening:3','[data-lp="4"]':'listening:4',
+    '[data-rp="1"]':'reading:1','[data-rp="2"]':'reading:2','[data-rp="3"]':'reading:3','[data-rp="4"]':'reading:4',
+    '#formPractice':'forms','#msgPractice':'messages',
+    '#sp1':'speaking:interview','#sp2':'speaking:info','#sp3':'speaking:roleplays'
+  },
+  getState:()=>state,save,view:()=>view
+});
 function overallCompletionPct(){
   const lessonDone=(state.doneLessons||[]).length;
   const grammarDone=Object.values(state.grammarBest||{}).filter(v=>Number(v)>0).length;
@@ -114,7 +130,7 @@ function renderLearn(){
     <div class="list">
       ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}">
         <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>
-        <div class="lesson-meta">${l.skills.map(s=>`<span class="pill gray">${s}</span>`).join('')}${state.doneLessons.includes(l.id)?'<span class="pill green">✓ fertig</span>':''}</div>
+        <div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'de')}</div>
       </button>`).join('')}
     </div>`;
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));
@@ -351,6 +367,7 @@ function renderPractice(){
   document.getElementById('pRead').onclick=renderReadingMenu;
   document.getElementById('pWrite').onclick=renderWritingMenu;
   document.getElementById('pSpeak').onclick=renderSpeakingMenu;
+  practiceProgress?.decorate();
 }
 
 function renderVocab(){
@@ -372,8 +389,8 @@ function renderVocab(){
     if(!reveal)document.getElementById('reveal').onclick=()=>{reveal=true;draw();};
     else{
       const next=()=>{A1Streak.completeExercise();idx=(idx+1)%cards.length;reveal=false;localStorage.setItem(key,idx);draw();};
-      document.getElementById('again').onclick=next;
-      document.getElementById('known').onclick=next;
+      document.getElementById('again').onclick=()=>{practiceProgress?.markVocab(c.lesson,c.fr,c.de,false);next();};
+      document.getElementById('known').onclick=()=>{practiceProgress?.markVocab(c.lesson,c.fr,c.de,true);next();};
     }
     if(audioEnabled)setTimeout(()=>speak(c.fr),180);
   }
@@ -446,6 +463,7 @@ function renderGrammarMenu(){
     <div class="list">${D.grammarSets.map(s=>`<button class="practice-card" data-gset="${esc(s.id)}"><strong>${esc(s.title)}</strong><small>${esc(s.subtitle)} · Bestwert ${state.grammarBest[s.id]||0}%</small></button>`).join('')}</div>`;
   document.getElementById('backP').onclick=renderPractice;
   document.querySelectorAll('[data-gset]').forEach(b=>b.onclick=()=>renderGrammarIntro(b.dataset.gset));
+  practiceProgress?.decorate();
 }
 
 function startGrammarSet(id){
@@ -474,6 +492,7 @@ function startGrammarSet(id){
     document.getElementById('backGrammar').onclick=renderGrammarMenu;
     document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
       const chosen=+btn.dataset.o,ok=chosen===q.a;
+      practiceProgress?.recordGrammar(set,q);
       if(ok)score++;if(q.audio)playCorrectAudio(q.audio);
       document.querySelectorAll('[data-o]').forEach((b,j)=>{
         b.disabled=true;
@@ -499,6 +518,7 @@ function renderListeningMenu(){
     </div>`;
   document.getElementById('backP').onclick=renderPractice;
   document.querySelectorAll('[data-lp]').forEach(b=>b.onclick=()=>startListeningPractice(+b.dataset.lp));
+  practiceProgress?.decorate();
 }
 
 function startListeningPractice(part){
@@ -542,6 +562,7 @@ function renderListeningTask(part,examMode=false,onDone=null,forced=null,progres
     if(answered)return;
     answered=true;
     const chosen=+btn.dataset.o,correct=part===2?(task.a?0:1):task.a,ok=chosen===correct;
+    practiceProgress?.record('listening',task.id);
     if(ok){
       if(!state.masteredListening.includes(task.id)){state.masteredListening.push(task.id);save();}
     }
@@ -570,6 +591,7 @@ function renderReadingMenu(){
     </div>`;
   document.getElementById('backP').onclick=renderPractice;
   document.querySelectorAll('[data-rp]').forEach(b=>b.onclick=()=>startReadingPractice(+b.dataset.rp));
+  practiceProgress?.decorate();
 }
 
 function startReadingPractice(part){
@@ -614,6 +636,7 @@ function renderReadingTask(part,onDone=null,forced=null,progressLabel=''){
   document.getElementById('backRead').onclick=renderReadingMenu;
   document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
     const chosen=+btn.dataset.o,ok=chosen===correct;
+    practiceProgress?.record('reading',task.id);
     if(ok){
       if(!state.masteredReading.includes(task.id)){state.masteredReading.push(task.id);save();}
       
@@ -639,6 +662,7 @@ function renderWritingMenu(){
   document.getElementById('backP').onclick=renderPractice;
   document.getElementById('formPractice').onclick=()=>renderFormTask();
   document.getElementById('msgPractice').onclick=()=>renderMessageTask();
+  practiceProgress?.decorate();
 }
 
 function renderFormTask(onDone=null,forced=null){
@@ -743,6 +767,7 @@ function renderSpeakingMenu(){
   document.getElementById('sp1').onclick=startInterviewSession;
   document.getElementById('sp2').onclick=startInfoSession;
   document.getElementById('sp3').onclick=renderRoleplay;
+  practiceProgress?.decorate();
 }
 
 function startInterviewSession(){

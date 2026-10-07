@@ -1,10 +1,10 @@
 {
-  "name": "Almanca A1 – Türkçe → Almanca",
-  "short_name": "Almanca A1",
+  "name": "Deutsch C1 – Türkçe",
+  "short_name": "Deutsch C1",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0f172a",
   "lang": "tr",
-  "description": "Goethe-Zertifikat A1 sınavına yönelik Almanca A1 kursu."
+  "description": "Türkçe açıklamalarla Deutsch-Test für den Beruf C1 odaklı Almanca C1 hazırlığı"
 }

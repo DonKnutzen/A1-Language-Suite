@@ -15,3 +15,9 @@ Die vorhandenen 24 Lektionen bleiben erhalten. Ergänzt wurden die beim offiziel
 - zusätzliches Restaurant-Reservierungsrollenspiel
 
 Die neuen Inhalte erscheinen in Lektionen, Grammatikvertiefungen, Quizfragen und freien Transferaufgaben. Die gespeicherten Lektionsnummern wurden nicht verändert.
+
+
+## v47 – Integrationsfix
+- Türkisch/Deutsch bleibt unverändert auf dem DTB-C1-v13-Stand.
+- Die CEFR/FEI-A1-Erweiterungen betreffen ausschließlich den Französischkurs.
+- Die Fortschrittsfelder in den Französisch-Übungen sind wieder aktiviert und zählen bearbeitete Aufgaben getrennt vom Prüfungsscore.
