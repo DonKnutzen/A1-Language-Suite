@@ -21,7 +21,7 @@ Browserbasierte Sprachlern-App mit drei A1-Kursen und einem eigenständigen Deut
 - Dark Mode
 - responsive Nutzung auf Desktop und Smartphone
 - Offline-Unterstützung über getrennte Service-Worker-Caches
-- **Deutsch C1 · Türkçe:** 30 Lektionen, C1-Grammatik und Stil, Goethe-Zertifikat C1 sowie telc Deutsch C1 Hochschule mit prüfungsnahen Aufgabentypen und Zeittrainings
+- **Deutsch C1 · Türkçe:** 30 Lektionen, C1-Grammatik und Stil sowie gezielte Vorbereitung auf den Deutsch-Test für den Beruf C1; Goethe-Zertifikat C1 bleibt als Zusatztraining verfügbar
 
 ## Projektstruktur
 

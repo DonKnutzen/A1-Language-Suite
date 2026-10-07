@@ -16,6 +16,9 @@
     speakingDone: [],
     goetheBest: { reading: 0, listening: 0, writing: 0, speaking: 0 },
     telcBest: { readingLanguage: 0, listening: 0, writing: 0, speaking: 0 },
+    dtbBest: { reading: 0, listening: 0, writing: 0, speaking: 0 },
+    dtbScores: { reading: null, listening: null, writing: null, speaking: null },
+    dtbComponents: { emailGrade: '', emailDraft: '', phoneNotePoints: 0, languagePoints: 0, statementDraft: '', statementGrades: null },
     examAttempts: {},
     lastRoute: 'home'
   };
@@ -43,17 +46,21 @@
     return scored + state.writingDone.length + state.speakingDone.length;
   }
 
+  function ensureDtbState() {
+    if (!state.dtbBest || typeof state.dtbBest !== 'object') state.dtbBest = {reading:0,listening:0,writing:0,speaking:0};
+    if (!state.dtbScores || typeof state.dtbScores !== 'object') state.dtbScores = {reading:null,listening:null,writing:null,speaking:null};
+    if (!state.dtbComponents || typeof state.dtbComponents !== 'object') state.dtbComponents = {emailGrade:'',emailDraft:'',phoneNotePoints:0,languagePoints:0,statementDraft:'',statementGrades:null};
+  }
+
   function examCheckpointCount() {
-    const g = state.goetheBest || {};
-    const t = state.telcBest || {};
-    return [g.reading,g.listening,g.writing,g.speaking,t.readingLanguage,t.listening,t.writing,t.speaking]
-      .filter(v => Number(v) > 0).length;
+    ensureDtbState();
+    return ['reading','listening','writing','speaking'].filter(k => state.dtbScores[k] !== null && state.dtbScores[k] !== undefined).length;
   }
 
   function coursePercent() {
     const lessonPart = (state.doneLessons.length / D.lessons.length) * 60;
     const practicePart = Math.min(practiceCheckpointCount(), 16) / 16 * 20;
-    const examPart = examCheckpointCount() / 8 * 20;
+    const examPart = examCheckpointCount() / 4 * 20;
     return Math.round(clamp(lessonPart + practicePart + examPart));
   }
   window.A1CourseProgressPercent = coursePercent;
@@ -96,7 +103,7 @@
   }
 
   function sourceNote() {
-    return `<div class="source-note"><strong>Kaynak uyumu:</strong> Kurs yapısı Goethe-Zertifikat C1 (modüler, 2024 sonrası format) ve telc Deutsch C1 Hochschule görev tiplerine göre düzenlendi. Gramer bölümü C1 gramer çalışma kitabındaki ana konuları sistematik olarak kapsar.</div>`;
+    return `<div class="source-note"><strong>Kaynak uyumu:</strong> Kursun ana sınav hedefi Deutsch-Test für den Beruf C1 (1. überarbeitete Auflage 2020, yayımlanmış 2022) olarak güncellendi. İşyeri odaklı okuma, dinleme, entegre Mediation/yazma görevleri ve hazırlıksız sözlü sınav yapısı işlendi. Goethe C1 bölümü yalnızca ek genel C1 antrenmanı olarak korunur.</div>`;
   }
 
   function averageBest(prefixes) {
@@ -107,12 +114,13 @@
   }
 
   function skillReadiness() {
-    const reading = Math.max(Number(state.goetheBest.reading)||0, averageBest(['reading:']));
-    const listening = Math.max(Number(state.goetheBest.listening)||0, averageBest(['listening:']));
+    ensureDtbState();
+    const reading = Math.max(Number(state.dtbBest.reading)||0, averageBest(['reading:']));
+    const listening = Math.max(Number(state.dtbBest.listening)||0, averageBest(['listening:']));
     const writingTotal = D.writingForum.length + D.writingEmail.length;
     const speakingTotal = D.speakingPresentations.length + D.speakingDiscussions.length;
-    const writing = Math.max(Number(state.goetheBest.writing)||0, pct(state.writingDone.length, writingTotal));
-    const speaking = Math.max(Number(state.goetheBest.speaking)||0, pct(state.speakingDone.length, speakingTotal));
+    const writing = Math.max(Number(state.dtbBest.writing)||0, pct(state.writingDone.length, writingTotal));
+    const speaking = Math.max(Number(state.dtbBest.speaking)||0, pct(state.speakingDone.length, speakingTotal));
     return {reading,listening,writing,speaking};
   }
 
@@ -124,14 +132,14 @@
         <div class="eyebrow">TÜRKÇE → ALMANCA · C1</div>
         <h2>Deutsch C1</h2>
         <p class="muted">Artık odak tek tek temel kelimeler değil: karmaşık metinleri çözmek, nüansları fark etmek, doğal bağlaçlar ve eşdizimler kullanmak, akademik/mesleki kayıtları yönetmek ve düşünceyi ikna edici biçimde yapılandırmak.</p>
-        <div class="pill">Goethe C1 + telc C1 Hochschule</div>
+        <div class="pill">Deutsch-Test für den Beruf C1 · hedef sınav</div>
       </section>
       <section class="card">
         <div class="between"><div><strong>Toplam kurs ilerlemesi</strong><div class="muted">30 ders + hedefli alıştırmalar + sınav simülasyonları</div></div><strong>${cp}%</strong></div>
         <div class="spacer"></div>${progressBar(cp)}
         <div class="grid metric-grid" style="margin-top:14px">
           <div class="metric"><strong>${state.doneLessons.length}/30</strong><small>Ders tamamlandı</small></div>
-          <div class="metric"><strong>${examCheckpointCount()}/8</strong><small>Sınav modülü denendi</small></div>
+          <div class="metric"><strong>${examCheckpointCount()}/4</strong><small>DTB becerisi puanlandı</small></div>
         </div>
       </section>
       <section class="card">
@@ -140,11 +148,11 @@
         ${skillRow('Dinleme', skills.listening)}
         ${skillRow('Yazma', skills.writing)}
         ${skillRow('Konuşma', skills.speaking)}
-        <div class="notice warning" style="margin-top:14px">Bu göstergeler çalışma ilerlemesini özetler; resmi C1 sonucunun yerine geçmez. Goethe modüllerinde resmi geçme eşiği %60'tır.</div>
+        <div class="notice warning" style="margin-top:14px">Bu göstergeler çalışma ilerlemesini özetler; resmi sınav sonucunun yerine geçmez. DTB C1 için toplam en az 144/240 puan ve dört becerinin en az üçünde 36/60 gerekir.</div>
       </section>
       <section class="grid">
         <button class="practice-card" id="continueLearn"><span class="icon">▤</span><strong>Derslere devam et</strong><small>Bağlaşıklık, C1 gramer, okuma, dinleme, yazma ve konuşma.</small></button>
-        <button class="practice-card" id="openExam"><span class="icon">✓</span><strong>Sınav merkezine git</strong><small>Goethe C1 ve telc C1 Hochschule formatlarını ayrı ayrı çalış.</small></button>
+        <button class="practice-card" id="openExam"><span class="icon">✓</span><strong>Sınav merkezine git</strong><small>Hedef DTB C1 formatını tam olarak çalış; Goethe C1 ek antrenman olarak kalır.</small></button>
       </section>
       ${sourceNote()}
     `, () => {
@@ -291,14 +299,14 @@
 
   function renderPractice() {
     setView(`
-      <section class="card"><div class="eyebrow">HEDEFLİ ANTRENMAN</div><h2>C1 becerileri</h2><p class="muted">Sınavdan bağımsız olarak zayıf alanları ayrı ayrı çalış. Goethe formatındaki görevler burada kısa antrenman halinde; yazma ve konuşma için öz-değerlendirme rubrikleri var.</p></section>
+      <section class="card"><div class="eyebrow">HEDEFLİ ANTRENMAN</div><h2>C1 becerileri</h2><p class="muted">Zayıf alanları ayrı ayrı çalış. Gramer ve üslup bankaları genel C1 içindir; okuma/dinlemede ek C1 görevleri bulunur. Deutsch-Test für den Beruf C1'in resmî görev akışı ve puanlaması Sınav bölümünde birebir modellenmiştir.</p></section>
       <div class="grid practice-menu">
         ${practiceCard('grammar','◫','C1 Gramer','Edilgen yapı, isim-fiil birleşimleri, kip fiilleri, Konjunktiv kipleri, adlaştırma')}
         ${practiceCard('style','◇','Üslup & İfade','Kayıt, parafraz, eşdizimler, nüans')}
-        ${practiceCard('reading','▤','Okuma','Goethe tarzı 4 okuma görevi')}
-        ${practiceCard('listening','◉','Dinleme','1×/2× dinleme ve C1 ayrıntı stratejisi')}
-        ${practiceCard('writing','✎','Yazma','230 kelimelik forum + 120 kelimelik yarı resmî e-posta')}
-        ${practiceCard('speaking','◌','Konuşma','Sunum, takip soruları ve tartışma')}
+        ${practiceCard('reading','▤','Okuma','Yoğun metin, parafraz ve eşleştirme · ek C1')}
+        ${practiceCard('listening','◉','Dinleme','Ayrıntı, tutum ve not alma · ek C1')}
+        ${practiceCard('writing','✎','Yazma','Yazılı üretim ve resmî/yarı resmî kayıt')}
+        ${practiceCard('speaking','◌','Konuşma','Spontan anlatım, etkileşim ve sorun çözme')}
       </div>
       ${sourceNote()}
     `, () => document.querySelectorAll('[data-practice]').forEach(b => b.onclick=()=>openPractice(b.dataset.practice)));
@@ -485,11 +493,11 @@
 
   function renderExam() {
     setView(`
-      <section class="card"><div class="eyebrow">SINAV MERKEZİ</div><h2>İki C1 sınav formatı</h2><p class="muted">Arkadaşının hangi sınava gireceği net değilse ikisini de çalışabilir. Goethe C1 genel dil becerilerini dört bağımsız modülde ölçer; telc Deutsch C1 Hochschule özellikle üniversite bağlamına yöneliktir.</p></section>
-      <section class="exam-provider-card"><div><span class="provider-badge">GOETHE</span><h2>Goethe-Zertifikat C1</h2><p>Okuma 65 dk · Dinleme yaklaşık 40 dk · Yazma 75 dk · Konuşma yaklaşık 20 dk (çift sınav). Her modülde geçme eşiği %60.</p></div><button class="primary-btn" id="goetheOpen">Goethe sınav antrenmanı</button></section>
-      <section class="exam-provider-card"><div><span class="provider-badge alt">telc</span><h2>telc Deutsch C1 Hochschule</h2><p>Okuduğunu anlama + dil yapıları, dinlediğini anlama, 70 dakikalık yazma ve sunum/özet/tartışma içeren sözlü sınav.</p></div><button class="primary-btn" id="telcOpen">telc sınav antrenmanı</button></section>
+      <section class="card"><div class="eyebrow">SINAV MERKEZİ</div><h2>Hedef sınav: Deutsch-Test für den Beruf C1</h2><p class="muted">Yeni gönderilen belge telc Deutsch C1 Hochschule'nin yeni baskısı değil, ayrı bir sınav olan <strong>Deutsch-Test für den Beruf C1</strong>'dir. Bu nedenle ana simülasyon artık işyeri odaklı DTB C1 formatını kullanır. Goethe C1 genel C1 becerileri için ek çalışma olarak korunur.</p></section>
+      <section class="exam-provider-card"><div><span class="provider-badge alt">DTB C1</span><h2>Deutsch-Test für den Beruf C1</h2><p>Yazılı sınav 135 dk · sözlü sınav ≈16–17 dk · hazırlık yok · Lesen/Hören/Schreiben/Sprechen ayrı ayrı 60 puan. Entegre Lesen+Schreiben ve Hören+Schreiben görevleri vardır.</p></div><button class="primary-btn" id="dtbOpen">DTB C1 sınav antrenmanı</button></section>
+      <section class="exam-provider-card secondary-provider"><div><span class="provider-badge">GOETHE · EK</span><h2>Goethe-Zertifikat C1</h2><p>Genel C1 okuma, dinleme, yazma ve konuşma için ek antrenman. DTB C1'in yerine geçmez ve kurs ilerlemesindeki sınav puanına dahil edilmez.</p></div><button class="soft-btn" id="goetheOpen">Goethe ek antrenmanı</button></section>
       ${sourceNote()}
-    `,()=>{byId('goetheOpen').onclick=renderGoetheHub;byId('telcOpen').onclick=renderTelcHub;});
+    `,()=>{byId('dtbOpen').onclick=renderDtbHub;byId('goetheOpen').onclick=renderGoetheHub;});
   }
 
   function renderGoetheHub() {
@@ -565,46 +573,120 @@
     });
   }
 
-  function renderTelcHub() {
-    setView(`<button class="tiny-btn" id="backExam">← Sınav</button><section class="card" style="margin-top:12px"><div class="provider-badge alt">telc</div><h2>Deutsch C1 Hochschule</h2><div class="exam-structure">${D.telc.overview.map(x=>examLine(x.name,x.detail,x.points?`${x.points} P`:'',0)).join('')}</div></section><div class="grid"><button class="practice-card" data-telc="reading"><strong>Okuma + Dil yapıları</strong><small>90 dk · 48 + 22 puan</small></button><button class="practice-card" data-telc="listening"><strong>Dinlediğini anlama</strong><small>≈40 dk · 48 puan</small></button><button class="practice-card" data-telc="writing"><strong>Yazılı anlatım</strong><small>70 dk · 2 görevden 1'i</small></button><button class="practice-card" data-telc="speaking"><strong>Sözlü anlatım</strong><small>20 dk hazırlık · çift sınav</small></button></div>`,()=>{byId('backExam').onclick=renderExam;document.querySelectorAll('[data-telc]').forEach(b=>b.onclick=()=>({reading:renderTelcReading,listening:renderTelcListening,writing:renderTelcWriting,speaking:renderTelcSpeaking}[b.dataset.telc])());});
+  function dtbGradeMap(grade, points) {
+    const maps = {
+      7:{A:7,B:5,C:3,D:0}, 14:{A:14,B:10.5,C:5.5,D:0}, 9:{A:9,B:7,C:3.5,D:0},
+      5:{A:5,B:3.5,C:2,D:0}, 2:{A:2,B:1.5,C:1,D:0}, 8:{A:8,B:6,C:3,D:0}, 10:{A:10,B:7.5,C:4,D:0}
+    };
+    return Number((maps[points]||{})[grade]||0);
   }
 
-  function telcReading2Html(group) {
-    const R=D.telc.reading2;
-    return `<div class="speaker-grid">${R.texts.map(t=>`<div class="speaker-card"><strong>${esc(t.id)}</strong><p>${esc(t.text)}</p></div>`).join('')}</div>${R.items.map((it,i)=>`<label class="field gap-field"><span>${i+1}. ${esc(it.q)}</span><select class="select-input" id="${group}-${i}"><option value="">—</option>${R.texts.map(t=>`<option value="${esc(t.id)}">${esc(t.id)}</option>`).join('')}</select></label>`).join('')}`;
+  function dtbGradeSelect(id,label,selectedGrade='') {
+    return `<label class="rubric-row"><span>${esc(label)}</span><select class="select-input" id="${id}"><option value="">—</option>${['A','B','C','D'].map(g=>`<option value="${g}" ${selected(g===selectedGrade)}>${g}</option>`).join('')}</select></label>`;
   }
 
-  function renderTelcReading() {
-    const T=D.telc;
-    setView(`<button class="tiny-btn" id="backTelc">← telc</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">TELC C1 HOCHSCHULE</div><h2>Okuma + Dil yapıları</h2></div>${timerHtml(90)}</div><p class="muted">Okuma: 48 P · Dil yapıları: 22 P. Bu simülasyon görev sayılarını ve puan ağırlıklarını korur.</p></section><section class="card"><h3>Okuma Bölüm 1 · Metni yeniden oluşturma</h3><div class="reading-text">${esc(T.reading1.text)}</div>${T.reading1.options.map((o,i)=>mcHtml({q:`Boşluk ${i+1}`,o,a:T.reading1.answers[i]},'tr1',i,`Boşluk ${i+1}`)).join('')}</section><section class="card"><h3>Okuma Bölüm 2 · Seçici anlama</h3>${telcReading2Html('tr2')}</section><section class="card"><h3>Okuma Bölüm 3 · Ayrıntılı ve genel anlama</h3><div class="reading-text long-text">${esc(T.reading3.text)}</div>${T.reading3.items.map((q,i)=>mcHtml({q:q.q,o:T.reading3.labels,a:q.a},'tr3',i)).join('')}${mcHtml(T.reading3.heading,'trh',0,'Uygun başlık')}</section><section class="card"><h3>Dil yapıları · 22 soru</h3>${T.languageBlocks.map((q,i)=>mcHtml(q,'tlb',i)).join('')}</section><section class="card"><button class="primary-btn" id="gradeTelcReading">90-dakikalık bloğu bitir</button><div id="telcReadingResult"></div></section>`,()=>{
-      byId('backTelc').onclick=renderTelcHub;startCountdown(90,()=>byId('gradeTelcReading')?.click());
-      byId('gradeTelcReading').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}const r1=gradeMC('tr1',T.reading1.options.map((o,i)=>({o,a:T.reading1.answers[i]})));let r2score=0;T.reading2.items.forEach((it,i)=>{const s=byId(`tr2-${i}`);if(s.value===it.a)r2score++;s.disabled=true;s.classList.toggle('correct-select',s.value===it.a);});const r3=gradeMC('tr3',T.reading3.items),rh=gradeMC('trh',[T.reading3.heading]),lb=gradeMC('tlb',T.languageBlocks);const readPts=r1.score*2+r2score*2+r3.score*2+rh.score*2;const totalPts=readPts+lb.score;const percent=Math.round(totalPts/70*100);state.telcBest.readingLanguage=Math.max(Number(state.telcBest.readingLanguage||0),percent);state.examAttempts.telcReading=(state.examAttempts.telcReading||0)+1;save();byId('telcReadingResult').innerHTML=`<div class="score">${totalPts}/70</div><div class="feedback ${percent>=60?'good':'near'}">Okuma: ${readPts}/48 · Dil yapıları: ${lb.score}/22 · toplam ${percent}%.</div>`;byId('gradeTelcReading').disabled=true;};
+  function updateDtbBest(skill, points) {
+    ensureDtbState();
+    if (points===null || points===undefined || Number.isNaN(Number(points))) return;
+    const p=Math.round(Number(points)/60*100);
+    state.dtbScores[skill]=Math.max(Number(state.dtbScores[skill]??0),Number(points));
+    state.dtbBest[skill]=Math.max(Number(state.dtbBest[skill]||0),p);
+  }
+
+  function dtbResultSummary() {
+    ensureDtbState();
+    const labels={reading:'Okuma',listening:'Dinleme',writing:'Yazma',speaking:'Konuşma'};
+    const vals=Object.fromEntries(Object.keys(labels).map(k=>[k,state.dtbScores[k]]));
+    const complete=Object.values(vals).every(v=>v!==null && v!==undefined);
+    const rows=Object.entries(labels).map(([k,l])=>`<div class="exam-line"><strong>${l}</strong><small>60 puan</small><span>${vals[k]===null||vals[k]===undefined?'—':formatPoint(vals[k])+' / 60'}</span></div>`).join('');
+    if(!complete) return `${rows}<div class="notice" style="margin-top:12px">Genel geçme hesabı için dört becerinin de puanlanması gerekir.</div>`;
+    const total=Object.values(vals).reduce((a,b)=>a+Number(b),0);
+    const strong=Object.values(vals).filter(v=>Number(v)>=36).length;
+    const min=Math.min(...Object.values(vals).map(Number));
+    const pass=total>=144 && strong>=3 && min>=24;
+    return `${rows}<div class="score" style="margin-top:12px">${formatPoint(total)} / 240</div><div class="feedback ${pass?'good':'bad'}"><strong>${pass?'Geçme koşulları karşılanıyor':'Geçme koşulları henüz karşılanmıyor'}</strong><br>Gerekli: toplam ≥144; en az 3 beceri ≥36/60; telafi edilen tek beceri ≥24/60.</div>`;
+  }
+
+  function renderDtbHub() {
+    ensureDtbState();
+    setView(`<button class="tiny-btn" id="backExam">← Sınav</button><section class="card" style="margin-top:12px"><div class="provider-badge alt">DTB C1</div><h2>Deutsch-Test für den Beruf C1</h2><p class="muted">İşyeri odaklı genel mesleki Almanca. Görevler okuma/dinleme ile yazmayı yer yer birleştirir ve Mediation gerektirir.</p><div class="exam-structure">${examLine('Lesen','18 item + Lesen/Schreiben içindeki 2 item','65 dk',state.dtbBest.reading)}${examLine('Hören','19 item + Hören/Schreiben içindeki 1 item','≈25 dk',state.dtbBest.listening)}${examLine('Schreiben','E-posta + telefon notu + Sprachbausteine + Stellungnahme','entegre',state.dtbBest.writing)}${examLine('Sprechen','1A/1B/1C + işyeri sohbeti + sorun çözme','≈16–17 dk',state.dtbBest.speaking)}</div><div class="notice warning">Sözlü sınav için hazırlık süresi yoktur. Dinleme kayıtları resmî formatta bir kez dinlenir. Tarayıcı TTS'si yalnızca ücretsiz görev antrenmanıdır.</div></section><div class="grid"><button class="practice-card" data-dtb="reading"><strong>Lesen + Lesen/Schreiben</strong><small>65 dk · 20 okuma itemi + müşteri e-postası</small></button><button class="practice-card" data-dtb="listening"><strong>Hören + Hören/Schreiben</strong><small>≈25 dk · 20 dinleme itemi + telefon notu</small></button><button class="practice-card" data-dtb="writing"><strong>Sprachbausteine + Schreiben</strong><small>45 dk · 12 Sprachbausteine + Stellungnahme + yazma rubriği</small></button><button class="practice-card" data-dtb="speaking"><strong>Sprechen</strong><small>hazırlıksız · 1A/1B/1C + Teil 2 + Teil 3</small></button></div><section class="card"><h3>DTB C1 puan görünümü</h3>${dtbResultSummary()}</section>`,()=>{byId('backExam').onclick=renderExam;document.querySelectorAll('[data-dtb]').forEach(b=>b.onclick=()=>({reading:renderDtbReading,listening:renderDtbListening,writing:renderDtbWriting,speaking:renderDtbSpeaking}[b.dataset.dtb])());});
+  }
+
+  function matchingSelect(id,options,allowX=false) {
+    return `<select class="select-input" id="${id}"><option value="">— seç —</option>${options.map((x,i)=>`<option value="${i}">${String.fromCharCode(65+i)} · ${esc(x.title||x.replace(/^[A-Z]\s*/,'').slice(0,90))}</option>`).join('')}${allowX?'<option value="-1">X · uygun cevap yok</option>':''}</select>`;
+  }
+
+  function renderDtbReading() {
+    ensureDtbState(); const R=D.dtb.reading;
+    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">DTB C1 · LESEN + LESEN/SCHREIBEN</div><h2>65 dakika</h2></div>${timerHtml(65)}</div><p class="muted">Lesen 45 dk + Lesen und Schreiben 20 dk. Okuma puanı: toplam 20 item × 3 = 60.</p></section>
+    <section class="card"><h3>Lesen Teil 1 · 5 eşleştirme</h3><div class="candidate-list">${R.part1.articles.map(a=>`<div><strong>${esc(a.title)}</strong><br>${esc(a.text)}</div>`).join('')}</div>${R.part1.people.map((p,i)=>`<label class="field"><span>${i+1}. ${esc(p)}</span>${matchingSelect('dr1-'+i,R.part1.articles)}</label>`).join('')}</section>
+    <section class="card"><h3>Lesen Teil 2 · Talimatlar</h3>${R.part2.texts.map(t=>`<div class="reading-text">${esc(t)}</div>`).join('')}${R.part2.items.map((q,i)=>mcHtml(q,'dr2',i)).join('')}</section>
+    <section class="card"><h3>Lesen Teil 3 · Çalışma koşulları</h3><div class="candidate-list">${R.part3.tips.map((t,i)=>`<div><strong>${String.fromCharCode(65+i)}</strong> ${esc(t)}</div>`).join('')}</div>${R.part3.questions.map((q,i)=>`<label class="field"><span>${10+i}. ${esc(q)}</span>${matchingSelect('dr3-'+i,R.part3.tips.map((t,j)=>({title:String.fromCharCode(65+j),text:t})),true)}</label>`).join('')}</section>
+    <section class="card"><h3>Lesen Teil 4 · Toplantı tutanağı</h3><div class="reading-text long-text">${esc(R.part4.text)}</div>${R.part4.items.map((q,i)=>mcHtml(q,'dr4',i)).join('')}</section>
+    <section class="card"><h3>Lesen und Schreiben · 20 dakika içinde</h3><div class="reading-text long-text">${esc(R.readWrite.context)}</div>${R.readWrite.items.map((q,i)=>mcHtml(q,'drw',i)).join('')}<div class="callout"><strong>Yazma görevi:</strong> ${esc(R.readWrite.task)}</div><textarea class="text-area writing-area" id="dtbEmail" placeholder="Müşteriye Almanca e-posta yaz …">${esc(state.dtbComponents.emailDraft||'')}</textarea><div class="word-count"><span id="dtbEmailCount">${window.A1Learning.countWords(state.dtbComponents.emailDraft||'')}</span> kelime</div><h4>Yalnızca görev yerine getirme (resmî Kriter I)</h4>${dtbGradeSelect('dtbEmailGrade','E-posta: iletişimsel görev yerine getirme',state.dtbComponents.emailGrade||'')}</section>
+    <section class="card"><button class="primary-btn" id="gradeDtbRead">Bloğu bitir ve okuma puanını hesapla</button><div id="dtbReadResult"></div></section>`,()=>{
+      byId('backDtb').onclick=renderDtbHub; startCountdown(65,()=>byId('gradeDtbRead')?.click());
+      byId('dtbEmail').oninput=()=>{state.dtbComponents.emailDraft=byId('dtbEmail').value.slice(0,16000);byId('dtbEmailCount').textContent=window.A1Learning.countWords(byId('dtbEmail').value);save();};
+      byId('dtbEmailGrade').onchange=()=>{state.dtbComponents.emailGrade=byId('dtbEmailGrade').value;save();};
+      byId('gradeDtbRead').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;
+        R.part1.answers.forEach((a,i)=>{const s=byId('dr1-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
+        const a2=gradeMC('dr2',R.part2.items);score+=a2.score;total+=a2.total;
+        R.part3.answers.forEach((a,i)=>{const s=byId('dr3-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
+        const a4=gradeMC('dr4',R.part4.items);score+=a4.score;total+=a4.total; const arw=gradeMC('drw',R.readWrite.items);score+=arw.score;total+=arw.total;
+        const pts=score*3; updateDtbBest('reading',pts); state.dtbComponents.emailDraft=byId('dtbEmail').value.slice(0,16000); state.dtbComponents.emailGrade=byId('dtbEmailGrade').value; state.examAttempts.dtbReading=(state.examAttempts.dtbReading||0)+1; save();
+        byId('dtbReadResult').innerHTML=`<div class="score">${pts} / 60</div><div class="feedback ${pts>=36?'good':'near'}"><strong>${score}/${total} doğru</strong> · beceri eşiği 36/60. E-posta yazma puanı ayrı olarak Yazma becerisine gider.</div>`;byId('gradeDtbRead').disabled=true;};
     });
   }
 
-  function renderTelcListening() {
-    const T=D.telc;
-    setView(`<button class="tiny-btn" id="backTelc">← telc</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">TELC C1 HOCHSCHULE</div><h2>Dinlediğini anlama · 48 P</h2></div>${timerHtml(40)}</div><div class="notice warning">Tarayıcı TTS yalnızca format antrenmanı içindir. Telc'nin gerçek kayıtlarındaki doğal hız, aksan ve konuşmacı çeşitliliğini tam taklit etmez.</div></section><section class="card"><h3>Bölüm 1 · Genel anlama</h3><p class="muted">8 kısa konuşmacıyı 10 ifadeden uygun olanla eşleştir.</p><div class="candidate-list">${T.listening1.options.map(x=>`<div>${esc(x)}</div>`).join('')}</div>${T.listening1.scripts.map((s,i)=>`<div class="telc-audio-item"><div class="between"><strong>Konuşmacı ${i+1}</strong><button class="speak-btn" id="th1play${i}">▶</button></div><select class="select-input" id="th1sel${i}"><option value="">— İfade seç —</option>${T.listening1.options.map((x,j)=>`<option value="${j}">${esc(x)}</option>`).join('')}</select></div>`).join('')}</section><section class="card"><h3>Bölüm 2 · Ayrıntılı anlama</h3>${audioPanel('th2play','Röportaj',1)}${T.listening2.items.map((q,i)=>mcHtml(q,'th2',i)).join('')}</section><section class="card"><h3>Bölüm 3 · Bilgi aktarımı</h3>${audioPanel('th3play','Sunum',1)}<p class="muted">Duyduğun bilgiyi kısa biçimde aktar. Yazım varyasyonları için birden fazla doğru ifade kabul edilir.</p>${T.listening3.items.map((q,i)=>`<label class="field"><span>${esc(q.q)}</span><input class="text-input" id="th3-${i}" autocomplete="off"></label>`).join('')}</section><section class="card"><button class="primary-btn" id="gradeTelcListen">Dinlemeyi bitir</button><div id="telcListenResult"></div></section>`,()=>{
-      byId('backTelc').onclick=renderTelcHub;startCountdown(40,()=>byId('gradeTelcListen')?.click());
-      T.listening1.scripts.forEach((s,i)=>wireLimitedPlay(`th1play${i}`,s,1));wireLimitedPlay('th2play',T.listening2.script,1);wireLimitedPlay('th3play',T.listening3.script,1);
-      byId('gradeTelcListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let a=0;T.listening1.answers.forEach((ans,i)=>{const s=byId(`th1sel${i}`);if(Number(s.value)===ans)a++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===ans);});const r2=gradeMC('th2',T.listening2.items);let c=0;T.listening3.items.forEach((it,i)=>{const val=normalizeText(byId(`th3-${i}`).value);const ok=it.answers.some(x=>val.includes(normalizeText(x)));if(ok)c++;byId(`th3-${i}`).disabled=true;byId(`th3-${i}`).classList.toggle('correct-select',ok);});const pts=a + r2.score*2 + c*2;const p=Math.round(pts/48*100);state.telcBest.listening=Math.max(Number(state.telcBest.listening||0),p);state.examAttempts.telcListening=(state.examAttempts.telcListening||0)+1;save();byId('telcListenResult').innerHTML=`<div class="score">${pts}/48</div><div class="feedback ${p>=60?'good':'near'}">Bölüm 1: ${a}/8 · Bölüm 2: ${r2.score*2}/20 · Bölüm 3: ${c*2}/20 · ${p}%.</div>`;byId('gradeTelcListen').disabled=true;};
+  function renderDtbListening() {
+    ensureDtbState(); const L=D.dtb.listening;
+    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">DTB C1 · HÖREN + HÖREN/SCHREIBEN</div><h2>≈25 dakika</h2></div>${timerHtml(25)}</div><p class="muted">Resmî formatta tüm konuşmalar/mesajlar bir kez dinlenir. Hören puanı: 20 item × 3 = 60.</p><div class="notice warning">Tarayıcı TTS'si doğal sınav kayıtlarının yerini tutmaz; oynatma limiti görev akışını çalıştırmak içindir.</div></section>
+    <section class="card"><h3>Hören Teil 1 · 3 konuşma / 6 item</h3>${L.part1.conversations.map((c,i)=>`<div class="telc-audio-item"><div class="between"><strong>Gespräch ${i+1}</strong><button class="speak-btn" id="dh1play${i}">▶ 1×</button></div>${c.items.map((q,j)=>mcHtml(q,'dh1-'+i,j)).join('')}</div>`).join('')}</section>
+    <section class="card"><h3>Hören Teil 2 · 4 argüman eşleştirme</h3><div class="candidate-list">${L.part2.options.map(x=>`<div>${esc(x)}</div>`).join('')}</div>${L.part2.scripts.map((s,i)=>`<div class="telc-audio-item"><div class="between"><strong>Gespräch ${i+1}</strong><button class="speak-btn" id="dh2play${i}">▶ 1×</button></div>${matchingSelect('dh2-'+i,L.part2.options.map((x,j)=>({title:String.fromCharCode(65+j),text:x})))}</div>`).join('')}</section>
+    <section class="card"><h3>Hören Teil 3 · Sunum</h3>${audioPanel('dh3play','Betriebspräsentation',1)}${L.part3.items.map((q,i)=>mcHtml(q,'dh3',i)).join('')}</section>
+    <section class="card"><h3>Hören Teil 4 · Telefon mesajları</h3>${L.part4.messages.map((m,i)=>`<div class="telc-audio-item"><div class="between"><strong>Mitteilung ${i+1}</strong><button class="speak-btn" id="dh4play${i}">▶ 1×</button></div>${mcHtml({q:m.q,o:m.o,a:m.a},'dh4',i)}</div>`).join('')}</section>
+    <section class="card"><h3>Hören und Schreiben · Telefonnotiz</h3>${audioPanel('dhwplay','Telefonische Mitteilung',1)}${mcHtml(L.hearWrite.reason,'dhw',0)}<div class="grid"><label class="field"><span>Ad / Name</span><input class="text-input" id="dhnName"></label><label class="field"><span>Telefon</span><input class="text-input" id="dhnPhone"></label></div><label class="field"><span>Weitere Informationen</span><textarea class="text-area" id="dhnInfo"></textarea></label><label class="field"><span>Zu erledigen</span><textarea class="text-area" id="dhnTodo"></textarea></label></section>
+    <section class="card"><button class="primary-btn" id="gradeDtbListen">Bloğu bitir ve puanla</button><div id="dtbListenResult"></div></section>`,()=>{
+      byId('backDtb').onclick=renderDtbHub; startCountdown(25,()=>byId('gradeDtbListen')?.click());
+      L.part1.conversations.forEach((c,i)=>wireLimitedPlay('dh1play'+i,c.script,1));L.part2.scripts.forEach((s,i)=>wireLimitedPlay('dh2play'+i,s,1));wireLimitedPlay('dh3play',L.part3.script,1);L.part4.messages.forEach((m,i)=>wireLimitedPlay('dh4play'+i,m.script,1));wireLimitedPlay('dhwplay',L.hearWrite.script,1);
+      byId('gradeDtbListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;
+        L.part1.conversations.forEach((c,i)=>{const r=gradeMC('dh1-'+i,c.items);score+=r.score;total+=r.total;});
+        L.part2.answers.forEach((a,i)=>{const s=byId('dh2-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
+        const r3=gradeMC('dh3',L.part3.items);score+=r3.score;total+=r3.total; const r4=gradeMC('dh4',L.part4.messages);score+=r4.score;total+=r4.total; const rw=gradeMC('dhw',[L.hearWrite.reason]);score+=rw.score;total+=rw.total;
+        const pts=score*3; updateDtbBest('listening',pts);
+        const E=L.hearWrite.expected; let note=0; const n=normalizeText(byId('dhnName').value),ph=normalizeText(byId('dhnPhone').value),info=normalizeText(byId('dhnInfo').value),todo=normalizeText(byId('dhnTodo').value);
+        if(n.includes(normalizeText(E.name))) note+=0.5; if(ph.replace(/\s/g,'').includes(normalizeText(E.phone).replace(/\s/g,''))) note+=0.5; E.info.forEach(k=>{if(info.includes(normalizeText(k)))note+=1;}); const todoWords=['liefertermin','prüf','rückmeldung']; if(todoWords.filter(k=>todo.includes(normalizeText(k))).length>=2)note+=1; note=Math.min(6,note); state.dtbComponents.phoneNotePoints=note; state.examAttempts.dtbListening=(state.examAttempts.dtbListening||0)+1; save();
+        byId('dtbListenResult').innerHTML=`<div class="score">${pts} / 60</div><div class="feedback ${pts>=36?'good':'near'}"><strong>${score}/${total} dinleme itemi doğru</strong> · beceri eşiği 36/60.<br>Telefon notu yazma bileşeni: ${formatPoint(note)}/6.</div>`;byId('gradeDtbListen').disabled=true;};
     });
   }
 
   function normalizeText(s){return String(s||'').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zäöüß0-9]+/g,' ').trim();}
 
-  function renderTelcWriting() {
-    const P=D.telc.writingPrompts;
-    setView(`<button class="tiny-btn" id="backTelc">← telc</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">TELC C1 HOCHSCHULE</div><h2>Yazılı anlatım</h2></div>${timerHtml(70)}</div><p class="muted">İki konudan birini seç ve karmaşık, gerekçeli bir görüş metni yaz. Uygulama metni otomatik olarak dilsel olarak puanlayamaz; aşağıdaki kontrol C1 hedef özelliklerine göre öz-değerlendirmedir.</p></section><section class="card"><h3>Bir görev seç</h3>${P.map((p,i)=>`<label class="radio-option"><input type="radio" name="telcWriteChoice" value="${i}"><span><strong>${esc(p.title)}</strong><br><small>${esc(p.prompt)}</small></span></label>`).join('')}</section><section class="card"><textarea class="text-area writing-area" id="telcWriteText" placeholder="Metnini Almanca yaz …"></textarea><div class="word-count"><span id="telcWriteCount">0</span> kelime</div><button class="primary-btn" id="finishTelcWrite">Yazmayı bitir</button><div id="telcWriteEval"></div></section>`,()=>{
-      byId('backTelc').onclick=renderTelcHub;startCountdown(70,()=>byId('finishTelcWrite')?.click());byId('telcWriteText').oninput=()=>byId('telcWriteCount').textContent=window.A1Learning.countWords(byId('telcWriteText').value);
-      byId('finishTelcWrite').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}if(!document.querySelector('input[name="telcWriteChoice"]:checked')){byId('telcWriteEval').innerHTML='<div class="feedback near">Önce iki görevden birini seç.</div>';return;}byId('telcWriteEval').innerHTML=`<h3 style="margin-top:16px">C1 öz-değerlendirme</h3><div class="checklist">${['Görevi tamamen yerine getirdim ve net bir pozisyon geliştirdim.','Metin açık bir giriş, mantıklı paragraflar ve sonuç içeriyor.','Argümanları örnekler/karşı argümanlarla geliştirdim.','Bağlaçlar ve referans araçları metni doğal biçimde bağlıyor.','Kelime dağarcığı geniş, tam ve tekrardan uzak.','Karmaşık yapıları büyük ölçüde doğru kullandım.','Kullanılan dil düzeyi akademik/yarı akademik amaca uygun.'].map((x,i)=>`<label class="check-item"><input type="checkbox" id="tcw${i}"><span>${esc(x)}</span></label>`).join('')}</div><button class="secondary-btn" id="saveTelcWrite">Denemeyi kaydet</button>`;byId('saveTelcWrite').onclick=()=>{const n=[...Array(7)].filter((_,i)=>byId('tcw'+i).checked).length;const p=Math.round(n/7*100);state.telcBest.writing=Math.max(Number(state.telcBest.writing||0),p);state.examAttempts.telcWriting=(state.examAttempts.telcWriting||0)+1;save();byId('saveTelcWrite').textContent=`✓ Öz kontrol ${p}%`;byId('saveTelcWrite').disabled=true;};};
+  function renderDtbWriting() {
+    ensureDtbState(); const W=D.dtb.languageWriting; const C=state.dtbComponents;
+    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card sticky-exam-header"><div class="between"><div><div class="eyebrow">DTB C1 · SPRACHBAUSTEINE + SCHREIBEN</div><h2>45 dakika</h2></div>${timerHtml(45)}</div><p class="muted">12 Sprachbausteine = 6 yazma puanı. Stellungnahme + daha önceki müşteri e-postası ve telefon notuyla birlikte Yazma becerisi toplam 60 puandır.</p></section>
+    <section class="card"><h3>Sprachbausteine Teil 1 · 6 eşleştirme</h3><div class="reading-text">${esc(W.blocks1.text)}</div><div class="candidate-list">${W.blocks1.options.map((x,i)=>`<div><strong>${String.fromCharCode(65+i)}</strong> ${esc(x)}</div>`).join('')}</div>${W.blocks1.answers.map((_,i)=>`<label class="field"><span>Lücke ${46+i}</span>${matchingSelect('db1-'+i,W.blocks1.options.map((x,j)=>({title:String.fromCharCode(65+j),text:x})))}</label>`).join('')}</section>
+    <section class="card"><h3>Sprachbausteine Teil 2 · 6 MC</h3><div class="reading-text">${esc(W.blocks2.text)}</div>${W.blocks2.items.map((q,i)=>mcHtml(q,'db2',i,`Lücke ${52+i}`)).join('')}</section>
+    <section class="card"><h3>Schreiben · Stellungnahme</h3><p class="muted">İki konudan birini seç. Avantaj/dezavantajları tart, örnek ver, kendi görüşünü belirt ve bir sonuç çıkar.</p>${W.statementPrompts.map((p,i)=>`<label class="radio-option"><input type="radio" name="dtbStatementChoice" value="${i}"><span><strong>${esc(p.title)}</strong><br><small>${esc(p.prompt)}</small></span></label>`).join('')}<textarea class="text-area writing-area" id="dtbStatement">${esc(C.statementDraft||'')}</textarea><div class="word-count"><span id="dtbStatementCount">${window.A1Learning.countWords(C.statementDraft||'')}</span> kelime</div></section>
+    <section class="card"><h3>Resmî DTB yazma puan yapısına göre öz değerlendirme</h3><p class="muted">A = C1 gut erfüllt · B = C1 erfüllt · C = B2 erfüllt · D = unter B2. Kriterium II–IV iki uzun yazma performansının genel dil niteliğini değerlendirir.</p><div class="rubric-grid">${dtbGradeSelect('dwEmail','Lesen+Schreiben e-postası · Kriter I (7 P)',C.emailGrade||'')}${dtbGradeSelect('dwStatement','Stellungnahme · Kriter I (14 P)',C.statementGrades?.statement||'')}${dtbGradeSelect('dwComm','Kriter II · Kommunikative Gestaltung (9 P)',C.statementGrades?.comm||'')}${dtbGradeSelect('dwCorrect','Kriter III · Formale Richtigkeit (9 P)',C.statementGrades?.correct||'')}${dtbGradeSelect('dwRange','Kriter IV · Spektrum sprachlicher Mittel (9 P)',C.statementGrades?.range||'')}</div><div class="notice">Telefon notu: ${formatPoint(C.phoneNotePoints||0)}/6 · Sprachbausteine henüz bu denemede puanlanacak.</div><button class="primary-btn" id="gradeDtbWrite">Bloğu bitir ve Yazma puanını hesapla</button><div id="dtbWriteResult"></div></section>`,()=>{
+      byId('backDtb').onclick=renderDtbHub; startCountdown(45,()=>byId('gradeDtbWrite')?.click()); byId('dtbStatement').oninput=()=>{C.statementDraft=byId('dtbStatement').value.slice(0,20000);byId('dtbStatementCount').textContent=window.A1Learning.countWords(byId('dtbStatement').value);save();};
+      byId('gradeDtbWrite').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let b1=0;W.blocks1.answers.forEach((a,i)=>{const s=byId('db1-'+i);if(Number(s.value)===a)b1++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});const b2=gradeMC('db2',W.blocks2.items);const language=(b1+b2.score)*0.5;C.languagePoints=language; C.statementDraft=byId('dtbStatement').value.slice(0,20000); C.emailGrade=byId('dwEmail').value; const grades={statement:byId('dwStatement').value,comm:byId('dwComm').value,correct:byId('dwCorrect').value,range:byId('dwRange').value}; C.statementGrades=grades;
+        if(!C.emailGrade || Object.values(grades).some(x=>!x)){save();byId('dtbWriteResult').innerHTML=`<div class="feedback near">Sprachbausteine: ${formatPoint(language)}/6. Yazma toplam puanı için beş öz-değerlendirme alanının tamamında A–D seç.</div>`;return;}
+        const pts=dtbGradeMap(C.emailGrade,7)+dtbGradeMap(grades.statement,14)+dtbGradeMap(grades.comm,9)+dtbGradeMap(grades.correct,9)+dtbGradeMap(grades.range,9)+Number(C.phoneNotePoints||0)+language; updateDtbBest('writing',pts); state.examAttempts.dtbWriting=(state.examAttempts.dtbWriting||0)+1; save();
+        byId('dtbWriteResult').innerHTML=`<div class="score">${formatPoint(pts)} / 60</div><div class="feedback ${pts>=36?'good':'near'}">E-posta Kriter I + telefon notu + 12 Sprachbausteine + Stellungnahme Kriter I + genel Kriter II–IV birlikte hesaplandı.</div>`;};
     });
   }
 
-  function renderTelcSpeaking() {
-    const S=D.telc.speaking;
-    setView(`<button class="tiny-btn" id="backTelc">← telc</button><section class="card"><div class="eyebrow">TELC C1 HOCHSCHULE</div><h2>Sözlü anlatım</h2><p class="muted">20 dakikalık hazırlık sonrası çift sınav: 1A sunum, 1B partner sunumunu özetleme + bağlantı soruları, 2 tartışma. Tek kişilik uygulamada partner kısmı simüle edilir.</p></section><section class="card"><h3>Bölüm 1A · Sunum</h3><p>Bir konu seç:</p>${S.presentationTopics.map((x,i)=>`<label class="radio-option"><input type="radio" name="telcPresent" value="${i}"><span>${esc(x)}</span></label>`).join('')}<p class="muted">Sunumu net tez, yapılandırılmış alt noktalar, örnek ve sonuçla yaklaşık sınav uzunluğunda yap.</p>${recorderHtml('TelcPresent')}</section><section class="card"><h3>Bölüm 1B · Özet / takip soruları</h3><p>${esc(S.summaryGuide)}</p><textarea class="text-area" id="telcSummary" placeholder="Özet için anahtar notları ve en az bir takip sorusunu yaz …"></textarea></section><section class="card"><h3>Bölüm 2 · Tartışma</h3><blockquote class="quote-box">${esc(S.discussionQuote)}</blockquote><ul class="task-points">${S.discussionPoints.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${recorderHtml('TelcDiscuss')}</section><section class="card"><h3>Öz kontrol</h3><div class="checklist">${['Sunum iyi yapılandırılmış ve anlaşılırdı.','Partner sunumunun ana noktalarını doğru biçimde özetleyebilecek durumdayım.','Uygun takip soruları üretebiliyorum.','Tartışmada gerekçe, karşı görüş ve tepki kullanıyorum.','Kelime dağarcığı C1 düzeyinde geniş ve uygun.','Karmaşık yapılar büyük ölçüde doğru.','Konuşma akıcı ve kullanılan dil düzeyi duruma uygun.','Telaffuz/intonasyon iletişimi engellemiyor.'].map((x,i)=>`<label class="check-item"><input type="checkbox" id="tcs${i}"><span>${esc(x)}</span></label>`).join('')}</div><button class="primary-btn" id="saveTelcSpeak">Denemeyi kaydet</button></section>`,()=>{
-      byId('backTelc').onclick=renderTelcHub;window.A1Learning.wireRecorder('TelcPresent',()=>{},recorderLabels);window.A1Learning.wireRecorder('TelcDiscuss',()=>{},recorderLabels);byId('saveTelcSpeak').onclick=()=>{const n=[...Array(8)].filter((_,i)=>byId('tcs'+i).checked).length;const p=Math.round(n/8*100);state.telcBest.speaking=Math.max(Number(state.telcBest.speaking||0),p);state.examAttempts.telcSpeaking=(state.examAttempts.telcSpeaking||0)+1;save();byId('saveTelcSpeak').textContent=`✓ Öz kontrol ${p}%`;byId('saveTelcSpeak').disabled=true;};
+  function renderDtbSpeaking() {
+    ensureDtbState(); const S=D.dtb.speaking;
+    setView(`<button class="tiny-btn" id="backDtb">← DTB C1</button><section class="card"><div class="eyebrow">DTB C1 · SPRECHEN</div><h2>≈16–17 dakika · hazırlık yok</h2><p class="muted">1A yaklaşık 2 dakikalık spontan anlatım; 1B sınav görevlisi soruları; 1C partnerin bir noktayı kendi sözleriyle açıklaması; Teil 2 işyeri small talk; Teil 3 ortak sorun çözme.</p></section>
+    <section class="card"><h3>Teil 1A · Über ein Thema sprechen</h3><p>İki tema rastgele seçilmiş gibi prova yapmak için aşağıdan bir konu seç:</p><select class="select-input" id="dsTopic">${S.topics.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join('')}</select><p class="muted">Yaklaşık 2 dakika konuş. Giriş → 2–3 nokta → örnek → kısa sonuç.</p>${recorderHtml('Dtb1A')}<div class="callout"><strong>Teil 1B · olası Prüferfragen</strong><ul>${S.examinerQuestions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></section>
+    <section class="card"><h3>Teil 1C · Erläuterung eines Aspekts</h3><p>Partnerin/partnerin söylediklerinden bir noktayı 20–40 saniyede kendi sözlerinle açıkla. Ana fikri koru, kelimeleri kopyalama.</p>${recorderHtml('Dtb1C')}</section>
+    <section class="card"><h3>Teil 2 · Mit Kolleginnen und Kollegen sprechen</h3><p class="muted">≈3 dakika doğal, informel işyeri sohbeti.</p><div class="candidate-list">${S.smallTalk.map(x=>`<div>${esc(x)}</div>`).join('')}</div>${recorderHtml('Dtb2')}</section>
+    <section class="card"><h3>Teil 3 · Lösungswege diskutieren</h3>${S.problems.map((p,i)=>`<label class="radio-option"><input type="radio" name="dtbProblem" value="${i}" ${i===0?'checked':''}><span><strong>${esc(p.title)}</strong><br><small>${esc(p.text)}</small></span></label>`).join('')}<p class="muted">Sofortmaßnahme + langfristige Verbesserung + “kim ne yapacak?” görev paylaşımı konuşulmalı.</p>${recorderHtml('Dtb3')}</section>
+    <section class="card"><h3>Resmî puan ağırlıklarıyla öz değerlendirme</h3><div class="rubric-grid">${dtbGradeSelect('ds1a','1A görev yerine getirme · 5 P')}${dtbGradeSelect('ds1b','1B Prüferfragen · 5 P')}${dtbGradeSelect('ds1c','1C açıklama/aktarım · 2 P')}${dtbGradeSelect('ds2','Teil 2 işyeri sohbeti · 8 P')}${dtbGradeSelect('ds3','Teil 3 sorun çözme · 10 P')}${dtbGradeSelect('dsPron','Kriter II · Aussprache/Intonation · 10 P')}${dtbGradeSelect('dsCorrect','Kriter III · Formale Richtigkeit · 10 P')}${dtbGradeSelect('dsRange','Kriter IV · Spektrum sprachlicher Mittel · 10 P')}</div><button class="primary-btn" id="gradeDtbSpeak">Sprechen puanını hesapla</button><div id="dtbSpeakResult"></div></section>`,()=>{
+      byId('backDtb').onclick=renderDtbHub;['Dtb1A','Dtb1C','Dtb2','Dtb3'].forEach(id=>window.A1Learning.wireRecorder(id,()=>{},recorderLabels));
+      byId('gradeDtbSpeak').onclick=()=>{const ids=['ds1a','ds1b','ds1c','ds2','ds3','dsPron','dsCorrect','dsRange'];const g=ids.map(id=>byId(id).value);if(g.some(x=>!x)){byId('dtbSpeakResult').innerHTML='<div class="feedback near">Sekiz değerlendirme alanının tamamında A–D seç.</div>';return;}const pts=dtbGradeMap(g[0],5)+dtbGradeMap(g[1],5)+dtbGradeMap(g[2],2)+dtbGradeMap(g[3],8)+dtbGradeMap(g[4],10)+dtbGradeMap(g[5],10)+dtbGradeMap(g[6],10)+dtbGradeMap(g[7],10);updateDtbBest('speaking',pts);state.examAttempts.dtbSpeaking=(state.examAttempts.dtbSpeaking||0)+1;save();byId('dtbSpeakResult').innerHTML=`<div class="score">${formatPoint(pts)} / 60</div><div class="feedback ${pts>=36?'good':'near'}">Beceri eşiği 36/60. Bu değer öz-değerlendirmedir; gerçek sınavda iki lisanslı değerlendirici puanlar.</div>`;};
     });
   }
 
