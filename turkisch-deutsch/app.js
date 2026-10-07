@@ -10,7 +10,9 @@
   const defaults = {
     doneLessons: [],
     lessonQuizBest: {},
+    lessonActivityScores: {},
     lessonWork: {},
+    curriculumVersion: 0,
     practiceBest: {},
     writingDone: [],
     speakingDone: [],
@@ -23,6 +25,17 @@
     lastRoute: 'home'
   };
   let state = window.A1Learning.loadState(stateKey, defaults);
+  // v10 changes the meaning/order of lessons 15–40. Keep genuine foundation progress,
+  // but do not let old v1–v9 completion flags falsely complete the rebuilt DTB course.
+  if (Number(state.curriculumVersion || 0) < 10) {
+    state.doneLessons = (state.doneLessons || []).filter(id => Number(id) <= 14);
+    state.lessonQuizBest = Object.fromEntries(Object.entries(state.lessonQuizBest || {}).filter(([k]) => Number(k) <= 14));
+    state.lessonWork = Object.fromEntries(Object.entries(state.lessonWork || {}).filter(([k]) => Number(k) <= 14));
+    state.lessonActivityScores = {};
+    state.curriculumVersion = 10;
+    localStorage.setItem(stateKey, JSON.stringify(state));
+  }
+  if (!state.lessonActivityScores || typeof state.lessonActivityScores !== 'object') state.lessonActivityScores = {};
   let activeTimer = null;
 
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -130,7 +143,7 @@
     const nextLesson = D.lessons.find(l => !state.doneLessons.includes(l.id)) || null;
     const continueTitle = nextLesson ? (state.doneLessons.length ? 'Derse devam et' : 'Kursa başla') : 'Dersleri tekrar et';
     const continueKicker = nextLesson ? (state.doneLessons.length ? 'ŞİMDİ DEVAM ET' : 'BURADAN BAŞLA') : 'KURS TAMAMLANDI';
-    const continueDetail = nextLesson ? `Sıradaki: ${nextLesson.id}. ${nextLesson.title}` : '30 ders tamamlandı · istediğin dersi yeniden aç';
+    const continueDetail = nextLesson ? `Sıradaki: ${nextLesson.id}. ${nextLesson.title}` : `${D.lessons.length} ders tamamlandı · istediğin dersi yeniden aç`;
     setView(`
       <section class="card hero">
         <div class="eyebrow">TÜRKÇE → ALMANCA · C1</div>
@@ -139,10 +152,10 @@
         <div class="pill">Deutsch-Test für den Beruf C1 · hedef sınav</div>
       </section>
       <section class="card course-progress-card">
-        <div class="between"><div><strong>Toplam kurs ilerlemesi</strong><div class="muted">30 ders + hedefli alıştırmalar + sınav simülasyonları</div></div><strong>${cp}%</strong></div>
+        <div class="between"><div><strong>Toplam kurs ilerlemesi</strong><div class="muted">${D.lessons.length} ders + hedefli alıştırmalar + sınav simülasyonları</div></div><strong>${cp}%</strong></div>
         <div class="spacer"></div>${progressBar(cp)}
         <div class="grid metric-grid" style="margin-top:14px">
-          <div class="metric"><strong>${state.doneLessons.length}/30</strong><small>Ders tamamlandı</small></div>
+          <div class="metric"><strong>${state.doneLessons.length}/${D.lessons.length}</strong><small>Ders tamamlandı</small></div>
           <div class="metric"><strong>${examCheckpointCount()}/4</strong><small>DTB becerisi puanlandı</small></div>
         </div>
         <button class="continue-course-btn" id="continueLearn">
@@ -185,7 +198,7 @@
     }
     setView(`
       <section class="card">
-        <div class="between"><div><div class="eyebrow">C1 ÖĞRENME YOLU</div><h2>30 derslik yapı</h2></div><strong>${state.doneLessons.length}/30</strong></div>
+        <div class="between"><div><div class="eyebrow">C1 ÖĞRENME YOLU</div><h2>${D.lessons.length} derslik yapı</h2></div><strong>${state.doneLessons.length}/${D.lessons.length}</strong></div>
         <p class="muted">İlk bloklar dil araçlarını güçlendirir; daha sonra sınav becerileri ve gerçek sınav görevleri devreye girer. C1'de gramer tek başına amaç değil, daha kesin ve esnek ifade üretmek için araçtır.</p>
         ${progressBar(pct(state.doneLessons.length,D.lessons.length))}
       </section>
@@ -198,70 +211,135 @@
     });
   }
 
+  function activityItemCount(a) {
+    if (!a) return 0;
+    if (a.type === 'mc' || a.type === 'reading' || a.type === 'listening') return (a.questions || []).length;
+    if (a.type === 'tf') return (a.statements || []).length;
+    if (a.type === 'match') return (a.prompts || []).length;
+    if (a.type === 'cloze') return (a.blanks || []).length;
+    return 0;
+  }
+
+  function scoredActivities(l) { return (l.activities || []).filter(a => a.type !== 'info' && activityItemCount(a) > 0); }
+  function activityKey(lid, aid) { return `${lid}:${aid}`; }
+
+  function lessonActivitySummary(l) {
+    const acts = scoredActivities(l);
+    let itemTotal = 0, attemptedItems = 0, weightedBest = 0;
+    const w = state.lessonWork?.[l.id] || {};
+    const attempted = Array.isArray(w.activityAttempted) ? w.activityAttempted : [];
+    acts.forEach(a => {
+      const n = activityItemCount(a); itemTotal += n;
+      if (attempted.includes(a.id)) attemptedItems += n;
+      const rec = state.lessonActivityScores?.[activityKey(l.id,a.id)];
+      const best = typeof rec === 'object' ? Number(rec.best || 0) : Number(rec || 0);
+      weightedBest += n * best;
+    });
+    return {activities:acts.length,itemTotal,attemptedItems,best:itemTotal?Math.round(weightedBest/itemTotal):0,complete:acts.length>0 && acts.every(a=>attempted.includes(a.id))};
+  }
+
   function lessonCard(l) {
     const done = state.doneLessons.includes(l.id);
-    const best = Number(state.lessonQuizBest?.[l.id] || 0);
+    const summary = lessonActivitySummary(l);
+    const best = summary.best || Number(state.lessonQuizBest?.[l.id] || 0);
+    const activityLabel = summary.itemTotal ? `${summary.attemptedItems}/${summary.itemTotal} alıştırma` : 'Aktif çalışma';
     return `<button class="lesson ${done?'done':''}" data-lesson="${l.id}">
       <div class="row"><span class="num">${l.id}</span><div><strong>${esc(l.title)}</strong><div class="lesson-goal-preview">${esc(l.goal)}</div></div></div>
-      <div class="lesson-meta">${(l.skills||[]).map(s=>`<span class="pill">${esc(s)}</span>`).join('')}${best?`<span class="pill green">Quiz ${best}%</span>`:''}${done?'<span class="pill green">✓ tamamlandı</span>':''}</div>
+      <div class="lesson-meta">${(l.skills||[]).map(s=>`<span class="pill">${esc(s)}</span>`).join('')}<span class="pill gray">${activityLabel}</span>${best?`<span class="pill green">En iyi ${best}%</span>`:''}${done?'<span class="pill green">✓ tamamlandı</span>':''}</div>
     </button>`;
   }
 
-  const PRODUCTION_GUIDES = {
-    1:{task:'3–5 cümlede bir işyeri durumunu C1 düzeyinde özetle ve ne yapılması gerektiğini belirt.',target:'Bilgiyi yalnızca aktarma; ana noktayı seç, sonucu veya sonraki adımı açıkça belirt.',example:'Die Lieferung verspätet sich voraussichtlich um zwei Tage. Da der Kunde die Ware dringend benötigt, sollten wir ihn sofort informieren. Anders ausgedrückt: Eine frühe Rückmeldung ist hier wichtiger als eine perfekte Lösung.'},
-    2:{task:'3–5 cümlelik kısa bir paragraf yaz ve cümleleri gönderim ifadeleriyle birbirine bağla.',target:'dies, dadurch, dabei, letzteres, ein solcher Ansatz gibi gönderim araçlarından en az birini kullan.',example:'Das Team hat zwei Modelle geprüft: feste Präsenztage und flexible Anwesenheit. Letzteres bietet mehr Spielraum. Dadurch lässt sich die Planung besser an unterschiedliche Aufgaben anpassen.'},
-    3:{task:'Bir görüşü 3–5 cümlede savun; karşıtlık, neden veya sonuç ilişkisini açıkça göster.',target:'aber/weil ile yetinme; örneğin zwar … jedoch, wenngleich, während, folglich, demgegenüber kullan.',example:'Zwar verursacht die Umstellung zunächst zusätzliche Kosten, jedoch spart sie langfristig Zeit. Wenngleich nicht alle Mitarbeitenden überzeugt sind, überwiegen aus meiner Sicht die Vorteile.'},
-    4:{task:'Aynı fikri iki farklı biçimde ifade eden 3–5 cümle yaz.',target:'İkinci ifade ilk cümlenin kelimelerini sadece tekrarlamasın; eşanlamlı sözcük veya farklı bir yapı kullan.',example:'Die Maßnahme ist mit erheblichen Kosten verbunden. Anders ausgedrückt: Das Unternehmen müsste dafür deutlich mehr Geld einplanen. Dennoch könnte sich die Investition langfristig lohnen.'},
-    5:{task:'Resmî veya yarı resmî bir işyeri bağlamında 3–5 cümle yaz.',target:'Kayıt tutarlı olsun: nazik, mesafeli ve duruma uygun ifadeler kullan; konuşma diline kayma.',example:'Ich möchte Sie darauf aufmerksam machen, dass die vereinbarte Frist bereits abgelaufen ist. Dennoch bin ich zuversichtlich, dass wir gemeinsam eine Lösung finden können.'},
-    6:{task:'3–5 cümlede en az iki doğal eşdizim veya Nomen-Verb-Verbindung kullan.',target:'Kelimeyi tek başına değil doğal birleşimiyle kullan: eine Entscheidung treffen, Maßnahmen ergreifen, zur Verfügung stehen, Kritik üben.',example:'Die Geschäftsleitung muss zeitnah eine Entscheidung treffen. Um weitere Verzögerungen zu vermeiden, sollten wir konkrete Maßnahmen ergreifen. Dafür stehen bereits zusätzliche Ressourcen zur Verfügung.'},
-    7:{task:'3–5 cümlede en az iki Vorgangspassiv örneği kullan.',target:'Sürece odaklan: werden + Partizip II; Perfektte ist/sind … worden yapısını kullan.',example:'Die neuen Richtlinien werden nächste Woche eingeführt. Alle Mitarbeitenden werden vorher informiert. Die wichtigsten Änderungen sind bereits mehrfach geprüft worden.'},
-    8:{task:'3–5 cümlede süreç ile sonuç durumunu karşılaştır.',target:'Vorgangspassiv (wird gemacht) ve Zustandspassiv (ist gemacht) farkını bilinçli kullan; mümkünse öznesiz pasif ekle.',example:'Die Tür wird gerade repariert. Am Nachmittag ist sie wieder geschlossen. Während der Arbeiten wird im Nebeneingang gewartet.'},
-    9:{task:'3–5 cümlede en az iki Nomen-Verb-Verbindung kullan ve birini basit fiille yeniden ifade et.',target:'Örn. eine Entscheidung treffen → entscheiden; Kritik üben → kritisieren; zur Verfügung stellen → bereitstellen.',example:'Die Leitung hat eine Entscheidung getroffen. Anders ausgedrückt: Sie hat entschieden, das Projekt fortzusetzen. Gleichzeitig wurde Kritik an der bisherigen Planung geübt.'},
-    10:{task:'3–5 cümlede zorunluluk, izin veya olanak ifade et.',target:'müssen, dürfen, können, sollen, wollen arasındaki anlam farkını doğru seç.',example:'Die Mitarbeitenden müssen die Sicherheitsregeln beachten. Sie dürfen den Bereich nur mit Ausweis betreten, können Fragen aber jederzeit an die Teamleitung richten.'},
-    11:{task:'3–5 cümlede bir bilginin ne kadar kesin olduğunu modal fiillerle derecelendir.',target:'könnte/dürfte = olasılık, muss = güçlü çıkarım, soll = duyum, will = kişinin kendi iddiası.',example:'Der Lieferant dürfte die Ware bereits verschickt haben. Die Sendung muss also unterwegs sein. Laut Spedition soll es gestern jedoch eine Verzögerung gegeben haben.'},
-    12:{task:'3–5 cümlede varsayım, temkinli öneri veya geçmiş pişmanlık ifade et.',target:'Konjunktiv II kullan: wäre/würde/könnte/sollte; geçmiş için hätte/wäre + Partizip II.',example:'Es wäre sinnvoll, den Kunden früher zu informieren. Wir könnten ihm zunächst eine Zwischenlösung anbieten. Rückblickend hätten wir die Frist realistischer planen sollen.'},
-    13:{task:'Bir kişinin sözünü 3–5 cümlede dolaylı anlatımla aktar.',target:'Konjunktiv I kullan: er sei, habe, werde, könne; gerekirse anlamı koruyarak yeniden ifade et.',example:'Die Projektleiterin erklärte, der Termin sei weiterhin realistisch. Sie habe bereits zusätzliche Ressourcen beantragt und werde das Team morgen informieren.'},
-    14:{task:'3–5 cümlede bir fiil cümlesini adlaştır ve sonra daha açık bir fiil yapısıyla yeniden yaz.',target:'Nominalisierung ve Verbalisierung arasında bilinçli geçiş yap.',example:'Nach der Prüfung der Unterlagen wurde der Antrag genehmigt. Nachdem die Unterlagen geprüft worden waren, genehmigte die Abteilung den Antrag.'},
-    15:{task:'Bir işyeri bilgisini başka bir kişiye 3–5 cümlede aktar ve yapılacak işi belirt.',target:'Mediation: ayrıntıları kopyalamak yerine alıcı için önemli bilgiyi seç, açıklaştır ve eyleme dönüştür.',example:'Der Kunde hat mitgeteilt, dass er die Lieferung bereits am Donnerstag benötigt. Das bedeutet für uns, dass wir den Termin prüfen müssen. Bitte gib ihm anschließend kurz Bescheid.'},
-    16:{task:'Bir kişinin ihtiyacını 3–5 cümlede farklı kelimelerle özetle ve hangi tür metnin uygun olacağını açıkla.',target:'Ana fikri parafraz et; metindeki kelimeleri aynen aramak yerine anlam eşleşmesine odaklan.',example:'Die Person sucht keine allgemeine Karriereberatung, sondern konkrete Hilfe beim Umgang mit hoher Arbeitsbelastung. Passend wäre daher ein Beitrag, der Strategien gegen Stress am Arbeitsplatz beschreibt.'},
-    17:{task:'Bir işyeri kuralını 3–5 cümlede kendi sözlerinle açıkla.',target:'Kural, istisna ve sonucu birbirinden ayır; dürfen/müssen/sollen gibi modal ifadeleri doğru kullan.',example:'Mitarbeitende müssen ihren Firmenausweis auf dem Gelände mitführen. Dadurch kann die Zugehörigkeit jederzeit überprüft werden. Ohne Ausweis dürfen bestimmte Bereiche nicht betreten werden.'},
-    18:{task:'Bir işyeri sorununa 3–5 cümlede uygun bir tavsiye ver ve nedenini açıkla.',target:'Sorunla gerçekten örtüşen tavsiyeyi seç; sollte/könnte, an deiner Stelle gibi öneri yapıları kullan.',example:'An deiner Stelle würde ich zunächst das Gespräch mit der Teamleitung suchen. Dadurch lässt sich klären, ob die Aufgaben anders verteilt werden können. Ein sofortiger Stellenwechsel wäre dagegen voreilig.'},
-    19:{task:'Kısa bir toplantı sonucunu 3–5 cümlede özetle: karar, sorumlu kişi ve son tarih.',target:'Wer macht was bis wann? Bu üç bilgiyi açıkça ayır ve itiraz/karar farkını koru.',example:'Die Abteilungsleitungen haben beschlossen, die Telefonanlage zu überprüfen. Die IT soll bis Ende Juni einen Projektplan vorlegen. Der Vertrieb hat außerdem darum gebeten, frühzeitig einbezogen zu werden.'},
-    20:{task:'4–6 cümlelik kısa ve profesyonel bir müşteri e-postası yaz.',target:'Sorunu kabul et, suçlayıcı dilden kaçın, çözüm veya sonraki adımı belirt ve ekip liderinin talimatını uygun dille aktar.',example:'Sehr geehrter Herr Weber, vielen Dank für Ihre Nachricht. Wir bedauern die entstandenen Unannehmlichkeiten und prüfen den Vorgang derzeit. Obwohl die Ursache noch nicht abschließend geklärt ist, werden wir uns heute mit der Kundin in Verbindung setzen. Anschließend informieren wir Sie über das weitere Vorgehen.'},
-    21:{task:'Duyduğun bir işyeri konuşmasını 3–5 cümlede özetliyormuş gibi yaz: sorun, öneri ve karar.',target:'Ana durum ile ayrıntıyı ayır; konuşmacının önerisini kendi sözlerinle aktar.',example:'Im Team fehlen derzeit zwei Mitarbeitende. Deshalb wird über eine Übergangslösung gesprochen. Die Teamleiterin schlägt vor, Aufgaben vorübergehend neu zu verteilen.'},
-    22:{task:'Bir konuşmacının temel argümanını 3–5 cümlede kendi sözlerinle yeniden kur.',target:'Örneklerden ziyade ana iddiayı yakala; görüş, gerekçe ve olası sonucu ayır.',example:'Der Sprecher hält einen Abteilungswechsel nicht grundsätzlich für problematisch. Entscheidend sei vielmehr, ob die Person ihre Stärken im neuen Bereich besser einsetzen könne. Dadurch könnten beide Teams profitieren.'},
-    23:{task:'Bir şirket sunumunun 3–5 cümlelik yönetici özetini yaz.',target:'Rakam/sonuç, neden ve sonraki adımı birbirinden ayır; ayrıntıya boğulma.',example:'Der Umsatz ist gegenüber dem Vorjahr gestiegen, vor allem wegen höherer Preise. Bei den Serviceverträgen wurde das Ziel dagegen noch nicht erreicht. Deshalb plant der Vertrieb für das zweite Halbjahr eine gezielte Kampagne.'},
-    24:{task:'Bir telefon mesajını 3–5 cümlede meslektaşına aktar.',target:'Kim aradı, neden aradı ve senden ne yapılmasını bekliyor? Gereksiz ayrıntıları çıkar.',example:'Frau Berger aus der Personalabteilung hat angerufen. Die Unterweisung beginnt morgen erst um zehn Uhr. Bitte informiere auch Herrn Yilmaz über die neue Uhrzeit.'},
-    25:{task:'Kısa bir telefon notu yaz: Name, Kontakt, wichtige Information, zu erledigen.',target:'Bilgiyi eksiksiz fakat kısa aktar; özellikle yapılacak işi eylem fiiliyle yaz.',example:'Anja Reuter, Tel. 040 731 8842. Bestellung 7814 soll bereits Donnerstagvormittag geliefert werden. Zu erledigen: früheren Liefertermin prüfen und Frau Reuter zurückrufen.'},
-    26:{task:'3–5 cümlelik resmî bir iş e-postası yaz ve en az iki doğru Rektion/eşdizim kullan.',target:'Kelime seçimini bağlama ve sabit tamamlayıcıya göre yap: auf etwas verzichten, unter Bedingungen, zu einem Gespräch kommen.',example:'Mein derzeitiger Arbeitgeber ist bereit, auf einen Teil der Kündigungsfrist zu verzichten. Unter diesen Bedingungen könnte ich früher anfangen. Gerne komme ich zu einem weiteren Gespräch in Ihr Unternehmen.'},
-    27:{task:'3–5 cümlede resmî ve doğal C1 ifadeleri kullan.',target:'Deyimsel ve yapısal kalıpları doğal seç: wie befürchtet, aus meiner Sicht, in Kauf nehmen, ob sich das … lässt.',example:'Wie befürchtet verzögert sich die Freigabe. Aus meiner Sicht sollten wir die zusätzlichen Abstimmungen in Kauf nehmen. Bitte prüfe, ob sich der Termin trotzdem halten lässt.'},
-    28:{task:'6–8 cümlelik mini Stellungnahme yaz: avantaj, dezavantaj, örnek, kendi görüşün ve sonuç.',target:'Argümanları bağla; sadece listeleme yapma. En az bir karşıtlık ve bir sonuç bağlayıcısı kullan.',example:'Ein verpflichtender Weiterbildungstag kann die Qualität der Arbeit erhöhen. Zwar entstehen dadurch kurzfristig Kosten, jedoch profitieren Unternehmen langfristig von besser qualifizierten Mitarbeitenden. Aus meiner Sicht überwiegen daher die Vorteile, sofern die Inhalte praxisnah gewählt werden.'},
-    29:{task:'Hazırlıksız konuşuyormuş gibi 5–7 cümlelik kısa bir monolog yaz; ardından olası bir soruya 1–2 cümle cevap ekle.',target:'Giriş → ana fikir → örnek → sonuç yapısını kullan. Partnerin sözünü aktarırken kendi kelimelerini kullan.',example:'Ich möchte kurz über Weiterbildung im Berufsleben sprechen. Meiner Erfahrung nach wird sie immer wichtiger, weil sich Arbeitsabläufe schnell verändern. Ein konkretes Beispiel ist der Einsatz neuer Software. Abschließend würde ich sagen, dass Weiterbildung sowohl den Beschäftigten als auch dem Unternehmen nutzt.'},
-    30:{task:'4–6 cümlede bir işyeri sorununa çözüm geliştir: hemen ne yapılacak, uzun vadede ne değişecek, kim neyi üstlenecek?',target:'Partnerle etkileşim dilini düşün: Vorschlag machen, zustimmen/widersprechen, Aufgabe verteilen, Ergebnis festhalten.',example:'Zunächst sollten wir den Kunden anrufen und die Situation offen erklären. Danach könnte die Logistik eine Ersatzlieferung organisieren. Ich übernehme die Kundenkommunikation, während du die Verfügbarkeit prüfst. Langfristig sollten wir den Kontrollprozess vor dem Versand verbessern.'}
-  };
-
   function productionGuide(l) {
-    return PRODUCTION_GUIDES[l.id] || {
+    return l.production || {
       task:'3–5 C1 düzeyinde Almanca cümle yaz.',
       target:l.goal || 'Dersin hedef yapısını bilinçli biçimde kullan.',
-      example:'Obwohl die Situation schwierig ist, lässt sich eine Lösung finden. Anders ausgedrückt: Wir haben mehrere Handlungsmöglichkeiten. Daher sollten wir die nächsten Schritte klar festlegen.'
+      example:'Obwohl die Situation schwierig ist, lässt sich eine Lösung finden. Daher sollten wir die nächsten Schritte klar festlegen.',
+      mode:'write', minChars:60, checklist:[]
     };
   }
 
   function productionHelpHtml(l) {
     const g=productionGuide(l);
+    const checklist=(g.checklist||[]).length ? g.checklist : ['Görevi eksiksiz yerine getir','Dersin hedef stratejisini bilinçli kullan','Cümleleri açık ve doğal biçimde bağla'];
     return `<details class="production-help">
       <summary>💡 Yardım: Görevde ne isteniyor?</summary>
       <div class="production-help-body">
         <div class="production-help-grid">
-          <div class="production-help-item"><strong>Bağlaç / bağlayıcı</strong><p><b>Konjunktion/Konnektor</b>, iki düşünce arasındaki ilişkiyi gösterir. Örn. <i>obwohl, weil, während, sodass</i>; ayrıca <i>dennoch, daher, folglich</i>.</p></div>
-          <div class="production-help-item"><strong>Yeniden ifade etme</strong><p><b>Paraphrase</b>, aynı fikri aynen tekrarlamak değil, başka kelime veya yapıyla yeniden anlatmaktır. Örn. <i>anders ausgedrückt, mit anderen Worten, das heißt</i>.</p></div>
-          <div class="production-help-item"><strong>Dersin hedef yapısı</strong><p>${esc(g.target)}</p></div>
+          <div class="production-help-item"><strong>Görev</strong><p>${esc(g.task)}</p></div>
+          <div class="production-help-item"><strong>Nelere dikkat?</strong><p>${esc(g.target)}</p></div>
+          <div class="production-help-item"><strong>C1 araçları</strong><p>Bağlaçlar fikirler arasındaki ilişkiyi gösterir; <b>parafraz</b> ise aynı anlamı başka kelime veya yapıyla aktarır. Bunları yalnızca görev gerçekten gerektiriyorsa kullan.</p></div>
         </div>
         <div class="production-mini-example"><strong>Mini örnek</strong><p lang="de">${esc(g.example)}</p></div>
-        <div class="production-checklist"><span>✓ Görev uzunluğuna uy</span><span>✓ En az 1 bağlaç/bağlayıcı</span><span>✓ En az 1 parafraz veya eşdeğer yeniden anlatım</span><span>✓ Bu dersin hedef yapısı</span></div>
+        <div class="production-checklist">${checklist.map(x=>`<span>✓ ${esc(x)}</span>`).join('')}</div>
       </div>
     </details>`;
+  }
+
+  function activityQuestions(a) {
+    if (a.type === 'tf') return (a.statements||[]).map(x=>({q:x.q,o:['Doğru','Yanlış'],a:x.a?0:1,why:x.why}));
+    return a.questions || [];
+  }
+
+  function activityTypeLabel(a) {
+    return ({mc:'Çoktan seçmeli',tf:'Doğru / Yanlış',match:'Eşleştirme',cloze:'Boşluk doldurma',reading:'Bağlamlı okuma',listening:'Tek dinleme',info:'Kaynak / strateji'})[a.type] || 'Alıştırma';
+  }
+
+  function renderActivityBlock(l,a,w,index) {
+    const group=`act-${l.id}-${a.id}`;
+    const done=Array.isArray(w.activityAttempted)&&w.activityAttempted.includes(a.id);
+    const rec=state.lessonActivityScores?.[activityKey(l.id,a.id)];
+    const best=typeof rec==='object'?Number(rec.best||0):Number(rec||0);
+    let body='';
+    if (a.type==='mc' || a.type==='reading' || a.type==='listening' || a.type==='tf') {
+      if(a.type==='reading') body += `<div class="activity-text" lang="de">${esc(a.text||'')}</div>`;
+      if(a.type==='listening') {
+        const plays=Number(a.plays||1), used=Number(w.activityPlays?.[a.id]||0);
+        body += `<div class="activity-audio"><button class="speak-btn large" data-listen-activity="${esc(a.id)}" ${used>=plays?'disabled':''}>▶</button><div><strong>Dinleme</strong><small id="listenCount-${l.id}-${esc(a.id)}">${used}/${plays} oynatıldı</small></div></div>`;
+      }
+      const qs=activityQuestions(a);
+      body += qs.map((q,i)=>mcHtml(q,group,i)).join('');
+      if(a.type==='listening') body += `<details class="activity-transcript" id="transcript-${l.id}-${esc(a.id)}" ${done?'':'hidden'}><summary>Dinledikten sonra transkripti incele</summary><p lang="de">${esc(a.script||'')}</p></details>`;
+    } else if(a.type==='match') {
+      body += `<div class="activity-match-options">${(a.options||[]).map((o,i)=>`<span><b>${String.fromCharCode(65+i)}</b> ${esc(o)}</span>`).join('')}</div>`;
+      body += (a.prompts||[]).map((prompt,i)=>`<label class="activity-select-row"><span>${i+1}. ${esc(prompt)}</span><select class="select-input" data-act-select="${i}"><option value="">— seç —</option>${(a.options||[]).map((o,j)=>`<option value="${j}">${String.fromCharCode(65+j)} · ${esc(o)}</option>`).join('')}</select><small class="activity-explain" id="ax-${l.id}-${esc(a.id)}-${i}" hidden></small></label>`).join('');
+    } else if(a.type==='cloze') {
+      body += `<div class="activity-text" lang="de">${esc(a.text||'')}</div>`;
+      body += (a.blanks||[]).map((b,i)=>`<label class="activity-select-row"><span>Boşluk ${esc(b.label||i+1)}</span><select class="select-input" data-act-select="${i}"><option value="">— seç —</option>${(b.options||[]).map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join('')}</select><small class="activity-explain" id="ax-${l.id}-${esc(a.id)}-${i}" hidden></small></label>`).join('');
+    } else if(a.type==='info') {
+      body += `<div class="activity-text"><p>${esc(a.body||'')}</p>${(a.items||[]).length?`<ul class="activity-list">${a.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}</div>`;
+    }
+    return `<section class="lesson-activity ${done?'is-attempted':''}" data-activity-block="${esc(a.id)}">
+      <div class="activity-head"><div><span class="activity-type">${index+1}. ${activityTypeLabel(a)}</span><h4>${esc(a.title||'Alıştırma')}</h4></div>${a.type!=='info'?`<span class="pill ${done?'green':'gray'}">${best?`En iyi ${best}%`:done?'denendi':'bekliyor'}</span>`:''}</div>
+      ${a.intro?`<p class="muted">${esc(a.intro)}</p>`:''}${body}
+      ${a.type!=='info'?`<button class="soft-btn activity-grade-btn" data-grade-activity="${esc(a.id)}">Kontrol et</button><div id="activityResult-${l.id}-${esc(a.id)}"></div>`:''}
+    </section>`;
+  }
+
+  function gradeStructuredActivity(l,a,w) {
+    const block=document.querySelector(`[data-activity-block="${CSS.escape(a.id)}"]`);
+    if(!block) return null;
+    if(a.type==='listening' && Number(w.activityPlays?.[a.id]||0) < 1) {
+      const box=byId(`activityResult-${l.id}-${a.id}`); if(box) box.innerHTML='<div class="feedback near">Önce sesi bir kez dinle. Bu görev sınavdaki tek-dinleme baskısını çalıştırır.</div>';
+      return null;
+    }
+    if(['mc','tf','reading','listening'].includes(a.type)) return gradeMC(`act-${l.id}-${a.id}`,activityQuestions(a));
+    let score=0,total=0;
+    const selects=[...block.querySelectorAll('[data-act-select]')];
+    selects.forEach((sel,i)=>{
+      const correct = a.type==='match' ? Number((a.answers||[])[i]) : Number((a.blanks||[])[i]?.a);
+      const hit=sel.value!=='' && Number(sel.value)===correct;
+      if(hit) score++; total++;
+      sel.classList.toggle('correct-select',hit);
+      sel.classList.toggle('wrong-select',!hit);
+      sel.disabled=true;
+      const exp=byId(`ax-${l.id}-${a.id}-${i}`);
+      if(exp){
+        const opts=a.type==='match'?(a.options||[]):((a.blanks||[])[i]?.options||[]);
+        const why=a.type==='match'?((a.why||[])[i]||''):((a.blanks||[])[i]?.why||'');
+        exp.textContent=`Doğru: ${opts[correct]||''}${why?' · '+why:''}`; exp.hidden=false;
+      }
+    });
+    return {score,total};
   }
 
   function renderLesson(id) {
@@ -270,44 +348,49 @@
     if (!state.lessonWork || typeof state.lessonWork !== 'object' || Array.isArray(state.lessonWork)) state.lessonWork = {};
     const w = state.lessonWork[id] && typeof state.lessonWork[id] === 'object' && !Array.isArray(state.lessonWork[id]) ? state.lessonWork[id] : (state.lessonWork[id] = {});
     if (!Array.isArray(w.heardExamples)) w.heardExamples = [];
+    if (!Array.isArray(w.activityAttempted)) w.activityAttempted = [];
+    if (!w.activityPlays || typeof w.activityPlays !== 'object') w.activityPlays = {};
     const examples = l.examples || [];
     const audioTargets = [...new Set(examples.map(e=>e?.[0]).filter(Boolean))];
+    const g=productionGuide(l);
+    const activityStats=()=>lessonActivitySummary(l);
     const heardCount = () => audioTargets.filter(t=>w.heardExamples.includes(t)).length;
-    const lessonDone = () => state.doneLessons.includes(id);
+    const productionDone=()=>g.mode==='speak' ? !!w.productionRecorded : String(w.productionDraft||'').trim().length>=Number(g.minChars||40);
     const tracker = () => {
-      const heard=heardCount(), audioDone=audioTargets.length>0 && heard>=audioTargets.length, best=Number(state.lessonQuizBest[id]||0), quizDone=w.quizAttempted===true||best>0;
+      const heard=heardCount(), audioDone=audioTargets.length===0 || heard>=audioTargets.length, st=activityStats();
       const step=(icon,label,value,done)=>`<div class="lesson-mini-step ${done?'done':''}"><span class="lesson-mini-icon">${icon}</span><span><small>${esc(label)}</small><strong>${esc(value)}</strong></span></div>`;
-      return `<div class="lesson-mini-progress" id="lessonMiniProgress">${step('🎧','Dinleme',audioDone?'✓':`${heard}/${audioTargets.length}`,audioDone)}${step('✓','Kısa kontrol',quizDone?best+' %':'—',quizDone&&best>=70)}${step('✦','Aktif üretim',lessonDone()?'✓':'—',lessonDone())}</div>`;
+      return `<div class="lesson-mini-progress" id="lessonMiniProgress">${step('🎧','Örnekler',audioDone?'✓':`${heard}/${audioTargets.length}`,audioDone)}${step('✓','Hedefli alıştırma',st.itemTotal?`${st.attemptedItems}/${st.itemTotal}`:'—',st.complete)}${step(g.mode==='speak'?'🎙':'✦',g.mode==='speak'?'Konuşma':'Aktif üretim',productionDone()?'✓':'—',productionDone())}</div>`;
     };
     const refreshTracker=()=>{const e=byId('lessonMiniProgress');if(e)e.outerHTML=tracker();};
-    const qHtml = (l.quiz||[]).map((q,i)=>mcHtml(q,`lesson-${id}`,i)).join('');
+    const acts=l.activities||[];
+    const controlled=scoredActivities(l);
     setView(`
       <button class="tiny-btn" id="backLearn">← Kurslar</button>
       <section class="card" style="margin-top:12px">
         <div class="eyebrow">DERS ${l.id} · ${esc(l.unit)}</div>
         <h2>${esc(l.title)}</h2>
         ${tracker()}
-        <div class="lesson-roadmap"><div class="lesson-roadmap-title">Ders içeriği</div><div class="lesson-roadmap-steps"><span><b>1</b>Dinleme & derinleştirme</span><span><b>2</b>Kısa interaktif kontrol</span><span><b>3</b>Aktif üretim</span></div></div>
+        <div class="lesson-roadmap"><div class="lesson-roadmap-title">Ders içeriği</div><div class="lesson-roadmap-steps"><span><b>1</b>Açıklama & örnekler</span><span><b>2</b>${activityStats().itemTotal || controlled.length} hedefli alıştırma</span><span><b>3</b>${g.mode==='speak'?'Konuşma provası':'Aktif üretim'}</span></div></div>
         <div class="lesson-meta">${(l.skills||[]).map(s=>`<span class="pill">${esc(s)}</span>`).join('')}</div>
         <div class="lesson-goals"><strong>Hedef</strong><p>${esc(l.goal)}</p></div>
         <div class="lesson-explanation"><strong>Türkçe açıklama</strong><p>${esc(l.explanation)}</p></div>
       </section>
       <section class="card">
-        <h3>Dinleme & Almanca örnekler</h3>
+        <h3>Almanca örnekler & derinleştirme</h3>
+        <p class="muted">Örnekleri dinle; yalnızca telaffuzu değil, cümle yapısını ve kullanılan işyeri dilini de fark etmeye çalış.</p>
         ${examples.map((e,i)=>`<div class="example-box ${w.heardExamples.includes(e[0])?'is-heard':''}" data-example-row="${i}"><div class="between"><strong>${esc(e[0])}</strong><button class="speak-btn" data-example="${i}" aria-label="Dinle">🔊</button></div><div class="muted">${esc(e[1])}</div>${e[2]?`<small>${esc(e[2])}</small>`:''}</div>`).join('')}
       </section>
       <section class="card">
-        <h3>Kısa interaktif kontrol</h3>
-        ${qHtml || '<p class="muted">Bu ders için kısa kontrol yok.</p>'}
-        <button class="primary-btn" id="gradeLesson">Kontrol et</button>
-        <div id="lessonResult"></div>
+        <div class="between"><div><h3>Hedefli alıştırmalar</h3><p class="muted">Bu dersin görevi neyi ölçüyorsa alıştırma biçimi de ona göre değişir.</p></div><span class="pill gray">${activityStats().itemTotal} madde</span></div>
+        <div class="activity-stack">${acts.map((a,i)=>renderActivityBlock(l,a,w,i)).join('') || '<p class="muted">Bu ders için kontrollü alıştırma yok.</p>'}</div>
       </section>
       <section class="card">
-        <h3>Aktif üretim</h3>
-        <p class="muted">${esc(productionGuide(l).task)}</p>
+        <h3>${g.mode==='speak'?'Konuşma üretimi':'Aktif üretim'}</h3>
+        <p class="muted">${esc(g.task)}</p>
         ${productionHelpHtml(l)}
-        <textarea class="text-area" id="lessonProduction" placeholder="Buraya Almanca yaz …">${esc(w.productionDraft||'')}</textarea>
-        <button class="secondary-btn" id="completeLesson" style="margin-top:10px">Dersi tamamlandı olarak işaretle</button>
+        ${g.mode==='speak' ? `${recorderHtml('LessonProduction')}<textarea class="text-area compact-notes" id="lessonProduction" placeholder="İstersen anahtar kelimelerini veya kısa öz değerlendirmeni buraya yaz …">${esc(w.productionDraft||'')}</textarea>` : `<textarea class="text-area" id="lessonProduction" placeholder="Buraya Almanca yaz …">${esc(w.productionDraft||'')}</textarea><div class="production-requirement">En az ${Number(g.minChars||40)} karakter · amaç uzunluk değil, görevin bütününü C1 düzeyinde gerçekleştirmek.</div>`}
+        <button class="secondary-btn" id="completeLesson" style="margin-top:10px">Dersi tamamla</button>
+        <div id="completeLessonFeedback"></div>
       </section>
     `, () => {
       byId('backLearn').onclick = renderLearn;
@@ -316,23 +399,40 @@
         if(target && !w.heardExamples.includes(target)){w.heardExamples.push(target);save();refreshTracker();document.querySelector(`[data-example-row="${i}"]`)?.classList.add('is-heard');}
         window.A1Voice?.speak?.(target,{lang:'de-DE',rate:.9});
       });
-      byId('gradeLesson').onclick = () => {
-        const {score,total} = gradeMC(`lesson-${id}`, l.quiz||[]);
-        const result = total ? pct(score,total) : 100;
-        state.lessonQuizBest[id] = Math.max(Number(state.lessonQuizBest[id]||0),result);
-        w.quizAttempted=true;
+      document.querySelectorAll('[data-listen-activity]').forEach(b=>b.onclick=()=>{
+        const a=acts.find(x=>x.id===b.dataset.listenActivity); if(!a)return;
+        const max=Number(a.plays||1), used=Number(w.activityPlays[a.id]||0); if(used>=max)return;
+        w.activityPlays[a.id]=used+1; save(); speakLong(a.script,.9);
+        const c=byId(`listenCount-${l.id}-${a.id}`); if(c)c.textContent=`${w.activityPlays[a.id]}/${max} oynatıldı`;
+        if(w.activityPlays[a.id]>=max)b.disabled=true;
+      });
+      document.querySelectorAll('[data-grade-activity]').forEach(b=>b.onclick=()=>{
+        const a=acts.find(x=>x.id===b.dataset.gradeActivity); if(!a)return;
+        const r=gradeStructuredActivity(l,a,w); if(!r)return;
+        const p=pct(r.score,r.total), key=activityKey(l.id,a.id), old=state.lessonActivityScores[key]||{};
+        const oldBest=typeof old==='object'?Number(old.best||0):Number(old||0);
+        state.lessonActivityScores[key]={best:Math.max(oldBest,p),last:p,score:r.score,total:r.total};
+        if(!w.activityAttempted.includes(a.id))w.activityAttempted.push(a.id);
+        const transcript=byId(`transcript-${l.id}-${a.id}`); if(transcript)transcript.hidden=false;
+        const st=lessonActivitySummary(l); state.lessonQuizBest[l.id]=st.best;
         save();
-        byId('lessonResult').innerHTML = scoreResult(score,total,result);
-        refreshTracker();
-      };
-      byId('lessonProduction').oninput = e => {w.productionDraft=e.target.value.slice(0,12000);save();};
+        const out=byId(`activityResult-${l.id}-${a.id}`); if(out)out.innerHTML=scoreResult(r.score,r.total,p);
+        b.closest('.lesson-activity')?.classList.add('is-attempted'); refreshTracker();
+      });
+      const production=byId('lessonProduction');
+      if(production) production.oninput=e=>{w.productionDraft=e.target.value.slice(0,16000);save();refreshTracker();};
+      if(g.mode==='speak') {
+        window.A1Learning.wireRecorder('LessonProduction',()=>{w.productionRecorded=true;save();refreshTracker();},recorderLabels,()=>{});
+      }
       byId('completeLesson').onclick = () => {
-        w.productionDraft=byId('lessonProduction').value.slice(0,12000);
+        if(production) w.productionDraft=production.value.slice(0,16000);
+        const missing=controlled.filter(a=>!w.activityAttempted.includes(a.id));
+        const feedback=byId('completeLessonFeedback');
+        if(missing.length){feedback.innerHTML=`<div class="feedback near">Önce ${missing.length} hedefli alıştırmayı tamamla. Bu ders yalnızca “tamamlandı” düğmesine basılarak geçilmez.</div>`;return;}
+        if(g.mode==='speak' && !w.productionRecorded){feedback.innerHTML='<div class="feedback near">Bu derste aktif üretim konuşmadır. Önce kısa bir ses kaydı yap.</div>';return;}
+        if(g.mode!=='speak' && String(w.productionDraft||'').trim().length<Number(g.minChars||40)){feedback.innerHTML=`<div class="feedback near">Aktif üretimi biraz daha geliştir. Bu görev için en az ${Number(g.minChars||40)} karakterlik anlamlı bir taslak bekleniyor.</div>`;return;}
         if (!state.doneLessons.includes(id)) state.doneLessons.push(id);
-        save();
-        byId('completeLesson').textContent='✓ Tamamlandı';
-        byId('completeLesson').disabled=true;
-        refreshTracker();
+        save(); byId('completeLesson').textContent='✓ Tamamlandı'; byId('completeLesson').disabled=true; feedback.innerHTML='<div class="feedback good">Ders tamamlandı. Kontrollü alıştırma ve aktif üretim birlikte kaydedildi.</div>'; refreshTracker();
       };
       if (state.doneLessons.includes(id)) { byId('completeLesson').textContent='✓ Tamamlandı'; byId('completeLesson').disabled=true; }
     });

@@ -384,3 +384,32 @@ html.dark-mode .production-mini-example{background:rgba(59,130,246,.1)}
 .readiness-card{margin-top:0}
 html.dark-mode .continue-course-btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff}
 @media(max-width:430px){.continue-course-btn{padding:12px;gap:10px}.continue-course-icon{width:34px;height:34px}.continue-course-copy span{font-size:.74rem}}
+
+/* ===== v10 DTB C1 varied lesson activities ===== */
+.activity-stack{display:grid;gap:14px;margin-top:14px}
+.lesson-activity{padding:15px;border:1px solid var(--line);border-radius:15px;background:#f8fafc}
+.lesson-activity.is-attempted{border-color:#93c5fd}
+.activity-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.activity-head h4{margin:3px 0 0;font-size:1rem;line-height:1.35}
+.activity-type{font-size:.68rem;font-weight:900;letter-spacing:.065em;text-transform:uppercase;color:var(--muted)}
+.activity-text{margin:10px 0 14px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);white-space:pre-line;line-height:1.62}
+.activity-text p{margin:0}
+.activity-list{margin:9px 0 0;padding-left:21px}.activity-list li{margin:6px 0;line-height:1.45}
+.activity-match-options{display:grid;gap:6px;margin:10px 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.activity-match-options span{display:block;font-size:.86rem;line-height:1.4}.activity-match-options b{display:inline-grid;place-items:center;width:21px;height:21px;margin-right:5px;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink);font-size:.7rem}
+.activity-select-row{display:grid;grid-template-columns:minmax(130px,.8fr) minmax(180px,1.2fr);gap:8px 12px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.activity-select-row>span{font-size:.88rem;line-height:1.4;font-weight:720}
+.activity-select-row .activity-explain{grid-column:1/-1;color:var(--muted);line-height:1.4}
+.activity-audio{display:flex;align-items:center;gap:12px;margin:10px 0 14px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.activity-audio div{display:grid;gap:2px}.activity-audio small{color:var(--muted)}
+.activity-transcript{margin:12px 0;padding:9px 11px;border:1px dashed var(--line);border-radius:11px;background:var(--panel)}
+.activity-transcript summary{cursor:pointer;font-weight:780}.activity-transcript p{white-space:pre-line;line-height:1.55}
+.activity-grade-btn{margin-top:10px}
+.wrong-select{border-color:#ef4444!important;background:var(--danger-soft)!important}
+.production-requirement{margin-top:7px;color:var(--muted);font-size:.76rem;line-height:1.4}
+.compact-notes{min-height:105px;margin-top:12px}
+html.dark-mode .lesson-activity{background:#172033;border-color:#334155}
+html.dark-mode .lesson-activity.is-attempted{border-color:#1d4ed8}
+html.dark-mode .activity-text,html.dark-mode .activity-match-options,html.dark-mode .activity-audio,html.dark-mode .activity-transcript{background:var(--panel);border-color:#334155;color:var(--ink)}
+html.dark-mode .wrong-select{background:#450a0a!important;border-color:#7f1d1d!important;color:#fee2e2}
+@media(max-width:620px){.activity-select-row{grid-template-columns:1fr}.activity-select-row .activity-explain{grid-column:1}.activity-head{align-items:center}.lesson-activity{padding:12px}}
