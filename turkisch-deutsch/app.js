@@ -238,14 +238,38 @@
     return {activities:acts.length,itemTotal,attemptedItems,best:itemTotal?Math.round(weightedBest/itemTotal):0,complete:acts.length>0 && acts.every(a=>attempted.includes(a.id))};
   }
 
+  function lessonOverviewProgress(l) {
+    const w = state.lessonWork?.[l.id] || {};
+    const examples = l.examples || [];
+    const audioTargets = [...new Set(examples.map(e=>e?.[0]).filter(Boolean))];
+    const heard = audioTargets.filter(t => Array.isArray(w.heardExamples) && w.heardExamples.includes(t)).length;
+    const listeningActs = (l.activities || []).filter(a => a.type === 'listening');
+    const playedListening = listeningActs.filter(a => Number(w.activityPlays?.[a.id] || 0) >= 1).length;
+    const summary = lessonActivitySummary(l);
+    const g = productionGuide(l);
+    const productionDone = g.mode === 'speak' ? !!w.productionRecorded : String(w.productionDraft || '').trim().length >= Number(g.minChars || 40);
+    const title = String(l.title || '').toLocaleLowerCase('tr-TR');
+    const skills = (l.skills || []).map(x => String(x).toLocaleLowerCase('tr-TR'));
+
+    let firstLabel='Örnekler', firstValue=audioTargets.length ? `${heard}/${audioTargets.length}` : '—', firstDone=audioTargets.length===0 || heard>=audioTargets.length;
+    if (listeningActs.length) {
+      firstLabel='Dinleme'; firstValue=`${playedListening}/${listeningActs.length}`; firstDone=playedListening>=listeningActs.length;
+    }
+
+    let productionLabel='Üretim';
+    if (g.mode === 'speak') productionLabel='Konuşma';
+    else if (/notiz|telefon|mediation|aktarım/.test(title)) productionLabel='Not';
+    else if (skills.includes('yazma') || /schreiben|stellungnahme|e-mail|e‑mail|mail/.test(title)) productionLabel='Yazma';
+
+    const step=(label,value,done)=>`<span class="lesson-overview-step ${done?'done':''}"><small>${esc(label)}</small><strong>${done?'✓':esc(value)}</strong></span>`;
+    return `<div class="lesson-overview-progress" aria-label="Ders ilerlemesi">${step(firstLabel,firstValue,firstDone)}${step('Alıştırma',summary.itemTotal?`${summary.attemptedItems}/${summary.itemTotal}`:'—',summary.complete)}${step(productionLabel,'—',productionDone)}</div>`;
+  }
+
   function lessonCard(l) {
     const done = state.doneLessons.includes(l.id);
-    const summary = lessonActivitySummary(l);
-    const best = summary.best || Number(state.lessonQuizBest?.[l.id] || 0);
-    const activityLabel = summary.itemTotal ? `${summary.attemptedItems}/${summary.itemTotal} alıştırma` : 'Aktif çalışma';
     return `<button class="lesson ${done?'done':''}" data-lesson="${l.id}">
       <div class="row"><span class="num">${l.id}</span><div><strong>${esc(l.title)}</strong><div class="lesson-goal-preview">${esc(l.goal)}</div></div></div>
-      <div class="lesson-meta">${(l.skills||[]).map(s=>`<span class="pill">${esc(s)}</span>`).join('')}<span class="pill gray">${activityLabel}</span>${best?`<span class="pill green">En iyi ${best}%</span>`:''}${done?'<span class="pill green">✓ tamamlandı</span>':''}</div>
+      ${lessonOverviewProgress(l)}
     </button>`;
   }
 
@@ -356,12 +380,9 @@
     const activityStats=()=>lessonActivitySummary(l);
     const heardCount = () => audioTargets.filter(t=>w.heardExamples.includes(t)).length;
     const productionDone=()=>g.mode==='speak' ? !!w.productionRecorded : String(w.productionDraft||'').trim().length>=Number(g.minChars||40);
-    const tracker = () => {
-      const heard=heardCount(), audioDone=audioTargets.length===0 || heard>=audioTargets.length, st=activityStats();
-      const step=(icon,label,value,done)=>`<div class="lesson-mini-step ${done?'done':''}"><span class="lesson-mini-icon">${icon}</span><span><small>${esc(label)}</small><strong>${esc(value)}</strong></span></div>`;
-      return `<div class="lesson-mini-progress" id="lessonMiniProgress">${step('🎧','Örnekler',audioDone?'✓':`${heard}/${audioTargets.length}`,audioDone)}${step('✓','Hedefli alıştırma',st.itemTotal?`${st.attemptedItems}/${st.itemTotal}`:'—',st.complete)}${step(g.mode==='speak'?'🎙':'✦',g.mode==='speak'?'Konuşma':'Aktif üretim',productionDone()?'✓':'—',productionDone())}</div>`;
-    };
-    const refreshTracker=()=>{const e=byId('lessonMiniProgress');if(e)e.outerHTML=tracker();};
+    // Lektionsfortschritt wird bewusst nur in der Kursübersicht gezeigt,
+    // damit die eigentliche Lernseite ruhig und inhaltsorientiert bleibt.
+    const refreshTracker=()=>{};
     const acts=l.activities||[];
     const controlled=scoredActivities(l);
     setView(`
@@ -369,7 +390,6 @@
       <section class="card" style="margin-top:12px">
         <div class="eyebrow">DERS ${l.id} · ${esc(l.unit)}</div>
         <h2>${esc(l.title)}</h2>
-        ${tracker()}
         <div class="lesson-roadmap"><div class="lesson-roadmap-title">Ders içeriği</div><div class="lesson-roadmap-steps"><span><b>1</b>Açıklama & örnekler</span><span><b>2</b>${activityStats().itemTotal || controlled.length} hedefli alıştırma</span><span><b>3</b>${g.mode==='speak'?'Konuşma provası':'Aktif üretim'}</span></div></div>
         <div class="lesson-meta">${(l.skills||[]).map(s=>`<span class="pill">${esc(s)}</span>`).join('')}</div>
         <div class="lesson-goals"><strong>Hedef</strong><p>${esc(l.goal)}</p></div>

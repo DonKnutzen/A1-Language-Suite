@@ -413,3 +413,16 @@ html.dark-mode .lesson-activity.is-attempted{border-color:#1d4ed8}
 html.dark-mode .activity-text,html.dark-mode .activity-match-options,html.dark-mode .activity-audio,html.dark-mode .activity-transcript{background:var(--panel);border-color:#334155;color:var(--ink)}
 html.dark-mode .wrong-select{background:#450a0a!important;border-color:#7f1d1d!important;color:#fee2e2}
 @media(max-width:620px){.activity-select-row{grid-template-columns:1fr}.activity-select-row .activity-explain{grid-column:1}.activity-head{align-items:center}.lesson-activity{padding:12px}}
+
+
+/* v12: Fortschritt aus der Lektionsseite in die Kursübersicht verlagert. */
+.lesson-overview-progress{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:10px}
+.lesson-overview-step{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;padding:7px 9px;border:1px solid var(--line);border-radius:11px;background:#f8fafc}
+.lesson-overview-step small{min-width:0;color:var(--muted);font-size:.69rem;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lesson-overview-step strong{flex:0 0 auto;font-size:.76rem;color:var(--ink)}
+.lesson-overview-step.done{border-color:#86efac;background:var(--success-soft)}
+.lesson-overview-step.done strong{color:#166534}
+html.dark-mode .lesson-overview-step{background:#172033;border-color:#334155}
+html.dark-mode .lesson-overview-step.done{background:#163125;border-color:#166534}
+html.dark-mode .lesson-overview-step.done strong{color:#bbf7d0}
+@media(max-width:430px){.lesson-overview-progress{gap:5px}.lesson-overview-step{padding:6px 7px;gap:5px}.lesson-overview-step small{font-size:.62rem}.lesson-overview-step strong{font-size:.7rem}}

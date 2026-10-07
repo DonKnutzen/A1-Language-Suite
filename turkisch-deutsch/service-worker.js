@@ -1,4 +1,4 @@
-const CACHE='deutsch-c1-tr-v10-complete-course';
+const CACHE='deutsch-c1-tr-v12-progress-overview';
 const LEGACY_PREFIXES=['deutsch-a1-tr','deutsch-c1-tr'];
 const ASSETS=[
   './','./index.html','./styles.css','./app.js','./lesson-content.js','./manifest.json',
