@@ -338,3 +338,15 @@ html.dark-mode .radio-option.correct,html.dark-mode .correct-select{background:#
 html.dark-mode .radio-option.wrong{background:#450a0a;border-color:#7f1d1d;color:#fee2e2}
 
 @media(max-width:560px){.speaker-grid{grid-template-columns:1fr}.rubric-row{grid-template-columns:1fr 82px}.sticky-exam-header{top:84px}.writing-area{min-height:240px}}
+
+
+/* Compact per-lesson roadmap and progress. */
+.lesson-mini-progress{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 14px}
+.lesson-mini-step{display:flex;align-items:center;gap:8px;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:#f8fafc}
+.lesson-mini-icon{display:grid;place-items:center;width:24px;height:24px;flex:0 0 24px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);font-size:.8rem;font-weight:900}
+.lesson-mini-step span:last-child{min-width:0;display:block}.lesson-mini-step small,.lesson-mini-step strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lesson-mini-step small{font-size:.7rem;color:var(--muted);line-height:1.2}.lesson-mini-step strong{margin-top:2px;font-size:.82rem;line-height:1.2}
+.lesson-mini-step.done{border-color:#86efac;background:var(--success-soft)}.lesson-mini-step.done .lesson-mini-icon{background:#dcfce7;color:#166534}
+.lesson-roadmap{margin:12px 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#f8fafc}.lesson-roadmap-title{font-size:.72rem;font-weight:850;letter-spacing:.045em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.lesson-roadmap-steps{display:flex;align-items:center;gap:7px 12px;flex-wrap:wrap;font-size:.84rem;line-height:1.35}.lesson-roadmap-steps span{display:inline-flex;align-items:center;gap:5px}.lesson-roadmap-steps b{display:grid;place-items:center;width:19px;height:19px;border-radius:99px;background:var(--accent-soft);color:var(--accent-ink);font-size:.68rem}
+.example-box.is-heard .speak-btn{border-color:#22c55e;box-shadow:0 0 0 1px rgba(34,197,94,.18)}
+html.dark-mode .lesson-mini-step,html.dark-mode .lesson-roadmap{background:#172033;border-color:#334155}html.dark-mode .lesson-mini-step.done{background:#163125;border-color:#166534}html.dark-mode .lesson-mini-step.done .lesson-mini-icon{background:#14532d;color:#bbf7d0}
+@media(max-width:430px){.lesson-mini-progress{gap:6px}.lesson-mini-step{padding:7px 8px;gap:6px}.lesson-mini-icon{width:21px;height:21px;flex-basis:21px}.lesson-mini-step small{font-size:.65rem}.lesson-mini-step strong{font-size:.78rem}.lesson-roadmap-steps{font-size:.8rem}}
