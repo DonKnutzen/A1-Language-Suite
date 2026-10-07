@@ -46,7 +46,7 @@
       const grammarHtml=opts.grammarHtml||'';
       if(!Array.isArray(p.heardPhrases))p.heardPhrases=[];
       const heardSet=new Set(p.heardPhrases.map(Number).filter(Number.isInteger));
-      const corePhrases=`<details class="lesson-explanation lesson-core-phrases" open><summary><strong>💬 ${esc(L.core)}</strong></summary><p class="muted">${esc(opts.repeatHint)}</p>${l.phrases.map(([target,native],i)=>`<div class="phrase-row lesson-core-phrase ${heardSet.has(i)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`).join('')}</details>`;
+      const corePhrases=`<details class="lesson-explanation lesson-core-phrases" open><summary><strong>${esc(L.core)}</strong></summary><p class="muted">${esc(opts.repeatHint)}</p>${l.phrases.map(([target,native],i)=>`<div class="phrase-row lesson-core-phrase ${heardSet.has(i)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`).join('')}</details>`;
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><section class="card" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2>${goalsHtml}${corePhrases}${opts.pronunciationHtml}${grammarHtml}<p class="lesson-flow-requirements">${esc(L.requirements)}</p>${statuses()}<div class="button-row"><button class="primary-btn" id="startQuiz">${esc(L.start)}</button><button class="secondary-btn" id="startApplication">${esc(L.apply)}</button></div></section>`;
       document.getElementById('backLearn').onclick=opts.renderLearn;
       document.getElementById('startQuiz').onclick=drawQuiz;
@@ -54,8 +54,16 @@
       opts.wireSpeakButtons();window.A1Pronunciation?.wire(view);
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
         const i=Number(btn.dataset.corePhraseIndex);if(!Number.isInteger(i))return;
-        if(!p.heardPhrases.includes(i)){p.heardPhrases.push(i);p.heardPhrases.sort((a,b)=>a-b);save();}
-        view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');
+        const row=view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`);
+        const firstListen=!p.heardPhrases.includes(i);
+        if(firstListen){p.heardPhrases.push(i);p.heardPhrases.sort((a,b)=>a-b);save();}
+        row?.classList.add('is-heard');
+        if(firstListen&&row){
+          row.classList.remove('just-heard');
+          void row.offsetWidth;
+          row.classList.add('just-heard');
+          window.setTimeout(()=>row.classList.remove('just-heard'),760);
+        }
       }));
       window.scrollTo({top:0,behavior:'instant'});
     }
