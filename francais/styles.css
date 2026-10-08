@@ -938,3 +938,27 @@ html.dark-mode .select-input:focus{
 @media(max-width:350px){.topbar h1{font-size:18px}.topbar .header-actions .profile-chip{font-size:12px}}
 html.dark-mode .exercise-start-btn,html.dark-mode .soft-btn.exercise-start-btn{background:var(--success);border-color:var(--success);color:#fff}
 html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,#2563eb,#7c3aed,#0e7490,#2563eb);background-size:250% 100%;color:#fff}
+
+
+.lesson-core-phrase[hidden]{display:none}
+.lesson-audio-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
+.lesson-audio-pager .tiny-btn{min-width:44px;min-height:36px;font-size:20px}
+.lesson-audio-pager small{font-size:13px;color:var(--muted)}
+.lesson-audio-pager button:disabled{opacity:.3;cursor:default}
+.lesson-pronunciation-bonus .pronunciation-panel{margin-top:0;padding-top:12px}
+.lesson-pronunciation-bonus .lesson-content-heading{font-size:13px;margin-bottom:7px;color:var(--muted)}
+.lesson-pronunciation-bonus p{font-size:12px;line-height:1.45;margin:6px 0;color:var(--muted)}
+.lesson-pronunciation-bonus .pronunciation-words{display:flex;flex-wrap:wrap;gap:6px}
+.lesson-pronunciation-bonus .pronunciation-word{width:auto;padding:7px 10px;font-size:12px;min-height:32px;border-radius:9px}
+.course-progress-card h2{font-size:20px;margin:0 0 5px}
+.course-progress-card:has(.a1-streak-badge:not([hidden])) h2{padding-right:90px}
+.course-progress-caption{font-size:12px;color:var(--muted);margin:0 0 16px}
+.course-progress-meter{display:flex;align-items:center;gap:18px;margin:0 0 18px}
+.course-progress-meter>strong{font-size:32px;font-weight:750;letter-spacing:-.04em;line-height:1}
+.course-progress-meter>strong small{font-size:16px;margin-left:2px;letter-spacing:0;color:var(--muted)}
+.course-progress-meter .progress{flex:1;height:8px;margin:0;border-radius:20px}
+.course-progress-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:13px;border-top:1px solid var(--line)}
+.course-progress-stats>div{display:flex;flex-direction:column;gap:4px}
+.course-progress-stats strong{font-size:20px;font-weight:700}
+.course-progress-stats strong small{font-size:13px;font-weight:400;color:var(--muted)}
+.course-progress-stats span{font-size:12px;color:var(--muted)}

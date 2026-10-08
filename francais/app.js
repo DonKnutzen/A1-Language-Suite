@@ -103,13 +103,13 @@ document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.datas
 function renderHome(){
   const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];
   view.innerHTML=`
-    <section class="card hero" data-streak-anchor>
-      <div class="eyebrow">KURSFORTSCHRITT</div>
-      <h2 style="margin-top:12px">Französisch A1 🇫🇷</h2>
-      <p class="muted">${state.doneLessons.length}/${lessons.length} Lektionen bearbeitet · Wissenscheck ${FR_A1_MASTERY.passedCount(state)}/${lessons.length}</p>
-      <div class="progress"><div style="width:${lessonPct()}%"></div></div>
-      <div class="between" style="margin-top:10px"><small>DEUTSCH → FRANZÖSISCH · DELF A1</small><strong>${lessonPct()}%</strong></div>
-    ${A1Streak.render('de')}</section>
+    <section class="card course-progress-card" data-streak-anchor>
+      <h2>Kursfortschritt</h2>
+      <p class="course-progress-caption">Deutsch → Französisch · DELF A1</p>
+      <div class="course-progress-meter"><strong>${lessonPct()}<small>%</small></strong><div class="progress" role="progressbar" aria-label="Kursfortschritt" aria-valuenow="${lessonPct()}" aria-valuemin="0" aria-valuemax="100"><div style="width:${lessonPct()}%"></div></div></div>
+      <div class="course-progress-stats"><div><strong>${state.doneLessons.length}<small> / ${lessons.length}</small></strong><span>Lektionen bearbeitet</span></div><div><strong>${FR_A1_MASTERY.passedCount(state)}<small> / ${lessons.length}</small></strong><span>Lektions-Checks</span></div></div>
+      ${A1Streak.render('de')}
+    </section>
     <section class="card">
       <div class="between"><div><div class="eyebrow">WEITERLERNEN</div><h3>${esc(next.title)}</h3></div><span class="pill gray">Lektion ${next.id}</span></div>
       <p class="muted">${esc(next.topic)} · ${next.skills.join(' · ')}</p>
@@ -993,3 +993,4 @@ document.getElementById('resetBtn').onclick=()=>{
 updateAudioButton();
 setRoute('home');
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+
