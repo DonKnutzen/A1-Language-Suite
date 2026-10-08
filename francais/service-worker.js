@@ -1,6 +1,6 @@
-const CACHE="francais-a1-mastery-v48";
+const CACHE="francais-a1-lessonflow-v49";
 const PREFIX="francais-a1-";
-const ASSETS=["../shared/streak.js","./","./index.html","./styles.css?v=mastery-48","./app.js?v=mastery-48","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/practice-progress.js?v=48","../shared/voice-selection.js?v=dialog-45","./lesson-flow.js?v=mastery-48","../shared/pronunciation.js?v=dialog-45","../shared/lesson-ui.css?v=mastery-48","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-45","../shared/exercise-engine.js?v=dialog-45","./data.js?v=mastery-48","./mastery-specs.js?v=mastery-48","./mastery.js?v=mastery-48"];
+const ASSETS=["../shared/streak.js","./","./index.html","./styles.css?v=lessonflow-49","./app.js?v=lessonflow-49","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/practice-progress.js?v=48","../shared/voice-selection.js?v=dialog-45","./lesson-flow.js?v=lessonflow-49","../shared/pronunciation.js?v=dialog-45","../shared/lesson-ui.css?v=lessonflow-49","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-45","../shared/exercise-engine.js?v=dialog-45","./data.js?v=lessonflow-49","./mastery-specs.js?v=lessonflow-49","./mastery.js?v=lessonflow-49","./lesson1-practice.js?v=lessonflow-49"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

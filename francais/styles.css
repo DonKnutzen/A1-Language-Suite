@@ -786,3 +786,32 @@ html.dark-mode .select-input:focus{
   .lesson-list-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
   .lesson-mini-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* v49: lesson 1 teaching-flow prototype — French only */
+.lesson1-pronoun-primer{margin:12px 0;padding:13px;border:1px solid var(--line);border-radius:14px;background:rgba(59,130,246,.055)}
+.lesson1-pronoun-primer>strong{display:block;margin-top:3px}
+.lesson1-pronoun-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0}
+.lesson1-pronoun-grid span{display:flex;flex-direction:column;gap:1px;padding:8px 9px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.lesson1-pronoun-grid b{font-size:.94rem}.lesson1-pronoun-grid small{color:var(--muted)}
+.lesson1-stage-action,.lesson1-grammar-check{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0;padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.lesson1-stage-action>div,.lesson1-grammar-check>div{display:flex;flex-direction:column;gap:3px}
+.lesson1-stage-action small,.lesson1-grammar-check small{color:var(--muted);line-height:1.4}
+.lesson1-grammar-practice{margin-top:14px;padding-top:13px;border-top:1px dashed var(--line)}
+.lesson1-grammar-practice>.between>div{display:flex;flex-direction:column;gap:2px}
+.lesson1-grammar-practice>.between small{color:var(--muted)}
+.lesson1-drill-stage{margin-top:10px}
+.lesson1-drill-question{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.lesson1-drill-question .quiz-q{margin:12px 0}
+.lesson1-drill-feedback{margin-top:10px;display:grid;gap:9px}
+.lesson1-drill-finish{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 12px;border-radius:11px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)}
+.lesson1-drill-finish span{color:var(--muted);margin-right:auto}
+.lesson1-gentle-note{margin-top:13px}
+.lesson-mastery-intro.compact{padding:12px;margin-top:12px}
+.lesson-mastery-intro.compact p{margin:8px 0 0}
+.lesson1-mini-progress{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:640px){
+  .lesson1-pronoun-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lesson1-stage-action,.lesson1-grammar-check{align-items:stretch;flex-direction:column}
+  .lesson1-stage-action button,.lesson1-grammar-check button{width:100%}
+  .lesson1-mini-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

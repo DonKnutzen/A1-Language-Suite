@@ -60,106 +60,104 @@ window.FR_A1_DATA = {
       ],
       "quiz": [
         {
-          "q": "Wie sagst du „Ich heiße Paul“?",
+          "q": "Was bedeutet „Bonjour !“?",
           "o": [
-            "J’habite Paul.",
-            "Je suis Paul à.",
-            "Je m’appelle Paul."
-          ],
-          "a": 2,
-          "audio": "Je m’appelle Paul."
-        },
-        {
-          "q": "Was bedeutet „J’habite à Lyon“?",
-          "o": [
-            "Ich fahre nach Lyon.",
-            "Ich komme aus Lyon.",
-            "Ich wohne in Lyon."
-          ],
-          "a": 2,
-          "audio": "J’habite à Lyon"
-        },
-        {
-          "q": "Welche Begrüßung ist informell?",
-          "o": [
-            "Salut !",
-            "Bonjour madame.",
-            "Au revoir."
-          ],
-          "a": 0,
-          "audio": "Salut !"
-        },
-        {
-          "q": "Je ___ allemand.",
-          "o": [
-            "ai",
-            "habite",
-            "suis"
-          ],
-          "a": 2,
-          "audio": "Je suis allemand.",
-          "explanation": "Mit je lautet être: je suis = „ich bin“."
-        },
-        {
-          "q": "Lies den Dialog: Bonjour, je m’appelle Anna. Et vous ? / Je m’appelle Marc. Vous habitez où ? / J’habite à Lyon. Et vous ? / Moi, j’habite à Paris.\nAnna wohnt in …",
-          "o": [
-            "Berlin",
-            "Lyon",
-            "Paris"
-          ],
-          "a": 1,
-          "explanation": "Anna sagt „J’habite à Lyon.“ = „Ich wohne in Lyon.“",
-          "audio": "J’habite à Lyon."
-        },
-        {
-          "q": "Wie sagst du „Guten Tag“ auf Französisch?",
-          "o": [
-            "Bonjour !",
-            "Salut !",
-            "Je suis allemand."
+            "Guten Tag!",
+            "Auf Wiedersehen!",
+            "Danke!"
           ],
           "a": 0,
           "audio": "Bonjour !"
         },
         {
-          "q": "Wie sagst du „Hallo“ auf Französisch?",
+          "q": "Welche Begrüßung ist informell?",
           "o": [
-            "Je viens d’Allemagne.",
+            "Bonsoir !",
             "Salut !",
-            "J’habite à Halifax."
+            "Au revoir !"
           ],
           "a": 1,
           "audio": "Salut !"
         },
         {
-          "q": "Wie sagst du „Ich heiße Léa“ auf Französisch?",
+          "q": "Was bedeutet „Bonsoir !“?",
           "o": [
-            "Je parle allemand et un peu français.",
-            "Bonjour !",
-            "Je m’appelle Léa."
-          ],
-          "a": 2,
-          "audio": "Je m’appelle Léa."
-        },
-        {
-          "q": "Wie sagst du „Ich wohne in Halifax“ auf Französisch?",
-          "o": [
-            "J’habite à Halifax.",
-            "Enchanté(e) !",
-            "Je m’appelle Léa."
+            "Guten Abend!",
+            "Guten Morgen!",
+            "Bis morgen!"
           ],
           "a": 0,
-          "audio": "J’habite à Halifax."
+          "audio": "Bonsoir !"
         },
         {
-          "q": "Wie sagst du „Ich bin Deutscher“ auf Französisch?",
+          "q": "Was fragt „Comment allez-vous ?“?",
           "o": [
-            "Je parle allemand et un peu français.",
-            "Je suis allemand.",
-            "Salut !"
+            "Wie heißen Sie?",
+            "Wo wohnen Sie?",
+            "Wie geht es Ihnen?"
+          ],
+          "a": 2,
+          "audio": "Comment allez-vous ?"
+        },
+        {
+          "q": "Wie sagst du „Ich heiße Paul“?",
+          "o": [
+            "Je m’appelle Paul.",
+            "J’habite Paul.",
+            "Je viens Paul."
+          ],
+          "a": 0,
+          "audio": "Je m’appelle Paul."
+        },
+        {
+          "q": "Was bedeutet „Je viens d’Allemagne“?",
+          "o": [
+            "Ich wohne in Deutschland.",
+            "Ich komme aus Deutschland.",
+            "Ich spreche Deutsch."
           ],
           "a": 1,
-          "audio": "Je suis allemand."
+          "audio": "Je viens d’Allemagne."
+        },
+        {
+          "q": "Was bedeutet „J’habite à Lyon“?",
+          "o": [
+            "Ich wohne in Lyon.",
+            "Ich komme aus Lyon.",
+            "Ich fahre nach Lyon."
+          ],
+          "a": 0,
+          "audio": "J’habite à Lyon."
+        },
+        {
+          "q": "Was bedeutet „Je parle allemand et un peu français“?",
+          "o": [
+            "Ich lerne Deutsch und Französisch.",
+            "Ich spreche Deutsch und ein bisschen Französisch.",
+            "Ich komme aus Frankreich."
+          ],
+          "a": 1,
+          "audio": "Je parle allemand et un peu français."
+        },
+        {
+          "q": "Lies den Dialog: Bonjour, je m’appelle Anna. Et vous ? / Je m’appelle Marc. Vous habitez où ? / J’habite à Lyon. Et vous ? / Moi, j’habite à Paris.\nAnna wohnt in …",
+          "o": [
+            "Paris",
+            "Lyon",
+            "Berlin"
+          ],
+          "a": 1,
+          "audio": "J’habite à Lyon."
+        },
+        {
+          "q": "Was bedeutet „Au revoir !“?",
+          "o": [
+            "Auf Wiedersehen!",
+            "Freut mich!",
+            "Mir geht es gut!"
+          ],
+          "a": 0,
+          "audio": "Au revoir !"
         }
       ],
       "canDo": [

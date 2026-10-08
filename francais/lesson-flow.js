@@ -17,13 +17,17 @@
     const best=Number(state.lessonQuizBest?.[lesson.id]||0);
     const application=Number(p.speakingDone===true)+Number(p.writingDone===true);
     const quizScore=Math.max(0,Math.min(10,Math.round(best/10)));
-    const complete=state.doneLessons?.includes(lesson.id)||(best>=70&&application===2);
-    const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0),masteryDone=masteryBest>=80;
+    const lesson1=Number(lesson.id)===1&&!!window.FR_A1_LESSON1;
+    const quizDone=lesson1?p.quizDone===true:best>=70;
+    const complete=state.doneLessons?.includes(lesson.id)||(quizDone&&application===2);
+    const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
+    const masteryDone=lesson1?!!(state.lessonMasteryLast&&Object.prototype.hasOwnProperty.call(state.lessonMasteryLast,lesson.id)):masteryBest>=80;
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,`${quizScore}/10`,best>=70)}${step(L.practiceStep,application===2?'✓':`${application}/2`,application===2)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step(L.practiceStep,application===2?'✓':`${application}/2`,application===2)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
   function render(opts){
     const {lesson:l,content:c,view,state}=opts,L=UI[opts.uiLang]||UI.de;
+    const lesson1=opts.targetLang==='fr'&&Number(l.id)===1&&!!window.FR_A1_LESSON1;
     if(!state.lessonWork||typeof state.lessonWork!=='object'||Array.isArray(state.lessonWork))state.lessonWork={};
     const valid=state.lessonWork[l.id];
     const p=state.lessonWork[l.id]=valid&&typeof valid==='object'&&!Array.isArray(valid)?valid:{};
@@ -31,11 +35,12 @@
     const legacy=state.doneLessons.includes(l.id);
     const recId='LessonApply'+l.id;
     const best=()=>Number(state.lessonQuizBest[l.id]||0);
-    const passed=()=>best()>=70;
+    const passed=()=>lesson1?p.quizDone===true:best()>=70;
     const complete=()=>legacy||(passed()&&p.speakingDone===true&&p.writingDone===true);
     const hasMastery=typeof opts.renderMastery==='function';
     const masteryBest=()=>Number(state.lessonMasteryBest?.[l.id]||0);
-    const masteryPassed=()=>masteryBest()>=80;
+    const masteryAttempted=()=>!!(state.lessonMasteryLast&&Object.prototype.hasOwnProperty.call(state.lessonMasteryLast,l.id));
+    const masteryPassed=()=>lesson1?masteryAttempted():masteryBest()>=80;
     const model=String(opts.model||'').replace(/\\n/g,'\n');
     const writingModel=String(opts.writingModel||model).replace(/\\n/g,'\n');
     const explicit=c.transfer.writing.match(/(\d+)\s*(?:[–-]\s*\d+\s*)?(?:Wörter|mots|kelime|palabras)/i);
@@ -45,7 +50,7 @@
       if(passed()&&p.speakingDone===true&&p.writingDone===true&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);
       opts.save(completed);
     }
-    function statuses(){const rows=[[L.quiz,passed()],[L.speak,p.speakingDone===true],[L.write,p.writingDone===true]];if(hasMastery)rows.push(['Abschlusstest',masteryPassed()]);return `<div class="lesson-part-status" aria-label="${esc(L.apply)}">${rows.map(([label,done])=>`<span class="pill ${done?'green':'gray'}">${done?'✓':'○'} ${esc(label)}</span>`).join('')}</div>`;}
+    function statuses(){const rows=[[lesson1?'Hör-/Satzübung':L.quiz,passed()],[L.speak,p.speakingDone===true],[L.write,p.writingDone===true]];if(hasMastery)rows.push([lesson1?'Lektions-Check':'Abschlusstest',masteryPassed()]);return `<div class="lesson-part-status" aria-label="${esc(L.apply)}">${rows.map(([label,done])=>`<span class="pill ${done?'green':'gray'}">${done?'✓':'○'} ${esc(label)}</span>`).join('')}</div>`;}
     function audioTargets(){return [...new Set((l.phrases||[]).map(x=>x?.[0]).filter(Boolean))];}
     function heardCount(){const heard=new Set(p.heardPhrases);return audioTargets().filter(x=>heard.has(x)).length;}
     function applicationCount(){return Number(p.speakingDone===true)+Number(p.writingDone===true);}
@@ -53,11 +58,16 @@
       const total=audioTargets().length,heard=heardCount(),audioDone=total>0&&heard>=total;
       const quizTried=p.quizDone===true||p.quizLast!=null||best()>0,application=applicationCount();
       const step=(icon,label,value,done)=>`<div class="lesson-mini-step ${done?'done':''}"><span class="lesson-mini-icon">${icon}</span><span><small>${esc(label)}</small><strong>${esc(value)}</strong></span></div>`;
+      if(lesson1){
+        const grammarDone=FR_A1_LESSON1.completedGroups(state),grammarCheck=FR_A1_LESSON1.grammarCheckTried(state);
+        const mastery=hasMastery?step('🏁','Check',masteryAttempted()?masteryBest()+' %':'—',masteryAttempted()):'';
+        return `<div class="lesson-mini-progress lesson1-mini-progress" id="lessonMiniProgress" aria-label="${esc(L.plan)}">${step('🎧','Hören',audioDone?'✓':`${heard}/${total}`,audioDone)}${step('✓','Verstehen',quizTried?`${Math.round(best()/10)}/10`:'—',p.quizDone===true)}${step('▦','Grammatik',grammarCheck?`${grammarDone}/4 · ✓`:`${grammarDone}/4`,grammarDone===4&&grammarCheck)}${step('✦','Praxis',application===2?'✓':`${application}/2`,application===2)}${mastery}</div>`;
+      }
       const mastery=hasMastery?step('🏁','Abschluss',masteryBest()?masteryBest()+' %':'—',masteryPassed()):'';
       return `<div class="lesson-mini-progress" id="lessonMiniProgress" aria-label="${esc(L.plan)}">${step('🎧',L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step('✓',L.quizStep,quizTried?best()+' %':'—',passed())}${step('✦',L.practiceStep,application===2?'✓':`${application}/2`,application===2)}${mastery}</div>`;
     }
     function refreshMiniProgress(){const e=document.getElementById('lessonMiniProgress');if(e)e.outerHTML=miniProgress();}
-    function roadmap(){return `<div class="lesson-roadmap"><div class="lesson-roadmap-title">${esc(L.plan)}</div><div class="lesson-roadmap-steps"><span><b>1</b>${esc(L.listenDeepen)}</span><span><b>2</b>${esc(L.interactive)}</span><span><b>3</b>${esc(L.practical)}</span>${hasMastery?'<span><b>4</b>Abschlusstest</span>':''}</div></div>`;}
+    function roadmap(){if(lesson1)return `<div class="lesson-roadmap lesson1-roadmap"><div class="lesson-roadmap-title">So lernst du diese Lektion</div><div class="lesson-roadmap-steps"><span><b>1</b>Hören & verstehen</span><span><b>2</b>Grammatik üben</span><span><b>3</b>Sprechen & schreiben</span><span><b>4</b>Lektions-Check</span></div></div>`;return `<div class="lesson-roadmap"><div class="lesson-roadmap-title">${esc(L.plan)}</div><div class="lesson-roadmap-steps"><span><b>1</b>${esc(L.listenDeepen)}</span><span><b>2</b>${esc(L.interactive)}</span><span><b>3</b>${esc(L.practical)}</span>${hasMastery?'<span><b>4</b>Abschlusstest</span>':''}</div></div>`;}
     function dialogueHelp(){
       const raw=String(opts.dialogueHtml||'');
       if(!raw.trim())return '';
@@ -78,8 +88,8 @@
       document.getElementById('lessonPartStatus').innerHTML=statuses();
       refreshMiniProgress();
       const next=document.getElementById('nextLesson');next.disabled=!complete();
-      const masteryBtn=document.getElementById('startMasteryFromApplication');if(masteryBtn)masteryBtn.disabled=!complete();
-      document.getElementById('lessonCompletion').textContent=complete()?(hasMastery&&!masteryPassed()?'Praxis abgeschlossen · Abschlusstest noch offen':L.complete):!passed()?L.retry:L.remaining;
+      const masteryBtn=document.getElementById('startMasteryFromApplication');if(masteryBtn&&!lesson1)masteryBtn.disabled=!complete();
+      document.getElementById('lessonCompletion').textContent=lesson1?(complete()?'Praxis geschafft. Wenn du möchtest, mach jetzt den Lektions-Check.':'Sprich und schreib einmal selbst – du kannst jederzeit zurückgehen und weiterüben.'):complete()?(hasMastery&&!masteryPassed()?'Praxis abgeschlossen · Abschlusstest noch offen':L.complete):!passed()?L.retry:L.remaining;
       document.getElementById('continueWriting').hidden=p.speakingDone!==true;
       for(const [id,done] of [['oralStatus',p.speakingDone],['writingStatus',p.writingDone]]){
         const e=document.getElementById(id);e.textContent=done===true?'✓ '+L.done:L.open;e.className='pill '+(done===true?'green':'gray');
@@ -95,12 +105,18 @@
       if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
       const heardSet=new Set(p.heardPhrases);
       const corePhrases=`<details class="lesson-explanation lesson-core-phrases" open><summary><strong>${esc(L.audioExamples)}</strong></summary>${l.phrases.map(([target,native],i)=>`<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`).join('')}</details>`;
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><section class="card" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2>${roadmap()}${goalsHtml}${corePhrases}${opts.pronunciationHtml}${grammarHtml}${masteryHtml}<p class="lesson-flow-requirements">${esc(L.requirements)}</p>${statuses()}<div class="button-row"><button class="primary-btn" id="startQuiz">${esc(L.start)}</button><button class="secondary-btn" id="startApplication">${esc(L.apply)}</button>${hasMastery?`<button class="secondary-btn" id="startMasteryOverview" ${complete()?'':'disabled'}>🏁 Abschlusstest · ${masteryBest()?masteryBest()+' %':'offen'}</button>`:''}</div></section>`;
+      const earlyQuiz=lesson1?`<div class="lesson1-stage-action"><div><strong>Jetzt kurz anwenden</strong><small>10 Aufgaben nur zu den Wendungen, die du gerade gehört hast.</small></div><button class="primary-btn" id="startQuiz">10 Hör- & Satzübungen</button></div>`:'';
+      const grammarCheck=lesson1?`<div class="lesson1-grammar-check"><div><strong>Grammatik-Check</strong><small>Wenn du die Tabellen geübt hast: 12 gemischte Fragen als kurzer Zwischencheck.</small></div><button class="soft-btn" id="startGrammarCheck">${FR_A1_LESSON1.grammarCheckTried(state)?`Noch einmal · Bestwert ${FR_A1_LESSON1.grammarCheckBest(state)} %`:'12 Fragen starten'}</button></div>`:'';
+      const requirements=lesson1?'<p class="muted lesson1-gentle-note">Du kannst jeden Teil beliebig oft wiederholen. Es gibt hier keine Bestehensgrenze – der Lektions-Check am Ende zeigt dir einfach deinen aktuellen Stand.</p>':`<p class="lesson-flow-requirements">${esc(L.requirements)}</p>`;
+      const controls=lesson1?`<div class="button-row"><button class="primary-btn" id="startApplication">🎤 ✍️ Sprechen & Schreiben</button>${hasMastery?`<button class="secondary-btn" id="startMasteryOverview">🏁 Lektions-Check${masteryAttempted()?` · ${masteryBest()} %`:''}</button>`:''}</div>`:`<div class="button-row"><button class="primary-btn" id="startQuiz">${esc(L.start)}</button><button class="secondary-btn" id="startApplication">${esc(L.apply)}</button>${hasMastery?`<button class="secondary-btn" id="startMasteryOverview" ${complete()?'':'disabled'}>🏁 Abschlusstest · ${masteryBest()?masteryBest()+' %':'offen'}</button>`:''}</div>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><section class="card" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2>${roadmap()}${lesson1?miniProgress():''}${goalsHtml}<div class="lesson1-stage ${lesson1?'is-prototype':''}">${corePhrases}${opts.pronunciationHtml}${earlyQuiz}</div>${grammarHtml}${grammarCheck}${masteryHtml}${requirements}${lesson1?'':statuses()}${controls}</section>`;
       document.getElementById('backLearn').onclick=opts.renderLearn;
-      document.getElementById('startQuiz').onclick=drawQuiz;
+      document.getElementById('startQuiz')?.addEventListener('click',drawQuiz);
       document.getElementById('startApplication').onclick=drawApplication;
       if(hasMastery)document.getElementById('startMasteryOverview').onclick=drawMastery;
+      if(lesson1&&typeof opts.renderGrammarCheck==='function')document.getElementById('startGrammarCheck').onclick=()=>opts.renderGrammarCheck({onBack:drawOverview});
       opts.wireSpeakButtons();window.A1Pronunciation?.wire(view);
+      if(lesson1)FR_A1_LESSON1.decorate({root:view,state,save:(done)=>save(done),speak:opts.speak,onUpdate:refreshMiniProgress});
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
         const i=Number(btn.dataset.corePhraseIndex);if(!Number.isInteger(i))return;
         const row=view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`);
@@ -122,15 +138,16 @@
       A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:drawOverview,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
-        save(true);drawApplication();
+        save(true);if(lesson1){drawOverview();setTimeout(()=>view.querySelector('.lesson-deepening')?.scrollIntoView({behavior:'smooth',block:'start'}),50);}else drawApplication();
       }});
     }
     function drawApplication(){
       window.A1Voice?.cancel();comparedText=null;
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLessonContent">${esc(L.overview)}</button><span class="pill">${esc(L.part)}</span></div><section class="card lesson-flow" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2><p class="muted">${esc(L.quiz)}: ${p.quizLast!=null?p.quizLast+' % · ':''}${esc(L.best)} ${best()} %</p><div id="lessonPartStatus">${statuses()}</div><p>${esc(L.requirements)}</p>${legacy?`<p class="muted">${esc(L.old)}</p>`:''}<p class="muted">${esc(L.noGrade)}</p></section>
+      const appHead=lesson1?`<div class="between"><button class="tiny-btn" id="backLessonContent">${esc(L.overview)}</button><span class="pill">PRAXIS</span></div><section class="card lesson-flow" style="margin-top:12px"><h2>Jetzt selbst anwenden</h2><p class="muted">Sag und schreib ein paar eigene Sätze. Vergleiche anschließend mit dem Beispiel – ohne automatische Benotung.</p><div id="lessonPartStatus">${statuses()}</div></section>`:`<div class="between"><button class="tiny-btn" id="backLessonContent">${esc(L.overview)}</button><span class="pill">${esc(L.part)}</span></div><section class="card lesson-flow" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2><p class="muted">${esc(L.quiz)}: ${p.quizLast!=null?p.quizLast+' % · ':''}${esc(L.best)} ${best()} %</p><div id="lessonPartStatus">${statuses()}</div><p>${esc(L.requirements)}</p>${legacy?`<p class="muted">${esc(L.old)}</p>`:''}<p class="muted">${esc(L.noGrade)}</p></section>`;
+      view.innerHTML=`${appHead}
         <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${esc(c.transfer.speaking)}</p>${dialogueHelp()}<p class="muted">${esc(L.instruction)}</p>${opts.recorderHtml(recId)}<label class="lesson-check"><input type="checkbox" id="aloudDone" ${p.speakingAttempted?'checked':''}> <span>${esc(L.aloud)}</span></label><button class="soft-btn" id="showSpeakingModel" ${p.speakingAttempted?'':'disabled'}>${esc(L.showOral)}</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><label class="lesson-check"><input type="checkbox" id="oralChecked" ${p.speakingDone?'checked':''}> <span>${esc(L.self)}</span></label><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>${esc(L.good)}</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
         <section class="card lesson-flow" id="lessonWritingSection"><div class="between"><h3>✍️ ${esc(L.write)}</h3><span id="writingStatus"></span></div><label class="lesson-task-prompt" for="lessonWriting">${esc(c.transfer.writing)}</label>${opts.targetLang==='fr'&&l.id===2?`<p class="muted">${esc(L.dictateTip)}</p><button class="soft-btn" data-pron-spell="MARTIN" data-pron-lang="fr">🔊 ${esc(L.dictate)}</button>`:''}${Array.isArray(opts.writingHints)&&opts.writingHints.length?`<div class="spacer"></div><button class="soft-btn" id="writingHelpBtn">💡 ${esc(L.writeHelp)}</button><div class="lesson-writing-help" id="writingHelp" hidden><p class="muted">${esc(opts.writingHelpText||L.writeHelpText)}</p>${opts.writingHints.map(h=>{const target=Array.isArray(h)?h[0]:h,native=Array.isArray(h)?h[1]:'';return `<div class="phrase-row"><div><strong>${esc(target)}</strong>${native?`<small>${esc(native)}</small>`:''}</div></div>`;}).join('')}</div>`:''}<textarea class="text-area lesson-writing" id="lessonWriting" placeholder="${esc(opts.placeholder||L.placeholder)}">${esc(p.writingDraft||'')}</textarea>${A1ExerciseEngine.charBar(opts.targetLang,opts.uiLang)}<p class="muted" id="writingCount"></p><button class="soft-btn" id="showWritingModel">${esc(L.compare)}</button><div id="writingModel" role="status"></div></section>
-        <section class="card lesson-flow-finish"><div id="lessonCompletion" class="lesson-completion" role="status"></div>${hasMastery?`<button class="primary-btn" id="startMasteryFromApplication" disabled>🏁 Abschlusstest starten · ${opts.masteryCount||''} Aufgaben</button><div class="spacer"></div>`:''}<div class="button-row"><button class="secondary-btn" id="repeatQuiz">${esc(L.quizAgain)}</button><button class="primary-btn" id="nextLesson" disabled>${esc(l.id<opts.lessonCount?L.next:L.all)}</button></div></section>`;
+        <section class="card lesson-flow-finish"><div id="lessonCompletion" class="lesson-completion" role="status"></div>${hasMastery?`<button class="primary-btn" id="startMasteryFromApplication" ${lesson1?'':'disabled'}>🏁 ${lesson1?'Lektions-Check':'Abschlusstest starten'} · ${opts.masteryCount||''} Fragen</button><div class="spacer"></div>`:''}<div class="button-row"><button class="secondary-btn" id="repeatQuiz">${esc(lesson1?'10 Hör-/Satzübungen wiederholen':L.quizAgain)}</button><button class="primary-btn" id="nextLesson" disabled>${esc(l.id<opts.lessonCount?L.next:L.all)}</button></div></section>`;
       document.getElementById('backLessonContent').onclick=drawOverview;
       document.getElementById('repeatQuiz').onclick=drawQuiz;
       if(hasMastery)document.getElementById('startMasteryFromApplication').onclick=drawMastery;
