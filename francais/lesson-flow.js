@@ -46,6 +46,50 @@
     const explicit=c.transfer.writing.match(/(\d+)\s*(?:[–-]\s*\d+\s*)?(?:Wörter|mots|kelime|palabras)/i);
     const minWords=explicit?Number(explicit[1]):opts.targetLang==='fr'&&l.id===2?1:3;
     let comparedText=null;
+    const steps=[['listen','Hören'],['understand','Verstehen'],['grammar','Grammatik'],...(lesson1?[['grammar-check','Grammatik-Check']]:[]),['speak','Sprechen'],['write','Schreiben'],...(hasMastery?[['check','Lektions-Check']]:[])];
+    let activeStep='listen',grammarIndex=0,listenPage=0;
+    const phrasesPerPage=4,listenPages=Math.max(1,Math.ceil(l.phrases.length/phrasesPerPage));
+    const grammarSource=document.createElement('div');
+    grammarSource.innerHTML=opts.grammarHtml||'';
+    const grammarRoot=grammarSource.querySelector('.lesson-deepening')||grammarSource;
+    const grammarTopics=[...grammarRoot.querySelectorAll('details.grammar-detail')];
+    const grammarBasics=[...grammarRoot.children].filter(el=>el.tagName!=='SUMMARY'&&!el.matches('details.grammar-detail')).map(el=>el.outerHTML).join('');
+    const grammarPages=[{title:'Grundlagen',html:grammarBasics},...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML}))];
+    function stepDone(key){
+      return {listen:audioTargets().length>0&&heardCount()===audioTargets().length,understand:passed(),grammar:lesson1&&FR_A1_LESSON1.completedGroups(state)===4,'grammar-check':lesson1&&FR_A1_LESSON1.grammarCheckTried(state),speak:p.speakingDone===true,write:p.writingDone===true,check:masteryPassed()}[key];
+    }
+    function stepNav(){
+      return `<nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span>${esc(label)}</span></button>`).join('')}</nav>`;
+    }
+    function stepHead(){
+      return `<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><header class="lesson-step-header"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
+    }
+    function refreshSteps(){const nav=view.querySelector('.lesson-step-nav');if(nav)nav.outerHTML=stepNav();wireStepNav();}
+    function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
+    function stepFooter(){
+      const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1],moreAudio=activeStep==='listen'&&listenPage<listenPages-1;
+      return `<div class="lesson-step-footer">${i||listenPage>0&&activeStep==='listen'?'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>':'<span></span>'}${next?`<button class="primary-btn" id="nextLessonStep">${moreAudio?'Weitere Hörbeispiele':`Weiter: ${esc(next[1])}`} →</button>`:''}</div>`;
+    }
+    function wireStepFooter(){
+      document.getElementById('backLearn').onclick=opts.renderLearn;wireStepNav();
+      const i=steps.findIndex(([key])=>key===activeStep);
+      document.getElementById('previousLessonStep')?.addEventListener('click',()=>{if(activeStep==='listen'&&listenPage>0){listenPage--;drawOverview();}else goStep(steps[i-1][0]);});
+      document.getElementById('nextLessonStep')?.addEventListener('click',()=>{if(activeStep==='listen'&&listenPage<listenPages-1){listenPage++;drawOverview();}else goStep(steps[i+1][0]);});
+    }
+    function expandContent(root){
+      // Explanations stay visible; answers and self-check solutions keep their reveal controls.
+      [...root.querySelectorAll('details')].reverse().forEach(detail=>{
+        const section=document.createElement('section');section.className=detail.className;
+        const summary=detail.querySelector(':scope > summary');
+        if(summary){const heading=document.createElement('h3');heading.className='lesson-content-heading';heading.innerHTML=summary.innerHTML;section.appendChild(heading);summary.remove();}
+        section.append(...detail.childNodes);detail.replaceWith(section);
+      });
+    }
+    function goStep(key){
+      if(!steps.some(([id])=>id===key))return;
+      activeStep=key;
+      if(key==='speak'||key==='write')drawApplication();else drawOverview();
+    }
     function save(completed=false){
       if(passed()&&p.speakingDone===true&&p.writingDone===true&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);
       opts.save(completed);
@@ -53,21 +97,6 @@
     function statuses(){const rows=[[lesson1?'Hör-/Satzübung':L.quiz,passed()],[L.speak,p.speakingDone===true],[L.write,p.writingDone===true]];if(hasMastery)rows.push([lesson1?'Lektions-Check':'Abschlusstest',masteryPassed()]);return `<div class="lesson-part-status" aria-label="${esc(L.apply)}">${rows.map(([label,done])=>`<span class="pill ${done?'green':'gray'}">${done?'✓':'○'} ${esc(label)}</span>`).join('')}</div>`;}
     function audioTargets(){return [...new Set((l.phrases||[]).map(x=>x?.[0]).filter(Boolean))];}
     function heardCount(){const heard=new Set(p.heardPhrases);return audioTargets().filter(x=>heard.has(x)).length;}
-    function applicationCount(){return Number(p.speakingDone===true)+Number(p.writingDone===true);}
-    function miniProgress(){
-      const total=audioTargets().length,heard=heardCount(),audioDone=total>0&&heard>=total;
-      const quizTried=p.quizDone===true||p.quizLast!=null||best()>0,application=applicationCount();
-      const step=(icon,label,value,done)=>`<div class="lesson-mini-step ${done?'done':''}"><span class="lesson-mini-icon">${icon}</span><span><small>${esc(label)}</small><strong>${esc(value)}</strong></span></div>`;
-      if(lesson1){
-        const grammarDone=FR_A1_LESSON1.completedGroups(state),grammarCheck=FR_A1_LESSON1.grammarCheckTried(state);
-        const mastery=hasMastery?step('🏁','Check',masteryAttempted()?masteryBest()+' %':'—',masteryAttempted()):'';
-        return `<div class="lesson-mini-progress lesson1-mini-progress" id="lessonMiniProgress" aria-label="${esc(L.plan)}">${step('🎧','Hören',audioDone?'✓':`${heard}/${total}`,audioDone)}${step('✓','Verstehen',quizTried?`${Math.round(best()/10)}/10`:'—',p.quizDone===true)}${step('▦','Grammatik',grammarCheck?`${grammarDone}/4 · ✓`:`${grammarDone}/4`,grammarDone===4&&grammarCheck)}${step('✦','Praxis',application===2?'✓':`${application}/2`,application===2)}${mastery}</div>`;
-      }
-      const mastery=hasMastery?step('🏁','Abschluss',masteryBest()?masteryBest()+' %':'—',masteryPassed()):'';
-      return `<div class="lesson-mini-progress" id="lessonMiniProgress" aria-label="${esc(L.plan)}">${step('🎧',L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step('✓',L.quizStep,quizTried?best()+' %':'—',passed())}${step('✦',L.practiceStep,application===2?'✓':`${application}/2`,application===2)}${mastery}</div>`;
-    }
-    function refreshMiniProgress(){const e=document.getElementById('lessonMiniProgress');if(e)e.outerHTML=miniProgress();}
-    function roadmap(){if(lesson1)return `<div class="lesson-roadmap lesson1-roadmap"><div class="lesson-roadmap-title">So lernst du diese Lektion</div><div class="lesson-roadmap-steps"><span><b>1</b>Hören & verstehen</span><span><b>2</b>Grammatik üben</span><span><b>3</b>Sprechen & schreiben</span><span><b>4</b>Lektions-Check</span></div></div>`;return `<div class="lesson-roadmap"><div class="lesson-roadmap-title">${esc(L.plan)}</div><div class="lesson-roadmap-steps"><span><b>1</b>${esc(L.listenDeepen)}</span><span><b>2</b>${esc(L.interactive)}</span><span><b>3</b>${esc(L.practical)}</span>${hasMastery?'<span><b>4</b>Abschlusstest</span>':''}</div></div>`;}
     function dialogueHelp(){
       const raw=String(opts.dialogueHtml||'');
       if(!raw.trim())return '';
@@ -82,11 +111,11 @@
     function drawMastery(){
       if(!hasMastery)return;
       window.A1Voice?.cancel();
-      opts.renderMastery({onBack:()=>complete()?drawApplication():drawOverview()});
+      opts.renderMastery({onBack:()=>goStep('check')});
     }
     function refresh(){
       document.getElementById('lessonPartStatus').innerHTML=statuses();
-      refreshMiniProgress();
+      refreshSteps();
       const next=document.getElementById('nextLesson');next.disabled=!complete();
       const masteryBtn=document.getElementById('startMasteryFromApplication');if(masteryBtn&&!lesson1)masteryBtn.disabled=!complete();
       document.getElementById('lessonCompletion').textContent=lesson1?(complete()?'Praxis geschafft. Wenn du möchtest, mach jetzt den Lektions-Check.':'Sprich und schreib einmal selbst – du kannst jederzeit zurückgehen und weiterüben.'):complete()?(hasMastery&&!masteryPassed()?'Praxis abgeschlossen · Abschlusstest noch offen':L.complete):!passed()?L.retry:L.remaining;
@@ -97,58 +126,57 @@
     }
     function drawOverview(){
       window.A1Voice?.cancel();
-      const goalsHtml=opts.goalsHtml||opts.introHtml||'';
-      const grammarHtml=opts.grammarHtml||'';
-      const masteryHtml=opts.masteryHtml||'';
-      // Since v34, listened lesson phrases are stored by target text, not by row index.
-      // Older numeric entries are discarded so reordering a lesson never marks the wrong sentence as heard.
       if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
       const heardSet=new Set(p.heardPhrases);
-      const corePhrases=`<details class="lesson-explanation lesson-core-phrases" open><summary><strong>${esc(L.audioExamples)}</strong></summary>${l.phrases.map(([target,native],i)=>`<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`).join('')}</details>`;
-      const earlyQuiz=lesson1?`<div class="lesson1-stage-action"><div><strong>Jetzt kurz anwenden</strong><small>10 Aufgaben nur zu den Wendungen, die du gerade gehört hast.</small></div><button class="primary-btn" id="startQuiz">10 Hör- & Satzübungen</button></div>`:'';
-      const grammarCheck=lesson1?`<div class="lesson1-grammar-check"><div><strong>Grammatik-Check</strong><small>Wenn du die Tabellen geübt hast: 12 gemischte Fragen als kurzer Zwischencheck.</small></div><button class="soft-btn" id="startGrammarCheck">${FR_A1_LESSON1.grammarCheckTried(state)?`Noch einmal · Bestwert ${FR_A1_LESSON1.grammarCheckBest(state)} %`:'12 Fragen starten'}</button></div>`:'';
-      const requirements=lesson1?'<p class="muted lesson1-gentle-note">Du kannst jeden Teil beliebig oft wiederholen. Es gibt hier keine Bestehensgrenze – der Lektions-Check am Ende zeigt dir einfach deinen aktuellen Stand.</p>':`<p class="lesson-flow-requirements">${esc(L.requirements)}</p>`;
-      const controls=lesson1?`<div class="button-row"><button class="primary-btn" id="startApplication">🎤 ✍️ Sprechen & Schreiben</button>${hasMastery?`<button class="secondary-btn" id="startMasteryOverview">🏁 Lektions-Check${masteryAttempted()?` · ${masteryBest()} %`:''}</button>`:''}</div>`:`<div class="button-row"><button class="primary-btn" id="startQuiz">${esc(L.start)}</button><button class="secondary-btn" id="startApplication">${esc(L.apply)}</button>${hasMastery?`<button class="secondary-btn" id="startMasteryOverview" ${complete()?'':'disabled'}>🏁 Abschlusstest · ${masteryBest()?masteryBest()+' %':'offen'}</button>`:''}</div>`;
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><section class="card" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2>${roadmap()}${lesson1?miniProgress():''}${goalsHtml}<div class="lesson1-stage ${lesson1?'is-prototype':''}">${corePhrases}${opts.pronunciationHtml}${earlyQuiz}</div>${grammarHtml}${grammarCheck}${masteryHtml}${requirements}${lesson1?'':statuses()}${controls}</section>`;
-      document.getElementById('backLearn').onclick=opts.renderLearn;
+      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${listenPage*phrasesPerPage+1}–${Math.min((listenPage+1)*phrasesPerPage,l.phrases.length)} / ${l.phrases.length}</small></div>${l.phrases.slice(listenPage*phrasesPerPage,(listenPage+1)*phrasesPerPage).map(([target,native],offset)=>{const i=listenPage*phrasesPerPage+offset;return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</section>`;
+      let body='';
+      if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${listenPage===listenPages-1?opts.pronunciationHtml||'':''}</section>`;
+      if(activeStep==='understand')body=`<section class="card lesson-step-content"><h3>Hör- & Satzübungen</h3><p class="muted">${lesson1?'10 Aufgaben nur zu den Wendungen, die du gerade gehört hast.':'10 interaktive Aufgaben zu dieser Lektion.'}</p>${p.quizDone?`<p class="muted">Bestwert: ${best()} %</p>`:''}<button class="primary-btn" id="startQuiz">${p.quizDone?'Noch einmal üben':'10 Übungen starten'}</button></section>`;
+      if(activeStep==='grammar')body=`<section class="card lesson-step-content"><nav class="lesson-topic-nav" aria-label="Grammatikthemen">${grammarPages.map((page,i)=>`<button class="lesson-topic ${i===grammarIndex?'active':''}" data-grammar-page="${i}" ${i===grammarIndex?'aria-current="true"':''}>${esc(page.title)}</button>`).join('')}</nav><div id="lessonGrammarPage">${grammarPages[grammarIndex].html}</div>${grammarIndex<grammarPages.length-1?`<button class="soft-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:''}</section>`;
+      if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Grammatik-Check</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${FR_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${FR_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn" id="startGrammarCheck">12 Fragen starten</button></section>`;
+      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn" id="startMasteryOverview" ${!lesson1&&!complete()?'disabled':''}>${masteryAttempted()?'Lektions-Check wiederholen':'Lektions-Check starten'}</button>${!lesson1&&!complete()?`<p class="muted">${esc(L.requirements)}</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
+      view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
+      wireStepFooter();
       document.getElementById('startQuiz')?.addEventListener('click',drawQuiz);
-      document.getElementById('startApplication').onclick=drawApplication;
-      if(hasMastery)document.getElementById('startMasteryOverview').onclick=drawMastery;
-      if(lesson1&&typeof opts.renderGrammarCheck==='function')document.getElementById('startGrammarCheck').onclick=()=>opts.renderGrammarCheck({onBack:drawOverview});
+      document.getElementById('startMasteryOverview')?.addEventListener('click',drawMastery);
+      document.getElementById('nextLessonFromCheck')?.addEventListener('click',()=>l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn());
+      document.getElementById('startGrammarCheck')?.addEventListener('click',()=>opts.renderGrammarCheck({onBack:()=>goStep('grammar-check')}));
+      view.querySelectorAll('[data-grammar-page]').forEach(btn=>btn.onclick=()=>{grammarIndex=Number(btn.dataset.grammarPage);drawOverview();});
+      document.getElementById('nextGrammarTopic')?.addEventListener('click',()=>{grammarIndex++;drawOverview();});
+      if(lesson1&&activeStep==='grammar')FR_A1_LESSON1.decorate({root:view,state,save:(done)=>save(done),speak:opts.speak,onUpdate:refreshSteps});
+      expandContent(view);
       opts.wireSpeakButtons();window.A1Pronunciation?.wire(view);
-      if(lesson1)FR_A1_LESSON1.decorate({root:view,state,save:(done)=>save(done),speak:opts.speak,onUpdate:refreshMiniProgress});
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
-        const i=Number(btn.dataset.corePhraseIndex);if(!Number.isInteger(i))return;
-        const row=view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`);
-        const phraseKey=l.phrases[i]?.[0];if(!phraseKey)return;
-        const firstListen=!p.heardPhrases.includes(phraseKey);
-        if(firstListen){p.heardPhrases.push(phraseKey);save();refreshMiniProgress();}
-        row?.classList.add('is-heard');
-        if(firstListen&&row){
-          row.classList.remove('just-heard');
-          void row.offsetWidth;
-          row.classList.add('just-heard');
-          window.setTimeout(()=>row.classList.remove('just-heard'),760);
-        }
+        const i=Number(btn.dataset.corePhraseIndex),phraseKey=l.phrases[i]?.[0];if(!phraseKey)return;
+        if(!p.heardPhrases.includes(phraseKey)){p.heardPhrases.push(phraseKey);save();refreshSteps();}
+        view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');
       }));
       window.scrollTo({top:0,behavior:'instant'});
     }
     function drawQuiz(){
       window.A1Voice?.cancel();
-      A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:drawOverview,onFinish:(score,total)=>{
+      A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('understand'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
-        save(true);if(lesson1){drawOverview();setTimeout(()=>view.querySelector('.lesson-deepening')?.scrollIntoView({behavior:'smooth',block:'start'}),50);}else drawApplication();
+        save(true);goStep('grammar');
       }});
     }
     function drawApplication(){
       window.A1Voice?.cancel();comparedText=null;
-      const appHead=lesson1?`<div class="between"><button class="tiny-btn" id="backLessonContent">${esc(L.overview)}</button><span class="pill">PRAXIS</span></div><section class="card lesson-flow" style="margin-top:12px"><h2>Jetzt selbst anwenden</h2><p class="muted">Sag und schreib ein paar eigene Sätze. Vergleiche anschließend mit dem Beispiel – ohne automatische Benotung.</p><div id="lessonPartStatus">${statuses()}</div></section>`:`<div class="between"><button class="tiny-btn" id="backLessonContent">${esc(L.overview)}</button><span class="pill">${esc(L.part)}</span></div><section class="card lesson-flow" style="margin-top:12px"><h2>${l.id}. ${esc(l.title)}</h2><p class="muted">${esc(L.quiz)}: ${p.quizLast!=null?p.quizLast+' % · ':''}${esc(L.best)} ${best()} %</p><div id="lessonPartStatus">${statuses()}</div><p>${esc(L.requirements)}</p>${legacy?`<p class="muted">${esc(L.old)}</p>`:''}<p class="muted">${esc(L.noGrade)}</p></section>`;
+      const appHead=stepHead()+`<div id="lessonPartStatus" hidden>${statuses()}</div>`;
       view.innerHTML=`${appHead}
         <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${esc(c.transfer.speaking)}</p>${dialogueHelp()}<p class="muted">${esc(L.instruction)}</p>${opts.recorderHtml(recId)}<label class="lesson-check"><input type="checkbox" id="aloudDone" ${p.speakingAttempted?'checked':''}> <span>${esc(L.aloud)}</span></label><button class="soft-btn" id="showSpeakingModel" ${p.speakingAttempted?'':'disabled'}>${esc(L.showOral)}</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><label class="lesson-check"><input type="checkbox" id="oralChecked" ${p.speakingDone?'checked':''}> <span>${esc(L.self)}</span></label><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>${esc(L.good)}</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
         <section class="card lesson-flow" id="lessonWritingSection"><div class="between"><h3>✍️ ${esc(L.write)}</h3><span id="writingStatus"></span></div><label class="lesson-task-prompt" for="lessonWriting">${esc(c.transfer.writing)}</label>${opts.targetLang==='fr'&&l.id===2?`<p class="muted">${esc(L.dictateTip)}</p><button class="soft-btn" data-pron-spell="MARTIN" data-pron-lang="fr">🔊 ${esc(L.dictate)}</button>`:''}${Array.isArray(opts.writingHints)&&opts.writingHints.length?`<div class="spacer"></div><button class="soft-btn" id="writingHelpBtn">💡 ${esc(L.writeHelp)}</button><div class="lesson-writing-help" id="writingHelp" hidden><p class="muted">${esc(opts.writingHelpText||L.writeHelpText)}</p>${opts.writingHints.map(h=>{const target=Array.isArray(h)?h[0]:h,native=Array.isArray(h)?h[1]:'';return `<div class="phrase-row"><div><strong>${esc(target)}</strong>${native?`<small>${esc(native)}</small>`:''}</div></div>`;}).join('')}</div>`:''}<textarea class="text-area lesson-writing" id="lessonWriting" placeholder="${esc(opts.placeholder||L.placeholder)}">${esc(p.writingDraft||'')}</textarea>${A1ExerciseEngine.charBar(opts.targetLang,opts.uiLang)}<p class="muted" id="writingCount"></p><button class="soft-btn" id="showWritingModel">${esc(L.compare)}</button><div id="writingModel" role="status"></div></section>
         <section class="card lesson-flow-finish"><div id="lessonCompletion" class="lesson-completion" role="status"></div>${hasMastery?`<button class="primary-btn" id="startMasteryFromApplication" ${lesson1?'':'disabled'}>🏁 ${lesson1?'Lektions-Check':'Abschlusstest starten'} · ${opts.masteryCount||''} Fragen</button><div class="spacer"></div>`:''}<div class="button-row"><button class="secondary-btn" id="repeatQuiz">${esc(lesson1?'10 Hör-/Satzübungen wiederholen':L.quizAgain)}</button><button class="primary-btn" id="nextLesson" disabled>${esc(l.id<opts.lessonCount?L.next:L.all)}</button></div></section>`;
-      document.getElementById('backLessonContent').onclick=drawOverview;
+      document.getElementById('lessonSpeaking').hidden=activeStep!=='speak';
+      document.getElementById('lessonWritingSection').hidden=activeStep!=='write';
+      view.querySelector('.lesson-flow-finish').hidden=true;
+      view.insertAdjacentHTML('beforeend',stepFooter());wireStepFooter();
+      // These are task aids, so show them directly rather than adding another menu.
+      for(const [buttonId,contentId] of [['speechHelpBtn','speechHelp'],['writingHelpBtn','writingHelp']]){
+        const button=document.getElementById(buttonId),content=document.getElementById(contentId);
+        if(button&&content){content.hidden=false;button.hidden=true;}
+      }
       document.getElementById('repeatQuiz').onclick=drawQuiz;
       if(hasMastery)document.getElementById('startMasteryFromApplication').onclick=drawMastery;
       document.getElementById('nextLesson').onclick=()=>{if(complete())l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn();};
@@ -158,7 +186,7 @@
       show.onclick=reveal;checked.onchange=()=>good.disabled=!aloud.checked||!checked.checked;
       good.onclick=()=>{if(!aloud.checked||!checked.checked)return;p.speakingDone=true;save(true);document.getElementById('oralFeedback').textContent=L.saved;refresh();};
       document.getElementById('oralAgain').onclick=()=>{checked.checked=false;good.disabled=true;document.getElementById('oralFeedback').textContent='';document.getElementById('lessonSpeaking').scrollIntoView?.({behavior:'smooth',block:'start'});};
-      document.getElementById('continueWriting').onclick=()=>document.getElementById('lessonWritingSection').scrollIntoView({behavior:'smooth',block:'start'});
+      document.getElementById('continueWriting').onclick=()=>goStep('write');
       A1Learning.wireRecorder(recId,()=>{p.speakingAttempted=true;aloud.checked=true;show.disabled=false;save(true);reveal();},{unavailable:L.unavailable,denied:L.denied,recording:L.recording,done:L.recorded,empty:L.empty});
       const input=document.getElementById('lessonWriting'),writing=document.getElementById('writingModel');
       const writingHelpBtn=document.getElementById('writingHelpBtn'),writingHelp=document.getElementById('writingHelp');
@@ -184,3 +212,4 @@
   }
   window.A1LessonFlow={render,listProgress};
 })();
+
