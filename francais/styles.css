@@ -853,3 +853,56 @@ html.dark-mode .select-input:focus{
 }
 .lesson-audio-page{flex:none;white-space:nowrap;color:var(--muted);font-size:11px}
 .lesson-step-content .lesson-core-phrases>.between{align-items:flex-start;gap:8px}
+
+
+/* Compact mobile lesson controls; the current step carries the label. */
+.lesson-step-context,.lesson-topic-number{display:none}
+.lesson-step-header~.lesson-goals{padding:13px 15px;border:1px solid var(--accent);border-left-width:4px;border-radius:12px;background:var(--accent-soft);color:var(--ink)}
+.lesson-step-header~.lesson-goals strong{font-size:14px}
+.lesson-step-header~.lesson-goals ul{margin-top:6px}
+.lesson-topic.done{color:var(--success)}
+@media(max-width:600px){
+  .topbar{padding:10px 14px;gap:8px}
+  .topbar>div:first-child{min-width:0}
+  .topbar .eyebrow{display:none}
+  .topbar h1{font-size:19px;margin:0;white-space:nowrap}
+  .topbar .header-actions{flex-wrap:nowrap;gap:5px;flex:none}
+  .topbar .header-actions .theme-toggle,.topbar .header-actions .a1-voice-trigger{height:32px;width:32px;flex-basis:32px;padding:0;border-radius:10px;font-size:16px}
+  .topbar .header-actions .profile-chip{height:32px;max-width:86px;padding:0 7px;border-radius:10px;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .view{padding:12px}
+  .lesson-step-header{margin:12px 0}
+  .lesson-step-header h2{font-size:18px;margin-bottom:9px}
+  .lesson-step-context{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;font-size:13px}
+  .lesson-step-context small{color:var(--muted);font-size:11px}
+  .lesson-step-nav{display:flex;justify-content:space-between;gap:0}
+  .lesson-step{flex:1;align-items:center;justify-content:center;min-height:40px;padding:4px;border-bottom-width:2px}
+  .lesson-step-label{display:none}
+  .lesson-step-number{width:22px;height:22px;font-size:11px}
+  .lesson-step-content{padding:14px}
+  .lesson-topic-nav{display:flex;flex-wrap:nowrap;gap:4px;padding-bottom:7px;margin-bottom:12px}
+  .lesson-topic{flex:1;min-height:36px;padding:5px;border:0;border-bottom:2px solid transparent;border-radius:0;text-align:center;background:transparent}
+  .lesson-topic.active{border-bottom-color:var(--accent);background:transparent}
+  .lesson-topic-number{display:inline-grid;place-items:center;width:23px;height:23px;border-radius:50%;background:var(--line);font-size:11px}
+  .lesson-topic.active .lesson-topic-number{background:var(--accent);color:white}
+  .lesson-topic.done .lesson-topic-number{background:var(--success-soft);color:var(--success)}
+  .lesson-topic-label{display:none}
+  .lesson-core-phrase{padding:9px 0;gap:10px}
+  .lesson-core-phrase strong{font-size:14px;line-height:1.35}
+  .lesson-core-phrase small{font-size:12px;line-height:1.3;margin-top:2px}
+  .lesson-core-phrase .speak-btn{width:34px;height:34px;flex:0 0 34px;font-size:16px}
+  .lesson-step-content .lesson-core-phrases h3{font-size:14px}
+  .lesson-content-heading{font-size:15px}
+  .lesson-step-footer{margin-top:12px}
+}
+@media(max-width:350px){
+  .topbar h1{font-size:17px}
+  .topbar .header-actions .profile-chip{max-width:68px;font-size:11px}
+}
+
+@media(max-width:600px){
+  #lessonGrammarPage .grammar-table{min-width:0;font-size:12px}
+  #lessonGrammarPage .grammar-table th,#lessonGrammarPage .grammar-table td{padding:7px 5px;white-space:normal;overflow-wrap:anywhere}
+  #lessonGrammarPage .grammar-table td .grammar-audio-btn{margin-left:3px}
+  #lessonGrammarPage .grammar-lemma-line{font-size:14px;line-height:1.4}
+  #lessonGrammarPage .grammar-concept-note{font-size:14px;line-height:1.5}
+}

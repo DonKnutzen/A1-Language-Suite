@@ -48,23 +48,29 @@
     let comparedText=null;
     const steps=[['listen','Hören'],['understand','Verstehen'],['grammar','Grammatik'],...(lesson1?[['grammar-check','Grammatik-Check']]:[]),['speak','Sprechen'],['write','Schreiben'],...(hasMastery?[['check','Lektions-Check']]:[])];
     let activeStep='listen',grammarIndex=0,listenPage=0;
-    const phrasesPerPage=4,listenPages=Math.max(1,Math.ceil(l.phrases.length/phrasesPerPage));
+    const phrasesPerPage=Math.max(6,Math.ceil(l.phrases.length/2)),listenPages=Math.max(1,Math.ceil(l.phrases.length/phrasesPerPage));
     const grammarSource=document.createElement('div');
     grammarSource.innerHTML=opts.grammarHtml||'';
     const grammarRoot=grammarSource.querySelector('.lesson-deepening')||grammarSource;
     const grammarTopics=[...grammarRoot.querySelectorAll('details.grammar-detail')];
     const grammarBasics=[...grammarRoot.children].filter(el=>el.tagName!=='SUMMARY'&&!el.matches('details.grammar-detail')).map(el=>el.outerHTML).join('');
     const grammarPages=[{title:'Grundlagen',html:grammarBasics},...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML}))];
+    function grammarTopicDone(i){
+      const key=lesson1&&Object.keys(FR_A1_LESSON1.GROUPS)[i-1];
+      return i>0&&!!key&&state.lessonGrammarPractice?.[1]?.[key]?.done===true;
+    }
     function stepDone(key){
       return {listen:audioTargets().length>0&&heardCount()===audioTargets().length,understand:passed(),grammar:lesson1&&FR_A1_LESSON1.completedGroups(state)===4,'grammar-check':lesson1&&FR_A1_LESSON1.grammarCheckTried(state),speak:p.speakingDone===true,write:p.writingDone===true,check:masteryPassed()}[key];
     }
     function stepNav(){
-      return `<nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span>${esc(label)}</span></button>`).join('')}</nav>`;
+      return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)[1])}</strong><small>${steps.findIndex(([key])=>key===activeStep)+1} / ${steps.length}</small></div><nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · erledigt':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
     }
     function stepHead(){
       return `<div class="between"><button class="tiny-btn" id="backLearn">${esc(L.back)}</button><span class="pill">${esc(l.topic)}</span></div><header class="lesson-step-header"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
-    function refreshSteps(){const nav=view.querySelector('.lesson-step-nav');if(nav)nav.outerHTML=stepNav();wireStepNav();}
+    function refreshSteps(){const nav=view.querySelector('.lesson-step-nav');if(nav){view.querySelector('.lesson-step-context')?.remove();nav.outerHTML=stepNav();}wireStepNav();view.querySelectorAll('[data-grammar-page]').forEach(button=>{
+      if(grammarTopicDone(Number(button.dataset.grammarPage))){button.classList.add('done');button.querySelector('.lesson-topic-number').textContent='✓';}
+    });}
     function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
     function stepFooter(){
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1],moreAudio=activeStep==='listen'&&listenPage<listenPages-1;
@@ -132,7 +138,7 @@
       let body='';
       if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${listenPage===listenPages-1?opts.pronunciationHtml||'':''}</section>`;
       if(activeStep==='understand')body=`<section class="card lesson-step-content"><h3>Hör- & Satzübungen</h3><p class="muted">${lesson1?'10 Aufgaben nur zu den Wendungen, die du gerade gehört hast.':'10 interaktive Aufgaben zu dieser Lektion.'}</p>${p.quizDone?`<p class="muted">Bestwert: ${best()} %</p>`:''}<button class="primary-btn" id="startQuiz">${p.quizDone?'Noch einmal üben':'10 Übungen starten'}</button></section>`;
-      if(activeStep==='grammar')body=`<section class="card lesson-step-content"><nav class="lesson-topic-nav" aria-label="Grammatikthemen">${grammarPages.map((page,i)=>`<button class="lesson-topic ${i===grammarIndex?'active':''}" data-grammar-page="${i}" ${i===grammarIndex?'aria-current="true"':''}>${esc(page.title)}</button>`).join('')}</nav><div id="lessonGrammarPage">${grammarPages[grammarIndex].html}</div>${grammarIndex<grammarPages.length-1?`<button class="soft-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:''}</section>`;
+      if(activeStep==='grammar')body=`<section class="card lesson-step-content"><nav class="lesson-topic-nav" aria-label="Grammatikthemen">${grammarPages.map((page,i)=>`<button class="lesson-topic ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-page="${i}" aria-label="${i+1}. ${esc(page.title)}" title="${esc(page.title)}" ${i===grammarIndex?'aria-current="true"':''}><span class="lesson-topic-number">${grammarTopicDone(i)?'✓':i+1}</span><span class="lesson-topic-label">${esc(page.title)}</span></button>`).join('')}</nav><div id="lessonGrammarPage">${grammarPages[grammarIndex].html}</div>${grammarIndex<grammarPages.length-1?`<button class="soft-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:''}</section>`;
       if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Grammatik-Check</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${FR_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${FR_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn" id="startGrammarCheck">12 Fragen starten</button></section>`;
       if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn" id="startMasteryOverview" ${!lesson1&&!complete()?'disabled':''}>${masteryAttempted()?'Lektions-Check wiederholen':'Lektions-Check starten'}</button>${!lesson1&&!complete()?`<p class="muted">${esc(L.requirements)}</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
       view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
