@@ -101,7 +101,7 @@
   function renderPanel(panel,key,{state,save,speak,onUpdate}){
     const group=GROUPS[key],saved=groupState(state,key);
     const status=saved.done?'<span class="pill green">✓ geübt</span>':'<span class="pill gray">12 Aufgaben</span>';
-    panel.innerHTML=`<div class="between"><div><strong>Direkt üben: ${esc(group.title)}</strong><small>${esc(group.subtitle)}</small></div>${status}</div><p class="muted">Alle Personen einmal aktiv anwenden – ohne Bestehensdruck.</p><button class="soft-btn lesson1-drill-start">${saved.done?'Noch einmal üben':'12 Formen üben'}</button><div class="lesson1-drill-stage"></div>`;
+    panel.innerHTML=`<div class="between"><div><strong>Direkt üben: ${esc(group.title)}</strong><small>${esc(group.subtitle)}</small></div>${status}</div><p class="muted">Alle Personen einmal aktiv anwenden – ohne Bestehensdruck.</p><button class="soft-btn exercise-start-btn lesson1-drill-start">${saved.done?'12 Aufgaben wiederholen':'12 Formaufgaben starten'}</button><div class="lesson1-drill-stage"></div>`;
     panel.querySelector('.lesson1-drill-start').onclick=()=>runInline(panel,key,{state,save,speak,onUpdate});
   }
 
@@ -113,7 +113,7 @@
       const s=ensureState(state),old=s[key]||{};s[key]={done:true,last:score,best:Math.max(Number(old.best||0),score),total:tasks.length};
       save(true);onUpdate?.();
       const statusPill=panel.querySelector('.between .pill');if(statusPill){statusPill.className='pill green';statusPill.textContent='✓ geübt';}
-      stage.innerHTML=`<div class="lesson1-drill-finish"><strong>✓ ${tasks.length}/${tasks.length} geübt</strong><span>${score} richtig</span><button class="soft-btn lesson1-drill-repeat">Noch einmal</button></div>`;
+      stage.innerHTML=`<div class="lesson1-drill-finish"><strong>✓ ${tasks.length}/${tasks.length} geübt</strong><span>${score} richtig</span><button class="soft-btn exercise-start-btn lesson1-drill-repeat">Noch einmal</button></div>`;
       stage.querySelector('.lesson1-drill-repeat').onclick=()=>{renderPanel(panel,key,{state,save,speak,onUpdate});runInline(panel,key,{state,save,speak,onUpdate});};
     }
     function draw(){
@@ -152,17 +152,17 @@
     ensureState(state);const tasks=grammarCheckTasks();let i=0,score=0;
     function intro(){
       const b=grammarCheckBest(state),tried=grammarCheckTried(state);
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">GRAMMATIK-CHECK</span></div><section class="card" style="margin-top:12px"><h2>Grammatik kurz gemischt</h2><p class="muted">12 Fragen aus être, habiter/parler, venir und s’appeler. Die Auswahl wechselt bei jedem Durchlauf.</p>${tried?`<p><strong>Bestwert:</strong> ${b} %</p>`:''}<button class="primary-btn" id="l1GrammarStart">12 Fragen starten</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">GRAMMATIK-ABSCHLUSS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>Grammatik-Abschluss-Check</h2><p class="muted">12 Fragen aus être, habiter/parler, venir und s’appeler. Die Auswahl wechselt bei jedem Durchlauf.</p>${tried?`<p><strong>Bestwert:</strong> ${b} %</p>`:''}<button class="primary-btn exercise-start-btn" id="l1GrammarStart">12 Fragen starten</button></section>`;
       document.getElementById('l1GrammarBack').onclick=onBack;document.getElementById('l1GrammarStart').onclick=draw;
     }
     function draw(){
       if(i>=tasks.length){
         const pct=Math.round(score/tasks.length*100);state.lessonGrammarCheckLast[1]=pct;state.lessonGrammarCheckBest[1]=Math.max(grammarCheckBest(state),pct);save(true);
-        view.innerHTML=`<section class="card center"><span class="pill">GRAMMATIK-CHECK</span><div class="score">${pct}%</div><h2>${score}/${tasks.length} richtig</h2><p class="muted">Das ist nur dein aktueller Stand. Du kannst jede Konjugation direkt in der Lektion beliebig oft üben.</p><div class="button-row"><button class="secondary-btn" id="l1GrammarAgain">Noch einmal</button><button class="primary-btn" id="l1GrammarReturn">Zur Lektion</button></div></section>`;
+        view.innerHTML=`<section class="card center"><span class="pill">GRAMMATIK-ABSCHLUSS-CHECK</span><div class="score">${pct}%</div><h2>${score}/${tasks.length} richtig</h2><p class="muted">Das ist nur dein aktueller Stand. Du kannst jede Konjugation direkt in der Lektion beliebig oft üben.</p><div class="button-row"><button class="secondary-btn" id="l1GrammarAgain">Noch einmal</button><button class="primary-btn" id="l1GrammarReturn">Zur Lektion</button></div></section>`;
         document.getElementById('l1GrammarAgain').onclick=()=>renderGrammarCheck({view,state,save,speak,onBack});document.getElementById('l1GrammarReturn').onclick=onBack;return;
       }
       const q=tasks[i],opts=shuffle(q.o);
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">${i+1}/${tasks.length}</span></div><section class="card" style="margin-top:12px"><div class="between"><div class="eyebrow">GRAMMATIK-CHECK</div><span class="pill gray">${esc(q.tag)}</span></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${opts.map(o=>`<button class="option-btn" data-l1-check="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="l1GrammarFeedback"></div></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">${i+1}/${tasks.length}</span></div><section class="card" style="margin-top:12px"><div class="between"><div class="eyebrow">GRAMMATIK-ABSCHLUSS-CHECK</div><span class="pill gray">${esc(q.tag)}</span></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${opts.map(o=>`<button class="option-btn" data-l1-check="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="l1GrammarFeedback"></div></section>`;
       document.getElementById('l1GrammarBack').onclick=onBack;
       document.querySelectorAll('[data-l1-check]').forEach(btn=>btn.onclick=()=>{
         const ok=btn.dataset.l1Check===q.a;if(ok)score++;
@@ -177,3 +177,4 @@
 
   window.FR_A1_LESSON1={GROUPS,pronounPrimerHtml,decorate,completedGroups,grammarCheckBest,grammarCheckTried,renderGrammarCheck};
 })();
+

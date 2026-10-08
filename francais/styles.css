@@ -906,3 +906,35 @@ html.dark-mode .select-input:focus{
   #lessonGrammarPage .grammar-lemma-line{font-size:14px;line-height:1.4}
   #lessonGrammarPage .grammar-concept-note{font-size:14px;line-height:1.5}
 }
+
+
+/* Green starts an exercise; blue moves through the lesson. */
+.lesson-listening-practice{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.lesson-pronunciation-bonus{margin-top:18px}
+.exercise-start-btn,.soft-btn.exercise-start-btn{background:var(--success);border:1px solid var(--success);color:#fff;font-weight:750}
+.exercise-start-btn:hover{filter:brightness(1.08)}
+.exercise-start-btn:focus-visible,.lesson-finale-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.lesson-finale-btn{position:relative;background:linear-gradient(110deg,#2563eb,#7c3aed,#0e7490,#2563eb);background-size:250% 100%;border:0;color:#fff;box-shadow:0 4px 15px rgba(99,102,241,.22);animation:lesson-finale-glow 8s ease-in-out infinite}
+.lesson-finale-btn:disabled{animation:none;box-shadow:none;opacity:.55}
+@keyframes lesson-finale-glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){.lesson-finale-btn{animation:none}}
+@media(max-width:600px){
+  .topbar h1{font-size:20px}
+  .topbar .header-actions .profile-chip{font-size:13px}
+  .lesson-step-context{font-size:15px}
+  .lesson-step-context small{font-size:13px}
+  .lesson-step-number{width:26px;height:26px;font-size:14px}
+  .lesson-step-footer button{font-size:14px}
+  .lesson-topic-nav{flex-wrap:wrap;gap:5px}
+  .lesson-topic{flex:0 1 auto;min-height:34px;padding:6px 9px;border:1px solid var(--line);border-radius:8px;font-size:13px}
+  .lesson-topic.active{border-color:var(--accent);background:var(--accent-soft)}
+  .lesson-topic-label{display:inline}
+  .lesson-topic-number{display:none}
+  .lesson-topic.done .lesson-topic-number{display:inline;width:auto;height:auto;margin-right:5px;background:none;font-size:13px}
+  .lesson-core-phrase strong{font-size:15px}
+  .lesson-core-phrase small{font-size:13px}
+  .lesson-content-heading{font-size:16px}
+}
+@media(max-width:350px){.topbar h1{font-size:18px}.topbar .header-actions .profile-chip{font-size:12px}}
+html.dark-mode .exercise-start-btn,html.dark-mode .soft-btn.exercise-start-btn{background:var(--success);border-color:var(--success);color:#fff}
+html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,#2563eb,#7c3aed,#0e7490,#2563eb);background-size:250% 100%;color:#fff}
