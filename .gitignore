@@ -1,0 +1,18 @@
+# Archives / handoff builds
+*.zip
+*.7z
+*.rar
+
+# Generated build output
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Logs and OS/editor noise
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
