@@ -345,13 +345,13 @@ function renderLesson(id){
   const goalsHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
   const grammarHtml=lessonGrammarHtml(l);
   const masteryHtml=FR_A1_MASTERY.introHtml(l,state);
-  const dialogueHtml=`<details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small>Person ${i%2?'B':'A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>`;
+  const dialogueHtml=`<details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small aria-label="Person ${i%2?'B':'A'}">${i%2?'B':'A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>`;
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
     goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
     renderMastery:({onBack})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,
-    model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints,writingHelpText:app.writingHelpText,fullModel:true,recorderHtml,
+    model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints,writingHelpText:app.writingHelpText,fullModel:true,recorderHtml:id=>recorderHtml(id,true),
     repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });
 }
@@ -756,8 +756,8 @@ function renderMessageTask(onDone=null,forced=null){
   };
 }
 
-function recorderHtml(id){
-  return `<div class="recorder"><button class="secondary-btn" id="startRec${id}">● Aufnehmen</button><button class="soft-btn" id="stopRec${id}" disabled>■ Stop</button></div><div class="record-status" id="recStatus${id}">Sprich deine Antwort laut.</div><div class="playback" id="playback${id}"></div>`;
+function recorderHtml(id,quiet=false){
+  return `<div class="recorder"><button class="secondary-btn" id="startRec${id}">● Aufnehmen</button><button class="soft-btn" id="stopRec${id}" disabled>■ Stopp</button></div><div class="record-status" id="recStatus${id}">${quiet?'':'Sprich deine Antwort laut.'}</div><div class="playback" id="playback${id}"></div>`;
 }
 function wireRecorder(id,onRecorded){return A1Learning.wireRecorder(id,()=>{A1Streak.completeExercise();if(onRecorded)onRecorded();},{"unavailable": "Mikrofon hier nicht verfügbar. Verwende HTTPS und einen unterstützten Browser.", "denied": "Mikrofon konnte nicht geöffnet werden. Prüfe HTTPS und die Berechtigung.", "recording": "● Aufnahme läuft…", "done": "Aufnahme fertig. Höre deine Antwort an.", "empty": "Keine Aufnahme gespeichert. Versuche es erneut."});}
 

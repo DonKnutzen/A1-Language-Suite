@@ -964,7 +964,7 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 .lesson-topic-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:5px}
 .lesson-topic-toolbar>.tiny-btn{width:36px;height:40px;padding:0;flex:none;font-size:18px}
 .lesson-topic-choice{display:flex;align-items:center;gap:5px;flex:1;min-width:0;padding:0 8px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
-.lesson-topic-choice select{min-width:0;flex:1;width:100%;height:40px;border:0;background:transparent;color:var(--ink);font-size:15px;font-weight:600;text-align:center;cursor:pointer}
+.lesson-topic-choice select{min-width:0;flex:1;width:100%;height:40px;border:0;background:transparent;color:var(--ink);font-size:16px;font-weight:600;text-align:center;cursor:pointer}
 .lesson-topic-choice small{flex:none;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
 .lesson-topic-nav{display:grid;grid-template-columns:repeat(var(--topic-count),minmax(0,1fr));gap:6px;padding:0;margin:0 0 16px;border:0;border-radius:0;background:transparent;overflow:visible}
 .lesson-topic-nav .lesson-topic-number{display:none}
@@ -982,3 +982,18 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
   .profile-modal .profile-lang{flex-wrap:wrap}
   .profile-modal .profile-lang-buttons{flex-wrap:wrap}
 }
+
+/* Compact task help preserves the dialogue and its audio controls. */
+.lesson-flow .lesson-task-prompt{font-weight:400;line-height:1.55}
+.lesson-task-label{font-weight:600;color:var(--muted)}
+.lesson-flow .lesson-task-prompt strong{font-weight:700}
+.lesson-flow .record-status:empty{display:none}
+.lesson-flow .lesson-help-toggle{display:block;width:auto;margin:10px 0;padding:6px 10px;font-size:13px;border-radius:9px}
+.lesson-flow .lesson-help-content{margin:8px 0 12px;padding:8px 10px;border-radius:10px;background:var(--bg);font-size:14px;line-height:1.45}
+.lesson-flow .lesson-help-content .phrase-row{margin:0;padding:7px 0;gap:8px}
+.lesson-flow .lesson-help-content .phrase-row strong{font-size:14px;line-height:1.45;font-weight:600}
+.lesson-flow .lesson-help-content .phrase-row small{font-size:12px;line-height:1.4}
+.lesson-flow .lesson-help-content>p{margin:0 0 7px;font-size:12px;line-height:1.45}
+#speechHelp .phrase-row>div{display:grid;grid-template-columns:18px minmax(0,1fr);gap:7px;align-items:start}
+.lesson-flow .lesson-help-content [data-speak]{width:32px;height:32px;padding:0;flex:none;font-size:14px}
+.lesson-flow #showSpeakingModel,.lesson-flow #showWritingModel{margin-top:4px}
