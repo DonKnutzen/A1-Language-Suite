@@ -66,7 +66,7 @@
       'Artikelübersicht':'Artikel zeigen Geschlecht und Zahl eines Nomens. Lerne neue Nomen deshalb am besten direkt mit ihrem Artikel.',
       'Wichtige Fragewörter':'Das Fragewort zeigt, welche Information gesucht wird, und steht am Anfang der Informationsfrage.',
       'Possessivbegleiter – Übersicht':'Die Form hängt von der Person des Besitzers und vom Geschlecht bzw. der Zahl des folgenden Nomens ab.',
-      'Teilungsartikel':'Teilungsartikel benutzt du für eine unbestimmte Menge von etwas, besonders bei Essen und Trinken.',
+      'Teilungsartikel':'Diese Formen stehen für eine unbestimmte Menge, besonders bei Essen und Trinken.',
       'aller – für die nahe Zukunft':'aller + Infinitiv beschreibt etwas, das man in naher Zukunft tun wird.',
       'Städte und Länder':'Für ein Reiseziel benutzt du je nach Ort unterschiedliche Präpositionen: bei Städten anders als bei Ländern.',
       'aimer, préférer und vouloir':'aimer und préférer drücken Vorlieben aus; vouloir drückt einen Wunsch aus. Die Form richtet sich nach der Person.',
@@ -444,3 +444,4 @@
 
   window.A1GrammarUI={reorderGuide,pickDetails,enhance:enhanceMounted};
 })();
+
