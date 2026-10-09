@@ -970,3 +970,12 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
   .lesson-topic{position:relative;flex:0 0 auto;padding:6px 4px;font-size:11.5px;white-space:nowrap}
   .lesson-topic.done .lesson-topic-number{position:absolute;top:-6px;right:0;margin:0;font-size:10px;color:var(--success)}
 }
+
+/* A quiet segmented strip keeps the current grammar topic visible. */
+.lesson-topic-nav{gap:3px;padding:4px;margin-bottom:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.lesson-topic-nav .lesson-topic{border-color:transparent;border-radius:8px;transition:background .15s,color .15s}
+.lesson-topic-nav .lesson-topic.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink);font-weight:600;box-shadow:0 1px 3px #0000000a}
+@media(max-width:600px){
+  .lesson-topic-nav .lesson-topic{padding:7px 2px;font-size:11px}
+  .lesson-topic-nav .lesson-topic.done .lesson-topic-number{top:0;right:0;font-size:8px}
+}

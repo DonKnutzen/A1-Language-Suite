@@ -47,14 +47,16 @@
     const minWords=explicit?Number(explicit[1]):opts.targetLang==='fr'&&l.id===2?1:3;
     let comparedText=null;
     const steps=[['listen','Hören & Verstehen'],['grammar','Grammatik'],...(lesson1?[['grammar-check','Grammatik-Abschluss-Check']]:[]),['speak','Sprechen'],['write','Schreiben'],...(hasMastery?[['check','Lektions-Check']]:[])];
-    let activeStep='listen',grammarIndex=0,audioPage=0;
+    let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
     const audioPageCount=Math.max(1,Math.ceil(l.phrases.length/6));
     const grammarSource=document.createElement('div');
     grammarSource.innerHTML=opts.grammarHtml||'';
     const grammarRoot=grammarSource.querySelector('.lesson-deepening')||grammarSource;
     const grammarTopics=[...grammarRoot.querySelectorAll('details.grammar-detail')];
-    const grammarBasics=[...grammarRoot.children].filter(el=>el.tagName!=='SUMMARY'&&!el.matches('details.grammar-detail')).map(el=>el.outerHTML).join('');
-    const grammarPages=[{title:'Grundlagen',html:grammarBasics},...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML}))];
+    const basicElements=[...grammarRoot.children].filter(el=>el.tagName!=='SUMMARY'&&!el.matches('details.grammar-detail'));
+    const grammarBasics=basicElements.map(el=>el.outerHTML).join('');
+    const hasBasics=basicElements.some(el=>!el.matches('.lesson-deepening-title')&&el.textContent.trim());
+    const grammarPages=[...(hasBasics||!grammarTopics.length?[{title:'Grundlagen',html:grammarBasics}]:[]),...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML}))];
     function grammarTopicDone(i){
       const key=lesson1&&Object.keys(FR_A1_LESSON1.GROUPS)[i-1];
       return i>0&&!!key&&state.lessonGrammarPractice?.[1]?.[key]?.done===true;
@@ -131,10 +133,11 @@
       }
     }
     function drawOverview(){
+      audioLayoutObserver?.disconnect();
       window.A1Voice?.cancel();
       if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
       const heardSet=new Set(p.heardPhrases);
-      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} gehört</small></div>${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="tiny-btn" id="previousAudioPage" aria-label="Vorherige Hörbeispiele">←</button><small id="audioPageStatus" aria-live="polite"></small><button type="button" class="tiny-btn" id="nextAudioPage" aria-label="Nächste Hörbeispiele">→</button></div>`:''}</section>`;
+      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} gehört</small></div><div class="lesson-audio-rows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="tiny-btn" id="previousAudioPage" aria-label="Vorherige Hörbeispiele">←</button><small id="audioPageStatus" aria-live="polite"></small><button type="button" class="tiny-btn" id="nextAudioPage" aria-label="Nächste Hörbeispiele">→</button></div>`:''}</section>`;
       let body='';
       if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Bestwert: ${best()} %</p>`:''}<button class="primary-btn exercise-start-btn" id="startQuiz">Lektionsübung · 10 Aufgaben</button></div><div class="lesson-pronunciation-bonus">${opts.pronunciationHtml||''}</div></section>`;
       if(activeStep==='grammar')body=`<section class="card lesson-step-content"><nav class="lesson-topic-nav" aria-label="Grammatikthemen">${grammarPages.map((page,i)=>`<button class="lesson-topic ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-page="${i}" aria-label="${i+1}. ${esc(page.title)}" title="${esc(page.title)}" ${i===grammarIndex?'aria-current="true"':''}><span class="lesson-topic-number">${grammarTopicDone(i)?'✓':''}</span><span class="lesson-topic-label">${esc(page.title)}</span></button>`).join('')}</nav><div id="lessonGrammarPage">${grammarPages[grammarIndex].html}</div>${grammarIndex<grammarPages.length-1?`<button class="soft-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:''}</section>`;
@@ -146,14 +149,30 @@
         const updateAudioPage=()=>{
           view.querySelectorAll('[data-core-row]').forEach(row=>row.hidden=Math.floor(Number(row.dataset.coreRow)/6)!==audioPage);
           const status=document.getElementById('audioPageStatus');
-          if(status){status.textContent=`Seite ${audioPage+1} von ${audioPageCount}`;
+          if(status){status.textContent=`Seite ${audioPage+1} / ${audioPageCount}`;
             document.getElementById('previousAudioPage').disabled=audioPage===0;
             document.getElementById('nextAudioPage').disabled=audioPage===audioPageCount-1;
           }
         };
         document.getElementById('previousAudioPage')?.addEventListener('click',()=>{window.A1Voice?.cancel();audioPage--;updateAudioPage();});
         document.getElementById('nextAudioPage')?.addEventListener('click',()=>{window.A1Voice?.cancel();audioPage++;updateAudioPage();});
-        updateAudioPage();
+        const audioRows=view.querySelector('.lesson-audio-rows');
+        let audioWidth=0;
+        const reserveAudioSpace=()=>{
+          const rows=[...audioRows.querySelectorAll('[data-core-row]')];
+          rows.forEach(row=>row.hidden=false);
+          const heights=[];
+          rows.forEach((row,i)=>{const page=Math.floor(i/6);heights[page]=(heights[page]||0)+row.getBoundingClientRect().height;});
+          audioRows.style.minHeight=`${Math.ceil(Math.max(0,...heights))}px`;
+          updateAudioPage();
+        };
+        reserveAudioSpace();
+        audioLayoutObserver=new ResizeObserver(()=>{
+          if(!audioRows.isConnected){audioLayoutObserver?.disconnect();return;}
+          const width=audioRows.getBoundingClientRect().width;
+          if(width!==audioWidth){audioWidth=width;reserveAudioSpace();}
+        });
+        audioLayoutObserver.observe(audioRows);
       }
       document.getElementById('startQuiz')?.addEventListener('click',drawQuiz);
       document.getElementById('startMasteryOverview')?.addEventListener('click',drawMastery);
@@ -180,7 +199,7 @@
       }});
     }
     function drawApplication(){
-      window.A1Voice?.cancel();comparedText=null;
+      window.A1Voice?.cancel();audioLayoutObserver?.disconnect();comparedText=null;
       const appHead=stepHead()+`<div id="lessonPartStatus" hidden>${statuses()}</div>`;
       view.innerHTML=`${appHead}
         <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${esc(c.transfer.speaking)}</p>${dialogueHelp()}<p class="muted">${esc(L.instruction)}</p>${opts.recorderHtml(recId)}<button class="soft-btn exercise-start-btn" id="showSpeakingModel">Laut beantwortet · Beispiel vergleichen</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><p class="muted">Prüfe mit dem Beispiel, ob deine Antwort die Aufgabe erfüllt.</p><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>✓ Geprüft · Sprechaufgabe abschließen</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
