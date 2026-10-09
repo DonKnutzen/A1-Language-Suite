@@ -82,6 +82,16 @@
   function attempted(state,id){return Object.prototype.hasOwnProperty.call(state.lessonMasteryLast||{},id);}
   function best(state,id){return Number(state.lessonMasteryBest?.[id]||0);}
   function passedCount(state){return lessons.filter(l=>attempted(state,l.id)).length;}
+  function completePassedLessons(state,courseLessons=lessons){
+    if(!Array.isArray(state.doneLessons))state.doneLessons=[];
+    let changed=false;
+    for(const lesson of courseLessons){
+      if(best(state,lesson.id)>=80&&!state.doneLessons.includes(lesson.id)){
+        state.doneLessons.push(lesson.id);changed=true;
+      }
+    }
+    return changed;
+  }
   function introHtml(lesson,state){return `<div class="lesson-mastery-intro compact"><div class="between"><div><div class="eyebrow">BILAN DE LA LEÇON</div><strong>Pour finir : tout revoir ensemble</strong></div><span class="pill ${attempted(state,lesson.id)?'green':'gray'}">${attempted(state,lesson.id)?best(state,lesson.id)+' %':'À faire'}</span></div><p class="muted">${testCount(lesson.id)} questions sur les phrases et les structures de cette leçon.</p></div>`;}
   function runTasks({tasks,view,title,onBack,onFinish,speak}){
     const questions=shuffle(tasks);let i=0,score=0;
@@ -152,5 +162,5 @@
     }
     menu();
   }
-  window.DE_A1_ASSESSMENTS={configure,topicPractice,decorate,practiceState,makeLessonTest,testCount,best,attempted,passedCount,introHtml,renderLessonTest,grammarCheckTasks,grammarCheckTried,grammarCheckBest,renderGrammarCheck,courseModuleTasks,renderCourseMenu};
+  window.DE_A1_ASSESSMENTS={configure,topicPractice,decorate,practiceState,makeLessonTest,testCount,best,attempted,passedCount,completePassedLessons,introHtml,renderLessonTest,grammarCheckTasks,grammarCheckTried,grammarCheckBest,renderGrammarCheck,courseModuleTasks,renderCourseMenu};
 })();

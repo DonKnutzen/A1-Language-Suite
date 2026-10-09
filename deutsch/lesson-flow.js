@@ -31,7 +31,7 @@
     const recId='LessonApply'+l.id;
     const best=()=>Number(state.lessonQuizBest[l.id]||0);
     const passed=()=>best()>=70;
-    const complete=()=>legacy||(passed()&&p.speakingDone===true&&p.writingDone===true);
+    const complete=()=>state.doneLessons.includes(l.id)||(passed()&&p.speakingDone===true&&p.writingDone===true);
     const hasMastery=typeof opts.renderMastery==='function';
     const masteryBest=()=>Number(state.lessonMasteryBest?.[l.id]||0);
     const masteryAttempted=()=>!!(state.lessonMasteryLast&&Object.prototype.hasOwnProperty.call(state.lessonMasteryLast,l.id));

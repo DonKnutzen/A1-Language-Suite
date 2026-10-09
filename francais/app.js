@@ -16,11 +16,18 @@ const defaultState={
 };
 const stateKey=A1Profile.namespacedKey('francaisA1DelfState_v1');
 
-function loadState(){return A1Learning.loadState(stateKey,defaultState);}
+function loadState(){
+  const loaded=A1Learning.loadState(stateKey,defaultState);
+  if(FR_A1_MASTERY.completePassedLessons(loaded,lessons)){
+    A1Profile.saveProgress('francais-a1',loaded,Math.round(loaded.doneLessons.length/lessons.length*100));
+  }
+  return loaded;
+}
 
 let state=loadState();
 
 function save(completed=false){if(completed)A1Streak.completeExercise();
+  FR_A1_MASTERY.completePassedLessons(state,lessons);
   localStorage.setItem(stateKey,JSON.stringify(state));
   A1Profile.saveProgress('francais-a1',state,lessonPct());
 }

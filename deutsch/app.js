@@ -1727,10 +1727,16 @@ const grammarSets=[
 
 const stateKey=A1Profile.namespacedKey('deutschA1GoetheFormatState_v6');
 const defaultState={doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
-function loadState(){return A1Learning.loadState(stateKey,defaultState);}
+function loadState(){
+  const loaded=A1Learning.loadState(stateKey,defaultState);
+  if(DE_A1_ASSESSMENTS.completePassedLessons(loaded,lessons)){
+    A1Profile.saveProgress('deutsch-a1',loaded,Math.round(loaded.doneLessons.length/lessons.length*100));
+  }
+  return loaded;
+}
 
 let state=loadState();
-function save(completed=false){if(completed)A1Streak.completeExercise();localStorage.setItem(stateKey,JSON.stringify(state));A1Profile.saveProgress('deutsch-a1',state,lessonPct());}
+function save(completed=false){if(completed)A1Streak.completeExercise();DE_A1_ASSESSMENTS.completePassedLessons(state,lessons);localStorage.setItem(stateKey,JSON.stringify(state));A1Profile.saveProgress('deutsch-a1',state,lessonPct());}
 
 let audioEnabled=localStorage.getItem('deA1AudioEnabled')!=='false';
 let currentRoute='home';

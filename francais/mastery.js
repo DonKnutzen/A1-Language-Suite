@@ -47,6 +47,16 @@
   function attempted(state,id){return !!(state?.lessonMasteryLast&&Object.prototype.hasOwnProperty.call(state.lessonMasteryLast,id));}
   function passed(state,id){return attempted(state,id);}
   function passedCount(state){return lessons.filter(l=>attempted(state,l.id)).length;}
+  function completePassedLessons(state,courseLessons=lessons){
+    if(!Array.isArray(state.doneLessons))state.doneLessons=[];
+    let changed=false;
+    for(const lesson of courseLessons){
+      if(best(state,lesson.id)>=PASS&&!state.doneLessons.includes(lesson.id)){
+        state.doneLessons.push(lesson.id);changed=true;
+      }
+    }
+    return changed;
+  }
 
   function introHtml(lesson,state){
     const b=best(state,lesson.id),tried=attempted(state,lesson.id);
@@ -140,6 +150,6 @@
       }});
     });
   }
-  window.FR_A1_MASTERY={PASS,spec,testCount,best,passed,passedCount,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
+  window.FR_A1_MASTERY={PASS,spec,testCount,best,passed,passedCount,completePassedLessons,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
 })();
 
