@@ -820,6 +820,8 @@ html.dark-mode .select-input:focus{
 /* French A1 lessons: one visible learning step, with direct topic navigation. */
 .lesson-step-header{margin:18px 0 16px}
 .lesson-back-row{display:flex;align-items:center}
+.course-language-switch{height:32px;min-width:32px;padding:0 5px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--accent-ink);font-size:12px;font-weight:750;cursor:pointer}
+.course-language-switch:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 #backLearn{min-height:28px;padding:4px 0;background:transparent;border:0;border-radius:4px;color:var(--muted);font-size:13px;font-weight:600}
 #backLearn:hover{color:var(--accent-ink)}
 #backLearn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
@@ -913,7 +915,7 @@ html.dark-mode .select-input:focus{
 @keyframes lesson-finale-glow{0%,100%{background-position:0% 50%;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 1px rgba(165,180,252,.65),0 0 24px rgba(99,102,241,.6),0 8px 32px rgba(124,58,237,.4)}50%{background-position:100% 50%;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 0 0 1px rgba(196,181,253,.85),0 0 32px rgba(139,92,246,.75),0 8px 40px rgba(8,145,178,.5)}}
 @media(prefers-reduced-motion:reduce){.lesson-finale-btn{animation:none}}
 @media(max-width:600px){
-  .topbar h1{font-size:20px}
+  .topbar h1{font-size:18px}
   .topbar .header-actions .profile-chip{font-size:13px}
   .lesson-step-context{font-size:15px}
   .lesson-step-context small{font-size:13px}
@@ -923,7 +925,7 @@ html.dark-mode .select-input:focus{
   .lesson-core-phrase small{font-size:13px}
   .lesson-content-heading{font-size:16px}
 }
-@media(max-width:350px){.topbar h1{font-size:18px}.topbar .header-actions .profile-chip{font-size:12px}}
+@media(max-width:350px){.topbar h1{font-size:16px}.topbar .header-actions .profile-chip{font-size:12px;max-width:40px}}
 html.dark-mode .exercise-start-btn,html.dark-mode .soft-btn.exercise-start-btn{background:var(--success);border-color:var(--success);color:#fff}
 html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,#2c68ee,#8b5cf6,#0891b2,#2c68ee);background-size:250% 100%;color:#fff}
 

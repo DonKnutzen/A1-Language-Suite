@@ -26,7 +26,9 @@
 @media(max-width:760px){
   .grid{grid-template-columns:1fr}
   .shell{padding:16px}
-  .top{align-items:flex-start}
+  .top{align-items:flex-start;flex-wrap:wrap}
+  .header-actions{margin-left:auto;display:grid;grid-template-columns:42px auto;align-items:center}
+  .lang-toggle{grid-column:1 / -1}
 }
 
 /* ===== DARK MODE STARTSEITE ===== */
@@ -93,7 +95,7 @@ html.dark-mode .theme-toggle{
 <div class="shell">
   <div class="top">
     <div><small style="font-weight:800;letter-spacing:.08em;color:#64748b">LANGUAGE SUITE</small><h1 id="pageTitle" style="margin:4px 0">Sprachtrainer</h1></div>
-    <div class="header-actions"><div class="lang-toggle" aria-label="Display language"><button type="button" data-lang="de">DE</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="tr">TR</button></div></div>
+    <div class="header-actions"><div class="lang-toggle" aria-label="Display language"><button type="button" data-lang="de">DE</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="tr">TR</button></div></div>
   </div>
 
   <div class="hero">
@@ -134,9 +136,24 @@ html.dark-mode .theme-toggle{
 </div>
 
 <script>window.A1_APP_META={};</script>
-<script src="shared/config.js"></script><script src="shared/profile.js"></script>
+<script src="shared/config.js"></script><script src="shared/profile.js?v=english-61"></script>
 <script>
 const UI={
+  en:{
+  "title": "Language trainer",
+  "heroTitle": "One profile. Three A1 courses and one C1 course.",
+  "heroText": "Choose the language you want to learn. Progress is saved separately for each profile and course.",
+  "deText": "Focused preparation for the Goethe-Zertifikat A1, with explanations in French.",
+  "dePill": "Learn German",
+  "frText": "Focused preparation for DELF A1, with explanations in German or English.",
+  "frPill": "Learn French",
+  "esText": "Focused preparation for DELE A1.",
+  "esPill": "Learn Spanish",
+  "trDeText": "Turkish explanations, C1 grammar and focused preparation for the Deutsch-Test für den Beruf C1; Goethe C1 remains available as extra practice.",
+  "trDePill": "Learn German C1 in Turkish",
+  "noteLocal": "<strong>Profiles:</strong> username + PIN, no email needed. Progress is saved on this device.",
+  "noteCloud": "<strong>Profiles:</strong> username + PIN, no email needed. Cloud sync is active across devices."
+},
   de:{
     title:'Sprachtrainer',
     heroTitle:'Ein Profil. Drei A1-Kurse und ein C1-Kurs.',
@@ -173,7 +190,7 @@ const UI={
 };
 
 function currentLang(){
-  const l=(navigator.language||'de').toLowerCase(); return window.A1Profile?.getUiLang?.()||(l.startsWith('tr')?'tr':l.startsWith('fr')?'fr':'de');
+  const l=(navigator.language||'de').toLowerCase(); return window.A1Profile?.getUiLang?.()||(l.startsWith('tr')?'tr':l.startsWith('fr')?'fr':l.startsWith('en')?'en':'de');
 }
 
 function renderUi(){
@@ -205,3 +222,4 @@ document.addEventListener('DOMContentLoaded',renderUi);
 </script>
 </body>
 </html>
+

@@ -250,7 +250,7 @@
         const text=input.value.trim();
         if(A1Learning.countWords(text)<minWords){writing.innerHTML=`<p class="feedback bad">${esc(L.short)} (${minWords})</p>`;return;}
         comparedText=text;p.writingDraft=input.value.slice(0,12000);save();
-        writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Prüfe, ob du alle Punkte bearbeitet und deine Antwort mit dem Beispiel verglichen hast.</p><button class="primary-btn" id="writingGood">✓ Geprüft · Schreibaufgabe abschließen</button><div id="writingSelfFeedback"></div>`;
+        writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p data-i18n-ignore>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Prüfe, ob du alle Punkte bearbeitet und deine Antwort mit dem Beispiel verglichen hast.</p><button class="primary-btn" id="writingGood">✓ Geprüft · Schreibaufgabe abschließen</button><div id="writingSelfFeedback"></div>`;
         const btn=document.getElementById('writingGood');
         btn.onclick=()=>{if(comparedText!==input.value.trim())return;p.writingDone=true;p.writingAnswer=text.slice(0,12000);save(true);document.getElementById('writingSelfFeedback').textContent=L.saved;refresh();};
       };

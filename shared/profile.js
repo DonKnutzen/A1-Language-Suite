@@ -145,9 +145,46 @@ applyTheme();
     }
   };
 
+  T.en = {
+  "profile": "Profile",
+  "learningProfile": "Learning profile",
+  "signedInAs": "Signed in as",
+  "back": "Back to app",
+  "switchProfile": "Sign out / switch profile",
+  "intro": "Username + PIN only. No email address needed.",
+  "create": "Create profile",
+  "login": "Sign in",
+  "username": "Username",
+  "userPlaceholder": "e.g. Phillip",
+  "pin": "PIN (4–6 digits)",
+  "local": "📱 Local mode: profiles and progress stay on this device.",
+  "cloud": "☁️ Cloud sync is active. Use the same profile and progress on other devices.",
+  "cloudActive": "☁️ Cloud sync active",
+  "localActive": "📱 This older profile is still saved locally.",
+  "cloudConnect": "Connect to cloud",
+  "cloudConnectHint": "Use the same username. Your existing local progress can then be transferred to the new cloud profile.",
+  "nameShort": "The username must contain 3 to 24 characters.",
+  "pinInvalid": "The PIN must contain 4 to 6 digits.",
+  "exists": "This username already exists on this device.",
+  "existsCloud": "This username is already taken. Use “Sign in” if it is your profile.",
+  "notFound": "Profile not found on this device. Use “Create profile”.",
+  "wrongPin": "Incorrect username or PIN.",
+  "emailConfirm": "Supabase did not return an active session. Check that “Confirm email” is disabled in Supabase.",
+  "displayLanguage": "Language",
+  "leaderboard": "🏆 Leaderboard",
+  "rank": "Rank",
+  "learner": "Name",
+  "language": "Language",
+  "progress": "Progress",
+  "noLeaderboard": "No progress on the leaderboard yet.",
+  "leaderboardError": "The leaderboard could not be loaded right now.",
+  "localLeaderboard": "The leaderboard becomes available once this profile is connected to the cloud.",
+  "loading": "Loading…"
+};
+
   function normName(v){ return (v || '').trim().normalize('NFKC').toLowerCase(); }
-  function browserLang(){ const l=(navigator.language||'de').toLowerCase(); return l.startsWith('tr') ? 'tr' : l.startsWith('fr') ? 'fr' : 'de'; }
-  function cleanLang(v){ return v === 'tr' ? 'tr' : v === 'fr' ? 'fr' : 'de'; }
+  function browserLang(){ const l=(navigator.language||'de').toLowerCase(); return l.startsWith('tr') ? 'tr' : l.startsWith('fr') ? 'fr' : l.startsWith('en') ? 'en' : 'de'; }
+  function cleanLang(v){ return v === 'tr' ? 'tr' : v === 'fr' ? 'fr' : v === 'en' ? 'en' : 'de'; }
   function getCurrent(){ try{return JSON.parse(localStorage.getItem(CURRENT_KEY) || 'null');}catch{return null;} }
   function setCurrent(p){ localStorage.setItem(CURRENT_KEY, JSON.stringify(p)); }
   function clearCurrent(){ for(const timer of SYNC_TIMERS.values()) clearTimeout(timer); SYNC_TIMERS.clear(); localStorage.removeItem(CURRENT_KEY); }
@@ -592,9 +629,9 @@ applyTheme();
       .profile-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
       .profile-tabs button,.profile-lang button{padding:11px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc;font-weight:800}
       .profile-tabs button.active,.profile-lang button.active{background:#0f172a;color:#fff}
-      .profile-lang{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+      .profile-lang{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
       .profile-lang-label{font-size:12px;color:#64748b;font-weight:800}
-      .profile-lang-buttons{display:flex;gap:6px}
+      .profile-lang-buttons{display:flex;gap:6px;flex-wrap:wrap}
       .profile-lang button{padding:8px 10px}
       .profile-field{display:grid;gap:6px;margin:11px 0}
       .profile-field label{font-size:12px;color:#64748b;font-weight:800}
@@ -693,6 +730,7 @@ applyTheme();
       <div class="profile-lang-buttons">
         <button type="button" data-plang="de" class="${lang==='de'?'active':''}">Deutsch</button>
         <button type="button" data-plang="fr" class="${lang==='fr'?'active':''}">Français</button>
+        <button type="button" data-plang="en" class="${lang==='en'?'active':''}">English</button>
         <button type="button" data-plang="tr" class="${lang==='tr'?'active':''}">Türkçe</button>
       </div>
     </div>`;
