@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-live-dialog-v45";
+const CACHE="deutsch-a1-live-lessonsteps-v63";
 const PREFIX="deutsch-a1-live-";
-const ASSETS=["../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-45","./app.js?v=dialog-45","./manifest.json","../shared/config.js","../shared/profile.js","../shared/learning.js","../shared/voice-selection.js?v=dialog-45","../shared/lesson-flow.js?v=dialog-45","../shared/pronunciation.js?v=dialog-45","../shared/lesson-ui.css?v=dialog-45","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-45","../shared/exercise-engine.js?v=dialog-45"];
+const ASSETS=["./", "./index.html", "./manifest.json", "./styles.css?v=lessonsteps-63", "../shared/lesson-ui.css?v=lessonsteps-61", "../shared/config.js", "../shared/profile.js?v=english-61", "../shared/streak.js", "../shared/learning.js", "../shared/practice-progress.js?v=48", "./lesson-content.js", "../shared/lesson-guide.js", "../shared/lesson-topic-info.js", "../shared/grammar-ui.js?v=french-60", "../shared/exercise-engine.js?v=dialog-44", "../shared/pronunciation.js?v=alphabet-59", "../shared/voice-selection.js?v=dialog-44", "./assessments.js?v=lessonsteps-63", "./pronunciation.js?v=lessonsteps-63", "./lesson-flow.js?v=lessonsteps-63", "./app.js?v=lessonsteps-63", "./course-reset.js?v=lessonsteps-63"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
@@ -32,3 +32,4 @@ self.addEventListener('fetch', event => {
     }
   })());
 });
+
