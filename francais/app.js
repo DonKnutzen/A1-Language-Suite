@@ -64,8 +64,8 @@ function speak(text,force=false,rate=.82){
   if((!audioEnabled&&!force)||!text)return;
   A1Voice.speak(text,{lang:'fr-FR',rate});
 }
-function playCorrectAudio(text){
-  if(!audioEnabled||!text)return;
+function playCorrectAudio(text,force=false){
+  if((!audioEnabled&&!force)||!text)return;
   speak(text,true,.80);
 }
 function speakBtn(text){
@@ -500,7 +500,7 @@ function startGrammarSet(id){
     document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
       const chosen=+btn.dataset.o,ok=chosen===q.a;
       practiceProgress?.recordGrammar(set,q);
-      if(ok)score++;if(q.audio)playCorrectAudio(q.audio);
+      if(ok)score++;playCorrectAudio(q.audio,true);
       document.querySelectorAll('[data-o]').forEach((b,j)=>{
         b.disabled=true;
         if(j===q.a)b.classList.add('correct');

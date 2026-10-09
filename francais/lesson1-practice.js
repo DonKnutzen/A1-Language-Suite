@@ -15,12 +15,12 @@
         {q:'Nous ___ à Halifax.',a:'sommes',o:['sommes','êtes','sont'],audio:'Nous sommes à Halifax.'},
         {q:'Vous ___ canadien ?',a:'êtes',o:['êtes','sommes','es'],audio:'Vous êtes canadien ?'},
         {q:'Ils ___ étudiants.',a:'sont',o:['sont','est','sommes'],audio:'Ils sont étudiants.'},
-        {q:'Welche Person passt zu « suis »?',a:'je',o:['je','tu','nous']},
-        {q:'Welche Person passt zu « es »?',a:'tu',o:['tu','vous','ils / elles']},
-        {q:'Welche Personengruppe passt zu « est »?',a:'il / elle / on',o:['il / elle / on','nous','vous']},
-        {q:'Welche Person passt zu « sommes »?',a:'nous',o:['nous','vous','ils / elles']},
-        {q:'Welche Person passt zu « êtes »?',a:'vous',o:['tu','vous','nous']},
-        {q:'Welche Personengruppe passt zu « sont »?',a:'ils / elles',o:['il / elle / on','vous','ils / elles']}
+        {q:'Welche Person passt zu « suis »?',a:'je',o:['je','tu','nous'],audio:'Je suis allemand.'},
+        {q:'Welche Person passt zu « es »?',a:'tu',o:['tu','vous','ils / elles'],audio:'Tu es français.'},
+        {q:'Welche Personengruppe passt zu « est »?',a:'il / elle / on',o:['il / elle / on','nous','vous'],audio:'Elle est étudiante.'},
+        {q:'Welche Person passt zu « sommes »?',a:'nous',o:['nous','vous','ils / elles'],audio:'Nous sommes à Halifax.'},
+        {q:'Welche Person passt zu « êtes »?',a:'vous',o:['tu','vous','nous'],audio:'Vous êtes canadien ?'},
+        {q:'Welche Personengruppe passt zu « sont »?',a:'ils / elles',o:['il / elle / on','vous','ils / elles'],audio:'Ils sont étudiants.'}
       ]
     },
     er:{
@@ -53,12 +53,12 @@
         {q:'Nous ___ de France.',a:'venons',o:['venons','venez','viennent'],audio:'Nous venons de France.'},
         {q:'Vous ___ d’où ?',a:'venez',o:['viens','venez','venons'],audio:'Vous venez d’où ?'},
         {q:'Ils ___ d’Italie.',a:'viennent',o:['viennent','vient','venez'],audio:'Ils viennent d’Italie.'},
-        {q:'Welche Person passt zu « viens » in « ___ viens d’Allemagne »?',a:'je',o:['je','nous','vous']},
-        {q:'Welche Person passt ebenfalls zu « viens »?',a:'tu',o:['tu','elle','ils']},
-        {q:'Welche Person passt zu « vient »?',a:'il / elle',o:['il / elle','nous','vous']},
-        {q:'Welche Person passt zu « venons »?',a:'nous',o:['nous','vous','ils / elles']},
-        {q:'Welche Person passt zu « venez »?',a:'vous',o:['tu','vous','nous']},
-        {q:'Welche Personengruppe passt zu « viennent »?',a:'ils / elles',o:['il / elle','vous','ils / elles']}
+        {q:'Welche Person passt zu « viens » in « ___ viens d’Allemagne »?',a:'je',o:['je','nous','vous'],audio:'Je viens d’Allemagne.'},
+        {q:'Welche Person passt ebenfalls zu « viens »?',a:'tu',o:['tu','elle','ils'],audio:'Tu viens du Canada.'},
+        {q:'Welche Person passt zu « vient »?',a:'il / elle',o:['il / elle','nous','vous'],audio:'Elle vient de Belgique.'},
+        {q:'Welche Person passt zu « venons »?',a:'nous',o:['nous','vous','ils / elles'],audio:'Nous venons de France.'},
+        {q:'Welche Person passt zu « venez »?',a:'vous',o:['tu','vous','nous'],audio:'Vous venez d’où ?'},
+        {q:'Welche Personengruppe passt zu « viennent »?',a:'ils / elles',o:['il / elle','vous','ils / elles'],audio:'Ils viennent d’Italie.'}
       ]
     },
     appeler:{
@@ -72,12 +72,12 @@
         {q:'Nous nous ___ Léa et Marc.',a:'appelons',o:['appelons','appelez','appellent'],audio:'Nous nous appelons Léa et Marc.'},
         {q:'Vous vous ___ comment ?',a:'appelez',o:['appelles','appelez','appelons'],audio:'Vous vous appelez comment ?'},
         {q:'Ils s’___ Marc et Paul.',a:'appellent',o:['appellent','appelez','appelle'],audio:'Ils s’appellent Marc et Paul.'},
-        {q:'Welche Person passt zu « m’appelle »?',a:'je',o:['je','tu','vous']},
-        {q:'Welche Person passt zu « t’appelles »?',a:'tu',o:['tu','elle','nous']},
-        {q:'Welche Person passt zu « s’appelle »?',a:'il / elle',o:['il / elle','nous','vous']},
-        {q:'Welche Person passt zu « nous appelons »?',a:'nous',o:['nous','vous','ils / elles']},
-        {q:'Welche Person passt zu « vous appelez »?',a:'vous',o:['tu','vous','nous']},
-        {q:'Welche Personengruppe passt zu « s’appellent »?',a:'ils / elles',o:['il / elle','vous','ils / elles']}
+        {q:'Welche Person passt zu « m’appelle »?',a:'je',o:['je','tu','vous'],audio:'Je m’appelle Léa.'},
+        {q:'Welche Person passt zu « t’appelles »?',a:'tu',o:['tu','elle','nous'],audio:'Tu t’appelles Paul.'},
+        {q:'Welche Person passt zu « s’appelle »?',a:'il / elle',o:['il / elle','nous','vous'],audio:'Elle s’appelle Emma.'},
+        {q:'Welche Person passt zu « nous appelons »?',a:'nous',o:['nous','vous','ils / elles'],audio:'Nous nous appelons Léa et Marc.'},
+        {q:'Welche Person passt zu « vous appelez »?',a:'vous',o:['tu','vous','nous'],audio:'Vous vous appelez comment ?'},
+        {q:'Welche Personengruppe passt zu « s’appellent »?',a:'ils / elles',o:['il / elle','vous','ils / elles'],audio:'Ils s’appellent Marc et Paul.'}
       ]
     }
   };
@@ -123,7 +123,7 @@
       stage.querySelectorAll('[data-l1-answer]').forEach(btn=>btn.onclick=()=>{
         const chosen=btn.dataset.l1Answer,ok=chosen===q.a;if(ok)score++;
         stage.querySelectorAll('[data-l1-answer]').forEach(b=>{b.disabled=true;if(b.dataset.l1Answer===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
-        if(q.audio)speak?.(q.audio,true,.8);
+        speak?.(q.audio||q.a,true,.8);
         const fb=stage.querySelector('.lesson1-drill-feedback');fb.innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'Richtig: '+esc(q.a)}</div><button class="primary-btn lesson1-drill-next">${i<tasks.length-1?'Weiter':'Fertig'}</button>`;
         fb.querySelector('.lesson1-drill-next').onclick=()=>{i++;draw();};
       });
@@ -167,7 +167,7 @@
       document.querySelectorAll('[data-l1-check]').forEach(btn=>btn.onclick=()=>{
         const ok=btn.dataset.l1Check===q.a;if(ok)score++;
         document.querySelectorAll('[data-l1-check]').forEach(b=>{b.disabled=true;if(b.dataset.l1Check===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
-        if(q.audio)speak?.(q.audio,true,.8);
+        speak?.(q.audio||q.a,true,.8);
         document.getElementById('l1GrammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'Richtig: '+esc(q.a)}</div><div class="spacer"></div><button class="primary-btn" id="l1GrammarNext">${i<tasks.length-1?'Weiter':'Ergebnis'}</button>`;
         document.getElementById('l1GrammarNext').onclick=()=>{i++;draw();};
       });
