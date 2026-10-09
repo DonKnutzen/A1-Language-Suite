@@ -914,9 +914,9 @@ html.dark-mode .select-input:focus{
 .exercise-start-btn,.soft-btn.exercise-start-btn{background:var(--success);border:1px solid var(--success);color:#fff;font-weight:750}
 .exercise-start-btn:hover{filter:brightness(1.08)}
 .exercise-start-btn:focus-visible,.lesson-finale-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.lesson-finale-btn{position:relative;background:linear-gradient(110deg,#2563eb,#7c3aed,#0e7490,#2563eb);background-size:250% 100%;border:0;color:#fff;box-shadow:0 4px 15px rgba(99,102,241,.22);animation:lesson-finale-glow 8s ease-in-out infinite}
+.lesson-finale-btn{position:relative;background:linear-gradient(110deg,#2563eb,#8b5cf6,#0891b2,#2563eb);background-size:250% 100%;border:0;color:#fff;box-shadow:0 0 0 1px rgba(129,140,248,.5),0 0 18px rgba(99,102,241,.48),0 8px 28px rgba(124,58,237,.35);animation:lesson-finale-glow 8s ease-in-out infinite}
 .lesson-finale-btn:disabled{animation:none;box-shadow:none;opacity:.55}
-@keyframes lesson-finale-glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes lesson-finale-glow{0%,100%{background-position:0% 50%;box-shadow:0 0 0 1px rgba(129,140,248,.5),0 0 18px rgba(99,102,241,.48),0 8px 28px rgba(124,58,237,.35)}50%{background-position:100% 50%;box-shadow:0 0 0 1px rgba(167,139,250,.7),0 0 26px rgba(139,92,246,.65),0 8px 36px rgba(8,145,178,.45)}}
 @media(prefers-reduced-motion:reduce){.lesson-finale-btn{animation:none}}
 @media(max-width:600px){
   .topbar h1{font-size:20px}
@@ -937,7 +937,7 @@ html.dark-mode .select-input:focus{
 }
 @media(max-width:350px){.topbar h1{font-size:18px}.topbar .header-actions .profile-chip{font-size:12px}}
 html.dark-mode .exercise-start-btn,html.dark-mode .soft-btn.exercise-start-btn{background:var(--success);border-color:var(--success);color:#fff}
-html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,#2563eb,#7c3aed,#0e7490,#2563eb);background-size:250% 100%;color:#fff}
+html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,#2563eb,#8b5cf6,#0891b2,#2563eb);background-size:250% 100%;color:#fff}
 
 
 .lesson-core-phrase[hidden]{display:none}
