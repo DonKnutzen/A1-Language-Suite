@@ -6,7 +6,7 @@
   const shuffle=a=>A1Learning.shuffle(a);
   // Each drill belongs to the explanation above it. Theory-only pages remain read steps.
   const TOPICS={
-    'sein – conjugaison':['g1',[4,6]],
+    'sein – conjugaison':['g1',[4,6,10,11,12,13]],
     'haben – conjugaison':['g1',[5]],
     'Verbes réguliers au présent':['g1',[0,1,8,9]],
     'heißen et sprechen – conjugaison':['g1',[2,3]],

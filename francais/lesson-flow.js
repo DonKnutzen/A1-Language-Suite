@@ -162,7 +162,9 @@
       const next=document.getElementById('nextLesson');next.disabled=!complete();
       const masteryBtn=document.getElementById('startMasteryFromApplication');if(masteryBtn&&!lesson1)masteryBtn.disabled=!complete();
       document.getElementById('lessonCompletion').textContent=lesson1?(complete()?'Praxis geschafft. Wenn du möchtest, mach jetzt den Lektions-Check.':'Sprich und schreib einmal selbst – du kannst jederzeit zurückgehen und weiterüben.'):complete()?(hasMastery&&!masteryPassed()?'Praxis abgeschlossen · Abschlusstest noch offen':L.complete):!passed()?L.retry:L.remaining;
-      document.getElementById('continueWriting').hidden=p.speakingDone!==true;
+      document.getElementById('continueWriting').hidden=true;
+      const oralGood=document.getElementById('oralGood');
+      if(p.speakingDone)oralGood.textContent='Weiter zur Schreibaufgabe →';
       for(const [id,done] of [['oralStatus',p.speakingDone],['writingStatus',p.writingDone]]){
         const e=document.getElementById(id);e.textContent=done===true?'✓ '+L.done:L.open;e.className='pill '+(done===true?'green':'gray');
       }
@@ -248,7 +250,7 @@
       const show=document.getElementById('showSpeakingModel'),oral=document.getElementById('speakingModel'),good=document.getElementById('oralGood');
       const reveal=()=>{p.speakingAttempted=true;oral.hidden=false;good.disabled=false;save();};
       show.onclick=reveal;
-      good.onclick=()=>{if(!p.speakingAttempted)return;p.speakingDone=true;save(true);document.getElementById('oralFeedback').textContent=L.saved;refresh();};
+      good.onclick=()=>{if(p.speakingDone){goStep('write');return;}if(!p.speakingAttempted)return;p.speakingDone=true;save(true);document.getElementById('oralFeedback').textContent=L.saved;refresh();};
       document.getElementById('oralAgain').onclick=()=>{oral.hidden=true;good.disabled=true;document.getElementById('oralFeedback').textContent='';show.focus();};
       document.getElementById('continueWriting').onclick=()=>goStep('write');
       A1Learning.wireRecorder(recId,()=>{reveal();save(true);},{unavailable:L.unavailable,denied:L.denied,recording:L.recording,done:L.recorded,empty:L.empty});
@@ -263,8 +265,10 @@
       document.getElementById('showWritingModel').onclick=()=>{
         const text=input.value.trim();
         if(A1Learning.countWords(text)<minWords){writing.innerHTML=`<p class="feedback bad">${esc(L.short)} (${minWords})</p>`;return;}
+        input.readOnly=true;document.getElementById('lessonWritingSection').querySelector('.mixed-char-wrap').hidden=true;
         comparedText=text;p.writingDraft=input.value.slice(0,12000);save();
-        writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p data-i18n-ignore>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Prüfe, ob du alle Punkte bearbeitet und deine Antwort mit dem Beispiel verglichen hast.</p><button class="primary-btn" id="writingGood">✓ Geprüft · Schreibaufgabe abschließen</button><div id="writingSelfFeedback"></div>`;
+        writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p data-i18n-ignore>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Prüfe, ob du alle Punkte bearbeitet und deine Antwort mit dem Beispiel verglichen hast.</p><button class="secondary-btn" id="editWriting">Antwort bearbeiten</button><button class="primary-btn" id="writingGood">✓ Geprüft · Schreibaufgabe abschließen</button><div id="writingSelfFeedback"></div>`;
+        document.getElementById('editWriting').onclick=()=>{input.readOnly=false;document.getElementById('lessonWritingSection').querySelector('.mixed-char-wrap').hidden=false;writing.replaceChildren();comparedText=null;input.focus();};
         const btn=document.getElementById('writingGood');
         btn.onclick=()=>{if(comparedText!==input.value.trim())return;p.writingDone=true;p.writingAnswer=text.slice(0,12000);save(true);document.getElementById('writingSelfFeedback').textContent=L.saved;refresh();};
       };

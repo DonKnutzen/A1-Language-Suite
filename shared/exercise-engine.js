@@ -194,8 +194,8 @@
   function charBar(lang,uiLang){const a=CHARS[lang]||[];if(!a.length)return '';return `<div class="mixed-char-wrap"><span>${esc((UI[uiLang]||UI.de).chars)}</span><div class="mixed-char-bar"><button type="button" class="mixed-shift" aria-pressed="false" title="${esc((UI[uiLang]||UI.de).shift)}" aria-label="${esc((UI[uiLang]||UI.de).shift)}">⇧</button>${a.map((c,i)=>`<button type="button" class="mixed-char" data-i="${i}">${esc(c)}</button>`).join('')}</div></div>`;}
   function wireChars(input,lang,container=document){
     let upper=false;const shift=container.querySelector('.mixed-shift'),bs=[...container.querySelectorAll('.mixed-char')];if(!shift)return;
-    shift.onclick=()=>{upper=!upper;shift.classList.toggle('active',upper);shift.setAttribute('aria-pressed',String(upper));bs.forEach(b=>b.textContent=(upper?UPPER:CHARS)[lang][+b.dataset.i]);};
-    bs.forEach(b=>b.onclick=()=>{const ch=(upper?UPPER:CHARS)[lang][+b.dataset.i],a=input.selectionStart??input.value.length,z=input.selectionEnd??a;input.value=input.value.slice(0,a)+ch+input.value.slice(z);input.setSelectionRange(a+ch.length,a+ch.length);input.dispatchEvent(new Event('input',{bubbles:true}));});
+    shift.onclick=()=>{if(input.disabled||input.readOnly||input.hidden||input.closest('[hidden]'))return;upper=!upper;shift.classList.toggle('active',upper);shift.setAttribute('aria-pressed',String(upper));bs.forEach(b=>b.textContent=(upper?UPPER:CHARS)[lang][+b.dataset.i]);};
+    bs.forEach(b=>b.onclick=()=>{if(input.disabled||input.readOnly||input.hidden||input.closest('[hidden]'))return;const ch=(upper?UPPER:CHARS)[lang][+b.dataset.i],a=input.selectionStart??input.value.length,z=input.selectionEnd??a;input.value=input.value.slice(0,a)+ch+input.value.slice(z);input.setSelectionRange(a+ch.length,a+ch.length);input.dispatchEvent(new Event('input',{bubbles:true}));});
   }
   function run(opts){
     const ex=make(opts.lesson,opts.lesson.id,opts.uiLang),L=UI[opts.uiLang]||UI.de;let i=0,score=0;
@@ -247,3 +247,4 @@
   }
   window.A1ExerciseEngine={make,run,charBar,wireChars};
 })();
+

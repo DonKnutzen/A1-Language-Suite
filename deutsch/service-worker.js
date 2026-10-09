@@ -1,6 +1,6 @@
-const CACHE="deutsch-a1-live-completion-v66";
+const CACHE="deutsch-a1-live-practice-v67";
 const PREFIX="deutsch-a1-live-";
-const ASSETS=["./", "./index.html", "./manifest.json", "./styles.css?v=lessonsteps-63", "../shared/lesson-ui.css?v=lessonsteps-61", "../shared/config.js", "../shared/profile.js?v=leaderboard-65", "../shared/streak.js", "../shared/learning.js", "../shared/practice-progress.js?v=48", "./lesson-content.js", "../shared/lesson-guide.js", "../shared/lesson-topic-info.js", "../shared/grammar-ui.js?v=french-60", "../shared/exercise-engine.js?v=dialog-44", "../shared/pronunciation.js?v=alphabet-59", "../shared/voice-selection.js?v=dialog-44", "./assessments.js?v=completion-66", "./pronunciation.js?v=lessonsteps-63", "./lesson-flow.js?v=completion-66", "./app.js?v=completion-66", "./course-reset.js?v=lessonsteps-63"];
+const ASSETS=["./", "./index.html", "./manifest.json", "./styles.css?v=lessonsteps-63", "../shared/lesson-ui.css?v=lessonsteps-61", "../shared/config.js", "../shared/profile.js?v=leaderboard-65", "../shared/streak.js", "../shared/learning.js", "../shared/practice-progress.js?v=48", "./lesson-content.js", "../shared/lesson-guide.js", "../shared/lesson-topic-info.js", "../shared/grammar-ui.js?v=french-60", "../shared/exercise-engine.js?v=practice-67", "../shared/pronunciation.js?v=alphabet-59", "../shared/voice-selection.js?v=dialog-44", "./assessments.js?v=practice-67", "./pronunciation.js?v=lessonsteps-63", "./lesson-flow.js?v=completion-66", "./app.js?v=practice-67", "./course-reset.js?v=lessonsteps-63"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

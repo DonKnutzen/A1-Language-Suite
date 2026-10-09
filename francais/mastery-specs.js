@@ -10,55 +10,64 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ___ allemand.",
         "answer": "suis",
-        "tag": "être"
+        "tag": "être",
+        "context": "Ich bin Deutscher."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ allemand.",
         "answer": "es",
-        "tag": "être"
+        "tag": "être",
+        "context": "Du bist Deutscher."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ allemand.",
         "answer": "êtes",
-        "tag": "être"
+        "tag": "être",
+        "context": "Sie sind Deutscher."
       },
       {
         "type": "gap",
         "prompt": "J’___ à Halifax.",
         "answer": "habite",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Ich wohne in Halifax."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ à Paris.",
         "answer": "habitez",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Sie wohnen in Paris."
       },
       {
         "type": "gap",
         "prompt": "Je ___ d’Allemagne.",
         "answer": "viens",
-        "tag": "venir"
+        "tag": "venir",
+        "context": "Ich komme aus Deutschland."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ du Canada.",
         "answer": "venez",
-        "tag": "venir"
+        "tag": "venir",
+        "context": "Sie kommen aus Kanada."
       },
       {
         "type": "gap",
         "prompt": "Je m’___ Léa.",
         "answer": "appelle",
-        "tag": "s’appeler"
+        "tag": "s’appeler",
+        "context": "Ich heiße Léa."
       },
       {
         "type": "gap",
         "prompt": "Comment vous vous ___ ?",
         "answer": "appelez",
-        "tag": "s’appeler"
+        "tag": "s’appeler",
+        "context": "Wie heißen Sie?"
       }
     ]
   },
@@ -73,19 +82,22 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Vous pouvez ___, s’il vous plaît ?",
         "answer": "épeler",
-        "tag": "Infinitiv"
+        "tag": "Infinitiv",
+        "context": "Können Sie bitte buchstabieren?"
       },
       {
         "type": "gap",
         "prompt": "Mon ___ est Sophie.",
         "answer": "prénom",
-        "tag": "Persönliche Daten"
+        "tag": "Persönliche Daten",
+        "context": "Mein Vorname ist Sophie."
       },
       {
         "type": "gap",
         "prompt": "Mon nom de ___ est Dupont.",
         "answer": "famille",
-        "tag": "Persönliche Daten"
+        "tag": "Persönliche Daten",
+        "context": "Mein Familienname ist Dupont."
       },
       {
         "type": "choice",
@@ -122,25 +134,29 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "J’___ vingt-six ans.",
         "answer": "ai",
-        "tag": "avoir"
+        "tag": "avoir",
+        "context": "Ich bin 26 Jahre alt."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ vingt ans.",
         "answer": "as",
-        "tag": "avoir"
+        "tag": "avoir",
+        "context": "Du bist 20 Jahre alt."
       },
       {
         "type": "gap",
         "prompt": "Elle ___ trente ans.",
         "answer": "a",
-        "tag": "avoir"
+        "tag": "avoir",
+        "context": "Sie ist 30 Jahre alt."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ quel âge ?",
         "answer": "avez",
-        "tag": "avoir"
+        "tag": "avoir",
+        "context": "Wie alt sind Sie?"
       },
       {
         "type": "choice",
@@ -188,13 +204,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Le rendez-vous est mercredi ___ dix heures.",
         "answer": "à",
-        "tag": "Uhrzeit"
+        "tag": "Uhrzeit",
+        "context": "Der Termin ist am Mittwoch um zehn Uhr."
       },
       {
         "type": "gap",
         "prompt": "Nous sommes ___ cinq octobre.",
         "answer": "le",
-        "tag": "Datum"
+        "tag": "Datum",
+        "context": "Heute ist der fünfte Oktober."
       },
       {
         "type": "choice",
@@ -231,25 +249,29 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "C’est ___ frère.",
         "answer": "mon",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das ist mein Bruder."
       },
       {
         "type": "gap",
         "prompt": "C’est ___ sœur.",
         "answer": "ma",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das ist meine Schwester."
       },
       {
         "type": "gap",
         "prompt": "Ce sont ___ parents.",
         "answer": "mes",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das sind meine Eltern."
       },
       {
         "type": "gap",
         "prompt": "C’est ___ amie.",
         "answer": "mon",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das ist meine Freundin."
       },
       {
         "type": "choice",
@@ -266,7 +288,8 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ sont mes parents.",
         "answer": "Ce",
-        "tag": "C’est / Ce sont"
+        "tag": "C’est / Ce sont",
+        "context": "Das sind meine Eltern."
       }
     ]
   },
@@ -281,13 +304,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je voudrais ___ pain.",
         "answer": "du",
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Ich möchte Brot."
       },
       {
         "type": "gap",
         "prompt": "Je voudrais ___ soupe.",
         "answer": "de la",
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Ich möchte Suppe."
       },
       {
         "type": "gap",
@@ -297,13 +322,15 @@ window.FR_A1_MASTERY_SPECS = {
           "de l'",
           "de l’"
         ],
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Ich möchte Wasser."
       },
       {
         "type": "gap",
         "prompt": "Je voudrais ___ pommes.",
         "answer": "des",
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Ich möchte Äpfel."
       },
       {
         "type": "choice",
@@ -329,13 +356,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Un kilo ___ pommes, s’il vous plaît.",
         "answer": "de",
-        "tag": "Mengen"
+        "tag": "Mengen",
+        "context": "Ein Kilo Äpfel, bitte."
       },
       {
         "type": "gap",
         "prompt": "Deux cents grammes ___ fromage.",
         "answer": "de",
-        "tag": "Mengen"
+        "tag": "Mengen",
+        "context": "Zweihundert Gramm Käse."
       },
       {
         "type": "choice",
@@ -372,7 +401,8 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ y a une cuisine.",
         "answer": "Il",
-        "tag": "il y a"
+        "tag": "il y a",
+        "context": "Es gibt eine Küche."
       },
       {
         "type": "choice",
@@ -453,25 +483,29 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ tout droit.",
         "answer": "Allez",
-        "tag": "Imperativ"
+        "tag": "Imperativ",
+        "context": "Gehen Sie geradeaus."
       },
       {
         "type": "gap",
         "prompt": "___ à gauche.",
         "answer": "Tournez",
-        "tag": "Imperativ"
+        "tag": "Imperativ",
+        "context": "Biegen Sie links ab."
       },
       {
         "type": "gap",
         "prompt": "___ la ligne 8.",
         "answer": "Prenez",
-        "tag": "Imperativ"
+        "tag": "Imperativ",
+        "context": "Nehmen Sie die Linie 8."
       },
       {
         "type": "gap",
         "prompt": "___ est la gare ?",
         "answer": "Où",
-        "tag": "Fragen"
+        "tag": "Fragen",
+        "context": "Wo ist der Bahnhof?"
       }
     ]
   },
@@ -497,19 +531,22 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ___ dans un bureau.",
         "answer": "travaille",
-        "tag": "Präsens"
+        "tag": "Präsens",
+        "context": "Ich arbeite in einem Büro."
       },
       {
         "type": "gap",
         "prompt": "Je ___ à huit heures.",
         "answer": "commence",
-        "tag": "Präsens"
+        "tag": "Präsens",
+        "context": "Ich fange um acht Uhr an."
       },
       {
         "type": "gap",
         "prompt": "Mon cours ___ à neuf heures.",
         "answer": "commence",
-        "tag": "Präsens"
+        "tag": "Präsens",
+        "context": "Mein Kurs beginnt um neun Uhr."
       }
     ]
   },
@@ -525,49 +562,57 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ___ lève à sept heures.",
         "answer": "me",
-        "tag": "se lever"
+        "tag": "se lever",
+        "context": "Ich stehe um sieben Uhr auf."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ lèves tôt.",
         "answer": "te",
-        "tag": "se lever"
+        "tag": "se lever",
+        "context": "Du stehst früh auf."
       },
       {
         "type": "gap",
         "prompt": "Elle ___ lève à huit heures.",
         "answer": "se",
-        "tag": "se lever"
+        "tag": "se lever",
+        "context": "Sie steht um acht Uhr auf."
       },
       {
         "type": "gap",
         "prompt": "Nous nous ___.",
         "answer": "levons",
-        "tag": "se lever"
+        "tag": "se lever",
+        "context": "Wir stehen auf."
       },
       {
         "type": "gap",
         "prompt": "Vous vous ___.",
         "answer": "levez",
-        "tag": "se lever"
+        "tag": "se lever",
+        "context": "Sie stehen auf."
       },
       {
         "type": "gap",
         "prompt": "Ils se ___.",
         "answer": "lèvent",
-        "tag": "se lever"
+        "tag": "se lever",
+        "context": "Sie stehen auf."
       },
       {
         "type": "gap",
         "prompt": "Je ___ en train de travailler.",
         "answer": "suis",
-        "tag": "être en train de"
+        "tag": "être en train de",
+        "context": "Ich bin gerade dabei zu arbeiten."
       },
       {
         "type": "gap",
         "prompt": "Nous ___ en train de manger.",
         "answer": "sommes",
-        "tag": "être en train de"
+        "tag": "être en train de",
+        "context": "Wir sind gerade dabei zu essen."
       },
       {
         "type": "choice",
@@ -604,13 +649,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "J’ai mal ___ la tête.",
         "answer": "à",
-        "tag": "Gesundheit"
+        "tag": "Gesundheit",
+        "context": "Ich habe Kopfschmerzen."
       },
       {
         "type": "gap",
         "prompt": "___ quand êtes-vous malade ?",
         "answer": "Depuis",
-        "tag": "Zeitfrage"
+        "tag": "Zeitfrage",
+        "context": "Seit wann sind Sie krank?"
       },
       {
         "type": "choice",
@@ -637,25 +684,29 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ livre",
         "answer": "ce",
-        "tag": "Demonstrativ"
+        "tag": "Demonstrativ",
+        "context": "dieses Buch"
       },
       {
         "type": "gap",
         "prompt": "___ hôtel",
         "answer": "cet",
-        "tag": "Demonstrativ"
+        "tag": "Demonstrativ",
+        "context": "dieses Hotel"
       },
       {
         "type": "gap",
         "prompt": "___ veste",
         "answer": "cette",
-        "tag": "Demonstrativ"
+        "tag": "Demonstrativ",
+        "context": "diese Jacke"
       },
       {
         "type": "gap",
         "prompt": "___ chaussures",
         "answer": "ces",
-        "tag": "Demonstrativ"
+        "tag": "Demonstrativ",
+        "context": "diese Schuhe"
       },
       {
         "type": "choice",
@@ -683,7 +734,8 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Demain, il ___ faire vingt degrés.",
         "answer": "va",
-        "tag": "futur proche"
+        "tag": "futur proche",
+        "context": "Morgen werden es zwanzig Grad sein."
       }
     ]
   },
@@ -698,13 +750,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "J’___ le football.",
         "answer": "aime",
-        "tag": "Vorlieben"
+        "tag": "Vorlieben",
+        "context": "Ich mag Fußball."
       },
       {
         "type": "gap",
         "prompt": "Je ___ lire à la maison.",
         "answer": "préfère",
-        "tag": "Vorlieben"
+        "tag": "Vorlieben",
+        "context": "Ich lese lieber zu Hause."
       },
       {
         "type": "choice",
@@ -721,7 +775,8 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je n’___ pas courir.",
         "answer": "aime",
-        "tag": "Verneinung"
+        "tag": "Verneinung",
+        "context": "Ich laufe nicht gern."
       }
     ]
   },
@@ -736,37 +791,43 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ___ visiter Paris.",
         "answer": "vais",
-        "tag": "aller"
+        "tag": "aller",
+        "context": "Ich werde Paris besuchen."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ visiter Paris.",
         "answer": "vas",
-        "tag": "aller"
+        "tag": "aller",
+        "context": "Du wirst Paris besuchen."
       },
       {
         "type": "gap",
         "prompt": "Elle ___ visiter Paris.",
         "answer": "va",
-        "tag": "aller"
+        "tag": "aller",
+        "context": "Sie wird Paris besuchen."
       },
       {
         "type": "gap",
         "prompt": "Nous ___ visiter Paris.",
         "answer": "allons",
-        "tag": "aller"
+        "tag": "aller",
+        "context": "Wir werden Paris besuchen."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ visiter Paris.",
         "answer": "allez",
-        "tag": "aller"
+        "tag": "aller",
+        "context": "Sie werden Paris besuchen."
       },
       {
         "type": "gap",
         "prompt": "Ils ___ visiter Paris.",
         "answer": "vont",
-        "tag": "aller"
+        "tag": "aller",
+        "context": "Sie werden Paris besuchen."
       }
     ]
   },
@@ -781,37 +842,43 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ___ venir.",
         "answer": "peux",
-        "tag": "pouvoir"
+        "tag": "pouvoir",
+        "context": "Ich kann kommen."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ venir.",
         "answer": "peux",
-        "tag": "pouvoir"
+        "tag": "pouvoir",
+        "context": "Du kannst kommen."
       },
       {
         "type": "gap",
         "prompt": "Il ___ venir.",
         "answer": "peut",
-        "tag": "pouvoir"
+        "tag": "pouvoir",
+        "context": "Er kann kommen."
       },
       {
         "type": "gap",
         "prompt": "Nous ___ venir.",
         "answer": "pouvons",
-        "tag": "pouvoir"
+        "tag": "pouvoir",
+        "context": "Wir können kommen."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ venir.",
         "answer": "pouvez",
-        "tag": "pouvoir"
+        "tag": "pouvoir",
+        "context": "Sie können kommen."
       },
       {
         "type": "gap",
         "prompt": "Ils ___ venir.",
         "answer": "peuvent",
-        "tag": "pouvoir"
+        "tag": "pouvoir",
+        "context": "Sie können kommen."
       },
       {
         "type": "choice",
@@ -879,13 +946,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ne comprends ___.",
         "answer": "pas",
-        "tag": "Verneinung"
+        "tag": "Verneinung",
+        "context": "Ich verstehe nicht."
       },
       {
         "type": "gap",
         "prompt": "Je n’ai pas ___ voiture.",
         "answer": "de",
-        "tag": "Verneinung + de"
+        "tag": "Verneinung + de",
+        "context": "Ich habe kein Auto."
       },
       {
         "type": "choice",
@@ -902,19 +971,22 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "J’___ des informations, s’il vous plaît.",
         "answer": "aimerais",
-        "tag": "Conditionnel"
+        "tag": "Conditionnel",
+        "context": "Ich hätte gern Informationen, bitte."
       },
       {
         "type": "gap",
         "prompt": "Je ___ un café, s’il vous plaît.",
         "answer": "voudrais",
-        "tag": "Conditionnel"
+        "tag": "Conditionnel",
+        "context": "Ich möchte einen Kaffee, bitte."
       },
       {
         "type": "gap",
         "prompt": "On ___ avoir l’addition ?",
         "answer": "pourrait",
-        "tag": "Conditionnel"
+        "tag": "Conditionnel",
+        "context": "Könnten wir die Rechnung bekommen?"
       }
     ]
   },
@@ -929,31 +1001,36 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ café",
         "answer": "un",
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "ein Kaffee"
       },
       {
         "type": "gap",
         "prompt": "___ baguette",
         "answer": "une",
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "ein Baguette"
       },
       {
         "type": "gap",
         "prompt": "___ croissants",
         "answer": "des",
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "Croissants (unbestimmter Plural)"
       },
       {
         "type": "gap",
         "prompt": "___ musée",
         "answer": "le",
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "das Museum"
       },
       {
         "type": "gap",
         "prompt": "___ gare",
         "answer": "la",
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "der Bahnhof"
       },
       {
         "type": "gap",
@@ -963,13 +1040,15 @@ window.FR_A1_MASTERY_SPECS = {
           "l'",
           "l’"
         ],
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "das Hotel"
       },
       {
         "type": "gap",
         "prompt": "___ enfants",
         "answer": "les",
-        "tag": "Artikel"
+        "tag": "Artikel",
+        "context": "die Kinder"
       },
       {
         "type": "choice",
@@ -986,7 +1065,8 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ sont des amis.",
         "answer": "Ce",
-        "tag": "C’est / Ce sont"
+        "tag": "C’est / Ce sont",
+        "context": "Das sind Freunde."
       },
       {
         "type": "choice",
@@ -1012,37 +1092,43 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je ___ français. (parler)",
         "answer": "parle",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Ich spreche Französisch."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ français. (parler)",
         "answer": "parles",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Du sprichst Französisch."
       },
       {
         "type": "gap",
         "prompt": "Il ___ français. (parler)",
         "answer": "parle",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Er spricht Französisch."
       },
       {
         "type": "gap",
         "prompt": "Nous ___ français. (parler)",
         "answer": "parlons",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Wir sprechen Französisch."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ français. (parler)",
         "answer": "parlez",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Sie sprechen Französisch."
       },
       {
         "type": "gap",
         "prompt": "Ils ___ français. (parler)",
         "answer": "parlent",
-        "tag": "-er-Verben"
+        "tag": "-er-Verben",
+        "context": "Sie sprechen Französisch."
       },
       {
         "type": "choice",
@@ -1070,13 +1156,15 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Il ___ réserver.",
         "answer": "faut",
-        "tag": "il faut"
+        "tag": "il faut",
+        "context": "Man muss reservieren."
       },
       {
         "type": "gap",
         "prompt": "Il ne faut pas ___.",
         "answer": "fumer",
-        "tag": "il ne faut pas"
+        "tag": "il ne faut pas",
+        "context": "Man darf nicht rauchen."
       }
     ]
   },
@@ -1147,19 +1235,22 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "C’est ___ frère.",
         "answer": "mon",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das ist mein Bruder."
       },
       {
         "type": "gap",
         "prompt": "C’est ___ sœur.",
         "answer": "ma",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das ist meine Schwester."
       },
       {
         "type": "gap",
         "prompt": "Ce sont ___ parents.",
         "answer": "mes",
-        "tag": "Possessiv"
+        "tag": "Possessiv",
+        "context": "Das sind meine Eltern."
       },
       {
         "type": "choice",
@@ -1197,49 +1288,57 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "J’___ visité un musée.",
         "answer": "ai",
-        "tag": "passé composé"
+        "tag": "passé composé",
+        "context": "Ich habe ein Museum besucht."
       },
       {
         "type": "gap",
         "prompt": "Nous ___ mangé au restaurant.",
         "answer": "avons",
-        "tag": "passé composé"
+        "tag": "passé composé",
+        "context": "Wir haben im Restaurant gegessen."
       },
       {
         "type": "gap",
         "prompt": "Elle a ___. (travailler)",
         "answer": "travaillé",
-        "tag": "Partizip"
+        "tag": "Partizip",
+        "context": "Sie hat gearbeitet."
       },
       {
         "type": "gap",
         "prompt": "J’ai ___. (regarder)",
         "answer": "regardé",
-        "tag": "Partizip"
+        "tag": "Partizip",
+        "context": "Ich habe zugesehen."
       },
       {
         "type": "gap",
         "prompt": "Je ___ allé(e) au cinéma.",
         "answer": "suis",
-        "tag": "passé composé mit être"
+        "tag": "passé composé mit être",
+        "context": "Ich bin ins Kino gegangen."
       },
       {
         "type": "gap",
         "prompt": "Elle est ___. (arriver)",
         "answer": "arrivée",
-        "tag": "Kongruenz"
+        "tag": "Kongruenz",
+        "context": "Sie ist angekommen."
       },
       {
         "type": "gap",
         "prompt": "Nous sommes ___. (partir; gemischte/männliche Gruppe)",
         "answer": "partis",
-        "tag": "Kongruenz"
+        "tag": "Kongruenz",
+        "context": "Wir sind weggegangen."
       },
       {
         "type": "gap",
         "prompt": "Je ___ de manger.",
         "answer": "viens",
-        "tag": "passé récent"
+        "tag": "passé récent",
+        "context": "Ich habe gerade gegessen."
       },
       {
         "type": "choice",
@@ -1288,49 +1387,57 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "___ pain",
         "answer": "du",
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Brot (eine unbestimmte Menge)"
       },
       {
         "type": "gap",
         "prompt": "___ farine",
         "answer": "de la",
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Mehl (eine unbestimmte Menge)"
       },
       {
         "type": "gap",
         "prompt": "___ œufs",
         "answer": "des",
-        "tag": "Teilungsartikel"
+        "tag": "Teilungsartikel",
+        "context": "Eier (eine unbestimmte Menge)"
       },
       {
         "type": "gap",
         "prompt": "Un kilo ___ pommes.",
         "answer": "de",
-        "tag": "Mengen"
+        "tag": "Mengen",
+        "context": "Ein Kilo Äpfel."
       },
       {
         "type": "gap",
         "prompt": "Je n’ai pas ___ sucre.",
         "answer": "de",
-        "tag": "Verneinung"
+        "tag": "Verneinung",
+        "context": "Ich habe keinen Zucker."
       },
       {
         "type": "gap",
         "prompt": "Un peu ___ lait.",
         "answer": "de",
-        "tag": "Mengen"
+        "tag": "Mengen",
+        "context": "Ein wenig Milch."
       },
       {
         "type": "gap",
         "prompt": "Un couteau pour ___ les légumes.",
         "answer": "couper",
-        "tag": "pour + Infinitiv"
+        "tag": "pour + Infinitiv",
+        "context": "Ein Messer, um das Gemüse zu schneiden."
       },
       {
         "type": "gap",
         "prompt": "Il ___ trois œufs.",
         "answer": "faut",
-        "tag": "il faut"
+        "tag": "il faut",
+        "context": "Man braucht drei Eier."
       },
       {
         "type": "choice",
@@ -1357,31 +1464,36 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "gap",
         "prompt": "Je vais ___ Paris.",
         "answer": "à",
-        "tag": "Ziel"
+        "tag": "Ziel",
+        "context": "Ich fahre nach Paris."
       },
       {
         "type": "gap",
         "prompt": "Je vais ___ France.",
         "answer": "en",
-        "tag": "Ziel"
+        "tag": "Ziel",
+        "context": "Ich fahre nach Frankreich."
       },
       {
         "type": "gap",
         "prompt": "Je vais ___ Canada.",
         "answer": "au",
-        "tag": "Ziel"
+        "tag": "Ziel",
+        "context": "Ich fahre nach Kanada."
       },
       {
         "type": "gap",
         "prompt": "Je vais ___ États-Unis.",
         "answer": "aux",
-        "tag": "Ziel"
+        "tag": "Ziel",
+        "context": "Ich fahre in die USA."
       },
       {
         "type": "gap",
         "prompt": "Je viens ___ France.",
         "answer": "de",
-        "tag": "Herkunft"
+        "tag": "Herkunft",
+        "context": "Ich komme aus Frankreich."
       },
       {
         "type": "gap",
@@ -1391,55 +1503,64 @@ window.FR_A1_MASTERY_SPECS = {
           "d'",
           "d’"
         ],
-        "tag": "Herkunft"
+        "tag": "Herkunft",
+        "context": "Ich komme aus Deutschland."
       },
       {
         "type": "gap",
         "prompt": "Je viens ___ Canada.",
         "answer": "du",
-        "tag": "Herkunft"
+        "tag": "Herkunft",
+        "context": "Ich komme aus Kanada."
       },
       {
         "type": "gap",
         "prompt": "Je viens ___ États-Unis.",
         "answer": "des",
-        "tag": "Herkunft"
+        "tag": "Herkunft",
+        "context": "Ich komme aus den USA."
       },
       {
         "type": "gap",
         "prompt": "Je ___ partir.",
         "answer": "dois",
-        "tag": "devoir"
+        "tag": "devoir",
+        "context": "Ich muss gehen."
       },
       {
         "type": "gap",
         "prompt": "Tu ___ partir.",
         "answer": "dois",
-        "tag": "devoir"
+        "tag": "devoir",
+        "context": "Du musst gehen."
       },
       {
         "type": "gap",
         "prompt": "Elle ___ partir.",
         "answer": "doit",
-        "tag": "devoir"
+        "tag": "devoir",
+        "context": "Sie muss gehen."
       },
       {
         "type": "gap",
         "prompt": "Nous ___ partir.",
         "answer": "devons",
-        "tag": "devoir"
+        "tag": "devoir",
+        "context": "Wir müssen gehen."
       },
       {
         "type": "gap",
         "prompt": "Vous ___ partir.",
         "answer": "devez",
-        "tag": "devoir"
+        "tag": "devoir",
+        "context": "Sie müssen gehen."
       },
       {
         "type": "gap",
         "prompt": "Ils ___ partir.",
         "answer": "doivent",
-        "tag": "devoir"
+        "tag": "devoir",
+        "context": "Sie müssen gehen."
       }
     ]
   }

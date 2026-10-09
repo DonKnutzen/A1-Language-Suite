@@ -12,19 +12,20 @@
 
   function phraseTasks(lesson){
     const pairs=(lesson?.phrases||[]).filter(p=>p?.[0]&&p?.[1]);
-    const allNative=pairs.map(p=>p[1]);
-    return pairs.map(([target,native],idx)=>{
-      const wrong=[];
-      for(let step=1;wrong.length<2&&step<pairs.length+2;step++){
-        const candidate=allNative[(idx+step)%allNative.length];
-        if(candidate&&norm(candidate)!==norm(native)&&!wrong.some(x=>norm(x)===norm(candidate)))wrong.push(candidate);
-      }
+    const words=s=>new Set(norm(s).split(' ').filter(w=>w.length>2&&!['ich','und','ein','eine','das','der','die','mir','mich'].includes(w)));
+    return pairs.map(([target,native])=>{
+      const key=words(native);
+      const wrong=pairs.map(p=>p[1]).filter(candidate=>norm(candidate)!==norm(native))
+        .filter((candidate,i,all)=>all.findIndex(x=>norm(x)===norm(candidate))===i)
+        .map(candidate=>({candidate,similarity:[...words(candidate)].filter(w=>key.has(w)).length}))
+        .sort((a,b)=>b.similarity-a.similarity).slice(0,2).map(x=>x.candidate);
       return {type:'choice',q:`Was bedeutet „${target}“?`,o:shuffled([native,...wrong]),answer:native,audio:target,tag:'Lektionsinhalt'};
     });
   }
   function customTasks(lesson){
     return (spec(lesson.id).tasks||[]).map(t=>{
       const out={...t};
+      if(out.type==='gap'&&!out.audio)out.audio=out.prompt.replace('___',out.answer).replace(/\s*\([^)]*\)/g,'');
       if(out.type==='choice'){
         const answer=out.answer;
         out.a=(out.o||[]).findIndex(x=>norm(x)===norm(answer));
@@ -87,7 +88,7 @@
       }else{
         body=`${q.context?`<p class="mixed-context"><strong>Bedeutung:</strong> ${esc(q.context)}</p>`:''}<label class="mixed-type" for="masteryInput">✍️ Form einsetzen</label><div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="masteryInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort…">${window.A1ExerciseEngine?.charBar?A1ExerciseEngine.charBar(targetLang,'de'):''}<div class="spacer"></div><button class="primary-btn" id="masteryCheck">Prüfen</button>`;
       }
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBack">← Zurück</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" style="margin-top:12px"><div class="between"><div><div class="eyebrow">ABSCHLUSSTEST</div><h2>${esc(title)}</h2></div>${q.tag?`<span class="pill gray">${esc(q.tag)}</span>`:''}</div>${subtitle?`<p class="muted">${esc(subtitle)}</p>`:''}${body}<div id="masteryFeedback"></div></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBack">← Zurück</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" style="margin-top:12px"><div class="between"><div><div class="eyebrow">ABSCHLUSSTEST</div><h2>${esc(title)}</h2></div></div>${subtitle?`<p class="muted">${esc(subtitle)}</p>`:''}${body}<div id="masteryFeedback"></div></section>`;
       document.getElementById('masteryBack').onclick=onBack;
       if(q.type==='choice'){
         const a=(q.o||[]).findIndex(x=>norm(x)===norm(q.answer));
