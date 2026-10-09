@@ -985,10 +985,10 @@ audioToggle.onclick=()=>{
   if(audioEnabled)speak('Bonjour ! La lecture automatique est activée.',true);
   else A1Voice.cancel();
 };
-document.getElementById('resetBtn').onclick=()=>{
-  if(confirm('Fortschritt für Französisch A1 in diesem Profil zurücksetzen?')){
-    localStorage.removeItem(stateKey);state=loadState();save();setRoute(currentRoute);
-  }
+window.A1ResetCourseProgress=async()=>{
+  const fresh=JSON.parse(JSON.stringify(defaultState));
+  await A1Profile.resetProgress('francais-a1',fresh);
+  A1Voice.cancel();state=fresh;setRoute('home');
 };
 updateAudioButton();
 setRoute('home');

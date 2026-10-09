@@ -6,6 +6,8 @@
   const UI_LANG_KEY = 'a1suite.uiLang';
 const THEME_KEY = 'a1suite.theme';
 const SYNC_TIMERS = new Map();
+const SYNC_REQUESTS = new Map();
+let resetVersion=0;
 
 function applyTheme(){
   const theme = localStorage.getItem(THEME_KEY) || 'light';
@@ -355,9 +357,26 @@ applyTheme();
         const current = getCurrent();
         if(!current || current.profileKey !== p.profileKey || current.userId !== p.userId) return;
         const pct = Number.isFinite(Number(percent)) ? Number(percent) : pagePercent();
-        cloudPut(course, payload, pct).catch(() => {});
+        const requests=SYNC_REQUESTS.get(course)||new Set();
+        const request=cloudPut(course,payload,pct).catch(()=>{}).finally(()=>{requests.delete(request);if(!requests.size)SYNC_REQUESTS.delete(course);});
+        requests.add(request);SYNC_REQUESTS.set(course,requests);
       }, 650)
     );
+  }
+
+  async function resetProgress(course,payload){
+    const profile=getCurrent(),key=namespacedKey(META.stateBaseKey);
+    if(course!==META.course)throw new Error('Wrong course');
+    resetVersion++;
+    clearTimeout(SYNC_TIMERS.get(course));SYNC_TIMERS.delete(course);
+    await Promise.all(SYNC_REQUESTS.get(course)||[]);
+    if(getCurrent()?.profileKey!==profile?.profileKey)throw new Error('Profile changed');
+    if(cloudConfigured&&profile?.mode==='cloud'){
+      if(!await ensureToken())throw new Error('No active cloud session');
+      await cloudPut(course,payload,0);
+    }
+    if(getCurrent()?.profileKey!==profile?.profileKey)throw new Error('Profile changed');
+    localStorage.setItem(key,JSON.stringify(payload));
   }
 
   // Private shared activity; it never creates a leaderboard entry.
@@ -506,7 +525,9 @@ applyTheme();
     if(!p || p.mode !== 'cloud') return;
 
     try{
+      const version=resetVersion;
       const remote = await cloudGet(META.course);
+      if(version!==resetVersion)return;
       const key = namespacedKey(META.stateBaseKey);
       const local = localStorage.getItem(key);
 
@@ -784,6 +805,7 @@ applyTheme();
           };
         }
 
+        window.dispatchEvent(new CustomEvent('a1suite:profilemenu',{detail:{root:ov,lang,close:()=>ov.remove()}}));
         renderLeaderboard(document.getElementById('pmLeaderboard'), lang);
         return;
       }
@@ -917,7 +939,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       sessionStorage.setItem(flag,'1');
 
       try{
+        const version=resetVersion;
         const remote = await cloudGet(META.course);
+        if(version!==resetVersion)return;
         const key = namespacedKey(META.stateBaseKey);
         const local = localStorage.getItem(key);
 
@@ -952,6 +976,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setUiLang,
     namespacedKey,
     saveProgress,
+    resetProgress,
     getDailyActivity,
     saveDailyActivity,
     logout,
@@ -962,3 +987,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.A1SetDisplayLanguage = lang => setUiLang(lang);
 })();
+
