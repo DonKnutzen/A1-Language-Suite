@@ -8,6 +8,7 @@ const THEME_KEY = 'a1suite.theme';
 const SYNC_TIMERS = new Map();
 const SYNC_REQUESTS = new Map();
 let resetVersion=0;
+const SYNC_PENDING=new Map();
 
 function applyTheme(){
   const theme = localStorage.getItem(THEME_KEY) || 'light';
@@ -357,7 +358,7 @@ applyTheme();
     return rows[0] || null;
   }
 
-  async function cloudPut(course, payload, percent=0){
+  async function writeCloudProgress(course, payload, percent=0){
     const p = getCurrent();
     const code = courseCode(course);
     if(!p || p.mode !== 'cloud' || !code) return;
@@ -382,23 +383,39 @@ applyTheme();
     ]);
   }
 
+  function queueCourseWrite(course,write){
+    const profile=getCurrent(),version=resetVersion;
+    const requests=SYNC_REQUESTS.get(course)||new Set();
+    const previous=[...requests];
+    const request=Promise.all(previous).catch(()=>{}).then(()=>{
+      const current=getCurrent();
+      if(version!==resetVersion||current?.profileKey!==profile?.profileKey||current?.userId!==profile?.userId)return;
+      return write();
+    }).finally(()=>{requests.delete(request);if(!requests.size)SYNC_REQUESTS.delete(course);});
+    requests.add(request);SYNC_REQUESTS.set(course,requests);
+    return request;
+  }
+
+  function cloudPut(course,payload,percent=0){
+    return queueCourseWrite(course,()=>writeCloudProgress(course,payload,percent));
+  }
+
   function saveProgress(course, payload, percent){
     const p = getCurrent();
     if(!cloudConfigured || !p || p.mode !== 'cloud') return;
 
     clearTimeout(SYNC_TIMERS.get(course));
-    SYNC_TIMERS.set(
-      course,
-      setTimeout(() => {
+    const snapshot=JSON.parse(JSON.stringify(payload));
+    const flush=() => {
         SYNC_TIMERS.delete(course);
+        SYNC_PENDING.delete(course);
         const current = getCurrent();
         if(!current || current.profileKey !== p.profileKey || current.userId !== p.userId) return;
         const pct = Number.isFinite(Number(percent)) ? Number(percent) : pagePercent();
-        const requests=SYNC_REQUESTS.get(course)||new Set();
-        const request=cloudPut(course,payload,pct).catch(()=>{}).finally(()=>{requests.delete(request);if(!requests.size)SYNC_REQUESTS.delete(course);});
-        requests.add(request);SYNC_REQUESTS.set(course,requests);
-      }, 650)
-    );
+        cloudPut(course,snapshot,pct).catch(()=>{});
+    };
+    SYNC_PENDING.set(course,flush);
+    SYNC_TIMERS.set(course,setTimeout(flush,650));
   }
 
   async function resetProgress(course,payload){
@@ -406,6 +423,7 @@ applyTheme();
     if(course!==META.course)throw new Error('Wrong course');
     resetVersion++;
     clearTimeout(SYNC_TIMERS.get(course));SYNC_TIMERS.delete(course);
+    SYNC_PENDING.delete(course);
     await Promise.all(SYNC_REQUESTS.get(course)||[]);
     if(getCurrent()?.profileKey!==profile?.profileKey)throw new Error('Profile changed');
     if(cloudConfigured&&profile?.mode==='cloud'){
@@ -584,17 +602,26 @@ applyTheme();
     if(!cloudConfigured || !p || p.mode !== 'cloud' || !code) return;
 
     const pct = clampPercent(percent);
-    await restUpsert('leaderboard_entries', 'user_id,course', {
+    await queueCourseWrite(course,()=>restUpsert('leaderboard_entries', 'user_id,course', {
       user_id:p.userId,
       course:code,
       percent:pct,
       updated_at:new Date().toISOString()
-    });
+    }));
   }
 
   async function getLeaderboard(){
     const p = getCurrent();
     if(!cloudConfigured || !p || p.mode !== 'cloud') return [];
+
+    // Flush the current course before reading: a reset hides its zero-percent row,
+    // and the first new progress must be visible even inside the debounce window.
+    if(META.course&&typeof window.A1CourseProgressPercent==='function'){
+      const flush=SYNC_PENDING.get(META.course);
+      if(flush){clearTimeout(SYNC_TIMERS.get(META.course));flush();}
+      await Promise.all(SYNC_REQUESTS.get(META.course)||[]);
+      await syncLeaderboard(META.course,pagePercent());
+    }
 
     const [entries, profiles] = await Promise.all([
       restGet('leaderboard_entries?select=user_id,course,percent,updated_at&percent=gt.0&order=percent.desc,updated_at.asc&limit=200'),
