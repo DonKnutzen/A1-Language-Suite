@@ -8,7 +8,7 @@
   ];
   const ACCENTS=[['é','e accent aigu'],['è','e accent grave'],['ê','e accent circonflexe'],['ë','e tréma'],['à','a accent grave'],['ç','c cédille'],['ô','o accent circonflexe'],['ù','u accent grave']];
   const DE_NAMES={'Ä':'A Umlaut','Ö':'O Umlaut','Ü':'U Umlaut','ß':'Eszett','J':'Jot','V':'Vau','W':'We'};
-  const UI={de:{title:'Aussprache',repeat:'Höre die Beispiele einzeln an und sprich sie nach.',letters:'Buchstabieren: französische Buchstabennamen',difference:'Der Buchstabenname ist etwas anderes als der Laut in einem Wort. Vergleiche besonders G/J und U mit dem Laut ou.',accents:'Akzente mitnennen',test:'Eigenen Namen buchstabiert anhören',name:'Name zum Buchstabieren',play:'Buchstabieren anhören',unsupported:'Verwende Buchstaben, Leerzeichen und Bindestriche. Sonderzeichen wie é und ç werden mit ihrem Namen gesprochen.',word:'Laut im Wort anhören',special:'Besondere Buchstabennamen'},fr:{title:'Prononciation',repeat:'Écoute chaque exemple, puis répète à voix haute.',special:'Noms de lettres particuliers'},tr:{title:'Telaffuz',repeat:'Örnekleri tek tek dinle ve tekrar et.',special:'Özel harf adları'}};
+  const UI={de:{title:'Aussprache',repeat:'Höre die Beispiele einzeln an und sprich sie nach.',letters:'Alphabet & Buchstabieren',difference:'Buchstabennamen unterscheiden sich vom Laut im Wort. Achte besonders auf G/J und U.',accents:'Akzente mitnennen',test:'Eigenen Namen buchstabiert anhören',name:'Name zum Buchstabieren',play:'Buchstabieren anhören',unsupported:'Verwende Buchstaben, Leerzeichen und Bindestriche. Sonderzeichen wie é und ç werden mit ihrem Namen gesprochen.',word:'Laut im Wort anhören',special:'Besondere Buchstabennamen'},fr:{title:'Prononciation',repeat:'Écoute chaque exemple, puis répète à voix haute.',special:'Noms de lettres particuliers'},tr:{title:'Telaffuz',repeat:'Örnekleri tek tek dinle ve tekrar et.',special:'Özel harf adları'}};
   const speechLang=lang=>({fr:'fr-FR',de:'de-DE',es:'es-ES'})[lang]||lang;
   function spellParts(text,lang){
     const map=new Map(FR_LETTERS.map(([letter,label,audio])=>[letter,audio]));
@@ -17,7 +17,7 @@
     for(const char of String(text||'').normalize('NFC')){
       if(/[\s\-–—.'’]/.test(char))continue;
       let audio;
-      if(lang==='fr')audio=map.get(char)||map.get(char.toUpperCase());
+      if(lang==='fr')audio=map.get(char)||map.get(char.toUpperCase())||map.get(char.toLowerCase());
       else if(lang==='de')audio=DE_NAMES[char]||DE_NAMES[char.toUpperCase()]||(/^[A-Za-z]$/.test(char)?'Der Buchstabe '+char.toUpperCase()+'.':null);
       if(!audio)return null;
       chunks.push(audio);
@@ -26,12 +26,13 @@
   }
   function wordButton(word,lang,label=word){return `<button type="button" class="soft-btn pronunciation-word" data-pron-word="${encodeURIComponent(word)}" data-pron-lang="${lang}">🔊 ${esc(label)}</button>`;}
   function frenchAlphabet(){
-    return `<details class="pronunciation-alphabet"><summary><strong>${UI.de.letters}</strong></summary><p>${UI.de.difference}</p><div class="alphabet-grid">${FR_LETTERS.map(([letter,label,audio])=>`<button type="button" class="alphabet-letter ${'GHJQUVWY'.includes(letter)?'alphabet-important':''}" data-pron-word="${encodeURIComponent(audio)}" data-pron-lang="fr" aria-label="${letter}: ${label} anhören"><strong>${letter}</strong><span>${esc(label)}</span><small>🔊</small></button>`).join('')}</div><h4>${UI.de.accents}</h4><div class="pronunciation-words">${ACCENTS.map(([letter,audio])=>wordButton(audio,'fr',letter+' · '+audio)).join('')}</div><h4>${UI.de.test}</h4><label class="muted" for="spellName">${UI.de.name}</label><input class="text-input" id="spellName" value="Martin" maxlength="40" autocomplete="off"><button class="soft-btn" id="spellOwnName">🔊 ${UI.de.play}</button><div id="spellFeedback" class="muted" role="status"></div></details>`;
+    return `<details class="lesson-explanation pronunciation-panel pronunciation-alphabet"><summary><strong>${UI.de.letters}</strong></summary><p>${UI.de.difference}</p><div class="alphabet-grid">${FR_LETTERS.map(([letter,label,audio])=>`<button type="button" class="alphabet-letter ${'GHJQUVWY'.includes(letter)?'alphabet-important':''}" data-pron-word="${encodeURIComponent(audio)}" data-pron-lang="fr" aria-label="${letter}: ${label} anhören"><strong>${letter}</strong><span>${esc(label)}</span><small>🔊</small></button>`).join('')}</div><h4>${UI.de.accents}</h4><div class="pronunciation-words">${ACCENTS.map(([letter,audio])=>wordButton(audio,'fr',letter+' · '+audio)).join('')}</div><h4>${UI.de.test}</h4><label class="muted" for="spellName">${UI.de.name}</label><input class="text-input" id="spellName" value="Martin" maxlength="40" autocomplete="off"><button class="soft-btn" id="spellOwnName">🔊 ${UI.de.play}</button><div id="spellFeedback" class="muted" role="status"></div></details>`;
   }
   function render(content,lang,uiLang){
     const L=UI[uiLang]||UI.de,p=content.pronunciation||{};
+    if(lang==='fr'&&content.id===2)return frenchAlphabet();
     const samples=lang==='fr'?FR_SAMPLES[content.id]||[]:p.samples||[];
-    const extras=lang==='fr'&&content.id===2?frenchAlphabet():lang==='de'&&content.id===2?`<h4>${esc(L.special)}</h4><div class="pronunciation-words">${Object.entries(DE_NAMES).map(([letter,audio])=>wordButton(audio,'de',letter+' · '+audio)).join('')}</div>`:'';
+    const extras=lang==='de'&&content.id===2?`<h4>${esc(L.special)}</h4><div class="pronunciation-words">${Object.entries(DE_NAMES).map(([letter,audio])=>wordButton(audio,'de',letter+' · '+audio)).join('')}</div>`:'';
     return `<details class="lesson-explanation pronunciation-panel"><summary><strong>${esc(L.title)} · ${esc(p.focus)}</strong></summary><p class="muted">${esc(p.explanation)}</p><p class="muted">${esc(L.repeat)}</p><div class="pronunciation-words">${samples.map(t=>wordButton(t,lang)).join('')}</div>${extras}</details>`;
   }
   function wire(container=document){
@@ -42,3 +43,4 @@
   }
   window.A1Pronunciation={render,wire,spellParts};
 })();
+
