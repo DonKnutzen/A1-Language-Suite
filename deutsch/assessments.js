@@ -5,36 +5,13 @@
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const shuffle=a=>A1Learning.shuffle(a);
   // Each drill belongs to the explanation above it. Theory-only pages remain read steps.
-  const TOPICS={
-    'sein – conjugaison':['g1',[4,6,10,11,12,13]],
-    'haben – conjugaison':['g1',[5]],
-    'Verbes réguliers au présent':['g1',[0,1,8,9]],
-    'heißen et sprechen – conjugaison':['g1',[2,3]],
-    'Articles au nominatif':['g2',[0,1,2,4,9]],
-    'Pluriel: formes importantes':['g2',[6,7]],
-    'Possessif au pluriel':['g2',[8]],
-    'Articles à l’accusatif':['g3',[0,1,2,3,4,6,7,9]],
-    'Commander poliment':['g3',[5,8]],
-    'Mots interrogatifs utiles':['g4',[0,1,2,3,6,7,8,9]],
-    'Ordre des mots':['g4',[4,5]],
-    'Prépositions de temps':['g5',[0,1,2,3,6,7,8]],
-    'Lire l’heure':['g5',[4,5]],
-    'Autres expressions':['g5',[9]],
-    'Modalverben – formes utiles':['g6',[0,1,2,5,6,7]],
-    'Structure avec un modal':['g6',[0,1,2,5,6,7]],
-    'Verbes séparables':['g6',[3,4,8,9]],
-    'kein – nominatif et accusatif':['g7',[0,1,7,9]],
-    'nicht – exemples':['g7',[4,8]],
-    'Possessifs utiles':['g7',[2,3,5,6]]
-  };
   function configure(data){lessons=data.lessons;sets=data.grammarSets;progress=data.practiceProgress;}
   function topicPractice(page){
     const root=document.createElement('div');root.innerHTML=page.html;
     const title=root.querySelector('details')?.dataset.grammarOriginalTitle||page.title;
-    const ref=TOPICS[title];if(!ref)return null;
-    const set=sets.find(s=>s.id===ref[0]);
-    const tasks=ref[1].map(i=>set?.questions[i]).filter(Boolean);
-    return tasks.length?{key:title,title:page.title,setId:set.id,tasks}:null;
+    const drill=window.DE_A1_GRAMMAR_DRILLS?.topics[title];
+    if(!drill)return null;
+    return {key:title,title:page.title,setId:drill.setId,tasks:drill.tasks};
   }
   function practiceState(state,id,key){return state.lessonGrammarPractice?.[id]?.[key]||{};}
   function decorate({root,practice,lesson,state,save,speak,onUpdate}){
@@ -129,8 +106,12 @@
     }
     intro();
   }
-  // No invented questions or fixed French conjugation counts: use the relevant German set.
-  function grammarCheckTasks(){return (sets.find(s=>s.id==='g1')?.questions||[]).filter((_,i)=>i!==5).map(q=>({...q,answer:q.o[q.a]}));}
+  // The mixed grammar check uses the German present-tense question pool.
+  function grammarCheckTasks(){
+    const topics=window.DE_A1_GRAMMAR_DRILLS.topics;
+    return [['sein – conjugaison',3],['haben – conjugaison',2],['Verbes réguliers au présent',3],['heißen et sprechen – conjugaison',2]]
+      .flatMap(([title,count])=>shuffle(topics[title].tasks).slice(0,count)).map(q=>({...q,answer:q.o[q.a]}));
+  }
   function grammarCheckTried(state){return Object.prototype.hasOwnProperty.call(state.lessonGrammarCheckLast||{},1);}
   function grammarCheckBest(state){return Number(state.lessonGrammarCheckBest?.[1]||0);}
   function renderGrammarCheck({view,state,save,speak,onBack}){
