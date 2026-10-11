@@ -82,7 +82,7 @@
       return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)[1])}</strong><small>${steps.findIndex(([key])=>key===activeStep)+1} / ${steps.length}</small></div><nav class="lesson-step-nav" aria-label="Étapes de la leçon">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · terminé':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
     }
     function stepHead(){
-      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
+      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
     function refreshSteps(){
       const nav=view.querySelector('.lesson-step-nav');if(nav){view.querySelector('.lesson-step-context')?.remove();nav.outerHTML=stepNav();}wireStepNav();
@@ -149,6 +149,7 @@
       return `<button class="soft-btn lesson-help-toggle" id="speechHelpBtn" aria-expanded="false" aria-controls="speechHelp">💡 ${esc(L.dialogueHelp)}</button><div class="lesson-writing-help lesson-help-content" id="speechHelp" hidden>${body}</div>`;
     }
     function drawMastery(){
+      window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       if(!hasMastery)return;
       window.A1Voice?.cancel();
       opts.renderMastery({onBack:()=>goStep('check')});
@@ -165,6 +166,7 @@
       }
     }
     function drawOverview(){
+      window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       audioLayoutObserver?.disconnect();
       window.A1Voice?.cancel();
       if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
@@ -221,6 +223,7 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     function drawQuiz(){
+      window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
       A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
@@ -229,6 +232,7 @@
       }});
     }
     function drawApplication(){
+      window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();audioLayoutObserver?.disconnect();comparedText=null;
       const appHead=stepHead()+`<div id="lessonPartStatus" hidden>${statuses()}</div>`;
       view.innerHTML=`${appHead}

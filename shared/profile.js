@@ -1034,8 +1034,41 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+  async function submitBugReport(report){
+    const p=getCurrent();
+    if(!p||p.mode!=='cloud')throw new Error('BUG_LOGIN_REQUIRED');
+    const token=await ensureToken();
+    if(!token)throw new Error('BUG_LOGIN_REQUIRED');
+    const row={id:report.id,user_id:p.userId,reporter_name:p.username,message:report.message,context:report.context};
+    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/bug_reports`,{
+      method:'POST',headers:{...authHeaders(token),Prefer:'return=minimal'},body:JSON.stringify(row)
+    });
+    if(response.status===409)return; // Retrying the same report must not create a duplicate.
+    if(!response.ok)throw await responseError(response);
+  }
+  async function getBugReports(){
+    return restGet('bug_reports?select=id,reporter_name,message,context,status,created_at&order=created_at.desc&limit=200');
+  }
+  async function isBugReportAdmin(){
+    const p=getCurrent();if(!p||p.mode!=='cloud')return false;
+    const rows=await restGet(`bug_report_admins?user_id=eq.${encodeURIComponent(p.userId)}&select=user_id&limit=1`);
+    return rows.length>0;
+  }
+  async function resolveBugReport(id){
+    const token=await ensureToken();if(!token)throw new Error('BUG_LOGIN_REQUIRED');
+    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/bug_reports?id=eq.${encodeURIComponent(id)}`,{
+      method:'PATCH',headers:{...authHeaders(token),Prefer:'return=representation'},body:JSON.stringify({status:'resolved'})
+    });
+    if(!response.ok)throw await responseError(response);
+    if(!(await response.json()).length)throw new Error('BUG_NOT_UPDATED');
+  }
+
   window.A1Profile = {
     cloudConfigured,
+    submitBugReport,
+    getBugReports,
+    isBugReportAdmin,
+    resolveBugReport,
     getCurrent,
     getUiLang,
     setUiLang,
