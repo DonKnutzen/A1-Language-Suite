@@ -347,6 +347,118 @@ const LESSON_APPLICATIONS={
   }
 };
 
+const LESSON_WRITING_HINTS = {
+  "7": [
+    "un kilo de …",
+    "deux bouteilles de …",
+    "500 grammes de …",
+    "un litre de …"
+  ],
+  "8": [
+    "Dans mon appartement, il y a …",
+    "Il y a … et …",
+    "La lampe est sur …"
+  ],
+  "9": [
+    "Allez tout droit.",
+    "Puis tournez à …",
+    "Le café est à …"
+  ],
+  "10": [
+    "Je suis …",
+    "Je travaille à … / J’étudie à …",
+    "Je travaille du … au …",
+    "J’aime …"
+  ],
+  "11": [
+    "Je me lève à …",
+    "Je prends …, puis je …",
+    "À …, je vais …",
+    "Maintenant, je suis en train de …"
+  ],
+  "12": [
+    "Bonjour, je suis malade.",
+    "Je ne peux pas venir …",
+    "Je suis désolé(e).",
+    "À …"
+  ],
+  "13": [
+    "En …, il fait …",
+    "Demain, il va faire … degrés.",
+    "Je porte …"
+  ],
+  "14": [
+    "Le week-end, je …",
+    "J’aime …",
+    "Le samedi, je …",
+    "Le dimanche, je …"
+  ],
+  "15": [
+    "Bonjour, je voudrais réserver …",
+    "pour … personnes, du … au …",
+    "Merci de confirmer …"
+  ],
+  "16": [
+    "Salut ! Tu veux venir … ?",
+    "On se retrouve … à … ?",
+    "Si tu ne peux pas, on peut …",
+    "À bientôt !"
+  ],
+  "17": [
+    "Nom : … / Adresse : … / Téléphone : …",
+    "Bonjour, je voudrais des informations sur …",
+    "Je suis disponible …",
+    "Je voudrais connaître …",
+    "Merci pour votre réponse."
+  ],
+  "18": [
+    "Bonjour, j’aimerais des informations sur …",
+    "Quels sont les horaires et le prix ?",
+    "Pourriez-vous …, s’il vous plaît ?",
+    "Merci d’avance."
+  ],
+  "19": [
+    "C’est un … / C’est une …",
+    "Ce sont des …",
+    "Voici …",
+    "Voilà …"
+  ],
+  "20": [
+    "Je travaille …",
+    "Je regarde …",
+    "Je cuisine …",
+    "Je ne travaille pas …",
+    "Je ne regarde jamais …",
+    "Je ne cuisine pas …"
+  ],
+  "21": [
+    "Qui est-ce ?",
+    "Qu’est-ce que c’est ?",
+    "Où habitez-vous ?",
+    "Quel est votre … ?"
+  ],
+  "22": [
+    "Hier, je suis allé(e) …",
+    "Aujourd’hui, je viens de …",
+    "Je suis arrivé(e) il y a …",
+    "Demain, je vais …"
+  ],
+  "23": [
+    "… grammes de …",
+    "un peu de …",
+    "J’utilise … pour …",
+    "Il faut …",
+    "Il ne faut pas …"
+  ],
+  "24": [
+    "Bonjour ! En …, je vais …",
+    "Je pars en … avec …",
+    "Nous restons … jours.",
+    "Nous voulons …",
+    "À bientôt !"
+  ]
+};
+
 function renderLesson(id){
   const l=lessons.find(x=>x.id===id),c=l,app=LESSON_APPLICATIONS[id];
   const goalsHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
@@ -358,7 +470,7 @@ function renderLesson(id){
     goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
     renderMastery:({onBack})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,
-    model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints,writingHelpText:app.writingHelpText,fullModel:true,recorderHtml:id=>recorderHtml(id,true),
+    model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints||LESSON_WRITING_HINTS[id],writingHelpText:app.writingHelpText,fullModel:true,recorderHtml:id=>recorderHtml(id,true),
     repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });
 }
