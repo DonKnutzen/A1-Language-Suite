@@ -5973,7 +5973,7 @@ window.FR_A1_DATA = {
   "forms": [
     {
       "id": "pef1",
-      "context": "Jonas Keller, geboren am 14.03.1995 in Hamburg, ist Deutscher und wohnt in der Lindenstraße 8, 10115 Berlin. Er arbeitet als Techniker, spricht Deutsch und Englisch, seine Telefonnummer ist 0176 5554433 und seine E-Mail ist jonas.keller@example.com. Er meldet sich für einen Französischkurs am Vormittag an.",
+      "context": "Jonas Keller est né le 14 mars 1995 à Hambourg. Il est allemand. Il habite Lindenstraße 8, 10115 Berlin. Il est technicien. Il parle allemand et anglais. Son téléphone est le 0176 5554433. Son e-mail est jonas.keller@example.com. Il veut suivre un cours de français le matin. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6047,7 +6047,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef2",
-      "context": "Mia Schneider reist allein nach Lyon. Sie ist Deutsche, wohnt am Marktplatz 3 in Köln und arbeitet als Lehrerin. Sie kommt am 8. Juli an und fährt am 11. Juli ab. Sie möchte ein Einzelzimmer, spricht Deutsch und Französisch, Telefonnummer 0151 2020304, und hat keinen Hund oder anderes Haustier.",
+      "context": "Mia Schneider voyage seule à Lyon. Elle est allemande. Elle habite Marktplatz 3 à Cologne. Elle est professeure. Elle arrive le 8 juillet et repart le 11 juillet. Elle veut une chambre simple. Elle parle allemand et français. Son téléphone est le 0151 2020304. Elle n’a pas d’animal. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6124,7 +6124,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef3",
-      "context": "Paul Weber ist 31 Jahre alt, Kanadier und wohnt 25 rue King, Halifax. Er arbeitet als Entwickler. Seine E-Mail ist paul.weber@example.com, Telefon 902-555-1122. Er spricht Englisch und Deutsch, lernt seit sechs Monaten Französisch und möchte einen Kurs am Dienstagabend besuchen.",
+      "context": "Paul Weber a 31 ans. Il est canadien. Il habite 25 rue King à Halifax. Il est développeur. Son e-mail est paul.weber@example.com et son téléphone est le 902-555-1122. Il parle anglais et allemand. Il apprend le français depuis six mois. Il veut suivre un cours le mardi soir. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6198,7 +6198,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef4",
-      "context": "Clara Hoffmann reserviert im Restaurant Le Jardin. Die Reservierung ist für Samstag, den 18. Oktober, um 20 Uhr, für vier Personen. Sie möchte einen Tisch innen, eine Person ist Vegetarierin. Telefonnummer 902-555-8123, E-Mail clara.h@example.com. Anlass ist ein Geburtstag.",
+      "context": "Clara Hoffmann réserve une table au restaurant Le Jardin. La réservation est pour le samedi 18 octobre à 20 h, pour quatre personnes. Elle veut une table à l’intérieur. Une personne est végétarienne. Son téléphone est le 902-555-8123. Son e-mail est clara.h@example.com. C’est pour un anniversaire. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6273,7 +6273,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef5",
-      "context": "Max Bauer möchte in Bordeaux ein Fahrrad mieten. Er ist 29, wohnt in München, Telefon 089 334455. Er möchte ein Citybike in Größe L für zwei Tage, vom 3. bis 4. August. Abholung ist um 9 Uhr, Rückgabe um 18 Uhr. Er bezahlt mit Kreditkarte.",
+      "context": "Max Bauer veut louer un vélo à Bordeaux. Il a 29 ans et habite à Munich. Son téléphone est le 089 334455. Il veut un vélo de ville de taille L pour deux jours, du 3 au 4 août. Il prend le vélo à 9 h et le rend à 18 h. Il paie par carte de crédit. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6347,7 +6347,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef6",
-      "context": "Anna Klein meldet sich für einen Kochkurs in Paris an. Sie ist 27, Österreicherin, vegetarisch und spricht Deutsch, Englisch und etwas Französisch. Sie kann Dienstagabend. E-Mail anna.klein@example.com, Telefon 0664 112233. Sie möchte den Kurs 'Cuisine française débutant' ab 12. November besuchen.",
+      "context": "Anna Klein veut suivre un cours de cuisine à Paris. Elle a 27 ans. Elle est autrichienne et végétarienne. Elle parle allemand, anglais et un peu français. Elle est libre le mardi soir. Son e-mail est anna.klein@example.com. Son téléphone est le 0664 112233. Elle veut suivre le cours « Cuisine française débutant » à partir du 12 novembre. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6421,7 +6421,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef7",
-      "context": "Sophie Martin füllt im Hotel ein Anmeldeformular aus. Sie ist Französin, geboren am 2. Februar 1992, wohnt 14 rue des Lilas in Strasbourg und arbeitet als Journalistin. Sie kommt am 21. Juni und fährt am 24. Juni ab. Sie spricht Französisch und Englisch, reist mit einer Katze und unterschreibt mit Sophie Martin.",
+      "context": "Sophie Martin remplit un formulaire à l’hôtel. Elle est française et est née le 2 février 1992. Elle habite 14 rue des Lilas à Strasbourg. Elle est journaliste. Elle arrive le 21 juin et repart le 24 juin. Elle parle français et anglais. Elle voyage avec un chat. Elle signe « Sophie Martin ». Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6495,7 +6495,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef8",
-      "context": "Lucas Meier möchte sich für eine Bibliothekskarte anmelden. Er ist Schweizer, 22 Jahre alt, Student, wohnt 8 avenue Victor Hugo in Lausanne. Telefon 079 345 67 89, E-Mail lucas.meier@mail.ch. Er spricht Deutsch und Französisch. Er möchte die Karte ab heute, dem 5. September, nutzen und bezahlt bar.",
+      "context": "Lucas Meier veut une carte de bibliothèque. Il est suisse, a 22 ans et est étudiant. Il habite 8 avenue Victor Hugo à Lausanne. Son téléphone est le 079 345 67 89. Son e-mail est lucas.meier@mail.ch. Il parle allemand et français. Il veut utiliser la carte dès aujourd’hui, le 5 septembre. Il paie en espèces. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6568,7 +6568,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef9",
-      "context": "Elena Rossi meldet sich für einen Arzttermin an. Sie ist Italienerin, 35 Jahre alt, wohnt 6 rue Centrale in Genève. Sie hat seit gestern 39 Grad Fieber und Halsschmerzen. Telefonnummer 022 555 44 11. Sie kann am Mittwochvormittag kommen, spricht Italienisch und Französisch und ist nicht allergisch gegen Medikamente.",
+      "context": "Elena Rossi prend rendez-vous chez le médecin. Elle est italienne et a 35 ans. Elle habite 6 rue Centrale à Genève. Depuis hier, elle a 39 degrés de fièvre et mal à la gorge. Son téléphone est le 022 555 44 11. Elle peut venir le mercredi matin. Elle parle italien et français. Elle n’a pas d’allergie aux médicaments. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -6645,7 +6645,7 @@ window.FR_A1_DATA = {
     },
     {
       "id": "pef10",
-      "context": "David Brown reserviert einen Zug von Lille nach Paris. Er fährt am Freitag, den 9. Januar, um 14:20 Uhr, zweite Klasse, einfache Fahrt. Er ist Brite, 41 Jahre alt, E-Mail david.brown@example.co.uk, Telefon 020 7788 9900 und bezahlt mit Karte.",
+      "context": "David Brown réserve un billet de train de Lille à Paris. Il part le vendredi 9 janvier à 14 h 20. Il veut un aller simple en deuxième classe. Il est britannique et a 41 ans. Son e-mail est david.brown@example.co.uk. Son téléphone est le 020 7788 9900. Il paie par carte. Lisez et remplissez le formulaire.",
       "fields": [
         {
           "label": "Nom",
@@ -8796,3 +8796,4 @@ window.FR_A1_DATA = {
     "limitation": "Niveau A1 pour le français (Beacco/Porquier, 2007) wurde bibliografisch geprüft; der Volltext lag nicht vor. Kein vollständiger Inventarabgleich mit diesem Buch."
   }
 };
+
