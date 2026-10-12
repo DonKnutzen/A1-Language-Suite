@@ -35,8 +35,9 @@ test('mobile typing contracts the panel and follows keyboard viewport scrolling'
   const {dom,w}=await ui(w=>{Object.defineProperty(w,'innerWidth',{value:390,writable:true});Object.defineProperty(w,'innerHeight',{value:800,writable:true});vv=new w.EventTarget();Object.assign(vv,{height:800,width:390,offsetTop:0,offsetLeft:0,scale:1});w.visualViewport=vv;});
   const tick=()=>new Promise(r=>w.requestAnimationFrame(()=>w.requestAnimationFrame(r)));
   w.A1BugReports.open();const dialog=w.document.getElementById('a1BugDialog'),input=w.document.getElementById('a1BugMessage');dialog.getBoundingClientRect=()=>({width:374,height:56});
-  input.value='Diese Frage ist unklar';input.focus();vv.height=350;vv.offsetTop=60;vv.dispatchEvent(new w.Event('resize'));await tick();assert(dialog.classList.contains('keyboard-compact'));assert.equal(dialog.style.top,'350px');assert.equal(dialog.style.width,'374px');
-  vv.offsetTop=180;vv.dispatchEvent(new w.Event('scroll'));await tick();assert.equal(dialog.style.top,'470px');assert.equal(input.value,'Diese Frage ist unklar');assert(dialog.open);
+  input.value='Diese Frage ist unklar';input.focus();vv.height=350;vv.offsetTop=60;vv.dispatchEvent(new w.Event('resize'));await tick();assert(dialog.classList.contains('keyboard-compact'));assert.equal(dialog.style.transform,'translate3d(8px,350px,0)');assert.equal(dialog.style.width,'374px');
+  vv.offsetTop=180;vv.dispatchEvent(new w.Event('scroll'));await tick();assert.equal(dialog.style.transform,'translate3d(8px,470px,0)');
+  vv.offsetTop=180.6;vv.dispatchEvent(new w.Event('scroll'));await tick();assert.equal(dialog.style.transform,'translate3d(8px,470px,0)');assert.equal(input.value,'Diese Frage ist unklar');assert(dialog.open);
   input.blur();vv.height=800;vv.offsetTop=0;vv.dispatchEvent(new w.Event('resize'));await tick();assert(!dialog.classList.contains('keyboard-compact'));
   w.document.getElementById('a1BugClose').click();assert.equal(dialog.style.top,'');assert(!dialog.open);dom.window.close();
 });

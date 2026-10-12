@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-fill-83',trail=[];
+  const BUILD='bug-stable-84',trail=[];
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -133,14 +133,14 @@
       dialog.querySelectorAll('[data-bug-resolve]').forEach(b=>b.onclick=async()=>{b.disabled=true;try{await A1Profile.resolveBugReport(b.dataset.bugResolve);showReports();}catch{dialog.querySelector('#a1BugStatus').textContent=L.error;b.disabled=false;}});
     }catch(error){dialog.querySelector('#a1BugStatus').textContent=error.message==='No active cloud session'?L.login:L.setup;}
   }
-  let viewportFrame=null,viewportWidth=innerWidth,viewportBaseline=innerHeight;
+  let viewportFrame=null,viewportWidth=innerWidth,viewportBaseline=innerHeight,panelX=null,panelY=null;
   function updatePanelViewport(){
     if(!dialog)return;
     const vv=window.visualViewport,mobile=innerWidth<=760;
     if(!dialog.open||!mobile){
       dialog.classList.remove('keyboard-compact');
-      for(const name of ['top','left','right','bottom','width','max-height'])dialog.style.removeProperty(name);
-      return;
+      for(const name of ['top','left','right','bottom','width','max-height','transform','will-change'])dialog.style.removeProperty(name);
+      panelX=panelY=null;return;
     }
     if(Math.abs(innerWidth-viewportWidth)>80){viewportWidth=innerWidth;viewportBaseline=innerHeight;}
     const height=vv?.height||innerHeight,width=vv?.width||innerWidth;
@@ -149,12 +149,19 @@
     const keyboard=(vv?.scale||1)<1.05&&viewportBaseline-height>120;
     const compact=dialog.dataset.mode==='composer'&&(editing||keyboard)&&!dialog.classList.contains('is-collapsed');
     dialog.classList.toggle('keyboard-compact',compact);
-    dialog.style.width=Math.min(compact?width-16:350,width-16)+'px';
-    dialog.style.maxHeight=Math.max(64,compact?Math.min(100,height*.3):height*.5)+'px';
+    const panelWidth=Math.min(compact?width-16:350,width-16)+'px',limit=Math.max(64,compact?Math.min(100,height*.3):height*.5)+'px';
+    if(dialog.style.width!==panelWidth)dialog.style.width=panelWidth;
+    if(dialog.style.maxHeight!==limit)dialog.style.maxHeight=limit;
     dialog.style.bottom='auto';dialog.style.right='auto';
     const rect=dialog.getBoundingClientRect(),gap=compact?4:8;
-    dialog.style.left=Math.max(8,(vv?.offsetLeft||0)+width-rect.width-8)+'px';
-    dialog.style.top=Math.max(vv?.offsetTop||0,(vv?.offsetTop||0)+height-rect.height-gap)+'px';
+    const x=Math.round(Math.max(8,(vv?.offsetLeft||0)+width-rect.width-8));
+    const y=Math.round(Math.max(vv?.offsetTop||0,(vv?.offsetTop||0)+height-rect.height-gap));
+    // Composite movement without triggering layout; ignore one-pixel viewport noise.
+    if(panelX===null||Math.abs(x-panelX)>1)panelX=x;
+    if(panelY===null||Math.abs(y-panelY)>1)panelY=y;
+    dialog.style.left='0px';dialog.style.top='0px';dialog.style.willChange='transform';
+    const position=`translate3d(${panelX}px,${panelY}px,0)`;
+    if(dialog.style.transform!==position)dialog.style.transform=position;
   }
   function schedulePanelViewport(){
     if(viewportFrame!==null)return;
@@ -162,7 +169,7 @@
   }
   function init(){
     const style=document.createElement('style');style.textContent=`
-#a1BugLauncher{position:fixed;z-index:1000;right:12px;bottom:calc(94px + env(safe-area-inset-bottom));border:1px solid #94a3b8;border-radius:999px;background:#f8fafc;color:#334155;padding:8px 12px;font:600 12px system-ui;box-shadow:0 3px 14px #0002;cursor:pointer}
+#a1BugLauncher{transform:translateZ(0);position:fixed;z-index:1000;right:12px;bottom:calc(94px + env(safe-area-inset-bottom));border:1px solid #94a3b8;border-radius:999px;background:#f8fafc;color:#334155;padding:8px 12px;font:600 12px system-ui;box-shadow:0 3px 14px #0002;cursor:pointer}
 #a1BugDialog{box-sizing:border-box;width:min(440px,calc(100% - 24px));max-height:85dvh;overflow:auto;padding:20px;border:1px solid #cbd5e1;border-radius:20px;color:#0f172a;background:#fff;font:16px system-ui}#a1BugDialog::backdrop{background:#0007}#a1BugDialog h2{font-size:20px;margin:16px 0 8px}.a1-bug-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.a1-bug-top button{font-size:25px;background:transparent;border:0;color:inherit;padding:0 8px;cursor:pointer}.a1-bug-location,.a1-bug-note{font-size:12px;line-height:1.5;color:#64748b}.a1-bug-label{display:block;font-size:13px;margin:16px 0 6px}#a1BugMessage{box-sizing:border-box;display:block;width:100%;padding:12px;font:16px system-ui;border:1px solid #94a3b8;border-radius:12px;resize:vertical;color:inherit;background:transparent}.a1-bug-preview{font-size:13px;line-height:1.45;background:#64748b12;border-radius:12px;padding:12px;overflow-wrap:anywhere}.a1-bug-preview ul{margin:8px 0;padding-left:18px}.a1-bug-preview details{margin-top:8px}.a1-bug-preview details p{margin:6px 0}.a1-bug-quick{border:0;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px}.a1-bug-quick legend{font-size:12px;margin-bottom:8px;color:#64748b}.a1-bug-quick button{border:1px solid #94a3b8;border-radius:999px;background:transparent;color:inherit;font:600 12px system-ui;min-height:40px;padding:8px 10px;cursor:pointer}.a1-bug-quick button[aria-pressed="true"]{background:#2563eb;color:#fff;border-color:#2563eb}.a1-bug-quick button:disabled{opacity:.6}.a1-bug-primary{background:#2563eb;color:white;border:0;border-radius:12px;padding:12px 16px;font:600 14px system-ui;cursor:pointer}.a1-bug-primary:disabled{opacity:.6}.a1-bug-link{display:block;margin:12px auto 0;border:0;background:transparent;color:#2563eb;font:600 13px system-ui;padding:8px;cursor:pointer}.a1-bug-reports article{border-top:1px solid #cbd5e1;padding:16px 0;overflow-wrap:anywhere}.a1-bug-reports small{display:block;font-size:11px;color:#64748b;margin-top:6px}.a1-bug-reports p{white-space:pre-wrap;line-height:1.5}.a1-bug-reports blockquote{margin:8px 0;padding-left:12px;border-left:3px solid #94a3b8;font-size:13px}#a1BugStatus{font-size:13px;line-height:1.5}html.dark-mode #a1BugDialog,body.dark #a1BugDialog{background:#1e293b;color:#f8fafc}html.dark-mode .a1-bug-note,html.dark-mode .a1-bug-location{color:#94a3b8}html.dark-mode #a1BugLauncher,body.dark #a1BugLauncher{background:#1e293b;color:#e2e8f0}@media(min-width:761px){#a1BugLauncher{bottom:20px}}`;
     style.textContent+=`
 #a1BugDialog{position:fixed;inset:auto 12px 20px auto;margin:0;width:min(350px,calc(100% - 24px));max-height:65dvh;z-index:1002;padding:12px;border-radius:16px;box-shadow:0 8px 32px #0003}#a1BugDialog::backdrop{background:transparent}.a1-bug-top{font-size:14px}.a1-bug-top>div{display:flex}.a1-bug-top button{font-size:22px;min-width:32px;min-height:32px}.a1-bug-location{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0 8px}.a1-bug-preview{padding:0;background:transparent}.a1-bug-preview summary{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:#64748b;cursor:pointer}.a1-bug-preview[open]{padding:8px;background:#64748b12;max-height:120px;overflow:auto}.a1-bug-sr,.a1-bug-quick legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.a1-bug-quick{margin:8px 0}.a1-bug-quick button{min-height:34px;padding:6px 12px}#a1BugMessage{padding:8px;min-height:60px;max-height:100px;resize:none}.a1-bug-actions{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px}.a1-bug-primary{padding:9px 12px}.a1-bug-tools{position:relative}.a1-bug-tools>summary{cursor:pointer;list-style:none;font-size:24px;padding:0 10px}.a1-bug-tools[open]{padding:4px 8px;background:#64748b12;border-radius:10px}.a1-bug-tools .a1-bug-link{margin:0;padding:6px;font-size:12px}#a1BugStatus:empty{display:none}#a1BugStatus{margin:6px 0}#a1BugDialog.is-collapsed>:not(.a1-bug-top){display:none!important}#a1BugDialog.is-collapsed{width:auto}html.dark-mode .a1-bug-preview summary{color:#94a3b8}@media(max-width:760px){#a1BugDialog{bottom:calc(8px + env(safe-area-inset-bottom));width:min(350px,calc(100% - 24px));max-height:50dvh}#a1BugDialog[data-mode="composer"]{max-height:40dvh}}`;
