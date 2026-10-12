@@ -26,6 +26,10 @@ Ask Phillip for **a1-bug-reports.json**, exported from that overview, and read i
 Do not claim direct access to private reports without an authenticated session or an export.
 Match `context.course`, `lessonId`, `step`, `grammarIndex`, `grammarTitle`,
 `question`, `options`, `position` and `actions` to the relevant source.
+Schema 2 also includes `taskTexts` (reading/form/task text), `formFields`,
+`audioTexts`, `exerciseKey` and `capturedAt`. Context is frozen when the dialog opens.
+The overview exposes this content under **Aufgabeninhalt**; typed learner answers remain excluded.
+Older reports cannot retroactively recover missing context.
 `assets` records the actual loaded asset versions for stale-cache diagnosis.
 French source: `francais/lesson-flow.js`, `lesson1-practice.js`, `mastery.js`,
 `mastery-specs.js`, `data.js`, `app.js`.
@@ -35,3 +39,8 @@ Shared UI issues: `shared/bug-reports.js` and `shared/profile.js`.
 Use the report UUID in fixes to make the connection explicit.
 
 Checks: `node --test tests/bug-reports.test.cjs`.
+
+When reviewing an export, group reports by reporter and task. Summarize the
+reported problem, the exact location and proposed change, distinguishing suggestions
+from verified bugs. Preserve report UUIDs. Present concrete implementation instructions
+to Phillip, then implement and push only the changes he authorizes.

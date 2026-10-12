@@ -28,6 +28,6 @@ test('resolving a report requires the server to confirm an updated row',async()=
   const a=api({mode:'cloud',access_token:'token'},async()=>({ok:true,json:async()=>[]}));await assert.rejects(a.resolveBugReport('report-1'),/BUG_NOT_UPDATED/);
 });
 test('all supported pages and offline caches include the reporting module',()=>{
-  for(const page of ['index.html','francais/index.html','deutsch/index.html'])assert(fs.readFileSync(path.join(root,page),'utf8').includes('bug-reports.js?v=bug-reports-69'));
-  for(const course of ['francais','deutsch'])assert(fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8').includes('bug-reports.js?v=bug-reports-69'));
+  for(const page of ['index.html','francais/index.html','deutsch/index.html'])assert(fs.readFileSync(path.join(root,page),'utf8').includes('bug-reports.js?v=bug-context-72'));
+  for(const course of ['francais','deutsch'])assert(fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8').includes('bug-reports.js?v=bug-context-72'));
 });

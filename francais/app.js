@@ -671,7 +671,7 @@ function renderListeningTask(part,examMode=false,onDone=null,forced=null,progres
   const options=part===2?['Richtig','Falsch']:task.o;
   view.innerHTML=`
     <div class="between"><button class="tiny-btn" id="backListen">← ${examMode?'Prüfung':'Hören'}</button><span class="pill">${progressLabel||'Teil '+part}</span></div>
-    <section class="card" style="margin-top:12px">
+    <section class="card" data-bug-audio="${esc(task.speech)}" style="margin-top:12px">
       <div class="audio-panel"><button class="speak-btn large" id="playAudio">▶️</button><div><strong>Audio abspielen</strong></div><div class="play-count" id="playCount">${examMode?`0/${maxPlays} Wiedergaben`:'Training · beliebig oft'}</div></div>
       <div class="quiz-q">${esc(part===2?task.statement:task.q)}</div>
       <div class="options">${options.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div>

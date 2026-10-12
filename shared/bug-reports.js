@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-reports-69',trail=[];
+  const BUILD='bug-context-72',trail=[];
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -11,6 +11,8 @@
   };
   const language=()=>A1Profile.getUiLang?.()||document.documentElement.lang;
   const labels=()=>words[language()]||words.en;
+  const visible=el=>!el.closest('[hidden]')&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden';
+  const collect=(root,selector,max=1200)=>[...root.querySelectorAll(selector)].filter(visible).map(el=>text(el,max)).filter(Boolean);
   function context(){
     const view=document.getElementById('view')||document.querySelector('main')||document.body;
     const header=view.querySelector('[data-bug-lesson]');
@@ -22,7 +24,18 @@
     const grammar=view.querySelector('.lesson-grammar-segment.active');
     const question=text(view.querySelector('.quiz-q')||view.querySelector('#lessonSpeaking:not([hidden]) .lesson-task-prompt')||view.querySelector('#lessonWritingSection:not([hidden]) .lesson-task-prompt'));
     const course=window.A1_APP_META?.course||'suite';
-    return {schema:1,surface:document.querySelector('.profile-overlay')?'profile':'course',course,path:location.pathname,route:document.querySelector('[data-route].active')?.dataset.route||'home',lessonId:lesson?Number(lesson):null,step,grammarIndex:grammar?Number(grammar.dataset.grammarProgress):point?.grammarIndex??null,grammarTitle:grammar?.getAttribute('aria-label')?.replace(/ · .*/, '')||null,heading,question,meaning:text(view.querySelector('.mixed-context'),800),tokens:[...view.querySelectorAll('.mixed-token')].map(el=>text(el,80)),visibleExamples:[...view.querySelectorAll('.lesson-core-phrase:not([hidden]) strong')].slice(0,12).map(el=>text(el,250)),options:[...view.querySelectorAll('.option-btn')].slice(0,8).map(el=>text(el,250)),position:text(view.querySelector('.lesson-audio-pager #audioPageStatus')||view.querySelector('.grammar-drill-stage>small')||view.querySelector('.between>.pill'),80),language:language(),viewport:{width:innerWidth,height:innerHeight},userAgent:navigator.userAgent.slice(0,300),build:BUILD,assets:[...document.scripts].map(s=>s.getAttribute('src')).filter(s=>s&&/[?]v=/.test(s)).slice(0,20),actions:trail.slice(-12)};
+    // Only authored task content: never input values, recordings or answer feedback.
+    const sourceTexts=collect(view,'.reading-text,.ad-box,.sign,.card > p,.lesson-task-prompt',1800).slice(0,8);
+    let remaining=6000;
+    const taskTexts=sourceTexts.map(s=>{const part=s.slice(0,remaining);remaining-=part.length;return part;}).filter(Boolean);
+    const formFields=collect(view,'.form-grid .field label',120).slice(0,20);
+    const audioTexts=[...view.querySelectorAll('[data-bug-audio],[data-speak]')].filter(visible).map(el=>{try{return el.dataset.bugAudio||decodeURIComponent(el.dataset.speak);}catch{return '';}}).filter(Boolean).slice(0,12).map(s=>s.slice(0,500));
+    const options=collect(view,'.option-btn',250).slice(0,8);
+    const identity=JSON.stringify([course,lesson,step,question,taskTexts,formFields,options,audioTexts]);
+    let hash=2166136261;for(const char of identity)hash=Math.imul(hash^char.codePointAt(0),16777619);
+    const exerciseKey='task-'+(hash>>>0).toString(16);
+
+    return {schema:2,capturedAt:new Date().toISOString(),exerciseKey,taskTexts,formFields,audioTexts,surface:document.querySelector('.profile-overlay')?'profile':'course',course,path:location.pathname,route:document.querySelector('[data-route].active')?.dataset.route||'home',lessonId:lesson?Number(lesson):null,step,grammarIndex:grammar?Number(grammar.dataset.grammarProgress):point?.grammarIndex??null,grammarTitle:grammar?.getAttribute('aria-label')?.replace(/ · .*/, '')||null,heading,question,meaning:text(view.querySelector('.mixed-context'),800),tokens:[...view.querySelectorAll('.mixed-token')].map(el=>text(el,80)),visibleExamples:[...view.querySelectorAll('.lesson-core-phrase:not([hidden]) strong')].slice(0,12).map(el=>text(el,250)),options,position:text(view.querySelector('.lesson-audio-pager #audioPageStatus')||view.querySelector('.grammar-drill-stage>small')||view.querySelector('.between>.pill'),80),language:language(),viewport:{width:innerWidth,height:innerHeight},userAgent:navigator.userAgent.slice(0,300),build:BUILD,assets:[...document.scripts].map(s=>s.getAttribute('src')).filter(s=>s&&/[?]v=/.test(s)).slice(0,20),actions:trail.slice(-12)};
   }
   document.addEventListener('click',e=>{
     if(e.target.closest('#a1BugDialog,#a1BugLauncher,.profile-overlay'))return;
@@ -53,11 +66,18 @@
     dialog.querySelector('#a1BugList').onclick=()=>{if(!sent)storeDraft(key,input.value);showReports();};
     if(!dialog.open)dialog.showModal();input.focus();
   }
+  function reportDetails(c){
+    if(!c)return '';
+    const lines=[c.question,c.meaning,...(c.taskTexts||[]),...(c.tokens||[]),...(c.options||[]),...(c.formFields||[]),...(c.audioTexts||[])].filter(Boolean);
+    const content=[...new Set(lines)].map(s=>`<p>${esc(s)}</p>`).join('');
+    const title=language()==='de'?'Aufgabeninhalt':language()==='fr'?'Contenu de l’exercice':'Exercise content';
+    return content?`<details><summary>${esc(title)}</summary><small>${esc([c.lessonId?`#${c.lessonId}`:'',c.step,c.position,c.exerciseKey].filter(Boolean).join(' · '))}</small>${content}</details>`:'';
+  }
   async function showReports(){
     const L=labels();frame(`<h2>${esc(L.list)}</h2><p id="a1BugStatus" role="status">…</p>`);
     try{
       const [reports,admin]=await Promise.all([A1Profile.getBugReports(),A1Profile.isBugReportAdmin()]);
-      frame(`<h2>${esc(L.list)}</h2><p class="a1-bug-note">${esc(L.latest)}</p><button type="button" class="a1-bug-primary" id="a1BugExport">${esc(L.export)}</button><p id="a1BugStatus" role="status"></p><div class="a1-bug-reports">${reports.map(r=>`<article><strong>${esc(r.context?.heading||r.context?.course)} · ${esc(r.status==='resolved'?'✓':'○')}</strong><small>${esc(r.reporter_name)} · ${esc(r.created_at)} · ${esc(r.id)}</small><p>${esc(r.message)}</p>${r.context?.question?`<blockquote>${esc(r.context.question)}</blockquote>`:''}${admin&&r.status!=='resolved'?`<button type="button" class="a1-bug-link" data-bug-resolve="${esc(r.id)}">${esc(L.resolve)}</button>`:''}</article>`).join('')||`<p>${esc(L.empty)}</p>`}</div>`);
+      frame(`<h2>${esc(L.list)}</h2><p class="a1-bug-note">${esc(L.latest)}</p><button type="button" class="a1-bug-primary" id="a1BugExport">${esc(L.export)}</button><p id="a1BugStatus" role="status"></p><div class="a1-bug-reports">${reports.map(r=>`<article><strong>${esc(r.context?.heading||r.context?.course)} · ${esc(r.status==='resolved'?'✓':'○')}</strong><small>${esc(r.reporter_name)} · ${esc(r.created_at)} · ${esc(r.id)}</small><p>${esc(r.message)}</p>${reportDetails(r.context)}${admin&&r.status!=='resolved'?`<button type="button" class="a1-bug-link" data-bug-resolve="${esc(r.id)}">${esc(L.resolve)}</button>`:''}</article>`).join('')||`<p>${esc(L.empty)}</p>`}</div>`);
       dialog.querySelector('#a1BugExport').onclick=()=>{
         const blob=new Blob([JSON.stringify({schema:1,exportedAt:new Date().toISOString(),reports},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='a1-bug-reports.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
       };
