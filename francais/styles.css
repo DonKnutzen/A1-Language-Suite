@@ -1010,3 +1010,8 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 .lesson-pronunciation-bonus .pronunciation-alphabet label{font-size:12px}
 .lesson-pronunciation-bonus #spellName{font-size:16px;padding:9px 10px;margin:6px 0 8px}
 .lesson-pronunciation-bonus #spellOwnName{padding:9px 10px;font-size:13px;border-radius:9px}
+
+/* Short, inline preparation tasks use the existing lesson navigation. */
+.deepening-preparation > p{font-size:.94rem;line-height:1.65}.deepening-examples .phrase-row{padding:9px 0}.deepening-examples .speak-btn{flex-shrink:0}.deepening-examples small,.deepening-form-example small{display:block;color:var(--muted);font-size:.85rem;margin-top:3px}.deepening-form-examples{margin:12px 0;display:grid;gap:8px}.deepening-form-example{border-left:2px solid #3b82f666;padding-left:10px;font-size:.92rem}.deepening-practice{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}.deepening-stage > small{display:block;margin-top:14px;color:var(--muted)}.deepening-feedback .feedback p{font-size:.9rem;line-height:1.5;margin:8px 0}.deepening-feedback > .primary-btn{margin-top:10px}.deepening-result{margin-top:12px}.deepening-stage .options{gap:8px}
+
+.deepening-examples{display:flex;flex-wrap:wrap;column-gap:14px}.deepening-examples .phrase-row{width:100%;box-sizing:border-box}.deepening-examples .deepening-word{width:calc(50% - 7px);gap:6px;align-items:flex-start}.deepening-word .speak-btn{width:32px;height:32px;min-width:32px;font-size:14px}.deepening-background{font-size:.86rem;line-height:1.55;color:var(--muted);margin:12px 0}.deepening-background table{color:var(--text)}

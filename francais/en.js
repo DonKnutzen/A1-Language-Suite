@@ -1,5 +1,6 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Vertiefung": "Practice & patterns",
   "Begrüßen & vorstellen": "Greetings & introductions",
   "Ich kann jemanden begrüßen, meinen Namen und Wohnort nennen und nach dem Namen fragen.": "I can greet someone, give my name and where I live, and ask their name.",
   "Stelle dich in drei Sätzen vor und formuliere anschließend die Fragen nach Name und Wohnort.": "Introduce yourself in three sentences, then ask for the other person's name and where they live.",

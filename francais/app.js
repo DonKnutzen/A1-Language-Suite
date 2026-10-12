@@ -181,7 +181,7 @@ const LESSON_APPLICATIONS={
   },
   "3": {
     "speakModel": "J’ai trente ans. Mon numéro de téléphone est le 902 555 0142.",
-    "writeModel": "Nom : Léa Martin\\nÂge : 30 ans\\nTéléphone : 902 555 0142\\nE-mail : lea@example.com",
+    "writeModel": "Nom : Martin\\nPrénom : Léa\\nÂge : 30 ans\\nTéléphone : 902 555 0142\\nE-mail : lea@example.com",
     "placeholder": "Fülle das Mini-Formular aus …",
     "writingHelpText": "Übertrage die Angaben in die passenden Felder des Mini-Formulars.",
     "writingHints": [
@@ -204,18 +204,22 @@ const LESSON_APPLICATIONS={
     ]
   },
   "4": {
-    "speakModel": "Vous êtes disponible mardi à quinze heures ? Rendez-vous devant la bibliothèque.",
+    "speakModel": "Vous êtes disponible mardi à quinze heures ? Rendez-vous devant la bibliothèque. D’accord, mardi à quinze heures devant la bibliothèque.",
     "writeModel": "Rendez-vous mardi à 15 h devant la bibliothèque.",
     "placeholder": "Schreibe eine kurze Terminbestätigung …",
     "writingHelpText": "Für die Bestätigung brauchst du Tag und Uhrzeit in einem kurzen Satz.",
     "writingHints": [
       [
-        "Le rendez-vous est … à …",
-        "Der Termin ist … um …"
+        "Le rendez-vous est mardi à …",
+        "Der Termin ist Dienstag um …"
       ],
       [
-        "D’accord, à …",
-        "In Ordnung, bis …"
+        "Rendez-vous devant …",
+        "Treffpunkt vor …"
+      ],
+      [
+        "D’accord, mardi à …",
+        "Einverstanden, Dienstag um …"
       ]
     ]
   },
@@ -276,8 +280,8 @@ const LESSON_APPLICATIONS={
     "placeholder": "Schreibe vier Sätze über Arbeit oder Studium …"
   },
   "11": {
-    "speakModel": "Le matin, je me lève à sept heures. Maintenant, je suis en train de prendre le petit-déjeuner, puis je vais au travail.",
-    "writeModel": "Je me lève à 7 h. Je prends le petit-déjeuner, puis je me douche. À 8 h, je vais au travail. Maintenant, je suis en train de travailler.",
+    "speakModel": "Le matin, je me lève à sept heures. Je prends le petit-déjeuner, puis je me douche. Maintenant, je suis en train de travailler.",
+    "writeModel": "Je me lève à 7 h. Je prends le petit-déjeuner. Puis je me douche. À 8 h, je vais au travail. Le soir, je regarde la télé et je me repose.",
     "placeholder": "Schreibe fünf Sätze über deinen Tagesablauf …"
   },
   "12": {
@@ -307,7 +311,7 @@ const LESSON_APPLICATIONS={
   },
   "17": {
     "speakModel": "Excusez-moi, que dois-je écrire ici ? Mon adresse est 10, rue du Port.",
-    "writeModel": "Nom : Léa Martin\\nAdresse : 10, rue du Port\\nTéléphone : 902 555 0142\\n\\nBonjour, je voudrais des informations sur votre cours de français. Je suis disponible le soir et je voudrais connaître les horaires et le prix. Merci beaucoup pour votre réponse.",
+    "writeModel": "Nom : Martin\\nPrénom : Léa\\nAdresse : 10, rue du Port\\nTéléphone : 902 555 0142\\n\\nBonjour, je voudrais des informations sur votre cours de français. Je suis disponible le soir. Quels sont les horaires ? Quel est le prix du cours ? Quelle est la date de début ? Merci beaucoup pour votre réponse. À bientôt !",
     "placeholder": "Fülle das Formular aus und schreibe mindestens 40 Wörter …"
   },
   "18": {
@@ -316,33 +320,33 @@ const LESSON_APPLICATIONS={
     "placeholder": "Schreibe eine höfliche Informationsanfrage …"
   },
   "19": {
-    "speakModel": "C’est un livre. Ce sont des clés. Voici mon passeport. Voilà la gare.",
-    "writeModel": "C’est un ordinateur. Ce sont des livres. Voici mon passeport. Voilà mes clés.",
+    "speakModel": "C’est un livre. C’est une clé. C’est un ordinateur. C’est un passeport. C’est une table. Un livre, des livres. Une clé, des clés.",
+    "writeModel": "C’est un ordinateur. Ce sont des livres. Voici mon passeport.",
     "placeholder": "Beschreibe drei Gegenstände …"
   },
   "20": {
     "speakModel": "Aujourd’hui, je travaille et je cuisine. Je ne regarde jamais la télévision. Ici, il ne faut pas fumer.",
-    "writeModel": "Je travaille aujourd’hui. Je ne travaille pas demain. Je ne regarde jamais la télévision. Dans cette salle, il ne faut pas fumer.",
+    "writeModel": "Je travaille aujourd’hui. Je cuisine. Je regarde la télévision. Je ne travaille pas demain. Je ne cuisine pas. Je ne regarde jamais la télévision.",
     "placeholder": "Schreibe drei positive und drei negative Sätze …"
   },
   "21": {
-    "speakModel": "Qui est-ce ? C’est Marie. Qu’est-ce que c’est ? C’est un livre. Moi, j’habite à Halifax. Et toi ? Où habites-tu ?",
-    "writeModel": "Qui est-ce ? Qu’est-ce que c’est ? Où habitez-vous ? Quel est votre métier ? Moi, j’habite à Halifax. Et vous ?",
+    "speakModel": "Où habitez-vous ? Quand travaillez-vous ? Comment vous appelez-vous ? Quel est votre métier ? Combien ça coûte ?",
+    "writeModel": "Comment vous appelez-vous ? Où habitez-vous ? Quel est votre métier ? Est-ce que vous travaillez ?",
     "placeholder": "Schreibe vier Fragen …"
   },
   "22": {
-    "speakModel": "Hier, je suis allé(e) au cinéma. Je viens de rentrer. J’habite ici depuis deux ans et je pars dans deux jours.",
+    "speakModel": "Hier, je suis allé(e) au cinéma. Je viens de rentrer. Demain, je vais voir des amis.",
     "writeModel": "Hier, je suis allé(e) au cinéma. Je suis arrivé(e) ici il y a trois jours. Aujourd’hui, je viens de visiter un musée. Je pars dans deux jours. Demain, je vais voir des amis.",
     "placeholder": "Schreibe eine Nachricht mit gestern, heute und morgen …"
   },
   "23": {
     "speakModel": "Il faut deux œufs, 200 grammes de farine et un peu de lait. J’utilise un couteau pour couper les légumes. Il ne faut pas ajouter trop de sel.",
-    "writeModel": "2 œufs\n200 g de farine\nun peu de lait\nJ’utilise un couteau pour couper les légumes.\nIl ne faut pas ajouter trop de sel.",
+    "writeModel": "2 œufs\n200 g de farine\nun peu de lait\nAjoutez le lait.\nMélangez avec une cuillère.",
     "placeholder": "Schreibe die Zutaten und zwei Schritte …"
   },
   "24": {
     "speakModel": "Je voudrais aller en France en juillet. Je vais à Paris en train et je reste trois jours.",
-    "writeModel": "Bonjour ! En juillet, je vais à Paris avec un ami. Nous partons en train et nous restons trois jours. Nous voulons visiter la ville, manger au restaurant et voir un musée. À bientôt !",
+    "writeModel": "Bonjour ! En juillet, je vais à Paris avec un ami. Nous partons en train et nous restons trois jours. Nous voulons visiter la ville, manger au restaurant et voir un musée. Nous voulons aussi voir des amis. Nous rentrons vendredi soir. À bientôt !",
     "placeholder": "Schreibe mindestens 40 Wörter über eine Reise …"
   }
 };
@@ -462,7 +466,7 @@ const LESSON_WRITING_HINTS = {
 function renderLesson(id){
   const l=lessons.find(x=>x.id===id),c=l,app=LESSON_APPLICATIONS[id];
   const goalsHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
-  const grammarHtml=lessonGrammarHtml(l);
+  const grammarHtml=FR_A1_DEEPENING.enrich(l,lessonGrammarHtml(l));
   const masteryHtml=FR_A1_MASTERY.introHtml(l,state);
   const dialogueHtml=`<details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small aria-label="Person ${i%2?'B':'A'}">${i%2?'B':'A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>`;
   A1LessonFlow.render({
