@@ -44,3 +44,9 @@ When reviewing an export, group reports by reporter and task. Summarize the
 reported problem, the exact location and proposed change, distinguishing suggestions
 from verified bugs. Preserve report UUIDs. Present concrete implementation instructions
 to Phillip, then implement and push only the changes he authorizes.
+
+The report dialog previews the frozen question and answer choices. Optional quick
+buttons select `issueType` (`question`, `answers`, `both`); clicking again clears it.
+A selection can be submitted without a description. Free text alone still works.
+Both category and draft text survive failed submissions. `context.description`
+keeps the original description separate from the localized summary in `message`.
