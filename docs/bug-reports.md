@@ -64,10 +64,6 @@ Task details start collapsed, the textarea has two rows, and draft/list tools li
 under the overflow menu. The minus button collapses the panel without losing text.
 The task context still belongs to the question shown when reporting was opened.
 
-The bottom-right microphone uses SpeechRecognition / webkitSpeechRecognition in
-the UI language (DE/FR/EN). Transcription is appended to existing text, live results
-do not duplicate earlier text, and the draft is persisted. Sending stays disabled
-until dictation ends; no report is sent automatically. Closing or changing the
-panel aborts capture. Unsupported/denied recognition falls back to typing or
-phone-keyboard dictation. The app stores no audio; the browser recognition provider
-may process audio online. No paid API or model download is introduced.
+The mobile panel sits at the bottom over the navigation buttons, leaving more
+of the exercise visible. The experimental browser dictation button and module
+have been removed; reports use the normal text field.
