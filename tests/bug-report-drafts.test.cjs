@@ -1,11 +1,11 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const source=fs.readFileSync(path.join(__dirname,'../shared/bug-reports.js'),'utf8');
-async function ui(){
-  const dom=new JSDOM('<main id="view"><header data-bug-lesson="4"><h2>4. Uhrzeit</h2></header><div class="quiz-q">Le rendez-vous est ___ dix heures.</div><button class="option-btn">à</button><button class="option-btn">en</button></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;
+async function ui(configure=()=>{}){
+  const dom=new JSDOM('<main id="view"><header data-bug-lesson="4"><h2>4. Uhrzeit</h2></header><div class="quiz-q">Le rendez-vous est ___ dix heures.</div><button class="option-btn">à</button><button class="option-btn">en</button></main>',{url:'https://example.org/francais/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
   await new Promise(r=>w.addEventListener('load',r));w.HTMLDialogElement.prototype.show=function(){this.open=true};w.HTMLDialogElement.prototype.close=function(){this.open=false};
   let calls=[],failure=true;
   w.A1Profile={getUiLang:()=> 'de',getCurrent:()=>({profileKey:'Phillip'}),submitBugReport:async p=>{calls.push(p);if(failure)throw Error('BUG_SEND_TIMEOUT')}};
-  w.eval(source);return {dom,w,calls,succeed:()=>{failure=false;}};
+  configure(w);w.eval(source);return {dom,w,calls,succeed:()=>{failure=false;}};
 }
 test('a timed-out report can be reopened from another screen with its original question, category and UUID',async()=>{
   const {dom,w,calls,succeed}=await ui();w.A1BugReports.open();w.document.querySelector('[data-bug-category="answers"]').click();
@@ -28,4 +28,15 @@ test('reporting stays non-modal, can minimize, and retains text while the page i
   w.A1BugReports.open();const dialog=w.document.getElementById('a1BugDialog');assert(dialog.open);assert.equal(dialog.dataset.mode,'composer');assert(!dialog.querySelector('#a1BugMic'));assert(!dialog.querySelector('.a1-bug-preview').open);assert.equal(dialog.querySelector('textarea').rows,2);
   const input=w.document.getElementById('a1BugMessage');input.value='I need to see the question';input.dispatchEvent(new w.Event('input'));
   w.document.getElementById('a1BugMinimize').click();assert(dialog.classList.contains('is-collapsed'));w.document.querySelector('.option-btn').click();assert(clicked);w.document.getElementById('a1BugMinimize').click();assert(!dialog.classList.contains('is-collapsed'));assert.equal(input.value,'I need to see the question');dom.window.close();
+});
+
+test('mobile typing contracts the panel and follows keyboard viewport scrolling',async()=>{
+  let vv;
+  const {dom,w}=await ui(w=>{Object.defineProperty(w,'innerWidth',{value:390,writable:true});Object.defineProperty(w,'innerHeight',{value:800,writable:true});vv=new w.EventTarget();Object.assign(vv,{height:800,width:390,offsetTop:0,offsetLeft:0,scale:1});w.visualViewport=vv;});
+  const tick=()=>new Promise(r=>w.requestAnimationFrame(()=>w.requestAnimationFrame(r)));
+  w.A1BugReports.open();const dialog=w.document.getElementById('a1BugDialog'),input=w.document.getElementById('a1BugMessage');dialog.getBoundingClientRect=()=>({width:374,height:56});
+  input.value='Diese Frage ist unklar';input.focus();vv.height=350;vv.offsetTop=60;vv.dispatchEvent(new w.Event('resize'));await tick();assert(dialog.classList.contains('keyboard-compact'));assert.equal(dialog.style.top,'350px');assert.equal(dialog.style.width,'374px');
+  vv.offsetTop=180;vv.dispatchEvent(new w.Event('scroll'));await tick();assert.equal(dialog.style.top,'470px');assert.equal(input.value,'Diese Frage ist unklar');assert(dialog.open);
+  input.blur();vv.height=800;vv.offsetTop=0;vv.dispatchEvent(new w.Event('resize'));await tick();assert(!dialog.classList.contains('keyboard-compact'));
+  w.document.getElementById('a1BugClose').click();assert.equal(dialog.style.top,'');assert(!dialog.open);dom.window.close();
 });

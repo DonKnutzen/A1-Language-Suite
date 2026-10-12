@@ -67,3 +67,8 @@ The task context still belongs to the question shown when reporting was opened.
 The mobile panel sits at the bottom over the navigation buttons, leaving more
 of the exercise visible. The experimental browser dictation button and module
 have been removed; reports use the normal text field.
+
+On mobile the composer contracts to the textarea and send control while typing.
+VisualViewport resize and scroll events anchor it above the on-screen keyboard;
+focus, orientation and closing restore the normal panel. The French mobile header
+now scrolls in normal flow instead of sticking during browser viewport panning.
