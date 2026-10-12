@@ -22,12 +22,12 @@ test('old text drafts remain recoverable without inventing missing exercise deta
   succeed();await w.document.getElementById('a1BugSend').onclick();assert.equal(calls[0].context.question,'Un kilo ___ pommes.');assert.equal(calls[0].context.lessonId,7);assert.equal(calls[0].context.options.length,0);assert.equal(calls[0].context.recoveredLegacyDraft,true);dom.window.close();
 });
 
-test('reporting stays non-modal, can minimize, and retains text while the page is used',async()=>{
+test('reporting stays non-modal with one close control and retains text while the page is used',async()=>{
   const {dom,w}=await ui();w.HTMLDialogElement.prototype.showModal=function(){throw Error('must not block the page');};
   let clicked=false;w.document.querySelector('.option-btn').onclick=()=>{clicked=true;};
   w.A1BugReports.open();const dialog=w.document.getElementById('a1BugDialog');assert(dialog.open);assert.equal(dialog.dataset.mode,'composer');assert(!dialog.querySelector('#a1BugMic'));assert(!dialog.querySelector('.a1-bug-preview').open);assert.equal(dialog.querySelector('textarea').rows,2);
   const input=w.document.getElementById('a1BugMessage');input.value='I need to see the question';input.dispatchEvent(new w.Event('input'));
-  w.document.getElementById('a1BugMinimize').click();assert(dialog.classList.contains('is-collapsed'));w.document.querySelector('.option-btn').click();assert(clicked);w.document.getElementById('a1BugMinimize').click();assert(!dialog.classList.contains('is-collapsed'));assert.equal(input.value,'I need to see the question');dom.window.close();
+  assert.equal(dialog.querySelectorAll('.a1-bug-top button').length,1);assert(!dialog.querySelector('#a1BugMinimize'));w.document.querySelector('.option-btn').click();assert(clicked);assert.equal(input.value,'I need to see the question');dom.window.close();
 });
 
 test('mobile typing contracts the panel and follows keyboard viewport scrolling',async()=>{

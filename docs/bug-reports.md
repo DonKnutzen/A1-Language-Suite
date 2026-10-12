@@ -61,7 +61,7 @@ context is explicitly indicated. Nothing is automatically sent in the background
 
 The reporter is a non-modal corner panel: the page remains scrollable and usable.
 Task details start collapsed, the textarea has two rows, and draft/list tools live
-under the overflow menu. The minus button collapses the panel without losing text.
+under the overflow menu. The header has one close control; closing preserves the draft.
 The task context still belongs to the question shown when reporting was opened.
 
 The mobile panel sits at the bottom over the navigation buttons, leaving more
