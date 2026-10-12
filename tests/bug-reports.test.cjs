@@ -28,8 +28,8 @@ test('resolving a report requires the server to confirm an updated row',async()=
   const a=api({mode:'cloud',access_token:'token'},async()=>({ok:true,json:async()=>[]}));await assert.rejects(a.resolveBugReport('report-1'),/BUG_NOT_UPDATED/);
 });
 test('all supported pages and offline caches include the reporting module',()=>{
-  for(const page of ['index.html','francais/index.html','deutsch/index.html'])assert(fs.readFileSync(path.join(root,page),'utf8').includes('bug-reports.js?v=bug-panel-76'));
-  for(const course of ['francais','deutsch'])assert(fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8').includes('bug-reports.js?v=bug-panel-76'));
+  for(const page of ['index.html','francais/index.html','deutsch/index.html']){const html=fs.readFileSync(path.join(root,page),'utf8');assert(html.includes('bug-reports.js?v=bug-mic-77'));assert(html.includes('bug-dictation.js?v=bug-mic-77'));}
+  for(const course of ['francais','deutsch']){const sw=fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8');assert(sw.includes('bug-reports.js?v=bug-mic-77'));assert(sw.includes('bug-dictation.js?v=bug-mic-77'));}
 });
 
 test('a stalled report request expires and aborts instead of waiting forever',async()=>{
