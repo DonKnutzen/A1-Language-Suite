@@ -58,3 +58,8 @@ without a database request. Reopening reuses the UUID to avoid duplicate reports
 when a server stored a report but its confirmation was lost. Older text/category
 drafts can be recovered with their original question and lesson; missing historical
 context is explicitly indicated. Nothing is automatically sent in the background.
+
+The reporter is a non-modal corner panel: the page remains scrollable and usable.
+Task details start collapsed, the textarea has two rows, and draft/list tools live
+under the overflow menu. The minus button collapses the panel without losing text.
+The task context still belongs to the question shown when reporting was opened.

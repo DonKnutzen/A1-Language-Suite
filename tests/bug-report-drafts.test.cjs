@@ -2,7 +2,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const source=fs.readFileSync(path.join(__dirname,'../shared/bug-reports.js'),'utf8');
 async function ui(){
   const dom=new JSDOM('<main id="view"><header data-bug-lesson="4"><h2>4. Uhrzeit</h2></header><div class="quiz-q">Le rendez-vous est ___ dix heures.</div><button class="option-btn">à</button><button class="option-btn">en</button></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;
-  await new Promise(r=>w.addEventListener('load',r));w.HTMLDialogElement.prototype.showModal=function(){this.open=true};w.HTMLDialogElement.prototype.close=function(){this.open=false};
+  await new Promise(r=>w.addEventListener('load',r));w.HTMLDialogElement.prototype.show=function(){this.open=true};w.HTMLDialogElement.prototype.close=function(){this.open=false};
   let calls=[],failure=true;
   w.A1Profile={getUiLang:()=> 'de',getCurrent:()=>({profileKey:'Phillip'}),submitBugReport:async p=>{calls.push(p);if(failure)throw Error('BUG_SEND_TIMEOUT')}};
   w.eval(source);return {dom,w,calls,succeed:()=>{failure=false;}};
@@ -20,4 +20,12 @@ test('old text drafts remain recoverable without inventing missing exercise deta
   w.localStorage.setItem('a1suite.bugDraft:'+JSON.stringify(['Bine','francais-a1',1,'listen',null,'PRIVATE OTHER PROFILE']),'Another profile draft');
   w.A1BugReports.showDrafts();assert(!w.document.getElementById('a1BugDialog').textContent.includes('PRIVATE OTHER PROFILE'));w.document.querySelector('[data-draft-index]').click();assert(w.document.getElementById('a1BugDialog').textContent.includes('Älterer Entwurf'));
   succeed();await w.document.getElementById('a1BugSend').onclick();assert.equal(calls[0].context.question,'Un kilo ___ pommes.');assert.equal(calls[0].context.lessonId,7);assert.equal(calls[0].context.options.length,0);assert.equal(calls[0].context.recoveredLegacyDraft,true);dom.window.close();
+});
+
+test('reporting stays non-modal, can minimize, and retains text while the page is used',async()=>{
+  const {dom,w}=await ui();w.HTMLDialogElement.prototype.showModal=function(){throw Error('must not block the page');};
+  let clicked=false;w.document.querySelector('.option-btn').onclick=()=>{clicked=true;};
+  w.A1BugReports.open();const dialog=w.document.getElementById('a1BugDialog');assert(dialog.open);assert.equal(dialog.dataset.mode,'composer');assert(!dialog.querySelector('.a1-bug-preview').open);assert.equal(dialog.querySelector('textarea').rows,2);
+  const input=w.document.getElementById('a1BugMessage');input.value='I need to see the question';input.dispatchEvent(new w.Event('input'));
+  w.document.getElementById('a1BugMinimize').click();assert(dialog.classList.contains('is-collapsed'));w.document.querySelector('.option-btn').click();assert(clicked);w.document.getElementById('a1BugMinimize').click();assert(!dialog.classList.contains('is-collapsed'));assert.equal(input.value,'I need to see the question');dom.window.close();
 });
