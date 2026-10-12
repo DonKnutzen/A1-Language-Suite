@@ -5,9 +5,9 @@ const vm=require('node:vm');
 const path=require('node:path');
 const root=path.join(__dirname,'..');
 const source=fs.readFileSync(path.join(root,'shared/profile.js'),'utf8');
-function api(profile,fetch){
+function api(profile,fetch,overrides={}){
   const code=source.slice(source.indexOf('  async function submitBugReport('),source.indexOf('  window.A1Profile = {'));
-  const scope={getCurrent:()=>profile,ensureToken:async()=>profile?.access_token,cfg:{supabaseUrl:'https://example.invalid'},authHeaders:token=>({Authorization:'Bearer '+token}),responseError:async()=>new Error('request failed'),fetch,restGet:async()=>[],window:{}};
+  const scope={getCurrent:()=>profile,ensureToken:async()=>profile?.access_token,cfg:{supabaseUrl:'https://example.invalid'},authHeaders:token=>({Authorization:'Bearer '+token}),responseError:async()=>new Error('request failed'),fetch,restGet:async()=>[],window:{},AbortController,setTimeout,clearTimeout,...overrides};
   vm.createContext(scope);vm.runInContext(code+';window.api={submitBugReport,resolveBugReport};',scope);return scope.window.api;
 }
 test('submission includes only the report and server-required profile identity',async()=>{
@@ -28,6 +28,19 @@ test('resolving a report requires the server to confirm an updated row',async()=
   const a=api({mode:'cloud',access_token:'token'},async()=>({ok:true,json:async()=>[]}));await assert.rejects(a.resolveBugReport('report-1'),/BUG_NOT_UPDATED/);
 });
 test('all supported pages and offline caches include the reporting module',()=>{
-  for(const page of ['index.html','francais/index.html','deutsch/index.html'])assert(fs.readFileSync(path.join(root,page),'utf8').includes('bug-reports.js?v=bug-quick-73'));
-  for(const course of ['francais','deutsch'])assert(fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8').includes('bug-reports.js?v=bug-quick-73'));
+  for(const page of ['index.html','francais/index.html','deutsch/index.html'])assert(fs.readFileSync(path.join(root,page),'utf8').includes('bug-reports.js?v=bug-send-75'));
+  for(const course of ['francais','deutsch'])assert(fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8').includes('bug-reports.js?v=bug-send-75'));
+});
+
+test('a stalled report request expires and aborts instead of waiting forever',async()=>{
+  let signal;
+  const a=api({mode:'cloud',userId:'u',access_token:'token'},async(url,opts)=>{signal=opts.signal;return new Promise(()=>{});},{setTimeout:fn=>setTimeout(fn,5)});
+  await assert.rejects(a.submitBugReport({id:'same-id',message:'Broken question',context:{}}),/BUG_SEND_TIMEOUT/);
+  assert.equal(signal.aborted,true);
+});
+test('an auth refresh that finishes after the deadline cannot post a late report',async()=>{
+  let release,calls=0;
+  const a=api({mode:'cloud',userId:'u'},async()=>{calls++;},{ensureToken:()=>new Promise(r=>{release=r;}),setTimeout:fn=>setTimeout(fn,5)});
+  await assert.rejects(a.submitBugReport({id:'id'}),/BUG_SEND_TIMEOUT/);
+  release('late-token');await new Promise(r=>setImmediate(r));assert.equal(calls,0);
 });

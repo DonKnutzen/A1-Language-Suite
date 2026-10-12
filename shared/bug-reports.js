@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-quick-73',trail=[];
+  const BUILD='bug-send-75',trail=[];
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -14,6 +14,12 @@
     fr:{quick:'Choix rapide · facultatif',question:'Question incorrecte',answers:'Réponse(s) incorrecte(s)',both:'Les deux sont incorrects',description:'Description · facultative avec un choix',hint:'Choisis un problème ou décris-le.',details:'Contenu de l’exercice',privacy:'Exercice joint, sans tes saisies ni tes enregistrements.',steps:{listen:'Écouter',understand:'Comprendre',grammar:'Grammaire',speak:'Parler',write:'Écrire',check:'Bilan'}},
     en:{quick:'Quick selection · optional',question:'Incorrect question',answers:'Incorrect answer(s)',both:'Both incorrect',description:'Description · optional with a selection',hint:'Select an issue or describe it.',details:'Exercise content',privacy:'Exercise included, without your input or recordings.',steps:{listen:'Listening',understand:'Understanding',grammar:'Grammar',speak:'Speaking',write:'Writing',check:'Lesson check'}}
   };
+  const recoveryWords={
+    de:{drafts:'Gespeicherte Entwürfe',empty:'Keine gespeicherten Entwürfe.',retry:'Entwurf öffnen',timeout:'Keine Bestätigung erhalten. Die Meldung bleibt als Entwurf gespeichert. Bitte erneut senden.',old:'Älterer Entwurf: Zusätzlicher Aufgabeninhalt ist nicht mehr verfügbar.'},
+    fr:{drafts:'Brouillons enregistrés',empty:'Aucun brouillon enregistré.',retry:'Ouvrir le brouillon',timeout:'Aucune confirmation reçue. Le signalement reste enregistré comme brouillon. Réessaie.',old:'Ancien brouillon : le contenu détaillé de l’exercice n’est plus disponible.'},
+    en:{drafts:'Saved drafts',empty:'No saved drafts.',retry:'Open draft',timeout:'No confirmation received. Your report is saved as a draft. Please retry.',old:'Older draft: additional exercise content is no longer available.'}
+  };
+  const recoveryLabels=()=>recoveryWords[language()]||recoveryWords.en;
   const quickLabels=()=>quickWords[language()]||quickWords.en;
   const language=()=>A1Profile.getUiLang?.()||document.documentElement.lang;
   const labels=()=>words[language()]||words.en;
@@ -54,27 +60,57 @@
   const draftKey=c=>'a1suite.bugDraft:'+JSON.stringify([A1Profile.getCurrent()?.profileKey||'guest',c.course,c.lessonId,c.step,c.grammarIndex,c.question]);
   const storeDraft=(key,value)=>{try{value?localStorage.setItem(key,value):localStorage.removeItem(key);}catch{}};
   const readDraft=key=>{try{return localStorage.getItem(key)||'';}catch{return '';}};
+  const owner=()=>A1Profile.getCurrent()?.profileKey||'guest';
+  const pendingKey=()=> 'a1suite.bugPending:'+owner();
+  function readPending(){try{return JSON.parse(localStorage.getItem(pendingKey())||'{}');}catch{return {};}}
+  function savePending(key,report){try{const pending=readPending();report?pending[key]=report:delete pending[key];Object.keys(pending).length?localStorage.setItem(pendingKey(),JSON.stringify(pending)):localStorage.removeItem(pendingKey());}catch{}}
+  function pendingDrafts(){
+    const drafts=readPending();
+    for(let i=0;i<localStorage.length;i++){
+      const key=localStorage.key(i);if(!key.startsWith('a1suite.bugDraft:'))continue;
+      const categoryKey=key.endsWith(':category'),base=categoryKey?key.slice(0,-9):key;if(drafts[base])continue;
+      try{
+        const [profile,course,lessonId,step,grammarIndex,question]=JSON.parse(base.slice('a1suite.bugDraft:'.length));
+        if(profile!==owner())continue;
+        const description=readDraft(base),issueType=readDraft(base+':category');
+        if(!description&&!issueType)continue;
+        drafts[base]={id:crypto.randomUUID(),description,context:{schema:2,course,lessonId,step,grammarIndex,question,heading:lessonId?'#'+lessonId:course,options:[],tokens:[],taskTexts:[],audioTexts:[],formFields:[],issueType:issueType||null,recoveredLegacyDraft:true}};
+      }catch{}
+    }
+    return drafts;
+  }
+  function showDrafts(){
+    const R=recoveryLabels(),drafts=pendingDrafts();
+    frame(`<h2>${esc(R.drafts)}</h2>${Object.keys(drafts).length?Object.entries(drafts).map(([key,r],i)=>`<article class="a1-bug-preview"><small>${esc([r.context?.course,r.context?.heading,r.context?.step].filter(Boolean).join(' · '))}</small><p>${esc(r.context?.question||'')}</p><p>${esc(r.description||r.context?.description||quickLabels()[r.context?.issueType]||'')}</p><button type="button" class="a1-bug-link" data-draft-index="${i}">${esc(R.retry)}</button></article>`).join(''):`<p>${esc(R.empty)}</p>`}`);
+    const entries=Object.entries(drafts);dialog.querySelectorAll('[data-draft-index]').forEach(b=>b.onclick=()=>{const [key,report]=entries[Number(b.dataset.draftIndex)];open(report,key);});
+    if(!dialog.open)dialog.showModal();
+  }
   let dialog,launcher,lastFocus;
   function close(){dialog.close();lastFocus?.focus();}
   function frame(content){dialog.innerHTML=`<div class="a1-bug-top"><strong>${esc(labels().report)}</strong><button type="button" id="a1BugClose" aria-label="${esc(labels().close)}">×</button></div>${content}`;dialog.querySelector('#a1BugClose').onclick=close;}
-  function open(){
+  function open(restored=null,restoredKey=null){
+    if(restored instanceof Event)restored=null;
     lastFocus=document.activeElement;
-    const c=context(),key=draftKey(c),reportId=crypto.randomUUID(),L=labels(),Q=quickLabels();
+    let c=restored?.context||context();
+    const key=restoredKey||draftKey(c),existing=restored||readPending()[key],reportId=existing?.id||crypto.randomUUID(),L=labels(),Q=quickLabels(),R=recoveryLabels();
+    if(existing?.context)c=existing.context;
     const hasTask=!!(c.question||c.formFields.length||c.tokens.length);
-    let category=hasTask?readDraft(key+':category'):'';
+    let category=hasTask?(existing?.context?.issueType||readDraft(key+':category')):'';
     if(!['question','answers','both'].includes(category))category='';
     const location=[c.heading||c.course,Q.steps[c.step]||c.step,c.position].filter(Boolean).join(' · ');
     const preview=c.question||c.taskTexts[0]||c.tokens.join(' ');
-    frame(`<h2>${esc(L.title)}</h2><p class="a1-bug-location">${esc(location)}</p>${hasTask?`<div class="a1-bug-preview"><strong>${esc(preview.slice(0,260))}</strong>${c.options.length?`<ul>${c.options.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>`:''}${reportDetails({...c,question:null,options:[]})}</div><fieldset class="a1-bug-quick"><legend>${esc(Q.quick)}</legend>${['question','answers','both'].map(id=>`<button type="button" data-bug-category="${id}" aria-pressed="${category===id}">${esc(Q[id])}</button>`).join('')}</fieldset>`:''}<label for="a1BugMessage" class="a1-bug-label">${esc(hasTask?Q.description:L.report)}</label><textarea id="a1BugMessage" maxlength="4000" rows="3" placeholder="${esc(L.placeholder)}">${esc(readDraft(key))}</textarea><p class="a1-bug-note">${esc(Q.hint)}</p><p class="a1-bug-note">${esc(Q.privacy)}</p><p id="a1BugStatus" role="status"></p><button type="button" class="a1-bug-primary" id="a1BugSend">${esc(L.send)}</button><button type="button" class="a1-bug-link" id="a1BugList">${esc(L.list)}</button>`);
+    frame(`<h2>${esc(L.title)}</h2><p class="a1-bug-location">${esc(location)}</p>${hasTask?`<div class="a1-bug-preview"><strong>${esc(preview.slice(0,260))}</strong>${c.options.length?`<ul>${c.options.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>`:''}${reportDetails({...c,question:null,options:[]})}</div><fieldset class="a1-bug-quick"><legend>${esc(Q.quick)}</legend>${['question','answers','both'].map(id=>`<button type="button" data-bug-category="${id}" aria-pressed="${category===id}">${esc(Q[id])}</button>`).join('')}</fieldset>`:''}<label for="a1BugMessage" class="a1-bug-label">${esc(hasTask?Q.description:L.report)}</label><textarea id="a1BugMessage" maxlength="4000" rows="3" placeholder="${esc(L.placeholder)}">${esc(existing?.description??readDraft(key))}</textarea><p class="a1-bug-note">${esc(c.recoveredLegacyDraft?R.old:Q.hint)}</p><p class="a1-bug-note">${esc(Q.privacy)}</p><p id="a1BugStatus" role="status"></p><button type="button" class="a1-bug-primary" id="a1BugSend">${esc(L.send)}</button><button type="button" class="a1-bug-link" id="a1BugDrafts">${esc(R.drafts)}</button><button type="button" class="a1-bug-link" id="a1BugList">${esc(L.list)}</button>`);
     const input=dialog.querySelector('#a1BugMessage'),send=dialog.querySelector('#a1BugSend'),status=dialog.querySelector('#a1BugStatus'),choices=[...dialog.querySelectorAll('[data-bug-category]')];let sent=false;
-    choices.forEach(b=>b.onclick=()=>{category=category===b.dataset.bugCategory?'':b.dataset.bugCategory;choices.forEach(el=>el.setAttribute('aria-pressed',String(category===el.dataset.bugCategory)));storeDraft(key+':category',category);});
-    input.oninput=()=>storeDraft(key,input.value);
+    const remember=()=>savePending(key,input.value.trim()||category?{id:reportId,description:input.value,context:{...c,issueType:category||null,description:input.value}}:null);
+    choices.forEach(b=>b.onclick=()=>{category=category===b.dataset.bugCategory?'':b.dataset.bugCategory;choices.forEach(el=>el.setAttribute('aria-pressed',String(category===el.dataset.bugCategory)));storeDraft(key+':category',category);remember();});
+    input.oninput=()=>{storeDraft(key,input.value);remember();};
     send.onclick=async()=>{
       const description=input.value.trim(),message=category?[Q[category],description].filter(Boolean).join(': ').slice(0,4000):description;if(!category&&message.length<5){status.textContent=L.short;input.focus();return;}
-      send.disabled=true;input.disabled=true;choices.forEach(b=>b.disabled=true);status.textContent=L.sending;
-      try{await A1Profile.submitBugReport({id:reportId,message,context:{...c,issueType:category||null,description}});sent=true;storeDraft(key,'');storeDraft(key+':category','');status.textContent=L.saved;send.textContent=L.close;send.disabled=false;send.onclick=close;}
-      catch(error){status.textContent=error.message==='BUG_LOGIN_REQUIRED'?L.login:/bug_reports|PGRST205|42P01/.test(error.message||'')?L.setup:L.error;send.disabled=false;input.disabled=false;choices.forEach(b=>b.disabled=false);}
+      remember();send.disabled=true;input.disabled=true;choices.forEach(b=>b.disabled=true);status.textContent=L.sending;
+      try{await A1Profile.submitBugReport({id:reportId,message,context:{...c,issueType:category||null,description}});sent=true;storeDraft(key,'');storeDraft(key+':category','');savePending(key,null);status.textContent=L.saved;send.textContent=L.close;send.disabled=false;send.onclick=close;}
+      catch(error){status.textContent=error.message==='BUG_LOGIN_REQUIRED'?L.login:error.message==='BUG_SEND_TIMEOUT'||error.name==='AbortError'?R.timeout:/PGRST205|42P01|schema cache/.test(error.message||'')?L.setup:L.error;send.disabled=false;input.disabled=false;choices.forEach(b=>b.disabled=false);}
     };
+    dialog.querySelector('#a1BugDrafts').onclick=()=>{if(!sent&&(input.value||category))remember();showDrafts();};
     dialog.querySelector('#a1BugList').onclick=()=>{if(!sent)storeDraft(key,input.value);showReports();};
     if(!dialog.open)dialog.showModal();(choices[0]||input).focus();
   }
@@ -109,6 +145,6 @@
     if(!actions||actions.querySelector('[data-bug-report]'))return;
     const button=document.createElement('button');button.type='button';button.dataset.bugReport='';button.textContent='⚑ '+labels().report;button.onclick=open;actions.append(button);
   });
-  window.A1BugReports={open,showReports,context,setContext:point=>{currentPoint=point;}};
+  window.A1BugReports={open,showReports,showDrafts,context,setContext:point=>{currentPoint=point;}};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

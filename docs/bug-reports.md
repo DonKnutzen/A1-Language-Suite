@@ -50,3 +50,11 @@ buttons select `issueType` (`question`, `answers`, `both`); clicking again clear
 A selection can be submitted without a description. Free text alone still works.
 Both category and draft text survive failed submissions. `context.description`
 keeps the original description separate from the localized summary in `message`.
+
+Submissions have a 15-second deadline including session refresh. A timed-out auth
+refresh cannot post later. The complete draft, frozen task context, category and UUID
+are saved locally per profile before sending. **Gespeicherte Entwürfe** opens them
+without a database request. Reopening reuses the UUID to avoid duplicate reports
+when a server stored a report but its confirmation was lost. Older text/category
+drafts can be recovered with their original question and lesson; missing historical
+context is explicitly indicated. Nothing is automatically sent in the background.

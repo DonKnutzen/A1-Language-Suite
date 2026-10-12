@@ -1037,14 +1037,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function submitBugReport(report){
     const p=getCurrent();
     if(!p||p.mode!=='cloud')throw new Error('BUG_LOGIN_REQUIRED');
-    const token=await ensureToken();
-    if(!token)throw new Error('BUG_LOGIN_REQUIRED');
-    const row={id:report.id,user_id:p.userId,reporter_name:p.username,message:report.message,context:report.context};
-    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/bug_reports`,{
-      method:'POST',headers:{...authHeaders(token),Prefer:'return=minimal'},body:JSON.stringify(row)
-    });
-    if(response.status===409)return; // Retrying the same report must not create a duplicate.
-    if(!response.ok)throw await responseError(response);
+    const controller=new AbortController();
+    let timer;
+    const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(new Error('BUG_SEND_TIMEOUT'));},15000);});
+    const submit=async()=>{
+      const token=await ensureToken();
+      // An auth refresh can finish after the deadline: never send a late request.
+      if(controller.signal.aborted)throw new Error('BUG_SEND_TIMEOUT');
+      if(!token||getCurrent()?.userId!==p.userId)throw new Error('BUG_LOGIN_REQUIRED');
+      const row={id:report.id,user_id:p.userId,reporter_name:p.username,message:report.message,context:report.context};
+      const response=await fetch(`${cfg.supabaseUrl}/rest/v1/bug_reports`,{
+        method:'POST',headers:{...authHeaders(token),Prefer:'return=minimal'},body:JSON.stringify(row),signal:controller.signal
+      });
+      if(response.status===409)return; // Keep the same ID for a retry after an uncertain response.
+      if(response.status===401)throw new Error('BUG_LOGIN_REQUIRED');
+      if(!response.ok)throw await responseError(response);
+    };
+    try{return await Promise.race([submit(),deadline]);}
+    finally{clearTimeout(timer);}
   }
   async function getBugReports(){
     return restGet('bug_reports?select=id,reporter_name,message,context,status,created_at&order=created_at.desc&limit=200');
