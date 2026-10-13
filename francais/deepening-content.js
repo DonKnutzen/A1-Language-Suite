@@ -29,6 +29,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "avec une cédille : ç",
           "mit einer Cedille: ç"
         ]
+      ],
+      "emphasis": [
+        "jeden Buchstaben einzeln",
+        "E, G, J und U",
+        "é",
+        "ç"
       ]
     },
     {
@@ -48,7 +54,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Können Sie wiederholen?"
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Nach pouvez steht die Grundform",
+        "Vous pouvez … ?",
+        "Pouvez-vous … ?",
+        "s’il vous plaît"
+      ]
     }
   ],
   "3": [
@@ -81,11 +93,36 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Sie sind zwanzig Jahre alt."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "avoir + Zahl + ans",
+        "je zu j’"
+      ]
     },
     {
       "title": "Zahlen bis 100",
-      "blocks": [["Grundzahlen & Zehner", "Lerne zuerst 0–16 und die Zehner aus den Hörbeispielen."], ["Ab 17: Zahlen verbinden", "dix-sept = 10 + 7 → 17"], ["21 und 22", "vingt et un = 21 · vingt-deux = 22"], ["70, 80 und 90 in Frankreich", "soixante-dix = 60 + 10 → 70\nquatre-vingts = 4 × 20 → 80\nquatre-vingt-dix = 80 + 10 → 90"], ["80 mit weiterer Zahl", "quatre-vingts = 80 · quatre-vingt-un = 81\nDas s entfällt, wenn eine Zahl folgt."]],
+      "blocks": [
+        [
+          "Grundzahlen & Zehner",
+          "Lerne zuerst 0–16 und die Zehner aus den Hörbeispielen."
+        ],
+        [
+          "Ab 17: Zahlen verbinden",
+          "dix-sept = 10 + 7 → 17"
+        ],
+        [
+          "21 und 22",
+          "vingt et un = 21 · vingt-deux = 22"
+        ],
+        [
+          "70, 80 und 90 in Frankreich",
+          "soixante-dix = 60 + 10 → 70\nquatre-vingts = 4 × 20 → 80\nquatre-vingt-dix = 80 + 10 → 90"
+        ],
+        [
+          "80 mit weiterer Zahl",
+          "quatre-vingts = 80 · quatre-vingt-un = 81\nDas s entfällt, wenn eine Zahl folgt."
+        ]
+      ],
       "rule": "Lerne zuerst 0–16 und die Zehner aus den Hörbeispielen. Ab 17 werden Zahlen zusammengesetzt: dix-sept = 10 + 7. 21 heißt vingt et un; 22 heißt vingt-deux. In Frankreich sind 70 = 60 + 10, 80 = 4 × 20 und 90 = 80 + 10. Das s in quatre-vingts entfällt, wenn eine Zahl folgt.",
       "pairs": [
         [
@@ -136,6 +173,17 @@ window.FR_A1_DEEPENING_CONTENT = {
           "cent",
           "100"
         ]
+      ],
+      "emphasis": [
+        "0–16",
+        "Zehner",
+        "10 + 7",
+        "vingt et un",
+        "vingt-deux",
+        "60 + 10",
+        "4 × 20",
+        "80 + 10",
+        "Das s entfällt"
       ]
     },
     {
@@ -178,6 +226,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Mon code postal est B3V 1L2.",
           "Meine Postleitzahl ist B3V 1L2."
         ]
+      ],
+      "emphasis": [
+        "Ziffer für Ziffer",
+        "Zweiergruppen",
+        "ein Wert pro Feld",
+        "arobase",
+        "point"
       ]
     }
   ],
@@ -210,6 +265,17 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Il est midi. / Il est minuit.",
           "Es ist zwölf Uhr mittags. / Es ist Mitternacht."
         ]
+      ],
+      "emphasis": [
+        "Quelle heure est-il ?",
+        "Il est",
+        "Une heure",
+        "deux heures",
+        "Et quart",
+        "et demie",
+        "moins le quart",
+        "vorherigen vollen Stunde",
+        "24-Stunden-Angabe"
       ]
     },
     {
@@ -252,6 +318,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "On se voit vendredi soir.",
           "Wir sehen uns Freitagabend."
         ]
+      ],
+      "emphasis": [
+        "klein geschrieben",
+        "Le mardi",
+        "Du lundi au vendredi",
+        "Le matin, l’après-midi und le soir"
       ]
     },
     {
@@ -314,6 +386,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "le premier juillet",
           "der erste Juli"
         ]
+      ],
+      "emphasis": [
+        "le + Tageszahl + Monat",
+        "le premier",
+        "en + Monat",
+        "Nous sommes le …"
       ]
     },
     {
@@ -348,6 +426,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Je viens plus tard.",
           "Ich komme später."
         ]
+      ],
+      "emphasis": [
+        "Tag + à + Uhrzeit + Treffpunkt",
+        "Vous êtes disponible … ?",
+        "On se voit … ?",
+        "D’accord",
+        "À partir de",
+        "plus tard"
       ]
     }
   ],
@@ -381,7 +467,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Mein Vater heißt Marc."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Mon, ma und mes",
+        "folgenden Nomen",
+        "Vokal steht mon"
+      ]
     },
     {
       "title": "Personen beschreiben",
@@ -416,7 +507,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich bin ledig."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "s’appeler",
+        "avoir + ans",
+        "être",
+        "Petit",
+        "petite"
+      ]
     }
   ],
   "6": [
@@ -449,7 +547,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich hätte gern Äpfel."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "unbestimmten Menge",
+        "du, de la oder de l’",
+        "un oder une",
+        "des"
+      ]
     },
     {
       "title": "Höflich bestellen",
@@ -479,6 +583,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Qu’est-ce qu’il y a comme dessert ?",
           "Was gibt es als Nachtisch?"
         ]
+      ],
+      "emphasis": [
+        "Je voudrais",
+        "et",
+        "Begrüßung, Bestellung, s’il vous plaît und Merci",
+        "Preisfrage"
       ]
     }
   ],
@@ -508,7 +618,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "zweihundert Gramm Käse"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Nach einer konkreten Menge steht de",
+        "vor Vokal d’",
+        "keine vollständigen Sätze",
+        "kilo, grammes und litre"
+      ]
     },
     {
       "title": "Preis, Gesamtpreis & Bezahlen",
@@ -539,7 +655,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Haben Sie Größe 40?"
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Combien",
+        "Au total",
+        "dix-neuf euros cinquante",
+        "Celui-ci"
+      ]
     }
   ],
   "8": [
@@ -571,6 +693,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "L’appartement a deux pièces.",
           "Die Wohnung hat zwei Zimmer."
         ]
+      ],
+      "emphasis": [
+        "Il y a",
+        "bleibt bei einem oder mehreren Dingen gleich",
+        "Dans mon appartement, il y a …",
+        "est"
       ]
     },
     {
@@ -602,7 +730,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "nahe dem Zentrum"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Gegenstand + est + Lagewort + Ort",
+        "Avec balcon",
+        "près du centre"
+      ]
     },
     {
       "title": "Adresse & Besichtigung",
@@ -633,7 +766,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Wann kann ich besichtigen?"
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "à + le zu au",
+        "à + les zu aux",
+        "À la bleibt getrennt",
+        "Hausnummer kommt vor dem Straßennamen"
+      ]
     }
   ],
   "9": [
@@ -662,7 +801,15 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Das Café ist rechts."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Pronomen vous weg",
+        "vous allez → Allez",
+        "Tout droit",
+        "à gauche",
+        "à droite",
+        "puis"
+      ]
     },
     {
       "title": "Nach Weg & Verkehr fragen",
@@ -689,7 +836,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Der Zug hat zehn Minuten Verspätung."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Excusez-moi",
+        "Où est … ?",
+        "À pied",
+        "un arrêt de bus",
+        "un quai"
+      ]
     }
   ],
   "10": [
@@ -721,6 +875,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Je dois faire mes devoirs.",
           "Ich muss meine Hausaufgaben machen."
         ]
+      ],
+      "emphasis": [
+        "être + Beruf",
+        "kein Artikel",
+        "Je suis étudiant / étudiante",
+        "Beruf, Arbeitsort, Arbeitstage und eine Vorliebe"
       ]
     },
     {
@@ -763,6 +923,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Nous commençons à huit heures.",
           "Wir beginnen um acht Uhr."
         ]
+      ],
+      "emphasis": [
+        "-er",
+        "-e, -es, -e, -ons, -ez oder -ent",
+        "nous commençons",
+        "je zu j’"
       ]
     },
     {
@@ -793,6 +959,10 @@ window.FR_A1_DEEPENING_CONTENT = {
           "J’aime mon travail.",
           "Ich mag meine Arbeit."
         ]
+      ],
+      "emphasis": [
+        "Beruf, Ort und Tagen",
+        "J’aime …"
       ]
     }
   ],
@@ -822,7 +992,15 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich gehe gegen 23 Uhr ins Bett."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Reflexivpronomen",
+        "je me lève",
+        "je me douche",
+        "je prends …",
+        "à",
+        "vers"
+      ]
     },
     {
       "title": "Was passiert gerade?",
@@ -841,7 +1019,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich bin gerade am Frühstücken."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Être en train de + Grundform",
+        "gerade läuft",
+        "suis",
+        "sommes",
+        "de zu d’"
+      ]
     },
     {
       "title": "Einen Tagesablauf verbinden",
@@ -876,7 +1061,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich ruhe mich aus."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "D’abord, ensuite, puis und enfin",
+        "Et",
+        "fünf Sätze"
+      ]
     }
   ],
   "12": [
@@ -908,6 +1098,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "deux fois par jour",
           "zweimal täglich"
         ]
+      ],
+      "emphasis": [
+        "J’ai mal à …",
+        "à + le zu au",
+        "de la",
+        "ein Symptom und eine Bitte"
       ]
     },
     {
@@ -939,7 +1135,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Bis morgen!"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Pouvez-vous m’aider ?",
+        "Depuis quand",
+        "Begrüßung, Krankheit, Absage und Gruß",
+        "Ne … pas",
+        "Grundform"
+      ]
     }
   ],
   "13": [
@@ -971,6 +1174,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Demain, il va faire dix degrés.",
           "Morgen wird es zehn Grad warm."
         ]
+      ],
+      "emphasis": [
+        "Il fait …",
+        "Il pleut",
+        "aller + Grundform",
+        "Jahreszeit oder Wetter, Temperatur und Kleidung"
       ]
     },
     {
@@ -998,7 +1207,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich suche eine Jacke in Größe M."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Ce, cet, cette und ces",
+        "Cet",
+        "männlichen Nomen mit Vokal oder stummem h"
+      ]
     },
     {
       "title": "Farben & Kleidung",
@@ -1029,7 +1243,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich trage eine blaue Jacke."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "weiblichen Nomen ein e",
+        "bleu → bleue",
+        "noir → noire",
+        "Plural kommt meist s",
+        "Kleidungsstück, Farbe und Größe"
+      ]
     },
     {
       "title": "Klein, blau & Größe M",
@@ -1048,7 +1269,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich suche eine kleine blaue Jacke in Größe M."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Petit",
+        "vor dem Nomen",
+        "Farbe dahinter",
+        "une petite veste bleue",
+        "Je cherche …"
+      ]
     }
   ],
   "14": [
@@ -1088,6 +1316,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Je préfère lire à la maison.",
           "Ich lese lieber zu Hause."
         ]
+      ],
+      "emphasis": [
+        "Jouer au + Sport",
+        "Nach aimer, adorer oder préférer",
+        "Grundform",
+        "bestimmte Artikel"
       ]
     },
     {
@@ -1118,6 +1352,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "J’aime aussi regarder des films.",
           "Ich sehe auch gern Filme."
         ]
+      ],
+      "emphasis": [
+        "Qu’est-ce que tu fais … ?",
+        "Tu aimes … ?",
+        "regelmäßige Gewohnheiten",
+        "ne / n’ und pas"
       ]
     }
   ],
@@ -1151,7 +1391,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "eine Fahrkarte für Hin- und Rückfahrt"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Aller + Grundform",
+        "je vais à Paris",
+        "réserver",
+        "pour"
+      ]
     },
     {
       "title": "Zimmer buchen & schriftlich anfragen",
@@ -1177,6 +1423,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "À quelle heure part le train ?",
           "Um wie viel Uhr fährt der Zug ab?"
         ]
+      ],
+      "emphasis": [
+        "Zimmer, Personen, Zeitraum und eine Frage",
+        "Du 10 au 12 juillet",
+        "Zwei Nächte",
+        "La disponibilité",
+        "le prix"
       ]
     }
   ],
@@ -1206,7 +1459,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Danke für deine Einladung."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Tu veux … ?",
+        "pouvoir",
+        "je ne peux pas venir",
+        "Si tu ne peux pas"
+      ]
     },
     {
       "title": "Telefon, Glückwünsche & Nachricht",
@@ -1240,6 +1499,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "À bientôt !",
           "Bis bald!"
         ]
+      ],
+      "emphasis": [
+        "Allô, c’est …",
+        "Gruß, Ort, Tag, Zeit und Schlussgruß",
+        "Bon anniversaire",
+        "Félicitations"
       ]
     }
   ],
@@ -1284,6 +1549,17 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Mon adresse est 10, rue du Port.",
           "Meine Adresse ist 10, rue du Port."
         ]
+      ],
+      "emphasis": [
+        "Nom",
+        "Nachname",
+        "prénom",
+        "Vorname",
+        "Que dois-je écrire ici ?",
+        "Quelle est votre … ?",
+        "Quel",
+        "quelle",
+        "kurze Angaben"
       ]
     },
     {
@@ -1318,6 +1594,11 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Merci beaucoup pour votre réponse.",
           "Vielen Dank für Ihre Antwort."
         ]
+      ],
+      "emphasis": [
+        "sechs Teilen",
+        "Begrüßung, Anlass, zwei konkrete Fragen oder Angaben, Bitte um Antwort und Dank",
+        "Formularangaben ersetzen die geforderte Nachricht nicht"
       ]
     }
   ],
@@ -1339,7 +1620,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Was bedeutet das?"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Ne / n’ … pas",
+        "de",
+        "Je ne comprends pas"
+      ]
     },
     {
       "title": "Hilfe & langsames Sprechen",
@@ -1362,7 +1648,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Wie sagt man „danke“ auf Französisch?"
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Pouvez-vous … ?",
+        "Vous pouvez … ?",
+        "Grundform",
+        "Plus lentement"
+      ]
     },
     {
       "title": "Höfliche Bitte & Informationsanfrage",
@@ -1397,7 +1689,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Vielen Dank im Voraus."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Pourriez-vous",
+        "J’aimerais",
+        "je voudrais",
+        "als Bausteine",
+        "Unterrichtszeiten, Preis und Startdatum"
+      ]
     }
   ],
   "19": [
@@ -1442,7 +1741,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "die Kinder"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Un / une",
+        "le / la",
+        "l’",
+        "Wähle",
+        "fünf Dinge"
+      ]
     },
     {
       "title": "Zwei Dinge in den Plural setzen",
@@ -1465,7 +1771,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "ein Kaffee → Kaffees"
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "un oder une zu des",
+        "Nomen erhält meist s",
+        "C’est → Ce sont"
+      ]
     },
     {
       "title": "Geschlecht merken",
@@ -1484,7 +1795,11 @@ window.FR_A1_DEEPENING_CONTENT = {
           "der Tisch"
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "nicht zuverlässig aus dem Deutschen",
+        "Wort und Artikel gemeinsam"
+      ]
     },
     {
       "title": "Gegenstände zeigen & beschreiben",
@@ -1507,7 +1822,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Da sind meine Schlüssel."
         ]
       ],
-      "attach": 3
+      "attach": 3,
+      "emphasis": [
+        "C’est + Singular",
+        "ce sont + Plural",
+        "Voici",
+        "voilà"
+      ]
     }
   ],
   "20": [
@@ -1528,7 +1849,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich sehe fern."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Subjekt + Verb + Ergänzung",
+        "-er-Endungen",
+        "positiv und negativ"
+      ]
     },
     {
       "title": "Mit ne … pas verneinen",
@@ -1551,7 +1877,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich habe kein Auto."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Ne / n’",
+        "vor dem konjugierten Verb",
+        "pas danach",
+        "ne zu n’",
+        "de"
+      ]
     },
     {
       "title": "Nie statt nicht",
@@ -1570,7 +1903,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Sie kocht nie."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Jamais",
+        "ersetzt",
+        "pas",
+        "Ne … jamais"
+      ]
     },
     {
       "title": "Regeln & Verbote",
@@ -1589,7 +1928,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Man darf hier nicht telefonieren."
         ]
       ],
-      "attach": 3
+      "attach": 3,
+      "emphasis": [
+        "Il faut + Grundform",
+        "Il ne faut pas + Grundform",
+        "drei positive und drei negative Alltagssätze"
+      ]
     }
   ],
   "21": [
@@ -1622,7 +1966,11 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Warum lernen Sie Französisch?"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Ort, Zeit, Person, Art oder Menge",
+        "fünf unterschiedliche Fragewörter"
+      ]
     },
     {
       "title": "Einfache Frageformen",
@@ -1645,7 +1993,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Seit wann wohnen Sie hier?"
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Est-ce que + Aussage",
+        "Ja/Nein-Frage",
+        "Qu’est-ce que",
+        "Inversion"
+      ]
     },
     {
       "title": "Person oder Sache?",
@@ -1664,7 +2018,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Wer ist das? — Das ist Paul."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Qui est-ce ?",
+        "Person",
+        "Qu’est-ce que c’est ?",
+        "Sache"
+      ]
     },
     {
       "title": "Besitz in einer Frage",
@@ -1687,7 +2047,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "meine Freundin"
         ]
       ],
-      "attach": 3
+      "attach": 3,
+      "emphasis": [
+        "Mon, ma und mes",
+        "folgenden Nomen",
+        "Votre",
+        "vos",
+        "mon statt ma"
+      ]
     },
     {
       "title": "Betonte Pronomen",
@@ -1706,7 +2073,11 @@ window.FR_A1_DEEPENING_CONTENT = {
           "mit ihnen (männlich / gemischt) / mit ihnen (weiblich)"
         ]
       ],
-      "attach": 4
+      "attach": 4,
+      "emphasis": [
+        "nach et oder einer Präposition",
+        "Moi, toi, lui, elle, nous, vous, eux, elles"
+      ]
     }
   ],
   "22": [
@@ -1731,7 +2102,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Sie hat heute Morgen gearbeitet."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "avoir im Präsens + Partizip",
+        "-er zu -é",
+        "Form von avoir wechselt"
+      ]
     },
     {
       "title": "Zeit & Reihenfolge",
@@ -1750,7 +2126,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Morgen werde ich Freunde treffen."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Hier",
+        "aujourd’hui",
+        "demain",
+        "d’abord, ensuite, puis und enfin"
+      ]
     },
     {
       "title": "Passé composé mit être",
@@ -1777,7 +2159,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Wir sind abgefahren (weiblich)."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Aller, arriver und partir",
+        "être",
+        "weiblichen Person e",
+        "Plural s",
+        "je suis allée"
+      ]
     },
     {
       "title": "Gerade eben: venir de",
@@ -1796,7 +2185,13 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich habe gerade ein Museum besucht."
         ]
       ],
-      "attach": 3
+      "attach": 3,
+      "emphasis": [
+        "Venir de + Grundform",
+        "gerade etwas getan haben",
+        "Person",
+        "d’"
+      ]
     },
     {
       "title": "Vor, in oder seit?",
@@ -1819,7 +2214,17 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Morgen werde ich Freunde treffen."
         ]
       ],
-      "attach": 4
+      "attach": 4,
+      "emphasis": [
+        "Il y a",
+        "vergangenen Zeitpunkt",
+        "dans",
+        "zukünftigen",
+        "Depuis",
+        "Dauer",
+        "Präsens",
+        "aller + Grundform"
+      ]
     }
   ],
   "23": [
@@ -1848,7 +2253,15 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Zucker"
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Ohne genaue Menge",
+        "du, de la, de l’ oder des",
+        "œufs",
+        "farine",
+        "lait",
+        "sucre"
+      ]
     },
     {
       "title": "Zutaten mit genauer Menge",
@@ -1871,7 +2284,11 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Man braucht drei Eier."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "Nach einer genauen Menge steht de / d’",
+        "grammes, kilo und litre"
+      ]
     },
     {
       "title": "Zutaten weglassen",
@@ -1890,7 +2307,11 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich habe kein Mehl."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Nach ne … pas",
+        "de / d’"
+      ]
     },
     {
       "title": "Ein wenig & zu viel",
@@ -1909,7 +2330,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "zu viel Salz"
         ]
       ],
-      "attach": 3
+      "attach": 3,
+      "emphasis": [
+        "un peu, beaucoup und trop",
+        "de",
+        "Trop de sel"
+      ]
     },
     {
       "title": "Zweck & zwei Zubereitungsschritte",
@@ -1936,7 +2362,15 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Man darf nicht zu viel Salz hinzufügen."
         ]
       ],
-      "attach": 4
+      "attach": 4,
+      "emphasis": [
+        "Pour + Grundform",
+        "Zweck",
+        "vous-Form ohne vous",
+        "Ajoutez, Mélangez",
+        "Zutaten",
+        "zwei wirkliche Handlungsschritte"
+      ]
     }
   ],
   "24": [
@@ -1961,7 +2395,14 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich fahre in die USA."
         ]
       ],
-      "attach": 0
+      "attach": 0,
+      "emphasis": [
+        "Städte steht à",
+        "en",
+        "au",
+        "aux",
+        "Ländernamen mit seiner Form"
+      ]
     },
     {
       "title": "Herkunft nennen",
@@ -1984,7 +2425,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Ich komme aus den USA."
         ]
       ],
-      "attach": 1
+      "attach": 1,
+      "emphasis": [
+        "de, d’, du oder des",
+        "Vor Vokal steht d’",
+        "nicht dieselbe"
+      ]
     },
     {
       "title": "Abfahrt & Verkehrsmittel",
@@ -2011,7 +2457,15 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Die Fahrkarte kostet zwanzig Euro."
         ]
       ],
-      "attach": 2
+      "attach": 2,
+      "emphasis": [
+        "Devoir + Grundform",
+        "Zeitpunkt und Verkehrsmittel",
+        "en train, en bus oder en voiture",
+        "Rester",
+        "partir",
+        "rentrer"
+      ]
     },
     {
       "title": "Eine Reisenachricht aufbauen",
@@ -2049,6 +2503,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           "À bientôt !",
           "Bis bald!"
         ]
+      ],
+      "emphasis": [
+        "mindestens 40 Wörter",
+        "Ziel, Monat, Begleitung, Verkehrsmittel, Dauer, Aktivitäten und Rückkehr",
+        "nous partons, nous restons und nous voulons",
+        "et"
       ]
     }
   ]

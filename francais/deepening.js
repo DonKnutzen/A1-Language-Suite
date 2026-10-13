@@ -2,6 +2,16 @@
   'use strict';
   const content=window.FR_A1_DEEPENING_CONTENT||{},specs=window.FR_A1_MASTERY_SPECS||{};
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function formatRule(text,terms=[]){
+    const source=String(text||''),ordered=[...new Set(terms)].filter(Boolean).sort((a,b)=>b.length-a.length);
+    let html='',position=0;
+    while(position<source.length){
+      const match=ordered.find(term=>source.startsWith(term,position)&&(!/[\p{L}\p{N}]/u.test(term[0])||position===0||!/[\p{L}\p{N}]/u.test(source[position-1]))&&(!/[\p{L}\p{N}]/u.test(term.at(-1))||!/[\p{L}\p{N}]/u.test(source[position+term.length]||'')));
+      if(match){html+=`<strong>${esc(match)}</strong>`;position+=match.length;}
+      else{html+=esc(source[position]);position++;}
+    }
+    return html;
+  }
   const shuffle=a=>{const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;};
   // r = original reference page; u = new preparation page. Keep the existing checks.
   const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
@@ -58,7 +68,7 @@
       const key=prepared.attach!==undefined?`r${prepared.attach}`:`u${added++}`;
       let unit=units.find(u=>u.key===key);
       if(!unit){unit={key,title:prepared.title,rule:'',pairs:[],element:null};units.push(unit);}
-      unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;
+      unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.emphasis=prepared.emphasis;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;
     }
     [...host.querySelectorAll('.lesson-topic-detail')].forEach((note,i)=>{
       const unit=units.find(u=>u.key===noteRoutes[lesson.id]?.[i])||units[0];
@@ -76,7 +86,7 @@
       el.dataset.deepeningKey=unit.key;
       const body=el.querySelector('.grammar-detail-body')||el;
       const pairs=unit.pairs.map(([fr,de])=>`<div class="phrase-row ${fr.length<28?'deepening-word':''}"><div><strong>${esc(fr)}</strong><small>${esc(de)}</small></div><button type="button" class="speak-btn" data-speak="${encodeURIComponent(fr.replace(/ → /g,', '))}" aria-label="${esc(fr)} anhören">🔊</button></div>`).join('');
-      const explanation=unit.blocks?.length?`<div class="deepening-rule-blocks">${unit.blocks.map(([title,text])=>`<div><strong>${esc(title)}</strong><p>${esc(text).replace(/\n/g,'<br>')}</p></div>`).join('')}</div>`:`<p>${esc(unit.rule)}</p>`;
+      const explanation=unit.blocks?.length?`<div class="deepening-rule-blocks">${unit.blocks.map(([title,text])=>`<div><strong>${esc(title)}</strong><p>${formatRule(text,unit.emphasis).replace(/\n/g,'<br>')}</p></div>`).join('')}</div>`:`<p>${formatRule(unit.rule,unit.emphasis)}</p>`;
       if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}<div class="deepening-examples">${pairs}</div></div>`);
       if(unit.notes?.length)body.insertAdjacentHTML('beforeend',`<div class="deepening-background">${unit.notes.join('')}</div>`);
       const relevant=(specs[lesson.id]?.tasks||[]).filter((t,i)=>routes[lesson.id]?.[i]===unit.key);
@@ -85,6 +95,14 @@
       if(examples)body.insertAdjacentHTML('beforeend',`<div class="deepening-form-examples">${examples}</div>`);
       body.insertAdjacentHTML('beforeend',`<div class="deepening-practice" data-deepening-practice="${unit.key}"></div>`);
     }
+    // Reference explanations keep their existing emphasis; supplement plain text nodes only.
+    const terms=(content[lesson.id]||[]).flatMap(unit=>unit.emphasis||[]);
+    host.querySelectorAll('p,li').forEach(paragraph=>{
+      if(paragraph.closest('.deepening-preparation,.deepening-form-examples,.phrase-row'))return;
+      const walker=document.createTreeWalker(paragraph,NodeFilter.SHOW_TEXT);
+      const nodes=[];while(walker.nextNode())if(!walker.currentNode.parentElement.closest('strong,button'))nodes.push(walker.currentNode);
+      nodes.forEach(node=>{const html=formatRule(node.textContent,terms);if(!html.includes('<strong>'))return;const span=document.createElement('span');span.innerHTML=html;node.replaceWith(...span.childNodes);});
+    });
     return root.innerHTML;
   }
   function pools(lesson,html){
@@ -133,5 +151,5 @@
     }
     draw();
   }
-  window.FR_A1_DEEPENING={enrich,pools,decorate,topicDone,routes};
+  window.FR_A1_DEEPENING={enrich,pools,decorate,topicDone,routes,formatRule};
 })();

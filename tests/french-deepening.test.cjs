@@ -108,11 +108,17 @@ test('listening contains only examples and the lesson quiz; alphabet tools move 
   view.querySelector('[data-lesson-step="grammar"]').click();
   assert(view.querySelector('#spellOwnName'));
   assert.equal(view.querySelectorAll('.alphabet-letter').length,26);
+  assert(view.querySelector('.lesson-pronunciation-bonus .pronunciation-alphabet .alphabet-grid'));
   assert(view.textContent.includes('Akzente'));
   assert(!view.textContent.includes('Akzente mitnennen'));
   view.querySelector('[data-grammar-progress="1"]').click();
   assert(view.textContent.includes('unregelmäßig'));
   assert.equal(view.querySelectorAll('.grammar-table tbody tr').length,6);
+  assert.equal(view.querySelectorAll('.grammar-table .speak-btn[data-speak]').length,6);
+  const sounds=[...view.querySelectorAll('.grammar-table [data-speak]')].map(b=>decodeURIComponent(b.dataset.speak));
+  assert.deepEqual(sounds,['je peux','tu peux','il peut','nous pouvons','vous pouvez','ils peuvent']);
+  view.querySelector('[data-grammar-progress="2"]').click();
+  assert([...view.querySelectorAll('#lessonGrammarPage [data-speak]')].every(b=>b.classList.contains('speak-btn')));
   assert(!view.textContent.includes('Comment ça s’écrit'));
   assert(lesson(w,2).transfer.writing.includes('einzelnen Buchstaben'));
   dom.window.close();
@@ -138,5 +144,22 @@ test('lesson 3 writing uses four French fields, preserves drafts and locks field
   view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-lesson-step="write"]').click();
   assert.equal(view.querySelector('[data-writing-field="name"]').value,'Martin');
   assert(view.querySelector('.mixed-char-wrap').hidden);
+  dom.window.close();
+});
+test('all preparation rules emphasize their key ideas without changing the explanation text',()=>{
+  const {dom,w}=appEnvironment();
+  for(let id=2;id<=24;id++){
+    for(const unit of w.FR_A1_DEEPENING_CONTENT[id]){
+      assert(unit.emphasis.length>0);
+      const texts=unit.blocks?.map(b=>b[1])||[unit.rule];
+      for(const text of texts){
+        const panel=w.document.createElement('div');panel.innerHTML=w.FR_A1_DEEPENING.formatRule(text,unit.emphasis);
+        assert.equal(panel.textContent,text);
+        assert(panel.querySelector('strong'),`${id}: ${unit.title}`);
+      }
+    }
+  }
+  assert.equal(w.FR_A1_DEEPENING.formatRule('<script>',[]),'&lt;script&gt;');
+  assert.equal(w.FR_A1_DEEPENING.formatRule('demain de',['de']),'demain <strong>de</strong>');
   dom.window.close();
 });

@@ -1022,3 +1022,15 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 .deepening-rule-blocks{display:grid;gap:12px;margin:12px 0 18px}.deepening-rule-blocks>div{border-left:3px solid #3b82f6;padding-left:12px}.deepening-rule-blocks strong{font-size:.92rem}.deepening-rule-blocks p{margin:4px 0 0;font-size:.92rem;line-height:1.55}
 
 .lesson-mini-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.lesson-mini-form label{display:grid;gap:6px;font-size:.9rem;color:var(--muted)}.lesson-mini-form input{width:100%;box-sizing:border-box}@media(max-width:480px){.lesson-mini-form{grid-template-columns:1fr}}
+
+/* Keep alphabet tools compact after moving them into the deepening page. */
+#lessonGrammarPage .lesson-pronunciation-bonus{margin:0;padding:0;border:0}
+#lessonGrammarPage .pronunciation-alphabet{padding-top:0}
+#lessonGrammarPage .pronunciation-alphabet>p{font-size:.85rem;line-height:1.4;margin:8px 0}
+#lessonGrammarPage .alphabet-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+#lessonGrammarPage .alphabet-letter{min-height:44px;padding:4px 2px}
+#lessonGrammarPage .pronunciation-words{margin:7px 0}
+#lessonGrammarPage .deepening-examples .phrase-row{padding:6px 0;gap:8px;font-size:.9rem}
+#lessonGrammarPage .deepening-examples small{font-size:.8rem;margin-top:2px}
+#lessonGrammarPage .deepening-examples .speak-btn{width:32px;height:32px;min-width:32px;font-size:14px}
+#lessonGrammarPage .grammar-table .speak-btn{width:30px;height:30px;min-width:30px;margin-left:6px;font-size:14px;vertical-align:middle}

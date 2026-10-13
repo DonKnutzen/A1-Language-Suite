@@ -70,7 +70,7 @@
         if(alphabet){
           const panel=document.createElement('div');panel.innerHTML=bonus;
           const details=panel.querySelector('details');
-          if(details){details.querySelector('summary')?.remove();alphabet.html=alphabet.html.replace('<div class="grammar-detail-body">','<div class="grammar-detail-body">'+details.innerHTML);}
+          if(details){details.querySelector('summary')?.remove();alphabet.html=alphabet.html.replace('<div class="grammar-detail-body">','<div class="grammar-detail-body"><div class="lesson-pronunciation-bonus"><div class="pronunciation-alphabet">'+details.innerHTML+'</div></div>');}
           grammarPages.splice(grammarPages.indexOf(alphabet),1);grammarPages.unshift(alphabet);
         }
       }else grammarPages[grammarPages.length-1].html+=`<div class="lesson-pronunciation-bonus">${bonus}</div>`;
