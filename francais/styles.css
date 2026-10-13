@@ -1018,3 +1018,5 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 
 /* Mobile header follows normal page scrolling instead of sticking above the keyboard. */
 @media(max-width:760px){.topbar{position:relative;top:auto}}
+
+.deepening-rule-blocks{display:grid;gap:12px;margin:12px 0 18px}.deepening-rule-blocks>div{border-left:3px solid #3b82f6;padding-left:12px}.deepening-rule-blocks strong{font-size:.92rem}.deepening-rule-blocks p{margin:4px 0 0;font-size:.92rem;line-height:1.55}

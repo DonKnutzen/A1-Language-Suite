@@ -2,8 +2,8 @@
 window.FR_A1_DEEPENING_CONTENT = {
   "2": [
     {
-      "title": "Alphabet & Namen",
-      "rule": "Beim Buchstabieren nennst du jeden Buchstaben einzeln. Im Französischen klingen besonders E, G, J und U anders als im Deutschen. Höre die Buchstaben in den Hörbeispielen; notiere sie der Reihe nach. é heißt e accent aigu, ç heißt c cédille.",
+      "title": "Alphabet & Buchstabieren",
+      "rule": "Beim Buchstabieren nennst du jeden Buchstaben einzeln. Im Französischen klingen besonders E, G, J und U anders als im Deutschen. Höre die Buchstaben oben in der Alphabetübersicht; notiere sie der Reihe nach. é heißt e accent aigu, ç heißt c cédille.",
       "pairs": [
         [
           "Mon prénom est Léa.",
@@ -85,6 +85,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Zahlen bis 100",
+      "blocks": [["Grundzahlen & Zehner", "Lerne zuerst 0–16 und die Zehner aus den Hörbeispielen."], ["Ab 17: Zahlen verbinden", "dix-sept = 10 + 7 → 17"], ["21 und 22", "vingt et un = 21 · vingt-deux = 22"], ["70, 80 und 90 in Frankreich", "soixante-dix = 60 + 10 → 70\nquatre-vingts = 4 × 20 → 80\nquatre-vingt-dix = 80 + 10 → 90"], ["80 mit weiterer Zahl", "quatre-vingts = 80 · quatre-vingt-un = 81\nDas s entfällt, wenn eine Zahl folgt."]],
       "rule": "Lerne zuerst 0–16 und die Zehner aus den Hörbeispielen. Ab 17 werden Zahlen zusammengesetzt: dix-sept = 10 + 7. 21 heißt vingt et un; 22 heißt vingt-deux. In Frankreich sind 70 = 60 + 10, 80 = 4 × 20 und 90 = 80 + 10. Das s in quatre-vingts entfällt, wenn eine Zahl folgt.",
       "pairs": [
         [

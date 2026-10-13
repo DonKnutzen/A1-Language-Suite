@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 function appEnvironment(){
   const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;
   w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};
-  for(const file of ['francais/data.js','francais/mastery-specs.js','shared/grammar-ui.js','shared/lesson-topic-info.js','francais/lesson1-practice.js','francais/deepening-content.js','francais/deepening.js','francais/lesson-flow.js'])w.eval(read(file));
+  for(const file of ['francais/data.js','shared/pronunciation.js','francais/mastery-specs.js','shared/grammar-ui.js','shared/lesson-topic-info.js','francais/lesson1-practice.js','francais/deepening-content.js','francais/deepening.js','francais/lesson-flow.js'])w.eval(read(file));
   const app=read('francais/app.js');
   w.esc=s=>{const span=w.document.createElement('span');span.textContent=s;return span.innerHTML;};
   w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.grammarHtml=lessonGrammarHtml;');
@@ -19,7 +19,7 @@ function appEnvironment(){
 const lesson=(w,id)=>w.FR_A1_DATA.lessons.find(l=>l.id===id);
 function render(w,view,id,state,audio=[],saves=[]){
   const l=lesson(w,id),app=w.models[id];
-  w.A1LessonFlow.render({lesson:l,content:l,view,state,targetLang:'fr',uiLang:'de',lessonCount:24,grammarHtml:w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)),model:app.speakModel,writingModel:app.writeModel,save:x=>saves.push(x),speak:(t,force)=>audio.push({text:t,force}),speakBtn:t=>`<button data-speak="${encodeURIComponent(t)}">🔊</button>`,wireSpeakButtons:()=>{},recorderHtml:()=>'',renderLearn:()=>{},renderLesson:()=>{}});
+  w.A1LessonFlow.render({lesson:l,content:l,view,state,targetLang:'fr',uiLang:'de',lessonCount:24,grammarHtml:w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)),pronunciationHtml:w.A1Pronunciation.render(l,'fr','de'),model:app.speakModel,writingModel:app.writeModel,save:x=>saves.push(x),speak:(t,force)=>audio.push({text:t,force}),speakBtn:t=>`<button data-speak="${encodeURIComponent(t)}">🔊</button>`,wireSpeakButtons:()=>{},recorderHtml:()=>'',renderLearn:()=>{},renderLesson:()=>{}});
 }
 test('all 23 later lessons teach and directly rehearse every existing final-check pattern',()=>{
   const {dom,w}=appEnvironment();
@@ -94,5 +94,33 @@ test('lesson 1 content and established conjugation drills stay intact',()=>{
   const {dom,w}=appEnvironment(),l=lesson(w,1),html=w.grammarHtml(l);
   assert.equal(w.FR_A1_DEEPENING.enrich(l,html),html);
   for(const group of Object.values(w.FR_A1_LESSON1.GROUPS))assert.equal(group.tasks.length,12);
+  dom.window.close();
+});
+
+test('listening contains only examples and the lesson quiz; alphabet tools move to the first deepening topic',()=>{
+  const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
+  for(let id=1;id<=24;id++){
+    render(w,view,id,state);
+    assert(view.querySelector('#startQuiz'));
+    assert(!view.querySelector('.pronunciation-panel'));
+  }
+  render(w,view,2,state);
+  view.querySelector('[data-lesson-step="grammar"]').click();
+  assert(view.querySelector('#spellOwnName'));
+  assert.equal(view.querySelectorAll('.alphabet-letter').length,26);
+  assert(view.textContent.includes('Akzente'));
+  assert(!view.textContent.includes('Akzente mitnennen'));
+  view.querySelector('[data-grammar-progress="1"]').click();
+  assert(view.textContent.includes('unregelmäßig'));
+  assert.equal(view.querySelectorAll('.grammar-table tbody tr').length,6);
+  assert(!view.textContent.includes('Comment ça s’écrit'));
+  assert(lesson(w,2).transfer.writing.includes('einzelnen Buchstaben'));
+  dom.window.close();
+});
+test('number formation is explained in five compact blocks',()=>{
+  const {dom,w}=appEnvironment(),l=lesson(w,3),html=w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l));
+  const root=w.document.createElement('div');root.innerHTML=html;
+  assert.equal(root.querySelectorAll('.deepening-rule-blocks > div').length,5);
+  for(const formula of ['10 + 7','60 + 10','4 × 20','80 + 10'])assert(root.textContent.includes(formula));
   dom.window.close();
 });

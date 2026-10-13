@@ -366,7 +366,7 @@ window.FR_A1_DATA = {
       ],
       "transfer": {
         "speaking": "Buchstabiere deinen Vor- und Nachnamen. Bitte anschließend um langsameres Sprechen.",
-        "writing": "Notiere einen Namen, den du dir buchstabieren lässt."
+        "writing": "Drücke auf „Nachnamen buchstabiert anhören“. Höre die einzelnen Buchstaben und schreibe den gehörten Nachnamen in die Box."
       },
       "cefrDomains": [
         "Mündliche Interaktion",

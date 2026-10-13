@@ -571,6 +571,10 @@ function lessonExplanationHtml(text){
 }
 
 function lessonGrammarHtml(l){
+  if(l.id===2){
+    const forms=[['je','peux','kann'],['tu','peux','kannst'],['il / elle / on','peut','kann'],['nous','pouvons','können'],['vous','pouvez','könnt / können'],['ils / elles','peuvent','können']];
+    return `<details class="lesson-explanation lesson-deepening"><summary><strong>Vertiefung</strong></summary><details class="grammar-detail"><summary>pouvoir – können</summary><div class="grammar-detail-body"><p><strong>pouvoir</strong> bedeutet „können“ und ist <strong>unregelmäßig</strong>. Lerne die Formen passend zur Person.</p><div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Person</th><th>pouvoir</th><th>Deutsch</th></tr></thead><tbody>${forms.map(([person,form,de])=>`<tr><td>${person}</td><td>${form}</td><td>${de}</td></tr>`).join('')}</tbody></table></div><p>Danach steht ein zweites Verb in der <strong>Grundform</strong>: <strong>Vous pouvez épeler.</strong> = Sie können buchstabieren.</p></div></details><details class="grammar-detail"><summary>Buchstabieren lassen & nachfragen</summary><div class="grammar-detail-body"><div class="phrase-row"><div><strong>épeler</strong><small>buchstabieren</small></div><button data-speak="épeler">🔊</button></div><div class="phrase-row"><div><strong>répéter</strong><small>wiederholen</small></div><button data-speak="répéter">🔊</button></div><div class="phrase-row"><div><strong>parler plus lentement</strong><small>langsamer sprechen</small></div><button data-speak="parler%20plus%20lentement">🔊</button></div></div></details></details>`;
+  }
   const ref=LESSON_GRAMMAR_REFS[l.id]||{};
   const refs=A1GrammarUI.pickDetails(GRAMMAR_GUIDES,ref.refs||[]);
   const topicInfo=A1LessonTopicInfo.render('francais',l.id);

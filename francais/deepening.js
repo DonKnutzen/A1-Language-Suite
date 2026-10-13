@@ -58,7 +58,7 @@
       const key=prepared.attach!==undefined?`r${prepared.attach}`:`u${added++}`;
       let unit=units.find(u=>u.key===key);
       if(!unit){unit={key,title:prepared.title,rule:'',pairs:[],element:null};units.push(unit);}
-      unit.rule=prepared.rule;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;
+      unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;
     }
     [...host.querySelectorAll('.lesson-topic-detail')].forEach((note,i)=>{
       const unit=units.find(u=>u.key===noteRoutes[lesson.id]?.[i])||units[0];
@@ -76,10 +76,11 @@
       el.dataset.deepeningKey=unit.key;
       const body=el.querySelector('.grammar-detail-body')||el;
       const pairs=unit.pairs.map(([fr,de])=>`<div class="phrase-row ${fr.length<28?'deepening-word':''}"><div><strong>${esc(fr)}</strong><small>${esc(de)}</small></div><button type="button" class="speak-btn" data-speak="${encodeURIComponent(fr.replace(/ → /g,', '))}" aria-label="${esc(fr)} anhören">🔊</button></div>`).join('');
-      if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation"><p>${esc(unit.rule)}</p><div class="deepening-examples">${pairs}</div></div>`);
+      const explanation=unit.blocks?.length?`<div class="deepening-rule-blocks">${unit.blocks.map(([title,text])=>`<div><strong>${esc(title)}</strong><p>${esc(text).replace(/\n/g,'<br>')}</p></div>`).join('')}</div>`:`<p>${esc(unit.rule)}</p>`;
+      if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}<div class="deepening-examples">${pairs}</div></div>`);
       if(unit.notes?.length)body.insertAdjacentHTML('beforeend',`<div class="deepening-background">${unit.notes.join('')}</div>`);
       const relevant=(specs[lesson.id]?.tasks||[]).filter((t,i)=>routes[lesson.id]?.[i]===unit.key);
-      const examples=relevant.filter(t=>t.prompt).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
+      const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer)))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
       // The exact patterns tested in the final check are taught before the inline drill.
       if(examples)body.insertAdjacentHTML('beforeend',`<div class="deepening-form-examples">${examples}</div>`);
       body.insertAdjacentHTML('beforeend',`<div class="deepening-practice" data-deepening-practice="${unit.key}"></div>`);
