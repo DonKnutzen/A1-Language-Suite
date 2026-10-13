@@ -124,3 +124,19 @@ test('number formation is explained in five compact blocks',()=>{
   for(const formula of ['10 + 7','60 + 10','4 × 20','80 + 10'])assert(root.textContent.includes(formula));
   dom.window.close();
 });
+test('lesson 3 writing uses four French fields, preserves drafts and locks fields during comparison',()=>{
+  const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
+  w.A1Learning={wireRecorder:()=>{},countWords:s=>s.trim().split(/\s+/).filter(Boolean).length};
+  w.A1ExerciseEngine={charBar:()=>'<div class="mixed-char-wrap"></div>',wireChars:()=>{}};
+  render(w,view,3,state);view.querySelector('[data-lesson-step="write"]').click();
+  const fields=[...view.querySelectorAll('[data-writing-field]')];
+  assert.equal(fields.length,4);assert(view.querySelector('#lessonWriting').hidden);
+  view.querySelector('#showWritingModel').click();assert(view.querySelector('#writingModel').textContent.includes('vier Felder'));
+  ['Martin','30','0612345678','martin@example.fr'].forEach((value,i)=>{fields[i].value=value;fields[i].dispatchEvent(new w.Event('input'));});
+  view.querySelector('#showWritingModel').click();assert(fields.every(f=>f.readOnly));
+  view.querySelector('#editWriting').click();assert(fields.every(f=>!f.readOnly));
+  view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-lesson-step="write"]').click();
+  assert.equal(view.querySelector('[data-writing-field="name"]').value,'Martin');
+  assert(view.querySelector('.mixed-char-wrap').hidden);
+  dom.window.close();
+});

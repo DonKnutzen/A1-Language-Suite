@@ -1020,3 +1020,5 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 @media(max-width:760px){.topbar{position:relative;top:auto}}
 
 .deepening-rule-blocks{display:grid;gap:12px;margin:12px 0 18px}.deepening-rule-blocks>div{border-left:3px solid #3b82f6;padding-left:12px}.deepening-rule-blocks strong{font-size:.92rem}.deepening-rule-blocks p{margin:4px 0 0;font-size:.92rem;line-height:1.55}
+
+.lesson-mini-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.lesson-mini-form label{display:grid;gap:6px;font-size:.9rem;color:var(--muted)}.lesson-mini-form input{width:100%;box-sizing:border-box}@media(max-width:480px){.lesson-mini-form{grid-template-columns:1fr}}
