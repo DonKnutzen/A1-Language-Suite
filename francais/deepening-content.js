@@ -3,7 +3,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "2": [
     {
       "title": "Alphabet & Buchstabieren",
-      "rule": "Beim Buchstabieren nennst du jeden Buchstaben einzeln. Im Französischen klingen besonders E, G, J und U anders als im Deutschen. Höre die Buchstaben oben in der Alphabetübersicht; notiere sie der Reihe nach. é heißt e accent aigu, ç heißt c cédille.",
+      "rule": "Im Französischen klingen besonders E, G, J und U anders als im Deutschen. Höre die Buchstaben oben in der Alphabetübersicht; notiere sie der Reihe nach. é heißt e accent aigu, ç heißt c cédille.",
       "pairs": [
         [
           "Mon prénom est Léa.",
@@ -31,7 +31,6 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "jeden Buchstaben einzeln",
         "E, G, J und U",
         "é",
         "ç"
