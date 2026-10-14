@@ -169,8 +169,8 @@ const LESSON_APPLICATIONS={
   },
   "2": {
     "speakModel": "Je m’appelle Léa Martin. L-E-A, M-A-R-T-I-N. Pouvez-vous parler plus lentement, s’il vous plaît ?",
-    "writeModel": "Léa Martin",
-    "placeholder": "Schreibe den gehörten Namen …",
+    "writeModel": "Martin",
+    "placeholder": "Schreibe den gehörten Nachnamen …",
     "writingHelpText": "Höre die Buchstaben in Reihenfolge und setze sie zu einem Namen zusammen.",
     "writingHints": [
       [
@@ -204,7 +204,7 @@ const LESSON_APPLICATIONS={
     ]
   },
   "4": {
-    "speakModel": "Vous êtes disponible mardi à quinze heures ? Rendez-vous devant la bibliothèque. D’accord, mardi à quinze heures devant la bibliothèque.",
+    "speakModel": "A : Tu es disponible mardi à quinze heures ?\\nB : Oui. On se voit où ?\\nA : Devant la bibliothèque.\\nB : D’accord, mardi à quinze heures devant la bibliothèque.",
     "writeModel": "Rendez-vous mardi à 15 h devant la bibliothèque.",
     "placeholder": "Schreibe eine kurze Terminbestätigung …",
     "writingHelpText": "Für die Bestätigung brauchst du Tag und Uhrzeit in einem kurzen Satz.",

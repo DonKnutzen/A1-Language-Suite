@@ -21,6 +21,7 @@
   function pairTasks(unit){
     const pairs=allPairs(unit);
     return pairs.flatMap(([fr,de],i)=>{
+      if(unit.key==='u0'&&fr==='Ça s’écrit M-A-R-T-I-N.')return [{kind:'vocabulary',q:'Du möchtest wissen, wie ein Name geschrieben wird. Was fragst du?',answer:'Comment ça s’écrit ?',o:['Comment ça s’écrit ?','Comment vous vous appelez ?','Vous habitez où ?'],audio:'Comment ça s’écrit ?',explanation:'Comment ça s’écrit ? bedeutet „Wie schreibt man das?“ und fragt nach der Schreibweise.'}];
       const french=i%2===0,answer=french?fr:de,index=french?0:1;
       const wrong=[...new Set(pairs.map(p=>p[index]).filter(x=>x!==answer))];
       if(wrong.length<2)return [];
@@ -32,7 +33,7 @@
     const alternatives=(families.find(a=>a.includes(answer))||[]).filter(a=>a!==answer);
     const o=t.o||[answer,...shuffle(alternatives).slice(0,2)];
     if(o.length<3)return null;
-    return {kind:'form',q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||rule};
+    return {kind:'form',q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer)}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
   }
   function tableTasks(el){
     if(!el)return [];

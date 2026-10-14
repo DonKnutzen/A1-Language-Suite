@@ -163,3 +163,34 @@ test('all preparation rules emphasize their key ideas without changing the expla
   assert.equal(w.FR_A1_DEEPENING.formatRule('demain de',['de']),'demain <strong>de</strong>');
   dom.window.close();
 });
+test('reported alphabet questions have natural prompts and task-specific feedback',()=>{
+  const {dom,w}=appEnvironment(),l=lesson(w,2),pools=w.FR_A1_DEEPENING.pools(l,w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)));
+  const tasks=pools.flatMap(p=>p.tasks);
+  assert(!tasks.some(q=>q.q.includes('Wie sagst du „So schreibt')||q.q.includes('Wie sagst du „Das schreibt')));
+  const question=tasks.find(q=>q.q==='Du möchtest wissen, wie ein Name geschrieben wird. Was fragst du?');
+  assert.equal(question.answer,'Comment ça s’écrit ?');
+  const family=tasks.find(q=>q.q==='Mon nom de ___ est Dupont.');
+  assert(family.explanation.includes('Nom de famille bedeutet Nachname'));
+  assert(!family.explanation.includes('Akzent'));
+  for(const task of w.FR_A1_MASTERY_SPECS[2].tasks)assert(task.explanation);
+  assert(!JSON.stringify(l).includes('Das schreibt man'));
+  dom.window.close();
+});
+test('surname dictation and writing solution use the same name and ordered French letter audio',()=>{
+  const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}},sequences=[];
+  w.A1Learning={wireRecorder:()=>{},countWords:s=>s.trim().split(/\s+/).filter(Boolean).length};
+  w.A1ExerciseEngine={charBar:()=>'<div class="mixed-char-wrap"></div>',wireChars:()=>{}};
+  w.A1Voice={cancel:()=>{},speakSequence:(parts,options)=>sequences.push({parts,options})};
+  render(w,view,2,state);view.querySelector('[data-lesson-step="write"]').click();
+  const button=view.querySelector('[data-pron-spell]');
+  assert.equal(button.dataset.pronSpell,w.models[2].writeModel.toUpperCase());
+  button.click();assert.equal(sequences.length,1);assert.equal(sequences[0].options.lang,'fr-FR');
+  assert.deepEqual([...sequences[0].parts],['emme','a','erre','té','i','enne']);
+  dom.window.close();
+});
+test('Sabine’s appointment task explicitly requests a dialogue, both roles and optional help',()=>{
+  const {dom,w}=appEnvironment(),task=lesson(w,4).transfer.speaking;
+  for(const phrase of ['Dialog zwischen zwei Personen','Sprich beide Rollen','Tag und einer Uhrzeit','Treffpunkt','bestätigt','Hilfestellung'])assert(task.includes(phrase));
+  assert(w.models[4].speakModel.includes('A :'));assert(w.models[4].speakModel.includes('B :'));
+  dom.window.close();
+});

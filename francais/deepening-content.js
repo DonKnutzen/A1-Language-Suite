@@ -15,7 +15,7 @@ window.FR_A1_DEEPENING_CONTENT = {
         ],
         [
           "Ça s’écrit M-A-R-T-I-N.",
-          "Das schreibt man M-A-R-T-I-N."
+          "So schreibt man den Namen: M-A-R-T-I-N."
         ],
         [
           "Comment ça s’écrit ?",

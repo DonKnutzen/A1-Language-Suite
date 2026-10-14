@@ -210,7 +210,7 @@ window.FR_A1_DATA = {
         ],
         [
           "Ça s’écrit S-O-P-H-I-E.",
-          "Das schreibt man S-O-P-H-I-E."
+          "So schreibt man den Namen: S-O-P-H-I-E."
         ],
         [
           "Vous pouvez épeler, s’il vous plaît ?",
@@ -759,7 +759,7 @@ window.FR_A1_DATA = {
         "Oui, devant la gare."
       ],
       "transfer": {
-        "speaking": "Vereinbare einen Termin mit Tag, Uhrzeit und Ort.",
+        "speaking": "Erfinde einen kurzen Dialog zwischen zwei Personen, die einen Termin vereinbaren. Sprich beide Rollen: Fragt nach einem Tag und einer Uhrzeit, nennt einen Treffpunkt und bestätigt den Termin. Nutze bei Bedarf die Hilfestellung.",
         "writing": "Schreibe eine kurze Terminbestätigung mit Tag und Uhrzeit."
       },
       "cefrDomains": [

@@ -83,21 +83,24 @@ window.FR_A1_MASTERY_SPECS = {
         "prompt": "Vous pouvez ___, s’il vous plaît ?",
         "answer": "épeler",
         "tag": "Infinitiv",
-        "context": "Können Sie bitte buchstabieren?"
+        "context": "Können Sie bitte buchstabieren?",
+        "explanation": "Nach pouvez steht die Grundform épeler: buchstabieren. Vous pouvez épeler, s’il vous plaît ? bedeutet „Können Sie bitte buchstabieren?“"
       },
       {
         "type": "gap",
         "prompt": "Mon ___ est Sophie.",
         "answer": "prénom",
         "tag": "Persönliche Daten",
-        "context": "Mein Vorname ist Sophie."
+        "context": "Mein Vorname ist Sophie.",
+        "explanation": "Prénom bedeutet Vorname. Mon prénom est Sophie. = Mein Vorname ist Sophie."
       },
       {
         "type": "gap",
         "prompt": "Mon nom de ___ est Dupont.",
         "answer": "famille",
         "tag": "Persönliche Daten",
-        "context": "Mein Familienname ist Dupont."
+        "context": "Mein Familienname ist Dupont.",
+        "explanation": "Nom de famille bedeutet Nachname. Mon nom de famille est Dupont. = Mein Nachname ist Dupont."
       },
       {
         "type": "choice",
@@ -108,7 +111,8 @@ window.FR_A1_MASTERY_SPECS = {
           "à"
         ],
         "answer": "ç",
-        "tag": "Alphabet"
+        "tag": "Alphabet",
+        "explanation": "Die cédille ist das Zeichen unter dem c: ç."
       },
       {
         "type": "choice",
@@ -119,7 +123,8 @@ window.FR_A1_MASTERY_SPECS = {
           "ç"
         ],
         "answer": "é",
-        "tag": "Alphabet"
+        "tag": "Alphabet",
+        "explanation": "Der accent aigu ist der nach rechts ansteigende Akzent über dem e: é."
       }
     ]
   },
