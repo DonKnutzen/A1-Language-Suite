@@ -72,3 +72,5 @@ On mobile the composer contracts to the textarea and send control while typing.
 VisualViewport resize and scroll events anchor it above the on-screen keyboard;
 focus, orientation and closing restore the normal panel. The French mobile header
 now scrolls in normal flow instead of sticking during browser viewport panning.
+
+Optional subcategories are stored in `context.issueReason` alongside `issueType`, task context and description. They also appear in the report message and JSON export. Changing the main category clears the previous subcategory; drafts preserve both selections. No database migration is needed because context is JSONB.

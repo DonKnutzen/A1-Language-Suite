@@ -56,3 +56,20 @@ test('resolved reports are excluded from both the visible list and JSON export',
   w.document.getElementById('a1BugExport').click();assert.equal(exported.reports.length,1);assert.equal(exported.reports[0].id,'open-1');
   dom.window.close();
 });
+test('quick subcategories are scoped, optional, restored and submitted with report context',async()=>{
+  const {dom,w,calls,succeed}=await ui();w.A1BugReports.open();
+  assert(w.document.getElementById('a1BugReasons').hidden);
+  w.document.querySelector('[data-bug-category="question"]').click();
+  assert.equal(w.document.querySelectorAll('[data-bug-reason]').length,3);
+  w.document.querySelector('[data-bug-reason="wrong-word"]').click();
+  w.document.getElementById('a1BugClose').click();w.A1BugReports.open();
+  assert.equal(w.document.querySelector('[data-bug-reason="wrong-word"]').getAttribute('aria-pressed'),'true');
+  w.document.querySelector('[data-bug-category="answers"]').click();
+  assert(!w.document.querySelector('[data-bug-reason="wrong-word"]'));
+  assert.equal(w.document.querySelectorAll('[data-bug-reason][aria-pressed="true"]').length,0);
+  w.document.querySelector('[data-bug-reason="explanation"]').click();
+  succeed();await w.document.getElementById('a1BugSend').onclick();
+  assert.equal(calls[0].context.issueType,'answers');assert.equal(calls[0].context.issueReason,'explanation');
+  assert(calls[0].message.includes('Erklärung der Antwort falsch'));assert(calls[0].context.question);
+  dom.window.close();
+});
