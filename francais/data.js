@@ -243,108 +243,117 @@ window.FR_A1_DATA = {
       ],
       "quiz": [
         {
-          "q": "„épeler“ heißt …",
+          "q": "Was bedeutet „épeler“?",
           "o": [
-            "warten",
             "buchstabieren",
-            "bezahlen"
+            "wiederholen",
+            "sprechen"
+          ],
+          "a": 0,
+          "audio": "épeler",
+          "explanation": "Épeler bedeutet buchstabieren; répéter bedeutet wiederholen."
+        },
+        {
+          "q": "Was bedeutet „prénom“?",
+          "o": [
+            "Vorname",
+            "Nachname",
+            "Spitzname"
+          ],
+          "a": 0,
+          "audio": "prénom",
+          "explanation": "Prénom ist der Vorname; nom de famille ist der Nachname."
+        },
+        {
+          "q": "Was bedeutet „nom de famille“?",
+          "o": [
+            "Vorname",
+            "Nachname",
+            "Spitzname"
           ],
           "a": 1,
-          "audio": "épeler"
+          "audio": "nom de famille",
+          "explanation": "Nom de famille bedeutet Nachname."
         },
         {
-          "q": "Wie fragst du höflich nach der Schreibweise?",
+          "q": "Wie fragst du „Wie schreibt man das?“?",
           "o": [
             "Comment ça s’écrit ?",
-            "Combien ça coûte ?",
-            "Quelle heure est-il ?"
+            "Comment ça se prononce ?",
+            "Comment vous vous appelez ?"
           ],
           "a": 0,
-          "audio": "Comment ça s’écrit ?"
+          "audio": "Comment ça s’écrit ?",
+          "explanation": "S’écrit fragt nach der Schreibweise, se prononce nach der Aussprache."
         },
         {
-          "q": "„nom de famille“ heißt …",
+          "q": "Was bedeutet „Vous pouvez épeler, s’il vous plaît ?“?",
           "o": [
-            "Nachname",
-            "Wohnort",
-            "Vorname"
+            "Können Sie bitte buchstabieren?",
+            "Können Sie bitte wiederholen?",
+            "Können Sie bitte langsamer sprechen?"
           ],
           "a": 0,
-          "audio": "nom de famille"
+          "audio": "Vous pouvez épeler, s’il vous plaît ?",
+          "explanation": "Épeler bedeutet buchstabieren. Die Bitte fragt nicht nach Wiederholung oder Sprechtempo."
         },
         {
           "q": "Vous pouvez ___, s’il vous plaît ?",
           "o": [
-            "épèle",
             "épeler",
-            "épelez"
-          ],
-          "a": 1,
-          "audio": "Vous pouvez épeler, s’il vous plaît ?",
-          "explanation": "Nach Vous pouvez steht der Infinitiv: Vous pouvez épeler… = „Können Sie buchstabieren…?“"
-        },
-        {
-          "q": "Lies den Dialog: Votre nom, s’il vous plaît ? / Morel. / Vous pouvez épeler ? / M-O-R-E-L.\nDer Nachname lautet …",
-          "o": [
-            "Morel",
-            "Martin",
-            "Morin"
-          ],
-          "a": 0,
-          "explanation": "Morel wird im Dialog als M-O-R-E-L buchstabiert.",
-          "audio": "M-O-R-E-L."
-        },
-        {
-          "q": "Wie sagst du „Wie schreibt man das“ auf Französisch?",
-          "o": [
-            "Vous pouvez épeler, s’il vous plaît ?",
-            "Mon nom de famille est Dupont.",
-            "Comment ça s’écrit ?"
-          ],
-          "a": 2,
-          "audio": "Comment ça s’écrit ?"
-        },
-        {
-          "q": "Wie sagst du „Können Sie das bitte buchstabieren“ auf Französisch?",
-          "o": [
-            "Vous pouvez épeler, s’il vous plaît ?",
-            "Comment ça s’écrit ?",
-            "Mon prénom est Sophie."
-          ],
-          "a": 0,
-          "audio": "Vous pouvez épeler, s’il vous plaît ?"
-        },
-        {
-          "q": "Du hast den Nachnamen nicht verstanden. Welche Bitte hilft?",
-          "o": [
-            "Vous pouvez épeler, s’il vous plaît ?",
-            "Combien ça coûte ?",
-            "Quelle heure est-il ?"
+            "répéter",
+            "parler"
           ],
           "a": 0,
           "audio": "Vous pouvez épeler, s’il vous plaît ?",
-          "explanation": "Épeler bedeutet buchstabieren. Frage bei Namen gezielt nach den einzelnen Buchstaben."
+          "explanation": "Gesucht ist „buchstabieren“: épeler. Nach pouvez steht die Grundform.",
+          "context": "Können Sie bitte buchstabieren?"
         },
         {
-          "q": "Wie sagst du „Mein Nachname ist Dupont“ auf Französisch?",
+          "q": "Mon ___ est Sophie.",
           "o": [
-            "Mon nom de famille est Dupont.",
-            "Vous pouvez épeler, s’il vous plaît ?",
-            "Quelle est votre adresse ?"
+            "prénom",
+            "nom de famille",
+            "adresse"
           ],
           "a": 0,
-          "audio": "Mon nom de famille est Dupont."
+          "audio": "Mon prénom est Sophie.",
+          "explanation": "Sophie ist hier der Vorname: prénom.",
+          "context": "Mein Vorname ist Sophie."
         },
         {
-          "q": "Wie buchstabierst du den Namen „Léa“?",
+          "q": "Mon nom de ___ est Dupont.",
           "o": [
-            "L – É – A",
-            "L – A – É",
-            "É – L – A"
+            "famille",
+            "naissance",
+            "téléphone"
           ],
           "a": 0,
-          "audio": "L – É – A",
-          "explanation": "Beim Buchstabieren nennst du die Buchstaben in ihrer Reihenfolge."
+          "audio": "Mon nom de famille est Dupont.",
+          "explanation": "Die feste Wendung nom de famille bedeutet Nachname.",
+          "context": "Mein Nachname ist Dupont."
+        },
+        {
+          "q": "Was bedeutet „Quelle est votre adresse ?“?",
+          "o": [
+            "Wie lautet Ihre Adresse?",
+            "Wie lautet Ihre Telefonnummer?",
+            "Wie lautet Ihr Nachname?"
+          ],
+          "a": 0,
+          "audio": "Quelle est votre adresse ?",
+          "explanation": "Adresse ist die Anschrift; numéro de téléphone die Telefonnummer."
+        },
+        {
+          "q": "Welches Zeichen trägt einen accent aigu?",
+          "o": [
+            "é",
+            "è",
+            "ê"
+          ],
+          "a": 0,
+          "audio": "e accent aigu",
+          "explanation": "É trägt einen accent aigu; è einen accent grave und ê einen accent circonflexe."
         }
       ],
       "canDo": [
@@ -500,29 +509,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „null, eins, zwei, drei“ auf Französisch?",
           "o": [
-            "Je suis né le 17 avril.",
             "zéro, un, deux, trois",
-            "dix, vingt, trente"
+            "zéro, un, deux, quatre",
+            "un, deux, trois, quatre"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "zéro, un, deux, trois"
         },
         {
           "q": "Wie sagst du „zehn, zwanzig, dreißig“ auf Französisch?",
           "o": [
-            "Mon numéro de téléphone est…",
-            "J’ai vingt-six ans.",
-            "dix, vingt, trente"
+            "dix, vingt, trente",
+            "dix, vingt, quarante",
+            "dix, trente, quarante"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "dix, vingt, trente"
         },
         {
           "q": "Wie sagst du „hundert“ auf Französisch?",
           "o": [
             "cent",
-            "Mon code postal est B3V 1L2.",
-            "zéro, un, deux, trois"
+            "dix",
+            "mille"
           ],
           "a": 0,
           "audio": "cent"
@@ -530,21 +539,21 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Meine Telefonnummer ist …“ auf Französisch?",
           "o": [
-            "cent",
             "Mon numéro de téléphone est…",
-            "Quel est votre numéro de téléphone ?"
+            "Mon adresse est…",
+            "Mon code postal est…"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Mon numéro de téléphone est…"
         },
         {
           "q": "Wie sagst du „Ich bin am 17. April geboren“ auf Französisch?",
           "o": [
-            "dix, vingt, trente",
-            "Mon code postal est B3V 1L2.",
-            "Je suis né le 17 avril."
+            "Je suis né le 17 avril.",
+            "Je suis né le 17 mai.",
+            "Je suis né le 7 avril."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je suis né le 17 avril."
         }
       ],
@@ -694,8 +703,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Wie spät ist es“ auf Französisch?",
           "o": [
             "Quelle heure est-il ?",
-            "Il est quatre heures et demie.",
-            "Je viens plus tard."
+            "À quelle heure ?",
+            "Quel jour sommes-nous ?"
           ],
           "a": 0,
           "audio": "Quelle heure est-il ?"
@@ -703,29 +712,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Es ist halb fünf“ auf Französisch?",
           "o": [
-            "On se voit vendredi soir.",
             "Il est quatre heures et demie.",
-            "Le rendez-vous est mercredi à dix heures."
+            "Il est quatre heures et quart.",
+            "Il est cinq heures et demie."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Il est quatre heures et demie."
         },
         {
           "q": "Wie sagst du „Um wie viel Uhr“ auf Französisch?",
           "o": [
-            "Du lundi au vendredi.",
+            "À quelle heure ?",
             "Quelle heure est-il ?",
-            "À quelle heure ?"
+            "Quel jour ?"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "À quelle heure ?"
         },
         {
           "q": "Wie sagst du „Der Termin ist Mittwoch um zehn“ auf Französisch?",
           "o": [
             "Le rendez-vous est mercredi à dix heures.",
-            "Je suis libre à partir de quinze heures.",
-            "À quelle heure ?"
+            "Le rendez-vous est mercredi à douze heures.",
+            "Le rendez-vous est mardi à dix heures."
           ],
           "a": 0,
           "audio": "Le rendez-vous est mercredi à dix heures."
@@ -733,11 +742,11 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich komme später“ auf Französisch?",
           "o": [
-            "Du lundi au vendredi.",
             "Je viens plus tard.",
-            "Il est quatre heures et demie."
+            "Je viens plus tôt.",
+            "Je viens demain."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je viens plus tard."
         }
       ],
@@ -866,19 +875,19 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „meine Mutter / mein Vater“ auf Französisch?",
           "o": [
-            "mon frère / ma sœur",
-            "Nous avons deux enfants.",
-            "ma mère / mon père"
+            "ma mère / mon père",
+            "ma sœur / mon frère",
+            "ma fille / mon fils"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "ma mère / mon père"
         },
         {
           "q": "Wie sagst du „mein Bruder / meine Schwester“ auf Französisch?",
           "o": [
             "mon frère / ma sœur",
-            "Je suis célibataire.",
-            "J’ai deux frères et une sœur."
+            "mon père / ma mère",
+            "mon fils / ma fille"
           ],
           "a": 0,
           "audio": "mon frère / ma sœur"
@@ -886,29 +895,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich bin verheiratet“ auf Französisch?",
           "o": [
-            "ma mère / mon père",
             "Je suis marié(e).",
-            "J’ai trente ans."
+            "Je suis célibataire.",
+            "Je suis divorcé(e)."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je suis marié(e)."
         },
         {
           "q": "Wie sagst du „Ich bin ledig“ auf Französisch?",
           "o": [
-            "Mes parents habitent à Montréal.",
+            "Je suis célibataire.",
             "Je suis marié(e).",
-            "Je suis célibataire."
+            "Je suis divorcé(e)."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je suis célibataire."
         },
         {
           "q": "Wie sagst du „Wir haben zwei Kinder“ auf Französisch?",
           "o": [
             "Nous avons deux enfants.",
-            "mon frère / ma sœur",
-            "J’ai trente ans."
+            "Nous avons trois enfants.",
+            "Nous avons deux frères."
           ],
           "a": 0,
           "audio": "Nous avons deux enfants."
@@ -1051,29 +1060,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich hätte gern einen Kaffee“ auf Französisch?",
           "o": [
-            "L’addition, s’il vous plaît.",
             "Je voudrais un café, s’il vous plaît.",
-            "Qu’est-ce que vous prenez ?"
+            "Je voudrais un thé, s’il vous plaît.",
+            "Je voudrais de l’eau, s’il vous plaît."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je voudrais un café, s’il vous plaît."
         },
         {
           "q": "Wie sagst du „Was nehmen Sie“ auf Französisch?",
           "o": [
-            "Sans viande, s’il vous plaît.",
-            "Je voudrais de l’eau, s’il vous plaît.",
-            "Qu’est-ce que vous prenez ?"
+            "Qu’est-ce que vous prenez ?",
+            "Qu’est-ce que vous voulez boire ?",
+            "Qu’est-ce que vous préférez ?"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Qu’est-ce que vous prenez ?"
         },
         {
           "q": "Wie sagst du „Ich nehme die Suppe“ auf Französisch?",
           "o": [
             "Je prends la soupe.",
-            "Mon plat préféré, c’est la pizza.",
-            "Je voudrais un café, s’il vous plaît."
+            "Je prends la salade.",
+            "Je prends le dessert."
           ],
           "a": 0,
           "audio": "Je prends la soupe."
@@ -1081,21 +1090,21 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ohne Fleisch, bitte“ auf Französisch?",
           "o": [
-            "Je prends la soupe.",
             "Sans viande, s’il vous plaît.",
-            "Qu’est-ce qu’il y a comme dessert ?"
+            "Avec de la viande, s’il vous plaît.",
+            "Sans fromage, s’il vous plaît."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Sans viande, s’il vous plaît."
         },
         {
           "q": "Wie sagst du „Die Rechnung, bitte“ auf Französisch?",
           "o": [
-            "Qu’est-ce que vous prenez ?",
-            "Mon plat préféré, c’est la pizza.",
-            "L’addition, s’il vous plaît."
+            "L’addition, s’il vous plaît.",
+            "Le menu, s’il vous plaît.",
+            "L’eau, s’il vous plaît."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "L’addition, s’il vous plaît."
         }
       ],
@@ -1225,8 +1234,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Wie viel kostet das“ auf Französisch?",
           "o": [
             "Combien ça coûte ?",
-            "Ça coûte dix-neuf euros cinquante.",
-            "C’est trop cher."
+            "Combien de pommes voulez-vous ?",
+            "Combien de personnes ?"
           ],
           "a": 0,
           "audio": "Combien ça coûte ?"
@@ -1234,29 +1243,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Das kostet 19,50 Euro“ auf Französisch?",
           "o": [
-            "Je peux payer par carte ?",
             "Ça coûte dix-neuf euros cinquante.",
-            "Vous avez une taille 40 ?"
+            "Ça coûte neuf euros cinquante.",
+            "Ça coûte dix-neuf euros quinze."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Ça coûte dix-neuf euros cinquante."
         },
         {
           "q": "Wie sagst du „Ich hätte gern ein Kilo Äpfel“ auf Französisch?",
           "o": [
-            "Je prends celui-ci.",
-            "Combien ça coûte ?",
-            "Je voudrais un kilo de pommes."
+            "Je voudrais un kilo de pommes.",
+            "Je voudrais deux kilos de pommes.",
+            "Je voudrais un kilo de tomates."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je voudrais un kilo de pommes."
         },
         {
           "q": "Wie sagst du „Haben Sie Größe 40“ auf Französisch?",
           "o": [
             "Vous avez une taille 40 ?",
-            "Je voudrais deux cents grammes de fromage.",
-            "Je voudrais un kilo de pommes."
+            "Vous avez une taille 42 ?",
+            "Vous avez une taille 30 ?"
           ],
           "a": 0,
           "audio": "Vous avez une taille 40 ?"
@@ -1264,11 +1273,11 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Das ist zu teuer“ auf Französisch?",
           "o": [
-            "Je prends celui-ci.",
             "C’est trop cher.",
-            "Ça coûte dix-neuf euros cinquante."
+            "C’est trop petit.",
+            "C’est trop grand."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "C’est trop cher."
         }
       ],
@@ -1405,19 +1414,19 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich suche eine Wohnung“ auf Französisch?",
           "o": [
-            "Quel est le loyer ?",
-            "L’adresse est 12 rue Victor-Hugo.",
-            "Je cherche un appartement."
+            "Je cherche un appartement.",
+            "Je cherche une maison.",
+            "Je cherche une chambre."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je cherche un appartement."
         },
         {
           "q": "Wie sagst du „Wie hoch ist die Miete“ auf Französisch?",
           "o": [
             "Quel est le loyer ?",
-            "avec balcon",
-            "Il y a une cuisine et une salle de bains."
+            "Quel est le prix du billet ?",
+            "Quel est le numéro de la rue ?"
           ],
           "a": 0,
           "audio": "Quel est le loyer ?"
@@ -1425,29 +1434,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Die Wohnung hat zwei Zimmer“ auf Französisch?",
           "o": [
-            "Je cherche un appartement.",
             "L’appartement a deux pièces.",
-            "Quand est-ce que je peux visiter ?"
+            "L’appartement a trois pièces.",
+            "La maison a deux pièces."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "L’appartement a deux pièces."
         },
         {
           "q": "Wie sagst du „mit Balkon“ auf Französisch?",
           "o": [
-            "L’appartement est près du centre.",
-            "L’appartement a deux pièces.",
-            "avec balcon"
+            "avec balcon",
+            "sans balcon",
+            "avec jardin"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "avec balcon"
         },
         {
           "q": "Wie sagst du „Die Adresse ist Victor-Hugo-Straße 12“ auf Französisch?",
           "o": [
             "L’adresse est 12 rue Victor-Hugo.",
-            "Quel est le loyer ?",
-            "Quand est-ce que je peux visiter ?"
+            "L’adresse est 21 rue Victor-Hugo.",
+            "L’adresse est 12 rue Pasteur."
           ],
           "a": 0,
           "audio": "L’adresse est 12 rue Victor-Hugo."
@@ -1578,29 +1587,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Wo ist der Bahnhof“ auf Französisch?",
           "o": [
-            "C’est quel quai ?",
             "Où est la gare ?",
-            "Allez tout droit."
+            "Où est la mairie ?",
+            "Où est le musée ?"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Où est la gare ?"
         },
         {
           "q": "Wie sagst du „Gehen Sie geradeaus“ auf Französisch?",
           "o": [
-            "Prenez la ligne 8.",
-            "C’est à cinq minutes à pied.",
-            "Allez tout droit."
+            "Allez tout droit.",
+            "Allez à gauche.",
+            "Allez à droite."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Allez tout droit."
         },
         {
           "q": "Wie sagst du „Dann links abbiegen“ auf Französisch?",
           "o": [
             "Puis tournez à gauche.",
-            "Le train a dix minutes de retard.",
-            "Où est la gare ?"
+            "Puis tournez à droite.",
+            "Puis continuez tout droit."
           ],
           "a": 0,
           "audio": "Puis tournez à gauche."
@@ -1608,21 +1617,21 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Nehmen Sie Linie 8“ auf Französisch?",
           "o": [
-            "Puis tournez à gauche.",
             "Prenez la ligne 8.",
-            "Où est l’arrêt de bus ?"
+            "Prenez la ligne 6.",
+            "Prenez la ligne 18."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Prenez la ligne 8."
         },
         {
           "q": "Wie sagst du „Welches Gleis ist es“ auf Französisch?",
           "o": [
-            "Allez tout droit.",
-            "Le train a dix minutes de retard.",
-            "C’est quel quai ?"
+            "C’est quel quai ?",
+            "C’est quel bus ?",
+            "C’est quelle ligne ?"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "C’est quel quai ?"
         }
       ],
@@ -1752,8 +1761,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Was ist Ihr Beruf“ auf Französisch?",
           "o": [
             "Quel est votre métier ?",
-            "Je travaille dans un bureau.",
-            "J’ai cours le matin."
+            "Quel est votre lieu de travail ?",
+            "Quels sont vos horaires ?"
           ],
           "a": 0,
           "audio": "Quel est votre métier ?"
@@ -1761,29 +1770,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich arbeite in einem Büro“ auf Französisch?",
           "o": [
-            "Je travaille du lundi au vendredi.",
             "Je travaille dans un bureau.",
-            "Je commence à huit heures."
+            "Je travaille dans un magasin.",
+            "Je travaille à la maison."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je travaille dans un bureau."
         },
         {
           "q": "Wie sagst du „Ich bin Student/in“ auf Französisch?",
           "o": [
-            "Je dois faire mes devoirs.",
-            "Quel est votre métier ?",
-            "Je suis étudiant(e)."
+            "Je suis étudiant(e).",
+            "Je suis professeur.",
+            "Je suis médecin."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je suis étudiant(e)."
         },
         {
           "q": "Wie sagst du „Ich beginne um acht Uhr“ auf Französisch?",
           "o": [
             "Je commence à huit heures.",
-            "Mon cours commence à neuf heures.",
-            "Je suis étudiant(e)."
+            "Je commence à neuf heures.",
+            "Je termine à huit heures."
           ],
           "a": 0,
           "audio": "Je commence à huit heures."
@@ -1791,11 +1800,11 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich habe morgens Unterricht“ auf Französisch?",
           "o": [
-            "Je dois faire mes devoirs.",
             "J’ai cours le matin.",
-            "Je travaille dans un bureau."
+            "J’ai cours le soir.",
+            "J’ai cours l’après-midi."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "J’ai cours le matin."
         }
       ],
@@ -1928,19 +1937,19 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich stehe um sieben auf“ auf Französisch?",
           "o": [
-            "Je prends le petit-déjeuner.",
-            "Le soir, je regarde la télé.",
-            "Je me lève à sept heures."
+            "Je me lève à sept heures.",
+            "Je me couche à sept heures.",
+            "Je me lève à huit heures."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je me lève à sept heures."
         },
         {
           "q": "Wie sagst du „Ich frühstücke“ auf Französisch?",
           "o": [
             "Je prends le petit-déjeuner.",
-            "Je rentre à dix-huit heures.",
-            "Je déjeune vers midi."
+            "Je prends le déjeuner.",
+            "Je prépare le petit-déjeuner."
           ],
           "a": 0,
           "audio": "Je prends le petit-déjeuner."
@@ -1948,31 +1957,31 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich fahre mit dem Bus zur Arbeit“ auf Französisch?",
           "o": [
-            "Je me lève à sept heures.",
             "Je vais au travail en bus.",
-            "Le week-end, je fais du sport."
+            "Je vais au travail en train.",
+            "Je vais au travail à pied."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je vais au travail en bus."
         },
         {
           "q": "Wie sagst du „Ich komme um 18 Uhr nach Hause“ auf Französisch?",
           "o": [
-            "Je me couche vers vingt-trois heures.",
-            "Je vais au travail en bus.",
-            "Je rentre à dix-huit heures."
+            "Je rentre à dix-huit heures.",
+            "Je rentre à dix-sept heures.",
+            "Je pars à dix-huit heures."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je rentre à dix-huit heures."
         },
         {
           "q": "Wie sagst du „Ich bin gerade am Arbeiten“ auf Französisch?",
           "o": [
-            "Je vais travailler.",
             "Je suis en train de travailler.",
-            "J’ai travaillé."
+            "Je suis en train de lire.",
+            "Je suis en train de manger."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je suis en train de travailler.",
           "explanation": "être en train de + Infinitiv = gerade dabei sein, etwas zu tun."
         }
@@ -2102,29 +2111,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich bin krank“ auf Französisch?",
           "o": [
-            "Je voudrais un médicament contre le rhume.",
             "Je suis malade.",
-            "J’ai mal à la tête."
+            "Je suis fatigué(e).",
+            "Je suis en bonne santé."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je suis malade."
         },
         {
           "q": "Wie sagst du „Ich habe Kopfschmerzen“ auf Französisch?",
           "o": [
-            "Où est la pharmacie ?",
-            "Depuis quand êtes-vous malade ?",
-            "J’ai mal à la tête."
+            "J’ai mal à la tête.",
+            "J’ai mal au dos.",
+            "J’ai mal au ventre."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "J’ai mal à la tête."
         },
         {
           "q": "Wie sagst du „Ich habe Fieber“ auf Französisch?",
           "o": [
             "J’ai de la fièvre.",
-            "J’ai rendez-vous chez le médecin.",
-            "Je suis malade."
+            "J’ai un rhume.",
+            "J’ai mal à la gorge."
           ],
           "a": 0,
           "audio": "J’ai de la fièvre."
@@ -2132,21 +2141,21 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Wo ist die Apotheke“ auf Französisch?",
           "o": [
-            "J’ai de la fièvre.",
             "Où est la pharmacie ?",
-            "Prenez ce médicament deux fois par jour."
+            "Où est l’hôpital ?",
+            "Où est le cabinet du médecin ?"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Où est la pharmacie ?"
         },
         {
           "q": "Wie sagst du „Ich hätte gern ein Mittel gegen Erkältung“ auf Französisch?",
           "o": [
-            "J’ai mal à la tête.",
-            "J’ai rendez-vous chez le médecin.",
-            "Je voudrais un médicament contre le rhume."
+            "Je voudrais un médicament contre le rhume.",
+            "Je voudrais un médicament contre la fièvre.",
+            "Je voudrais un médicament contre la douleur."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je voudrais un médicament contre le rhume."
         }
       ],
@@ -2292,8 +2301,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Das Wetter ist schön“ auf Französisch?",
           "o": [
             "Il fait beau.",
-            "Il pleut.",
-            "J’ai besoin d’un parapluie."
+            "Il fait froid.",
+            "Il fait chaud."
           ],
           "a": 0,
           "audio": "Il fait beau."
@@ -2301,29 +2310,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Es regnet“ auf Französisch?",
           "o": [
-            "Quel temps fait-il aujourd’hui ?",
             "Il pleut.",
-            "Prenez une veste."
+            "Il neige.",
+            "Il fait beau."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Il pleut."
         },
         {
           "q": "Wie sagst du „Es ist kalt“ auf Französisch?",
           "o": [
-            "Demain, il fera vingt degrés.",
-            "Il fait beau.",
-            "Il fait froid."
+            "Il fait froid.",
+            "Il fait chaud.",
+            "Il fait beau."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Il fait froid."
         },
         {
           "q": "Wie sagst du „Morgen wird es zwanzig Grad“ mit futur proche?",
           "o": [
             "Demain, il va faire vingt degrés.",
-            "Demain, il fait hier vingt degrés.",
-            "Demain, il vient de faire vingt degrés."
+            "Demain, il va faire dix degrés.",
+            "Demain, il va faire trente degrés."
           ],
           "a": 0,
           "audio": "Demain, il va faire vingt degrés."
@@ -2464,19 +2473,19 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich mag Fußball“ auf Französisch?",
           "o": [
-            "Je n’aime pas courir.",
-            "Je vais au cinéma.",
-            "J’aime le football."
+            "J’aime le football.",
+            "J’aime le tennis.",
+            "Je n’aime pas le football."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "J’aime le football."
         },
         {
           "q": "Wie sagst du „Ich laufe nicht gern“ auf Französisch?",
           "o": [
             "Je n’aime pas courir.",
-            "Je joue au tennis.",
-            "J’adore voyager."
+            "J’aime courir.",
+            "Je n’aime pas nager."
           ],
           "a": 0,
           "audio": "Je n’aime pas courir."
@@ -2484,29 +2493,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Was machen Sie am Wochenende“ auf Französisch?",
           "o": [
-            "J’aime le football.",
             "Qu’est-ce que vous faites le week-end ?",
-            "Mon hobby, c’est la cuisine."
+            "Qu’est-ce que vous faites le soir ?",
+            "Qu’est-ce que vous aimez faire ?"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Qu’est-ce que vous faites le week-end ?"
         },
         {
           "q": "Wie sagst du „Ich spiele Tennis“ auf Französisch?",
           "o": [
-            "Je préfère lire à la maison.",
-            "Qu’est-ce que vous faites le week-end ?",
-            "Je joue au tennis."
+            "Je joue au tennis.",
+            "Je joue au football.",
+            "Je regarde le tennis."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je joue au tennis."
         },
         {
           "q": "Wie sagst du „Ich gehe ins Kino“ auf Französisch?",
           "o": [
             "Je vais au cinéma.",
-            "Je n’aime pas courir.",
-            "Mon hobby, c’est la cuisine."
+            "Je vais au théâtre.",
+            "Je vais au restaurant."
           ],
           "a": 0,
           "audio": "Je vais au cinéma."
@@ -2637,29 +2646,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich habe eine Reservierung“ auf Französisch?",
           "o": [
-            "Je voudrais un billet pour Paris.",
             "J’ai une réservation.",
-            "Une chambre pour deux nuits, s’il vous plaît."
+            "Je voudrais une réservation.",
+            "Je n’ai pas de réservation."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "J’ai une réservation."
         },
         {
           "q": "Wie sagst du „Ein Zimmer für zwei Nächte, bitte“ auf Französisch?",
           "o": [
-            "À quelle heure part le train ?",
-            "À quelle heure est le petit-déjeuner ?",
-            "Une chambre pour deux nuits, s’il vous plaît."
+            "Une chambre pour deux nuits, s’il vous plaît.",
+            "Une chambre pour trois nuits, s’il vous plaît.",
+            "Deux chambres pour une nuit, s’il vous plaît."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Une chambre pour deux nuits, s’il vous plaît."
         },
         {
           "q": "Wie sagst du „Ist Frühstück inklusive“ auf Französisch?",
           "o": [
             "Le petit-déjeuner est inclus ?",
-            "Aller simple ou aller-retour ?",
-            "J’ai une réservation."
+            "Le déjeuner est inclus ?",
+            "Le petit-déjeuner est à quelle heure ?"
           ],
           "a": 0,
           "audio": "Le petit-déjeuner est inclus ?"
@@ -2667,21 +2676,21 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Wann fährt der Zug ab“ auf Französisch?",
           "o": [
-            "Le petit-déjeuner est inclus ?",
             "À quelle heure part le train ?",
-            "Je voudrais réserver une chambre."
+            "À quelle heure arrive le train ?",
+            "À quelle heure part le bus ?"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "À quelle heure part le train ?"
         },
         {
           "q": "Wie sagst du „Ich hätte gern eine Fahrkarte nach Paris“ auf Französisch?",
           "o": [
-            "Une chambre pour deux nuits, s’il vous plaît.",
-            "Aller simple ou aller-retour ?",
-            "Je voudrais un billet pour Paris."
+            "Je voudrais un billet pour Paris.",
+            "Je voudrais un billet pour Lyon.",
+            "Je voudrais un billet pour Marseille."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je voudrais un billet pour Paris."
         }
       ],
@@ -2839,8 +2848,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Willst du Samstag kommen“ auf Französisch?",
           "o": [
             "Tu veux venir samedi ?",
-            "On se retrouve à dix-neuf heures ?",
-            "Je vais arriver un peu plus tard."
+            "Tu veux venir dimanche ?",
+            "Tu veux venir vendredi ?"
           ],
           "a": 0,
           "audio": "Tu veux venir samedi ?"
@@ -2848,19 +2857,19 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Treffen wir uns um 19 Uhr“ auf Französisch?",
           "o": [
-            "Ça te va à dix-huit heures ?",
             "On se retrouve à dix-neuf heures ?",
-            "Je suis désolé, je ne peux pas venir."
+            "On se retrouve à dix-huit heures ?",
+            "On se retrouve à vingt heures ?"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "On se retrouve à dix-neuf heures ?"
         },
         {
           "q": "Wie fragst du, ob ihr den Termin auf morgen verschieben könnt?",
           "o": [
             "On peut reporter le rendez-vous à demain ?",
-            "Je voudrais annuler hier.",
-            "Le rendez-vous est une veste."
+            "On peut reporter le rendez-vous à lundi ?",
+            "On peut annuler le rendez-vous ?"
           ],
           "a": 0,
           "audio": "On peut reporter le rendez-vous à demain ?"
@@ -2869,8 +2878,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Tut mir leid, ich kann nicht kommen“ auf Französisch?",
           "o": [
             "Je suis désolé, je ne peux pas venir.",
-            "Désolé, j’ai déjà un rendez-vous.",
-            "Merci pour ton invitation."
+            "Je suis désolé, je dois partir.",
+            "Je suis désolé, je ne veux pas venir."
           ],
           "a": 0,
           "audio": "Je suis désolé, je ne peux pas venir."
@@ -2879,8 +2888,8 @@ window.FR_A1_DATA = {
           "q": "Was sagst du zum Geburtstag?",
           "o": [
             "Bon anniversaire !",
-            "Bon appétit !",
-            "Bonne nuit !"
+            "Bonne année !",
+            "Bon appétit !"
           ],
           "a": 0,
           "audio": "Bon anniversaire !"
@@ -3011,19 +3020,19 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Nachname“ auf Französisch?",
           "o": [
+            "Nom",
             "Prénom",
-            "Adresse électronique",
-            "Nom"
+            "Surnom"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Nom"
         },
         {
           "q": "Wie sagst du „Vorname“ auf Französisch?",
           "o": [
             "Prénom",
-            "Nationalité",
-            "Signature"
+            "Nom",
+            "Surnom"
           ],
           "a": 0,
           "audio": "Prénom"
@@ -3031,29 +3040,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Geburtsdatum“ auf Französisch?",
           "o": [
-            "Nom",
             "Date de naissance",
-            "Merci de me répondre."
+            "Lieu de naissance",
+            "Date d’arrivée"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Date de naissance"
         },
         {
           "q": "Wie sagst du „Nationalität“ auf Französisch?",
           "o": [
-            "Je vous écris pour demander des informations.",
-            "Date de naissance",
-            "Nationalité"
+            "Nationalité",
+            "Pays de résidence",
+            "Lieu de naissance"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Nationalité"
         },
         {
           "q": "Wie sagst du „E-Mail-Adresse“ auf Französisch?",
           "o": [
             "Adresse électronique",
-            "Prénom",
-            "Merci de me répondre."
+            "Adresse postale",
+            "Numéro de téléphone"
           ],
           "a": 0,
           "audio": "Adresse électronique"
@@ -3152,8 +3161,8 @@ window.FR_A1_DATA = {
           "q": "Was sagst du, wenn du nichts verstehst?",
           "o": [
             "Excusez-moi, je ne comprends pas.",
-            "Je prends le bus.",
-            "Il est midi."
+            "Excusez-moi, je comprends.",
+            "Excusez-moi, je ne sais pas."
           ],
           "a": 0,
           "audio": "Excusez-moi, je ne comprends pas."
@@ -3161,11 +3170,11 @@ window.FR_A1_DATA = {
         {
           "q": "Welche Form ist höflich?",
           "o": [
-            "Donne-moi…",
-            "Moi vouloir…",
-            "Je voudrais…"
+            "Je voudrais…",
+            "Je veux…",
+            "Donne-moi…"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je voudrais…"
         },
         {
@@ -3203,29 +3212,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Können Sie das bitte wiederholen“ auf Französisch?",
           "o": [
-            "Est-ce que… ?",
             "Pouvez-vous répéter, s’il vous plaît ?",
+            "Pouvez-vous épeler, s’il vous plaît ?",
             "Pouvez-vous parler plus lentement ?"
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Pouvez-vous répéter, s’il vous plaît ?"
         },
         {
           "q": "Wie sagst du „Können Sie langsamer sprechen“ auf Französisch?",
           "o": [
-            "Je voudrais…",
-            "Comment dit-on … en français ?",
-            "Pouvez-vous parler plus lentement ?"
+            "Pouvez-vous parler plus lentement ?",
+            "Pouvez-vous répéter ?",
+            "Pouvez-vous parler plus fort ?"
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Pouvez-vous parler plus lentement ?"
         },
         {
           "q": "Wie sagst du „Entschuldigung, ich verstehe nicht“ auf Französisch?",
           "o": [
             "Excusez-moi, je ne comprends pas.",
-            "Merci, au revoir.",
-            "Pouvez-vous répéter, s’il vous plaît ?"
+            "Excusez-moi, je comprends.",
+            "Excusez-moi, je ne peux pas venir."
           ],
           "a": 0,
           "audio": "Excusez-moi, je ne comprends pas."
@@ -3244,8 +3253,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du höflich „Ich hätte gern Informationen“?",
           "o": [
             "J’aimerais des informations.",
-            "J’ai jamais informations.",
-            "Je suis des informations."
+            "J’aimerais un rendez-vous.",
+            "J’aimerais une réponse."
           ],
           "a": 0,
           "audio": "J’aimerais des informations."
@@ -3426,8 +3435,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Hier ist mein Pass“?",
           "o": [
             "Voici mon passeport.",
-            "Ce sont mon passeport.",
-            "Voilà mes gare."
+            "Voici ma carte.",
+            "Voici mon billet."
           ],
           "a": 0,
           "audio": "Voici mon passeport."
@@ -3597,8 +3606,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Ich sehe nie fern“?",
           "o": [
             "Je ne regarde jamais la télévision.",
-            "Je regarde pas jamais la télévision.",
-            "Je n’ai jamais télévision."
+            "Je ne regarde pas la télévision.",
+            "Je regarde toujours la télévision."
           ],
           "a": 0,
           "audio": "Je ne regarde jamais la télévision."
@@ -3608,7 +3617,7 @@ window.FR_A1_DATA = {
           "o": [
             "Il ne faut pas fumer ici.",
             "Il faut fumer ici.",
-            "Je ne fume jamais demain."
+            "Il ne faut pas manger ici."
           ],
           "a": 0,
           "audio": "Il ne faut pas fumer ici."
@@ -3704,8 +3713,8 @@ window.FR_A1_DATA = {
           "q": "Wie fragst du „Arbeiten Sie?“?",
           "o": [
             "Est-ce que vous travaillez ?",
-            "Où vous travaillez.",
-            "Vous est travaillez ?"
+            "Où est-ce que vous travaillez ?",
+            "Quand est-ce que vous travaillez ?"
           ],
           "a": 0,
           "audio": "Est-ce que vous travaillez ?"
@@ -3796,8 +3805,8 @@ window.FR_A1_DATA = {
           "q": "Welche Antwort passt zu „Et toi ?“?",
           "o": [
             "Moi, j’habite à Lyon.",
-            "Mon adresse est toi.",
-            "Je suis et."
+            "Lui, il habite à Lyon.",
+            "Elle, elle habite à Lyon."
           ],
           "a": 0,
           "audio": "Moi, j’habite à Lyon."
@@ -3900,11 +3909,11 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Gestern habe ich ein Museum besucht“?",
           "o": [
-            "Demain, je visite un musée.",
-            "Hier, je visite musée.",
-            "Hier, j’ai visité un musée."
+            "Hier, j’ai visité un musée.",
+            "Hier, je vais visiter un musée.",
+            "Demain, je vais visiter un musée."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Hier, j’ai visité un musée."
         },
         {
@@ -3994,8 +4003,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Ich habe gerade gegessen“?",
           "o": [
             "Je viens de manger.",
-            "Je vais manger hier.",
-            "Je suis manger."
+            "Je vais manger.",
+            "Je suis en train de manger."
           ],
           "a": 0,
           "audio": "Je viens de manger.",
@@ -4168,8 +4177,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „ein wenig Milch“?",
           "o": [
             "un peu de lait",
-            "un peu du lait",
-            "petit lait de"
+            "beaucoup de lait",
+            "un peu d’eau"
           ],
           "a": 0,
           "audio": "un peu de lait"
@@ -4178,8 +4187,8 @@ window.FR_A1_DATA = {
           "q": "Welche Form bedeutet „um das Gemüse zu schneiden“?",
           "o": [
             "pour couper les légumes",
-            "depuis couper les légumes",
-            "il y a couper les légumes"
+            "pour cuire les légumes",
+            "pour couper le pain"
           ],
           "a": 0,
           "audio": "pour couper les légumes"
@@ -4188,8 +4197,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Man sollte/darf nicht zu viel Salz hinzufügen“?",
           "o": [
             "Il ne faut pas ajouter trop de sel.",
-            "Il faut ajouter toujours trop de sel.",
-            "Je ne sel jamais."
+            "Il faut ajouter un peu de sel.",
+            "Il ne faut pas ajouter de sucre."
           ],
           "a": 0,
           "audio": "Il ne faut pas ajouter trop de sel."
@@ -4291,8 +4300,8 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Ich fahre nach Frankreich.“?",
           "o": [
             "Je vais en France.",
-            "Je pars lundi.",
-            "Je vais visiter Lyon."
+            "Je vais au Canada.",
+            "Je viens de France."
           ],
           "a": 0,
           "audio": "Je vais en France."
@@ -4300,29 +4309,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich komme aus Kanada.“?",
           "o": [
-            "Je prends le train.",
-            "Je dois partir à huit heures.",
-            "Je viens du Canada."
+            "Je viens du Canada.",
+            "Je vais au Canada.",
+            "Je viens de France."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je viens du Canada."
         },
         {
           "q": "Wie sagst du „Ich reise am Montag ab.“?",
           "o": [
-            "Le billet coûte vingt euros.",
             "Je pars lundi.",
-            "Je vais visiter Lyon."
+            "Je pars mardi.",
+            "Je rentre lundi."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je pars lundi."
         },
         {
           "q": "Wie sagst du „Ich nehme den Zug.“?",
           "o": [
             "Je prends le train.",
-            "Je dois partir à huit heures.",
-            "Je rentre vendredi."
+            "Je prends le bus.",
+            "Je prends l’avion."
           ],
           "a": 0,
           "audio": "Je prends le train."
@@ -4330,29 +4339,29 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich werde Lyon besuchen.“?",
           "o": [
-            "Le billet coûte vingt euros.",
-            "Je vais en France.",
-            "Je vais visiter Lyon."
+            "Je vais visiter Lyon.",
+            "Je vais visiter Paris.",
+            "J’ai visité Lyon."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je vais visiter Lyon."
         },
         {
           "q": "Wie sagst du „Ich muss um acht Uhr aufbrechen.“?",
           "o": [
-            "Je viens du Canada.",
             "Je dois partir à huit heures.",
-            "Je rentre vendredi."
+            "Je dois partir à neuf heures.",
+            "Je peux partir à huit heures."
           ],
-          "a": 1,
+          "a": 0,
           "audio": "Je dois partir à huit heures."
         },
         {
           "q": "Wie sagst du „Die Fahrkarte kostet zwanzig Euro.“?",
           "o": [
             "Le billet coûte vingt euros.",
-            "Je vais en France.",
-            "Je pars lundi."
+            "Le billet coûte trente euros.",
+            "Le billet coûte douze euros."
           ],
           "a": 0,
           "audio": "Le billet coûte vingt euros."
@@ -4360,11 +4369,11 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich komme am Freitag zurück.“?",
           "o": [
-            "Je viens du Canada.",
-            "Je prends le train.",
-            "Je rentre vendredi."
+            "Je rentre vendredi.",
+            "Je rentre jeudi.",
+            "Je pars vendredi."
           ],
-          "a": 2,
+          "a": 0,
           "audio": "Je rentre vendredi."
         }
       ],
@@ -8796,4 +8805,3 @@ window.FR_A1_DATA = {
     "limitation": "Niveau A1 pour le français (Beacco/Porquier, 2007) wurde bibliografisch geprüft; der Volltext lag nicht vor. Kein vollständiger Inventarabgleich mit diesem Buch."
   }
 };
-

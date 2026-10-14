@@ -191,6 +191,20 @@
     while(out.length<10&&choiceCursor<choices.length)uniquePush(choices[choiceCursor++],out);
     return out.slice(0,10);
   }
+  // Opt-in authored questions: French lessons never derive tests from raw alphabet/audio lists.
+  function makeAuthored(lesson){
+    const tasks=shuffled(lesson.quiz||[]).slice(0,10).map(q=>{
+      const answer=q.o[q.a],audio=q.audio||choiceAudio(q,lesson.phrases||[]);
+      if(q.context&&q.q.includes('___'))return {type:'gap',prompt:q.q,answer,context:q.context,audio,explanation:q.explanation};
+      const o=shuffled(q.o);
+      return {type:'choice',q:q.q,o,a:o.indexOf(answer),answer,audio,context:q.context||'',explanation:q.explanation};
+    });
+    if(lesson.id>=7){
+      const task=tasks.find(q=>/^Wie sagst du „/.test(q.q||'')&&words(q.answer).length>=4&&!/[\/…()]|___/.test(q.answer));
+      if(task){const ws=words(task.answer);task.type='order';task.context=task.q.match(/„([^“]+)“/)?.[1]||'';task.target=task.answer;task.answer=ws.join(' ');task.tokens=shuffled(ws.map((w,id)=>({w,id})));delete task.o;delete task.a;}
+    }
+    return tasks;
+  }
   function charBar(lang,uiLang){const a=CHARS[lang]||[];if(!a.length)return '';return `<div class="mixed-char-wrap"><span>${esc((UI[uiLang]||UI.de).chars)}</span><div class="mixed-char-bar"><button type="button" class="mixed-shift" aria-pressed="false" title="${esc((UI[uiLang]||UI.de).shift)}" aria-label="${esc((UI[uiLang]||UI.de).shift)}">⇧</button>${a.map((c,i)=>`<button type="button" class="mixed-char" data-i="${i}">${esc(c)}</button>`).join('')}</div></div>`;}
   function wireChars(input,lang,container=document){
     let upper=false;const shift=container.querySelector('.mixed-shift'),bs=[...container.querySelectorAll('.mixed-char')];if(!shift)return;
@@ -198,12 +212,20 @@
     bs.forEach(b=>b.onclick=()=>{if(input.disabled||input.readOnly||input.hidden||input.closest('[hidden]'))return;const ch=(upper?UPPER:CHARS)[lang][+b.dataset.i],a=input.selectionStart??input.value.length,z=input.selectionEnd??a;input.value=input.value.slice(0,a)+ch+input.value.slice(z);input.setSelectionRange(a+ch.length,a+ch.length);input.dispatchEvent(new Event('input',{bubbles:true}));});
   }
   function run(opts){
-    const ex=make(opts.lesson,opts.lesson.id,opts.uiLang),L=UI[opts.uiLang]||UI.de;let i=0,score=0;
+    const progress=opts.progress,version=opts.exerciseVersion||1;
+    const previous=progress?.session;
+    const resume=previous?.version===version&&Array.isArray(previous.ex)&&previous.ex.length&&Number.isInteger(previous.i)&&previous.i>=0&&previous.i<previous.ex.length;
+    const ex=resume?previous.ex:(opts.exercises||make(opts.lesson,opts.lesson.id,opts.uiLang)),L=UI[opts.uiLang]||UI.de;
+    let i=resume?previous.i:0,score=resume?previous.score:0,response=resume?previous.response:null,draft=resume?previous.draft||'':'',orderPicked=resume?previous.orderPicked||[]:[],choicePicked=resume?previous.choicePicked:null;
+    const persist=()=>{if(progress){progress.session={version,ex,i,score,response,draft,orderPicked,choicePicked};opts.saveProgress?.();}};
+    persist();
     const play=text=>(opts.playFeedbackAudio||opts.playAudio)(text);
-    function next(){i++;i<ex.length?draw():opts.onFinish(score,ex.length);}
-    function feedback(status,answer,audio,explanation){
+    function next(){i++;response=null;draft='';orderPicked=[];choicePicked=null;
+      if(i<ex.length){persist();draw();}else{if(progress){delete progress.session;opts.saveProgress?.();}opts.onFinish(score,ex.length);}}
+
+    function feedback(status,answer,audio,explanation,restoring=false){
       const ok=status==='ok',near=status==='near';
-      if(ok)score++;else if(near)score+=0.5;if(audio)play(audio);
+      if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio)play(audio);}
       const message=ok?L.correct:near?`${L.near} ${L.nearAnswer} ${esc(answer)}`:L.wrong+' '+esc(answer);
       document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:L.result}</button>`;
       document.getElementById('mixedNext').onclick=next;
@@ -216,13 +238,13 @@
       if(q.type==='gap'||q.type==='text')body=`<label class="mixed-type" for="mixedInput">✍️ ${esc(L[q.type])}</label>${hint}<div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="mixedInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.answer)}">${charBar(opts.targetLang,opts.uiLang)}${q.type==='text'?`<div class="spacer"></div><button class="soft-btn" id="mixedHintBtn">💡 ${esc(L.help)}</button><div class="mixed-hint" id="mixedHint" hidden></div>`:''}<div class="spacer"></div><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button>`;
       if(q.type==='order')body=`<div class="mixed-type">↔️ ${esc(L.order)}</div>${hint}<div class="mixed-order-answer" id="orderAnswer" aria-live="polite"></div><div class="mixed-tokens">${q.tokens.map(t=>`<button class="soft-btn mixed-token" data-id="${t.id}" data-word="${encodeURIComponent(t.w)}">${esc(t.w)}</button>`).join('')}</div><div class="button-row"><button class="secondary-btn" id="orderReset">${esc(L.reset)}</button><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button></div>`;
       opts.view.innerHTML=`<div class="between"><button class="tiny-btn" id="mixedBack">${esc(L.back)}</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" style="margin-top:12px">${body}<div id="mixedFeedback"></div></section>`;
-      document.getElementById('mixedBack').onclick=opts.onBack;
+      document.getElementById('mixedBack').onclick=()=>{persist();opts.onBack();};
       if(q.type==='choice'||q.type==='listening'){
         if(q.type==='listening')document.getElementById('mixedListen').onclick=()=>opts.playAudio(q.audio);
-        document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});feedback(ok?'ok':'bad',q.answer,q.audio,q.explanation);});
+        document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;choicePicked=c;document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});feedback(ok?'ok':'bad',q.answer,q.audio,q.explanation);});
       }
       if(q.type==='gap'||q.type==='text'){
-        const input=document.getElementById('mixedInput');wireChars(input,opts.targetLang);
+        const input=document.getElementById('mixedInput');input.value=draft;input.oninput=()=>{draft=input.value;persist();};wireChars(input,opts.targetLang);
         if(q.type==='text'){
           const hintBtn=document.getElementById('mixedHintBtn'),hintBox=document.getElementById('mixedHint');
           hintBtn.onclick=()=>{hintBox.textContent=sentenceHint(q.answer,L);hintBox.hidden=false;hintBtn.disabled=true;};
@@ -237,14 +259,19 @@
         document.getElementById('mixedCheck').onclick=check;input.onkeydown=e=>{if(e.key==='Enter')check();};
       }
       if(q.type==='order'){
-        let picked=[];const ans=document.getElementById('orderAnswer');const redraw=()=>{ans.textContent=picked.map(x=>x.w).join(' ');document.querySelectorAll('.mixed-token').forEach(b=>b.disabled=picked.some(x=>x.id===+b.dataset.id));};
-        document.querySelectorAll('.mixed-token').forEach(b=>b.onclick=()=>{picked.push({id:+b.dataset.id,w:decodeURIComponent(b.dataset.word)});redraw();});document.getElementById('orderReset').onclick=()=>{picked=[];redraw();};
+        let picked=[...orderPicked];const ans=document.getElementById('orderAnswer');const redraw=()=>{ans.textContent=picked.map(x=>x.w).join(' ');document.querySelectorAll('.mixed-token').forEach(b=>b.disabled=picked.some(x=>x.id===+b.dataset.id));};
+        document.querySelectorAll('.mixed-token').forEach(b=>b.onclick=()=>{picked.push({id:+b.dataset.id,w:decodeURIComponent(b.dataset.word)});orderPicked=picked;persist();redraw();});document.getElementById('orderReset').onclick=()=>{picked=[];orderPicked=[];persist();redraw();};redraw();
         document.getElementById('mixedCheck').onclick=()=>{if(!picked.length)return;document.querySelectorAll('.mixed-token,#orderReset,#mixedCheck').forEach(b=>b.disabled=true);feedback(norm(picked.map(x=>x.w).join(' '))===norm(q.answer)?'ok':'bad',q.answer,q.audio,q.explanation);};
+      }
+      if(response){
+        document.querySelectorAll('[data-o]').forEach(b=>{b.disabled=true;if(+b.dataset.o===q.a)b.classList.add('correct');else if(+b.dataset.o===choicePicked)b.classList.add('wrong');});
+        document.querySelectorAll('#mixedInput,#mixedCheck,.mixed-token,#orderReset').forEach(el=>el.disabled=true);
+        feedback(response.status,response.answer,response.audio,response.explanation,true);
       }
       window.scrollTo({top:0,behavior:'instant'});
     }
     draw();
   }
-  window.A1ExerciseEngine={make,run,charBar,wireChars};
+  window.A1ExerciseEngine={make,makeAuthored,run,charBar,wireChars};
 })();
 
