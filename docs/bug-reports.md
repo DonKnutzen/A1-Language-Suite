@@ -18,7 +18,7 @@ The learner's answers, recordings, PIN, email and authentication tokens are not 
 Reports are stored in **Supabase → public.bug_reports**, independently of course
 progress and resets. Learners can see their own reports. The administrator can
 see all reports through **Fehler melden → Meldungen** and mark them resolved.
-The export contains up to 200 newest reports, including their UUID and context.
+The list and export contain only open reports (up to 200 newest open reports), including their UUID and context.
 
 ## Workflow for Codex
 

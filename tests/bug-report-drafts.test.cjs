@@ -41,3 +41,18 @@ test('mobile typing contracts the panel and follows keyboard viewport scrolling'
   input.blur();vv.height=800;vv.offsetTop=0;vv.dispatchEvent(new w.Event('resize'));await tick();assert(!dialog.classList.contains('keyboard-compact'));
   w.document.getElementById('a1BugClose').click();assert.equal(dialog.style.top,'');assert(!dialog.open);dom.window.close();
 });
+test('resolved reports are excluded from both the visible list and JSON export',async()=>{
+  let exported;
+  const {dom,w}=await ui(w=>{
+    w.A1Profile.getBugReports=async()=>[{id:'open-1',status:'open',message:'Still open',context:{}},{id:'done-1',status:'resolved',message:'Already done',context:{}}];
+    w.A1Profile.isBugReportAdmin=async()=>true;
+    w.Blob=class{constructor(parts){exported=JSON.parse(parts[0]);}};
+    w.URL.createObjectURL=()=> 'blob:test';w.URL.revokeObjectURL=()=>{};
+    w.HTMLAnchorElement.prototype.click=()=>{};
+  });
+  w.A1BugReports.open();await w.A1BugReports.showReports();
+  assert(w.document.querySelector('.a1-bug-reports').textContent.includes('Still open'));
+  assert(!w.document.querySelector('.a1-bug-reports').textContent.includes('Already done'));
+  w.document.getElementById('a1BugExport').click();assert.equal(exported.reports.length,1);assert.equal(exported.reports[0].id,'open-1');
+  dom.window.close();
+});

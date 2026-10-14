@@ -1057,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     finally{clearTimeout(timer);}
   }
   async function getBugReports(){
-    return restGet('bug_reports?select=id,reporter_name,message,context,status,created_at&order=created_at.desc&limit=200');
+    return restGet('bug_reports?select=id,reporter_name,message,context,status,created_at&status=eq.open&order=created_at.desc&limit=200');
   }
   async function isBugReportAdmin(){
     const p=getCurrent();if(!p||p.mode!=='cloud')return false;
