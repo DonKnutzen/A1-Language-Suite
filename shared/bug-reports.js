@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-mastery-95',trail=[];
+  const BUILD='bug-export-96',trail=[];
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -144,9 +144,15 @@
     try{
       const [allReports,admin]=await Promise.all([A1Profile.getBugReports(),A1Profile.isBugReportAdmin()]);
       const reports=allReports.filter(report=>report.status==='open');
-      frame(`<h2>${esc(L.list)}</h2><p class="a1-bug-note">${esc(L.latest)}</p><button type="button" class="a1-bug-primary" id="a1BugExport">${esc(L.export)}</button><p id="a1BugStatus" role="status"></p><div class="a1-bug-reports">${reports.map(r=>`<article><strong>${esc(r.context?.heading||r.context?.course)} · ${esc(r.status==='resolved'?'✓':'○')}</strong><small>${esc(r.reporter_name)} · ${esc(r.created_at)} · ${esc(r.id)}</small><p>${esc(r.message)}</p>${reportDetails(r.context)}${admin&&r.status!=='resolved'?`<button type="button" class="a1-bug-link" data-bug-resolve="${esc(r.id)}">${esc(L.resolve)}</button>`:''}</article>`).join('')||`<p>${esc(L.empty)}</p>`}</div>`);
-      dialog.querySelector('#a1BugExport').onclick=()=>{
-        const blob=new Blob([JSON.stringify({schema:1,exportedAt:new Date().toISOString(),reports},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='a1-bug-reports.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      frame(`<h2>${esc(L.list)}</h2><p class="a1-bug-note">${esc(L.latest)}${admin?esc(language()==='de'?' · Nach dem Export automatisch archiviert.':language()==='fr'?' · Archivés automatiquement après export.':' · Automatically archived after export.'):''}</p><button type="button" class="a1-bug-primary" id="a1BugExport">${esc(L.export)}</button><p id="a1BugStatus" role="status"></p><div class="a1-bug-reports">${reports.map(r=>`<article><strong>${esc(r.context?.heading||r.context?.course)} · ${esc(r.status==='resolved'?'✓':'○')}</strong><small>${esc(r.reporter_name)} · ${esc(r.created_at)} · ${esc(r.id)}</small><p>${esc(r.message)}</p>${reportDetails(r.context)}${admin&&r.status!=='resolved'?`<button type="button" class="a1-bug-link" data-bug-resolve="${esc(r.id)}">${esc(L.resolve)}</button>`:''}</article>`).join('')||`<p>${esc(L.empty)}</p>`}</div>`);
+      const exportButton=dialog.querySelector('#a1BugExport');exportButton.disabled=!reports.length;
+      exportButton.onclick=async()=>{
+        exportButton.disabled=true;
+        try{
+        const blob=new Blob([JSON.stringify({schema:1,workflow:'exported-for-review',exportedAt:new Date().toISOString(),reports},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='a1-bug-reports.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+        if(admin){await A1Profile.archiveExportedBugReports(reports.map(report=>report.id));await showReports();}
+        else exportButton.disabled=false;
+        }catch{exportButton.disabled=false;dialog.querySelector('#a1BugStatus').textContent=language()==='de'?'Die Exportdatei wurde erstellt, aber die Meldungen konnten nicht archiviert werden. Bitte erneut exportieren.':language()==='fr'?'Le fichier a été créé, mais l’archivage a échoué. Exporte à nouveau.':'The export file was created, but archiving failed. Please export again.';}
       };
       dialog.querySelectorAll('[data-bug-resolve]').forEach(b=>b.onclick=async()=>{b.disabled=true;try{await A1Profile.resolveBugReport(b.dataset.bugResolve);showReports();}catch{dialog.querySelector('#a1BugStatus').textContent=L.error;b.disabled=false;}});
     }catch(error){dialog.querySelector('#a1BugStatus').textContent=error.message==='No active cloud session'?L.login:L.setup;}

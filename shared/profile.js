@@ -1064,6 +1064,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const rows=await restGet(`bug_report_admins?user_id=eq.${encodeURIComponent(p.userId)}&select=user_id&limit=1`);
     return rows.length>0;
   }
+  async function archiveExportedBugReports(ids){
+    const unique=[...new Set(ids)];if(!unique.length)return;
+    if(unique.length>200||unique.some(id=>!/^[0-9a-f-]{36}$/i.test(id)))throw new Error('BUG_INVALID_IDS');
+    const token=await ensureToken();if(!token)throw new Error('BUG_LOGIN_REQUIRED');
+    // Existing resolved status is also the archive state; export is not proof of a code fix.
+    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/bug_reports?id=in.(${unique.map(encodeURIComponent).join(',')})&status=eq.open`,{
+      method:'PATCH',headers:{...authHeaders(token),Prefer:'return=representation'},body:JSON.stringify({status:'resolved'})
+    });
+    if(!response.ok)throw await responseError(response);
+    const rows=await response.json();
+    if(unique.some(id=>!rows.some(row=>row.id===id)))throw new Error('BUG_NOT_UPDATED');
+  }
   async function resolveBugReport(id){
     const token=await ensureToken();if(!token)throw new Error('BUG_LOGIN_REQUIRED');
     const response=await fetch(`${cfg.supabaseUrl}/rest/v1/bug_reports?id=eq.${encodeURIComponent(id)}`,{
@@ -1079,6 +1091,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     getBugReports,
     isBugReportAdmin,
     resolveBugReport,
+    archiveExportedBugReports,
     getCurrent,
     getUiLang,
     setUiLang,

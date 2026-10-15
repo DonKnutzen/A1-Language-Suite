@@ -8,7 +8,7 @@ const source=fs.readFileSync(path.join(root,'shared/profile.js'),'utf8');
 function api(profile,fetch,overrides={}){
   const code=source.slice(source.indexOf('  async function submitBugReport('),source.indexOf('  window.A1Profile = {'));
   const scope={getCurrent:()=>profile,ensureToken:async()=>profile?.access_token,cfg:{supabaseUrl:'https://example.invalid'},authHeaders:token=>({Authorization:'Bearer '+token}),responseError:async()=>new Error('request failed'),fetch,restGet:async()=>[],window:{},AbortController,setTimeout,clearTimeout,...overrides};
-  vm.createContext(scope);vm.runInContext(code+';window.api={submitBugReport,resolveBugReport};',scope);return scope.window.api;
+  vm.createContext(scope);vm.runInContext(code+';window.api={submitBugReport,resolveBugReport,archiveExportedBugReports};',scope);return scope.window.api;
 }
 test('submission includes only the report and server-required profile identity',async()=>{
   let request;
@@ -28,8 +28,8 @@ test('resolving a report requires the server to confirm an updated row',async()=
   const a=api({mode:'cloud',access_token:'token'},async()=>({ok:true,json:async()=>[]}));await assert.rejects(a.resolveBugReport('report-1'),/BUG_NOT_UPDATED/);
 });
 test('all supported pages and offline caches include the reporting module',()=>{
-  for(const page of ['index.html','francais/index.html','deutsch/index.html']){const html=fs.readFileSync(path.join(root,page),'utf8');assert(html.includes('bug-reports.js?v=bug-mastery-95'));assert(!html.includes('bug-dictation.js'));}
-  for(const course of ['francais','deutsch']){const sw=fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8');assert(sw.includes('bug-reports.js?v=bug-mastery-95'));assert(!sw.includes('bug-dictation.js'));}
+  for(const page of ['index.html','francais/index.html','deutsch/index.html']){const html=fs.readFileSync(path.join(root,page),'utf8');assert(html.includes('bug-reports.js?v=bug-export-96'));assert(!html.includes('bug-dictation.js'));}
+  for(const course of ['francais','deutsch']){const sw=fs.readFileSync(path.join(root,course,'service-worker.js'),'utf8');assert(sw.includes('bug-reports.js?v=bug-export-96'));assert(!sw.includes('bug-dictation.js'));}
 });
 
 test('a stalled report request expires and aborts instead of waiting forever',async()=>{
@@ -43,4 +43,12 @@ test('an auth refresh that finishes after the deadline cannot post a late report
   const a=api({mode:'cloud',userId:'u'},async()=>{calls++;},{ensureToken:()=>new Promise(r=>{release=r;}),setTimeout:fn=>setTimeout(fn,5)});
   await assert.rejects(a.submitBugReport({id:'id'}),/BUG_SEND_TIMEOUT/);
   release('late-token');await new Promise(r=>setImmediate(r));assert.equal(calls,0);
+});
+
+test('export archives exactly the selected IDs and requires database confirmation',async()=>{
+ const ids=['11111111-1111-4111-8111-111111111111','22222222-2222-4222-8222-222222222222'];let request;
+ const a=api({mode:'cloud',access_token:'token'},async(url,opts)=>{request={url,...opts};return {ok:true,json:async()=>ids.map(id=>({id}))};});
+ await a.archiveExportedBugReports(ids);assert(request.url.includes(ids.join(',')));assert(request.url.includes('status=eq.open'));assert.equal(JSON.parse(request.body).status,'resolved');
+ const failed=api({mode:'cloud',access_token:'token'},async()=>({ok:true,json:async()=>[]}));
+ await assert.rejects(failed.archiveExportedBugReports(ids),/BUG_NOT_UPDATED/);
 });

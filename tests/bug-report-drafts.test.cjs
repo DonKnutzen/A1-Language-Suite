@@ -92,3 +92,16 @@ test('actual lesson-check choice and gap screens expose task content and nested 
   assert(w.A1BugReports.context().question.includes('___'));assert(!JSON.stringify(w.A1BugReports.context()).includes('PRIVATE ANSWER'));
   dom.window.close();
 });
+test('admin export downloads first and archives only the exported reports',async()=>{
+ let reports=[{id:'first',status:'open',message:'First report',context:{}}],archived,downloaded=false;
+ const {dom,w}=await ui(w=>{
+  w.A1Profile.getBugReports=async()=>reports;w.A1Profile.isBugReportAdmin=async()=>true;
+  w.A1Profile.archiveExportedBugReports=async ids=>{assert(downloaded);archived=[...ids];reports=[{id:'new',status:'open',message:'New report after export',context:{}}];};
+  w.Blob=class{};w.URL.createObjectURL=()=> 'blob:export';w.URL.revokeObjectURL=()=>{};w.HTMLAnchorElement.prototype.click=()=>{downloaded=true;};
+ });
+ w.A1BugReports.open();await w.A1BugReports.showReports();await w.document.getElementById('a1BugExport').onclick();
+ assert.deepEqual(archived,['first']);assert(w.document.querySelector('.a1-bug-reports').textContent.includes('New report after export'));assert(!w.document.querySelector('.a1-bug-reports').textContent.includes('First report'));
+ w.A1Profile.archiveExportedBugReports=async()=>{throw Error('offline')};await w.document.getElementById('a1BugExport').onclick();
+ assert(w.document.getElementById('a1BugStatus').textContent.includes('nicht archiviert'));assert.equal(w.document.getElementById('a1BugExport').disabled,false);
+ dom.window.close();
+});

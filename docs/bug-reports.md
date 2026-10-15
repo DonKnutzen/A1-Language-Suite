@@ -74,3 +74,5 @@ focus, orientation and closing restore the normal panel. The French mobile heade
 now scrolls in normal flow instead of sticking during browser viewport panning.
 
 Optional subcategories are stored in `context.issueReason` alongside `issueType`, task context and description. They also appear in the report message and JSON export. Changing the main category clears the previous subcategory; drafts preserve both selections. No database migration is needed because context is JSONB.
+
+Administrator exports automatically archive exactly the exported IDs using the existing resolved status. This archive state does not certify an implemented fix. The file records `workflow: exported-for-review`. A failed archive request leaves the list available for retry. Non-admin exports do not change report status.
