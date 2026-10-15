@@ -579,9 +579,15 @@ applyTheme();
     en:{forgot:'Forgot PIN?',next:'Continue',newPin:'New PIN (4–6 digits)',reset:'Save new PIN',missing:'Username not found.',unavailable:'PIN recovery is not available yet.'},
     tr:{forgot:'PIN’i unuttun mu?',next:'Devam',newPin:'Yeni PIN (4–6 rakam)',reset:'Yeni PIN’i kaydet',missing:'Kullanıcı adı bulunamadı.',unavailable:'PIN sıfırlama henüz kullanılamıyor.'}
   };
+  const APPROVAL={
+    de:{request:'PIN-Änderung beantragen',sent:'Anfrage gesendet. Deine neue PIN gilt erst nach der Freigabe durch Phillip.',admin:'PIN-Anfragen',approve:'Freigeben',reject:'Ablehnen',empty:'Keine offenen PIN-Anfragen.',local:'PIN-Recovery erfordert ein Cloud-Profil.'},
+    en:{request:'Request PIN change',sent:'Request sent. Your new PIN works after Phillip approves it.',admin:'PIN requests',approve:'Approve',reject:'Reject',empty:'No pending PIN requests.',local:'PIN recovery requires a cloud profile.'},
+    fr:{request:'Demander un nouveau PIN',sent:'Demande envoyée. Le nouveau PIN sera actif après l’accord de Phillip.',admin:'Demandes de PIN',approve:'Approuver',reject:'Refuser',empty:'Aucune demande en attente.',local:'La récupération du PIN nécessite un profil cloud.'}
+  };
+  const approvalText=lang=>APPROVAL[lang]||APPROVAL.en;
   const recoveryText=lang=>RECOVERY[lang]||RECOVERY.en;
   async function recoveryRpc(name,body,lang){
-    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/rpc/${name}`,{method:'POST',headers:authHeaders(),body:JSON.stringify(body)});
+    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/rpc/${name}`,{method:'POST',headers:authHeaders(await ensureToken()),body:JSON.stringify(body)});
     if(!response.ok){if(response.status===404)throw new Error(recoveryText(lang).unavailable);throw await responseError(response);}
     return response.json();
   }
@@ -594,12 +600,20 @@ applyTheme();
     const name=String(username||'').trim(),newPin=String(pin||'').trim();
     if(name.length<3||name.length>24)throw new Error(tr('nameShort',lang));
     if(!/^\d{4,6}$/.test(newPin))throw new Error(tr('pinInvalid',lang));
-    if(cloudConfigured){
-      if(!await recoveryRpc('a1_reset_profile_pin',{p_email:await pseudoEmail(name),p_pin:newPin},lang))throw new Error(recoveryText(lang).missing);
-    }else{
-      const key=(await sha256Hex(normName(name))).slice(0,20),profiles=registry();if(!profiles[key])throw new Error(recoveryText(lang).missing);
-      profiles[key].pinHash=await sha256Hex(`${key}:${newPin}`);saveRegistry(profiles);
-    }
+    if(!cloudConfigured)throw new Error(approvalText(lang).local);
+    return recoveryRpc('a1_request_pin_reset',{p_email:await pseudoEmail(name),p_pin:newPin},lang);
+  }
+  async function showPinRequests(root,lang){
+    const A=approvalText(lang);
+    try{
+      const rows=await recoveryRpc('a1_pending_pin_resets',{},lang);
+      root.innerHTML=`<h3>${escapeHtml(A.admin)}</h3>${rows.length?rows.map(r=>`<div class="profile-note"><strong>${escapeHtml(r.username)}</strong><small> · ${escapeHtml(new Date(r.created_at).toLocaleString())} · ${escapeHtml(r.id.slice(0,8))}</small><div class="profile-menu-actions"><button data-pin-approve="${escapeHtml(r.id)}">${escapeHtml(A.approve)}</button><button data-pin-reject="${escapeHtml(r.id)}">${escapeHtml(A.reject)}</button></div></div>`).join(''):`<p>${escapeHtml(A.empty)}</p>`}`;
+      root.querySelectorAll('[data-pin-approve],[data-pin-reject]').forEach(button=>button.onclick=async()=>{
+        root.querySelectorAll('button').forEach(b=>b.disabled=true);
+        try{const ok=await recoveryRpc('a1_review_pin_reset',{p_request_id:button.dataset.pinApprove||button.dataset.pinReject,p_approve:!!button.dataset.pinApprove},lang);if(ok!==true)throw Error('Request not updated');await showPinRequests(root,lang);}
+        catch(error){root.querySelectorAll('button').forEach(b=>b.disabled=false);const note=document.createElement('p');note.textContent=error.message;root.append(note);}
+      });
+    }catch(error){root.textContent=error.message;}
   }
 
   async function hydrateCourse(){
@@ -900,6 +914,12 @@ applyTheme();
         }
 
         window.dispatchEvent(new CustomEvent('a1suite:profilemenu',{detail:{root:ov,lang,close:()=>ov.remove()}}));
+        if(cloudMode)isBugReportAdmin().then(admin=>{
+          if(!admin||!ov.isConnected)return;
+          const button=document.createElement('button');button.textContent=approvalText(lang).admin;
+          const panel=document.createElement('div');panel.hidden=true;ov.querySelector('.profile-modal').append(panel);
+          button.onclick=()=>{panel.hidden=!panel.hidden;if(!panel.hidden)showPinRequests(panel,lang);};ov.querySelector('.profile-menu-actions').append(button);
+        }).catch(()=>{});
         renderLeaderboard(document.getElementById('pmLeaderboard'), lang);
         return;
       }
@@ -964,7 +984,7 @@ applyTheme();
           const n = document.getElementById('profileName').value;
           const p = document.getElementById('profilePin').value;
           if(mode==='recover-name'){if(!await recoveryExists(n,lang))throw new Error(R.missing);preferredName=n;mode='recover-pin';render();document.getElementById('profilePin').focus();return;}
-          if(mode==='recover-pin'){await resetProfilePin(n,p,lang);await loginProfile(n,p,lang);}
+          if(mode==='recover-pin'){const id=await resetProfilePin(n,p,lang);document.getElementById('profilePin').value='';err.style.color='inherit';err.textContent=approvalText(lang).sent+' ('+String(id).slice(0,8)+')';sub.disabled=true;return;}
           else if(mode === 'create') await createProfile(n,p,lang);
           else await loginProfile(n,p,lang);
           location.reload();
