@@ -105,3 +105,12 @@ test('admin export downloads first and archives only the exported reports',async
  assert(w.document.getElementById('a1BugStatus').textContent.includes('nicht archiviert'));assert.equal(w.document.getElementById('a1BugExport').disabled,false);
  dom.window.close();
 });
+test('sending closes immediately while pending and a late response preserves a newly edited draft',async()=>{
+ let finish;
+ const {dom,w}=await ui(w=>{w.A1Profile.submitBugReport=()=>new Promise(resolve=>{finish=resolve;});});
+ w.A1BugReports.open();const input=w.document.getElementById('a1BugMessage');input.value='Original report';input.dispatchEvent(new w.Event('input'));
+ const sending=w.document.getElementById('a1BugSend').onclick();assert.equal(w.document.getElementById('a1BugDialog').open,false);
+ w.A1BugReports.open();const newer=w.document.getElementById('a1BugMessage');newer.value='A newer edited report';newer.dispatchEvent(new w.Event('input'));
+ finish();await sending;assert(w.document.getElementById('a1BugDialog').open);assert.equal(newer.value,'A newer edited report');
+ w.document.getElementById('a1BugClose').click();w.A1BugReports.open();assert.equal(w.document.getElementById('a1BugMessage').value,'A newer edited report');dom.window.close();
+});

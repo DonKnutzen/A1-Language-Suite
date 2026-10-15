@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-export-96',trail=[];
+  const BUILD='bug-autoclose-98',trail=[],inFlight=new Set();
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -94,13 +94,18 @@
     if(!dialog.open)dialog.show();
   }
   let dialog,launcher,lastFocus;
+  function notify(message){
+    document.getElementById('a1BugNotice')?.remove();
+    const notice=document.createElement('div');notice.id='a1BugNotice';notice.setAttribute('role','status');notice.dataset.i18nIgnore='';notice.textContent=message;
+    notice.style.cssText='position:fixed;bottom:90px;right:12px;max-width:min(340px,calc(100% - 48px));padding:10px 14px;border-radius:12px;background:#1e293b;color:#fff;font:14px system-ui;z-index:1004;box-shadow:0 4px 16px #0003';document.body.append(notice);setTimeout(()=>notice.remove(),6000);
+  }
   function close(){dialog.close();updatePanelViewport();lastFocus?.focus();}
   function frame(content){dialog.dataset.mode='overview';dialog.innerHTML=`<div class="a1-bug-top"><strong>${esc(labels().report)}</strong><div><button type="button" id="a1BugClose" aria-label="${esc(labels().close)}">×</button></div></div>${content}`;dialog.querySelector('#a1BugClose').onclick=close;}
   function open(restored=null,restoredKey=null){
     if(restored instanceof Event)restored=null;
     lastFocus=document.activeElement;
     let c=restored?.context||context();
-    const key=restoredKey||draftKey(c),existing=restored||readPending()[key],reportId=existing?.id||crypto.randomUUID(),L=labels(),Q=quickLabels(),R=recoveryLabels();
+    const key=restoredKey||draftKey(c),existing=restored||readPending()[key],reportId=existing?.id&&!inFlight.has(existing.id)?existing.id:crypto.randomUUID(),L=labels(),Q=quickLabels(),R=recoveryLabels();
     if(existing?.context)c=existing.context;
     const hasTask=!!(c.question||c.options?.length||c.formFields?.length||c.tokens?.length);
     let category=hasTask?(existing?.context?.issueType||readDraft(key+':category')):'';
@@ -124,9 +129,10 @@
     input.oninput=()=>{status.textContent='';storeDraft(key,input.value);remember();};
     send.onclick=async()=>{
       const description=input.value.trim(),message=category?[Q[category],reasonLabels()[reason],description].filter(Boolean).join(': ').slice(0,4000):description;if(!category&&message.length<5){status.textContent=L.short;input.focus();return;}
-      remember();send.disabled=true;input.disabled=true;dialog.querySelectorAll('[data-bug-category],[data-bug-reason]').forEach(b=>b.disabled=true);status.textContent=L.sending;
-      try{await A1Profile.submitBugReport({id:reportId,message,context:{...c,issueType:category||null,issueReason:reason||null,description}});sent=true;storeDraft(key,'');storeDraft(key+':category','');savePending(key,null);status.textContent=L.saved;send.textContent=L.close;send.disabled=false;send.onclick=close;}
-      catch(error){status.textContent=error.message==='BUG_LOGIN_REQUIRED'?L.login:error.message==='BUG_SEND_TIMEOUT'||error.name==='AbortError'?R.timeout:/PGRST205|42P01|schema cache/.test(error.message||'')?L.setup:L.error;send.disabled=false;input.disabled=false;dialog.querySelectorAll('[data-bug-category],[data-bug-reason]').forEach(b=>b.disabled=false);}
+      remember();const controls=[...dialog.querySelectorAll('[data-bug-category],[data-bug-reason]')];send.disabled=true;input.disabled=true;dialog.querySelectorAll('[data-bug-category],[data-bug-reason]').forEach(b=>b.disabled=true);status.textContent=L.sending;inFlight.add(reportId);close();
+      try{await A1Profile.submitBugReport({id:reportId,message,context:{...c,issueType:category||null,issueReason:reason||null,description}});sent=true;const pending=readPending()[key];if(pending?.id===reportId&&pending.description?.trim()===description&&pending.context?.issueType===(category||null)&&pending.context?.issueReason===(reason||null)){storeDraft(key,'');storeDraft(key+':category','');savePending(key,null);}status.textContent=L.saved;notify(L.saved);send.textContent=L.close;send.disabled=false;send.onclick=close;}
+      catch(error){status.textContent=error.message==='BUG_LOGIN_REQUIRED'?L.login:error.message==='BUG_SEND_TIMEOUT'||error.name==='AbortError'?R.timeout:/PGRST205|42P01|schema cache/.test(error.message||'')?L.setup:L.error;send.disabled=false;input.disabled=false;controls.forEach(b=>b.disabled=false);notify(status.textContent);}
+      finally{inFlight.delete(reportId);}
     };
     dialog.querySelector('#a1BugDrafts').onclick=()=>{if(!sent&&(input.value||category))remember();showDrafts();};
     dialog.querySelector('#a1BugList').onclick=()=>{if(!sent)storeDraft(key,input.value);showReports();};
