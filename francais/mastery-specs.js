@@ -96,8 +96,8 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Mon nom de ___ est Dupont.",
-        "answer": "famille",
+        "prompt": "Mon ___ est Dupont.",
+        "answer": "nom de famille",
         "tag": "Persönliche Daten",
         "context": "Mein Familienname ist Dupont.",
         "explanation": "Nom de famille bedeutet Nachname. Mon nom de famille est Dupont. = Mein Nachname ist Dupont."

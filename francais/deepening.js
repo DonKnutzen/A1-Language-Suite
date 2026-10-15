@@ -15,8 +15,8 @@
   const shuffle=a=>{const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;};
   // r = original reference page; u = new preparation page. Keep the existing checks.
   const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
-  const routes={2:['r0','u0','u0','u0','u0'],3:['r0','r0','r0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
-  const families=[['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
+  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','r0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
+  const families=[['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
   const allPairs=unit=>unit.pairs||[];
   function pairTasks(unit){
     const pairs=allPairs(unit);
@@ -120,6 +120,7 @@
     });
   }
   function run(panel,pool,{lesson,state,save,speak,onUpdate}){
+    const review=window.A1ExerciseReview?.create();
     const seen=new Set(state.lessonWork[lesson.id]?.deepening?.[pool.key]?.seen||[]);
     const prioritize=a=>[...shuffle(a.filter(q=>!seen.has(q.q))),...shuffle(a.filter(q=>seen.has(q.q)))];
     const forms=prioritize(pool.tasks.filter(q=>q.kind==='form')).slice(0,3);
@@ -135,7 +136,7 @@
       save(true);onUpdate?.();
       panel.querySelector('.between small').textContent='✓ geübt';
       stage.innerHTML=`<div class="deepening-result"><strong>${score} / ${questions.length} richtig</strong>${mistakes.length?`<p class="muted">Wiederhole diese Bausteine:</p>${mistakes.map(q=>`<p>${esc(q.answer)}</p>`).join('')}`:`<p class="muted">Gut vorbereitet für die nächste Aufgabe.</p>`}<button type="button" class="soft-btn exercise-start-btn deepening-repeat">Noch einmal üben</button></div>`;
-      stage.querySelector('.deepening-repeat').onclick=()=>run(panel,pool,{lesson,state,save,speak,onUpdate});
+      stage.querySelector('.deepening-repeat').onclick=()=>run(panel,pool,{lesson,state,save,speak,onUpdate});review?.attach(stage);
     }
     function draw(){
       if(i>=questions.length)return finish();
@@ -147,8 +148,9 @@
         speak?.(q.audio,true,.8);
         stage.querySelector('.deepening-feedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><strong>${ok?'✓ Richtig':'Richtig: '+esc(q.answer)}</strong><p>${esc(q.explanation)}</p><button type="button" class="tiny-btn" data-speak="${encodeURIComponent(q.audio)}">🔊 Anhören</button></div><button type="button" class="primary-btn deepening-next">${i<questions.length-1?'Weiter':'Fertig'}</button>`;
         stage.querySelector('[data-speak]').onclick=()=>speak?.(q.audio,true,.8);
-        stage.querySelector('.deepening-next').onclick=()=>{i++;draw();};
+        stage.querySelector('.deepening-next').onclick=()=>{i++;draw();};review?.attach(stage,true);
       });
+      review?.attach(stage);
     }
     draw();
   }

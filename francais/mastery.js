@@ -11,6 +11,10 @@
   const spec=id=>specs[String(id)]||{goals:[],tasks:[]};
 
   function phraseTasks(lesson){
+    if(Number(lesson.id)!==1)return (lesson.quiz||[]).map(q=>{
+      if(q.context&&q.q.includes('___'))return {type:'gap',prompt:q.q,answer:q.o[q.a],context:q.context,audio:q.audio,explanation:q.explanation,tag:'Lektionsinhalt'};
+      return {type:'choice',q:q.q,o:shuffled(q.o),answer:q.o[q.a],audio:q.audio,explanation:q.explanation,tag:'Lektionsinhalt'};
+    });
     const pairs=(lesson?.phrases||[]).filter(p=>p?.[0]&&p?.[1]);
     const words=s=>new Set(norm(s).split(' ').filter(w=>w.length>2&&!['ich','und','ein','eine','das','der','die','mir','mich'].includes(w)));
     return pairs.map(([target,native])=>{
@@ -41,9 +45,9 @@
       const grammarPick=[];['être','-er-Verben','venir','s’appeler'].forEach(tag=>grammarPick.push(...shuffled(byTag[tag]||[]).slice(0,2)));
       return shuffled([...phrasePick,...grammarPick]);
     }
-    return shuffled([...ps,...cs]);
+    return shuffled([...ps,...cs].filter((task,index,all)=>all.findIndex(other=>(other.q||other.prompt)===(task.q||task.prompt))===index));
   }
-  function testCount(id){const l=byId(id);if(!l)return 0;return Number(id)===1?16:l.phrases.length+(spec(id).tasks||[]).length;}
+  function testCount(id){const l=byId(id);if(!l)return 0;return makeLessonTest(l).length;}
   function best(state,id){return Number(state?.lessonMasteryBest?.[id]||0);}
   function attempted(state,id){return !!(state?.lessonMasteryLast&&Object.prototype.hasOwnProperty.call(state.lessonMasteryLast,id));}
   function passed(state,id){return attempted(state,id);}
@@ -72,14 +76,14 @@
     return values.some(v=>norm(v)===norm(input));
   }
   function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null}){
-    const ex=shuffled(tasks);let i=0,score=0;
-    function finish(){onFinish(score,ex.length,ex);}
+    const ex=shuffled(tasks),review=window.A1ExerciseReview?.create();let i=0,score=0;
+    function finish(){onFinish(score,ex.length,ex);review?.attach(view);}
     function feedback(ok,task){
       if(ok)score++;
       if(task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
       document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
-      document.getElementById('masteryNext').onclick=()=>{i++;i<ex.length?draw():finish();};
+      document.getElementById('masteryNext').onclick=()=>{i++;i<ex.length?draw():finish();};review?.attach(view,true);
     }
     function draw(){
       const q=ex[i];let body='';
@@ -103,7 +107,7 @@
         const check=()=>{if(input.disabled||!input.value.trim())return;input.disabled=true;document.getElementById('masteryCheck').disabled=true;feedback(accepted(q,input.value),q);};
         document.getElementById('masteryCheck').onclick=check;input.onkeydown=e=>{if(e.key==='Enter')check();};
       }
-      window.scrollTo({top:0,behavior:'instant'});
+      review?.attach(view);window.scrollTo({top:0,behavior:'instant'});
     }
     if(!ex.length)return onFinish(0,0,[]);
     draw();

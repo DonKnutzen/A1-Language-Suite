@@ -1,11 +1,11 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const root=path.join(__dirname,'..');
-function environment(){const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;w.scrollTo=()=>{};w.Math.random=()=>.999;for(const p of ['francais/data.js','shared/exercise-engine.js'])w.eval(fs.readFileSync(path.join(root,p),'utf8'));return {dom,w,view:w.document.getElementById('view')};}
+function environment(){const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;w.scrollTo=()=>{};w.Math.random=()=>.999;for(const p of ['francais/data.js','shared/exercise-review.js','shared/exercise-engine.js'])w.eval(fs.readFileSync(path.join(root,p),'utf8'));return {dom,w,view:w.document.getElementById('view')};}
 test('all French lessons use ten authored questions with unique options and a valid answer',()=>{
  const {dom,w}=environment();
  for(const lesson of w.FR_A1_DATA.lessons){const tasks=w.A1ExerciseEngine.makeAuthored(lesson);assert.equal(tasks.length,10,`lesson ${lesson.id}`);assert.equal(new Set(tasks.map(q=>q.q||q.prompt)).size,10);for(const q of tasks){assert(q.answer);assert(q.audio,`lesson ${lesson.id}: ${q.q||q.prompt}`);if(q.o){assert.equal(new Set(q.o).size,q.o.length);assert.equal(q.o[q.a],q.answer);}if(q.type==='gap'){assert(q.context);assert(!/^(est|plaît)$/.test(q.answer));}}}
  const lesson=w.FR_A1_DATA.lessons[1],tasks=w.A1ExerciseEngine.makeAuthored(lesson);
- assert.deepEqual([...tasks.filter(t=>t.type==='gap').map(t=>t.answer)],['épeler','prénom','famille']);
+ assert.deepEqual([...tasks.filter(t=>t.type==='gap').map(t=>t.answer)],['épeler','prénom','nom de famille']);
  assert(!tasks.some(t=>/M\s*[–-]|A bis M|N bis Z|buchstabierst|Lies den Dialog/.test(JSON.stringify(t))));
  const request=tasks.find(t=>t.q?.startsWith('Was bedeutet „Vous pouvez'));assert.equal(request.o.length,3);assert(request.o.every(o=>o.startsWith('Können Sie')));
  dom.window.close();
@@ -33,4 +33,20 @@ test('partial sentence construction survives leaving the exercise',()=>{
  const run=()=>w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',progress,exerciseVersion:94,playAudio:()=>{},onBack:()=>view.replaceChildren(),onFinish:()=>{}});
  run();view.querySelector('.mixed-token').click();const text=view.querySelector('#orderAnswer').textContent;
  view.querySelector('#mixedBack').click();run();assert.equal(view.querySelector('#orderAnswer').textContent,text);assert.equal(view.querySelectorAll('.mixed-token:disabled').length,1);dom.window.close();
+});
+test('review shows a previous answer read-only and returns to the live question without rescoring',()=>{
+ const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],progress={},audio=[];
+ w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:w.A1ExerciseEngine.makeAuthored(lesson),progress,playAudio:t=>audio.push(t),onBack:()=>{},onFinish:()=>{}});
+ const first=view.querySelector('.quiz-q').textContent;view.querySelector(`[data-o="${progress.session.ex[0].a}"]`).click();view.querySelector('#mixedNext').click();
+ const second=view.querySelector('.quiz-q').textContent;view.querySelector('.exercise-review-nav button').click();
+ assert.equal(view.querySelector('.quiz-q').textContent,first);assert([...view.querySelectorAll('.option-btn')].every(b=>b.disabled));assert(!view.querySelector('#mixedNext'));
+ view.querySelector('.exercise-review-nav .primary-btn').click();assert.equal(view.querySelector('.quiz-q').textContent,second);assert.equal(progress.session.score,1);assert.equal(audio.length,1);
+ view.querySelector(`[data-o="${progress.session.ex[1].a}"]`).click();assert.equal(progress.session.score,2);dom.window.close();
+});
+test('lesson checks use authored vocabulary instead of generating alphabet translation questions',()=>{
+ const {dom,w,view}=environment();for(const file of ['francais/mastery-specs.js','francais/mastery.js'])w.eval(fs.readFileSync(path.join(root,file),'utf8'));
+ for(const l of w.FR_A1_DATA.lessons){const tasks=w.FR_A1_MASTERY.makeLessonTest(l);assert.equal(w.FR_A1_MASTERY.testCount(l.id),tasks.length);assert(tasks.length>=10);if(l.id!==1)assert(!tasks.some(q=>/A bis M|N bis Z|Was bedeutet „M –|Was bedeutet „avec|Was bedeutet „Ça s’écrit/.test(JSON.stringify(q))));}
+ const l=w.FR_A1_DATA.lessons[1],tasks=w.FR_A1_MASTERY.makeLessonTest(l),family=tasks.find(q=>q.prompt==='Mon ___ est Dupont.');assert.equal(family.answer,'nom de famille');
+ w.FR_A1_MASTERY.renderLessonTest({lesson:l,view,state:{},save:()=>{},onBack:()=>{},speak:()=>{}});view.querySelector('#masteryStart').click();
+ const first=view.querySelector('.quiz-q').textContent;view.querySelector('[data-mastery-o]').click();view.querySelector('#masteryNext').click();view.querySelector('.exercise-review-nav button').click();assert.equal(view.querySelector('.quiz-q').textContent,first);assert([...view.querySelectorAll('.option-btn')].every(b=>b.disabled));dom.window.close();
 });

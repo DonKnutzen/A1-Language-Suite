@@ -169,7 +169,7 @@ test('reported alphabet questions have natural prompts and task-specific feedbac
   assert(!tasks.some(q=>q.q.includes('Wie sagst du „So schreibt')||q.q.includes('Wie sagst du „Das schreibt')));
   const question=tasks.find(q=>q.q==='Du möchtest wissen, wie ein Name geschrieben wird. Was fragst du?');
   assert.equal(question.answer,'Comment ça s’écrit ?');
-  const family=tasks.find(q=>q.q==='Mon nom de ___ est Dupont.');
+  const family=tasks.find(q=>q.q==='Mon ___ est Dupont.');
   assert(family.explanation.includes('Nom de famille bedeutet Nachname'));
   assert(!family.explanation.includes('Akzent'));
   for(const task of w.FR_A1_MASTERY_SPECS[2].tasks)assert(task.explanation);

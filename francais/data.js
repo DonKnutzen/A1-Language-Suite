@@ -322,15 +322,15 @@ window.FR_A1_DATA = {
           "context": "Mein Vorname ist Sophie."
         },
         {
-          "q": "Mon nom de ___ est Dupont.",
+          "q": "Mon ___ est Dupont.",
           "o": [
-            "famille",
-            "naissance",
-            "téléphone"
+            "nom de famille",
+            "prénom",
+            "surnom"
           ],
           "a": 0,
           "audio": "Mon nom de famille est Dupont.",
-          "explanation": "Die feste Wendung nom de famille bedeutet Nachname.",
+          "explanation": "Nom de famille bedeutet Nachname: Mon nom de famille est Dupont.",
           "context": "Mein Nachname ist Dupont."
         },
         {

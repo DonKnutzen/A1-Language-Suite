@@ -212,6 +212,7 @@
     bs.forEach(b=>b.onclick=()=>{if(input.disabled||input.readOnly||input.hidden||input.closest('[hidden]'))return;const ch=(upper?UPPER:CHARS)[lang][+b.dataset.i],a=input.selectionStart??input.value.length,z=input.selectionEnd??a;input.value=input.value.slice(0,a)+ch+input.value.slice(z);input.setSelectionRange(a+ch.length,a+ch.length);input.dispatchEvent(new Event('input',{bubbles:true}));});
   }
   function run(opts){
+    const review=opts.targetLang==='fr'?window.A1ExerciseReview?.create():null;
     const progress=opts.progress,version=opts.exerciseVersion||1;
     const previous=progress?.session;
     const resume=previous?.version===version&&Array.isArray(previous.ex)&&previous.ex.length&&Number.isInteger(previous.i)&&previous.i>=0&&previous.i<previous.ex.length;
@@ -221,14 +222,14 @@
     persist();
     const play=text=>(opts.playFeedbackAudio||opts.playAudio)(text);
     function next(){i++;response=null;draft='';orderPicked=[];choicePicked=null;
-      if(i<ex.length){persist();draw();}else{if(progress){delete progress.session;opts.saveProgress?.();}opts.onFinish(score,ex.length);}}
+      if(i<ex.length){persist();draw();}else{if(progress){delete progress.session;opts.saveProgress?.();}opts.onFinish(score,ex.length);review?.attach(opts.view);}}
 
     function feedback(status,answer,audio,explanation,restoring=false){
       const ok=status==='ok',near=status==='near';
       if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio)play(audio);}
       const message=ok?L.correct:near?`${L.near} ${L.nearAnswer} ${esc(answer)}`:L.wrong+' '+esc(answer);
       document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:L.result}</button>`;
-      document.getElementById('mixedNext').onclick=next;
+      document.getElementById('mixedNext').onclick=next;if(!restoring)review?.attach(opts.view,true);
     }
     function draw(){
       const q=ex[i];let body='';
@@ -268,7 +269,7 @@
         document.querySelectorAll('#mixedInput,#mixedCheck,.mixed-token,#orderReset').forEach(el=>el.disabled=true);
         feedback(response.status,response.answer,response.audio,response.explanation,true);
       }
-      window.scrollTo({top:0,behavior:'instant'});
+      review?.attach(opts.view);window.scrollTo({top:0,behavior:'instant'});
     }
     draw();
   }
