@@ -573,6 +573,35 @@ applyTheme();
     await hydrateCourse();
   }
 
+  const RECOVERY={
+    de:{forgot:'PIN vergessen?',next:'Weiter',newPin:'Neue PIN (4–6 Ziffern)',reset:'Neue PIN speichern',missing:'Benutzername nicht gefunden.',unavailable:'PIN zurücksetzen ist noch nicht freigeschaltet.'},
+    fr:{forgot:'Code PIN oublié ?',next:'Continuer',newPin:'Nouveau code PIN (4 à 6 chiffres)',reset:'Enregistrer le nouveau PIN',missing:'Nom d’utilisateur introuvable.',unavailable:'La réinitialisation du PIN n’est pas encore disponible.'},
+    en:{forgot:'Forgot PIN?',next:'Continue',newPin:'New PIN (4–6 digits)',reset:'Save new PIN',missing:'Username not found.',unavailable:'PIN recovery is not available yet.'},
+    tr:{forgot:'PIN’i unuttun mu?',next:'Devam',newPin:'Yeni PIN (4–6 rakam)',reset:'Yeni PIN’i kaydet',missing:'Kullanıcı adı bulunamadı.',unavailable:'PIN sıfırlama henüz kullanılamıyor.'}
+  };
+  const recoveryText=lang=>RECOVERY[lang]||RECOVERY.en;
+  async function recoveryRpc(name,body,lang){
+    const response=await fetch(`${cfg.supabaseUrl}/rest/v1/rpc/${name}`,{method:'POST',headers:authHeaders(),body:JSON.stringify(body)});
+    if(!response.ok){if(response.status===404)throw new Error(recoveryText(lang).unavailable);throw await responseError(response);}
+    return response.json();
+  }
+  async function recoveryExists(username,lang=getUiLang()){
+    const name=String(username||'').trim();if(name.length<3||name.length>24)throw new Error(tr('nameShort',lang));
+    if(cloudConfigured)return recoveryRpc('a1_pin_profile_exists',{p_email:await pseudoEmail(name)},lang);
+    return !!registry()[(await sha256Hex(normName(name))).slice(0,20)];
+  }
+  async function resetProfilePin(username,pin,lang=getUiLang()){
+    const name=String(username||'').trim(),newPin=String(pin||'').trim();
+    if(name.length<3||name.length>24)throw new Error(tr('nameShort',lang));
+    if(!/^\d{4,6}$/.test(newPin))throw new Error(tr('pinInvalid',lang));
+    if(cloudConfigured){
+      if(!await recoveryRpc('a1_reset_profile_pin',{p_email:await pseudoEmail(name),p_pin:newPin},lang))throw new Error(recoveryText(lang).missing);
+    }else{
+      const key=(await sha256Hex(normName(name))).slice(0,20),profiles=registry();if(!profiles[key])throw new Error(recoveryText(lang).missing);
+      profiles[key].pinHash=await sha256Hex(`${key}:${newPin}`);saveRegistry(profiles);
+    }
+  }
+
   async function hydrateCourse(){
     if(!cloudConfigured || !META.course || !META.stateBaseKey) return;
 
@@ -880,6 +909,7 @@ applyTheme();
           ? `<div class="profile-note">${tr('cloudConnectHint',lang)}</div>`
           : '';
 
+      const R=recoveryText(lang);
       ov.innerHTML = `<div class="profile-modal">
         ${languageSelector(lang)}
         <h2>${tr('learningProfile',lang)}</h2>
@@ -890,13 +920,14 @@ applyTheme();
         </div>
         <div class="profile-field">
           <label>${tr('username',lang)}</label>
-          <input id="profileName" autocomplete="username" placeholder="${tr('userPlaceholder',lang)}" value="${escapeHtml(preferredName || current?.username || '')}">
+          <input id="profileName" ${mode==='recover-pin'?'readonly':''} autocomplete="username" placeholder="${tr('userPlaceholder',lang)}" value="${escapeHtml(preferredName || current?.username || '')}">
         </div>
-        <div class="profile-field">
-          <label>${tr('pin',lang)}</label>
-          <input id="profilePin" inputmode="numeric" pattern="[0-9]*" type="password" autocomplete="current-password" placeholder="••••">
+        <div class="profile-field" ${mode==='recover-name'?'hidden':''}>
+          <label>${mode==='recover-pin'?R.newPin:tr('pin',lang)}</label>
+          <input id="profilePin" inputmode="numeric" pattern="[0-9]*" type="password" autocomplete="${mode==='recover-pin'?'new-password':'current-password'}" placeholder="••••">
         </div>
-        <button class="profile-submit" id="profileSubmit">${mode==='create'?tr('create',lang):tr('login',lang)}</button>
+        <button class="profile-submit" id="profileSubmit">${mode==='recover-name'?R.next:mode==='recover-pin'?R.reset:mode==='create'?tr('create',lang):tr('login',lang)}</button>
+        ${mode==='login'?`<button class="profile-submit" id="profileForgot" type="button" style="background:transparent;color:inherit;font-size:14px">${R.forgot}</button>`:''}
         <div class="profile-error" id="profileError"></div>
         ${migrationNote}
         <div class="profile-note">${cloudConfigured ? tr('cloud',lang) : tr('local',lang)}</div>
@@ -921,6 +952,8 @@ applyTheme();
         render();
       };
 
+      const forgot=document.getElementById('profileForgot');
+      if(forgot)forgot.onclick=()=>{preferredName=document.getElementById('profileName').value;mode='recover-name';render();};
       const cancel = document.getElementById('pmCancel');
       if(cancel) cancel.onclick = () => ov.remove();
 
@@ -930,7 +963,9 @@ applyTheme();
         try{
           const n = document.getElementById('profileName').value;
           const p = document.getElementById('profilePin').value;
-          if(mode === 'create') await createProfile(n,p,lang);
+          if(mode==='recover-name'){if(!await recoveryExists(n,lang))throw new Error(R.missing);preferredName=n;mode='recover-pin';render();document.getElementById('profilePin').focus();return;}
+          if(mode==='recover-pin'){await resetProfilePin(n,p,lang);await loginProfile(n,p,lang);}
+          else if(mode === 'create') await createProfile(n,p,lang);
           else await loginProfile(n,p,lang);
           location.reload();
         }catch(e){
@@ -1087,6 +1122,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.A1Profile = {
     cloudConfigured,
+    resetProfilePin,
+    recoveryExists,
     submitBugReport,
     getBugReports,
     isBugReportAdmin,
