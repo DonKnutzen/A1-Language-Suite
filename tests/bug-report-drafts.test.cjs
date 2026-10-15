@@ -73,3 +73,22 @@ test('quick subcategories are scoped, optional, restored and submitted with repo
   assert(calls[0].message.includes('Erklärung der Antwort falsch'));assert(calls[0].context.question);
   dom.window.close();
 });
+test('actual lesson-check choice and gap screens expose task content and nested feedback choices',async()=>{
+  const {dom,w,calls,succeed}=await ui(w=>{
+    w.scrollTo=()=>{};w.Math.random=()=>.999;
+    for(const file of ['francais/data.js','francais/mastery-specs.js','francais/mastery.js'])w.eval(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
+  });
+  w.FR_A1_MASTERY.renderLessonTest({lesson:w.FR_A1_DATA.lessons[1],view:w.document.getElementById('view'),state:{},save:()=>{},onBack:()=>{},speak:()=>{}});
+  w.document.getElementById('masteryStart').click();
+  const question=w.document.querySelector('.quiz-q').textContent,options=[...w.document.querySelectorAll('.option-btn')].map(b=>b.textContent);
+  w.A1BugReports.open();assert.equal(w.A1BugReports.context().lessonId,2);assert.equal(w.A1BugReports.context().step,'check');
+  assert.equal(w.A1BugReports.context().question,question);assert.deepEqual([...w.A1BugReports.context().options],options);
+  w.document.querySelector('[data-bug-category="answers"]').click();w.document.querySelector('[data-bug-reason="explanation"]').click();
+  succeed();await w.document.getElementById('a1BugSend').onclick();assert.equal(calls[0].context.question,question);assert.equal(calls[0].context.issueReason,'explanation');
+  w.document.getElementById('a1BugClose').click();
+  for(let i=0;i<30&&!w.document.getElementById('masteryInput');i++){w.document.querySelector('[data-mastery-o]').click();w.document.getElementById('masteryNext').click();}
+  assert(w.document.getElementById('masteryInput'));w.document.getElementById('masteryInput').value='PRIVATE ANSWER';
+  w.A1BugReports.open();assert(w.document.querySelector('[data-bug-category="question"]'));
+  assert(w.A1BugReports.context().question.includes('___'));assert(!JSON.stringify(w.A1BugReports.context()).includes('PRIVATE ANSWER'));
+  dom.window.close();
+});

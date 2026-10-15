@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-reasons-93',trail=[];
+  const BUILD='bug-mastery-95',trail=[];
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -34,14 +34,15 @@
   const collect=(root,selector,max=1200)=>[...root.querySelectorAll(selector)].filter(visible).map(el=>text(el,max)).filter(Boolean);
   function context(){
     const view=document.getElementById('view')||document.querySelector('main')||document.body;
+    const task=view.querySelector('[data-bug-task]');
     const header=view.querySelector('[data-bug-lesson]');
     const heading=text(header?.querySelector('h2')||view.querySelector('h2'),250);
-    const inExercise=!!view.querySelector('.quiz-q,#mixedCheck,#mixedListen,#masteryInput,#checkNext');
+    const inExercise=!!task||!!view.querySelector('.quiz-q,#mixedCheck,#mixedListen,#masteryInput,#checkNext');
     const point=(header||inExercise)?currentPoint:null;
     const lesson=header?.dataset.bugLesson||heading.match(/^(\d+)\.\s/)?.[1]||point?.lessonId||null;
-    const step=view.querySelector('.lesson-step.active')?.dataset.lessonStep||point?.step||null;
+    const step=task?.dataset.bugStep||view.querySelector('.lesson-step.active')?.dataset.lessonStep||point?.step||null;
     const grammar=view.querySelector('.lesson-grammar-segment.active');
-    const question=text(view.querySelector('.quiz-q')||view.querySelector('#lessonSpeaking:not([hidden]) .lesson-task-prompt')||view.querySelector('#lessonWritingSection:not([hidden]) .lesson-task-prompt'));
+    const question=(task?.dataset.bugQuestion||'').slice(0,800)||text(view.querySelector('.quiz-q')||view.querySelector('#lessonSpeaking:not([hidden]) .lesson-task-prompt')||view.querySelector('#lessonWritingSection:not([hidden]) .lesson-task-prompt'));
     const course=window.A1_APP_META?.course||'suite';
     // Only authored task content: never input values, recordings or answer feedback.
     const sourceTexts=collect(view,'.reading-text,.ad-box,.sign,.card > p,.lesson-task-prompt',1800).slice(0,8);
@@ -101,7 +102,7 @@
     let c=restored?.context||context();
     const key=restoredKey||draftKey(c),existing=restored||readPending()[key],reportId=existing?.id||crypto.randomUUID(),L=labels(),Q=quickLabels(),R=recoveryLabels();
     if(existing?.context)c=existing.context;
-    const hasTask=!!(c.question||c.formFields.length||c.tokens.length);
+    const hasTask=!!(c.question||c.options?.length||c.formFields?.length||c.tokens?.length);
     let category=hasTask?(existing?.context?.issueType||readDraft(key+':category')):'';
     if(!['question','answers','both'].includes(category))category='';
     let reason=existing?.context?.issueReason||'';

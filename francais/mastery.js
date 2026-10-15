@@ -71,7 +71,7 @@
     const values=[task.answer,...(task.accept||[])].filter(Boolean);
     return values.some(v=>norm(v)===norm(input));
   }
-  function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr'}){
+  function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null}){
     const ex=shuffled(tasks);let i=0,score=0;
     function finish(){onFinish(score,ex.length,ex);}
     function feedback(ok,task){
@@ -88,7 +88,7 @@
       }else{
         body=`${q.context?`<p class="mixed-context"><strong>Bedeutung:</strong> ${esc(q.context)}</p>`:''}<label class="mixed-type" for="masteryInput">✍️ Form einsetzen</label><div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="masteryInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort…">${window.A1ExerciseEngine?.charBar?A1ExerciseEngine.charBar(targetLang,'de'):''}<div class="spacer"></div><button class="primary-btn" id="masteryCheck">Prüfen</button>`;
       }
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBack">← Zurück</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" style="margin-top:12px"><div class="between"><div><div class="eyebrow">ABSCHLUSSTEST</div><h2>${esc(title)}</h2></div></div>${subtitle?`<p class="muted">${esc(subtitle)}</p>`:''}${body}<div id="masteryFeedback"></div></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBack">← Zurück</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" data-bug-task data-bug-lesson="${lessonId||''}" data-bug-step="check" data-bug-question="${esc(q.q||q.prompt)}" data-bug-audio="${esc(q.audio||'')}" style="margin-top:12px"><div class="between"><div><div class="eyebrow">ABSCHLUSSTEST</div><h2>${esc(title)}</h2></div></div>${subtitle?`<p class="muted">${esc(subtitle)}</p>`:''}${body}<div id="masteryFeedback"></div></section>`;
       document.getElementById('masteryBack').onclick=onBack;
       if(q.type==='choice'){
         const a=(q.o||[]).findIndex(x=>norm(x)===norm(q.answer));
@@ -114,7 +114,7 @@
     function intro(){
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn" id="masteryStart">${b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
-      document.getElementById('masteryStart').onclick=()=>runTasks({title:`${lesson.id}. ${lesson.title}`,subtitle:`${tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
+      document.getElementById('masteryStart').onclick=()=>runTasks({lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryBest=state.lessonMasteryBest||{};state.lessonMasteryLast=state.lessonMasteryLast||{};
         state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(Number(state.lessonMasteryBest[lesson.id]||0),pct);save(true);
