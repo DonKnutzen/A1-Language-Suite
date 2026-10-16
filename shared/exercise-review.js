@@ -1,6 +1,7 @@
 /* Read-only review of answered questions; live nodes keep their original handlers. */
 (() => {
-  function create(){
+  function create({lang='de'}={}){
+    const fr=lang==='fr';
     const history=[];
     function attach(root,answered=false){
       root.querySelectorAll('.exercise-review-nav').forEach(el=>el.remove());
@@ -11,7 +12,7 @@
       }
       const previous=history.length-(answered?2:1);if(previous<0)return;
       const nav=document.createElement('div');nav.className='button-row exercise-review-nav';
-      const back=document.createElement('button');back.type='button';back.className='secondary-btn';back.textContent='← Vorherige Antwort';nav.append(back);root.append(nav);
+      const back=document.createElement('button');back.type='button';back.className='secondary-btn';back.textContent=fr?'← Réponse précédente':'← Vorherige Antwort';nav.append(back);root.append(nav);
       back.onclick=()=>{
         const live=[...root.childNodes];
         function show(index){
@@ -19,8 +20,8 @@
           root.querySelectorAll('button,input,textarea,select').forEach(el=>el.disabled=true);
           root.querySelectorAll('#mixedNext,#masteryNext,#mixedBack,#masteryBack,#l1GrammarBack,.deepening-next,.lesson1-drill-next,#l1GrammarNext').forEach(el=>el.remove());
           const controls=document.createElement('div');controls.className='button-row exercise-review-nav';
-          const prev=document.createElement('button');prev.type='button';prev.className='secondary-btn';prev.textContent='← Zurück';prev.disabled=index===0;prev.onclick=()=>show(index-1);
-          const next=document.createElement('button');next.type='button';next.className='primary-btn';next.textContent=index<previous?'Weiter →':'Zur aktuellen Aufgabe →';
+          const prev=document.createElement('button');prev.type='button';prev.className='secondary-btn';prev.textContent=fr?'← Retour':'← Zurück';prev.disabled=index===0;prev.onclick=()=>show(index-1);
+          const next=document.createElement('button');next.type='button';next.className='primary-btn';next.textContent=index<previous?(fr?'Suivant →':'Weiter →'):(fr?'Retour à la question actuelle →':'Zur aktuellen Aufgabe →');
           next.onclick=()=>{if(index<previous)show(index+1);else root.replaceChildren(...live);};
           controls.append(prev,next);root.append(controls);
         }

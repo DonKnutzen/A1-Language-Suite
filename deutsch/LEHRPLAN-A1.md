@@ -1,171 +1,57 @@
-# Parcours allemand A1 — explications en français
-
-24 Lektionen / leçons / dersler
-
-## 1. Se présenter
-
-- Je peux me présenter avec mon nom, mon origine et ma ville.
-- Je peux demander ces informations à une autre personne.
-
-Pour te présenter, retiens surtout trois blocs : « Ich heiße … » (je m’appelle), « Ich komme aus … » (je viens de) et « Ich wohne in … » (j’habite à). Dans une phrase simple, le verbe conjugué reste en deuxième position.
-
-## 2. Épeler et demander de répéter
-
-- Je peux épeler mon nom et reconnaître des lettres.
-- Je peux demander à quelqu’un de répéter ou d’épeler.
-
-Pour demander l’orthographe, utilise « Wie schreibt man das? ». Pour faire épeler ou répéter poliment : « Können Sie das bitte buchstabieren? » ou « Wie bitte? ». Avec können, l’autre verbe reste à la fin.
-
-## 3. Nombres, téléphone et date
-
-- Je peux donner un numéro de téléphone et comprendre des nombres.
-- Je peux indiquer ma date de naissance.
-
-
-
-## 4. Jour, heure et rendez-vous
-
-- Je peux comprendre et donner une heure.
-- Je peux fixer un rendez-vous avec un jour et une heure.
-
-
-
-## 5. Famille et informations personnelles
-
-- Je peux présenter ma famille.
-- Je peux donner les informations personnelles demandées dans un formulaire.
-
-Dans un formulaire, distingue surtout Vorname, Familienname, Geburtsort et Geburtsdatum.
-
-## 6. Commander poliment
-
-- Je peux commander un repas et une boisson.
-- Je peux demander l’addition et préciser une préférence.
-
-« Ich möchte … » = « je voudrais … » et « Ich hätte gern … » = « j’aimerais … ».
-
-## 7. Prix, taille et achat
-
-- Je peux demander un prix, une taille et un produit.
-- Je peux décider d’acheter ou de refuser poliment.
-
-Pour le prix : « Wie viel kostet das? » ; pour la taille : « Welche Größe? ». Pour acheter, « Ich nehme das. » suffit ; pour refuser poliment : « Nein, danke. ». Apprends les noms de produits avec leur article.
-
-## 8. Décrire un logement
-
-- Je peux décrire un logement avec quelques mots.
-- Je peux demander le loyer et organiser une visite.
-
-Pour dire ce qu’un logement possède, utilise « Die Wohnung hat … » ou « Es gibt … ». « zwei Zimmer » = deux pièces et « frei » signifie disponible dans une annonce. Pour le loyer : « Wie hoch ist die Miete? ».
-
-## 9. Demander et expliquer un chemin
-
-- Je peux demander et comprendre un itinéraire simple.
-- Je peux nommer un moyen de transport et reconnaître un changement.
-
-Pour demander : « Wie komme ich zum Bahnhof? ». Pour le transport, retiens les blocs « mit dem Bus » et « mit der Bahn ».
-
-## 10. Métier, lieu de travail et horaires
-
-- Je peux dire mon métier et mes horaires.
-- Je peux décrire simplement mon lieu de travail.
-
-Pour le métier : « Ich bin Lehrer. » ou « Ich arbeite als Verkäuferin. » ; le métier reste souvent sans article. Pour le lieu : « Ich arbeite in … », et pour les horaires : « von acht bis sechzehn Uhr ».
-
-## 11. Cours, durée et clarification
-
-- Je peux parler de mon cours et de mon apprentissage.
-- Je peux demander de répéter ou d’expliquer.
-
-Pour une activité commencée avant et toujours actuelle, utilise « seit + présent » : Ich lerne seit sechs Monaten Deutsch. Pour demander de l’aide : « Können Sie das wiederholen? » ou « Was bedeutet das? ».
-
-## 12. Loisirs et préférences
-
-- Je peux parler de mes loisirs et de mes goûts.
-- Je peux proposer une activité pour le week-end.
-
-« gern » indique qu’on aime faire quelque chose : Ich spiele gern Fußball. « lieber » marque une préférence : Ich gehe lieber ins Kino. Si tu commences par « Am Samstag », le verbe reste en deuxième position : Am Samstag spiele ich…
-
-## 13. Hôtel, départ et arrivée
-
-- Je peux réserver une chambre et demander une information.
-- Je peux comprendre une heure de départ ou d’arrivée.
-
-Pour réserver : « Ich möchte ein Zimmer reservieren. ».
-
-## 14. Symptômes, durée et rendez-vous
-
-- Je peux décrire des symptômes simples et leur durée.
-- Je peux demander un rendez-vous médical.
-
-Pour un symptôme, utilise souvent « Ich habe … » : Ich habe Fieber / Husten. Pour l’état général : « Ich bin krank. ». « seit gestern » indique depuis quand le problème dure ; « Wie lange? » demande la durée.
-
-## 15. Inviter, accepter et refuser
-
-- Je peux accepter ou décliner une invitation.
-- Je peux écrire un court message avec les informations utiles.
-
-Pour accepter : « Ja, gern. » ou « Ich komme gern. ». Pour refuser poliment : « Leider kann ich nicht kommen. ». Dans un message, donne clairement le jour, l’heure et le lieu avant la formule de fin.
-
-## 16. Comprendre panneaux et restrictions
-
-- Je peux comprendre des panneaux et des horaires.
-- Je peux repérer une interdiction ou une restriction.
-
-
-
-## 17. Demander quelque chose poliment
-
-- Je peux demander un objet ou une aide poliment.
-- Je peux accepter ou refuser une demande.
-
-« Können Sie mir bitte … geben? » permet de demander un objet ou de l’aide. Une autre forme polie est « Geben Sie mir bitte … ». Pour répondre : « Ja, natürlich. » ou « Tut mir leid. ».
-
-## 18. Comprendre les consignes
-
-- Je peux comprendre les consignes allemandes les plus fréquentes.
-- Je peux choisir une stratégie pour écouter, lire et écrire.
-
-
-
-## 19. Dire où tu as mal
-
-- Je peux nommer des parties du corps et expliquer une douleur.
-- Je peux préciser l’endroit où j’ai mal.
-
-La partie du corps est le sujet : « Mein Hals tut weh » au singulier, « Meine Beine tun weh » au pluriel. Pour préciser un endroit, nomme directement la partie du corps plutôt que de traduire mot à mot le français.
-
-## 20. Météo et vêtements
-
-- Je peux décrire le temps et choisir des vêtements.
-- Je peux dire ce dont j’ai besoin selon la météo.
-
-Pour la météo : « Es ist kalt/warm » et « Es regnet ». Pour dire ce qu’il te faut : « Ich brauche … » : einen Mantel, eine Jacke, ein Hemd. Si « Heute » commence la phrase, le verbe reste en deuxième position.
-
-## 21. Cinéma, musique et lecture
-
-- Je peux parler de cinéma, de musique et de lecture.
-- Je peux proposer une sortie et comprendre son horaire.
-
-Pour dire ce que tu aimes faire : « Ich höre gern Musik / Ich lese gern. ». « lieber » compare deux préférences : Ich gehe lieber ins Kino. Pour proposer une sortie : « Möchtest du …? ».
-
-## 22. Téléphone et message
-
-- Je peux commencer un appel et laisser un message.
-- Je peux décrire un problème simple avec mon téléphone.
-
-Pour demander un rappel : « Können Sie mich zurückrufen? ». Au présent, zurückrufen se sépare : Ich rufe Sie zurück. Pour un message : « Ich schicke dir/Ihnen eine Nachricht. » ; garde la même forme d’adresse pendant tout l’échange.
-
-## 23. Formulaire et service postal
-
-- Je peux demander un formulaire et un service à la poste.
-- Je peux comprendre des champs et des horaires.
-
-Pour demander un formulaire : « Ich brauche ein Formular. ». « ausfüllen » = remplir, « unterschreiben » = signer, « sich anmelden » = s’inscrire. Avec möchten, l’infinitif reste entier à la fin : Ich möchte mich anmelden.
-
-## 24. Révision : répondre clairement
-
-- Je peux combiner présentation, question et demande.
-- Je peux produire un message simple en vérifiant les consignes.
-
-Pour une réponse A1, construis des phrases courtes : une information par phrase, puis une question ou une demande claire si nécessaire. Utilise und pour ajouter et aber pour opposer.
+# Deutsch A1 — parcours pour francophones
+
+Le cours suit les situations et formats de l’**Übungssatz 01, Start Deutsch 1**, Goethe-Institut, édition révisée de février 2024. Les exemples du parcours sont créés pour l’apprentissage ; les résultats de la suite restent des résultats d’entraînement.
+
+## Organisation
+
+Chaque leçon suit le même parcours que Français A1 :
+
+1. **Écouter & comprendre** : exemples et répétition, pages équilibrées de six éléments au maximum, puis dix exercices mêlant écoute, compréhension et formes utiles.
+2. **Approfondir** : plusieurs préparations propres à la situation, les tableaux existants, les explications en français, des exemples allemands avec audio et dix exercices par thème d’entraînement.
+3. **Oral** : consigne précise, enregistrement facultatif, aide repliée avec audio et comparaison avec un modèle adapté.
+4. **Écriture** : aide repliée, brouillon conservé et comparaison. Les tâches de formulaire disposent de vrais champs et de données fictives dans un texte allemand.
+5. **Bilan de la leçon** : douze questions sur les éléments déjà expliqués et exercés. Une réussite à partir de 80 % termine aussi la leçon et actualise le cours.
+
+La première leçon conserve son test final sur les formes du présent. Les tests, mini-tests et exercices de leçon enregistrent la question, le brouillon et le résultat courant. Les progrès et leçons déjà terminées sont conservés.
+
+## Préparation des compétences du PDF
+
+- **Hören**, pages 5–12 : courts échanges et annonces ; repérer un nombre, un prix, une heure, un lieu ou une information donnée.
+- **Lesen**, pages 13–20 : courts messages, panneaux, horaires et annonces.
+- **Schreiben**, pages 21–24 : reporter des informations dans un formulaire, puis rédiger un message d’environ trente mots couvrant trois points, avec appel et salutation.
+- **Sprechen**, pages 25–29 : se présenter, demander et donner une information, formuler une demande et y répondre.
+
+## Préparation par leçon
+
+| Leçon | Thèmes de préparation |
+|---|---|
+| 1 | Se présenter · Poser les premières questions |
+| 2 | Lettres et signes · Faire épeler et répéter |
+| 3 | Construire les nombres · Dates et coordonnées |
+| 4 | Lire et dire l’heure · Jours de la semaine · Mois et dates · Fixer un rendez-vous |
+| 5 | Présenter sa famille · Informations personnelles |
+| 6 | Commander un repas · Préciser et payer |
+| 7 | Prix et quantités · Trouver un article |
+| 8 | Décrire un logement · Demander une visite |
+| 9 | Expliquer un chemin · Comprendre les transports |
+| 10 | Métier et horaires · Prévenir au travail |
+| 11 | Parler du cours · Apprendre et demander de l’aide |
+| 12 | Dire ce qu’on aime · Organiser le week-end |
+| 13 | Réserver une chambre · Départs et arrivées |
+| 14 | Décrire des symptômes · Prendre rendez-vous et prévenir |
+| 15 | Inviter et préciser · Répondre à une invitation |
+| 16 | Lire panneaux et restrictions · Horaires et annonces |
+| 17 | Formuler une demande · Accepter et refuser |
+| 18 | Comprendre les consignes · Décrire une méthode simple |
+| 19 | Nommer les douleurs · Demander une aide médicale |
+| 20 | Décrire la météo · Choisir ses vêtements |
+| 21 | Parler de ses goûts · Proposer une sortie |
+| 22 | Laisser un message · Écrire un SMS clair |
+| 23 | À la poste et au guichet · Remplir un formulaire |
+| 24 | Répondre et se faire comprendre · Préparer un message complet |
+
+## Contrôle du contenu
+
+Les questions de sens proposent des réponses dans la même langue et la même situation. Les tâches à trou donnent leur sens en français pour éviter des réponses grammaticalement possibles mais différentes. La lecture utilise des dialogues allemands séparés par interlocuteur, avec une seule réponse déductible du texte. Les explications du corrigé se rapportent à la réponse précise. L’audio prononce toujours la réponse allemande, même après un mauvais choix.
+
+Les fichiers `deepening-content.js`, `applications.js` et `study.js` relient chaque explication, son entraînement et son modèle d’application. `tests/german-course.test.cjs` vérifie les vingt-quatre parcours, le contenu des tests, la reprise, les formulaires et la progression. Le français n’a pas été modifié ; les extensions du moteur commun sont activées explicitement par le parcours allemand.

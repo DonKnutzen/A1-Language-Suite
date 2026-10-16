@@ -1645,7 +1645,7 @@ reading[4]=[
   {id:'l4-14',text:'POST\nBrief Deutschland 0,95 € · Europa 1,10 € · Welt 1,70 €',q:'Was kostet ein Brief nach Frankreich?',o:['0,95 €','1,10 €','1,70 €'],a:1,audio:'ein Euro zehn'}
 ];
 
-Object.assign(formTasks[0],{scenario:'Ton amie Élodie Martin, née le 9.2.1998 à Québec, habite 18 rue Cartier à Québec. Sa langue maternelle est le français, elle parle aussi anglais et apprend l’allemand depuis trois mois. Elle veut suivre un cours du 3 au 28 août, le matin, et son e-mail est elodie.martin@example.com.',fields:[
+Object.assign(formTasks[0],{scenario:'Élodie Martin ist am 9.2.1998 in Québec geboren. Ihre Adresse ist 18 rue Cartier in Québec. Ihre Muttersprache ist Französisch. Sie spricht auch Englisch und lernt seit drei Monaten Deutsch. Sie möchte vom 3. bis zum 28. August am Vormittag einen Deutschkurs besuchen. Ihre E-Mail-Adresse ist elodie.martin@example.com.',fields:[
   {label:'Familienname',answers:['Martin']},{label:'Vorname',answers:['Élodie','Elodie']},{label:'Geburtsdatum',answers:['9.2.1998','09.02.1998']},{label:'Geburtsort',answers:['Québec','Quebec']},{label:'Adresse',answers:['18 rue Cartier']},{label:'Muttersprache',answers:['Französisch']},{label:'Andere Sprache',answers:['Englisch']},{label:'Deutsch gelernt seit',answers:['3 Monate','drei Monate','seit drei Monaten']},{label:'Kurstermin',answers:['3. bis 28. August','3-28 August','03.08.-28.08.']},{label:'E-Mail',answers:['elodie.martin@example.com']}
 ]});
 Object.assign(formTasks[1],{scenario:'Marc Dupont, geboren am 12.5.1994, ist 32 Jahre alt, wohnt in der Gartenstraße 7 in Berlin, arbeitet als Koch und hat seit gestern 39 Grad Fieber und Halsschmerzen. Seine Telefonnummer ist 030-555-7711 und seine Krankenkasse heißt AOK.',fields:[
@@ -1723,6 +1723,8 @@ const grammarSets=[
   ]}
 ];
 DE_A1_GRAMMAR_DRILLS.extendSets(grammarSets);
+DE_A1_GRAMMAR_DRILLS.refineSets(grammarSets);
+DE_A1_STUDY.configure(lessons);
 /* ===== Ende Umfangserweiterung V4 ===== */
 
 
@@ -1823,31 +1825,22 @@ function renderHome(){
 }
 
 function renderLearn(){
-  view.innerHTML=`<section class="card hero"><span class="pill">${lessons.length} LEÇONS · EXERCICES + BILAN</span><h2 style="margin-top:12px">Cours d’allemand A1</h2><p class="muted">Ce cours te prépare de façon ciblée au Goethe-Zertifikat A1. ${DE_A1_ASSESSMENTS.passedCount(state)} / ${lessons.length} bilans effectués.</p><div class="progress"><div style="width:${lessonPct()}%"></div></div></section><div class="list">${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}"><div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div><p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p><div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'fr')}</div></button>`).join('')}</div>`;
+  view.innerHTML=`<section class="card hero"><span class="pill">${lessons.length} LEÇONS · EXERCICES + BILAN</span><h2 style="margin-top:12px">Cours d’allemand A1</h2><p class="muted">Ce cours prépare les situations et les formats du Goethe-Zertifikat A1 : écouter, lire, écrire et parler. ${DE_A1_ASSESSMENTS.passedCount(state)} / ${lessons.length} bilans effectués.</p><div class="progress"><div style="width:${lessonPct()}%"></div></div></section><div class="list">${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}"><div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div><p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p><div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'fr')}</div></button>`).join('')}</div>`;
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));
 }
 
 
-const LESSON_WRITING_SUPPORT={
-  1:{helpText:'Utilise ces quatre structures et remplace seulement les informations personnelles.',hints:[['Ich heiße …','Je m’appelle …'],['Ich komme aus …','Je viens de …'],['Ich wohne in …','J’habite à …'],['Ich spreche …','Je parle …']],model:'Ich heiße Claire.\nIch komme aus Kanada.\nIch wohne in Halifax.\nIch spreche Französisch.',placeholder:'Écris quatre phrases simples…'},
-  2:{helpText:'Écris deux demandes qui servent directement à faire répéter ou épeler un nom.',hints:[['Wie schreibt man das?','Comment ça s’écrit ?'],['Können Sie das bitte buchstabieren?','Pouvez-vous épeler, s’il vous plaît ?']],model:'Wie schreibt man das?\nKönnen Sie das bitte buchstabieren?',placeholder:'Écris deux demandes…'},
-  3:{helpText:'Inscris chaque information dans le champ correspondant.',hints:[['Geburtsdatum: …','Date de naissance'],['Telefonnummer: …','Numéro de téléphone'],['Postleitzahl: …','Code postal']],model:'Geburtsdatum: 17. April 2000\nTelefonnummer: 030 555 1840\nPostleitzahl: 12345',placeholder:'Remplis les trois champs…'},
-  4:{helpText:'Le message doit contenir le jour, l’heure et le lieu du rendez-vous.',hints:[['Der Termin ist am … um …','Le rendez-vous est … à …'],['Treffpunkt: …','Lieu de rendez-vous : …']],model:'Der Termin ist am Mittwoch um 10 Uhr.\nTreffpunkt: Bibliothek.',placeholder:'Écris le jour, l’heure et le lieu…'},
-  5:{helpText:'Utilise les libellés du formulaire et ajoute une information après chacun.',hints:[['Name: …','Nom'],['Vorname: …','Prénom'],['Familienstand: …','État civil'],['Geburtsdatum: …','Date de naissance'],['Geburtsort: …','Lieu de naissance']],model:'Name: Martin\nVorname: Claire\nFamilienstand: ledig\nGeburtsdatum: 17. April 2000\nGeburtsort: Montréal',placeholder:'Remplis les champs du formulaire…'},
-  6:{helpText:'Commence chaque produit avec la structure de commande demandée.',hints:[['Ich hätte gern …','Je voudrais …'],['…, bitte.','…, s’il vous plaît.']],model:'Ich hätte gern einen Kaffee, eine Suppe und ein Wasser, bitte.',placeholder:'Écris une commande de trois produits…'}
-};
-
 function renderLesson(id){
-  const l=lessons.find(x=>x.id===id),c=window.A1_COURSE_CONTENT.find(x=>x.id===id);
-  const goalsHtml=A1LessonGuide.goals(id,'fr',esc);
-  const grammarHtml=A1LessonGuide.grammar(id,'fr',esc,speakBtn,{referencesHtml:lessonGrammarReferenceHtml(id)});
-  const dialogueHtml=A1LessonGuide.parts(id,'fr',esc,speakBtn).dialogue;
-  const model=(c.grammar.examples?.[0]?.[0]||l.phrases[0][0])+' '+l.phrases.slice(1,4).map(p=>p[0]).join(' ');
-  const writingSupport=LESSON_WRITING_SUPPORT[id]||{};
+  const l=lessons.find(x=>x.id===id),original=window.A1_COURSE_CONTENT.find(x=>x.id===id),app=DE_A1_APPLICATIONS[id];
+  const c={...original,transfer:{...original.transfer,writing:app.writingTask||original.transfer.writing}};
+  const units=DE_A1_STUDY.content[id];
+  const hints=app.hints.length?app.hints:units.flatMap(u=>[...u.rows,...(u.extra||[])]).slice(-6).map(([de,fr])=>[de.replace(/\|/g,''),fr]);
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'fr',
-    goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:DE_A1_PRONUNCIATION.render(c),
-    model:id===1?writingSupport.model:model,writingModel:writingSupport.model,placeholder:writingSupport.placeholder,writingHints:writingSupport.hints||c.grammar.examples,writingHelpText:writingSupport.helpText,recorderHtml:recorderUI,
+    goalsHtml:A1LessonGuide.goals(id,'fr',esc),grammarHtml:DE_A1_STUDY.grammarHtml(l,lessonGrammarReferenceHtml(id),speakBtn),
+    dialogueHtml:A1LessonGuide.parts(id,'fr',esc,speakBtn).dialogue,pronunciationHtml:DE_A1_PRONUNCIATION.render(c),
+    model:app.speakModel,writingModel:app.writeModel,fullModel:true,writingHints:hints,writingFields:app.fields,minWords:app.minWords,
+    writingHelpText:'Ces structures sont expliquées dans Approfondir. Adapte-les à la consigne.',recorderHtml:recorderUI,
     masteryHtml:DE_A1_ASSESSMENTS.introHtml(l,state),masteryCount:DE_A1_ASSESSMENTS.testCount(id),
     renderMastery:({onBack})=>DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state,save,speak,onBack}),
     renderGrammarCheck:({onBack})=>DE_A1_ASSESSMENTS.renderGrammarCheck({view,state,save,speak,onBack}),

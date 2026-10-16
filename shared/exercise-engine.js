@@ -212,7 +212,7 @@
     bs.forEach(b=>b.onclick=()=>{if(input.disabled||input.readOnly||input.hidden||input.closest('[hidden]'))return;const ch=(upper?UPPER:CHARS)[lang][+b.dataset.i],a=input.selectionStart??input.value.length,z=input.selectionEnd??a;input.value=input.value.slice(0,a)+ch+input.value.slice(z);input.setSelectionRange(a+ch.length,a+ch.length);input.dispatchEvent(new Event('input',{bubbles:true}));});
   }
   function run(opts){
-    const review=opts.targetLang==='fr'?window.A1ExerciseReview?.create():null;
+    const review=(opts.targetLang==='fr'||opts.review===true)?window.A1ExerciseReview?.create({lang:opts.uiLang}):null;
     const progress=opts.progress,version=opts.exerciseVersion||1;
     const previous=progress?.session;
     const resume=previous?.version===version&&Array.isArray(previous.ex)&&previous.ex.length&&Number.isInteger(previous.i)&&previous.i>=0&&previous.i<previous.ex.length;
@@ -238,7 +238,7 @@
       if(q.type==='listening')body=`<div class="mixed-type">🎧 ${esc(L.listen)}</div><div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><button class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='gap'||q.type==='text')body=`<label class="mixed-type" for="mixedInput">✍️ ${esc(L[q.type])}</label>${hint}<div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="mixedInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.answer)}">${charBar(opts.targetLang,opts.uiLang)}${q.type==='text'?`<div class="spacer"></div><button class="soft-btn" id="mixedHintBtn">💡 ${esc(L.help)}</button><div class="mixed-hint" id="mixedHint" hidden></div>`:''}<div class="spacer"></div><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button>`;
       if(q.type==='order')body=`<div class="mixed-type">↔️ ${esc(L.order)}</div>${hint}<div class="mixed-order-answer" id="orderAnswer" aria-live="polite"></div><div class="mixed-tokens">${q.tokens.map(t=>`<button class="soft-btn mixed-token" data-id="${t.id}" data-word="${encodeURIComponent(t.w)}">${esc(t.w)}</button>`).join('')}</div><div class="button-row"><button class="secondary-btn" id="orderReset">${esc(L.reset)}</button><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button></div>`;
-      opts.view.innerHTML=`<div class="between"><button class="tiny-btn" id="mixedBack">${esc(L.back)}</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" style="margin-top:12px">${body}<div id="mixedFeedback"></div></section>`;
+      opts.view.innerHTML=`<div class="between"><button class="tiny-btn" id="mixedBack">${esc(L.back)}</button><span class="pill">${i+1}/${ex.length}</span></div><section class="${opts.compact?'exercise-inline-card':'card'}" ${opts.bugStep?`data-bug-task data-bug-lesson="${opts.lesson.id||''}" data-bug-step="${esc(opts.bugStep)}" data-bug-question="${esc(q.q||q.prompt||q.context||'')}" data-bug-audio="${esc(q.audio||'')}"`:''} style="margin-top:12px">${body}<div id="mixedFeedback"></div></section>`;
       document.getElementById('mixedBack').onclick=()=>{persist();opts.onBack();};
       if(q.type==='choice'||q.type==='listening'){
         if(q.type==='listening')document.getElementById('mixedListen').onclick=()=>opts.playAudio(q.audio);
@@ -269,7 +269,7 @@
         document.querySelectorAll('#mixedInput,#mixedCheck,.mixed-token,#orderReset').forEach(el=>el.disabled=true);
         feedback(response.status,response.answer,response.audio,response.explanation,true);
       }
-      review?.attach(opts.view);window.scrollTo({top:0,behavior:'instant'});
+      review?.attach(opts.view);if(!opts.compact)window.scrollTo({top:0,behavior:'instant'});
     }
     draw();
   }
