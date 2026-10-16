@@ -151,9 +151,9 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Elle ___ trente ans.",
-        "answer": "a",
-        "tag": "avoir",
+        "prompt": "Elle a ___ ans.",
+        "answer": "trente",
+        "tag": "Zahlen",
         "context": "Sie ist 30 Jahre alt."
       },
       {

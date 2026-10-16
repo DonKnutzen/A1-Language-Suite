@@ -29,5 +29,12 @@
     }
     return {attach};
   }
-  window.A1ExerciseReview={create};
+  function question(text){
+    const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const source=String(text||'');
+    if(!/^Lies den Dialog:/i.test(source))return esc(source);
+    const [dialogue,...rest]=source.replace(/^Lies den Dialog:\s*/i,'').split('\n');
+    return `<div class="exercise-dialogue">${dialogue.split(/\s+\/\s+/).map((line,i)=>`<p><strong>${i%2?'B':'A'}:</strong> ${esc(line)}</p>`).join('')}</div>${rest.map(line=>`<p>${esc(line)}</p>`).join('')}`;
+  }
+  window.A1ExerciseReview={create,question};
 })();

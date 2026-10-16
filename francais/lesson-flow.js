@@ -256,7 +256,7 @@
       window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();audioLayoutObserver?.disconnect();comparedText=null;
       const miniForm=opts.targetLang==='fr'&&l.id===3;
-      const formFields=[['name','Nom','text'],['age','Âge','text'],['phone','Téléphone','tel'],['email','E-mail','email']];
+      const formFields=[['name','Nom','text'],['firstName','Prénom','text'],['age','Âge','text'],['phone','Téléphone','tel'],['email','E-mail','email']];
       const formHtml=miniForm?`<div class="lesson-mini-form">${formFields.map(([key,label,type])=>`<label for="lessonField-${key}">${label}<input class="text-input" id="lessonField-${key}" data-writing-field="${key}" type="${type}" ${key==='age'?'inputmode="numeric"':''} maxlength="160" value="${esc(p.writingFields?.[key]||'')}" autocomplete="off"></label>`).join('')}</div>`:'';
       const appHead=stepHead()+`<div id="lessonPartStatus" hidden>${statuses()}</div>`;
       view.innerHTML=`${appHead}
@@ -286,7 +286,7 @@
       const chars=document.getElementById('lessonWritingSection').querySelector('.mixed-char-wrap');
       if(miniForm)chars.hidden=true;
       const lockFields=locked=>fields.forEach(field=>field.readOnly=locked);
-      function count(){if(miniForm){document.getElementById('writingCount').textContent=`${fields.filter(f=>f.value.trim()).length} / 4 Felder`;return;}document.getElementById('writingCount').textContent=`${A1Learning.countWords(input.value)} · ${L.min}: ${minWords}`;}
+      function count(){if(miniForm){document.getElementById('writingCount').textContent=`${fields.filter(f=>f.value.trim()).length} / ${fields.length} Felder`;return;}document.getElementById('writingCount').textContent=`${A1Learning.countWords(input.value)} · ${L.min}: ${minWords}`;}
       input.oninput=()=>{p.writingDraft=input.value.slice(0,12000);if(comparedText!==input.value.trim()){writing.replaceChildren();comparedText=null;}count();save();};
       if(miniForm){
         fields.forEach(field=>field.oninput=()=>{p.writingFields=Object.fromEntries(fields.map(f=>[f.dataset.writingField,f.value]));input.value=formFields.map(([key,label])=>`${label} : ${p.writingFields[key]||''}`).join('\n');input.oninput();});
@@ -295,7 +295,7 @@
       A1ExerciseEngine.wireChars(input,opts.targetLang,document.getElementById('lessonWritingSection'));
       document.getElementById('showWritingModel').onclick=()=>{
         const text=input.value.trim();
-        if(miniForm&&fields.some(f=>!f.value.trim())){writing.innerHTML='<p class="feedback bad">Fülle bitte alle vier Felder aus.</p>';return;}
+        if(miniForm&&fields.some(f=>!f.value.trim())){writing.innerHTML='<p class="feedback bad">Fülle bitte alle Felder aus.</p>';return;}
         if(!miniForm&&A1Learning.countWords(text)<minWords){writing.innerHTML=`<p class="feedback bad">${esc(L.short)} (${minWords})</p>`;return;}
         input.readOnly=true;lockFields(true);document.getElementById('lessonWritingSection').querySelector('.mixed-char-wrap').hidden=true;
         comparedText=text;p.writingDraft=input.value.slice(0,12000);save();

@@ -187,7 +187,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Telefon & Formular",
-      "rule": "Du kannst eine Telefonnummer zum Üben Ziffer für Ziffer nennen; bei französischen Nummern hört man häufig Zweiergruppen. In der Schreibaufgabe genügt ein Wert pro Feld. Verwende echte oder erfundene Angaben. Eine E-Mail darfst du unverändert eintragen; @ heißt arobase, ein Punkt heißt point.",
+      "rule": "Du kannst eine Telefonnummer zum Üben Ziffer für Ziffer nennen; bei französischen Nummern hört man häufig Zweiergruppen. In der Schreibaufgabe genügt ein Wert pro Feld. Übertrage in der Schreibaufgabe die vorgegebenen erfundenen Angaben. Eine E-Mail darfst du unverändert eintragen; @ heißt arobase, ein Punkt heißt point.",
       "pairs": [
         [
           "Mon numéro de téléphone est le …",

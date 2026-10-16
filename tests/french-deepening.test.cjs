@@ -130,15 +130,15 @@ test('number formation is explained in five compact blocks',()=>{
   for(const formula of ['10 + 7','60 + 10','4 × 20','80 + 10'])assert(root.textContent.includes(formula));
   dom.window.close();
 });
-test('lesson 3 writing uses four French fields, preserves drafts and locks fields during comparison',()=>{
+test('lesson 3 writing uses five French fields with fictional data, preserves drafts and locks fields during comparison',()=>{
   const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
   w.A1Learning={wireRecorder:()=>{},countWords:s=>s.trim().split(/\s+/).filter(Boolean).length};
   w.A1ExerciseEngine={charBar:()=>'<div class="mixed-char-wrap"></div>',wireChars:()=>{}};
   render(w,view,3,state);view.querySelector('[data-lesson-step="write"]').click();
   const fields=[...view.querySelectorAll('[data-writing-field]')];
-  assert.equal(fields.length,4);assert(view.querySelector('#lessonWriting').hidden);
-  view.querySelector('#showWritingModel').click();assert(view.querySelector('#writingModel').textContent.includes('vier Felder'));
-  ['Martin','30','0612345678','martin@example.fr'].forEach((value,i)=>{fields[i].value=value;fields[i].dispatchEvent(new w.Event('input'));});
+  assert.equal(fields.length,5);assert(view.querySelector('#lessonWriting').hidden);
+  view.querySelector('#showWritingModel').click();assert(view.querySelector('#writingModel').textContent.includes('alle Felder'));
+  ['Martin','Léa','30','9025550142','lea@example.com'].forEach((value,i)=>{fields[i].value=value;fields[i].dispatchEvent(new w.Event('input'));});
   view.querySelector('#showWritingModel').click();assert(fields.every(f=>f.readOnly));
   view.querySelector('#editWriting').click();assert(fields.every(f=>!f.readOnly));
   view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-lesson-step="write"]').click();
@@ -193,4 +193,21 @@ test('Sabine’s appointment task explicitly requests a dialogue, both roles and
   for(const phrase of ['Dialog zwischen zwei Personen','Sprich beide Rollen','Tag und einer Uhrzeit','Treffpunkt','bestätigt','Hilfestellung'])assert(task.includes(phrase));
   assert(w.models[4].speakModel.includes('A :'));assert(w.models[4].speakModel.includes('B :'));
   dom.window.close();
+});
+test('reported preparation tasks use close alternatives and test form labels instead of copied digits',()=>{
+ const {dom,w}=appEnvironment();
+ for(const id of [3,4]){
+  const pools=w.FR_A1_DEEPENING.pools(w.FR_A1_DATA.lessons[id-1],w.grammarHtml(w.FR_A1_DATA.lessons[id-1]));
+  const tasks=pools.flatMap(p=>p.tasks);
+  if(id===3){
+   const phone=tasks.find(t=>t.answer==='Téléphone');assert(phone);assert(phone.o.every(o=>!/[0-9]/.test(o)));
+   const question=tasks.find(t=>t.answer==='Vous avez quel âge ?');assert(question.o.every(o=>o.endsWith('?')));
+   assert(tasks.some(t=>t.q==='Elle a ___ ans.'&&t.answer==='trente'));
+  }else{
+   const date=tasks.find(t=>t.answer==='Nous sommes le cinq octobre.');assert(date.o.every(o=>o.startsWith('Nous sommes le')));
+   const later=tasks.find(t=>t.answer==='Je viens plus tard.');assert(later.o.every(o=>o.startsWith('Je viens')));
+   const day=tasks.find(t=>t.answer==='On se voit vendredi soir.');assert(day.o.every(o=>o.startsWith('On se voit')));
+  }
+ }
+ dom.window.close();
 });

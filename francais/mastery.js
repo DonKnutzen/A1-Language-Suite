@@ -75,20 +75,24 @@
     const values=[task.answer,...(task.accept||[])].filter(Boolean);
     return values.some(v=>norm(v)===norm(input));
   }
-  function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null}){
-    const ex=shuffled(tasks),review=window.A1ExerciseReview?.create();let i=0,score=0;
-    function finish(){onFinish(score,ex.length,ex);review?.attach(view);}
-    function feedback(ok,task){
-      if(ok)score++;
-      if(task.audio&&speak)speak(task.audio,true,.80);
+  function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null,progress=null,saveProgress=()=>{}}){
+    const session=progress?.session;
+    const resume=session?.version===101&&Array.isArray(session.ex)&&session.i>=0&&session.i<session.ex.length;
+    const ex=resume?session.ex:shuffled(tasks),review=window.A1ExerciseReview?.create();
+    let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
+    function persist(){if(progress){progress.session={version:101,ex,i,score,draft,response};saveProgress();}}
+    function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
+    function feedback(ok,task,restoring=false){
+      if(!restoring){if(ok)score++;response={ok,chosen:response?.chosen};persist();}
+      if(!restoring&&task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
       document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
-      document.getElementById('masteryNext').onclick=()=>{i++;i<ex.length?draw():finish();};review?.attach(view,true);
+      document.getElementById('masteryNext').onclick=()=>{i++;draft='';response=null;if(i<ex.length){persist();draw();}else finish();};if(!restoring)review?.attach(view,true);
     }
     function draw(){
       const q=ex[i];let body='';
       if(q.type==='choice'){
-        body=`<div class="quiz-q">${esc(q.q)}</div><div class="options">${(q.o||[]).map((o,j)=>`<button class="option-btn" data-mastery-o="${j}">${esc(o)}</button>`).join('')}</div>`;
+        body=`<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><div class="options">${(q.o||[]).map((o,j)=>`<button class="option-btn" data-mastery-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       }else{
         body=`${q.context?`<p class="mixed-context"><strong>Bedeutung:</strong> ${esc(q.context)}</p>`:''}<label class="mixed-type" for="masteryInput">✍️ Form einsetzen</label><div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="masteryInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Deine Antwort…">${window.A1ExerciseEngine?.charBar?A1ExerciseEngine.charBar(targetLang,'de'):''}<div class="spacer"></div><button class="primary-btn" id="masteryCheck">Prüfen</button>`;
       }
@@ -97,28 +101,35 @@
       if(q.type==='choice'){
         const a=(q.o||[]).findIndex(x=>norm(x)===norm(q.answer));
         document.querySelectorAll('[data-mastery-o]').forEach(b=>b.onclick=()=>{
-          const chosen=+b.dataset.masteryO,ok=chosen===a;
+          const chosen=+b.dataset.masteryO,ok=chosen===a;response={chosen};
           document.querySelectorAll('[data-mastery-o]').forEach((x,j)=>{x.disabled=true;if(j===a)x.classList.add('correct');else if(j===chosen)x.classList.add('wrong');});
           feedback(ok,q);
         });
       }else{
-        const input=document.getElementById('masteryInput');
+        const input=document.getElementById('masteryInput');input.value=draft;input.oninput=()=>{draft=input.value;persist();};
         window.A1ExerciseEngine?.wireChars?.(input,targetLang,view);
         const check=()=>{if(input.disabled||!input.value.trim())return;input.disabled=true;document.getElementById('masteryCheck').disabled=true;feedback(accepted(q,input.value),q);};
         document.getElementById('masteryCheck').onclick=check;input.onkeydown=e=>{if(e.key==='Enter')check();};
       }
+      if(response){
+        if(q.type==='choice')document.querySelectorAll('[data-mastery-o]').forEach((b,j)=>{b.disabled=true;b.classList.toggle('correct',norm(q.o[j])===norm(q.answer));b.classList.toggle('wrong',j===response.chosen&&!response.ok);});
+        else{document.getElementById('masteryInput').disabled=true;document.getElementById('masteryCheck').disabled=true;}
+        feedback(response.ok,q,true);
+      }
       review?.attach(view);window.scrollTo({top:0,behavior:'instant'});
     }
     if(!ex.length)return onFinish(0,0,[]);
-    draw();
+    persist();draw();
   }
 
   function renderLessonTest({lesson,view,state,save,onBack,speak}){
     const tasks=makeLessonTest(lesson),s=spec(lesson.id),b=best(state,lesson.id);
+    state.lessonCheckProgress=state.lessonCheckProgress||{};
+    const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn" id="masteryStart">${b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
-      document.getElementById('masteryStart').onclick=()=>runTasks({lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
+      document.getElementById('masteryStart').onclick=()=>runTasks({progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryBest=state.lessonMasteryBest||{};state.lessonMasteryLast=state.lessonMasteryLast||{};
         state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(Number(state.lessonMasteryBest[lesson.id]||0),pct);save(true);
@@ -149,7 +160,7 @@
     document.getElementById('courseMasteryBack').onclick=onBack;
     document.querySelectorAll('[data-course-mastery]').forEach(btn=>btn.onclick=()=>{
       const n=+btn.dataset.courseMastery,tasks=courseModuleTasks(n);
-      runTasks({title:`A1 Abschlusscheck · Teil ${n}`,subtitle:`Lektionen ${(n-1)*6+1}–${n*6} · 30 Aufgaben`,tasks,view,onBack:()=>renderCourseMenu({view,state,save,onBack,speak}),speak,onFinish:(score,total)=>{
+      runTasks({progress:(state.courseCheckProgress||={})[n]||=( {} ),saveProgress:()=>save(),title:`A1 Abschlusscheck · Teil ${n}`,subtitle:`Lektionen ${(n-1)*6+1}–${n*6} · 30 Aufgaben`,tasks,view,onBack:()=>renderCourseMenu({view,state,save,onBack,speak}),speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;state.courseMasteryBest[n]=Math.max(courseBest(state,n),pct);save(true);view.innerHTML=`<section class="card center"><span class="pill">TEIL ${n}</span><div class="score">${pct}%</div><h2>${score}/${total} richtig</h2><p class="muted">Das ist dein aktueller Stand in diesem Block.</p><div class="button-row"><button class="secondary-btn" id="courseAgain">Noch einmal</button><button class="primary-btn" id="courseMenu">Alle Teile</button></div></section>`;
         document.getElementById('courseAgain').onclick=()=>btn.click();document.getElementById('courseMenu').onclick=()=>renderCourseMenu({view,state,save,onBack,speak});
       }});

@@ -50,3 +50,18 @@ test('lesson checks use authored vocabulary instead of generating alphabet trans
  w.FR_A1_MASTERY.renderLessonTest({lesson:l,view,state:{},save:()=>{},onBack:()=>{},speak:()=>{}});view.querySelector('#masteryStart').click();
  const first=view.querySelector('.quiz-q').textContent;view.querySelector('[data-mastery-o]').click();view.querySelector('#masteryNext').click();view.querySelector('.exercise-review-nav button').click();assert.equal(view.querySelector('.quiz-q').textContent,first);assert([...view.querySelectorAll('.option-btn')].every(b=>b.disabled));dom.window.close();
 });
+test('final lesson checks resume submitted feedback and draft without scoring twice',()=>{
+ const {dom,w,view}=environment();for(const file of ['francais/mastery-specs.js','francais/mastery.js'])w.eval(fs.readFileSync(path.join(root,file),'utf8'));
+ const state={},lesson=w.FR_A1_DATA.lessons[3];let saves=0;
+ const run=()=>{w.FR_A1_MASTERY.renderLessonTest({lesson,view,state,save:()=>saves++,onBack:()=>{},speak:()=>{}});view.querySelector('#masteryStart').click();};
+ run();const progress=state.lessonCheckProgress[lesson.id],task=progress.session.ex[0];
+ if(task.type==='choice')view.querySelector(`[data-mastery-o="${task.o.indexOf(task.answer)}"]`).click();
+ else{const input=view.querySelector('#masteryInput');input.value=task.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#masteryCheck').click();}
+ assert.equal(progress.session.score,1);const feedback=view.querySelector('#masteryFeedback').textContent;
+ run();assert.equal(progress.session.score,1);assert.equal(view.querySelector('#masteryFeedback').textContent,feedback);
+ view.querySelector('#masteryNext').click();assert.equal(progress.session.i,1);assert.equal(progress.session.score,1);assert(saves>0);dom.window.close();
+});
+test('dialogue questions render separate speakers and escape markup',()=>{
+ const {dom,w}=environment();const html=w.A1ExerciseReview.question('Lies den Dialog: Bonjour. / Salut.\nQue dit B ?');
+ const root=w.document.createElement('div');root.innerHTML=html;assert.equal(root.querySelectorAll('.exercise-dialogue p').length,2);assert(root.textContent.includes('B: Salut.'));assert.equal(w.A1ExerciseReview.question('<img>'),'&lt;img&gt;');dom.window.close();
+});

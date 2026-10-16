@@ -549,12 +549,12 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich bin am 17. April geboren“ auf Französisch?",
           "o": [
-            "Je suis né le 17 avril.",
-            "Je suis né le 17 mai.",
-            "Je suis né le 7 avril."
+            "Je suis né le dix-sept avril.",
+            "Je suis né le dix-sept mai.",
+            "Je suis né le sept avril."
           ],
           "a": 0,
-          "audio": "Je suis né le 17 avril."
+          "audio": "Je suis né le dix-sept avril."
         }
       ],
       "canDo": [
@@ -576,7 +576,7 @@ window.FR_A1_DATA = {
       ],
       "transfer": {
         "speaking": "Nenne Alter und Telefonnummer laut und wiederhole beide Angaben anschließend noch einmal langsam und deutlich.",
-        "writing": "Trage Name, Alter, Telefonnummer und E-Mail in ein Mini-Formular ein."
+        "writing": "Lies die Angaben und fülle das Formular für Léa aus: Léa Martin a trente ans. Son numéro de téléphone est le 902 555 0142. Son adresse e-mail est lea@example.com."
       },
       "cefrDomains": [
         "Mündliche Interaktion",
