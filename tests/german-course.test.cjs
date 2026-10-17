@@ -1,10 +1,11 @@
+function openExtra(view,key){view.querySelector('[data-lesson-step="check"]').click();view.querySelector(`[data-lesson-step="${key}"]`).click();}
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.Math.random=()=>.99;
  w.A1Learning={shuffle:a=>[...a],countWords:s=>s.trim().split(/\s+/).filter(Boolean).length,wireRecorder:()=>{}};
- for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/grammar-ui.js','shared/lesson-topic-info.js','shared/pronunciation.js','shared/exercise-review.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/lesson-flow.js'])w.eval(read(f));
+ for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/grammar-ui.js','shared/lesson-topic-info.js','shared/pronunciation.js','shared/exercise-review.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','deutsch/lesson-flow.js'])w.eval(read(f));
  const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+';window.testData={lessons,grammarSets,formTasks};');
  w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.testRefs=lessonGrammarReferenceHtml;');
  w.DE_A1_ASSESSMENTS.configure({...w.testData,practiceProgress:{recordGrammar:()=>{}}});
@@ -12,7 +13,7 @@ function environment(){
 }
 function state(){return {doneLessons:[],lessonWork:{},lessonQuizBest:{}};}
 function render(env,id,s,audio=[]){const {w,view}=env,l=w.testData.lessons[id-1],app=w.DE_A1_APPLICATIONS[id],original=w.A1_COURSE_CONTENT[id-1],c={...original,transfer:{...original.transfer,writing:app.writingTask||original.transfer.writing}};
- w.A1LessonFlow.render({lesson:l,content:c,view,state:s,save:()=>{},lessonCount:24,targetLang:'de',uiLang:'fr',grammarHtml:w.DE_A1_STUDY.grammarHtml(l,w.testRefs(id),text=>`<button data-speak="${text}">🔊</button>`),goalsHtml:'<div class="lesson-goals">Objectifs</div>',pronunciationHtml:w.DE_A1_PRONUNCIATION.render(c),dialogueHtml:w.A1LessonGuide.parts(id,'fr',s=>s,()=>'<button>🔊</button>').dialogue,model:app.speakModel,writingModel:app.writeModel,writingHints:app.hints,writingFields:app.fields,minWords:app.minWords,recorderHtml:()=>'',speakBtn:t=>`<button data-speak="${t}">🔊</button>`,wireSpeakButtons:()=>{},wirePronunciation:()=>{},speak:t=>audio.push(t),renderLearn:()=>{},renderLesson:()=>{},renderMastery:({onBack})=>w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state:s,save:()=>{},speak:t=>audio.push(t),onBack}),renderGrammarCheck:({onBack})=>w.DE_A1_ASSESSMENTS.renderGrammarCheck({view,state:s,save:()=>{},speak:t=>audio.push(t),onBack})});
+ w.A1LessonFlow.render({lesson:l,content:c,view,state:s,save:()=>{},lessonCount:24,targetLang:'de',uiLang:'fr',grammarHtml:w.DE_A1_STUDY.grammarHtml(l,w.testRefs(id),text=>`<button data-speak="${text}">🔊</button>`),goalsHtml:'<div class="lesson-goals">Objectifs</div>',pronunciationHtml:w.DE_A1_PRONUNCIATION.render(c),dialogueHtml:w.A1LessonGuide.parts(id,'fr',s=>s,()=>'<button>🔊</button>').dialogue,model:app.speakModel,writingModel:app.writeModel,writingHints:app.hints,writingFields:app.fields,minWords:app.minWords,recorderHtml:()=>'',speakBtn:t=>`<button data-speak="${t}">🔊</button>`,wireSpeakButtons:()=>{},wirePronunciation:()=>{},speak:t=>audio.push(t),renderLearn:()=>{},renderLesson:()=>{},renderMastery:({onBack,onResult})=>w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state:s,save:()=>{},speak:t=>audio.push(t),onBack,onResult}),renderGrammarCheck:({onBack})=>w.DE_A1_ASSESSMENTS.renderGrammarCheck({view,state:s,save:()=>{},speak:t=>audio.push(t),onBack})});
 }
 function answerCurrent(w,view,session){const q=session.ex[session.i];if(q.type==='gap'){const input=view.querySelector('#mixedInput');input.value=q.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#mixedCheck').click();}else view.querySelector(`[data-o="${q.a}"]`).click();}
 test('all 24 lessons teach the exact vocabulary and patterns used in lesson checks',()=>{
@@ -39,8 +40,8 @@ test('all lessons render separate learning steps with practice after each prepar
   render(env,id,state());assert(!view.querySelector('.pronunciation-panel'),'pronunciation belongs in deepening');assert.equal(view.querySelectorAll('[data-core-row]:not([hidden])').length,Math.ceil(w.testData.lessons[id-1].phrases.length/Math.ceil(w.testData.lessons[id-1].phrases.length/6)));
   view.querySelector('[data-lesson-step="grammar"]').click();const count=view.querySelectorAll('[data-grammar-progress]').length;assert(count>=2);
   for(let page=0;page<count;page++){if(page)view.querySelector(`[data-grammar-progress="${page}"]`).click();assert(view.querySelector('#lessonGrammarPage').textContent.trim().length>50);assert(!view.querySelector('#lessonGrammarPage details'));if(page<2)assert(view.querySelector('#topicPracticeStart'));}
-  view.querySelector('[data-lesson-step="speak"]').click();assert(view.querySelector('#speechHelp').hidden);
-  view.querySelector('[data-lesson-step="write"]').click();assert(view.querySelector('#writingHelp').hidden);
+  openExtra(view,'speak');assert(view.querySelector('#speechHelp').hidden);
+  openExtra(view,'write');assert(view.querySelector('#writingHelp').hidden);
  }
  env.dom.window.close();
 });
@@ -62,15 +63,15 @@ test('lesson exercises and final tests retain answers after leaving without doub
 test('form tasks use fictional German source texts, real fields, saved drafts and locked comparison',()=>{
  const env=environment(),{w,view}=env;
  for(const id of [3,5,23]){
-  const s=state();render(env,id,s);view.querySelector('[data-lesson-step="write"]').click();const fields=[...view.querySelectorAll('[data-writing-field]')];assert.equal(fields.length,w.DE_A1_APPLICATIONS[id].fields.length);assert(view.querySelector('#lessonWriting').hidden);
+  const s=state();render(env,id,s);openExtra(view,'write');const fields=[...view.querySelectorAll('[data-writing-field]')];assert.equal(fields.length,w.DE_A1_APPLICATIONS[id].fields.length);assert(view.querySelector('#lessonWriting').hidden);
   view.querySelector('#showWritingModel').click();assert(view.querySelector('#writingModel').textContent.includes('Remplis'));
   fields.forEach((f,i)=>{f.value='Valeur '+i;f.dispatchEvent(new w.Event('input'));});view.querySelector('#showWritingModel').click();assert(fields.every(f=>f.readOnly));assert(view.querySelector('.mixed-char-wrap').hidden);
-  view.querySelector('#editWriting').click();assert(fields.every(f=>!f.readOnly));render(env,id,s);view.querySelector('[data-lesson-step="write"]').click();assert.equal(view.querySelector('[data-writing-field]').value,'Valeur 0');
+  view.querySelector('#editWriting').click();assert(fields.every(f=>!f.readOnly));render(env,id,s);openExtra(view,'write');assert.equal(view.querySelector('[data-writing-field]').value,'Valeur 0');
  }
  env.dom.window.close();
 });
 test('speaking completion turns the same control into continue and special characters lock after writing comparison',()=>{
- const env=environment(),{w,view}=env,s=state();render(env,1,s);view.querySelector('[data-lesson-step="speak"]').click();view.querySelector('#showSpeakingModel').click();view.querySelector('#oralGood').click();assert(view.querySelector('#oralGood').textContent.includes('Continuer'));view.querySelector('#oralGood').click();
+ const env=environment(),{w,view}=env,s=state();render(env,1,s);openExtra(view,'speak');view.querySelector('#showSpeakingModel').click();view.querySelector('#oralGood').click();assert(view.querySelector('#oralGood').textContent.includes('Continuer'));view.querySelector('#oralGood').click();
  const input=view.querySelector('#lessonWriting');input.value='Ich heiße Claire. Ich wohne in Halifax.';input.dispatchEvent(new w.Event('input'));view.querySelector('#showWritingModel').click();assert(input.readOnly);const before=input.value;view.querySelector('.mixed-char').click();assert.equal(input.value,before);env.dom.window.close();
 });
 test('finishing the lesson check updates course progress, while old completions remain intact',()=>{

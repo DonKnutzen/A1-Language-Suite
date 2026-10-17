@@ -57,6 +57,35 @@
     const parts=/^[\p{L}](?:\s*[–—-]\s*[\p{L}])+$/u.test(String(text).trim())?window.A1Pronunciation?.spellParts(text,lang):null;
     speakSequence(parts||[text],options);
   }
+  // Voice metadata has no standard gender field. Use known device names when available.
+  function dialogueVoices(lang){
+    const base=norm(lang).split('-')[0],list=matching(lang),chosen=select(lang);
+    const names={fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel)\b/i},de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}}[base];
+    const gender=v=>{const name=v?.name||'';return /\bfemale\b/i.test(name)||names?.female.test(name)?'female':/\bmale\b/i.test(name)||names?.male.test(name)?'male':null;};
+    const forGender=g=>gender(chosen)===g?chosen:automatic(lang,list.filter(v=>gender(v)===g));
+    const female=forGender('female'),male=forGender('male');
+    return {A:female||chosen||male,B:male||chosen||female};
+  }
+  function speakDialogue(turns,options={}){
+    if(!synth||typeof SpeechSynthesisUtterance==='undefined'||!turns?.length)return false;
+    cancel();const runToken=token,lang=options.lang||'fr-FR',pair=dialogueVoices(lang);
+    const parts=turns.filter(t=>String(t.text||'').trim());let i=0;
+    const fail=()=>{if(runToken===token){current=null;options.onError?.();}};
+    function next(){
+      if(runToken!==token)return;
+      if(i>=parts.length){current=null;options.onEnd?.();return;}
+      const turn=parts[i++],voice=pair[turn.speaker]||select(lang);
+      const u=new SpeechSynthesisUtterance(turn.text);current=u;
+      u.lang=voice?.lang||lang;if(voice)u.voice=voice;
+      // Dialogues deliberately use the exercise tempo, independently of voice-preview preferences.
+      u.rate=options.rate??.75;u.pitch=1;u.volume=1;
+      u.onend=next;u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')fail();};
+      options.onTurn?.(turn.speaker,i-1);
+      if(synth.paused&&typeof synth.resume==='function')synth.resume();
+      try{synth.speak(u);}catch{fail();}
+    }
+    next();return true;
+  }
   function showError(){if(dialog&&mountOptions)dialog.querySelector('#voiceStatus').textContent=(UI[mountOptions.uiLang]||UI.de).error;}
   function renderDialog(){
     if(!dialog||!mountOptions)return;
@@ -82,5 +111,6 @@
     dialog.addEventListener('cancel',()=>cancel());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();}});
   }
   if(synth){refresh();const changed=()=>{refresh();if(dialog?.open)renderDialog();};if(synth.addEventListener)synth.addEventListener('voiceschanged',changed);else synth.onvoiceschanged=changed;setTimeout(refresh,100);setTimeout(refresh,500);setTimeout(refresh,1500);}
-  window.A1Voice={speak,speakSequence,cancel,select,automatic,matching,refresh,isApple,mount};
+  window.A1Voice={speak,speakSequence,speakDialogue,dialogueVoices,cancel,select,automatic,matching,refresh,isApple,mount};
 })();
+

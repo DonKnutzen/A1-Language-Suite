@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='bug-autoclose-98',trail=[],inFlight=new Set();
+  const BUILD='dialogue-context-106',trail=[],inFlight=new Set();
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -48,9 +48,10 @@
     const sourceTexts=collect(view,'.reading-text,.ad-box,.sign,.card > p,.lesson-task-prompt',1800).slice(0,8);
     let remaining=6000;
     const taskTexts=sourceTexts.map(s=>{const part=s.slice(0,remaining);remaining-=part.length;return part;}).filter(Boolean);
-    const formFields=collect(view,'.form-grid .field label',120).slice(0,20);
+    const formFields=collect(view,'.form-grid .field label,[data-comprehension-label]',120).slice(0,20);
     const audioTexts=[...view.querySelectorAll('[data-bug-audio],[data-speak]')].filter(visible).map(el=>{try{return el.dataset.bugAudio||decodeURIComponent(el.dataset.speak);}catch{return '';}}).filter(Boolean).slice(0,12).map(s=>s.slice(0,500));
-    const options=collect(view,'.option-btn',250).slice(0,8);
+    const comprehensionOptions=[...view.querySelectorAll('.comprehension-field')].filter(visible).map(field=>text(field.querySelector('label'),120)+': '+[...field.querySelectorAll('option')].filter(o=>o.value).map(o=>text(o,250)).join(' | '));
+    const options=comprehensionOptions.length?comprehensionOptions:collect(view,'.option-btn',250).slice(0,8);
     const identity=JSON.stringify([course,lesson,step,question,taskTexts,formFields,options,audioTexts]);
     let hash=2166136261;for(const char of identity)hash=Math.imul(hash^char.codePointAt(0),16777619);
     const exerciseKey='task-'+(hash>>>0).toString(16);

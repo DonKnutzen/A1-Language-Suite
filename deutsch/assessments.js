@@ -63,7 +63,7 @@
     view.innerHTML=`<section class="card center"><span class="pill">BILAN</span><div class="score">${pct}%</div><h2>${score} / ${total} réponses correctes</h2><p class="muted">Tu peux revenir aux explications avant de refaire ce bilan.</p><div class="button-row"><button class="secondary-btn" id="checkAgain">Réessayer</button><button class="primary-btn" id="checkReturn">Retour</button></div></section>`;
     view.querySelector('#checkAgain').onclick=onAgain;view.querySelector('#checkReturn').onclick=onBack;
   }
-  function renderLessonTest({lesson,view,state,save,onBack,speak}){
+  function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
     state.lessonCheckProgress||={};const session=state.lessonCheckProgress[lesson.id]||={};
     function intro(){
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Leçon</button><span class="pill">BILAN DE LA LEÇON</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn" id="masteryStart">${session.session?'Continuer le bilan':'Commencer les '+testCount(lesson.id)+' questions'}</button></section>`;
@@ -71,7 +71,7 @@
       view.querySelector('#masteryStart').onclick=()=>runTasks({tasks:makeLessonTest(lesson),view,title:lesson.title,onBack:intro,speak,session,save,lessonId:lesson.id,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryLast||={};state.lessonMasteryBest||={};state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(best(state,lesson.id),pct);save(true);
-        result({view,score,total,onAgain:intro,onBack});
+        result({view,score,total,onAgain:intro,onBack});onResult?.();
       }});
     }
     intro();

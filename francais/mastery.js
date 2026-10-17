@@ -122,7 +122,7 @@
     persist();draw();
   }
 
-  function renderLessonTest({lesson,view,state,save,onBack,speak}){
+  function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
     const tasks=makeLessonTest(lesson),s=spec(lesson.id),b=best(state,lesson.id);
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
@@ -134,7 +134,7 @@
         state.lessonMasteryBest=state.lessonMasteryBest||{};state.lessonMasteryLast=state.lessonMasteryLast||{};
         state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(Number(state.lessonMasteryBest[lesson.id]||0),pct);save(true);
         view.innerHTML=`<section class="card center"><span class="pill">LEKTIONS-CHECK</span><div class="score">${pct}%</div><h2>${score}/${total} richtig</h2><p class="muted">Das ist dein aktueller Stand. Du kannst den Check jederzeit wiederholen und vorher einzelne Teile noch einmal üben.</p><div class="button-row"><button class="secondary-btn" id="masteryAgain">Noch einmal</button><button class="primary-btn" id="masteryReturn">Zur Lektion</button></div></section>`;
-        document.getElementById('masteryAgain').onclick=intro;document.getElementById('masteryReturn').onclick=onBack;
+        document.getElementById('masteryAgain').onclick=intro;document.getElementById('masteryReturn').onclick=onBack;onResult?.();
       }});
     }
     intro();

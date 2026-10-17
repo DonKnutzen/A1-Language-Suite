@@ -30,7 +30,7 @@
     if((m=s.match(/^A1 Abschlusscheck · Teil (\d+)$/)))return `A1 final check · Part ${m[1]}`;
     if((m=s.match(/^Lektionen (\d+[–-]\d+) · (\d+) Aufgaben$/)))return `Lessons ${m[1]} · ${m[2]} tasks`;
     if((m=s.match(/^(\d+) gemischte (Fragen|Aufgaben|Übungen)( starten)?$/)))return `${m[3]?'Start ':''}${m[1]} mixed ${({Fragen:'questions',Aufgaben:'tasks',Übungen:'exercises'})[m[2]]}`;
-    if((m=s.match(/^(\d+)\/(\d+) richtig$/)))return `${m[1]}/${m[2]} correct`;
+    if((m=s.match(/^(\d+)\s*\/\s*(\d+) richtig$/)))return `${m[1]}/${m[2]} correct`;
     if((m=s.match(/^⏱ Prüfungsmodus · (\d+) Min\. verbleibend$/)))return `⏱ Exam mode · ${m[1]} min. remaining`;
     if((m=s.match(/^Formular und Text wurden bearbeitet\. Trainingswert: (\d+) %\. Der Textanteil beruht auf deiner Selbstbewertung; das ist keine offizielle DELF-Punktzahl\.$/)))return `Form and text completed. Practice score: ${m[1]} %. The writing score is based on your self-assessment; this is not an official DELF score.`;
     if((m=s.match(/^(\d{1,2})(?::(\d{2}))? Uhr$/)))return `${m[1].padStart(2,'0')}:${m[2]||'00'}`;

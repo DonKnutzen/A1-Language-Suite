@@ -472,7 +472,7 @@ function renderLesson(id){
   A1LessonFlow.render({
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
     goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
-    renderMastery:({onBack})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak}),
+    renderMastery:({onBack,onResult})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak,onResult}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,
     model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints||LESSON_WRITING_HINTS[id],writingHelpText:app.writingHelpText,fullModel:true,recorderHtml:id=>recorderHtml(id,true),
     repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn

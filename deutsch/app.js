@@ -1842,7 +1842,7 @@ function renderLesson(id){
     model:app.speakModel,writingModel:app.writeModel,fullModel:true,writingHints:hints,writingFields:app.fields,minWords:app.minWords,
     writingHelpText:'Ces structures sont expliquées dans Approfondir. Adapte-les à la consigne.',recorderHtml:recorderUI,
     masteryHtml:DE_A1_ASSESSMENTS.introHtml(l,state),masteryCount:DE_A1_ASSESSMENTS.testCount(id),
-    renderMastery:({onBack})=>DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state,save,speak,onBack}),
+    renderMastery:({onBack,onResult})=>DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state,save,speak,onBack,onResult}),
     renderGrammarCheck:({onBack})=>DE_A1_ASSESSMENTS.renderGrammarCheck({view,state,save,speak,onBack}),
     wirePronunciation:DE_A1_PRONUNCIATION.wire,
     repeatHint:'Écoute les exemples et répète-les à voix haute.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:t=>playCorrectAudio(t,true),renderLesson,renderLearn

@@ -1,3 +1,4 @@
+function openExtra(view,key){view.querySelector('[data-lesson-step="check"]').click();view.querySelector(`[data-lesson-step="${key}"]`).click();}
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -8,7 +9,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 function appEnvironment(){
   const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;
   w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};
-  for(const file of ['francais/data.js','shared/pronunciation.js','francais/mastery-specs.js','shared/grammar-ui.js','shared/lesson-topic-info.js','francais/lesson1-practice.js','francais/deepening-content.js','francais/deepening.js','francais/lesson-flow.js'])w.eval(read(file));
+  for(const file of ['francais/data.js','shared/pronunciation.js','francais/mastery-specs.js','shared/grammar-ui.js','shared/lesson-topic-info.js','francais/lesson1-practice.js','francais/deepening-content.js','francais/deepening.js','francais/comprehension-content.js','shared/comprehension.js','francais/lesson-flow.js'])w.eval(read(file));
   const app=read('francais/app.js');
   w.esc=s=>{const span=w.document.createElement('span');span.textContent=s;return span.innerHTML;};
   w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.grammarHtml=lessonGrammarHtml;');
@@ -19,7 +20,7 @@ function appEnvironment(){
 const lesson=(w,id)=>w.FR_A1_DATA.lessons.find(l=>l.id===id);
 function render(w,view,id,state,audio=[],saves=[]){
   const l=lesson(w,id),app=w.models[id];
-  w.A1LessonFlow.render({lesson:l,content:l,view,state,targetLang:'fr',uiLang:'de',lessonCount:24,grammarHtml:w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)),pronunciationHtml:w.A1Pronunciation.render(l,'fr','de'),model:app.speakModel,writingModel:app.writeModel,save:x=>saves.push(x),speak:(t,force)=>audio.push({text:t,force}),speakBtn:t=>`<button data-speak="${encodeURIComponent(t)}">🔊</button>`,wireSpeakButtons:()=>{},recorderHtml:()=>'',renderLearn:()=>{},renderLesson:()=>{}});
+  w.A1LessonFlow.render({lesson:l,content:l,view,state,targetLang:'fr',uiLang:'de',lessonCount:24,grammarHtml:w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)),pronunciationHtml:w.A1Pronunciation.render(l,'fr','de'),model:app.speakModel,writingModel:app.writeModel,save:x=>saves.push(x),speak:(t,force)=>audio.push({text:t,force}),speakBtn:t=>`<button data-speak="${encodeURIComponent(t)}">🔊</button>`,wireSpeakButtons:()=>{},renderMastery:()=>{},recorderHtml:()=>'',renderLearn:()=>{},renderLesson:()=>{}});
 }
 test('all 23 later lessons teach and directly rehearse every existing final-check pattern',()=>{
   const {dom,w}=appEnvironment();
@@ -134,14 +135,14 @@ test('lesson 3 writing uses five French fields with fictional data, preserves dr
   const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
   w.A1Learning={wireRecorder:()=>{},countWords:s=>s.trim().split(/\s+/).filter(Boolean).length};
   w.A1ExerciseEngine={charBar:()=>'<div class="mixed-char-wrap"></div>',wireChars:()=>{}};
-  render(w,view,3,state);view.querySelector('[data-lesson-step="write"]').click();
+  render(w,view,3,state);openExtra(view,'write');
   const fields=[...view.querySelectorAll('[data-writing-field]')];
   assert.equal(fields.length,5);assert(view.querySelector('#lessonWriting').hidden);
   view.querySelector('#showWritingModel').click();assert(view.querySelector('#writingModel').textContent.includes('alle Felder'));
   ['Martin','Léa','30','9025550142','lea@example.com'].forEach((value,i)=>{fields[i].value=value;fields[i].dispatchEvent(new w.Event('input'));});
   view.querySelector('#showWritingModel').click();assert(fields.every(f=>f.readOnly));
   view.querySelector('#editWriting').click();assert(fields.every(f=>!f.readOnly));
-  view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-lesson-step="write"]').click();
+  view.querySelector('[data-lesson-step="grammar"]').click();openExtra(view,'write');
   assert.equal(view.querySelector('[data-writing-field="name"]').value,'Martin');
   assert(view.querySelector('.mixed-char-wrap').hidden);
   dom.window.close();
@@ -181,7 +182,7 @@ test('surname dictation and writing solution use the same name and ordered Frenc
   w.A1Learning={wireRecorder:()=>{},countWords:s=>s.trim().split(/\s+/).filter(Boolean).length};
   w.A1ExerciseEngine={charBar:()=>'<div class="mixed-char-wrap"></div>',wireChars:()=>{}};
   w.A1Voice={cancel:()=>{},speakSequence:(parts,options)=>sequences.push({parts,options})};
-  render(w,view,2,state);view.querySelector('[data-lesson-step="write"]').click();
+  render(w,view,2,state);openExtra(view,'write');
   const button=view.querySelector('[data-pron-spell]');
   assert.equal(button.dataset.pronSpell,w.models[2].writeModel.toUpperCase());
   button.click();assert.equal(sequences.length,1);assert.equal(sequences[0].options.lang,'fr-FR');
