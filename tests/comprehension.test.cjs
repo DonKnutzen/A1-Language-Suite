@@ -48,11 +48,11 @@ test('lesson check needs no speaking or writing; optional tasks remain at the en
   dom.window.close();
  }
 });
-test('dialogue play supports 0.75 rate, stopping and an accessible unavailable fallback',()=>{
+test('dialogue play supports the selected slower rate, stopping and an accessible unavailable fallback',()=>{
  const {dom,w,view}=environment(),data=w.A1_COMPREHENSION_CONTENT[1];let options,canceled=0;
  w.A1Voice={cancel:()=>canceled++,speakDialogue:(turns,o)=>{options=o;return true;}};
  w.A1Comprehension.render({root:view,data,work:{},lessonId:1,targetLang:'fr',uiLang:'de',save:()=>{},onContinue:()=>{}});
- view.querySelector('#dialoguePlay').click();assert.equal(options.rate,.75);assert.equal(options.lang,'fr-FR');options.onTurn('B');assert(view.querySelector('#dialogueSpeaker').textContent.includes('B'));view.querySelector('#dialoguePlay').click();assert.equal(canceled,1);
+ view.querySelector('[data-dialogue-rate="0.75"]').click();view.querySelector('#dialoguePlay').click();assert.equal(options.rate,.75);assert.equal(options.lang,'fr-FR');options.onTurn('B');assert(view.querySelector('#dialogueSpeaker').textContent.includes('B'));view.querySelector('#dialoguePlay').click();assert.equal(canceled,1);
  w.A1Voice.speakDialogue=()=>false;view.querySelector('#dialoguePlay').click();assert(!view.querySelector('#dialogueStatus').hidden);assert(view.querySelector('details'));
  dom.window.close();
 });
@@ -89,4 +89,20 @@ test('family dialogue tests relationships; two ages are distinguished only in pe
 test('an audio error before opening voice settings does not crash the lesson',()=>{
  const {dom,w,spoken}=voiceEnvironment([]);w.document.body.innerHTML='<div class="header-actions"></div>';w.A1Voice.mount({lang:'fr-FR',uiLang:'de'});w.A1Voice.speak('Bonjour',{lang:'fr-FR'});
  assert.doesNotThrow(()=>spoken[0].onerror({error:'synthesis-failed'}));dom.window.close();
+});
+test('dialogues start at normal speed, remember 75% per lesson and stop old playback when speed changes',()=>{
+ for(const course of ['francais','deutsch']){
+  const {dom,w,view}=environment(course),work={};let playedRate,cancels=0;
+  w.A1Voice={cancel:()=>cancels++,speakDialogue:(_,options)=>{playedRate=options.rate;return true;}};
+  const draw=()=>w.A1Comprehension.render({root:view,data:w.A1_COMPREHENSION_CONTENT[1],work,lessonId:1,targetLang:course==='francais'?'fr':'de',uiLang:course==='francais'?'de':'fr',save:()=>{},onContinue:()=>{}});
+  draw();assert.equal(view.querySelector('[data-dialogue-rate="1"]').getAttribute('aria-pressed'),'true');view.querySelector('#dialoguePlay').click();assert.equal(playedRate,1);
+  view.querySelector('[data-dialogue-rate="0.75"]').click();assert.equal(cancels,1);assert.equal(work.comprehension.rate,.75);assert.equal(view.querySelector('[data-dialogue-rate="0.75"]').getAttribute('aria-pressed'),'true');view.querySelector('#dialoguePlay').click();assert.equal(playedRate,.75);
+  draw();assert.equal(view.querySelector('[data-dialogue-rate="0.75"]').getAttribute('aria-pressed'),'true');view.querySelector('[data-dialogue-rate="1"]').click();assert.equal(work.comprehension.rate,1);view.querySelector('#dialoguePlay').click();assert.equal(playedRate,1);dom.window.close();
+ }
+});
+test('completed introductory rounds have a visible check and distinct repeat action in both courses',()=>{
+ for(const course of ['francais','deutsch']){
+  const env=environment(course),s={doneLessons:[],lessonQuizBest:{},lessonWork:{}};flow(env,3,s);assert(!env.view.querySelector('#startQuiz').classList.contains('is-completed'));
+  s.lessonWork[3].quizDone=true;s.lessonQuizBest[3]=80;flow(env,3,s);const button=env.view.querySelector('#startQuiz');assert(button.classList.contains('is-completed'));assert.equal(button.querySelector('.exercise-completed-mark').textContent,'✓');assert(button.textContent.includes(course==='francais'?'10 Aufgaben abgeschlossen':'10 questions terminées'));assert(button.querySelector('small').textContent.includes(course==='francais'?'Noch einmal':'Refaire'));env.dom.window.close();
+ }
 });

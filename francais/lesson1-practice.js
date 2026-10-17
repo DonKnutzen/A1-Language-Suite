@@ -128,6 +128,7 @@
         if(!restoring){if(response)return;if(ok)score++;response={chosen};persist();}
         const btn=[...stage.querySelectorAll('[data-l1-answer]')].find(b=>b.dataset.l1Answer===chosen);
         stage.querySelectorAll('[data-l1-answer]').forEach(b=>{b.disabled=true;if(b.dataset.l1Answer===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
+        if(ok&&!restoring)btn?.classList.add('answer-success');
         if(!restoring)speak?.(q.audio||q.a,true,.8);
         const fb=stage.querySelector('.lesson1-drill-feedback');fb.innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'Richtig: '+esc(q.a)}</div><button class="primary-btn lesson1-drill-next">${i<tasks.length-1?'Weiter':'Fertig'}</button>`;
         fb.querySelector('.lesson1-drill-next').onclick=()=>{i++;response=null;order=null;draw();};review?.attach(stage,true);
@@ -179,6 +180,7 @@
         if(!restoring){if(response)return;if(ok)score++;response={chosen};persist();}
         const btn=[...document.querySelectorAll('[data-l1-check]')].find(b=>b.dataset.l1Check===chosen);
         document.querySelectorAll('[data-l1-check]').forEach(b=>{b.disabled=true;if(b.dataset.l1Check===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
+        if(ok&&!restoring)btn?.classList.add('answer-success');
         if(!restoring)speak?.(q.audio||q.a,true,.8);
         document.getElementById('l1GrammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'Richtig: '+esc(q.a)}</div><div class="spacer"></div><button class="primary-btn" id="l1GrammarNext">${i<tasks.length-1?'Weiter':'Ergebnis'}</button>`;
         document.getElementById('l1GrammarNext').onclick=()=>{i++;response=null;order=null;draw();};review?.attach(view,true);

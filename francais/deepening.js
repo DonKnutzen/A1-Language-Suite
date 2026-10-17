@@ -176,6 +176,7 @@
         if(!restoring){if(response)return;if(ok)score++;else mistakes.push(q);response={chosen};persist();}
         const button=[...stage.querySelectorAll('.option-btn')].find(b=>b.textContent===chosen);
         stage.querySelectorAll('.option-btn').forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.textContent===q.answer);b.classList.toggle('wrong',b===button&&!ok);});
+        if(ok&&!restoring)button?.classList.add('answer-success');
         if(!restoring)speak?.(q.audio,true,.8);
         stage.querySelector('.deepening-feedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><strong>${ok?'✓ Richtig':'Richtig: '+esc(q.answer)}</strong><p>${esc(q.explanation)}</p><button type="button" class="tiny-btn" data-speak="${encodeURIComponent(q.audio)}">🔊 Anhören</button></div><button type="button" class="primary-btn deepening-next">${i<questions.length-1?'Weiter':'Fertig'}</button>`;
         stage.querySelector('[data-speak]').onclick=()=>speak?.(q.audio,true,.8);

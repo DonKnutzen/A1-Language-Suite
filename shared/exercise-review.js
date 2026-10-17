@@ -7,6 +7,7 @@
       root.querySelectorAll('.exercise-review-nav').forEach(el=>el.remove());
       if(answered){
         const copy=root.cloneNode(true);
+        copy.querySelectorAll('.answer-success').forEach(el=>el.classList.remove('answer-success'));
         [...root.querySelectorAll('input,textarea')].forEach((input,i)=>{const target=copy.querySelectorAll('input,textarea')[i];if(target.tagName==='TEXTAREA')target.textContent=input.value;else target.setAttribute('value',input.value);});
         history.push(copy.innerHTML);
       }
@@ -14,6 +15,7 @@
       const nav=document.createElement('div');nav.className='button-row exercise-review-nav';
       const back=document.createElement('button');back.type='button';back.className='secondary-btn';back.textContent=fr?'← Réponse précédente':'← Vorherige Antwort';nav.append(back);root.append(nav);
       back.onclick=()=>{
+        root.querySelectorAll('.answer-success').forEach(el=>el.classList.remove('answer-success'));
         const live=[...root.childNodes];
         function show(index){
           root.innerHTML=history[index];

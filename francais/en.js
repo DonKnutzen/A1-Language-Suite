@@ -1,5 +1,9 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "10 Aufgaben abgeschlossen": "10 exercises completed",
+  "Sprechgeschwindigkeit": "Playback speed",
+  "Normales Tempo": "Normal speed",
+  "Langsameres Tempo": "Slower speed",
   "Zuerst gekauftes Produkt": "First product bought",
   "Preis für den Käse": "Price of the cheese",
   "Herkunft von Léa": "Where Léa is from",

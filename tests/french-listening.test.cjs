@@ -15,8 +15,8 @@ test('leaving and reloading resumes question order and graded feedback without d
  const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],progress={},audio=[];let completed=null,saves=0;
  const run=()=>w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:w.A1ExerciseEngine.makeAuthored(lesson),progress,exerciseVersion:94,saveProgress:()=>saves++,playAudio:t=>audio.push(t),onBack:()=>view.replaceChildren(),onFinish:(score,total)=>completed={score,total}});
  run();const first=view.querySelector('.quiz-q').textContent;
- view.querySelector(`[data-o="${progress.session.ex[0].a}"]`).click();assert.equal(progress.session.score,1);assert.equal(audio.length,1);
- view.querySelector('#mixedBack').click();run();assert.equal(view.querySelector('.quiz-q').textContent,first);assert(view.querySelector('#mixedNext'));assert.equal(progress.session.score,1);assert.equal(audio.length,1);
+ view.querySelector(`[data-o="${progress.session.ex[0].a}"]`).click();assert.equal(progress.session.score,1);assert.equal(audio.length,1);assert.equal(view.querySelectorAll('.answer-success').length,1);
+ view.querySelector('#mixedBack').click();run();assert.equal(view.querySelector('.quiz-q').textContent,first);assert(view.querySelector('#mixedNext'));assert.equal(view.querySelectorAll('.answer-success').length,0);assert.equal(progress.session.score,1);assert.equal(audio.length,1);
  view.querySelector('#mixedNext').click();assert.equal(progress.session.i,1);
  while(progress.session.i<5){view.querySelector(`[data-o="${progress.session.ex[progress.session.i].a}"]`).click();view.querySelector('#mixedNext').click();}
  while(progress.session){const q=progress.session.ex[progress.session.i];if(q.type==='gap'){const input=view.querySelector('#mixedInput');input.value=q.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#mixedCheck').click();}else view.querySelector(`[data-o="${q.a}"]`).click();view.querySelector('#mixedNext').click();}
@@ -38,7 +38,7 @@ test('review shows a previous answer read-only and returns to the live question 
  w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:w.A1ExerciseEngine.makeAuthored(lesson),progress,playAudio:t=>audio.push(t),onBack:()=>{},onFinish:()=>{}});
  const first=view.querySelector('.quiz-q').textContent;view.querySelector(`[data-o="${progress.session.ex[0].a}"]`).click();view.querySelector('#mixedNext').click();
  const second=view.querySelector('.quiz-q').textContent;view.querySelector('.exercise-review-nav button').click();
- assert.equal(view.querySelector('.quiz-q').textContent,first);assert([...view.querySelectorAll('.option-btn')].every(b=>b.disabled));assert(!view.querySelector('#mixedNext'));
+ assert.equal(view.querySelector('.quiz-q').textContent,first);assert([...view.querySelectorAll('.option-btn')].every(b=>b.disabled));assert.equal(view.querySelectorAll('.answer-success').length,0);assert(!view.querySelector('#mixedNext'));
  view.querySelector('.exercise-review-nav .primary-btn').click();assert.equal(view.querySelector('.quiz-q').textContent,second);assert.equal(progress.session.score,1);assert.equal(audio.length,1);
  view.querySelector(`[data-o="${progress.session.ex[1].a}"]`).click();assert.equal(progress.session.score,2);dom.window.close();
 });

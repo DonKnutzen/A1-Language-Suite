@@ -242,6 +242,7 @@
       if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio)play(audio);}
       const message=ok?L.correct:near?`${L.near} ${L.nearAnswer} ${esc(answer)}`:L.wrong+' '+esc(answer);
       document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:esc(opts.finishLabel||L.result)}</button>`;
+      if(ok&&!restoring)(opts.view.querySelector('.option-btn.correct,#mixedInput,#orderAnswer')||opts.view.querySelector('#mixedFeedback .good'))?.classList.add('answer-success');
       document.getElementById('mixedNext').onclick=next;if(!restoring)review?.attach(opts.view,true);
     }
     function draw(){
