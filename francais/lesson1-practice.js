@@ -101,15 +101,17 @@
   function renderPanel(panel,key,{state,save,speak,onUpdate}){
     const group=GROUPS[key],saved=groupState(state,key);
     const status=saved.done?'<span class="pill green">✓ geübt</span>':'<span class="pill gray">12 Aufgaben</span>';
-    panel.innerHTML=`<div class="between"><div><strong>Direkt üben: ${esc(group.title)}</strong><small>${esc(group.subtitle)}</small></div>${status}</div><p class="muted">Alle Personen einmal aktiv anwenden – ohne Bestehensdruck.</p><button class="soft-btn exercise-start-btn lesson1-drill-start">${saved.done?'12 Aufgaben wiederholen':'12 Formaufgaben starten'}</button><div class="lesson1-drill-stage"></div>`;
+    panel.innerHTML=`<div class="between"><div><strong>Direkt üben: ${esc(group.title)}</strong><small>${esc(group.subtitle)}</small></div>${status}</div><p class="muted">Alle Personen einmal aktiv anwenden – ohne Bestehensdruck.</p><button class="soft-btn exercise-start-btn lesson1-drill-start">${saved.session?'Übung fortsetzen':saved.done?'12 Aufgaben wiederholen':'12 Formaufgaben starten'}</button><div class="lesson1-drill-stage"></div>`;
     panel.querySelector('.lesson1-drill-start').onclick=()=>runInline(panel,key,{state,save,speak,onUpdate});
   }
 
   function runInline(panel,key,{state,save,speak,onUpdate}){
-    const group=GROUPS[key],tasks=shuffle(group.tasks),stage=panel.querySelector('.lesson1-drill-stage');
+    const progress=ensureState(state)[key]||={},saved=progress.session,resume=saved?.version===1&&Array.isArray(saved.tasks)&&Number.isInteger(saved.i)&&saved.i>=0&&saved.i<saved.tasks.length;
+    const group=GROUPS[key],tasks=resume?saved.tasks:shuffle(group.tasks),stage=panel.querySelector('.lesson1-drill-stage');
     const start=panel.querySelector('.lesson1-drill-start');if(start)start.hidden=true;
     const review=window.A1ExerciseReview?.create();
-    let i=0,score=0;
+    let i=resume?saved.i:0,score=resume?saved.score:0,response=resume?saved.response:null,order=resume?saved.order:null;
+    function persist(){progress.session={version:1,tasks,i,score,response,order};save();}
     function finish(){
       const s=ensureState(state),old=s[key]||{};s[key]={done:true,last:score,best:Math.max(Number(old.best||0),score),total:tasks.length};
       save(true);onUpdate?.();
@@ -119,15 +121,19 @@
     }
     function draw(){
       if(i>=tasks.length)return finish();
-      const q=tasks[i],opts=shuffle(q.o);
+      const q=tasks[i],opts=order||shuffle(q.o);order=opts;persist();
       stage.innerHTML=`<div class="lesson1-drill-question"><div class="between"><small>${i+1}/${tasks.length}</small><span class="pill gray">${esc(group.title)}</span></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${opts.map(o=>`<button class="option-btn" data-l1-answer="${esc(o)}">${esc(o)}</button>`).join('')}</div><div class="lesson1-drill-feedback"></div></div>`;
-      stage.querySelectorAll('[data-l1-answer]').forEach(btn=>btn.onclick=()=>{
-        const chosen=btn.dataset.l1Answer,ok=chosen===q.a;if(ok)score++;
+      function feedback(chosen,restoring=false){
+        const ok=chosen===q.a;
+        if(!restoring){if(response)return;if(ok)score++;response={chosen};persist();}
+        const btn=[...stage.querySelectorAll('[data-l1-answer]')].find(b=>b.dataset.l1Answer===chosen);
         stage.querySelectorAll('[data-l1-answer]').forEach(b=>{b.disabled=true;if(b.dataset.l1Answer===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
-        speak?.(q.audio||q.a,true,.8);
+        if(!restoring)speak?.(q.audio||q.a,true,.8);
         const fb=stage.querySelector('.lesson1-drill-feedback');fb.innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'Richtig: '+esc(q.a)}</div><button class="primary-btn lesson1-drill-next">${i<tasks.length-1?'Weiter':'Fertig'}</button>`;
-        fb.querySelector('.lesson1-drill-next').onclick=()=>{i++;draw();};review?.attach(stage,true);
-      });
+        fb.querySelector('.lesson1-drill-next').onclick=()=>{i++;response=null;order=null;draw();};review?.attach(stage,true);
+      }
+      stage.querySelectorAll('[data-l1-answer]').forEach(btn=>btn.onclick=()=>feedback(btn.dataset.l1Answer));
+      if(response)feedback(response.chosen,true);
       review?.attach(stage);
     }
     draw();
@@ -151,28 +157,34 @@
     return shuffle(out);
   }
   function renderGrammarCheck({view,state,save,speak,onBack}){
-    ensureState(state);const tasks=grammarCheckTasks(),review=window.A1ExerciseReview?.create();let i=0,score=0;
+    ensureState(state);state.lessonGrammarCheckProgress||={};const progress=state.lessonGrammarCheckProgress[1]||={},saved=progress.session,resume=saved?.version===1&&Array.isArray(saved.tasks)&&Number.isInteger(saved.i)&&saved.i>=0&&saved.i<saved.tasks.length;
+    const tasks=resume?saved.tasks:grammarCheckTasks(),review=window.A1ExerciseReview?.create();let i=resume?saved.i:0,score=resume?saved.score:0,response=resume?saved.response:null,order=resume?saved.order:null;
+    function persist(){progress.session={version:1,tasks,i,score,response,order};save();}
     function intro(){
       const b=grammarCheckBest(state),tried=grammarCheckTried(state);
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">ABSCHLUSS-TEST</span></div><section class="card" style="margin-top:12px"><h2>Abschluss-Test</h2><p class="muted">12 Fragen aus être, habiter/parler, venir und s’appeler. Die Auswahl wechselt bei jedem Durchlauf.</p>${tried?`<p><strong>Bestwert:</strong> ${b} %</p>`:''}<button class="primary-btn exercise-start-btn" id="l1GrammarStart">12 Fragen starten</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">ABSCHLUSS-TEST</span></div><section class="card" style="margin-top:12px"><h2>Abschluss-Test</h2><p class="muted">12 Fragen aus être, habiter/parler, venir und s’appeler. Die Auswahl wechselt bei jedem Durchlauf.</p>${tried?`<p><strong>Bestwert:</strong> ${b} %</p>`:''}<button class="primary-btn exercise-start-btn" id="l1GrammarStart">${resume?'Test fortsetzen':'12 Fragen starten'}</button></section>`;
       document.getElementById('l1GrammarBack').onclick=onBack;document.getElementById('l1GrammarStart').onclick=draw;
     }
     function draw(){
       if(i>=tasks.length){
-        const pct=Math.round(score/tasks.length*100);state.lessonGrammarCheckLast[1]=pct;state.lessonGrammarCheckBest[1]=Math.max(grammarCheckBest(state),pct);save(true);
+        delete progress.session;const pct=Math.round(score/tasks.length*100);state.lessonGrammarCheckLast[1]=pct;state.lessonGrammarCheckBest[1]=Math.max(grammarCheckBest(state),pct);save(true);
         view.innerHTML=`<section class="card center"><span class="pill">ABSCHLUSS-TEST</span><div class="score">${pct}%</div><h2>${score}/${tasks.length} richtig</h2><p class="muted">Das ist nur dein aktueller Stand. Du kannst jede Konjugation direkt in der Lektion beliebig oft üben.</p><div class="button-row"><button class="secondary-btn" id="l1GrammarAgain">Noch einmal</button><button class="primary-btn" id="l1GrammarReturn">Zur Lektion</button></div></section>`;
         document.getElementById('l1GrammarAgain').onclick=()=>renderGrammarCheck({view,state,save,speak,onBack});document.getElementById('l1GrammarReturn').onclick=onBack;review?.attach(view);return;
       }
-      const q=tasks[i],opts=shuffle(q.o);
+      const q=tasks[i],opts=order||shuffle(q.o);order=opts;persist();
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">${i+1}/${tasks.length}</span></div><section class="card" style="margin-top:12px"><div class="between"><div class="eyebrow">ABSCHLUSS-TEST</div><span class="pill gray">${esc(q.tag)}</span></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${opts.map(o=>`<button class="option-btn" data-l1-check="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="l1GrammarFeedback"></div></section>`;
       document.getElementById('l1GrammarBack').onclick=onBack;
-      document.querySelectorAll('[data-l1-check]').forEach(btn=>btn.onclick=()=>{
-        const ok=btn.dataset.l1Check===q.a;if(ok)score++;
+      function feedback(chosen,restoring=false){
+        const ok=chosen===q.a;
+        if(!restoring){if(response)return;if(ok)score++;response={chosen};persist();}
+        const btn=[...document.querySelectorAll('[data-l1-check]')].find(b=>b.dataset.l1Check===chosen);
         document.querySelectorAll('[data-l1-check]').forEach(b=>{b.disabled=true;if(b.dataset.l1Check===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
-        speak?.(q.audio||q.a,true,.8);
+        if(!restoring)speak?.(q.audio||q.a,true,.8);
         document.getElementById('l1GrammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'Richtig: '+esc(q.a)}</div><div class="spacer"></div><button class="primary-btn" id="l1GrammarNext">${i<tasks.length-1?'Weiter':'Ergebnis'}</button>`;
-        document.getElementById('l1GrammarNext').onclick=()=>{i++;draw();};review?.attach(view,true);
-      });
+        document.getElementById('l1GrammarNext').onclick=()=>{i++;response=null;order=null;draw();};review?.attach(view,true);
+      }
+      document.querySelectorAll('[data-l1-check]').forEach(btn=>btn.onclick=()=>feedback(btn.dataset.l1Check));
+      if(response)feedback(response.chosen,true);
       review?.attach(view);
     }
     intro();

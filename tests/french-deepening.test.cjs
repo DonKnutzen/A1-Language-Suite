@@ -18,9 +18,9 @@ function appEnvironment(){
   return {dom,w,view};
 }
 const lesson=(w,id)=>w.FR_A1_DATA.lessons.find(l=>l.id===id);
-function render(w,view,id,state,audio=[],saves=[]){
+function render(w,view,id,state,audio=[],saves=[],flowOptions={}){
   const l=lesson(w,id),app=w.models[id];
-  w.A1LessonFlow.render({lesson:l,content:l,view,state,targetLang:'fr',uiLang:'de',lessonCount:24,grammarHtml:w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)),pronunciationHtml:w.A1Pronunciation.render(l,'fr','de'),model:app.speakModel,writingModel:app.writeModel,save:x=>saves.push(x),speak:(t,force)=>audio.push({text:t,force}),speakBtn:t=>`<button data-speak="${encodeURIComponent(t)}">🔊</button>`,wireSpeakButtons:()=>{},renderMastery:()=>{},recorderHtml:()=>'',renderLearn:()=>{},renderLesson:()=>{}});
+  w.A1LessonFlow.render({lesson:l,content:l,view,state,targetLang:'fr',uiLang:'de',lessonCount:24,grammarHtml:w.FR_A1_DEEPENING.enrich(l,w.grammarHtml(l)),pronunciationHtml:w.A1Pronunciation.render(l,'fr','de'),model:app.speakModel,writingModel:app.writeModel,save:x=>saves.push(x),speak:(t,force)=>audio.push({text:t,force}),speakBtn:t=>`<button data-speak="${encodeURIComponent(t)}">🔊</button>`,wireSpeakButtons:()=>{},renderMastery:()=>{},recorderHtml:()=>'',renderLearn:()=>{},renderLesson:()=>{},...flowOptions});
 }
 test('all 23 later lessons teach and directly rehearse every existing final-check pattern',()=>{
   const {dom,w}=appEnvironment();
@@ -211,4 +211,43 @@ test('reported preparation tasks use close alternatives and test form labels ins
   }
  }
  dom.window.close();
+});
+test('continue restores the same deepening topic and graded mini-test without duplicate points or audio',()=>{
+ const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{4:100},lessonWork:{}},audio=[];
+ render(w,view,4,state,audio,[],{resume:true});view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-grammar-progress="2"]').click();view.querySelector('.deepening-start').click();
+ const key=view.querySelector('[data-deepening-practice]').dataset.deepeningPractice,progress=state.lessonWork[4].deepening[key];let session=progress.session;
+ [...view.querySelectorAll('.option-btn')].find(b=>b.textContent===session.questions[0].answer).click();assert.equal(progress.session.score,1);const heard=audio.length,question=view.querySelector('.quiz-q').textContent;
+ render(w,view,4,state,audio,[],{resume:true});assert.equal(state.lastLessonId,4);assert.equal(view.querySelector('[data-grammar-progress="2"]').getAttribute('aria-current'),'step');assert.equal(view.querySelector('.quiz-q').textContent,question);assert(view.querySelector('.deepening-next'));assert.equal(progress.session.score,1);assert.equal(audio.length,heard);
+ view.querySelector('.deepening-next').click();assert.equal(progress.session.i,1);assert.equal(progress.session.score,1);assert.equal(state.doneLessons.length,0);dom.window.close();
+});
+test('continue restores the first lesson’s conjugation drill, including checked feedback',()=>{
+ const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}},audio=[];
+ render(w,view,1,state,audio,[],{resume:true});view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-grammar-progress="1"]').click();view.querySelector('.lesson1-drill-start').click();
+ const p=state.lessonGrammarPractice[1].etre;[...view.querySelectorAll('[data-l1-answer]')].find(b=>b.dataset.l1Answer===p.session.tasks[0].a).click();const question=view.querySelector('.quiz-q').textContent,heard=audio.length;
+ render(w,view,1,state,audio,[],{resume:true});assert.equal(view.querySelector('.quiz-q').textContent,question);assert(view.querySelector('.lesson1-drill-next'));assert.equal(p.session.score,1);assert.equal(audio.length,heard);view.querySelector('.lesson1-drill-next').click();assert.equal(p.session.i,1);dom.window.close();
+});
+test('continue opens an unfinished introductory quiz at its saved question and feedback',()=>{
+ const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
+ w.A1Learning={shuffle:a=>[...a]};for(const f of ['francais/intro-listening.js','shared/exercise-engine.js'])w.eval(read(f));
+ render(w,view,4,state,[],[],{resume:true});view.querySelector('#startQuiz').click();const p=state.lessonWork[4],q=p.session.ex[0],index=q.a??q.o.indexOf(q.answer);view.querySelector(`[data-o="${index}"]`).click();const question=view.querySelector('.quiz-q').textContent;
+ render(w,view,4,state,[],[],{resume:true});assert.equal(view.querySelector('.quiz-q').textContent,question);assert(view.querySelector('#mixedNext'));assert.equal(p.session.score,1);view.querySelector('#mixedNext').click();assert.equal(p.session.i,1);dom.window.close();
+});
+test('continue resumes the grammar check at a checked answer instead of its start screen',()=>{
+ const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
+ const options={resume:true,renderGrammarCheck:({onBack})=>w.FR_A1_LESSON1.renderGrammarCheck({view,state,save:()=>{},speak:()=>{},onBack})};
+ render(w,view,1,state,[],[],options);view.querySelector('[data-lesson-step="grammar-check"]').click();view.querySelector('#startGrammarCheck').click();view.querySelector('#l1GrammarStart').click();const p=state.lessonGrammarCheckProgress[1];[...view.querySelectorAll('[data-l1-check]')].find(b=>b.dataset.l1Check===p.session.tasks[0].a).click();const question=view.querySelector('.quiz-q').textContent;
+ render(w,view,1,state,[],[],options);assert.equal(view.querySelector('.quiz-q').textContent,question);assert(view.querySelector('#l1GrammarNext'));assert.equal(p.session.score,1);view.querySelector('#l1GrammarNext').click();assert.equal(p.session.i,1);dom.window.close();
+});
+test('continue restores an unfinished lesson check without resetting or counting its answer twice',()=>{
+ const {dom,w,view}=appEnvironment(),state={doneLessons:[4],lessonQuizBest:{},lessonWork:{}};w.eval(read('francais/mastery.js'));
+ const options={resume:true,renderMastery:({onBack,onResult})=>w.FR_A1_MASTERY.renderLessonTest({lesson:lesson(w,4),view,state,save:()=>{},speak:()=>{},onBack,onResult})};
+ render(w,view,4,state,[],[],options);view.querySelector('[data-lesson-step="check"]').click();view.querySelector('#startMasteryOverview').click();view.querySelector('#masteryStart').click();const p=state.lessonCheckProgress[4],q=p.session.ex[0];
+ if(q.type==='choice')[...view.querySelectorAll('[data-mastery-o]')].find(b=>b.textContent===q.answer).click();else{view.querySelector('#masteryInput').value=q.answer;view.querySelector('#masteryCheck').click();}
+ const question=view.querySelector('.quiz-q').textContent;
+ render(w,view,4,state,[],[],options);assert.equal(view.querySelector('.quiz-q').textContent,question);assert(view.querySelector('#masteryNext'));assert.equal(p.session.score,1);view.querySelector('#masteryNext').click();assert.equal(p.session.i,1);dom.window.close();
+});
+test('home continuation prefers the last unfinished lesson, then advances after a passed final check',()=>{
+ const {dom,w}=appEnvironment(),lessons=w.FR_A1_DATA.lessons,state={lastLessonId:8,doneLessons:[1,2],lessonWork:{8:{resume:{step:'grammar',grammarIndex:2}}}};
+ assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);state.doneLessons.push(8);state.lessonWork[8].resume.step='check';assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);
+ state.lessonCheckProgress={8:{session:{i:2}}};assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);state.lastLessonId=999;assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);dom.window.close();
 });

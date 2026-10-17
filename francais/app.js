@@ -1,6 +1,7 @@
 const D=window.FR_A1_DATA;
 const lessons=D.lessons;
 const defaultState={
+  lastLessonId:0,
   doneLessons:[],lessonWork:{},
   lessonQuizBest:{},
   lessonMasteryBest:{},
@@ -110,10 +111,14 @@ document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.datas
 let homeMilestoneObserver=null;
 function renderHome(){
   homeMilestoneObserver?.disconnect();
-  const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];
+  const next=A1LessonFlow.continuation(lessons,state);
   const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
   const allDone=completed.length===lessons.length;
-  const example=next.phrases.find(([target])=>/[.!?]$/.test(target))||next.phrases[0];
+  const position=A1LessonFlow.resumePosition(next,state),work=state.lessonWork?.[next.id]||{};
+  const stepNames={listen:position.mode==='exercise'?'Lektionsübungen':'Hören & Verstehen',grammar:'Vertiefung','grammar-check':'Abschluss-Test',comprehension:'Hörverstehen',check:'Lektions-Check',speak:'Sprechen',write:'Schreiben'};
+  const session=position.step==='check'?state.lessonCheckProgress?.[next.id]?.session:position.step==='listen'?work.session:position.step==='grammar-check'?state.lessonGrammarCheckProgress?.[1]?.session:position.step==='grammar'?(work.deepening?.[position.practiceKey]?.session||state.lessonGrammarPractice?.[next.id]?.[position.practiceKey]?.session):null;
+  const questionCount=session&&(session.ex||session.questions||session.tasks)?.length;
+  const detail=[position.step==='grammar'?position.topicTitle||'':'',questionCount?`${session.i+1} / ${questionCount}`:position.step==='comprehension'?`${(work.comprehension?.answers||[]).filter(Boolean).length} / ${window.A1_COMPREHENSION_CONTENT[next.id].fields.length}`:''].filter(Boolean).join(' · ');
   view.innerHTML=`
     <section class="card course-progress-card" data-streak-anchor>
       <h2>Kursfortschritt</h2>
@@ -125,7 +130,7 @@ function renderHome(){
       <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':'WEITERLERNEN'}</span><span class="pill">Lektion ${next.id}</span></div>
       <h2 id="continueTitle">${esc(next.title)}</h2>
       <div class="home-learning-goal"><span class="home-detail-label">Dein Lernziel</span><p>${esc(next.canDo[0])}</p></div>
-      ${example?`<div class="home-lesson-example"><span class="home-detail-label">Zum Beispiel</span><strong lang="fr" data-i18n-ignore>${esc(example[0])}</strong><span>${esc(example[1])}</span></div>`:''}
+      <div class="home-resume-info"><span class="home-resume-icon" aria-hidden="true">↗</span><div><span class="home-detail-label">${work.resume?'Hier machst du weiter':'Dein nächster Schritt'}</span><strong>${esc(stepNames[position.step]||stepNames.listen)}</strong>${detail?`<span class="home-resume-detail">${esc(detail)}</span>`:''}</div></div>
       <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':'Fortsetzen'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
     <section class="card home-milestones" aria-labelledby="milestoneTitle">
@@ -486,7 +491,7 @@ function renderLesson(id){
   const masteryHtml=FR_A1_MASTERY.introHtml(l,state);
   const dialogueHtml=`<details><summary><strong>Alltagsdialog</strong></summary>${l.dialogue.map((line,i)=>`<div class="phrase-row"><div><small aria-label="Person ${i%2?'B':'A'}">${i%2?'B':'A'}</small><strong>${esc(line)}</strong></div>${speakBtn(line)}</div>`).join('')}</details>`;
   A1LessonFlow.render({
-    lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
+    lesson:l,content:c,view,state,save,resume:true,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
     goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
     renderMastery:({onBack,onResult})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak,onResult}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,

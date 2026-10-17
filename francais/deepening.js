@@ -141,20 +141,23 @@
     root.querySelectorAll('[data-deepening-practice]').forEach(panel=>{
       const pool=available.find(u=>u.key===panel.dataset.deepeningPractice);if(!pool?.tasks.length)return;
       const done=topicDone(state,lesson.id,pool.key);
-      panel.innerHTML=`<div class="between"><strong>Direkt üben</strong><small>${done?'✓ geübt':Math.min(6,pool.tasks.length)+' kurze Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn deepening-start">${done?'Noch einmal üben':'Mini-Test starten'}</button><div class="deepening-stage grammar-drill-stage"></div>`;
+      panel.innerHTML=`<div class="between"><strong>Direkt üben</strong><small>${done?'✓ geübt':Math.min(6,pool.tasks.length)+' kurze Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn deepening-start">${state.lessonWork?.[lesson.id]?.deepening?.[pool.key]?.session?'Übung fortsetzen':done?'Noch einmal üben':'Mini-Test starten'}</button><div class="deepening-stage grammar-drill-stage"></div>`;
       panel.querySelector('.deepening-start').onclick=()=>run(panel,pool,{lesson,state,save,speak,onUpdate});
     });
   }
   function run(panel,pool,{lesson,state,save,speak,onUpdate}){
     const review=window.A1ExerciseReview?.create();
-    const seen=new Set(state.lessonWork[lesson.id]?.deepening?.[pool.key]?.seen||[]);
+    const work=state.lessonWork[lesson.id];work.deepening||={};const progress=work.deepening[pool.key]||={};
+    const saved=progress.session;const resume=saved?.version===1&&Array.isArray(saved.questions)&&Number.isInteger(saved.i)&&saved.i>=0&&saved.i<saved.questions.length;
+    const seen=new Set(progress.seen||[]);
     const prioritize=a=>[...shuffle(a.filter(q=>!seen.has(q.q))),...shuffle(a.filter(q=>seen.has(q.q)))];
     const forms=prioritize(pool.tasks.filter(q=>q.kind==='form')).slice(0,3);
     const vocab=prioritize(pool.tasks.filter(q=>q.kind==='vocabulary')).slice(0,6-forms.length);
     const selected=[...forms,...vocab];
-    const questions=shuffle([...selected,...prioritize(pool.tasks.filter(q=>!selected.includes(q))).slice(0,6-selected.length)]),stage=panel.querySelector('.deepening-stage');
+    const questions=resume?saved.questions:shuffle([...selected,...prioritize(pool.tasks.filter(q=>!selected.includes(q))).slice(0,6-selected.length)]),stage=panel.querySelector('.deepening-stage');
     panel.querySelector('.deepening-start').hidden=true;
-    let i=0,score=0,mistakes=[];
+    let i=resume?saved.i:0,score=resume?saved.score:0,mistakes=resume?saved.mistakes:[],response=resume?saved.response:null,order=resume?saved.order:null;
+    function persist(){progress.session={version:1,questions,i,score,mistakes,response,order};save();}
     function finish(){
       const work=state.lessonWork[lesson.id];work.deepening=work.deepening||{};
       const old=work.deepening[pool.key]||{};
@@ -166,16 +169,20 @@
     }
     function draw(){
       if(i>=questions.length)return finish();
-      const q=questions[i];
-      stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${q.meaning?`<p class="mixed-context">${esc(q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${shuffle(q.o).map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
-      stage.querySelectorAll('.option-btn').forEach(button=>button.onclick=()=>{
-        const ok=button.textContent===q.answer;if(ok)score++;else mistakes.push(q);
+      const q=questions[i];order=order||shuffle(q.o);persist();
+      stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${q.meaning?`<p class="mixed-context">${esc(q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${order.map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
+      function feedback(chosen,restoring=false){
+        const ok=chosen===q.answer;
+        if(!restoring){if(response)return;if(ok)score++;else mistakes.push(q);response={chosen};persist();}
+        const button=[...stage.querySelectorAll('.option-btn')].find(b=>b.textContent===chosen);
         stage.querySelectorAll('.option-btn').forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.textContent===q.answer);b.classList.toggle('wrong',b===button&&!ok);});
-        speak?.(q.audio,true,.8);
+        if(!restoring)speak?.(q.audio,true,.8);
         stage.querySelector('.deepening-feedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><strong>${ok?'✓ Richtig':'Richtig: '+esc(q.answer)}</strong><p>${esc(q.explanation)}</p><button type="button" class="tiny-btn" data-speak="${encodeURIComponent(q.audio)}">🔊 Anhören</button></div><button type="button" class="primary-btn deepening-next">${i<questions.length-1?'Weiter':'Fertig'}</button>`;
         stage.querySelector('[data-speak]').onclick=()=>speak?.(q.audio,true,.8);
-        stage.querySelector('.deepening-next').onclick=()=>{i++;draw();};review?.attach(stage,true);
-      });
+        stage.querySelector('.deepening-next').onclick=()=>{i++;response=null;order=null;draw();};review?.attach(stage,true);
+      }
+      stage.querySelectorAll('.option-btn').forEach(button=>button.onclick=()=>feedback(button.textContent));
+      if(response)feedback(response.chosen,true);
       review?.attach(stage);
     }
     draw();

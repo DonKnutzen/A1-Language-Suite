@@ -1,11 +1,11 @@
-/* A short dialogue followed by three selected facts; no keyboard required. */
+/* Short dialogues with visible answer choices; no keyboard or dropdown required. */
 (() => {
   'use strict';
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const words={
-    de:{title:'Hörverstehen',intro:'Höre das Gespräch und wähle die drei passenden Informationen aus.',play:'Gespräch anhören',stop:'Stopp',choose:'Bitte auswählen',check:'Antworten prüfen',next:'Weiter zum Lektionscheck →',retry:'Noch einmal üben',help:'Gespräch mitlesen',unavailable:'Audio ist gerade nicht verfügbar. Du kannst das Gespräch unten mitlesen.',correct:'Richtig',solution:'Richtige Antwort',result:'richtig',speaker:'Person'},
-    fr:{title:'Compréhension orale',intro:'Écoute le dialogue et choisis les trois bonnes informations.',play:'Écouter le dialogue',stop:'Arrêter',choose:'Choisir une réponse',check:'Vérifier les réponses',next:'Continuer : bilan de la leçon →',retry:'Réessayer',help:'Lire le dialogue',unavailable:'Audio indisponible. Tu peux lire le dialogue ci-dessous.',correct:'Correct',solution:'Bonne réponse',result:'réponses correctes',speaker:'Personne'},
-    en:{title:'Listening comprehension',intro:'Listen to the dialogue and select the three correct pieces of information.',play:'Play dialogue',stop:'Stop',choose:'Select an answer',check:'Check answers',next:'Continue to lesson check →',retry:'Try again',help:'Read the dialogue',unavailable:'Audio is unavailable. You can read the dialogue below.',correct:'Correct',solution:'Correct answer',result:'correct',speaker:'Person'}
+    de:{title:'Hörverstehen',intro:'Höre das Gespräch und ordne die Informationen zu.',play:'Gespräch anhören',stop:'Stopp',answered:'Angaben ausgewählt',check:'Antworten prüfen',next:'Weiter zum Lektionscheck →',retry:'Noch einmal üben',help:'Gespräch mitlesen',unavailable:'Audio ist gerade nicht verfügbar. Du kannst das Gespräch unten mitlesen.',correct:'Richtig',solution:'Richtige Antwort',result:'richtig'},
+    fr:{title:'Compréhension orale',intro:'Écoute le dialogue et choisis les bonnes informations.',play:'Écouter le dialogue',stop:'Arrêter',answered:'réponses choisies',check:'Vérifier les réponses',next:'Continuer : bilan de la leçon →',retry:'Réessayer',help:'Lire le dialogue',unavailable:'Audio indisponible. Tu peux lire le dialogue ci-dessous.',correct:'Correct',solution:'Bonne réponse',result:'réponses correctes'},
+    en:{title:'Listening comprehension',intro:'Listen to the dialogue and match the information.',play:'Play dialogue',stop:'Stop',answered:'answers selected',check:'Check answers',next:'Continue to lesson check →',retry:'Try again',help:'Read the dialogue',unavailable:'Audio is unavailable. You can read the dialogue below.',correct:'Correct',solution:'Correct answer',result:'correct'}
   };
   function render({root,data,work,lessonId,targetLang,uiLang,save,onUpdate,onContinue}){
     const L=words[uiLang]||words.de;
@@ -13,31 +13,42 @@
     const valid=work.comprehension;
     const p=work.comprehension=valid&&typeof valid==='object'&&!Array.isArray(valid)?valid:{};
     if(!Array.isArray(p.answers))p.answers=[];
+    // Keep previous answers and completion when a dialogue gains another question.
     p.answers=data.fields.map((f,i)=>f.options.includes(p.answers[i])?p.answers[i]:'');
     if(!p.answers.every(Boolean))p.graded=false;
     let playing=false;
-    root.innerHTML=`<section class="card lesson-comprehension" data-bug-task="comprehension-${lessonId}" aria-label="${esc(L.title)}" data-bug-step="comprehension" data-bug-question="${esc(data.fields.map(f=>f.label).join(' · '))}"><p class="muted">${esc(L.intro)}</p><div class="comprehension-player"><button type="button" class="soft-btn" id="dialoguePlay" data-bug-audio="${esc(data.turns.map(t=>t.speaker+': '+t.text).join('\n'))}">🔊 ${esc(L.play)}</button><span class="pill comprehension-tempo">0,75×<span id="dialogueSpeaker" aria-hidden="true"></span></span></div><p id="dialogueStatus" class="muted" role="status" hidden></p><div class="comprehension-fields">${data.fields.map((f,i)=>`<div class="comprehension-field"><label for="dialogueField${i}" data-comprehension-label>${esc(f.label)}</label><select id="dialogueField${i}" data-comprehension-field="${i}" ${p.graded?'disabled':''}><option value="">${esc(L.choose)}</option>${f.options.map(o=>`<option value="${esc(o)}" ${p.answers[i]===o?'selected':''}>${esc(o)}</option>`).join('')}</select><small data-comprehension-feedback="${i}" ${p.graded?'':'hidden'}></small></div>`).join('')}</div><div id="dialogueResult" class="comprehension-result" role="status"></div><div class="comprehension-actions"><button class="primary-btn" id="dialogueCheck"></button><button class="tiny-btn" id="dialogueRetry" ${p.graded?'':'hidden'}>${esc(L.retry)}</button></div><details class="comprehension-transcript"><summary>${esc(L.help)}</summary>${data.turns.map(t=>`<p><strong>${esc(t.speaker)}:</strong> <span data-i18n-ignore>${esc(t.text)}</span></p>`).join('')}</details></section>`;
+    const fieldHtml=data.fields.map((f,i)=>`<fieldset class="comprehension-field" data-comprehension-field="${i}"><legend><span class="comprehension-question-number" aria-hidden="true">${i+1}</span><span data-comprehension-label>${esc(f.label)}</span></legend><div class="comprehension-choices ${f.options.some(o=>o.length>32)?'has-long-options':''}">${f.options.map(o=>`<label class="comprehension-choice"><input type="radio" name="dialogue-${lessonId}-${i}" data-comprehension-answer="${i}" value="${esc(o)}" ${p.answers[i]===o?'checked':''} ${p.graded?'disabled':''}><span data-comprehension-option data-i18n-ignore>${esc(o)}</span></label>`).join('')}</div><small data-comprehension-feedback="${i}" ${p.graded?'':'hidden'}></small></fieldset>`).join('');
+    root.innerHTML=`<section class="card lesson-comprehension" data-bug-task="comprehension-${lessonId}" aria-label="${esc(L.title)}" data-bug-step="comprehension" data-bug-question="${esc(data.fields.map(f=>f.label).join(' · '))}"><p class="muted">${esc(L.intro)}</p><div class="comprehension-player"><button type="button" class="soft-btn" id="dialoguePlay" data-bug-audio="${esc(data.turns.map(t=>t.speaker+': '+t.text).join('\n'))}">🔊 ${esc(L.play)}</button><span class="pill comprehension-tempo">0,75×<span id="dialogueSpeaker" aria-hidden="true"></span></span></div><p id="dialogueStatus" class="muted" role="status" hidden></p><div class="comprehension-fields">${fieldHtml}</div><small class="comprehension-progress" role="status"><span id="dialogueAnswered"></span> <span>${esc(L.answered)}</span></small><div id="dialogueResult" class="comprehension-result" role="status"></div><div class="comprehension-actions"><button class="primary-btn" id="dialogueCheck"></button><button class="tiny-btn" id="dialogueRetry" ${p.graded?'':'hidden'}>${esc(L.retry)}</button></div><details class="comprehension-transcript"><summary>${esc(L.help)}</summary>${data.turns.map(t=>`<p><strong>${esc(t.speaker)}:</strong> <span data-i18n-ignore>${esc(t.text)}</span></p>`).join('')}</details></section>`;
     const button=root.querySelector('#dialogueCheck'),play=root.querySelector('#dialoguePlay'),speaker=root.querySelector('#dialogueSpeaker');
-    const selects=[...root.querySelectorAll('[data-comprehension-field]')];
+    const inputs=[...root.querySelectorAll('[data-comprehension-answer]')];
     const update=()=>{
       button.textContent=p.graded?L.next:L.check;button.disabled=!p.graded&&!p.answers.every(Boolean);
       root.querySelector('#dialogueRetry').hidden=!p.graded;
-      selects.forEach((select,i)=>{
-        select.disabled=!!p.graded;
-        const correct=p.answers[i]===data.fields[i].answer,feedback=root.querySelector(`[data-comprehension-feedback="${i}"]`);
-        select.classList.toggle('is-correct',!!p.graded&&correct);select.classList.toggle('is-wrong',!!p.graded&&!correct);
-        feedback.hidden=!p.graded;feedback.textContent=correct?'✓ '+L.correct:L.solution+': '+data.fields[i].answer;
+      root.querySelector('#dialogueAnswered').textContent=`${p.answers.filter(Boolean).length} / ${data.fields.length}`;
+      inputs.forEach(input=>{
+        const i=Number(input.dataset.comprehensionAnswer),body=input.nextElementSibling;
+        input.disabled=!!p.graded;input.checked=p.answers[i]===input.value;
+        body.classList.toggle('is-correct',!!p.graded&&input.value===data.fields[i].answer);
+        body.classList.toggle('is-wrong',!!p.graded&&input.checked&&input.value!==data.fields[i].answer);
+      });
+      data.fields.forEach((f,i)=>{
+        const correct=p.answers[i]===f.answer,feedback=root.querySelector(`[data-comprehension-feedback="${i}"]`);
+        feedback.hidden=!p.graded;feedback.innerHTML=correct?'✓ '+esc(L.correct):esc(L.solution)+': <span data-i18n-ignore>'+esc(f.answer)+'</span>';
       });
       root.querySelector('#dialogueResult').textContent=p.graded?`${p.score} / ${data.fields.length} ${L.result}`:'';
     };
-    selects.forEach((select,i)=>select.onchange=()=>{p.answers[i]=select.value;save();update();});
+    inputs.forEach(input=>{
+      const focusQuestion=()=>{root.querySelector('[data-bug-task]').dataset.bugQuestion=data.fields[Number(input.dataset.comprehensionAnswer)].label;};
+      input.onfocus=focusQuestion;
+      input.onchange=()=>{if(p.graded||!input.checked)return;const i=Number(input.dataset.comprehensionAnswer);p.answers[i]=input.value;focusQuestion();save();update();};
+    });
     button.onclick=()=>{
       if(p.graded){window.A1Voice?.cancel();onContinue();return;}
       if(!p.answers.every(Boolean))return;
       p.score=data.fields.filter((f,i)=>f.answer===p.answers[i]).length;p.best=Math.max(p.best||0,p.score);p.done=true;p.graded=true;
       save(true);update();onUpdate?.();
     };
-    root.querySelector('#dialogueRetry').onclick=()=>{p.answers=data.fields.map(()=>'');p.graded=false;selects.forEach(s=>s.value='');save();update();};
+    root.querySelector('#dialogueRetry').onclick=()=>{p.answers=data.fields.map(()=>'');p.graded=false;save();update();};
     const stopped=()=>{playing=false;play.textContent='🔊 '+L.play;speaker.textContent='';};
     play.onclick=()=>{
       if(playing){window.A1Voice?.cancel();stopped();return;}

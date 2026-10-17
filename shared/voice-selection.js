@@ -86,7 +86,7 @@
     }
     next();return true;
   }
-  function showError(){if(dialog&&mountOptions)dialog.querySelector('#voiceStatus').textContent=(UI[mountOptions.uiLang]||UI.de).error;}
+  function showError(){const status=dialog?.querySelector('#voiceStatus');if(status&&mountOptions)status.textContent=(UI[mountOptions.uiLang]||UI.de).error;}
   function renderDialog(){
     if(!dialog||!mountOptions)return;
     const {lang,uiLang}=mountOptions,L=UI[uiLang]||UI.de,list=matching(lang),p=pref(lang),chosen=select(lang),exists=list.some(v=>v.voiceURI===p.uri&&v.name===p.name);

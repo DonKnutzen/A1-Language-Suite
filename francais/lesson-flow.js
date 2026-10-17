@@ -25,6 +25,21 @@
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
     return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
+  function continuation(lessons,state){
+    const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
+    const pending=last&&(!state.doneLessons?.includes(last.id)||state.lessonCheckProgress?.[last.id]?.session||(position&&position.step!=='check'));
+    return (pending&&last)||lessons.find(l=>!state.doneLessons?.includes(l.id))||last||lessons[lessons.length-1];
+  }
+  function resumePosition(lesson,state){
+    const p=state.lessonWork?.[lesson.id]||{},saved=p.resume;
+    const allowed=['listen','grammar','grammar-check','comprehension','check','speak','write'];
+    if(saved&&allowed.includes(saved.step))return {...saved};
+    if(state.lessonCheckProgress?.[lesson.id]?.session)return {step:'check',mode:'exercise'};
+    if(p.session)return {step:'listen',mode:'exercise'};
+    if(p.comprehension?.done)return {step:'check'};
+    if(p.quizDone||Number(state.lessonQuizBest?.[lesson.id])>=70)return {step:'grammar',nextIncomplete:true};
+    return {step:'listen'};
+  }
   function render(opts){
     const {lesson:l,content:c,view,state}=opts,L=UI[opts.uiLang]||UI.de;
     const lesson1=opts.targetLang==='fr'&&Number(l.id)===1&&!!window.FR_A1_LESSON1;
@@ -76,6 +91,13 @@
           grammarPages.splice(grammarPages.indexOf(alphabet),1);grammarPages.unshift(alphabet);
         }
       }else grammarPages[grammarPages.length-1].html+=`<div class="lesson-pronunciation-bonus">${bonus}</div>`;
+    }
+    function remember(mode='overview'){
+      p.resume={step:activeStep,grammarIndex,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?(grammarPages[grammarIndex]?.practiceKey||grammarPracticeKey(grammarIndex)||null):null};
+      state.lastLessonId=l.id;save();
+    }
+    function drawGrammarCheck(){
+      remember('exercise');opts.renderGrammarCheck({onBack:()=>goStep('grammar-check')});
     }
     function grammarPracticeKey(i){return lesson1&&Object.keys(FR_A1_LESSON1.GROUPS)[i-1];}
     function grammarTopicDone(i){
@@ -177,8 +199,8 @@
     function drawMastery(){
       window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       if(!hasMastery)return;
-      window.A1Voice?.cancel();
-      opts.renderMastery({onBack:()=>goStep('check'),onResult:()=>{renderExtras();wireStepNav();}});
+      window.A1Voice?.cancel();remember('exercise');
+      opts.renderMastery({onBack:()=>goStep('check'),onResult:()=>{remember();renderExtras();wireStepNav();}});
     }
     function refresh(){
       document.getElementById('lessonPartStatus').innerHTML=statuses();
@@ -194,6 +216,7 @@
       }
     }
     function drawOverview(){
+      remember();
       window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       audioLayoutObserver?.disconnect();
       window.A1Voice?.cancel();
@@ -218,8 +241,8 @@
             document.getElementById('nextAudioPage').disabled=audioPage===audioPageCount-1;
           }
         };
-        document.getElementById('previousAudioPage')?.addEventListener('click',()=>{window.A1Voice?.cancel();audioPage--;updateAudioPage();});
-        document.getElementById('nextAudioPage')?.addEventListener('click',()=>{window.A1Voice?.cancel();audioPage++;updateAudioPage();});
+        document.getElementById('previousAudioPage')?.addEventListener('click',()=>{window.A1Voice?.cancel();audioPage--;updateAudioPage();remember();});
+        document.getElementById('nextAudioPage')?.addEventListener('click',()=>{window.A1Voice?.cancel();audioPage++;updateAudioPage();remember();});
         const audioRows=view.querySelector('.lesson-audio-rows');
         let audioWidth=0;
         const reserveAudioSpace=()=>{
@@ -241,7 +264,7 @@
       document.getElementById('startQuiz')?.addEventListener('click',drawQuiz);
       document.getElementById('startMasteryOverview')?.addEventListener('click',drawMastery);
       document.getElementById('nextLessonFromCheck')?.addEventListener('click',()=>l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn());
-      document.getElementById('startGrammarCheck')?.addEventListener('click',()=>opts.renderGrammarCheck({onBack:()=>goStep('grammar-check')}));
+      document.getElementById('startGrammarCheck')?.addEventListener('click',drawGrammarCheck);
       if(lesson1&&activeStep==='grammar')FR_A1_LESSON1.decorate({root:view,state,save:(done)=>save(done),speak:opts.speak,onUpdate:refreshSteps});
       if(!lesson1&&activeStep==='grammar')FR_A1_DEEPENING.decorate({root:view,lesson:l,grammarHtml:opts.grammarHtml,state,save:(done)=>save(done),speak:opts.speak,onUpdate:refreshSteps});
       expandContent(view);
@@ -255,6 +278,7 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     function drawQuiz(){
+      remember('exercise');
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
       A1ExerciseEngine.run({lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>save(),targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
@@ -264,6 +288,7 @@
       }});
     }
     function drawApplication(){
+      remember();
       window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();audioLayoutObserver?.disconnect();comparedText=null;
       const miniForm=opts.targetLang==='fr'&&l.id===3;
@@ -318,8 +343,30 @@
       opts.wireSpeakButtons();window.A1Pronunciation?.wire(view);count();refresh();
       window.scrollTo({top:0,behavior:'instant'});
     }
-    drawOverview();
+    const position=opts.resume?resumePosition(l,state):{step:'listen'};
+    activeStep=steps.some(([id])=>id===position.step)||['speak','write'].includes(position.step)?position.step:'listen';
+    grammarIndex=Number.isInteger(position.grammarIndex)?Math.max(0,Math.min(grammarPages.length-1,position.grammarIndex)):0;
+    audioPage=Number.isInteger(position.audioPage)?Math.max(0,Math.min(audioPageCount-1,position.audioPage)):0;
+    if(position.nextIncomplete&&activeStep==='grammar'){
+      const first=grammarPages.findIndex((_,i)=>!grammarTopicDone(i));
+      if(first>=0)grammarIndex=first;
+      else activeStep=lesson1&&!FR_A1_LESSON1.grammarCheckTried(state)?'grammar-check':'comprehension';
+    }
+    if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
+    else if(activeStep==='check'&&position.mode==='exercise'){
+      drawMastery();if(state.lessonCheckProgress?.[l.id]?.session)view.querySelector('#masteryStart')?.click();
+    }else if(activeStep==='grammar-check'&&position.mode==='exercise'){
+      drawGrammarCheck();if(state.lessonGrammarCheckProgress?.[1]?.session)view.querySelector('#l1GrammarStart')?.click();
+    }else if(activeStep==='speak'||activeStep==='write')drawApplication();
+    else{
+      drawOverview();
+      if(opts.resume&&activeStep==='grammar'){
+        const key=grammarPages[grammarIndex]?.practiceKey,l1key=grammarPracticeKey(grammarIndex);
+        if(key&&p.deepening?.[key]?.session)view.querySelector('.deepening-start')?.click();
+        if(l1key&&state.lessonGrammarPractice?.[1]?.[l1key]?.session)view.querySelector('.lesson1-drill-start')?.click();
+      }
+    }
   }
-  window.A1LessonFlow={render,listProgress};
+  window.A1LessonFlow={render,listProgress,resumePosition,continuation};
 })();
 
