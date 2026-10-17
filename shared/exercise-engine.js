@@ -202,7 +202,7 @@
     });
     if(heard){
       const o=shuffled(heard.o);
-      tasks.push({type:'listening',q:'Welchen Ausdruck hörst du?',o,a:o.indexOf(heard.audio),answer:heard.audio,audio:heard.audio});
+      tasks.push({type:'listening',q:'Welchen Ausdruck hörst du?',o,a:o.indexOf(heard.audio),answer:heard.audio,audio:heard.audio,explanation:lesson.phrases.find(p=>p[0]===heard.audio)?.[1]||''});
     }
     return shuffled(tasks);
   }
@@ -237,10 +237,11 @@
       if(i<ex.length){persist();draw();}else{if(progress){delete progress.session;opts.saveProgress?.();}opts.onFinish(score,ex.length);review?.attach(opts.view);}}
 
     function feedback(status,answer,audio,explanation,restoring=false){
+      if(!explanation&&opts.selectionOnly&&ex[i].type==='listening')explanation=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio))?.[1]||'';
       const ok=status==='ok',near=status==='near';
       if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio)play(audio);}
       const message=ok?L.correct:near?`${L.near} ${L.nearAnswer} ${esc(answer)}`:L.wrong+' '+esc(answer);
-      document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:L.result}</button>`;
+      document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:esc(opts.finishLabel||L.result)}</button>`;
       document.getElementById('mixedNext').onclick=next;if(!restoring)review?.attach(opts.view,true);
     }
     function draw(){

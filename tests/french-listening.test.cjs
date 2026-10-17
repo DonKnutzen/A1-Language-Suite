@@ -67,9 +67,9 @@ test('dialogue questions render separate speakers and escape markup',()=>{
 test('every initial round offers choices only, with an unheard-in-the-test phrase and close audio alternatives',()=>{
  const {dom,w,view}=environment();
  for(const lesson of w.FR_A1_DATA.lessons){
-  const tasks=w.A1ExerciseEngine.makeAuthored(lesson),heard=tasks.find(t=>t.type==='listening');assert(heard);assert(lesson.phrases.some(p=>p[0]===heard.audio));assert(!tasks.some(t=>t!==heard&&t.audio===heard.audio));assert.equal(new Set(heard.o).size,3);
+  const tasks=w.A1ExerciseEngine.makeAuthored(lesson),heard=tasks.find(t=>t.type==='listening');assert(heard);assert(lesson.phrases.some(p=>p[0]===heard.audio));assert.equal(heard.explanation,lesson.phrases.find(p=>p[0]===heard.audio)[1]);assert(!tasks.some(t=>t!==heard&&t.audio===heard.audio));assert.equal(new Set(heard.o).size,3);
   let complete=false;w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:tasks,selectionOnly:true,playAudio:()=>{},onBack:()=>{},onFinish:()=>complete=true});
-  for(const q of tasks){assert(!view.querySelector('#mixedInput,textarea,.mixed-token'));view.querySelector(`[data-o="${q.a}"]`).click();view.querySelector('#mixedNext').click();}assert(complete);
+  for(const q of tasks){assert(!view.querySelector('#mixedInput,textarea,.mixed-token'));view.querySelector(`[data-o="${q.a}"]`).click();if(q.type==='listening')assert(view.querySelector('#mixedFeedback').textContent.includes(q.explanation));view.querySelector('#mixedNext').click();}assert(complete);
  }
  dom.window.close();
 });
@@ -87,5 +87,12 @@ test('later exercise pools still allow typed gaps and retain unfinished input',(
 });
 test('introductory cloze choices retain the meaning hint that makes the missing word unambiguous',()=>{
  const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],q=w.A1ExerciseEngine.makeAuthored(lesson).find(t=>t.q==='Mon ___ est Sophie.');
- assert(q.context);w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',selectionOnly:true,exercises:[q],playAudio:()=>{},onBack:()=>{},onFinish:()=>{}});assert(view.querySelector('.mixed-context').textContent.includes(q.context));assert.equal(view.querySelectorAll('.option-btn').length,3);assert(!view.querySelector('input'));dom.window.close();
+ assert(q.context);w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',selectionOnly:true,exercises:[q],playAudio:()=>{},onBack:()=>{},onFinish:()=>{}});assert(view.querySelector('.mixed-context').textContent.includes(q.context));assert.equal(view.querySelectorAll('.option-btn').length,3);assert(!view.querySelector('input'));
+ w.eval(fs.readFileSync(path.join(root,'francais/en.js'),'utf8'));w.eval(fs.readFileSync(path.join(root,'francais/i18n.js'),'utf8'));assert.equal(w.A1FrenchI18n.translate('Weiter zur Vertiefung'),'Continue to practice & patterns');dom.window.close();
+});
+test('an already graded listening question also shows its translation when an old session is reopened',()=>{
+ const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[0],q=w.A1ExerciseEngine.makeAuthored(lesson).find(t=>t.type==='listening');delete q.explanation;
+ const progress={session:{version:97,ex:[q],i:0,score:1,response:{status:'ok',answer:q.answer,audio:q.audio},draft:'',choicePicked:q.a}};
+ w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:[q],progress,exerciseVersion:97,selectionOnly:true,finishLabel:'Weiter zur Vertiefung',playAudio:()=>{},onBack:()=>{},onFinish:()=>{}});
+ assert(view.querySelector('#mixedFeedback').textContent.includes(lesson.phrases.find(p=>p[0]===q.audio)[1]));assert.equal(view.querySelector('#mixedNext').textContent,'Weiter zur Vertiefung');assert.equal(progress.session.score,1);dom.window.close();
 });

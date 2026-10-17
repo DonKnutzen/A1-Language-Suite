@@ -1,5 +1,6 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Weiter zur Vertiefung": "Continue to practice & patterns",
   "Welchen Ausdruck hörst du?": "Which expression do you hear?",
   "Vertiefung": "Practice & patterns",
   "Begrüßen & vorstellen": "Greetings & introductions",

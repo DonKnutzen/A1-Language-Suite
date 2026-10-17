@@ -54,6 +54,8 @@ test('topic mini-tests resume, play the correct German answer and mark only thei
 test('lesson exercises and final tests retain answers after leaving without double scoring',()=>{
  const env=environment(),{w,view}=env,s=state();render(env,7,s);view.querySelector('#startQuiz').click();const p=s.lessonWork[7];answerCurrent(w,view,p.session);assert.equal(p.session.score,1);
  render(env,7,s);view.querySelector('#startQuiz').click();assert.equal(p.session.score,1);assert(view.querySelector('#mixedNext'));
+ while(p.session){if(!p.session.response)answerCurrent(w,view,p.session);if(p.session.i===9)assert.equal(view.querySelector('#mixedNext').textContent,'Continuer : approfondir');view.querySelector('#mixedNext').click();}
+ assert(view.querySelector('#lessonGrammarPage'));
  const run=()=>{w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:w.testData.lessons[6],view,state:s,save:()=>{},speak:()=>{},onBack:()=>{}});view.querySelector('#masteryStart').click();};
  run();const check=s.lessonCheckProgress[7];answerCurrent(w,view,check.session);run();assert.equal(check.session.score,1);assert(view.querySelector('#mixedNext'));view.querySelector('#mixedNext').click();assert.equal(check.session.i,1);env.dom.window.close();
 });
