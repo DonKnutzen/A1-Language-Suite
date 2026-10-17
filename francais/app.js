@@ -107,26 +107,42 @@ function setRoute(route){
 
 document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.dataset.route));
 
+let homeMilestoneObserver=null;
 function renderHome(){
+  homeMilestoneObserver?.disconnect();
   const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];
+  const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
+  const allDone=completed.length===lessons.length;
+  const example=next.phrases.find(([target])=>/[.!?]$/.test(target))||next.phrases[0];
   view.innerHTML=`
     <section class="card course-progress-card" data-streak-anchor>
       <h2>Kursfortschritt</h2>
       <p class="course-progress-caption">Deutsch → Französisch · DELF A1</p>
       <div class="course-progress-meter"><strong>${lessonPct()}<small>%</small></strong><div class="progress" role="progressbar" aria-label="Kursfortschritt" aria-valuenow="${lessonPct()}" aria-valuemin="0" aria-valuemax="100"><div style="width:${lessonPct()}%"></div></div></div>
-      <div class="course-progress-stats"><div><strong>${state.doneLessons.length}<small> / ${lessons.length}</small></strong><span>Lektionen bearbeitet</span></div><div><strong>${FR_A1_MASTERY.passedCount(state)}<small> / ${lessons.length}</small></strong><span>Lektions-Checks</span></div></div>
       ${A1Streak.render('de')}
     </section>
-    <section class="card">
-      <div class="between"><div><div class="eyebrow">WEITERLERNEN</div><h3>${esc(next.title)}</h3></div><span class="pill gray">Lektion ${next.id}</span></div>
-      <p class="muted">${esc(next.topic)} · ${next.skills.join(' · ')}</p>
-      <button class="primary-btn" id="continueLesson">Fortsetzen</button>
+    <section class="card home-continue-card" aria-labelledby="continueTitle">
+      <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':'WEITERLERNEN'}</span><span class="pill">Lektion ${next.id}</span></div>
+      <h2 id="continueTitle">${esc(next.title)}</h2>
+      <div class="home-learning-goal"><span class="home-detail-label">Dein Lernziel</span><p>${esc(next.canDo[0])}</p></div>
+      ${example?`<div class="home-lesson-example"><span class="home-detail-label">Zum Beispiel</span><strong lang="fr" data-i18n-ignore>${esc(example[0])}</strong><span>${esc(example[1])}</span></div>`:''}
+      <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':'Fortsetzen'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
-    <section class="card">
-      <div class="between"><h3>Prüfungsreife</h3><span class="pill gray">${state.bestMock}% bester Schnelltest</span></div>
-      ${['Hören','Lesen','Schreiben','Sprechen'].map(skillBar).join('')}
+    <section class="card home-milestones" aria-labelledby="milestoneTitle">
+      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Das hast du schon gelernt':'Dein erster Schritt zählt'}</h2></div>
+      ${completed.length?`<ul class="home-milestone-list">${completed.slice(-3).map(l=>`<li><strong>${esc(l.title)}</strong><p>${esc(l.canDo[0])}</p></li>`).join('')}</ul><p class="home-milestone-note">Darauf kannst du aufbauen. Weiter so!</p><button class="home-lessons-link" id="homeCompletedLessons">Deine Lektionen ansehen <span aria-hidden="true">→</span></button>`:'<p class="home-milestone-note">Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.</p>'}
     </section>`;
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
+  document.getElementById('homeCompletedLessons')?.addEventListener('click',()=>setRoute('learn'));
+  const milestones=view.querySelector('.home-milestones');
+  if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    milestones.classList.add('is-waiting');
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){milestones.classList.remove('is-waiting');observer.disconnect();}
+    },{threshold:.12});
+    homeMilestoneObserver=observer;
+    observer.observe(milestones);
+  }
 }
 
 function renderLearn(){

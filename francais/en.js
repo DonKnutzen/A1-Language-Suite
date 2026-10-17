@@ -1,5 +1,15 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Dein Lernziel": "Your learning goal",
+  "Zum Beispiel": "For example",
+  "WIEDERHOLEN": "REVIEW",
+  "Weiter üben": "Keep practising",
+  "Das hast du schon gelernt": "What you have already learned",
+  "Dein erster Schritt zählt": "Your first step counts",
+  "Darauf kannst du aufbauen. Weiter so!": "Build on what you have learned. Keep going!",
+  "Deine Lektionen ansehen": "View your lessons",
+  "Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.": "After completing your first lesson, you will see what you have learned here.",
+
   "Abreise": "Departure",
   "Alter": "Age",
   "Alter des Bruders": "Brother’s age",
