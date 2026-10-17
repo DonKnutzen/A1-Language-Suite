@@ -873,6 +873,7 @@ applyTheme();
     let mode = 'login';
 
     function wireLang(){
+      window.A1TextSize?.wire(ov);
       ov.querySelectorAll('[data-plang]').forEach(b => b.onclick = () => {
         lang = cleanLang(b.dataset.plang);
         setUiLang(lang).catch(() => {});
@@ -885,6 +886,7 @@ applyTheme();
         const cloudMode = cloudConfigured && current.mode === 'cloud';
         ov.innerHTML = `<div class="profile-modal">
           ${languageSelector(lang)}
+          ${window.A1TextSize?.selector(lang)||''}
           <h2>${tr('profile',lang)}</h2>
           <p>${tr('signedInAs',lang)} <strong>${escapeHtml(current.username)}</strong>.</p>
           <div class="profile-note">${cloudMode ? tr('cloudActive',lang) : tr('localActive',lang)}</div>
@@ -932,6 +934,7 @@ applyTheme();
       const R=recoveryText(lang);
       ov.innerHTML = `<div class="profile-modal">
         ${languageSelector(lang)}
+          ${window.A1TextSize?.selector(lang)||''}
         <h2>${tr('learningProfile',lang)}</h2>
         <p>${tr('intro',lang)}</p>
         <div class="profile-tabs">
