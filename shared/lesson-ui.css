@@ -152,3 +152,13 @@ html.dark-mode .primary-btn.exercise-start-btn.is-completed{background:#163125;c
 .option-btn.answer-success,.mixed-input.answer-success,.mixed-order-answer.answer-success,.comprehension-choice input+span.is-correct.answer-success{border-color:#22c55e;background:var(--success-soft);box-shadow:0 0 0 1px #22c55e60,0 0 13px #22c55e30;animation:answer-success-pulse .48s ease-out}
 @keyframes answer-success-pulse{0%{transform:scale(.985);box-shadow:0 0 0 0 #22c55e00,0 0 0 #22c55e00}55%{transform:scale(1.01);box-shadow:0 0 0 3px #22c55e35,0 0 22px #22c55e70}100%{transform:scale(1);box-shadow:0 0 0 1px #22c55e60,0 0 13px #22c55e30}}
 @media(prefers-reduced-motion:reduce){.answer-success{animation:none!important}}
+
+/* Practised tasks keep a clear checked state; the next step becomes the main action. */
+html .exercise-start-btn.is-completed,html .lesson-finale-btn.is-completed{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--success-soft);color:var(--success);border:1px solid var(--success);font-weight:750}
+.exercise-start-btn.is-completed:not(:has(.exercise-completed-mark))::before,.lesson-finale-btn.is-completed::before{content:'✓';display:inline-grid;place-items:center;flex:none;width:25px;height:25px;border-radius:50%;background:var(--success);color:white}
+html.dark-mode .exercise-start-btn.is-completed,html.dark-mode .lesson-finale-btn.is-completed{background:#163125;color:#86efac;border-color:#4ade80}
+.primary-btn.lesson-next-ready{background:linear-gradient(110deg,#2563eb,#5359ed);border:1px solid #9dc5ff;box-shadow:0 0 22px #60a5fa8c,0 7px 26px #2563eb66;font-weight:800;animation:lesson-next-in .6s ease-out}
+@keyframes lesson-next-in{from{box-shadow:0 0 0 #3b82f600}to{box-shadow:0 0 22px #60a5fa8c,0 7px 26px #2563eb66}}
+@media(prefers-reduced-motion:reduce){.primary-btn.lesson-next-ready{animation:none}}
+
+.primary-btn.lesson-next-ready{min-height:48px}

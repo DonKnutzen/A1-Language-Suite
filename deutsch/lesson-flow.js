@@ -111,7 +111,12 @@
     function stepHead(){
       return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
+    function refreshNextAction(){
+      const ready=activeStep==='grammar'?grammarTopicDone(grammarIndex):activeStep==='listen'?p.quizDone===true:stepDone(activeStep);
+      view.querySelectorAll('#nextGrammarTopic,#nextLessonStep').forEach(button=>button.classList.toggle('lesson-next-ready',ready));
+    }
     function refreshSteps(){
+      refreshNextAction();
       const nav=view.querySelector('.lesson-step-nav');if(nav){view.querySelector('.lesson-step-context')?.remove();nav.outerHTML=stepNav();}wireStepNav();
       view.querySelectorAll('[data-grammar-progress]').forEach(segment=>{
         const i=Number(segment.dataset.grammarProgress),done=grammarTopicDone(i);
@@ -128,7 +133,7 @@
       return `<div class="lesson-step-footer">${i?'<button class="secondary-btn" id="previousLessonStep">← Retour</button>':''}${next?`<button class="primary-btn" id="nextLessonStep">Suivant : ${esc(next[1])} →</button>`:''}</div>`;
     }
     function wireStepFooter(){
-      document.getElementById('backLearn').onclick=opts.renderLearn;wireStepNav();
+      document.getElementById('backLearn').onclick=opts.renderLearn;wireStepNav();refreshNextAction();
       const i=steps.findIndex(([key])=>key===activeStep);
       document.getElementById('previousGrammarTopic')?.addEventListener('click',()=>goGrammarTopic(grammarIndex-1));
       document.getElementById('nextGrammarTopic')?.addEventListener('click',()=>goGrammarTopic(grammarIndex+1));
@@ -208,10 +213,10 @@
       const heardSet=new Set(p.heardPhrases);
       const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} écoutés</small></div><div class="lesson-audio-rows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="tiny-btn" id="previousAudioPage" aria-label="Exemples précédents">←</button><small id="audioPageStatus" aria-live="polite"></small><button type="button" class="tiny-btn" id="nextAudioPage" aria-label="Exemples suivants">→</button></div>`:''}</section>`;
       let body='';
-      if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Meilleur résultat : ${best()} %</p>`:''}<button class="primary-btn exercise-start-btn ${p.quizDone?'is-completed':''}" id="startQuiz">${p.quizDone?`<span class="exercise-completed-mark" aria-hidden="true">✓</span><span class="exercise-entry-copy"><span>10 questions terminées</span><small>${p.session?'Continuer les exercices':'Refaire les exercices'} ↻</small></span>`:p.session?'Continuer les exercices':'Exercices de la leçon · 10 questions'}</button></div></section>`;
+      if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Meilleur résultat : ${best()} %</p>`:''}<button class="primary-btn exercise-start-btn ${p.quizDone?'is-completed':''}" id="startQuiz">${p.quizDone?`<span class="exercise-completed-mark" aria-hidden="true">✓</span><span class="exercise-entry-copy"><span>10 questions terminées</span><small>Refaire les exercices ↻</small></span>`:p.session?'Continuer les exercices':'Exercices de la leçon · 10 questions'}</button></div></section>`;
       if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Progression en grammaire">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · terminé':''}${i===grammarIndex?' · actuel':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thème ${grammarIndex+1} / ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${grammarPages[grammarIndex].html}</div></section>`;
-      if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Test final</h3><p class="muted">${DE_A1_ASSESSMENTS.grammarCheckTasks().length} questions sur les pronoms et le présent : sein, kommen, wohnen, arbeiten, heißen et sprechen.</p>${DE_A1_ASSESSMENTS.grammarCheckTried(state)?`<p class="muted">Meilleur résultat : ${DE_A1_ASSESSMENTS.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn" id="startGrammarCheck">${DE_A1_ASSESSMENTS.grammarCheckTasks().length} questions · Commencer</button></section>`;
-      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryAttempted()?'Refaire le bilan':'Commencer le bilan'}</button>${!checkReady()?`<p class="muted">Termine les exercices de vocabulaire et la compréhension orale pour commencer le bilan.</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
+      if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Test final</h3><p class="muted">${DE_A1_ASSESSMENTS.grammarCheckTasks().length} questions sur les pronoms et le présent : sein, kommen, wohnen, arbeiten, heißen et sprechen.</p>${DE_A1_ASSESSMENTS.grammarCheckTried(state)?`<p class="muted">Meilleur résultat : ${DE_A1_ASSESSMENTS.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${DE_A1_ASSESSMENTS.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${DE_A1_ASSESSMENTS.grammarCheckTasks().length} questions · Commencer</button></section>`;
+      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryAttempted()?'is-completed':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryAttempted()?'Refaire le bilan':'Commencer le bilan'}</button>${!checkReady()?`<p class="muted">Termine les exercices de vocabulaire et la compréhension orale pour commencer le bilan.</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
       if(activeStep==='comprehension')body='<div id="lessonComprehension"></div>';
       view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
       if(activeStep==='check')renderExtras();
@@ -246,7 +251,7 @@
         });
         audioLayoutObserver.observe(audioRows);
       }
-      document.getElementById('startQuiz')?.addEventListener('click',drawQuiz);
+      document.getElementById('startQuiz')?.addEventListener('click',()=>{if(p.quizDone)delete p.session;drawQuiz();});
       document.getElementById('startMasteryOverview')?.addEventListener('click',drawMastery);
       document.getElementById('nextLessonFromCheck')?.addEventListener('click',()=>l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn());
       document.getElementById('startGrammarCheck')?.addEventListener('click',drawGrammarCheck);
@@ -342,7 +347,7 @@
       drawOverview();
       if(opts.resume&&activeStep==='grammar'){
         const key=grammarPracticeKey(grammarIndex);
-        if(key&&state.lessonGrammarPractice?.[l.id]?.[key]?.session)view.querySelector('#topicPracticeStart')?.click();
+        if(key&&state.lessonGrammarPractice?.[l.id]?.[key]?.session)view.querySelector('#topicPracticeStart')?.onclick?.({resume:true});
       }
     }
   }

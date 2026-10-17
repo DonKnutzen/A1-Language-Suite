@@ -27,8 +27,9 @@
     const panel=document.createElement('div');panel.className='lesson-grammar-practice deepening-practice';root.querySelector('#lessonGrammarPage').append(panel);
     const current=bucket(state,lesson.id,practice.key);
     function intro(){
-      panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':practice.tasks.length+' exercices'}</small></div><button class="soft-btn exercise-start-btn" id="topicPracticeStart">${current.session?'Continuer les exercices':current.done?'Refaire les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
-      panel.querySelector('#topicPracticeStart').onclick=()=>{
+      panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':practice.tasks.length+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
+      panel.querySelector('#topicPracticeStart').onclick=event=>{
+        if(current.done&&!event?.resume)delete current.session;
         onStart?.();
         panel.querySelector('#topicPracticeStart').hidden=true;
         runTasks({tasks:practice.tasks,view:panel.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:current,save,lessonId:lesson.id,step:'grammar',compact:true,onFinish:(score,total)=>{
@@ -67,7 +68,7 @@
   function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
     state.lessonCheckProgress||={};const session=state.lessonCheckProgress[lesson.id]||={};
     function intro(){
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Leçon</button><span class="pill">BILAN DE LA LEÇON</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn" id="masteryStart">${session.session?'Continuer le bilan':'Commencer les '+testCount(lesson.id)+' questions'}</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Leçon</button><span class="pill">BILAN DE LA LEÇON</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${session.session?'Continuer le bilan':'Commencer les '+testCount(lesson.id)+' questions'}</button></section>`;
       view.querySelector('#masteryBackIntro').onclick=onBack;
       view.querySelector('#masteryStart').onclick=()=>runTasks({tasks:makeLessonTest(lesson),view,title:lesson.title,onBack:intro,speak,session,save,lessonId:lesson.id,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;

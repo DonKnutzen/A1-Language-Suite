@@ -1804,8 +1804,9 @@ function skillBar(name,emoji){const p=skillPct(name);const labels={
 };
                               return `<div class="skill-row"><strong>${emoji} ${labels[name]||name}</strong><div class="progress"><div style="width:${p}%"></div></div><span>${p}%</span></div>`;}
 
-let homeMilestoneObserver=null,homeCarouselCleanup=null;
+let homeMilestoneObserver=null,homeCarouselCleanup=null,homeOakCleanup=null;
 function stopHomeMotion(){
+  homeOakCleanup?.();homeOakCleanup=null;
   homeMilestoneObserver?.disconnect();homeMilestoneObserver=null;
   homeCarouselCleanup?.();homeCarouselCleanup=null;
 }
@@ -1851,9 +1852,9 @@ function renderHome(){
   const allDone=completed.length===lessons.length;
   view.innerHTML=`
     <section class="card course-progress-card" data-streak-anchor>
-      <h2>Progression du cours</h2>
+      <h2>Ton chêne</h2>
       <p class="course-progress-caption">Français → Allemand · Goethe A1</p>
-      <div class="course-progress-meter"><strong>${lessonPct()}<small>%</small></strong><div class="progress" role="progressbar" aria-label="Progression du cours" aria-valuenow="${lessonPct()}" aria-valuemin="0" aria-valuemax="100"><div style="width:${lessonPct()}%"></div></div></div>
+      ${A1LearningOak.render({percent:lessonPct(),lang:'fr',course:'deutsch-a1'})}
       ${A1Streak.render('fr',{showEmpty:true})}
     </section>
     <section class="card home-continue-card" aria-labelledby="continueTitle">
@@ -1868,6 +1869,7 @@ function renderHome(){
       ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="off">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?'<button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Afficher le prochain acquis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>':''}</div><div class="home-milestone-footer"><p class="home-milestone-note">Bravo, continue comme ça !</p>${completed.length>1?`<small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small>`:''}</div>`:'<p class="home-milestone-note">Après ta première leçon terminée, tu retrouveras ici ce que tu as appris.</p>'}
     </section>`;
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
+  homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
   const milestones=view.querySelector('.home-milestones');
   homeCarouselCleanup=startHomeCarousel(milestones);
   if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){

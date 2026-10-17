@@ -103,6 +103,6 @@ test('dialogues start at normal speed, remember 75% per lesson and stop old play
 test('completed introductory rounds have a visible check and distinct repeat action in both courses',()=>{
  for(const course of ['francais','deutsch']){
   const env=environment(course),s={doneLessons:[],lessonQuizBest:{},lessonWork:{}};flow(env,3,s);assert(!env.view.querySelector('#startQuiz').classList.contains('is-completed'));
-  s.lessonWork[3].quizDone=true;s.lessonQuizBest[3]=80;flow(env,3,s);const button=env.view.querySelector('#startQuiz');assert(button.classList.contains('is-completed'));assert.equal(button.querySelector('.exercise-completed-mark').textContent,'✓');assert(button.textContent.includes(course==='francais'?'10 Aufgaben abgeschlossen':'10 questions terminées'));assert(button.querySelector('small').textContent.includes(course==='francais'?'Noch einmal':'Refaire'));env.dom.window.close();
+  s.lessonWork[3].quizDone=true;s.lessonQuizBest[3]=80;flow(env,3,s);const button=env.view.querySelector('#startQuiz');assert(button.classList.contains('is-completed'));assert(env.view.querySelector('#nextLessonStep').classList.contains('lesson-next-ready'));assert.equal(button.querySelector('.exercise-completed-mark').textContent,'✓');assert(button.textContent.includes(course==='francais'?'10 Aufgaben abgeschlossen':'10 questions terminées'));assert(button.querySelector('small').textContent.includes(course==='francais'?'Übung wiederholen':'Refaire'));env.dom.window.close();
  }
 });

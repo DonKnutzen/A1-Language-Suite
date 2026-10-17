@@ -141,8 +141,8 @@
     root.querySelectorAll('[data-deepening-practice]').forEach(panel=>{
       const pool=available.find(u=>u.key===panel.dataset.deepeningPractice);if(!pool?.tasks.length)return;
       const done=topicDone(state,lesson.id,pool.key);
-      panel.innerHTML=`<div class="between"><strong>Direkt üben</strong><small>${done?'✓ geübt':Math.min(6,pool.tasks.length)+' kurze Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn deepening-start">${state.lessonWork?.[lesson.id]?.deepening?.[pool.key]?.session?'Übung fortsetzen':done?'Noch einmal üben':'Mini-Test starten'}</button><div class="deepening-stage grammar-drill-stage"></div>`;
-      panel.querySelector('.deepening-start').onclick=()=>run(panel,pool,{lesson,state,save,speak,onUpdate});
+      panel.innerHTML=`<div class="between"><strong>Direkt üben</strong><small>${done?'✓ geübt':Math.min(6,pool.tasks.length)+' kurze Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn deepening-start ${done?'is-completed':''}">${done?'Übung wiederholen':state.lessonWork?.[lesson.id]?.deepening?.[pool.key]?.session?'Übung fortsetzen':'Mini-Test starten'}</button><div class="deepening-stage grammar-drill-stage"></div>`;
+      panel.querySelector('.deepening-start').onclick=event=>{if(done&&!event?.resume)delete state.lessonWork[lesson.id].deepening[pool.key].session;run(panel,pool,{lesson,state,save,speak,onUpdate});};
     });
   }
   function run(panel,pool,{lesson,state,save,speak,onUpdate}){
@@ -164,7 +164,7 @@
       work.deepening[pool.key]={done:true,last:score,best:Math.max(old.best||0,score),total:questions.length,seen:[...new Set([...(old.seen||[]),...questions.map(q=>q.q)])]};
       save(true);onUpdate?.();
       panel.querySelector('.between small').textContent='✓ geübt';
-      stage.innerHTML=`<div class="deepening-result"><strong>${score} / ${questions.length} richtig</strong>${mistakes.length?`<p class="muted">Wiederhole diese Bausteine:</p>${mistakes.map(q=>`<p>${esc(q.answer)}</p>`).join('')}`:`<p class="muted">Gut vorbereitet für die nächste Aufgabe.</p>`}<button type="button" class="soft-btn exercise-start-btn deepening-repeat">Noch einmal üben</button></div>`;
+      stage.innerHTML=`<div class="deepening-result"><strong>${score} / ${questions.length} richtig</strong>${mistakes.length?`<p class="muted">Wiederhole diese Bausteine:</p>${mistakes.map(q=>`<p>${esc(q.answer)}</p>`).join('')}`:`<p class="muted">Gut vorbereitet für die nächste Aufgabe.</p>`}<button type="button" class="soft-btn exercise-start-btn deepening-repeat is-completed">Noch einmal üben</button></div>`;
       stage.querySelector('.deepening-repeat').onclick=()=>run(panel,pool,{lesson,state,save,speak,onUpdate});review?.attach(stage);
     }
     function draw(){

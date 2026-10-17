@@ -23,7 +23,7 @@
     const button=root.querySelector('#dialogueCheck'),play=root.querySelector('#dialoguePlay'),speaker=root.querySelector('#dialogueSpeaker');
     const inputs=[...root.querySelectorAll('[data-comprehension-answer]')];
     const update=()=>{
-      button.textContent=p.graded?L.next:L.check;button.disabled=!p.graded&&!p.answers.every(Boolean);
+      button.textContent=p.graded?L.next:L.check;button.classList.toggle('lesson-next-ready',!!p.graded);button.disabled=!p.graded&&!p.answers.every(Boolean);
       root.querySelector('#dialogueRetry').hidden=!p.graded;
       root.querySelector('#dialogueAnswered').textContent=`${p.answers.filter(Boolean).length} / ${data.fields.length}`;
       inputs.forEach(input=>{

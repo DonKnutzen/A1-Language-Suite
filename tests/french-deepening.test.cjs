@@ -73,7 +73,7 @@ test('inline answers always play the correct French audio and completion updates
     else break;
   }
   assert.equal(count,6);assert(saves.length);assert(state.lessonWork[4].deepening.u0.done);assert(view.querySelector('[data-grammar-progress="0"]').classList.contains('done'));assert(!view.querySelector('[data-grammar-progress="1"]').classList.contains('done'));assert.equal(state.doneLessons.length,0);
-  view.querySelector('[data-grammar-progress="1"]').click();view.querySelector('[data-grammar-progress="0"]').click();assert(view.querySelector('.deepening-start').textContent.includes('Noch einmal'));
+  view.querySelector('[data-grammar-progress="1"]').click();view.querySelector('[data-grammar-progress="0"]').click();assert(view.querySelector('.deepening-start').textContent.includes('Übung wiederholen'));
   dom.window.close();
 });
 test('writing and speaking models meet the actual requested length and task points',()=>{

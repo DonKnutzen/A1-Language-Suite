@@ -101,8 +101,8 @@
   function renderPanel(panel,key,{state,save,speak,onUpdate}){
     const group=GROUPS[key],saved=groupState(state,key);
     const status=saved.done?'<span class="pill green">✓ geübt</span>':'<span class="pill gray">12 Aufgaben</span>';
-    panel.innerHTML=`<div class="between"><div><strong>Direkt üben: ${esc(group.title)}</strong><small>${esc(group.subtitle)}</small></div>${status}</div><p class="muted">Alle Personen einmal aktiv anwenden – ohne Bestehensdruck.</p><button class="soft-btn exercise-start-btn lesson1-drill-start">${saved.session?'Übung fortsetzen':saved.done?'12 Aufgaben wiederholen':'12 Formaufgaben starten'}</button><div class="lesson1-drill-stage"></div>`;
-    panel.querySelector('.lesson1-drill-start').onclick=()=>runInline(panel,key,{state,save,speak,onUpdate});
+    panel.innerHTML=`<div class="between"><div><strong>Direkt üben: ${esc(group.title)}</strong><small>${esc(group.subtitle)}</small></div>${status}</div><p class="muted">Alle Personen einmal aktiv anwenden – ohne Bestehensdruck.</p><button class="soft-btn exercise-start-btn lesson1-drill-start ${saved.done?'is-completed':''}">${saved.done?'Übung wiederholen':saved.session?'Übung fortsetzen':'12 Formaufgaben starten'}</button><div class="lesson1-drill-stage"></div>`;
+    panel.querySelector('.lesson1-drill-start').onclick=event=>{if(saved.done&&!event?.resume)delete saved.session;runInline(panel,key,{state,save,speak,onUpdate});};
   }
 
   function runInline(panel,key,{state,save,speak,onUpdate}){
@@ -116,7 +116,7 @@
       const s=ensureState(state),old=s[key]||{};s[key]={done:true,last:score,best:Math.max(Number(old.best||0),score),total:tasks.length};
       save(true);onUpdate?.();
       const statusPill=panel.querySelector('.between .pill');if(statusPill){statusPill.className='pill green';statusPill.textContent='✓ geübt';}
-      stage.innerHTML=`<div class="lesson1-drill-finish"><strong>✓ ${tasks.length}/${tasks.length} geübt</strong><span>${score} richtig</span><button class="soft-btn exercise-start-btn lesson1-drill-repeat">Noch einmal</button></div>`;
+      stage.innerHTML=`<div class="lesson1-drill-finish"><strong>✓ ${tasks.length}/${tasks.length} geübt</strong><span>${score} richtig</span><button class="soft-btn exercise-start-btn lesson1-drill-repeat is-completed">Noch einmal</button></div>`;
       stage.querySelector('.lesson1-drill-repeat').onclick=()=>{renderPanel(panel,key,{state,save,speak,onUpdate});runInline(panel,key,{state,save,speak,onUpdate});};review?.attach(stage);
     }
     function draw(){
@@ -163,7 +163,7 @@
     function persist(){progress.session={version:1,tasks,i,score,response,order};save();}
     function intro(){
       const b=grammarCheckBest(state),tried=grammarCheckTried(state);
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">ABSCHLUSS-TEST</span></div><section class="card" style="margin-top:12px"><h2>Abschluss-Test</h2><p class="muted">12 Fragen aus être, habiter/parler, venir und s’appeler. Die Auswahl wechselt bei jedem Durchlauf.</p>${tried?`<p><strong>Bestwert:</strong> ${b} %</p>`:''}<button class="primary-btn exercise-start-btn" id="l1GrammarStart">${resume?'Test fortsetzen':'12 Fragen starten'}</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="l1GrammarBack">← Lektion</button><span class="pill">ABSCHLUSS-TEST</span></div><section class="card" style="margin-top:12px"><h2>Abschluss-Test</h2><p class="muted">12 Fragen aus être, habiter/parler, venir und s’appeler. Die Auswahl wechselt bei jedem Durchlauf.</p>${tried?`<p><strong>Bestwert:</strong> ${b} %</p>`:''}<button class="primary-btn exercise-start-btn ${tried?'is-completed':''}" id="l1GrammarStart">${tried?'Abschluss-Test wiederholen':resume?'Test fortsetzen':'12 Fragen starten'}</button></section>`;
       document.getElementById('l1GrammarBack').onclick=onBack;document.getElementById('l1GrammarStart').onclick=draw;
     }
     function draw(){

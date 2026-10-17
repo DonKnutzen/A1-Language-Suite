@@ -1,5 +1,14 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Deine Eiche": "Your oak",
+  "Samen": "Acorn",
+  "Keimling": "Sprout",
+  "Junge Eiche": "Young oak",
+  "Wachsende Eiche": "Growing oak",
+  "Kräftige Eiche": "Strong oak",
+  "Ausgewachsen": "Fully grown",
+  "Übung wiederholen ↻": "Repeat exercise ↻",
+  "Übung wiederholen": "Repeat exercise",
   "10 Aufgaben abgeschlossen": "10 exercises completed",
   "Sprechgeschwindigkeit": "Playback speed",
   "Normales Tempo": "Normal speed",

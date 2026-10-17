@@ -128,7 +128,7 @@
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
       document.getElementById('masteryStart').onclick=()=>runTasks({progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
