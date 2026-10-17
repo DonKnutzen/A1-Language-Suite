@@ -1,5 +1,10 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Junger Baum": "Young tree",
+  "Wachsender Baum": "Growing tree",
+  "Kräftiger Baum": "Strong tree",
+  "Dein Baum": "Your tree",
+  "Wächst mit jeder abgeschlossenen Lektion.": "Grows with every completed lesson.",
   "Deine Eiche": "Your oak",
   "Samen": "Acorn",
   "Keimling": "Sprout",

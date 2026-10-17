@@ -3,7 +3,7 @@
  'use strict';
  let sequence=0;
  const clamp=n=>Math.max(0,Math.min(100,Number(n)||0));
- const words={de:{title:'Deine Eiche',stages:['Samen','Keimling','Junge Eiche','Wachsende Eiche','Kräftige Eiche','Ausgewachsen'],progress:'Kursfortschritt'},fr:{title:'Ton chêne',stages:['Gland','Jeune pousse','Jeune chêne','Le chêne grandit','Chêne vigoureux','Chêne adulte'],progress:'Progression du cours'},en:{title:'Your oak',stages:['Acorn','Sprout','Young oak','Growing oak','Strong oak','Fully grown'],progress:'Course progress'}};
+ const words={de:{title:'Dein Baum',stages:['Samen','Keimling','Junger Baum','Wachsender Baum','Kräftiger Baum','Ausgewachsen'],progress:'Kursfortschritt'},fr:{title:'Ton arbre',stages:['Graine','Jeune pousse','Jeune arbre','L’arbre grandit','Arbre vigoureux','Arbre adulte'],progress:'Progression du cours'},en:{title:'Your tree',stages:['Seed','Sprout','Young tree','Growing tree','Strong tree','Fully grown'],progress:'Course progress'}};
  const langFor=lang=>lang==='de'&&window.A1Profile?.getUiLang?.()==='en'?'en':lang;
  const stage=p=>p===0?0:p<15?1:p<35?2:p<60?3:p<100?4:5;
  const grow=(p,start,duration)=>Math.max(0,Math.min(1,(p-start)/duration));
@@ -58,7 +58,7 @@
   root.querySelectorAll('[data-oak-leaves]').forEach(node=>node.setAttribute('transform',leafTransform(branches[+node.dataset.oakLeaves],p,+node.dataset.oakLeaves)));
   const tip=geometry(branches[0],p).end,bud=root.querySelector('[data-oak-bud]'),seed=root.querySelector('[data-oak-seed]');
   bud.setAttribute('transform',`translate(${tip.map(fmt)}) scale(${.6+.4*Math.min(1,p/15)})`);bud.setAttribute('opacity',p>0?1-grow(p,16,17):0);
-  seed.setAttribute('transform',`translate(210 190) scale(${1.25-.7*Math.min(1,p/25)})`);seed.setAttribute('opacity',1-grow(p,4,23));
+  seed.setAttribute('transform',`translate(210 190) scale(${1.25-.7*Math.min(1,p/25)})`);seed.setAttribute('opacity',1-grow(p,0,2));
   root.querySelector('.oak-roots').setAttribute('opacity',.12+.5*p/100);
  }
  function labels(root){
