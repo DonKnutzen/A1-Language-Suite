@@ -883,18 +883,6 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 .lesson-pronunciation-bonus p{font-size:12px;line-height:1.45;margin:6px 0;color:var(--muted)}
 .lesson-pronunciation-bonus .pronunciation-words{display:flex;flex-wrap:wrap;gap:6px}
 .lesson-pronunciation-bonus .pronunciation-word{width:auto;padding:7px 10px;font-size:12px;min-height:32px;border-radius:9px}
-.course-progress-card h2{font-size:20px;margin:0 0 5px}
-.course-progress-card:has(.a1-streak-badge:not([hidden])) h2{padding-right:90px}
-.course-progress-caption{font-size:12px;color:var(--muted);margin:0 0 16px}
-.course-progress-meter{display:flex;align-items:center;gap:18px;margin:0 0 18px}
-.course-progress-meter>strong{font-size:32px;font-weight:750;letter-spacing:-.04em;line-height:1}
-.course-progress-meter>strong small{font-size:16px;margin-left:2px;letter-spacing:0;color:var(--muted)}
-.course-progress-meter .progress{flex:1;height:8px;margin:0;border-radius:20px}
-.course-progress-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:13px;border-top:1px solid var(--line)}
-.course-progress-stats>div{display:flex;flex-direction:column;gap:4px}
-.course-progress-stats strong{font-size:20px;font-weight:700}
-.course-progress-stats strong small{font-size:13px;font-weight:400;color:var(--muted)}
-.course-progress-stats span{font-size:12px;color:var(--muted)}
 
 /* Compact topic navigation and clear spacing before the final check. */
 .lesson-mastery-intro.compact{margin:0 0 16px}

@@ -1,10 +1,10 @@
-/* Short A1 dialogues: four facts selected without typing. */
+/* Six short listening questions per lesson, aligned with the taught communicative goals. */
 window.A1_COMPREHENSION_CONTENT = {
   "1": {
     "turns": [
       {
         "speaker": "A",
-        "text": "Bonjour, je m’appelle Léa. J’habite à Lyon. Et vous ?"
+        "text": "Bonjour, je m’appelle Léa. Je viens d’Allemagne et j’habite à Lyon. Et vous ?"
       },
       {
         "speaker": "B",
@@ -17,6 +17,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Oui, et un peu allemand."
+      },
+      {
+        "speaker": "A",
+        "text": "Comment allez-vous ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Ça va bien, merci. Au revoir !"
       }
     ],
     "fields": [
@@ -55,6 +63,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "français et un peu anglais"
         ],
         "answer": "français et un peu allemand"
+      },
+      {
+        "label": "Herkunft von Léa",
+        "options": [
+          "de France",
+          "d’Allemagne",
+          "du Canada"
+        ],
+        "answer": "d’Allemagne"
+      },
+      {
+        "label": "Wie geht es Paul?",
+        "options": [
+          "mal",
+          "très mal",
+          "bien"
+        ],
+        "answer": "bien"
       }
     ]
   },
@@ -75,6 +101,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Morel. M, O, R, E, L. Vous pouvez parler plus lentement, s’il vous plaît ?"
+      },
+      {
+        "speaker": "A",
+        "text": "Bien sûr. Mon prénom est François : F, R, A, N, C cédille, O, I, S."
+      },
+      {
+        "speaker": "B",
+        "text": "Vous pouvez répéter votre prénom, s’il vous plaît ?"
       }
     ],
     "fields": [
@@ -97,7 +131,7 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "Morel"
       },
       {
-        "label": "Seine Bitte",
+        "label": "Erste Bitte von Lucas",
         "options": [
           "parler plus fort",
           "parler plus lentement",
@@ -113,6 +147,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "M"
         ],
         "answer": "M"
+      },
+      {
+        "label": "Vorname von Person A",
+        "options": [
+          "Francis",
+          "François",
+          "Franck"
+        ],
+        "answer": "François"
+      },
+      {
+        "label": "Besonderer Buchstabe in diesem Vornamen",
+        "options": [
+          "é",
+          "è",
+          "ç"
+        ],
+        "answer": "ç"
       }
     ]
   },
@@ -132,7 +184,15 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Non, zéro sept. Mon code postal est B3V 1L2."
+        "text": "Non, zéro sept, quatre-vingt-douze, trente, vingt et un, quinze. Mon code postal est B3V 1L2."
+      },
+      {
+        "speaker": "A",
+        "text": "Et votre date de naissance ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Je suis né le dix-sept avril."
       }
     ],
     "fields": [
@@ -171,6 +231,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "trente-six ans"
         ],
         "answer": "trente-deux ans"
+      },
+      {
+        "label": "Zweites Zahlenpaar der Telefonnummer",
+        "options": [
+          "quatre-vingt-deux",
+          "quatre-vingt-douze",
+          "soixante-douze"
+        ],
+        "answer": "quatre-vingt-douze"
+      },
+      {
+        "label": "Geburtstag von Person B",
+        "options": [
+          "le sept avril",
+          "le dix-sept mai",
+          "le dix-sept avril"
+        ],
+        "answer": "le dix-sept avril"
       }
     ]
   },
@@ -190,7 +268,15 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Oui, mercredi à quinze heures trente, devant la bibliothèque."
+        "text": "Oui, mercredi, le premier juillet, à quinze heures trente, devant la bibliothèque."
+      },
+      {
+        "speaker": "A",
+        "text": "Et jeudi, vous êtes libre le matin ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Non, seulement le soir."
       }
     ],
     "fields": [
@@ -229,6 +315,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "seize heures trente"
         ],
         "answer": "quinze heures"
+      },
+      {
+        "label": "Datum des vereinbarten Termins",
+        "options": [
+          "le premier juin",
+          "le premier juillet",
+          "le deux juillet"
+        ],
+        "answer": "le premier juillet"
+      },
+      {
+        "label": "Wann ist Person B am Donnerstag frei?",
+        "options": [
+          "le matin",
+          "l’après-midi",
+          "le soir"
+        ],
+        "answer": "le soir"
       }
     ]
   },
@@ -240,7 +344,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Oui, un frère et deux sœurs. Mon frère s’appelle Paul."
+        "text": "Oui, un frère et deux sœurs. Mon frère s’appelle Paul. Il est calme."
       },
       {
         "speaker": "A",
@@ -249,6 +353,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, Léa, c’est ma mère. Mon père s’appelle Marc."
+      },
+      {
+        "speaker": "A",
+        "text": "Comment est ta mère ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Elle est sympa."
       }
     ],
     "fields": [
@@ -287,6 +399,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "mon père"
         ],
         "answer": "mon père"
+      },
+      {
+        "label": "Eigenschaft von Paul",
+        "options": [
+          "sympa",
+          "petit",
+          "calme"
+        ],
+        "answer": "calme"
+      },
+      {
+        "label": "Eigenschaft der Mutter",
+        "options": [
+          "sympa",
+          "petite",
+          "calme"
+        ],
+        "answer": "sympa"
       }
     ]
   },
@@ -307,6 +437,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, sans viande. Et un thé sans sucre, s’il vous plaît."
+      },
+      {
+        "speaker": "A",
+        "text": "Et comme dessert, des pommes ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, merci. L’addition, s’il vous plaît."
       }
     ],
     "fields": [
@@ -345,6 +483,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "du lait"
         ],
         "answer": "de l’eau"
+      },
+      {
+        "label": "Nachtisch",
+        "options": [
+          "des croissants",
+          "des pommes",
+          "des oranges"
+        ],
+        "answer": "des pommes"
+      },
+      {
+        "label": "Was möchte Person B zum Schluss?",
+        "options": [
+          "la carte",
+          "le menu",
+          "l’addition"
+        ],
+        "answer": "l’addition"
       }
     ]
   },
@@ -365,6 +521,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Oui, bien sûr."
+      },
+      {
+        "speaker": "A",
+        "text": "Je prends aussi un kilo de pommes. C’est combien au total ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Sept euros cinquante au total."
       }
     ],
     "fields": [
@@ -378,7 +542,7 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "deux cents grammes"
       },
       {
-        "label": "Preis",
+        "label": "Preis für den Käse",
         "options": [
           "trois euros",
           "cinq euros",
@@ -396,13 +560,31 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "par carte"
       },
       {
-        "label": "Was wird gekauft?",
+        "label": "Zuerst gekauftes Produkt",
         "options": [
           "du pain",
           "du fromage",
           "de la viande"
         ],
         "answer": "du fromage"
+      },
+      {
+        "label": "Menge Äpfel",
+        "options": [
+          "un kilo",
+          "deux kilos",
+          "un demi-kilo"
+        ],
+        "answer": "un kilo"
+      },
+      {
+        "label": "Gesamtpreis für Käse und Äpfel",
+        "options": [
+          "quatre euros cinquante",
+          "sept euros",
+          "sept euros cinquante"
+        ],
+        "answer": "sept euros cinquante"
       }
     ]
   },
@@ -423,6 +605,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Oui. Le loyer est de six cents euros."
+      },
+      {
+        "speaker": "A",
+        "text": "Et l’adresse ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Douze, rue Victor-Hugo. Dans le salon, la lampe est sur la table."
       }
     ],
     "fields": [
@@ -461,6 +651,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "une cuisine et une salle de bains"
         ],
         "answer": "une cuisine et une salle de bains"
+      },
+      {
+        "label": "Hausnummer in der rue Victor-Hugo",
+        "options": [
+          "deux",
+          "douze",
+          "vingt-deux"
+        ],
+        "answer": "douze"
+      },
+      {
+        "label": "Wo steht die Lampe?",
+        "options": [
+          "sous la table",
+          "devant la table",
+          "sur la table"
+        ],
+        "answer": "sur la table"
       }
     ]
   },
@@ -481,6 +689,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, c’est à cinq minutes."
+      },
+      {
+        "speaker": "A",
+        "text": "Et pour aller à la gare ? Le train part à l’heure ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Prenez la ligne huit. Le train a dix minutes de retard."
       }
     ],
     "fields": [
@@ -519,6 +735,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "à gauche"
         ],
         "answer": "tout droit"
+      },
+      {
+        "label": "Linie zum Bahnhof",
+        "options": [
+          "six",
+          "huit",
+          "dix"
+        ],
+        "answer": "huit"
+      },
+      {
+        "label": "Verspätung des Zuges",
+        "options": [
+          "cinq minutes",
+          "quinze minutes",
+          "dix minutes"
+        ],
+        "answer": "dix minutes"
       }
     ]
   },
@@ -539,6 +773,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, à neuf heures. Je travaille du lundi au vendredi."
+      },
+      {
+        "speaker": "A",
+        "text": "Vous aimez votre travail ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, j’aime mon travail. Le soir, j’étudie le français. Mon cours commence à dix-huit heures."
       }
     ],
     "fields": [
@@ -577,6 +819,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "dans un hôpital"
         ],
         "answer": "dans une école"
+      },
+      {
+        "label": "Wie findet Person B die Arbeit?",
+        "options": [
+          "je n’aime pas mon travail",
+          "j’aime mon travail",
+          "je préfère étudier"
+        ],
+        "answer": "j’aime mon travail"
+      },
+      {
+        "label": "Beginn des Französischkurses",
+        "options": [
+          "huit heures",
+          "neuf heures",
+          "dix-huit heures"
+        ],
+        "answer": "dix-huit heures"
       }
     ]
   },
@@ -597,6 +857,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Je regarde la télé, puis je me couche à vingt-deux heures."
+      },
+      {
+        "speaker": "A",
+        "text": "Et maintenant, qu’est-ce que tu fais ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Je suis en train de prendre le petit-déjeuner. Ensuite, je vais au travail en bus."
       }
     ],
     "fields": [
@@ -635,6 +903,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "je regarde la télé"
         ],
         "answer": "je regarde la télé"
+      },
+      {
+        "label": "Was macht Person B gerade?",
+        "options": [
+          "prendre le petit-déjeuner",
+          "se doucher",
+          "travailler"
+        ],
+        "answer": "prendre le petit-déjeuner"
+      },
+      {
+        "label": "Weg zur Arbeit nach dem Frühstück",
+        "options": [
+          "à pied",
+          "en voiture",
+          "en bus"
+        ],
+        "answer": "en bus"
       }
     ]
   },
@@ -655,6 +941,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "D’accord. Prenez ce médicament deux fois par jour, pendant trois jours."
+      },
+      {
+        "speaker": "A",
+        "text": "Merci. Je ne peux pas venir au travail aujourd’hui. J’ai rendez-vous chez le médecin demain matin."
+      },
+      {
+        "speaker": "B",
+        "text": "D’accord. Au revoir."
       }
     ],
     "fields": [
@@ -693,6 +987,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "pendant quatre jours"
         ],
         "answer": "pendant trois jours"
+      },
+      {
+        "label": "Was kann Person A heute nicht machen?",
+        "options": [
+          "venir au travail",
+          "aller à la pharmacie",
+          "aller chez le médecin"
+        ],
+        "answer": "venir au travail"
+      },
+      {
+        "label": "Arzttermin",
+        "options": [
+          "ce matin",
+          "demain soir",
+          "demain matin"
+        ],
+        "answer": "demain matin"
       }
     ]
   },
@@ -704,7 +1016,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Oui, une petite veste bleue, en taille quarante."
+        "text": "Oui, une petite veste bleue, en taille quarante. C’est l’hiver, il fait froid aujourd’hui."
       },
       {
         "speaker": "A",
@@ -713,6 +1025,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, la bleue, s’il vous plaît."
+      },
+      {
+        "speaker": "A",
+        "text": "Et demain, quel temps va-t-il faire ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Il va faire dix degrés. Je vais prendre cette veste."
       }
     ],
     "fields": [
@@ -751,6 +1071,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "rouge"
         ],
         "answer": "noire"
+      },
+      {
+        "label": "Wetter heute",
+        "options": [
+          "il fait beau",
+          "il fait froid",
+          "il pleut"
+        ],
+        "answer": "il fait froid"
+      },
+      {
+        "label": "Wettervorhersage für morgen",
+        "options": [
+          "il va faire deux degrés",
+          "il va faire dix degrés",
+          "il va faire vingt degrés"
+        ],
+        "answer": "il va faire dix degrés"
       }
     ]
   },
@@ -771,6 +1109,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Je lis à la maison."
+      },
+      {
+        "speaker": "A",
+        "text": "Tu aimes courir ou cuisiner ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Je n’aime pas courir, mais j’adore cuisiner."
       }
     ],
     "fields": [
@@ -809,6 +1155,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "à la plage"
         ],
         "answer": "au parc"
+      },
+      {
+        "label": "Was mag Person B nicht?",
+        "options": [
+          "lire",
+          "courir",
+          "cuisiner"
+        ],
+        "answer": "courir"
+      },
+      {
+        "label": "Was macht Person B besonders gern?",
+        "options": [
+          "courir",
+          "jouer au football",
+          "cuisiner"
+        ],
+        "answer": "cuisiner"
       }
     ]
   },
@@ -816,7 +1180,7 @@ window.A1_COMPREHENSION_CONTENT = {
     "turns": [
       {
         "speaker": "A",
-        "text": "Bonjour, je voudrais une chambre pour deux personnes."
+        "text": "Bonjour, je voudrais réserver une chambre pour deux personnes, du dix au treize juillet."
       },
       {
         "speaker": "B",
@@ -829,6 +1193,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Oui, il est servi à partir de sept heures. La chambre coûte soixante-dix euros par nuit."
+      },
+      {
+        "speaker": "A",
+        "text": "Nous allons visiter Paris. Le train part à quelle heure ?"
+      },
+      {
+        "speaker": "B",
+        "text": "À dix heures."
       }
     ],
     "fields": [
@@ -867,6 +1239,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "quatre-vingts euros"
         ],
         "answer": "soixante-dix euros"
+      },
+      {
+        "label": "Anreisedatum",
+        "options": [
+          "le treize juillet",
+          "le dix juillet",
+          "le dix juin"
+        ],
+        "answer": "le dix juillet"
+      },
+      {
+        "label": "Abfahrt des Zuges",
+        "options": [
+          "sept heures",
+          "treize heures",
+          "dix heures"
+        ],
+        "answer": "dix heures"
       }
     ]
   },
@@ -874,19 +1264,27 @@ window.A1_COMPREHENSION_CONTENT = {
     "turns": [
       {
         "speaker": "A",
-        "text": "Tu veux venir dîner samedi à dix-neuf heures ?"
+        "text": "Allô, c’est Anna. Tu veux venir dîner samedi à dix-neuf heures ?"
       },
       {
         "speaker": "B",
-        "text": "Samedi, je ne peux pas. Dimanche, ça te va ?"
+        "text": "Samedi, je ne peux pas. J’ai déjà un rendez-vous. Dimanche, ça te va ?"
       },
       {
         "speaker": "A",
-        "text": "Oui, à dix-huit heures, chez moi."
+        "text": "Oui, à dix-huit heures, chez moi. On fête mon anniversaire."
       },
       {
         "speaker": "B",
         "text": "D’accord, dimanche à dix-huit heures."
+      },
+      {
+        "speaker": "A",
+        "text": "Merci pour ta réponse !"
+      },
+      {
+        "speaker": "B",
+        "text": "Bon anniversaire ! À bientôt !"
       }
     ],
     "fields": [
@@ -925,6 +1323,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "vingt heures"
         ],
         "answer": "dix-neuf heures"
+      },
+      {
+        "label": "Anlass der Einladung",
+        "options": [
+          "un anniversaire",
+          "un voyage",
+          "un cours"
+        ],
+        "answer": "un anniversaire"
+      },
+      {
+        "label": "Warum kann Person B am Samstag nicht?",
+        "options": [
+          "un voyage",
+          "un autre rendez-vous",
+          "un cours"
+        ],
+        "answer": "un autre rendez-vous"
       }
     ]
   },
@@ -932,57 +1348,83 @@ window.A1_COMPREHENSION_CONTENT = {
     "turns": [
       {
         "speaker": "A",
-        "text": "Bonjour, le cours de français commence mardi à neuf heures."
+        "text": "Bonjour, je voudrais des informations sur le cours de français. Quel est le prix ?"
       },
       {
         "speaker": "B",
-        "text": "Dans la salle dix-huit ?"
+        "text": "Quarante euros. Pour le formulaire : quel est votre nom ?"
       },
       {
         "speaker": "A",
-        "text": "Non, dans la salle seize."
+        "text": "Mon nom est Martin, mon prénom est Léa. Je suis allemande."
       },
       {
         "speaker": "B",
-        "text": "Merci. Mardi à neuf heures, salle seize."
+        "text": "Votre date de naissance ?"
+      },
+      {
+        "speaker": "A",
+        "text": "Le dix-sept avril. Je suis disponible le soir. Quels sont les horaires ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Le cours commence mardi à dix-huit heures. Merci de signer le formulaire."
       }
     ],
     "fields": [
       {
-        "label": "Kursbeginn – Tag",
+        "label": "Eintrag bei „Nom“",
         "options": [
-          "lundi",
-          "mercredi",
-          "mardi"
+          "Léa",
+          "Martin",
+          "Marie"
         ],
-        "answer": "mardi"
+        "answer": "Martin"
       },
       {
-        "label": "Kursbeginn – Uhrzeit",
+        "label": "Eintrag bei „Prénom“",
         "options": [
-          "neuf heures",
-          "huit heures",
-          "dix heures"
+          "Marie",
+          "Martin",
+          "Léa"
         ],
-        "answer": "neuf heures"
+        "answer": "Léa"
       },
       {
-        "label": "Raum",
+        "label": "Nationalität",
         "options": [
-          "dix-huit",
-          "seize",
-          "treize"
+          "allemande",
+          "française",
+          "canadienne"
         ],
-        "answer": "seize"
+        "answer": "allemande"
       },
       {
-        "label": "Welcher Sprachkurs?",
+        "label": "Geburtsdatum",
         "options": [
-          "le français",
-          "l’allemand",
-          "l’anglais"
+          "le sept avril",
+          "le dix-sept avril",
+          "le dix-sept mai"
         ],
-        "answer": "le français"
+        "answer": "le dix-sept avril"
+      },
+      {
+        "label": "Kursbeginn",
+        "options": [
+          "mardi à huit heures",
+          "mercredi à dix-huit heures",
+          "mardi à dix-huit heures"
+        ],
+        "answer": "mardi à dix-huit heures"
+      },
+      {
+        "label": "Preis des Kurses",
+        "options": [
+          "quatorze euros",
+          "quarante euros",
+          "quatre euros"
+        ],
+        "answer": "quarante euros"
       }
     ]
   },
@@ -1003,6 +1445,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "D’accord. Un thé sans sucre."
+      },
+      {
+        "speaker": "A",
+        "text": "Merci. J’aimerais aussi des informations sur le cours. Pourriez-vous me donner les horaires ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Bien sûr. Le cours commence à dix-huit heures."
       }
     ],
     "fields": [
@@ -1041,6 +1491,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "je ne parle pas français"
         ],
         "answer": "je ne comprends pas"
+      },
+      {
+        "label": "Welche Kursinformation möchte Person A?",
+        "options": [
+          "le prix",
+          "les horaires",
+          "la date de début"
+        ],
+        "answer": "les horaires"
+      },
+      {
+        "label": "Beginn des Kurses",
+        "options": [
+          "huit heures",
+          "dix heures",
+          "dix-huit heures"
+        ],
+        "answer": "dix-huit heures"
       }
     ]
   },
@@ -1048,57 +1516,83 @@ window.A1_COMPREHENSION_CONTENT = {
     "turns": [
       {
         "speaker": "A",
-        "text": "C’est ton livre ?"
+        "text": "Qu’est-ce que c’est ?"
       },
       {
         "speaker": "B",
-        "text": "Non, c’est le livre de Marie."
+        "text": "C’est un livre. Voici mon passeport aussi."
       },
       {
         "speaker": "A",
-        "text": "Et les clés sont à toi ?"
+        "text": "Et dans le sac ?"
       },
       {
         "speaker": "B",
-        "text": "Oui. Mon sac est sur la table. Il y a des livres dans mon sac."
+        "text": "Il y a des clés et des livres."
+      },
+      {
+        "speaker": "A",
+        "text": "Et voilà un ordinateur. Qui sont les personnes devant la gare ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Ce sont des enfants."
       }
     ],
     "fields": [
       {
-        "label": "Das Buch gehört",
-        "options": [
-          "à la personne A",
-          "à Marie",
-          "à la personne B"
-        ],
-        "answer": "à Marie"
-      },
-      {
-        "label": "Die Schlüssel gehören",
-        "options": [
-          "à Marie",
-          "à la personne A",
-          "à la personne B"
-        ],
-        "answer": "à la personne B"
-      },
-      {
-        "label": "Ort der Tasche",
-        "options": [
-          "sur la table",
-          "sous la table",
-          "sur la chaise"
-        ],
-        "answer": "sur la table"
-      },
-      {
-        "label": "Was ist laut Gespräch in der Tasche?",
+        "label": "Zuerst genannter Gegenstand",
         "options": [
           "un livre",
-          "des clés",
-          "des livres"
+          "des livres",
+          "une clé"
         ],
-        "answer": "des livres"
+        "answer": "un livre"
+      },
+      {
+        "label": "Welches Dokument zeigt Person B?",
+        "options": [
+          "une carte",
+          "des cartes",
+          "un passeport"
+        ],
+        "answer": "un passeport"
+      },
+      {
+        "label": "Inhalt der Tasche",
+        "options": [
+          "une clé et un livre",
+          "des clés et des livres",
+          "des clés et des cafés"
+        ],
+        "answer": "des clés et des livres"
+      },
+      {
+        "label": "Weiterer gezeigter Gegenstand",
+        "options": [
+          "un téléphone",
+          "un livre",
+          "un ordinateur"
+        ],
+        "answer": "un ordinateur"
+      },
+      {
+        "label": "Wer sind die Personen?",
+        "options": [
+          "des amis",
+          "des parents",
+          "des enfants"
+        ],
+        "answer": "des enfants"
+      },
+      {
+        "label": "Wo stehen die Personen?",
+        "options": [
+          "devant le musée",
+          "devant la gare",
+          "devant l’hôtel"
+        ],
+        "answer": "devant la gare"
       }
     ]
   },
@@ -1119,6 +1613,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, je vais à pied. J’habite près du travail."
+      },
+      {
+        "speaker": "A",
+        "text": "Tu vas au restaurant ce soir ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui. Au restaurant, il faut réserver et il ne faut pas fumer."
       }
     ],
     "fields": [
@@ -1157,6 +1659,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "le lundi"
         ],
         "answer": "le dimanche"
+      },
+      {
+        "label": "Was muss man für das Restaurant machen?",
+        "options": [
+          "réserver",
+          "téléphoner au travail",
+          "prendre le bus"
+        ],
+        "answer": "réserver"
+      },
+      {
+        "label": "Was darf man dort nicht machen?",
+        "options": [
+          "réserver",
+          "manger",
+          "fumer"
+        ],
+        "answer": "fumer"
       }
     ]
   },
@@ -1177,6 +1697,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Devant la maison. C’est la voiture de mon frère. Il habite ici aussi."
+      },
+      {
+        "speaker": "A",
+        "text": "Qui est cette personne devant la maison ?"
+      },
+      {
+        "speaker": "B",
+        "text": "C’est ma sœur. Je vais au cinéma avec elle."
       }
     ],
     "fields": [
@@ -1215,6 +1743,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "à ma sœur"
         ],
         "answer": "à mon frère"
+      },
+      {
+        "label": "Person vor dem Haus",
+        "options": [
+          "ma mère",
+          "ma sœur",
+          "mon amie"
+        ],
+        "answer": "ma sœur"
+      },
+      {
+        "label": "Mit wem geht Person B ins Kino?",
+        "options": [
+          "avec son frère",
+          "avec ses parents",
+          "avec sa sœur"
+        ],
+        "answer": "avec sa sœur"
       }
     ]
   },
@@ -1226,7 +1772,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Je suis allé au cinéma avec mon frère."
+        "text": "Je suis allé au cinéma avec mon frère. Nous avons regardé un film."
       },
       {
         "speaker": "A",
@@ -1235,6 +1781,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Je vais voir des amis à quinze heures."
+      },
+      {
+        "speaker": "A",
+        "text": "Et aujourd’hui ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Je viens de manger. Je suis arrivé ici il y a trois jours."
       }
     ],
     "fields": [
@@ -1273,6 +1827,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "avec son frère"
         ],
         "answer": "avec son frère"
+      },
+      {
+        "label": "Was hat Person B gerade gemacht?",
+        "options": [
+          "manger",
+          "voir des amis",
+          "regarder un film"
+        ],
+        "answer": "manger"
+      },
+      {
+        "label": "Wann ist Person B hier angekommen?",
+        "options": [
+          "depuis trois jours",
+          "dans trois jours",
+          "il y a trois jours"
+        ],
+        "answer": "il y a trois jours"
       }
     ]
   },
@@ -1293,6 +1865,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, pas de sucre."
+      },
+      {
+        "speaker": "A",
+        "text": "Comment préparer la soupe ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Coupez les légumes avec un couteau, puis ajoutez le lait. Il ne faut pas ajouter trop de sel."
       }
     ],
     "fields": [
@@ -1331,6 +1911,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "un peu de lait"
         ],
         "answer": "un peu de lait"
+      },
+      {
+        "label": "Reihenfolge der Zubereitung",
+        "options": [
+          "couper les légumes, puis ajouter le lait",
+          "ajouter le lait, puis couper les légumes",
+          "ajouter le sucre, puis le lait"
+        ],
+        "answer": "couper les légumes, puis ajouter le lait"
+      },
+      {
+        "label": "Was soll man vermeiden?",
+        "options": [
+          "un peu de lait",
+          "trop de sel",
+          "beaucoup de légumes"
+        ],
+        "answer": "trop de sel"
       }
     ]
   },
@@ -1342,7 +1940,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "En France, à Lyon."
+        "text": "Je viens du Canada. Je vais en France, à Lyon."
       },
       {
         "speaker": "A",
@@ -1351,6 +1949,14 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "speaker": "B",
         "text": "Non, mardi en bus. Je rentre vendredi."
+      },
+      {
+        "speaker": "A",
+        "text": "À quelle heure dois-tu partir ?"
+      },
+      {
+        "speaker": "B",
+        "text": "Je dois partir à huit heures. Je vais visiter la ville."
       }
     ],
     "fields": [
@@ -1389,6 +1995,24 @@ window.A1_COMPREHENSION_CONTENT = {
           "samedi"
         ],
         "answer": "vendredi"
+      },
+      {
+        "label": "Herkunft von Person B",
+        "options": [
+          "de France",
+          "du Canada",
+          "d’Allemagne"
+        ],
+        "answer": "du Canada"
+      },
+      {
+        "label": "Erforderliche Abfahrtszeit",
+        "options": [
+          "six heures",
+          "neuf heures",
+          "huit heures"
+        ],
+        "answer": "huit heures"
       }
     ]
   }

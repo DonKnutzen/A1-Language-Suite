@@ -12,8 +12,8 @@ function environment(){
  const view=w.document.getElementById('view');return {dom,w,view};
 }
 function state(){return {doneLessons:[],lessonWork:{},lessonQuizBest:{}};}
-function render(env,id,s,audio=[]){const {w,view}=env,l=w.testData.lessons[id-1],app=w.DE_A1_APPLICATIONS[id],original=w.A1_COURSE_CONTENT[id-1],c={...original,transfer:{...original.transfer,writing:app.writingTask||original.transfer.writing}};
- w.A1LessonFlow.render({lesson:l,content:c,view,state:s,save:()=>{},lessonCount:24,targetLang:'de',uiLang:'fr',grammarHtml:w.DE_A1_STUDY.grammarHtml(l,w.testRefs(id),text=>`<button data-speak="${text}">🔊</button>`),goalsHtml:'<div class="lesson-goals">Objectifs</div>',pronunciationHtml:w.DE_A1_PRONUNCIATION.render(c),dialogueHtml:w.A1LessonGuide.parts(id,'fr',s=>s,()=>'<button>🔊</button>').dialogue,model:app.speakModel,writingModel:app.writeModel,writingHints:app.hints,writingFields:app.fields,minWords:app.minWords,recorderHtml:()=>'',speakBtn:t=>`<button data-speak="${t}">🔊</button>`,wireSpeakButtons:()=>{},wirePronunciation:()=>{},speak:t=>audio.push(t),renderLearn:()=>{},renderLesson:()=>{},renderMastery:({onBack,onResult})=>w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state:s,save:()=>{},speak:t=>audio.push(t),onBack,onResult}),renderGrammarCheck:({onBack})=>w.DE_A1_ASSESSMENTS.renderGrammarCheck({view,state:s,save:()=>{},speak:t=>audio.push(t),onBack})});
+function render(env,id,s,audio=[],options={}){const {w,view}=env,l=w.testData.lessons[id-1],app=w.DE_A1_APPLICATIONS[id],original=w.A1_COURSE_CONTENT[id-1],c={...original,transfer:{...original.transfer,writing:app.writingTask||original.transfer.writing}};
+ w.A1LessonFlow.render({lesson:l,content:c,view,state:s,save:()=>{},lessonCount:24,targetLang:'de',uiLang:'fr',grammarHtml:w.DE_A1_STUDY.grammarHtml(l,w.testRefs(id),text=>`<button data-speak="${text}">🔊</button>`),goalsHtml:'<div class="lesson-goals">Objectifs</div>',pronunciationHtml:w.DE_A1_PRONUNCIATION.render(c),dialogueHtml:w.A1LessonGuide.parts(id,'fr',s=>s,()=>'<button>🔊</button>').dialogue,model:app.speakModel,writingModel:app.writeModel,writingHints:app.hints,writingFields:app.fields,minWords:app.minWords,recorderHtml:()=>'',speakBtn:t=>`<button data-speak="${t}">🔊</button>`,wireSpeakButtons:()=>{},wirePronunciation:()=>{},speak:t=>audio.push(t),renderLearn:()=>{},renderLesson:()=>{},renderMastery:({onBack,onResult})=>w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state:s,save:()=>{},speak:t=>audio.push(t),onBack,onResult}),renderGrammarCheck:({onBack})=>w.DE_A1_ASSESSMENTS.renderGrammarCheck({view,state:s,save:()=>{},speak:t=>audio.push(t),onBack}),...options});
 }
 function answerCurrent(w,view,session){const q=session.ex[session.i];if(q.type==='gap'){const input=view.querySelector('#mixedInput');input.value=q.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#mixedCheck').click();}else view.querySelector(`[data-o="${q.a}"]`).click();}
 test('all 24 lessons teach the exact vocabulary and patterns used in lesson checks',()=>{
@@ -84,4 +84,20 @@ test('German lesson-check reports include the actual task, choices and nested qu
  w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:w.testData.lessons[5],view,state:state(),save:()=>{},speak:()=>{},onBack:()=>{}});view.querySelector('#masteryStart').click();
  const context=w.A1BugReports.context();assert.equal(context.lessonId,6);assert.equal(context.step,'check');assert.equal(context.question,view.querySelector('.quiz-q').textContent);assert.equal(context.options.length,3);
  w.A1BugReports.open();w.document.querySelector('[data-bug-category="answers"]').click();assert(w.document.querySelector('[data-bug-reason="too-obvious"]'));dom.window.close();
+});
+test('German continue restores the exact grammar page and an already checked mini-test answer',()=>{
+ const env=environment(),{w,view}=env,s=state();render(env,5,s,[],{resume:true});view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('[data-grammar-progress="1"]').click();
+ assert.equal(s.lastLessonId,5);assert.equal(s.lessonWork[5].resume.grammarIndex,1);const title=s.lessonWork[5].resume.topicTitle;
+ view.querySelector('#topicPracticeStart').click();view.querySelector('[data-o]').click();const key=s.lessonWork[5].resume.practiceKey,session=s.lessonGrammarPractice[5][key].session,score=session.score;
+ assert.equal(s.lessonWork[5].resume.mode,'exercise');render(env,5,s,[],{resume:true});assert.equal(s.lessonWork[5].resume.topicTitle,title);assert(view.querySelector('[data-grammar-progress="1"][aria-current="step"]'));assert(view.querySelector('[data-o]:disabled'));assert.equal(s.lessonGrammarPractice[5][key].session.score,score);assert.equal(s.lessonGrammarPractice[5][key].session.i,session.i);env.dom.window.close();
+});
+test('German continue restores an initial vocabulary question and its feedback without double scoring',()=>{
+ const env=environment(),{w,view}=env,s=state();render(env,3,s,[],{resume:true});view.querySelector('#startQuiz').click();view.querySelector('[data-o]').click();const session=s.lessonWork[3].session,score=session.score;
+ assert.equal(s.lessonWork[3].resume.mode,'exercise');render(env,3,s,[],{resume:true});assert(view.querySelector('[data-o]:disabled'));assert.equal(s.lessonWork[3].session.i,session.i);assert.equal(s.lessonWork[3].session.score,score);env.dom.window.close();
+});
+test('German home continuation honors saved review, old progress and completion without changing lesson results',()=>{
+ const {dom,w}=environment(),lessons=w.testData.lessons,s=state();s.lessonQuizBest[2]=90;s.lastLessonId=2;
+ assert.equal(w.A1LessonFlow.continuation(lessons,s).id,2);assert.equal(w.A1LessonFlow.resumePosition(lessons[1],s).step,'grammar');
+ s.doneLessons=[1,2];s.lessonWork[2]={resume:{step:'grammar',grammarIndex:1}};assert.equal(w.A1LessonFlow.continuation(lessons,s).id,2);
+ s.lessonWork[2].resume={step:'check'};assert.equal(w.A1LessonFlow.continuation(lessons,s).id,3);assert.deepEqual(s.doneLessons,[1,2]);assert.equal(s.lessonQuizBest[2],90);dom.window.close();
 });

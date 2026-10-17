@@ -1729,7 +1729,7 @@ DE_A1_STUDY.configure(lessons);
 
 
 const stateKey=A1Profile.namespacedKey('deutschA1GoetheFormatState_v6');
-const defaultState={doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
+const defaultState={lastLessonId:0,doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
 function loadState(){
   const loaded=A1Learning.loadState(stateKey,defaultState);
   if(DE_A1_ASSESSMENTS.completePassedLessons(loaded,lessons)){
@@ -1794,7 +1794,7 @@ function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)retu
 function playCorrectAudio(text,force=false){if((!audioEnabled&&!force)||!text)return;speak(text,true,.80);}
 function speakBtn(text,label='Écouter la prononciation'){return `<button class="speak-btn" data-speak="${esc(text)}" aria-label="${esc(label)}">🔊</button>`;}
 function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(b.dataset.speak,true));}
-function setRoute(route){currentRoute=route;navButtons.forEach(b=>b.classList.toggle('active',b.dataset.route===route)); if(route==='home')renderHome(); if(route==='learn')renderLearn(); if(route==='practice')renderPractice(); if(route==='exam')renderExam(); window.scrollTo({top:0,behavior:'smooth'});}
+function setRoute(route){stopHomeMotion();currentRoute=route;navButtons.forEach(b=>b.classList.toggle('active',b.dataset.route===route)); if(route==='home')renderHome(); if(route==='learn')renderLearn(); if(route==='practice')renderPractice(); if(route==='exam')renderExam(); window.scrollTo({top:0,behavior:'smooth'});}
 
 function skillBar(name,emoji){const p=skillPct(name);const labels={
   Hören:'Écoute',
@@ -1804,24 +1804,80 @@ function skillBar(name,emoji){const p=skillPct(name);const labels={
 };
                               return `<div class="skill-row"><strong>${emoji} ${labels[name]||name}</strong><div class="progress"><div style="width:${p}%"></div></div><span>${p}%</span></div>`;}
 
+let homeMilestoneObserver=null,homeCarouselCleanup=null;
+function stopHomeMotion(){
+  homeMilestoneObserver?.disconnect();homeMilestoneObserver=null;
+  homeCarouselCleanup?.();homeCarouselCleanup=null;
+}
+function startHomeCarousel(card){
+  const stage=card.querySelector('.home-milestone-stage'),slides=[...card.querySelectorAll('.home-milestone-slide')];
+  if(slides.length<2)return null;
+  const pause=card.querySelector('#homeMilestonePause'),next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
+  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index=0,userPaused=false,visible=!('IntersectionObserver' in window),timer=null,swap=null;
+  function settle(){clearTimeout(timer);clearTimeout(swap);stage.classList.remove('is-changing');}
+  function schedule(){
+    clearTimeout(timer);
+    if(!userPaused&&!motion.matches&&visible&&!document.hidden&&card.isConnected)timer=setTimeout(advance,5000);
+  }
+  function advance(){
+    settle();
+    const show=()=>{
+      if(!card.isConnected)return;
+      slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
+      index=(index+1)%slides.length;
+      slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
+      count.textContent=`${index+1} / ${slides.length}`;stage.classList.remove('is-changing');schedule();
+    };
+    if(motion.matches)show();else{stage.classList.add('is-changing');swap=setTimeout(show,320);}
+  }
+  function updatePause(){
+    pause.hidden=motion.matches;pause.setAttribute('aria-pressed',String(userPaused));
+    pause.setAttribute('aria-label',userPaused?'Reprendre le défilement automatique':'Mettre le défilement automatique en pause');
+    pause.title=userPaused?'Reprendre le défilement automatique':'Mettre le défilement automatique en pause';
+  }
+  pause.onclick=()=>{userPaused=!userPaused;settle();updatePause();schedule();};next.onclick=advance;
+  const onVisibility=()=>{settle();schedule();};
+  const onMotion=()=>{settle();updatePause();schedule();};
+  document.addEventListener('visibilitychange',onVisibility);motion.addEventListener('change',onMotion);
+  const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries.some(e=>e.isIntersecting);if(!visible)settle();schedule();},{threshold:.05}):null;
+  observer?.observe(card);updatePause();schedule();
+  return ()=>{settle();observer?.disconnect();document.removeEventListener('visibilitychange',onVisibility);motion.removeEventListener('change',onMotion);};
+}
 function renderHome(){
-  const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];
+  stopHomeMotion();
+  const next=A1LessonFlow.continuation(lessons,state);
+  const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
+  const allDone=completed.length===lessons.length;
   view.innerHTML=`
     <section class="card course-progress-card" data-streak-anchor>
       <h2>Progression du cours</h2>
       <p class="course-progress-caption">Français → Allemand · Goethe A1</p>
       <div class="course-progress-meter"><strong>${lessonPct()}<small>%</small></strong><div class="progress" role="progressbar" aria-label="Progression du cours" aria-valuenow="${lessonPct()}" aria-valuemin="0" aria-valuemax="100"><div style="width:${lessonPct()}%"></div></div></div>
-      <div class="course-progress-stats"><div><strong>${state.doneLessons.length}<small> / ${lessons.length}</small></strong><span>Leçons terminées</span></div><div><strong>${DE_A1_ASSESSMENTS.passedCount(state)}<small> / ${lessons.length}</small></strong><span>Bilans effectués</span></div></div>
-    ${A1Streak.render('fr')}</section>
-    <section class="card">
-      <div class="between"><div><div class="eyebrow">CONTINUER</div><h3 style="margin-top:5px">${next.id}. ${esc(next.title)}</h3><p class="muted">${esc(next.note)}</p></div><span class="pill">${lessonPct()}%</span></div>
-      <button class="primary-btn" id="continueLesson">Continuer le cours</button>
+      ${A1Streak.render('fr',{showEmpty:true})}
     </section>
-    <section class="card">
-      <div class="between"><h3>Prêt pour l’examen</h3><span class="pill gray">${state.bestMock}% meilleur test</span></div>
-      ${skillBar('Hören','🎧')}${skillBar('Lesen','📖')}${skillBar('Schreiben','✍️')}${skillBar('Sprechen','🎤')}
+    <section class="card home-continue-card" aria-labelledby="continueTitle">
+      <div class="between"><span class="eyebrow">${allDone?'RÉVISER':'CONTINUER'}</span><span class="pill">Leçon ${next.id}</span></div>
+      <h2 id="continueTitle">${esc(next.title)}</h2>
+      <div class="home-learning-goal"><span class="home-detail-label">Ton objectif</span><p>${A1LessonGuide.goal(next.id,esc)}</p></div>
+
+      <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Continuer à pratiquer':'Continuer'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+    </section>
+    <section class="card home-milestones" aria-labelledby="milestoneTitle">
+      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Ce que tu as déjà appris':'Le premier pas compte'}</h2>${completed.length>1?`<button type="button" class="home-carousel-control" id="homeMilestonePause" aria-pressed="false" aria-label="Mettre le défilement automatique en pause"><svg class="home-carousel-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3"/></svg><svg class="home-carousel-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg></button>`:''}</div>
+      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="off">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?'<button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Afficher le prochain acquis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>':''}</div><div class="home-milestone-footer"><p class="home-milestone-note">Bravo, continue comme ça !</p>${completed.length>1?`<small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small>`:''}</div>`:'<p class="home-milestone-note">Après ta première leçon terminée, tu retrouveras ici ce que tu as appris.</p>'}
     </section>`;
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
+  const milestones=view.querySelector('.home-milestones');
+  homeCarouselCleanup=startHomeCarousel(milestones);
+  if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    milestones.classList.add('is-waiting');
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){milestones.classList.remove('is-waiting');observer.disconnect();}
+    },{threshold:.12});
+    homeMilestoneObserver=observer;
+    observer.observe(milestones);
+  }
 }
 
 function renderLearn(){
@@ -1831,12 +1887,13 @@ function renderLearn(){
 
 
 function renderLesson(id){
+  stopHomeMotion();
   const l=lessons.find(x=>x.id===id),original=window.A1_COURSE_CONTENT.find(x=>x.id===id),app=DE_A1_APPLICATIONS[id];
   const c={...original,transfer:{...original.transfer,writing:app.writingTask||original.transfer.writing}};
   const units=DE_A1_STUDY.content[id];
   const hints=app.hints.length?app.hints:units.flatMap(u=>[...u.rows,...(u.extra||[])]).slice(-6).map(([de,fr])=>[de.replace(/\|/g,''),fr]);
   A1LessonFlow.render({
-    lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'fr',
+    lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'fr',resume:true,
     goalsHtml:A1LessonGuide.goals(id,'fr',esc),grammarHtml:DE_A1_STUDY.grammarHtml(l,lessonGrammarReferenceHtml(id),speakBtn),
     dialogueHtml:A1LessonGuide.parts(id,'fr',esc,speakBtn).dialogue,pronunciationHtml:DE_A1_PRONUNCIATION.render(c),
     model:app.speakModel,writingModel:app.writeModel,fullModel:true,writingHints:hints,writingFields:app.fields,minWords:app.minWords,

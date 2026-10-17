@@ -11,12 +11,15 @@ function flow(env,id,state,onMastery=()=>{}){
  const {w,view}=env,l={id,title:'Test',phrases:[['Bonjour','Guten Tag']]};
  w.A1LessonFlow.render({lesson:l,content:{grammar:{title:'Grundlagen'},transfer:{writing:'Schreibe drei Wörter.',speaking:'Stelle dich vor.'}},view,state,targetLang:'fr',uiLang:'de',grammarHtml:'<p>Grundlagen</p>',lessonCount:24,save:()=>{},speakBtn:()=>'<button>🔊</button>',wireSpeakButtons:()=>{},renderLearn:()=>{},renderLesson:()=>{},renderMastery:onMastery,recorderHtml:()=>''});
 }
-test('all dialogues have close choices and every French lesson has four facts',()=>{
+test('all dialogues stay short with close choices and every French lesson has six facts',()=>{
  for(const course of ['francais','deutsch']){
   const {dom,w}=environment(course),content=w.A1_COMPREHENSION_CONTENT;assert.equal(Object.keys(content).length,24);
   for(const [id,data] of Object.entries(content)){
-   assert.equal(data.turns.length,4,course+id);assert.deepEqual([...data.turns].map(t=>t.speaker),['A','B','A','B']);assert(data.turns.every(t=>t.text.length>0&&t.text.length<250));
-   assert.equal(data.fields.length,course==='francais'?4:3);for(const f of data.fields){assert(f.label);assert.equal(new Set(f.options).size,3);assert.equal(f.options.filter(o=>o===f.answer).length,1);}
+   const turns=course==='francais'?6:4;
+   assert.equal(data.turns.length,turns,course+id);assert.deepEqual([...data.turns].map(t=>t.speaker),Array.from({length:turns},(_,i)=>i%2?'B':'A'));assert(data.turns.every(t=>t.text.length>0&&t.text.length<250));
+   assert(data.turns.map(t=>t.text).join(' ').split(/\s+/).length<=100,course+id+' remains a short dialogue');
+   assert.equal(data.fields.length,course==='francais'?6:3);assert.equal(new Set(data.fields.map(f=>f.label)).size,data.fields.length);
+   for(const f of data.fields){assert(f.label);assert.equal(new Set(f.options).size,3);assert.equal(f.options.filter(o=>o===f.answer).length,1);}
   }
   dom.window.close();
  }
@@ -27,9 +30,9 @@ test('selection drafts, feedback and best result survive navigation without intr
  draw();assert.equal(view.querySelectorAll('textarea,select,input:not([type=radio])').length,0);assert(view.querySelector('#dialogueCheck').disabled);assert(!view.querySelector('details').open);
  choose(w,view,0,data.fields[0].answer);draw();assert.equal(view.querySelector('[data-comprehension-answer="0"]:checked').value,data.fields[0].answer);
  data.fields.forEach((f,i)=>choose(w,view,i,i===1?f.options.find(o=>o!==f.answer):f.answer));const inputs=[...view.querySelectorAll('input')];
- view.querySelector('#dialogueCheck').click();assert.equal(work.comprehension.score,3);assert.equal(work.comprehension.done,true);assert(inputs.every(s=>s.disabled));assert(view.querySelector('[data-comprehension-feedback="1"]').textContent.includes(data.fields[1].answer));assert(calls.includes(true));
- draw();assert.equal(work.comprehension.score,3);assert.equal(work.comprehension.best,3);view.querySelector('#dialogueCheck').click();assert.equal(continued,1);
- view.querySelector('#dialogueRetry').click();assert.equal(work.comprehension.done,true);assert.equal(work.comprehension.best,3);assert(view.querySelector('#dialogueCheck').disabled);
+ view.querySelector('#dialogueCheck').click();assert.equal(work.comprehension.score,data.fields.length-1);assert.equal(work.comprehension.done,true);assert(inputs.every(s=>s.disabled));assert(view.querySelector('[data-comprehension-feedback="1"]').textContent.includes(data.fields[1].answer));assert(calls.includes(true));
+ draw();assert.equal(work.comprehension.score,data.fields.length-1);assert.equal(work.comprehension.best,data.fields.length-1);view.querySelector('#dialogueCheck').click();assert.equal(continued,1);
+ view.querySelector('#dialogueRetry').click();assert.equal(work.comprehension.done,true);assert.equal(work.comprehension.best,data.fields.length-1);assert(view.querySelector('#dialogueCheck').disabled);
  dom.window.close();
 });
 test('lesson check needs no speaking or writing; optional tasks remain at the end and legacy completion stays',()=>{
@@ -70,11 +73,11 @@ test('a single device voice remains usable and cancel prevents queued dialogue t
  const {dom,w,spoken}=voiceEnvironment([{name:'Google français',lang:'fr-FR',voiceURI:'fr'}]);const turns=[{speaker:'A',text:'Bonjour'},{speaker:'B',text:'Salut'}];w.A1Voice.speakDialogue(turns,{lang:'fr-FR'});spoken[0].onend();assert.equal(spoken[1].voice,spoken[0].voice);assert.equal(spoken[1].rate,.75);
  w.A1Voice.speakDialogue(turns,{lang:'fr-FR'});const last=spoken.at(-1),count=spoken.length;w.A1Voice.cancel();last.onend();assert.equal(spoken.length,count);dom.window.close();
 });
-test('adding a fourth fact preserves a previously completed dialogue and its three saved answers',()=>{
- const {dom,w,view}=environment(),data=w.A1_COMPREHENSION_CONTENT[4],saved=data.fields.slice(0,3).map(f=>f.answer),work={comprehension:{answers:saved,graded:true,done:true,score:3,best:3}};
+test('expanded dialogues preserve completion and old answers while new questions still need answers',()=>{
+ const {dom,w,view}=environment(),data=w.A1_COMPREHENSION_CONTENT[4],saved=data.fields.slice(0,4).map(f=>f.answer),work={comprehension:{answers:saved,graded:true,done:true,score:4,best:4}};
  const render=()=>w.A1Comprehension.render({root:view,data,work,lessonId:4,targetLang:'fr',uiLang:'de',save:()=>{},onContinue:()=>{}});
- render();assert.equal(work.comprehension.done,true);assert.equal(work.comprehension.best,3);assert.equal(view.querySelectorAll('input:checked').length,3);assert.equal(view.querySelector('#dialogueAnswered').textContent,'3 / 4');assert(view.querySelector('#dialogueCheck').disabled);
- choose(w,view,3,data.fields[3].answer);view.querySelector('#dialogueCheck').click();assert.equal(work.comprehension.score,4);assert.equal(work.comprehension.best,4);assert.equal(view.querySelectorAll('input:disabled').length,12);assert(view.textContent.includes('4 / 4 richtig'));
+ render();assert.equal(work.comprehension.done,true);assert.equal(work.comprehension.best,4);assert.equal(view.querySelectorAll('input:checked').length,4);assert.equal(view.querySelector('#dialogueAnswered').textContent,'4 / 6');assert(view.querySelector('#dialogueCheck').disabled);
+ data.fields.slice(4).forEach((f,i)=>choose(w,view,i+4,f.answer));view.querySelector('#dialogueCheck').click();assert.equal(work.comprehension.score,6);assert.equal(work.comprehension.best,6);assert.equal(view.querySelectorAll('input:disabled').length,18);assert(view.textContent.includes('6 / 6 richtig'));
  const answer=work.comprehension.answers[0];view.querySelector('[data-comprehension-answer="0"]').click();assert.equal(work.comprehension.answers[0],answer);dom.window.close();
 });
 test('family dialogue tests relationships; two ages are distinguished only in personal-data lesson',()=>{

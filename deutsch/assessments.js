@@ -22,13 +22,14 @@
     window.A1BugReports?.setContext({lessonId:lessonId||null,step});
     A1ExerciseEngine.run({lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises:shuffle(tasks).map(normalize),progress:session,exerciseVersion:102,saveProgress:()=>save(),playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
-  function decorate({root,practice,lesson,state,save,speak,onUpdate}){
+  function decorate({root,practice,lesson,state,save,speak,onUpdate,onStart}){
     if(!practice)return;
     const panel=document.createElement('div');panel.className='lesson-grammar-practice deepening-practice';root.querySelector('#lessonGrammarPage').append(panel);
     const current=bucket(state,lesson.id,practice.key);
     function intro(){
       panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':practice.tasks.length+' exercices'}</small></div><button class="soft-btn exercise-start-btn" id="topicPracticeStart">${current.session?'Continuer les exercices':current.done?'Refaire les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
       panel.querySelector('#topicPracticeStart').onclick=()=>{
+        onStart?.();
         panel.querySelector('#topicPracticeStart').hidden=true;
         runTasks({tasks:practice.tasks,view:panel.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:current,save,lessonId:lesson.id,step:'grammar',compact:true,onFinish:(score,total)=>{
           current.done=true;current.last=score;current.best=Math.max(current.best||0,score);current.total=total;

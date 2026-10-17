@@ -20,6 +20,21 @@
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
     return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Compréhension',comprehension?'✓':'—',comprehension)}${step('Bilan',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Bilan effectué">✓</span>':''}</div>`;
   }
+  function continuation(lessons,state){
+    const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
+    const pending=last&&(!state.doneLessons?.includes(last.id)||state.lessonCheckProgress?.[last.id]?.session||(position&&position.step!=='check'));
+    return (pending&&last)||lessons.find(l=>!state.doneLessons?.includes(l.id))||last||lessons[lessons.length-1];
+  }
+  function resumePosition(lesson,state){
+    const p=state.lessonWork?.[lesson.id]||{},saved=p.resume;
+    const allowed=['listen','grammar','grammar-check','comprehension','check','speak','write'];
+    if(saved&&allowed.includes(saved.step))return {...saved};
+    if(state.lessonCheckProgress?.[lesson.id]?.session)return {step:'check',mode:'exercise'};
+    if(p.session)return {step:'listen',mode:'exercise'};
+    if(p.comprehension?.done)return {step:'check'};
+    if(p.quizDone||Number(state.lessonQuizBest?.[lesson.id])>=70)return {step:'grammar',nextIncomplete:true};
+    return {step:'listen'};
+  }
   function render(opts){
     const {lesson:l,content:c,view,state}=opts,L=UI.fr;
     const hasGrammarCheck=Number(l.id)===1;
@@ -66,6 +81,11 @@
       grammarPages[index].html+=`<div class="lesson-pronunciation-bonus">${pronunciation}</div>`;
     }
     const grammarPractices=grammarPages.map(page=>DE_A1_ASSESSMENTS.topicPractice(page));
+    function remember(mode='overview'){
+      p.resume={step:activeStep,grammarIndex,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?grammarPracticeKey(grammarIndex)||null:null};
+      state.lastLessonId=l.id;save();
+    }
+    function drawGrammarCheck(){remember('exercise');opts.renderGrammarCheck({onBack:()=>goStep('grammar-check')});}
     function grammarPracticeKey(i){return grammarPractices[i]?.key;}
     function grammarTopicDone(i){
       const key=grammarPracticeKey(i);
@@ -164,7 +184,7 @@
     function drawMastery(){
       window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       if(!hasMastery)return;
-      window.A1Voice?.cancel();
+      activeStep='check';window.A1Voice?.cancel();remember('exercise');
       opts.renderMastery({onBack:()=>goStep('check'),onResult:()=>{renderExtras();wireStepNav();}});
     }
     function refresh(){
@@ -180,6 +200,7 @@
       }
     }
     function drawOverview(){
+      remember();
       window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       audioLayoutObserver?.disconnect();
       window.A1Voice?.cancel();
@@ -197,6 +218,7 @@
       wireStepFooter();
       if(activeStep==='listen'){
         const updateAudioPage=()=>{
+          remember();
           view.querySelectorAll('[data-core-row]').forEach(row=>row.hidden=audioPageFor(Number(row.dataset.coreRow))!==audioPage);
           const status=document.getElementById('audioPageStatus');
           if(status){status.textContent=`Page ${audioPage+1} / ${audioPageCount}`;
@@ -227,8 +249,8 @@
       document.getElementById('startQuiz')?.addEventListener('click',drawQuiz);
       document.getElementById('startMasteryOverview')?.addEventListener('click',drawMastery);
       document.getElementById('nextLessonFromCheck')?.addEventListener('click',()=>l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn());
-      document.getElementById('startGrammarCheck')?.addEventListener('click',()=>opts.renderGrammarCheck({onBack:()=>goStep('grammar-check')}));
-      if(activeStep==='grammar')DE_A1_ASSESSMENTS.decorate({root:view,practice:grammarPractices[grammarIndex],lesson:l,state,save,speak:opts.speak,onUpdate:refreshSteps});
+      document.getElementById('startGrammarCheck')?.addEventListener('click',drawGrammarCheck);
+      if(activeStep==='grammar')DE_A1_ASSESSMENTS.decorate({root:view,practice:grammarPractices[grammarIndex],lesson:l,state,save,speak:opts.speak,onUpdate:refreshSteps,onStart:()=>remember('exercise')});
       expandContent(view);
       if(activeStep==='comprehension')window.A1Comprehension.render({root:view.querySelector('#lessonComprehension'),data:window.A1_COMPREHENSION_CONTENT[l.id],work:p,lessonId:l.id,targetLang:opts.targetLang,uiLang:opts.uiLang,save,onUpdate:refreshSteps,onContinue:()=>goStep('check')});
       opts.wireSpeakButtons();opts.wirePronunciation?.(view);
@@ -240,6 +262,7 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     function drawQuiz(){
+      activeStep='listen';remember('exercise');
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
       A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,bugStep:'listen-exercise',review:true,exercises:DE_A1_STUDY.lessonExercises(l),progress:p,finishLabel:'Continuer : approfondir',selectionOnly:true,exerciseVersion:102,saveProgress:()=>save(),playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
@@ -249,6 +272,7 @@
       }});
     }
     function drawApplication(){
+      remember();
       window.A1BugReports?.setContext({lessonId:l.id,step:activeStep,grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();audioLayoutObserver?.disconnect();comparedText=null;
       const formFields=opts.writingFields||[],miniForm=formFields.length>0;
@@ -300,8 +324,28 @@
       opts.wireSpeakButtons();opts.wirePronunciation?.(view);count();refresh();
       window.scrollTo({top:0,behavior:'instant'});
     }
-    drawOverview();
+    const position=opts.resume?resumePosition(l,state):{step:'listen'};
+    activeStep=steps.some(([id])=>id===position.step)||['speak','write'].includes(position.step)?position.step:'listen';
+    grammarIndex=Number.isInteger(position.grammarIndex)?Math.max(0,Math.min(grammarPages.length-1,position.grammarIndex)):0;
+    audioPage=Number.isInteger(position.audioPage)?Math.max(0,Math.min(audioPageCount-1,position.audioPage)):0;
+    if(position.nextIncomplete&&activeStep==='grammar'){
+      const first=grammarPages.findIndex((_,i)=>!grammarTopicDone(i));
+      if(first>=0)grammarIndex=first;
+      else activeStep=hasGrammarCheck&&!DE_A1_ASSESSMENTS.grammarCheckTried(state)?'grammar-check':'comprehension';
+    }
+    if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
+    else if(activeStep==='check'&&position.mode==='exercise'){
+      drawMastery();if(state.lessonCheckProgress?.[l.id]?.session)view.querySelector('#masteryStart')?.click();
+    }else if(activeStep==='grammar-check'&&position.mode==='exercise')drawGrammarCheck();
+    else if(activeStep==='speak'||activeStep==='write')drawApplication();
+    else{
+      drawOverview();
+      if(opts.resume&&activeStep==='grammar'){
+        const key=grammarPracticeKey(grammarIndex);
+        if(key&&state.lessonGrammarPractice?.[l.id]?.[key]?.session)view.querySelector('#topicPracticeStart')?.click();
+      }
+    }
   }
-  window.A1LessonFlow={render,listProgress};
+  window.A1LessonFlow={render,listProgress,resumePosition,continuation};
 })();
 

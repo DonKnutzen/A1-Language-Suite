@@ -114,7 +114,7 @@ test('sending closes immediately while pending and a late response preserves a n
  finish();await sending;assert(w.document.getElementById('a1BugDialog').open);assert.equal(newer.value,'A newer edited report');
  w.document.getElementById('a1BugClose').click();w.A1BugReports.open();assert.equal(w.document.getElementById('a1BugMessage').value,'A newer edited report');dom.window.close();
 });
-test('dialogue reports capture the full conversation and all four fields with their options',async()=>{
+test('dialogue reports capture the full conversation and every field with its options',async()=>{
  const {dom,w,calls,succeed}=await ui(w=>{
   for(const f of ['francais/comprehension-content.js','shared/comprehension.js'])w.eval(fs.readFileSync(path.join(__dirname,'..',f),'utf8'));
   const view=w.document.getElementById('view');view.innerHTML='<header data-bug-lesson="4"><h2>4. Uhrzeit</h2></header><div id="dialogue"></div>';
@@ -122,6 +122,6 @@ test('dialogue reports capture the full conversation and all four fields with th
  });
  w.document.querySelector('[data-comprehension-answer="1"]').click();
  w.A1BugReports.open();assert(w.document.querySelector('[data-bug-category="answers"]'));w.document.querySelector('[data-bug-category="answers"]').click();w.document.querySelector('[data-bug-reason="explanation"]').click();
- succeed();await w.document.querySelector('#a1BugSend').onclick();const c=calls[0].context,d=w.A1_COMPREHENSION_CONTENT[4];assert.equal(c.question,d.fields[1].label);assert.equal(c.step,'comprehension');assert.equal(c.lessonId,4);assert.equal(c.options.length,4);
+ succeed();await w.document.querySelector('#a1BugSend').onclick();const c=calls[0].context,d=w.A1_COMPREHENSION_CONTENT[4];assert.equal(c.question,d.fields[1].label);assert.equal(c.step,'comprehension');assert.equal(c.lessonId,4);assert.equal(c.options.length,d.fields.length);
  for(const f of d.fields)for(const option of f.options)assert(c.options.some(line=>line.includes(option)));for(const turn of d.turns)assert(c.audioTexts.some(t=>t.includes(turn.text)));assert.equal(c.issueReason,'explanation');dom.window.close();
 });

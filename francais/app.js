@@ -100,6 +100,7 @@ function skillBar(name){
   return `<div class="skill-row"><strong>${name}</strong><div class="progress"><div style="width:${p}%"></div></div><span>${p}%</span></div>`;
 }
 function setRoute(route){
+  stopHomeMotion();
   currentRoute=route;
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
   ({home:renderHome,learn:renderLearn,practice:renderPractice,exam:renderExam}[route]||renderHome)();
@@ -108,38 +109,72 @@ function setRoute(route){
 
 document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.dataset.route));
 
-let homeMilestoneObserver=null;
+let homeMilestoneObserver=null,homeCarouselCleanup=null;
+function stopHomeMotion(){
+  homeMilestoneObserver?.disconnect();homeMilestoneObserver=null;
+  homeCarouselCleanup?.();homeCarouselCleanup=null;
+}
+function startHomeCarousel(card){
+  const stage=card.querySelector('.home-milestone-stage'),slides=[...card.querySelectorAll('.home-milestone-slide')];
+  if(slides.length<2)return null;
+  const pause=card.querySelector('#homeMilestonePause'),next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
+  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index=0,userPaused=false,visible=!('IntersectionObserver' in window),timer=null,swap=null;
+  function settle(){clearTimeout(timer);clearTimeout(swap);stage.classList.remove('is-changing');}
+  function schedule(){
+    clearTimeout(timer);
+    if(!userPaused&&!motion.matches&&visible&&!document.hidden&&card.isConnected)timer=setTimeout(advance,5000);
+  }
+  function advance(){
+    settle();
+    const show=()=>{
+      if(!card.isConnected)return;
+      slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
+      index=(index+1)%slides.length;
+      slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
+      count.textContent=`${index+1} / ${slides.length}`;stage.classList.remove('is-changing');schedule();
+    };
+    if(motion.matches)show();else{stage.classList.add('is-changing');swap=setTimeout(show,320);}
+  }
+  function updatePause(){
+    pause.hidden=motion.matches;pause.setAttribute('aria-pressed',String(userPaused));
+    pause.setAttribute('aria-label',userPaused?'Automatischen Wechsel fortsetzen':'Automatischen Wechsel anhalten');
+    pause.title=userPaused?'Automatischen Wechsel fortsetzen':'Automatischen Wechsel anhalten';
+  }
+  pause.onclick=()=>{userPaused=!userPaused;settle();updatePause();schedule();};next.onclick=advance;
+  const onVisibility=()=>{settle();schedule();};
+  const onMotion=()=>{settle();updatePause();schedule();};
+  document.addEventListener('visibilitychange',onVisibility);motion.addEventListener('change',onMotion);
+  const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries.some(e=>e.isIntersecting);if(!visible)settle();schedule();},{threshold:.05}):null;
+  observer?.observe(card);updatePause();schedule();
+  return ()=>{settle();observer?.disconnect();document.removeEventListener('visibilitychange',onVisibility);motion.removeEventListener('change',onMotion);};
+}
 function renderHome(){
-  homeMilestoneObserver?.disconnect();
+  stopHomeMotion();
   const next=A1LessonFlow.continuation(lessons,state);
   const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
   const allDone=completed.length===lessons.length;
-  const position=A1LessonFlow.resumePosition(next,state),work=state.lessonWork?.[next.id]||{};
-  const stepNames={listen:position.mode==='exercise'?'Lektionsübungen':'Hören & Verstehen',grammar:'Vertiefung','grammar-check':'Abschluss-Test',comprehension:'Hörverstehen',check:'Lektions-Check',speak:'Sprechen',write:'Schreiben'};
-  const session=position.step==='check'?state.lessonCheckProgress?.[next.id]?.session:position.step==='listen'?work.session:position.step==='grammar-check'?state.lessonGrammarCheckProgress?.[1]?.session:position.step==='grammar'?(work.deepening?.[position.practiceKey]?.session||state.lessonGrammarPractice?.[next.id]?.[position.practiceKey]?.session):null;
-  const questionCount=session&&(session.ex||session.questions||session.tasks)?.length;
-  const detail=[position.step==='grammar'?position.topicTitle||'':'',questionCount?`${session.i+1} / ${questionCount}`:position.step==='comprehension'?`${(work.comprehension?.answers||[]).filter(Boolean).length} / ${window.A1_COMPREHENSION_CONTENT[next.id].fields.length}`:''].filter(Boolean).join(' · ');
   view.innerHTML=`
     <section class="card course-progress-card" data-streak-anchor>
       <h2>Kursfortschritt</h2>
       <p class="course-progress-caption">Deutsch → Französisch · DELF A1</p>
       <div class="course-progress-meter"><strong>${lessonPct()}<small>%</small></strong><div class="progress" role="progressbar" aria-label="Kursfortschritt" aria-valuenow="${lessonPct()}" aria-valuemin="0" aria-valuemax="100"><div style="width:${lessonPct()}%"></div></div></div>
-      ${A1Streak.render('de')}
+      ${A1Streak.render('de',{showEmpty:true})}
     </section>
     <section class="card home-continue-card" aria-labelledby="continueTitle">
       <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':'WEITERLERNEN'}</span><span class="pill">Lektion ${next.id}</span></div>
       <h2 id="continueTitle">${esc(next.title)}</h2>
       <div class="home-learning-goal"><span class="home-detail-label">Dein Lernziel</span><p>${esc(next.canDo[0])}</p></div>
-      <div class="home-resume-info"><span class="home-resume-icon" aria-hidden="true">↗</span><div><span class="home-detail-label">${work.resume?'Hier machst du weiter':'Dein nächster Schritt'}</span><strong>${esc(stepNames[position.step]||stepNames.listen)}</strong>${detail?`<span class="home-resume-detail">${esc(detail)}</span>`:''}</div></div>
+
       <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':'Fortsetzen'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
     <section class="card home-milestones" aria-labelledby="milestoneTitle">
-      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Das hast du schon gelernt':'Dein erster Schritt zählt'}</h2></div>
-      ${completed.length?`<ul class="home-milestone-list">${completed.slice(-3).map(l=>`<li><strong>${esc(l.title)}</strong><p>${esc(l.canDo[0])}</p></li>`).join('')}</ul><p class="home-milestone-note">Darauf kannst du aufbauen. Weiter so!</p><button class="home-lessons-link" id="homeCompletedLessons">Deine Lektionen ansehen <span aria-hidden="true">→</span></button>`:'<p class="home-milestone-note">Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.</p>'}
+      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Das hast du schon gelernt':'Dein erster Schritt zählt'}</h2>${completed.length>1?`<button type="button" class="home-carousel-control" id="homeMilestonePause" aria-pressed="false" aria-label="Automatischen Wechsel anhalten"><svg class="home-carousel-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3"/></svg><svg class="home-carousel-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg></button>`:''}</div>
+      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="off">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?'<button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Nächsten Lernerfolg anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>':''}</div><div class="home-milestone-footer"><p class="home-milestone-note">Super, mach weiter so!</p>${completed.length>1?`<small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small>`:''}</div>`:'<p class="home-milestone-note">Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.</p>'}
     </section>`;
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
-  document.getElementById('homeCompletedLessons')?.addEventListener('click',()=>setRoute('learn'));
   const milestones=view.querySelector('.home-milestones');
+  homeCarouselCleanup=startHomeCarousel(milestones);
   if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     milestones.classList.add('is-waiting');
     const observer=new IntersectionObserver(entries=>{
@@ -485,6 +520,7 @@ const LESSON_WRITING_HINTS = {
 };
 
 function renderLesson(id){
+  stopHomeMotion();
   const l=lessons.find(x=>x.id===id),c=l,app=LESSON_APPLICATIONS[id];
   const goalsHtml=`<div class="notice lesson-goals"><strong>Das kann ich nach dieser Lektion</strong><ul>${l.canDo.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;
   const grammarHtml=FR_A1_DEEPENING.enrich(l,lessonGrammarHtml(l));
