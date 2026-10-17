@@ -1,16 +1,17 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const root=path.join(__dirname,'..');
-function environment(){const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;w.scrollTo=()=>{};w.Math.random=()=>.999;for(const p of ['francais/data.js','shared/exercise-review.js','shared/exercise-engine.js'])w.eval(fs.readFileSync(path.join(root,p),'utf8'));return {dom,w,view:w.document.getElementById('view')};}
+function environment(){const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;w.scrollTo=()=>{};w.Math.random=()=>.999;for(const p of ['francais/data.js','francais/intro-listening.js','shared/exercise-review.js','shared/exercise-engine.js'])w.eval(fs.readFileSync(path.join(root,p),'utf8'));return {dom,w,view:w.document.getElementById('view')};}
 test('all French lessons use ten authored questions with unique options and a valid answer',()=>{
  const {dom,w}=environment();
- for(const lesson of w.FR_A1_DATA.lessons){const tasks=w.A1ExerciseEngine.makeAuthored(lesson);assert.equal(tasks.length,10,`lesson ${lesson.id}`);assert.equal(new Set(tasks.map(q=>q.q||q.prompt)).size,10);for(const q of tasks){assert(q.answer);assert(q.audio,`lesson ${lesson.id}: ${q.q||q.prompt}`);if(q.o){assert.equal(new Set(q.o).size,q.o.length);assert.equal(q.o[q.a],q.answer);}if(q.type==='gap'){assert(q.context);assert(!/^(est|plaît)$/.test(q.answer));}}}
+ for(const lesson of w.FR_A1_DATA.lessons){const tasks=w.A1ExerciseEngine.makeAuthored(lesson);assert.equal(tasks.length,10,`lesson ${lesson.id}`);assert.equal(new Set(tasks.map(q=>q.q||q.prompt)).size,10);for(const q of tasks){assert(q.answer);assert(q.audio,`lesson ${lesson.id}: ${q.q||q.prompt}`);if(q.o){assert.equal(new Set(q.o).size,q.o.length);assert.equal(q.o[q.a],q.answer);}assert(['choice','listening'].includes(q.type));}}
  const lesson=w.FR_A1_DATA.lessons[1],tasks=w.A1ExerciseEngine.makeAuthored(lesson);
- assert.deepEqual([...tasks.filter(t=>t.type==='gap').map(t=>t.answer)],['épeler','prénom','nom de famille']);
+ assert.equal(tasks.filter(t=>t.type==='listening').length,1);
+ assert(tasks.filter(t=>t.q?.includes('___')).every(t=>t.type==='choice'));
  assert(!tasks.some(t=>/M\s*[–-]|A bis M|N bis Z|buchstabierst|Lies den Dialog/.test(JSON.stringify(t))));
  const request=tasks.find(t=>t.q?.startsWith('Was bedeutet „Vous pouvez'));assert.equal(request.o.length,3);assert(request.o.every(o=>o.startsWith('Können Sie')));
  dom.window.close();
 });
-test('leaving and reloading resumes question order, graded feedback and input without duplicate scoring',()=>{
+test('leaving and reloading resumes question order and graded feedback without duplicate scoring',()=>{
  const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],progress={},audio=[];let completed=null,saves=0;
  const run=()=>w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:w.A1ExerciseEngine.makeAuthored(lesson),progress,exerciseVersion:94,saveProgress:()=>saves++,playAudio:t=>audio.push(t),onBack:()=>view.replaceChildren(),onFinish:(score,total)=>completed={score,total}});
  run();const first=view.querySelector('.quiz-q').textContent;
@@ -18,8 +19,6 @@ test('leaving and reloading resumes question order, graded feedback and input wi
  view.querySelector('#mixedBack').click();run();assert.equal(view.querySelector('.quiz-q').textContent,first);assert(view.querySelector('#mixedNext'));assert.equal(progress.session.score,1);assert.equal(audio.length,1);
  view.querySelector('#mixedNext').click();assert.equal(progress.session.i,1);
  while(progress.session.i<5){view.querySelector(`[data-o="${progress.session.ex[progress.session.i].a}"]`).click();view.querySelector('#mixedNext').click();}
- const input=view.querySelector('#mixedInput');input.value='épe';input.dispatchEvent(new w.Event('input'));
- const serialized=JSON.parse(JSON.stringify(progress));view.querySelector('#mixedBack').click();Object.assign(progress,serialized);run();assert.equal(view.querySelector('#mixedInput').value,'épe');
  while(progress.session){const q=progress.session.ex[progress.session.i];if(q.type==='gap'){const input=view.querySelector('#mixedInput');input.value=q.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#mixedCheck').click();}else view.querySelector(`[data-o="${q.a}"]`).click();view.querySelector('#mixedNext').click();}
  assert.deepEqual(completed,{score:10,total:10});assert(saves>10);assert(!progress.session);assert.equal(audio.length,10);dom.window.close();
 });
@@ -28,7 +27,7 @@ test('legacy callers keep the existing generator and need no persistence options
 });
 test('partial sentence construction survives leaving the exercise',()=>{
  const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[7],progress={};
- const tasks=w.A1ExerciseEngine.makeAuthored(lesson),index=tasks.findIndex(q=>q.type==='order');assert(index>=0);
+ const tasks=[{type:'order',context:'Ich wohne in Paris.',answer:'J’habite à Paris',tokens:[{id:0,w:'J’habite'},{id:1,w:'à'},{id:2,w:'Paris'}],audio:'J’habite à Paris.'}],index=0;
  progress.session={version:94,ex:tasks,i:index,score:0,response:null,draft:'',orderPicked:[]};
  const run=()=>w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',progress,exerciseVersion:94,playAudio:()=>{},onBack:()=>view.replaceChildren(),onFinish:()=>{}});
  run();view.querySelector('.mixed-token').click();const text=view.querySelector('#orderAnswer').textContent;
@@ -64,4 +63,29 @@ test('final lesson checks resume submitted feedback and draft without scoring tw
 test('dialogue questions render separate speakers and escape markup',()=>{
  const {dom,w}=environment();const html=w.A1ExerciseReview.question('Lies den Dialog: Bonjour. / Salut.\nQue dit B ?');
  const root=w.document.createElement('div');root.innerHTML=html;assert.equal(root.querySelectorAll('.exercise-dialogue p').length,2);assert(root.textContent.includes('B: Salut.'));assert.equal(w.A1ExerciseReview.question('<img>'),'&lt;img&gt;');dom.window.close();
+});
+test('every initial round offers choices only, with an unheard-in-the-test phrase and close audio alternatives',()=>{
+ const {dom,w,view}=environment();
+ for(const lesson of w.FR_A1_DATA.lessons){
+  const tasks=w.A1ExerciseEngine.makeAuthored(lesson),heard=tasks.find(t=>t.type==='listening');assert(heard);assert(lesson.phrases.some(p=>p[0]===heard.audio));assert(!tasks.some(t=>t!==heard&&t.audio===heard.audio));assert.equal(new Set(heard.o).size,3);
+  let complete=false;w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:tasks,selectionOnly:true,playAudio:()=>{},onBack:()=>{},onFinish:()=>complete=true});
+  for(const q of tasks){assert(!view.querySelector('#mixedInput,textarea,.mixed-token'));view.querySelector(`[data-o="${q.a}"]`).click();view.querySelector('#mixedNext').click();}assert(complete);
+ }
+ dom.window.close();
+});
+test('interrupted old intro sessions keep points and position while pending typing and order tasks become choices',()=>{
+ const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],tasks=w.A1ExerciseEngine.makeAuthored(lesson);
+ tasks[2]={type:'gap',prompt:'Mon ___ est Dupont.',answer:'nom de famille',audio:'Mon nom de famille est Dupont.'};tasks[4]={type:'order',q:'Wie fragst du „Wie schreibt man das?“?',answer:'Comment ça s’écrit',audio:'Comment ça s’écrit ?'};
+ const progress={session:{version:97,ex:tasks,i:2,score:1,response:null,draft:'nom',orderPicked:[]}};
+ w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:w.A1ExerciseEngine.makeAuthored(lesson),progress,exerciseVersion:97,selectionOnly:true,saveProgress:()=>{},playAudio:()=>{},onBack:()=>{},onFinish:()=>{}});
+ assert.equal(progress.session.i,2);assert.equal(progress.session.score,1);assert(!view.querySelector('input,textarea,.mixed-token'));assert.equal(progress.session.ex[4].type,'choice');view.querySelector(`[data-o="${progress.session.ex[2].a}"]`).click();assert.equal(progress.session.score,2);dom.window.close();
+});
+test('later exercise pools still allow typed gaps and retain unfinished input',()=>{
+ const {dom,w,view}=environment(),progress={},lesson={id:2},tasks=[{type:'gap',prompt:'Vous pouvez ___ ?',answer:'épeler',audio:'Vous pouvez épeler ?'}];
+ const run=()=>w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:tasks,progress,playAudio:()=>{},onBack:()=>view.replaceChildren(),onFinish:()=>{}});
+ run();view.querySelector('#mixedInput').value='épe';view.querySelector('#mixedInput').dispatchEvent(new w.Event('input'));view.querySelector('#mixedBack').click();run();assert.equal(view.querySelector('#mixedInput').value,'épe');dom.window.close();
+});
+test('introductory cloze choices retain the meaning hint that makes the missing word unambiguous',()=>{
+ const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],q=w.A1ExerciseEngine.makeAuthored(lesson).find(t=>t.q==='Mon ___ est Sophie.');
+ assert(q.context);w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',selectionOnly:true,exercises:[q],playAudio:()=>{},onBack:()=>{},onFinish:()=>{}});assert(view.querySelector('.mixed-context').textContent.includes(q.context));assert.equal(view.querySelectorAll('.option-btn').length,3);assert(!view.querySelector('input'));dom.window.close();
 });

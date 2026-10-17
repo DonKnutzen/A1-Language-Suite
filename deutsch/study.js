@@ -37,7 +37,7 @@
   }
   function lessonExercises(lesson){
     const units=content[lesson.id],exercises=units.flatMap((unit,index)=>{
-      const all=unitTasks(unit),chosen=unit.conjugation?[all[6],all[7],all[8],all[0],all[5]]:[all[0],all[3],all[4],all[6],all[8]];
+      const all=unitTasks(unit),chosen=unit.conjugation?[all[6],all[7],all[8],all[0],all[5]]:[all[0],all[3],all[4],all[6],all[1]];
       const count=Math.floor(10/units.length)+Number(index<10%units.length);
       return chosen.slice(0,count).map((t,i)=>i===2?{...t,type:'listening',q:'Écoute. Quel sens correspond à la phrase ?'}:{...t});
     });

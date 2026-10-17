@@ -191,19 +191,20 @@
     while(out.length<10&&choiceCursor<choices.length)uniquePush(choices[choiceCursor++],out);
     return out.slice(0,10);
   }
-  // Opt-in authored questions: French lessons never derive tests from raw alphabet/audio lists.
+  // Introductory lesson rounds use selection only. Later grammar/check callers keep
+  // their gap, text and sentence-construction tasks through the general runner.
   function makeAuthored(lesson){
-    const tasks=shuffled(lesson.quiz||[]).slice(0,10).map(q=>{
-      const answer=q.o[q.a],audio=q.audio||choiceAudio(q,lesson.phrases||[]);
-      if(q.context&&q.q.includes('___'))return {type:'gap',prompt:q.q,answer,context:q.context,audio,explanation:q.explanation};
-      const o=shuffled(q.o);
+    const heard=window.FR_A1_INTRO_LISTENING?.[lesson.id];
+    const questions=shuffled(lesson.quiz||[]).filter(q=>!heard||norm(q.audio)!==norm(heard.audio)).slice(0,heard?9:10);
+    const tasks=questions.map(q=>{
+      const answer=q.o[q.a],audio=q.audio||choiceAudio(q,lesson.phrases||[]),o=shuffled(q.o);
       return {type:'choice',q:q.q,o,a:o.indexOf(answer),answer,audio,context:q.context||'',explanation:q.explanation};
     });
-    if(lesson.id>=7){
-      const task=tasks.find(q=>/^Wie sagst du „/.test(q.q||'')&&words(q.answer).length>=4&&!/[\/…()]|___/.test(q.answer));
-      if(task){const ws=words(task.answer);task.type='order';task.context=task.q.match(/„([^“]+)“/)?.[1]||'';task.target=task.answer;task.answer=ws.join(' ');task.tokens=shuffled(ws.map((w,id)=>({w,id})));delete task.o;delete task.a;}
+    if(heard){
+      const o=shuffled(heard.o);
+      tasks.push({type:'listening',q:'Welchen Ausdruck hörst du?',o,a:o.indexOf(heard.audio),answer:heard.audio,audio:heard.audio});
     }
-    return tasks;
+    return shuffled(tasks);
   }
   function charBar(lang,uiLang){const a=CHARS[lang]||[];if(!a.length)return '';return `<div class="mixed-char-wrap"><span>${esc((UI[uiLang]||UI.de).chars)}</span><div class="mixed-char-bar"><button type="button" class="mixed-shift" aria-pressed="false" title="${esc((UI[uiLang]||UI.de).shift)}" aria-label="${esc((UI[uiLang]||UI.de).shift)}">⇧</button>${a.map((c,i)=>`<button type="button" class="mixed-char" data-i="${i}">${esc(c)}</button>`).join('')}</div></div>`;}
   function wireChars(input,lang,container=document){
@@ -216,6 +217,17 @@
     const progress=opts.progress,version=opts.exerciseVersion||1;
     const previous=progress?.session;
     const resume=previous?.version===version&&Array.isArray(previous.ex)&&previous.ex.length&&Number.isInteger(previous.i)&&previous.i>=0&&previous.i<previous.ex.length;
+    // Keep the score and position of an interrupted intro; only unanswered writing
+    // tasks are replaced, so a saved old session cannot reopen a required text field.
+    if(resume&&opts.selectionOnly){
+      previous.ex=previous.ex.map((task,index)=>{
+        if(index<previous.i||(index===previous.i&&previous.response)||['choice','listening'].includes(task.type))return task;
+        const choices=opts.exercises||[];
+        const selected=choices.find(q=>(q.q||q.prompt)===(task.q||task.prompt))||choices.find(q=>norm(q.audio)===norm(task.audio))||choices[index%choices.length];
+        if(index===previous.i){previous.draft='';previous.orderPicked=[];previous.choicePicked=null;}
+        return selected||task;
+      });
+    }
     const ex=resume?previous.ex:(opts.exercises||make(opts.lesson,opts.lesson.id,opts.uiLang)),L=UI[opts.uiLang]||UI.de;
     let i=resume?previous.i:0,score=resume?previous.score:0,response=resume?previous.response:null,draft=resume?previous.draft||'':'',orderPicked=resume?previous.orderPicked||[]:[],choicePicked=resume?previous.choicePicked:null;
     const persist=()=>{if(progress){progress.session={version,ex,i,score,response,draft,orderPicked,choicePicked};opts.saveProgress?.();}};
@@ -234,7 +246,7 @@
     function draw(){
       const q=ex[i];let body='';
       const hint=q.context?`<p class="mixed-context"><strong>${esc(L.meaning)}:</strong> ${esc(q.context)}</p>`:'';
-      if(q.type==='choice')body=`<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
+      if(q.type==='choice')body=`${opts.selectionOnly?hint:''}<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='listening')body=`<div class="mixed-type">🎧 ${esc(L.listen)}</div><div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><button class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='gap'||q.type==='text')body=`<label class="mixed-type" for="mixedInput">✍️ ${esc(L[q.type])}</label>${hint}<div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="mixedInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.answer)}">${charBar(opts.targetLang,opts.uiLang)}${q.type==='text'?`<div class="spacer"></div><button class="soft-btn" id="mixedHintBtn">💡 ${esc(L.help)}</button><div class="mixed-hint" id="mixedHint" hidden></div>`:''}<div class="spacer"></div><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button>`;
       if(q.type==='order')body=`<div class="mixed-type">↔️ ${esc(L.order)}</div>${hint}<div class="mixed-order-answer" id="orderAnswer" aria-live="polite"></div><div class="mixed-tokens">${q.tokens.map(t=>`<button class="soft-btn mixed-token" data-id="${t.id}" data-word="${encodeURIComponent(t.w)}">${esc(t.w)}</button>`).join('')}</div><div class="button-row"><button class="secondary-btn" id="orderReset">${esc(L.reset)}</button><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button></div>`;

@@ -21,7 +21,7 @@ test('all 24 lessons teach the exact vocabulary and patterns used in lesson chec
  for(const l of w.testData.lessons){
   const html=w.DE_A1_STUDY.grammarHtml(l,w.testRefs(l.id),()=>'<button>🔊</button>'),panel=w.document.createElement('div');panel.innerHTML=html;
   assert(panel.querySelectorAll('strong').length>=8);assert(!html.includes('**'));assert(!panel.querySelector('details:empty'));
-  const quiz=w.DE_A1_STUDY.lessonExercises(l);assert.equal(quiz.length,10);assert.equal(w.DE_A1_ASSESSMENTS.makeLessonTest(l).length,12);
+  const quiz=w.DE_A1_STUDY.lessonExercises(l);assert.equal(quiz.length,10);assert(quiz.every(q=>['choice','listening'].includes(q.type)));assert.equal(w.DE_A1_ASSESSMENTS.makeLessonTest(l).length,12);
   for(const q of [...quiz,...w.DE_A1_ASSESSMENTS.makeLessonTest(l)]){
    assert(q.audio&&!q.audio.includes('|')&&!q.audio.includes('___'));if(!q.q?.startsWith('Lies den Dialog:'))assert(panel.textContent.includes(q.audio),`${l.id}: ${q.audio} must be taught`);
    if(q.type!=='gap'){assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}else assert(q.context&&q.prompt.includes('___'));
