@@ -33,6 +33,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person wohnt in Halifax.",
       "explanation": "La réponse à « Wo wohnen Sie? » est « Ich wohne in Halifax ». La ville est donc Halifax.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Guten Tag! Wie heißen Sie? / Ich heiße Léa. Ich komme aus Frankreich und wohne in Bonn.",
+      "fields": [
+        {
+          "q": "Wie heißt die Person?",
+          "o": [
+            "Léa",
+            "Lena",
+            "Lisa"
+          ],
+          "answer": "Léa"
+        },
+        {
+          "q": "Wo wohnt sie?",
+          "o": [
+            "Bonn",
+            "Berlin",
+            "Halifax"
+          ],
+          "answer": "Bonn"
+        },
+        {
+          "q": "Woher kommt sie?",
+          "o": [
+            "Frankreich",
+            "Kanada",
+            "Deutschland"
+          ],
+          "answer": "Frankreich"
+        }
+      ]
     }
   },
   "2": {
@@ -60,6 +92,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Martin.",
       "explanation": "Les lettres M, A, R, T, I, N forment Martin. Les deux autres noms ont une autre orthographe.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wie ist Ihr Familienname? / Müller, mit Umlaut. Mein Vorname ist Anna: A, N, N, A.",
+      "fields": [
+        {
+          "q": "Wie ist der Familienname?",
+          "o": [
+            "Müller",
+            "Muller",
+            "Möller"
+          ],
+          "answer": "Müller"
+        },
+        {
+          "q": "Wie schreibt man den Vornamen?",
+          "o": [
+            "A-N-N-A",
+            "A-N-A",
+            "A-N-N-E"
+          ],
+          "answer": "A-N-N-A"
+        },
+        {
+          "q": "Welches Zeichen hat der Familienname?",
+          "o": [
+            "Umlaut",
+            "Bindestrich",
+            "Doppel-s"
+          ],
+          "answer": "Umlaut"
+        }
+      ]
     }
   },
   "3": {
@@ -106,6 +170,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Hausnummer ist achtundzwanzig.",
       "explanation": "Achtundzwanzig = vingt-huit : on entend l’unité acht avant la dizaine zwanzig.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wie alt sind Sie? / Ich bin dreiundzwanzig. Meine Hausnummer ist zweiunddreißig, meine Postleitzahl ist 10405.",
+      "fields": [
+        {
+          "q": "Wie alt ist die Person?",
+          "o": [
+            "23",
+            "32",
+            "13"
+          ],
+          "answer": "23"
+        },
+        {
+          "q": "Wie ist die Hausnummer?",
+          "o": [
+            "32",
+            "23",
+            "22"
+          ],
+          "answer": "32"
+        },
+        {
+          "q": "Wie ist die Postleitzahl?",
+          "o": [
+            "10405",
+            "10504",
+            "10450"
+          ],
+          "answer": "10405"
+        }
+      ]
     }
   },
   "4": {
@@ -137,6 +233,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Der Termin ist am Mittwoch um zehn Uhr.",
       "explanation": "Les deux personnes confirment mercredi à dix heures : am Mittwoch um zehn Uhr.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wann ist unser Termin? / Am Donnerstag, am siebzehnten April, um halb fünf.",
+      "fields": [
+        {
+          "q": "An welchem Wochentag ist der Termin?",
+          "o": [
+            "Donnerstag",
+            "Dienstag",
+            "Freitag"
+          ],
+          "answer": "Donnerstag"
+        },
+        {
+          "q": "An welchem Datum ist er?",
+          "o": [
+            "17. April",
+            "7. April",
+            "17. Juli"
+          ],
+          "answer": "17. April"
+        },
+        {
+          "q": "Um wie viel Uhr ist er?",
+          "o": [
+            "16:30",
+            "17:30",
+            "16:15"
+          ],
+          "answer": "16:30"
+        }
+      ]
     }
   },
   "5": {
@@ -195,6 +323,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Schwester heißt Anne.",
       "explanation": "Anne est la sœur (Schwester). Claire est la mère (Mutter).",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wer ist das auf dem Foto? / Das ist mein Bruder Paul. Meine Schwester heißt Anne. Wir haben zwei Brüder und eine Schwester.",
+      "fields": [
+        {
+          "q": "Wer ist Paul?",
+          "o": [
+            "der Bruder",
+            "der Vater",
+            "der Sohn"
+          ],
+          "answer": "der Bruder"
+        },
+        {
+          "q": "Wie heißt die Schwester?",
+          "o": [
+            "Anne",
+            "Anna",
+            "Claire"
+          ],
+          "answer": "Anne"
+        },
+        {
+          "q": "Wie viele Brüder gibt es?",
+          "o": [
+            "zwei",
+            "einen",
+            "drei"
+          ],
+          "answer": "zwei"
+        }
+      ]
     }
   },
   "6": {
@@ -226,6 +386,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person bestellt einen Salat ohne Fleisch und ein Wasser.",
       "explanation": "La commande comprend une salade sans viande (ohne Fleisch) et une eau.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Was möchten Sie? / Einen Tee ohne Zucker und einen Salat, bitte. / Mit Fleisch? / Nein, ohne Fleisch.",
+      "fields": [
+        {
+          "q": "Was trinkt die Person?",
+          "o": [
+            "Tee",
+            "Kaffee",
+            "Wasser"
+          ],
+          "answer": "Tee"
+        },
+        {
+          "q": "Was möchte sie nicht im Getränk?",
+          "o": [
+            "Zucker",
+            "Milch",
+            "Eis"
+          ],
+          "answer": "Zucker"
+        },
+        {
+          "q": "Wie möchte sie den Salat?",
+          "o": [
+            "ohne Fleisch",
+            "mit Fleisch",
+            "mit Käse"
+          ],
+          "answer": "ohne Fleisch"
+        }
+      ]
     }
   },
   "7": {
@@ -261,6 +453,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Das Brot kostet drei Euro.",
       "explanation": "Le pain coûte trois euros. Les deux euros concernent les pommes.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Was kosten die Äpfel? / Ein Kilo kostet drei Euro. / Dann nehme ich zwei Kilo. Und wo ist die Kasse? / Im ersten Stock.",
+      "fields": [
+        {
+          "q": "Was kostet ein Kilo?",
+          "o": [
+            "drei Euro",
+            "zwei Euro",
+            "sechs Euro"
+          ],
+          "answer": "drei Euro"
+        },
+        {
+          "q": "Wie viel kauft die Person?",
+          "o": [
+            "zwei Kilo",
+            "ein Kilo",
+            "drei Kilo"
+          ],
+          "answer": "zwei Kilo"
+        },
+        {
+          "q": "Wo ist die Kasse?",
+          "o": [
+            "im ersten Stock",
+            "im zweiten Stock",
+            "im dritten Stock"
+          ],
+          "answer": "im ersten Stock"
+        }
+      ]
     }
   },
   "8": {
@@ -292,6 +516,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Wohnung hat zwei Zimmer und einen Balkon.",
       "explanation": "La réponse confirme deux pièces et un balcon. Elle ne dit pas trois pièces.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wie ist die Wohnung? / Sie hat drei Zimmer und einen Balkon. Die Miete ist siebenhundert Euro.",
+      "fields": [
+        {
+          "q": "Wie viele Zimmer hat die Wohnung?",
+          "o": [
+            "drei",
+            "zwei",
+            "vier"
+          ],
+          "answer": "drei"
+        },
+        {
+          "q": "Was hat sie außerdem?",
+          "o": [
+            "einen Balkon",
+            "einen Garten",
+            "eine Garage"
+          ],
+          "answer": "einen Balkon"
+        },
+        {
+          "q": "Wie hoch ist die Miete?",
+          "o": [
+            "700 Euro",
+            "600 Euro",
+            "750 Euro"
+          ],
+          "answer": "700 Euro"
+        }
+      ]
     }
   },
   "9": {
@@ -323,6 +579,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Linie acht fährt zum Bahnhof.",
       "explanation": "Le dialogue précise Linie acht et exclut explicitement Linie achtzehn.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wie komme ich zum Bahnhof? / Gehen Sie zuerst nach rechts und dann geradeaus. Nehmen Sie dort die Linie drei.",
+      "fields": [
+        {
+          "q": "Was macht die Person zuerst?",
+          "o": [
+            "nach rechts gehen",
+            "nach links gehen",
+            "geradeaus gehen"
+          ],
+          "answer": "nach rechts gehen"
+        },
+        {
+          "q": "Was kommt danach?",
+          "o": [
+            "geradeaus gehen",
+            "zurückgehen",
+            "nach links gehen"
+          ],
+          "answer": "geradeaus gehen"
+        },
+        {
+          "q": "Welche Linie soll sie nehmen?",
+          "o": [
+            "Linie drei",
+            "Linie dreizehn",
+            "Linie acht"
+          ],
+          "answer": "Linie drei"
+        }
+      ]
     }
   },
   "10": {
@@ -354,6 +642,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person kommt um neun Uhr.",
       "explanation": "La personne annonce un retard puis donne l’heure exacte : um neun Uhr.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wo arbeiten Sie? / Ich arbeite im Supermarkt, von acht bis sechzehn Uhr. Morgen habe ich frei.",
+      "fields": [
+        {
+          "q": "Wo arbeitet die Person?",
+          "o": [
+            "im Supermarkt",
+            "im Büro",
+            "im Krankenhaus"
+          ],
+          "answer": "im Supermarkt"
+        },
+        {
+          "q": "Wann beginnt sie?",
+          "o": [
+            "um acht Uhr",
+            "um neun Uhr",
+            "um sechzehn Uhr"
+          ],
+          "answer": "um acht Uhr"
+        },
+        {
+          "q": "Wann hat sie frei?",
+          "o": [
+            "morgen",
+            "heute",
+            "am Montag"
+          ],
+          "answer": "morgen"
+        }
+      ]
     }
   },
   "11": {
@@ -389,6 +709,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Der Kurs ist am Vormittag.",
       "explanation": "Am Vormittag signifie le matin, pas l’après-midi ni le soir.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wann ist Ihr Deutschkurs? / Am Abend. Ich lerne seit drei Monaten Deutsch und brauche ein Wörterbuch.",
+      "fields": [
+        {
+          "q": "Wann ist der Kurs?",
+          "o": [
+            "am Abend",
+            "am Vormittag",
+            "am Nachmittag"
+          ],
+          "answer": "am Abend"
+        },
+        {
+          "q": "Wie lange lernt die Person Deutsch?",
+          "o": [
+            "seit drei Monaten",
+            "seit sechs Monaten",
+            "seit zwei Monaten"
+          ],
+          "answer": "seit drei Monaten"
+        },
+        {
+          "q": "Was braucht sie?",
+          "o": [
+            "ein Wörterbuch",
+            "ein Heft",
+            "ein Buch"
+          ],
+          "answer": "ein Wörterbuch"
+        }
+      ]
     }
   },
   "12": {
@@ -424,6 +776,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Personen können am Sonntag schwimmen gehen.",
       "explanation": "Le samedi est refusé. La proposition acceptée est le dimanche, am Sonntag.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Hast du am Samstag Zeit? / Nein, am Sonntag. Wir können Tennis spielen. / Am Vormittag? / Lieber am Nachmittag.",
+      "fields": [
+        {
+          "q": "An welchem Tag treffen sie sich?",
+          "o": [
+            "Sonntag",
+            "Samstag",
+            "Montag"
+          ],
+          "answer": "Sonntag"
+        },
+        {
+          "q": "Was wollen sie machen?",
+          "o": [
+            "Tennis spielen",
+            "Fußball spielen",
+            "schwimmen"
+          ],
+          "answer": "Tennis spielen"
+        },
+        {
+          "q": "Wann am Tag treffen sie sich?",
+          "o": [
+            "am Nachmittag",
+            "am Vormittag",
+            "am Abend"
+          ],
+          "answer": "am Nachmittag"
+        }
+      ]
     }
   },
   "13": {
@@ -459,6 +843,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person bleibt zwei Nächte.",
       "explanation": "Du premier au trois août correspond à deux nuits, comme indiqué explicitement.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Was möchten Sie reservieren? / Ein Doppelzimmer für zwei Nächte und zwei Personen, bitte.",
+      "fields": [
+        {
+          "q": "Was für ein Zimmer möchte die Person?",
+          "o": [
+            "ein Doppelzimmer",
+            "ein Einzelzimmer",
+            "ein Familienzimmer"
+          ],
+          "answer": "ein Doppelzimmer"
+        },
+        {
+          "q": "Für wie viele Nächte?",
+          "o": [
+            "zwei",
+            "eine",
+            "drei"
+          ],
+          "answer": "zwei"
+        },
+        {
+          "q": "Für wie viele Personen?",
+          "o": [
+            "zwei",
+            "eine",
+            "vier"
+          ],
+          "answer": "zwei"
+        }
+      ]
     }
   },
   "14": {
@@ -494,6 +910,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person hat seit gestern Fieber.",
       "explanation": "La fièvre dure depuis hier (seit gestern). La toux commence aujourd’hui.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Was fehlt Ihnen? / Ich habe seit gestern Husten. Heute habe ich auch Fieber. Ich kann morgen nicht arbeiten.",
+      "fields": [
+        {
+          "q": "Was hat die Person seit gestern?",
+          "o": [
+            "Husten",
+            "Fieber",
+            "Halsschmerzen"
+          ],
+          "answer": "Husten"
+        },
+        {
+          "q": "Was hat sie seit heute?",
+          "o": [
+            "Fieber",
+            "Husten",
+            "Kopfschmerzen"
+          ],
+          "answer": "Fieber"
+        },
+        {
+          "q": "Wann kann sie nicht arbeiten?",
+          "o": [
+            "morgen",
+            "heute",
+            "am Montag"
+          ],
+          "answer": "morgen"
+        }
+      ]
     }
   },
   "15": {
@@ -533,6 +981,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person bringt einen Kuchen mit.",
       "explanation": "La personne dit « Ich bringe einen Kuchen mit » : elle apporte un gâteau.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Ich feiere am Freitag um neunzehn Uhr Geburtstag. Kannst du kommen? / Ja, ich bringe einen Salat mit.",
+      "fields": [
+        {
+          "q": "An welchem Tag ist die Feier?",
+          "o": [
+            "Freitag",
+            "Samstag",
+            "Sonntag"
+          ],
+          "answer": "Freitag"
+        },
+        {
+          "q": "Um wie viel Uhr beginnt sie?",
+          "o": [
+            "19:00",
+            "18:00",
+            "20:00"
+          ],
+          "answer": "19:00"
+        },
+        {
+          "q": "Was bringt die zweite Person mit?",
+          "o": [
+            "einen Salat",
+            "einen Kuchen",
+            "Brot"
+          ],
+          "answer": "einen Salat"
+        }
+      ]
     }
   },
   "16": {
@@ -568,6 +1048,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Das Geschäft ist morgen von neun bis achtzehn Uhr geöffnet.",
       "explanation": "Le magasin est fermé aujourd’hui et ouvert demain de neuf à dix-huit heures.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Ist das Geschäft heute geöffnet? / Nein. Morgen ist es von zehn bis achtzehn Uhr geöffnet. Der Eingang ist nur für Kunden.",
+      "fields": [
+        {
+          "q": "Wann ist das Geschäft geschlossen?",
+          "o": [
+            "heute",
+            "morgen",
+            "übermorgen"
+          ],
+          "answer": "heute"
+        },
+        {
+          "q": "Wann öffnet es morgen?",
+          "o": [
+            "um zehn Uhr",
+            "um neun Uhr",
+            "um achtzehn Uhr"
+          ],
+          "answer": "um zehn Uhr"
+        },
+        {
+          "q": "Für wen ist der Eingang?",
+          "o": [
+            "für Kunden",
+            "für Mitarbeiter",
+            "für alle"
+          ],
+          "answer": "für Kunden"
+        }
+      ]
     }
   },
   "17": {
@@ -603,6 +1115,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die erste Person möchte den Stift.",
       "explanation": "La demande porte sur den Stift, le stylo, et non le livre ou le verre.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Können Sie mir bitte das Buch geben? / Ja, natürlich. / Kann ich auch das Fenster öffnen? / Leider nicht.",
+      "fields": [
+        {
+          "q": "Was möchte die erste Person?",
+          "o": [
+            "das Buch",
+            "den Stift",
+            "die Tasche"
+          ],
+          "answer": "das Buch"
+        },
+        {
+          "q": "Bekommt sie das Buch?",
+          "o": [
+            "Ja, natürlich.",
+            "Leider nicht.",
+            "Erst morgen."
+          ],
+          "answer": "Ja, natürlich."
+        },
+        {
+          "q": "Was darf sie nicht machen?",
+          "o": [
+            "das Fenster öffnen",
+            "das Buch nehmen",
+            "den Stift geben"
+          ],
+          "answer": "das Fenster öffnen"
+        }
+      ]
     }
   },
   "18": {
@@ -639,6 +1183,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Zuerst lesen Sie die Aufgabe.",
       "explanation": "Zuerst indique la première étape : lire la consigne. L’écoute vient ensuite.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Was mache ich zuerst? / Lesen Sie zuerst die Aufgabe. Dann hören Sie den Text zweimal. Zum Schluss kreuzen Sie die Antwort an.",
+      "fields": [
+        {
+          "q": "Was kommt zuerst?",
+          "o": [
+            "die Aufgabe lesen",
+            "den Text hören",
+            "die Antwort ankreuzen"
+          ],
+          "answer": "die Aufgabe lesen"
+        },
+        {
+          "q": "Wie oft hört man den Text?",
+          "o": [
+            "zweimal",
+            "einmal",
+            "dreimal"
+          ],
+          "answer": "zweimal"
+        },
+        {
+          "q": "Was macht man zum Schluss?",
+          "o": [
+            "die Antwort ankreuzen",
+            "den Text lesen",
+            "die Aufgabe hören"
+          ],
+          "answer": "die Antwort ankreuzen"
+        }
+      ]
     }
   },
   "19": {
@@ -674,6 +1250,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Beine tun weh.",
       "explanation": "La personne a mal aux jambes. Elle précise qu’elle n’a pas mal à la tête.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Was tut Ihnen weh? / Mein Rücken und meine Beine. Mein Kopf tut nicht weh. Ich brauche einen Termin beim Arzt.",
+      "fields": [
+        {
+          "q": "Welcher Körperteil tut weh?",
+          "o": [
+            "der Rücken",
+            "der Kopf",
+            "der Hals"
+          ],
+          "answer": "der Rücken"
+        },
+        {
+          "q": "Was tut nicht weh?",
+          "o": [
+            "der Kopf",
+            "die Beine",
+            "der Rücken"
+          ],
+          "answer": "der Kopf"
+        },
+        {
+          "q": "Was braucht die Person?",
+          "o": [
+            "einen Termin beim Arzt",
+            "eine Apotheke",
+            "ein Glas Wasser"
+          ],
+          "answer": "einen Termin beim Arzt"
+        }
+      ]
     }
   },
   "20": {
@@ -701,7 +1309,7 @@ window.DE_A1_APPLICATIONS = {
       "q": "Lies den Dialog: Wie ist das Wetter morgen? / Es ist kalt und es regnet. Nimm einen Regenschirm mit.\nWas soll die Person mitnehmen?",
       "o": [
         "Ein Hemd.",
-        "Einen Salat.",
+        "Einen Mantel.",
         "Einen Regenschirm."
       ],
       "a": 2,
@@ -709,6 +1317,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person soll einen Regenschirm mitnehmen.",
       "explanation": "La consigne dit « Nimm einen Regenschirm mit » : prends un parapluie.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wie ist das Wetter heute? / Es regnet und es ist kalt. / Dann nehme ich einen Mantel und einen Regenschirm mit.",
+      "fields": [
+        {
+          "q": "Wie ist das Wetter?",
+          "o": [
+            "Es regnet.",
+            "Es schneit.",
+            "Es ist sonnig."
+          ],
+          "answer": "Es regnet."
+        },
+        {
+          "q": "Wie ist die Temperatur?",
+          "o": [
+            "kalt",
+            "warm",
+            "heiß"
+          ],
+          "answer": "kalt"
+        },
+        {
+          "q": "Was nimmt die Person zusätzlich zum Mantel mit?",
+          "o": [
+            "einen Regenschirm",
+            "einen Mantel",
+            "ein Hemd"
+          ],
+          "answer": "einen Regenschirm"
+        }
+      ]
     }
   },
   "21": {
@@ -744,6 +1384,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Personen treffen sich um neunzehn Uhr.",
       "explanation": "Le rendez-vous est à dix-neuf heures. Le concert commence une heure plus tard.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Wollen wir am Samstag ins Museum gehen? / Gern. Der Eintritt kostet zwölf Euro. Treffen wir uns um vierzehn Uhr? / Ja, vor dem Museum.",
+      "fields": [
+        {
+          "q": "Wohin gehen sie?",
+          "o": [
+            "ins Museum",
+            "ins Kino",
+            "ins Theater"
+          ],
+          "answer": "ins Museum"
+        },
+        {
+          "q": "Was kostet der Eintritt?",
+          "o": [
+            "zwölf Euro",
+            "zehn Euro",
+            "zwanzig Euro"
+          ],
+          "answer": "zwölf Euro"
+        },
+        {
+          "q": "Wann treffen sie sich?",
+          "o": [
+            "14:00",
+            "15:00",
+            "16:00"
+          ],
+          "answer": "14:00"
+        }
+      ]
     }
   },
   "22": {
@@ -779,6 +1451,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Marie bekommt morgen einen Rückruf.",
       "explanation": "Marie demande un rappel demain (morgen), et l’autre personne confirme demain.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Hallo, hier ist Paul. Bitte rufen Sie mich am Dienstag zurück. Meine Nummer ist 030 555 1840.",
+      "fields": [
+        {
+          "q": "Wer spricht?",
+          "o": [
+            "Paul",
+            "Peter",
+            "Marie"
+          ],
+          "answer": "Paul"
+        },
+        {
+          "q": "Wann soll man zurückrufen?",
+          "o": [
+            "am Dienstag",
+            "am Montag",
+            "heute"
+          ],
+          "answer": "am Dienstag"
+        },
+        {
+          "q": "Wie ist die Telefonnummer?",
+          "o": [
+            "030 555 1840",
+            "030 555 1480",
+            "030 555 1804"
+          ],
+          "answer": "030 555 1840"
+        }
+      ]
     }
   },
   "23": {
@@ -841,6 +1545,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "In das Feld Geburtsort gehört die Stadt der Geburt.",
       "explanation": "Geburtsort est le lieu de naissance : on écrit la ville, pas la date ou l’adresse.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Können Sie mir helfen? / Ja. Bei Familienname schreiben Sie Müller, bei Vorname Anna. Ihr Geburtsdatum ist der siebzehnte April 2000.",
+      "fields": [
+        {
+          "q": "Was ist der Familienname?",
+          "o": [
+            "Müller",
+            "Anna",
+            "Martin"
+          ],
+          "answer": "Müller"
+        },
+        {
+          "q": "Was ist der Vorname?",
+          "o": [
+            "Anna",
+            "Anne",
+            "Müller"
+          ],
+          "answer": "Anna"
+        },
+        {
+          "q": "Was ist das Geburtsdatum?",
+          "o": [
+            "17.04.2000",
+            "07.04.2000",
+            "17.07.2000"
+          ],
+          "answer": "17.04.2000"
+        }
+      ]
     }
   },
   "24": {
@@ -882,6 +1618,38 @@ window.DE_A1_APPLICATIONS = {
       "audio": "Die Person kommt am Samstag um sechs Uhr.",
       "explanation": "La personne annonce samedi à six heures : am Samstag um sechs Uhr.",
       "type": "choice"
+    },
+    "review": {
+      "text": "Danke für deine Einladung! Ich komme am Sonntag um achtzehn Uhr. Kann ich Brot mitbringen? / Ja, gern.",
+      "fields": [
+        {
+          "q": "An welchem Tag kommt die Person?",
+          "o": [
+            "Sonntag",
+            "Samstag",
+            "Freitag"
+          ],
+          "answer": "Sonntag"
+        },
+        {
+          "q": "Um wie viel Uhr kommt sie?",
+          "o": [
+            "18:00",
+            "17:00",
+            "19:00"
+          ],
+          "answer": "18:00"
+        },
+        {
+          "q": "Was möchte sie mitbringen?",
+          "o": [
+            "Brot",
+            "einen Kuchen",
+            "einen Salat"
+          ],
+          "answer": "Brot"
+        }
+      ]
     }
   }
 };

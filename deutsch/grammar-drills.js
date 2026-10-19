@@ -143,6 +143,20 @@
     const orders=sets.find(s=>s.id==='g3');
     const order=orders?.questions.find(q=>q.q==='Comment commandes-tu poliment ?');
     if(order)Object.assign(order,{q:'Comment demandes-tu poliment une eau ?',o:['Ich hätte gern ein Wasser.','Ich hätte gern einen Kaffee.','Ich hätte gern eine Suppe.'],a:0,audio:'Ich hätte gern ein Wasser.'});
+    const questions=sets.find(s=>s.id==='g4');
+    const replacements={
+      'Comment demandes-tu le prix ?':{q:'Tu demandes combien coûte cet article.',o:['Wie viel kostet das?','Wie viel kostet der Mantel?','Wie viel kosten die Schuhe?'],a:0,audio:'Wie viel kostet das?'},
+      'Comment demandes-tu le lieu ?':{q:'Tu demandes où se trouve la gare.',o:['Wo ist der Bahnhof?','Wie komme ich zum Bahnhof?','Wann fährt der Zug am Bahnhof ab?'],a:0,audio:'Wo ist der Bahnhof?'},
+      'Complète : ___ beginnt der Kurs?':{q:'« Quand commence le cours ? » — Complète : ___ beginnt der Kurs?',o:['Wann','Wo','Wie'],a:0,audio:'Wann beginnt der Kurs?'},
+      'Complète : ___ heißen Sie?':{q:'« Comment vous appelez-vous ? » — Complète : ___ heißen Sie?',o:['Wie','Wo','Warum'],a:0,audio:'Wie heißen Sie?'},
+      'Complète : ___ fahren Sie in Urlaub?':{q:'« Où allez-vous en vacances ? » — Complète : ___ fahren Sie in Urlaub?',o:['Wohin','Wann','Wie'],a:0,audio:'Wohin fahren Sie in Urlaub?'},
+      'Complète : ___ Personen kommen?':{q:'« Combien de personnes viennent ? » — Complète : ___ Personen kommen?',o:['Wie viele','Welche','Wie viel'],a:0,audio:'Wie viele Personen kommen?'},
+      'Complète : ___ dauert der Kurs?':{q:'« Combien de temps dure le cours ? » — Complète : ___ dauert der Kurs?',o:['Wie lange','Wie oft','Wie viel'],a:0,audio:'Wie lange dauert der Kurs?'},
+      'Question oui/non correcte ?':{q:'Quelle question demande si la personne vient demain ?',o:['Kommen Sie morgen?','Kommen Sie heute?','Kommen Sie am Montag?'],a:0,audio:'Kommen Sie morgen?'}
+    };
+    if(questions)questions.questions=questions.questions.map(q=>replacements[q.q]||q);
+    // Extending a pool must not add the same question again just because choices were shuffled.
+    for(const set of sets){const seen=new Set();set.questions=set.questions.filter(q=>{const key=q.q.trim().toLowerCase().replace(/\s+/g,' ');if(seen.has(key))return false;seen.add(key);return true;});}
     const situations=sets.find(s=>s.id==='g8');
     if(situations)situations.questions=SITUATION_TASKS;
   }

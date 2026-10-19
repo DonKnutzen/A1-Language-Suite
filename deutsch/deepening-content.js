@@ -14,14 +14,116 @@ window.DE_A1_STUDY_CONTENT = {
           "Je viens du Canada."
         ],
         [
-          "Ich wohne in Halifax.",
+          "Ich |wohne| in Halifax.",
           "J’habite à Halifax."
         ],
         [
-          "Ich spreche Französisch.",
+          "Ich |spreche| Französisch.",
           "Je parle français."
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "Guten Morgen.",
+          "Bonjour (le matin)."
+        ],
+        [
+          "Auf Wiedersehen.",
+          "Au revoir."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "heiße",
+          "wrong": [
+            "heißt",
+            "heißen"
+          ]
+        },
+        {
+          "focus": "komme",
+          "wrong": [
+            "kommst",
+            "kommen"
+          ]
+        },
+        {
+          "focus": "wohne",
+          "wrong": [
+            "wohnst",
+            "wohnen"
+          ]
+        },
+        {
+          "focus": "spreche",
+          "wrong": [
+            "sprichst",
+            "sprechen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich heiße Claire.": [
+          [
+            "Ich heiße Paul.",
+            "Je m’appelle Paul."
+          ],
+          [
+            "Ich heiße Anne.",
+            "Je m’appelle Anne."
+          ]
+        ],
+        "Ich komme aus Kanada.": [
+          [
+            "Ich komme aus Deutschland.",
+            "Je viens d’Allemagne."
+          ],
+          [
+            "Ich komme aus Frankreich.",
+            "Je viens de France."
+          ]
+        ],
+        "Ich wohne in Halifax.": [
+          [
+            "Ich wohne in Berlin.",
+            "J’habite à Berlin."
+          ],
+          [
+            "Ich wohne in Paris.",
+            "J’habite à Paris."
+          ]
+        ],
+        "Ich spreche Französisch.": [
+          [
+            "Ich spreche Deutsch.",
+            "Je parle allemand."
+          ],
+          [
+            "Ich spreche Englisch.",
+            "Je parle anglais."
+          ]
+        ],
+        "Guten Morgen.": [
+          [
+            "Guten Tag.",
+            "Bonjour (dans la journée)."
+          ],
+          [
+            "Guten Abend.",
+            "Bonsoir."
+          ]
+        ],
+        "Auf Wiedersehen.": [
+          [
+            "Bis morgen.",
+            "À demain."
+          ],
+          [
+            "Guten Abend.",
+            "Bonsoir."
+          ]
+        ]
+      }
     },
     {
       "title": "Poser les premières questions",
@@ -36,14 +138,116 @@ window.DE_A1_STUDY_CONTENT = {
           "D’où venez-vous ?"
         ],
         [
-          "Wo wohnen Sie?",
+          "Wo |wohnen| Sie?",
           "Où habitez-vous ?"
         ],
         [
-          "Welche Sprachen sprechen Sie?",
+          "Welche Sprachen |sprechen| Sie?",
           "Quelles langues parlez-vous ?"
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "Wie geht es Ihnen?",
+          "Comment allez-vous ?"
+        ],
+        [
+          "Und Sie?",
+          "Et vous ?"
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "heißen",
+          "wrong": [
+            "heißt",
+            "heiße"
+          ]
+        },
+        {
+          "focus": "kommen",
+          "wrong": [
+            "kommt",
+            "kommst"
+          ]
+        },
+        {
+          "focus": "wohnen",
+          "wrong": [
+            "wohnt",
+            "wohnst"
+          ]
+        },
+        {
+          "focus": "sprechen",
+          "wrong": [
+            "spricht",
+            "sprecht"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wie heißen Sie?": [
+          [
+            "Wie heißt sie?",
+            "Comment s’appelle-t-elle ?"
+          ],
+          [
+            "Wie heißt er?",
+            "Comment s’appelle-t-il ?"
+          ]
+        ],
+        "Woher kommen Sie?": [
+          [
+            "Wo wohnen Sie?",
+            "Où habitez-vous ?"
+          ],
+          [
+            "Wohin fahren Sie?",
+            "Où allez-vous ?"
+          ]
+        ],
+        "Wo wohnen Sie?": [
+          [
+            "Woher kommen Sie?",
+            "D’où venez-vous ?"
+          ],
+          [
+            "Wohin fahren Sie?",
+            "Où allez-vous ?"
+          ]
+        ],
+        "Welche Sprachen sprechen Sie?": [
+          [
+            "Sprechen Sie Deutsch?",
+            "Parlez-vous allemand ?"
+          ],
+          [
+            "Sprechen Sie Französisch?",
+            "Parlez-vous français ?"
+          ]
+        ],
+        "Wie geht es Ihnen?": [
+          [
+            "Wie geht es dir?",
+            "Comment vas-tu ?"
+          ],
+          [
+            "Wie geht es ihr?",
+            "Comment va-t-elle ?"
+          ]
+        ],
+        "Und Sie?": [
+          [
+            "Und du?",
+            "Et toi ?"
+          ],
+          [
+            "Und er?",
+            "Et lui ?"
+          ]
+        ]
+      }
     }
   ],
   "2": [
@@ -60,13 +264,53 @@ window.DE_A1_STUDY_CONTENT = {
           "avec trait d’union"
         ],
         [
-          "mit Doppel-s",
+          "mit |Doppel-s|",
           "avec deux s"
         ],
         [
-          "ohne Umlaut",
+          "|ohne| Umlaut",
           "sans tréma allemand"
         ]
+      ],
+      "extra": [
+        [
+          "mit Eszett",
+          "avec un ß"
+        ],
+        [
+          "mit einem Punkt",
+          "avec un point"
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "Umlaut",
+          "wrong": [
+            "Bindestrich",
+            "Doppel-s"
+          ]
+        },
+        {
+          "focus": "Bindestrich",
+          "wrong": [
+            "Umlaut",
+            "Doppel-s"
+          ]
+        },
+        {
+          "focus": "Doppel-s",
+          "wrong": [
+            "Umlaut",
+            "Bindestrich"
+          ]
+        },
+        {
+          "focus": "ohne",
+          "wrong": [
+            "mit",
+            "für"
+          ]
+        }
       ]
     },
     {
@@ -82,11 +326,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Pouvez-vous répéter cela, s’il vous plaît ?"
         ],
         [
-          "Können Sie bitte langsamer sprechen?",
+          "Können Sie bitte |langsamer| sprechen?",
           "Pouvez-vous parler plus lentement, s’il vous plaît ?"
         ],
         [
-          "Können Sie den Namen bitte schreiben?",
+          "Können Sie den Namen bitte |schreiben|?",
           "Pouvez-vous écrire le nom, s’il vous plaît ?"
         ]
       ],
@@ -126,6 +370,58 @@ window.DE_A1_STUDY_CONTENT = {
           "könnt",
           "können"
         ]
+      },
+      "extra": [
+        [
+          "Ich kann den Namen buchstabieren.",
+          "Je peux épeler le nom."
+        ],
+        [
+          "Bitte noch einmal.",
+          "Encore une fois, s’il vous plaît."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "buchstabieren",
+          "wrong": [
+            "wiederholen",
+            "langsamer"
+          ]
+        },
+        {
+          "focus": "wiederholen",
+          "wrong": [
+            "buchstabieren",
+            "langsamer"
+          ]
+        },
+        {
+          "focus": "langsamer",
+          "wrong": [
+            "buchstabieren",
+            "wiederholen"
+          ]
+        },
+        {
+          "focus": "schreiben",
+          "wrong": [
+            "buchstabieren",
+            "wiederholen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Können Sie das bitte wiederholen?": [
+          [
+            "Können Sie das bitte buchstabieren?",
+            "Pouvez-vous épeler cela, s’il vous plaît ?"
+          ],
+          [
+            "Können Sie bitte langsamer sprechen?",
+            "Pouvez-vous parler plus lentement, s’il vous plaît ?"
+          ]
+        ]
       }
     }
   ],
@@ -143,11 +439,11 @@ window.DE_A1_STUDY_CONTENT = {
           "trente"
         ],
         [
-          "einundzwanzig",
+          "|einundzwanzig|",
           "vingt et un"
         ],
         [
-          "zweiunddreißig",
+          "|zweiunddreißig|",
           "trente-deux"
         ]
       ],
@@ -164,7 +460,69 @@ window.DE_A1_STUDY_CONTENT = {
           "20–100",
           "zwanzig, dreißig, vierzig, fünfzig, sechzig, siebzig, achtzig, neunzig, hundert"
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "achtundzwanzig",
+          "vingt-huit"
+        ],
+        [
+          "zweiundachtzig",
+          "quatre-vingt-deux"
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "dreizehn",
+          "wrong": [
+            "dreißig",
+            "einundzwanzig"
+          ]
+        },
+        {
+          "focus": "dreißig",
+          "wrong": [
+            "dreizehn",
+            "einundzwanzig"
+          ]
+        },
+        {
+          "focus": "einundzwanzig",
+          "wrong": [
+            "dreizehn",
+            "dreißig"
+          ]
+        },
+        {
+          "focus": "zweiunddreißig",
+          "wrong": [
+            "dreizehn",
+            "dreißig"
+          ]
+        }
+      ],
+      "contrasts": {
+        "achtundzwanzig": [
+          [
+            "zweiundachtzig",
+            "quatre-vingt-deux"
+          ],
+          [
+            "achtzehn",
+            "dix-huit"
+          ]
+        ],
+        "zweiundachtzig": [
+          [
+            "achtundzwanzig",
+            "vingt-huit"
+          ],
+          [
+            "zweiundzwanzig",
+            "vingt-deux"
+          ]
+        ]
+      }
     },
     {
       "title": "Dates et coordonnées",
@@ -179,11 +537,11 @@ window.DE_A1_STUDY_CONTENT = {
           "lieu de naissance"
         ],
         [
-          "Telefonnummer",
+          "|Telefonnummer|",
           "numéro de téléphone"
         ],
         [
-          "Postleitzahl",
+          "|Postleitzahl|",
           "code postal"
         ]
       ],
@@ -196,7 +554,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Meine Telefonnummer ist null drei null, fünf fünf fünf, eins acht vier null.",
           "Mon numéro est 030 555 1840."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Geburtsdatum",
+          "wrong": [
+            "Geburtsort",
+            "Telefonnummer"
+          ]
+        },
+        {
+          "focus": "Geburtsort",
+          "wrong": [
+            "Geburtsdatum",
+            "Telefonnummer"
+          ]
+        },
+        {
+          "focus": "Telefonnummer",
+          "wrong": [
+            "Geburtsdatum",
+            "Geburtsort"
+          ]
+        },
+        {
+          "focus": "Postleitzahl",
+          "wrong": [
+            "Geburtsdatum",
+            "Geburtsort"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Meine Telefonnummer ist null drei null, fünf fünf fünf, eins acht vier null.": [
+          [
+            "Meine Telefonnummer ist null drei null, fünf fünf fünf, eins vier acht null.",
+            "Mon numéro est 030 555 1480."
+          ],
+          [
+            "Meine Telefonnummer ist null drei null, fünf fünf fünf, eins acht null vier.",
+            "Mon numéro est 030 555 1804."
+          ]
+        ]
+      }
     }
   ],
   "4": [
@@ -213,13 +613,53 @@ window.DE_A1_STUDY_CONTENT = {
           "Il est quatre heures et quart."
         ],
         [
-          "Es ist Viertel vor fünf.",
+          "Es ist Viertel |vor| fünf.",
           "Il est cinq heures moins le quart."
         ],
         [
-          "Es ist fünf Uhr.",
+          "Es ist |fünf| Uhr.",
           "Il est cinq heures."
         ]
+      ],
+      "extra": [
+        [
+          "Es ist zehn Uhr dreißig.",
+          "Il est dix heures trente."
+        ],
+        [
+          "Es ist zehn Uhr fünfzehn.",
+          "Il est dix heures quinze."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "halb",
+          "wrong": [
+            "nach",
+            "vor"
+          ]
+        },
+        {
+          "focus": "nach",
+          "wrong": [
+            "halb",
+            "vor"
+          ]
+        },
+        {
+          "focus": "vor",
+          "wrong": [
+            "halb",
+            "nach"
+          ]
+        },
+        {
+          "focus": "fünf",
+          "wrong": [
+            "halb",
+            "nach"
+          ]
+        }
       ]
     },
     {
@@ -235,11 +675,11 @@ window.DE_A1_STUDY_CONTENT = {
           "mardi"
         ],
         [
-          "Freitag",
+          "|Freitag|",
           "vendredi"
         ],
         [
-          "Sonntag",
+          "|Sonntag|",
           "dimanche"
         ]
       ],
@@ -272,6 +712,46 @@ window.DE_A1_STUDY_CONTENT = {
           "Sonntag",
           "dimanche"
         ]
+      ],
+      "extra": [
+        [
+          "Mittwoch",
+          "mercredi"
+        ],
+        [
+          "Donnerstag",
+          "jeudi"
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "Montag",
+          "wrong": [
+            "Dienstag",
+            "Freitag"
+          ]
+        },
+        {
+          "focus": "Dienstag",
+          "wrong": [
+            "Montag",
+            "Freitag"
+          ]
+        },
+        {
+          "focus": "Freitag",
+          "wrong": [
+            "Montag",
+            "Dienstag"
+          ]
+        },
+        {
+          "focus": "Sonntag",
+          "wrong": [
+            "Montag",
+            "Dienstag"
+          ]
+        }
       ]
     },
     {
@@ -287,11 +767,11 @@ window.DE_A1_STUDY_CONTENT = {
           "avril"
         ],
         [
-          "Juli",
+          "|Juli|",
           "juillet"
         ],
         [
-          "Oktober",
+          "|Oktober|",
           "octobre"
         ]
       ],
@@ -354,6 +834,36 @@ window.DE_A1_STUDY_CONTENT = {
           "am siebzehnten April",
           "le dix-sept avril"
         ]
+      ],
+      "practice": [
+        {
+          "focus": "Januar",
+          "wrong": [
+            "April",
+            "Juli"
+          ]
+        },
+        {
+          "focus": "April",
+          "wrong": [
+            "Januar",
+            "Juli"
+          ]
+        },
+        {
+          "focus": "Juli",
+          "wrong": [
+            "Januar",
+            "April"
+          ]
+        },
+        {
+          "focus": "Oktober",
+          "wrong": [
+            "Januar",
+            "April"
+          ]
+        }
       ]
     },
     {
@@ -369,11 +879,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Le rendez-vous est mardi à onze heures."
         ],
         [
-          "Der Termin ist am Mittwoch um zehn Uhr.",
+          "Der Termin ist am |Mittwoch| um zehn Uhr.",
           "Le rendez-vous est mercredi à dix heures."
         ],
         [
-          "Der Termin ist am Freitag um elf Uhr.",
+          "Der Termin ist am Freitag um |elf| Uhr.",
           "Le rendez-vous est vendredi à onze heures."
         ]
       ],
@@ -390,7 +900,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich komme später.",
           "J’arrive plus tard."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "am",
+          "wrong": [
+            "um",
+            "im"
+          ]
+        },
+        {
+          "focus": "um",
+          "wrong": [
+            "am",
+            "im"
+          ]
+        },
+        {
+          "focus": "Mittwoch",
+          "wrong": [
+            "am",
+            "um"
+          ]
+        },
+        {
+          "focus": "elf",
+          "wrong": [
+            "am",
+            "um"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Treffpunkt: Bibliothek.": [
+          [
+            "Treffpunkt: Bahnhof.",
+            "Lieu de rendez-vous : gare."
+          ],
+          [
+            "Treffpunkt: Schule.",
+            "Lieu de rendez-vous : école."
+          ]
+        ]
+      }
     }
   ],
   "5": [
@@ -407,14 +959,66 @@ window.DE_A1_STUDY_CONTENT = {
           "C’est ma mère."
         ],
         [
-          "Das ist mein Bruder.",
+          "Das ist mein |Bruder|.",
           "C’est mon frère."
         ],
         [
-          "Das ist meine Schwester.",
+          "Das ist meine |Schwester|.",
           "C’est ma sœur."
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "Das sind meine Eltern.",
+          "Ce sont mes parents."
+        ],
+        [
+          "Das ist mein Sohn.",
+          "C’est mon fils."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "mein",
+          "wrong": [
+            "meine",
+            "meinen"
+          ]
+        },
+        {
+          "focus": "meine",
+          "wrong": [
+            "mein",
+            "meinen"
+          ]
+        },
+        {
+          "focus": "Bruder",
+          "wrong": [
+            "mein",
+            "meine"
+          ]
+        },
+        {
+          "focus": "Schwester",
+          "wrong": [
+            "mein",
+            "meine"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Das sind meine Eltern.": [
+          [
+            "Das sind meine Kinder.",
+            "Ce sont mes enfants."
+          ],
+          [
+            "Das sind meine Geschwister.",
+            "Ce sont mes frères et sœurs."
+          ]
+        ]
+      }
     },
     {
       "title": "Informations personnelles",
@@ -429,11 +1033,11 @@ window.DE_A1_STUDY_CONTENT = {
           "prénom"
         ],
         [
-          "Familienstand",
+          "|Familienstand|",
           "état civil"
         ],
         [
-          "Geburtsdatum",
+          "|Geburtsdatum|",
           "date de naissance"
         ]
       ],
@@ -446,7 +1050,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Wir haben zwei Kinder.",
           "Nous avons deux enfants."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Familienname",
+          "wrong": [
+            "Vorname",
+            "Familienstand"
+          ]
+        },
+        {
+          "focus": "Vorname",
+          "wrong": [
+            "Familienname",
+            "Familienstand"
+          ]
+        },
+        {
+          "focus": "Familienstand",
+          "wrong": [
+            "Familienname",
+            "Vorname"
+          ]
+        },
+        {
+          "focus": "Geburtsdatum",
+          "wrong": [
+            "Familienname",
+            "Vorname"
+          ]
+        }
+      ],
+      "contrasts": {
+        "ledig / verheiratet / geschieden": [
+          [
+            "verheiratet / ledig / geschieden",
+            "marié(e) / célibataire / divorcé(e)"
+          ],
+          [
+            "geschieden / verheiratet / ledig",
+            "divorcé(e) / marié(e) / célibataire"
+          ]
+        ]
+      }
     }
   ],
   "6": [
@@ -463,14 +1109,76 @@ window.DE_A1_STUDY_CONTENT = {
           "Je voudrais une soupe."
         ],
         [
-          "Ich hätte gern ein Wasser.",
+          "Ich hätte gern |ein| Wasser.",
           "Je voudrais une eau."
         ],
         [
-          "Ich hätte gern einen Salat.",
+          "Ich hätte gern |einen| Salat.",
           "Je voudrais une salade."
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "Ich möchte einen Tee.",
+          "Je voudrais un thé."
+        ],
+        [
+          "Ich nehme die Suppe.",
+          "Je prends la soupe."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "einen",
+          "wrong": [
+            "ein",
+            "eine"
+          ]
+        },
+        {
+          "focus": "eine",
+          "wrong": [
+            "ein",
+            "einen"
+          ]
+        },
+        {
+          "focus": "ein",
+          "wrong": [
+            "eine",
+            "einen"
+          ]
+        },
+        {
+          "focus": "einen",
+          "wrong": [
+            "ein",
+            "eine"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich möchte einen Tee.": [
+          [
+            "Ich möchte einen Kaffee.",
+            "Je voudrais un café."
+          ],
+          [
+            "Ich möchte ein Wasser.",
+            "Je voudrais une eau."
+          ]
+        ],
+        "Ich nehme die Suppe.": [
+          [
+            "Ich nehme den Salat.",
+            "Je prends la salade."
+          ],
+          [
+            "Ich nehme das Wasser.",
+            "Je prends l’eau."
+          ]
+        ]
+      }
     },
     {
       "title": "Préciser et payer",
@@ -485,11 +1193,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Sans sucre, s’il vous plaît."
         ],
         [
-          "Ohne Milch, bitte.",
+          "Ohne |Milch|, bitte.",
           "Sans lait, s’il vous plaît."
         ],
         [
-          "Ohne Eis, bitte.",
+          "Ohne |Eis|, bitte.",
           "Sans glaçons, s’il vous plaît."
         ]
       ],
@@ -506,7 +1214,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Noch ein Wasser, bitte.",
           "Encore une eau, s’il vous plaît."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Fleisch",
+          "wrong": [
+            "Zucker",
+            "Milch"
+          ]
+        },
+        {
+          "focus": "Zucker",
+          "wrong": [
+            "Fleisch",
+            "Milch"
+          ]
+        },
+        {
+          "focus": "Milch",
+          "wrong": [
+            "Fleisch",
+            "Zucker"
+          ]
+        },
+        {
+          "focus": "Eis",
+          "wrong": [
+            "Fleisch",
+            "Zucker"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Die Rechnung, bitte.": [
+          [
+            "Die Speisekarte, bitte.",
+            "Le menu, s’il vous plaît."
+          ],
+          [
+            "Noch ein Wasser, bitte.",
+            "Encore une eau, s’il vous plaît."
+          ]
+        ],
+        "Die Speisekarte, bitte.": [
+          [
+            "Die Rechnung, bitte.",
+            "L’addition, s’il vous plaît."
+          ],
+          [
+            "Noch ein Wasser, bitte.",
+            "Encore une eau, s’il vous plaît."
+          ]
+        ]
+      }
     }
   ],
   "7": [
@@ -523,11 +1283,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Cela coûte trente euros."
         ],
         [
-          "Das kostet dreizehn Euro.",
+          "Das kostet |dreizehn| Euro.",
           "Cela coûte treize euros."
         ],
         [
-          "Das kostet neunzehn Euro.",
+          "Das kostet |neunzehn| Euro.",
           "Cela coûte dix-neuf euros."
         ]
       ],
@@ -540,7 +1300,49 @@ window.DE_A1_STUDY_CONTENT = {
           "zwei Äpfel, ein Brot, eine Flasche Wasser",
           "deux pommes, un pain, une bouteille d’eau"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "zwanzig",
+          "wrong": [
+            "dreißig",
+            "dreizehn"
+          ]
+        },
+        {
+          "focus": "dreißig",
+          "wrong": [
+            "zwanzig",
+            "dreizehn"
+          ]
+        },
+        {
+          "focus": "dreizehn",
+          "wrong": [
+            "zwanzig",
+            "dreißig"
+          ]
+        },
+        {
+          "focus": "neunzehn",
+          "wrong": [
+            "zwanzig",
+            "dreißig"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wie viel kosten die Schuhe?": [
+          [
+            "Wie viel kostet das Brot?",
+            "Combien coûte le pain ?"
+          ],
+          [
+            "Wie viel kostet der Mantel?",
+            "Combien coûte le manteau ?"
+          ]
+        ]
+      }
     },
     {
       "title": "Trouver un article",
@@ -555,11 +1357,11 @@ window.DE_A1_STUDY_CONTENT = {
           "C’est trop petit."
         ],
         [
-          "Das ist zu groß.",
+          "Das ist zu |groß|.",
           "C’est trop grand."
         ],
         [
-          "Das ist zu lang.",
+          "Das ist zu |lang|.",
           "C’est trop long."
         ]
       ],
@@ -580,7 +1382,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich nehme das.",
           "Je prends cela."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "teuer",
+          "wrong": [
+            "klein",
+            "groß"
+          ]
+        },
+        {
+          "focus": "klein",
+          "wrong": [
+            "teuer",
+            "groß"
+          ]
+        },
+        {
+          "focus": "groß",
+          "wrong": [
+            "teuer",
+            "klein"
+          ]
+        },
+        {
+          "focus": "lang",
+          "wrong": [
+            "teuer",
+            "klein"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Haben Sie das in Größe vierzig?": [
+          [
+            "Haben Sie das in Größe zweiundvierzig?",
+            "L’avez-vous en taille quarante-deux ?"
+          ],
+          [
+            "Haben Sie das in Größe vierundvierzig?",
+            "L’avez-vous en taille quarante-quatre ?"
+          ]
+        ],
+        "Wo ist die Kasse?": [
+          [
+            "Wo ist der Eingang?",
+            "Où est l’entrée ?"
+          ],
+          [
+            "Wo ist der Ausgang?",
+            "Où est la sortie ?"
+          ]
+        ]
+      }
     }
   ],
   "8": [
@@ -597,13 +1451,53 @@ window.DE_A1_STUDY_CONTENT = {
           "L’appartement a un balcon."
         ],
         [
-          "Die Wohnung hat eine Küche.",
+          "Die Wohnung hat eine |Küche|.",
           "L’appartement a une cuisine."
         ],
         [
-          "Die Wohnung hat ein Bad.",
+          "Die Wohnung hat ein |Bad|.",
           "L’appartement a une salle de bains."
         ]
+      ],
+      "extra": [
+        [
+          "Die Miete ist sechshundert Euro.",
+          "Le loyer est de six cents euros."
+        ],
+        [
+          "Die Wohnung ist im ersten Stock.",
+          "L’appartement est au premier étage."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "zwei",
+          "wrong": [
+            "Balkon",
+            "Küche"
+          ]
+        },
+        {
+          "focus": "Balkon",
+          "wrong": [
+            "zwei",
+            "Küche"
+          ]
+        },
+        {
+          "focus": "Küche",
+          "wrong": [
+            "zwei",
+            "Balkon"
+          ]
+        },
+        {
+          "focus": "Bad",
+          "wrong": [
+            "zwei",
+            "Balkon"
+          ]
+        }
       ]
     },
     {
@@ -619,12 +1513,12 @@ window.DE_A1_STUDY_CONTENT = {
           "Je cherche une chambre."
         ],
         [
-          "Ich suche ein Haus.",
+          "Ich suche ein |Haus|.",
           "Je cherche une maison."
         ],
         [
-          "Ich suche eine Adresse.",
-          "Je cherche une adresse."
+          "Ich möchte die Wohnung |sehen|.",
+          "Je voudrais visiter l’appartement."
         ]
       ],
       "extra": [
@@ -644,7 +1538,69 @@ window.DE_A1_STUDY_CONTENT = {
           "Meine Telefonnummer ist …",
           "Mon numéro de téléphone est …"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Wohnung",
+          "wrong": [
+            "Zimmer",
+            "Haus"
+          ]
+        },
+        {
+          "focus": "Zimmer",
+          "wrong": [
+            "Wohnung",
+            "Haus"
+          ]
+        },
+        {
+          "focus": "Haus",
+          "wrong": [
+            "Wohnung",
+            "Zimmer"
+          ]
+        },
+        {
+          "focus": "sehen",
+          "wrong": [
+            "sehe",
+            "sieht"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wann kann ich die Wohnung sehen?": [
+          [
+            "Wann kann ich das Zimmer sehen?",
+            "Quand puis-je visiter la chambre ?"
+          ],
+          [
+            "Wann kann ich das Haus sehen?",
+            "Quand puis-je visiter la maison ?"
+          ]
+        ],
+        "Wie hoch ist die Miete?": [
+          [
+            "Wie groß ist die Wohnung?",
+            "Quelle est la taille de l’appartement ?"
+          ],
+          [
+            "Wie viele Zimmer hat die Wohnung?",
+            "Combien de pièces a l’appartement ?"
+          ]
+        ],
+        "Ich möchte die Wohnung sehen.": [
+          [
+            "Ich möchte das Haus sehen.",
+            "Je voudrais visiter la maison."
+          ],
+          [
+            "Ich möchte das Zimmer sehen.",
+            "Je voudrais visiter la chambre."
+          ]
+        ]
+      }
     }
   ],
   "9": [
@@ -661,11 +1617,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Allez à gauche."
         ],
         [
-          "Gehen Sie nach rechts.",
+          "Gehen Sie nach |rechts|.",
           "Allez à droite."
         ],
         [
-          "Gehen Sie zurück.",
+          "Gehen Sie |zurück|.",
           "Revenez en arrière."
         ]
       ],
@@ -678,7 +1634,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Wie komme ich zum Bahnhof?",
           "Comment aller à la gare ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "geradeaus",
+          "wrong": [
+            "links",
+            "rechts"
+          ]
+        },
+        {
+          "focus": "links",
+          "wrong": [
+            "geradeaus",
+            "rechts"
+          ]
+        },
+        {
+          "focus": "rechts",
+          "wrong": [
+            "geradeaus",
+            "links"
+          ]
+        },
+        {
+          "focus": "zurück",
+          "wrong": [
+            "geradeaus",
+            "links"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Gehen Sie zuerst geradeaus und dann nach links.": [
+          [
+            "Gehen Sie zuerst geradeaus und dann nach rechts.",
+            "Allez d’abord tout droit, puis à droite."
+          ],
+          [
+            "Gehen Sie zuerst nach links und dann geradeaus.",
+            "Allez d’abord à gauche, puis tout droit."
+          ]
+        ],
+        "Wie komme ich zum Bahnhof?": [
+          [
+            "Wie komme ich zur Schule?",
+            "Comment aller à l’école ?"
+          ],
+          [
+            "Wie komme ich zum Museum?",
+            "Comment aller au musée ?"
+          ]
+        ]
+      }
     },
     {
       "title": "Comprendre les transports",
@@ -693,11 +1701,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Prenez la ligne trois."
         ],
         [
-          "Nehmen Sie die Linie dreizehn.",
+          "Nehmen Sie die Linie |dreizehn|.",
           "Prenez la ligne treize."
         ],
         [
-          "Nehmen Sie die Linie achtzehn.",
+          "Nehmen Sie die Linie |achtzehn|.",
           "Prenez la ligne dix-huit."
         ]
       ],
@@ -714,7 +1722,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Der Zug hat Verspätung.",
           "Le train a du retard."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "acht",
+          "wrong": [
+            "drei",
+            "dreizehn"
+          ]
+        },
+        {
+          "focus": "drei",
+          "wrong": [
+            "acht",
+            "dreizehn"
+          ]
+        },
+        {
+          "focus": "dreizehn",
+          "wrong": [
+            "acht",
+            "drei"
+          ]
+        },
+        {
+          "focus": "achtzehn",
+          "wrong": [
+            "acht",
+            "drei"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Welches Gleis?": [
+          [
+            "Welche Linie?",
+            "Quelle ligne ?"
+          ],
+          [
+            "Welche Haltestelle?",
+            "Quel arrêt ?"
+          ]
+        ],
+        "Sie müssen umsteigen.": [
+          [
+            "Sie müssen aussteigen.",
+            "Vous devez descendre."
+          ],
+          [
+            "Sie müssen einsteigen.",
+            "Vous devez monter."
+          ]
+        ]
+      }
     }
   ],
   "10": [
@@ -731,11 +1791,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Je travaille à l’hôpital."
         ],
         [
-          "Ich arbeite in der Schule.",
+          "Ich arbeite in der |Schule|.",
           "Je travaille à l’école."
         ],
         [
-          "Ich arbeite im Supermarkt.",
+          "Ich arbeite im |Supermarkt|.",
           "Je travaille au supermarché."
         ]
       ],
@@ -748,7 +1808,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich arbeite von acht bis sechzehn Uhr.",
           "Je travaille de huit à seize heures."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Büro",
+          "wrong": [
+            "Krankenhaus",
+            "Schule"
+          ]
+        },
+        {
+          "focus": "Krankenhaus",
+          "wrong": [
+            "Büro",
+            "Schule"
+          ]
+        },
+        {
+          "focus": "Schule",
+          "wrong": [
+            "Büro",
+            "Krankenhaus"
+          ]
+        },
+        {
+          "focus": "Supermarkt",
+          "wrong": [
+            "Büro",
+            "Krankenhaus"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich arbeite als Verkäuferin.": [
+          [
+            "Ich arbeite als Lehrerin.",
+            "Je travaille comme enseignante."
+          ],
+          [
+            "Ich arbeite als Ärztin.",
+            "Je travaille comme médecin."
+          ]
+        ]
+      }
     },
     {
       "title": "Prévenir au travail",
@@ -763,11 +1865,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’arrive plus tard demain."
         ],
         [
-          "Ich komme am Montag später.",
+          "Ich komme |am Montag| später.",
           "J’arrive plus tard lundi."
         ],
         [
-          "Ich komme am Freitag später.",
+          "Ich komme |am Freitag| später.",
           "J’arrive plus tard vendredi."
         ]
       ],
@@ -784,7 +1886,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich habe heute frei.",
           "Je suis en congé aujourd’hui."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "heute",
+          "wrong": [
+            "morgen",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "morgen",
+          "wrong": [
+            "heute",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "am Montag",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        },
+        {
+          "focus": "am Freitag",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Entschuldigung für die Verspätung.": [
+          [
+            "Vielen Dank für Ihre Hilfe.",
+            "Merci pour votre aide."
+          ],
+          [
+            "Entschuldigung, ich muss früher gehen.",
+            "Désolé(e), je dois partir plus tôt."
+          ]
+        ]
+      }
     }
   ],
   "11": [
@@ -801,11 +1945,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Le cours est l’après-midi."
         ],
         [
-          "Der Kurs ist am Abend.",
+          "Der Kurs ist am |Abend|.",
           "Le cours est le soir."
         ],
         [
-          "Der Kurs ist am Wochenende.",
+          "Der Kurs ist am |Wochenende|.",
           "Le cours est le week-end."
         ]
       ],
@@ -822,26 +1966,78 @@ window.DE_A1_STUDY_CONTENT = {
           "Wie lange lernen Sie Deutsch?",
           "Depuis combien de temps apprenez-vous l’allemand ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Vormittag",
+          "wrong": [
+            "Nachmittag",
+            "Abend"
+          ]
+        },
+        {
+          "focus": "Nachmittag",
+          "wrong": [
+            "Vormittag",
+            "Abend"
+          ]
+        },
+        {
+          "focus": "Abend",
+          "wrong": [
+            "Vormittag",
+            "Nachmittag"
+          ]
+        },
+        {
+          "focus": "Wochenende",
+          "wrong": [
+            "Vormittag",
+            "Nachmittag"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wann beginnt der Kurs?": [
+          [
+            "Wann endet der Kurs?",
+            "Quand le cours se termine-t-il ?"
+          ],
+          [
+            "Wie lange dauert der Kurs?",
+            "Combien de temps dure le cours ?"
+          ]
+        ],
+        "Ich lerne seit sechs Monaten Deutsch.": [
+          [
+            "Ich lerne seit drei Monaten Deutsch.",
+            "J’apprends l’allemand depuis trois mois."
+          ],
+          [
+            "Ich lerne seit zwei Monaten Deutsch.",
+            "J’apprends l’allemand depuis deux mois."
+          ]
+        ]
+      }
     },
     {
       "title": "Apprendre et demander de l’aide",
       "rule": "**Ich lerne …**, **Ich mache …** et **Ich lese …** décrivent une routine. Pour demander de l’aide : Können Sie das wiederholen? ou Was bedeutet das Wort? **Hausaufgaben** est pluriel ; ein Wörterbuch est un dictionnaire.",
       "rows": [
         [
-          "Ich lerne |Deutsch|.",
+          "Ich |lerne| Deutsch.",
           "J’apprends l’allemand."
         ],
         [
-          "Ich mache |Hausaufgaben|.",
+          "Ich |mache| Hausaufgaben.",
           "Je fais mes devoirs."
         ],
         [
-          "Ich lese ein Buch.",
+          "Ich |lese| ein Buch.",
           "Je lis un livre."
         ],
         [
-          "Ich brauche ein Wörterbuch.",
+          "Ich |brauche| ein Wörterbuch.",
           "J’ai besoin d’un dictionnaire."
         ]
       ],
@@ -854,7 +2050,99 @@ window.DE_A1_STUDY_CONTENT = {
           "Was bedeutet das Wort?",
           "Que signifie ce mot ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "lerne",
+          "wrong": [
+            "lernst",
+            "lernen"
+          ]
+        },
+        {
+          "focus": "mache",
+          "wrong": [
+            "macht",
+            "machen"
+          ]
+        },
+        {
+          "focus": "lese",
+          "wrong": [
+            "liest",
+            "lesen"
+          ]
+        },
+        {
+          "focus": "brauche",
+          "wrong": [
+            "braucht",
+            "brauchen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich lerne Deutsch.": [
+          [
+            "Ich lerne Französisch.",
+            "J’apprends le français."
+          ],
+          [
+            "Ich lerne Englisch.",
+            "J’apprends l’anglais."
+          ]
+        ],
+        "Ich mache Hausaufgaben.": [
+          [
+            "Ich lese die Hausaufgaben.",
+            "Je lis les devoirs."
+          ],
+          [
+            "Ich prüfe die Hausaufgaben.",
+            "Je vérifie les devoirs."
+          ]
+        ],
+        "Ich lese ein Buch.": [
+          [
+            "Ich schreibe ein Buch.",
+            "J’écris un livre."
+          ],
+          [
+            "Ich brauche ein Buch.",
+            "J’ai besoin d’un livre."
+          ]
+        ],
+        "Ich brauche ein Wörterbuch.": [
+          [
+            "Ich lese ein Wörterbuch.",
+            "Je lis un dictionnaire."
+          ],
+          [
+            "Ich habe ein Wörterbuch.",
+            "J’ai un dictionnaire."
+          ]
+        ],
+        "Können Sie das wiederholen?": [
+          [
+            "Können Sie langsamer sprechen?",
+            "Pouvez-vous parler plus lentement ?"
+          ],
+          [
+            "Können Sie das buchstabieren?",
+            "Pouvez-vous épeler cela ?"
+          ]
+        ],
+        "Was bedeutet das Wort?": [
+          [
+            "Wie schreibt man das Wort?",
+            "Comment écrit-on ce mot ?"
+          ],
+          [
+            "Wie spricht man das Wort aus?",
+            "Comment prononce-t-on ce mot ?"
+          ]
+        ]
+      }
     }
   ],
   "12": [
@@ -871,11 +2159,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’aime jouer au tennis."
         ],
         [
-          "Ich spiele gern Volleyball.",
+          "Ich spiele gern |Volleyball|.",
           "J’aime jouer au volleyball."
         ],
         [
-          "Ich spiele gern Basketball.",
+          "Ich spiele gern |Basketball|.",
           "J’aime jouer au basketball."
         ]
       ],
@@ -888,7 +2176,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich schwimme gern.",
           "J’aime nager."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Fußball",
+          "wrong": [
+            "Tennis",
+            "Volleyball"
+          ]
+        },
+        {
+          "focus": "Tennis",
+          "wrong": [
+            "Fußball",
+            "Volleyball"
+          ]
+        },
+        {
+          "focus": "Volleyball",
+          "wrong": [
+            "Fußball",
+            "Tennis"
+          ]
+        },
+        {
+          "focus": "Basketball",
+          "wrong": [
+            "Fußball",
+            "Tennis"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich gehe lieber ins Kino.": [
+          [
+            "Ich gehe lieber ins Museum.",
+            "Je préfère aller au musée."
+          ],
+          [
+            "Ich gehe gern ins Kino.",
+            "J’aime aller au cinéma."
+          ]
+        ],
+        "Ich schwimme gern.": [
+          [
+            "Ich schwimme nicht gern.",
+            "Je n’aime pas nager."
+          ],
+          [
+            "Ich schwimme lieber.",
+            "Je préfère nager."
+          ]
+        ]
+      }
     },
     {
       "title": "Organiser le week-end",
@@ -903,11 +2243,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Dimanche, je joue au football."
         ],
         [
-          "Am Montag spiele ich Fußball.",
+          "Am |Montag| spiele ich Fußball.",
           "Lundi, je joue au football."
         ],
         [
-          "Am Freitag spiele ich Fußball.",
+          "Am |Freitag| spiele ich Fußball.",
           "Vendredi, je joue au football."
         ]
       ],
@@ -920,6 +2260,36 @@ window.DE_A1_STUDY_CONTENT = {
           "Wollen wir am Samstag schwimmen gehen?",
           "On va nager samedi ?"
         ]
+      ],
+      "practice": [
+        {
+          "focus": "Samstag",
+          "wrong": [
+            "Sonntag",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Sonntag",
+          "wrong": [
+            "Samstag",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Montag",
+          "wrong": [
+            "Samstag",
+            "Sonntag"
+          ]
+        },
+        {
+          "focus": "Freitag",
+          "wrong": [
+            "Samstag",
+            "Sonntag"
+          ]
+        }
       ]
     }
   ],
@@ -937,11 +2307,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Je voudrais réserver une chambre double."
         ],
         [
-          "Ich möchte ein Familienzimmer reservieren.",
+          "Ich möchte ein |Familienzimmer| reservieren.",
           "Je voudrais réserver une chambre familiale."
         ],
         [
-          "Ich möchte zwei Zimmer reservieren.",
+          "Ich möchte |zwei| Zimmer reservieren.",
           "Je voudrais réserver deux chambres."
         ]
       ],
@@ -954,7 +2324,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Ist das Frühstück inklusive?",
           "Le petit-déjeuner est-il compris ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Einzelzimmer",
+          "wrong": [
+            "Doppelzimmer",
+            "Familienzimmer"
+          ]
+        },
+        {
+          "focus": "Doppelzimmer",
+          "wrong": [
+            "Einzelzimmer",
+            "Familienzimmer"
+          ]
+        },
+        {
+          "focus": "Familienzimmer",
+          "wrong": [
+            "Einzelzimmer",
+            "Doppelzimmer"
+          ]
+        },
+        {
+          "focus": "zwei",
+          "wrong": [
+            "Einzelzimmer",
+            "Doppelzimmer"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ist das Frühstück inklusive?": [
+          [
+            "Ist das Frühstück extra?",
+            "Le petit-déjeuner est-il en supplément ?"
+          ],
+          [
+            "Ist das Abendessen inklusive?",
+            "Le dîner est-il compris ?"
+          ]
+        ],
+        "Vom ersten bis zum dritten August, für zwei Personen.": [
+          [
+            "Vom ersten bis zum dritten August, für drei Personen.",
+            "Du premier au trois août, pour trois personnes."
+          ],
+          [
+            "Vom ersten bis zum dritten August, für vier Personen.",
+            "Du premier au trois août, pour quatre personnes."
+          ]
+        ]
+      }
     },
     {
       "title": "Départs et arrivées",
@@ -969,11 +2391,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Le train part à neuf heures."
         ],
         [
-          "Der Zug fährt um zehn Uhr ab.",
+          "Der Zug fährt um |zehn| Uhr ab.",
           "Le train part à dix heures."
         ],
         [
-          "Der Zug fährt um elf Uhr ab.",
+          "Der Zug fährt um |elf| Uhr ab.",
           "Le train part à onze heures."
         ]
       ],
@@ -986,7 +2408,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Die Fahrt dauert zwei Stunden.",
           "Le trajet dure deux heures."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "acht",
+          "wrong": [
+            "neun",
+            "zehn"
+          ]
+        },
+        {
+          "focus": "neun",
+          "wrong": [
+            "acht",
+            "zehn"
+          ]
+        },
+        {
+          "focus": "zehn",
+          "wrong": [
+            "acht",
+            "neun"
+          ]
+        },
+        {
+          "focus": "elf",
+          "wrong": [
+            "acht",
+            "neun"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wann kommt der Zug an?": [
+          [
+            "Wann fährt der Zug ab?",
+            "Quand le train part-il ?"
+          ],
+          [
+            "Wann fährt der Bus ab?",
+            "Quand le bus part-il ?"
+          ]
+        ]
+      }
     }
   ],
   "14": [
@@ -1003,11 +2467,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’ai de la toux."
         ],
         [
-          "Ich habe Kopfschmerzen.",
+          "Ich habe |Kopfschmerzen|.",
           "J’ai mal à la tête."
         ],
         [
-          "Ich habe Halsschmerzen.",
+          "Ich habe |Halsschmerzen|.",
           "J’ai mal à la gorge."
         ]
       ],
@@ -1015,8 +2479,64 @@ window.DE_A1_STUDY_CONTENT = {
         [
           "Ich habe seit gestern Fieber.",
           "J’ai de la fièvre depuis hier."
+        ],
+        [
+          "Ich habe seit heute Husten.",
+          "Je tousse depuis aujourd’hui."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Fieber",
+          "wrong": [
+            "Husten",
+            "Kopfschmerzen"
+          ]
+        },
+        {
+          "focus": "Husten",
+          "wrong": [
+            "Fieber",
+            "Kopfschmerzen"
+          ]
+        },
+        {
+          "focus": "Kopfschmerzen",
+          "wrong": [
+            "Fieber",
+            "Husten"
+          ]
+        },
+        {
+          "focus": "Halsschmerzen",
+          "wrong": [
+            "Fieber",
+            "Husten"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich habe seit gestern Fieber.": [
+          [
+            "Ich habe seit heute Fieber.",
+            "J’ai de la fièvre depuis aujourd’hui."
+          ],
+          [
+            "Ich habe seit zwei Tagen Fieber.",
+            "J’ai de la fièvre depuis deux jours."
+          ]
+        ],
+        "Ich habe seit heute Husten.": [
+          [
+            "Ich habe seit gestern Husten.",
+            "Je tousse depuis hier."
+          ],
+          [
+            "Ich habe seit zwei Tagen Husten.",
+            "Je tousse depuis deux jours."
+          ]
+        ]
+      }
     },
     {
       "title": "Prendre rendez-vous et prévenir",
@@ -1031,11 +2551,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Je ne peux pas venir demain."
         ],
         [
-          "Ich kann am Montag nicht kommen.",
+          "Ich kann |am Montag| nicht kommen.",
           "Je ne peux pas venir lundi."
         ],
         [
-          "Ich kann am Dienstag nicht kommen.",
+          "Ich kann |am Dienstag| nicht kommen.",
           "Je ne peux pas venir mardi."
         ]
       ],
@@ -1052,7 +2572,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Gute Besserung!",
           "Bon rétablissement !"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "heute",
+          "wrong": [
+            "morgen",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "morgen",
+          "wrong": [
+            "heute",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "am Montag",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        },
+        {
+          "focus": "am Dienstag",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich brauche einen Termin beim Arzt.": [
+          [
+            "Ich habe einen Termin beim Arzt.",
+            "J’ai un rendez-vous chez le médecin."
+          ],
+          [
+            "Ich möchte den Termin beim Arzt absagen.",
+            "Je voudrais annuler le rendez-vous chez le médecin."
+          ]
+        ]
+      }
     }
   ],
   "15": [
@@ -1069,11 +2631,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Je fête mon anniversaire dimanche."
         ],
         [
-          "Ich feiere am Montag Geburtstag.",
+          "Ich feiere am |Montag| Geburtstag.",
           "Je fête mon anniversaire lundi."
         ],
         [
-          "Ich feiere am Freitag Geburtstag.",
+          "Ich feiere am |Freitag| Geburtstag.",
           "Je fête mon anniversaire vendredi."
         ]
       ],
@@ -1090,7 +2652,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Liebe Anna, / Viele Grüße",
           "Chère Anna, / Amitiés"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Samstag",
+          "wrong": [
+            "Sonntag",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Sonntag",
+          "wrong": [
+            "Samstag",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Montag",
+          "wrong": [
+            "Samstag",
+            "Sonntag"
+          ]
+        },
+        {
+          "focus": "Freitag",
+          "wrong": [
+            "Samstag",
+            "Sonntag"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Kannst du kommen?": [
+          [
+            "Kannst du früher kommen?",
+            "Peux-tu venir plus tôt ?"
+          ],
+          [
+            "Kannst du später kommen?",
+            "Peux-tu venir plus tard ?"
+          ]
+        ]
+      }
     },
     {
       "title": "Répondre à une invitation",
@@ -1105,11 +2709,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’apporte une salade."
         ],
         [
-          "Ich bringe Brot mit.",
+          "Ich bringe |Brot| mit.",
           "J’apporte du pain."
         ],
         [
-          "Ich bringe Wasser mit.",
+          "Ich bringe |Wasser| mit.",
           "J’apporte de l’eau."
         ]
       ],
@@ -1122,7 +2726,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Leider kann ich nicht kommen. Ich muss arbeiten.",
           "Malheureusement, je ne peux pas venir. Je dois travailler."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Kuchen",
+          "wrong": [
+            "Salat",
+            "Brot"
+          ]
+        },
+        {
+          "focus": "Salat",
+          "wrong": [
+            "Kuchen",
+            "Brot"
+          ]
+        },
+        {
+          "focus": "Brot",
+          "wrong": [
+            "Kuchen",
+            "Salat"
+          ]
+        },
+        {
+          "focus": "Wasser",
+          "wrong": [
+            "Kuchen",
+            "Salat"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Vielen Dank für die Einladung.": [
+          [
+            "Vielen Dank für deine Hilfe.",
+            "Merci pour ton aide."
+          ],
+          [
+            "Vielen Dank für deine Nachricht.",
+            "Merci pour ton message."
+          ]
+        ],
+        "Leider kann ich nicht kommen. Ich muss arbeiten.": [
+          [
+            "Leider kann ich nicht kommen. Ich bin krank.",
+            "Malheureusement, je ne peux pas venir. Je suis malade."
+          ],
+          [
+            "Ich kann kommen. Ich muss nicht arbeiten.",
+            "Je peux venir. Je ne dois pas travailler."
+          ]
+        ]
+      }
     }
   ],
   "16": [
@@ -1131,19 +2787,19 @@ window.DE_A1_STUDY_CONTENT = {
       "rule": "**verboten** = interdit ; **erlaubt** = autorisé. **nur** limite l’accès ou l’usage : nur für Kunden. **nicht** nie l’action, **kein** nie un nom. Cherche d’abord ce qui est permis, interdit ou réservé.",
       "rows": [
         [
-          "Rauchen ist |verboten|.",
+          "|Rauchen| ist verboten.",
           "Il est interdit de fumer."
         ],
         [
-          "Parken ist |verboten|.",
+          "|Parken| ist verboten.",
           "Il est interdit de stationner."
         ],
         [
-          "Fotografieren ist verboten.",
+          "|Fotografieren| ist verboten.",
           "Il est interdit de photographier."
         ],
         [
-          "Essen ist verboten.",
+          "|Essen| ist verboten.",
           "Il est interdit de manger."
         ]
       ],
@@ -1160,7 +2816,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Eingang / Ausgang",
           "entrée / sortie"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Rauchen",
+          "wrong": [
+            "Parken",
+            "Fotografieren"
+          ]
+        },
+        {
+          "focus": "Parken",
+          "wrong": [
+            "Rauchen",
+            "Fotografieren"
+          ]
+        },
+        {
+          "focus": "Fotografieren",
+          "wrong": [
+            "Rauchen",
+            "Parken"
+          ]
+        },
+        {
+          "focus": "Essen",
+          "wrong": [
+            "Rauchen",
+            "Parken"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Nur für Kunden.": [
+          [
+            "Nur für Mitarbeiter.",
+            "Réservé au personnel."
+          ],
+          [
+            "Für alle.",
+            "Pour tout le monde."
+          ]
+        ],
+        "Bitte nicht aussteigen.": [
+          [
+            "Bitte einsteigen.",
+            "Montez, s’il vous plaît."
+          ],
+          [
+            "Bitte hier aussteigen.",
+            "Descendez ici, s’il vous plaît."
+          ]
+        ]
+      }
     },
     {
       "title": "Horaires et annonces",
@@ -1175,11 +2883,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Le magasin est ouvert aujourd’hui."
         ],
         [
-          "Das Geschäft ist morgen geschlossen.",
+          "Das Geschäft ist |morgen| geschlossen.",
           "Le magasin est fermé demain."
         ],
         [
-          "Das Geschäft ist morgen geöffnet.",
+          "Das Geschäft ist |morgen| geöffnet.",
           "Le magasin est ouvert demain."
         ]
       ],
@@ -1192,6 +2900,36 @@ window.DE_A1_STUDY_CONTENT = {
           "Der Zug fällt heute aus.",
           "Le train est annulé aujourd’hui."
         ]
+      ],
+      "practice": [
+        {
+          "focus": "geschlossen",
+          "wrong": [
+            "geöffnet",
+            "morgen"
+          ]
+        },
+        {
+          "focus": "geöffnet",
+          "wrong": [
+            "geschlossen",
+            "morgen"
+          ]
+        },
+        {
+          "focus": "morgen",
+          "wrong": [
+            "geschlossen",
+            "geöffnet"
+          ]
+        },
+        {
+          "focus": "morgen",
+          "wrong": [
+            "heute",
+            "gestern"
+          ]
+        }
       ]
     }
   ],
@@ -1209,11 +2947,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Pouvez-vous me donner le livre, s’il vous plaît ?"
         ],
         [
-          "Können Sie mir bitte die Tasche geben?",
+          "Können Sie mir bitte die |Tasche| geben?",
           "Pouvez-vous me donner le sac, s’il vous plaît ?"
         ],
         [
-          "Können Sie mir bitte das Glas geben?",
+          "Können Sie mir bitte das |Glas| geben?",
           "Pouvez-vous me donner le verre, s’il vous plaît ?"
         ]
       ],
@@ -1226,7 +2964,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Kann ich das Fenster öffnen?",
           "Puis-je ouvrir la fenêtre ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Stift",
+          "wrong": [
+            "Buch",
+            "Tasche"
+          ]
+        },
+        {
+          "focus": "Buch",
+          "wrong": [
+            "Stift",
+            "Tasche"
+          ]
+        },
+        {
+          "focus": "Tasche",
+          "wrong": [
+            "Stift",
+            "Buch"
+          ]
+        },
+        {
+          "focus": "Glas",
+          "wrong": [
+            "Stift",
+            "Buch"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Können Sie mir bitte helfen?": [
+          [
+            "Kann ich Ihnen helfen?",
+            "Puis-je vous aider ?"
+          ],
+          [
+            "Können Sie ihm bitte helfen?",
+            "Pouvez-vous l’aider, s’il vous plaît (lui) ?"
+          ]
+        ],
+        "Kann ich das Fenster öffnen?": [
+          [
+            "Kann ich das Fenster schließen?",
+            "Puis-je fermer la fenêtre ?"
+          ],
+          [
+            "Können Sie das Fenster öffnen?",
+            "Pouvez-vous ouvrir la fenêtre ?"
+          ]
+        ]
+      }
     },
     {
       "title": "Accepter et refuser",
@@ -1241,11 +3031,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Malheureusement non."
         ],
         [
-          "Gern, hier bitte.",
+          "|Gern|, hier bitte.",
           "Avec plaisir, voilà."
         ],
         [
-          "Einen Moment, bitte.",
+          "Einen |Moment|, bitte.",
           "Un instant, s’il vous plaît."
         ]
       ],
@@ -1258,7 +3048,99 @@ window.DE_A1_STUDY_CONTENT = {
           "Noch einmal, bitte.",
           "Encore une fois, s’il vous plaît."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "natürlich",
+          "wrong": [
+            "vielleicht",
+            "später"
+          ]
+        },
+        {
+          "focus": "nicht",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        },
+        {
+          "focus": "Gern",
+          "wrong": [
+            "Morgen",
+            "Heute"
+          ]
+        },
+        {
+          "focus": "Moment",
+          "wrong": [
+            "Tag",
+            "Euro"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ja, natürlich.": [
+          [
+            "Nein, leider nicht.",
+            "Non, malheureusement pas."
+          ],
+          [
+            "Ja, aber später.",
+            "Oui, mais plus tard."
+          ]
+        ],
+        "Leider nicht.": [
+          [
+            "Leider erst morgen.",
+            "Malheureusement, seulement demain."
+          ],
+          [
+            "Leider nicht heute.",
+            "Malheureusement pas aujourd’hui."
+          ]
+        ],
+        "Gern, hier bitte.": [
+          [
+            "Gern, aber später.",
+            "Avec plaisir, mais plus tard."
+          ],
+          [
+            "Gern, einen Moment bitte.",
+            "Avec plaisir, un instant s’il vous plaît."
+          ]
+        ],
+        "Einen Moment, bitte.": [
+          [
+            "Noch einmal, bitte.",
+            "Encore une fois, s’il vous plaît."
+          ],
+          [
+            "Langsamer, bitte.",
+            "Plus lentement, s’il vous plaît."
+          ]
+        ],
+        "Tut mir leid, das geht nicht.": [
+          [
+            "Kein Problem, das geht.",
+            "Pas de problème, c’est possible."
+          ],
+          [
+            "Tut mir leid, erst morgen.",
+            "Désolé(e), seulement demain."
+          ]
+        ],
+        "Noch einmal, bitte.": [
+          [
+            "Einen Moment, bitte.",
+            "Un instant, s’il vous plaît."
+          ],
+          [
+            "Langsamer, bitte.",
+            "Plus lentement, s’il vous plaît."
+          ]
+        ]
+      }
     }
   ],
   "18": [
@@ -1275,11 +3157,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Écoutez le texte."
         ],
         [
-          "Schreiben Sie einen Text.",
+          "|Schreiben| Sie einen Text.",
           "Écrivez un texte."
         ],
         [
-          "Kreuzen Sie die Antwort an.",
+          "|Kreuzen| Sie die Antwort an.",
           "Cochez la réponse."
         ]
       ],
@@ -1292,7 +3174,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Sie hören den Text zweimal.",
           "Vous écoutez le texte deux fois."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Lesen",
+          "wrong": [
+            "Lest",
+            "Liest"
+          ]
+        },
+        {
+          "focus": "Hören",
+          "wrong": [
+            "Hört",
+            "Hörst"
+          ]
+        },
+        {
+          "focus": "Schreiben",
+          "wrong": [
+            "Schreibt",
+            "Schreibst"
+          ]
+        },
+        {
+          "focus": "Kreuzen",
+          "wrong": [
+            "Kreuzt",
+            "Kreuzest"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Richtig oder falsch?": [
+          [
+            "Ja oder nein?",
+            "Oui ou non ?"
+          ],
+          [
+            "Einmal oder zweimal?",
+            "Une fois ou deux fois ?"
+          ]
+        ],
+        "Sie hören den Text zweimal.": [
+          [
+            "Sie hören den Text einmal.",
+            "Vous écoutez le texte une fois."
+          ],
+          [
+            "Sie lesen den Text zweimal.",
+            "Vous lisez le texte deux fois."
+          ]
+        ]
+      }
     },
     {
       "title": "Décrire une méthode simple",
@@ -1307,14 +3241,116 @@ window.DE_A1_STUDY_CONTENT = {
           "Ensuite, j’écoute le texte."
         ],
         [
-          "Dann schreibe ich die Antwort.",
+          "Dann |schreibe| ich die Antwort.",
           "Ensuite, j’écris la réponse."
         ],
         [
-          "Zum Schluss prüfe ich den Text.",
+          "Zum Schluss |prüfe| ich den Text.",
           "Pour finir, je vérifie le texte."
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "Danach vergleiche ich die Antworten.",
+          "Après, je compare les réponses."
+        ],
+        [
+          "Zuerst höre ich den Dialog.",
+          "D’abord, j’écoute le dialogue."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "lese",
+          "wrong": [
+            "liest",
+            "lesen"
+          ]
+        },
+        {
+          "focus": "höre",
+          "wrong": [
+            "hört",
+            "hören"
+          ]
+        },
+        {
+          "focus": "schreibe",
+          "wrong": [
+            "schreibt",
+            "schreiben"
+          ]
+        },
+        {
+          "focus": "prüfe",
+          "wrong": [
+            "prüft",
+            "prüfen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Zuerst lese ich die Aufgabe.": [
+          [
+            "Zuerst höre ich die Aufgabe.",
+            "D’abord, j’écoute la consigne."
+          ],
+          [
+            "Zuerst schreibe ich die Aufgabe.",
+            "D’abord, j’écris la consigne."
+          ]
+        ],
+        "Dann höre ich den Text.": [
+          [
+            "Dann lese ich den Text.",
+            "Ensuite, je lis le texte."
+          ],
+          [
+            "Dann schreibe ich den Text.",
+            "Ensuite, j’écris le texte."
+          ]
+        ],
+        "Dann schreibe ich die Antwort.": [
+          [
+            "Dann lese ich die Antwort.",
+            "Ensuite, je lis la réponse."
+          ],
+          [
+            "Dann prüfe ich die Antwort.",
+            "Ensuite, je vérifie la réponse."
+          ]
+        ],
+        "Zum Schluss prüfe ich den Text.": [
+          [
+            "Zum Schluss lese ich den Text.",
+            "Pour finir, je lis le texte."
+          ],
+          [
+            "Zum Schluss schreibe ich den Text.",
+            "Pour finir, j’écris le texte."
+          ]
+        ],
+        "Danach vergleiche ich die Antworten.": [
+          [
+            "Danach schreibe ich die Antworten.",
+            "Après, j’écris les réponses."
+          ],
+          [
+            "Zuerst vergleiche ich die Antworten.",
+            "D’abord, je compare les réponses."
+          ]
+        ],
+        "Zuerst höre ich den Dialog.": [
+          [
+            "Zuerst lese ich den Dialog.",
+            "D’abord, je lis le dialogue."
+          ],
+          [
+            "Danach höre ich den Dialog.",
+            "Après, j’écoute le dialogue."
+          ]
+        ]
+      }
     }
   ],
   "19": [
@@ -1331,14 +3367,66 @@ window.DE_A1_STUDY_CONTENT = {
           "J’ai mal aux jambes."
         ],
         [
-          "Mein Hals tut weh.",
+          "Mein |Hals| tut weh.",
           "J’ai mal à la gorge."
         ],
         [
-          "Mein Bauch tut weh.",
+          "Mein |Bauch| tut weh.",
           "J’ai mal au ventre."
         ]
-      ]
+      ],
+      "extra": [
+        [
+          "Mein Rücken tut weh.",
+          "J’ai mal au dos."
+        ],
+        [
+          "Meine Arme tun weh.",
+          "J’ai mal aux bras."
+        ]
+      ],
+      "practice": [
+        {
+          "focus": "tut",
+          "wrong": [
+            "tun",
+            "tust"
+          ]
+        },
+        {
+          "focus": "tun",
+          "wrong": [
+            "tut",
+            "tust"
+          ]
+        },
+        {
+          "focus": "Hals",
+          "wrong": [
+            "tut",
+            "tun"
+          ]
+        },
+        {
+          "focus": "Bauch",
+          "wrong": [
+            "tut",
+            "tun"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Meine Arme tun weh.": [
+          [
+            "Meine Beine tun weh.",
+            "J’ai mal aux jambes."
+          ],
+          [
+            "Meine Hände tun weh.",
+            "J’ai mal aux mains."
+          ]
+        ]
+      }
     },
     {
       "title": "Demander une aide médicale",
@@ -1353,11 +3441,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’ai besoin d’un médecin."
         ],
         [
-          "Ich brauche eine Apotheke.",
+          "Ich brauche eine |Apotheke|.",
           "J’ai besoin d’une pharmacie."
         ],
         [
-          "Ich brauche Wasser.",
+          "Ich brauche |Wasser|.",
           "J’ai besoin d’eau."
         ]
       ],
@@ -1374,7 +3462,99 @@ window.DE_A1_STUDY_CONTENT = {
           "Nehmen Sie diese Tabletten.",
           "Prenez ces comprimés."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Termin",
+          "wrong": [
+            "Arzt",
+            "Apotheke"
+          ]
+        },
+        {
+          "focus": "Arzt",
+          "wrong": [
+            "Termin",
+            "Apotheke"
+          ]
+        },
+        {
+          "focus": "Apotheke",
+          "wrong": [
+            "Termin",
+            "Arzt"
+          ]
+        },
+        {
+          "focus": "Wasser",
+          "wrong": [
+            "Termin",
+            "Arzt"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich brauche einen Termin.": [
+          [
+            "Ich habe einen Termin.",
+            "J’ai un rendez-vous."
+          ],
+          [
+            "Ich möchte den Termin ändern.",
+            "Je voudrais modifier le rendez-vous."
+          ]
+        ],
+        "Ich brauche einen Arzt.": [
+          [
+            "Ich bin Arzt.",
+            "Je suis médecin."
+          ],
+          [
+            "Ich suche die Adresse des Arztes.",
+            "Je cherche l’adresse du médecin."
+          ]
+        ],
+        "Ich brauche eine Apotheke.": [
+          [
+            "Wo ist die Apotheke?",
+            "Où est la pharmacie ?"
+          ],
+          [
+            "Die Apotheke ist geschlossen.",
+            "La pharmacie est fermée."
+          ]
+        ],
+        "Ich brauche Wasser.": [
+          [
+            "Ich trinke Wasser.",
+            "Je bois de l’eau."
+          ],
+          [
+            "Ich habe Wasser.",
+            "J’ai de l’eau."
+          ]
+        ],
+        "Ich habe seit gestern Kopfschmerzen.": [
+          [
+            "Ich habe seit heute Kopfschmerzen.",
+            "J’ai mal à la tête depuis aujourd’hui."
+          ],
+          [
+            "Ich habe seit zwei Tagen Kopfschmerzen.",
+            "J’ai mal à la tête depuis deux jours."
+          ]
+        ],
+        "Wo ist die nächste Apotheke?": [
+          [
+            "Wann ist die Apotheke geöffnet?",
+            "Quand la pharmacie est-elle ouverte ?"
+          ],
+          [
+            "Wo ist der nächste Arzt?",
+            "Où est le médecin le plus proche ?"
+          ]
+        ]
+      }
     }
   ],
   "20": [
@@ -1391,11 +3571,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Aujourd’hui, il fait chaud."
         ],
         [
-          "Heute ist es sonnig.",
+          "Heute ist es |sonnig|.",
           "Aujourd’hui, il fait soleil."
         ],
         [
-          "Heute ist es windig.",
+          "Heute ist es |windig|.",
           "Aujourd’hui, il y a du vent."
         ]
       ],
@@ -1412,7 +3592,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Morgen ist es warm.",
           "Demain, il fera chaud."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "kalt",
+          "wrong": [
+            "warm",
+            "sonnig"
+          ]
+        },
+        {
+          "focus": "warm",
+          "wrong": [
+            "kalt",
+            "sonnig"
+          ]
+        },
+        {
+          "focus": "sonnig",
+          "wrong": [
+            "kalt",
+            "warm"
+          ]
+        },
+        {
+          "focus": "windig",
+          "wrong": [
+            "kalt",
+            "warm"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Es regnet.": [
+          [
+            "Es schneit.",
+            "Il neige."
+          ],
+          [
+            "Es ist windig.",
+            "Il y a du vent."
+          ]
+        ],
+        "Es schneit.": [
+          [
+            "Es regnet.",
+            "Il pleut."
+          ],
+          [
+            "Es ist sonnig.",
+            "Il fait soleil."
+          ]
+        ]
+      }
     },
     {
       "title": "Choisir ses vêtements",
@@ -1427,11 +3659,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’ai besoin d’une veste."
         ],
         [
-          "Ich brauche ein Hemd.",
+          "Ich brauche |ein| Hemd.",
           "J’ai besoin d’une chemise."
         ],
         [
-          "Ich brauche einen Regenschirm.",
+          "Ich brauche |einen| Regenschirm.",
           "J’ai besoin d’un parapluie."
         ]
       ],
@@ -1444,7 +3676,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Im Winter trage ich einen Mantel.",
           "En hiver, je porte un manteau."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "einen",
+          "wrong": [
+            "ein",
+            "eine"
+          ]
+        },
+        {
+          "focus": "eine",
+          "wrong": [
+            "ein",
+            "einen"
+          ]
+        },
+        {
+          "focus": "ein",
+          "wrong": [
+            "eine",
+            "einen"
+          ]
+        },
+        {
+          "focus": "einen",
+          "wrong": [
+            "ein",
+            "eine"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich nehme einen Regenschirm mit.": [
+          [
+            "Ich nehme einen Mantel mit.",
+            "Je prends un manteau."
+          ],
+          [
+            "Ich nehme eine Jacke mit.",
+            "Je prends une veste."
+          ]
+        ],
+        "Im Winter trage ich einen Mantel.": [
+          [
+            "Im Winter trage ich eine Jacke.",
+            "En hiver, je porte une veste."
+          ],
+          [
+            "Im Sommer trage ich einen Mantel.",
+            "En été, je porte un manteau."
+          ]
+        ]
+      }
     }
   ],
   "21": [
@@ -1461,11 +3745,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’aime aller au musée."
         ],
         [
-          "Ich gehe gern ins Theater.",
+          "Ich gehe gern ins |Theater|.",
           "J’aime aller au théâtre."
         ],
         [
-          "Ich gehe gern ins Konzert.",
+          "Ich gehe gern ins |Konzert|.",
           "J’aime aller au concert."
         ]
       ],
@@ -1478,7 +3762,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich höre gern Musik.",
           "J’aime écouter de la musique."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Kino",
+          "wrong": [
+            "Museum",
+            "Theater"
+          ]
+        },
+        {
+          "focus": "Museum",
+          "wrong": [
+            "Kino",
+            "Theater"
+          ]
+        },
+        {
+          "focus": "Theater",
+          "wrong": [
+            "Kino",
+            "Museum"
+          ]
+        },
+        {
+          "focus": "Konzert",
+          "wrong": [
+            "Kino",
+            "Museum"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Ich lese gern Bücher.": [
+          [
+            "Ich lese nicht gern Bücher.",
+            "Je n’aime pas lire des livres."
+          ],
+          [
+            "Ich schreibe gern Bücher.",
+            "J’aime écrire des livres."
+          ]
+        ],
+        "Ich höre gern Musik.": [
+          [
+            "Ich mache gern Musik.",
+            "J’aime faire de la musique."
+          ],
+          [
+            "Ich höre nicht gern Musik.",
+            "Je n’aime pas écouter de la musique."
+          ]
+        ]
+      }
     },
     {
       "title": "Proposer une sortie",
@@ -1493,11 +3829,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Le concert commence à dix-neuf heures."
         ],
         [
-          "Das Konzert beginnt um zwanzig Uhr.",
+          "Das Konzert beginnt um |zwanzig| Uhr.",
           "Le concert commence à vingt heures."
         ],
         [
-          "Das Konzert beginnt um einundzwanzig Uhr.",
+          "Das Konzert beginnt um |einundzwanzig| Uhr.",
           "Le concert commence à vingt et une heures."
         ]
       ],
@@ -1514,7 +3850,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Der Eintritt kostet zehn Euro.",
           "L’entrée coûte dix euros."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "achtzehn",
+          "wrong": [
+            "neunzehn",
+            "zwanzig"
+          ]
+        },
+        {
+          "focus": "neunzehn",
+          "wrong": [
+            "achtzehn",
+            "zwanzig"
+          ]
+        },
+        {
+          "focus": "zwanzig",
+          "wrong": [
+            "achtzehn",
+            "neunzehn"
+          ]
+        },
+        {
+          "focus": "einundzwanzig",
+          "wrong": [
+            "achtzehn",
+            "neunzehn"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wollen wir ins Museum gehen?": [
+          [
+            "Wollen wir ins Kino gehen?",
+            "On va au cinéma ?"
+          ],
+          [
+            "Wollen wir ins Theater gehen?",
+            "On va au théâtre ?"
+          ]
+        ],
+        "Treffen wir uns um siebzehn Uhr vor dem Museum?": [
+          [
+            "Treffen wir uns um achtzehn Uhr vor dem Museum?",
+            "On se retrouve à dix-huit heures devant le musée ?"
+          ],
+          [
+            "Treffen wir uns um siebzehn Uhr im Museum?",
+            "On se retrouve à dix-sept heures dans le musée ?"
+          ]
+        ]
+      }
     }
   ],
   "22": [
@@ -1531,11 +3919,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Rappelez-moi demain, s’il vous plaît."
         ],
         [
-          "Bitte rufen Sie mich am Montag zurück.",
+          "Bitte rufen Sie mich am |Montag| zurück.",
           "Rappelez-moi lundi, s’il vous plaît."
         ],
         [
-          "Bitte rufen Sie mich am Dienstag zurück.",
+          "Bitte rufen Sie mich am |Dienstag| zurück.",
           "Rappelez-moi mardi, s’il vous plaît."
         ]
       ],
@@ -1548,7 +3936,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich rufe Sie morgen zurück.",
           "Je vous rappelle demain."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "heute",
+          "wrong": [
+            "morgen",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "morgen",
+          "wrong": [
+            "heute",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Montag",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        },
+        {
+          "focus": "Dienstag",
+          "wrong": [
+            "heute",
+            "morgen"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Hallo, hier ist Marie. Mein Handy ist kaputt.": [
+          [
+            "Hallo, hier ist Marie. Mein Handy ist neu.",
+            "Allô, ici Marie. Mon téléphone est neuf."
+          ],
+          [
+            "Hallo, hier ist Anne. Mein Handy ist kaputt.",
+            "Allô, ici Anne. Mon téléphone est cassé."
+          ]
+        ]
+      }
     },
     {
       "title": "Écrire un SMS clair",
@@ -1563,11 +3993,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Je t’envoie un e-mail."
         ],
         [
-          "Ich schicke dir ein Foto.",
+          "Ich schicke dir ein |Foto|.",
           "Je t’envoie une photo."
         ],
         [
-          "Ich schicke dir meine Adresse.",
+          "Ich schicke dir meine |Adresse|.",
           "Je t’envoie mon adresse."
         ]
       ],
@@ -1580,7 +4010,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Bitte antworte mir.",
           "Réponds-moi, s’il te plaît."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Nachricht",
+          "wrong": [
+            "E-Mail",
+            "Foto"
+          ]
+        },
+        {
+          "focus": "E-Mail",
+          "wrong": [
+            "Nachricht",
+            "Foto"
+          ]
+        },
+        {
+          "focus": "Foto",
+          "wrong": [
+            "Nachricht",
+            "E-Mail"
+          ]
+        },
+        {
+          "focus": "Adresse",
+          "wrong": [
+            "Nachricht",
+            "E-Mail"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Bitte antworte mir.": [
+          [
+            "Bitte ruf mich an.",
+            "Appelle-moi, s’il te plaît."
+          ],
+          [
+            "Bitte schreib ihm.",
+            "Écris-lui, s’il te plaît."
+          ]
+        ]
+      }
     }
   ],
   "23": [
@@ -1597,11 +4069,11 @@ window.DE_A1_STUDY_CONTENT = {
           "J’ai besoin d’un formulaire."
         ],
         [
-          "Ich brauche einen Umschlag.",
+          "Ich brauche einen |Umschlag|.",
           "J’ai besoin d’une enveloppe."
         ],
         [
-          "Ich brauche einen Ausweis.",
+          "Ich brauche einen |Ausweis|.",
           "J’ai besoin d’une pièce d’identité."
         ]
       ],
@@ -1618,7 +4090,59 @@ window.DE_A1_STUDY_CONTENT = {
           "Ich möchte mich anmelden.",
           "Je voudrais m’inscrire."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Briefmarke",
+          "wrong": [
+            "Formular",
+            "Umschlag"
+          ]
+        },
+        {
+          "focus": "Formular",
+          "wrong": [
+            "Briefmarke",
+            "Umschlag"
+          ]
+        },
+        {
+          "focus": "Umschlag",
+          "wrong": [
+            "Briefmarke",
+            "Formular"
+          ]
+        },
+        {
+          "focus": "Ausweis",
+          "wrong": [
+            "Briefmarke",
+            "Formular"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wo muss ich unterschreiben?": [
+          [
+            "Wo muss ich meinen Namen schreiben?",
+            "Où dois-je écrire mon nom ?"
+          ],
+          [
+            "Was muss ich unterschreiben?",
+            "Que dois-je signer ?"
+          ]
+        ],
+        "Wann ist die Post geöffnet?": [
+          [
+            "Wo ist die Post?",
+            "Où est la poste ?"
+          ],
+          [
+            "Wann schließt die Post?",
+            "Quand la poste ferme-t-elle ?"
+          ]
+        ]
+      }
     },
     {
       "title": "Remplir un formulaire",
@@ -1633,11 +4157,11 @@ window.DE_A1_STUDY_CONTENT = {
           "prénom"
         ],
         [
-          "Adresse",
+          "|Adresse|",
           "adresse"
         ],
         [
-          "Geburtsdatum",
+          "|Geburtsdatum|",
           "date de naissance"
         ]
       ],
@@ -1650,7 +4174,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Bitte füllen Sie das Formular aus.",
           "Veuillez remplir le formulaire."
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Familienname",
+          "wrong": [
+            "Vorname",
+            "Adresse"
+          ]
+        },
+        {
+          "focus": "Vorname",
+          "wrong": [
+            "Familienname",
+            "Adresse"
+          ]
+        },
+        {
+          "focus": "Adresse",
+          "wrong": [
+            "Familienname",
+            "Vorname"
+          ]
+        },
+        {
+          "focus": "Geburtsdatum",
+          "wrong": [
+            "Familienname",
+            "Vorname"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Bitte füllen Sie das Formular aus.": [
+          [
+            "Bitte unterschreiben Sie das Formular.",
+            "Veuillez signer le formulaire."
+          ],
+          [
+            "Bitte lesen Sie das Formular.",
+            "Veuillez lire le formulaire."
+          ]
+        ]
+      }
     }
   ],
   "24": [
@@ -1667,11 +4233,11 @@ window.DE_A1_STUDY_CONTENT = {
           "D’où venez-vous ?"
         ],
         [
-          "Wo wohnen Sie?",
+          "Wo |wohnen| Sie?",
           "Où habitez-vous ?"
         ],
         [
-          "Welche Sprachen sprechen Sie?",
+          "Welche Sprachen |sprechen| Sie?",
           "Quelles langues parlez-vous ?"
         ]
       ],
@@ -1679,8 +4245,104 @@ window.DE_A1_STUDY_CONTENT = {
         [
           "Ich komme gern, aber ich komme später.",
           "Je viens avec plaisir, mais j’arrive plus tard."
+        ],
+        [
+          "Können Sie das bitte wiederholen?",
+          "Pouvez-vous répéter cela, s’il vous plaît ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "heißen",
+          "wrong": [
+            "heißt",
+            "heiße"
+          ]
+        },
+        {
+          "focus": "kommen",
+          "wrong": [
+            "kommt",
+            "kommst"
+          ]
+        },
+        {
+          "focus": "wohnen",
+          "wrong": [
+            "wohnt",
+            "wohnst"
+          ]
+        },
+        {
+          "focus": "sprechen",
+          "wrong": [
+            "spricht",
+            "sprecht"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Wie heißen Sie?": [
+          [
+            "Wie heißt sie?",
+            "Comment s’appelle-t-elle ?"
+          ],
+          [
+            "Wie heißt er?",
+            "Comment s’appelle-t-il ?"
+          ]
+        ],
+        "Woher kommen Sie?": [
+          [
+            "Wo wohnen Sie?",
+            "Où habitez-vous ?"
+          ],
+          [
+            "Wohin fahren Sie?",
+            "Où allez-vous ?"
+          ]
+        ],
+        "Wo wohnen Sie?": [
+          [
+            "Woher kommen Sie?",
+            "D’où venez-vous ?"
+          ],
+          [
+            "Wohin fahren Sie?",
+            "Où allez-vous ?"
+          ]
+        ],
+        "Welche Sprachen sprechen Sie?": [
+          [
+            "Sprechen Sie Deutsch?",
+            "Parlez-vous allemand ?"
+          ],
+          [
+            "Sprechen Sie Französisch?",
+            "Parlez-vous français ?"
+          ]
+        ],
+        "Ich komme gern, aber ich komme später.": [
+          [
+            "Ich komme gern, aber ich komme früher.",
+            "Je viens avec plaisir, mais j’arrive plus tôt."
+          ],
+          [
+            "Ich komme gern, aber ich komme morgen.",
+            "Je viens avec plaisir, mais je viens demain."
+          ]
+        ],
+        "Können Sie das bitte wiederholen?": [
+          [
+            "Können Sie das bitte buchstabieren?",
+            "Pouvez-vous épeler cela, s’il vous plaît ?"
+          ],
+          [
+            "Können Sie bitte langsamer sprechen?",
+            "Pouvez-vous parler plus lentement, s’il vous plaît ?"
+          ]
+        ]
+      }
     },
     {
       "title": "Préparer un message complet",
@@ -1695,11 +4357,11 @@ window.DE_A1_STUDY_CONTENT = {
           "Je viens dimanche à six heures."
         ],
         [
-          "Ich komme am Montag um sechs Uhr.",
+          "Ich komme am |Montag| um sechs Uhr.",
           "Je viens lundi à six heures."
         ],
         [
-          "Ich komme am Freitag um sechs Uhr.",
+          "Ich komme am |Freitag| um sechs Uhr.",
           "Je viens vendredi à six heures."
         ]
       ],
@@ -1712,7 +4374,49 @@ window.DE_A1_STUDY_CONTENT = {
           "Kann ich einen Kuchen mitbringen?",
           "Puis-je apporter un gâteau ?"
         ]
-      ]
+      ],
+      "practice": [
+        {
+          "focus": "Samstag",
+          "wrong": [
+            "Sonntag",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Sonntag",
+          "wrong": [
+            "Samstag",
+            "Montag"
+          ]
+        },
+        {
+          "focus": "Montag",
+          "wrong": [
+            "Samstag",
+            "Sonntag"
+          ]
+        },
+        {
+          "focus": "Freitag",
+          "wrong": [
+            "Samstag",
+            "Sonntag"
+          ]
+        }
+      ],
+      "contrasts": {
+        "Vielen Dank für deine Einladung.": [
+          [
+            "Vielen Dank für deine Nachricht.",
+            "Merci pour ton message."
+          ],
+          [
+            "Vielen Dank für deine Hilfe.",
+            "Merci pour ton aide."
+          ]
+        ]
+      }
     }
   ]
 };

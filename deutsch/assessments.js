@@ -20,7 +20,8 @@
   }
   function runTasks({tasks,view,title,onBack,onFinish,speak,session,save,lessonId,step='check',compact=false}){
     window.A1BugReports?.setContext({lessonId:lessonId||null,step});
-    A1ExerciseEngine.run({lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises:shuffle(tasks).map(normalize),progress:session,exerciseVersion:102,saveProgress:()=>save(),playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
+    const exercises=shuffle(tasks).map(normalize);window.DE_A1_STUDY.refreshSession(session,exercises);
+    A1ExerciseEngine.run({lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>save(),playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
   function decorate({root,practice,lesson,state,save,speak,onUpdate,onStart}){
     if(!practice)return;
@@ -30,6 +31,8 @@
       panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':practice.tasks.length+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
       panel.querySelector('#topicPracticeStart').onclick=event=>{
         if(current.done&&!event?.resume)delete current.session;
+        const unit=Object.values(window.DE_A1_STUDY.content).flat().find(u=>u.key===practice.key);
+        if(unit)practice.tasks=window.DE_A1_STUDY.unitTasks(unit);
         onStart?.();
         panel.querySelector('#topicPracticeStart').hidden=true;
         runTasks({tasks:practice.tasks,view:panel.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:current,save,lessonId:lesson.id,step:'grammar',compact:true,onFinish:(score,total)=>{
@@ -42,12 +45,7 @@
     intro();
   }
   function makeLessonTest(lesson){
-    // Exact vocabulary and patterns have already been explained and rehearsed in this lesson.
-    const units=window.DE_A1_STUDY.content[lesson.id],tasks=units.flatMap((unit,index)=>{
-      const tasks=window.DE_A1_STUDY.unitTasks(unit);
-      const count=Math.floor(12/units.length)+Number(index<12%units.length);
-      return [tasks[1],tasks[2],tasks[5],tasks[6],tasks[8],tasks[9]].slice(0,count);
-    });tasks[3]={...window.DE_A1_APPLICATIONS[lesson.id].reading};return tasks;
+    return window.DE_A1_STUDY.assessmentTasks(lesson);
   }
   function testCount(id){const lesson=lessons.find(l=>l.id===id);return lesson?makeLessonTest(lesson).length:0;}
   function attempted(state,id){return Object.prototype.hasOwnProperty.call(state.lessonMasteryLast||{},id);}

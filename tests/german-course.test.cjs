@@ -82,7 +82,8 @@ test('German lesson-check reports include the actual task, choices and nested qu
  w.A1Profile={getCurrent:()=>({profileKey:'QA'}),getUiLang:()=> 'fr'};
  w.HTMLDialogElement.prototype.show=function(){this.open=true;};w.HTMLDialogElement.prototype.close=function(){this.open=false;};w.eval(read('shared/bug-reports.js'));
  w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:w.testData.lessons[5],view,state:state(),save:()=>{},speak:()=>{},onBack:()=>{}});view.querySelector('#masteryStart').click();
- const context=w.A1BugReports.context();assert.equal(context.lessonId,6);assert.equal(context.step,'check');assert.equal(context.question,view.querySelector('.quiz-q').textContent);assert.equal(context.options.length,3);
+ while(view.querySelector('#mixedInput')){view.querySelector('#mixedInput').value='einen';view.querySelector('#mixedCheck').click();view.querySelector('#mixedNext').click();}
+ const context=w.A1BugReports.context();assert.equal(context.lessonId,6);assert.equal(context.step,'check');const question=w.document.createElement('div');question.innerHTML=w.A1ExerciseReview.question(context.question);assert.equal(question.textContent,view.querySelector('.quiz-q').textContent);assert.equal(context.options.length,3);
  w.A1BugReports.open();w.document.querySelector('[data-bug-category="answers"]').click();assert(w.document.querySelector('[data-bug-reason="too-obvious"]'));dom.window.close();
 });
 test('German continue restores the exact grammar page and an already checked mini-test answer',()=>{
@@ -100,4 +101,50 @@ test('German home continuation honors saved review, old progress and completion 
  assert.equal(w.A1LessonFlow.continuation(lessons,s).id,2);assert.equal(w.A1LessonFlow.resumePosition(lessons[1],s).step,'grammar');
  s.doneLessons=[1,2];s.lessonWork[2]={resume:{step:'grammar',grammarIndex:1}};assert.equal(w.A1LessonFlow.continuation(lessons,s).id,2);
  s.lessonWork[2].resume={step:'check'};assert.equal(w.A1LessonFlow.continuation(lessons,s).id,3);assert.deepEqual(s.doneLessons,[1,2]);assert.equal(s.lessonQuizBest[2],90);dom.window.close();
+});
+
+test('German opening rounds only test heard phrases, without reverse duplicates or typing',()=>{
+ const {dom,w}=environment();w.Math.random=Math.random;
+ for(const l of w.testData.lessons)for(let round=0;round<15;round++){
+  const tasks=w.DE_A1_STUDY.lessonExercises(l);assert.equal(tasks.length,10);assert.equal(new Set(tasks.map(q=>q.audio)).size,10,`lesson ${l.id}: repeated phrase`);
+  assert.equal(tasks.filter(q=>q.type==='listening').length,2);
+  for(const q of tasks){assert(l.phrases.some(p=>p[0]===q.audio),`${l.id}: unheard expression`);assert(['choice','listening'].includes(q.type));assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}
+ }
+ dom.window.close();
+});
+test('German final checks apply patterns and use four different contextual facts instead of reversing the opening quiz',()=>{
+ const {dom,w}=environment();w.Math.random=Math.random;
+ for(const l of w.testData.lessons){
+  const intro=w.DE_A1_STUDY.lessonExercises(l),tasks=w.DE_A1_ASSESSMENTS.makeLessonTest(l);
+  assert.equal(tasks.length,12);assert.equal(tasks.filter(t=>t.skill==='transfer').length,4);assert.equal(new Set(tasks.map(t=>t.q)).size,12);
+  assert(!tasks.some(t=>intro.some(q=>q.q===t.q)),`lesson ${l.id}: copied opening question`);
+  const review=w.DE_A1_APPLICATIONS[l.id].review;assert.equal(review.fields.length,3);assert.equal(new Set(review.fields.map(f=>f.q)).size,3);
+  for(const f of review.fields){assert.equal(f.o.length,3);assert.equal(new Set(f.o).size,3);assert(f.o.includes(f.answer));}
+ }
+ for(const set of w.testData.grammarSets)assert.equal(new Set(set.questions.map(q=>q.q.trim().toLowerCase().replace(/\s+/g,' '))).size,set.questions.length,set.id);
+ dom.window.close();
+});
+test('reviewed German alternatives avoid impossible time phrases and target the same detail',()=>{
+ const {dom,w}=environment();w.Math.random=Math.random;
+ for(const units of Object.values(w.DE_A1_STUDY.content))for(const unit of units)for(let round=0;round<4;round++){
+  const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(tasks.length,10);assert.equal(new Set(tasks.map(q=>q.q)).size,10);
+  for(const t of tasks){assert(t.answer);assert.equal(t.o.length,3);assert.equal(new Set(t.o).size,3);assert(!/seit morgen|seit übermorgen|am heute|am morgen|Ich heiße Kanada/.test(t.o.join(' ')));}
+ }
+ const first=w.DE_A1_STUDY.content[1][0],name=w.DE_A1_STUDY.unitTasks(first).find(q=>q.audio==='Ich heiße Claire.');assert(name.o.every(o=>o.startsWith('Je m’appelle ')));
+ dom.window.close();
+});
+test('German question updates retain earned points and checked feedback while upgrading pending items',()=>{
+ const {dom,w}=environment(),tasks=w.DE_A1_STUDY.lessonExercises(w.testData.lessons[0]);
+ const checked={type:'choice',q:'Old checked question',audio:'Hallo',answer:'Bonjour',o:['Bonjour','Merci','Au revoir'],a:0};
+ const progress={done:true,best:90,session:{version:102,ex:[checked,...Array.from({length:9},()=>({...checked,q:'Old repeated question'}))],i:0,score:1,response:{status:'ok',answer:'Bonjour'},draft:'',choicePicked:0}};
+ w.DE_A1_STUDY.refreshSession(progress,tasks);assert.equal(progress.session.score,1);assert.equal(progress.best,90);assert(progress.done);assert.equal(progress.session.ex[0],checked);assert.equal(progress.session.response.status,'ok');assert(!progress.session.ex.slice(1).some(q=>q.q==='Old repeated question'));assert.equal(progress.session.contentRevision,118);
+ dom.window.close();
+});
+
+test('German session revision is applied once and does not erase a draft for an unchanged question',()=>{
+ const {dom,w}=environment(),tasks=w.DE_A1_STUDY.unitTasks(w.DE_A1_STUDY.content[1][0]),q=tasks.find(t=>t.type==='gap');
+ const progress={session:{version:102,ex:[q],i:0,score:0,draft:'hei',choicePicked:null}};
+ w.DE_A1_STUDY.refreshSession(progress,[q]);assert.equal(progress.session.draft,'hei');assert.equal(progress.contentRevision,118);
+ delete progress.session.contentRevision;const current=progress.session.ex;
+ w.DE_A1_STUDY.refreshSession(progress,[{...q,q:'another question'}]);assert.equal(progress.session.ex,current);assert.equal(progress.session.draft,'hei');dom.window.close();
 });
