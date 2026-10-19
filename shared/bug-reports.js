@@ -28,7 +28,7 @@
   };
   const recoveryLabels=()=>recoveryWords[language()]||recoveryWords.en;
   const quickLabels=()=>quickWords[language()]||quickWords.en;
-  const language=()=>A1Profile.getUiLang?.()||document.documentElement.lang;
+  const language=()=>location.pathname.includes('/deutsch/')?'fr':A1Profile.getUiLang?.()||document.documentElement.lang;
   const labels=()=>words[language()]||words.en;
   const visible=el=>!el.closest('[hidden]')&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden';
   const collect=(root,selector,max=1200)=>[...root.querySelectorAll(selector)].filter(visible).map(el=>text(el,max)).filter(Boolean);
@@ -207,6 +207,7 @@
     style.textContent+=`
 @media(max-width:760px){#a1BugDialog.keyboard-compact{display:grid;grid-template-columns:minmax(0,1fr) 38px;grid-template-rows:minmax(0,1fr);height:64px;gap:4px;padding:4px;border-radius:12px}#a1BugDialog.keyboard-compact>.a1-bug-top,#a1BugDialog.keyboard-compact>.a1-bug-location,#a1BugDialog.keyboard-compact>.a1-bug-preview,#a1BugDialog.keyboard-compact>.a1-bug-quick,#a1BugDialog.keyboard-compact>.a1-bug-label,#a1BugDialog.keyboard-compact>.a1-bug-note{display:none}#a1BugDialog.keyboard-compact #a1BugMessage{grid-column:1;grid-row:1;height:100%;min-height:0;max-height:none;padding:5px 7px;font-size:16px;line-height:20px}#a1BugDialog.keyboard-compact .a1-bug-actions{display:contents}#a1BugDialog.keyboard-compact .a1-bug-tools{display:none}#a1BugDialog.keyboard-compact #a1BugSend{grid-column:2;grid-row:1;height:100%;min-height:0;padding:0;font-size:0;border-radius:9px}#a1BugDialog.keyboard-compact #a1BugSend::after{content:'↑';font:700 22px system-ui}#a1BugDialog.keyboard-compact #a1BugStatus{grid-column:1;grid-row:1;align-self:end;z-index:1;margin:0;padding:2px 6px;max-height:32px;overflow:auto;font-size:11px;background:inherit;pointer-events:none}}
 `;
+    style.textContent+='@media(max-width:760px){#a1BugLauncher{width:44px;height:44px;padding:0;font-size:0;right:8px;bottom:calc(82px + env(safe-area-inset-bottom))}#a1BugLauncher::after{content:"⚑";font:700 20px system-ui}}';
     document.head.append(style);launcher=document.createElement('button');launcher.id='a1BugLauncher';launcher.type='button';launcher.textContent='⚑ '+labels().report;launcher.onclick=open;
     dialog=document.createElement('dialog');dialog.id='a1BugDialog';dialog.dataset.i18nIgnore='';dialog.setAttribute('aria-label',labels().report);dialog.addEventListener('cancel',()=>lastFocus?.focus());dialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();close();}});document.body.append(launcher,dialog);
     document.addEventListener('focusin',schedulePanelViewport);document.addEventListener('focusout',schedulePanelViewport);dialog.addEventListener('close',schedulePanelViewport);dialog.addEventListener('click',schedulePanelViewport);

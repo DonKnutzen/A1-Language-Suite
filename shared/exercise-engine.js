@@ -258,6 +258,10 @@
 
     function feedback(status,answer,audio,explanation,restoring=false){
       if(!explanation&&opts.selectionOnly&&ex[i].type==='listening')explanation=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio))?.[1]||'';
+      if(!explanation&&opts.targetLang==='fr'&&ex[i].type==='choice'){
+        const phrase=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio));
+        if(phrase)explanation=`${phrase[0]} = ${phrase[1]}`;
+      }
       const germanAudio=opts.targetLang==='de'?window.DE_A1_ANSWER_AUDIO:null;
       if(germanAudio)audio=germanAudio.resolve(ex[i],audio,answer,opts.lesson);
       const ok=status==='ok',near=status==='near';

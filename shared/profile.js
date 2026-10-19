@@ -722,6 +722,7 @@ applyTheme();
       .leaderboard-me{background:#eff6ff}
       .leaderboard-empty{padding:14px 0;color:#64748b;font-size:13px}
       .leaderboard-flag{font-size:20px}
+      @media(max-width:560px){.leaderboard-table thead{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden}.leaderboard-table,.leaderboard-table tbody,.leaderboard-table tr,.leaderboard-table td{display:block;width:100%;box-sizing:border-box}.leaderboard-table tr{padding:8px 10px;margin:8px 0;border:1px solid #e2e8f0;border-radius:12px}.leaderboard-table td,.leaderboard-table td:first-child,.leaderboard-table td:last-child{text-align:left;width:auto;border:0;padding:3px 0;overflow-wrap:anywhere}.leaderboard-table td:before{content:attr(data-label) ': ';font-size:11px;font-weight:800;color:#64748b}}
             .theme-toggle{
         width:42px;
         height:42px;
@@ -839,10 +840,10 @@ applyTheme();
         }[row.course] || {flag:'🌐',title:row.course};
         const mine = row.userId === current.userId ? ' leaderboard-me' : '';
         return `<tr class="${mine}">
-          <td><strong>${rank}</strong></td>
-          <td>${escapeHtml(row.username)}</td>
-          <td><span class="leaderboard-flag" title="${escapeHtml(courseMeta.title)}">${courseMeta.flag}</span></td>
-          <td><strong>${row.percent}%</strong></td>
+          <td data-label="${tr('rank',lang)}"><strong>${rank}</strong></td>
+          <td data-label="${tr('learner',lang)}">${escapeHtml(row.username)}</td>
+          <td data-label="${tr('language',lang)}"><span class="leaderboard-flag" title="${escapeHtml(courseMeta.title)}">${courseMeta.flag}</span></td>
+          <td data-label="${tr('progress',lang)}"><strong>${row.percent}%</strong></td>
         </tr>`;
       }).join('');
 
@@ -865,9 +866,20 @@ applyTheme();
 
   function profileModal(force=false, preferredName=''){
     const current = getCurrent();
+    const previousFocus=document.activeElement;
     const ov = document.createElement('div');
     ov.className = 'profile-overlay';
     document.body.appendChild(ov);
+    const closeModal=()=>{ov.remove();if(previousFocus?.isConnected)previousFocus.focus();};
+    ov.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&current){e.preventDefault();closeModal();return;}
+      if(e.key!=='Tab')return;
+      const focusable=[...ov.querySelectorAll('button:not([disabled]):not([hidden]),input:not([disabled]):not([hidden]),select:not([disabled]):not([hidden]),a[href]')].filter(el=>el.getClientRects().length);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable.at(-1);
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    });
 
     let lang = getUiLang();
     let mode = 'login';
@@ -884,10 +896,10 @@ applyTheme();
     function render(){
       if(current && !force){
         const cloudMode = cloudConfigured && current.mode === 'cloud';
-        ov.innerHTML = `<div class="profile-modal">
+        ov.innerHTML = `<div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
           ${languageSelector(lang)}
           ${window.A1TextSize?.selector(lang)||''}
-          <h2>${tr('profile',lang)}</h2>
+          <h2 id="profileModalTitle">${tr('profile',lang)}</h2>
           <p>${tr('signedInAs',lang)} <strong>${escapeHtml(current.username)}</strong>.</p>
           <div class="profile-note">${cloudMode ? tr('cloudActive',lang) : tr('localActive',lang)}</div>
 
@@ -904,18 +916,18 @@ applyTheme();
         </div>`;
 
         wireLang();
-        document.getElementById('pmClose').onclick = () => ov.remove();
+        document.getElementById('pmClose').onclick = closeModal;
         document.getElementById('pmLogout').onclick = logout;
 
         const cloudBtn = document.getElementById('pmCloud');
         if(cloudBtn){
           cloudBtn.onclick = () => {
-            ov.remove();
+            closeModal();
             profileModal(true, current.username);
           };
         }
 
-        window.dispatchEvent(new CustomEvent('a1suite:profilemenu',{detail:{root:ov,lang,close:()=>ov.remove()}}));
+        window.dispatchEvent(new CustomEvent('a1suite:profilemenu',{detail:{root:ov,lang,close:closeModal}}));
         if(cloudMode)isBugReportAdmin().then(admin=>{
           if(!admin||!ov.isConnected)return;
           const button=document.createElement('button');button.textContent=approvalText(lang).admin;
@@ -923,6 +935,7 @@ applyTheme();
           button.onclick=()=>{panel.hidden=!panel.hidden;if(!panel.hidden)showPinRequests(panel,lang);};ov.querySelector('.profile-menu-actions').append(button);
         }).catch(()=>{});
         renderLeaderboard(document.getElementById('pmLeaderboard'), lang);
+        document.getElementById('pmClose').focus();
         return;
       }
 
@@ -932,26 +945,26 @@ applyTheme();
           : '';
 
       const R=recoveryText(lang);
-      ov.innerHTML = `<div class="profile-modal">
+      ov.innerHTML = `<div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
         ${languageSelector(lang)}
           ${window.A1TextSize?.selector(lang)||''}
-        <h2>${tr('learningProfile',lang)}</h2>
+        <h2 id="profileModalTitle">${tr('learningProfile',lang)}</h2>
         <p>${tr('intro',lang)}</p>
         <div class="profile-tabs">
           <button id="tabCreate" class="${mode==='create'?'active':''}">${tr('create',lang)}</button>
           <button id="tabLogin" class="${mode==='login'?'active':''}">${tr('login',lang)}</button>
         </div>
         <div class="profile-field">
-          <label>${tr('username',lang)}</label>
+          <label for="profileName">${tr('username',lang)}</label>
           <input id="profileName" ${mode==='recover-pin'?'readonly':''} autocomplete="username" placeholder="${tr('userPlaceholder',lang)}" value="${escapeHtml(preferredName || current?.username || '')}">
         </div>
         <div class="profile-field" ${mode==='recover-name'?'hidden':''}>
-          <label>${mode==='recover-pin'?R.newPin:tr('pin',lang)}</label>
+          <label for="profilePin">${mode==='recover-pin'?R.newPin:tr('pin',lang)}</label>
           <input id="profilePin" inputmode="numeric" pattern="[0-9]*" type="password" autocomplete="${mode==='recover-pin'?'new-password':'current-password'}" placeholder="••••">
         </div>
         <button class="profile-submit" id="profileSubmit">${mode==='recover-name'?R.next:mode==='recover-pin'?R.reset:mode==='create'?tr('create',lang):tr('login',lang)}</button>
         ${mode==='login'?`<button class="profile-submit" id="profileForgot" type="button" style="background:transparent;color:inherit;font-size:14px">${R.forgot}</button>`:''}
-        <div class="profile-error" id="profileError"></div>
+        <div class="profile-error" id="profileError" role="alert"></div>
         ${migrationNote}
         <div class="profile-note">${cloudConfigured ? tr('cloud',lang) : tr('local',lang)}</div>
         ${current ? `<div class="profile-menu-actions"><button id="pmCancel">${tr('back',lang)}</button></div>` : ''}
@@ -978,7 +991,7 @@ applyTheme();
       const forgot=document.getElementById('profileForgot');
       if(forgot)forgot.onclick=()=>{preferredName=document.getElementById('profileName').value;mode='recover-name';render();};
       const cancel = document.getElementById('pmCancel');
-      if(cancel) cancel.onclick = () => ov.remove();
+      if(cancel) cancel.onclick = closeModal;
 
       sub.onclick = async () => {
         sub.disabled = true;
@@ -997,6 +1010,7 @@ applyTheme();
           sub.disabled = false;
         }
       };
+      document.getElementById('profileName').focus();
     }
 
     render();

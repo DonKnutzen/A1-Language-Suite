@@ -769,7 +769,7 @@ html.dark-mode .select-input:focus{
 #backLearn:hover{color:var(--accent-ink)}
 #backLearn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .lesson-step-header h2{margin-bottom:14px}
-.lesson-step-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.lesson-step-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .lesson-step{display:flex;align-items:center;gap:7px;min-height:42px;padding:8px 6px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--muted);font-size:12px;font-weight:650;text-align:left;line-height:1.3}
 .lesson-step-number{flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--line);font-size:11px}
 .lesson-step.done .lesson-step-number{background:var(--success-soft);color:var(--success)}

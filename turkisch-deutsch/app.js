@@ -186,7 +186,11 @@
   }
 
   function skillRow(label, value) {
-    return `<div class="skill-row"><strong>${esc(label)}</strong>${progressBar(value)}<span>${Math.round(value)}%</span></div>`;
+    const key=({Okuma:'reading',Dinleme:'listening',Yazma:'writing',Konuşma:'speaking'})[label];
+    const practiced=key==='reading'||key==='listening'
+      ? state.dtbScores?.[key]!=null||Object.keys(state.practiceBest||{}).some(k=>k.startsWith(key+':'))
+      : state.dtbScores?.[key]!=null||(state[key==='writing'?'writingDone':'speakingDone']||[]).length>0;
+    return `<div class="skill-row"><strong>${esc(label)}</strong>${progressBar(value)}<span>${practiced?`${Math.round(value)}%`:'Henüz sonuç yok'}</span></div>`;
   }
 
   function renderLearn() {
