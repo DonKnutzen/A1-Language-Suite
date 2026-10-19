@@ -73,7 +73,7 @@
         if(col===0||/deutsch/i.test(heads[col]||'')||!answer)return;
         const wrong=[...new Set(body.map(r=>r[col]).filter(v=>v&&v!==answer))];
         if(wrong.length<2)return;
-        const person=row[0],audio=/^(je|j’|tu|il|elle|nous|vous|ils|elles)( \/.*)?$/.test(person)?(/^[jmts]’/.test(answer)||answer.startsWith(person+' ')?answer:(person.endsWith('’')?person+answer:person+' '+answer)):answer;
+        const person=row[0],audio=/^(je|j’|tu|il|elle|nous|vous|ils|elles)( \/.*)?$/.test(person)?(/^[jmts]’/.test(answer)||answer.startsWith(person+' ')?(/^(nous levons|vous levez)$/.test(answer)?person+' '+answer:answer):(person.endsWith('’')?person+answer:person+' '+answer)):answer;
         tasks.push({kind:'form',q:`Welche Form passt in der Übersicht zu „${person}“ (${heads[col]||'Form'})?`,answer,o:[answer,...shuffle(wrong).slice(0,2)],audio,explanation:`${person}: ${answer}`});
       }));
       // Some existing conjugations have pronouns across the header instead of down a column.
