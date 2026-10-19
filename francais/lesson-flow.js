@@ -23,7 +23,7 @@
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${step('Hard Mode',p.hardMode?.passedAt?'✓':masteryDone?'—':'🔒',!!p.hardMode?.passedAt)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${step('Hard Mode',p.hardMode?.passedAt&&p.hardMode.passedVersion===window.FR_A1_HARD_CONTENT?.[lesson.id]?.version?'✓':masteryDone?'—':'🔒',!!p.hardMode?.passedAt&&p.hardMode.passedVersion===window.FR_A1_HARD_CONTENT?.[lesson.id]?.version)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;

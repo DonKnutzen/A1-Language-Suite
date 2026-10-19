@@ -42,10 +42,43 @@ test('all 24 tests submit, freeze answers, review, score once and preserve achie
       else e.input(`[data-hard-listen="${i}"]`,q.answers[0]);
     });
     e.page(2);e.click('#hardSubmit');assert(e.view.querySelector('#hardValidation').textContent);assert(!e.view.querySelector('.hard-transcript'));
-    e.input('#hardWriting',data.writing.model);e.click('#hardSubmit');assert(e.view.querySelector('#hardWriting').readOnly);assert(e.view.querySelector('.hard-transcript'));e.click('#hardComplete');assert(e.view.querySelector('#hardValidation').textContent);
+    e.click('#hardCancelSubmit');e.input('#hardWriting',data.writing.model);e.click('#hardSubmit');e.click('#hardConfirmSubmit');assert(e.view.querySelector('#hardWriting').readOnly);assert(e.view.querySelector('.hard-transcript'));e.click('#hardComplete');assert(e.view.querySelector('#hardValidation').textContent);
     for(const el of e.view.querySelectorAll('[data-hard-rating]')){el.value='2';el.dispatchEvent(new e.w.Event('change'));}
     e.click('#hardComplete');assert(e.view.textContent.includes('100 %'));assert.equal(e.completions,1);const p=e.state.lessonWork[id].hardMode;assert(p.passedAt);assert.equal(p.bestObjective,100);assert.equal(p.attemptsCompleted,1);
     e.click('#hardReview');assert(!e.view.querySelector('input'));assert.equal(e.view.querySelectorAll('.hard-answer.is-correct').length,data.gaps.length);e.page(1);assert.equal(e.view.querySelectorAll('.hard-transcript').length,2);e.page(2);assert(e.view.querySelector('#hardWriting').readOnly);assert([...e.view.querySelectorAll('select')].every(el=>el.disabled));e.click('#hardResult');assert.equal(e.completions,1);
-    e.click('#hardRetry');e.click('#hardNew');assert.equal(p.attempt.plays[0],0);assert.equal(p.attempt.text,'');assert.equal(p.bestObjective,100);assert(p.passedAt);assert(!e.view.querySelector('.hard-transcript'));e.dom.window.close();
+    e.click('#hardRetry');e.click('#hardNew');assert.equal(p.attempt.plays[0],0);assert.equal(p.attempt.text,'');assert.equal(p.bestObjective,100);assert(p.passedAt);assert.equal(p.history.length,1);assert.equal(p.history[0].text,data.writing.model);assert(!e.view.querySelector('.hard-transcript'));e.dom.window.close();
   }
+});
+
+test('locked entry is only a button and unlock hint; details appear after unlocking',()=>{
+  const e=environment(1,{lessonMasteryBest:{1:79}});e.view.innerHTML=e.w.FR_A1_HARD_MODE.entryHtml(e.lesson,e.state);
+  assert.equal(e.view.querySelectorAll('button').length,1);assert(!e.view.querySelector('.hard-entry-info'));assert(!e.view.textContent.includes('Jetzt wird'));
+  e.state.lessonMasteryBest[1]=80;e.view.innerHTML=e.w.FR_A1_HARD_MODE.entryHtml(e.lesson,e.state);assert(e.view.querySelector('.hard-entry-info'));assert(!e.view.querySelector('button').disabled);e.dom.window.close();
+});
+test('audio keeps focus, error refunds only once, language changes keep the active playback',()=>{
+  const e=environment();e.begin();e.page(1);const btn=e.view.querySelector('[data-hard-play="0"]');btn.focus();btn.click();assert.equal(e.w.document.activeElement,btn);
+  const callback=e.audio.options;e.language('en');assert(e.view.querySelector('[data-hard-play="0"]').disabled);callback.onError();callback.onError();assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],0);
+  e.click('[data-hard-play="0"]');e.click('[data-hard-stop]');assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],1);e.audio.options.onError();assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],1);e.dom.window.close();
+});
+test('unknown versions keep every answer across language changes and archive before restart',()=>{
+  const state={lessonMasteryBest:{1:80},lessonWork:{1:{hardMode:{attempt:{version:0,gaps:['ancien'],listening:['écoute'],text:'Mon brouillon.',ratings:[1,2,1,2],phase:'running',page:0}}}}};
+  const e=environment(1,state);e.render();assert(e.view.querySelector('.hard-old-draft').textContent.includes('écoute'));e.language('en');assert(e.view.querySelector('#hardUpdatedStart'));assert(!e.view.querySelector('[data-hard-gap]'));
+  e.click('#hardUpdatedStart');assert.equal(state.lessonWork[1].hardMode.history[0].text,'Mon brouillon.');assert.equal(state.lessonWork[1].hardMode.attempt.version,2);e.dom.window.close();
+});
+test('version 1 keeps original tasks, rules and answers when reopening and switching language',()=>{
+  const e=environment();const d=e.w.FR_A1_HARD_LEGACY[1];e.state.lessonWork={1:{hardMode:{attempt:{version:1,phase:'running',page:0,gaps:Array(d.gaps.length).fill(''),listening:Array(6).fill(''),plays:[0,0],text:'',ratings:[null,null,null,null]}}}};
+  e.render();assert.equal(e.view.querySelectorAll('[data-hard-gap]').length,d.gaps.length);e.language('en');assert.equal(e.view.querySelectorAll('[data-hard-gap]').length,d.gaps.length);assert(e.view.querySelector('#hardCurrentVersion'));e.click('#hardCurrentVersion');assert.equal(e.view.querySelectorAll('[data-hard-gap]').length,e.data.gaps.length);e.dom.window.close();
+});
+test('blank submission is explicit, solutions stay hidden until confirmation, then inputs freeze',()=>{
+  const e=environment();e.begin();e.page(2);e.click('#hardSubmit');assert(!e.view.querySelector('.hard-transcript'));e.click('#hardConfirmSubmit');assert(e.view.querySelector('.hard-transcript'));assert(e.view.querySelector('#hardWriting').readOnly);assert(!e.view.querySelector('[data-hard-char]'));e.input('#hardWriting','changed');assert.equal(e.state.lessonWork[1].hardMode.attempt.text,'');e.dom.window.close();
+});
+test('option order persists through language changes, reopening and new attempts retain history',()=>{
+  const e=environment();e.begin();e.page(1);const order=JSON.stringify(e.state.lessonWork[1].hardMode.attempt.optionOrders);e.language('en');assert.equal(JSON.stringify(e.state.lessonWork[1].hardMode.attempt.optionOrders),order);e.render();assert.equal(JSON.stringify(e.state.lessonWork[1].hardMode.attempt.optionOrders),order);e.dom.window.close();
+});
+
+test('save failure is visible and cannot claim the latest changes were saved',()=>{
+  const e=environment();e.w.FR_A1_HARD_MODE.render({lesson:e.lesson,view:e.view,state:e.state,save:()=>{throw new Error('quota');},onBack:()=>{}});e.click('#hardBegin');e.input('[data-hard-gap="0"]','brouillon');assert(e.view.querySelector('#hardSaveStatus').textContent.includes('Speichern fehlgeschlagen'));e.dom.window.close();
+});
+test('old-version success cannot replace an already achieved current-version status',()=>{
+  const e=environment(),d=e.w.FR_A1_HARD_LEGACY[1];e.state.lessonWork={1:{hardMode:{passedAt:123,passedVersion:2,bestObjective:100,attempt:{version:1,phase:'submitted',page:2,gaps:d.gaps.map(q=>q.answers[0]),listening:d.listening.flatMap(b=>b.questions).map(q=>q.answers[0]),plays:[0,0],text:d.writing.model,ratings:[2,2,2,2]}}}};e.render();e.click('#hardComplete');assert.equal(e.state.lessonWork[1].hardMode.passedVersion,2);assert.equal(e.state.lessonWork[1].hardMode.passedAt,123);e.dom.window.close();
 });
