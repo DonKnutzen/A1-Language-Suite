@@ -73,7 +73,7 @@
     ['Ich ___ gern einen Kaffee.','hätte',['hätten','hättest']],['Wir ___ gern die Rechnung.','hätten',['hätte','hättest']],
     ['Ich ___ eine Suppe, bitte.','möchte',['möchten','möchtest']],['Wir ___ zwei Brötchen, bitte.','möchten',['möchte','möchtet']],
     ['___ Sie mir bitte die Speisekarte geben?','Könnten',['Könntest','Könnte']],['___ ich bitte ein Glas Wasser haben?','Kann',['Kannst','Können']],
-    ['Ich hätte ___ einen Tee.','gern',['gestern','dort']],['Die Rechnung, ___.','bitte',['morgen','hier'],'L’addition, s’il vous plaît.'],
+    ['Ich hätte ___ einen Tee.','gern',['gestern','dort'],'Je voudrais un thé.'],['Die Rechnung, ___.','bitte',['morgen','hier'],'L’addition, s’il vous plaît.'],
     ['Ich ___ einen Salat, bitte.','nehme',['nimmt','nehmen']],['Wir ___ zwei Kaffees, bitte.','nehmen',['nehme','nehmt']],
     ['___ Sie noch etwas?','Möchten',['Möchtest','Möchtet']],['Ich ___ gern bezahlen.','würde',['würden','würdest']]
   ]);
