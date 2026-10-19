@@ -1,5 +1,8 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "10 kurze Fragen": "10 quick questions",
+  "Vokabel-Check starten": "Start vocabulary check",
+  "Vokabel-Check fortsetzen": "Continue vocabulary check",
   "Junger Baum": "Young tree",
   "Wachsender Baum": "Growing tree",
   "Kräftiger Baum": "Strong tree",

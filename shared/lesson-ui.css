@@ -162,3 +162,11 @@ html.dark-mode .exercise-start-btn.is-completed,html.dark-mode .lesson-finale-bt
 @media(prefers-reduced-motion:reduce){.primary-btn.lesson-next-ready{animation:none}}
 
 .primary-btn.lesson-next-ready{min-height:48px}
+
+/* Inviting entry points; completed exercises retain their quiet checked state. */
+.exercise-entry-hint{display:block;margin:0 0 8px;color:var(--muted);font-size:.82rem;text-align:center;letter-spacing:.02em}
+html .exercise-start-btn:not(.is-completed){position:relative;isolation:isolate;overflow:hidden;min-height:46px;padding:12px 18px;border:1px solid #45d6a0;border-radius:14px;background:linear-gradient(115deg,#087e60,#119b6e);color:#fff;font-weight:750;box-shadow:0 3px 12px #05966930,0 0 16px #34d39928;animation:exercise-invitation 4s ease-in-out infinite;transition:filter .2s ease,box-shadow .2s ease}
+html.dark-mode .exercise-start-btn:not(.is-completed){background:linear-gradient(115deg,#087e60,#119b6e);border-color:#45d6a0;color:#fff}
+html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@keyframes exercise-invitation{0%,100%{box-shadow:0 3px 12px #05966930,0 0 12px #34d39928}50%{box-shadow:0 4px 16px #05966945,0 0 22px #34d39950}}
+@media(prefers-reduced-motion:reduce){html .exercise-start-btn:not(.is-completed){animation:none;transition:none}}
