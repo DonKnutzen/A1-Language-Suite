@@ -1452,7 +1452,7 @@ const emailTasks = [
 
 const speakingTopics = [
   {theme:'Essen & Trinken',cards:[
-    {cue:'Frühstück',q:'Was essen Sie zum Frühstück?',a:'Ich esse Brot und Obst.'},{cue:'Lieblingsessen',q:'Was ist Ihr Lieblingsessen?',a:'Mein Lieblingsessen ist Pizza.'},{cue:'Sonntag',q:'Was essen Sie am Sonntag?',a:'Am Sonntag esse ich mit meiner Familie.'},{cue:'Getränke',q:'Was trinken Sie gern?',a:'Ich trinke gern Kaffee.'},{cue:'Restaurant',q:'Wie oft gehen Sie ins Restaurant?',a:'Ich gehe einmal im Monat ins Restaurant.'},{cue:'Brot',q:'Wo kaufen Sie Brot?',a:'Ich kaufe Brot in der Bäckerei.'}
+    {cue:'Frühstück',q:'Was essen Sie zum Frühstück?',a:'Ich esse Brot und Obst.'},{cue:'Lieblingsessen',q:'Was ist Ihr Lieblingsessen?',a:'Mein Lieblingsessen ist Pizza.'},{cue:'Sonntag',q:'Was essen Sie am Sonntag?',a:'Am Sonntag esse ich Gemüse und Reis.'},{cue:'Getränke',q:'Was trinken Sie gern?',a:'Ich trinke gern Kaffee.'},{cue:'Restaurant',q:'Wie oft gehen Sie ins Restaurant?',a:'Ich gehe einmal im Monat ins Restaurant.'},{cue:'Brot',q:'Wo kaufen Sie Brot?',a:'Ich kaufe Brot in der Bäckerei.'}
   ]},
   {theme:'Einkaufen',cards:[
     {cue:'Zeitung',q:'Wo kaufen Sie eine Zeitung?',a:'Ich kaufe eine Zeitung am Kiosk.'},{cue:'Kasse',q:'Wo ist die Kasse?',a:'Die Kasse ist dort rechts.'},{cue:'Obst',q:'Welches Obst kaufen Sie gern?',a:'Ich kaufe gern Äpfel.'},{cue:'Schuhe',q:'Wo kaufen Sie Schuhe?',a:'Ich kaufe Schuhe im Kaufhaus.'},{cue:'Buch',q:'Wie viel kostet das Buch?',a:'Das Buch kostet zwölf Euro.'},{cue:'Stadtplan',q:'Wo bekomme ich einen Stadtplan?',a:'An der Touristeninformation.'}
@@ -1490,7 +1490,7 @@ const requestCards = [
   {cue:'🔁 Wiederholung',request:'Können Sie das bitte wiederholen?',response:'Ja, natürlich.'},
   {cue:'📷 Foto',request:'Können Sie bitte ein Foto machen?',response:'Ja, gern.'},
   {cue:'🧥 Jacke',request:'Kann ich meine Jacke hier lassen?',response:'Ja, kein Problem.'},
-  {cue:'🚌 Information',request:'Können Sie mir bitte sagen, wo der Bus fährt?',response:'Ja, an Haltestelle B.'},
+  {cue:'🚌 Information',request:'Können Sie mir bitte sagen, wo der Bus abfährt?',response:'Ja, an Haltestelle B.'},
   {cue:'🍞 Brot',request:'Geben Sie mir bitte das Brot.',response:'Gern. Hier, bitte.'},
   {cue:'⏰ Uhrzeit',request:'Können Sie mir bitte sagen, wie spät es ist?',response:'Ja, es ist zehn Uhr.'}
 ];
@@ -1674,7 +1674,7 @@ emailTasks.push(
   {id:'e11',to:'Frau König',situation:'Tu dois annuler un rendez-vous.',points:['Excuse-toi.','Dis pourquoi tu ne peux pas venir.','Propose un nouveau jour.'],model:'Guten Tag Frau König,\nleider kann ich morgen nicht zu unserem Termin kommen, weil ich krank bin. Können wir uns am Freitag treffen?\nViele Grüße\nClaire Martin'},
   {id:'e12',to:'deinen Nachbarn',situation:'Tu attends un colis mais tu n’es pas à la maison.',points:['Explique pourquoi tu écris.','Demande s’il peut prendre le colis.','Dis quand tu viens le chercher.'],model:'Hallo Herr Braun,\nich bin morgen nicht zu Hause. Können Sie bitte mein Paket annehmen? Ich hole es am Abend gegen 19 Uhr bei Ihnen ab.\nVielen Dank\nClaire'},
   {id:'e13',to:'Sprachschule Aktiv',situation:'Tu souhaites t’inscrire à un cours du soir.',points:['Dis quel cours tu veux.','Demande les jours et horaires.','Demande le prix.'],model:'Guten Tag,\nich möchte einen Deutschkurs A1 am Abend machen. An welchen Tagen und um wie viel Uhr ist der Kurs? Wie viel kostet er?\nViele Grüße\nClaire Martin'},
-  {id:'e14',to:'Freund Tom',situation:'Tu proposes un pique-nique dimanche.',points:['Propose le pique-nique.','Dis où et à quelle heure.','Demande ce que Tom peut apporter.'],model:'Hallo Tom,\nwollen wir am Sonntag ein Picknick machen? Wir treffen uns um 12 Uhr im Stadtpark. Kannst du bitte Getränke mitbringen?\nLiebe Grüße\nClaire'},
+  {id:'e14',to:'Freund Tom',situation:'Tu proposes un pique-nique dimanche.',points:['Propose le pique-nique.','Dis où et à quelle heure.','Demande ce que Tom peut apporter.'],model:'Hallo Tom,\nwollen wir am Sonntag ein Picknick machen? Wir treffen uns um 12 Uhr im Stadtpark. Was kannst du mitbringen?\nLiebe Grüße\nClaire'},
   {id:'e15',to:'Bahnhofsinformation',situation:'Tu veux aller à Berlin samedi matin.',points:['Dis où tu veux aller.','Demande une connexion le matin.','Demande le prix du billet.'],model:'Guten Tag,\nich möchte am Samstagmorgen nach Berlin fahren. Welche Verbindung gibt es am Vormittag? Wie viel kostet eine Fahrkarte?\nVielen Dank\nClaire Martin'}
 );
 
