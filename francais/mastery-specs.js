@@ -525,7 +525,7 @@ window.FR_A1_MASTERY_SPECS = {
         "type": "choice",
         "q": "Welche Form ist korrekt?",
         "o": [
-          "Je suis un médecin.",
+          "Je suis de médecin.",
           "Je suis médecin.",
           "Je suis de médecin."
         ],
@@ -1449,7 +1449,7 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Welche Form ist korrekt?",
         "o": [
           "Il ne faut pas ajouter trop de sel.",
-          "Il faut ne pas ajouter trop de sel.",
+          "Il ne pas faut ajouter trop de sel.",
           "Il pas faut ajouter trop de sel."
         ],
         "answer": "Il ne faut pas ajouter trop de sel.",
