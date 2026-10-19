@@ -10,7 +10,7 @@
     const tasks=[];
     for(const {forms,ends,meaning} of verbs)for(let i=0;i<6;i++){
       const wrong=[...new Set(forms)].filter(f=>f!==forms[i]).slice(0,2);
-      tasks.push(gap(`${persons[i]} ___ ${ends[i]}.`,forms[i],wrong,`${personContext[i]} ${meaning[i]}`));
+      tasks.push(gap(`${persons[i]} ___ ${ends[i]}.`,forms[i],wrong,`${i===0&&/^(ai |habite |aime |arrive )/.test(meaning[i])?'J’':personContext[i]}${i===0&&/^(ai |habite |aime |arrive )/.test(meaning[i])?'':' '}${meaning[i]}`));
     }
     const first=verbs[0],femaleName=title.includes('heißen')?'Anna':first.ends[2];
     tasks[2]={...gap(`Sie ___ ${femaleName}.`,first.forms[2],[...new Set(first.forms)].filter(f=>f!==first.forms[2]).slice(0,2),`Elle ${first.meaning[2].replace('Tom','Anna')}`),pronounRole:'female'};
