@@ -60,7 +60,7 @@
     const alternatives=(families.find(a=>a.includes(answer))||[]).filter(a=>a!==answer);
     const o=t.o||[answer,...shuffle(alternatives).slice(0,2)];
     if(o.length<3)return null;
-    return {kind:'form',q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer)}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
+    return {kind:'form',q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1')}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
   }
   function tableTasks(el){
     if(!el)return [];
