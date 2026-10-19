@@ -698,7 +698,9 @@ applyTheme();
       .profile-modal p{color:#64748b;line-height:1.5}
       .profile-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
       .profile-tabs button,.profile-lang button{padding:11px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc;font-weight:800}
-      .profile-tabs button.active,.profile-lang button.active{background:#0f172a;color:#fff}
+      .profile-tabs button.active,.profile-lang button.active{background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:#fff}
+      .profile-preferences{padding:14px;border:1px solid var(--line,#e2e8f0);border-radius:16px;background:var(--bg,#f8fafc);margin-bottom:18px}
+      .profile-preferences .a1-text-size{margin-bottom:0}
       .profile-lang{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
       .profile-lang-label{font-size:12px;color:#64748b;font-weight:800}
       .profile-lang-buttons{display:flex;gap:6px;flex-wrap:wrap}
@@ -709,9 +711,9 @@ applyTheme();
       .profile-submit{width:100%;margin-top:9px;padding:13px;border:0;border-radius:13px;background:#2563eb;color:#fff;font-weight:900}
       .profile-note{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-top:12px;line-height:1.45}
       .profile-error{min-height:20px;color:#b91c1c;font-size:13px;margin-top:8px}
-      .profile-menu-actions{display:grid;gap:8px;margin-top:15px}
+      .profile-menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
       .profile-menu-actions button{padding:11px;border-radius:12px;border:1px solid #e2e8f0;background:#fff;font-weight:800}
-      .profile-menu-actions .cloud-btn{background:#2563eb;color:#fff;border-color:#2563eb}
+      .profile-menu-actions .cloud-btn{grid-column:1/-1;background:#2563eb;color:#fff;border-color:#2563eb}
       .leaderboard-wrap{margin-top:18px;border-top:1px solid #e2e8f0;padding-top:16px}
       .leaderboard-title{font-size:18px;font-weight:900;margin-bottom:10px}
       .leaderboard-table{width:100%;border-collapse:collapse;font-size:14px}
@@ -740,6 +742,7 @@ applyTheme();
         background:#1e293b;
         color:#f8fafc;
       }
+      html.dark-mode .profile-preferences{background:#172033;border-color:#334155}
 
       html.dark-mode .profile-modal p,
       html.dark-mode .profile-lang-label,
@@ -758,8 +761,9 @@ applyTheme();
 
       html.dark-mode .profile-tabs button.active,
       html.dark-mode .profile-lang button.active{
-        background:#f8fafc;
-        color:#0f172a;
+        background:var(--accent,#2563eb);
+        border-color:var(--accent,#2563eb);
+        color:#fff;
       }
 
       html.dark-mode .profile-field input{
@@ -897,21 +901,19 @@ applyTheme();
       if(current && !force){
         const cloudMode = cloudConfigured && current.mode === 'cloud';
         ov.innerHTML = `<div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
-          ${languageSelector(lang)}
-          ${window.A1TextSize?.selector(lang)||''}
+          <div class="profile-preferences">${languageSelector(lang)}${window.A1TextSize?.selector(lang)||''}</div>
           <h2 id="profileModalTitle">${tr('profile',lang)}</h2>
           <p>${tr('signedInAs',lang)} <strong>${escapeHtml(current.username)}</strong>.</p>
           <div class="profile-note">${cloudMode ? tr('cloudActive',lang) : tr('localActive',lang)}</div>
-
-          <div class="leaderboard-wrap">
-            <div class="leaderboard-title">${tr('leaderboard',lang)}</div>
-            <div id="pmLeaderboard"></div>
-          </div>
 
           <div class="profile-menu-actions">
             ${cloudConfigured && current.mode === 'local' ? `<button class="cloud-btn" id="pmCloud">${tr('cloudConnect',lang)}</button>` : ''}
             <button id="pmClose">${tr('back',lang)}</button>
             <button id="pmLogout">${tr('switchProfile',lang)}</button>
+          </div>
+          <div class="leaderboard-wrap">
+            <div class="leaderboard-title">${tr('leaderboard',lang)}</div>
+            <div id="pmLeaderboard"></div>
           </div>
         </div>`;
 
@@ -946,8 +948,7 @@ applyTheme();
 
       const R=recoveryText(lang);
       ov.innerHTML = `<div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
-        ${languageSelector(lang)}
-          ${window.A1TextSize?.selector(lang)||''}
+        <div class="profile-preferences">${languageSelector(lang)}${window.A1TextSize?.selector(lang)||''}</div>
         <h2 id="profileModalTitle">${tr('learningProfile',lang)}</h2>
         <p>${tr('intro',lang)}</p>
         <div class="profile-tabs">

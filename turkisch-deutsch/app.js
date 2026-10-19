@@ -151,7 +151,7 @@
         <p class="muted">Bu kurs; karmaşık metinleri anlama, nüansları ayırt etme, bağlaç ve eşdizimleri doğal kullanma, mesleki iletişimde uygun kayıt seçme ve düşünceleri açık, yapılandırılmış ve ikna edici biçimde ifade etme becerilerini geliştirir.</p>
         <div class="pill">Deutsch-Test für den Beruf C1 · hedef sınav</div>
       </section>
-      <section class="card course-progress-card">
+      <section class="card course-progress-card suite-entry-card">
         <div class="between"><div><strong>Toplam kurs ilerlemesi</strong><div class="muted">${D.lessons.length} ders + hedefli alıştırmalar + sınav simülasyonları</div></div><strong>${cp}%</strong></div>
         <div class="spacer"></div>${progressBar(cp)}
         <div class="grid metric-grid" style="margin-top:14px">
@@ -164,7 +164,7 @@
           <span class="continue-course-arrow">→</span>
         </button>
       </section>
-      <button class="practice-card exam-home-card" id="openExam"><span class="icon">✓</span><strong>Sınav merkezine git</strong><small>Hedef DTB C1 formatını tam olarak çalış; Goethe C1 ek antrenman olarak kalır.</small></button>
+      <button class="practice-card exam-home-card" id="openExam">${A1Visual.icon('exam')}<strong>Sınav merkezine git</strong><small>Hedef DTB C1 formatını tam olarak çalış; Goethe C1 ek antrenman olarak kalır.</small></button>
       <section class="card readiness-card">
         <div class="section-title" style="margin-top:0"><h3>C1 hazırlık göstergeleri</h3><small>son en iyi sonuçlar</small></div>
         ${skillRow('Okuma', skills.reading)}
@@ -493,19 +493,19 @@
     setView(`
       <section class="card"><div class="eyebrow">HEDEFLİ ANTRENMAN</div><h2>C1 becerileri</h2><p class="muted">Zayıf alanları ayrı ayrı çalış. Gramer ve üslup bankaları genel C1 içindir; okuma/dinlemede ek C1 görevleri bulunur. Deutsch-Test für den Beruf C1'in resmî görev akışı ve puanlaması Sınav bölümünde birebir modellenmiştir.</p></section>
       <div class="grid practice-menu">
-        ${practiceCard('grammar','◫','C1 Gramer','Edilgen yapı, isim-fiil birleşimleri, kip fiilleri, Konjunktiv kipleri, adlaştırma')}
-        ${practiceCard('style','◇','Üslup & İfade','Kayıt, parafraz, eşdizimler, nüans')}
-        ${practiceCard('reading','▤','Okuma','Yoğun metin, parafraz ve eşleştirme · ek C1')}
-        ${practiceCard('listening','◉','Dinleme','Ayrıntı, tutum ve not alma · ek C1')}
-        ${practiceCard('writing','✎','Yazma','Yazılı üretim ve resmî/yarı resmî kayıt')}
-        ${practiceCard('speaking','◌','Konuşma','Spontan anlatım, etkileşim ve sorun çözme')}
+        ${practiceCard('grammar','C1 Gramer','Edilgen yapı, isim-fiil birleşimleri, kip fiilleri, Konjunktiv kipleri, adlaştırma')}
+        ${practiceCard('style','Üslup & İfade','Kayıt, parafraz, eşdizimler, nüans')}
+        ${practiceCard('reading','Okuma','Yoğun metin, parafraz ve eşleştirme · ek C1')}
+        ${practiceCard('listening','Dinleme','Ayrıntı, tutum ve not alma · ek C1')}
+        ${practiceCard('writing','Yazma','Yazılı üretim ve resmî/yarı resmî kayıt')}
+        ${practiceCard('speaking','Konuşma','Spontan anlatım, etkileşim ve sorun çözme')}
       </div>
       ${sourceNote()}
     `, () => document.querySelectorAll('[data-practice]').forEach(b => b.onclick=()=>openPractice(b.dataset.practice)));
   }
 
-  function practiceCard(id,icon,title,text) {
-    return `<button class="practice-card" data-practice="${id}"><span class="icon">${icon}</span><strong>${esc(title)}</strong><small>${esc(text)}</small></button>`;
+  function practiceCard(id,title,text) {
+    return `<button class="practice-card" data-practice="${id}">${A1Visual.icon(id)}<strong>${esc(title)}</strong><small>${esc(text)}</small></button>`;
   }
 
   function openPractice(kind) {
@@ -622,7 +622,7 @@
   }
 
   function renderWritingMenu() {
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Yazma</h2><p class="muted">Goethe C1'de iki metin yazılır: yaklaşık 230 kelimelik görüş/argümantasyon metni ve yaklaşık 120 kelimelik yarı resmî e-posta. Değerlendirme: görev yerine getirme, bağlaşıklık, kelime dağarcığı ve yapılar.</p></section><div class="grid"><button class="practice-card" id="forumMenu"><span class="icon">✎</span><strong>Bölüm 1 · Forum yazısı</strong><small>≈230 kelime · 4 dil işlevi</small></button><button class="practice-card" id="emailMenu"><span class="icon">✉</span><strong>Bölüm 2 · E-posta</strong><small>≈120 kelime · 4 dil işlevi</small></button></div>`,()=>{
+    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Yazma</h2><p class="muted">Goethe C1'de iki metin yazılır: yaklaşık 230 kelimelik görüş/argümantasyon metni ve yaklaşık 120 kelimelik yarı resmî e-posta. Değerlendirme: görev yerine getirme, bağlaşıklık, kelime dağarcığı ve yapılar.</p></section><div class="grid"><button class="practice-card" id="forumMenu">${A1Visual.icon('writing')}<strong>Bölüm 1 · Forum yazısı</strong><small>≈230 kelime · 4 dil işlevi</small></button><button class="practice-card" id="emailMenu">${A1Visual.icon('message')}<strong>Bölüm 2 · E-posta</strong><small>≈120 kelime · 4 dil işlevi</small></button></div>`,()=>{
       byId('backPractice').onclick=renderPractice; byId('forumMenu').onclick=()=>renderWritingPrompts('forum'); byId('emailMenu').onclick=()=>renderWritingPrompts('email');
     });
   }
@@ -663,7 +663,7 @@
   function formatPoint(v){return Number.isInteger(v)?String(v):String(Math.round(v*10)/10).replace('.',',');}
 
   function renderSpeakingMenu() {
-    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Konuşma</h2><p class="muted">Goethe C1 konuşmada yapılandırılmış sunum, takip soruları ve partnerle gerçek etkileşim beklenir. Tek kişilik uygulamada partner etkileşimi ancak simüle edilebilir; kayıt özelliği akıcılık, yapı ve telaffuzunuzu dinleyerek kontrol etmenizi sağlar.</p></section><div class="grid"><button class="practice-card" id="presentMenu"><span class="icon">◉</span><strong>Sunum</strong><small>≈5 dk + sorular</small></button><button class="practice-card" id="discussMenu"><span class="icon">↔</span><strong>Tartışma</strong><small>≈5 dk · pozisyon ve tepki</small></button></div>`,()=>{byId('backPractice').onclick=renderPractice;byId('presentMenu').onclick=()=>renderSpeakingPrompts('presentation');byId('discussMenu').onclick=()=>renderSpeakingPrompts('discussion');});
+    setView(`${backPracticeButton()}<section class="card" style="margin-top:12px"><h2>Konuşma</h2><p class="muted">Goethe C1 konuşmada yapılandırılmış sunum, takip soruları ve partnerle gerçek etkileşim beklenir. Tek kişilik uygulamada partner etkileşimi ancak simüle edilebilir; kayıt özelliği akıcılık, yapı ve telaffuzunuzu dinleyerek kontrol etmenizi sağlar.</p></section><div class="grid"><button class="practice-card" id="presentMenu">${A1Visual.icon('speaking')}<strong>Sunum</strong><small>≈5 dk + sorular</small></button><button class="practice-card" id="discussMenu">${A1Visual.icon('speaking')}<strong>Tartışma</strong><small>≈5 dk · pozisyon ve tepki</small></button></div>`,()=>{byId('backPractice').onclick=renderPractice;byId('presentMenu').onclick=()=>renderSpeakingPrompts('presentation');byId('discussMenu').onclick=()=>renderSpeakingPrompts('discussion');});
   }
 
   function renderSpeakingPrompts(type) {

@@ -29,6 +29,7 @@ function save(completed=false){if(completed)A1Streak.completeExercise();
 
 let audioEnabled=localStorage.getItem('esA1AudioEnabled')!=='false';
 let currentRoute='home';
+let homeOakCleanup=null;
 const view=document.getElementById('view');
 const audioToggle=document.getElementById('audioToggle');
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
@@ -65,6 +66,7 @@ function skillBar(name){
 }
 
 function setRoute(route){
+  homeOakCleanup?.();homeOakCleanup=null;
   currentRoute=route;
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
   ({home:renderHome,learn:renderLearn,practice:renderPractice,exam:renderExam}[route]||renderHome)();
@@ -74,24 +76,26 @@ document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setRoute(b.datas
 
 function renderHome(){
   const next=lessons.find(l=>!state.doneLessons.includes(l.id))||lessons[lessons.length-1];
+  const allDone=state.doneLessons.length===lessons.length;
   view.innerHTML=`
-    <section class="card hero" data-streak-anchor>
-      <div class="eyebrow">KURSFORTSCHRITT</div>
-      <h2 style="margin-top:12px">Spanisch A1 🇪🇸</h2>
-      <p class="muted">${state.doneLessons.length}/${lessons.length} Lektionen abgeschlossen</p>
-      <div class="progress"><div style="width:${lessonPct()}%"></div></div>
-      <div class="between" style="margin-top:10px"><small>DEUTSCH → SPANISCH · DELE A1</small><strong>${lessonPct()}%</strong></div>
-    ${A1Streak.render('de')}</section>
-    <section class="card">
-      <div class="between"><div><div class="eyebrow">WEITERLERNEN</div><h3>${esc(next.title)}</h3></div><span class="pill gray">Lektion ${next.id}</span></div>
-      <p class="muted">${esc(next.topic)} · ${next.skills.join(' · ')}</p>
-      <button class="primary-btn" id="continueLesson">Fortsetzen</button>
+    <section class="card home-continue-card" aria-labelledby="continueTitle">
+      <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':'WEITERLERNEN'}</span><span class="pill">Lektion ${next.id}</span></div>
+      <h2 id="continueTitle">${esc(next.title)}</h2>
+      <div class="home-learning-goal"><span class="home-detail-label">Dein Lernziel</span><p>${A1LessonGuide.goal(next.id,esc)}</p></div>
+      <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':'Fortsetzen'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+    </section>
+    <section class="card course-progress-card" data-streak-anchor>
+      <h2>Dein Baum</h2>
+      <p class="course-progress-caption oak-explanation">Wächst mit jeder abgeschlossenen Lektion.</p>
+      ${A1LearningOak.render({percent:lessonPct(),lang:'de',course:'spanisch-a1'})}
+      ${A1Streak.render('de',{showEmpty:true})}
     </section>
     <section class="card">
       <div class="between"><h3>Prüfungsreife</h3><span class="pill gray">${state.quickMockAttempted||state.bestMock>0?`${state.bestMock}% bester Schnelltest`:'Noch kein Ergebnis'}</span></div>
       ${['Hören','Lesen','Schreiben','Sprechen'].map(skillBar).join('')}
     </section>`;
-  document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
+  document.getElementById('continueLesson').onclick=()=>{homeOakCleanup?.();homeOakCleanup=null;renderLesson(next.id);};
+  homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
 }
 
 function renderLearn(){
@@ -141,12 +145,12 @@ function renderPractice(){
   view.innerHTML=`
     <section class="card hero"><h2>Üben</h2><p class="muted">Alle Kernbereiche des Spanisch-A1-Kurses mit Audio und zufälligen Aufgaben.</p></section>
     <div class="grid">
-      <button class="practice-card" id="pVocab"><span class="icon">🧠</span><strong>Vokabeln</strong><small>${lessons.reduce((s,l)=>s+l.phrases.length,0)} Kernphrasen mit Audio</small></button>
-      <button class="practice-card" id="pGrammar"><span class="icon">🧩</span><strong>Grammatik & Sprachbausteine</strong><small>${D.grammarSets.length} Sets · ${D.grammarSets.reduce((s,x)=>s+x.questions.length,0)} Fragen</small></button>
-      <button class="practice-card" id="pListen"><span class="icon">🎧</span><strong>Hören</strong><small>${totalListening()} Audioaufgaben · DELE-nahe Formate</small></button>
-      <button class="practice-card" id="pRead"><span class="icon">📖</span><strong>Lesen</strong><small>${totalReading()} Aufgaben · vier DELE-Aufgabentypen</small></button>
-      <button class="practice-card" id="pWrite"><span class="icon">✍️</span><strong>Schreiben</strong><small>${D.forms.length} Formulare + ${D.writing.length} Texte</small></button>
-      <button class="practice-card" id="pSpeak"><span class="icon">🎤</span><strong>Sprechen</strong><small>Präsentation · Thema · Gespräch</small></button>
+      <button class="practice-card" id="pVocab">${A1Visual.icon('vocab')}<strong>Vokabeln</strong><small>${lessons.reduce((s,l)=>s+l.phrases.length,0)} Kernphrasen mit Audio</small></button>
+      <button class="practice-card" id="pGrammar">${A1Visual.icon('grammar')}<strong>Grammatik & Sprachbausteine</strong><small>${D.grammarSets.length} Sets · ${D.grammarSets.reduce((s,x)=>s+x.questions.length,0)} Fragen</small></button>
+      <button class="practice-card" id="pListen">${A1Visual.icon('listening')}<strong>Hören</strong><small>${totalListening()} Audioaufgaben · DELE-nahe Formate</small></button>
+      <button class="practice-card" id="pRead">${A1Visual.icon('reading')}<strong>Lesen</strong><small>${totalReading()} Aufgaben · vier DELE-Aufgabentypen</small></button>
+      <button class="practice-card" id="pWrite">${A1Visual.icon('writing')}<strong>Schreiben</strong><small>${D.forms.length} Formulare + ${D.writing.length} Texte</small></button>
+      <button class="practice-card" id="pSpeak">${A1Visual.icon('speaking')}<strong>Sprechen</strong><small>Präsentation · Thema · Gespräch</small></button>
     </div>`;
   document.getElementById('pVocab').onclick=renderVocab;
   document.getElementById('pGrammar').onclick=renderGrammarMenu;
@@ -272,7 +276,7 @@ function renderReadingTask(part,onDone=null,forced=null,progressLabel='',examMod
 }
 
 function renderWritingMenu(){
-  view.innerHTML=`<div class="between"><button class="tiny-btn" id="backP">← Üben</button><span class="pill">PRUEBA 3 · EXPRESIÓN ESCRITA</span></div><section class="card" style="margin-top:12px"><h2>Schreiben</h2><p class="muted">DELE A1: Aufgabe 1 ist ein Formular mit persönlichen Angaben und kurzen Antworten. Aufgabe 2 ist ein kurzer Text mit empfohlenen 30–40 Wörtern.</p></section><div class="grid"><button class="practice-card" id="formPractice"><span class="icon">📝</span><strong>Formulare</strong><small>${D.forms.length} Szenarien</small></button><button class="practice-card" id="msgPractice"><span class="icon">✉️</span><strong>Kurze Texte</strong><small>${D.writing.length} Themen · Ziel 30–40 Wörter</small></button></div>`;
+  view.innerHTML=`<div class="between"><button class="tiny-btn" id="backP">← Üben</button><span class="pill">PRUEBA 3 · EXPRESIÓN ESCRITA</span></div><section class="card" style="margin-top:12px"><h2>Schreiben</h2><p class="muted">DELE A1: Aufgabe 1 ist ein Formular mit persönlichen Angaben und kurzen Antworten. Aufgabe 2 ist ein kurzer Text mit empfohlenen 30–40 Wörtern.</p></section><div class="grid"><button class="practice-card" id="formPractice">${A1Visual.icon('forms')}<strong>Formulare</strong><small>${D.forms.length} Szenarien</small></button><button class="practice-card" id="msgPractice">${A1Visual.icon('message')}<strong>Kurze Texte</strong><small>${D.writing.length} Themen · Ziel 30–40 Wörter</small></button></div>`;
   document.getElementById('backP').onclick=renderPractice;document.getElementById('formPractice').onclick=()=>renderFormTask();document.getElementById('msgPractice').onclick=()=>renderMessageTask();
 }
 function renderFormTask(onDone=null,forced=null,timerText=''){
@@ -326,7 +330,7 @@ function renderEverydayRoleplay(){
 
 function minsLeft(start,minutes){return Math.max(0,minutes-Math.floor((Date.now()-start)/60000));}
 function renderExam(){
-  view.innerHTML=`<section class="card hero"><span class="pill">DELE A1 · MODELO 2020</span><h2 style="margin-top:12px">Prüfungstraining</h2><p class="muted">Die Simulation folgt Aufbau und Zeitrahmen des bereitgestellten offiziellen DELE-A1-Modells. Die Aufgaben sind neu erstellt und keine Kopie des Modelltests.</p></section><section class="card"><h3>Offizielle Struktur</h3><div class="exam-structure"><div class="exam-line"><strong>Lesen</strong><small>4 tareas · 25 Fragen · 45 Min.</small><span>/25</span></div><div class="exam-line"><strong>Hören</strong><small>4 tareas · 25 Fragen · 25 Min. · Texte 2×</small><span>/25</span></div><div class="exam-line"><strong>Schreiben</strong><small>2 tareas · 25 Min. · Formular + 30–40 Wörter</small><span>2 Aufgaben</span></div><div class="exam-line"><strong>Sprechen</strong><small>3 tareas · 10 Min. Vorbereitung für 1 & 2</small><span>3 tareas</span></div></div></section><div class="grid"><button class="practice-card" id="examRead"><span class="icon">📖</span><strong>Lesen Simulation</strong><small>25 Fragen · 45 Min.</small></button><button class="practice-card" id="examListen"><span class="icon">🎧</span><strong>Hören Simulation</strong><small>25 Fragen · 25 Min. · max. 2×</small></button><button class="practice-card" id="examWrite"><span class="icon">✍️</span><strong>Schreiben Simulation</strong><small>Formular + 30–40 Wörter · 25 Min.</small></button><button class="practice-card" id="examSpeak"><span class="icon">🎤</span><strong>Sprechen Simulation</strong><small>Präsentation · Thema · Gespräch</small></button></div><section class="card quick-test-card"><div class="between"><h3>Schnelltest</h3><span class="pill gray">${state.quickMockAttempted||state.bestMock>0?`Bestwert ${state.bestMock}%`:'Noch kein Ergebnis'}</span></div><p class="muted">32 zufällige Hören-/Lesen-Aufgaben für eine schnelle Standortbestimmung.</p><button class="primary-btn" id="quickMock">Schnelltest starten</button></section>`;
+  view.innerHTML=`<section class="card hero"><span class="pill">DELE A1 · MODELO 2020</span><h2 style="margin-top:12px">Prüfungstraining</h2><p class="muted">Die Simulation folgt Aufbau und Zeitrahmen des bereitgestellten offiziellen DELE-A1-Modells. Die Aufgaben sind neu erstellt und keine Kopie des Modelltests.</p></section><section class="card"><h3>Offizielle Struktur</h3><div class="exam-structure"><div class="exam-line"><strong>Lesen</strong><small>4 tareas · 25 Fragen · 45 Min.</small><span>/25</span></div><div class="exam-line"><strong>Hören</strong><small>4 tareas · 25 Fragen · 25 Min. · Texte 2×</small><span>/25</span></div><div class="exam-line"><strong>Schreiben</strong><small>2 tareas · 25 Min. · Formular + 30–40 Wörter</small><span>2 Aufgaben</span></div><div class="exam-line"><strong>Sprechen</strong><small>3 tareas · 10 Min. Vorbereitung für 1 & 2</small><span>3 tareas</span></div></div></section><div class="grid"><button class="practice-card" id="examRead">${A1Visual.icon('reading')}<strong>Lesen Simulation</strong><small>25 Fragen · 45 Min.</small></button><button class="practice-card" id="examListen">${A1Visual.icon('listening')}<strong>Hören Simulation</strong><small>25 Fragen · 25 Min. · max. 2×</small></button><button class="practice-card" id="examWrite">${A1Visual.icon('writing')}<strong>Schreiben Simulation</strong><small>Formular + 30–40 Wörter · 25 Min.</small></button><button class="practice-card" id="examSpeak">${A1Visual.icon('speaking')}<strong>Sprechen Simulation</strong><small>Präsentation · Thema · Gespräch</small></button></div><section class="card quick-test-card"><div class="between"><h3>Schnelltest</h3><span class="pill gray">${state.quickMockAttempted||state.bestMock>0?`Bestwert ${state.bestMock}%`:'Noch kein Ergebnis'}</span></div><p class="muted">32 zufällige Hören-/Lesen-Aufgaben für eine schnelle Standortbestimmung.</p><button class="primary-btn" id="quickMock">Schnelltest starten</button></section>`;
   document.getElementById('examRead').onclick=startReadingExam;document.getElementById('examListen').onclick=startListeningExam;document.getElementById('examWrite').onclick=startWritingExam;document.getElementById('examSpeak').onclick=startSpeakingExam;document.getElementById('quickMock').onclick=startQuickMock;
 }
 function startListeningExam(){
