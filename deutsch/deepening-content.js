@@ -128,7 +128,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Poser les premières questions",
-      "rule": "Avec un mot interrogatif : **Wie / Woher / Wo + verbe + Sie**. **Sie** avec majuscule est le vous de politesse ; le verbe se termine en -en. Une question attend une réponse sur le nom, l’origine, la ville ou la langue.",
+      "rule": "Avec un mot interrogatif : **Wie / Woher / Wo + verbe + Sie**. **Sie** avec majuscule est le vous de politesse ; le verbe a généralement la forme en -en (heißen, kommen), mais Sie sind est une exception. Une question attend une réponse sur le nom, l’origine, la ville ou la langue.",
       "rows": [
         [
           "Wie |heißen| Sie?",
@@ -531,7 +531,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Dates et coordonnées",
-      "rule": "**Geburtsdatum** est la date de naissance ; **Geburtsort** est le lieu. Une date peut s’écrire 17.04.2000 ; **zweitausend** signifie 2000. À l’oral : **am siebzehnten April**. Telefonnummer désigne le téléphone, Postleitzahl le code postal. Dans un formulaire, écris seulement la valeur demandée.",
+      "rule": "**Geburtsdatum** est la date de naissance ; **Geburtsort** est le lieu. Une date peut s’écrire 17.04.2000 ; **zweitausend** signifie 2000. À l’oral : **am siebzehnten April**. Telefonnummer désigne le numéro de téléphone, Postleitzahl le code postal. Dans un formulaire, écris seulement la valeur demandée.",
       "rows": [
         [
           "|Geburtsdatum|",
@@ -3394,7 +3394,7 @@ window.DE_A1_STUDY_CONTENT = {
   "19": [
     {
       "title": "Nommer les douleurs",
-      "rule": "Avec un seul endroit : **Mein … tut weh**. Avec plusieurs : **Meine … tun weh**. Le sujet est la partie du corps. Autre possibilité : Ich habe Kopfschmerzen. Depuis hier se dit seit gestern.",
+      "rule": "Au singulier : **… tut weh** ; au pluriel : **… tun weh**. Le possessif dépend aussi du genre : Mein Kopf tut weh, Meine Hand tut weh, Meine Beine tun weh. Le sujet est la partie du corps. Autre possibilité : Ich habe Kopfschmerzen. Depuis hier se dit seit gestern.",
       "rows": [
         [
           "Mein Kopf |tut| weh.",
