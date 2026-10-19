@@ -137,7 +137,7 @@
   ]);
   rows('nicht – exemples','g7',[
     ['Ich komme heute ___.','nicht',['kein','keine']],['Ich verstehe das ___.','nicht',['kein','keinen']],['Das ist ___ teuer.','nicht',['kein','keine']],
-    ['Er wohnt ___ in Berlin.','nicht',['kein','keinen']],['Wir arbeiten heute ___.','nicht',['kein','keine']],['Sie spricht ___ Deutsch.','nicht',['kein','keinen']],
+    ['Er wohnt ___ in Berlin.','nicht',['kein','keinen']],['Wir arbeiten heute ___.','nicht',['kein','keine']],['Sie kommt heute ___.','nicht',['kein','keinen']],
     ['Ich bin ___ müde.','nicht',['kein','keine']],['Der Bus kommt ___.','nicht',['kein','keinen']],['Das Zimmer ist ___ groß.','nicht',['kein','keine']],
     ['Wir können heute ___ kommen.','nicht',['kein','keine']],['Du musst ___ warten.','nicht',['kein','keinen']],['Ich möchte ___ bezahlen.','nicht',['kein','keine']]
   ]);
