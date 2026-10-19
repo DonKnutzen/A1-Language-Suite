@@ -125,7 +125,7 @@
   ]);
   rows('Verbes séparables','g6',[
     ['Ich stehe um sieben Uhr ___.','auf',['an','ein']],['Du stehst früh ___.','auf',['mit','ein']],['Wir stehen um acht Uhr ___.','auf',['an','mit']],
-    ['Ich kaufe heute ___.','ein',['auf','an']],['Du kaufst am Samstag ___.','ein',['mit','auf']],['Wir kaufen morgen ___.','ein',['an','mit']],
+    ['Ich kaufe heute ___.','ein',['auf','an']],['Du kaufst am Samstag ___.','ein',['mit','auf'],'Tu fais les courses samedi.'],['Wir kaufen morgen ___.','ein',['an','mit'],'Nous faisons les courses demain.'],
     ['Der Zug kommt um zehn Uhr ___.','an',['auf','ein']],['Wann kommt der Bus ___?','an',['ein','auf']],['Wir kommen morgen ___.','an',['mit','auf'],'Nous arrivons demain.'],
     ['Ich bringe Wasser ___.','mit',['auf','an']],['Bringst du Brot ___?','mit',['an','auf']],['Bitte bringen Sie ein Buch ___.','mit',['ein','auf']]
   ]);
