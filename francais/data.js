@@ -4387,7 +4387,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "France / français",
-        "explanation": "Vergleiche /ɑ̃/ in France mit /ɛ̃/ in français. Der letzte Konsonant von français ist stumm."
+        "explanation": "Vergleiche /ɑ̃/ in France und français mit /ɛ̃/ in pain. Der letzte Konsonant von français ist stumm."
       },
       "dialogue": [
         "Tu vas où en vacances ?",
@@ -4482,7 +4482,7 @@ window.FR_A1_DATA = {
       },
       {
         "id": "co7",
-        "q": "Wie fährt Marc zur Arbeit?",
+        "q": "Wie fährt Marc heute zur Arbeit?",
         "speech": "D’habitude, je vais au travail à vélo. Aujourd’hui, il pleut, alors je prends le bus.",
         "o": [
           "mit dem Fahrrad",
@@ -4497,7 +4497,7 @@ window.FR_A1_DATA = {
         "q": "Was möchte der Mann kaufen?",
         "speech": "Bonjour, je cherche une chemise blanche, taille quarante-deux.",
         "o": [
-          "weiße Hemden",
+          "ein weißes Hemd",
           "weiße Schuhe",
           "schwarze Jacke"
         ],
@@ -4901,7 +4901,7 @@ window.FR_A1_DATA = {
       },
       {
         "id": "co14",
-        "statement": "Die Besucher dürfen im Museum fotografieren.",
+        "statement": "Die Besucher dürfen in den Sälen im ersten Stock fotografieren.",
         "speech": "Mesdames et messieurs, les photos sont interdites dans les salles du premier étage.",
         "a": false,
         "audio": "Mesdames et messieurs, les photos sont interdites dans les salles du premier étage."
@@ -4922,7 +4922,7 @@ window.FR_A1_DATA = {
       },
       {
         "id": "co17",
-        "statement": "Die Kunden sollen zur Kasse 3 gehen.",
+        "statement": "Kunden mit weniger als zehn Artikeln können Kasse 3 benutzen.",
         "speech": "La caisse numéro trois est ouverte. Les clients avec moins de dix articles peuvent y aller.",
         "a": true,
         "audio": "La caisse numéro trois est ouverte. Les clients avec moins de dix articles peuvent y aller."
@@ -5095,7 +5095,7 @@ window.FR_A1_DATA = {
       },
       {
         "id": "co30",
-        "q": "Wie bezahlt die Kundin?",
+        "q": "Wie möchte die Kundin bezahlen?",
         "speech": "Je n’ai pas d’espèces. Est-ce que je peux payer par carte bancaire ?",
         "o": [
           "bar",
@@ -5360,7 +5360,7 @@ window.FR_A1_DATA = {
       {
         "id": "ce7",
         "text": "Chers parents,\nL’école ferme vendredi à 15 h exceptionnellement. Merci de venir chercher les enfants avant 15 h 15.",
-        "statement": "Die Schule schließt Freitag früher.",
+        "statement": "Die Schule schließt diesen Freitag um 15 Uhr.",
         "a": true,
         "audio": "L’école ferme vendredi à 15 h exceptionnellement. Merci de venir chercher les enfants avant 15 h 15."
       },
@@ -5395,7 +5395,7 @@ window.FR_A1_DATA = {
       {
         "id": "ce32",
         "text": "Bonjour Mme Leroy,\nVotre rendez-vous est confirmé pour mardi 12 mars à 10 h 30. Merci d’arriver dix minutes avant.\nCabinet médical",
-        "statement": "Frau Leroy soll am Dienstag um 10:30 Uhr kommen.",
+        "statement": "Frau Leroy soll am Dienstag um 10:20 Uhr kommen.",
         "a": true,
         "audio": "Votre rendez-vous est mardi à dix heures trente."
       },
@@ -6350,7 +6350,8 @@ window.FR_A1_DATA = {
           "label": "Paiement",
           "answers": [
             "carte de crédit",
-            "par carte"
+            "par carte",
+            "par carte de crédit"
           ]
         }
       ]
@@ -6396,7 +6397,7 @@ window.FR_A1_DATA = {
         {
           "label": "Langues",
           "answers": [
-            "allemand, anglais et français",
+            "allemand, anglais et français", "allemand, anglais et un peu français",
             "allemand anglais français"
           ]
         },
