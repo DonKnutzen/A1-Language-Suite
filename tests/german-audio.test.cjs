@@ -3,7 +3,7 @@ const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
 function environment(){
  const dom=new JSDOM('<main id="view"></main>',{runScripts:'outside-only',url:'https://example.org/deutsch/'}),w=dom.window,audio=[];
  w.scrollTo=()=>{};w.A1Voice={speak:(text,opts)=>audio.push({text,opts}),cancel:()=>{}};
- for(const f of ['deutsch/answer-audio.js','shared/exercise-review.js','shared/exercise-engine.js','deutsch/comprehension-content.js','shared/comprehension.js'])w.eval(read(f));
+ for(const f of ['deutsch/pronouns.js','deutsch/answer-audio.js','shared/exercise-review.js','shared/exercise-engine.js','deutsch/comprehension-content.js','shared/comprehension.js'])w.eval(read(f));
  return {dom,w,view:w.document.querySelector('main'),audio};
 }
 test('German answers autoplay once, replay repeatedly and restore without playing or scoring again',()=>{

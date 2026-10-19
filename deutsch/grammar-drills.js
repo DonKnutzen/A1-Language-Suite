@@ -12,6 +12,10 @@
       const wrong=[...new Set(forms)].filter(f=>f!==forms[i]).slice(0,2);
       tasks.push(gap(`${persons[i]} ___ ${ends[i]}.`,forms[i],wrong,`${personContext[i]} ${meaning[i]}`));
     }
+    const first=verbs[0],femaleName=title.includes('heißen')?'Anna':first.ends[2];
+    tasks[2]={...gap(`Sie ___ ${femaleName}.`,first.forms[2],[...new Set(first.forms)].filter(f=>f!==first.forms[2]).slice(0,2),`Elle ${first.meaning[2].replace('Tom','Anna')}`),pronounRole:'female'};
+    tasks[5].pronounRole='plural';tasks[4].pronounRole='familiar';
+    tasks[9]={...gap(`Sie ___ ${first.ends[4]}.`,first.forms[5],[...new Set(first.forms)].filter(f=>f!==first.forms[5]).slice(0,2),`Vous (forme de politesse) ${first.meaning[4]}`),pronounRole:'formal'};
     add(title,'g1',tasks);
   }
   conjugation('sein – conjugaison',[
@@ -29,6 +33,18 @@
   conjugation('heißen et sprechen – conjugaison',[
     {forms:['heiße','heißt','heißt','heißen','heißt','heißen'],ends:['Anna','Paul','Tom','Müller','Schmidt','Weber'],meaning:['m’appelle Anna','t’appelles Paul','s’appelle Tom','nous appelons Müller','vous appelez Schmidt','s’appellent Weber']},
     {forms:['spreche','sprichst','spricht','sprechen','sprecht','sprechen'],ends:Array(6).fill('Deutsch'),meaning:['parle allemand','parles allemand','parle allemand','parlons allemand','parlez allemand','parlent allemand']}
+  ]);
+  add('Pronoms personnels','g1',[
+    {...gap('Sie ___ zu Hause.','ist',['sind','seid'],'Anna est à la maison. Elle est à la maison.'),pronounRole:'female'},
+    {...gap('Sie ___ zu Hause.','sind',['ist','seid'],'Anna et Paul sont à la maison. Ils sont à la maison.'),pronounRole:'plural'},
+    {...gap('Sie ___ hier.','sind',['ist','seid'],'Vous parlez à Madame Martin : vous êtes ici (politesse).'),pronounRole:'formal'},
+    {...gap('Können ___ mir helfen?','Sie',['sie','ihr'],'Vous demandez poliment de l’aide à Madame Martin.'),pronounRole:'formal'},
+    {...gap('Ihr ___ hier.','seid',['sind','ist'],'Anna et Léa, vous êtes ici (plusieurs personnes, familier).'),pronounRole:'familiar'},
+    {...gap('Sie ___ Deutsch.','spricht',['sprechen','sprecht'],'Anna parle allemand. Elle parle allemand.'),pronounRole:'female'},
+    {...gap('Sie ___ Deutsch.','sprechen',['spricht','sprecht'],'Anna et Paul parlent allemand. Ils parlent allemand.'),pronounRole:'plural'},
+    {...gap('Sprechen ___ Deutsch?','Sie',['sie','du'],'Vous demandez poliment à un client s’il parle allemand.'),pronounRole:'formal'},
+    {...gap('Das ist Anna. Heute ist ___ hier.','sie',['Sie','ihr'],'Vous parlez d’Anna : elle est ici aujourd’hui.'),pronounRole:'female'},
+    {...gap('Haben ___ Zeit?','Sie',['sie','ihr'],'Vous demandez poliment à deux clients s’ils ont du temps.'),pronounRole:'formal'}
   ]);
   const rows=(title,setId,data)=>add(title,setId,data.map(([s,a,w,c])=>gap(s,a,w,c)));
   rows('Articles au nominatif','g2',[
@@ -161,5 +177,7 @@
     if(situations)situations.questions=SITUATION_TASKS;
   }
   const SITUATION_TASKS=[{"q": "À la boulangerie, tu demandes deux petits pains.", "o": ["Zwei Brötchen, bitte.", "Drei Brötchen, bitte.", "Zwei Brote, bitte."], "a": 0, "audio": "Zwei Brötchen, bitte.", "explanation": "Zwei Brötchen, bitte. = À la boulangerie, tu demandes deux petits pains."}, {"q": "Au restaurant, tu demandes l’addition.", "o": ["Die Rechnung, bitte.", "Die Speisekarte, bitte.", "Noch ein Wasser, bitte."], "a": 0, "audio": "Die Rechnung, bitte.", "explanation": "Die Rechnung, bitte. = Au restaurant, tu demandes l’addition."}, {"q": "Tu demandes de répéter la phrase.", "o": ["Können Sie das bitte wiederholen?", "Können Sie den Namen bitte buchstabieren?", "Können Sie bitte langsamer sprechen?"], "a": 0, "audio": "Können Sie das bitte wiederholen?", "explanation": "Können Sie das bitte wiederholen? = Tu demandes de répéter la phrase."}, {"q": "À la gare, tu demandes le quai.", "o": ["Welches Gleis?", "Welche Linie?", "Wann fährt der Zug?"], "a": 0, "audio": "Welches Gleis?", "explanation": "Welches Gleis? = À la gare, tu demandes le quai."}, {"q": "Tu demandes où se trouve la pharmacie.", "o": ["Wo ist die nächste Apotheke?", "Wann ist die Apotheke geöffnet?", "Wie komme ich zum Krankenhaus?"], "a": 0, "audio": "Wo ist die nächste Apotheke?", "explanation": "Wo ist die nächste Apotheke? = Tu demandes où se trouve la pharmacie."}, {"q": "Tu demandes un rendez-vous.", "o": ["Ich brauche einen Termin.", "Ich möchte den Termin absagen.", "Ich möchte den Termin ändern."], "a": 0, "audio": "Ich brauche einen Termin.", "explanation": "Ich brauche einen Termin. = Tu demandes un rendez-vous."}, {"q": "Tu préviens que tu arrives plus tard.", "o": ["Entschuldigung, ich komme später.", "Ich komme heute früher.", "Ich komme heute pünktlich."], "a": 0, "audio": "Entschuldigung, ich komme später.", "explanation": "Entschuldigung, ich komme später. = Tu préviens que tu arrives plus tard."}, {"q": "Tu demandes comment aller à la gare.", "o": ["Wie komme ich zum Bahnhof?", "Wann fährt der Zug ab?", "Wo kann ich eine Fahrkarte kaufen?"], "a": 0, "audio": "Wie komme ich zum Bahnhof?", "explanation": "Wie komme ich zum Bahnhof? = Tu demandes comment aller à la gare."}, {"q": "Tu souhaites bon appétit.", "o": ["Guten Appetit!", "Gute Besserung!", "Gute Reise!"], "a": 0, "audio": "Guten Appetit!", "explanation": "Guten Appetit! = Tu souhaites bon appétit."}, {"q": "Tu prends congé poliment.", "o": ["Auf Wiedersehen!", "Guten Morgen!", "Herzlich willkommen!"], "a": 0, "audio": "Auf Wiedersehen!", "explanation": "Auf Wiedersehen! = Tu prends congé poliment."}];
+  const shortRounds={'Articles au nominatif':8,'Pluriel: formes importantes':6,'Possessif au pluriel':8,'Articles à l’accusatif':8,'Commander poliment':6,'Mots interrogatifs utiles':8,'Ordre des mots':8,'Prépositions de temps':6,'Lire l’heure':8,'Autres expressions':6,'kein – nominatif et accusatif':8,'nicht – exemples':6,'Possessifs utiles':8};
+  for(const [title,count]of Object.entries(shortRounds))if(topics[title])topics[title].roundSize=count;
   window.DE_A1_GRAMMAR_DRILLS={topics,extendSets,refineSets};
 })();

@@ -5,7 +5,7 @@ function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.Math.random=()=>.99;
  w.A1Learning={shuffle:a=>[...a],countWords:s=>s.trim().split(/\s+/).filter(Boolean).length,wireRecorder:()=>{}};
- for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/grammar-ui.js','shared/lesson-topic-info.js','shared/pronunciation.js','shared/exercise-review.js','deutsch/answer-audio.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','deutsch/lesson-flow.js'])w.eval(read(f));
+ for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/grammar-ui.js','shared/lesson-topic-info.js','shared/pronunciation.js','shared/exercise-review.js','deutsch/pronouns.js','deutsch/answer-audio.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','deutsch/lesson-flow.js'])w.eval(read(f));
  const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+';window.testData={lessons,grammarSets,formTasks};');
  w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.testRefs=lessonGrammarReferenceHtml;');
  w.DE_A1_ASSESSMENTS.configure({...w.testData,practiceProgress:{recordGrammar:()=>{}}});
@@ -27,12 +27,12 @@ test('all 24 lessons teach the exact vocabulary and patterns used in lesson chec
    assert(q.audio&&!q.audio.includes('|')&&!q.audio.includes('___'));if(!q.q?.startsWith('Lies den Dialog:'))assert(panel.textContent.includes(q.audio),`${l.id}: ${q.audio} must be taught`);
    if(q.type!=='gap'){assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}else assert(q.context&&q.prompt.includes('___'));
   }
-  for(const unit of w.DE_A1_STUDY.content[l.id]){assert.equal(w.DE_A1_STUDY.unitTasks(unit).length,10);const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(new Set(tasks.map(q=>q.q)).size,10);}
+  for(const unit of w.DE_A1_STUDY.content[l.id]){assert.equal(w.DE_A1_STUDY.unitTasks(unit).length,unit.practiceCount);const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);}
  }
  env.dom.window.close();
 });
-test('every grammar drill has ten distinct grammatical questions and unambiguous answer indices',()=>{
- const {dom,w}=environment();for(const drill of Object.values(w.DE_A1_GRAMMAR_DRILLS.topics)){assert.equal(drill.tasks.length,10);assert.equal(new Set(drill.tasks.map(q=>q.q)).size,10);for(const q of drill.tasks){assert(q.audio);if(q.type!=='gap'){assert.equal(q.o.length,3);assert(q.o[q.a]);assert.equal(new Set(q.o).size,3);}}}dom.window.close();
+test('every grammar drill has a topic-sized set of distinct questions and unambiguous answer indices',()=>{
+ const {dom,w}=environment();for(const drill of Object.values(w.DE_A1_GRAMMAR_DRILLS.topics)){assert([6,8,10].includes(drill.tasks.length));assert.equal(new Set(drill.tasks.map(q=>q.q)).size,drill.tasks.length);for(const q of drill.tasks){assert(q.audio);if(q.type!=='gap'){assert.equal(q.o.length,3);assert(q.o[q.a]);assert.equal(new Set(q.o).size,3);}}}dom.window.close();
 });
 test('all lessons render separate learning steps with practice after each prepared topic',()=>{
  const env=environment(),{w,view}=env;
@@ -50,7 +50,7 @@ test('topic mini-tests resume, play the correct German answer and mark only thei
  const p=s.lessonGrammarPractice[4]['study-4-0'];answerCurrent(w,view,p.session);assert.equal(p.session.score,1);assert.equal(audio.at(-1),p.session.ex[0].audio);
  render(env,4,s,audio);view.querySelector('[data-lesson-step="grammar"]').click();view.querySelector('#topicPracticeStart').click();assert.equal(p.session.score,1);assert(view.querySelector('#mixedNext'));
  while(p.session){view.querySelector('#mixedNext')?.click();if(p.session&&!p.session.response)answerCurrent(w,view,p.session);}
- assert.equal(p.done,true);assert.equal(p.last,10);assert(view.querySelector('[data-grammar-progress="0"]').classList.contains('done'));assert(!view.querySelector('[data-grammar-progress="1"]').classList.contains('done'));env.dom.window.close();
+ assert.equal(p.done,true);assert.equal(p.last,p.total);assert(view.querySelector('[data-grammar-progress="0"]').classList.contains('done'));assert(!view.querySelector('[data-grammar-progress="1"]').classList.contains('done'));env.dom.window.close();
 });
 test('lesson exercises and final tests retain answers after leaving without double scoring',()=>{
  const env=environment(),{w,view}=env,s=state();render(env,7,s);view.querySelector('#startQuiz').click();const p=s.lessonWork[7];answerCurrent(w,view,p.session);assert.equal(p.session.score,1);
@@ -127,10 +127,10 @@ test('German final checks apply patterns and use four different contextual facts
 test('reviewed German alternatives avoid impossible time phrases and target the same detail',()=>{
  const {dom,w}=environment();w.Math.random=Math.random;
  for(const units of Object.values(w.DE_A1_STUDY.content))for(const unit of units)for(let round=0;round<4;round++){
-  const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(tasks.length,10);assert.equal(new Set(tasks.map(q=>q.q)).size,10);
+  const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(tasks.length,unit.practiceCount);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);
   for(const t of tasks){assert(t.answer);assert.equal(t.o.length,3);assert.equal(new Set(t.o).size,3);assert(!/seit morgen|seit übermorgen|am heute|am morgen|Ich heiße Kanada/.test(t.o.join(' ')));}
  }
- const first=w.DE_A1_STUDY.content[1][0],name=w.DE_A1_STUDY.unitTasks(first).find(q=>q.audio==='Ich heiße Claire.');assert(name.o.every(o=>o.startsWith('Je m’appelle ')));
+ const first=w.DE_A1_STUDY.content[1][0],name=w.DE_A1_STUDY.unitTasks(first,{full:true}).find(q=>q.audio==='Ich heiße Claire.'&&q.skill==='recognition');assert(name.o.every(o=>o.startsWith('Je m’appelle ')));
  dom.window.close();
 });
 test('German question updates retain earned points and checked feedback while upgrading pending items',()=>{
@@ -147,4 +147,36 @@ test('German session revision is applied once and does not erase a draft for an 
  w.DE_A1_STUDY.refreshSession(progress,[q]);assert.equal(progress.session.draft,'hei');assert.equal(progress.contentRevision,118);
  delete progress.session.contentRevision;const current=progress.session.ex;
  w.DE_A1_STUDY.refreshSession(progress,[{...q,q:'another question'}]);assert.equal(progress.session.ex,current);assert.equal(progress.session.draft,'hei');dom.window.close();
+});
+
+test('German lessons distinguish female, plural and polite Sie and keep all three in conjugation practice',()=>{
+ const {dom,w}=environment(),pronouns=w.DE_A1_PRONOUNS;
+ assert.equal(pronouns.role({audio:'Sie ist hier.',context:'Elle est ici.'}),'female');
+ assert.equal(pronouns.role({audio:'Sie sind hier.',context:'Ils sont ici.'}),'plural');
+ assert.equal(pronouns.role({audio:'Sie sind hier.',context:'Vous êtes ici (politesse).'}),'formal');
+ assert.equal(pronouns.role({audio:'Ihr seid hier.',context:'Vous êtes ici, entre amis.'}),'familiar');
+ assert.equal(pronouns.role({audio:'Wie ist Ihr Name?'}),'');
+ assert.equal(pronouns.role({audio:'Sie liest ein Buch.'}),'female');
+ assert.equal(pronouns.role({audio:'Ich nehme Sie mit.',context:'Je vous accompagne.'}),'formal');
+ for(const title of ['sein – conjugaison','haben – conjugaison','Verbes réguliers au présent','heißen et sprechen – conjugaison','Pronoms personnels']){
+  const tasks=w.DE_A1_GRAMMAR_DRILLS.topics[title].tasks;for(const role of ['female','plural','formal'])assert(tasks.some(q=>q.pronounRole===role),`${title}: ${role}`);
+ }
+ const unit=w.DE_A1_STUDY.content[2][1],tasks=w.DE_A1_STUDY.unitTasks(unit);for(const role of ['female','plural','formal'])assert(tasks.some(q=>q.pronounRole===role));
+ assert.equal(tasks.length,10);assert(!unit.table.some(row=>row[0]==='sie / Sie'));
+ const html=w.DE_A1_STUDY.grammarHtml(w.testData.lessons[0],w.testRefs(1),s=>`<button data-speak="${s}">🔊</button>`),panel=w.document.createElement('div');panel.innerHTML=html;
+ assert(panel.querySelector('.pronoun-guide'));assert(panel.querySelector('.pronoun-guide').textContent.includes('En début de phrase'));
+ assert(![...panel.querySelectorAll('td,th')].some(cell=>/^sie\s*\/\s*Sie$/.test(cell.textContent)));
+ for(const l of w.testData.lessons){const ref=w.document.createElement('div');ref.innerHTML=w.testRefs(l.id);assert(![...ref.querySelectorAll('td,th')].some(cell=>/^sie\s*\/\s*Sie$/.test(cell.textContent)));assert([...ref.querySelectorAll('[data-speak]')].every(b=>!/(?:elle|ils|politesse|vous)\b/.test(b.dataset.speak)));}
+ assert.equal(panel.querySelector('.pronoun-guide').querySelectorAll('[data-speak]').length,3);dom.window.close();
+});
+test('German mini-test length follows the topic while opening and final checks retain their distinct purpose',()=>{
+ const {dom,w}=environment(),lengths=new Set();
+ for(const l of w.testData.lessons)for(const unit of w.DE_A1_STUDY.content[l.id]){
+  const tasks=w.DE_A1_STUDY.unitTasks(unit);lengths.add(tasks.length);assert.equal(tasks.length,unit.practiceCount);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);
+  assert.equal(w.DE_A1_STUDY.unitTasks(unit,{full:true}).length,10);
+ }
+ assert.deepEqual([...lengths].sort((a,b)=>a-b),[6,8,10]);
+ assert.equal(w.DE_A1_STUDY.unitTasks(w.DE_A1_STUDY.content[2][0]).length,6);
+ assert.equal(w.DE_A1_STUDY.unitTasks(w.DE_A1_STUDY.content[2][1]).length,10);
+ dom.window.close();
 });

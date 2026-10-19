@@ -9,7 +9,7 @@
     const root=document.createElement('div');root.innerHTML=page.html;
     const title=root.querySelector('details')?.dataset.grammarOriginalTitle||page.title;
     const drill=window.DE_A1_GRAMMAR_DRILLS?.topics[title];
-    return drill?{key:title,title:page.title,setId:drill.setId,tasks:drill.tasks}:null;
+    return drill?{key:title,title:page.title,setId:drill.setId,tasks:shuffle(drill.tasks).slice(0,drill.roundSize||drill.tasks.length)}:null;
   }
   function practiceState(state,id,key){return state.lessonGrammarPractice?.[id]?.[key]||{};}
   function bucket(state,id,key){state.lessonGrammarPractice||={};state.lessonGrammarPractice[id]||={};return state.lessonGrammarPractice[id][key]||={};}
@@ -28,7 +28,7 @@
     const panel=document.createElement('div');panel.className='lesson-grammar-practice deepening-practice';root.querySelector('#lessonGrammarPage').append(panel);
     const current=bucket(state,lesson.id,practice.key);
     function intro(){
-      panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':practice.tasks.length+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
+      panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':(current.session?.ex?.length||practice.tasks.length)+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
       panel.querySelector('#topicPracticeStart').onclick=event=>{
         if(current.done&&!event?.resume)delete current.session;
         const unit=Object.values(window.DE_A1_STUDY.content).flat().find(u=>u.key===practice.key);

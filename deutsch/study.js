@@ -52,13 +52,18 @@
       return {type:'gap',q:`« ${fr} » — Complète : ${prompt}`,prompt,context:fr,answer,o,a:o.indexOf(answer),audio:plain(marked),explanation:`${plain(marked)} = ${fr}`,skill:'application'};
     });
   }
-  function unitTasks(unit){
+  function unitTasks(unit,{full=false}={}){
     const recognitionTasks=unit.rows.map(([de,fr])=>recognition(unit,[plain(de),fr]));
     if(unit.conjugation){
-      const persons=['Ich','Du','Er','Wir','Ihr','Sie'],fr=['Je peux','Tu peux','Il peut','Nous pouvons','Vous pouvez (plusieurs personnes, informel)','Ils peuvent'],forms=unit.conjugation.forms;
-      return [...persons.map((person,i)=>{const answer=forms[i],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application'};}),...recognitionTasks].map(indexAnswer);
+      const persons=['Ich','Du','Sie','Wir','Ihr','Sie','Sie'],fr=['Je peux','Tu peux','Elle peut','Nous pouvons','Vous pouvez (plusieurs personnes, familier)','Ils/Elles peuvent','Vous pouvez (forme de politesse)'],indices=[0,1,2,3,4,5,5],roles=['','','female','','familiar','plural','formal'],forms=unit.conjugation.forms;
+      return [...persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i]};}),...recognitionTasks.slice(0,3)].map(indexAnswer);
     }
-    return [...recognitionTasks,...gapTasks(unit),...shuffle([...(unit.extra||[]),...(unit.vocabulary||[])].filter((p,i,a)=>a.findIndex(q=>q[0]===p[0])===i)).slice(0,2).map(p=>recognition(unit,p,{application:true}))].map(indexAnswer);
+    const forms=gapTasks(unit),extra=shuffle([...(unit.extra||[]),...(unit.vocabulary||[])].filter((p,i,a)=>a.findIndex(q=>q[0]===p[0])===i)).slice(0,2).map(p=>recognition(unit,p,{application:true}));
+    if(full)return [...recognitionTasks,...forms,...extra].map(indexAnswer);
+    const count=unit.practiceCount||8;
+    if(count===6){const picked=shuffle(forms).slice(0,2),used=new Set(picked.map(t=>t.audio));return [...recognitionTasks.filter(t=>!used.has(t.audio)),...picked,...extra].map(indexAnswer);}
+    if(count===8)return [...shuffle(recognitionTasks).slice(0,2),...forms,...extra].map(indexAnswer);
+    return [...recognitionTasks,...forms,...extra].map(indexAnswer);
   }
   function indexAnswer(task){return {...task,a:task.o.indexOf(task.answer)};}
   function balanced(units,pool,count){
@@ -84,7 +89,7 @@
     progress.contentRevision=118;saved.contentRevision=118;
   }
   function assessmentTasks(lesson){
-    const units=content[lesson.id],tasks=balanced(units,u=>shuffle(unitTasks(u).filter(t=>t.skill==='application')),8);
+    const units=content[lesson.id],tasks=balanced(units,u=>shuffle(unitTasks(u,{full:true}).filter(t=>t.skill==='application')),8);
     const application=window.DE_A1_APPLICATIONS[lesson.id];
     tasks.push(...application.review.fields.map(field=>({type:'choice',q:`Lies den Dialog: ${application.review.text}\n${field.q}`,o:shuffle(field.o),answer:field.answer,audio:field.answer,skill:'transfer',explanation:application.review.text.split(' / ').join(' ')})),{...application.reading,skill:'transfer'});
     return tasks.map(indexAnswer);
@@ -107,11 +112,11 @@
     // Context notes are already covered by the authored preparation below.
     root.querySelectorAll('.lesson-topic-detail').forEach(el=>el.remove());
     const units=content[lesson.id];
-    const prepared=units.map(unit=>{
-      const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${esc(b)} ${speakBtn(b)}${unit.conjugation?`<small class="conjugation-example">${esc((a==='er / sie / es'?'Er':a==='sie / Sie'?'Sie':a[0].toUpperCase()+a.slice(1))+' '+b+' Deutsch sprechen.')}</small>`:''}</td></tr>`).join('')}</tbody></table></div>`:'';
+    const prepared=units.map((unit,unitIndex)=>{
+      const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${esc(b)} ${speakBtn(unit.conjugation?a.split(' (')[0].split(' / ')[0]+' '+b:b)}${unit.conjugation?`<small class="conjugation-example">${esc((a.split(' / ')[0].split(' (')[0][0].toUpperCase()+a.split(' / ')[0].split(' (')[0].slice(1))+' '+b+' Deutsch sprechen.')}</small>`:''}</td></tr>`).join('')}</tbody></table></div>`:'';
       const examples=[...unit.rows,...(unit.extra||[])];
       const vocabulary=unit.vocabulary?`<div class="deepening-vocabulary">${unit.vocabulary.map(p=>row(p,speakBtn)).join('')}</div>`:'';
-      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body"><div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${examples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
+      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body">${lesson.id===1&&unitIndex===0?window.DE_A1_PRONOUNS?.guide(speakBtn)||'':''}<div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${examples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
     }).join('');
     const taught=new Set(units.flatMap(u=>[...u.rows,...(u.extra||[])].map(p=>plain(p[0]))));
     const extra=[...(lesson.referencePhrases||lesson.phrases),...lesson.phrases,...(window.DE_A1_APPLICATIONS[lesson.id]?.hints||[])].filter(p=>!taught.has(p[0])&&taught.add(p[0]));

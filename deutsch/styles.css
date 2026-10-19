@@ -1024,3 +1024,5 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 .conjugation-example{display:block;font-size:12px;color:var(--muted);margin-top:4px}
 
 .answer-audio-repeat{display:block;width:auto;max-width:100%;min-height:44px;margin-top:10px;padding:8px 12px;font:inherit;font-size:.86rem;white-space:normal}.answer-audio-repeat:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.pronoun-guide{margin:0 0 18px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.pronoun-guide h4{margin:0 0 10px}.pronoun-guide p{font-size:.9rem;line-height:1.5;margin:12px 0 0}.pronoun-guide .phrase-row{padding:10px 0}.pronoun-hint{font-size:.85rem;color:var(--accent-ink);background:var(--accent-soft);padding:8px 10px;border-radius:9px;margin:0 0 12px;line-height:1.4}

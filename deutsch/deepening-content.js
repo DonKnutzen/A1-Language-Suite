@@ -123,7 +123,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Bonsoir."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Poser les premières questions",
@@ -247,7 +248,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Et lui ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "2": [
@@ -311,11 +313,12 @@ window.DE_A1_STUDY_CONTENT = {
             "für"
           ]
         }
-      ]
+      ],
+      "practiceCount": 6
     },
     {
       "title": "Faire épeler et répéter",
-      "rule": "**können** est irrégulier : ich kann, du kannst, er/sie/es kann, wir können, ihr könnt, sie/Sie können. Avec **Können Sie … ?**, le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
+      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes. Dans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
       "rows": [
         [
           "Können Sie das bitte |buchstabieren|?",
@@ -344,7 +347,11 @@ window.DE_A1_STUDY_CONTENT = {
           "kannst"
         ],
         [
-          "er / sie / es",
+          "er / es",
+          "kann"
+        ],
+        [
+          "sie (elle)",
           "kann"
         ],
         [
@@ -352,11 +359,15 @@ window.DE_A1_STUDY_CONTENT = {
           "können"
         ],
         [
-          "ihr",
+          "ihr (vous, familier)",
           "könnt"
         ],
         [
-          "sie / Sie",
+          "sie (ils/elles)",
+          "können"
+        ],
+        [
+          "Sie (vous, politesse)",
           "können"
         ]
       ],
@@ -422,7 +433,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Pouvez-vous parler plus lentement, s’il vous plaît ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 10
     }
   ],
   "3": [
@@ -522,7 +534,8 @@ window.DE_A1_STUDY_CONTENT = {
             "vingt-deux"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Dates et coordonnées",
@@ -596,7 +609,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Mon numéro est 030 555 1804."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "4": [
@@ -660,7 +674,8 @@ window.DE_A1_STUDY_CONTENT = {
             "nach"
           ]
         }
-      ]
+      ],
+      "practiceCount": 8
     },
     {
       "title": "Jours de la semaine",
@@ -752,7 +767,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Dienstag"
           ]
         }
-      ]
+      ],
+      "practiceCount": 6
     },
     {
       "title": "Mois et dates",
@@ -864,7 +880,8 @@ window.DE_A1_STUDY_CONTENT = {
             "April"
           ]
         }
-      ]
+      ],
+      "practiceCount": 8
     },
     {
       "title": "Fixer un rendez-vous",
@@ -942,7 +959,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Lieu de rendez-vous : école."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "5": [
@@ -1018,7 +1036,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Ce sont mes frères et sœurs."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Informations personnelles",
@@ -1092,7 +1111,8 @@ window.DE_A1_STUDY_CONTENT = {
             "divorcé(e) / marié(e) / célibataire"
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "6": [
@@ -1178,7 +1198,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je prends l’eau."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Préciser et payer",
@@ -1266,7 +1287,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Encore une eau, s’il vous plaît."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "7": [
@@ -1342,7 +1364,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Combien coûte le manteau ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     },
     {
       "title": "Trouver un article",
@@ -1434,7 +1457,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Où est la sortie ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "8": [
@@ -1498,7 +1522,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Balkon"
           ]
         }
-      ]
+      ],
+      "practiceCount": 8
     },
     {
       "title": "Demander une visite",
@@ -1600,7 +1625,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je voudrais visiter la chambre."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "9": [
@@ -1686,7 +1712,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Comment aller au musée ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Comprendre les transports",
@@ -1774,7 +1801,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Vous devez monter."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "10": [
@@ -1850,7 +1878,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je travaille comme médecin."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Prévenir au travail",
@@ -1928,7 +1957,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Désolé(e), je dois partir plus tôt."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "11": [
@@ -2018,7 +2048,8 @@ window.DE_A1_STUDY_CONTENT = {
             "J’apprends l’allemand depuis deux mois."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     },
     {
       "title": "Apprendre et demander de l’aide",
@@ -2142,7 +2173,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Comment prononce-t-on ce mot ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "12": [
@@ -2228,7 +2260,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je préfère nager."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     },
     {
       "title": "Organiser le week-end",
@@ -2290,7 +2323,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Sonntag"
           ]
         }
-      ]
+      ],
+      "practiceCount": 6
     }
   ],
   "13": [
@@ -2376,7 +2410,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Du premier au trois août, pour quatre personnes."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Départs et arrivées",
@@ -2450,7 +2485,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Quand le bus part-il ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "14": [
@@ -2536,7 +2572,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je tousse depuis deux jours."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     },
     {
       "title": "Prendre rendez-vous et prévenir",
@@ -2614,7 +2651,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je voudrais annuler le rendez-vous chez le médecin."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "15": [
@@ -2694,7 +2732,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Peux-tu venir plus tard ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Répondre à une invitation",
@@ -2778,7 +2817,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je peux venir. Je ne dois pas travailler."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "16": [
@@ -2868,7 +2908,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Descendez ici, s’il vous plaît."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Horaires et annonces",
@@ -2930,7 +2971,8 @@ window.DE_A1_STUDY_CONTENT = {
             "gestern"
           ]
         }
-      ]
+      ],
+      "practiceCount": 8
     }
   ],
   "17": [
@@ -3016,7 +3058,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Pouvez-vous ouvrir la fenêtre ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Accepter et refuser",
@@ -3140,7 +3183,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Plus lentement, s’il vous plaît."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "18": [
@@ -3226,7 +3270,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Vous lisez le texte deux fois."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Décrire une méthode simple",
@@ -3350,7 +3395,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Après, j’écoute le dialogue."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "19": [
@@ -3426,7 +3472,8 @@ window.DE_A1_STUDY_CONTENT = {
             "J’ai mal aux mains."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Demander une aide médicale",
@@ -3554,7 +3601,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Où est le médecin le plus proche ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "20": [
@@ -3644,7 +3692,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Il fait soleil."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     },
     {
       "title": "Choisir ses vêtements",
@@ -3728,7 +3777,8 @@ window.DE_A1_STUDY_CONTENT = {
             "En été, je porte un manteau."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "21": [
@@ -3814,7 +3864,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Je n’aime pas écouter de la musique."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     },
     {
       "title": "Proposer une sortie",
@@ -3902,7 +3953,8 @@ window.DE_A1_STUDY_CONTENT = {
             "On se retrouve à dix-sept heures dans le musée ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "22": [
@@ -3978,7 +4030,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Allô, ici Anne. Mon téléphone est cassé."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Écrire un SMS clair",
@@ -4052,7 +4105,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Écris-lui, s’il te plaît."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ],
   "23": [
@@ -4142,7 +4196,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Quand la poste ferme-t-elle ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Remplir un formulaire",
@@ -4216,7 +4271,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Veuillez lire le formulaire."
           ]
         ]
-      }
+      },
+      "practiceCount": 6
     }
   ],
   "24": [
@@ -4342,7 +4398,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Pouvez-vous parler plus lentement, s’il vous plaît ?"
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     },
     {
       "title": "Préparer un message complet",
@@ -4416,7 +4473,8 @@ window.DE_A1_STUDY_CONTENT = {
             "Merci pour ton aide."
           ]
         ]
-      }
+      },
+      "practiceCount": 8
     }
   ]
 };
