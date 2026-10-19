@@ -227,7 +227,7 @@ const LESSON_APPLICATIONS={
     ]
   },
   "2": {
-    "speakModel": "Je m’appelle Léa Martin. L-E-A, M-A-R-T-I-N. Pouvez-vous parler plus lentement, s’il vous plaît ?",
+    "speakModel": "Je m’appelle Léa Martin. L, E accent aigu, A ; M, A, R, T, I, N. Pouvez-vous parler plus lentement, s’il vous plaît ?",
     "writeModel": "Martin",
     "placeholder": "Schreibe den gehörten Nachnamen …",
     "writingHelpText": "Höre die Buchstaben in Reihenfolge und setze sie zu einem Namen zusammen.",
@@ -355,7 +355,7 @@ const LESSON_APPLICATIONS={
   },
   "14": {
     "speakModel": "Qu’est-ce que tu fais le week-end ? Tu aimes le sport ? Moi, j’aime jouer au football.",
-    "writeModel": "Le week-end, je joue au football et je cuisine. J’aime aussi regarder des films. Le dimanche, je me repose.",
+    "writeModel": "Le week-end, je joue au football. Je cuisine aussi. J’aime regarder des films. Le dimanche, je me repose.",
     "placeholder": "Schreibe vier Sätze über dein Wochenende …"
   },
   "15": {
