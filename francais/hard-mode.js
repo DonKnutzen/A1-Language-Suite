@@ -2,6 +2,7 @@
 (() => {
   'use strict';
   const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  const AUDIO_PLAYS=3;
   const en=()=>window.A1Profile?.getUiLang()==='en';
   const t=(de,english)=>en()?english:de;
   const words=text=>(String(text).match(/[\p{L}\p{N}]+(?:[’'’-][\p{L}\p{N}]+)*/gu)||[]).length;
@@ -73,7 +74,7 @@
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();});
   function entryHtml(lesson,state){
     const open=unlocked(state,lesson.id),p=state.lessonWork?.[lesson.id]?.hardMode,data=window.FR_A1_HARD_CONTENT[lesson.id];
-    const done=!!p?.passedAt&&p.passedVersion===data.version;
+    const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
     const lock=`<svg class="hard-lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0${open?'':'v3'}"/><path d="M12 14v3"/></svg>`;
     const label=open?(p?.attempt?(p.attempt.phase==='reviewed'?t('Ansehen','Review'):t('Fortsetzen','Resume')):t('Starten','Start')):t('Gesperrt','Locked');
     return `<section class="hard-entry ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="Hard Mode">
@@ -101,7 +102,7 @@
     if(progress.passedAt&&!progress.passedVersion)progress.passedVersion=a?.version||1;
     function bindDataset(){
       const version=a?.version??latestData.version;
-      const candidate=progress.contentVersions[version]||(version===latestData.version?latestData:window.FR_A1_HARD_LEGACY?.[lesson.id]);
+      const candidate=progress.contentVersions[version]||(version===latestData.version?latestData:window.FR_A1_HARD_VERSIONS?.[version]?.[lesson.id]||window.FR_A1_HARD_LEGACY?.[lesson.id]);
       data=candidate?.version===version?candidate:null;
       allQuestions=data?questions(data):[];
       if(data){progress.contentVersions[version]||=JSON.parse(JSON.stringify(data));
@@ -142,7 +143,7 @@
       return `<div class="between"><button class="tiny-btn" id="hardBack">← ${t('Zur Lektion','Back to lesson')}</button><span class="hard-eyebrow">HARD MODE</span></div><h2 id="hardHeading" tabindex="-1">${lesson.id}. ${esc(en()?window.A1FrenchI18n?.translate(lesson.title)||lesson.title:lesson.title)}</h2>${a?`<p class="hard-save-status" id="hardSaveStatus" role="status">${esc(storageError)||t('Zwischenstand gespeichert','Progress saved')}</p>`:''}${a&&data&&data.version!==latestData.version?`<p class="hard-version-note">${t(`Gespeicherter Versuch · Version ${data.version}. Aktuell ist Version ${latestData.version}. Für diesen Versuch gelten die damaligen Aufgaben und Regeln.`,`Saved attempt · version ${data.version}. Current version: ${latestData.version}. This attempt keeps its original tasks and rules.`)} <button class="tiny-btn" id="hardCurrentVersion">${t('Aktuelle Aufgaben starten','Start current tasks')}</button></p>`:''}`;
     }
     function intro(){
-      mount(`${heading()}<section class="card hard-intro"><span class="hard-eyebrow">${t('DEINE LEKTION IM PRÜFUNGSMODUS','YOUR LESSON IN EXAM MODE')}</span><h3>${t('Drei Teile. Dein Wissen.','Three parts. Your knowledge.')}</h3><ol><li><strong>${t('Lückentext','Cloze text')}</strong> · ${data.gaps.length} ${t('Wörter oder Wortgruppen selbst einsetzen','words or phrases to type')}</li><li><strong>${t('Hörverstehen','Listening')}</strong> · ${allQuestions.length} ${t('Fragen, höchstens zweimal pro Text hören','questions, up to two plays per recording')}</li><li><strong>${t('Freie Nachricht','Free writing')}</strong> · ${t(`drei Inhaltspunkte, ungefähr ${data.writing.targetWords||'30'} Wörter`,`three content points, about ${data.writing.targetWords||'30'} words`)}</li></ol><p>${t(`Orientierung: etwa ${(data.minutes||[25,35]).join('–')} Minuten, ohne Zeitlimit. Du kannst pausieren und Antworten ändern. Lösungen und Transkripte erscheinen erst nach der Abgabe.`,`Indicative time: about ${(data.minutes||[25,35]).join('–')} minutes, with no time limit. You can pause and edit answers. Answers and transcripts appear only after submission.`)}</p><p>${rules()}</p><p class="muted">${t('Eigene Aufgaben in Anlehnung an das TELC-A1-Beispiel. Das Audio nutzt die französische Browserstimme. Freitext wird anhand eines Beispiels selbst geprüft.','Original exercises informed by the TELC A1 sample. Audio uses the French browser voice. Free writing is self-assessed against an example.')}</p><button class="hard-start" id="hardBegin">${t('Prüfung starten','Start the test')} →</button></section>`);
+      mount(`${heading()}<section class="card hard-intro"><span class="hard-eyebrow">${t('DEINE LEKTION IM PRÜFUNGSMODUS','YOUR LESSON IN EXAM MODE')}</span><h3>${t('Drei Teile. Dein Wissen.','Three parts. Your knowledge.')}</h3><ol><li><strong>${t('Lückentext','Cloze text')}</strong> · ${data.gaps.length} ${t('Wörter oder Wortgruppen selbst einsetzen','words or phrases to type')}</li><li><strong>${t('Hörverstehen','Listening')}</strong> · ${allQuestions.length} ${t('Fragen, dreimal pro Text hören · Tempo 75 %','questions, three plays per recording · 75% speed')}</li><li><strong>${t('Freie Nachricht','Free writing')}</strong> · ${t(`drei Inhaltspunkte, ungefähr ${data.writing.targetWords||'30'} Wörter`,`three content points, about ${data.writing.targetWords||'30'} words`)}</li></ol><p>${t(`Orientierung: etwa ${(data.minutes||[25,35]).join('–')} Minuten, ohne Zeitlimit. Du kannst pausieren und Antworten ändern. Lösungen und Transkripte erscheinen erst nach der Abgabe.`,`Indicative time: about ${(data.minutes||[25,35]).join('–')} minutes, with no time limit. You can pause and edit answers. Answers and transcripts appear only after submission.`)}</p><p>${rules()}</p><p class="muted">${t('Eigene Aufgaben in Anlehnung an das TELC-A1-Beispiel. Das Audio nutzt die französische Browserstimme. Freitext wird anhand eines Beispiels selbst geprüft.','Original exercises informed by the TELC A1 sample. Audio uses the French browser voice. Free writing is self-assessed against an example.')}</p><button class="hard-start" id="hardBegin">${t('Prüfung starten','Start the test')} →</button></section>`);
       root.querySelector('#hardBegin').onclick=fresh;
     }
     function unknownVersion(){
@@ -180,7 +181,7 @@
     }
     function listening(){
       let index=0;
-      return `<section class="card"><span class="hard-eyebrow">02 · ${allQuestions.length} ${t('FRAGEN','QUESTIONS')}</span><h3>${t('Höre genau hin.','Listen carefully.')}</h3><p class="muted">${t('Lies zuerst die Fragen. Jeder Text ist höchstens zweimal abspielbar. Tippe kurze Antworten; bei der Auswahl stehen vollständige Sätze.','Read the questions first. Each recording can be played at most twice. Type short answers; multiple-choice options are complete sentences.')}</p>${isSubmitted()?'':accents()}<p class="hard-error" id="hardAudioError" role="status">${esc(error)}</p><button class="tiny-btn" type="button" data-hard-stop ${playing===null?'hidden':''}>${t('Wiedergabe stoppen · zählt als Anhören','Stop playback · counts as a play')}</button>${data.listening.map((block,b)=>`<section class="hard-recording"><div class="between"><h4>${t('Hörtext','Recording')} ${b+1}</h4><button class="secondary-btn" data-hard-play="${b}" ${!isSubmitted()&&(a.plays[b]>=2||playing!==null)?'disabled':''}>▶ ${t('Anhören','Listen')} ${isSubmitted()?'':`(${a.plays[b]}/2)`}</button></div>${block.questions.map(q=>{
+      return `<section class="card"><span class="hard-eyebrow">02 · ${allQuestions.length} ${t('FRAGEN','QUESTIONS')}</span><h3>${t('Höre genau hin.','Listen carefully.')}</h3><p class="muted">${t('Lies zuerst die Fragen. Jeder Text ist dreimal abspielbar, mit Tempo 75 %. Tippe kurze Antworten; bei der Auswahl stehen vollständige Sätze.','Read the questions first. Each recording can be played three times, at 75% speed. Type short answers; multiple-choice options are complete sentences.')}</p>${isSubmitted()?'':accents()}<p class="hard-error" id="hardAudioError" role="status">${esc(error)}</p><button class="tiny-btn" type="button" data-hard-stop ${playing===null?'hidden':''}>${t('Wiedergabe stoppen · zählt als Anhören','Stop playback · counts as a play')}</button>${data.listening.map((block,b)=>`<section class="hard-recording"><div class="between"><h4>${t('Hörtext','Recording')} ${b+1}${block.kind?' · '+(block.kind==='dialogue'?t('Gespräch','Dialogue'):t('Nachricht / Ansage','Message / announcement')):''}</h4><button class="secondary-btn" data-hard-play="${b}" ${!isSubmitted()&&(a.plays[b]>=AUDIO_PLAYS||playing!==null)?'disabled':''}>▶ ${t('Anhören','Listen')} ${isSubmitted()?'':`(${a.plays[b]}/${AUDIO_PLAYS})`}</button></div>${block.questions.map(q=>{
         const i=index++;
         return `<fieldset class="hard-question"><legend>${data.gaps.length+i+1}. ${esc(q.q)}</legend>${isSubmitted()?answerFeedback(q,a.listening[i]):q.options?(a.optionOrders?.[i]||q.options).map((o,j)=>`<label class="hard-option"><input type="radio" name="hard-q-${i}" value="${esc(o)}" data-hard-listen="${i}" ${a.listening[i]===o?'checked':''}><span>${esc(o)}</span></label>`).join(''):`<input type="text" inputmode="${q.format==='number'||q.format==='code'?'decimal':q.format==='phone'?'tel':q.format==='email'?'email':'text'}" data-hard-listen="${i}" value="${esc(a.listening[i])}" aria-label="${esc(q.q)}" maxlength="160" autocomplete="off" autocapitalize="off" spellcheck="false" lang="fr">`}</fieldset>`;
       }).join('')}${isSubmitted()?`<div class="hard-transcript" lang="fr"><strong>${t('Transkript','Transcript')}</strong><p>${esc(block.text)}</p></div>`:''}</section>`).join('')}</section>`;
@@ -239,11 +240,11 @@
     function updateAudio(){
       if(!root?.isConnected)return;
       const status=root.querySelector('#hardAudioError');if(status)status.textContent=error|| (playing!==null?t('Audio läuft …','Audio playing …'):'');
-      root.querySelectorAll('[data-hard-play]').forEach(btn=>{const b=Number(btn.dataset.hardPlay);btn.disabled=playing!==null||(!isSubmitted()&&a.plays[b]>=2);btn.textContent=`▶ ${t('Anhören','Listen')}${isSubmitted()?'':` (${a.plays[b]}/2)`}`;});
+      root.querySelectorAll('[data-hard-play]').forEach(btn=>{const b=Number(btn.dataset.hardPlay);btn.disabled=playing!==null||(!isSubmitted()&&a.plays[b]>=AUDIO_PLAYS);btn.textContent=`▶ ${t('Anhören','Listen')}${isSubmitted()?'':` (${a.plays[b]}/${AUDIO_PLAYS})`}`;});
       const stop=root.querySelector('[data-hard-stop]');if(stop)stop.hidden=playing===null;
     }
     function play(b){
-      if(playing!==null||(!isSubmitted()&&a.plays[b]>=2))return;
+      if(playing!==null||(!isSubmitted()&&a.plays[b]>=AUDIO_PLAYS))return;
       if(!window.speechSynthesis||typeof window.SpeechSynthesisUtterance==='undefined'||!window.A1Voice?.speakDialogue){
         error=t('Audio ist in diesem Browser nicht verfügbar. Nutze einen Browser mit französischer Sprachausgabe.','Audio is unavailable in this browser. Use a browser with French speech synthesis.');updateAudio();return;
       }
@@ -255,8 +256,8 @@
         if(failed&&!reviewed){currentAttempt.plays[b]=Math.max(0,currentAttempt.plays[b]-1);persist();}
         playing=null;if(failed)error=t('Audio konnte nicht abgespielt werden. Der Versuch zählt nicht. Bitte erneut versuchen.','Audio could not play. This play does not count. Please try again.');updateAudio();
       };
-      audioTimer=window.setTimeout(()=>{finish(true);window.A1Voice?.cancel();},120000);
-      try{const block=data.listening[b],started=window.A1Voice.speakDialogue(block.turns||[{speaker:'A',text:block.text}],{lang:'fr-FR',rate:.85,onEnd:()=>finish(false),onError:()=>finish(true)});if(started===false)finish(true);}catch{finish(true);}
+      audioTimer=window.setTimeout(()=>{finish(true);window.A1Voice?.cancel();},240000);
+      try{const block=data.listening[b],started=window.A1Voice.speakDialogue(block.turns||[{speaker:'A',text:block.text}],{lang:'fr-FR',rate:.75,onEnd:()=>finish(false),onError:()=>finish(true)});if(started===false)finish(true);}catch{finish(true);}
     }
     function result(){
       const score=a.result||objective(data,a),success=a.result?.passed??passed(data,a),writingPoints=a.ratings.reduce((sum,n)=>sum+(n||0),0);

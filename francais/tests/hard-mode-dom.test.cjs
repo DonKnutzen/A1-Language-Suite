@@ -24,7 +24,7 @@ test('locked entry and direct route require 80%, not an old completion flag',()=
 test('draft, position and play counts survive reopening; errors do not consume a play',()=>{
   const e=environment();e.begin();e.input('[data-hard-gap="0"]','m’app');e.page(1);e.input('[data-hard-listen="0"]','Lu');
   e.click('[data-hard-play="0"]');assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],1);e.audio.options.onError();assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],0);
-  e.click('[data-hard-play="0"]');e.audio.options.onEnd();e.click('[data-hard-play="0"]');e.audio.options.onEnd();assert(e.view.querySelector('[data-hard-play="0"]').disabled);
+  e.click('[data-hard-play="0"]');e.audio.options.onEnd();e.click('[data-hard-play="0"]');e.audio.options.onEnd();assert(!e.view.querySelector('[data-hard-play="0"]').disabled);e.click('[data-hard-play="0"]');assert.equal(e.audio.options.rate,.75);e.audio.options.onEnd();assert(e.view.querySelector('[data-hard-play="0"]').disabled);
   const saved=JSON.parse(JSON.stringify(e.state));e.dom.window.close();const restored=environment(1,saved);restored.render();
   assert.equal(restored.view.querySelector('[data-hard-listen="0"]').value,'Lu');assert(restored.view.querySelector('[data-hard-play="0"]').disabled);assert(!restored.view.querySelector('.hard-transcript'));
   restored.page(0);assert.equal(restored.view.querySelector('[data-hard-gap="0"]').value,'m’app');restored.dom.window.close();
@@ -63,7 +63,7 @@ test('audio keeps focus, error refunds only once, language changes keep the acti
 test('unknown versions keep every answer across language changes and archive before restart',()=>{
   const state={lessonMasteryBest:{1:80},lessonWork:{1:{hardMode:{attempt:{version:0,gaps:['ancien'],listening:['écoute'],text:'Mon brouillon.',ratings:[1,2,1,2],phase:'running',page:0}}}}};
   const e=environment(1,state);e.render();assert(e.view.querySelector('.hard-old-draft').textContent.includes('écoute'));e.language('en');assert(e.view.querySelector('#hardUpdatedStart'));assert(!e.view.querySelector('[data-hard-gap]'));
-  e.click('#hardUpdatedStart');assert.equal(state.lessonWork[1].hardMode.history[0].text,'Mon brouillon.');assert.equal(state.lessonWork[1].hardMode.attempt.version,2);e.dom.window.close();
+  e.click('#hardUpdatedStart');assert.equal(state.lessonWork[1].hardMode.history[0].text,'Mon brouillon.');assert.equal(state.lessonWork[1].hardMode.attempt.version,3);e.dom.window.close();
 });
 test('version 1 keeps original tasks, rules and answers when reopening and switching language',()=>{
   const e=environment();const d=e.w.FR_A1_HARD_LEGACY[1];e.state.lessonWork={1:{hardMode:{attempt:{version:1,phase:'running',page:0,gaps:Array(d.gaps.length).fill(''),listening:Array(6).fill(''),plays:[0,0],text:'',ratings:[null,null,null,null]}}}};
@@ -81,4 +81,8 @@ test('save failure is visible and cannot claim the latest changes were saved',()
 });
 test('old-version success cannot replace an already achieved current-version status',()=>{
   const e=environment(),d=e.w.FR_A1_HARD_LEGACY[1];e.state.lessonWork={1:{hardMode:{passedAt:123,passedVersion:2,bestObjective:100,attempt:{version:1,phase:'submitted',page:2,gaps:d.gaps.map(q=>q.answers[0]),listening:d.listening.flatMap(b=>b.questions).map(q=>q.answers[0]),plays:[0,0],text:d.writing.model,ratings:[2,2,2,2]}}}};e.render();e.click('#hardComplete');assert.equal(e.state.lessonWork[1].hardMode.passedVersion,2);assert.equal(e.state.lessonWork[1].hardMode.passedAt,123);e.dom.window.close();
+});
+
+test('v2 attempts keep their original questions while receiving three slow plays',()=>{
+ const e=environment(),d=e.w.FR_A1_HARD_VERSIONS[2][1];e.state.lessonWork={1:{hardMode:{attempt:{version:2,phase:'running',page:1,gaps:Array(d.gaps.length).fill('ancien'),listening:Array(d.listening.flatMap(b=>b.questions).length).fill(''),plays:[2,0],text:'',ratings:[null,null,null,null]}}}};e.state.lessonWork[1].hardMode.passedAt=123;e.state.lessonWork[1].hardMode.passedVersion=2;assert(e.w.FR_A1_HARD_MODE.entryHtml(e.lesson,e.state).includes('Trainingsziel erreicht'));e.render();assert(!e.view.querySelector('[data-hard-play="0"]').disabled);e.click('[data-hard-play="0"]');assert.equal(e.audio.options.rate,.75);e.audio.options.onEnd();assert(e.view.querySelector('[data-hard-play="0"]').disabled);e.language('en');assert.equal(e.state.lessonWork[1].hardMode.attempt.version,2);e.page(0);assert.equal(e.view.querySelector('[data-hard-gap="0"]').value,'ancien');e.dom.window.close();
 });

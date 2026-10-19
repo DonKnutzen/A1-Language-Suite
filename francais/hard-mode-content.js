@@ -435,5 +435,20 @@
     const minutes=Math.ceil((d.gaps.length*.65+d.listening.length*3.5+8)/5)*5;
     d.taskCount=count;d.minutes=[minutes,minutes+10];
   }
+  // v1/v2 attempts keep their original task snapshots. New attempts use coherent scenes.
+  window.FR_A1_HARD_VERSIONS={1:window.FR_A1_HARD_LEGACY,2:JSON.parse(JSON.stringify(content))};
+  turns(1,0,[['A','Bonjour. Comment vous vous appelez ?'],['B','Je m’appelle Luc.'],['A','Vous venez d’où ?'],['B','Je viens de Paris. Maintenant, j’habite à Berlin.'],['A','Vous parlez français ?'],['B','Oui, je parle français et un peu allemand. Au revoir !']]);
+  content[1].listening[1].turns.forEach(t=>t.gender=t.speaker==='A'?'male':'female');
+  turns(2,0,[['A','Bonjour. Votre prénom, s’il vous plaît ?'],['B','Zoé. Zoé s’écrit zède, o, e accent aigu.'],['A','Et votre nom de famille ?'],['B','Morel. M, O, R, E, L.'],['A','Vous habitez où ?'],['B','J’habite à Lille.']]);
+  content[2].listening[0].turns.forEach(t=>t.gender=t.speaker==='B'?'female':'male');
+  turns(2,1,[['A','Bonjour. Votre prénom et votre nom, s’il vous plaît ?'],['B','Je m’appelle François Blanc.'],['A','Vous pouvez épeler ?'],['B','François s’écrit F, R, A, N, C cédille, O, I, S. Blanc s’écrit B, L, A, N, C.'],['A','Quelle est votre adresse ?'],['B','Pouvez-vous parler plus lentement, s’il vous plaît ?'],['A','Votre adresse, s’il vous plaît.'],['B','Rue Victor-Hugo à Paris.']]);
+  turns(3,0,[['A','Bonjour, c’est Nina. Je voudrais donner mes informations pour le cours.'],['B','Bonjour Nina. Vous avez trente-six ans ?'],['A','Non, j’ai vingt-six ans, pas trente-six.'],['B','Votre téléphone, s’il vous plaît ?'],['A','Zéro six, douze, quarante, cinquante-huit, soixante-treize.'],['B','Merci. Et votre code postal ?'],['A','B, trois, V, un, L, deux.']]);
+  turns(3,1,[['A','Bonjour Paul. Quel est votre jour de naissance ?'],['B','Je suis né le dix-sept avril.'],['A','Merci. Et votre téléphone ?'],['B','Zéro sept, quatre-vingt-deux, seize, quatre-vingt-onze, vingt-quatre.'],['A','Vous êtes combien dans votre cours ?'],['B','Dans notre cours, nous sommes trente et un étudiants.']]);
+  turns(8,1,[['A','Bonjour, je peux visiter l’appartement quand ?'],['B','Jeudi à dix-sept heures.'],['A','Sur la photo, où est la table ?'],['B','La table est dans la cuisine. La lampe est sur la table.'],['A','Et le sac ?'],['B','Le sac est sous la table. Il y a aussi un lit dans la chambre.']]);
+  turns(16,1,[['A','Allô Paul, c’est Anna. Je ne peux pas venir au cinéma vendredi, j’ai déjà un rendez-vous. On peut aller au cinéma dimanche à seize heures. Tu peux me rappeler demain ? Et aujourd’hui, c’est mon anniversaire !'],['B','Oui, avec plaisir. Et bon anniversaire !']]);
+  turns(17,1,[['A','Bonjour. Pour le formulaire, votre nom et votre prénom, s’il vous plaît.'],['B','Bonjour, je suis Léa Martin.'],['A','Votre date de naissance ?'],['B','Je suis née le trois mai. Je suis allemande.'],['A','Et votre adresse électronique ? Vous pouvez épeler ?'],['B','l, e, a, point, m, a, r, t, i, n, arobase, e, x, e, m, p, l, e, point, f, r.'],['A','Merci, Léa Martin.']]);
+  content[17].listening[1].turns.forEach(t=>t.gender=t.speaker==='B'?'female':'male');
+  for(const d of Object.values(content)){d.version=3;d.compatibleVersions=[2];for(const block of d.listening)block.kind=block.turns?'dialogue':'message';}
+
   window.FR_A1_HARD_CONTENT=content;
 })();

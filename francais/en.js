@@ -2216,3 +2216,11 @@ window.FR_A1_EN = Object.freeze({...window.FR_A1_EN,...window.FR_A1_MASTERY_CHEC
   "Wie sind die Unterrichtszeiten?": "What are the class times?",
   "Mein Geburtsdatum ist der 3. Mai.": "My date of birth is 3 May."
 });
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Intensiv üben':'Practise in depth'});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Ich bin Arzt. Welche Aussage passt?':'I am a doctor. Which statement matches?','Beruf: Arzt':'Occupation: doctor','Je suis médecin. = Ich bin Arzt.':'Je suis médecin. = I am a doctor.'});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Welche Aussage verwendet die höfliche Wunschform von vouloir?':'Which statement uses the polite wish form of vouloir?','Du möchtest ein Mittel gegen Erkältung kaufen. Welche Bitte passt?':'You want to buy medicine for a cold. Which request fits?','Du möchtest den Termin auf morgen verschieben. Welche Frage passt?':'You want to move the appointment to tomorrow. Which question fits?'});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...window.FR_A1_GRAMMAR_EN});

@@ -13,6 +13,10 @@
     return html;
   }
   const shuffle=a=>{const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;};
+  function nearest(answer,values){
+    const distance=(a,b)=>{const row=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let diagonal=row[0];row[0]=i;for(let j=1;j<=b.length;j++){const before=row[j];row[j]=Math.min(row[j]+1,row[j-1]+1,diagonal+(a[i-1]===b[j-1]?0:1));diagonal=before;}}return row[b.length];};
+    return [...new Set(values)].filter(v=>v!==answer).sort((a,b)=>distance(answer,a)-distance(answer,b));
+  }
   // r = original reference page; u = new preparation page. Keep the existing checks.
   const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
   const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
@@ -49,7 +53,12 @@
       }
       const french=i%2===0,answer=french?fr:de,index=french?0:1;
       const shape=text=>text.includes('?')?'question':text.trim().split(/\s+/).length<3?'word':'sentence';
-      const candidates=closePairs[fr]||pairs.filter(p=>shape(p[0])===shape(fr));
+      const similarity=([candidate,native])=>{
+        const tokens=s=>new Set(s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^\p{L}\p{N}]+/u).filter(w=>w.length>2));
+        const a=tokens(fr+' '+de),b=tokens(candidate+' '+native);
+        return [...b].filter(w=>a.has(w)).length*4-Math.abs(candidate.length-fr.length)/30;
+      };
+      const candidates=closePairs[fr]||pairs.filter(p=>shape(p[0])===shape(fr)&&p[0]!==fr).sort((a,b)=>similarity(b)-similarity(a));
       const wrong=[...new Set([...candidates,...pairs].map(p=>p[index]).filter(x=>x!==answer))];
       if(wrong.length<2)return [];
       return [{kind:'vocabulary',q:french?`Wie sagst du „${de}“ auf Französisch?`:`Was bedeutet „${fr}“?`,answer,o:[answer,...wrong.slice(0,2)],audio:fr.replace(/ → /g,', '),explanation:de}];
@@ -58,7 +67,9 @@
   function specTask(t,rule){
     const answer=t.answer;
     const alternatives=(families.find(a=>a.includes(answer))||[]).filter(a=>a!==answer);
-    const o=t.o||[answer,...shuffle(alternatives).slice(0,2)];
+    let o=t.o||[answer,...nearest(answer,alternatives).slice(0,2)];
+    if(answer==='Je suis médecin.')return {kind:'form',q:'Ich bin Arzt. Welche Aussage passt?',answer,o:['Je suis médecin.','Je suis professeur.','Je suis étudiant.'],audio:answer,meaning:'Beruf: Arzt',explanation:'Je suis médecin. = Ich bin Arzt.'};
+    o=[...new Set(o)];
     if(o.length<3)return null;
     return {kind:'form',q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1')}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
   }
@@ -70,8 +81,8 @@
       const rows=[...table.querySelectorAll('tr')],heads=[...rows[0].querySelectorAll('th,td')].map(clean);
       const body=rows.slice(1).map(row=>[...row.querySelectorAll('td')].map(clean)).filter(r=>r.length);
       body.forEach(row=>row.forEach((answer,col)=>{
-        if(col===0||/deutsch/i.test(heads[col]||'')||!answer)return;
-        const wrong=[...new Set(body.map(r=>r[col]).filter(v=>v&&v!==answer))];
+        if(col===0||/deutsch|verwendung|bedeutung|regel/i.test(heads[col]||'')||!answer)return;
+        const wrong=nearest(answer,body.map(r=>r[col]).filter(Boolean));
         if(wrong.length<2)return;
         const person=row[0],audio=/^(je|j’|tu|il|elle|nous|vous|ils|elles)( \/.*)?$/.test(person)?(/^[jmts]’/.test(answer)||answer.startsWith(person+' ')?(/^(nous levons|vous levez)$/.test(answer)?person+' '+answer:answer):(person.endsWith('’')?person+answer:person+' '+answer)):answer;
         tasks.push({kind:'form',q:`Welche Form passt in der Übersicht zu „${person}“ (${heads[col]||'Form'})?`,answer,o:[answer,...shuffle(wrong).slice(0,2)],audio,explanation:`${person}: ${answer}`});
@@ -147,6 +158,7 @@
         tasks=forms.map(([q,answer,meaning])=>({kind:'form',q,answer,meaning,o:[answer,...shuffle(['ai','as','a','avons','avez','ont'].filter(a=>a!==answer)).slice(0,2)],audio:q.replace('___',answer),explanation:q.replace('___',answer)+' = '+meaning}));
         tasks.push(...(specs[3].tasks||[]).filter((t,i)=>routes[3][i]==='r0'&&!tasks.some(q=>q.q===(t.prompt||t.q))).map(t=>specTask(t,unit.rule)));
       }
+      tasks=window.FR_A1_GRAMMAR_PRACTICE?.improve(lesson,unit,tasks)||tasks;
       return {key:unit.key,title:unit.preparedTitle||unit.title,rule:unit.rule,tasks};
     });
   }
@@ -156,7 +168,7 @@
     root.querySelectorAll('[data-deepening-practice]').forEach(panel=>{
       const pool=available.find(u=>u.key===panel.dataset.deepeningPractice);if(!pool?.tasks.length)return;
       const done=topicDone(state,lesson.id,pool.key);
-      panel.innerHTML=`<div class="between"><strong>Direkt üben</strong><small>${done?'✓ geübt':Math.min(6,pool.tasks.length)+' kurze Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn deepening-start ${done?'is-completed':''}">${done?'Übung wiederholen':state.lessonWork?.[lesson.id]?.deepening?.[pool.key]?.session?'Übung fortsetzen':'Mini-Test starten'}</button><div class="deepening-stage grammar-drill-stage"></div>`;
+      panel.innerHTML=`<div class="between"><strong>Direkt üben</strong><small>${done?'✓ geübt':(window.FR_A1_GRAMMAR_PRACTICE?.select(pool.tasks,shuffle)||pool.tasks).length+' Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn deepening-start ${done?'is-completed':''}">${done?'Übung wiederholen':state.lessonWork?.[lesson.id]?.deepening?.[pool.key]?.session?'Übung fortsetzen':'Intensiv üben'}</button><div class="deepening-stage grammar-drill-stage"></div>`;
       panel.querySelector('.deepening-start').onclick=event=>{if(done&&!event?.resume)delete state.lessonWork[lesson.id].deepening[pool.key].session;run(panel,pool,{lesson,state,save,speak,onUpdate});};
     });
   }
@@ -176,10 +188,7 @@
     }
     const seen=new Set(progress.seen||[]);
     const prioritize=a=>[...shuffle(a.filter(q=>!seen.has(q.q))),...shuffle(a.filter(q=>seen.has(q.q)))];
-    const forms=prioritize(pool.tasks.filter(q=>q.kind==='form')).slice(0,3);
-    const vocab=prioritize(pool.tasks.filter(q=>q.kind==='vocabulary')).slice(0,6-forms.length);
-    const selected=[...forms,...vocab];
-    const questions=resume?saved.questions:shuffle([...selected,...prioritize(pool.tasks.filter(q=>!selected.includes(q))).slice(0,6-selected.length)]),stage=panel.querySelector('.deepening-stage');
+    const questions=resume?saved.questions:(window.FR_A1_GRAMMAR_PRACTICE?.select(prioritize(pool.tasks),shuffle)||shuffle(pool.tasks)),stage=panel.querySelector('.deepening-stage');
     panel.querySelector('.deepening-start').hidden=true;
     let i=resume?saved.i:0,score=resume?saved.score:0,mistakes=resume?saved.mistakes:[],response=resume?saved.response:null,order=resume?saved.order:null;
     function persist(){progress.session={version:1,questions,i,score,mistakes,response,order};save();}
@@ -195,7 +204,7 @@
     function draw(){
       if(i>=questions.length)return finish();
       const q=questions[i];order=order||shuffle(q.o);persist();
-      stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${q.meaning?`<p class="mixed-context">${esc(q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${order.map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
+      stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${q.meaning?`<p class="mixed-context">${esc(window.A1Profile?.getUiLang()==='en'&&q.meaningEn?q.meaningEn:q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${order.map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
       function feedback(chosen,restoring=false){
         const ok=chosen===q.answer;
         if(!restoring){if(response)return;if(ok)score++;else mistakes.push(q);response={chosen};persist();}
@@ -203,7 +212,7 @@
         stage.querySelectorAll('.option-btn').forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.textContent===q.answer);b.classList.toggle('wrong',b===button&&!ok);});
         if(ok&&!restoring)button?.classList.add('answer-success');
         if(!restoring)speak?.(q.audio,true,.8);
-        stage.querySelector('.deepening-feedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><strong>${ok?'✓ Richtig':'Richtig: '+esc(q.answer)}</strong><p>${esc(q.explanation)}</p><button type="button" class="tiny-btn" data-speak="${encodeURIComponent(q.audio)}">🔊 Anhören</button></div><button type="button" class="primary-btn deepening-next">${i<questions.length-1?'Weiter':'Fertig'}</button>`;
+        stage.querySelector('.deepening-feedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}"><strong>${ok?'✓ Richtig':'Richtig: '+esc(q.answer)}</strong><p>${esc(window.A1Profile?.getUiLang()==='en'&&q.explanationEn?q.explanationEn:q.explanation)}</p><button type="button" class="tiny-btn" data-speak="${encodeURIComponent(q.audio)}">🔊 Anhören</button></div><button type="button" class="primary-btn deepening-next">${i<questions.length-1?'Weiter':'Fertig'}</button>`;
         stage.querySelector('[data-speak]').onclick=()=>speak?.(q.audio,true,.8);
         stage.querySelector('.deepening-next').onclick=()=>{i++;response=null;order=null;draw();};review?.attach(stage,true);
       }
@@ -215,3 +224,4 @@
   }
   window.FR_A1_DEEPENING={enrich,pools,decorate,topicDone,routes,formatRule};
 })();
+
