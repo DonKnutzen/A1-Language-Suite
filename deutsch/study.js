@@ -58,7 +58,7 @@
       const persons=['Ich','Du','Er','Wir','Ihr','Sie'],fr=['Je peux','Tu peux','Il peut','Nous pouvons','Vous pouvez (plusieurs personnes, informel)','Ils peuvent'],forms=unit.conjugation.forms;
       return [...persons.map((person,i)=>{const answer=forms[i],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application'};}),...recognitionTasks].map(indexAnswer);
     }
-    return [...recognitionTasks,...gapTasks(unit),...shuffle([...(unit.extra||[]),...(unit.vocabulary||[])]).slice(0,2).map(p=>recognition(unit,p,{application:true}))].map(indexAnswer);
+    return [...recognitionTasks,...gapTasks(unit),...shuffle([...(unit.extra||[]),...(unit.vocabulary||[])].filter((p,i,a)=>a.findIndex(q=>q[0]===p[0])===i)).slice(0,2).map(p=>recognition(unit,p,{application:true}))].map(indexAnswer);
   }
   function indexAnswer(task){return {...task,a:task.o.indexOf(task.answer)};}
   function balanced(units,pool,count){

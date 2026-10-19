@@ -323,6 +323,7 @@
         input.readOnly=true;fields.forEach(f=>f.readOnly=true);chars.hidden=true;
         comparedText=text;p.writingDraft=input.value.slice(0,12000);save();
         writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p data-i18n-ignore>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Vérifie que tu as traité tous les points et comparé ta réponse avec l’exemple.</p><div class="button-row"><button class="secondary-btn" id="editWriting">Modifier ma réponse</button><button class="primary-btn" id="writingGood">✓ Vérifié · Terminer la tâche écrite</button></div><div id="writingSelfFeedback"></div>`;
+        window.DE_A1_ANSWER_AUDIO?.mount(writing.querySelectorAll('.solution')[1],{text:writingModel,playAudio:t=>opts.speak(t,true)});
         document.getElementById('editWriting').onclick=()=>{input.readOnly=false;fields.forEach(f=>f.readOnly=false);chars.hidden=miniForm;writing.replaceChildren();comparedText=null;(fields[0]||input).focus();};
         const btn=document.getElementById('writingGood');
         btn.onclick=()=>{if(comparedText!==input.value.trim())return;p.writingDone=true;p.writingAnswer=text.slice(0,12000);save(true);document.getElementById('writingSelfFeedback').textContent=L.saved;refresh();};

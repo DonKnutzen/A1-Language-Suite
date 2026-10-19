@@ -20,6 +20,7 @@
         function show(index){
           root.innerHTML=history[index];
           root.querySelectorAll('button,input,textarea,select').forEach(el=>el.disabled=true);
+          if(window.DE_A1_ANSWER_AUDIO)root.querySelectorAll('[data-answer-replay]').forEach(button=>{button.disabled=false;button.onclick=()=>window.DE_A1_ANSWER_AUDIO.play(button.dataset.answerAudio);});
           root.querySelectorAll('#mixedNext,#masteryNext,#mixedBack,#masteryBack,#l1GrammarBack,.deepening-next,.lesson1-drill-next,#l1GrammarNext').forEach(el=>el.remove());
           const controls=document.createElement('div');controls.className='button-row exercise-review-nav';
           const prev=document.createElement('button');prev.type='button';prev.className='secondary-btn';prev.textContent=fr?'← Retour':'← Zurück';prev.disabled=index===0;prev.onclick=()=>show(index-1);
