@@ -896,7 +896,9 @@ function rubricSelect(label,max,description){
 }
 
 function renderMessageTask(onDone=null,forced=null){
-  const task=forced||rand(D.writing);
+  const saved=!onDone&&!forced?state.messageDraft:null;
+  const task=forced||D.writing.find(x=>x.id===saved?.taskId)||rand(D.writing);
+  if(!onDone){state.messageDraft={taskId:task.id,text:saved?.taskId===task.id?saved.text:''};save();}
   view.innerHTML=`
     <div class="between"><button class="tiny-btn" id="backWrite">← Schreiben</button><span class="pill">ZIEL MINDESTENS 40 WÖRTER</span></div>
     <section class="card" style="margin-top:12px">
@@ -908,7 +910,9 @@ function renderMessageTask(onDone=null,forced=null){
     </section>`;
   const ta=document.getElementById('messageText'),wc=document.getElementById('wordCount');
   const count=()=>A1Learning.countWords(ta.value);
-  ta.oninput=()=>{wc.textContent=`${count()} Wörter`;document.getElementById('messageFeedback').replaceChildren();};
+  if(!onDone){ta.value=state.messageDraft.text||'';wc.textContent=`${count()} Wörter`;}
+  ta.oninput=()=>{wc.textContent=`${count()} Wörter`;document.getElementById('messageFeedback').replaceChildren();if(!onDone){state.messageDraft={taskId:task.id,text:ta.value};localStorage.setItem(stateKey,JSON.stringify(state));}};
+  if(!onDone)ta.onblur=()=>save();
   document.getElementById('backWrite').onclick=renderWritingMenu;
   document.getElementById('openRubric').onclick=()=>{
     const words=count();
@@ -937,7 +941,7 @@ function renderMessageTask(onDone=null,forced=null){
         <div class="feedback ${pts>=10&&words>=40?'good':'bad'}"><strong>${pts}/15</strong> · Selbstbewertung</div>
         ${onDone?'<div class="spacer"></div><button class="primary-btn" id="continueWrite">Weiter</button>':'<div class="spacer"></div><button class="primary-btn" id="nextMsg">Neues Thema</button>'}`;
       const b=document.getElementById(onDone?'continueWrite':'nextMsg');
-      b.onclick=()=>onDone?onDone(pts):renderMessageTask();
+      b.onclick=()=>{if(!onDone){delete state.messageDraft;save();renderMessageTask();}else onDone(pts);};
     };
     document.getElementById('showModel').onclick=()=>document.getElementById('modelAnswer').innerHTML=`<div class="solution"><strong>Beispiel:</strong><br>${esc(task.model).replace(/\n/g,'<br>')}</div>`;
   };
@@ -1055,7 +1059,7 @@ function renderExam(){
       <button class="practice-card" id="examSpeak"><span class="icon">🎤</span><strong>Sprechen Simulation</strong><small>3 Prüfungsteile</small></button>
     </div>
     <section class="card"><div class="between"><div><div class="eyebrow">WISSENSABDECKUNG</div><h3>A1-Abschlusscheck</h3></div><span class="pill ${FR_A1_MASTERY.passedCount(state)===lessons.length?'green':'gray'}">${FR_A1_MASTERY.passedCount(state)}/${lessons.length} Lektionen</span></div><p class="muted">Die Lektions-Checks mischen die wichtigsten Inhalte jeder Lektion. Zusätzlich gibt es vier kumulative Kursblöcke à 30 Aufgaben.</p><button class="primary-btn" id="courseMastery">Kursweiten Abschlusscheck öffnen</button></section>
-    <section class="card quick-test-card"><div class="between"><h3>Schnelltest</h3><span class="pill gray">Bestwert ${state.bestMock}%</span></div><p class="muted">32 zufällige Hören-/Lesen-Aufgaben für eine schnelle Standortbestimmung.</p><button class="primary-btn" id="quickMock">Schnelltest starten</button></section>`;
+    <section class="card quick-test-card"><div class="between"><h3>Schnelltest</h3><span class="pill gray">${state.quickMockAttempted||state.bestMock>0?`Bestwert ${state.bestMock}%`:'Noch kein Ergebnis'}</span></div><p class="muted">32 zufällige Hören-/Lesen-Aufgaben für eine schnelle Standortbestimmung.</p><button class="primary-btn" id="quickMock">Schnelltest starten</button></section>`;
   document.getElementById('examListen').onclick=startListeningExam;
   document.getElementById('examRead').onclick=startReadingExam;
   document.getElementById('examWrite').onclick=startWritingExam;
@@ -1083,18 +1087,30 @@ function startListeningExam(){
 function startReadingExam(){
   const tasks=[];
   for(let p=1;p<=4;p++)shuffle(D.reading['part'+p]).slice(0,4).forEach(t=>tasks.push([p,t]));
-  let i=0,score=0,start=Date.now();
+  let i=0,score=0,start=Date.now(),finished=false;
+  const deadline=start+30*60000;
+  const timer=setInterval(()=>{
+    if(finished||currentRoute!=='exam'||!view.querySelector('#readingExamClock')){clearInterval(timer);return;}
+    const remaining=Math.max(0,deadline-Date.now());
+    document.getElementById('readingExamClock').textContent=`⏱ Prüfungsmodus · ${Math.ceil(remaining/60000)} Min. verbleibend`;
+    if(!remaining)finish(true);
+  },1000);
+  function finish(expired=false){
+    if(finished)return;
+    finished=true;clearInterval(timer);
+    const pct=Math.round(score/tasks.length*100);
+    state.examScores.reading=Math.max(state.examScores.reading||0,pct);save(true);
+    examResult('Lesen',score,tasks.length,pct);
+    if(expired)view.querySelector('.card.center .muted').textContent='Die 30 Minuten sind abgelaufen. Gewertet wurden deine beantworteten Aufgaben.';
+  }
   function next(){
-    if(i>=tasks.length){
-      const pct=Math.round(score/tasks.length*100);
-      state.examScores.reading=Math.max(state.examScores.reading||0,pct);save(true);
-      return examResult('Lesen',score,tasks.length,pct);
-    }
+    if(finished)return;
+    if(i>=tasks.length)return finish();
     const [p,t]=tasks[i++];
-    renderReadingTask(p,ok=>{if(ok)score++;next();},t,`${i}/${tasks.length}`);
+    renderReadingTask(p,ok=>{if(finished)return;if(ok)score++;next();},t,`${i}/${tasks.length}`);
     const rem=document.createElement('div');
-    rem.className='notice';rem.style.marginBottom='10px';
-    rem.innerHTML=`⏱ Prüfungsmodus · ${Math.max(0,30-Math.floor((Date.now()-start)/60000))} Min. verbleibend`;
+    rem.id='readingExamClock';rem.className='notice';rem.style.marginBottom='10px';
+    rem.textContent=`⏱ Prüfungsmodus · ${Math.ceil(Math.max(0,deadline-Date.now())/60000)} Min. verbleibend`;
     view.prepend(rem);
   }
   next();
@@ -1114,20 +1130,31 @@ function startWritingExam(){
 
 function startSpeakingExam(){
   let stage=0;
+  function requireAnswer(id){
+    const nextButton=document.getElementById('spNext');
+    nextButton.disabled=true;
+    const confirm=document.createElement('label');
+    confirm.className='field';
+    confirm.innerHTML='<input type="checkbox" id="spAnswered"> Ich habe die Aufgabe laut beantwortet.';
+    nextButton.before(confirm);
+    const answered=document.getElementById('spAnswered');
+    answered.onchange=()=>{nextButton.disabled=!answered.checked;};
+    wireRecorder(id,()=>{answered.checked=true;nextButton.disabled=false;});
+  }
   function next(){
     stage++;
     if(stage===1){
       const q=shuffle(D.interview).slice(0,6);
       view.innerHTML=`<section class="card"><span class="pill">TEIL 1 · ca. 1 Minute</span><h2>Entretien dirigé</h2><p class="muted">Beantworte nacheinander diese Fragen laut.</p>${q.map(x=>`<div class="phrase-row"><div><strong>${esc(x.q)}</strong></div>${speakBtn(x.q)}</div>`).join('')}${recorderHtml('Exam1')}<div class="spacer"></div><button class="primary-btn" id="spNext">Teil 2</button></section>`;
-      wireSpeakButtons();wireRecorder('Exam1');document.getElementById('spNext').onclick=next;
+      wireSpeakButtons();requireAnswer('Exam1');document.getElementById('spNext').onclick=next;
     }else if(stage===2){
       const cards=shuffle(D.infoCards).slice(0,8);
       view.innerHTML=`<section class="card"><span class="pill">TEIL 2 · ca. 2 Minuten</span><h2>Échange d’informations</h2><p class="muted">Formuliere zu jeder Karte eine Frage an den Prüfer.</p><div class="grid three">${cards.map(c=>`<div class="speaking-card"><div class="theme">${esc(c.theme)}</div><div class="cue" style="font-size:20px">${esc(c.cue)}</div></div>`).join('')}</div>${recorderHtml('Exam2')}<div class="spacer"></div><button class="primary-btn" id="spNext">Teil 3</button></section>`;
-      wireRecorder('Exam2');document.getElementById('spNext').onclick=next;
+      requireAnswer('Exam2');document.getElementById('spNext').onclick=next;
     }else if(stage===3){
       const r=rand(D.roleplays);
       view.innerHTML=`<section class="card"><span class="pill">TEIL 3 · ca. 2 Minuten</span><h2>Dialogue simulé</h2><div class="speaking-card"><div class="theme">${esc(r.cue)}</div><div class="cue" style="font-size:20px">${esc(r.prompt)}</div></div>${recorderHtml('Exam3')}<div class="spacer"></div><button class="primary-btn" id="spNext">Simulation beenden</button></section>`;
-      wireRecorder('Exam3');document.getElementById('spNext').onclick=next;
+      requireAnswer('Exam3');document.getElementById('spNext').onclick=next;
     }else{
       state.speakingSimulationCompleted=true;save();
       view.innerHTML=`<section class="card center"><span class="pill green">SPRECHEN ABGESCHLOSSEN</span><h2>Gut gemacht</h2><p class="muted">Prüfe: verständliche persönliche Antworten, einfache Fragen, erfolgreiche Alltagssituation, elementare Höflichkeit und verständliche Aussprache. Die Aufnahme wird nicht automatisch bewertet; das Abschließen allein ergibt keine Punktzahl.</p><button class="primary-btn" id="backExam">Zur Prüfung</button></section>`;
@@ -1151,7 +1178,7 @@ function startQuickMock(){
   function next(){
     if(i>=qs.length){
       const pct=Math.round(score/qs.length*100);
-      state.bestMock=Math.max(state.bestMock,pct);save(true);
+      state.bestMock=Math.max(state.bestMock,pct);state.quickMockAttempted=true;save(true);
       view.innerHTML=`<section class="card center"><span class="pill ${pct>=60?'green':'amber'}">SCHNELLTEST</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Hören + Lesen. Für vollständige Vorbereitung zusätzlich Schreiben und Sprechen trainieren.</p><div class="button-row"><button class="secondary-btn" id="againMock">Noch einmal</button><button class="primary-btn" id="backExam">Prüfung</button></div></section>`;
       document.getElementById('againMock').onclick=startQuickMock;
       document.getElementById('backExam').onclick=renderExam;

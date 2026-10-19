@@ -298,7 +298,7 @@ window.FR_A1_DATA = {
           "explanation": "Épeler bedeutet buchstabieren. Die Bitte fragt nicht nach Wiederholung oder Sprechtempo."
         },
         {
-          "q": "Vous pouvez ___, s’il vous plaît ?",
+          "q": "Du bittest darum, einen Namen zu buchstabieren: Vous pouvez ___, s’il vous plaît ?",
           "o": [
             "épeler",
             "répéter",
@@ -475,7 +475,7 @@ window.FR_A1_DATA = {
           "audio": "numéro de téléphone"
         },
         {
-          "q": "Wie sagst du „Ich bin am 5. Mai geboren“?",
+          "q": "Wie sagt ein Mann „Ich bin am 5. Mai geboren“?",
           "o": [
             "Je viens 5 mai.",
             "Je suis né le 5 mai.",
@@ -547,7 +547,7 @@ window.FR_A1_DATA = {
           "audio": "Mon numéro de téléphone est…"
         },
         {
-          "q": "Wie sagst du „Ich bin am 17. April geboren“ auf Französisch?",
+          "q": "Wie sagt ein Mann „Ich bin am 17. April geboren“ auf Französisch?",
           "o": [
             "Je suis né le dix-sept avril.",
             "Je suis né le dix-sept mai.",
@@ -1117,7 +1117,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "café / eau / lait",
-        "explanation": "é klingt wie geschlossenes e, eau wie o. Vergleiche café und lait; lerne die Schreibweise mit dem Klang zusammen."
+        "explanation": "é klingt wie geschlossenes e, eau wie o. Höre café und eau. In lait klingt ai meist wie ein offenes e."
       },
       "dialogue": [
         "Bonjour, vous désirez ?",
@@ -3393,14 +3393,15 @@ window.FR_A1_DATA = {
           "audio": "Et ce sont tes clés ?"
         },
         {
-          "q": "Welche Form ist korrekt?",
+          "q": "Welche Form entspricht hier der Standardsprache?",
           "o": [
             "C’est des amis.",
             "Ce sont des amis.",
             "Il sont des amis."
           ],
           "a": 1,
-          "audio": "Ce sont des amis."
+          "audio": "Ce sont des amis.",
+          "explanation": "Ce sont des amis ist standardsprachlich. C’est des amis hört man häufig in der Alltagssprache."
         },
         {
           "q": "Welcher bestimmte Artikel passt zu „musée“?",
@@ -3448,7 +3449,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "C’est / ce sont identifizieren etwas. Voici bedeutet „hier ist/sind“, voilà „da ist/sind“."
+        "explanation": "C’est / ce sont identifizieren etwas. Voici und voilà stellen etwas vor oder weisen darauf hin; voilà kann auch etwas unmittelbar Gezeigtes begleiten."
       },
       "pronunciation": {
         "focus": "les amis / les livres",
@@ -3822,7 +3823,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
-        "explanation": "Das h von habiter ist stumm. Höre die Verbindung zwischen où und habitez; betone die ganze Fragegruppe statt jedes Einzelwort."
+        "explanation": "Das h von habiter wird nicht gesprochen. Sprich où habitez-vous als zusammenhängende Frage statt jedes Wort einzeln zu betonen."
       },
       "dialogue": [
         "Où est votre voiture ?",
@@ -6015,7 +6016,6 @@ window.FR_A1_DATA = {
         {
           "label": "Nationalité",
           "answers": [
-            "allemande",
             "allemand"
           ]
         },
@@ -6074,8 +6074,7 @@ window.FR_A1_DATA = {
         {
           "label": "Nationalité",
           "answers": [
-            "allemande",
-            "allemand"
+            "allemande"
           ]
         },
         {
@@ -6159,7 +6158,6 @@ window.FR_A1_DATA = {
         {
           "label": "Nationalité",
           "answers": [
-            "canadienne",
             "canadien"
           ]
         },
@@ -6383,8 +6381,7 @@ window.FR_A1_DATA = {
         {
           "label": "Nationalité",
           "answers": [
-            "autrichienne",
-            "autrichien"
+            "autrichienne"
           ]
         },
         {
@@ -6397,8 +6394,8 @@ window.FR_A1_DATA = {
         {
           "label": "Langues",
           "answers": [
-            "allemand, anglais et français", "allemand, anglais et un peu français",
-            "allemand anglais français"
+            "allemand, anglais et un peu français",
+            "allemand anglais et un peu français"
           ]
         },
         {
