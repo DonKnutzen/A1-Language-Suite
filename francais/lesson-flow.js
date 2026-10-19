@@ -65,7 +65,8 @@
     const optionalTitle='Freiwillige Prüfungsvorbereitung';
     const steps=[['listen','Hören & Verstehen'],['grammar','Vertiefung'],...(lesson1?[['grammar-check','Abschluss-Test']]:[]),['comprehension','Hörverstehen'],...(hasMastery?[['check','Lektions-Check']]:[])];
     let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
-    const audioPageCount=Math.max(1,Math.ceil(l.phrases.length/6));
+    const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
+    const audioPageFor=index=>Math.floor(index*audioPageCount/Math.max(1,l.phrases.length));
     const grammarSource=document.createElement('div');
     grammarSource.innerHTML=opts.grammarHtml||'';
     const grammarRoot=grammarSource.querySelector('.lesson-deepening')||grammarSource;
@@ -239,7 +240,7 @@
       wireStepFooter();
       if(activeStep==='listen'){
         const updateAudioPage=()=>{
-          view.querySelectorAll('[data-core-row]').forEach(row=>row.hidden=Math.floor(Number(row.dataset.coreRow)/6)!==audioPage);
+          view.querySelectorAll('[data-core-row]').forEach(row=>row.hidden=audioPageFor(Number(row.dataset.coreRow))!==audioPage);
           const status=document.getElementById('audioPageStatus');
           if(status){status.textContent=`Seite ${audioPage+1} / ${audioPageCount}`;
             document.getElementById('previousAudioPage').disabled=audioPage===0;
@@ -254,7 +255,7 @@
           const rows=[...audioRows.querySelectorAll('[data-core-row]')];
           rows.forEach(row=>row.hidden=false);
           const heights=[];
-          rows.forEach((row,i)=>{const page=Math.floor(i/6);heights[page]=(heights[page]||0)+row.getBoundingClientRect().height;});
+          rows.forEach((row,i)=>{const page=audioPageFor(i);heights[page]=(heights[page]||0)+row.getBoundingClientRect().height;});
           audioRows.style.minHeight=`${Math.ceil(Math.max(0,...heights))}px`;
           updateAudioPage();
         };

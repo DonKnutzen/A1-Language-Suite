@@ -60,7 +60,7 @@
     const optionalTitle='Préparation facultative à l’examen';
     const steps=[['listen','Écouter & comprendre'],['grammar','Approfondir'],...(hasGrammarCheck?[['grammar-check','Test final']]:[]),['comprehension','Compréhension orale'],...(hasMastery?[['check','Bilan de la leçon']]:[])];
     let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
-    const audioPageCount=Math.max(1,Math.ceil(l.phrases.length/6));
+    const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
     const audioPageFor=index=>Math.floor(index*audioPageCount/Math.max(1,l.phrases.length));
     const grammarSource=document.createElement('div');
     grammarSource.innerHTML=opts.grammarHtml||'';
