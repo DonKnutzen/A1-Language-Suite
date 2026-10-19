@@ -15,10 +15,11 @@
   const shuffle=a=>{const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;};
   // r = original reference page; u = new preparation page. Keep the existing checks.
   const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
-  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','r0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
+  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
   const families=[['trente','treize','quarante'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
   // Authored neighbours keep the same communicative purpose as the correct answer.
   const closePairs = {
+    'Je suis célibataire.': [['Je suis marié.','Ich bin verheiratet.'],['Je suis divorcé.','Ich bin geschieden.']],
     'Vous avez quel âge ?': [['Vous habitez où ?','Wo wohnen Sie?'],['Vous êtes né quand ?','Wann sind Sie geboren?']],
     'Je suis né le 17 avril.': [['Je suis né le 7 avril.','Ich bin am 7. April geboren (männlich).'],['Je suis né le 17 mai.','Ich bin am 17. Mai geboren (männlich).']],
     'Je suis née le 17 avril.': [['Je suis née le 7 avril.','Ich bin am 7. April geboren (weiblich).'],['Je suis née le 17 mai.','Ich bin am 17. Mai geboren (weiblich).']],
@@ -117,7 +118,7 @@
       if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}<div class="deepening-examples">${pairs}</div></div>`);
       if(unit.notes?.length)body.insertAdjacentHTML('beforeend',`<div class="deepening-background">${unit.notes.join('')}</div>`);
       const relevant=(specs[lesson.id]?.tasks||[]).filter((t,i)=>routes[lesson.id]?.[i]===unit.key);
-      const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer)))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
+      const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau')))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
       // The exact patterns tested in the final check are taught before the inline drill.
       if(examples)body.insertAdjacentHTML('beforeend',`<div class="deepening-form-examples">${examples}</div>`);
       body.insertAdjacentHTML('beforeend',`<div class="deepening-practice" data-deepening-practice="${unit.key}"></div>`);
@@ -133,7 +134,21 @@
     return root.innerHTML;
   }
   function pools(lesson,html){
-    return definitions(lesson,html).units.map(unit=>({key:unit.key,title:unit.preparedTitle||unit.title,rule:unit.rule,tasks:[...pairTasks(unit),...tableTasks(unit.element),...(specs[lesson.id]?.tasks||[]).flatMap((t,i)=>routes[lesson.id]?.[i]===unit.key?[specTask(t,unit.rule)].filter(Boolean):[])]}));
+    return definitions(lesson,html).units.map(unit=>{
+      let tasks=[...pairTasks(unit),...tableTasks(unit.element),...(specs[lesson.id]?.tasks||[]).flatMap((t,i)=>routes[lesson.id]?.[i]===unit.key?[specTask(t,unit.rule)].filter(Boolean):[])];
+      if(lesson.id===6&&unit.key==='r0'){
+        const forms=[...(specs[6].tasks||[]).filter(t=>t.tag==='Teilungsartikel'),
+          {prompt:'Je voudrais ___ café.',answer:'un',context:'Ich möchte einen Kaffee.'},
+          {prompt:'Je voudrais ___ salade.',answer:'une',context:'Ich möchte einen Salat.'}];
+        tasks=forms.map(t=>({kind:'form',q:t.prompt,answer:t.answer,o:[t.answer,...shuffle((['un','une'].includes(t.answer)?['un','une','des']:['du','de la','de l’','des']).filter(a=>a!==t.answer)).slice(0,2)],audio:t.prompt.replace('___',t.answer).replace('l’ eau','l’eau').replace('l’ ','l’'),explanation:t.context+' '+({'du':'Unbestimmte Menge, männliches Nomen: du pain.','de la':'Unbestimmte Menge, weibliches Nomen: de la soupe.','de l’':'Vor einem Vokal: de l’eau.','des':'Unbestimmte Mehrzahl: des pommes.','un':'Ein einzelner Kaffee: un café.','une':'Ein einzelner Salat: une salade.'}[t.answer]),meaning:t.context}));
+      }
+      if(lesson.id===3&&unit.key==='r0'){
+        const forms=[['J’___ vingt-six ans.','ai','Ich bin 26 Jahre alt.'],['Tu ___ vingt ans.','as','Du bist 20 Jahre alt.'],['Elle ___ vingt-six ans.','a','Sie ist 26 Jahre alt.'],['Nous ___ trente ans.','avons','Wir sind 30 Jahre alt.'],['Vous ___ quel âge ?','avez','Wie alt sind Sie?'],['Ils ___ vingt ans.','ont','Sie sind 20 Jahre alt.']];
+        tasks=forms.map(([q,answer,meaning])=>({kind:'form',q,answer,meaning,o:[answer,...shuffle(['ai','as','a','avons','avez','ont'].filter(a=>a!==answer)).slice(0,2)],audio:q.replace('___',answer),explanation:q.replace('___',answer)+' = '+meaning}));
+        tasks.push(...(specs[3].tasks||[]).filter((t,i)=>routes[3][i]==='r0'&&!tasks.some(q=>q.q===(t.prompt||t.q))).map(t=>specTask(t,unit.rule)));
+      }
+      return {key:unit.key,title:unit.preparedTitle||unit.title,rule:unit.rule,tasks};
+    });
   }
   function topicDone(state,id,key){return state.lessonWork?.[id]?.deepening?.[key]?.done===true;}
   function decorate({root,lesson,grammarHtml,state,save,speak,onUpdate}){
@@ -149,6 +164,16 @@
     const review=window.A1ExerciseReview?.create();
     const work=state.lessonWork[lesson.id];work.deepening||={};const progress=work.deepening[pool.key]||={};
     const saved=progress.session;const resume=saved?.version===1&&Array.isArray(saved.questions)&&Number.isInteger(saved.i)&&saved.i>=0&&saved.i<saved.questions.length;
+    // Upgrade only unanswered items in the two revised drills; keep earned points and checked feedback.
+    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&pool.key==='r0'))){
+      const used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(q=>q.q));
+      saved.questions=saved.questions.map((q,index)=>{
+        if(index<saved.i||(index===saved.i&&saved.response))return q;
+        const current=pool.tasks.find(t=>t.q===q.q&&!used.has(t.q))||pool.tasks.find(t=>!used.has(t.q))||pool.tasks[index%pool.tasks.length];
+        used.add(current.q);return current;
+      });
+      if(!saved.response)saved.order=null;
+    }
     const seen=new Set(progress.seen||[]);
     const prioritize=a=>[...shuffle(a.filter(q=>!seen.has(q.q))),...shuffle(a.filter(q=>seen.has(q.q)))];
     const forms=prioritize(pool.tasks.filter(q=>q.kind==='form')).slice(0,3);

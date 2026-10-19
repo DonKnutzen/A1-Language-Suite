@@ -37,6 +37,15 @@
       return out;
     });
   }
+  function spreadAnswers(tasks){
+    const pending=[...tasks],out=[];
+    while(pending.length){
+      const previous=norm(out.at(-1)?.answer||'');
+      let index=pending.findIndex(q=>norm(q.answer)!==previous&&norm(q.audio||q.answer)!==norm(out.at(-1)?.audio||out.at(-1)?.answer||''));if(index<0)index=pending.findIndex(q=>norm(q.answer)!==previous);if(index<0)index=0;
+      out.push(pending.splice(index,1)[0]);
+    }
+    return out;
+  }
   function makeLessonTest(lesson){
     const ps=phraseTasks(lesson),cs=customTasks(lesson);
     if(Number(lesson?.id)===1){
@@ -45,7 +54,7 @@
       const grammarPick=[];['être','-er-Verben','venir','s’appeler'].forEach(tag=>grammarPick.push(...shuffled(byTag[tag]||[]).slice(0,2)));
       return shuffled([...phrasePick,...grammarPick]);
     }
-    return shuffled([...ps,...cs].filter((task,index,all)=>all.findIndex(other=>(other.q||other.prompt)===(task.q||task.prompt))===index));
+    return spreadAnswers(shuffled([...ps,...cs].filter((task,index,all)=>all.findIndex(other=>(other.q||other.prompt)===(task.q||task.prompt))===index)));
   }
   function testCount(id){const l=byId(id);if(!l)return 0;return makeLessonTest(l).length;}
   function best(state,id){return Number(state?.lessonMasteryBest?.[id]||0);}

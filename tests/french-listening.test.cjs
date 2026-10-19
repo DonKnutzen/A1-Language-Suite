@@ -96,3 +96,20 @@ test('an already graded listening question also shows its translation when an ol
  w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:[q],progress,exerciseVersion:97,selectionOnly:true,finishLabel:'Weiter zur Vertiefung',playAudio:()=>{},onBack:()=>{},onFinish:()=>{}});
  assert(view.querySelector('#mixedFeedback').textContent.includes(lesson.phrases.find(p=>p[0]===q.audio)[1]));assert.equal(view.querySelector('#mixedNext').textContent,'Weiter zur Vertiefung');assert.equal(progress.session.score,1);dom.window.close();
 });
+
+test('reported intro repetitions are replaced with other taught phrases and all text questions offer audio',()=>{
+ const {dom,w,view}=environment();
+ for(const lesson of w.FR_A1_DATA.lessons){const tasks=w.A1ExerciseEngine.makeAuthored(lesson);assert.equal(new Set(tasks.map(t=>t.audio.trim().toLowerCase())).size,10,`lesson ${lesson.id}: repeated audio target`);}
+ const lesson=w.FR_A1_DATA.lessons[2],q=w.A1ExerciseEngine.makeAuthored(lesson).find(t=>t.q.startsWith('Lies den Dialog:')),audio=[];
+ assert(q);w.A1ExerciseEngine.run({lesson,view,exercises:[q],selectionOnly:true,uiLang:'de',targetLang:'fr',playAudio:t=>audio.push(t),onBack:()=>{},onFinish:()=>{}});
+ view.querySelector('#mixedListen').click();assert(audio[0].includes('je m’appelle Julie'));assert(audio[0].includes('votre numéro de téléphone'));assert(!audio[0].includes('Die Person'));
+ const german={id:1,phrases:[['Welche Sprachen sprechen Sie?','Quelles langues parlez-vous ?']]};
+ w.A1ExerciseEngine.run({lesson:german,view,exercises:[{type:'choice',q:'Que signifie « Welche Sprachen sprechen Sie? » ?',o:['Quelles langues parlez-vous ?','D’où venez-vous ?'],a:0,answer:'Quelles langues parlez-vous ?',audio:'Welche Sprachen sprechen Sie?'}],selectionOnly:true,uiLang:'fr',targetLang:'de',playAudio:t=>audio.push(t),onBack:()=>{},onFinish:()=>{}});
+ view.querySelector('#mixedListen').click();assert.equal(audio.at(-1),'Welche Sprachen sprechen Sie?');dom.window.close();
+});
+test('lesson checks separate repeated correct answers while preserving every question',()=>{
+ const {dom,w}=environment();w.eval(fs.readFileSync(path.join(root,'francais/mastery-specs.js'),'utf8'));w.eval(fs.readFileSync(path.join(root,'francais/mastery.js'),'utf8'));
+ const tasks=w.FR_A1_MASTERY.makeLessonTest(w.FR_A1_DATA.lessons[6]);
+ assert(tasks.length>=10);for(let i=1;i<tasks.length;i++)assert.notEqual(tasks[i].answer,tasks[i-1].answer);
+ dom.window.close();
+});

@@ -221,7 +221,7 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "choice",
-        "q": "Was bedeutet et demie bei einer Uhrzeit?",
+        "q": "Was bedeutet „et demie“ bei einer Uhrzeit?",
         "o": [
           "Viertel nach",
           "halb",

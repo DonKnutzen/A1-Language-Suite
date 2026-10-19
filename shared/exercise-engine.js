@@ -195,16 +195,36 @@
   // their gap, text and sentence-construction tasks through the general runner.
   function makeAuthored(lesson){
     const heard=window.FR_A1_INTRO_LISTENING?.[lesson.id];
-    const questions=shuffled(lesson.quiz||[]).filter(q=>!heard||norm(q.audio)!==norm(heard.audio)).slice(0,heard?9:10);
+    const seen=new Set(heard?[norm(heard.audio)]:[]),questions=[];
+    for(const q of shuffled(lesson.quiz||[])){
+      const key=norm(q.audio||choiceAudio(q,lesson.phrases||[])||q.q);
+      if(seen.has(key))continue;seen.add(key);questions.push(q);
+      if(questions.length===(heard?9:10))break;
+    }
+    for(const pair of shuffled(lesson.phrases||[])){
+      if(questions.length===(heard?9:10))break;
+      if(seen.has(norm(pair[0])))continue;
+      const generated=meaningChoice(pair,lesson.phrases,'de');
+      if(generated){seen.add(norm(pair[0]));questions.push(generated);}
+    }
     const tasks=questions.map(q=>{
-      const answer=q.o[q.a],audio=q.audio||choiceAudio(q,lesson.phrases||[]),o=shuffled(q.o);
+      const answer=q.o[q.a],audio=q.audio||choiceAudio(q,lesson.phrases||[]),o=shuffled([...new Set(q.o)]);
       return {type:'choice',q:q.q,o,a:o.indexOf(answer),answer,audio,context:q.context||'',explanation:q.explanation};
     });
     if(heard){
       const o=shuffled(heard.o);
       tasks.push({type:'listening',q:'Welchen Ausdruck hörst du?',o,a:o.indexOf(heard.audio),answer:heard.audio,audio:heard.audio,explanation:lesson.phrases.find(p=>p[0]===heard.audio)?.[1]||''});
     }
-    return shuffled(tasks);
+    return spreadAnswers(shuffled(tasks));
+  }
+  function spreadAnswers(tasks){
+    const pending=[...tasks],out=[];
+    while(pending.length){
+      const previous=norm(out.at(-1)?.answer||'');
+      let index=pending.findIndex(q=>norm(q.answer)!==previous);if(index<0)index=0;
+      out.push(pending.splice(index,1)[0]);
+    }
+    return out;
   }
   function charBar(lang,uiLang){const a=CHARS[lang]||[];if(!a.length)return '';return `<div class="mixed-char-wrap"><span>${esc((UI[uiLang]||UI.de).chars)}</span><div class="mixed-char-bar"><button type="button" class="mixed-shift" aria-pressed="false" title="${esc((UI[uiLang]||UI.de).shift)}" aria-label="${esc((UI[uiLang]||UI.de).shift)}">⇧</button>${a.map((c,i)=>`<button type="button" class="mixed-char" data-i="${i}">${esc(c)}</button>`).join('')}</div></div>`;}
   function wireChars(input,lang,container=document){
@@ -248,14 +268,14 @@
     function draw(){
       const q=ex[i];let body='';
       const hint=q.context?`<p class="mixed-context"><strong>${esc(L.meaning)}:</strong> ${esc(q.context)}</p>`:'';
-      if(q.type==='choice')body=`${opts.selectionOnly?hint:''}<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
+      if(q.type==='choice')body=`${opts.selectionOnly?hint:''}<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div>${opts.selectionOnly&&q.audio&&!q.q.includes('___')?`<button type="button" class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button>`:''}<div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='listening')body=`<div class="mixed-type">🎧 ${esc(L.listen)}</div><div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><button class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='gap'||q.type==='text')body=`<label class="mixed-type" for="mixedInput">✍️ ${esc(L[q.type])}</label>${hint}<div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="mixedInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.answer)}">${charBar(opts.targetLang,opts.uiLang)}${q.type==='text'?`<div class="spacer"></div><button class="soft-btn" id="mixedHintBtn">💡 ${esc(L.help)}</button><div class="mixed-hint" id="mixedHint" hidden></div>`:''}<div class="spacer"></div><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button>`;
       if(q.type==='order')body=`<div class="mixed-type">↔️ ${esc(L.order)}</div>${hint}<div class="mixed-order-answer" id="orderAnswer" aria-live="polite"></div><div class="mixed-tokens">${q.tokens.map(t=>`<button class="soft-btn mixed-token" data-id="${t.id}" data-word="${encodeURIComponent(t.w)}">${esc(t.w)}</button>`).join('')}</div><div class="button-row"><button class="secondary-btn" id="orderReset">${esc(L.reset)}</button><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button></div>`;
       opts.view.innerHTML=`<div class="between"><button class="tiny-btn" id="mixedBack">${esc(L.back)}</button><span class="pill">${i+1}/${ex.length}</span></div><section class="${opts.compact?'exercise-inline-card':'card'}" ${opts.bugStep?`data-bug-task data-bug-lesson="${opts.lesson.id||''}" data-bug-step="${esc(opts.bugStep)}" data-bug-question="${esc(q.q||q.prompt||q.context||'')}" data-bug-audio="${esc(q.audio||'')}"`:''} style="margin-top:12px">${body}<div id="mixedFeedback"></div></section>`;
       document.getElementById('mixedBack').onclick=()=>{persist();opts.onBack();};
       if(q.type==='choice'||q.type==='listening'){
-        if(q.type==='listening')document.getElementById('mixedListen').onclick=()=>opts.playAudio(q.audio);
+        if(document.getElementById('mixedListen'))document.getElementById('mixedListen').onclick=()=>opts.playAudio(/^Lies den Dialog:/i.test(q.q)?q.q.replace(/^Lies den Dialog:\s*/i,'').split('\n')[0].split(/\s+\/\s+/).join(' '):q.audio);
         document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;choicePicked=c;document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});feedback(ok?'ok':'bad',q.answer,q.audio,q.explanation);});
       }
       if(q.type==='gap'||q.type==='text'){
@@ -287,6 +307,6 @@
     }
     draw();
   }
-  window.A1ExerciseEngine={make,makeAuthored,run,charBar,wireChars};
+  window.A1ExerciseEngine={make,makeAuthored,spreadAnswers,run,charBar,wireChars};
 })();
 

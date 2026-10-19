@@ -1,5 +1,17 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Was bedeutet „et demie“ bei einer Uhrzeit?": "What does “et demie” mean in a time expression?",
+  "„du lait“ =": "“du lait” means",
+  "Ich möchte einen Kaffee.": "I would like a coffee.",
+  "Ich möchte einen Salat.": "I would like a salad.",
+  "Ich möchte Brot. Unbestimmte Menge, männliches Nomen: du pain.": "I would like bread. An unspecified quantity with a masculine noun: du pain.",
+  "Ich möchte Suppe. Unbestimmte Menge, weibliches Nomen: de la soupe.": "I would like soup. An unspecified quantity with a feminine noun: de la soupe.",
+  "Ich möchte Wasser. Vor einem Vokal: de l’eau.": "I would like water. Before a vowel: de l’eau.",
+  "Ich möchte Äpfel. Unbestimmte Mehrzahl: des pommes.": "I would like apples. An unspecified plural quantity: des pommes.",
+  "Ich möchte einen Kaffee. Ein einzelner Kaffee: un café.": "I would like a coffee. One coffee: un café.",
+  "Ich möchte einen Salat. Ein einzelner Salat: une salade.": "I would like a salad. One salad: une salade.",
+  "12 ist die Hausnummer; 21 wäre eine andere Adresse. Rue Victor-Hugo ist der Straßenname, rue Pasteur eine andere Straße.": "12 is the house number; 21 would be a different address. Rue Victor-Hugo is the street name; rue Pasteur is a different street.",
+
   "10 kurze Fragen": "10 quick questions",
   "Vokabel-Check starten": "Start vocabulary check",
   "Vokabel-Check fortsetzen": "Continue vocabulary check",

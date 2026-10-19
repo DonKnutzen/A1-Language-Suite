@@ -344,7 +344,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Oui, un frère et deux sœurs. Mon frère s’appelle Paul. Il est calme."
+        "text": "Oui, un frère et deux sœurs. Mon frère s’appelle Paul. Mon frère est calme."
       },
       {
         "speaker": "A",

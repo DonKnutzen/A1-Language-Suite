@@ -496,7 +496,7 @@ window.FR_A1_DATA = {
           "explanation": "Das Alter steht mit avoir: tu as vingt ans = „du bist 20 Jahre alt“."
         },
         {
-          "q": "Lies den Dialog: Quel âge avez-vous ? / J’ai trente et un ans. / Votre numéro ? / Zéro six, douze, vingt, trente, quarante.\nDie Person ist … Jahre alt.",
+          "q": "Lies den Dialog: Bonjour, je m’appelle Julie. / Bonjour, Julie. Quel âge avez-vous ? / J’ai trente et un ans. / Merci. Et votre numéro de téléphone ? / Zéro six, douze, vingt, trente, quarante.\nDie Person ist … Jahre alt.",
           "o": [
             "21",
             "30",
@@ -1026,14 +1026,14 @@ window.FR_A1_DATA = {
           "audio": "L’addition"
         },
         {
-          "q": "„sans viande“ =",
+          "q": "„du lait“ =",
           "o": [
-            "ohne Wasser",
-            "mit Fleisch",
-            "ohne Fleisch"
+            "Wasser",
+            "Tee",
+            "Milch"
           ],
           "a": 2,
-          "audio": "sans viande"
+          "audio": "du lait"
         },
         {
           "q": "Je voudrais ___ eau.",
@@ -1459,7 +1459,8 @@ window.FR_A1_DATA = {
             "L’adresse est 12 rue Pasteur."
           ],
           "a": 0,
-          "audio": "L’adresse est 12 rue Victor-Hugo."
+          "audio": "L’adresse est 12 rue Victor-Hugo.",
+          "explanation": "12 ist die Hausnummer; 21 wäre eine andere Adresse. Rue Victor-Hugo ist der Straßenname, rue Pasteur eine andere Straße."
         }
       ],
       "canDo": [
@@ -4614,8 +4615,8 @@ window.FR_A1_DATA = {
       {
         "id": "co-can-3",
         "q": "Die Person ist … Jahre alt.",
-        "speech": "Quel âge avez-vous ? J’ai trente et un ans. Votre numéro ? Zéro six, douze, vingt, trente, quarante.",
-        "audio": "Quel âge avez-vous ? J’ai trente et un ans. Votre numéro ? Zéro six, douze, vingt, trente, quarante.",
+        "speech": "Bonjour, je m’appelle Julie. Bonjour, Julie. Quel âge avez-vous ? J’ai trente et un ans. Merci. Et votre numéro de téléphone ? Zéro six, douze, vingt, trente, quarante.",
+        "audio": "Bonjour, je m’appelle Julie. Bonjour, Julie. Quel âge avez-vous ? J’ai trente et un ans. Merci. Et votre numéro de téléphone ? Zéro six, douze, vingt, trente, quarante.",
         "o": [
           "21",
           "31",
@@ -5435,10 +5436,10 @@ window.FR_A1_DATA = {
       },
       {
         "id": "ce-can-3",
-        "text": "Quel âge avez-vous ?\nJ’ai trente et un ans.\nVotre numéro ?\nZéro six, douze, vingt, trente, quarante.",
+        "text": "Bonjour, je m’appelle Julie.\nBonjour, Julie. Quel âge avez-vous ?\nJ’ai trente et un ans.\nMerci. Et votre numéro de téléphone ?\nZéro six, douze, vingt, trente, quarante.",
         "statement": "Die Person ist 31 Jahre alt.",
         "a": true,
-        "audio": "Quel âge avez-vous ? J’ai trente et un ans. Votre numéro ? Zéro six, douze, vingt, trente, quarante."
+        "audio": "Bonjour, je m’appelle Julie. Bonjour, Julie. Quel âge avez-vous ? J’ai trente et un ans. Merci. Et votre numéro de téléphone ? Zéro six, douze, vingt, trente, quarante."
       },
       {
         "id": "ce-can-4",

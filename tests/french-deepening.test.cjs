@@ -38,7 +38,7 @@ test('all 23 later lessons teach and directly rehearse every existing final-chec
     for(let i=0;i<specs.length;i++){
       const t=specs[i],pool=pools.find(p=>p.key===w.FR_A1_DEEPENING.routes[id][i]);
       assert(pool.tasks.some(q=>q.q===(t.prompt||t.q)),`lesson ${id}: ${t.prompt||t.q}`);
-      if(t.prompt)assert(after.querySelector(`[data-deepening-key="${pool.key}"]`).textContent.includes(t.prompt.replace('___',t.answer)),`lesson ${id}: explanation before test`);
+      if(t.prompt)assert(after.querySelector(`[data-deepening-key="${pool.key}"]`).textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau')),`lesson ${id}: explanation before test`);
     }
   }
   dom.window.close();
@@ -202,7 +202,7 @@ test('reported preparation tasks use close alternatives and test form labels ins
   const tasks=pools.flatMap(p=>p.tasks);
   if(id===3){
    const phone=tasks.find(t=>t.answer==='Téléphone');assert(phone);assert(phone.o.every(o=>!/[0-9]/.test(o)));
-   const question=tasks.find(t=>t.answer==='Vous avez quel âge ?');assert(question.o.every(o=>o.endsWith('?')));
+   const question=tasks.find(t=>t.q==='Vous ___ quel âge ?');assert(question);assert.equal(question.answer,'avez');assert(question.o.every(o=>['ai','as','a','avons','avez','ont'].includes(o)));
    assert(tasks.some(t=>t.q==='Elle a ___ ans.'&&t.answer==='trente'));
   }else{
    const date=tasks.find(t=>t.answer==='Nous sommes le cinq octobre.');assert(date.o.every(o=>o.startsWith('Nous sommes le')));
@@ -250,4 +250,16 @@ test('home continuation prefers the last unfinished lesson, then advances after 
  const {dom,w}=appEnvironment(),lessons=w.FR_A1_DATA.lessons,state={lastLessonId:8,doneLessons:[1,2],lessonWork:{8:{resume:{step:'grammar',grammarIndex:2}}}};
  assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);state.doneLessons.push(8);state.lessonWork[8].resume.step='check';assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);
  state.lessonCheckProgress={8:{session:{i:2}}};assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);state.lastLessonId=999;assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);dom.window.close();
+});
+
+test('reported avoir and article mini-tests require choosing the actual forms with clear context',()=>{
+ const {dom,w}=appEnvironment();
+ for(const id of [3,6]){
+  const l=lesson(w,id),pool=w.FR_A1_DEEPENING.pools(l,w.grammarHtml(l)).find(p=>p.key==='r0');
+  assert.equal(pool.tasks.length,6);assert(pool.tasks.every(t=>t.kind==='form'&&t.q.includes('___')&&t.meaning));
+  if(id===3)assert.deepEqual(Array.from(pool.tasks,t=>t.answer),['ai','as','a','avons','avez','ont']);
+  else{assert.deepEqual(Array.from(pool.tasks,t=>t.answer),['du','de la','de l’','des','un','une']);for(const t of pool.tasks){assert(!t.audio.includes('___'));assert(!t.audio.includes('l’ eau'));if(!['un','une'].includes(t.answer))assert(t.o.every(o=>!['un','une'].includes(o)));}}
+ }
+ const l=lesson(w,5),tasks=w.FR_A1_DEEPENING.pools(l,w.grammarHtml(l)).flatMap(p=>p.tasks),q=tasks.find(t=>t.q.includes('Ich bin ledig'));
+ assert(q.o.every(o=>o.startsWith('Je suis ')));dom.window.close();
 });
