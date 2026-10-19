@@ -6,6 +6,7 @@
   const PASS=80;
   const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
   const norm=s=>String(s||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;:!?¿¡“”„"'’]/g,'').replace(/\s+/g,' ');
+  const choiceEqual=(a,b)=>String(a).normalize('NFC')===String(b).normalize('NFC');
   const shuffled=a=>{const out=[...(a||[])];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;};
   const byId=id=>lessons.find(l=>Number(l.id)===Number(id));
   const spec=id=>specs[String(id)]||{goals:[],tasks:[]};
@@ -32,29 +33,46 @@
       if(out.type==='gap'&&!out.audio)out.audio=out.prompt.replace('___',out.answer).replace(/\s*\([^)]*\)/g,'');
       if(out.type==='choice'){
         const answer=out.answer;
-        out.a=(out.o||[]).findIndex(x=>norm(x)===norm(answer));
+        out.a=(out.o||[]).findIndex(x=>choiceEqual(x,answer));
       }
       return out;
     });
   }
-  function spreadAnswers(tasks){
-    const pending=[...tasks],out=[];
-    while(pending.length){
-      const previous=norm(out.at(-1)?.answer||'');
-      let index=pending.findIndex(q=>norm(q.answer)!==previous&&norm(q.audio||q.answer)!==norm(out.at(-1)?.audio||out.at(-1)?.answer||''));if(index<0)index=pending.findIndex(q=>norm(q.answer)!==previous);if(index<0)index=0;
-      out.push(pending.splice(index,1)[0]);
+  function spreadAnswers(tasks,lead=[]){
+    const pending=[...tasks],out=[...lead];
+    const tokens=q=>new Set(norm(q.audio||q.prompt||q.q).replace(/___/g,' ').split(' ').filter(w=>w.length>2));
+    function penalty(q){
+      let cost=0;const qt=tokens(q);
+      out.slice(-3).reverse().forEach((previous,distance)=>{
+        const weight=1/(distance+1),pt=tokens(previous),overlap=[...qt].filter(w=>pt.has(w)).length/Math.max(1,Math.min(qt.size,pt.size));
+        if(norm(q.answer)===norm(previous.answer))cost+=180*weight;
+        if(q.family&&q.family===previous.family)cost+=120*weight;
+        if(overlap>.6)cost+=70*weight;
+        if(q.type===previous.type)cost+=8*weight;
+      });return cost;
     }
+    while(pending.length){let index=0,best=Infinity;pending.forEach((q,i)=>{const value=penalty(q);if(value<best){best=value;index=i;}});out.push(pending.splice(index,1)[0]);}
     return out;
   }
   function makeLessonTest(lesson){
-    const ps=phraseTasks(lesson),cs=customTasks(lesson);
-    if(Number(lesson?.id)===1){
-      const phrasePick=shuffled(ps).slice(0,8);
-      const byTag={};cs.forEach(t=>(byTag[t.tag]||(byTag[t.tag]=[])).push(t));
-      const grammarPick=[];['être','-er-Verben','venir','s’appeler'].forEach(tag=>grammarPick.push(...shuffled(byTag[tag]||[]).slice(0,2)));
-      return shuffled([...phrasePick,...grammarPick]);
+    const authored=spec(lesson.id).checkTasks;
+    if(!authored)return spreadAnswers(shuffled([...phraseTasks(lesson),...customTasks(lesson)]));
+    const context=shuffled(authored).map(q=>({...q,o:shuffled(q.o)}));
+    // Recognition and productive grammar are complementary. Repeating all six
+    // persons of one verb belongs in drills/Hard Mode, not in this mixed check.
+    const groups=new Map();
+    for(const task of customTasks(lesson).filter(q=>q.type==='gap')){
+      const family='grammar:'+task.tag;
+      if(!groups.has(family))groups.set(family,[]);
+      groups.get(family).push({...task,family,checkKey:`L${lesson.id}-${family}-${norm(task.prompt)}`});
     }
-    return spreadAnswers(shuffled([...ps,...cs].filter((task,index,all)=>all.findIndex(other=>(other.q||other.prompt)===(task.q||task.prompt))===index)));
+    const grammar=[];
+    for(const [family,tasks]of groups){
+      const used=new Set(),limit=lesson.id===1?1:2;
+      for(let task of shuffled(tasks)){if(lesson.id===14&&task.tag==='Verneinung')task={...task,prompt:'Je ___ courir.',answer:'n’aime pas'};const key=norm(task.answer);if(used.has(key))continue;used.add(key);grammar.push(task);if(used.size>=limit)break;}
+    }
+    // Always start with a situation, then preserve this planned order in runTasks.
+    const start=context.shift();return spreadAnswers(shuffled([...context,...grammar]),[start]);
   }
   function testCount(id){const l=byId(id);if(!l)return 0;return makeLessonTest(l).length;}
   function best(state,id){return Number(state?.lessonMasteryBest?.[id]||0);}
@@ -73,10 +91,10 @@
   }
 
   function introHtml(lesson,state){
-    const b=best(state,lesson.id),tried=attempted(state,lesson.id);
+    const b=best(state,lesson.id),tried=attempted(state,lesson.id),count=state.lessonCheckProgress?.[lesson.id]?.session?.ex?.length||testCount(lesson.id);
     return `<div class="lesson-mastery-intro compact">
       <div class="between"><div><div class="eyebrow">LEKTIONS-CHECK</div><strong>Zum Schluss: alles noch einmal gemischt</strong></div><span class="pill ${tried?'green':'gray'}">${tried?(b+' %'):'offen'}</span></div>
-      <p class="muted">${testCount(lesson.id)} Fragen aus den wichtigsten Wendungen und Grammatikmustern dieser Lektion.</p>
+      <p class="muted">${count} Fragen aus den wichtigsten Wendungen und Grammatikmustern dieser Lektion.</p>
     </div>`;
   }
 
@@ -87,9 +105,9 @@
   function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null,progress=null,saveProgress=()=>{}}){
     const session=progress?.session;
     const resume=session?.version===101&&Array.isArray(session.ex)&&session.i>=0&&session.i<session.ex.length;
-    const ex=resume?session.ex:shuffled(tasks),review=window.A1ExerciseReview?.create();
+    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):2,review=window.A1ExerciseReview?.create();
     let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
-    function persist(){if(progress){progress.session={version:101,ex,i,score,draft,response};saveProgress();}}
+    function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
     function feedback(ok,task,restoring=false){
       if(!restoring){if(ok)score++;response={ok,chosen:response?.chosen};persist();}
@@ -109,7 +127,7 @@
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBack">← Zurück</button><span class="pill">${i+1}/${ex.length}</span></div><section class="card" data-bug-task data-bug-lesson="${lessonId||''}" data-bug-step="check" data-bug-question="${esc(q.q||q.prompt)}" data-bug-audio="${esc(q.audio||'')}" style="margin-top:12px"><div class="between"><div><div class="eyebrow">ABSCHLUSSTEST</div><h2>${esc(title)}</h2></div></div>${subtitle?`<p class="muted">${esc(subtitle)}</p>`:''}${body}<div id="masteryFeedback"></div></section>`;
       document.getElementById('masteryBack').onclick=onBack;
       if(q.type==='choice'){
-        const a=(q.o||[]).findIndex(x=>norm(x)===norm(q.answer));
+        const a=(q.o||[]).findIndex(x=>choiceEqual(x,q.answer));
         document.querySelectorAll('[data-mastery-o]').forEach(b=>b.onclick=()=>{
           const chosen=+b.dataset.masteryO,ok=chosen===a;response={chosen};
           document.querySelectorAll('[data-mastery-o]').forEach((x,j)=>{x.disabled=true;if(j===a)x.classList.add('correct');else if(j===chosen)x.classList.add('wrong');});
@@ -122,7 +140,7 @@
         document.getElementById('masteryCheck').onclick=check;input.onkeydown=e=>{if(e.key==='Enter')check();};
       }
       if(response){
-        if(q.type==='choice')document.querySelectorAll('[data-mastery-o]').forEach((b,j)=>{b.disabled=true;b.classList.toggle('correct',norm(q.o[j])===norm(q.answer));b.classList.toggle('wrong',j===response.chosen&&!response.ok);});
+        if(q.type==='choice')document.querySelectorAll('[data-mastery-o]').forEach((b,j)=>{b.disabled=true;b.classList.toggle('correct',choiceEqual(q.o[j],q.answer));b.classList.toggle('wrong',j===response.chosen&&!response.ok);});
         else{document.getElementById('masteryInput').disabled=true;document.getElementById('masteryCheck').disabled=true;}
         feedback(response.ok,q,true);
       }
@@ -133,13 +151,13 @@
   }
 
   function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
-    const tasks=makeLessonTest(lesson),s=spec(lesson.id),b=best(state,lesson.id);
+    const tasks=makeLessonTest(lesson),b=best(state,lesson.id);
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${progress.session&&(progress.session.contentVersion||1)<2?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
-      document.getElementById('masteryStart').onclick=()=>runTasks({progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
+      document.getElementById('masteryStart').onclick=()=>runTasks({progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryBest=state.lessonMasteryBest||{};state.lessonMasteryLast=state.lessonMasteryLast||{};
         state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(Number(state.lessonMasteryBest[lesson.id]||0),pct);save(true);
@@ -178,4 +196,5 @@
   }
   window.FR_A1_MASTERY={PASS,spec,testCount,best,passed,passedCount,completePassedLessons,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
 })();
+
 

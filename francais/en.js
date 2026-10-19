@@ -1949,3 +1949,270 @@ window.FR_A1_EN = Object.freeze({
   "Zurücksetzen fehlgeschlagen. Bitte versuche es erneut.": "Reset failed. Please try again.",
   "Du kannst beliebig oft üben.": "You can practise as often as you like."
 });
+
+
+// English display strings; stored answer values and French audio stay unchanged.
+(() => {
+  const translations={
+    "1":[
+      ["Greet an unfamiliar person in the evening. Which expression fits?", "Bonsoir greets someone in the evening; au revoir says goodbye."],
+      ["Léa asks Paul: « Comment vous vous appelez ? » Paul answers:", "Paul gives his own name using je."],
+      ["Which statement is correct?", "Venir de gives the origin; habiter gives the home address.", ["Anna lives in Lyon and comes from Berlin.", "Anna lives in Berlin and comes from Lyon.", "Anna lives in Lyon and comes from Lyon."]],
+      ["Paul speaks German and only a little French. Which sentence says exactly that?", "Un peu qualifies French here."],
+      ["« Comment allez-vous ? » Say that you are well and thank the person.", "Bien expresses feeling well; merci expresses thanks."],
+      ["You already know Marc’s name and want to find out where he lives.", "Habiter asks about residence, venir about origin."],
+      ["Which form of address does Léa use?", "Toi is the familiar singular form here.", ["Léa uses the familiar form of address.", "Léa uses the polite form of address.", "Léa explicitly addresses several people."]],
+      ["Say “Goodbye” to someone you address politely.", "Au revoir ends the conversation; enchanté belongs to an introduction."]
+    ],
+    "2":[
+      ["Which entry is the first name?", "Prénom means first name."],
+      ["You heard the surname but need to know its letters.", "Épeler asks someone to name the letters."],
+      ["A name badge needs « Zoé ». Which spelling keeps the exact accent?", "Zoé has an acute accent."],
+      ["Copy « François » while keeping the cedilla.", "The cedilla belongs directly below c; the name has no space inside it."],
+      ["« Quelle est votre adresse ? » Which answer gives the requested information?", "Adresse asks for the address, not a name."],
+      ["Someone is speaking too fast. Ask them to change their speaking speed.", "Plus lentement means more slowly."],
+      ["The surname is spelled « M-A-R-T-I-N ». Which entry matches?", "Include all and only the letters given."],
+      ["What does « Comment ça s’écrit ? » ask for?", "S’écrire refers to spelling.", ["The spelling of a word.", "The pronunciation of a word.", "The meaning of a word."]]
+    ],
+    "3":[
+      ["How old is the person speaking?", "J’ai refers to the speaker, mon frère to the brother."],
+      ["Ask for the telephone number.", "Numéro de téléphone means telephone number."],
+      ["A form gives « 17 avril ». Which sentence gives this birth date?", "Dix-sept is 17; avril is April."],
+      ["Which number is « soixante et onze »?", "Soixante et onze is 60 + 11."],
+      ["A number ends with « quatre-vingt-onze, vingt-quatre ». What are the last four digits?", "Quatre-vingt-onze is 91 and vingt-quatre is 24."],
+      ["Which entry is the postal code?", "B3V 1L2 is explicitly identified as the code postal."],
+      ["How many people are in the class?", "Vingt gives the total; dix describes a subgroup."],
+      ["Write the number 100 in words.", "Cent is 100; quatre-vingts is 80 and quatre-vingt-dix is 90."]
+    ],
+    "4":[
+      ["An appointment is at 8:45. Which expression matches?", "A quarter to nine is 8:45."],
+      ["When is the meeting?", "The first sentence describes work; the second gives the meeting.", ["Wednesday at 10:00.", "Tuesday at 10:00.", "Wednesday at 12:00."]],
+      ["You know the day of the appointment and now want its time.", "À quelle heure asks for the time of an event."],
+      ["Which date is meant?", "Premier is the first day, juillet is July.", ["1 July", "1 June", "7 January"]],
+      ["Which statement is correct?", "Du lundi au vendredi includes the weekdays in between.", ["On Wednesday the office opens at 09:00.", "On Wednesday the office opens at 12:00.", "The office is open only on Mondays and Fridays."]],
+      ["Which suggestion fits?", "Nine is in the morning; the other times are in the afternoon."],
+      ["Say you will come later, without specifying another day.", "Plus tard means later; demain means tomorrow."],
+      ["Which time matches exactly?", "The half hour is added to four.", ["4:30", "4:15", "5:30"]]
+    ],
+    "5":[
+      ["Who is Léa?", "Sa fille refers to Paul’s daughter.", ["Paul’s daughter.", "Paul’s sister.", "Paul’s mother."]],
+      ["What does the speaker say about themself?", "Je suis célibataire refers to the speaker.", ["They are single.", "They are married.", "They are divorced."]],
+      ["Describe your sister as small and calm.", "Petite means small and calme means calm."],
+      ["Whose parents does the sentence refer to?", "Ses refers to Léa here.", ["Léa’s.", "The listener’s.", "The speaker’s."]],
+      ["Which statement is correct?", "Un fils and une fille make two children.", ["The family has a son and a daughter.", "The family has two sons.", "The family has two daughters."]],
+      ["Ask how many brothers and sisters someone has.", "Combien asks for the number, not ages or names."],
+      ["You are talking about both your parents. Which sentence is correct in standard written French?", "Ce sont and mes parents agree with the plural."],
+      ["Whom can you visit in Lyon?", "Only mon père is associated with Lyon.", ["The father.", "The mother.", "Both parents."]]
+    ],
+    "6":[
+      ["Politely order a coffee, specifically not water.", "Only café gives the requested drink; all three requests are polite."],
+      ["What must not be in the soup?", "Sans viande excludes meat.", ["Meat.", "Water.", "Vegetables."]],
+      ["What is the drink?", "Pour boire introduces the drink.", ["Water.", "Ice cream.", "Coffee."]],
+      ["You have finished eating and want to pay. What do you ask for?", "L’addition is the bill; le menu is the menu."],
+      ["Which order is confirmed?", "The second speaker corrects only the drink.", ["Tea and a croissant.", "Coffee and a croissant.", "Tea and a sandwich."]],
+      ["What is the person eating today?", "The favourite dish and today’s order are different.", ["Soup.", "Pizza.", "Salad."]],
+      ["« Qu’est-ce que vous prenez ? » You choose the soup.", "The question asks for the actual order."],
+      ["Ask for an unspecified amount of water without naming a particular bottle.", "De l’eau names water without a container or precise quantity."]
+    ],
+    "7":[
+      ["What is the total price?", "Ça fait neuf euros gives the total."],
+      ["A price is €19.50. Which sentence matches exactly?", "Dix-neuf is 19; cinquante refers to the 50 cents here."],
+      ["Which size is available?", "The negative applies only to quarante-deux."],
+      ["You want to pay by card. Ask whether this is possible.", "Payer par carte means to pay by card."],
+      ["The price is too high. Which sentence says exactly that?", "Cher describes price; grand and petit describe size."],
+      ["How many tomatoes are ordered?", "Un kilo refers to the tomatoes.", ["One kilo.", "Two kilos.", "Three kilos."]],
+      ["Instead of one kilo of apples, order just two hundred grams.", "The first answer changes the amount but keeps the same product."],
+      ["You know the size of the item and want its price.", "Combien ça coûte asks about price, not size or payment method."]
+    ],
+    "8":[
+      ["How many rooms are mentioned?", "Two bedrooms and a living room make three rooms.", ["Three.", "Two.", "Four."]],
+      ["Which statement is correct?", "Six cents is 600; par mois means per month.", ["The rent is €600 per month.", "The rent is €600 per week.", "The rent is €60 per month."]],
+      ["Where is the bag?", "Sous means under; sur refers to the lamp here.", ["Under the table.", "On the table.", "Behind the table."]],
+      ["You want to see the apartment before deciding.", "Visiter means to view the apartment here."],
+      ["What does the apartment have?", "The negative excludes a balcony.", ["A garden without a balcony.", "A balcony without a garden.", "A garden and a balcony."]],
+      ["Ask the landlord for the apartment’s address.", "Adresse asks for the address."],
+      ["Where is the table?", "La table is associated with the kitchen.", ["In the kitchen.", "In the bedroom.", "In the living room."]],
+      ["You are looking for an apartment with two rooms near the centre.", "Appartement avec deux pièces describes a whole apartment with two rooms."]
+    ],
+    "9":[
+      ["What do you do after the pharmacy?", "Après la pharmacie belongs to the instruction tournez à droite.", ["Turn right.", "Turn left.", "Continue straight ahead."]],
+      ["Which bus goes to the museum?", "The other line is explicitly excluded.", ["Line 8.", "Line 3.", "Line 13."]],
+      ["You are going to Lyon. Which sentence matches?", "Quai quatre is the platform for Lyon."],
+      ["Which statement is correct?", "Retard describes a delay.", ["The train is 20 minutes late.", "The train leaves 20 minutes early.", "The train leaves from platform 20."]],
+      ["You want to find the railway station. Ask politely where it is.", "Où est la gare asks for the station’s location."],
+      ["How long does walking take?", "À pied means on foot; en bus is a different option.", ["5 minutes.", "2 minutes.", "7 minutes."]],
+      ["Give directions: first straight ahead, then left.", "Puis marks the second step; gauche means left."],
+      ["You want to know where to catch the bus.", "Arrêt de bus means bus stop."]
+    ],
+    "10":[
+      ["Which statement is correct?", "The person studies and works only on Saturdays.", ["The person studies and works in a café on Saturdays.", "The person teaches in a school on Saturdays.", "The person works in a café every day."]],
+      ["When does work end?", "Terminer gives the end, commencer the start.", ["16:00.", "08:00.", "18:00."]],
+      ["Ask about someone’s occupation.", "Métier asks about occupation, not workplace or hours."],
+      ["When are classes?", "J’ai cours goes with le matin here.", ["In the morning.", "In the afternoon.", "In the evening."]],
+      ["You work in an office, rather than at home.", "Dans un bureau gives the office as the workplace."],
+      ["What does the person do on Fridays?", "The second sentence explicitly describes Friday.", ["They have classes.", "They work.", "They start a new job."]],
+      ["After class Léa says: « Je dois faire mes devoirs. » What must she do?", "Devoirs means homework in this context.", ["Do her homework.", "Attend her class.", "Change her occupation."]],
+      ["Say that the course starts at nine, rather than your work.", "Cours means the course; commence gives its start."]
+    ],
+    "11":[
+      ["When does the person get up?", "Se lever means to get up; partir means to leave.", ["07:00.", "08:00.", "06:00."]],
+      ["What happens first?", "D’abord marks the first step.", ["Having breakfast.", "Taking the bus.", "Coming home."]],
+      ["What is the person doing right now?", "Maintenant and être en train de identify the current activity.", ["Reading.", "Working.", "Having breakfast."]],
+      ["When does the person return on Fridays?", "Mais le vendredi marks the exception.", ["16:00.", "18:00.", "17:00."]],
+      ["Say that you are having breakfast without claiming to prepare it.", "Prendre le petit-déjeuner means to have breakfast; préparer means to prepare."],
+      ["What happens after watching television?", "Se coucher means to go to bed.", ["The person goes to bed.", "The person gets up.", "The person goes to work."]],
+      ["You know when someone gets up. Ask what time they return.", "Rentrer asks about coming back."],
+      ["You are working right now; describe this particular moment.", "Être en train de explicitly describes an ongoing activity."]
+    ],
+    "12":[
+      ["What symptoms does the person have?", "Je n’ai pas de fièvre excludes fever.", ["A headache without fever.", "Fever without a headache.", "A headache and fever."]],
+      ["Since when has the person been ill?", "Depuis gives the start of the symptoms; jeudi is the appointment.", ["Since Monday.", "Since Thursday.", "Since Tuesday."]],
+      ["You want to buy medicine for a cold.", "Contre le rhume identifies the purpose of the requested medicine."],
+      ["An exercise card says: « Deux fois par jour, le matin et le soir. » Which statement matches?", "Two times per day are specified.", ["Twice a day: morning and evening.", "Twice in the morning.", "Once a day: in the evening."]],
+      ["Which appointment fits?", "Nine is in the morning."],
+      ["You need assistance. Ask politely for help.", "M’aider means to help me."],
+      ["Where does the person go first?", "Ensuite places the pharmacy after the doctor’s appointment.", ["To the doctor.", "To the pharmacy.", "Home."]],
+      ["Say that you have toothache.", "Dents means teeth; dos means back."]
+    ],
+    "13":[
+      ["When is good weather forecast?", "Demain goes with the forecast il va faire beau.", ["Tomorrow.", "Today.", "Yesterday."]],
+      ["What colour are the trousers?", "Noir describes pantalon; bleue describes veste.", ["Black.", "Blue.", "Red."]],
+      ["It is raining. Say that you need an umbrella.", "Parapluie means umbrella."],
+      ["How warm will it be tomorrow?", "Vingt degrés is the forecast for tomorrow.", ["20 degrees.", "12 degrees.", "22 degrees."]],
+      ["Which season is described as cold?", "Hiver means winter; été means summer.", ["Winter.", "Summer.", "Spring."]],
+      ["Describe a small blue jacket in the usual word order.", "Petite precedes veste; bleue follows and agrees with the feminine noun."],
+      ["Which statement is correct?", "The negative applies to rain, not wind.", ["It is windy but it is not raining.", "It is raining but there is no wind.", "It is raining and windy."]],
+      ["Point to several shoes and say “these shoes”.", "Ces indicates the plural of chaussure."]
+    ],
+    "14":[
+      ["What does the person prefer doing on Sundays?", "Préfère identifies the preferred activity.", ["Reading.", "Playing tennis.", "Cooking."]],
+      ["You like travelling but do not like running.", "The negative must apply to courir."],
+      ["Who is going to the cinema with the person?", "Julie goes to the cinema; Paul takes part in sport.", ["Julie.", "Paul.", "Julie and Paul."]],
+      ["What does the person enjoy doing?", "Cuisine means cooking in this context.", ["Cooking.", "Eating in a restaurant.", "Shopping for food."]],
+      ["Invite someone to the cinema on Saturday.", "On va…samedi ? makes a concrete suggestion to go together."],
+      ["What does the speaker say about themself?", "Moi marks the switch from Julie to the speaker.", ["They prefer reading at home.", "They like travelling best.", "They never read."]],
+      ["Ask openly what someone does at weekends, without naming a particular activity.", "The open question allows different weekend activities."],
+      ["Say that you play tennis, rather than just liking it.", "Jouer au identifies playing the sport."]
+    ],
+    "15":[
+      ["How many nights are booked?", "Trois nuits gives the length of stay; deux personnes gives the guests.", ["Three.", "Two.", "Five."]],
+      ["Ask whether breakfast is included in the room price.", "Inclus asks whether it is included, not where or when it is served."],
+      ["You are travelling to Paris and also want to come back.", "Aller-retour covers the outward and return journeys."],
+      ["When does the train depart?", "Partir is departure; arriver is arrival.", ["08:00.", "10:00.", "18:00."]],
+      ["When is arrival planned?", "Aller + arriver describes the planned arrival on Monday.", ["Monday.", "Sunday.", "Wednesday."]],
+      ["How much is the return ticket?", "The stated aller-retour price is 36 euros."],
+      ["Ask for the train’s departure time.", "À quelle heure part… asks when it departs."],
+      ["Reserve a room for two nights without specifying the number of guests.", "Nuits counts nights; personnes counts people."]
+    ],
+    "16":[
+      ["Accept an invitation but explain that you can arrive only an hour later.", "The answer accepts and mentions the later arrival."],
+      ["When can the person come?", "Je peux venir gives possible arrival, rather than dinner’s start.", ["19:30.", "19:00.", "18:30."]],
+      ["Keep the meeting but ask to move it to tomorrow.", "Reporter à demain reschedules; annuler cancels."],
+      ["Which reply expresses the reason appropriately?", "Ne peux pas describes an obstacle; ne veux pas would mean unwillingness."],
+      ["It is your friend’s birthday today.", "Anniversaire refers to the birthday; année means year."],
+      ["Call Paul and introduce yourself as Anna.", "Paul is being called; Anna is calling."],
+      ["What has been agreed?", "Oui, avec plaisir accepts the invitation.", ["The person accepts dinner on Saturday.", "The person asks to meet on Sunday.", "The person cancels Saturday’s dinner."]],
+      ["What does the person offer?", "Mais pas de boisson excludes a drink.", ["To bring a dessert.", "To bring a drink.", "To bring dessert and drinks."]]
+    ],
+    "17":[
+      ["Which entry belongs in the field Nom?", "Nom is the surname here."],
+      ["Where should the form be signed?", "En bas means at the bottom.", ["At the bottom of the form.", "At the top of the form.", "On a second form."]],
+      ["Explicitly ask for a reply to your message.", "Répondre means to reply; rappeler means to call back."],
+      ["Write about a course to request information rather than confirm enrolment.", "Demander des informations requests information; confirmer confirms."],
+      ["Which number is the room number?", "Salle dix-huit gives the room; neuf heures is the time."],
+      ["You must enter your email address. Which entry fits this field?", "The email address contains @ and a domain."],
+      ["Which question asks for nationality rather than place of residence?", "Nationalité asks about nationality."],
+      ["You already know the price and want to know the class times.", "Horaires means the course schedule."]
+    ],
+    "18":[
+      ["You heard a question but did not understand it. Ask for an explanation with an example.", "Expliquer avec un exemple requests an explanation, rather than spelling or a call back."],
+      ["The person speaks too fast. Politely ask them to speak more slowly.", "Plus lentement changes speed; plus fort changes volume."],
+      ["Which room number applies after the correction?", "Non corrects the first number."],
+      ["Ask what a word means, rather than how to spell it.", "Veut dire asks about meaning."],
+      ["Ask for information particularly politely.", "J’aimerais with s’il vous plaît makes the request polite."],
+      ["What needs explaining?", "Mais pas la dernière identifies the sentence not understood.", ["The last sentence.", "The first sentence.", "Both sentences."]],
+      ["Politely suggest looking at the exercise together.", "Pourrait makes a polite suggestion; doit states an obligation."],
+      ["What is the person missing?", "Je n’ai pas de stylo identifies the missing object.", ["A pen.", "A form.", "An address."]]
+    ],
+    "19":[
+      ["What does l’hôtel refer to?", "The definite article refers back to the hotel already introduced.", ["The previously mentioned hotel.", "The previously mentioned station hall.", "Several hotels."]],
+      ["Name several baguettes. Which form is correct in standard writing?", "Both the article and noun take the plural form."],
+      ["Point to several friends. Which sentence is correct in standard written French?", "Ce sont matches des amis; c’est des… is informal speech."],
+      ["What is behind the museum?", "Gare means railway station.", ["The station.", "The hotel.", "The café."]],
+      ["Hand over your passport and say “Here is my passport”.", "Passeport is a passport; billet is a ticket."],
+      ["Order one baguette and one coffee. Which combination is correct?", "Baguette is feminine; café is masculine."],
+      ["According to the reply, who owns the keys?", "Mes is from the answering person’s perspective.", ["The person answering.", "The person asking.", "Both people jointly."]],
+      ["Put the definite article before hôtel.", "The definite article is elided before silent h."]
+    ],
+    "20":[
+      ["Say “I am not working today” in standard written French.", "Ne…pas negates today’s activity; jamais would mean never."],
+      ["Which statement is correct?", "Le vendredi, je ne travaille pas states the exception.", ["The person does not work on Fridays.", "The person does not work on Thursdays.", "The person works only on Fridays."]],
+      ["Say that you never watch television on Sundays.", "Jamais means never; aujourd’hui would refer only to today."],
+      ["A sign prohibits eating but says nothing about drinking.", "Manger means eating; ne faut pas states the prohibition."],
+      ["Which means of transport does the person use?", "The positive statement is je prends le bus.", ["The bus.", "The train.", "The car."]],
+      ["Booking the room is compulsory. Which sentence matches?", "Il faut expresses obligation; on peut expresses possibility."],
+      ["Who works in the afternoon?", "Vous refers to the people addressed.", ["The person or group being addressed.", "The speaker and their group.", "Both groups work only in the morning."]],
+      ["Which meaning is exact?", "Jamais expresses never; the sentence says nothing about ownership.", ["I never take the car.", "I am not taking the car today.", "I do not have a car."]]
+    ],
+    "21":[
+      ["The answer is « À Lyon ». Which question fits?", "À Lyon answers a question about location."],
+      ["Which question does this sentence answer?", "Depuis septembre gives the start of an ongoing situation."],
+      ["You see someone in a photograph and ask who they are.", "Qui asks about a person."],
+      ["Who is Julie coming with?", "Ses parents refers to Julie.", ["Her parents.", "Her sister.", "The speaker’s parents."]],
+      ["Ask only whether the person works, without asking where or when.", "Without another question word this is a yes/no question."],
+      ["Who does eux refer to?", "Eux refers back to the two men mentioned.", ["Marc and Paul.", "Only Marc.", "The speaker and Paul."]],
+      ["You want the ticket price as an answer. Which question do you ask?", "Combien coûte asks about the price."],
+      ["« Moi, j’habite à Lyon. Et toi ? » Reply for yourself.", "Reply from your own perspective with moi/je."]
+    ],
+    "22":[
+      ["What happened yesterday?", "Hier and passé composé mark the past museum visit.", ["A museum visit.", "A day at work.", "A planned departure."]],
+      ["You have just eaten; the meal is finished.", "Venir de + infinitive refers to a just-completed action."],
+      ["When was the arrival?", "Il y a places the arrival in the past relative to today.", ["Two days ago.", "In two days.", "Three days ago."]],
+      ["What happens last?", "Enfin marks the last step.", ["Returning.", "Taking the bus.", "Visiting the museum."]],
+      ["You have lived in Lyon since January and still live there.", "Depuis gives the start of an ongoing situation."],
+      ["Anna speaks about herself: yesterday she went to the cinema.", "With être, Anna needs the feminine form allée in passé composé."],
+      ["Which activity is explicitly completed?", "J’ai travaillé hier describes the past activity.", ["Yesterday’s work.", "Work at this moment.", "Tomorrow’s work."]],
+      ["You plan to leave in three days.", "Futur proche and dans express the future plan."]
+    ],
+    "23":[
+      ["How much cheese is needed?", "Deux cents grammes belongs to fromage."],
+      ["What is excluded?", "Pas de lait means no milk.", ["Milk.", "Water.", "Carrots."]],
+      ["Use a knife to cut vegetables, rather than to cut bread.", "Couper les légumes gives the exact purpose."],
+      ["What comes first?", "Puis marks the second step.", ["Cutting the tomatoes.", "Adding the cheese.", "Cutting the cheese."]],
+      ["Warn against too much salt without prohibiting all salt.", "Trop de excludes an excessive amount, not all salt."],
+      ["How many portions are planned?", "Pour quatre personnes gives the people, not the ingredient count.", ["Four.", "Two.", "Six."]],
+      ["What is used to mix?", "Cuillère means spoon and goes with mélangez.", ["A spoon.", "A knife.", "A fork."]],
+      ["Name a small unspecified amount of milk.", "Un peu de means a little without specifying an exact amount."]
+    ],
+    "24":[
+      ["Where does the person come from?", "Venir du gives the origin; aller en gives the destination.", ["Canada.", "France.", "Both countries."]],
+      ["Where is Paul going on Saturday?", "Il va au Canada gives the destination.", ["To Canada.", "To Germany.", "To France."]],
+      ["You must leave at eight; it is not just a possibility.", "Devoir expresses obligation; pouvoir expresses possibility."],
+      ["What happens on Friday?", "Rentrer means to return.", ["The return.", "The departure.", "Buying the ticket."]],
+      ["How does the group travel to Paris?", "En bus goes with the second destination, Paris.", ["By bus.", "By train.", "By plane."]],
+      ["How much is Paul’s ticket?", "Le billet de Paul costs trente euros."],
+      ["Say that you will visit Lyon, rather than describing a past visit.", "Aller + infinitive describes a planned visit."],
+      ["Where do the friends come from?", "Nos amis is the subject of the second sentence.", ["From the USA.", "From Germany.", "From Canada."]]
+    ]
+  };
+  const dictionary={};
+  for(const [id,rows] of Object.entries(translations))rows.forEach(([question,explanation,options],i)=>{
+    const task=window.FR_A1_MASTERY_SPECS?.[id]?.checkTasks?.[i];if(!task)return;
+    const quoted=task.q.match(/^«.+?»\s*/);
+    dictionary[task.q]=(quoted?quoted[0]:'')+question;
+    dictionary[task.explanation]=explanation;
+    if(options)task.o.forEach((option,j)=>dictionary[option]=options[j]);
+  });
+  window.FR_A1_MASTERY_CHECK_EN=dictionary;
+})();
+
+// Lesson-check additions preserve the same DOM translation and saved answer IDs.
+window.FR_A1_EN = Object.freeze({...window.FR_A1_EN,...window.FR_A1_MASTERY_CHECK_EN,
+  "Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.": "Your current attempt is preserved. The revised questions appear in your next new attempt.",
+  "Kann ich mit Karte bezahlen?": "Can I pay by card?",
+  "Die Apotheke ist am Bahnhof.": "The pharmacy is at the station.",
+  "Der Garten ist hinter dem Haus.": "The garden is behind the house.",
+  "Ich habe Zahnschmerzen.": "I have toothache.",
+  "Wie sind die Unterrichtszeiten?": "What are the class times?",
+  "Mein Geburtsdatum ist der 3. Mai.": "My date of birth is 3 May."
+});
