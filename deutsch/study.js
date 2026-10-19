@@ -113,15 +113,22 @@
     root.querySelectorAll('.lesson-topic-detail').forEach(el=>el.remove());
     const units=content[lesson.id];
     const prepared=units.map((unit,unitIndex)=>{
-      const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${esc(b)} ${speakBtn(unit.conjugation?a.split(' (')[0].split(' / ')[0]+' '+b:b)}${unit.conjugation?`<small class="conjugation-example">${esc((a.split(' / ')[0].split(' (')[0][0].toUpperCase()+a.split(' / ')[0].split(' (')[0].slice(1))+' '+b+' Deutsch sprechen.')}</small>`:''}</td></tr>`).join('')}</tbody></table></div>`:'';
+      const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${esc(b)} ${speakBtn(unit.conjugation?a.split(' (')[0].split(' / ')[0]+' '+b:b)}${unit.conjugation?`<small class="conjugation-example">${esc(((a==='er / sie / es'?'Sie':a.split(' / ')[0].split(' (')[0][0].toUpperCase()+a.split(' / ')[0].split(' (')[0].slice(1)))+' '+b+' Deutsch sprechen.')}</small>`:''}</td></tr>`).join('')}</tbody></table></div>`:'';
       const examples=[...unit.rows,...(unit.extra||[])];
       const vocabulary=unit.vocabulary?`<div class="deepening-vocabulary">${unit.vocabulary.map(p=>row(p,speakBtn)).join('')}</div>`:'';
-      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body">${lesson.id===1&&unitIndex===0?window.DE_A1_PRONOUNS?.guide(speakBtn)||'':''}<div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${examples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
+      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body"><div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${examples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
     }).join('');
     const taught=new Set(units.flatMap(u=>[...u.rows,...(u.extra||[])].map(p=>plain(p[0]))));
     const extra=[...(lesson.referencePhrases||lesson.phrases),...lesson.phrases,...(window.DE_A1_APPLICATIONS[lesson.id]?.hints||[])].filter(p=>!taught.has(p[0])&&taught.add(p[0]));
     const holder=document.createElement('div');holder.innerHTML=prepared;
-    if(extra.length)holder.lastElementChild.querySelector('.grammar-detail-body').insertAdjacentHTML('beforeend',`<div class="deepening-background"><strong>Autres exemples de la leçon</strong>${extra.map(p=>row(p,speakBtn)).join('')}</div>`);
+    if(lesson.id===1){
+      // Templates repeat the patterns already taught; keep concrete alternatives beside their verb.
+      for(const pair of extra.filter(p=>!p[0].includes('…'))){
+        const title=/^Ich bin|^Mein Hobby/.test(pair[0])?'sein – conjugaison':/^Mein Name|^Ich spreche/.test(pair[0])?'heißen et sprechen – conjugaison':null;
+        const target=title?[...root.querySelectorAll('.grammar-detail')].find(d=>d.querySelector('summary')?.textContent===title)?.querySelector('.grammar-detail-body'):holder.firstElementChild.querySelector('.deepening-examples');
+        target?.insertAdjacentHTML('beforeend',row(pair,speakBtn));
+      }
+    }else if(extra.length)holder.lastElementChild.querySelector('.grammar-detail-body').insertAdjacentHTML('beforeend',`<div class="deepening-background"><strong>Autres exemples de la leçon</strong>${extra.map(p=>row(p,speakBtn)).join('')}</div>`);
     return `<div class="lesson-deepening">${holder.innerHTML}${root.innerHTML}</div>`;
   }
   window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml};

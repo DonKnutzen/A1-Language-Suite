@@ -1025,4 +1025,9 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 
 .answer-audio-repeat{display:block;width:auto;max-width:100%;min-height:44px;margin-top:10px;padding:8px 12px;font:inherit;font-size:.86rem;white-space:normal}.answer-audio-repeat:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
-.pronoun-guide{margin:0 0 18px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.pronoun-guide h4{margin:0 0 10px}.pronoun-guide p{font-size:.9rem;line-height:1.5;margin:12px 0 0}.pronoun-guide .phrase-row{padding:10px 0}.pronoun-hint{font-size:.85rem;color:var(--accent-ink);background:var(--accent-soft);padding:8px 10px;border-radius:9px;margin:0 0 12px;line-height:1.4}
+.pronoun-guide{margin:14px 0 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.pronoun-guide p{font-size:.85rem;line-height:1.5;margin:9px 0 0}
+.pronoun-examples{display:grid;gap:4px;margin-top:6px}
+.pronoun-example{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.88rem}
+.pronoun-example .speak-btn{width:30px;height:30px;min-width:30px;font-size:14px}
+.pronoun-hint{font-size:.85rem;color:var(--accent-ink);background:var(--accent-soft);padding:8px 10px;border-radius:9px;margin:0 0 12px;line-height:1.4}

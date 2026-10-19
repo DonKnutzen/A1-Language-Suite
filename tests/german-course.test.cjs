@@ -162,11 +162,11 @@ test('German lessons distinguish female, plural and polite Sie and keep all thre
   const tasks=w.DE_A1_GRAMMAR_DRILLS.topics[title].tasks;for(const role of ['female','plural','formal'])assert(tasks.some(q=>q.pronounRole===role),`${title}: ${role}`);
  }
  const unit=w.DE_A1_STUDY.content[2][1],tasks=w.DE_A1_STUDY.unitTasks(unit);for(const role of ['female','plural','formal'])assert(tasks.some(q=>q.pronounRole===role));
- assert.equal(tasks.length,10);assert(!unit.table.some(row=>row[0]==='sie / Sie'));
+ assert.equal(tasks.length,10);assert.equal(unit.table.length,6);assert(unit.table.some(row=>row[0]==='sie / Sie')); 
  const html=w.DE_A1_STUDY.grammarHtml(w.testData.lessons[0],w.testRefs(1),s=>`<button data-speak="${s}">🔊</button>`),panel=w.document.createElement('div');panel.innerHTML=html;
  assert(panel.querySelector('.pronoun-guide'));assert(panel.querySelector('.pronoun-guide').textContent.includes('En début de phrase'));
- assert(![...panel.querySelectorAll('td,th')].some(cell=>/^sie\s*\/\s*Sie$/.test(cell.textContent)));
- for(const l of w.testData.lessons){const ref=w.document.createElement('div');ref.innerHTML=w.testRefs(l.id);assert(![...ref.querySelectorAll('td,th')].some(cell=>/^sie\s*\/\s*Sie$/.test(cell.textContent)));assert([...ref.querySelectorAll('[data-speak]')].every(b=>!/(?:elle|ils|politesse|vous)\b/.test(b.dataset.speak)));}
+ assert([...panel.querySelectorAll('td,th')].some(cell=>/^sie\s*\/\s*Sie$/.test(cell.textContent)));assert(!panel.firstElementChild.firstElementChild.querySelector('.pronoun-guide'));assert(!panel.querySelector('.deepening-background')); 
+ for(const l of w.testData.lessons){const ref=w.document.createElement('div');ref.innerHTML=w.testRefs(l.id);assert([...ref.querySelectorAll('[data-speak]')].every(b=>!/(?:elle|ils|politesse|vous)\b/.test(b.dataset.speak)));}
  assert.equal(panel.querySelector('.pronoun-guide').querySelectorAll('[data-speak]').length,3);dom.window.close();
 });
 test('German mini-test length follows the topic while opening and final checks retain their distinct purpose',()=>{

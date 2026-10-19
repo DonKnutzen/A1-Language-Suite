@@ -347,11 +347,7 @@ window.DE_A1_STUDY_CONTENT = {
           "kannst"
         ],
         [
-          "er / es",
-          "kann"
-        ],
-        [
-          "sie (elle)",
+          "er / sie / es",
           "kann"
         ],
         [
@@ -359,15 +355,11 @@ window.DE_A1_STUDY_CONTENT = {
           "können"
         ],
         [
-          "ihr (vous, familier)",
+          "ihr",
           "könnt"
         ],
         [
-          "sie (ils/elles)",
-          "können"
-        ],
-        [
-          "Sie (vous, politesse)",
+          "sie / Sie",
           "können"
         ]
       ],

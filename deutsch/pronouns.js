@@ -20,11 +20,9 @@
   }
   function hint(task){return labels[role(task)]||'';}
   function guide(speakBtn=()=> ''){
-    return `<section class="pronoun-guide"><h4>sie ou Sie ?</h4><div class="pronoun-examples">${[
-      ['sie = elle','Anna ist hier. Sie ist hier.','Anna est ici. Elle est ici.'],
-      ['sie = ils / elles','Anna und Paul sind hier. Sie sind hier.','Anna et Paul sont ici. Ils sont ici.'],
-      ['Sie = vous, par politesse','Frau Martin, Sie sind hier.','Madame Martin, vous êtes ici.']
-    ].map(([title,de,fr])=>`<div class="phrase-row"><div><strong>${title}</strong><div>${de}</div><small>${fr}</small></div>${speakBtn(de)}</div>`).join('')}</div><p><strong>En début de phrase, les trois s’écrivent Sie.</strong> Regarde le verbe et le contexte : <strong>Sie ist = elle</strong> ; <strong>Sie sind = ils/elles ou vous</strong>. Les trois se prononcent pareil.</p><p><strong>Sie de politesse</strong> s’écrit toujours avec une majuscule, même au milieu d’une phrase. Il peut désigner <strong>une personne ou plusieurs</strong>. Avec des proches : <strong>ihr seid</strong> = vous êtes (plusieurs personnes, familier).</p></section>`;
+    return `<aside class="pronoun-guide"><strong>sie ou Sie ?</strong><div class="pronoun-examples">${[
+      ['sie ist','elle est'],['sie sind','ils / elles sont'],['Sie sind','vous êtes · politesse']
+    ].map(([de,fr])=>`<div class="pronoun-example"><span><strong>${de}</strong> — ${fr}</span>${speakBtn(de)}</div>`).join('')}</div><p><strong>En début de phrase, les trois s’écrivent Sie.</strong> Le verbe et le contexte donnent le sens. Le <strong>Sie de politesse</strong> garde toujours sa majuscule et désigne une ou plusieurs personnes. <strong>ihr</strong> = vous, entre proches (plusieurs personnes).</p></aside>`;
   }
   window.DE_A1_PRONOUNS={role,hint,guide};
 })();
