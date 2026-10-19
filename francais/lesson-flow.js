@@ -23,7 +23,7 @@
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${step('Hard Mode',p.hardMode?.passedAt?'✓':masteryDone?'—':'🔒',!!p.hardMode?.passedAt)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
@@ -32,7 +32,8 @@
   }
   function resumePosition(lesson,state){
     const p=state.lessonWork?.[lesson.id]||{},saved=p.resume;
-    const allowed=['listen','grammar','grammar-check','comprehension','check','speak','write'];
+    if(saved&&['speak','write'].includes(saved.step))return {step:'check'};
+    const allowed=['listen','grammar','grammar-check','comprehension','check','speak','write','hard'];
     if(saved&&allowed.includes(saved.step))return {...saved};
     if(state.lessonCheckProgress?.[lesson.id]?.session)return {step:'check',mode:'exercise'};
     if(p.session)return {step:'listen',mode:'exercise'};
@@ -62,7 +63,7 @@
     const minWords=explicit?Number(explicit[1]):opts.targetLang==='fr'&&l.id===2?1:3;
     let comparedText=null;
     const checkReady=()=>complete()||masteryAttempted()||(passed()&&p.comprehension?.done===true);
-    const optionalTitle='Freiwillige Prüfungsvorbereitung';
+    const optionalTitle='Hard Mode';
     const steps=[['listen','Hören & Verstehen'],['grammar','Vertiefung'],...(lesson1?[['grammar-check','Abschluss-Test']]:[]),['comprehension','Hörverstehen'],...(hasMastery?[['check','Lektions-Check']]:[])];
     let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
     const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
@@ -167,10 +168,10 @@
       });
     }
     function goStep(key){
-      if(!steps.some(([id])=>id===key)&&!['speak','write'].includes(key))return;
+      if(!steps.some(([id])=>id===key)&&!['speak','write','hard'].includes(key))return;
       if(activeStep==='grammar'&&steps.findIndex(([id])=>id===key)>steps.findIndex(([id])=>id==='grammar'))markGrammarRead();
       activeStep=key;
-      if(key==='speak'||key==='write')drawApplication();else drawOverview();
+      if(key==='hard')drawHardMode();else if(key==='speak'||key==='write')drawApplication();else drawOverview();
     }
     function save(completed=false){
       if(masteryBest()>=80&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);
@@ -199,8 +200,13 @@
       return `<button class="soft-btn lesson-help-toggle" id="speechHelpBtn" aria-expanded="false" aria-controls="speechHelp">💡 ${esc(L.dialogueHelp)}</button><div class="lesson-writing-help lesson-help-content" id="speechHelp" hidden>${body}</div>`;
     }
     function renderExtras(){
-      if(view.querySelector('.lesson-optional'))return;
-      view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">Zusätzlich kannst du Sprechen und Schreiben üben. Diese Aufgaben sind freiwillig und zählen nicht zum Lektionsabschluss.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${p.speakingDone?'✓ ':''}${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${p.writingDone?'✓ ':''}${esc(L.write)}</button></div></section>`);
+      if(view.querySelector('.hard-entry')||!window.FR_A1_HARD_MODE)return;
+      FR_A1_HARD_MODE.renderEntry({lesson:l,view,state,onStart:()=>goStep('hard')});
+    }
+    function drawHardMode(){
+      if(!opts.renderHardMode)return goStep('check');
+      remember('exercise');window.A1Voice?.cancel();
+      opts.renderHardMode({onBack:()=>goStep('check')});
     }
     function drawMastery(){
       window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});
@@ -350,7 +356,7 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     const position=opts.resume?resumePosition(l,state):{step:'listen'};
-    activeStep=steps.some(([id])=>id===position.step)||['speak','write'].includes(position.step)?position.step:'listen';
+    activeStep=steps.some(([id])=>id===position.step)||['speak','write','hard'].includes(position.step)?position.step:'listen';
     grammarIndex=Number.isInteger(position.grammarIndex)?Math.max(0,Math.min(grammarPages.length-1,position.grammarIndex)):0;
     audioPage=Number.isInteger(position.audioPage)?Math.max(0,Math.min(audioPageCount-1,position.audioPage)):0;
     if(position.nextIncomplete&&activeStep==='grammar'){
@@ -358,7 +364,8 @@
       if(first>=0)grammarIndex=first;
       else activeStep=lesson1&&!FR_A1_LESSON1.grammarCheckTried(state)?'grammar-check':'comprehension';
     }
-    if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
+    if(activeStep==='hard')drawHardMode();
+    else if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
     else if(activeStep==='check'&&position.mode==='exercise'){
       drawMastery();if(state.lessonCheckProgress?.[l.id]?.session)view.querySelector('#masteryStart')?.click();
     }else if(activeStep==='grammar-check'&&position.mode==='exercise'){
@@ -375,4 +382,5 @@
   }
   window.A1LessonFlow={render,listProgress,resumePosition,continuation};
 })();
+
 
