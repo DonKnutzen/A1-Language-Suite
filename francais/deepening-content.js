@@ -1802,7 +1802,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Gegenstände zeigen & beschreiben",
-      "rule": "C’est + Singular, ce sont + Plural. Voici weist auf etwas hier hin, voilà auf etwas dort. Für drei kurze Sätze kannst du einen Gegenstand mit c’est, mehrere mit ce sont und einen weiteren mit voici vorstellen.",
+      "rule": "C’est + Singular, ce sont + Plural. Voici und voilà stellen etwas vor oder weisen darauf hin; voilà kann auch etwas unmittelbar Gezeigtes begleiten. Für drei kurze Sätze kannst du einen Gegenstand mit c’est, mehrere mit ce sont und einen weiteren mit voici vorstellen.",
       "pairs": [
         [
           "C’est un ordinateur.",
