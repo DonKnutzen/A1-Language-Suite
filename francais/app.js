@@ -543,12 +543,12 @@ function renderPractice(){
   view.innerHTML=`
     <section class="card hero"><h2>Üben</h2><p class="muted">Die Kernübungen bestehen jetzt aus ungefähr 10 Fragen pro Runde.</p></section>
     <div class="grid">
-      <button class="practice-card" id="pVocab"><span class="icon">🧠</span><strong>Vokabeln</strong><small>${lessons.reduce((s,l)=>s+l.phrases.length,0)} Kernphrasen mit Audio</small></button>
-      <button class="practice-card" id="pGrammar"><span class="icon">🧩</span><strong>Grammatik & Sprachbausteine</strong><small>${D.grammarSets.length} Sets · ${D.grammarSets.reduce((s,x)=>s+x.questions.length,0)} Fragen</small></button>
-      <button class="practice-card" id="pListen"><span class="icon">🎧</span><strong>Hören</strong><small>${totalListening()} Audioaufgaben · 10 pro Runde</small></button>
-      <button class="practice-card" id="pRead"><span class="icon">📖</span><strong>Lesen</strong><small>${totalReading()} Aufgaben · 10 pro Runde</small></button>
-      <button class="practice-card" id="pWrite"><span class="icon">✍️</span><strong>Schreiben</strong><small>${D.forms.length} Formulare à 10 Felder + ${D.writing.length} Texte</small></button>
-      <button class="practice-card" id="pSpeak"><span class="icon">🎤</span><strong>Sprechen</strong><small>${D.interview.length} Fragen · ${D.infoCards.length} Karten · ${D.roleplays.length} Rollenspiele</small></button>
+      <button class="practice-card" id="pVocab">${A1Visual.icon('vocab')}<strong>Vokabeln</strong><small>${lessons.reduce((s,l)=>s+l.phrases.length,0)} Kernphrasen mit Audio</small></button>
+      <button class="practice-card" id="pGrammar">${A1Visual.icon('grammar')}<strong>Grammatik & Sprachbausteine</strong><small>${D.grammarSets.length} Sets · ${D.grammarSets.reduce((s,x)=>s+x.questions.length,0)} Fragen</small></button>
+      <button class="practice-card" id="pListen">${A1Visual.icon('listening')}<strong>Hören</strong><small>${totalListening()} Audioaufgaben · 10 pro Runde</small></button>
+      <button class="practice-card" id="pRead">${A1Visual.icon('reading')}<strong>Lesen</strong><small>${totalReading()} Aufgaben · 10 pro Runde</small></button>
+      <button class="practice-card" id="pWrite">${A1Visual.icon('writing')}<strong>Schreiben</strong><small>${D.forms.length} Formulare à 10 Felder + ${D.writing.length} Texte</small></button>
+      <button class="practice-card" id="pSpeak">${A1Visual.icon('speaking')}<strong>Sprechen</strong><small>${D.interview.length} Fragen · ${D.infoCards.length} Karten · ${D.roleplays.length} Rollenspiele</small></button>
     </div>`;
   document.getElementById('pVocab').onclick=renderVocab;
   document.getElementById('pGrammar').onclick=renderGrammarMenu;
@@ -850,8 +850,8 @@ function renderWritingMenu(){
     <div class="between"><button class="tiny-btn" id="backP">← Üben</button><span class="pill">PRODUCTION ÉCRITE</span></div>
     <section class="card" style="margin-top:12px"><h2>Schreiben</h2><p class="muted">DELF A1: Formular ausfüllen und einen einfachen Alltagstext schreiben. Die Beispielprüfung arbeitet mit 10 Formularangaben und mindestens 40 Wörtern.</p></section>
     <div class="grid">
-      <button class="practice-card" id="formPractice"><span class="icon">📝</span><strong>Formulare</strong><small>${D.forms.length} Szenarien · je 10 Felder</small></button>
-      <button class="practice-card" id="msgPractice"><span class="icon">✉️</span><strong>Nachrichten</strong><small>${D.writing.length} Themen · Ziel mindestens 40 Wörter</small></button>
+      <button class="practice-card" id="formPractice">${A1Visual.icon('forms')}<strong>Formulare</strong><small>${D.forms.length} Szenarien · je 10 Felder</small></button>
+      <button class="practice-card" id="msgPractice">${A1Visual.icon('message')}<strong>Nachrichten</strong><small>${D.writing.length} Themen · Ziel mindestens 40 Wörter</small></button>
     </div>`;
   document.getElementById('backP').onclick=renderPractice;
   document.getElementById('formPractice').onclick=()=>renderFormTask();
@@ -1053,10 +1053,10 @@ function renderExam(){
       <div class="exam-line"><strong>Sprechen</strong><small>5–7 Min. · 10 Min. Vorbereitung</small><span>/25</span></div>
     </div></section>
     <div class="grid">
-      <button class="practice-card" id="examListen"><span class="icon">🎧</span><strong>Hören Simulation</strong><small>16 Aufgaben · max. 2×</small></button>
-      <button class="practice-card" id="examRead"><span class="icon">📖</span><strong>Lesen Simulation</strong><small>16 Aufgaben · 30 Min.</small></button>
-      <button class="practice-card" id="examWrite"><span class="icon">✍️</span><strong>Schreiben Simulation</strong><small>10-Felder-Formular + mindestens 40 Wörter</small></button>
-      <button class="practice-card" id="examSpeak"><span class="icon">🎤</span><strong>Sprechen Simulation</strong><small>3 Prüfungsteile</small></button>
+      <button class="practice-card" id="examListen">${A1Visual.icon('listening')}<strong>Hören Simulation</strong><small>16 Aufgaben · max. 2×</small></button>
+      <button class="practice-card" id="examRead">${A1Visual.icon('reading')}<strong>Lesen Simulation</strong><small>16 Aufgaben · 30 Min.</small></button>
+      <button class="practice-card" id="examWrite">${A1Visual.icon('writing')}<strong>Schreiben Simulation</strong><small>10-Felder-Formular + mindestens 40 Wörter</small></button>
+      <button class="practice-card" id="examSpeak">${A1Visual.icon('speaking')}<strong>Sprechen Simulation</strong><small>3 Prüfungsteile</small></button>
     </div>
     <section class="card"><div class="between"><div><div class="eyebrow">WISSENSABDECKUNG</div><h3>A1-Abschlusscheck</h3></div><span class="pill ${FR_A1_MASTERY.passedCount(state)===lessons.length?'green':'gray'}">${FR_A1_MASTERY.passedCount(state)}/${lessons.length} Lektionen</span></div><p class="muted">Die Lektions-Checks mischen die wichtigsten Inhalte jeder Lektion. Zusätzlich gibt es vier kumulative Kursblöcke à 30 Aufgaben.</p><button class="primary-btn" id="courseMastery">Kursweiten Abschlusscheck öffnen</button></section>
     <section class="card quick-test-card"><div class="between"><h3>Schnelltest</h3><span class="pill gray">${state.quickMockAttempted||state.bestMock>0?`Bestwert ${state.bestMock}%`:'Noch kein Ergebnis'}</span></div><p class="muted">32 zufällige Hören-/Lesen-Aufgaben für eine schnelle Standortbestimmung.</p><button class="primary-btn" id="quickMock">Schnelltest starten</button></section>`;
