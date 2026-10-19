@@ -261,6 +261,7 @@
       if(!explanation&&opts.targetLang==='fr'&&ex[i].type==='choice'){
         const phrase=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio));
         if(phrase)explanation=`${phrase[0]} = ${phrase[1]}`;
+        else if(audio&&norm(audio)!==norm(answer))explanation=`${audio} → ${answer}`;
       }
       const germanAudio=opts.targetLang==='de'?window.DE_A1_ANSWER_AUDIO:null;
       if(germanAudio)audio=germanAudio.resolve(ex[i],audio,answer,opts.lesson);
