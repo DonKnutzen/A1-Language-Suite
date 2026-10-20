@@ -1729,7 +1729,7 @@ DE_A1_STUDY.configure(lessons);
 
 
 const stateKey=A1Profile.namespacedKey('deutschA1GoetheFormatState_v6');
-const defaultState={lastLessonId:0,reviewPractice:{},doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
+const defaultState={lastLessonId:0,reviewPractice:{},vocabularyTrainer:{version:1,items:{},settings:{},session:null},doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
 function loadState(){
   const loaded=A1Learning.loadState(stateKey,defaultState);
   if(DE_A1_ASSESSMENTS.completePassedLessons(loaded,lessons)){
@@ -1794,7 +1794,7 @@ function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)retu
 function playCorrectAudio(text,force=false){if((!audioEnabled&&!force)||!text)return;speak(text,true,.80);}
 function speakBtn(text,label='Écouter la prononciation'){return `<button class="speak-btn" data-speak="${esc(text)}" aria-label="${esc(label)}">🔊</button>`;}
 function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(b.dataset.speak,true));}
-function setRoute(route){stopHomeMotion();currentRoute=route;navButtons.forEach(b=>b.classList.toggle('active',b.dataset.route===route)); if(route==='home')renderHome(); if(route==='learn')renderLearn(); if(route==='practice')renderPractice(); if(route==='exam')renderExam(); window.scrollTo({top:0,behavior:'smooth'});}
+function setRoute(route){stopHomeMotion();currentRoute=route;navButtons.forEach(b=>b.classList.toggle('active',b.dataset.route===route)); if(route==='home')renderHome(); if(route==='learn')renderLearn(); if(route==='practice')renderVocab(); if(route==='exam')renderExam(); window.scrollTo({top:0,behavior:'smooth'});}
 
 function skillBar(name,emoji){const p=skillPct(name);const labels={
   Hören:'Écoute',
@@ -1879,6 +1879,7 @@ function renderLesson(id){
   const units=DE_A1_STUDY.content[id];
   const hints=app.hints.length?app.hints:units.flatMap(u=>[...u.rows,...(u.extra||[])]).slice(-6).map(([de,fr])=>[de.replace(/\|/g,''),fr]);
   A1LessonFlow.render({
+    renderVocabulary:()=>renderVocab(id,()=>renderLesson(id)),vocabularyLabel:A1Vocabulary.label('de','lessonLink'),
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'de',uiLang:'fr',resume:true,
     goalsHtml:A1LessonGuide.goals(id,'fr',esc),grammarHtml:DE_A1_STUDY.grammarHtml(l,lessonGrammarReferenceHtml(id),speakBtn),
     dialogueHtml:A1LessonGuide.parts(id,'fr',esc,speakBtn).dialogue,pronunciationHtml:DE_A1_PRONUNCIATION.render(c),
@@ -1954,7 +1955,10 @@ function startGrammarSet(id){
   draw();
 }
 
-function renderVocab(){const cards=lessons.flatMap(l=>l.phrases.map(([de,fr])=>({de,fr,lesson:l.id})));let idx=+localStorage.getItem(A1Profile.namespacedKey('deA1VocabIndex'))||0;let reveal=false;function draw(){const c=cards[idx%cards.length];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backPractice">← Entraîner</button><span class="pill">${idx%cards.length+1}/${cards.length}</span></div><section class="card center" style="margin-top:12px"><div class="eyebrow">LEÇON ${c.lesson}</div><div style="display:flex;justify-content:center;align-items:center;gap:12px;margin:25px 0 8px"><div style="font-size:31px;font-weight:900">${esc(c.de)}</div>${speakBtn(c.de)}</div>${reveal?`<div class="translation">${esc(c.fr)}</div>`:'<p class="muted">Trouve le sens en français.</p>'}${!reveal?'<button class="primary-btn" id="reveal">Afficher la réponse</button>':'<div class="button-row"><button class="secondary-btn" id="again">À revoir</button><button class="primary-btn" id="known">Je savais ✓</button></div>'}</section>`;wireSpeakButtons();document.getElementById('backPractice').onclick=renderPractice;if(!reveal)document.getElementById('reveal').onclick=()=>{reveal=true;draw();};else{document.getElementById('again').onclick=()=>{practiceProgress.markVocab(c.lesson,c.de,c.fr,false);A1Streak.completeExercise();idx=(idx+1)%cards.length;reveal=false;localStorage.setItem(A1Profile.namespacedKey('deA1VocabIndex'),idx);draw();};document.getElementById('known').onclick=()=>{practiceProgress.markVocab(c.lesson,c.de,c.fr,true);A1Streak.completeExercise();idx=(idx+1)%cards.length;reveal=false;localStorage.setItem(A1Profile.namespacedKey('deA1VocabIndex'),idx);draw();};}if(audioEnabled)setTimeout(()=>speak(c.de),180);}draw();}
+function renderVocab(initialLesson=null,onBack=null){
+  stopHomeMotion();window.A1Voice?.cancel();
+  A1Vocabulary.render({view,state,save,lessons,speak,course:'de',units:window.DE_A1_STUDY_CONTENT,initialLesson,onBack,onExercises:renderPractice});
+}
 
 function renderListeningMenu(){
   view.innerHTML=`<div class="between"><button class="tiny-btn" id="backPractice">← Entraîner</button><span class="pill">🎧 Écoute</span></div><section class="card hero" style="margin-top:12px"><h2>Écoute</h2><p class="muted">Chaque ronde contient 10 tâches. Les trois premières séries reprennent les formats Goethe; la quatrième est un entraînement A1 supplémentaire.</p></section><div class="list"><button class="practice-card" data-part="1"><strong>Partie 1 · a / b / c</strong><small>Courts dialogues · pool ${listening[1].length}.</small></button><button class="practice-card" data-part="2"><strong>Partie 2 · Vrai / Faux</strong><small>Annonces publiques · pool ${listening[2].length}.</small></button><button class="practice-card" data-part="3"><strong>Partie 3 · a / b / c</strong><small>Messages et conversations · pool ${listening[3].length}.</small></button><button class="practice-card" data-part="4"><strong>Supplément · reconnaître les situations</strong><small>Lieu, intention et service · pool ${listening[4].length}.</small></button></div>`;

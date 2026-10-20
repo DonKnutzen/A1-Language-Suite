@@ -1,5 +1,7 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
+  "Vokabeln": "Vocabulary",
+  "Wortschatz der Lektion": "Lesson vocabulary",
   "Wissen auffrischen": "Refresh your knowledge",
   "Fehler gezielt üben": "Practise mistakes",
   "Gemischt üben, Themen auswählen oder Fehler vertiefen.": "Mix questions, choose topics or practise mistakes.",
