@@ -20,8 +20,8 @@ test('bank uses only completed lessons, all topics have valid answers and select
  for(const q of bank){assert(e.api.accepted(q,q.answer));if(q.o){assert(q.o.includes(q.answer));assert(q.o.length>=2);}}
  e.dom.window.close();
 });
-test('all 24 lessons can supply a 20-question round with taught grammar and listening',()=>{
- const e=environment();for(let id=1;id<=24;id++){e.state.doneLessons=[id];const bank=e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml);assert.equal(e.api.choose(bank,20).length,20,`L${id}`);assert(bank.some(q=>q.turns));assert(bank.every(q=>q.lessonId===id));}e.dom.window.close();
+test('all 24 lessons supply grammar-only rounds without padding small topic pools',()=>{
+ const e=environment();for(let id=1;id<=24;id++){e.state.doneLessons=[id];const bank=e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml);const round=e.api.choose(bank,20);assert(round.length>0&&round.length<=20,`L${id}`);assert(round.length<=bank.length);assert(bank.every(q=>q.topic.startsWith('grammar:')||q.topic.startsWith('l1:')));assert(bank.every(q=>!q.turns&&!q.speech));assert(bank.every(q=>q.lessonId===id));}e.dom.window.close();
 });
 test('mistakes persist by profile, are cleared after two correct reviews, and return on new errors',()=>{
  const e=environment(),q=e.api.task(1,'check','Check',{prompt:'Vous ___ allemand.',answer:'êtes'});
@@ -81,7 +81,7 @@ test('whole-lesson checkbox selects and clears its topics while leaving other le
  e.view.querySelector('[data-review-topic^="1:"]').click();assert(lesson.indeterminate);e.dom.window.close();
 });
 test('typed drafts and character keys persist, freeze after checking and retain their marking policy',()=>{
- const e=environment();const q=e.api.task(2,'check','Akzent',{prompt:'Écris un e accent aigu.',answer:'é',marking:{strictAccents:true}});e.state.reviewPractice={imported:true,items:{},session:{version:1,tasks:[q],index:0,answers:[],draft:'',mode:'custom'}};e.render();e.click('#reviewResume');
+ const e=environment();const q=e.api.task(2,'grammar:r0','Akzent',{prompt:'Écris un e accent aigu.',answer:'é',marking:{strictAccents:true}});e.state.reviewPractice={imported:true,items:{},session:{version:1,tasks:[q],index:0,answers:[],draft:'',mode:'custom'}};e.render();e.click('#reviewResume');
  const key=[...e.view.querySelectorAll('.mixed-char')].find(b=>b.textContent==='é');assert(key);key.click();assert.equal(e.state.reviewPractice.session.draft,'é');e.click('#reviewCheck');assert(e.state.reviewPractice.session.answers[0].ok);assert(e.view.querySelector('#reviewInput').disabled);assert([...e.view.querySelectorAll('.mixed-char,.mixed-shift')].every(b=>b.disabled));
  const saved=JSON.parse(JSON.stringify(e.state));e.dom.window.close();const r=environment(saved);r.render();r.click('#reviewResume');assert.equal(r.view.querySelector('#reviewInput').value,'é');assert(r.view.querySelector('#reviewInput').disabled);r.dom.window.close();
 });
@@ -97,5 +97,14 @@ test('custom selection offers only concrete topics and drops saved generic exerc
  assert(topics.length>0);assert(topics.every(key=>/^\d+:(grammar:|l1:)/.test(key)));
  assert(!e.view.querySelector('[data-review-topic="1:lesson"]'));assert(!e.view.querySelector('[data-review-topic="1:check"]'));assert(!e.view.querySelector('[data-review-topic="1:listening"]'));
  assert.equal(e.state.reviewPractice.settings.selected.join(','),'1:l1:etre');e.click('#reviewStart');assert(e.state.reviewPractice.session.tasks.every(q=>q.topic==='l1:etre'));
- e.click('#reviewPause');e.click('[value="mixed"]');e.click('#reviewStart');e.click('#reviewReplace');assert(e.state.reviewPractice.session.tasks.some(q=>!q.topic.startsWith('l1:')&&!q.topic.startsWith('grammar:')));e.dom.window.close();
+ e.click('#reviewPause');e.click('[value="mixed"]');e.click('#reviewStart');e.click('#reviewReplace');assert(e.state.reviewPractice.session.tasks.every(q=>q.topic.startsWith('l1:')||q.topic.startsWith('grammar:')));e.dom.window.close();
+});
+
+test('resuming old mixed rounds removes check/listening items without reassigning saved answers',()=>{
+ const e=environment(),api=e.api;
+ const before=api.task(1,'grammar:r0','être',{q:'Je ___',answer:'suis'}),removed=api.task(1,'check','Check',{q:'Check ?',answer:'oui'}),after=api.task(1,'l1:etre','être',{q:'Tu ___',answer:'es'});
+ const original={version:1,mode:'mixed',tasks:[before,removed,after],answers:[{value:'suis',ok:true},{value:'non',ok:false}],index:1,draft:'ancien',order:['oui','non']};
+ e.state.reviewPractice={imported:true,items:{},session:JSON.parse(JSON.stringify(original))};e.render();const s=e.state.reviewPractice.session;
+ assert.equal(s.tasks.length,2);assert.equal(s.index,1);assert.equal(s.answers[0].value,'suis');assert.equal(s.answers[1],null);assert.equal(s.draft,'');assert(!s.order);assert.equal(e.state.reviewPractice.previousMixedRound.tasks.length,3);
+ e.click('#reviewResume');assert.equal(e.view.querySelector('#reviewInput').value,'');assert(e.view.textContent.includes('Tu ___'));e.dom.window.close();
 });

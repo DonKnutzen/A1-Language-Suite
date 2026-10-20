@@ -3,8 +3,8 @@
 Einstieg: Startseite, „Das hast du schon gelernt“ → „Wissen auffrischen“.
 Bei gespeicherten Fehlern steht der Einstieg auch vor dem ersten Lektionsabschluss bereit.
 
-- **Alles mischen:** vorhandene Aufgaben aus abgeschlossenen Lektionen.
-- **Selbst auswählen:** ganze Lektionen oder einzelne Themen ankreuzen.
+- **Alles mischen:** Aufgaben aus den konkreten Grammatikthemen abgeschlossener Lektionen.
+- **Selbst auswählen:** ganze Lektionen oder einzelne Grammatikthemen ankreuzen. Allgemeine Lektionsübungen, Lektionschecks und Hörübungen werden weder als Auswahl noch im gemischten Themenpool verwendet.
 - **Fehler gezielt üben:** noch offene, tatsächlich falsch beantwortete Aufgaben, auch aus begonnenen Lektionen und zusätzlichem Training.
 - 10 oder 20 Fragen; kleinere Pools werden ohne Auffüllen mit Duplikaten angeboten.
 - Rundenauswahl verteilt Fragen auf Lektions-/Themengruppen und vermeidet unmittelbar ähnliche Antworten.
@@ -30,3 +30,5 @@ Wiederholungen verändern weder Lektionsbestwerte noch die Hard-Mode-Freischaltu
 ## Prüfung
 
 `node --test francais/tests/review-practice.test.cjs` (jsdom erforderlich) prüft unter anderem alle 24 Lektionspools, Themenfilter, Rundenauswahl, Fehlerstatus, Antwortregeln, Wiederaufnahme und die echte Lektionscheck-Anbindung. Layout und Navigation werden zusätzlich im Browser geprüft; diese Tests beurteilen keine tatsächliche TTS-Klangqualität.
+
+Bereits laufende gemischte oder selbst zusammengestellte Runden werden auf Grammatikaufgaben begrenzt. Dabei bleiben Antworten ihrer ursprünglichen Aufgabe zugeordnet; der vorherige Rundenstand bleibt unter `previousMixedRound` gespeichert. Explizites Fehlertraining kann weiterhin Fehler aus allen erfassten Übungsarten enthalten.
