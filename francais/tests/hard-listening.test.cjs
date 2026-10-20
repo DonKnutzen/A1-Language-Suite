@@ -66,16 +66,26 @@ test('actual utterances use the named speaker’s voice in all versions, indepen
   }
   assert(identities>60,'exercise named narrators and both dialogue role orders');
 });
-test('a stored v3 attempt gets corrected voices; starting v4 archives its answers and keeps its best result',()=>{
+test('resuming v3 automatically removes leading questions, keeps matching entries and archives the original',()=>{
   const e=environment(),{w,view}=e,old=JSON.parse(JSON.stringify(w.FR_A1_HARD_VERSIONS[3][1]));
   old.listening[1].turns.forEach(t=>delete t.gender);
-  const draft={version:3,phase:'running',page:1,gaps:Array(old.gaps.length).fill('ancien'),listening:Array(old.listening.flatMap(b=>b.questions).length).fill('brouillon'),plays:[0,0],text:'Mon texte enregistré.',ratings:[null,null,null,null]},p={attempt:draft,contentVersions:{3:old},bestByVersion:{3:90},bestObjective:90,passedAt:123,passedVersion:3};
-  const state={lessonMasteryBest:{1:80},lessonWork:{1:{hardMode:p}}},saved=JSON.stringify(old);
-  w.FR_A1_HARD_MODE.render({lesson:w.FR_A1_DATA.lessons[0],view,state,save(){},onBack(){}});
-  view.querySelector('[data-hard-play="1"]').click();
-  assert.equal(e.spoken.at(-1).voice.name,'Thomas');assert(e.spoken.at(-1).text.startsWith('Bonsoir'));
-  assert.equal(JSON.stringify(old),saved);assert.equal(draft.version,3);assert.equal(draft.listening[0],'brouillon');
-  assert(view.querySelector('#hardCurrentVersion'));view.querySelector('#hardCurrentVersion').click();
-  assert.equal(p.attempt.version,4);assert.equal(p.history.length,1);assert.equal(p.history[0].text,'Mon texte enregistré.');assert.equal(p.history[0].listening[0],'brouillon');assert.equal(p.bestByVersion[3],90);assert.equal(p.passedVersion,3);
-  assert(p.attempt.listening.every(v=>v===''));assert(p.attempt.plays.every(v=>v===0));assert(!view.querySelector('.hard-transcript'));e.dom.window.close();
+  const draft={version:3,phase:'running',page:1,gaps:Array(old.gaps.length).fill('ancien'),listening:Array(old.listening.flatMap(b=>b.questions).length).fill('brouillon'),plays:[3,3],text:'Mon texte enregistré.',ratings:[null,null,null,null]},p={attempt:draft,contentVersions:{3:old},bestByVersion:{3:90},bestObjective:90,passedAt:123,passedVersion:3};
+  const state={lessonMasteryBest:{1:80},lessonWork:{1:{hardMode:p}}},saved=JSON.stringify(old);let saves=0;
+  const render=()=>w.FR_A1_HARD_MODE.render({lesson:w.FR_A1_DATA.lessons[0],view,state,save(){saves++;},onBack(){}});
+  render();assert.equal(p.attempt.version,4);assert.equal(p.history.length,1);assert.equal(p.history[0].text,'Mon texte enregistré.');assert.equal(p.history[0].listening[0],'brouillon');assert.equal(p.bestByVersion[3],90);assert.equal(p.passedVersion,3);
+  assert.equal(p.attempt.gaps[0],'ancien');assert.equal(p.attempt.listening[0],'brouillon');assert.equal(p.attempt.listening[1],'');assert(p.attempt.plays.every(v=>v===0));assert.equal(JSON.stringify(old),saved);assert.equal(saves,1);
+  const visible=[...view.querySelectorAll('.hard-question')].map(el=>el.textContent).join(' ');for(const name of ['Luc','Léa','Marc','Berlin','Paris'])assert(!visible.includes(name),name);
+  assert(!view.querySelector('#hardCurrentVersion'));assert(view.querySelector('#hardPreviousDraft'));assert(!view.querySelector('.hard-transcript'));
+  view.querySelector('[data-hard-play="1"]').click();assert.equal(e.spoken.at(-1).voice.name,'Thomas');w.A1Voice.cancel();render();assert.equal(p.history.length,1);assert.equal(p.attempt.version,4);e.dom.window.close();
+});
+test('every unfinished v1-v3 lesson resumes with current questions; sealed results retain their original version',()=>{
+  const e=environment(),{w,view}=e;
+  for(const version of [1,2,3])for(const lesson of w.FR_A1_DATA.lessons){
+    const d=w.FR_A1_HARD_VERSIONS[version][lesson.id],draft={version,phase:'running',page:1,gaps:d.gaps.map(q=>q.answers[0]),listening:d.listening.flatMap(b=>b.questions).map(q=>q.answers[0]),plays:[3,3],text:'Texte à garder.',ratings:[null,null,null,null]},original=JSON.stringify(draft),p={attempt:draft},state={lessonMasteryBest:{[lesson.id]:80},lessonWork:{[lesson.id]:{hardMode:p}}};
+    const render=()=>w.FR_A1_HARD_MODE.render({lesson,view,state,save(){},onBack(){}});render();
+    assert.equal(p.attempt.version,4,`L${lesson.id} v${version}`);assert.equal(p.attempt.text,draft.text);assert.equal(JSON.stringify(p.history[0]),original);assert.equal(p.contentVersions[version].version,version);
+    assert.equal(view.querySelectorAll('.hard-question').length,w.FR_A1_HARD_CONTENT[lesson.id].listening.flatMap(b=>b.questions).length);render();assert.equal(p.history.length,1);
+    p.attempt=JSON.parse(original);p.attempt.phase='submitted';render();assert.equal(p.attempt.version,version);assert(view.querySelector('.hard-transcript'));
+  }
+  e.dom.window.close();
 });

@@ -106,10 +106,39 @@
       data=candidate?.version===version?candidate:null;
       allQuestions=data?questions(data):[];
       if(data){progress.contentVersions[version]||=JSON.parse(JSON.stringify(data));
-        if(a&&data.version>=2&&!Array.isArray(a.optionOrders))a.optionOrders=allQuestions.map(q=>q.options?shuffle(q.options):null);
+        if(a&&data.version>=2&&!Array.isArray(a.optionOrders)&&!(a.phase==='running'&&data.version<latestData.version))a.optionOrders=allQuestions.map(q=>q.options?shuffle(q.options):null);
       }
     }
     bindDataset();
+    // An unfinished saved attempt must not keep serving superseded, leading questions.
+    // Archive it intact, then carry only responses whose task and marking policy still match.
+    function updateDraft(){
+      if(!a||a.phase!=='running'||!data||data.version>=latestData.version)return false;
+      const previous=a,old=data;
+      const key=(q,gap=false)=>JSON.stringify({q:gap?q.hint:q.q,answers:[...q.answers].sort(),options:q.options?[...q.options].sort():null,format:q.format||'',strictAccents:!!q.strictAccents,numberWords:!!q.numberWords});
+      const orders=[],answers=[],plays=[];let offset=0;
+      latestData.listening.forEach((block,b)=>{
+        const before=old.listening[b],used=new Set();
+        block.questions.forEach(q=>{
+          const index=before?.questions.findIndex((candidate,i)=>!used.has(i)&&key(candidate)===key(q))??-1;
+          if(index>=0)used.add(index);
+          answers.push(index>=0?previous.listening?.[offset+index]||'':'');
+          const saved=index>=0?previous.optionOrders?.[offset+index]:null;
+          orders.push(q.options?(Array.isArray(saved)&&saved.length===q.options.length&&new Set(saved).size===q.options.length&&saved.every(o=>q.options.includes(o))?[...saved]:shuffle(q.options)):null);
+        });
+        const sameRecording=before?.text===block.text&&before.questions.length===block.questions.length&&before.questions.every((q,i)=>key(q)===key(block.questions[i]));
+        plays.push(sameRecording?Math.max(0,Math.min(AUDIO_PLAYS,Number(previous.plays?.[b])||0)):0);
+        offset+=before?.questions.length||0;
+      });
+      progress.history.push(JSON.parse(JSON.stringify(previous)));
+      a=progress.attempt={...previous,version:latestData.version,
+        gaps:latestData.gaps.map((q,i)=>old.gaps[i]&&key(old.gaps[i],true)===key(q,true)?previous.gaps?.[i]||'':''),
+        listening:answers,optionOrders:orders,plays,ratings:[null,null,null,null],
+        updatedFromVersion:previous.version,updatedAt:Date.now()};
+      delete a.result;delete a.submittedAt;delete a.completedAt;
+      bindDataset();return true;
+    }
+    if(updateDraft())persist();
     function persist(completed=false){
       try{save(completed);storageError='';}
       catch{storageError=t('Speichern fehlgeschlagen. Lass diese Seite offen und kopiere deinen Text.','Saving failed. Keep this page open and copy your text.');}
@@ -137,10 +166,11 @@
       root.querySelector('#hardBack')?.addEventListener('click',leave);
       root.querySelector('#hardCurrentVersion')?.addEventListener('click',fresh);
       root.querySelector('#hardHistory')?.addEventListener('click',showHistory);
+      root.querySelector('#hardPreviousDraft')?.addEventListener('click',showHistory);
       if(focusHeading){root.querySelector('#hardHeading')?.focus({preventScroll:true});focusHeading=false;}
     }
     function heading(){
-      return `<div class="between"><button class="tiny-btn" id="hardBack">← ${t('Zur Lektion','Back to lesson')}</button><span class="hard-eyebrow">HARD MODE</span></div><h2 id="hardHeading" tabindex="-1">${lesson.id}. ${esc(en()?window.A1FrenchI18n?.translate(lesson.title)||lesson.title:lesson.title)}</h2>${a?`<p class="hard-save-status" id="hardSaveStatus" role="status">${esc(storageError)||t('Zwischenstand gespeichert','Progress saved')}</p>`:''}${a&&data&&data.version!==latestData.version?`<p class="hard-version-note">${t(`Gespeicherter Versuch · Version ${data.version}. Aktuell ist Version ${latestData.version}. Dieser Versuch behält seine bisherigen Fragen. Die überarbeiteten Fragen erhältst du mit einem neuen Versuch; dieser Entwurf bleibt im Verlauf gespeichert.`,`Saved attempt · version ${data.version}. Current version: ${latestData.version}. This attempt keeps its original questions. Start a new attempt for the revised questions; this draft will be saved in your history.`)} <button class="tiny-btn" id="hardCurrentVersion">${t('Aktuelle Aufgaben starten','Start current tasks')}</button></p>`:''}`;
+      return `<div class="between"><button class="tiny-btn" id="hardBack">← ${t('Zur Lektion','Back to lesson')}</button><span class="hard-eyebrow">HARD MODE</span></div><h2 id="hardHeading" tabindex="-1">${lesson.id}. ${esc(en()?window.A1FrenchI18n?.translate(lesson.title)||lesson.title:lesson.title)}</h2>${a?`<p class="hard-save-status" id="hardSaveStatus" role="status">${esc(storageError)||t('Zwischenstand gespeichert','Progress saved')}</p>`:''}${a?.updatedFromVersion?`<p class="hard-version-note">${t('Hörfragen aktualisiert. Passende Eingaben übernommen; alter Entwurf im Verlauf.','Listening questions updated. Matching responses retained; the previous draft is in history.')} <button class="tiny-btn" id="hardPreviousDraft">${t('Alter Entwurf','Previous draft')}</button></p>`:''}${a&&data&&data.version!==latestData.version?`<p class="hard-version-note">${t(`Gespeicherter Versuch · Version ${data.version}. Aktuell ist Version ${latestData.version}. Dieser Versuch behält seine bisherigen Fragen. Die überarbeiteten Fragen erhältst du mit einem neuen Versuch; dieser Entwurf bleibt im Verlauf gespeichert.`,`Saved attempt · version ${data.version}. Current version: ${latestData.version}. This attempt keeps its original questions. Start a new attempt for the revised questions; this draft will be saved in your history.`)} <button class="tiny-btn" id="hardCurrentVersion">${t('Aktuelle Aufgaben starten','Start current tasks')}</button></p>`:''}`;
     }
     function intro(){
       mount(`${heading()}<section class="card hard-intro"><span class="hard-eyebrow">${t('DEINE LEKTION IM PRÜFUNGSMODUS','YOUR LESSON IN EXAM MODE')}</span><h3>${t('Drei Teile. Dein Wissen.','Three parts. Your knowledge.')}</h3><ol><li><strong>${t('Lückentext','Cloze text')}</strong> · ${data.gaps.length} ${t('Wörter oder Wortgruppen selbst einsetzen','words or phrases to type')}</li><li><strong>${t('Hörverstehen','Listening')}</strong> · ${allQuestions.length} ${t('Fragen, dreimal pro Text hören · Tempo 75 %','questions, three plays per recording · 75% speed')}</li><li><strong>${t('Freie Nachricht','Free writing')}</strong> · ${t(`drei Inhaltspunkte, ungefähr ${data.writing.targetWords||'30'} Wörter`,`three content points, about ${data.writing.targetWords||'30'} words`)}</li></ol><p>${t(`Orientierung: etwa ${(data.minutes||[25,35]).join('–')} Minuten, ohne Zeitlimit. Du kannst pausieren und Antworten ändern. Lösungen und Transkripte erscheinen erst nach der Abgabe.`,`Indicative time: about ${(data.minutes||[25,35]).join('–')} minutes, with no time limit. You can pause and edit answers. Answers and transcripts appear only after submission.`)}</p><p>${rules()}</p><p class="muted">${t('Eigene Aufgaben in Anlehnung an das TELC-A1-Beispiel. Das Audio nutzt die französische Browserstimme. Freitext wird anhand eines Beispiels selbst geprüft.','Original exercises informed by the TELC A1 sample. Audio uses the French browser voice. Free writing is self-assessed against an example.')}</p><button class="hard-start" id="hardBegin">${t('Prüfung starten','Start the test')} →</button></section>`);
@@ -152,12 +182,20 @@
     }
     function showHistory(){
       cancelAudio();
-      mount(`${heading()}<section class="card"><h3>${t('Gespeicherte Versuche','Saved attempts')}</h3><div class="hard-history-list">${progress.history.map((item,i)=>`<button class="secondary-btn" data-hard-history="${i}">${t('Version','Version')} ${item.version} · ${new Date(item.startedAt||item.submittedAt||0).toLocaleDateString(en()?'en-CA':'de-DE')} · ${item.completedAt?t('Ergebnis ansehen','View result'):item.submittedAt?t('Selbstprüfung fortsetzen','Continue self-assessment'):t('Entwurf fortsetzen','Resume draft')}</button>`).join('')}</div><button class="tiny-btn" id="hardHistoryBack">← ${t('Zum aktuellen Versuch','Current attempt')}</button></section>`);
+      mount(`${heading()}<section class="card"><h3>${t('Gespeicherte Versuche','Saved attempts')}</h3><div class="hard-history-list">${progress.history.map((item,i)=>`<button class="secondary-btn" data-hard-history="${i}">${t('Version','Version')} ${item.version} · ${new Date(item.startedAt||item.submittedAt||0).toLocaleDateString(en()?'en-CA':'de-DE')} · ${item.completedAt?t('Ergebnis ansehen','View result'):item.submittedAt?t('Selbstprüfung fortsetzen','Continue self-assessment'):item.version<latestData.version?t('Entwurf ansehen','View draft'):t('Entwurf fortsetzen','Resume draft')}</button>`).join('')}</div><button class="tiny-btn" id="hardHistoryBack">← ${t('Zum aktuellen Versuch','Current attempt')}</button></section>`);
       root.querySelector('#hardHistoryBack').onclick=draw;
       root.querySelectorAll('[data-hard-history]').forEach(btn=>btn.onclick=()=>{
+        const item=progress.history[Number(btn.dataset.hardHistory)];
+        if(item.phase==='running'&&item.version<latestData.version){showDraft(item);return;}
         const chosen=progress.history.splice(Number(btn.dataset.hardHistory),1)[0];if(progress.attempt)progress.history.push(progress.attempt);
         a=progress.attempt=chosen;bindDataset();persist();focusHeading=true;draw();
       });
+    }
+    function showDraft(item){
+      const snapshot=progress.contentVersions[item.version]||window.FR_A1_HARD_VERSIONS?.[item.version]?.[lesson.id];
+      const list=(values,tasks)=>`<ol>${(values||[]).map((value,i)=>`<li><strong>${esc(tasks?.[i]?.q||tasks?.[i]?.hint||String(i+1))}</strong><p>${esc(value)||'—'}</p></li>`).join('')}</ol>`;
+      mount(`${heading()}<section class="card"><h3>${t('Alter Entwurf · nur ansehen','Previous draft · read only')}</h3><p>${t('Deine damaligen Eingaben bleiben erhalten. Weiterarbeiten kannst du mit den aktualisierten Fragen.','Your original responses are preserved. Continue working with the updated questions.')}</p><h4>${t('Lückentext','Cloze text')}</h4>${list(item.gaps,snapshot?.gaps)}<h4>${t('Hörverstehen','Listening')}</h4>${list(item.listening,snapshot?questions(snapshot):null)}<h4>${t('Eigene Nachricht','Your message')}</h4><pre class="hard-old-draft">${esc(item.text||'—')}</pre><button class="primary-btn" id="hardDraftBack">${t('Zum aktuellen Versuch','Current attempt')}</button></section>`);
+      root.querySelector('#hardDraftBack').onclick=draw;
     }
     function isSubmitted(){return a.phase!=='running';}
     function rules(){return data.version===1?t('Trainingsziel (Version 1): 80 % insgesamt, mindestens 50 % je automatisch korrigiertem Teil. Schreiben: Mindestwortzahl, 6/8 selbst bewertete Punkte, kein Kriterium mit 0.','Practice target (version 1): 80% overall, at least 50% in each automatically marked section. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.'):t('Trainingsziel: mindestens 80 % im Lückentext und mindestens 80 % im Hörverstehen, ohne Aufrunden. Schreiben: Mindestwortzahl, 6/8 selbst bewertete Punkte, kein Kriterium mit 0.','Practice target: at least 80% in cloze and at least 80% in listening, without rounding up. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.');}
@@ -264,6 +302,7 @@
       const missed=new Set([...data.gaps,...allQuestions].flatMap((q,i)=>answerMatches(data,q,i<data.gaps.length?a.gaps[i]:a.listening[i-data.gaps.length])?[]:q.skills||[]));
       mount(`${heading()}<section class="card hard-result"><span class="hard-eyebrow">${success?t('✓ TRAININGSZIEL ERREICHT','✓ PRACTICE TARGET MET'):t('HARD MODE AUSGEWERTET','HARD MODE REVIEWED')}</span><div class="score">${score.pct} %</div><h3>${t('Automatisch korrigierte Aufgaben','Automatically marked tasks')}</h3><div class="hard-result-grid"><div><strong>${score.gap}/${data.gaps.length}</strong><span>${t('Lückentext','Cloze text')} · ${Math.round(score.gap/data.gaps.length*1000)/10} %</span></div><div><strong>${score.listening}/${allQuestions.length}</strong><span>${t('Hörverstehen','Listening')} · ${Math.round(score.listening/allQuestions.length*1000)/10} %</span></div><div><strong>${writingPoints}/8</strong><span>${t('Schreiben · Selbstbewertung','Writing · self-assessment')}</span></div></div><p>${rules()}</p><p class="muted">${t('Die Prozentzahl bewertet nur Lückentext und Hörverstehen. Die Schreibaufgabe hast du selbst geprüft. Das ist kein automatisch bestätigter Sprachnachweis.','The percentage covers only cloze and listening. You assessed your writing yourself. This is not automatically certified language proficiency.')}</p>${missed.size?`<p>${t('Gezielt wiederholen','Review these topics')}: ${[...missed].map(key=>esc(data.objectives?.[key]?.label||key)).join(' · ')}</p>`:''}<div class="button-row"><button class="secondary-btn" id="hardReview">${t('Alle Antworten ansehen','Review all answers')}</button><button class="hard-start" id="hardRetry">${t('Neuer Versuch','New attempt')}</button></div>${progress.history.length?`<button class="tiny-btn" id="hardHistory">${t('Frühere Versuche','Previous attempts')} (${progress.history.length})</button>`:''}</section>`);
       root.querySelector('#hardHistory')?.addEventListener('click',showHistory);
+      root.querySelector('#hardPreviousDraft')?.addEventListener('click',showHistory);
       root.querySelector('#hardReview').onclick=()=>{a.page=0;persist();focusHeading=true;draw();};
       root.querySelector('#hardRetry').onclick=()=>{
         root.querySelector('#hardRetry').outerHTML=`<div class="hard-retry-confirm"><p>${t('Ein neuer Versuch startet die aktuellen Aufgaben. Deine bisherigen Antworten, Ergebnisse und Bestwerte bleiben gespeichert.','A new attempt starts the current tasks. Previous answers, results and best scores are preserved.')}</p><button class="secondary-btn" id="hardKeep">${t('Ergebnis behalten','Keep result')}</button><button class="hard-start" id="hardNew">${t('Neuen Versuch starten','Start a new attempt')}</button></div>`;
