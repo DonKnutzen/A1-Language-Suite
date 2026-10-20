@@ -90,3 +90,12 @@ test('real hard-mode submission captures objective errors but never grades free 
  e.w.FR_A1_HARD_MODE.render({lesson:e.w.FR_A1_DATA.lessons[0],view:e.view,state:e.state,save:e.save,onBack(){}});e.click('#hardBegin');e.click('[data-hard-page="2"]');e.click('#hardSubmit');assert.equal(e.api.pending(e.state).length,0);e.click('#hardConfirmSubmit');
  const d=e.w.FR_A1_HARD_CONTENT[1];assert.equal(e.api.pending(e.state).length,d.gaps.length+d.listening.flatMap(b=>b.questions).length);assert(e.api.pending(e.state).every(x=>x.task.topic!=='writing'));e.dom.window.close();
 });
+
+test('custom selection offers only concrete topics and drops saved generic exercise categories',()=>{
+ const e=environment();e.state.reviewPractice={imported:true,items:{},settings:{mode:'custom',count:20,selected:['1:lesson','1:check','1:listening','1:l1:etre']}};e.render();
+ const topics=[...e.view.querySelectorAll('[data-review-topic]')].map(el=>el.dataset.reviewTopic);
+ assert(topics.length>0);assert(topics.every(key=>/^\d+:(grammar:|l1:)/.test(key)));
+ assert(!e.view.querySelector('[data-review-topic="1:lesson"]'));assert(!e.view.querySelector('[data-review-topic="1:check"]'));assert(!e.view.querySelector('[data-review-topic="1:listening"]'));
+ assert.equal(e.state.reviewPractice.settings.selected.join(','),'1:l1:etre');e.click('#reviewStart');assert(e.state.reviewPractice.session.tasks.every(q=>q.topic==='l1:etre'));
+ e.click('#reviewPause');e.click('[value="mixed"]');e.click('#reviewStart');e.click('#reviewReplace');assert(e.state.reviewPractice.session.tasks.some(q=>!q.topic.startsWith('l1:')&&!q.topic.startsWith('grammar:')));e.dom.window.close();
+});
