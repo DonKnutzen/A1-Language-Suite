@@ -114,11 +114,11 @@
   }
   let redraw=null;
   window.addEventListener('a1suite:languagechange',()=>redraw?.());
-  function render({view,lessons,state,save,onBack,speak,grammarHtml}){
+  function render({view,lessons,state,save,onBack,speak,grammarHtml,initialMode}){
     seed(state);const p=store(state);restrictRound(p);const bank=buildBank(lessons,state,grammarHtml);
     const selectable=bank;
     const topicKeys=new Set(selectable.map(q=>q.lessonId+':'+q.topic));
-    let mode=p.settings?.mode||'mixed',count=p.settings?.count===20?20:10,selected=new Set((p.settings?.selected||[...topicKeys]).filter(key=>topicKeys.has(key)));
+    let mode=['mixed','custom','mistakes'].includes(initialMode)?initialMode:p.settings?.mode||'mixed',count=p.settings?.count===20?20:10,selected=new Set((p.settings?.selected||[...topicKeys]).filter(key=>topicKeys.has(key)));
     const cancel=()=>window.A1Voice?.cancel();
     const finishBack=()=>{cancel();redraw=null;onBack();};
     const shell=html=>{cancel();view.innerHTML=`<div class="review-practice" data-i18n-ignore>${html}</div>`;view.querySelector('#reviewBack')?.addEventListener('click',finishBack);view.querySelector('h2')?.focus();window.scrollTo({top:0,behavior:'instant'});};

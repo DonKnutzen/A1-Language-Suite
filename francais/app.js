@@ -119,37 +119,15 @@ function stopHomeMotion(){
 function startHomeCarousel(card){
   const stage=card.querySelector('.home-milestone-stage'),slides=[...card.querySelectorAll('.home-milestone-slide')];
   if(slides.length<2)return null;
-  const pause=card.querySelector('#homeMilestonePause'),next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
-  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  let index=0,userPaused=false,visible=!('IntersectionObserver' in window),timer=null,swap=null;
-  function settle(){clearTimeout(timer);clearTimeout(swap);stage.classList.remove('is-changing');}
-  function schedule(){
-    clearTimeout(timer);
-    if(!userPaused&&!motion.matches&&visible&&!document.hidden&&card.isConnected)timer=setTimeout(advance,5000);
-  }
-  function advance(){
-    settle();
-    const show=()=>{
-      if(!card.isConnected)return;
-      slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
-      index=(index+1)%slides.length;
-      slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
-      count.textContent=`${index+1} / ${slides.length}`;stage.classList.remove('is-changing');schedule();
-    };
-    if(motion.matches)show();else{stage.classList.add('is-changing');swap=setTimeout(show,320);}
-  }
-  function updatePause(){
-    pause.hidden=motion.matches;pause.setAttribute('aria-pressed',String(userPaused));
-    pause.setAttribute('aria-label',userPaused?'Automatischen Wechsel fortsetzen':'Automatischen Wechsel anhalten');
-    pause.title=userPaused?'Automatischen Wechsel fortsetzen':'Automatischen Wechsel anhalten';
-  }
-  pause.onclick=()=>{userPaused=!userPaused;settle();updatePause();schedule();};next.onclick=advance;
-  const onVisibility=()=>{settle();schedule();};
-  const onMotion=()=>{settle();updatePause();schedule();};
-  document.addEventListener('visibilitychange',onVisibility);motion.addEventListener('change',onMotion);
-  const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries.some(e=>e.isIntersecting);if(!visible)settle();schedule();},{threshold:.05}):null;
-  observer?.observe(card);updatePause();schedule();
-  return ()=>{settle();observer?.disconnect();document.removeEventListener('visibilitychange',onVisibility);motion.removeEventListener('change',onMotion);};
+  const next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
+  let index=0;
+  next.onclick=()=>{
+    slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
+    index=(index+1)%slides.length;
+    slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
+    count.textContent=`${index+1} / ${slides.length}`;
+  };
+  return ()=>{next.onclick=null;};
 }
 function renderHome(){
   stopHomeMotion();
@@ -173,12 +151,14 @@ function renderHome(){
       ${A1Streak.render('de',{showEmpty:true})}
     </section>
     <section class="card home-milestones" aria-labelledby="milestoneTitle">
-      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Das hast du schon gelernt':'Dein erster Schritt zählt'}</h2>${completed.length>1?`<button type="button" class="home-carousel-control" id="homeMilestonePause" aria-pressed="false" aria-label="Automatischen Wechsel anhalten"><svg class="home-carousel-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3"/></svg><svg class="home-carousel-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg></button>`:''}</div>
-      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="off">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?'<button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Nächsten Lernerfolg anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>':''}</div><div class="home-milestone-footer"><p class="home-milestone-note">Super, mach weiter so!</p>${completed.length>1?`<small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small>`:''}</div>`:'<p class="home-milestone-note">Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.</p>'}
-      ${(completed.length||FR_A1_REVIEW.pending(state).length)?`<button type="button" class="primary-btn home-review-btn" id="homeReview">Wissen auffrischen →</button><p class="home-review-hint">Gemischt üben, Themen auswählen oder Fehler vertiefen.</p>`:''}
+      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Das hast du schon gelernt':'Dein erster Schritt zählt'}</h2></div>
+      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="polite">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?`<div class="home-learned-pager"><small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small><button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Nächsten Lernerfolg anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div>`:''}</div>`:'<p class="home-milestone-note">Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.</p>'}
+      ${(completed.length||FR_A1_REVIEW.pending(state).length)?`<div class="home-review-actions"><button type="button" class="home-review-action" id="homeReview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M19.5 12a7.5 7.5 0 1 0-2 5M20 7l-.5 5"/></svg><span>Wissen auffrischen</span></button><button type="button" class="home-review-action home-review-mistakes" id="homeMistakes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="m12 12 7-7M17 5h2v2"/></svg><span>Fehler gezielt üben</span>${FR_A1_REVIEW.pending(state).length?`<span class="home-mistake-count" aria-label="${FR_A1_REVIEW.pending(state).length} ${A1Profile.getUiLang()==='en'?'tasks to review':'Aufgaben vorgemerkt'}">${FR_A1_REVIEW.pending(state).length}</span>`:''}</button></div>`:''}
     </section>`;
-  document.getElementById('homeReview')?.addEventListener('click',()=>{stopHomeMotion();FR_A1_REVIEW.render({view,lessons,state,save,onBack:renderHome,speak,grammarHtml:lessonGrammarHtml});});
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
+  const openReview=initialMode=>{stopHomeMotion();FR_A1_REVIEW.render({view,lessons,state,save,onBack:renderHome,speak,grammarHtml:lessonGrammarHtml,initialMode});};
+  document.getElementById('homeReview')?.addEventListener('click',()=>openReview('mixed'));
+  document.getElementById('homeMistakes')?.addEventListener('click',()=>openReview('mistakes'));
   homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
   const milestones=view.querySelector('.home-milestones');
   homeCarouselCleanup=startHomeCarousel(milestones);

@@ -7,7 +7,7 @@ function environment(state={doneLessons:[1,2],lessonMasteryBest:{1:91},lessonWor
  w.esc=s=>{const el=w.document.createElement('span');el.textContent=s;return el.innerHTML;};const app=read('francais/app.js');w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.grammarHtml=lessonGrammarHtml;');
  const view=w.document.querySelector('main'),api=w.FR_A1_REVIEW;
  const save=done=>{saves++;if(done)completed++;};
- const render=()=>api.render({view,lessons:w.FR_A1_DATA.lessons,state,save,onBack(){view.innerHTML='Home';},speak(){},grammarHtml:w.grammarHtml});
+ const render=(options={})=>api.render({view,lessons:w.FR_A1_DATA.lessons,state,save,onBack(){view.innerHTML='Home';},speak(){},grammarHtml:w.grammarHtml,...options});
  const click=s=>{assert(view.querySelector(s),s);view.querySelector(s).click();};
  return {dom,w,api,state,view,render,save,click,get saves(){return saves;},get completed(){return completed;},language(value){lang=value;w.dispatchEvent(new w.Event('a1suite:languagechange'));}};
 }
@@ -107,4 +107,10 @@ test('resuming old mixed rounds removes check/listening items without reassignin
  e.state.reviewPractice={imported:true,items:{},session:JSON.parse(JSON.stringify(original))};e.render();const s=e.state.reviewPractice.session;
  assert.equal(s.tasks.length,2);assert.equal(s.index,1);assert.equal(s.answers[0].value,'suis');assert.equal(s.answers[1],null);assert.equal(s.draft,'');assert(!s.order);assert.equal(e.state.reviewPractice.previousMixedRound.tasks.length,3);
  e.click('#reviewResume');assert.equal(e.view.querySelector('#reviewInput').value,'');assert(e.view.textContent.includes('Tu ___'));e.dom.window.close();
+});
+
+test('separate home entries open the requested mode regardless of the last saved selection',()=>{
+ const e=environment();e.state.reviewPractice={imported:true,items:{},settings:{mode:'custom',count:20}};
+ e.render({initialMode:'mistakes'});assert(e.view.querySelector('[value="mistakes"]').checked);assert(e.view.querySelector('#reviewStart').disabled);
+ e.render({initialMode:'mixed'});assert(e.view.querySelector('[value="mixed"]').checked);assert(!e.view.querySelector('#reviewStart').disabled);e.dom.window.close();
 });

@@ -1,6 +1,7 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
-  "Wissen auffrischen →": "Review what you know →",
+  "Wissen auffrischen": "Refresh your knowledge",
+  "Fehler gezielt üben": "Practise mistakes",
   "Gemischt üben, Themen auswählen oder Fehler vertiefen.": "Mix questions, choose topics or practise mistakes.",
   "Was bedeutet „et demie“ bei einer Uhrzeit?": "What does “et demie” mean in a time expression?",
   "„du lait“ =": "“du lait” means",

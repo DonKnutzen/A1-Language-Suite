@@ -1,6 +1,8 @@
 # Wiederholung und Fehlertraining
 
-Einstieg: Startseite, „Das hast du schon gelernt“ → „Wissen auffrischen“.
+Einstieg: Startseite, „Das hast du schon gelernt“. „Wissen auffrischen“ öffnet die gemischte Themenwiederholung, „Fehler gezielt üben“ direkt die Fehlerauswahl. Die zuletzt verwendete Auswahl überschreibt diese beiden Einstiege nicht.
+
+Die kompakte Karte zeigt gelernte Lektionen ohne automatischen Wechsel; ein einzelner Weiterblättern-Button und der Zähler dienen der Orientierung.
 Bei gespeicherten Fehlern steht der Einstieg auch vor dem ersten Lektionsabschluss bereit.
 
 - **Alles mischen:** Aufgaben aus den konkreten Grammatikthemen abgeschlossener Lektionen.
