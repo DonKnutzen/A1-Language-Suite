@@ -193,8 +193,8 @@ const lessons = [
         "Mon numéro de maison est 28."
       ],
       [
-        "Die Postleitzahl ist 12345.",
-        "Le code postal est 12345."
+        "Die Postleitzahl ist 10115.",
+        "Le code postal est 10115."
       ],
       [
         "Das Zimmer ist Nummer 305.",
@@ -1790,7 +1790,7 @@ function skillPct(kind){
 }
 function readiness(){return Math.round((skillPct('Hören')+skillPct('Lesen')+skillPct('Schreiben')+skillPct('Sprechen'))/4);}
 function updateAudioButton(){audioToggle.textContent=audioEnabled?'🔊 Auto':'🔇 Auto';audioToggle.classList.toggle('audio-off',!audioEnabled);}
-function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)return;A1Voice.speak(text,{lang:'de-DE',rate});}
+function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)return;A1Voice.speak(window.DE_A1_ANSWER_AUDIO?.forSpeech(text)||text,{lang:'de-DE',rate});}
 function playCorrectAudio(text,force=false){if((!audioEnabled&&!force)||!text)return;speak(text,true,.80);}
 function speakBtn(text,label='Écouter la prononciation'){return `<button class="speak-btn" data-speak="${esc(text)}" aria-label="${esc(label)}">🔊</button>`;}
 function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(b.dataset.speak,true));}

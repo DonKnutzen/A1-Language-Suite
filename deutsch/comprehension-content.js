@@ -114,7 +114,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Die Hausnummer ist achtundzwanzig. Die Postleitzahl ist 12345."
+        "text": "Die Hausnummer ist achtundzwanzig. Die Postleitzahl ist eins, null, eins, eins, fünf."
       }
     ],
     "fields": [
@@ -139,11 +139,12 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "label": "Code postal",
         "options": [
-          "13245",
-          "12354",
-          "12345"
+          "10151",
+          "11015",
+          "10115"
         ],
-        "answer": "12345"
+        "answer": "10115",
+        "audio": "eins, null, eins, eins, fünf"
       }
     ]
   },

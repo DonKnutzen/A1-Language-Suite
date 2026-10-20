@@ -140,13 +140,13 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "parler plus lentement"
       },
       {
-        "label": "Erster Buchstabe im Nachnamen",
+        "label": "Was soll François wiederholen?",
         "options": [
-          "N",
-          "L",
-          "M"
+          "le nom de famille",
+          "l’alphabet",
+          "le prénom"
         ],
-        "answer": "M"
+        "answer": "le prénom"
       },
       {
         "label": "Vorname von Person A",
@@ -233,13 +233,13 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "trente-deux ans"
       },
       {
-        "label": "Zweites Zahlenpaar der Telefonnummer",
+        "label": "Hausnummer von Person B",
         "options": [
-          "quatre-vingt-deux",
-          "quatre-vingt-douze",
-          "soixante-douze"
+          "vingt-deux",
+          "vingt et un",
+          "trente et un"
         ],
-        "answer": "quatre-vingt-douze"
+        "answer": "vingt et un"
       },
       {
         "label": "Geburtstag von Person B",
@@ -2019,12 +2019,12 @@ window.A1_COMPREHENSION_CONTENT = {
 };
 
 
-/* Each scene keeps the six existing answers, but gives the information a reason. */
+/* Everyday exchanges combine the facts and requests taught in each lesson. */
 (() => {
   const scenes={
     1:[['A','Bonjour ! Comment allez-vous ?'],['B','Ça va bien, merci. Et vous ?'],['A','Très bien, merci. Je m’appelle Léa. Je viens d’Allemagne et j’habite à Lyon. Et vous ?'],['B','Je m’appelle Paul. J’habite à Paris.'],['A','Vous parlez français ?'],['B','Oui, et un peu allemand.'],['A','Enchantée, Paul. Au revoir !'],['B','Au revoir, Léa !']],
     2:[['A','Bonjour. Votre prénom, s’il vous plaît ?'],['B','Lucas. Ça s’écrit L, U, C, A, S.'],['A','Et votre nom de famille ?'],['B','Morel. M, O, R, E, L. Vous pouvez parler plus lentement, s’il vous plaît ?'],['A','Bien sûr. Je m’appelle François.'],['B','Vous pouvez répéter votre prénom, s’il vous plaît ?'],['A','François. Ça s’écrit F, R, A, N, C cédille, O, I, S.'],['B','Merci, François.']],
-    3:[['A','Bonjour. Pour le formulaire, quel âge avez-vous ?'],['B','J’ai vingt-six ans. Et vous ?'],['A','Moi, j’ai trente-deux ans. Votre numéro de téléphone commence par zéro six ?'],['B','Non. Mon numéro est zéro sept, quatre-vingt-douze, trente, vingt et un, quinze.'],['A','Merci. Quel est votre code postal ?'],['B','B3V 1L2.'],['A','Et votre date de naissance ?'],['B','Je suis né le dix-sept avril.']],
+    3:[['A','Bonjour. Pour le formulaire, quel âge avez-vous ?'],['B','J’ai vingt-six ans. Et vous ?'],['A','Moi, j’ai trente-deux ans. Votre numéro de téléphone commence par zéro six ?'],['B','Non. Mon numéro est zéro sept, quatre-vingt-douze, trente, vingt et un, quinze.'],['A','Merci. Et votre adresse ?'],['B','Vingt et un, rue Victor-Hugo.'],['A','Quel est votre code postal ?'],['B','B3V 1L2.'],['A','Et votre date de naissance ?'],['B','Je suis né le dix-sept avril.']],
     4:[['A','Vous êtes libre mardi à quinze heures ?'],['B','Mardi, non. Je suis libre mercredi à quinze heures trente.'],['A','D’accord. Devant la bibliothèque ?'],['B','Oui. Mercredi, le premier juillet, à quinze heures trente.'],['A','Et jeudi, vous êtes libre le matin ?'],['B','Non, seulement le soir.'],['A','Alors, on se voit mercredi devant la bibliothèque.'],['B','D’accord. À mercredi !']],
     5:[['A','Tu as des frères et sœurs ?'],['B','Oui, un frère et deux sœurs. Mon frère s’appelle Paul. Il est calme.'],['A','Et Léa, c’est ta sœur ?'],['B','Non, Léa, c’est ma mère. Mon père s’appelle Marc.'],['A','Comment est ta mère ?'],['B','Elle est sympa.'],['A','Ta famille habite ici ?'],['B','Oui, nous habitons ici.']],
     6:[['A','Bonjour, vous désirez ?'],['B','Une soupe et de l’eau, s’il vous plaît.'],['A','La soupe, avec de la viande ?'],['B','Non, sans viande. Et un thé sans sucre, s’il vous plaît.'],['A','Très bien. Et comme dessert, des pommes ?'],['B','Oui, merci.'],['A','La soupe, le thé et les pommes. Vous voulez aussi l’addition ?'],['B','Oui, l’addition, s’il vous plaît.']],

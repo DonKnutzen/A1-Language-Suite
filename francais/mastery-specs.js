@@ -25,7 +25,7 @@ window.FR_A1_MASTERY_SPECS = {
         "prompt": "Vous ___ allemand.",
         "answer": "êtes",
         "tag": "être",
-        "context": "Sie sind Deutscher."
+        "context": "Sie sind Deutscher. (Höfliche Anrede an einen Mann.)"
       },
       {
         "type": "gap",

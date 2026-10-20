@@ -40,7 +40,9 @@ window.FR_A1_EN = Object.freeze({
   "Erste Bitte von Lucas": "Lucas’s first request",
   "Vorname von Person A": "Person A’s first name",
   "Besonderer Buchstabe in diesem Vornamen": "Special letter in this first name",
-  "Zweites Zahlenpaar der Telefonnummer": "Second pair of digits in the phone number",
+  "Hausnummer von Person B": "Person B’s house number",
+  "Was soll François wiederholen?": "What should François repeat?",
+  "Sie sind Deutscher. (Höfliche Anrede an einen Mann.)": "You are German. (Formal address to one man.)",
   "Geburtstag von Person B": "Person B’s birthday",
   "Datum des vereinbarten Termins": "Date of the agreed appointment",
   "Wann ist Person B am Donnerstag frei?": "When is person B free on Thursday?",
@@ -106,7 +108,6 @@ window.FR_A1_EN = Object.freeze({
   "Wem gehört das Auto?": "Who does the car belong to?",
   "Mit wem war Person B gestern im Kino?": "Who was person B with at the cinema yesterday?",
 
-  "Erster Buchstabe im Nachnamen": "First letter of the surname",
   "Wer ist Paul für Person B?": "Who is Paul to person B?",
   "Wer ist Léa für Person B?": "Who is Léa to person B?",
   "Wer ist Marc für Person B?": "Who is Marc to person B?",

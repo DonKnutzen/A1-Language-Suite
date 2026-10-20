@@ -128,7 +128,7 @@ window.DE_A1_APPLICATIONS = {
   },
   "3": {
     "speakModel": "Einundzwanzig, zweiunddreißig, dreiundvierzig, vierundfünfzig, fünfundsechzig. Meine Telefonnummer ist null drei null, fünf fünf fünf, eins acht vier null.",
-    "writeModel": "Geburtsdatum: 17.04.2000\nTelefonnummer: 030 555 1840\nPostleitzahl: 12345",
+    "writeModel": "Geburtsdatum: 17.04.2000\nTelefonnummer: 030 555 1840\nPostleitzahl: 10115",
     "hints": [
       [
         "Geburtsdatum",
@@ -143,7 +143,7 @@ window.DE_A1_APPLICATIONS = {
         "Code postal"
       ]
     ],
-    "writingTask": "Lies die Angaben und fülle das Formular aus: Nina ist am siebzehnten April zweitausend geboren. Ihre Telefonnummer ist 030 555 1840. Ihre Postleitzahl ist 12345.",
+    "writingTask": "Lies die Angaben und fülle das Formular aus: Nina ist am siebzehnten April zweitausend geboren. Ihre Telefonnummer ist 030 555 1840. Ihre Postleitzahl ist 10115.",
     "fields": [
       [
         "birthDate",

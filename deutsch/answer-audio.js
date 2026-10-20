@@ -2,6 +2,11 @@
 (() => {
   'use strict';
   const clean=value=>String(value??'').replace(/\|/g,'').trim();
+  // A postal code is an identifier, not a number of thousands.
+  function forSpeech(text){
+    const digits=['null','eins','zwei','drei','vier','fünf','sechs','sieben','acht','neun'];
+    return String(text??'').replace(/\b(Postleitzahl\s*(?:ist\s*|:\s*)?)(\d{5})\b/gi,(_,label,code)=>label+[...code].map(d=>digits[Number(d)]).join(', '));
+  }
   function resolve(task={},audio='',answer='',lesson={}){
     const explicit=clean(audio||task.audio);if(explicit&&!explicit.includes('___'))return explicit;
     const correct=clean(answer||task.answer||task.o?.[task.a]);
@@ -18,7 +23,7 @@
     }
     return correct;
   }
-  function play(text){if(text)window.A1Voice?.speak(text,{lang:'de-DE',rate:.8});}
+  function play(text){if(text)window.A1Voice?.speak(forSpeech(text),{lang:'de-DE',rate:.8});}
   function mount(root,{task={},text='',answer='',lesson={},autoplay=true,playAudio=play}={}){
     if(!root)return;
     const audio=resolve(task,text,answer,lesson);if(!audio)return;
@@ -29,5 +34,5 @@
     if(autoplay)playAudio(audio);
     return button;
   }
-  window.DE_A1_ANSWER_AUDIO={resolve,mount,play};
+  window.DE_A1_ANSWER_AUDIO={resolve,mount,play,forSpeech};
 })();
