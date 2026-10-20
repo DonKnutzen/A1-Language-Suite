@@ -60,8 +60,11 @@ html.dark-mode .hard-mode>.between>.hard-eyebrow{color:#ffa8b6}
 .hard-option{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid #675469;background:#ffffff05;border-radius:10px;margin-top:8px;cursor:pointer;line-height:1.6}
 .hard-option:has(:checked){background:#72233c;border-color:#e76889}
 .hard-option input{margin-top:6px;accent-color:#ee7793;flex:none;width:17px;height:17px}
-.hard-mode .hard-footer{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
-.hard-footer .hard-start{width:auto;flex:1}
+/* Equal columns prevent full-width secondary buttons from squeezing submit. */
+.hard-mode .hard-footer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.hard-mode .hard-footer>button{width:100%;min-width:0;min-height:48px;height:auto;white-space:normal;overflow-wrap:normal}
+.hard-mode .hard-footer>button:only-child{grid-column:1/-1}
+@media(max-width:480px){.hard-mode .hard-footer{grid-template-columns:minmax(0,1fr)}}
 .hard-error{color:#ffadb9;font-size:.88rem;line-height:1.6}
 .hard-error:empty{display:none}
 .hard-transcript{border-left:3px solid #c86d92;background:#ffffff06;padding:15px;margin:20px 0;border-radius:0 12px 12px 0}
@@ -88,7 +91,7 @@ html.dark-mode .hard-mode>.between>.hard-eyebrow{color:#ffa8b6}
 .hard-retry-confirm button{margin-top:12px}
 .hard-old-draft{white-space:pre-wrap;font:inherit;overflow-wrap:anywhere}
 @keyframes hard-sheen{0%,55%{transform:translateX(-35%);opacity:0}65%{opacity:1}85%,100%{transform:translateX(35%);opacity:0}}
-@media(max-width:400px){.hard-nav button{flex-wrap:wrap;flex-direction:column;gap:3px;font-size:.75rem}.hard-entry-top{gap:8px}.hard-entry h3{font-size:1.4rem}.hard-entry-meta{gap:6px}.hard-entry-meta span{padding:4px 8px}.hard-mode .hard-footer{flex-wrap:wrap}.hard-result-grid{gap:5px}.hard-result-grid>div{padding:12px 5px}.hard-recording .between{gap:10px;flex-wrap:wrap}.hard-cloze{font-size:1rem}.hard-mode .button-row{flex-direction:column}}
+@media(max-width:400px){.hard-nav button{flex-wrap:wrap;flex-direction:column;gap:3px;font-size:.75rem}.hard-entry-top{gap:8px}.hard-entry h3{font-size:1.4rem}.hard-entry-meta{gap:6px}.hard-entry-meta span{padding:4px 8px}.hard-result-grid{gap:5px}.hard-result-grid>div{padding:12px 5px}.hard-recording .between{gap:10px;flex-wrap:wrap}.hard-cloze{font-size:1rem}.hard-mode .button-row{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.hard-entry.is-unlocked:before{animation:none;display:none}.hard-start{transition:none}.hard-start:hover:not(:disabled){transform:none}}
 
 .hard-nav small{font-size:.7rem;font-weight:500;flex-basis:100%;text-align:center}
