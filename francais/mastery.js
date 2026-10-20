@@ -102,7 +102,7 @@
     const values=[task.answer,...(task.accept||[])].filter(Boolean);
     return values.some(v=>norm(v)===norm(input));
   }
-  function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null,progress=null,saveProgress=()=>{}}){
+  function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null,progress=null,saveProgress=()=>{},reviewState=null}){
     const session=progress?.session;
     const resume=session?.version===101&&Array.isArray(session.ex)&&session.i>=0&&session.i<session.ex.length;
     const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):2,review=window.A1ExerciseReview?.create();
@@ -110,7 +110,7 @@
     function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
     function feedback(ok,task,restoring=false){
-      if(!restoring){if(ok)score++;response={ok,chosen:response?.chosen};persist();}
+      if(!restoring){if(ok)score++;if(reviewState)window.FR_A1_REVIEW?.record(reviewState,window.FR_A1_REVIEW.task(lessonId||task.lessonId||Number(task.tag?.match(/^L(\d+)/)?.[1]),"check","Lektionscheck",task),ok);response={ok,chosen:response?.chosen};persist();}
       if(!restoring&&task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
       document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
@@ -157,7 +157,7 @@
     function intro(){
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${progress.session&&(progress.session.contentVersion||1)<2?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
-      document.getElementById('masteryStart').onclick=()=>runTasks({progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
+      document.getElementById('masteryStart').onclick=()=>runTasks({reviewState:state,progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryBest=state.lessonMasteryBest||{};state.lessonMasteryLast=state.lessonMasteryLast||{};
         state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(Number(state.lessonMasteryBest[lesson.id]||0),pct);save(true);
@@ -176,7 +176,7 @@
       const phrasePick=shuffled(ps).slice(0,2);
       const customPick=shuffled(cs).slice(0,3);
       const fallback=shuffled(ps.filter(x=>!phrasePick.includes(x))).slice(0,Math.max(0,5-phrasePick.length-customPick.length));
-      [...phrasePick,...customPick,...fallback].forEach(t=>out.push({...t,tag:`L${lesson.id} · ${t.tag||'A1'}`}));
+      [...phrasePick,...customPick,...fallback].forEach(t=>out.push({...t,lessonId:lesson.id,tag:`L${lesson.id} · ${t.tag||'A1'}`}));
     }
     return shuffled(out);
   }
@@ -188,13 +188,13 @@
     document.getElementById('courseMasteryBack').onclick=onBack;
     document.querySelectorAll('[data-course-mastery]').forEach(btn=>btn.onclick=()=>{
       const n=+btn.dataset.courseMastery,tasks=courseModuleTasks(n);
-      runTasks({progress:(state.courseCheckProgress||={})[n]||=( {} ),saveProgress:()=>save(),title:`A1 Abschlusscheck · Teil ${n}`,subtitle:`Lektionen ${(n-1)*6+1}–${n*6} · 30 Aufgaben`,tasks,view,onBack:()=>renderCourseMenu({view,state,save,onBack,speak}),speak,onFinish:(score,total)=>{
+      runTasks({reviewState:state,progress:(state.courseCheckProgress||={})[n]||=( {} ),saveProgress:()=>save(),title:`A1 Abschlusscheck · Teil ${n}`,subtitle:`Lektionen ${(n-1)*6+1}–${n*6} · 30 Aufgaben`,tasks,view,onBack:()=>renderCourseMenu({view,state,save,onBack,speak}),speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;state.courseMasteryBest[n]=Math.max(courseBest(state,n),pct);save(true);view.innerHTML=`<section class="card center"><span class="pill">TEIL ${n}</span><div class="score">${pct}%</div><h2>${score}/${total} richtig</h2><p class="muted">Das ist dein aktueller Stand in diesem Block.</p><div class="button-row"><button class="secondary-btn" id="courseAgain">Noch einmal</button><button class="primary-btn" id="courseMenu">Alle Teile</button></div></section>`;
         document.getElementById('courseAgain').onclick=()=>btn.click();document.getElementById('courseMenu').onclick=()=>renderCourseMenu({view,state,save,onBack,speak});
       }});
     });
   }
-  window.FR_A1_MASTERY={PASS,spec,testCount,best,passed,passedCount,completePassedLessons,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
+  window.FR_A1_MASTERY={accepted,spreadAnswers,practiceTasks:lesson=>[...phraseTasks(lesson),...customTasks(lesson),...(spec(lesson.id).checkTasks||[])],PASS,spec,testCount,best,passed,passedCount,completePassedLessons,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
 })();
 
 

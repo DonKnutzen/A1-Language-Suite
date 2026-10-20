@@ -263,7 +263,7 @@
         const missing=a.gaps.filter(s=>!s.trim()).length+a.listening.filter(s=>!s.trim()).length,short=words(a.text)<data.writing.minWords;
         root.querySelector('#hardValidation').innerHTML=`${esc(t(`Verbindlich abgeben? ${missing} offene Antworten; ${words(a.text)} Wörter (mindestens ${data.writing.minWords}). Leere Antworten zählen als falsch.${short?' Die Mindestwortzahl ist noch nicht erreicht.':''} Danach sind keine Änderungen möglich.`,`Submit now? ${missing} unanswered items; ${words(a.text)} words (minimum ${data.writing.minWords}). Empty answers count as incorrect.${short?' The minimum word count has not been reached.':''} Answers cannot be edited afterwards.`))}<div class="button-row"><button class="secondary-btn" id="hardCancelSubmit">${t('Weiter bearbeiten','Keep editing')}</button><button class="hard-start" id="hardConfirmSubmit">${t('Jetzt abgeben','Submit now')}</button></div>`;
         root.querySelector('#hardCancelSubmit').onclick=()=>root.querySelector('#hardValidation').replaceChildren();
-        root.querySelector('#hardConfirmSubmit').onclick=()=>{cancelAudio();a.phase='submitted';a.submittedAt=Date.now();a.page=2;focusHeading=true;persist();draw();};
+        root.querySelector('#hardConfirmSubmit').onclick=()=>{cancelAudio();a.phase='submitted';a.submittedAt=Date.now();window.FR_A1_REVIEW?.captureHard(state,lesson.id,data,a);a.page=2;focusHeading=true;persist();draw();};
         root.querySelector('#hardConfirmSubmit').focus();
       });
       root.querySelector('#hardComplete')?.addEventListener('click',()=>{

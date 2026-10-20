@@ -2,6 +2,7 @@ const D=window.FR_A1_DATA;
 const lessons=D.lessons;
 const defaultState={
   lastLessonId:0,
+  reviewPractice:{},
   doneLessons:[],lessonWork:{},
   lessonQuizBest:{},
   lessonMasteryBest:{},
@@ -152,6 +153,7 @@ function startHomeCarousel(card){
 }
 function renderHome(){
   stopHomeMotion();
+  if(!state.reviewPractice?.imported){FR_A1_REVIEW.seed(state);save();}
   const next=A1LessonFlow.continuation(lessons,state);
   const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
   const allDone=completed.length===lessons.length;
@@ -173,7 +175,9 @@ function renderHome(){
     <section class="card home-milestones" aria-labelledby="milestoneTitle">
       <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Das hast du schon gelernt':'Dein erster Schritt zählt'}</h2>${completed.length>1?`<button type="button" class="home-carousel-control" id="homeMilestonePause" aria-pressed="false" aria-label="Automatischen Wechsel anhalten"><svg class="home-carousel-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3"/></svg><svg class="home-carousel-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg></button>`:''}</div>
       ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="off">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?'<button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Nächsten Lernerfolg anzeigen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>':''}</div><div class="home-milestone-footer"><p class="home-milestone-note">Super, mach weiter so!</p>${completed.length>1?`<small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small>`:''}</div>`:'<p class="home-milestone-note">Nach deiner ersten abgeschlossenen Lektion siehst du hier, was du bereits gelernt hast.</p>'}
+      ${(completed.length||FR_A1_REVIEW.pending(state).length)?`<button type="button" class="primary-btn home-review-btn" id="homeReview">Wissen auffrischen →</button><p class="home-review-hint">Gemischt üben, Themen auswählen oder Fehler vertiefen.</p>`:''}
     </section>`;
+  document.getElementById('homeReview')?.addEventListener('click',()=>{stopHomeMotion();FR_A1_REVIEW.render({view,lessons,state,save,onBack:renderHome,speak,grammarHtml:lessonGrammarHtml});});
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
   homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
   const milestones=view.querySelector('.home-milestones');
@@ -687,6 +691,7 @@ function startGrammarSet(id){
     document.getElementById('backGrammar').onclick=renderGrammarMenu;
     document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
       const chosen=+btn.dataset.o,ok=chosen===q.a;
+      FR_A1_REVIEW.record(state,FR_A1_REVIEW.task(0,"extra-grammar:"+id,set.title,q),ok);save();
       practiceProgress?.recordGrammar(set,q);
       if(ok)score++;playCorrectAudio(q.audio,true);
       document.querySelectorAll('[data-o]').forEach((b,j)=>{
@@ -757,6 +762,7 @@ function renderListeningTask(part,examMode=false,onDone=null,forced=null,progres
     if(answered)return;
     answered=true;
     const chosen=+btn.dataset.o,correct=part===2?(task.a?0:1):task.a,ok=chosen===correct;
+    FR_A1_REVIEW.record(state,FR_A1_REVIEW.task(0,'extra-listening:'+part,'Hörtraining',{q:part===2?task.statement:task.q,answer:options[correct],o:options,speech:task.speech}),ok);save();
     practiceProgress?.record('listening',task.id);
     if(ok){
       if(!state.masteredListening.includes(task.id)){state.masteredListening.push(task.id);save();}
@@ -831,6 +837,7 @@ function renderReadingTask(part,onDone=null,forced=null,progressLabel=''){
   document.getElementById('backRead').onclick=renderReadingMenu;
   document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{
     const chosen=+btn.dataset.o,ok=chosen===correct;
+    FR_A1_REVIEW.record(state,FR_A1_REVIEW.task(0,'extra-reading:'+part,'Lesetraining',{q:task.q||task.statement,answer:options[correct],o:options,context:part===2?'A: '+task.aText+'\n\nB: '+task.bText:task.text||[task.where,task.sign].filter(Boolean).join('\n')}),ok);save();
     practiceProgress?.record('reading',task.id);
     if(ok){
       if(!state.masteredReading.includes(task.id)){state.masteredReading.push(task.id);save();}

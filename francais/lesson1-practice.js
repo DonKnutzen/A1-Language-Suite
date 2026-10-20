@@ -125,7 +125,7 @@
       stage.innerHTML=`<div class="lesson1-drill-question"><div class="between"><small>${i+1}/${tasks.length}</small><span class="pill gray">${esc(group.title)}</span></div><div class="quiz-q">${esc(q.q)}</div><div class="options">${opts.map(o=>`<button class="option-btn" data-l1-answer="${esc(o)}">${esc(o)}</button>`).join('')}</div><div class="lesson1-drill-feedback"></div></div>`;
       function feedback(chosen,restoring=false){
         const ok=chosen===q.a;
-        if(!restoring){if(response)return;if(ok)score++;response={chosen};persist();}
+        if(!restoring){if(response)return;if(ok)score++;window.FR_A1_REVIEW?.record(state,window.FR_A1_REVIEW.task(1,"l1:"+key,group.title,{...q,answer:q.a}),ok);response={chosen};persist();}
         const btn=[...stage.querySelectorAll('[data-l1-answer]')].find(b=>b.dataset.l1Answer===chosen);
         stage.querySelectorAll('[data-l1-answer]').forEach(b=>{b.disabled=true;if(b.dataset.l1Answer===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
         if(ok&&!restoring)btn?.classList.add('answer-success');
@@ -177,7 +177,7 @@
       document.getElementById('l1GrammarBack').onclick=onBack;
       function feedback(chosen,restoring=false){
         const ok=chosen===q.a;
-        if(!restoring){if(response)return;if(ok)score++;response={chosen};persist();}
+        if(!restoring){if(response)return;if(ok)score++;window.FR_A1_REVIEW?.record(state,window.FR_A1_REVIEW.task(1,"l1-check","Grammatik-Abschlusstest",{...q,answer:q.a}),ok);response={chosen};persist();}
         const btn=[...document.querySelectorAll('[data-l1-check]')].find(b=>b.dataset.l1Check===chosen);
         document.querySelectorAll('[data-l1-check]').forEach(b=>{b.disabled=true;if(b.dataset.l1Check===q.a)b.classList.add('correct');else if(b===btn)b.classList.add('wrong');});
         if(ok&&!restoring)btn?.classList.add('answer-success');

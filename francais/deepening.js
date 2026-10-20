@@ -207,7 +207,7 @@
       stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${q.meaning?`<p class="mixed-context">${esc(window.A1Profile?.getUiLang()==='en'&&q.meaningEn?q.meaningEn:q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${order.map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
       function feedback(chosen,restoring=false){
         const ok=chosen===q.answer;
-        if(!restoring){if(response)return;if(ok)score++;else mistakes.push(q);response={chosen};persist();}
+        if(!restoring){if(response)return;if(ok)score++;else mistakes.push(q);window.FR_A1_REVIEW?.record(state,window.FR_A1_REVIEW.task(lesson.id,"grammar:"+pool.key,pool.title,q),ok);response={chosen};persist();}
         const button=[...stage.querySelectorAll('.option-btn')].find(b=>b.textContent===chosen);
         stage.querySelectorAll('.option-btn').forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.textContent===q.answer);b.classList.toggle('wrong',b===button&&!ok);});
         if(ok&&!restoring)button?.classList.add('answer-success');
