@@ -9,7 +9,7 @@
     const root=document.createElement('div');root.innerHTML=page.html;
     const title=root.querySelector('details')?.dataset.grammarOriginalTitle||page.title;
     const drill=window.DE_A1_GRAMMAR_DRILLS?.topics[title];
-    return drill?{key:title,title:page.title,setId:drill.setId,tasks:shuffle(drill.tasks).slice(0,drill.roundSize||drill.tasks.length)}:null;
+    return drill?{key:title,title:page.title,setId:drill.setId,tasks:shuffle(drill.tasks)}:null;
   }
   function practiceState(state,id,key){return state.lessonGrammarPractice?.[id]?.[key]||{};}
   function bucket(state,id,key){state.lessonGrammarPractice||={};state.lessonGrammarPractice[id]||={};return state.lessonGrammarPractice[id][key]||={};}
@@ -18,10 +18,10 @@
     const answer=q.answer||q.o[q.a],o=shuffle(q.o);
     return {...q,type:q.type||'choice',o,a:o.indexOf(answer),answer};
   }
-  function runTasks({tasks,view,title,onBack,onFinish,speak,session,save,lessonId,step='check',compact=false}){
+  function runTasks({state,tasks,view,title,onBack,onFinish,speak,session,save,lessonId,step='check',compact=false}){
     window.A1BugReports?.setContext({lessonId:lessonId||null,step});
-    const exercises=shuffle(tasks).map(normalize);window.DE_A1_STUDY.refreshSession(session,exercises);
-    A1ExerciseEngine.run({lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>save(),playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
+    const exercises=step==='check'?spreadAnswers(tasks.map(normalize)):shuffle(tasks).map(normalize);window.DE_A1_STUDY.refreshSession(session,exercises);
+    A1ExerciseEngine.run({lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+title:step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
   function decorate({root,practice,lesson,state,save,speak,onUpdate,onStart}){
     if(!practice)return;
@@ -35,7 +35,7 @@
         if(unit)practice.tasks=window.DE_A1_STUDY.unitTasks(unit);
         onStart?.();
         panel.querySelector('#topicPracticeStart').hidden=true;
-        runTasks({tasks:practice.tasks,view:panel.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:current,save,lessonId:lesson.id,step:'grammar',compact:true,onFinish:(score,total)=>{
+        runTasks({state,tasks:practice.tasks,view:panel.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:current,save,lessonId:lesson.id,step:'grammar',compact:true,onFinish:(score,total)=>{
           current.done=true;current.last=score;current.best=Math.max(current.best||0,score);current.total=total;
           if(practice.setId){const set=sets.find(s=>s.id===practice.setId);if(set)practice.tasks.forEach(q=>progress?.recordGrammar(set,q));}
           save(true);onUpdate();intro();panel.insertAdjacentHTML('beforeend',`<p class="feedback good" role="status">✓ ${score} / ${total} réponses correctes</p>`);
@@ -43,6 +43,18 @@
       };
     }
     intro();
+  }
+  function spreadAnswers(tasks){
+    const pending=shuffle(tasks),out=[];
+    const norm=s=>String(s||'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+    const signature=q=>norm(q.prompt||q.audio||q.q).replace(/\b(ich|du|er|sie|es|wir|ihr|sie)\b/g,'');
+    while(pending.length){
+      let best=0,cost=Infinity;
+      pending.forEach((q,i)=>{
+        let c=0;out.slice(-3).reverse().forEach((p,j)=>{if(norm(q.answer)===norm(p.answer))c+=100/(j+1);if(signature(q)===signature(p))c+=80/(j+1);if(q.skill===p.skill)c+=4/(j+1);});
+        if(c<cost){cost=c;best=i;}
+      });out.push(pending.splice(best,1)[0]);
+    }return out;
   }
   function makeLessonTest(lesson){
     return window.DE_A1_STUDY.assessmentTasks(lesson);
@@ -68,7 +80,7 @@
     function intro(){
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Leçon</button><span class="pill">BILAN DE LA LEÇON</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${session.session?'Continuer le bilan':'Commencer les '+testCount(lesson.id)+' questions'}</button></section>`;
       view.querySelector('#masteryBackIntro').onclick=onBack;
-      view.querySelector('#masteryStart').onclick=()=>runTasks({tasks:makeLessonTest(lesson),view,title:lesson.title,onBack:intro,speak,session,save,lessonId:lesson.id,onFinish:(score,total)=>{
+      view.querySelector('#masteryStart').onclick=()=>runTasks({state,tasks:makeLessonTest(lesson),view,title:lesson.title,onBack:intro,speak,session,save,lessonId:lesson.id,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryLast||={};state.lessonMasteryBest||={};state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(best(state,lesson.id),pct);save(true);
         result({view,score,total,onAgain:intro,onBack});onResult?.();
@@ -81,20 +93,20 @@
   function grammarCheckBest(state){return Number(state.lessonGrammarCheckBest?.[1]||0);}
   function renderGrammarCheck({view,state,save,speak,onBack}){
     state.grammarCheckProgress||={};const session=state.grammarCheckProgress[1]||={};
-    function start(){runTasks({tasks:grammarCheckTasks(),view,title:'Test final',onBack,speak,session,save,lessonId:1,step:'grammar-check',onFinish:(score,total)=>{
+    function start(){runTasks({state,tasks:grammarCheckTasks(),view,title:'Test final',onBack,speak,session,save,lessonId:1,step:'grammar-check',onFinish:(score,total)=>{
       const pct=total?Math.round(score/total*100):0;state.lessonGrammarCheckLast||={};state.lessonGrammarCheckBest||={};state.lessonGrammarCheckLast[1]=pct;state.lessonGrammarCheckBest[1]=Math.max(grammarCheckBest(state),pct);save(true);
       result({view,score,total,onAgain:start,onBack});
     }});}
     start();
   }
-  function courseModuleTasks(n){return lessons.slice((n-1)*6,n*6).flatMap(lesson=>shuffle(makeLessonTest(lesson)).slice(0,5));}
+  function courseModuleTasks(n){return lessons.slice((n-1)*6,n*6).flatMap(lesson=>shuffle(makeLessonTest(lesson)).slice(0,5).map(q=>({...q,lessonId:lesson.id})));}
   function renderCourseMenu({view,state,save,onBack,speak}){
     function menu(){
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="courseMasteryBack">← Examen</button><span class="pill">BILAN A1</span></div><section class="card"><h2>Bilan du cours</h2><p class="muted">Quatre blocs de 30 questions. Chaque bloc reprend six leçons.</p></section><div class="list">${[1,2,3,4].map(n=>`<button class="practice-card" data-course-mastery="${n}"><strong>Bloc ${n} · Leçons ${(n-1)*6+1}–${n*6}</strong><small>${state.courseCheckProgress?.[n]?.session?'En cours':state.courseMasteryBest?.[n]!==undefined?state.courseMasteryBest[n]+' %':'À faire'} · 30 questions</small></button>`).join('')}</div>`;
       view.querySelector('#courseMasteryBack').onclick=onBack;
       view.querySelectorAll('[data-course-mastery]').forEach(btn=>btn.onclick=()=>{
         const n=Number(btn.dataset.courseMastery);state.courseCheckProgress||={};const session=state.courseCheckProgress[n]||={};
-        function start(){runTasks({tasks:courseModuleTasks(n),view,title:'Bilan A1 · Bloc '+n,onBack:menu,speak,session,save,onFinish:(score,total)=>{
+        function start(){runTasks({state,tasks:courseModuleTasks(n),view,title:'Bilan A1 · Bloc '+n,onBack:menu,speak,session,save,onFinish:(score,total)=>{
           const pct=total?Math.round(score/total*100):0;state.courseMasteryBest||={};state.courseMasteryBest[n]=Math.max(Number(state.courseMasteryBest[n]||0),pct);save(true);result({view,score,total,onAgain:start,onBack:menu});
         }});}
         start();
@@ -102,5 +114,5 @@
     }
     menu();
   }
-  window.DE_A1_ASSESSMENTS={configure,topicPractice,decorate,practiceState,makeLessonTest,testCount,best,attempted,passedCount,completePassedLessons,introHtml,renderLessonTest,grammarCheckTasks,grammarCheckTried,grammarCheckBest,renderGrammarCheck,courseModuleTasks,renderCourseMenu};
+  window.DE_A1_ASSESSMENTS={spreadAnswers,configure,topicPractice,decorate,practiceState,makeLessonTest,testCount,best,attempted,passedCount,completePassedLessons,introHtml,renderLessonTest,grammarCheckTasks,grammarCheckTried,grammarCheckBest,renderGrammarCheck,courseModuleTasks,renderCourseMenu};
 })();

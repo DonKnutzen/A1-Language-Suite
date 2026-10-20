@@ -1729,7 +1729,7 @@ DE_A1_STUDY.configure(lessons);
 
 
 const stateKey=A1Profile.namespacedKey('deutschA1GoetheFormatState_v6');
-const defaultState={lastLessonId:0,doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
+const defaultState={lastLessonId:0,reviewPractice:{},doneLessons:[],lessonWork:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],lessonQuizBest:{},grammarBest:{},lessonGrammarPractice:{},lessonGrammarCheckBest:{},lessonGrammarCheckLast:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},practiceDone:{grammar:[],listening:[],reading:[]},vocabKnown:[],bestMock:0};
 function loadState(){
   const loaded=A1Learning.loadState(stateKey,defaultState);
   if(DE_A1_ASSESSMENTS.completePassedLessons(loaded,lessons)){
@@ -1813,40 +1813,19 @@ function stopHomeMotion(){
 function startHomeCarousel(card){
   const stage=card.querySelector('.home-milestone-stage'),slides=[...card.querySelectorAll('.home-milestone-slide')];
   if(slides.length<2)return null;
-  const pause=card.querySelector('#homeMilestonePause'),next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
-  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  let index=0,userPaused=false,visible=!('IntersectionObserver' in window),timer=null,swap=null;
-  function settle(){clearTimeout(timer);clearTimeout(swap);stage.classList.remove('is-changing');}
-  function schedule(){
-    clearTimeout(timer);
-    if(!userPaused&&!motion.matches&&visible&&!document.hidden&&card.isConnected)timer=setTimeout(advance,5000);
-  }
-  function advance(){
-    settle();
-    const show=()=>{
-      if(!card.isConnected)return;
-      slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
-      index=(index+1)%slides.length;
-      slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
-      count.textContent=`${index+1} / ${slides.length}`;stage.classList.remove('is-changing');schedule();
-    };
-    if(motion.matches)show();else{stage.classList.add('is-changing');swap=setTimeout(show,320);}
-  }
-  function updatePause(){
-    pause.hidden=motion.matches;pause.setAttribute('aria-pressed',String(userPaused));
-    pause.setAttribute('aria-label',userPaused?'Reprendre le défilement automatique':'Mettre le défilement automatique en pause');
-    pause.title=userPaused?'Reprendre le défilement automatique':'Mettre le défilement automatique en pause';
-  }
-  pause.onclick=()=>{userPaused=!userPaused;settle();updatePause();schedule();};next.onclick=advance;
-  const onVisibility=()=>{settle();schedule();};
-  const onMotion=()=>{settle();updatePause();schedule();};
-  document.addEventListener('visibilitychange',onVisibility);motion.addEventListener('change',onMotion);
-  const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries.some(e=>e.isIntersecting);if(!visible)settle();schedule();},{threshold:.05}):null;
-  observer?.observe(card);updatePause();schedule();
-  return ()=>{settle();observer?.disconnect();document.removeEventListener('visibilitychange',onVisibility);motion.removeEventListener('change',onMotion);};
+  const next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
+  let index=0;
+  next.onclick=()=>{
+    slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
+    index=(index+1)%slides.length;
+    slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
+    count.textContent=`${index+1} / ${slides.length}`;
+  };
+  return ()=>{next.onclick=null;};
 }
 function renderHome(){
   stopHomeMotion();
+  if(!state.reviewPractice?.imported){DE_A1_REVIEW.seed(state);save();}
   const next=A1LessonFlow.continuation(lessons,state);
   const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
   const allDone=completed.length===lessons.length;
@@ -1866,10 +1845,14 @@ function renderHome(){
       ${A1Streak.render('fr',{showEmpty:true})}
     </section>
     <section class="card home-milestones" aria-labelledby="milestoneTitle">
-      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Ce que tu as déjà appris':'Le premier pas compte'}</h2>${completed.length>1?`<button type="button" class="home-carousel-control" id="homeMilestonePause" aria-pressed="false" aria-label="Mettre le défilement automatique en pause"><svg class="home-carousel-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="3"/></svg><svg class="home-carousel-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg></button>`:''}</div>
-      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="off">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?'<button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Afficher le prochain acquis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>':''}</div><div class="home-milestone-footer"><p class="home-milestone-note">Bravo, continue comme ça !</p>${completed.length>1?`<small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small>`:''}</div>`:'<p class="home-milestone-note">Après ta première leçon terminée, tu retrouveras ici ce que tu as appris.</p>'}
+      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Ce que tu as déjà appris':'Le premier pas compte'}</h2></div>
+      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="polite">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?`<div class="home-learned-pager"><small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small><button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Afficher le prochain acquis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div>`:''}</div>`:'<p class="home-milestone-note">Après ta première leçon, tu retrouveras ici tes acquis.</p>'}
+      ${(completed.length||DE_A1_REVIEW.pending(state).length)?`<div class="home-review-actions"><button type="button" class="home-review-action" id="homeReview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M19.5 12a7.5 7.5 0 1 0-2 5M20 7l-.5 5"/></svg><span>Rafraîchir mes connaissances</span></button><button type="button" class="home-review-action home-review-mistakes" id="homeMistakes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="m12 12 7-7M17 5h2v2"/></svg><span>Retravailler mes erreurs</span>${DE_A1_REVIEW.pending(state).length?`<span class="home-mistake-count" aria-label="${DE_A1_REVIEW.pending(state).length} ${A1Profile.getUiLang()==='en'?'tasks to review':'exercices à revoir'}">${DE_A1_REVIEW.pending(state).length}</span>`:''}</button></div>`:''}
     </section>`;
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
+  const openReview=initialMode=>{stopHomeMotion();DE_A1_REVIEW.render({view,lessons,state,save,onBack:renderHome,speak,grammarHtml:l=>DE_A1_STUDY.grammarHtml(l,lessonGrammarReferenceHtml(l.id),speakBtn),initialMode});};
+  document.getElementById('homeReview')?.addEventListener('click',()=>openReview('mixed'));
+  document.getElementById('homeMistakes')?.addEventListener('click',()=>openReview('mistakes'));
   homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
   const milestones=view.querySelector('.home-milestones');
   homeCarouselCleanup=startHomeCarousel(milestones);
@@ -1966,7 +1949,7 @@ function startGrammarSet(id){
   const set=grammarSets.find(x=>x.id===id),qs=shuffle(set.questions).slice(0,10);let i=0,score=0;
   function draw(){
     if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.grammarBest[id]=Math.max(state.grammarBest[id]||0,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">La bonne réponse est lue après chaque réponse.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Recommencer</button><button class="primary-btn" id="backGrammar">Toutes les séries</button></div></section>`;document.getElementById('againGrammar').onclick=()=>startGrammarSet(id);document.getElementById('backGrammar').onclick=renderGrammarMenu;return;}
-    const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backGrammar">← Grammaire</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="eyebrow">${esc(set.title)}</div><div class="quiz-q">${esc(q.q)}</div>${DE_A1_PRONOUNS.hint(q)?`<p class="pronoun-hint">${esc(DE_A1_PRONOUNS.hint(q))}</p>`:''}<div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div><div id="grammarFeedback"></div></section>`;document.getElementById('backGrammar').onclick=renderGrammarMenu;document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{const chosen=+btn.dataset.o,ok=chosen===q.a;if(ok)score++;practiceProgress.recordGrammar(set,q);document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('grammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ Bonne réponse : '+esc(q.o[q.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextGrammar">${i<qs.length-1?'Suivant':'Résultat'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#grammarFeedback .feedback'),{task:q,playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextGrammar').onclick=()=>{i++;draw();};});
+    const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backGrammar">← Grammaire</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="eyebrow">${esc(set.title)}</div><div class="quiz-q">${esc(q.q)}</div>${DE_A1_PRONOUNS.hint(q)?`<p class="pronoun-hint">${esc(DE_A1_PRONOUNS.hint(q))}</p>`:''}<div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div><div id="grammarFeedback"></div></section>`;document.getElementById('backGrammar').onclick=renderGrammarMenu;document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{const chosen=+btn.dataset.o,ok=chosen===q.a;window.DE_A1_REVIEW?.record(state,window.DE_A1_REVIEW.task(0,'extra-grammar:'+id,set.title,q),ok);save();if(ok)score++;practiceProgress.recordGrammar(set,q);document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('grammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ Bonne réponse : '+esc(q.o[q.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextGrammar">${i<qs.length-1?'Suivant':'Résultat'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#grammarFeedback .feedback'),{task:q,playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextGrammar').onclick=()=>{i++;draw();};});
   }
   draw();
 }
@@ -1992,7 +1975,7 @@ function renderListeningTask(part,item=null,examMode=false,onDone=null,progressL
     view.innerHTML=`<div class="between"><button class="tiny-btn" id="backHear">← Hören</button><span class="pill">${progressLabel||'Teil '+part}</span></div><section class="card" style="margin-top:12px"><div class="audio-panel"><button class="speak-btn large" id="playAudio">▶️</button><div><strong>Audio abspielen</strong></div><div class="play-count">${examMode?`${plays}/${maxPlays} écoute(s) utilisée(s)`:'Mode entraînement · répétition libre'}</div></div><div class="quiz-q">${esc(part===2?task.statement:task.q)}</div><div class="options">${options.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="hearFeedback"></div></section>`;
     document.getElementById('backHear').onclick=()=>examMode?renderExam():renderListeningMenu();
     document.getElementById('playAudio').onclick=()=>{if(examMode&&plays>=maxPlays)return;plays++;speak(task.speech,true,.78);if(examMode){document.querySelector('.play-count').textContent=`${plays}/${maxPlays} écoute(s) utilisée(s)`;if(plays>=maxPlays)document.getElementById('playAudio').disabled=true;}};
-    document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{if(answered)return;answered=true;practiceProgress.record('listening',task.id);const chosen=+btn.dataset.o,correctIndex=part===2?(task.a?0:1):task.a,ok=chosen===correctIndex;if(ok){if(!state.masteredListening.includes(task.id)){state.masteredListening.push(task.id);save();}}document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===correctIndex)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('hearFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ À revoir'}</div>${examMode?'':`<div class="transcript"><strong>Transcription :</strong><br>${esc(task.speech)}</div>`}<div class="spacer"></div><button class="primary-btn" id="nextHear">${onDone?'Continuer':'Nouvelle tâche'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#hearFeedback .feedback'),{text:part===2?(task.a?'Richtig. '+task.statement:'Falsch. '+task.speech):(task.audio||options[correctIndex]),playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextHear').onclick=()=>{if(onDone)onDone(ok);else renderListeningTask(part);};});
+    document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{if(answered)return;answered=true;practiceProgress.record('listening',task.id);const chosen=+btn.dataset.o,correctIndex=part===2?(task.a?0:1):task.a,ok=chosen===correctIndex;window.DE_A1_REVIEW?.record(state,window.DE_A1_REVIEW.task(0,'extra-listening:'+part,'Écoute',{q:part===2?task.statement:task.q,o:options,answer:options[correctIndex],speech:task.speech}),ok);save();if(ok){if(!state.masteredListening.includes(task.id)){state.masteredListening.push(task.id);save();}}document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===correctIndex)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('hearFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ À revoir'}</div>${examMode?'':`<div class="transcript"><strong>Transcription :</strong><br>${esc(task.speech)}</div>`}<div class="spacer"></div><button class="primary-btn" id="nextHear">${onDone?'Continuer':'Nouvelle tâche'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#hearFeedback .feedback'),{text:part===2?(task.a?'Richtig. '+task.statement:'Falsch. '+task.speech):(task.audio||options[correctIndex]),playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextHear').onclick=()=>{if(onDone)onDone(ok);else renderListeningTask(part);};});
   }
   draw();
 }
@@ -2016,7 +1999,7 @@ function renderReadingTask(part,item=null,examMode=false,onDone=null,progressLab
   if(part===3){body=`<div class="muted" style="margin-bottom:8px">${esc(task.where)}</div><div class="sign">${esc(task.sign).replace(/\n/g,'<br>')}</div><div class="quiz-q">${esc(task.statement)}</div>`;options=['Richtig','Falsch'];correct=task.a?0:1;audio=task.statement;}
   if(part===4){body=`<div class="reading-text">${esc(task.text).replace(/\n/g,'<br>')}</div><div class="quiz-q">${esc(task.q)}</div>`;options=task.o;correct=task.a;audio=task.audio||task.o[task.a];}
   view.innerHTML=`<div class="between"><button class="tiny-btn" id="backRead">← Lesen</button><span class="pill">${progressLabel||'Teil '+part}</span></div><section class="card" style="margin-top:12px">${body}<div class="options">${options.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="readFeedback"></div></section>`;
-  document.getElementById('backRead').onclick=()=>examMode?renderExam():renderReadingMenu();document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{practiceProgress.record('reading',task.id);const chosen=+btn.dataset.o,ok=chosen===correct;if(ok){if(!state.masteredReading.includes(task.id)){state.masteredReading.push(task.id);save();}}document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===correct)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('readFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ La bonne réponse est '+esc(options[correct])}</div><div class="spacer"></div><button class="primary-btn" id="nextRead">${onDone?'Continuer':'Nouvelle tâche'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#readFeedback .feedback'),{text:(part===1||part===3)?(task.a?'Richtig. '+task.statement:'Falsch. '+(task.text||task.sign)):audio,playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextRead').onclick=()=>{if(onDone)onDone(ok);else renderReadingTask(part);};});
+  document.getElementById('backRead').onclick=()=>examMode?renderExam():renderReadingMenu();document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{practiceProgress.record('reading',task.id);const chosen=+btn.dataset.o,ok=chosen===correct;window.DE_A1_REVIEW?.record(state,window.DE_A1_REVIEW.task(0,'extra-reading:'+part,'Lecture',{q:task.q||task.statement,o:options,answer:options[correct],context:part===2?'A: '+task.aText+'\nB: '+task.bText:task.text||task.sign||''}),ok);save();if(ok){if(!state.masteredReading.includes(task.id)){state.masteredReading.push(task.id);save();}}document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===correct)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('readFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ La bonne réponse est '+esc(options[correct])}</div><div class="spacer"></div><button class="primary-btn" id="nextRead">${onDone?'Continuer':'Nouvelle tâche'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#readFeedback .feedback'),{text:(part===1||part===3)?(task.a?'Richtig. '+task.statement:'Falsch. '+(task.text||task.sign)):audio,playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextRead').onclick=()=>{if(onDone)onDone(ok);else renderReadingTask(part);};});
 }
 
 function renderWritingMenu(){

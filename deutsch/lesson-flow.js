@@ -183,8 +183,13 @@
       return `<button class="soft-btn lesson-help-toggle" id="speechHelpBtn" aria-expanded="false" aria-controls="speechHelp">💡 ${esc(L.dialogueHelp)}</button><div class="lesson-writing-help lesson-help-content" id="speechHelp" hidden>${body}</div>`;
     }
     function renderExtras(){
-      if(view.querySelector('.lesson-optional'))return;
-      view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire. Ces tâches ne sont pas nécessaires pour terminer la leçon.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${p.speakingDone?'✓ ':''}${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${p.writingDone?'✓ ':''}${esc(L.write)}</button></div></section>`);
+      if(!window.DE_A1_HARD_MODE){
+        if(view.querySelector('.lesson-optional'))return;
+        view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${esc(L.write)}</button></div></section>`);return;
+      }
+      if(view.querySelector('.hard-entry'))return;
+      const host=document.createElement('div');view.append(host);
+      window.DE_A1_HARD_MODE.renderEntry({lesson:l,view:host,state,onStart:()=>{remember();window.A1Voice?.cancel();window.DE_A1_HARD_MODE.render({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
     }
     function drawMastery(){
       window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});
@@ -257,7 +262,7 @@
       document.getElementById('startGrammarCheck')?.addEventListener('click',drawGrammarCheck);
       if(activeStep==='grammar')DE_A1_ASSESSMENTS.decorate({root:view,practice:grammarPractices[grammarIndex],lesson:l,state,save,speak:opts.speak,onUpdate:refreshSteps,onStart:()=>remember('exercise')});
       expandContent(view);
-      if(activeStep==='comprehension')window.A1Comprehension.render({root:view.querySelector('#lessonComprehension'),data:window.A1_COMPREHENSION_CONTENT[l.id],work:p,lessonId:l.id,targetLang:opts.targetLang,uiLang:opts.uiLang,save,onUpdate:refreshSteps,onContinue:()=>goStep('check')});
+      if(activeStep==='comprehension')window.A1Comprehension.render({root:view.querySelector('#lessonComprehension'),data:window.A1_COMPREHENSION_CONTENT[l.id],work:p,lessonId:l.id,targetLang:opts.targetLang,uiLang:opts.uiLang,save:completed=>{if(!p.comprehension?.graded&&p.comprehension)delete p.comprehension.reviewRecorded;window.DE_A1_REVIEW?.captureListening(state,l.id,window.A1_COMPREHENSION_CONTENT[l.id],p.comprehension);save(completed);},onUpdate:refreshSteps,onContinue:()=>goStep('check')});
       opts.wireSpeakButtons();opts.wirePronunciation?.(view);
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
         const i=Number(btn.dataset.corePhraseIndex),phraseKey=l.phrases[i]?.[0];if(!phraseKey)return;
@@ -271,7 +276,7 @@
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
       const exercises=DE_A1_STUDY.lessonExercises(l);DE_A1_STUDY.refreshSession(p,exercises);
-      A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,bugStep:'listen-exercise',review:true,exercises,progress:p,finishLabel:'Continuer : approfondir',selectionOnly:true,exerciseVersion:102,saveProgress:()=>save(),playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
+      A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,bugStep:'listen-exercise',review:true,exercises,progress:p,finishLabel:'Continuer : approfondir',selectionOnly:true,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,l.id,p.session);save();},playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
         save(true);goStep('grammar');

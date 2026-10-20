@@ -52,11 +52,11 @@
       return {type:'gap',q:`« ${fr} » — Complète : ${prompt}`,prompt,context:fr,answer,o,a:o.indexOf(answer),audio:plain(marked),explanation:`${plain(marked)} = ${fr}`,skill:'application'};
     });
   }
-  function unitTasks(unit,{full=false}={}){
+  function unitTasks(unit,{full=true}={}){
     const recognitionTasks=unit.rows.map(([de,fr])=>recognition(unit,[plain(de),fr]));
     if(unit.conjugation){
       const persons=['Ich','Du','Sie','Wir','Ihr','Sie','Sie'],fr=['Je peux','Tu peux','Elle peut','Nous pouvons','Vous pouvez (plusieurs personnes, familier)','Ils/Elles peuvent','Vous pouvez (forme de politesse)'],indices=[0,1,2,3,4,5,5],roles=['','','female','','familiar','plural','formal'],forms=unit.conjugation.forms;
-      return [...persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i]};}),...recognitionTasks.slice(0,3)].map(indexAnswer);
+      return [...persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i]};}),...gapTasks(unit),...recognitionTasks].map(indexAnswer);
     }
     const forms=gapTasks(unit),extra=shuffle([...(unit.extra||[]),...(unit.vocabulary||[])].filter((p,i,a)=>a.findIndex(q=>q[0]===p[0])===i)).slice(0,2).map(p=>recognition(unit,p,{application:true}));
     if(full)return [...recognitionTasks,...forms,...extra].map(indexAnswer);
@@ -92,12 +92,12 @@
     const units=content[lesson.id],tasks=balanced(units,u=>shuffle(unitTasks(u,{full:true}).filter(t=>t.skill==='application')),8);
     const application=window.DE_A1_APPLICATIONS[lesson.id];
     tasks.push(...application.review.fields.map(field=>({type:'choice',q:`Lies den Dialog: ${application.review.text}\n${field.q}`,o:shuffle(field.o),answer:field.answer,audio:field.answer,skill:'transfer',explanation:application.review.text.split(' / ').join(' ')})),{...application.reading,skill:'transfer'});
-    return tasks.map(indexAnswer);
+    return window.DE_A1_ASSESSMENTS?.spreadAnswers?window.DE_A1_ASSESSMENTS.spreadAnswers(tasks.map(indexAnswer)):tasks.map(indexAnswer);
   }
   function configure(lessons){
     for(const lesson of lessons){
       content[lesson.id].forEach((unit,index)=>{
-        unit.key=`study-${lesson.id}-${index}`;
+        unit.key=`study-${lesson.id}-${index}`;unit.practiceCount=unitTasks(unit).length;
         window.DE_A1_GRAMMAR_DRILLS.topics[unit.key]={setId:null,tasks:unitTasks(unit)};
       });
       // The opening check only tests phrases that have an audio example on this page.

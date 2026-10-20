@@ -1178,3 +1178,6 @@ window.A1_COMPREHENSION_CONTENT = {
     ]
   }
 };
+
+// Explicit speaker roles for the German voice adapter.
+Object.values(window.A1_COMPREHENSION_CONTENT).forEach(block=>block.turns.forEach(turn=>{turn.gender=turn.speaker==='A'?'female':'male';}));
