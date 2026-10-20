@@ -450,5 +450,183 @@
   content[17].listening[1].turns.forEach(t=>t.gender=t.speaker==='B'?'female':'male');
   for(const d of Object.values(content)){d.version=3;d.compatibleVersions=[2];for(const block of d.listening)block.kind=block.turns?'dialogue':'message';}
 
+  // Preserve v3 questions and scoring before editing the listening assessment.
+  window.FR_A1_HARD_VERSIONS[3]=JSON.parse(JSON.stringify(content));
+  // These identifiers must be heard, rather than copied from the cloze tab.
+  content[2].text=content[2].text.replace('Dans François, le c','Dans « français », le c');
+  content[3].text=content[3].text.replace('Je m’appelle Nina','Je m’appelle Alice').replace('vingt-six ans','vingt-huit ans').replace('17 avril','12 juin').replace('B3V 1L2','69003');
+  content[17].text=content[17].text.replace('Martin','Dupont').replace('Léa','Paul').replace('3 mai','12 juin').replace('allemande','française').replace('lea@example.com','paul.dupont@example.com');
+  content[22].text=content[22].text.replace(/Paul/g,'Marc');
+  const replaceChoice=(id,b,i,q,answer,others,skills)=>{
+    const previous=at(id,b,i);
+    content[id].listening[b].questions[i]=choose(q,answer,others,skills||previous.skills.join(','));
+  };
+  change(1,0,1,'Où habite la personne ? Écris la ville.',['Berlin','à Berlin']);
+  change(1,0,3,'D’où vient la personne ? Écris la ville.',['Paris','de Paris']);
+  replaceChoice(1,0,2,'Quelles langues parle la personne ?',
+    'Cette personne parle français et un peu allemand.',
+    ['Cette personne parle allemand et un peu français.','Cette personne parle seulement français.']);
+  replaceChoice(1,1,1,'Comment va la dame ?',
+    'La dame va bien.', ['La dame ne va pas bien.','La dame ne répond pas à cette question.']);
+  replaceChoice(1,1,2,'Quelle formule est utilisée au début ?',
+    'Il dit « Bonsoir, Madame ».', ['Il dit « Bonjour, Madame ».','Il dit « Salut, Madame ».']);
+  replaceChoice(1,1,3,'Quelle formule la dame utilise-t-elle à la fin ?',
+    'Elle dit « Au revoir, Monsieur ».', ['Elle dit « À demain, Monsieur ».','Elle dit « Bonne nuit, Monsieur ».']);
+  replaceChoice(2,0,2,'Dans quelle ville habite la personne ?',
+    'La personne habite à Lille.', ['La personne habite à Lyon.','La personne habite à Paris.'],'identite');
+  replaceChoice(2,1,2,'Que demande la personne ?',
+    'Elle demande de parler plus lentement.', ['Elle demande de parler plus fort.','Elle demande de parler plus vite.']);
+  replaceChoice(3,0,2,'Que fait Nina au téléphone ?',
+    'Elle donne des informations pour le cours.', ['Elle demande des informations sur le cours.','Elle demande l’adresse du cours.']);
+  replaceChoice(4,0,2,'Où est le rendez-vous ?',
+    'Le rendez-vous est devant la gare.', ['Le rendez-vous est devant la bibliothèque.','Le rendez-vous est devant le café.'],'rendezvous');
+  replaceChoice(4,1,2,'À quelle heure commence le cours le vendredi ?',
+    'Le vendredi, le cours commence à quinze heures.', ['Le vendredi, le cours commence à treize heures.','Le vendredi, le cours commence à seize heures.']);
+  replaceChoice(5,0,2,'Quelle phrase décrit l’état civil de la personne qui parle ?',
+    'La personne est célibataire.', ['La personne est mariée.','La personne ne précise pas son état civil.'],'presenter');
+  change(5,1,3,'Écris une qualité de la femme de Paul.',['calme','sympa','très sympa','calme et sympa','calme et très sympa']);
+  replaceChoice(5,1,2,'Où habitent les parents de Paul ?',
+    'Les parents de Paul habitent à Paris.', ['Les parents de Paul habitent à Lyon.','Les parents de Paul habitent à Montréal.']);
+  replaceChoice(6,0,2,'Quel dessert demande la personne ?',
+    'Elle prend une glace au chocolat.', ['Elle prend une glace à la vanille.','Elle ne prend pas de dessert.']);
+  turns(6,1,[['A','Bonjour, qu’est-ce que vous prenez ?'],['B','Je voudrais un café sans sucre et un croissant, s’il vous plaît.'],['A','Bien sûr. Le café coûte deux euros et le croissant coûte trois euros.'],['B','Merci. L’addition, s’il vous plaît.']]);
+  replaceChoice(6,1,2,'Comment la personne veut-elle son café ?',
+    'Elle veut un café sans sucre.', ['Elle veut un café avec du sucre.','Elle veut un café avec du lait.']);
+  replaceChoice(7,0,2,'Combien coûte le fromage ?',
+    'Le fromage coûte six euros cinquante.', ['Le fromage coûte six euros quinze.','Le fromage coûte six euros cinq.'],'prix');
+  replaceChoice(7,1,2,'Quels moyens de paiement sont possibles ?',
+    'On peut payer par carte ou en espèces.', ['On doit payer seulement en espèces.','On doit payer seulement par carte.']);
+  replaceChoice(8,0,2,'Quelle phrase décrit l’appartement ?',
+    'L’appartement est près du centre et n’a pas de balcon.',
+    ['L’appartement est près du centre et a un balcon.','L’appartement n’est pas près du centre et n’a pas de balcon.']);
+  replaceChoice(8,1,2,'Qu’est-ce qu’il y a dans la chambre ?',
+    'Il y a un lit dans la chambre.', ['Il y a un sac dans la chambre.','Il y a une lampe dans la chambre.'],'logement');
+  replaceChoice(9,0,2,'Dans quelle direction faut-il tourner ?',
+    'Il faut tourner à droite.', ['Il faut tourner à gauche.','Il faut continuer tout droit sans tourner.']);
+  replaceChoice(9,1,2,'À quelle heure part le train pour Lyon ?',
+    'Le train pour Lyon part à dix heures vingt.', ['Le train pour Lyon part à dix heures douze.','Le train pour Lyon part à dix heures trente.']);
+  change(10,0,0,'Quel jour Julie travaille-t-elle ?',['samedi','le samedi']);
+  replaceChoice(10,0,2,'À quelle heure commence le cours le lundi et le mercredi ?',
+    'Le lundi et le mercredi, le cours commence à neuf heures.',
+    ['Le lundi et le mercredi, le cours commence à huit heures.','Le lundi et le mercredi, le cours commence à midi.']);
+  replaceChoice(10,1,2,'Quels jours Marc travaille-t-il ?',
+    'Marc travaille du lundi au jeudi.', ['Marc travaille du lundi au vendredi.','Marc travaille du mardi au vendredi.']);
+  replaceChoice(11,0,2,'Que fait la personne avant de prendre le bus ?',
+    'La personne prend le petit-déjeuner avant le bus.',
+    ['La personne prend le petit-déjeuner après le bus.','La personne ne prend pas de petit-déjeuner.']);
+  replaceChoice(11,1,2,'Que fait Léa au moment où elle parle ?',
+    'Léa est en train de travailler.', ['Léa est en train de déjeuner.','Léa est en train de regarder la télévision.']);
+  replaceChoice(12,0,2,'Quelle phrase décrit les symptômes entendus ?',
+    'La personne a mal à la tête, mais n’a pas de fièvre.',
+    ['La personne a mal à la tête et a de la fièvre.','La personne a mal à la gorge et a de la fièvre.']);
+  turns(12,1,[['A','Bonjour, je voudrais un médicament contre le rhume.'],['B','Bonjour. Voici votre médicament. La consigne est : deux fois par jour, le matin et le soir, pendant trois jours.'],['A','Pardon, pouvez-vous répéter ?'],['B','Deux fois par jour, le matin et le soir, pendant trois jours.']]);
+  replaceChoice(12,1,2,'Pendant combien de jours faut-il prendre le médicament ?',
+    'La consigne indique de le prendre pendant trois jours.',
+    ['La consigne indique de le prendre pendant deux jours.','La consigne indique de le prendre pendant quatre jours.']);
+  replaceChoice(12,1,3,'Que demande la personne après la première explication ?',
+    'Elle demande de répéter la consigne.', ['Elle demande d’écrire la consigne.','Elle demande de parler plus vite.']);
+  replaceChoice(13,0,2,'Quel temps va-t-il faire demain soir ?',
+    'Le soir, il va y avoir du vent.', ['Le soir, il va y avoir de la pluie.','Le soir, il va y avoir de la neige.']);
+  replaceChoice(13,1,2,'De quelle couleur est la veste de la sœur ?',
+    'La sœur prend une veste rouge.', ['La sœur prend une veste verte.','La sœur prend une veste jaune.']);
+  replaceChoice(14,0,2,'Quel est le programme de ce soir ?',
+    'Les deux personnes vont au cinéma.', ['La personne reste à la maison pour lire.','Julie va seule au cinéma.']);
+  replaceChoice(14,1,2,'Marc joue-t-il au football ?',
+    'Marc ne joue pas au football.', ['Marc joue au football chaque dimanche.','Marc joue au football chaque vendredi.']);
+  // Arrival date + duration + departure date would ask for the same interval twice.
+  content[15].listening[0].questions.splice(4,1);
+  replaceChoice(15,0,2,'Que demande la personne au sujet du petit-déjeuner ?',
+    'Elle demande si le petit-déjeuner est inclus.',
+    ['Elle affirme que le petit-déjeuner est inclus.','Elle dit qu’elle ne veut pas de petit-déjeuner.']);
+  replaceChoice(15,1,2,'Quel jour est le retour ?',
+    'Le retour est vendredi.', ['Le retour est jeudi.','Le retour est samedi.']);
+  extra(15,1,'À quelle heure part le train ? Écris en chiffres.',['08:40','8:40','8h40','huit heures quarante'],'horaires',{format:'time'});
+  replaceChoice(16,0,2,'Comment la personne répond-elle à l’invitation ?',
+    'La personne accepte et va arriver plus tard.',
+    ['La personne refuse et ne va pas venir.','La personne propose un autre jour.']);
+  replaceChoice(16,1,2,'Pourquoi Anna ne peut-elle pas aller au cinéma vendredi ?',
+    'Elle a déjà un rendez-vous.', ['Elle doit travailler.','Elle part en voyage.']);
+  replaceChoice(16,1,3,'Quel souhait Paul formule-t-il ?',
+    'Paul souhaite un bon anniversaire à Anna.', ['Paul souhaite une bonne journée à Anna.','Paul souhaite de bonnes vacances à Anna.']);
+  replaceChoice(16,1,4,'Comment Anna se présente-t-elle au téléphone ?',
+    'Elle dit « Allô Paul, c’est Anna ».', ['Elle dit « Allô Anna, c’est Paul ».','Elle dit « Allô Paul, c’est Léa ».']);
+  replaceChoice(17,0,2,'Que faire avec le formulaire ?',
+    'Il faut apporter le formulaire au secrétariat.', ['Il faut envoyer le formulaire par courriel.','Il faut envoyer le formulaire par la poste.']);
+  change(17,0,3,'À quel endroit du formulaire faut-il signer ?',['en bas','en bas du formulaire']);
+  replaceChoice(17,1,2,'Quelle est la nationalité de la personne ?',
+    'La personne est allemande.', ['La personne est française.','La personne est canadienne.']);
+  change(18,0,1,'Que comprend la personne ?',['la première','première','la première phrase']);
+  replaceChoice(18,0,2,'Que demande la personne pour le dernier mot ?',
+    'Elle demande de répéter et d’écrire le dernier mot.',
+    ['Elle demande de répéter le dernier mot, sans l’écrire.','Elle demande d’écrire le dernier mot, sans le répéter.']);
+  replaceChoice(18,1,2,'Quelle précision la personne demande-t-elle ?',
+    'La personne demande de répéter le numéro de la salle.',
+    ['La personne demande d’épeler le nom du professeur.','La personne demande d’écrire l’heure du cours.']);
+  replaceChoice(19,0,2,'Où est la gare par rapport au musée ?',
+    'La gare est derrière le musée.', ['La gare est devant le musée.','La gare est à côté du musée.']);
+  replaceChoice(19,1,2,'Pour qui sont les cafés ?',
+    'Les cafés sont pour la personne et son mari.', ['Les cafés sont pour les enfants.','Les cafés sont seulement pour le mari.']);
+  replaceChoice(20,0,2,'Que fait la personne le soir avec la télévision ?',
+    'La personne ne regarde jamais la télévision le soir.',
+    ['La personne regarde toujours la télévision le soir.','La personne regarde parfois la télévision le soir.']);
+  replaceChoice(20,1,2,'Quelles sont les règles pour manger et boire ?',
+    'Il est interdit de manger et de boire dans la salle.',
+    ['On peut manger dans la salle, mais pas boire.','On peut boire dans la salle, mais pas manger.']);
+  replaceChoice(21,0,2,'Quelle question Julie pose-t-elle à la fin ?',
+    'Julie demande depuis quand l’autre personne habite ici.',
+    ['Julie demande où habite l’autre personne.','Julie demande où travaille l’autre personne.']);
+  replaceChoice(21,1,2,'Quand Marc part-il ?',
+    'Marc part demain.', ['Marc part aujourd’hui.','Marc part dans trois jours.']);
+  replaceChoice(21,1,3,'Qui est désigné par « eux » ?',
+    '« Eux » désigne Marc et ses parents.',
+    ['« Eux » désigne Marc et la personne qui parle.','« Eux » désigne seulement les parents de Marc.']);
+  replaceChoice(22,0,3,'Dans quel ordre la personne a-t-elle visité le musée et pris son repas hier ?',
+    'Elle a d’abord visité le musée, puis elle a mangé.',
+    ['Elle a d’abord mangé, puis elle a visité le musée.','Elle a mangé pendant la visite du musée.']);
+  replaceChoice(22,1,2,'Où Anna habite-t-elle depuis son arrivée ?',
+    'Anna habite chez sa sœur depuis son arrivée.',
+    ['Anna habite seule dans un hôtel depuis son arrivée.','Anna habite chez ses parents depuis son arrivée.']);
+  replaceChoice(23,0,2,'Que dit la recette au sujet du sucre ?',
+    'Il ne faut pas ajouter de sucre.', ['Il faut ajouter un peu de sucre.','Il faut ajouter beaucoup de sucre.']);
+  replaceChoice(23,1,2,'Quelle est la consigne pour le sel ?',
+    'Il ne faut pas ajouter trop de sel.', ['Il ne faut pas ajouter de sel du tout.','Il faut ajouter beaucoup de sel.'],'regles,quantites');
+  replaceChoice(24,0,2,'À quelle heure faut-il prendre le train ?',
+    'La personne doit prendre le train à huit heures.',
+    ['La personne doit prendre le train à sept heures.','La personne doit prendre le train à neuf heures.']);
+  replaceChoice(24,1,2,'Quel jour le groupe part-il ?',
+    'Le groupe part samedi.', ['Le groupe part dimanche.','Le groupe part mardi.']);
+
+  // Roles belong to the authored speakers, not to the order A/B or a name they mention.
+  // The same catalogue also repairs playback of stored v1/v2/v3 task snapshots.
+  const dialogueRoles={
+    1:[{A:'female',B:'male'},{A:'male',B:'female'}],
+    2:[{A:'male',B:'female'},{A:'female',B:'male'}],
+    3:[{A:'female',B:'male'},{A:'female',B:'male'}],
+    6:[null,{A:'male',B:'female'}],8:[null,{A:'female',B:'male'}],
+    12:[null,{A:'female',B:'male'}],16:[null,{A:'female',B:'male'}],
+    17:[null,{A:'male',B:'female'}]
+  };
+  const narratorRoles=[
+    ['male','female'],['female','male'],['female','male'],['male','female'],
+    ['female','male'],['female','female'],['female','male'],['male','male'],
+    ['male','female'],['female','male'],['male','female'],['female','male'],
+    ['female','male'],['female','male'],['female','male'],['male','female'],
+    ['male','female'],['female','female'],['male','female'],['male','female'],
+    ['female','female'],['male','female'],['female','male'],['female','male']
+  ];
+  function recordingTurns(lessonId,data,blockIndex){
+    const block=data.listening[blockIndex],roles=dialogueRoles[lessonId]?.[blockIndex];
+    return (block.turns||[{speaker:'A',text:block.text}]).map(turn=>({
+      ...turn,gender:block.turns?(roles?.[turn.speaker]||turn.gender||narratorRoles[lessonId-1][blockIndex]):narratorRoles[lessonId-1][blockIndex]
+    }));
+  }
+  for(const [id,d]of Object.entries(content)){
+    d.version=4;d.compatibleVersions=[];
+    for(const [b,block]of d.listening.entries()){
+      if(block.turns)block.turns=recordingTurns(Number(id),d,b);else block.gender=narratorRoles[id-1][b];
+    }
+    d.taskCount=d.gaps.length+d.listening.reduce((n,b)=>n+b.questions.length,0)+1;
+  }
+  window.FR_A1_HARD_AUDIO={turns:recordingTurns};
   window.FR_A1_HARD_CONTENT=content;
 })();
