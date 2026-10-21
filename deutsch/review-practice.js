@@ -154,10 +154,11 @@
     }
     function result(){
       const s=p.session,right=s.answers.filter(a=>a.ok).length;
-      p.lastResult={right,total:s.tasks.length,finishedAt:Date.now()};delete p.session;save(true);
+      const finishedAt=Date.now();window.A1DailyReview?.complete(state,s,finishedAt);
+      p.lastResult={right,total:s.tasks.length,finishedAt};delete p.session;save(true);
       const missed=s.tasks.filter((q,i)=>!s.answers[i].ok);
       redraw=()=>{if(view.querySelector('.review-practice'))show();};
-      function show(){shell(`${heading()}<section class="card center"><h2 tabindex="-1">${tr("Ronde terminée",'Round complete')}</h2><div class="score">${right}/${s.tasks.length}</div><p>${tr("réponses correctes",'correct answers')}</p><p class="muted">${pending(state).length} ${tr(pending(state).length===1?"exercice reste à retravailler.":"exercices restent à retravailler.",pending(state).length===1?'task remains for targeted practice.':'tasks remain for targeted practice.')}</p><div class="review-actions">${missed.length?`<button class="primary-btn" id="reviewErrors">${tr("Retravailler les erreurs de cette ronde",'Practise this round’s mistakes')}</button>`:''}<button class="secondary-btn" id="reviewSetup">${tr("Préparer une autre révision",'Set up another review')}</button></div></section>`);
+      function show(){shell(`${heading()}<section class="card center"><h2 tabindex="-1">${tr("Ronde terminée",'Round complete')}</h2><div class="score">${right}/${s.tasks.length}</div>${window.A1DailyReview?.resultHtml(state,{lang:en()?'en':'fr'})||''}<p>${tr("réponses correctes",'correct answers')}</p><p class="muted">${pending(state).length} ${tr(pending(state).length===1?"exercice reste à retravailler.":"exercices restent à retravailler.",pending(state).length===1?'task remains for targeted practice.':'tasks remain for targeted practice.')}</p><div class="review-actions">${missed.length?`<button class="primary-btn" id="reviewErrors">${tr("Retravailler les erreurs de cette ronde",'Practise this round’s mistakes')}</button>`:''}<button class="secondary-btn" id="reviewSetup">${tr("Préparer une autre révision",'Set up another review')}</button></div></section>`);
         view.querySelector('#reviewSetup').onclick=setup;view.querySelector('#reviewErrors')?.addEventListener('click',()=>{p.session={version:1,tasks:missed,index:0,answers:[],draft:'',mode:'mistakes',startedAt:Date.now()};save();draw();});
       }show();
     }

@@ -1,8 +1,8 @@
 # Wiederholung und Fehlertraining
 
-Einstieg: Startseite, „Das hast du schon gelernt“. „Wissen auffrischen“ öffnet die gemischte Themenwiederholung, „Fehler gezielt üben“ direkt die Fehlerauswahl. Die zuletzt verwendete Auswahl überschreibt diese beiden Einstiege nicht.
+Einstieg: Startseite, „Tägliche Wiederholung“, direkt unter „Fortsetzen“ und vor dem Lernbaum. „Wissen auffrischen“ öffnet die gemischte Themenwiederholung, „Fehler gezielt üben“ direkt die Fehlerauswahl. Die zuletzt verwendete Auswahl überschreibt diese beiden Einstiege nicht.
 
-Die kompakte Karte zeigt gelernte Lektionen ohne automatischen Wechsel; ein einzelner Weiterblättern-Button und der Zähler dienen der Orientierung.
+Der Einstieg leuchtet, solange heute noch keine vollständige Wiederholungsrunde beendet wurde. Danach zeigt die Karte „Heute wiederholt“ ohne laufende Animation; weitere Runden bleiben möglich. Eine abgeschlossene Runde zählt unabhängig vom Ergebnis. Der Kalendertag richtet sich nach der lokalen Gerätezeit. Die technischen Details für beide A1-Kurse stehen in `../shared/DAILY-REVIEW.md`.
 Bei gespeicherten Fehlern steht der Einstieg auch vor dem ersten Lektionsabschluss bereit.
 
 - **Alles mischen:** Aufgaben aus den konkreten Grammatikthemen abgeschlossener Lektionen.

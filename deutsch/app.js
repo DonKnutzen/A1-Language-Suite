@@ -1804,24 +1804,10 @@ function skillBar(name,emoji){const p=skillPct(name);const labels={
 };
                               return `<div class="skill-row"><strong>${emoji} ${labels[name]||name}</strong><div class="progress"><div style="width:${p}%"></div></div><span>${p}%</span></div>`;}
 
-let homeMilestoneObserver=null,homeCarouselCleanup=null,homeOakCleanup=null;
+let homeOakCleanup=null,homeDailyCleanup=null;
 function stopHomeMotion(){
   homeOakCleanup?.();homeOakCleanup=null;
-  homeMilestoneObserver?.disconnect();homeMilestoneObserver=null;
-  homeCarouselCleanup?.();homeCarouselCleanup=null;
-}
-function startHomeCarousel(card){
-  const stage=card.querySelector('.home-milestone-stage'),slides=[...card.querySelectorAll('.home-milestone-slide')];
-  if(slides.length<2)return null;
-  const next=card.querySelector('#homeMilestoneNext'),count=card.querySelector('#homeMilestoneCount');
-  let index=0;
-  next.onclick=()=>{
-    slides[index].classList.remove('is-active');slides[index].setAttribute('aria-hidden','true');
-    index=(index+1)%slides.length;
-    slides[index].classList.add('is-active');slides[index].setAttribute('aria-hidden','false');
-    count.textContent=`${index+1} / ${slides.length}`;
-  };
-  return ()=>{next.onclick=null;};
+  homeDailyCleanup?.();homeDailyCleanup=null;
 }
 function renderHome(){
   stopHomeMotion();
@@ -1838,32 +1824,20 @@ function renderHome(){
 
       <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Continuer à pratiquer':'Continuer'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
+    ${A1DailyReview.html(state,{lang:A1Profile.getUiLang()==='en'?'en':'fr',available:completed.length>0||DE_A1_REVIEW.pending(state).length>0,mistakes:DE_A1_REVIEW.pending(state).length})}
     <section class="card course-progress-card" data-streak-anchor>
       <h2>Ton arbre</h2>
       <p class="course-progress-caption oak-explanation">Grandit à chaque leçon terminée.</p>
       ${A1LearningOak.render({percent:lessonPct(),lang:'fr',course:'deutsch-a1'})}
       ${A1Streak.render('fr',{showEmpty:true})}
     </section>
-    <section class="card home-milestones" aria-labelledby="milestoneTitle">
-      <div class="home-milestone-heading"><span class="home-milestone-icon" aria-hidden="true">${completed.length?'✓':'↗'}</span><h2 id="milestoneTitle">${completed.length?'Ce que tu as déjà appris':'Le premier pas compte'}</h2></div>
-      ${completed.length?`<div class="home-milestone-row"><div class="home-milestone-stage" aria-live="polite">${completed.map((l,i)=>`<strong class="home-milestone-slide ${i===0?'is-active':''}" aria-hidden="${i!==0}">${esc(l.title)}</strong>`).join('')}</div>${completed.length>1?`<div class="home-learned-pager"><small id="homeMilestoneCount" aria-hidden="true">1 / ${completed.length}</small><button type="button" class="home-carousel-control home-carousel-next" id="homeMilestoneNext" aria-label="Afficher le prochain acquis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div>`:''}</div>`:'<p class="home-milestone-note">Après ta première leçon, tu retrouveras ici tes acquis.</p>'}
-      ${(completed.length||DE_A1_REVIEW.pending(state).length)?`<div class="home-review-actions"><button type="button" class="home-review-action" id="homeReview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M19.5 12a7.5 7.5 0 1 0-2 5M20 7l-.5 5"/></svg><span>Rafraîchir mes connaissances</span></button><button type="button" class="home-review-action home-review-mistakes" id="homeMistakes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="m12 12 7-7M17 5h2v2"/></svg><span>Retravailler mes erreurs</span>${DE_A1_REVIEW.pending(state).length?`<span class="home-mistake-count" aria-label="${DE_A1_REVIEW.pending(state).length} ${A1Profile.getUiLang()==='en'?'tasks to review':'exercices à revoir'}">${DE_A1_REVIEW.pending(state).length}</span>`:''}</button></div>`:''}
-    </section>`;
+`;
   document.getElementById('continueLesson').onclick=()=>renderLesson(next.id);
   const openReview=initialMode=>{stopHomeMotion();DE_A1_REVIEW.render({view,lessons,state,save,onBack:renderHome,speak,grammarHtml:l=>DE_A1_STUDY.grammarHtml(l,lessonGrammarReferenceHtml(l.id),speakBtn),initialMode});};
-  document.getElementById('homeReview')?.addEventListener('click',()=>openReview('mixed'));
+  document.getElementById('homeReview')?.addEventListener('click',()=>openReview(completed.length?'mixed':'mistakes'));
   document.getElementById('homeMistakes')?.addEventListener('click',()=>openReview('mistakes'));
   homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
-  const milestones=view.querySelector('.home-milestones');
-  homeCarouselCleanup=startHomeCarousel(milestones);
-  if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    milestones.classList.add('is-waiting');
-    const observer=new IntersectionObserver(entries=>{
-      if(entries.some(entry=>entry.isIntersecting)){milestones.classList.remove('is-waiting');observer.disconnect();}
-    },{threshold:.12});
-    homeMilestoneObserver=observer;
-    observer.observe(milestones);
-  }
+  homeDailyCleanup=A1DailyReview.mount(view.querySelector('[data-daily-review]'),{onDayChange:renderHome});
 }
 
 function renderLearn(){

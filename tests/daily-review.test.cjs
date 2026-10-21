@@ -1,0 +1,33 @@
+process.env.TZ='America/Halifax';
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),{JSDOM}=require('jsdom');
+const read=p=>fs.readFileSync(p,'utf8');
+function fixture(){const dom=new JSDOM('<main id="view"></main>',{runScripts:'outside-only',url:'https://example.org/'});dom.window.eval(read('shared/daily-review.js'));return {dom,w:dom.window,api:dom.window.A1DailyReview};}
+const round=()=>({tasks:[{id:'a'},{id:'b'}],answers:[{ok:false},{ok:true}],index:2,startedAt:100});
+test('calendar days use local midnight rather than UTC and reset after the date changes',()=>{
+ const e=fixture(),late=new e.w.Date(2026,9,20,23,55),morning=new e.w.Date(2026,9,21,0,1),s={};assert(late.toISOString().startsWith('2026-10-21'));assert.equal(e.api.dayKey(late),'2026-10-20');assert(e.api.complete(s,round(),+late));assert(e.api.status(s,late).done);assert(!e.api.status(s,morning).done);e.dom.window.close();
+});
+test('only a fully completed review counts; errors are allowed and replaying a result cannot count twice',()=>{
+ const e=fixture(),s={},r=round(),time=+new e.w.Date(2026,9,21,13);r.index=1;assert(!e.api.complete(s,r,time));r.index=2;r.answers.pop();assert(!e.api.complete(s,r,time));r.answers.push({ok:false});assert(e.api.complete(s,r,time));assert.equal(s.reviewPractice.daily.rounds,1);assert(!e.api.complete(s,r,time+1000));assert.equal(s.reviewPractice.daily.rounds,1);assert(e.api.complete(s,round(),time+2000));assert.equal(s.reviewPractice.daily.rounds,2);assert(e.api.complete(s,round(),time+86400000));assert.equal(s.reviewPractice.daily.rounds,1);e.dom.window.close();
+});
+test('progress survives serialized reloads, stays course/profile scoped and respects existing completed results',()=>{
+ const e=fixture(),now=Date.now(),s={};e.api.complete(s,round(),now);assert(e.api.status(JSON.parse(JSON.stringify(s))).done);assert(!e.api.status({}).done);assert(e.api.status({reviewPractice:{lastResult:{right:0,total:10,finishedAt:now}}}).done);assert(!e.api.status({reviewPractice:{lastResult:{total:0,finishedAt:now}}}).done);e.dom.window.close();
+});
+test('home has an animated invitation before completion and a quiet completed state with both actions retained',()=>{
+ const e=fixture(),s={},root=e.w.document.querySelector('main');root.innerHTML=e.api.html(s,{lang:'de',available:true,mistakes:3});assert(root.querySelector('.is-due'));assert.equal(root.querySelector('#homeReview').textContent,'Wissen auffrischen');assert(root.querySelector('.daily-review-count').textContent==='3');assert(!root.textContent.includes('Das hast du schon gelernt'));e.api.complete(s,round());root.innerHTML=e.api.html(s,{lang:'de',available:true});assert(root.querySelector('.is-complete'));assert(!root.querySelector('.is-due'));assert(!root.querySelector('#homeReview').disabled);assert(!root.querySelector('#homeMistakes').disabled);assert(root.textContent.includes('Heute wiederholt'));root.innerHTML=e.api.html({},{});assert(root.querySelector('#homeReview').disabled);assert(root.querySelector('#homeMistakes').disabled);e.dom.window.close();
+});
+test('a focused or visible home refreshes on a new day and listeners stop after leaving',()=>{
+ const e=fixture();let date=new e.w.Date(2026,9,20,23,55),updates=0;const root=e.w.document.querySelector('main'),cleanup=e.api.mount(root,{now:()=>date,onDayChange:()=>updates++});e.w.dispatchEvent(new e.w.Event('focus'));assert.equal(updates,0);date=new e.w.Date(2026,9,21,0,1);e.w.document.dispatchEvent(new e.w.Event('visibilitychange'));assert.equal(updates,1);e.w.dispatchEvent(new e.w.Event('focus'));assert.equal(updates,1);cleanup();date=new e.w.Date(2026,9,22);e.w.dispatchEvent(new e.w.Event('focus'));assert.equal(updates,1);e.dom.window.close();
+});
+for(const [folder,ui]of [['francais','de'],['deutsch','fr']]){
+ test(folder+': a real completed review updates the daily goal exactly once',()=>{
+  const e=fixture(),apiName=folder==='francais'?'FR_A1_REVIEW':'DE_A1_REVIEW',state={doneLessons:[],lessonWork:{},reviewPractice:{imported:true,items:{}}},view=e.w.document.querySelector('main');let saves=0,completions=0;e.w.scrollTo=()=>{};e.w.A1Profile={getUiLang:()=>ui};e.w.A1Voice={cancel(){}};e.w.FR_A1_MASTERY={};e.w.DE_A1_ASSESSMENTS={};e.w.A1Learning={shuffle:a=>[...a]};
+  e.w[folder==='francais'?'FR_A1_DEEPENING':'DE_A1_STUDY']={};e.w.eval(read(folder+'/review-practice.js'));const api=e.w[apiName],q=api.task(1,'grammar:test','Test',{q:'Tu ___ ici.',answer:folder==='francais'?'es':'bist',o:folder==='francais'?['es','est','êtes']:['bist','bin','ist']});api.record(state,q,false);
+  const show=()=>api.render({view,lessons:[],state,save:done=>{saves++;if(done)completions++;},onBack(){},speak(){},grammarHtml:()=>'',initialMode:'mistakes'});show();view.querySelector('#reviewStart').click();assert(!e.api.status(state).done);const order=state.reviewPractice.session.order;view.querySelector(`[data-review-option="${order.indexOf(q.answer)}"]`).click();assert(!e.api.status(state).done);view.querySelector('#reviewNext').click();assert(e.api.status(state).done);assert.equal(state.reviewPractice.daily.rounds,1);assert.equal(completions,1);assert(view.querySelector('.daily-review-result'));show();assert.equal(state.reviewPractice.daily.rounds,1);assert(saves>0);e.dom.window.close();
+ });
+ test(folder+': order, versioned assets and reduced motion are wired without affecting other courses',()=>{
+  const app=read(folder+'/app.js'),home=app.slice(app.indexOf('function renderHome(){'),app.indexOf('function renderLearn(){'));assert(home.indexOf('home-continue-card')<home.indexOf('A1DailyReview.html'));assert(home.indexOf('A1DailyReview.html')<home.indexOf('course-progress-card'));assert(!home.includes('home-milestones'));for(const p of [folder+'/index.html',folder+'/service-worker.js']){const s=read(p);assert(s.includes('../shared/daily-review.js?v=daily-140'));assert(s.includes('../shared/daily-review.css?v=daily-140'));assert(s.includes('app.js?v=daily-140'));assert(s.includes('review-practice.js?v=daily-140'));}assert(read('shared/daily-review.css').includes('prefers-reduced-motion:reduce'));
+ });
+}
+test('the scheduled midnight callback resets the visible day without needing navigation or focus',()=>{
+ const e=fixture();let date=new e.w.Date(2026,9,20,23,59,59,900),callback,delay,updates=0;e.w.setTimeout=(fn,ms)=>{callback=fn;delay=ms;return 1;};e.w.clearTimeout=()=>{};const cleanup=e.api.mount(e.w.document.querySelector('main'),{now:()=>date,onDayChange:()=>updates++});assert.equal(delay,150);date=new e.w.Date(2026,9,21,0,0,0,60);callback();assert.equal(updates,1);assert(delay>23*3600000);cleanup();callback();assert.equal(updates,1);e.dom.window.close();
+});

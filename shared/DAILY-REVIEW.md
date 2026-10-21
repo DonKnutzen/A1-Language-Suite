@@ -1,0 +1,13 @@
+# Daily A1 review
+
+Only Français A1 and Deutsch A1 load `daily-review.js` and `daily-review.css`. The home order is Continue → Daily review → Learning tree. The former learned-lesson carousel is removed. The two review actions remain separate: mixed/custom revision and targeted mistakes.
+
+The main review button has a slow teal glow and light sweep while today's goal is open. Finishing one complete review round shows a check mark, “Reviewed today” and a static button for further practice. Reduced-motion settings suppress the moving effects. Continue is always available; this is a daily invitation, not a lesson lock. With no completed lessons and no saved mistakes, the card explains when review becomes available. Existing mistakes can be practised before the first lesson is completed.
+
+Completion is recorded only when all cards have graded answers and the learner finishes the round. Mixed, custom and mistake rounds count, including short pools and rounds with errors; the state describes practice, not a passed examination. Pausing, opening the screen or answering only some cards does not count. The result screen also confirms the day's review.
+
+State lives inside the existing per-profile, per-course `reviewPractice.daily`: local `day`, `rounds` and `lastCompletedAt`. Duplicate result processing cannot count a round twice. A legacy completed `lastResult.finishedAt` can already satisfy today's goal; no individual answers are inferred. Normal lesson progress and best scores are unaffected, and course reset clears the new state along with other course data. Existing profile save persists the data; remote account synchronization was not independently tested.
+
+The day uses local date components rather than a UTC ISO date. On the home screen a timer refreshes at the next local midnight; focus and visibility events also catch date changes after device sleep. Listeners and timers are cleaned up when leaving home. Language changes refresh the card without losing review state. Interface strings are German/French with English available in both courses.
+
+Verification: `tests/daily-review.test.cjs` covers local midnight, partial/full/duplicate rounds, additional rounds, serialized progress, legacy results, both real review engines, empty/complete home states, date-change events and the scheduled midnight callback. The combined A1 test suites pass 111 tests. Full-app Chromium checks cover both courses at 320, 390 and 1280 px: order, round completion, reload, further rounds, mistake entry, next-day reset and reduced motion. Dark mobile open/completed cards were visually inspected. No external services, notifications or paid dependencies are added.
