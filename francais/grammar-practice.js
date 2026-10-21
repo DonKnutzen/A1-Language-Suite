@@ -20,7 +20,7 @@
   }
   function family(){
     const out=[];
-    for(const [noun,plural,de,en]of [['mon frère',false,'mein Bruder','my brother'],['ma sœur',false,'meine Schwester','my sister'],['mes parents',true,'meine Eltern','my parents'],['mes enfants',true,'meine Kinder','my children'],['mon père',false,'mein Vater','my father'],['mes sœurs',true,'meine Schwestern','my sisters']])out.push(form('___ '+noun+'.',plural?'Ce sont':'C’est',plural?['C’est','Ce sommes']:['Ce sont','Ces sont'],(plural?'Das sind ':'Das ist ')+de+' · schriftlicher Standard',(plural?'These are ':'This is ')+en+' · standard written French','C’est steht im Singular, ce sont im Plural.','Use c’est for singular and ce sont for plural.'));
+    for(const [noun,plural,de,en]of [['mon frère',false,'mein Bruder','my brother'],['ma sœur',false,'meine Schwester','my sister'],['mes parents',true,'meine Eltern','my parents'],['mes enfants',true,'meine Kinder','my children'],['mon père',false,'mein Vater','my father'],['mes sœurs',true,'meine Schwestern','my sisters']])out.push(form((plural?'Ce ___ ':'C’___ ')+noun+'.',plural?'sont':'est',plural?['est','sommes']:['sont','es'],(plural?'Das sind ':'Das ist ')+de+' · schriftlicher Standard',(plural?'These are ':'This is ')+en+' · standard written French','C’est steht im Singular, ce sont im Plural.','Use c’est for singular and ce sont for plural.'));
     for(const [q,answer,o,de,en]of [['Ma sœur est ___.','petite',['petit','petits'],'Meine Schwester ist klein.','My sister is small.'],['Mon frère est ___.','petit',['petite','petits'],'Mein Bruder ist klein.','My brother is small.'],['Ma mère est ___.','mariée',['marié','mariés'],'Meine Mutter ist verheiratet.','My mother is married.'],['Mon père est ___.','marié',['mariée','mariés'],'Mein Vater ist verheiratet.','My father is married.'],['Ma sœur est ___.','calme',['sympa','petite'],'Meine Schwester ist ruhig.','My sister is calm.'],['Mon frère est ___.','sympa',['calme','petit'],'Mein Bruder ist nett.','My brother is nice.']])out.push(form(q,answer,o,de,en));
     return out;
   }
@@ -30,7 +30,7 @@
   }
   function improve(lesson,unit,tasks){
     if(/Possessivbegleiter/i.test(unit.title))return possessives();
-    if(lesson.id===5&&unit.key==='r1')return family();
+    if(lesson.id===5&&unit.key==='r1')return family().map(t=>{const m=t.q.match(/^(?:C’|Ce )___ (.+)$/);return m?{...t,legacyTask:{q:'___ '+m[1],answer:t.answer==='est'?'C’est':'Ce sont'}}:t;});
     if(lesson.id===13&&unit.key==='r1')return adjectiveAgreement();
     const replacements={
       'Je voudrais un café.':{q:'Welche Aussage verwendet die höfliche Wunschform von vouloir?',o:['Je voudrais un café.','Je veux un café.','Je prends un café.']},

@@ -1,6 +1,8 @@
 /* English display text. French prompts, answers, audio and progress IDs keep their original values. */
 window.FR_A1_EN = Object.freeze({
   "Vokabeln": "Vocabulary",
+  "Welche Bitte verwendet die besonders höfliche Form „könnten Sie“?": "Which request uses the especially polite form ‘could you’?",
+  "Pourriez-vous entspricht „könnten Sie“. Pouvez-vous bedeutet „können Sie“.": "Pourriez-vous means ‘could you’. Pouvez-vous means ‘can you’.",
   "Wortschatz der Lektion": "Lesson vocabulary",
   "Wissen auffrischen": "Refresh your knowledge",
   "Fehler gezielt üben": "Practise mistakes",

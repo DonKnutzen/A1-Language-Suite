@@ -16,7 +16,7 @@
     if(!prompt||typeof answer!=='string'||!answer.trim())return null;
     const choices=q.o?[...new Set(q.o)]:null;
     if(choices&&(!choices.includes(answer)||choices.length<2))return null;
-    const out={lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{})};
+    const out={lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{}),...(q.legacyTask?{legacyTask:q.legacyTask}:{}),...(q.legacyTaskForms?{legacyTaskForms:q.legacyTaskForms}:{})};
     // Content participates in the identity: changed questions cannot silently reuse a grade.
     out.id=JSON.stringify([out.lessonId,topic,prompt,answer,out.accept,out.context,choices?[...choices].sort():null,out.speech,out.turns,out.marking||null]);
     return out;
@@ -29,7 +29,7 @@
     item.task=copy(question);item.lastAt=Date.now();
     if(ok){item.right++;if(inReview)item.streak++;}else{item.wrong++;item.streak=0;item.failedAt=item.lastAt;}
   }
-  const pending=state=>Object.values(store(state).items).filter(x=>x.task&&x.streak<2);
+  const pending=state=>Object.values(store(state).items).filter(x=>x.task&&x.streak<2&&!x.retired);
   function captureSession(state,lessonId,session){
     if(!session?.response||session.response.reviewRecorded)return;
     const q=session.ex?.[session.i];if(!q)return;
@@ -76,12 +76,15 @@
     if(g?.response){const q=g.tasks[g.i];record(state,task(1,'l1-check','Grammatik-Abschlusstest',{...q,answer:q.a}),g.response.chosen===q.a);}
     p.imported=true;
   }
-  function buildBank(lessons,state,grammarHtml){
+  function buildBank(lessons,state,grammarHtml,includeLegacySources=false){
     const out=[];
     for(const l of lessons.filter(l=>state.doneLessons.includes(l.id))){
       const add=(topic,label,qs)=>qs.forEach(q=>{const t=task(l.id,topic,label,q);if(t)out.push(t);});
-      if(l.id===1)for(const [key,g]of Object.entries(window.FR_A1_LESSON1?.GROUPS||{}))add('l1:'+key,g.title,g.tasks.map(q=>({...q,answer:q.a})));
-      for(const pool of window.FR_A1_DEEPENING.pools(l,grammarHtml(l)))add('grammar:'+pool.key,pool.title,pool.tasks);
+      if(l.id===1){
+        for(const [key,g]of Object.entries(window.FR_A1_LESSON1?.GROUPS||{}))add('l1:'+key,g.title,g.tasks.map(q=>({...q,answer:q.a})));
+        if(!includeLegacySources&&Object.keys(window.FR_A1_LESSON1?.GROUPS||{}).length)continue;
+      }
+      for(const pool of window.FR_A1_DEEPENING.pools(l,grammarHtml(l)))add('grammar:'+pool.key,pool.title,pool.tasks.filter(q=>q.kind==='form'));
     }
     return [...new Map(out.map(t=>[t.id,t])).values()];
   }
@@ -96,6 +99,40 @@
       if(!kept.includes(current)){s.draft='';delete s.order;}
     }
     p.grammarPoolUpdated=true;
+  }
+  function refreshQuestions(state,lessons,grammarHtml,bank){
+    const p=store(state),s=p.session,currentIds=new Set(bank.map(q=>q.id));
+    const oldTable=q=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(q.q);
+    const weak=q=>q&&(oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
+    const recognition=q=>/^grammar:/.test(q.topic)&&/^(?:Wie sagst du „.+“ auf Französisch\?|Was bedeutet „.+“\?)$/.test(q.q)&&!currentIds.has(q.id);
+    if(!Object.values(p.items||{}).some(item=>!item.retired&&weak(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&(weak(q)||(s.mode!=='mistakes'&&recognition(q)))))return;
+    const revised=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml,true),lookup=new Map();
+    const key=(q,legacy)=>JSON.stringify([q.lessonId,q.topic,legacy.q,legacy.answer]);
+    for(const q of revised)for(const legacy of [q.legacyTask,q.legacyTaskForms].filter(Boolean))lookup.set(key(q,legacy),q);
+    const replacement=q=>lookup.get(key(q,q));
+    let changed=false;
+    for(const [id,item]of Object.entries(p.items||{})){
+      if(item.retired||!weak(item.task))continue;
+      const next=replacement(item.task);item.retired=true;changed=true;
+      if(next&&next.id!==id&&!p.items[next.id])p.items[next.id]={...copy(item),task:copy(next),retired:false,streak:0};
+    }
+    if(s){
+      const before=copy(s),indices=[],tasks=[];
+      s.tasks.forEach((q,i)=>{
+        if(s.answers[i]){indices.push(i);tasks.push(q);return;}
+        const next=weak(q)?replacement(q):null;
+        if(next){indices.push(i);tasks.push(copy(next));}
+        else if(!oldTable(q)&&!(s.mode!=='mistakes'&&recognition(q))){indices.push(i);tasks.push(q);}
+      });
+      if(JSON.stringify(tasks)!==JSON.stringify(s.tasks)){
+        p.previousQuestionRound=before;changed=true;
+        const sameCurrent=indices.includes(s.index)&&tasks[indices.indexOf(s.index)]?.id===s.tasks[s.index]?.id;
+        s.tasks=tasks;s.answers=indices.map(i=>s.answers[i]||null);s.index=indices.filter(i=>i<before.index).length;
+        if(!sameCurrent){s.draft='';delete s.order;}
+        if(!tasks.length)delete p.session;
+      }
+    }
+    if(changed)p.questionQualityUpdated=true;
   }
   function choose(pool,count){
     // Deduplicate the same task across grammar topics, then balance lesson/topic buckets.
@@ -115,7 +152,7 @@
   let redraw=null;
   window.addEventListener('a1suite:languagechange',()=>redraw?.());
   function render({view,lessons,state,save,onBack,speak,grammarHtml,initialMode}){
-    seed(state);const p=store(state);restrictRound(p);const bank=buildBank(lessons,state,grammarHtml);
+    seed(state);const p=store(state);restrictRound(p);const bank=buildBank(lessons,state,grammarHtml);refreshQuestions(state,lessons,grammarHtml,bank);
     const selectable=bank;
     const topicKeys=new Set(selectable.map(q=>q.lessonId+':'+q.topic));
     let mode=['mixed','custom','mistakes'].includes(initialMode)?initialMode:p.settings?.mode||'mixed',count=p.settings?.count===20?20:10,selected=new Set((p.settings?.selected||[...topicKeys]).filter(key=>topicKeys.has(key)));
@@ -128,7 +165,7 @@
     function setup(){
       redraw=()=>{if(view.querySelector('.review-practice'))setup();};
       const groups=[...new Map(selectable.map(q=>[q.lessonId+':'+q.topic,q])).values()];
-      shell(`${heading()}<section class="card"><h2 tabindex="-1">${tr('Gelerntes festigen','Practise what you have learned')}</h2><p class="muted">${tr('Wiederhole Grammatikthemen abgeschlossener Lektionen oder übe deine gespeicherten Fehler.','Review grammar topics from completed lessons or practise your saved mistakes.')}</p>${p.grammarPoolUpdated?`<p class="muted">${tr('Laufende Themenrunden wurden auf Grammatikaufgaben beschränkt.','Ongoing topic rounds now contain grammar tasks only.')}</p>`:''}<fieldset class="review-modes"><legend>${tr('Was möchtest du üben?','What would you like to practise?')}</legend>${[['mixed',tr('Alles mischen','Mix everything'),tr('Grammatik aus deinen abgeschlossenen Lektionen.','Grammar from your completed lessons.')],['custom',tr('Selbst auswählen','Choose topics'),tr('Lektionen und Themen gezielt auswählen.','Select individual lessons and topics.')],['mistakes',tr('Fehler gezielt üben','Practise mistakes'),`${pending(state).length} ${tr(pending(state).length===1?'Aufgabe vorgemerkt':'Aufgaben vorgemerkt',pending(state).length===1?'task to review':'tasks to review')}`]].map(([id,label,hint])=>`<label class="review-mode"><input type="radio" name="review-mode" value="${id}" ${mode===id?'checked':''}><span><strong>${label}</strong><small>${hint}</small></span></label>`).join('')}</fieldset><div id="reviewTopics" ${mode==='custom'?'':'hidden'}><div class="review-select-actions"><button class="tiny-btn" id="reviewAll">${tr('Alle auswählen','Select all')}</button><button class="tiny-btn" id="reviewNone">${tr('Auswahl löschen','Clear selection')}</button></div>${lessons.filter(l=>groups.some(g=>g.lessonId===l.id)).map(l=>`<details class="review-lesson"><summary>${l.id}. ${esc(translate(l.title))}</summary><label><input type="checkbox" data-review-lesson="${l.id}">${tr("Alle Themen dieser Lektion","All topics in this lesson")}</label>${groups.filter(g=>g.lessonId===l.id).map(g=>`<label><input type="checkbox" data-review-topic="${g.lessonId}:${esc(g.topic)}" ${selected.has(g.lessonId+':'+g.topic)?'checked':''}>${esc(translate(g.label))}</label>`).join('')}</details>`).join('')}</div><p class="muted" id="reviewMistakeHint" ${mode==='mistakes'?'':'hidden'}>${tr('Zweimal hintereinander richtig in der Wiederholung: Dann ist eine Aufgabe gefestigt.','Answer correctly in two successive reviews to clear a task.')}</p><details id="reviewMistakeDetails" ${mode==='mistakes'?'':'hidden'}><summary>${tr('Welche Fehler werden gespeichert?','Which mistakes are saved?')}</summary><p class="muted">${tr('Neue Fehler merken wir uns ab jetzt; vorhandene einzelne Fehler übernehmen wir. Frühere Gesamtwerte verraten keine einzelnen Antworten. Freie Texte bewertest du weiterhin selbst.','New mistakes are saved from now on; existing individual errors are imported. Earlier overall scores cannot identify individual answers. Free writing remains self-assessed.')}</p></details><label class="review-length" for="reviewCount">${tr('Umfang','Length')}<select id="reviewCount"><option value="10" ${count===10?'selected':''}>10 ${tr('Fragen','questions')}</option><option value="20" ${count===20?'selected':''}>20 ${tr('Fragen','questions')}</option></select></label><p id="reviewPoolInfo" class="muted" role="status"></p>${p.session?`<button class="primary-btn" id="reviewResume">${tr('Runde fortsetzen','Resume round')} · ${p.session.index+1}/${p.session.tasks.length}</button>`:''}<button class="${p.session?'secondary':'primary'}-btn" id="reviewStart">${p.session?tr('Neue Runde starten','Start a new round'):tr('Wiederholung starten','Start review')}</button><p class="muted">${tr('Deine Antworten werden gespeichert. Die Wiederholung verändert keine Lektionsbestwerte.','Your answers are saved. Review does not change lesson best scores.')}</p></section>`);
+      shell(`${heading()}<section class="card"><h2 tabindex="-1">${tr('Gelerntes festigen','Practise what you have learned')}</h2><p class="muted">${tr('Wiederhole Grammatikthemen abgeschlossener Lektionen oder übe deine gespeicherten Fehler.','Review grammar topics from completed lessons or practise your saved mistakes.')}</p>${p.questionQualityUpdated?`<p class="muted">${tr('Offene Aufgaben wurden überarbeitet. Bereits bewertete Antworten und frühere Ergebnisse bleiben erhalten.','Unanswered tasks have been updated. Graded answers and earlier results are preserved.')}</p>`:''}${p.grammarPoolUpdated?`<p class="muted">${tr('Laufende Themenrunden wurden auf Grammatikaufgaben beschränkt.','Ongoing topic rounds now contain grammar tasks only.')}</p>`:''}<fieldset class="review-modes"><legend>${tr('Was möchtest du üben?','What would you like to practise?')}</legend>${[['mixed',tr('Alles mischen','Mix everything'),tr('Grammatik aus deinen abgeschlossenen Lektionen.','Grammar from your completed lessons.')],['custom',tr('Selbst auswählen','Choose topics'),tr('Lektionen und Themen gezielt auswählen.','Select individual lessons and topics.')],['mistakes',tr('Fehler gezielt üben','Practise mistakes'),`${pending(state).length} ${tr(pending(state).length===1?'Aufgabe vorgemerkt':'Aufgaben vorgemerkt',pending(state).length===1?'task to review':'tasks to review')}`]].map(([id,label,hint])=>`<label class="review-mode"><input type="radio" name="review-mode" value="${id}" ${mode===id?'checked':''}><span><strong>${label}</strong><small>${hint}</small></span></label>`).join('')}</fieldset><div id="reviewTopics" ${mode==='custom'?'':'hidden'}><div class="review-select-actions"><button class="tiny-btn" id="reviewAll">${tr('Alle auswählen','Select all')}</button><button class="tiny-btn" id="reviewNone">${tr('Auswahl löschen','Clear selection')}</button></div>${lessons.filter(l=>groups.some(g=>g.lessonId===l.id)).map(l=>`<details class="review-lesson"><summary>${l.id}. ${esc(translate(l.title))}</summary><label><input type="checkbox" data-review-lesson="${l.id}">${tr("Alle Themen dieser Lektion","All topics in this lesson")}</label>${groups.filter(g=>g.lessonId===l.id).map(g=>`<label><input type="checkbox" data-review-topic="${g.lessonId}:${esc(g.topic)}" ${selected.has(g.lessonId+':'+g.topic)?'checked':''}>${esc(translate(g.label))}</label>`).join('')}</details>`).join('')}</div><p class="muted" id="reviewMistakeHint" ${mode==='mistakes'?'':'hidden'}>${tr('Zweimal hintereinander richtig in der Wiederholung: Dann ist eine Aufgabe gefestigt.','Answer correctly in two successive reviews to clear a task.')}</p><details id="reviewMistakeDetails" ${mode==='mistakes'?'':'hidden'}><summary>${tr('Welche Fehler werden gespeichert?','Which mistakes are saved?')}</summary><p class="muted">${tr('Neue Fehler merken wir uns ab jetzt; vorhandene einzelne Fehler übernehmen wir. Frühere Gesamtwerte verraten keine einzelnen Antworten. Freie Texte bewertest du weiterhin selbst.','New mistakes are saved from now on; existing individual errors are imported. Earlier overall scores cannot identify individual answers. Free writing remains self-assessed.')}</p></details><label class="review-length" for="reviewCount">${tr('Umfang','Length')}<select id="reviewCount"><option value="10" ${count===10?'selected':''}>10 ${tr('Fragen','questions')}</option><option value="20" ${count===20?'selected':''}>20 ${tr('Fragen','questions')}</option></select></label><p id="reviewPoolInfo" class="muted" role="status"></p>${p.session?`<button class="primary-btn" id="reviewResume">${tr('Runde fortsetzen','Resume round')} · ${p.session.index+1}/${p.session.tasks.length}</button>`:''}<button class="${p.session?'secondary':'primary'}-btn" id="reviewStart">${p.session?tr('Neue Runde starten','Start a new round'):tr('Wiederholung starten','Start review')}</button><p class="muted">${tr('Deine Antworten werden gespeichert. Die Wiederholung verändert keine Lektionsbestwerte.','Your answers are saved. Review does not change lesson best scores.')}</p></section>`);
       function update(){
         view.querySelectorAll('[data-review-lesson]').forEach(el=>{
           const keys=groups.filter(g=>g.lessonId===Number(el.dataset.reviewLesson)).map(g=>g.lessonId+':'+g.topic),n=keys.filter(k=>selected.has(k)).length;
@@ -150,7 +187,7 @@
       view.querySelector('#reviewCount').onchange=e=>{count=Number(e.target.value);update();};
       view.querySelector('#reviewResume')?.addEventListener('click',draw);
       view.querySelector('#reviewStart').onclick=()=>{
-        const start=()=>{delete p.grammarPoolUpdated;p.session={version:1,tasks:choose(pool(),count).map(copy),index:0,answers:[],draft:'',mode,startedAt:Date.now()};save();draw();};
+        const start=()=>{delete p.grammarPoolUpdated;delete p.questionQualityUpdated;p.session={version:1,tasks:choose(pool(),count).map(copy),index:0,answers:[],draft:'',mode,startedAt:Date.now()};save();draw();};
         if(!p.session)return start();
         view.querySelector('#reviewPoolInfo').innerHTML=`${tr('Die neue Runde ersetzt deine laufende Runde. Gemerkte Fehler bleiben erhalten.','The new round replaces your current round. Saved mistakes are kept.')} <button class="tiny-btn" id="reviewReplace">${tr('Neue Runde bestätigen','Confirm new round')}</button>`;
         view.querySelector('#reviewReplace').onclick=start;

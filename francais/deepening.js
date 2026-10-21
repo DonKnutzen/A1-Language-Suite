@@ -69,30 +69,71 @@
     const alternatives=(families.find(a=>a.includes(answer))||[]).filter(a=>a!==answer);
     let o=t.o||[answer,...nearest(answer,alternatives).slice(0,2)];
     if(answer==='Je suis médecin.')return {kind:'form',q:'Ich bin Arzt. Welche Aussage passt?',answer,o:['Je suis médecin.','Je suis professeur.','Je suis étudiant.'],audio:answer,meaning:'Beruf: Arzt',explanation:'Je suis médecin. = Ich bin Arzt.'};
+    if(answer==='nom de famille')o=['nom de famille','prénom','numéro de téléphone'];
+    if(answer==='Pourriez-vous répéter ?')return {kind:'form',legacyTask:{q:t.q||t.prompt,answer},q:'Welche Bitte verwendet die besonders höfliche Form „könnten Sie“?',answer,o:[answer,'Pouvez-vous répéter ?','Vous répétez ?'],audio:answer,explanation:'Pourriez-vous entspricht „könnten Sie“. Pouvez-vous bedeutet „können Sie“.'};
     o=[...new Set(o)];
     if(o.length<3)return null;
-    return {kind:'form',q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1')}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
+    return {kind:'form',...(answer==='nom de famille'?{legacyTask:{q:t.q||t.prompt,answer}}:{}),q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1')}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
   }
+  // Only known grammatical table shapes become exercises. Copying arbitrary
+  // neighbouring cells exposes pronouns/articles and tests visual matching.
   function tableTasks(el){
     if(!el)return [];
     const tasks=[],clean=cell=>{const copy=cell.cloneNode(true);copy.querySelectorAll('button').forEach(b=>b.remove());return copy.textContent.trim();};
+    const title=el.querySelector('summary')?.textContent||'';
+    const personLabel=s=>/^(?:je|j[’']|tu|il|elle|on|nous|vous|ils|elles)(?:\s*\/.*)?$/i.test(s);
+    const subject=s=>s.split(/\s*\//)[0].replace(/^j[’']$/i,'je').toLowerCase();
+    const complete=(q,answer)=>q.replace('___',answer).replace(/([’'])\s+/g,'$1');
+    const verbs=['s’appeler','se lever','habiter','parler','venir','pouvoir','devoir','aller','avoir','être'];
+    const verbFrom=head=>verbs.find(v=>head===v)||verbs.find(v=>title.includes(v));
+    function add(q,answer,values,legacyQ,legacyAnswer,coverage){
+      const wrong=nearest(answer,values).slice(0,2);if(wrong.length<2)return;
+      const audio=complete(q,answer);
+      tasks.push({kind:'form',q,answer,o:[answer,...wrong],audio,explanation:audio,coverage,legacyTask:{q:legacyQ,answer:legacyAnswer}});
+    }
+    function conjugation(person,raw,values,verb,legacyQ){
+      const p=subject(person),reflexive=verb==='s’appeler'||verb==='se lever';
+      if(!p||!verb)return;
+      const bare=value=>reflexive?value.replace(/^(?:m[’']|t[’']|s[’']|me |te |se |nous |vous )/i,''):value.replace(/^(?:j[’']|je |tu |il |elle |on |nous |vous |ils |elles )/i,'');
+      const pronoun=p[0].toUpperCase()+p.slice(1);
+      const reflex={je:verb==='s’appeler'?'m’':'me ',tu:verb==='s’appeler'?'t’':'te ',il:verb==='s’appeler'?'s’':'se ',elle:verb==='s’appeler'?'s’':'se ',on:verb==='s’appeler'?'s’':'se ',nous:'nous ',vous:'vous ',ils:verb==='s’appeler'?'s’':'se ',elles:verb==='s’appeler'?'s’':'se '};
+      const prefix=reflexive?pronoun+' '+reflex[p]:verb==='habiter'&&p==='je'?'J’':pronoun+' ';
+      const ending={'être':'à Paris.','habiter':'à Lyon.','parler':'français.','venir':'de France.','pouvoir':'répéter ?','aller':'réserver une chambre.','devoir':'partir à huit heures.','s’appeler':'comment ?','se lever':'à sept heures.','avoir':'vingt ans.'}[verb];
+      let q=prefix+'___ '+ending;
+      if(verb==='s’appeler'&&p==='je')q='Je m’___ Léa.';
+      if(verb==='s’appeler'&&p==='nous')q='Nous nous ___ Martin.';
+      if(verb==='avoir'&&/Passé composé/i.test(title))q='Hier, '+(p==='je'?'j’':p+' ')+'___ travaillé.';
+      add(q,bare(raw),values.map(bare),legacyQ,raw,'table:'+verb+':'+p);
+    }
     el.querySelectorAll('table').forEach(table=>{
-      if(!table.querySelector('th'))return;
-      const rows=[...table.querySelectorAll('tr')],heads=[...rows[0].querySelectorAll('th,td')].map(clean);
+      const rows=[...table.querySelectorAll('tr')];if(rows.length<2||!table.querySelector('th'))return;
+      const heads=[...rows[0].querySelectorAll('th,td')].map(clean);
       const body=rows.slice(1).map(row=>[...row.querySelectorAll('td')].map(clean)).filter(r=>r.length);
-      body.forEach(row=>row.forEach((answer,col)=>{
-        if(col===0||/deutsch|verwendung|bedeutung|regel/i.test(heads[col]||'')||!answer)return;
-        const wrong=nearest(answer,body.map(r=>r[col]).filter(Boolean));
-        if(wrong.length<2)return;
-        const person=row[0],audio=/^(je|j’|tu|il|elle|nous|vous|ils|elles)( \/.*)?$/.test(person)?(/^[jmts]’/.test(answer)||answer.startsWith(person+' ')?(/^(nous levons|vous levez)$/.test(answer)?person+' '+answer:answer):(person.endsWith('’')?person+answer:person+' '+answer)):answer;
-        tasks.push({kind:'form',q:`Welche Form passt in der Übersicht zu „${person}“ (${heads[col]||'Form'})?`,answer,o:[answer,...shuffle(wrong).slice(0,2)],audio,explanation:`${person}: ${answer}`});
-      }));
-      // Some existing conjugations have pronouns across the header instead of down a column.
-      if(body.length===1&&body[0].length===heads.length&&heads.length>=6){
-        body[0].forEach((answer,col)=>{
-          const wrong=[...new Set(body[0].filter(v=>v!==answer))];if(wrong.length<2)return;
-          tasks.push({kind:'form',q:`Welche Verbform passt zu „${heads[col]}“?`,answer,o:[answer,...shuffle(wrong).slice(0,2)],audio:heads[col].replace('il/elle','il').replace('ils/elles','ils')+' '+answer,explanation:`${heads[col]}: ${answer}`});
-        });
+      if(heads[0]==='Person'){
+        body.forEach(row=>{if(!personLabel(row[0]))return;row.slice(1).forEach((raw,i)=>{const col=i+1;if(/deutsch/i.test(heads[col]||''))return;conjugation(row[0],raw,body.map(r=>r[col]).filter(Boolean),verbFrom(heads[col]||''),`Welche Form passt in der Übersicht zu „${row[0]}“ (${heads[col]||'Form'})?`);});});
+        return;
+      }
+      if(body.length===1&&heads.length>=6&&heads.every(personLabel)){
+        body[0].forEach((raw,col)=>conjugation(heads[col],raw,body[0],verbFrom(''),`Welche Verbform passt zu „${heads[col]}“?`));return;
+      }
+      const exampleColumn=heads.indexOf('Beispiel');if(exampleColumn<0)return;
+      for(const row of body){
+        const example=row[exampleColumn],legacyQ=`Welche Form passt in der Übersicht zu „${row[0]}“ (Beispiel)?`;
+        if(!example)continue;
+        if(/Teilungsartikel/.test(title)){
+          const m=example.match(/^(du|de la|de l[’']|des)\s*(.+)$/);if(m)add('Je voudrais ___ '+m[2]+'.',m[1],['du','de la','de l’','des'],legacyQ,example,'table:partitive:'+m[2]);
+        }else if(/ce \/ cet/.test(title)){
+          const m=example.match(/^(ce|cet|cette|ces) (.+)$/);if(m)add('Je voudrais ___ '+m[2]+'.',m[1],['ce','cet','cette','ces'],legacyQ,example,'table:demonstrative:'+m[2]);
+        }else if(/à \+ Artikel|Ziel:/.test(title)){
+          const m=example.match(/^(à la|à|en|au|aux) (.+)$/);if(m){
+            const values=/à \+ Artikel/.test(title)?['à la','au','aux']:['à','en','au','aux'];
+            add((/à \+ Artikel/.test(title)?'Je suis ___ ':'Je vais ___ ')+m[2]+'.',m[1],values,legacyQ,example,'table:destination:'+m[2]);
+            // The old destination table also produced a second task per row.
+            tasks.at(-1).legacyTaskForms={q:`Welche Form passt in der Übersicht zu „${row[0]}“ (Form)?`,answer:row[1]};
+          }
+        }else if(/Herkunft:/.test(title)){
+          const m=example.match(/^Je viens (de |d[’']|du |des )(.+)\.$/);if(m)add('Je viens ___ '+m[2]+'.',m[1].trim(),['de','d’','du','des'],legacyQ,example,'table:origin:'+m[2]);
+        }
       }
     });
     return tasks;
@@ -186,6 +227,17 @@
       });
       if(!saved.response)saved.order=null;
     }
+    if(resume){
+      const legacyKey=q=>JSON.stringify([q.q,q.answer]),replacements=new Map();
+      for(const q of pool.tasks)for(const old of [q.legacyTask,q.legacyTaskForms].filter(Boolean))replacements.set(legacyKey(old),q);
+      const before=JSON.parse(JSON.stringify(saved));let changed=false,currentChanged=false;
+      saved.questions=saved.questions.map((q,index)=>{
+        if(index<saved.i||(index===saved.i&&saved.response))return q;
+        const next=replacements.get(legacyKey(q));if(!next)return q;
+        if(JSON.stringify(q)!==JSON.stringify(next)){changed=true;if(index===saved.i)currentChanged=true;return next;}return q;
+      });
+      if(changed){progress.previousQuestionSession=before;if(currentChanged)saved.order=null;}
+    }
     const seen=new Set(progress.seen||[]);
     const prioritize=a=>[...shuffle(a.filter(q=>!seen.has(q.q))),...shuffle(a.filter(q=>seen.has(q.q)))];
     const questions=resume?saved.questions:(window.FR_A1_GRAMMAR_PRACTICE?.select(prioritize(pool.tasks),shuffle)||shuffle(pool.tasks)),stage=panel.querySelector('.deepening-stage');
@@ -195,7 +247,7 @@
     function finish(){
       const work=state.lessonWork[lesson.id];work.deepening=work.deepening||{};
       const old=work.deepening[pool.key]||{};
-      work.deepening[pool.key]={done:true,last:score,best:Math.max(old.best||0,score),total:questions.length,seen:[...new Set([...(old.seen||[]),...questions.map(q=>q.q)])]};
+      work.deepening[pool.key]={...(old.previousQuestionSession?{previousQuestionSession:old.previousQuestionSession}:{}),done:true,last:score,best:Math.max(old.best||0,score),total:questions.length,seen:[...new Set([...(old.seen||[]),...questions.map(q=>q.q)])]};
       save(true);onUpdate?.();
       panel.querySelector('.between small').textContent='✓ geübt';
       stage.innerHTML=`<div class="deepening-result"><strong>${score} / ${questions.length} richtig</strong>${mistakes.length?`<p class="muted">Wiederhole diese Bausteine:</p>${mistakes.map(q=>`<p>${esc(q.answer)}</p>`).join('')}`:`<p class="muted">Gut vorbereitet für die nächste Aufgabe.</p>`}<button type="button" class="soft-btn exercise-start-btn deepening-repeat is-completed">Noch einmal üben</button></div>`;

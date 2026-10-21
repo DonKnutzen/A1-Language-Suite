@@ -13,7 +13,7 @@ function environment(state={doneLessons:[1,2],lessonMasteryBest:{1:91},lessonWor
 }
 test('bank uses only completed lessons, all topics have valid answers and selection never duplicates tasks',()=>{
  const e=environment();e.state.doneLessons=[];assert.equal(e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml).length,0);
- e.state.doneLessons=[1,5];const bank=e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml);assert(bank.length>100);
+ e.state.doneLessons=[1,5];const bank=e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml);assert(bank.length>=80);
  assert(bank.every(q=>[1,5].includes(q.lessonId)&&q.answer));
  assert(bank.some(q=>q.topic==='l1:etre'));assert(bank.filter(q=>q.lessonId===5&&q.topic==='grammar:r0').length>=24);
  const round=e.api.choose(bank,20);assert.equal(round.length,20);assert.equal(new Set(round.map(q=>JSON.stringify([q.lessonId,q.q,q.context,q.answer,q.turns,q.speech]))).size,20);assert(new Set(round.map(q=>q.lessonId)).size===2);
@@ -113,4 +113,22 @@ test('separate home entries open the requested mode regardless of the last saved
  const e=environment();e.state.reviewPractice={imported:true,items:{},settings:{mode:'custom',count:20}};
  e.render({initialMode:'mistakes'});assert(e.view.querySelector('[value="mistakes"]').checked);assert(e.view.querySelector('#reviewStart').disabled);
  e.render({initialMode:'mixed'});assert(e.view.querySelector('[value="mixed"]').checked);assert(!e.view.querySelector('#reviewStart').disabled);e.dom.window.close();
+});
+test('mixed grammar review excludes phrase-translation recognition and literal table questions in every lesson',()=>{
+ const e=environment();e.state.doneLessons=Array.from({length:24},(_,i)=>i+1);const bank=e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml);
+ assert(bank.length>200);assert(!bank.some(q=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(q.q)));assert(!bank.some(q=>/^Wie sagst du „.+“ auf Französisch\?$/.test(q.q)));assert(!bank.some(q=>/^Was bedeutet „.+“\?$/.test(q.q)));
+ assert(bank.some(q=>q.q==='Vous ___ où ?'&&q.answer==='habitez'));assert(bank.filter(q=>q.lessonId===1).every(q=>q.topic.startsWith('l1:')));e.dom.window.close();
+});
+test('old unfinished table questions upgrade without changing graded answers, best scores or mistake history',()=>{
+ const e=environment();const old=e.api.task(1,'grammar:r1','habiter & parler',{q:'Welche Form passt in der Übersicht zu „vous“ (habiter)?',answer:'vous habitez',o:['vous habitez','j’habite','nous habitons']}),checked=e.api.task(1,'l1:etre','être',{q:'Tu ___ français.',answer:'es',o:['es','est','êtes']});
+ e.api.record(e.state,old,false);const s=e.state.reviewPractice.session={version:1,tasks:[checked,old],index:1,answers:[{value:'es',ok:true}],order:['j’habite','vous habitez','nous habitons'],draft:'old answer',mode:'mixed'};const oldSnapshot=JSON.stringify(s);e.render();
+ assert.equal(s.index,1);assert.equal(s.tasks[0].id,checked.id);assert.equal(s.answers[0].value,'es');assert.equal(s.answers[0].ok,true);assert.equal(s.tasks[1].q,'Vous ___ à Lyon.');assert.equal(s.tasks[1].answer,'habitez');assert.equal(s.draft,'');assert(!s.order);assert.equal(e.state.lessonMasteryBest[1],91);assert.equal(JSON.stringify(e.state.reviewPractice.previousQuestionRound),oldSnapshot);
+ const pending=e.api.pending(e.state);assert.equal(pending.length,1);assert.equal(pending[0].task.answer,'habitez');assert.equal(pending[0].wrong,1);assert.equal(pending[0].streak,0);assert(e.state.reviewPractice.items[old.id].retired);
+ e.click('#reviewResume');assert(e.view.textContent.includes('Vous ___ à Lyon.'));assert([...e.view.querySelectorAll('[data-review-option]')].every(b=>!b.textContent.includes('vous')));assert.equal(s.answers.filter(Boolean).length,1);e.render();assert.equal(e.api.pending(e.state).length,1);assert.equal(e.completed,0);e.dom.window.close();
+});
+test('retired phrase cards leave ongoing mixed rounds while checked feedback and mistake-mode vocabulary remain',()=>{
+ const e=environment(),old=e.api.task(2,'grammar:u0','Alphabet',{q:'Wie sagst du „Mein Vorname ist Léa.“ auf Französisch?',answer:'Mon prénom est Léa.',o:['Mon prénom est Léa.','Mon nom de famille est Martin.','avec une cédille : ç']}),valid=e.api.task(1,'l1:etre','être',{q:'Tu ___ français.',answer:'es',o:['es','est','êtes']});
+ e.state.reviewPractice={session:{version:1,tasks:[old,valid],index:0,answers:[{value:old.answer,ok:true}],mode:'mixed',draft:''}};e.render();assert.equal(e.state.reviewPractice.session.tasks[0].id,old.id);assert.equal(e.state.reviewPractice.session.answers[0].ok,true);
+ e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode:'mixed',draft:'keep archived'};e.render();assert(!e.state.reviewPractice.session);assert.equal(e.state.reviewPractice.previousQuestionRound.draft,'keep archived');
+ e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode:'mistakes',draft:''};e.render();assert.equal(e.state.reviewPractice.session.tasks[0].id,old.id);e.dom.window.close();
 });

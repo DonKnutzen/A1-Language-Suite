@@ -33,3 +33,32 @@ test('24-question possessive drill saves, resumes, marks once and keeps earlier 
   e.view.querySelector('.deepening-next').click();
  }assert.equal(completions,1);assert.equal(state.lessonWork[5].deepening.r0.last,24);assert.equal(state.lessonWork[5].deepening.r0.total,24);assert(!state.lessonWork[5].deepening.r0.session);e.dom.window.close();
 });
+test('table-derived choices test verb forms instead of repeating the subject in each option',()=>{
+ const e=environment(),lesson=e.w.FR_A1_DATA.lessons[0],pools=e.w.FR_A1_DEEPENING.pools(lesson,e.w.grammarHtml(lesson));
+ const regular=pools.find(p=>p.key==='r1').tasks,q=regular.find(t=>t.q==='Vous ___ à Lyon.');
+ assert(q);assert.equal(q.answer,'habitez');assert.deepEqual([...q.o],['habitez','habite','habites']);assert(!q.o.some(o=>/\b(?:je|tu|nous|vous|ils|elles)\b/i.test(o)));assert.equal(q.audio,'Vous habitez à Lyon.');
+ const speaking=regular.find(t=>t.q==='Vous ___ français.');assert.equal(speaking.answer,'parlez');assert(speaking.o.every(o=>o.startsWith('parl')));
+ const reflex=pools.find(p=>p.key==='r3').tasks.find(t=>t.q==='Vous vous ___ comment ?');assert.equal(reflex.answer,'appelez');assert(reflex.o.every(o=>o.startsWith('appel')));assert.equal(reflex.audio,'Vous vous appelez comment ?');e.dom.window.close();
+});
+test('all contextual table tasks have three stable nearby choices and no literal table matching',()=>{
+ const e=environment();let count=0;
+ for(const lesson of e.w.FR_A1_DATA.lessons){const first=e.w.FR_A1_DEEPENING.pools(lesson,e.w.grammarHtml(lesson)).flatMap(p=>p.tasks).filter(t=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(t.legacyTask?.q||'')),second=e.w.FR_A1_DEEPENING.pools(lesson,e.w.grammarHtml(lesson)).flatMap(p=>p.tasks).filter(t=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(t.legacyTask?.q||''));
+  for(const t of first){count++;assert(t.q.includes('___')||!t.legacyTask.q.startsWith('Welche Form passt'));assert(!/^Welche (?:Form|Verbform) passt/.test(t.q));assert.equal(t.o.length,3);assert(!t.o.some(o=>/^(?:je |j’|tu |nous |vous |ils |elles )/i.test(o)));assert(!t.audio.includes(' / '));assert(!/\b(?:il il|elle elle|ils ils|elles elles)\b/.test(t.audio));const again=second.find(q=>q.q===t.q&&q.answer===t.answer);assert.deepEqual([...again.o],[...t.o]);}
+ }
+ assert(count>=70);e.dom.window.close();
+});
+test('prepositions and determiners keep the same noun in the prompt; ambiguous name synonyms are absent',()=>{
+ const e=environment();const tasks=id=>{const l=e.w.FR_A1_DATA.lessons[id-1];return e.w.FR_A1_DEEPENING.pools(l,e.w.grammarHtml(l)).flatMap(p=>p.tasks);};
+ for(const [id,prompt,answer,options]of [[8,'Je suis ___ musée.','au',['au','aux','à la']],[13,'Je voudrais ___ robe.','cette',['cette','cet','ce']],[24,'Je viens ___ Canada.','du',['du','de','d’']]]){const t=tasks(id).find(t=>t.q===prompt);assert(t);assert.equal(t.answer,answer);assert.deepEqual([...t.o],options);}
+ const name=tasks(2).find(t=>t.answer==='nom de famille');assert(!name.o.includes('nom'));assert(name.o.includes('prénom'));
+ const family=tasks(5).find(t=>t.q==='Ce ___ mes parents.');assert.equal(family.answer,'sont');assert.deepEqual([...family.o],['sont','est','sommes']);
+ const polite=tasks(18).find(t=>t.answer==='Pourriez-vous répéter ?');assert(polite.q.includes('könnten Sie'));assert(polite.o.every(o=>/vous|Vous/.test(o)));e.dom.window.close();
+});
+test('resuming an inline grammar drill upgrades only the open table question and keeps graded work',()=>{
+ const e=environment(),lesson=e.w.FR_A1_DATA.lessons[7],html=e.w.FR_A1_DEEPENING.enrich(lesson,e.w.grammarHtml(lesson));
+ const old={kind:'form',q:'Welche Form passt in der Übersicht zu „à la“ (Beispiel)?',answer:'à la gare',o:['à la gare','au musée','aux toilettes'],audio:'à la gare'},graded={kind:'form',q:'___ y a une cuisine.',answer:'Il',o:['Il','Ce','Elle'],audio:'Il y a une cuisine.'};
+ const state={lessonWork:{8:{deepening:{r1:{best:2,session:{version:1,questions:[graded,old],i:1,score:1,mistakes:[],response:null,order:['aux toilettes','à la gare','au musée']}}}}}};let completions=0;
+ const render=()=>{e.view.innerHTML=html;e.w.FR_A1_DEEPENING.decorate({root:e.view,lesson,grammarHtml:html,state,save:done=>{if(done)completions++;},speak(){}});e.view.querySelector('[data-deepening-practice="r1"] .deepening-start').click();};
+ render();let p=state.lessonWork[8].deepening.r1;assert.equal(p.session.score,1);assert.equal(p.session.questions[0].q,graded.q);assert.equal(p.session.questions[1].q,'Je suis ___ gare.');assert.equal(p.previousQuestionSession.questions[1].q,old.q);assert.equal(p.session.questions[1].answer,'à la');
+ const stage=e.view.querySelector('[data-deepening-practice="r1"]');[...stage.querySelectorAll('.option-btn')].find(b=>b.textContent==='à la').click();assert.equal(p.session.score,2);render();assert.equal(p.session.score,2);assert(e.view.querySelector('[data-deepening-practice="r1"] .deepening-next'));assert.equal(completions,0);e.dom.window.close();
+});
