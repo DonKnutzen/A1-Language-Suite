@@ -70,8 +70,23 @@
     const objectivePassed=data.version===1?score.pct>=80&&score.gap/data.gaps.length>=.5&&score.listening/questions(data).length>=.5:score.gap*5>=data.gaps.length*4&&score.listening*5>=questions(data).length*4;
     return objectivePassed&&words(attempt.text)>=data.writing.minWords&&writingPassed(attempt);
   }
+  // Award a completed, passed attempt using raw counts, never a rounded display score.
+  function achievedResult(attempt){
+    const r=attempt?.result;
+    return attempt?.phase==='reviewed'&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*85;
+  }
+  function achievement(state,id){
+    const progress=state.lessonWork?.[id]?.hardMode;
+    return [progress?.attempt,...(progress?.history||[])].filter(achievedResult).sort((a,b)=>b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
+  }
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total;
+  const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
+  const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
+  function badgeMarkup(gold){
+    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Gold erreicht · 100 % · Schreiben selbst geprüft','Gold earned · 100% · writing self-assessed'):t('Auszeichnung ab 85 % · Schreiben selbst geprüft','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 100 %':'85 % +'}</span>`;
+  }
   let redraw=null,redrawEntry=null,checkDetached=null;
-  window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();});
+  window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
   function entryHtml(lesson,state){
     const open=unlocked(state,lesson.id),p=state.lessonWork?.[lesson.id]?.hardMode,data=window.FR_A1_HARD_CONTENT[lesson.id];
     const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
@@ -300,7 +315,7 @@
     function result(){
       const score=a.result||objective(data,a),success=a.result?.passed??passed(data,a),writingPoints=a.ratings.reduce((sum,n)=>sum+(n||0),0);
       const missed=new Set([...data.gaps,...allQuestions].flatMap((q,i)=>answerMatches(data,q,i<data.gaps.length?a.gaps[i]:a.listening[i-data.gaps.length])?[]:q.skills||[]));
-      mount(`${heading()}<section class="card hard-result"><span class="hard-eyebrow">${success?t('✓ TRAININGSZIEL ERREICHT','✓ PRACTICE TARGET MET'):t('HARD MODE AUSGEWERTET','HARD MODE REVIEWED')}</span><div class="score">${score.pct} %</div><h3>${t('Automatisch korrigierte Aufgaben','Automatically marked tasks')}</h3><div class="hard-result-grid"><div><strong>${score.gap}/${data.gaps.length}</strong><span>${t('Lückentext','Cloze text')} · ${Math.round(score.gap/data.gaps.length*1000)/10} %</span></div><div><strong>${score.listening}/${allQuestions.length}</strong><span>${t('Hörverstehen','Listening')} · ${Math.round(score.listening/allQuestions.length*1000)/10} %</span></div><div><strong>${writingPoints}/8</strong><span>${t('Schreiben · Selbstbewertung','Writing · self-assessment')}</span></div></div><p>${rules()}</p><p class="muted">${t('Die Prozentzahl bewertet nur Lückentext und Hörverstehen. Die Schreibaufgabe hast du selbst geprüft. Das ist kein automatisch bestätigter Sprachnachweis.','The percentage covers only cloze and listening. You assessed your writing yourself. This is not automatically certified language proficiency.')}</p>${missed.size?`<p>${t('Gezielt wiederholen','Review these topics')}: ${[...missed].map(key=>esc(data.objectives?.[key]?.label||key)).join(' · ')}</p>`:''}<div class="button-row"><button class="secondary-btn" id="hardReview">${t('Alle Antworten ansehen','Review all answers')}</button><button class="hard-start" id="hardRetry">${t('Neuer Versuch','New attempt')}</button></div>${progress.history.length?`<button class="tiny-btn" id="hardHistory">${t('Frühere Versuche','Previous attempts')} (${progress.history.length})</button>`:''}</section>`);
+      mount(`${heading()}<section class="card hard-result ${achievementClass(a)}">${achievedResult(a)?achievementBadge(a):''}<span class="hard-eyebrow">${success?t('✓ TRAININGSZIEL ERREICHT','✓ PRACTICE TARGET MET'):t('HARD MODE AUSGEWERTET','HARD MODE REVIEWED')}</span><div class="score">${score.pct} %</div><h3>${t('Automatisch korrigierte Aufgaben','Automatically marked tasks')}</h3><div class="hard-result-grid"><div><strong>${score.gap}/${data.gaps.length}</strong><span>${t('Lückentext','Cloze text')} · ${Math.round(score.gap/data.gaps.length*1000)/10} %</span></div><div><strong>${score.listening}/${allQuestions.length}</strong><span>${t('Hörverstehen','Listening')} · ${Math.round(score.listening/allQuestions.length*1000)/10} %</span></div><div><strong>${writingPoints}/8</strong><span>${t('Schreiben · Selbstbewertung','Writing · self-assessment')}</span></div></div><p>${rules()}</p><p class="muted">${t('Die Prozentzahl bewertet nur Lückentext und Hörverstehen. Die Schreibaufgabe hast du selbst geprüft. Das ist kein automatisch bestätigter Sprachnachweis.','The percentage covers only cloze and listening. You assessed your writing yourself. This is not automatically certified language proficiency.')}</p>${missed.size?`<p>${t('Gezielt wiederholen','Review these topics')}: ${[...missed].map(key=>esc(data.objectives?.[key]?.label||key)).join(' · ')}</p>`:''}<div class="button-row"><button class="secondary-btn" id="hardReview">${t('Alle Antworten ansehen','Review all answers')}</button><button class="hard-start" id="hardRetry">${t('Neuer Versuch','New attempt')}</button></div>${progress.history.length?`<button class="tiny-btn" id="hardHistory">${t('Frühere Versuche','Previous attempts')} (${progress.history.length})</button>`:''}</section>`);
       root.querySelector('#hardHistory')?.addEventListener('click',showHistory);
       root.querySelector('#hardPreviousDraft')?.addEventListener('click',showHistory);
       root.querySelector('#hardReview').onclick=()=>{a.page=0;persist();focusHeading=true;draw();};
@@ -313,5 +328,5 @@
   }
   // Cancel speech if navigation removes the test without calling its back button.
   new MutationObserver(()=>checkDetached?.()).observe(document.getElementById('view')||document.body,{childList:true});
-  window.FR_A1_HARD_MODE={unlocked,entryHtml,renderEntry,render,normalize,matches,words,objective,passed};
+  window.FR_A1_HARD_MODE={unlocked,entryHtml,renderEntry,render,normalize,matches,words,objective,passed,achievedResult,goldResult,achievement,achievementClass,achievementBadge};
 })();

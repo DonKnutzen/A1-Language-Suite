@@ -155,8 +155,8 @@ function renderLearn(){
       <div class="progress"><div style="width:${lessonPct()}%"></div></div>
     </section>
     <div class="list">
-      ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}">
-        <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>
+      ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''} ${window.FR_A1_HARD_MODE.achievementClass(window.FR_A1_HARD_MODE.achievement(state,l.id))}" data-lesson="${l.id}">
+        <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>${window.FR_A1_HARD_MODE.achievement(state,l.id)?window.FR_A1_HARD_MODE.achievementBadge(window.FR_A1_HARD_MODE.achievement(state,l.id)):''}
         <div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'de')}</div>
       </button>`).join('')}
     </div>`;

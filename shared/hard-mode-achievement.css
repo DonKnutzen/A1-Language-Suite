@@ -1,0 +1,74 @@
+/* Earned by a completed, passed attempt: 85% first tier, 100% Gold.
+   Variables keep both course palettes legible in light and dark themes. */
+.is-hard-achieved{
+  --award-border:#258057;
+  --award-ink:#155f3e;
+  --award-chip:#e1f5e9;
+  --award-bg:linear-gradient(125deg,#f5fff9,#e6f8ee);
+  --award-shadow:0 0 0 3px rgb(37 128 87 / 9%),0 5px 20px rgb(37 128 87 / 10%);
+}
+.is-hard-tricolour{
+  --award-border:#5575ae;
+  --award-ink:#244b86;
+  --award-chip:#edf3ff;
+  --award-bg:linear-gradient(115deg,#edf3ff,#fff 52%,#fff0f1);
+  --award-shadow:-3px 0 12px rgb(42 93 183 / 15%),3px 0 12px rgb(200 57 75 / 12%);
+}
+.is-hard-gold{
+  --award-border:#b88218;
+  --award-ink:#694500;
+  --award-chip:#fff1bf;
+  --award-bg:linear-gradient(125deg,#fffdf5,#fff5d5);
+  --award-shadow:0 0 0 3px rgb(218 166 42 / 10%),0 5px 22px rgb(158 110 15 / 12%);
+}
+html.dark-mode .is-hard-achieved{
+  --award-border:#65b88e;--award-ink:#acf0c9;--award-chip:#254c38;
+  --award-bg:linear-gradient(125deg,#20332b,#213d30);
+}
+html.dark-mode .is-hard-tricolour{
+  --award-border:#8099c4;--award-ink:#c9dcff;--award-chip:#263e63;
+  --award-bg:linear-gradient(115deg,#1d2d48,#282d37 52%,#40262f);
+}
+html.dark-mode .is-hard-gold{
+  --award-border:#d8ae54;--award-ink:#ffe6a1;--award-chip:#41351d;
+  --award-bg:linear-gradient(125deg,#29271f,#332b1d);
+  --award-shadow:0 0 0 3px rgb(230 181 70 / 9%),0 5px 24px rgb(230 181 70 / 10%);
+}
+.lesson.is-hard-achieved,
+.hard-result.is-hard-achieved,
+html.dark-mode .lesson.is-hard-achieved,
+html.dark-mode .hard-result.is-hard-achieved{
+  position:relative;isolation:isolate;overflow:hidden;
+  border:2px solid var(--award-border);
+  background:var(--award-bg);
+  box-shadow:var(--award-shadow);
+}
+.is-hard-tricolour::before{
+  content:"";position:absolute;inset:0 0 auto;height:4px;pointer-events:none;
+  background:linear-gradient(to right,#376bb7 0 33.33%,#fff 33.33% 66.67%,#d64e60 66.67%);
+}
+.lesson.is-hard-gold::after,
+.hard-result.is-hard-achieved::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(110deg,transparent 30%,rgb(255 255 255 / 50%) 48%,transparent 65%);
+  transform:translateX(-120%);
+  animation:hard-achievement-sheen 9s ease-in-out infinite;
+}
+.hard-result.is-hard-achieved::after{animation:hard-achievement-sheen 2.2s ease-out 1}
+html.dark-mode .is-hard-achieved::after{opacity:.14}
+.lesson.is-hard-achieved .num{color:var(--award-ink);background:var(--award-chip)}
+.hard-achievement-badge{
+  display:flex;align-items:center;gap:7px;width:fit-content;
+  margin:10px 0 0;padding:5px 10px;border-radius:999px;
+  border:1px solid var(--award-border);color:var(--award-ink);background:var(--award-chip);
+  font-size:.76rem;font-weight:800;line-height:1.4;letter-spacing:.015em;
+}
+.hard-achievement-badge svg{width:17px;height:17px;flex:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hard-result.is-hard-achieved .hard-achievement-badge{margin:0 0 18px;padding:7px 12px;font-size:.9rem}
+.hard-result.is-hard-achieved .hard-eyebrow,
+.hard-result.is-hard-achieved .score{color:var(--award-ink)}
+.lesson.is-hard-achieved:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@keyframes hard-achievement-sheen{0%,65%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@media(prefers-reduced-motion:reduce){
+  .lesson.is-hard-gold::after,.hard-result.is-hard-achieved::after{animation:none;display:none}
+}
