@@ -3,7 +3,7 @@ const read=f=>fs.readFileSync(path.join(__dirname,'..','..',f),'utf8');
 function environment(state={doneLessons:[1,2],lessonMasteryBest:{1:91},lessonWork:{}}){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/francais/',runScripts:'outside-only'}),w=dom.window;let saves=0,completed=0,lang='de';
  w.scrollTo=()=>{};w.A1Profile={getUiLang:()=>lang};w.A1Voice={cancel(){},speakDialogue(){return false;}};
- for(const f of ['shared/learning.js','francais/data.js','francais/mastery-specs.js','francais/mastery.js','shared/exercise-engine.js','shared/grammar-ui.js','shared/lesson-topic-info.js','francais/deepening-content.js','francais/grammar-practice.js','francais/deepening.js','francais/lesson1-practice.js','francais/comprehension-content.js','francais/hard-mode-content.js','francais/hard-mode.js','francais/review-practice.js'])w.eval(read(f));
+ for(const f of ['shared/review-audio.js','shared/learning.js','francais/data.js','francais/mastery-specs.js','francais/mastery.js','shared/exercise-engine.js','shared/grammar-ui.js','shared/lesson-topic-info.js','francais/deepening-content.js','francais/grammar-practice.js','francais/deepening.js','francais/lesson1-practice.js','francais/comprehension-content.js','francais/hard-mode-content.js','francais/hard-mode.js','francais/review-practice.js'])w.eval(read(f));
  w.esc=s=>{const el=w.document.createElement('span');el.textContent=s;return el.innerHTML;};const app=read('francais/app.js');w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.grammarHtml=lessonGrammarHtml;');
  const view=w.document.querySelector('main'),api=w.FR_A1_REVIEW;
  const save=done=>{saves++;if(done)completed++;};

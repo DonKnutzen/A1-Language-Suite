@@ -156,7 +156,8 @@
     const selectable=bank;
     const topicKeys=new Set(selectable.map(q=>q.lessonId+':'+q.topic));
     let mode=['mixed','custom','mistakes'].includes(initialMode)?initialMode:p.settings?.mode||'mixed',count=p.settings?.count===20?20:10,selected=new Set((p.settings?.selected||[...topicKeys]).filter(key=>topicKeys.has(key)));
-    const cancel=()=>window.A1Voice?.cancel();
+    let reviewAudio=null;
+    const cancel=()=>{reviewAudio?.stop(false);window.A1Voice?.cancel();};
     const finishBack=()=>{cancel();redraw=null;onBack();};
     const shell=html=>{cancel();view.innerHTML=`<div class="review-practice" data-i18n-ignore>${html}</div>`;view.querySelector('#reviewBack')?.addEventListener('click',finishBack);view.querySelector('h2')?.focus();window.scrollTo({top:0,behavior:'instant'});};
     const heading=()=>`<div class="between"><button class="tiny-btn" id="reviewBack">← ${tr('Start','Home')}</button><span class="pill">${tr('WIEDERHOLUNG','REVIEW')}</span></div>`;
@@ -209,21 +210,14 @@
       const q=s.tasks[s.index],answer=s.answers[s.index],lesson=lessons.find(l=>l.id===q.lessonId);
       s.order||=q.o?shuffle(q.o):null;
       redraw=()=>{if(view.querySelector('.review-practice'))draw();};
-      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr('Pausieren','Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr('Zusätzliches Training','Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?`<button class="secondary-btn" id="reviewListen">▶ ${tr('Anhören · 75 %','Listen · 75%')}</button><p role="status" id="reviewAudioStatus"></p>`:''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div>`:`<label for="reviewInput">${tr('Deine Antwort','Your answer')}</label><input class="mixed-input" id="reviewInput" lang="fr" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('fr',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr('Prüfen','Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
+      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr('Pausieren','Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr('Zusätzliches Training','Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'de'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div>`:`<label for="reviewInput">${tr('Deine Antwort','Your answer')}</label><input class="mixed-input" id="reviewInput" lang="fr" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('fr',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr('Prüfen','Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
       view.querySelector('#reviewPause').onclick=setup;
-      const audio=view.querySelector('#reviewListen');
-      if(audio)audio.onclick=()=>{
-        cancel();audio.disabled=true;
-        const restore=()=>{if(audio.isConnected)audio.disabled=false;};
-        const error=()=>{restore();if(audio.isConnected)view.querySelector('#reviewAudioStatus').textContent=tr('Wiedergabe nicht möglich. Versuche es erneut.','Playback failed. Please try again.');};
-        const opts={lang:'fr-FR',rate:.75,onEnd:restore,onError:error};
-        const started=q.turns?window.A1Voice?.speakDialogue(q.turns,opts):window.A1Voice?.speak(q.speech,opts);if(started===false)error();
-      };
+      reviewAudio=q.turns||q.speech?window.A1ReviewAudio.mount({root:view,turns:q.turns,speech:q.speech,targetLang:'fr-FR',uiLang:en()?'en':'de'}):null;
       function feedback(a){
         view.querySelectorAll('[data-review-option]').forEach((el,i)=>{const o=s.order[i];el.disabled=true;el.classList.toggle('correct',o===q.answer);el.classList.toggle('wrong',o===a.value&&!a.ok);});
         view.querySelectorAll('#reviewInput,#reviewCheck,.mixed-char,.mixed-shift').forEach(el=>el.disabled=true);
         view.querySelector('#reviewFeedback').innerHTML=`<div class="feedback ${a.ok?'good':'bad'}"><strong>${a.ok?tr('✓ Richtig','✓ Correct'):tr('Richtig ist: ','Correct answer: ')+esc(translate(q.answer))}</strong>${q.explanation?`<p>${esc(translate(q.explanation))}</p>`:''}${q.audio?`<button class="tiny-btn" id="reviewAnswerAudio">🔊 ${tr('Anhören','Listen')}</button>`:''}</div><button class="primary-btn" id="reviewNext">${s.index<s.tasks.length-1?tr('Weiter','Next'):tr('Ergebnis','Result')}</button>`;
-        view.querySelector('#reviewAnswerAudio')?.addEventListener('click',()=>speak(q.audio,true));
+        view.querySelector('#reviewAnswerAudio')?.addEventListener('click',()=>{cancel();speak(q.audio,true);});
         view.querySelector('#reviewNext').onclick=()=>{s.index++;s.draft='';delete s.order;save();draw();};
       }
       function check(value){
