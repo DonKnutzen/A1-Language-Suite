@@ -138,3 +138,8 @@ test('reported infinitive and coffee mistakes upgrade ungraded drafts while keep
  api.record(e.state,old,false);api.record(e.state,coffee,false);const graded={value:'répéter',ok:false};e.state.reviewPractice.imported=true;e.state.reviewPractice.session={version:1,tasks:[old,old,coffee],index:1,answers:[graded],draft:'répéter',mode:'mistakes',startedAt:1};
  e.render({initialMode:'mistakes'});const s=e.state.reviewPractice.session;assert.equal(s.tasks[0].id,old.id);assert.equal(JSON.stringify(s.answers[0]),JSON.stringify(graded));assert(s.tasks[1].o.includes('épelez'));assert(!s.tasks[1].o.includes('répéter'));assert(!s.tasks[2].o.includes('Je suis un café.'));assert.equal(s.draft,'');assert(e.state.reviewPractice.items[old.id].retired);e.dom.window.close();
 });
+
+test('old generic ordering cards retire while new functional drills enter the grammar review pool',()=>{
+ const e=environment({doneLessons:[6],lessonWork:{},lessonMasteryBest:{}}),q=e.api.task(6,'grammar:u0','Höflich bestellen',{q:'Wie sagst du „Danke!“ auf Französisch?',answer:'Merci !',o:['Merci !','C’est combien ?','L’addition, s’il vous plaît.']});
+ e.api.record(e.state,q,false);e.render();assert(e.state.reviewPractice.items[q.id].retired);const pool=e.api.buildBank(e.w.FR_A1_DATA.lessons,e.state,e.w.grammarHtml).filter(t=>t.lessonId===6&&t.topic==='grammar:u0');assert.equal(pool.length,8);assert(!pool.some(t=>t.answer==='Merci !'));e.dom.window.close();
+});

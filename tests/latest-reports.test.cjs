@@ -1,0 +1,14 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{JSDOM}=require('jsdom');
+const read=p=>fs.readFileSync(p,'utf8');
+for(const course of ['francais-a1','deutsch-a1'])test(course+': report controls remain present when focused, after keyboard resize and reopening another task',async()=>{
+ const dom=new JSDOM('<main id="view"><section data-bug-task data-bug-lesson="6" data-bug-step="check"><h2>6. Test</h2><div class="quiz-q">Première question</div><button class="option-btn">A</button><button class="option-btn">B</button></section></main>',{url:'https://example.org',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
+ w.A1_APP_META={course};w.A1Profile={getUiLang:()=> 'de',getCurrent:()=>({profileKey:'TEST'})};w.HTMLDialogElement.prototype.show=function(){this.open=true;};w.HTMLDialogElement.prototype.close=function(){this.open=false;};
+ Object.defineProperty(w,'innerWidth',{value:390,configurable:true});Object.defineProperty(w,'innerHeight',{value:844,configurable:true});const vv=new w.EventTarget();Object.assign(vv,{height:844,width:390,offsetTop:0,offsetLeft:0,scale:1});Object.defineProperty(w,'visualViewport',{value:vv});
+ w.eval(read('shared/bug-reports.js'));if(w.document.readyState==='loading')await new Promise(r=>w.addEventListener('DOMContentLoaded',r));
+ w.A1BugReports.open();const d=w.document.querySelector('#a1BugDialog');d.querySelector('#a1BugMessage').focus();vv.height=300;vv.dispatchEvent(new w.Event('resize'));await new Promise(r=>w.setTimeout(r,40));
+ assert(!d.classList.contains('keyboard-compact'));assert.notEqual(w.getComputedStyle(d.querySelector('.a1-bug-top')).display,'none');assert.notEqual(w.getComputedStyle(d.querySelector('.a1-bug-quick')).display,'none');assert.notEqual(w.getComputedStyle(d.querySelector('#a1BugSend')).display,'none');assert.equal(d.style.transform,'none');
+ d.querySelector('[data-bug-category="answers"]').click();assert(!d.querySelector('#a1BugReasons').hidden);d.scrollTop=120;d.querySelector('#a1BugClose').click();w.document.querySelector('.quiz-q').textContent='Deuxième question';w.A1BugReports.open();assert.equal(d.scrollTop,0);assert(d.querySelector('.a1-bug-preview').textContent.includes('Deuxième question'));assert(!d.classList.contains('keyboard-compact'));dom.window.close();
+});
+test('lesson six ordering drills cover useful constructions, with no generic Merci translation task',()=>{
+ const dom=new JSDOM('',{runScripts:'outside-only'}),w=dom.window;w.eval(read('francais/grammar-practice.js'));const tasks=w.FR_A1_GRAMMAR_PRACTICE.ordering();assert.equal(tasks.length,8);assert(tasks.every(t=>t.kind==='form'&&t.o.length===3&&new Set(t.o).size===3&&t.o.includes(t.answer)));assert(!tasks.some(t=>/Merci|Wie sagst du|Was bedeutet/.test(t.q)));assert(tasks.every(t=>t.audio&&!/___|Welche|bestell|möchtest/.test(t.audio)));assert.equal(new Set(tasks.map(t=>t.coverage)).size,8);dom.window.close();
+});

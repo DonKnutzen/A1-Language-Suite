@@ -2232,3 +2232,12 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Ich bin Arzt. Welche Aussage 
 window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Welche Aussage verwendet die höfliche Wunschform von vouloir?':'Which statement uses the polite wish form of vouloir?','Du möchtest ein Mittel gegen Erkältung kaufen. Welche Bitte passt?':'You want to buy medicine for a cold. Which request fits?','Du möchtest den Termin auf morgen verschieben. Welche Frage passt?':'You want to move the appointment to tomorrow. Which question fits?'});
 
 window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...window.FR_A1_GRAMMAR_EN});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
+  'Du möchtest höflich einen Kaffee bestellen. Welche Bitte passt?':'You would like to order a coffee politely. Which request fits?',
+  '« Qu’est-ce que vous prenez ? » Du bestellst eine Suppe und einen Salat.':'« Qu’est-ce que vous prenez ? » You order a soup and a salad.',
+  'Beide gewünschten Speisen müssen in der Bestellung stehen: soupe und salade.':'The order must include both requested dishes: soupe and salade.',
+  'Du bestellst Wasser. Welche Form des Teilungsartikels passt vor eau?':'You order water. Which form of the partitive article belongs before eau?',
+  'Eau beginnt mit einem Vokal. Deshalb steht de l’eau.':'Eau starts with a vowel, so use de l’eau.',
+  'Welche Bestellung enthält einen Kaffee und ein Croissant?':'Which order includes a coffee and a croissant?'
+});

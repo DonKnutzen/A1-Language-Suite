@@ -218,7 +218,7 @@
     const work=state.lessonWork[lesson.id];work.deepening||={};const progress=work.deepening[pool.key]||={};
     const saved=progress.session;const resume=saved?.version===1&&Array.isArray(saved.questions)&&Number.isInteger(saved.i)&&saved.i>=0&&saved.i<saved.questions.length;
     // Upgrade only unanswered items in the two revised drills; keep earned points and checked feedback.
-    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&pool.key==='r0'))){
+    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key)))){
       const used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(q=>q.q));
       saved.questions=saved.questions.map((q,index)=>{
         if(index<saved.i||(index===saved.i&&saved.response))return q;

@@ -28,7 +28,20 @@
     const out=[];for(const [noun,ending,de,en]of [['un pantalon','', 'eine Hose','trousers'],['une veste','e','eine Jacke','a jacket'],['des pantalons','s','Hosen','pairs of trousers'],['des vestes','es','Jacken','jackets']])for(const [stem,german,english]of [['bleu','blau','blue'],['noir','schwarz','black'],['vert','grün','green']])out.push(form(noun+' ___.',stem+ending,['','e','s','es'].map(e=>stem+e).filter(v=>v!==stem+ending),german+' · '+de,english+' · '+en,'Das Adjektiv stimmt mit dem Nomen in Geschlecht und Zahl überein.','The adjective agrees with the noun in gender and number.'));
     return out;
   }
+  function ordering(){
+    return [
+      form('Je ___ un café, s’il vous plaît.','voudrais',['voudrait','voudrions'],'Ich hätte gern einen Kaffee, bitte.','I would like a coffee, please.','Die höfliche Wendung mit je lautet je voudrais.','The polite phrase with je is je voudrais.','order:polite'),
+      form('Je voudrais un café ___ un croissant.','et',['est','es'],'Ich hätte gern einen Kaffee und ein Croissant.','I would like a coffee and a croissant.','Et verbindet zwei Wünsche; est und es sind Verbformen.','Et joins two requests; est and es are verb forms.','order:and'),
+      form('Une soupe, s’il ___ plaît.','vous',['tu','votre'],'Eine Suppe, bitte.','A soup, please.','Die höfliche Wendung lautet s’il vous plaît.','The polite phrase is s’il vous plaît.','order:please'),
+      form('C’est ___ ?','combien',['comment','quand'],'Du fragst nach dem Preis.','You ask for the price.','Combien fragt hier nach dem Preis.','Combien asks for the price here.','order:price'),
+      form('Qu’est-ce qu’il y a ___ dessert ?','comme',['avec','sans'],'Du fragst, was es als Nachtisch gibt.','You ask what is available for dessert.','Comme dessert bedeutet hier als Nachtisch.','Comme dessert means for dessert here.','order:dessert'),
+      form('Une soupe ___ viande, s’il vous plaît.','sans',['avec','pour'],'Du möchtest eine Suppe ohne Fleisch.','You want a soup without meat.','Sans viande bedeutet ohne Fleisch; avec bedeutet mit.','Sans viande means without meat; avec means with.','order:without'),
+      form('___, s’il vous plaît.','L’addition',['La addition','Le addition'],'Du hast gegessen und bittest um die Rechnung.','You have eaten and ask for the bill.','Vor addition wird la zu l’ verkürzt: l’addition.','Before addition, la becomes l’: l’addition.','order:bill'),
+      form('Welche Bestellung enthält einen Kaffee und ein Croissant?','Je voudrais un café et un croissant, s’il vous plaît.',['Je voudrais un café et une salade, s’il vous plaît.','Je voudrais une soupe et un croissant, s’il vous plaît.'],'Bestelle beide gewünschten Dinge.','Order both requested items.','Café et croissant nennt beide gewünschten Dinge.','Café et croissant names both requested items.','order:combine')
+    ].map(task=>({...task,audio:task.q.includes('___')?task.audio:task.answer}));
+  }
   function improve(lesson,unit,tasks){
+    if(lesson.id===6&&unit.title==='Höflich bestellen')return ordering();
     if(/Possessivbegleiter/i.test(unit.title))return possessives();
     if(lesson.id===5&&unit.key==='r1')return family().map(t=>{const m=t.q.match(/^(?:C’|Ce )___ (.+)$/);return m?{...t,legacyTask:{q:'___ '+m[1],answer:t.answer==='est'?'C’est':'Ce sont'}}:t;});
     if(lesson.id===13&&unit.key==='r1')return adjectiveAgreement();
@@ -50,6 +63,6 @@
     const vocabulary=tasks.filter(t=>t.kind==='vocabulary');
     return shuffle([...forms,...vocabulary.slice(0,Math.max(0,12-forms.length))]);
   }
-  window.FR_A1_GRAMMAR_EN=Object.fromEntries([...possessives(),...family(),...adjectiveAgreement()].flatMap(t=>[[t.meaning,t.meaningEn],[t.explanation,t.explanationEn]]));
-  window.FR_A1_GRAMMAR_PRACTICE={improve,select,possessives};
+  window.FR_A1_GRAMMAR_EN=Object.fromEntries([...possessives(),...family(),...adjectiveAgreement(),...ordering()].flatMap(t=>[[t.meaning,t.meaningEn],[t.explanation,t.explanationEn]]));
+  window.FR_A1_GRAMMAR_PRACTICE={improve,select,possessives,ordering};
 })();

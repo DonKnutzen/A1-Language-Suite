@@ -1627,14 +1627,14 @@ window.FR_A1_MASTERY_SPECS = {
       ['famille','« Ma mère habite à Paris. Mon père habite à Lyon. » Wen kann man in Lyon besuchen?','Den Vater.','Die Mutter.','Beide Eltern.','Nur mon père wird Lyon zugeordnet.',false]
     ],
     6:[
-      ['commander','Du bestellst höflich einen Kaffee und ausdrücklich kein Wasser.','Je voudrais un café, s’il vous plaît.','Je voudrais de l’eau, s’il vous plaît.','Je voudrais un thé, s’il vous plaît.','Die höfliche Form bleibt gleich; nur café erfüllt die Bestellung.'],
+      ['commander','Du möchtest höflich einen Kaffee bestellen. Welche Bitte passt?','Je voudrais un café, s’il vous plaît.','Je voudrais de l’eau, s’il vous plaît.','Je voudrais un thé, s’il vous plaît.','Die höfliche Form bleibt gleich; nur café erfüllt die Bestellung.'],
       ['sans','« Une soupe sans viande et une salade, s’il vous plaît. » Was darf nicht in der Suppe sein?','Fleisch.','Wasser.','Gemüse.','Sans viande schließt Fleisch aus.',false],
       ['boisson','« Pour boire, je prends de l’eau. Comme dessert, une glace. » Was ist das Getränk?','Wasser.','Eis.','Kaffee.','Pour boire leitet das Getränk ein.',false],
       ['addition','Du hast gegessen und möchtest bezahlen. Was verlangst du?','L’addition, s’il vous plaît.','Le menu, s’il vous plaît.','Une salade, s’il vous plaît.','Die Rechnung ist l’addition; le menu ist die Speisekarte.'],
       ['commande','« Un café et un croissant ? — Non, un thé et un croissant. » Welche Bestellung gilt?','Tee und Croissant.','Kaffee und Croissant.','Tee und Sandwich.','Die zweite Person korrigiert nur das Getränk.',false],
       ['preference','« Mon plat préféré, c’est la pizza. Aujourd’hui, je prends la soupe. » Was isst die Person heute?','Suppe.','Pizza.','Salat.','Lieblingsgericht und heutige Bestellung sind verschieden.',false],
-      ['serveur','« Qu’est-ce que vous prenez ? » Du wählst die Suppe.','Je prends la soupe.','Je voudrais l’addition.','Je préfère le café.','Die Frage erwartet die konkrete Bestellung.'],
-      ['quantite','Du möchtest eine unbestimmte Menge Wasser, nicht eine bestimmte Flasche nennen.','Je voudrais de l’eau.','Je voudrais une bouteille d’eau.','Je voudrais un verre de lait.','De l’eau nennt Wasser ohne Gefäß oder genaue Menge.']
+      ['serveur','« Qu’est-ce que vous prenez ? » Du bestellst eine Suppe und einen Salat.','Une soupe et une salade, s’il vous plaît.','Une soupe et un café, s’il vous plaît.','Une salade et un café, s’il vous plaît.','Beide gewünschten Speisen müssen in der Bestellung stehen: soupe und salade.'],
+      ['quantite','Du bestellst Wasser. Welche Form des Teilungsartikels passt vor eau?','Je voudrais de l’eau.','Je voudrais du eau.','Je voudrais de la eau.','Eau beginnt mit einem Vokal. Deshalb steht de l’eau.']
     ],
     7:[
       ['total','« Les pommes coûtent trois euros. Le fromage coûte six euros. Ça fait neuf euros. » Was ist der Gesamtpreis?','9 €','6 €','3 €','Ça fait neuf euros nennt den Gesamtbetrag.',false],

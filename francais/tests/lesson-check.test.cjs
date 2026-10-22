@@ -50,3 +50,9 @@ test('English display covers every new question and explanation without changing
  }
  e.dom.window.close();
 });
+
+test('lesson six reported checks have precise prompts, aligned alternatives and stable restored positions',()=>{
+ const e=environment(12),spec=e.mode.spec(6),water=spec.checkTasks.find(q=>q.family==='quantite'),order=spec.checkTasks.find(q=>q.family==='serveur');assert(water.q.includes('Teilungsartikel'));assert(water.o.every(o=>/eau/.test(o)));assert(order.o.every(o=>o.startsWith('Une ')&&o.endsWith('s’il vous plaît.')));assert(!spec.checkTasks.find(q=>q.family==='commander').q.includes('kein Wasser'));
+ const lesson=e.lessons[5],state={},start=()=>{e.mode.renderLessonTest({lesson,view:e.view,state,save(){},onBack(){}});e.view.querySelector('#masteryStart').click();};start();const s=state.lessonCheckProgress[6].session;
+ s.ex=[{...water,q:'Du möchtest eine unbestimmte Menge Wasser, nicht eine bestimmte Flasche nennen.'}];s.i=0;s.response=null;start();assert.equal(s.ex[0].q,water.q);const before=JSON.stringify(s.ex);start();assert.equal(JSON.stringify(s.ex),before);s.response={ok:false,chosen:1};s.ex[0].q='Already graded old wording';start();assert.equal(s.ex[0].q,'Already graded old wording');e.dom.window.close();
+});

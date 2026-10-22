@@ -105,6 +105,10 @@
   function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null,progress=null,saveProgress=()=>{},reviewState=null}){
     const session=progress?.session;
     const resume=session?.version===101&&Array.isArray(session.ex)&&session.i>=0&&session.i<session.ex.length;
+    if(resume&&Number(lessonId)===6){
+      const updates=new Map(tasks.filter(q=>['L6-context-commander','L6-context-serveur','L6-context-quantite'].includes(q.checkKey)).map(q=>[q.checkKey,q]));
+      session.ex=session.ex.map((q,index)=>index<session.i||(index===session.i&&session.response)?q:(updates.get(q.checkKey)?.q!==q.q&&updates.has(q.checkKey)?updates.get(q.checkKey):q));
+    }
     const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):2,review=window.A1ExerciseReview?.create();
     let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
     function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}

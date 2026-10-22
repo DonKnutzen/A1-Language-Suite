@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const BUILD='dialogue-choices-108',trail=[],inFlight=new Set();
+  const BUILD='reports-145',trail=[],inFlight=new Set();
   let currentPoint=null;
   const text=(el,max=800)=>(el?.textContent||'').trim().replace(/\s+/g,' ').slice(0,max);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -94,6 +94,7 @@
     const entries=Object.entries(drafts);dialog.querySelectorAll('[data-draft-index]').forEach(b=>b.onclick=()=>{const [key,report]=entries[Number(b.dataset.draftIndex)];open(report,key);});
     if(!dialog.open)dialog.show();
   }
+  const stablePanel=()=>['francais-a1','deutsch-a1'].includes(window.A1_APP_META?.course);
   let dialog,launcher,lastFocus;
   function notify(message){
     document.getElementById('a1BugNotice')?.remove();
@@ -101,7 +102,7 @@
     notice.style.cssText='position:fixed;bottom:90px;right:12px;max-width:min(340px,calc(100% - 48px));padding:10px 14px;border-radius:12px;background:#1e293b;color:#fff;font:14px system-ui;z-index:1004;box-shadow:0 4px 16px #0003';document.body.append(notice);setTimeout(()=>notice.remove(),6000);
   }
   function close(){dialog.close();updatePanelViewport();lastFocus?.focus();}
-  function frame(content){dialog.dataset.mode='overview';dialog.innerHTML=`<div class="a1-bug-top"><strong>${esc(labels().report)}</strong><div><button type="button" id="a1BugClose" aria-label="${esc(labels().close)}">×</button></div></div>${content}`;dialog.querySelector('#a1BugClose').onclick=close;}
+  function frame(content){dialog.dataset.mode='overview';dialog.dataset.stablePanel=String(stablePanel());dialog.innerHTML=`<div class="a1-bug-top"><strong>${esc(labels().report)}</strong><div><button type="button" id="a1BugClose" aria-label="${esc(labels().close)}">×</button></div></div>${content}`;dialog.querySelector('#a1BugClose').onclick=close;if(stablePanel())dialog.scrollTop=0;}
   function open(restored=null,restoredKey=null){
     if(restored instanceof Event)restored=null;
     lastFocus=document.activeElement;
@@ -178,9 +179,9 @@
     const editing=document.activeElement===dialog.querySelector('#a1BugMessage');
     if(!editing&&(vv?.scale||1)<1.05)viewportBaseline=Math.max(viewportBaseline,height);
     const keyboard=(vv?.scale||1)<1.05&&viewportBaseline-height>120;
-    const compact=dialog.dataset.mode==='composer'&&(editing||keyboard);
+    const compact=!stablePanel()&&dialog.dataset.mode==='composer'&&(editing||keyboard);
     dialog.classList.toggle('keyboard-compact',compact);
-    const panelWidth=Math.min(compact?width-16:350,width-16)+'px',limit=Math.max(64,compact?Math.min(100,height*.3):height*.5)+'px';
+    const panelWidth=Math.min(compact?width-16:350,width-16)+'px',limit=Math.max(64,stablePanel()?Math.min(520,height-16):compact?Math.min(100,height*.3):height*.5)+'px';
     if(dialog.style.width!==panelWidth)dialog.style.width=panelWidth;
     if(dialog.style.maxHeight!==limit)dialog.style.maxHeight=limit;
     dialog.style.bottom='auto';dialog.style.right='auto';
@@ -190,6 +191,7 @@
     // Composite movement without triggering layout; ignore one-pixel viewport noise.
     if(panelX===null||Math.abs(x-panelX)>1)panelX=x;
     if(panelY===null||Math.abs(y-panelY)>1)panelY=y;
+    if(stablePanel()){dialog.style.transform='none';dialog.style.willChange='auto';dialog.style.left=x+'px';dialog.style.top=y+'px';return;}
     dialog.style.left='0px';dialog.style.top='0px';dialog.style.willChange='transform';
     const position=`translate3d(${panelX}px,${panelY}px,0)`;
     if(dialog.style.transform!==position)dialog.style.transform=position;
@@ -206,6 +208,12 @@
 #a1BugDialog{position:fixed;inset:auto 12px 20px auto;margin:0;width:min(350px,calc(100% - 24px));max-height:65dvh;z-index:1002;padding:12px;border-radius:16px;box-shadow:0 8px 32px #0003}#a1BugDialog::backdrop{background:transparent}.a1-bug-top{font-size:14px}.a1-bug-top>div{display:flex}.a1-bug-top button{font-size:22px;min-width:32px;min-height:32px}.a1-bug-location{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0 8px}.a1-bug-preview{padding:0;background:transparent}.a1-bug-preview summary{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:#64748b;cursor:pointer}.a1-bug-preview[open]{padding:8px;background:#64748b12;max-height:120px;overflow:auto}.a1-bug-sr,.a1-bug-quick legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.a1-bug-quick{margin:8px 0}.a1-bug-quick button{min-height:34px;padding:6px 12px}#a1BugMessage{padding:8px;min-height:60px;max-height:100px;resize:none}.a1-bug-actions{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px}.a1-bug-primary{padding:9px 12px}.a1-bug-tools{position:relative}.a1-bug-tools>summary{cursor:pointer;list-style:none;font-size:24px;padding:0 10px}.a1-bug-tools[open]{padding:4px 8px;background:#64748b12;border-radius:10px}.a1-bug-tools .a1-bug-link{margin:0;padding:6px;font-size:12px}#a1BugStatus:empty{display:none}#a1BugStatus{margin:6px 0}html.dark-mode .a1-bug-preview summary{color:#94a3b8}@media(max-width:760px){#a1BugDialog{bottom:calc(8px + env(safe-area-inset-bottom));width:min(350px,calc(100% - 24px));max-height:50dvh}#a1BugDialog[data-mode="composer"]{max-height:40dvh}}`;
     style.textContent+=`
 @media(max-width:760px){#a1BugDialog.keyboard-compact{display:grid;grid-template-columns:minmax(0,1fr) 38px;grid-template-rows:minmax(0,1fr);height:64px;gap:4px;padding:4px;border-radius:12px}#a1BugDialog.keyboard-compact>.a1-bug-top,#a1BugDialog.keyboard-compact>.a1-bug-location,#a1BugDialog.keyboard-compact>.a1-bug-preview,#a1BugDialog.keyboard-compact>.a1-bug-quick,#a1BugDialog.keyboard-compact>.a1-bug-label,#a1BugDialog.keyboard-compact>.a1-bug-note{display:none}#a1BugDialog.keyboard-compact #a1BugMessage{grid-column:1;grid-row:1;height:100%;min-height:0;max-height:none;padding:5px 7px;font-size:16px;line-height:20px}#a1BugDialog.keyboard-compact .a1-bug-actions{display:contents}#a1BugDialog.keyboard-compact .a1-bug-tools{display:none}#a1BugDialog.keyboard-compact #a1BugSend{grid-column:2;grid-row:1;height:100%;min-height:0;padding:0;font-size:0;border-radius:9px}#a1BugDialog.keyboard-compact #a1BugSend::after{content:'↑';font:700 22px system-ui}#a1BugDialog.keyboard-compact #a1BugStatus{grid-column:1;grid-row:1;align-self:end;z-index:1;margin:0;padding:2px 6px;max-height:32px;overflow:auto;font-size:11px;background:inherit;pointer-events:none}}
+`;
+    style.textContent+=`
+#a1BugDialog[data-stable-panel="true"]{overscroll-behavior:contain;scroll-padding:48px 0 64px}
+#a1BugDialog[data-stable-panel="true"] .a1-bug-top{position:sticky;top:-12px;z-index:2;background:#fff;padding:5px 0}
+#a1BugDialog[data-stable-panel="true"] .a1-bug-actions{position:sticky;bottom:-12px;z-index:2;background:#fff;padding:8px 0}
+html.dark-mode #a1BugDialog[data-stable-panel="true"] .a1-bug-top,html.dark-mode #a1BugDialog[data-stable-panel="true"] .a1-bug-actions{background:#0f172a}
 `;
     document.head.append(style);launcher=document.createElement('button');launcher.id='a1BugLauncher';launcher.type='button';launcher.textContent='⚑ '+labels().report;launcher.onclick=open;
     dialog=document.createElement('dialog');dialog.id='a1BugDialog';dialog.dataset.i18nIgnore='';dialog.setAttribute('aria-label',labels().report);dialog.addEventListener('cancel',()=>lastFocus?.focus());dialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();close();}});document.body.append(launcher,dialog);

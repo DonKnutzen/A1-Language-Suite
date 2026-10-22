@@ -102,14 +102,20 @@
   }
   function refreshQuestions(state,lessons,grammarHtml,bank){
     const p=store(state),s=p.session,currentIds=new Set(bank.map(q=>q.id));
+    const correctedChecks={
+      'Du bestellst höflich einen Kaffee und ausdrücklich kein Wasser.':'commander',
+      '« Qu’est-ce que vous prenez ? » Du wählst die Suppe.':'serveur',
+      'Du möchtest eine unbestimmte Menge Wasser, nicht eine bestimmte Flasche nennen.':'quantite'
+    };
+    const oldOrdering=q=>q.lessonId===6&&q.topic==='grammar:u0'&&!currentIds.has(q.id);
     const oldTable=q=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(q.q);
-    const weak=q=>q&&((q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
+    const weak=q=>q&&(oldOrdering(q)||(q.lessonId===6&&correctedChecks[q.q])||(q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
     const recognition=q=>/^grammar:/.test(q.topic)&&/^(?:Wie sagst du „.+“ auf Französisch\?|Was bedeutet „.+“\?)$/.test(q.q)&&!currentIds.has(q.id);
     if(!Object.values(p.items||{}).some(item=>!item.retired&&weak(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&(weak(q)||(s.mode!=='mistakes'&&recognition(q)))))return;
     const revised=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml,true),lookup=new Map();
     const key=(q,legacy)=>JSON.stringify([q.lessonId,q.topic,legacy.q,legacy.answer]);
     for(const q of revised)for(const legacy of [q.legacyTask,q.legacyTaskForms].filter(Boolean))lookup.set(key(q,legacy),q);
-    const replacement=q=>lookup.get(key(q,q))||(()=>{const source=lessons.find(l=>l.id===q.lessonId)?.quiz?.find(item=>item.q===q.q);return source?task(q.lessonId,q.topic,q.label,source):null;})();
+    const replacement=q=>{const correction=q.lessonId===6&&correctedChecks[q.q],source=correction&&window.FR_A1_MASTERY.spec(6).checkTasks.find(t=>t.family===correction);return source?task(q.lessonId,q.topic,q.label,source):lookup.get(key(q,q))||(()=>{const source=lessons.find(l=>l.id===q.lessonId)?.quiz?.find(item=>item.q===q.q);return source?task(q.lessonId,q.topic,q.label,source):null;})();};
     let changed=false;
     for(const [id,item]of Object.entries(p.items||{})){
       if(item.retired||!weak(item.task))continue;
@@ -122,7 +128,7 @@
         if(s.answers[i]){indices.push(i);tasks.push(q);return;}
         const next=weak(q)?replacement(q):null;
         if(next){indices.push(i);tasks.push(copy(next));}
-        else if(!oldTable(q)&&!(s.mode!=='mistakes'&&recognition(q))){indices.push(i);tasks.push(q);}
+        else if(!weak(q)&&!(s.mode!=='mistakes'&&recognition(q))){indices.push(i);tasks.push(q);}
       });
       if(JSON.stringify(tasks)!==JSON.stringify(s.tasks)){
         p.previousQuestionRound=before;changed=true;
