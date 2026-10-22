@@ -1,27 +1,95 @@
-# A1 vocabulary trainer
+# A1 vocabulary trainer — lesson mistake decks (revision 150)
 
-Enabled only in Français A1 and Deutsch A1. The bottom navigation now opens vocabulary instead of the previous skill menu. The previous grammar, listening, reading, writing and speaking exercises remain accessible through “Weitere Übungen” / “Autres exercices”. Each lesson’s first learning step links to its own vocabulary list and returns to the lesson without changing completion.
+Source reviewed: GitHub `main`, `416c0c82ba602704fab2be44fe1bd4062ca95f84`.
+Enabled only in Français A1 and Deutsch A1. C1 and Spanish entry points are unchanged.
 
-## Inventory
+## Word lists
 
-`shared/vocabulary-content.js` contains 701 authored bilingual records, assigned separately to the actual French and German lesson sequences. Duplicate exact term/meaning pairs are combined across lesson memberships. The inventory covers introductions, spelling, numbers, dates, family, food, shopping, housing, transport, work, school, routines, health, weather, clothing, leisure, travel, invitations, messages, public services and core grammatical expressions. Nouns include articles, frequent German nouns include explicit plural notes, and verbs use infinitives where appropriate.
+The previous lesson shortcut selected `kind: both`, which exposed full reference
+sentences as vocabulary cards. The bank now contains only the 701 authored lexical
+records in `shared/vocabulary-content.js` plus explicitly authored unit vocabulary.
+Exact term/meaning pairs merge lesson memberships. Full lesson sentences, rows and
+examples remain in their lessons and do not enter word training. Fixed everyday
+expressions such as greetings or *j’ai faim* remain useful lexical chunks.
+No automatic token splitting or invented word translations is used.
 
-The bank also includes all existing lesson phrase pairs, German reference phrases, and translated pairs, rows, extra expressions and vocabulary in each course’s deepening content. These are kept as a separate “Satzbeispiele” / “Phrases exemples” category. Words are curated rather than mechanically splitting French or German sentences into ambiguous tokens. This is an expanded course inventory, not a claim of an official exhaustive DELF/Goethe examination list. In English interface mode the course’s original German/French meanings remain visible and are labelled accordingly.
+Each lesson shortcut opens its own **word list**, with the same searchable cards
+as the bottom Vocabulary tab. The old words/examples/all selector is removed.
+The “et demie” translation is corrected to “… Uhr dreißig”; German “halb” must
+refer to the following hour, not the hour printed before French “et demie”.
+This remains course vocabulary, not an official exhaustive examination word list.
 
-## Behavior and persistence
+## Separate mistake decks
 
-- Search either language, ignoring case/accents for discovery; filter by lesson, completed lessons, words/examples and learning status. Large lists render 60 entries at a time, without limiting the training pool.
-- Train up to 10 or 20 distinct entries per round, in either direction. A short selection is never padded with duplicate questions.
-- Recall and optional typing precede revealing the answer. Ratings are explicitly self-assessments; there is no automatic synonym/spelling judgement or language-proficiency claim. Pronunciation in reverse mode is available only after revealing the target word.
-- “Noch üben” resets the streak. Two consecutive “Gewusst” ratings establish confidence. Recorded errors take priority, followed by unseen words; previously trained words are ordered by oldest review. Users can train only uncertain items.
-- `state.vocabularyTrainer` stores settings, per-entry ratings and the current snapshot, including typed draft, reveal state, direction and question index, through the existing course/profile save. Ordinary lesson results and existing state keys stay unchanged. Legacy known sentence cards import once with one previous successful self-rating; no confidence is inferred for individual words from a known sentence.
-- Replacing an unfinished round requires confirmation; learned word records remain. Completed rounds cannot score twice. Profile/course reset clears the new state along with other course progress. Snapshot cards retain their original content when inventory content changes.
-- Free browser TTS uses the existing course voice service. Parenthetical grammatical annotations are omitted from word playback. No paid services or new packages are needed in the app.
+- **Word list** and **Mistake decks** are separate compact buttons.
+- “Nicht gewusst” / “Je ne savais pas” saves the word in the displayed lesson’s
+  deck. New or once-correct words do not become invented mistakes.
+- Mistake overview groups pending words by lesson. Open one deck, inspect its
+  words, and practise only that lesson’s pending cards. Other words, examples,
+  listening exercises and checks are not pulled into the deck.
+- Two consecutive positive self-ratings remove the card from that lesson’s deck.
+  A later negative rating puts it back. Practising a word in lesson B does not
+  clear a pending error in lesson A, even when the lexical entry belongs to both.
+- A mixed word round assigns each card to one eligible lesson before answering
+  and displays that lesson on the card. A specific lesson selection takes priority;
+  otherwise the first eligible lesson is used. Completed-lessons filtering respects
+  the learner’s actual completed lessons.
+- Short selections are never padded to 10/20 with duplicates. Unfinished rounds
+  require confirmation before replacement. The resume button is shown only when
+  the saved round matches the displayed mode and lesson context.
+- A compact confirmation names the deck after an error or after consolidation.
+  Results link directly to the remaining mistake decks from that round.
+
+## Persistence and older progress
+
+`state.vocabularyTrainer` is version 2. Existing course/profile storage is reused;
+no external database or paid service is needed. `items` retains global word ratings,
+while `lessonItems[lessonId][wordId]` tracks wrong/right counts, consecutive correct
+ratings, review count and last review. Card snapshots store `lessonId`, direction,
+mode, typed draft, reveal state, ratings and index. Double-clicks cannot grade the
+next card, and revealing an answer never records a rating.
+
+Older word records have no lesson provenance. A pending error is imported once
+when its last rating was negative. A unique lesson can be assigned safely; a word
+belonging to several lessons goes into an explicitly labelled **Earlier mistakes**
+deck with no asserted original lesson. One successful old self-rating alone does
+not establish an error. Old aggregate records and original course results remain.
+
+Version-1 mixed rounds are archived as `previousSession`. Only still-valid word
+cards continue; their graded answers, order and current word draft remain. A draft
+for a removed sentence is cleared, not transferred into a different question.
+Sentence ratings never become invented word grades. Old known-sentence state is
+retained but no longer imported as knowledge of individual words.
+
+## Honest assessment and audio
+
+Recall and optional typing precede revealing. Buttons explicitly ask for a
+**self-assessment**, not automatic translation/spelling judgement. Suitable
+alternative translations can be accepted by the learner. There is no inference
+of certified proficiency. Free browser TTS still uses the existing voice service;
+reverse-direction pronunciation is hidden until revealing the target word.
+Parenthetical grammatical annotations are omitted from word playback.
 
 ## Verification
 
-`tests/vocabulary-trainer.test.cjs` exercises both courses, all 24 lesson inventories, search, empty and short pools, resuming/revealing typed drafts, audio answer protection, confidence/error transitions, legacy migration, interface language switching and isolated state. The combined vocabulary, German course/audio/parity and French grammar/check/Hard Mode/review suites pass 94 tests.
+- 31 vocabulary tests cover both courses, all 24 lesson inventories, word-only
+  entry, lesson-specific errors, two-review consolidation, later failure, legacy
+  migration, typed drafts after serialization, double-click protection, search,
+  reverse-audio protection, language switching and profile isolation.
+- 200 relevant tests pass, including the existing German quality/parity/audio
+  and French grammar/check/Hard Mode/review suites.
+- Full-app Chromium checks pass for both courses at 320, 390 and 1280 px:
+  real navigation, local saving and reload, answer locking, word-to-mistake flow,
+  confirmation before replacing a round, two-review removal and all 24 lesson
+  vocabulary shortcuts. Light mistake-deck views and dark word lists were
+  inspected visually. TTS was intercepted; audible device voice quality and
+  remote account sync were not independently verified.
+- A broader historical top-level test run also contains failures unrelated to
+  vocabulary. The unmodified baseline reproduces 14 failures, including stale
+  French question-count/optional-task expectations and an old bug-report asset
+  version. Those unrelated tests/content are outside this change; they are not
+  presented as passing.
 
-Full-app Chromium checks pass at 320, 390 and 1280 px for both courses: navigation, list/card overflow, typed draft after page reload, answer locking, secondary exercises and lesson vocabulary return. Dark mobile views were visually inspected. Browser fixtures use a local profile adapter; remote account synchronization and audible quality of device TTS were not independently verified. Browser TTS was not audibly listened to.
-
-Only these two A1 entry pages load the new shared assets. Both service-worker caches and changed app/flow asset versions are updated. No Spanish or C1 entry points or existing shared modules are modified.
+Both course HTML pages and offline caches use `vocab-decks-150` for the three
+shared vocabulary assets. The German question-quality cache assertion follows
+the new cache version. No runtime dependencies, binaries or paid APIs are added.

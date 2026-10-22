@@ -1,4 +1,4 @@
-/* Authored course vocabulary; examples are added from each lesson at runtime. */
+/* Authored lexemes and fixed everyday expressions. Lesson sentences are not vocabulary cards. */
 window.A1_VOCABULARY_CONTENT = [
   {
     "fr": "bonjour",
@@ -1048,7 +1048,7 @@ window.A1_VOCABULARY_CONTENT = [
   },
   {
     "fr": "et demie",
-    "de": "halb (nach der vollen Stunde)",
+    "de": "… Uhr dreißig",
     "frLessons": [
       4
     ],
