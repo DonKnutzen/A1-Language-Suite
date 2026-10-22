@@ -16,7 +16,7 @@
     if(!prompt||typeof answer!=='string'||!answer.trim())return null;
     const choices=q.o?[...new Set(q.o)]:null;
     if(choices&&(!choices.includes(answer)||choices.length<2))return null;
-    const out={lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',explanationEn:q.explanationEn||'',contextEn:q.meaningEn||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{}),...(q.legacyTask?{legacyTask:q.legacyTask}:{}),...(q.legacyTaskForms?{legacyTaskForms:q.legacyTaskForms}:{})};
+    const out={lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',explanationEn:q.explanationEn||'',contextEn:q.contextEn||q.meaningEn||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{}),...(q.legacyTask?{legacyTask:q.legacyTask}:{}),...(q.legacyTaskForms?{legacyTaskForms:q.legacyTaskForms}:{})};
     // Content participates in the identity: changed questions cannot silently reuse a grade.
     out.id=JSON.stringify([out.lessonId,topic,prompt,answer,out.accept,out.context,choices?[...choices].sort():null,out.speech,out.turns,out.marking||null]);
     return out;
@@ -154,6 +154,7 @@
   }
   function accepted(q,value){
     if(q.kind==='choice')return value===q.answer;
+    if(q.topic==='check'&&q.marking)return window.FR_A1_MASTERY.accepted(q,value);
     if(q.marking)return window.FR_A1_HARD_MODE.matches(value,[q.answer,...q.accept],q.marking);
     return window.FR_A1_MASTERY.accepted(q,value);
   }

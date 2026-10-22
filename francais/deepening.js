@@ -179,7 +179,7 @@
     // Update open tasks without regrading checked answers. Never repeat a task
     // merely to retain the length of an older, now smaller question pool.
     const key=q=>JSON.stringify([q.q,q.answer,q.meaning||'']);
-    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key))||lesson.id===7)){
+    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key))||lesson.id===7||pool.tasks.some(t=>t.qualityVersion===147))){
       const before=JSON.parse(JSON.stringify(saved)),used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(key));let currentChanged=false;
       saved.questions=saved.questions.map((q,index)=>{
         if(index<saved.i||(index===saved.i&&saved.response))return q;

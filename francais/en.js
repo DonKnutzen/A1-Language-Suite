@@ -1975,11 +1975,11 @@ window.FR_A1_EN = Object.freeze({
     "2":[
       ["Which entry is the first name?", "Prénom means first name."],
       ["You heard the surname but need to know its letters.", "Épeler asks someone to name the letters."],
-      ["A name badge needs « Zoé ». Which spelling keeps the exact accent?", "Zoé has an acute accent."],
-      ["Copy « François » while keeping the cedilla.", "The cedilla belongs directly below c; the name has no space inside it."],
+      ["The first name is spelled Z-O-E; the E has an acute accent. Which spelling matches?", "Zoé has an acute accent."],
+      ["The name is spelled F-R-A-N-C-O-I-S; the C has a cedilla. Which spelling matches?", "The cedilla is on c: ç. The i has no diacritic here."],
       ["« Quelle est votre adresse ? » Which answer gives the requested information?", "Adresse asks for the address, not a name."],
       ["Someone is speaking too fast. Ask them to change their speaking speed.", "Plus lentement means more slowly."],
-      ["The surname is spelled « M-A-R-T-I-N ». Which entry matches?", "Include all and only the letters given."],
+      ["The surname is spelled « M-O-R-E-A-U ». Which entry matches?", "Include all and only the letters given."],
       ["What does « Comment ça s’écrit ? » ask for?", "S’écrire refers to spelling.", ["The spelling of a word.", "The pronunciation of a word.", "The meaning of a word."]]
     ],
     "3":[
@@ -1988,7 +1988,7 @@ window.FR_A1_EN = Object.freeze({
       ["A form gives « 17 avril ». Which sentence gives this birth date?", "Dix-sept is 17; avril is April."],
       ["Which number is « soixante et onze »?", "Soixante et onze is 60 + 11."],
       ["A number ends with « quatre-vingt-onze, vingt-quatre ». What are the last four digits?", "Quatre-vingt-onze is 91 and vingt-quatre is 24."],
-      ["Which entry is the postal code?", "B3V 1L2 is explicitly identified as the code postal."],
+      ["Which postal code belongs to Léa?", "The second code belongs to Léa, not Paul."],
       ["How many people are in the class?", "Vingt gives the total; dix describes a subgroup."],
       ["Write the number 100 in words.", "Cent is 100; quatre-vingts is 80 and quatre-vingt-dix is 90."]
     ],
@@ -1996,7 +1996,7 @@ window.FR_A1_EN = Object.freeze({
       ["An appointment is at 8:45. Which expression matches?", "A quarter to nine is 8:45."],
       ["When is the meeting?", "The first sentence describes work; the second gives the meeting.", ["Wednesday at 10:00.", "Tuesday at 10:00.", "Wednesday at 12:00."]],
       ["You know the day of the appointment and now want its time.", "À quelle heure asks for the time of an event."],
-      ["Which date is meant?", "Premier is the first day, juillet is July.", ["1 July", "1 June", "7 January"]],
+      ["Which date is meant?", "Premier is the first day, mars is March.", ["1 March", "1 May", "3 January"]],
       ["Which statement is correct?", "Du lundi au vendredi includes the weekdays in between.", ["On Wednesday the office opens at 09:00.", "On Wednesday the office opens at 12:00.", "The office is open only on Mondays and Fridays."]],
       ["Which suggestion fits?", "Nine is in the morning; the other times are in the afternoon."],
       ["Say you will come later, without specifying another day.", "Plus tard means later; demain means tomorrow."],
@@ -2009,7 +2009,7 @@ window.FR_A1_EN = Object.freeze({
       ["Whose parents does the sentence refer to?", "Ses refers to Léa here.", ["Léa’s.", "The listener’s.", "The speaker’s."]],
       ["Which statement is correct?", "Un fils and une fille make two children.", ["The family has a son and a daughter.", "The family has two sons.", "The family has two daughters."]],
       ["Ask how many brothers and sisters someone has.", "Combien asks for the number, not ages or names."],
-      ["You are talking about both your parents. Which sentence is correct in standard written French?", "Ce sont and mes parents agree with the plural."],
+      ["Introduce Léa and Paul as your friends. Which sentence is correct in standard written French?", "For the two friends, use ce sont and mes amis."],
       ["Whom can you visit in Lyon?", "Only mon père is associated with Lyon.", ["The father.", "The mother.", "Both parents."]]
     ],
     "6":[
@@ -2024,10 +2024,10 @@ window.FR_A1_EN = Object.freeze({
     ],
     "7":[
       ["What is the total price?", "Ça fait neuf euros gives the total."],
-      ["A price is €19.50. Which sentence matches exactly?", "Dix-neuf is 19; cinquante refers to the 50 cents here."],
-      ["Which size is available?", "The negative applies only to quarante-deux."],
+      ["A price is €27.60. Which sentence matches exactly?", "Vingt-sept is 27; soixante refers to 60 cents here."],
+      ["Which size is available?", "The negative applies to quarante-huit, not trente-huit."],
       ["You want to pay by card. Ask whether this is possible.", "Payer par carte means to pay by card."],
-      ["The price is too high. Which sentence says exactly that?", "Cher describes price; grand and petit describe size."],
+      ["The price is too high. Which sentence says exactly that?", "Trop means too, très very, and peu little."],
       ["How many tomatoes are ordered?", "Un kilo refers to the tomatoes.", ["One kilo.", "Two kilos.", "Three kilos."]],
       ["Instead of one kilo of apples, order just two hundred grams.", "The first answer changes the amount but keeps the same product."],
       ["You know the size of the item and want its price.", "Combien ça coûte asks about price, not size or payment method."]
@@ -2044,7 +2044,7 @@ window.FR_A1_EN = Object.freeze({
     ],
     "9":[
       ["What do you do after the pharmacy?", "Après la pharmacie belongs to the instruction tournez à droite.", ["Turn right.", "Turn left.", "Continue straight ahead."]],
-      ["Which bus goes to the museum?", "The other line is explicitly excluded.", ["Line 8.", "Line 3.", "Line 13."]],
+      ["Which bus goes to the museum?", "The other line is explicitly excluded.", ["Line 7.", "Line 4.", "Line 17."]],
       ["You are going to Lyon. Which sentence matches?", "Quai quatre is the platform for Lyon."],
       ["Which statement is correct?", "Retard describes a delay.", ["The train is 20 minutes late.", "The train leaves 20 minutes early.", "The train leaves from platform 20."]],
       ["You want to find the railway station. Ask politely where it is.", "Où est la gare asks for the station’s location."],
@@ -2053,7 +2053,7 @@ window.FR_A1_EN = Object.freeze({
       ["You want to know where to catch the bus.", "Arrêt de bus means bus stop."]
     ],
     "10":[
-      ["Which statement is correct?", "The person studies and works only on Saturdays.", ["The person studies and works in a café on Saturdays.", "The person teaches in a school on Saturdays.", "The person works in a café every day."]],
+      ["Which statement is correct?", "The person studies and works at the café on Saturdays.", ["The person studies and works in a café on Saturdays.", "The person studies and works at the café every day.", "The person studies on Saturdays and otherwise works at the café."]],
       ["When does work end?", "Terminer gives the end, commencer the start.", ["16:00.", "08:00.", "18:00."]],
       ["Ask about someone’s occupation.", "Métier asks about occupation, not workplace or hours."],
       ["When are classes?", "J’ai cours goes with le matin here.", ["In the morning.", "In the afternoon.", "In the evening."]],
@@ -2063,7 +2063,7 @@ window.FR_A1_EN = Object.freeze({
       ["Say that the course starts at nine, rather than your work.", "Cours means the course; commence gives its start."]
     ],
     "11":[
-      ["When does the person get up?", "Se lever means to get up; partir means to leave.", ["07:00.", "08:00.", "06:00."]],
+      ["When does the person get up?", "Se lever means to get up; partir means to leave.", ["6:30.", "08:00.", "7:30."]],
       ["What happens first?", "D’abord marks the first step.", ["Having breakfast.", "Taking the bus.", "Coming home."]],
       ["What is the person doing right now?", "Maintenant and être en train de identify the current activity.", ["Reading.", "Working.", "Having breakfast."]],
       ["When does the person return on Fridays?", "Mais le vendredi marks the exception.", ["16:00.", "18:00.", "17:00."]],
@@ -2106,7 +2106,7 @@ window.FR_A1_EN = Object.freeze({
       ["How many nights are booked?", "Trois nuits gives the length of stay; deux personnes gives the guests.", ["Three.", "Two.", "Five."]],
       ["Ask whether breakfast is included in the room price.", "Inclus asks whether it is included, not where or when it is served."],
       ["You are travelling to Paris and also want to come back.", "Aller-retour covers the outward and return journeys."],
-      ["When does the train depart?", "Partir is departure; arriver is arrival.", ["08:00.", "10:00.", "18:00."]],
+      ["When does the train depart?", "Partir is departure; arriver is arrival.", ["17:00.", "19:00.", "07:00."]],
       ["When is arrival planned?", "Aller + arriver describes the planned arrival on Monday.", ["Monday.", "Sunday.", "Wednesday."]],
       ["How much is the return ticket?", "The stated aller-retour price is 36 euros."],
       ["Ask for the train’s departure time.", "À quelle heure part… asks when it departs."],
@@ -2183,7 +2183,7 @@ window.FR_A1_EN = Object.freeze({
       ["You plan to leave in three days.", "Futur proche and dans express the future plan."]
     ],
     "23":[
-      ["How much cheese is needed?", "Deux cents grammes belongs to fromage."],
+      ["How much cheese is needed?", "Trois cents grammes belongs to fromage."],
       ["What is excluded?", "Pas de lait means no milk.", ["Milk.", "Water.", "Carrots."]],
       ["Use a knife to cut vegetables, rather than to cut bread.", "Couper les légumes gives the exact purpose."],
       ["What comes first?", "Puis marks the second step.", ["Cutting the tomatoes.", "Adding the cheese.", "Cutting the cheese."]],
@@ -2262,3 +2262,10 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
 });
 
 window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Aufgaben aktualisiert · bisherige Antworten erhalten.':'Tasks updated · previous answers preserved.'});
+
+// Contexts are display text only; French answers and saved task identities remain stable.
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(Object.values(window.FR_A1_MASTERY_SPECS||{}).flatMap(s=>(s.checkTransfers||[]).map(t=>[t.context,t.contextEn]))),
+  'Welche Form passt?':'Which expression fits?',
+  'Überarbeiteten Check neu starten':'Start the revised check',
+  'Der bisherige Entwurf wird aufbewahrt.':'Your previous draft will be kept.'
+});

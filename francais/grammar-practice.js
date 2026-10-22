@@ -67,8 +67,10 @@
       result.push({kind:'form',q,answer,o,audio:fr,meaning:de,meaningEn:window.A1FrenchI18n?.translate(de)||de,explanation:fr+(rule?' — '+rule:''),explanationEn:fr+(ruleEn?' — '+ruleEn:''),coverage:'phrase:'+JSON.stringify([q,answer,de])});
     }
     for(const [raw,de]of unit.pairs||[]){
-      const fr=String(raw).trim();if(!fr||/[/→…]| :$/.test(fr))continue;
+      const fr=String(raw).trim();if(!fr||/[/→…]| :$/.test(fr)||(lessonId===9&&unit.key==='r0')||(lessonId===24&&['r0','r1'].includes(unit.key)))continue;
       let match;
+      if(lessonId===22&&unit.key==='r0'&&(match=fr.match(/\b(visité|regardé|travaillé)\b/u))){const a=match[1];add(fr,de,match.index,a.length,a,[a.slice(0,-1)+'er',a.slice(0,-1)+'e']);continue;}
+
       const semantic=[
         [/\b(prénom)\b/u,['nom de famille','numéro de téléphone']],
         [/\b(nom de famille)\b/u,['prénom','numéro de téléphone']],
@@ -131,7 +133,117 @@
     return result;
   }
   function focusedTopics(lessonId,unit){
-    const f=(q,answer,o,de,en,rule='',ruleEn='')=>{const task=form(q,answer,o,de,en,rule,ruleEn,'topic:'+lessonId+':'+unit.key+':'+q+':'+answer);if(!q.includes('___')){task.audio=answer;task.explanation=answer+(rule?' — '+rule:'');task.explanationEn=answer+(ruleEn?' — '+ruleEn:'');}return task;};
+    const f=(q,answer,o,de,en,rule='',ruleEn='')=>{const task={...form(q,answer,o,de,en,rule,ruleEn,'topic:'+lessonId+':'+unit.key+':'+q+':'+answer),qualityVersion:147};if(!q.includes('___')){task.audio=answer;task.explanation=answer+(rule?' — '+rule:'');task.explanationEn=answer+(ruleEn?' — '+ruleEn:'');}return task;};
+    if(lessonId===4&&unit.key==='u3')return [
+      f('Rendez-vous mardi ___ quinze heures.','à',['au','en'],'Treffen am Dienstag um 15 Uhr.','Meet on Tuesday at 15:00.'),
+      f('On se voit ___ la bibliothèque.','devant',['sous','sur'],'Wir sehen uns vor der Bibliothek.','See you in front of the library.'),
+      f('Je suis libre ___ quinze heures.','à partir de',['avant','jusqu’à'],'Ich habe ab 15 Uhr Zeit.','I am free from 15:00 onwards.'),
+      f('Je viens plus ___.','tard',['tôt','demain'],'Ich komme später.','I am coming later.'),
+      f('Welche Form passt?','D’accord, mardi à quinze heures devant la bibliothèque.',['D’accord, mercredi à quinze heures devant la bibliothèque.','D’accord, mardi à seize heures devant la bibliothèque.'],'Bestätige Dienstag, 15 Uhr, vor der Bibliothek.','Confirm Tuesday, 15:00, in front of the library.')
+    ];
+    if(lessonId===10&&unit.key==='u2')return [
+      f('Quel est votre ___ ?','métier',['nom','prénom'],'Du fragst nach dem Beruf.','Ask about the person’s occupation.'),
+      f('___ travaillez-vous ?','Où',['Quand','Comment'],'Du fragst nach dem Arbeitsort.','Ask where the person works.'),
+      f('Vous travaillez ___ jours ?','quels',['quel','quelle'],'Du fragst nach den Arbeitstagen.','Ask which days the person works.'),
+      f('Je travaille ___ lundi au vendredi.','du',['le','au'],'Ich arbeite von Montag bis Freitag.','I work from Monday to Friday.'),
+      f('Welche Form passt?','Je travaille à Halifax.',['Je travaille le lundi.','J’aime mon travail.'],'Du antwortest auf die Frage nach dem Arbeitsort.','Answer the question about the place of work.')
+    ];
+    if(lessonId===24&&unit.key==='u0')return [
+      f('Nous partons ___ juillet.','en',['à','au'],'Wir fahren im Juli ab.','We are leaving in July.'),
+      f('Nous allons à Paris ___ train.','en',['à','au'],'Wir fahren mit dem Zug nach Paris.','We are travelling to Paris by train.'),
+      f('Nous restons ___ jours.','trois',['treize','trente'],'Wir bleiben drei Tage.','We are staying for three days.'),
+      f('Nous allons manger au restaurant ___ visiter la ville.','et',['est','es'],'Wir werden im Restaurant essen und die Stadt besichtigen.','We are going to eat at a restaurant and visit the city.'),
+      f('Nous rentrons vendredi ___.','soir',['matin','midi'],'Wir kommen Freitagabend zurück.','We are returning on Friday evening.')
+    ];
+    if(lessonId===9&&unit.key==='r1')return [
+      f('___ est la pharmacie ?','Où',['Quand','Comment'],'Wo ist die Apotheke?','Where is the pharmacy?'),
+      f('C’est à dix minutes à ___.','pied',['bus','train'],'Es ist zehn Minuten zu Fuß entfernt.','It is ten minutes away on foot.'),
+      f('Le train part du ___ deux.','quai',['bus','train'],'Der Zug fährt von Gleis zwei ab.','The train leaves from platform two.'),
+      f('___ de bus','un arrêt',['un quai','une gare'],'eine Bushaltestelle','a bus stop'),
+      f('Welche Form passt?','Où est l’arrêt de bus ?',['À quelle heure part le bus ?','C’est quelle ligne de bus ?'],'Du suchst den Ort der Bushaltestelle.','You are looking for the location of the bus stop.')
+    ];
+    if(lessonId===11&&unit.key==='r1')return [
+      f('Je suis en train de ___.','travailler',['travaille','travaillé'],'Ich arbeite gerade.','I am working right now.'),
+      f('Léa est en train ___ manger.','de',['à','pour'],'Léa isst gerade.','Léa is eating right now.'),
+      f('Nous sommes en train ___écrire.','d’',['de','à'],'Wir schreiben gerade.','We are writing right now.'),
+      f('Paul et Léa ___ en train de lire.','sont',['est','sommes'],'Paul und Léa lesen gerade.','Paul and Léa are reading right now.'),
+      f('Welche Form passt?','Je suis en train de manger.',['Je suis en train manger.','Je suis en train de mange.'],'Ich esse gerade. Achte auf den vollständigen Baustein und die Grundform.','I am eating right now. Check the complete expression and the infinitive.')
+    ];
+    if(lessonId===13&&unit.key==='r2')return [
+      f('Welche Form passt?','une petite veste bleue',['une petit veste bleue','une petite veste bleu'],'eine kleine blaue Jacke · schriftlicher Standard','a small blue jacket · standard written French'),
+      f('Welche Form passt?','un petit pantalon noir',['un petite pantalon noir','un petit pantalon noire'],'eine kleine schwarze Hose · schriftlicher Standard','small black trousers · standard written French'),
+      f('Une ___ veste bleue.','petite',['petit','petits'],'Eine kleine blaue Jacke.','A small blue jacket.'),
+      f('Une petite veste ___.','bleue',['bleu','bleus'],'Eine kleine blaue Jacke.','A small blue jacket.'),
+      f('Welche Form passt?','une petite robe noire',['une robe petite noire','une noire petite robe'],'die übliche neutrale Reihenfolge: ein kleines schwarzes Kleid','the usual neutral order: a small black dress')
+    ];
+    if(lessonId===17&&unit.key==='u0')return [
+      f('___ est votre nom ?','Quel',['Quelle','Quels'],'Wie lautet Ihr Nachname?','What is your family name?'),
+      f('___ est votre adresse ?','Quelle',['Quel','Quelles'],'Wie lautet Ihre Adresse?','What is your address?'),
+      f('___ : française','Nationalité',['Signature','Adresse'],'Staatsangehörigkeit: französisch','Nationality: French'),
+      f('Nom : Martin. ___ : Léa.','Prénom',['Signature','Nationalité'],'Nachname: Martin. Vorname: Léa.','Family name: Martin. First name: Léa.'),
+      f('Que dois-je ___ ici ?','écrire',['écris','écrit'],'Was muss ich hier schreiben?','What must I write here?')
+    ];
+    if(lessonId===17&&unit.key==='u1')return [
+      f('___ sont les horaires du cours ?','Quels',['Quel','Quelles'],'Wie sind die Unterrichtszeiten?','What are the class times?'),
+      f('___ est la date de début ?','Quelle',['Quel','Quels'],'Wann ist das Startdatum?','What is the start date?'),
+      f('___ est le prix du cours ?','Quel',['Quelle','Quels'],'Wie hoch ist der Kurspreis?','What is the course price?'),
+      f('Merci de me ___.','répondre',['répondez','répondu'],'Bitte antworten Sie mir.','Please reply to me.'),
+      f('Welche Form passt?','Je vous écris pour demander des informations.',['Je vous écris pour confirmer mon inscription.','Je vous écris pour annuler mon inscription.'],'Du möchtest Informationen, keine Anmeldung bestätigen oder absagen.','You want information, not to confirm or cancel a registration.')
+    ];
+    if(lessonId===18&&unit.key==='r1')return [
+      f('Pouvez-vous ___ votre nom ?','répéter',['répétez','répété'],'Können Sie Ihren Namen wiederholen?','Can you repeat your name?'),
+      f('Pourriez-vous ___ plus lentement ?','parler',['parlez','parlé'],'Könnten Sie langsamer sprechen?','Could you speak more slowly?'),
+      f('Vous pouvez m’___ ?','aider',['aidez','aidé'],'Können Sie mir helfen?','Can you help me?'),
+      f('Pouvez-vous ___ votre nom ?','épeler',['répéter','écrire'],'Du brauchst die einzelnen Buchstaben des Namens.','You need the individual letters of the name.'),
+      f('Welche Form passt?','Pouvez-vous parler plus lentement ?',['Pouvez-vous parler plus fort ?','Pouvez-vous répéter votre nom ?'],'Die Person spricht zu schnell. Bitte sie, das Tempo zu verringern.','The person is speaking too fast. Ask them to reduce their speed.')
+    ];
+    if(lessonId===19&&unit.key==='r3')return [
+      f('C’___ une clé.','est',['sont','es'],'Das ist ein Schlüssel.','This is a key.'),
+      f('Ce ___ des livres.','sont',['est','sommes'],'Das sind Bücher.','These are books.'),
+      f('Welche Form passt?','Voici mon passeport.',['Voici est mon passeport.','Voici sont mon passeport.'],'Du reichst deinen Pass: Hier ist mein Pass.','Hand over your passport: Here is my passport.','Nach voici steht direkt die Nominalgruppe.','Voici is followed directly by the noun phrase.'),
+      f('Welche Form passt?','Voilà le musée.',['Voilà est le musée.','Voilà sont le musée.'],'Dort ist das Museum.','There is the museum.','Nach voilà steht direkt die Nominalgruppe.','Voilà is followed directly by the noun phrase.'),
+      f('Welche Form passt?','Ce sont mes clés.',['C’est mes clés.','Ce sont ma clé.'],'Das sind meine Schlüssel · schriftlicher Standard','These are my keys · standard written French')
+    ];
+    if(lessonId===21&&unit.key==='r1')return [
+      f('Welche Form passt?','Est-ce que vous travaillez ?',['Où est-ce que vous travaillez ?','Quand est-ce que vous travaillez ?'],'Du fragst nur, ob die Person arbeitet.','Ask only whether the person works.'),
+      f('___ est-ce que vous habitez ?','Où',['Quand','Pourquoi'],'Du fragst nach dem Wohnort.','Ask where the person lives.'),
+      f('___ est-ce que tu fais ?','Qu’',['Qui','Où'],'Du fragst: Was machst du?','Ask: What are you doing?'),
+      f('___ quand habitez-vous ici ?','Depuis',['Dans','Après'],'Du fragst: Seit wann wohnen Sie hier?','Ask: How long have you lived here?'),
+      f('Welche Form passt?','Qu’est-ce que tu fais le week-end ?',['Où est-ce que tu travailles le week-end ?','Quand est-ce que tu travailles ?'],'Du fragst offen nach den Wochenendaktivitäten.','Ask an open question about weekend activities.')
+    ];
+    if(lessonId===21&&unit.key==='r2')return [
+      f('___ ? — C’est Marie.','Qui est-ce',['Qu’est-ce que c’est','Où est-ce'],'Du fragst nach einer Person.','Ask who a person is.'),
+      f('___ ? — C’est un livre.','Qu’est-ce que c’est',['Qui est-ce','Où est-ce'],'Du fragst nach einer Sache.','Ask what a thing is.'),
+      f('___ ? — C’est mon frère.','Qui est-ce',['Qu’est-ce que c’est','Quand est-ce'],'Du fragst nach der Identität einer Person.','Ask for a person’s identity.'),
+      f('___ ? — C’est une clé.','Qu’est-ce que c’est',['Qui est-ce','Où est-ce'],'Du fragst, was ein Gegenstand ist.','Ask what an object is.')
+    ];
+    if(lessonId===22&&unit.key==='r2')return [
+      f('Léa est ___ à huit heures.','arrivée',['arrivé','arriver'],'Léa ist um acht Uhr angekommen.','Léa arrived at eight.'),
+      f('Paul est ___ au cinéma.','allé',['allée','aller'],'Paul ist ins Kino gegangen.','Paul went to the cinema.'),
+      f('Léa et Marie sont ___.','parties',['partis','partir'],'Léa und Marie sind abgefahren.','Léa and Marie have left.'),
+      f('Paul et Léa sont ___.','partis',['parties','partir'],'Paul und Léa sind abgefahren, gemischte Gruppe.','Paul and Léa have left, mixed group.'),
+      f('Léa ___ arrivée à Paris.','est',['a','es'],'Léa ist in Paris angekommen.','Léa arrived in Paris.')
+    ];
+    if(lessonId===22&&unit.key==='r3')return [
+      f('Je viens ___ manger.','de',['à','pour'],'Ich habe gerade gegessen.','I have just eaten.'),
+      f('Elle vient ___arriver.','d’',['de','à'],'Sie ist gerade angekommen.','She has just arrived.'),
+      f('Nous ___ de rentrer.','venons',['venez','viennent'],'Wir sind gerade zurückgekommen.','We have just returned.'),
+      f('Vous venez de ___.','manger',['mangez','mangé'],'Sie haben gerade gegessen.','You have just eaten.'),
+      f('Paul ___ de visiter un musée.','vient',['viens','venons'],'Paul hat gerade ein Museum besucht.','Paul has just visited a museum.')
+    ];
+    if(lessonId===23&&unit.key==='r2')return [
+      f('Je n’ai pas ___ farine.','de',['de la','du'],'Ich habe kein Mehl.','I have no flour.'),
+      f('Je ne mets pas ___ sel.','de',['du','des'],'Ich gebe kein Salz dazu.','I am not adding salt.'),
+      f('Je n’ai pas ___eau.','d’',['de','de l’'],'Ich habe kein Wasser.','I have no water.'),
+      f('Nous n’avons pas ___ légumes.','de',['des','du'],'Wir haben kein Gemüse.','We have no vegetables.')
+    ];
+    if(lessonId===23&&unit.key==='r4')return [
+      f('Un couteau pour ___ les tomates.','couper',['coupe','coupé'],'Ein Messer, um die Tomaten zu schneiden.','A knife to cut the tomatoes.'),
+      f('Une cuillère pour ___ la soupe.','mélanger',['mélange','mélangé'],'Ein Löffel, um die Suppe zu mischen.','A spoon to mix the soup.'),
+      f('Il faut ___ le lait.','ajouter',['ajoute','ajouté'],'Man muss die Milch hinzufügen.','You need to add the milk.'),
+      f('___ les tomates, puis ajoutez le fromage.','Coupez',['Couper','Coupé'],'Schneiden Sie die Tomaten, dann geben Sie den Käse dazu.','Cut the tomatoes, then add the cheese.'),
+      f('___ avec une cuillère.','Mélangez',['Mélanger','Mélangé'],'Mischen Sie mit einem Löffel.','Mix with a spoon.')
+    ];
     if(lessonId===7&&unit.key==='r0')return [
       f('Un kilo ___ pommes, s’il vous plaît.','de',['du','des'],'Ein Kilo Äpfel, bitte.','A kilo of apples, please.','Nach einer konkreten Menge steht de.','Use de after a specified quantity.'),
       f('Deux bouteilles ___eau.','d’',['de','du'],'Zwei Flaschen Wasser.','Two bottles of water.','Vor dem Vokal in eau steht d’.','Before the vowel in eau, use d’.'),
@@ -196,7 +308,7 @@
     const selected=shuffle([...forms,...vocabulary.slice(0,Math.max(0,12-forms.length))]);
     return window.FR_A1_MASTERY?.spreadAnswers?window.FR_A1_MASTERY.spreadAnswers(selected):selected;
   }
-  const extraTopics=[7,19,21,22].flatMap(id=>['r0','r1','r2','r3','r4'].flatMap(key=>focusedTopics(id,{key})||[]));
+  const extraTopics=[4,7,9,10,11,13,17,18,19,21,22,23,24].flatMap(id=>['r0','r1','r2','r3','r4','u0','u1','u2','u3'].flatMap(key=>focusedTopics(id,{key})||[]));
   window.FR_A1_GRAMMAR_EN=Object.fromEntries([...possessives(),...family(),...adjectiveAgreement(),...ordering(),...extraTopics].flatMap(t=>[[t.meaning,t.meaningEn],[t.explanation,t.explanationEn]]));
   window.FR_A1_GRAMMAR_PRACTICE={improve,select,possessives,ordering,fromPairs,focusedTopics};
 })();

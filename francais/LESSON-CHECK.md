@@ -1,33 +1,72 @@
-# Lektionscheck: vielfältige Anwendung statt doppelter Abfrage
+# Französisch A1: Lektionschecks und Grammatiktraining
 
-Ausgangspunkt: `main` bei `ee0f1e24116d7f560774184fe6256d33d2fdd2c0`, geprüft am 19.10.2026. Nur Français A1 wurde geändert.
+Stand: Aufgabenfassung `check-quality-147`.
 
-## Bestätigte Ursachen
+Die Lektionschecks kombinieren acht eigene Situations- und Verständnisfragen mit
+vier bis acht selbst einzutippenden Anwendungen. Sie verwenden weder
+`spec.tasks` noch die erzeugten Grammatikaufgaben als Füllmaterial. Eine Variante
+pro Transfer-Schwerpunkt wird gewählt; kein Schwerpunkt entfällt beim Mischen.
+Die Reihenfolge verteilt ähnliche Formen und Antworten auf verschiedene Stellen.
 
-- `makeLessonTest()` kombinierte die bereits bekannten Quizfragen mit zusätzlichen Grammatikaufgaben. Dadurch wurden beispielsweise die Kaffeebestellung, die Bedeutung von „ledig“, Preisfragen und identische Verneinungen mehrfach abgefragt, teils nur als Übersetzung in Gegenrichtung.
-- Die bisherige Entzerrung verglich vor allem identische Antworten und Audios, nicht das wiederholte Muster.
-- `runTasks()` mischte den fertig geordneten Check erneut. Die geplante Reihenfolge war deshalb im tatsächlichen Ablauf nicht verlässlich.
-- Manche Ablenkantworten waren offensichtlich sachfremd oder unnatürlich, zum Beispiel „Je suis un café“ bei einer Bestellung oder „Je suis un médicament“ bei der Apotheke. Die weiterhin für andere Übungen vorhandenen Ausgangsfragen wurden nicht pauschal verändert.
-- Bei Auswahlaufgaben verglich der Ablauf Antworten ohne Akzente. Dadurch konnten Zoé/Zoè/Zoê zusammenfallen. Auswahlwerte werden jetzt exakt in Unicode-Normalform verglichen; die tolerante Prüfung getippter normaler Grammatikantworten bleibt getrennt davon.
+| Lektion | Fragen | Inhaltliche Schwerpunkte |
+| --- | ---: | --- |
+| 1 | 12 | Begrüßen, Anrede, Befinden, Name, Herkunft, Wohnort, Sprachen; être, habiter, venir, s’appeler |
+| 2 | 12 | Vor-/Nachname, Buchstabenfolge, é/ç, Wiederholen, Buchstabieren, langsames Sprechen; pouvoir + Infinitiv |
+| 3 | 14 | Alter mit avoir, Zahlen bis 100, Telefonnummer, Geburtsdatum, Postleitzahl; Personenbezug |
+| 4 | 14 | Volle/halbe/Viertelstunden, Tage, Monate, erster Monatstag, Termin, Zeitspanne und Verfügbarkeit |
+| 5 | 16 | Verwandtschaft, Familienstand, Besitz und Besitzerbezug, mon/ma/mes, notre/nos, Vokal-Sonderfall, Adjektiv und c’est/ce sont |
+| 6 | 14 | Bestellung, Speisen/Getränke, Teilungsartikel, unbestimmter Plural, je voudrais, ohne-Zusatz, Rechnung |
+| 7 | 14 | Mengen + de/d’, Einheiten, Preise/Cent, Gesamtpreis, Größe, Kaufentscheidung und Kartenzahlung |
+| 8 | 14 | Räume/Möbel, Miete/Adresse/Besichtigung, il y a, Lagewörter, au/à la/aux |
+| 9 | 14 | Wegschritte, Richtung, Imperativ, Reihenfolge, Haltestelle, Linie/Gleis, Fußweg und Verspätung |
+| 10 | 14 | Beruf/Studium, eigener Berufssatz mit être, Arbeitsort/-tage/-zeiten, regelmäßige Verben, nous commençons, Kurs-/Arbeitsbeginn |
+| 11 | 16 | Tagesablauf, Reflexivpronomen/Verbform, être en train de + Infinitiv, d’ vor Vokal, Reihenfolge |
+| 12 | 14 | Beschwerden, Fieber, au/aux, seit wann, Termin, Absage, Hilfe und Apotheke |
+| 13 | 16 | Wetter, Temperatur, Jahreszeit, ce/cet/cette/ces, Farbe/Adjektiv, Wortstellung, futur proche |
+| 14 | 14 | Aktivitäten, Vorlieben, bestimmter Artikel, aimer + Infinitiv, Verneinung, Sport und Wochenendfrage |
+| 15 | 14 | Zimmer/Gäste/Nächte, Fahrkarte, Abfahrt/Ankunft, Frühstück/Preis, aller + Infinitiv |
+| 16 | 14 | Einladung/Zusage/Absage, Verschieben, pouvoir, Telefonrollen, Geburtstag und Kompliment |
+| 17 | 14 | Formularfelder, Informationsanfrage, quel/quelle/quels, Anrede, Bitte um Antwort |
+| 18 | 14 | Nachfragen, Wiederholung/Tempo/Bedeutung, ne…pas, de/d’, höfliche feste Formen |
+| 19 | 16 | Genus, bestimmte/unbestimmte Artikel, Elision, Plural, c’est/ce sont, voici/voilà |
+| 20 | 16 | Präsens, Personenwechsel, ne…pas/jamais, verneinte Menge, il faut/il ne faut pas + Infinitiv |
+| 21 | 16 | Fragewörter und Frageformen, Person/Sache, Possessivbegleiter, leur/leurs, betonte Pronomen |
+| 22 | 16 | avoir/être im passé composé, Partizip/Kongruenz, passé récent, seit/vor/in, vergangen/gegenwärtig/geplant |
+| 23 | 16 | Teilungsartikel, genaue/ungenaue Mengen, Verneinung, pour + Infinitiv, Rezeptschritte, Pflicht/Verbot |
+| 24 | 16 | Herkunft/Ziel, Länderpräpositionen, devoir, Verkehrsmittel, Reiseplan, Abfahrt/Rückkehr |
 
-## Änderung
+Die Abdeckung meint die wesentlichen Lernziele, nicht jedes Wort oder jede
+Person jedes Verbs in jeder Runde. Hörverstehen und längere freie Nachrichten
+bleiben in den dafür vorgesehenen Lektions-/Hard-Mode-Teilen.
 
-`mastery-specs.js` enthält einen eigenen redaktionell formulierten Bestand für die 24 Lektionschecks. Die 192 Kontextaufgaben ersetzen im Lektionscheck das direkte Wiederverwenden des normalen Zehn-Fragen-Quiz. Jede Aufgabe besitzt einen eindeutigen Schwerpunkt, plausible Alternativen und eine kurze Erklärung. Die Inhalte unterscheiden unter anderem Herkunft und Wohnort, Lieblingsgericht und heutige Bestellung, Personen- und Nächtezahl, Beginn und Ende einer Tätigkeit, Korrekturen, Verneinungen und Personenbezüge.
+## Grammatikaufgaben
 
-Die Auswahlantworten sind bei Bedeutungsfragen möglichst alle natürlich formuliert und aus demselben Alltagsthema. Bei ausdrücklich geprüfter Schriftform/Grammatik dürfen Ablenkantworten typische Lernfehler enthalten. Es gibt immer eine nach dem genauen Auftrag richtige Antwort. Die situativen Fragen verlangen überwiegend Anwendung statt bloßer Einwortübersetzung. Das bleibt ein normaler A1-Lektionscheck; der umfassendere dreiteilige Hard Mode ist unverändert.
+Überarbeitete Themen fragen ihre Konstruktion ab: etwa Grundform und de/d’
+nach *en train*, Person/Sache in Fragen, Frageadjektive statt nur est/sont,
+Partizipien und Kongruenz statt der Präposition vor cinéma, de/d’ nach der
+Verneinung sowie Infinitiv/Imperativ bei Rezepten. Die falschen Optionen bleiben
+in derselben sprachlichen Kategorie und verändern möglichst nur die geprüfte
+Form oder Information. Alltagsübliches voici/voilà wird im freien Einsetzen nicht
+an einer künstlich absoluten Hier-/Dort-Grenze bewertet.
 
-Aus dem Grammatikbestand werden ergänzend eigenständige Tippaufgaben gewählt: höchstens zwei verschiedene Antworten desselben Musters, in Lektion 1 eine pro Verbgruppe. Das verhindert komplette Konjugationsblöcke im gemischten Check. Wo nötig wurden sinnvolle produktive Aufgaben ergänzt, etwa aux dents, à la gare, par carte und Formularangaben. Die vollständige wiederholte Formenübung bleibt in der Vertiefung und im Hard Mode möglich. Der Umfang folgt den vertretenen Gruppen und liegt aktuell bei 10–16 Aufgaben; keine Laufzeitregel füllt auf eine starre Gesamtzahl auf.
+## Bewertung und gespeicherte Versuche
 
-Die Reihenfolge berücksichtigt die letzten drei Fragen: gleicher Schwerpunkt, gleiche Antwort, sehr ähnlicher Satz und einseitige Aufgabenart werden auseinandergezogen. Der Einstieg und die ausgewählten Grammatikformen variieren zwischen neuen Versuchen. Diese Reihenfolge und die Positionen der Antwortoptionen bleiben nach Start gespeichert und werden beim Fortsetzen nicht neu gemischt.
+Neue Einsetzaufgaben beachten Akzente, wenn sie unterschiedliche Formen
+unterscheiden (z. B. mange/mangé). Großschreibung, gerade/typografische Apostrophe
+und äußere Leerzeichen sind gleichwertig. Zahlenwörter dürfen die üblichen
+Bindestrichvarianten verwenden. Telefonnummern erlauben übliche Trennzeichen und
++33/0033; Postleitzahlen Groß-/Kleinschreibung und Leerzeichen. Falsche Ziffern
+bleiben falsch. Diese Regeln gelten auch für gespeicherte Check-Fehler in der
+gezielten Wiederholung.
 
-Bereits laufende Versuche behalten ihren gespeicherten Aufgabenstand, Antworten und Punkte. Ein kurzer Hinweis erklärt dort, dass die neuen Fragen beim nächsten Versuch erscheinen. Bestwerte und die Freischaltung des Hard Mode ab 80 % werden weiterverwendet. Es gibt keine neue kostenpflichtige Abhängigkeit.
+Ein begonnener Check behält seine gespeicherten Fragen, Antworten und Positionen.
+Ältere Entwürfe lassen sich fortsetzen oder über „Überarbeiteten Check neu starten“
+unverändert archivieren. Neue Check-Entwürfe tragen contentVersion 3. Frühere
+Bestwerte werden nicht neu bewertet. Bei überarbeiteten Grammatikthemen werden
+nur unbeantwortete Aufgaben ersetzt; bewertete Antworten und der alte Entwurf
+bleiben erhalten.
 
-## Prüfung
-
-```sh
-node --test francais/tests/*.test.cjs tests/french-listening.test.cjs
-```
-
-Die ergänzende Suite prüft alle 24 Checks mit mehreren Zufallsfolgen auf eindeutige Aufgaben/Antworten und auf direkt benachbarte Wiederholungen von Antwort oder Muster. Sie beantwortet außerdem alle 24 Checks vollständig im DOM, unterbricht und setzt jeden fort und kontrolliert 100 %, genau eine Abschlusszählung und das unveränderte gespeicherte Fragen-/Optionsformat. Weitere Gegenbeispiele prüfen Akzent-Auswahlwerte und Variation neuer Versuche. Diese Tests beweisen nicht die sprachliche Qualität von Ablenkantworten; die Texte wurden zusätzlich redaktionell geprüft.
-
-38 Tests laufen erfolgreich. Die englischen Fragen, Auswahltexte und Erklärungen sind ergänzt; die Übersetzung verändert weder französische Antwortwerte noch gespeicherte Auswahlpositionen. Die bestehende Suite für normale Übungen, Unterbrechung, alte Versuche und Hard Mode bleibt Teil der Regression. Eine Browserprüfung des normalen Lektionschecks einschließlich Freischaltung, Startseiten-Fortsetzung, Sprachwechsel und Neuladen ergänzt die DOM-Tests. Sprachqualität, zufällige Variation und Lernwirksamkeit sind unterschiedliche Prüfgegenstände; die Verbesserung der Lernwirksamkeit ist ohne Lernerstudie nicht empirisch belegt.
+Die automatisierten Tests prüfen unter anderem Umfang/Schwerpunktabdeckung,
+Trennung der Pools, Varianten, Antwortprüfung mit Gegenbeispielen, englische
+Anzeigen, Entwürfe und tatsächlichen Durchlauf. Sie ersetzen keine sprachliche
+Beurteilung von Aufgaben und keine Audio-Hörprobe.

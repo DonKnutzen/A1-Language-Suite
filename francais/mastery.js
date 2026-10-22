@@ -58,19 +58,14 @@
     const authored=spec(lesson.id).checkTasks;
     if(!authored)return spreadAnswers(shuffled([...phraseTasks(lesson),...customTasks(lesson)]));
     const context=shuffled(authored).map(q=>({...q,o:shuffled(q.o)}));
-    // Recognition and productive grammar are complementary. Repeating all six
-    // persons of one verb belongs in drills/Hard Mode, not in this mixed check.
+    // The check has its own transfer bank. Sample one variant of each focus;
+    // never pad its length with cards already seen in the grammar drills.
     const groups=new Map();
-    for(const task of customTasks(lesson).filter(q=>q.type==='gap')){
-      const family='grammar:'+task.tag;
-      if(!groups.has(family))groups.set(family,[]);
-      groups.get(family).push({...task,family,checkKey:`L${lesson.id}-${family}-${norm(task.prompt)}`});
+    for(const task of spec(lesson.id).checkTransfers||[]){
+      if(!groups.has(task.family))groups.set(task.family,[]);
+      groups.get(task.family).push(task);
     }
-    const grammar=[];
-    for(const [family,tasks]of groups){
-      const used=new Set(),limit=lesson.id===1?1:2;
-      for(let task of shuffled(tasks)){if(lesson.id===14&&task.tag==='Verneinung')task={...task,prompt:'Je ___ courir.',answer:'n’aime pas'};const key=norm(task.answer);if(used.has(key))continue;used.add(key);grammar.push(task);if(used.size>=limit)break;}
-    }
+    const grammar=[...groups.values()].map(tasks=>({...shuffled(tasks)[0]}));
     // Always start with a situation, then preserve this planned order in runTasks.
     const start=context.shift();return spreadAnswers(shuffled([...context,...grammar]),[start]);
   }
@@ -100,7 +95,16 @@
 
   function accepted(task,input){
     const values=[task.answer,...(task.accept||[])].filter(Boolean);
-    return values.some(v=>norm(v)===norm(input));
+    const marking=task.marking||{};
+    const normalize=value=>{
+      value=String(value).trim();
+      if(marking.format==='phone'){if(!/^\+?[\d(][\d\s().-]*\d$/.test(value))return null;let phone=value.replace(/[\s().-]/g,'');if(phone.startsWith('+33'))phone='0'+phone.slice(3);else if(phone.startsWith('0033'))phone='0'+phone.slice(4);return phone;}
+      if(marking.format==='postal')return /^[\p{L}\d\s]+$/u.test(value)?value.replace(/\s/g,'').toUpperCase():null;
+      let out=marking.strictAccents?value.toLowerCase().normalize('NFC').replace(/[’‘ʼ]/g,"'").replace(/[.,;:!?“”„"]/g,'').replace(/\s*'\s*/g,"'").replace(/\s+/g,' '):norm(value);
+      if(marking.numberWords)out=out.replace(/[-‐‑–]/g,' ').replace(/\s+/g,' ');
+      return out.trim();
+    };
+    const actual=normalize(String(input));return actual!==null&&values.some(v=>normalize(v)===actual);
   }
   function runTasks({title,subtitle,tasks,view,onBack,onFinish,speak,targetLang='fr',lessonId=null,progress=null,saveProgress=()=>{},reviewState=null}){
     const session=progress?.session;
@@ -109,7 +113,7 @@
       const updates=new Map(tasks.filter(q=>['L6-context-commander','L6-context-serveur','L6-context-quantite'].includes(q.checkKey)).map(q=>[q.checkKey,q]));
       session.ex=session.ex.map((q,index)=>index<session.i||(index===session.i&&session.response)?q:(updates.get(q.checkKey)?.q!==q.q&&updates.has(q.checkKey)?updates.get(q.checkKey):q));
     }
-    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):2,review=window.A1ExerciseReview?.create();
+    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):3,review=window.A1ExerciseReview?.create();
     let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
     function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
@@ -160,7 +164,8 @@
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${progress.session&&(progress.session.contentVersion||1)<2?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button></section>`;
+      const older=progress.session&&(progress.session.contentVersion||1)<3;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${older?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button>${older?'<button class="secondary-btn" id="masteryNewCheck">Überarbeiteten Check neu starten</button><p class="muted">Der bisherige Entwurf wird aufbewahrt.</p>':''}</section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
       document.getElementById('masteryStart').onclick=()=>runTasks({reviewState:state,progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
@@ -169,6 +174,9 @@
         view.innerHTML=`<section class="card center"><span class="pill">LEKTIONS-CHECK</span><div class="score">${pct}%</div><h2>${score}/${total} richtig</h2><p class="muted">Das ist dein aktueller Stand. Du kannst den Check jederzeit wiederholen und vorher einzelne Teile noch einmal üben.</p><div class="button-row"><button class="secondary-btn" id="masteryAgain">Noch einmal</button><button class="primary-btn" id="masteryReturn">Zur Lektion</button></div></section>`;
         document.getElementById('masteryAgain').onclick=intro;document.getElementById('masteryReturn').onclick=onBack;onResult?.();
       }});
+      document.getElementById('masteryNewCheck')?.addEventListener('click',()=>{
+        progress.previousDrafts||=[];progress.previousDrafts.push(JSON.parse(JSON.stringify(progress.session)));delete progress.session;save();intro();document.getElementById('masteryStart').click();
+      });
     }
     intro();
   }
@@ -199,7 +207,7 @@
       }});
     });
   }
-  window.FR_A1_MASTERY={accepted,spreadAnswers,practiceTasks:lesson=>[...phraseTasks(lesson),...customTasks(lesson),...(spec(lesson.id).checkTasks||[])],PASS,spec,testCount,best,passed,passedCount,completePassedLessons,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
+  window.FR_A1_MASTERY={accepted,spreadAnswers,practiceTasks:lesson=>[...phraseTasks(lesson),...customTasks(lesson)],PASS,spec,testCount,best,passed,passedCount,completePassedLessons,introHtml,makeLessonTest,renderLessonTest,renderCourseMenu};
 })();
 
 

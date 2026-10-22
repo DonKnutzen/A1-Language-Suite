@@ -1588,12 +1588,12 @@ window.FR_A1_MASTERY_SPECS = {
     ],
     2:[
       ['formulaire','Im Formular steht « Nom de famille : Martin / Prénom : Léa ». Was ist der Vorname?','Léa','Martin','Léa Martin','Prénom bezeichnet den Vornamen.',false],
-      ['epeler','Du hast den Nachnamen gehört, weißt aber nicht, welche Buchstaben er enthält.','Vous pouvez épeler votre nom ?','Vous pouvez répéter votre adresse ?','Vous pouvez écrire votre prénom ?','Épeler bittet darum, die Buchstaben zu nennen.'],
-      ['signes','Für ein Namensschild wird « Zoé » benötigt. Welche Schreibweise übernimmt genau den Akzent?','Zoé','Zoè','Zoê','Zoé trägt einen accent aigu.'],
-      ['cedille','« François » soll abgeschrieben werden. Welche Schreibweise behält die Cedille?','François','Francois','Franç ois','Die Cedille gehört direkt an das c; im Namen steht kein Leerzeichen.'],
+      ['epeler','Du hast den Nachnamen gehört, weißt aber nicht, welche Buchstaben er enthält.','Vous pouvez épeler votre nom ?','Vous pouvez répéter votre nom ?','Vous pouvez écrire votre nom ?','Épeler bittet darum, die Buchstaben zu nennen.'],
+      ['signes','Der Vorname wird Z-O-E buchstabiert; das E trägt einen accent aigu. Welche Schreibweise passt?','Zoé','Zoè','Zoê','Zoé trägt einen accent aigu.'],
+      ['cedille','Der Name wird F-R-A-N-C-O-I-S buchstabiert; das C trägt eine Cedille. Welche Schreibweise passt?','François','Francois','Francoïs','Die Cedille sitzt am c: ç. Das i trägt hier kein Sonderzeichen.'],
       ['adresse','« Quelle est votre adresse ? » Welche Antwort enthält die erfragte Information?','12, rue Victor-Hugo, à Paris.','Mon nom est Victor Hugo.','Mon prénom est Victor.','Adresse fragt nach der Anschrift, nicht nach einem Namen.'],
       ['clarifier','Die Person spricht zu schnell. Du möchtest das Sprechtempo ändern.','Vous pouvez parler plus lentement ?','Vous pouvez épeler votre nom ?','Vous pouvez écrire votre adresse ?','Plus lentement bedeutet langsamer.'],
-      ['lettres','Der Nachname wird « M-A-R-T-I-N » buchstabiert. Welche Eintragung passt?','Martin','Marin','Martine','Alle und nur die genannten Buchstaben werden übernommen.'],
+      ['lettres','Der Nachname wird « M-O-R-E-A-U » buchstabiert. Welche Eintragung passt?','Moreau','Moreu','Moreaux','Alle und nur die genannten Buchstaben werden übernommen.'],
       ['intention','« Comment ça s’écrit ? » Was möchte die Person erfahren?','Die Schreibweise eines Wortes.','Die Aussprache eines Wortes.','Die Bedeutung eines Wortes.','S’écrire bezieht sich auf die Schreibweise.',false]
     ],
     3:[
@@ -1602,7 +1602,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['naissance','Im Formular steht « 17 avril ». Welche Aussage gibt dieses Geburtsdatum wieder?','Je suis né le dix-sept avril.','Je suis né le sept avril.','Je suis né le dix-sept mai.','Dix-sept ist 17; avril ist April.'],
       ['nombres','Welche Zahl entspricht « soixante et onze »?','71','61','81','Soixante et onze bezeichnet 60 + 11.',false],
       ['numero','Eine Nummer endet auf « quatre-vingt-onze, vingt-quatre ». Welche vier Ziffern sind das?','9124','8124','9142','Quatre-vingt-onze ist 91, vingt-quatre ist 24.',false],
-      ['donnees','« Mon téléphone est le 06 12 20 30 40. Mon code postal est B3V 1L2. » Welche Angabe ist der Code postal?','B3V 1L2','06 12 20 30 40','06','Die ausdrücklich als code postal bezeichnete Angabe ist B3V 1L2.',false],
+      ['donnees','« Paul : B3V 2L1. Léa : B3V 1L2. » Welche Postleitzahl gehört zu Léa?','B3V 1L2','B3V 2L1','B2V 1L3','Die zweite Angabe gehört zu Léa, nicht zu Paul.',false],
       ['quantite','« Nous sommes vingt étudiants. Dix étudiants parlent allemand. » Wie viele Personen sind im Kurs?','20','10','30','Vingt nennt die Gesamtzahl; dix beschreibt nur eine Teilgruppe.',false],
       ['cent','Du sollst die Zahl 100 ausschreiben.','cent','quatre-vingts','quatre-vingt-dix','Cent ist 100; quatre-vingts ist 80, quatre-vingt-dix ist 90.']
     ],
@@ -1610,7 +1610,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['heure','Ein Termin ist um 8:45 Uhr. Welche Angabe passt?','À neuf heures moins le quart.','À huit heures et quart.','À neuf heures et quart.','Viertel vor neun ist 8:45 Uhr.'],
       ['rendezvous','« Mardi, je travaille. On se voit mercredi à dix heures. » Wann ist das Treffen?','Mittwoch um 10 Uhr.','Dienstag um 10 Uhr.','Mittwoch um 12 Uhr.','Der erste Satz beschreibt die Arbeit, der zweite das Treffen.',false],
       ['question','Du kennst den Wochentag des Termins und möchtest jetzt die Uhrzeit erfragen.','À quelle heure est le rendez-vous ?','Quel jour est le rendez-vous ?','Quelle heure est-il ?','À quelle heure fragt nach der Uhrzeit eines Ereignisses.'],
-      ['date','« Nous sommes le premier juillet. » Welches Datum ist gemeint?','1. Juli','1. Juni','7. Januar','Premier bezeichnet den ersten Tag, juillet den Juli.',false],
+      ['date','« Nous sommes le premier mars. » Welches Datum ist gemeint?','1. März','1. Mai','3. Januar','Premier bezeichnet den ersten Tag, mars den März.',false],
       ['ouverture','« Le bureau est ouvert du lundi au vendredi, à partir de neuf heures. » Was stimmt?','Am Mittwoch öffnet das Büro um 9 Uhr.','Am Mittwoch öffnet das Büro erst um 12 Uhr.','Das Büro ist nur montags und freitags offen.','Du lundi au vendredi umfasst die Wochentage dazwischen.',false],
       ['disponible','« Je suis libre le matin, mais pas l’après-midi. » Welcher Vorschlag passt dazu?','On se voit à neuf heures ?','On se voit à quinze heures ?','On se voit à dix-sept heures ?','Neun Uhr liegt am Vormittag, die anderen Zeiten am Nachmittag.'],
       ['retard','Du kündigst an, später zu kommen, ohne einen anderen Tag zu nennen.','Je viens plus tard.','Je viens plus tôt.','Je viens demain.','Plus tard bedeutet später; demain verschiebt auf morgen.'],
@@ -1623,7 +1623,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['possession','« Léa habite avec ses parents. » Zu wem gehören die Eltern in diesem Satz?','Zu Léa.','Zur angesprochenen Person.','Zur sprechenden Person.','Ses verweist hier auf Léa.',false],
       ['nombre','« Nous avons deux enfants : un fils et une fille. » Was stimmt?','Die Familie hat einen Sohn und eine Tochter.','Die Familie hat zwei Söhne.','Die Familie hat zwei Töchter.','Un fils und une fille sind zusammen zwei Kinder.',false],
       ['question','Du möchtest wissen, wie viele Geschwister jemand hat.','Vous avez combien de frères et sœurs ?','Vos frères et sœurs ont quel âge ?','Comment s’appellent vos frères et sœurs ?','Combien fragt nach der Anzahl, nicht nach Alter oder Namen.'],
-      ['accord','Du sprichst über deine beiden Eltern. Welche Aussage ist im geschriebenen Standard korrekt?','Ce sont mes parents.','C’est mes parents.','Ce sont mon parent.','Bei mehreren Elternteilen steht ce sont und mes parents.'],
+      ['accord','Du stellst Léa und Paul als deine Freunde vor. Welche Aussage ist im geschriebenen Standard korrekt?','Ce sont mes amis.','C’est mes amis.','Ce sont mon ami.','Für die beiden Freunde steht ce sont und mes amis.'],
       ['famille','« Ma mère habite à Paris. Mon père habite à Lyon. » Wen kann man in Lyon besuchen?','Den Vater.','Die Mutter.','Beide Eltern.','Nur mon père wird Lyon zugeordnet.',false]
     ],
     6:[
@@ -1638,10 +1638,10 @@ window.FR_A1_MASTERY_SPECS = {
     ],
     7:[
       ['total','« Les pommes coûtent trois euros. Le fromage coûte six euros. Ça fait neuf euros. » Was ist der Gesamtpreis?','9 €','6 €','3 €','Ça fait neuf euros nennt den Gesamtbetrag.',false],
-      ['prix','Ein Preis beträgt 19,50 €. Welche Aussage stimmt genau?','Ça coûte dix-neuf euros cinquante.','Ça coûte neuf euros cinquante.','Ça coûte dix-neuf euros quinze.','Dix-neuf ist 19 und cinquante bezeichnet hier die 50 Cent.'],
-      ['taille','« La taille quarante est disponible, mais pas la taille quarante-deux. » Welche Größe gibt es?','40','42','44','Die Verneinung gilt nur für quarante-deux.',false],
-      ['carte','Du möchtest mit Karte zahlen und fragst, ob das möglich ist.','Je peux payer par carte ?','Je dois payer en espèces ?','Combien coûte cette carte ?','Payer par carte bedeutet mit Karte bezahlen.'],
-      ['cher','Der Preis ist zu hoch. Welche Aussage nennt genau dieses Problem?','C’est trop cher.','C’est trop grand.','C’est trop petit.','Cher beschreibt den Preis; grand und petit die Größe.'],
+      ['prix','Ein Preis beträgt 27,60 €. Welche Aussage stimmt genau?','Ça coûte vingt-sept euros soixante.','Ça coûte dix-sept euros soixante.','Ça coûte vingt-sept euros seize.','Vingt-sept ist 27; soixante bezeichnet hier 60 Cent.'],
+      ['taille','« La taille trente-huit est disponible, mais pas la taille quarante-huit. » Welche Größe gibt es?','38','48','36','Die Verneinung gilt nur für quarante-huit, nicht für trente-huit.',false],
+      ['carte','Du möchtest mit Karte zahlen und fragst, ob das möglich ist.','Je peux payer par carte ?','Je peux payer en espèces ?','Je ne peux pas payer par carte ?','Payer par carte bedeutet mit Karte bezahlen.'],
+      ['cher','Der Preis ist zu hoch. Welche Aussage nennt genau dieses Problem?','C’est trop cher.','C’est très cher.','C’est peu cher.','Trop bedeutet zu, très sehr und peu wenig.'],
       ['commande','« Deux kilos de pommes et un kilo de tomates. » Welche Menge Tomaten wird verlangt?','Ein Kilo.','Zwei Kilo.','Drei Kilo.','Un kilo bezieht sich auf die Tomaten.',false],
       ['changer','Du möchtest statt eines Kilos Äpfel nur zweihundert Gramm bestellen.','Deux cents grammes de pommes, s’il vous plaît.','Deux kilos de pommes, s’il vous plaît.','Deux cents grammes de tomates, s’il vous plaît.','Die erste Antwort ändert die Menge, aber behält das Produkt bei.'],
       ['demande','Du kennst die Größe des Kleidungsstücks und möchtest seinen Preis wissen.','Combien ça coûte ?','Vous avez quelle taille ?','Je peux payer par carte ?','Combien ça coûte fragt nach dem Preis, nicht nach Größe oder Zahlungsart.']
@@ -1658,7 +1658,7 @@ window.FR_A1_MASTERY_SPECS = {
     ],
     9:[
       ['trajet','« Allez tout droit, puis tournez à droite après la pharmacie. » Was machst du nach der Apotheke?','Nach rechts abbiegen.','Nach links abbiegen.','Weiter geradeaus gehen.','Après la pharmacie gehört zur Anweisung tournez à droite.',false],
-      ['transport','« Pour le musée, prenez le bus huit, pas le bus trois. » Welcher Bus fährt zum Museum?','Linie 8.','Linie 3.','Linie 13.','Die genannte falsche Linie wird ausdrücklich ausgeschlossen.',false],
+      ['transport','« Pour le musée, prenez le bus sept, pas le bus quatre. » Welcher Bus fährt zum Museum?','Linie 7.','Linie 4.','Linie 17.','Die genannte falsche Linie wird ausdrücklich ausgeschlossen.',false],
       ['quai','« Le train pour Lyon part du quai quatre. Le train pour Paris part du quai deux. » Du fährst nach Lyon.','Je vais au quai quatre.','Je vais au quai deux.','Je vais au quai trois.','Für Lyon gilt quai quatre.'],
       ['retard','« Le train part à dix heures. Il a vingt minutes de retard. » Welche Aussage stimmt?','Der Zug hat 20 Minuten Verspätung.','Der Zug fährt 20 Minuten früher ab.','Der Zug fährt von Gleis 20 ab.','Retard bezeichnet die Verspätung.',false],
       ['demander','Du möchtest den Bahnhof finden und fragst höflich nach seinem Ort.','Excusez-moi, où est la gare ?','Excusez-moi, c’est quel quai ?','Excusez-moi, à quelle heure part le train ?','Où est la gare fragt nach dem Ort des Bahnhofs.'],
@@ -1667,7 +1667,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['arret','Du möchtest wissen, wo du den Bus nehmen kannst.','Où est l’arrêt de bus ?','De quel quai part le train ?','À quelle heure part le train ?','Arrêt de bus ist die Bushaltestelle.']
     ],
     10:[
-      ['metier','« Je suis étudiante et je travaille dans un café le samedi. » Was stimmt?','Die Person studiert und arbeitet samstags im Café.','Die Person unterrichtet samstags in einer Schule.','Die Person arbeitet jeden Tag im Café.','Étudiante und die auf Samstag begrenzte Arbeit werden gemeinsam genannt.',false],
+      ['metier','« Je suis étudiante et je travaille dans un café le samedi. » Was stimmt?','Die Person studiert und arbeitet samstags im Café.','Die Person studiert und arbeitet täglich im Café.','Die Person studiert samstags und arbeitet sonst im Café.','Étudiante und die auf Samstag begrenzte Arbeit werden gemeinsam genannt.',false],
       ['horaires','« Je commence à huit heures et je termine à seize heures. » Wann endet die Arbeit?','16 Uhr.','8 Uhr.','18 Uhr.','Terminer nennt das Ende, commencer den Beginn.',false],
       ['question','Du möchtest den Beruf einer Person erfahren.','Quel est votre métier ?','Où travaillez-vous ?','Quels sont vos horaires ?','Métier fragt nach dem Beruf, nicht nach Arbeitsort oder Arbeitszeiten.'],
       ['cours','« J’ai cours le matin et je travaille l’après-midi. » Wann ist Unterricht?','Vormittags.','Nachmittags.','Abends.','J’ai cours steht hier mit le matin.',false],
@@ -1677,14 +1677,14 @@ window.FR_A1_MASTERY_SPECS = {
       ['precision','Du möchtest sagen: Der Kurs beginnt um neun, nicht deine Arbeit.','Mon cours commence à neuf heures.','Je commence mon travail à neuf heures.','Mon cours termine à neuf heures.','Cours bezeichnet den Kurs; commence nennt dessen Beginn.']
     ],
     11:[
-      ['lever','« Je me lève à sept heures et je pars à huit heures. » Wann steht die Person auf?','7 Uhr.','8 Uhr.','6 Uhr.','Se lever bezeichnet das Aufstehen, partir das Losgehen.',false],
+      ['lever','« Je me lève à six heures et demie et je pars à huit heures. » Wann steht die Person auf?','6:30 Uhr.','8 Uhr.','7:30 Uhr.','Se lever bezeichnet das Aufstehen, partir das Losgehen.',false],
       ['ordre','« D’abord, je prends le petit-déjeuner. Ensuite, je prends le bus. » Was geschieht zuerst?','Frühstücken.','Bus fahren.','Nach Hause kommen.','D’abord kennzeichnet den ersten Schritt.',false],
       ['actuel','« D’habitude, je travaille le matin. Maintenant, je suis en train de lire. » Was macht die Person gerade?','Sie liest.','Sie arbeitet.','Sie frühstückt.','Maintenant und être en train de bezeichnen die aktuelle Tätigkeit.',false],
       ['retour','« Je rentre à dix-huit heures, mais le vendredi, je rentre à seize heures. » Wann kommt die Person freitags zurück?','16 Uhr.','18 Uhr.','17 Uhr.','Mais le vendredi kennzeichnet die Ausnahme.',false],
       ['repas','Du sagst, dass du frühstückst, ohne das Zubereiten des Frühstücks zu behaupten.','Je prends le petit-déjeuner.','Je prépare le petit-déjeuner.','Je prends le déjeuner.','Prendre le petit-déjeuner heißt frühstücken; préparer heißt zubereiten.'],
       ['coucher','« Le soir, je regarde la télé, puis je me couche. » Was geschieht nach dem Fernsehen?','Die Person geht ins Bett.','Die Person steht auf.','Die Person geht zur Arbeit.','Se coucher bedeutet ins Bett gehen.',false],
       ['question','Du kennst die Aufstehzeit und möchtest nach der Zeit der Rückkehr fragen.','Tu rentres à quelle heure ?','Tu te lèves à quelle heure ?','Tu pars à quelle heure ?','Rentrer fragt nach dem Zurückkommen.'],
-      ['habitude','Du arbeitest gerade, es geht um diesen Moment.','Je suis en train de travailler.','Je vais travailler demain.','Je travaille tous les lundis.','Nur être en train de beschreibt ausdrücklich die laufende Tätigkeit.']
+      ['habitude','Du arbeitest gerade, es geht um diesen Moment.','Je suis en train de travailler.','Je vais au travail.','Je travaille tous les lundis.','Nur être en train de beschreibt ausdrücklich die laufende Tätigkeit.']
     ],
     12:[
       ['symptome','« J’ai mal à la tête, mais je n’ai pas de fièvre. » Was hat die Person?','Kopfschmerzen ohne Fieber.','Fieber ohne Kopfschmerzen.','Kopfschmerzen und Fieber.','Mais je n’ai pas de fièvre schließt Fieber aus.',false],
@@ -1704,7 +1704,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['saison','« En hiver, il fait froid. En été, il fait chaud. » Welche Jahreszeit ist hier kalt?','Winter.','Sommer.','Frühling.','Hiver ist Winter; été ist Sommer.',false],
       ['accord','Du beschreibst eine kleine blaue Jacke in der üblichen Wortstellung.','Une petite veste bleue.','Une petite veste bleu.','Une petite bleue veste.','Petite steht vor veste, bleue danach und stimmt im Femininum überein.'],
       ['contraste','« Il ne pleut pas, mais il y a du vent. » Was stimmt?','Es ist windig, aber es regnet nicht.','Es regnet, aber es ist windstill.','Es regnet und es ist windig.','Die Verneinung betrifft pleuvoir, nicht den Wind.',false],
-      ['choix','Du zeigst auf mehrere Schuhe und sagst ausdrücklich „diese Schuhe“.','Ces chaussures.','Cette chaussure.','Ce pantalon.','Ces bezeichnet den Plural von chaussure.']
+      ['choix','Du zeigst auf mehrere Schuhe und sagst ausdrücklich „diese Schuhe“.','Ces chaussures.','Cette chaussures.','Ce chaussures.','Ces bezeichnet den Plural von chaussure.']
     ],
     14:[
       ['preference','« J’aime le tennis, mais je préfère lire le dimanche. » Was macht die Person sonntags lieber?','Lesen.','Tennis spielen.','Kochen.','Préfère nennt die bevorzugte Tätigkeit.',false],
@@ -1720,7 +1720,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['reservation','« Une chambre pour deux personnes, pour trois nuits. » Wie viele Nächte werden gebucht?','Drei.','Zwei.','Fünf.','Trois nuits bezeichnet die Dauer, deux personnes die Gästezahl.',false],
       ['inclus','Du möchtest wissen, ob Frühstück im Zimmerpreis enthalten ist.','Le petit-déjeuner est inclus ?','Le petit-déjeuner est à quelle heure ?','Où est le petit-déjeuner ?','Inclus fragt nach dem Enthaltensein, nicht nach Ort oder Zeit.'],
       ['billet','Du fährst nach Paris und möchtest auch zurückfahren.','Je voudrais un aller-retour pour Paris.','Je voudrais un aller simple pour Paris.','Je voudrais un aller-retour pour Lyon.','Aller-retour umfasst Hin- und Rückfahrt.'],
-      ['depart','« Le train part à huit heures et arrive à dix heures. » Wann fährt er ab?','8 Uhr.','10 Uhr.','18 Uhr.','Partir bezeichnet die Abfahrt, arriver die Ankunft.',false],
+      ['depart','« Le train part à dix-sept heures et arrive à dix-neuf heures. » Wann fährt er ab?','17 Uhr.','19 Uhr.','7 Uhr.','Partir bezeichnet die Abfahrt, arriver die Ankunft.',false],
       ['futur','« Nous allons arriver lundi. Nous avons une réservation pour deux nuits. » Wann ist die Ankunft geplant?','Montag.','Sonntag.','Mittwoch.','Aller + arriver bezeichnet hier die geplante Ankunft am Montag.',false],
       ['prix','« L’aller simple coûte vingt euros. L’aller-retour coûte trente-six euros. » Was kostet Hin- und Rückfahrt?','36 €','20 €','40 €','Der ausdrücklich genannte Preis des aller-retour ist 36 Euro.',false],
       ['demander','Du möchtest die Abfahrtszeit des Zuges erfragen.','À quelle heure part le train ?','À quelle heure arrive le train ?','De quel quai part le train ?','À quelle heure part… fragt nach der Abfahrtszeit.'],
@@ -1751,7 +1751,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['lentement','Die Person spricht zu schnell. Du möchtest sie höflich um langsameres Sprechen bitten.','Pourriez-vous parler plus lentement ?','Pourriez-vous parler plus fort ?','Pourriez-vous écrire votre adresse ?','Plus lentement ändert das Tempo, plus fort die Lautstärke.'],
       ['repeter','« Salle douze ? — Non, salle deux. » Welche Raumnummer gilt nach der Korrektur?','2','12','22','Non korrigiert die zuerst verstandene Nummer.',false],
       ['sens','Du möchtest wissen, was ein Wort bedeutet, nicht wie es geschrieben wird.','Qu’est-ce que ça veut dire ?','Comment ça s’écrit ?','Comment ça se prononce ?','Veut dire fragt nach der Bedeutung.'],
-      ['politesse','Du möchtest besonders höflich um Informationen bitten.','J’aimerais des informations, s’il vous plaît.','Je veux des informations maintenant.','Donnez-moi des informations tout de suite.','J’aimerais + s’il vous plaît formuliert die Bitte höflich.'],
+      ['politesse','Du möchtest besonders höflich um Informationen bitten.','J’aimerais des informations sur le cours.','J’aimerais confirmer mon inscription au cours.','J’aimerais annuler mon inscription au cours.','J’aimerais + s’il vous plaît formuliert die Bitte höflich.'],
       ['comprendre','« Je comprends la première phrase, mais pas la dernière. » Was muss erklärt werden?','Der letzte Satz.','Der erste Satz.','Beide Sätze.','Mais pas la dernière grenzt den unverstandenen Satz ein.',false],
       ['proposer','Du schlägst höflich vor, die Aufgabe zusammen anzusehen.','On pourrait regarder l’exercice ensemble.','On doit regarder l’exercice ensemble.','On ne peut pas regarder l’exercice ensemble.','Pourrait ist ein höflicher Vorschlag; doit macht eine Verpflichtung daraus.'],
       ['objet','« Je n’ai pas de stylo. Vous pouvez m’aider ? » Was fehlt der Person?','Ein Stift.','Ein Formular.','Eine Adresse.','Je n’ai pas de stylo nennt den fehlenden Gegenstand.',false]
@@ -1761,13 +1761,13 @@ window.FR_A1_MASTERY_SPECS = {
       ['pluriel','Du möchtest mehrere Baguettes nennen. Welche Form ist im geschriebenen Standard richtig?','Des baguettes.','Des baguette.','Une baguettes.','Im Plural tragen Artikel und Nomen die passende Form.'],
       ['identifier','Du zeigst auf mehrere Freunde. Welche Form passt im geschriebenen Standard?','Ce sont des amis.','C’est des amis.','Ce sont un ami.','Ce sont passt zum Plural des amis; c’est des… ist umgangssprachlich.'],
       ['sens','« La gare est derrière le musée. » Was liegt hinter dem Museum?','Der Bahnhof.','Das Hotel.','Das Café.','Gare ist der Bahnhof.',false],
-      ['voici','Du reichst deinen Pass und sagst „Hier ist mein Pass“.','Voici mon passeport.','Voici mon billet.','Voici mes clés.','Passeport ist der Pass, billet die Fahrkarte.'],
+      ['voici','Du reichst deinen Pass und sagst „Hier ist mein Pass“.','Voici mon passeport.','Voici mon billet.','Voici mes passeports.','Passeport ist der Pass, billet die Fahrkarte.'],
       ['genre','Du bestellst ein Baguette und einen Kaffee. Welche Kombination ist korrekt?','Une baguette et un café.','Un baguette et une café.','Une baguette et une café.','Baguette ist feminin, café maskulin.'],
       ['possesseur','« C’est ton livre ? — Oui, et ce sont mes clés. » Wem gehören die Schlüssel laut Antwort?','Der antwortenden Person.','Der fragenden Person.','Beiden Personen gemeinsam.','Mes ist in der Antwort aus Sicht der antwortenden Person zu verstehen.',false],
       ['elision','Du setzt den bestimmten Artikel vor hôtel.','L’hôtel.','Le hôtel.','La hôtel.','Vor dem stummen h wird der bestimmte Artikel elidiert.']
     ],
     20:[
-      ['negation','Du möchtest „Ich arbeite heute nicht“ im geschriebenen Standard sagen.','Je ne travaille pas aujourd’hui.','Je ne travaille jamais aujourd’hui.','Je travaille aujourd’hui.','Ne…pas verneint die heutige Tätigkeit; jamais würde nie ausdrücken.'],
+      ['negation','Du möchtest „Ich arbeite heute nicht“ im geschriebenen Standard sagen.','Je ne travaille pas aujourd’hui.','Je ne travaille jamais le dimanche.','Je travaille aujourd’hui.','Ne…pas verneint die heutige Tätigkeit; jamais würde nie ausdrücken.'],
       ['habitude','« Je travaille du lundi au jeudi. Le vendredi, je ne travaille pas. » Was stimmt?','Freitags arbeitet die Person nicht.','Donnerstags arbeitet die Person nicht.','Die Person arbeitet nur freitags.','Le vendredi, je ne travaille pas nennt die Ausnahme.',false],
       ['jamais','Du möchtest sagen, dass du sonntags nie fernsiehst.','Je ne regarde jamais la télévision le dimanche.','Je ne regarde pas la télévision aujourd’hui.','Je regarde la télévision le dimanche.','Jamais beschreibt nie; aujourd’hui wäre nur heute.'],
       ['interdiction','Ein Schild verbietet das Essen, sagt aber nichts über Trinken.','Il ne faut pas manger ici.','Il ne faut pas boire ici.','Il faut manger ici.','Manger ist essen; ne faut pas formuliert das Verbot.'],
@@ -1797,7 +1797,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['projet','Du planst, in drei Tagen abzureisen.','Je vais partir dans trois jours.','Je suis parti il y a trois jours.','J’habite ici depuis trois jours.','Futur proche und dans kennzeichnen den Plan für die Zukunft.']
     ],
     23:[
-      ['quantite','« Deux cents grammes de fromage et cent grammes de farine. » Wie viel Käse wird benötigt?','200 g','100 g','300 g','Deux cents grammes gehört zu fromage.',false],
+      ['quantite','« Trois cents grammes de fromage et cinq cents grammes de farine. » Wie viel Käse wird benötigt?','300 g','500 g','800 g','Trois cents grammes gehört zu fromage.',false],
       ['negation','« Il faut des carottes et de l’eau, mais pas de lait. » Was wird ausgeschlossen?','Milch.','Wasser.','Karotten.','Pas de lait bedeutet keine Milch.',false],
       ['but','Du benutzt ein Messer, um Gemüse zu schneiden, nicht um Brot zu schneiden.','J’utilise un couteau pour couper les légumes.','J’utilise un couteau pour couper le pain.','J’utilise un couteau pour cuire les légumes.','Couper les légumes nennt genau den beabsichtigten Zweck.'],
       ['ordre','« Coupez les tomates, puis ajoutez le fromage. » Was kommt zuerst?','Die Tomaten schneiden.','Den Käse hinzufügen.','Den Käse schneiden.','Puis kennzeichnet den zweiten Schritt.',false],
@@ -1831,3 +1831,248 @@ window.FR_A1_MASTERY_SPECS = {
   for(const [id,rows]of Object.entries(additions))for(const [prompt,answer,context,tag]of rows)window.FR_A1_MASTERY_SPECS[id].tasks.push({type:'gap',prompt,answer,context,tag});
 })();
 
+
+/* Check-only productive transfers. One task per focus; variants change the
+   situation without dropping a learning objective. Never used by grammar drills. */
+(() => {
+  const bank={
+    1:[
+      ['etre','Paul et moi, nous ___ de Berlin.','sommes','Paul und ich sind aus Berlin.','Paul and I are from Berlin.'],
+      ['etre','Léa et Marc ___ de Paris.','sont','Léa und Marc sind aus Paris.','Léa and Marc are from Paris.'],
+      ['habiter','Marie et Luc ___ à Berlin. (habiter)','habitent','Marie und Luc wohnen in Berlin.','Marie and Luc live in Berlin.'],
+      ['venir','Paul et moi, nous ___ de Lyon. (venir)','venons','Paul und ich kommen aus Lyon.','Paul and I come from Lyon.'],
+      ['appeler','Madame Martin, vous vous ___ comment ?','appelez','Du fragst Frau Martin höflich nach ihrem Namen.','Politely ask Mrs Martin her name.']
+    ],
+    2:[
+      ['modal','Madame, ___-vous épeler « Moreau » ? (pouvoir)','pouvez','Du bittest eine Person höflich, Moreau zu buchstabieren.','Politely ask one person to spell Moreau.'],
+      ['modal','Monsieur, vous ___ répéter « Dubois » ? (pouvoir)','pouvez','Du bittest eine Person höflich, Dubois zu wiederholen.','Politely ask one person to repeat Dubois.'],
+      ['infinitif','Pouvez-vous ___ votre prénom ?','épeler','Du möchtest die einzelnen Buchstaben des Vornamens hören.','You want to hear the individual letters of the first name.'],
+      ['identite','Mon ___ est Dubois. Mon prénom est Paul.','nom de famille','Ergänze die Bezeichnung für den Nachnamen.','Insert the term for family name.',['nom']],
+      ['alphabet','Nom : ___','Legrand','Der Nachname wird L-E-G-R-A-N-D buchstabiert. Trage ihn ein.','The family name is spelled L-E-G-R-A-N-D. Enter it.']
+    ],
+    3:[
+      ['avoir','Léa et Paul ___ vingt-deux ans.','ont','Léa und Paul sind 22 Jahre alt.','Léa and Paul are 22 years old.'],
+      ['avoir','Paul et moi, nous ___ quarante ans.','avons','Paul und ich sind 40 Jahre alt.','Paul and I are 40 years old.'],
+      ['age','Mon frère ___ dix-huit ans.','a','Mein Bruder ist 18 Jahre alt.','My brother is 18 years old.'],
+      ['nombre','___','quatre-vingt-douze','Schreibe 92 als französisches Zahlwort.','Write 92 in French words.'],
+      ['telephone','___','0670148091','Trage als Ziffern ein: zéro six, soixante-dix, quatorze, quatre-vingts, quatre-vingt-onze. Leerzeichen sind erlaubt.','Enter digits: zéro six, soixante-dix, quatorze, quatre-vingts, quatre-vingt-onze. Spaces are allowed.'],
+      ['date','Je suis née ___ vingt avril.','le','Eine Frau gibt ihr Geburtsdatum an: 20. April.','A woman gives her date of birth: 20 April.'],
+      ['postal','___','B2C 3D4','Im Formular steht: Téléphone : 06 20 30 40 50 / Code postal : B2C 3D4. Trage nur die Postleitzahl ein.','The form says: Téléphone : 06 20 30 40 50 / Code postal : B2C 3D4. Enter only the postal code.']
+    ],
+    4:[
+      ['heure','Il est six heures ___.','et demie','Ergänze die Wendung für 6:30 Uhr, zwei Wörter.','Complete the expression for 6:30, two words.'],
+      ['heure','Il est dix heures ___.','moins le quart','Ergänze die Wendung für 9:45 Uhr, drei Wörter.','Complete the expression for 9:45, three words.'],
+      ['jour','On se voit ___ à seize heures.','jeudi','Das Treffen ist am Donnerstag um 16 Uhr.','The meeting is on Thursday at 16:00.'],
+      ['mois','Le rendez-vous est le trois ___.','mai','Der Termin ist am 3. Mai.','The appointment is on 3 May.'],
+      ['premier','Nous sommes le ___ septembre.','premier','Heute ist der 1. September. Schreibe das Ordnungszahlwort.','Today is 1 September. Write the ordinal word.'],
+      ['horaire','La visite est vendredi ___ onze heures.','à','Die Besichtigung ist Freitag um 11 Uhr.','The viewing is on Friday at eleven.'],
+      ['intervalle','Je travaille du mardi ___ samedi.','au','Ich arbeite von Dienstag bis Samstag.','I work from Tuesday to Saturday.']
+    ],
+    5:[
+      ['mon','Paul parle de lui-même : « Léa est ___ sœur. »','ma','Paul sagt: Léa ist meine Schwester.','Paul says: Léa is my sister.'],
+      ['mon','Paul parle de lui-même : « Marc est ___ frère. »','mon','Paul sagt: Marc ist mein Bruder.','Paul says: Marc is my brother.'],
+      ['plural','Paul dit : « Léa et Marc sont ___ parents. »','mes','Paul spricht über seine eigenen Eltern.','Paul is talking about his own parents.'],
+      ['vowel','Voici ___ amie Julie.','mon','Du stellst deine eigene Freundin Julie vor.','Introduce your own female friend Julie.'],
+      ['notre','Paul et moi : « C’est ___ mère. »','notre','Paul und ich sprechen über unsere gemeinsame Mutter.','Paul and I are talking about our mother.'],
+      ['leur','Léa et Marc : « Ce sont ___ enfants. »','nos','Léa und Marc sprechen über ihre eigenen Kinder.','Léa and Marc are talking about their own children.'],
+      ['accord','Léa est ___, mais Marc est grand.','petite','Léa ist klein, Marc ist groß. Verwende petit in der passenden Form.','Léa is small and Marc is tall. Use the correct form of petit.'],
+      ['etat','La sœur de Paul est ___. (marié)','mariée','Pauls Schwester ist verheiratet. Passe marié an.','Paul’s sister is married. Make marié agree.'],
+      ['presenter','Léa et Paul ? Ce ___ mes amis.','sont','Das sind meine Freunde, schriftlicher Standard.','These are my friends, standard written French.']
+    ],
+    6:[
+      ['pain','Comme entrée, je prends ___ soupe.','de la','Ergänze den Teilungsartikel: Als Vorspeise nehme ich Suppe.','Insert the partitive article: As a starter, I am having soup.'],
+      ['pain','Pour le repas, je prends ___ pain.','du','Ergänze den Teilungsartikel: Zum Essen nehme ich Brot.','Insert the partitive article: I am having bread with the meal.'],
+      ['eau','Pour boire, je voudrais ___ eau.','de l’','Ergänze den Teilungsartikel für eine unbestimmte Menge Wasser.','Insert the partitive article for an unspecified amount of water.'],
+      ['pommes','Je prends ___ pommes pour le dessert.','des','Ergänze den unbestimmten Pluralartikel: Ich nehme Äpfel als Nachtisch.','Insert the indefinite plural article: I am having apples for dessert.'],
+      ['polite','Bonjour, je ___ une salade, s’il vous plaît.','voudrais','Verwende die gelernte höfliche Wendung: Ich hätte gern einen Salat.','Use the polite expression you learned: I would like a salad.'],
+      ['exclusion','Un sandwich ___ fromage, s’il vous plaît.','sans','Du möchtest ausdrücklich keinen Käse im Sandwich.','You specifically want no cheese in the sandwich.'],
+      ['bill','Pour payer : « L’___, s’il vous plaît. »','addition','Du bittest nach dem Essen um die Rechnung.','Ask for the bill after the meal.']
+    ],
+    7:[
+      ['quantite','Trois kilos ___ tomates, s’il vous plaît.','de','Drei Kilo Tomaten, bitte.','Three kilos of tomatoes, please.'],
+      ['quantite','Deux cents grammes ___ fromage, s’il vous plaît.','de','Zweihundert Gramm Käse, bitte.','Two hundred grams of cheese, please.'],
+      ['elision','Un litre ___eau, s’il vous plaît.','d’','Ein Liter Wasser, bitte.','A litre of water, please.'],
+      ['unite','Deux ___ de lait.','litres','Zwei Liter Milch. Setze die Einheit im Plural ein.','Two litres of milk. Insert the plural unit.'],
+      ['prix','Ça fait vingt euros ___.','quinze','Der Gesamtpreis ist 20,15 Euro. Schreibe die Centzahl als Wort.','The total is 20.15 euros. Write the cents in words.'],
+      ['taille','Je cherche une ___ trente-huit.','taille','Du suchst Größe 38. Welches Wort fehlt?','You are looking for size 38. Which word is missing?'],
+      ['payer','Est-ce que je peux payer ___ carte ?','par','Du fragst nach Kartenzahlung.','Ask about paying by card.']
+    ],
+    8:[
+      ['existence','Dans la chambre, il ___ un lit.','y a','Ergänze „es gibt“, zwei Wörter nach il.','Complete “there is”, two words after il.'],
+      ['existence','Dans la cuisine, il ___ une table.','y a','Ergänze „es gibt“, zwei Wörter nach il.','Complete “there is”, two words after il.'],
+      ['position','Les clés sont ___ le sac.','dans','Die Schlüssel sind in der Tasche.','The keys are in the bag.'],
+      ['contraction','Le rendez-vous est ___ musée.','au','Der Treffpunkt ist am Museum.','The meeting point is at the museum.'],
+      ['feminin','Je suis ___ gare pour la visite.','à la','Ich bin für die Besichtigung am Bahnhof.','I am at the station for the viewing.'],
+      ['pluriel','La chambre est près des toilettes. Je vais ___ toilettes.','aux','Ergänze à mit dem passenden Artikel.','Complete with à and the correct article.'],
+      ['location','Le loyer est de cinq cents euros par ___.','mois','Die Miete beträgt 500 Euro pro Monat.','The rent is 500 euros per month.']
+    ],
+    9:[
+      ['imperatif','Pour la gare : ___ tout droit, puis à gauche. (aller, vous)','Allez','Du erklärst höflich den Weg. Ergänze nur die Befehlsform.','Politely give directions. Insert only the imperative form.'],
+      ['imperatif','Pour le musée : ___ à droite après le café. (tourner, vous)','Tournez','Du erklärst höflich den Weg. Ergänze nur die Befehlsform.','Politely give directions. Insert only the imperative form.'],
+      ['prendre','Pour la gare, ___ la ligne quatre. (prendre, vous)','prenez','Bitte jemanden höflich, die Linie 4 zu nehmen.','Politely tell someone to take line four.'],
+      ['sequence','Allez tout droit, ___ tournez à droite.','puis','Erst geradeaus, dann rechts: Ergänze das Wort für „dann“.','First straight ahead, then right: insert the word for “then”.',['ensuite']],
+      ['direction','Tournez à ___.','gauche','Du sagst: Biegen Sie links ab.','Say: Turn left.'],
+      ['walk','L’arrêt est à six minutes à ___.','pied','Die Haltestelle ist sechs Minuten zu Fuß entfernt.','The stop is six minutes away on foot.'],
+      ['quai','Le train de Paris part du ___ six.','quai','Der Zug aus Paris fährt von Gleis 6 ab.','The train from Paris leaves from platform six.']
+    ],
+    10:[
+      ['verb','Paul et Léa ___ dans un café. (travailler)','travaillent','Paul und Léa arbeiten in einem Café.','Paul and Léa work in a café.'],
+      ['verb','Mon frère ___ dans un bureau. (travailler)','travaille','Mein Bruder arbeitet in einem Büro.','My brother works in an office.'],
+      ['cedille','Paul et moi, nous ___ à neuf heures. (commencer)','commençons','Paul und ich beginnen um neun Uhr.','Paul and I start at nine.'],
+      ['cours','Le cours ___ à dix heures. (commencer)','commence','Der Kurs beginnt um zehn Uhr.','The class starts at ten.'],
+      ['plural','Madame, vous ___ le samedi ? (travailler)','travaillez','Du fragst eine Person höflich, ob sie samstags arbeitet.','Politely ask one person whether she works on Saturdays.'],
+      ['profession','___','Je suis médecin','Bilde einen kurzen Satz mit être: Ich bin Arzt. (männlicher Sprecher)','Make a short sentence with être: I am a doctor. (male speaker)',['Je suis un médecin','Je suis docteur','Je suis un docteur','Moi, je suis médecin','Moi, je suis un médecin']],
+      ['jours','Je travaille ___ lundi au mercredi.','du','Ich arbeite von Montag bis Mittwoch.','I work from Monday to Wednesday.']
+    ],
+    11:[
+      ['reflexif','Paul et moi, nous ___ levons à six heures.','nous','Ergänze das Reflexivpronomen.','Insert the reflexive pronoun.'],
+      ['reflexif','Léa et Marc ___ lèvent à huit heures.','se','Ergänze das Reflexivpronomen.','Insert the reflexive pronoun.'],
+      ['lever','Léa et Marc se ___ tôt. (se lever)','lèvent','Léa und Marc stehen früh auf.','Léa and Marc get up early.'],
+      ['nous','Paul et moi, nous nous ___ à huit heures. (se lever)','levons','Paul und ich stehen um acht Uhr auf.','Paul and I get up at eight.'],
+      ['progressif','Paul est en train de ___.','manger','Paul isst gerade. Ergänze die Grundform.','Paul is eating right now. Insert the infinitive.'],
+      ['etre','Paul et moi, nous ___ en train de travailler.','sommes','Paul und ich arbeiten gerade.','Paul and I are working right now.'],
+      ['elision','Léa est en train ___écrire.','d’','Léa schreibt gerade. Ergänze de in der passenden Form.','Léa is writing right now. Insert the correct form of de.'],
+      ['routine','À sept heures, je prends le ___.','petit-déjeuner','Ich frühstücke um sieben Uhr. Ergänze das fehlende Nomen.','I have breakfast at seven. Insert the missing noun.'],
+      ['sequence','D’abord, je me lève. Ensuite, je me douche. ___, je pars.','Enfin','Zuerst aufstehen, danach duschen, zum Schluss aufbrechen.','First get up, then shower, finally leave.']
+    ],
+    12:[
+      ['douleur','J’ai mal ___ dos depuis hier.','au','Ich habe seit gestern Rückenschmerzen.','My back has hurt since yesterday.'],
+      ['douleur','J’ai mal ___ dents depuis lundi.','aux','Ich habe seit Montag Zahnschmerzen.','My teeth have hurt since Monday.'],
+      ['fievre','Mon fils a ___ fièvre.','de la','Mein Sohn hat Fieber. Ergänze den Teilungsartikel.','My son has a fever. Insert the partitive article.'],
+      ['duree','___ quand avez-vous mal à la tête ?','Depuis','Du fragst, seit wann die Kopfschmerzen bestehen.','Ask how long the headache has been present.'],
+      ['negation','Je suis malade. Je ne peux ___ travailler demain.','pas','Du bist krank und kannst morgen nicht arbeiten.','You are ill and cannot work tomorrow.'],
+      ['aide','Madame, pouvez-vous m’___ ?','aider','Du bittest eine Person höflich um Hilfe.','Politely ask one person for help.'],
+      ['rhume','Un médicament ___ le rhume, s’il vous plaît.','contre','Du bittest um ein Mittel gegen Erkältung.','Ask for medicine for a cold.']
+    ],
+    13:[
+      ['demonstratif','Regardez ___ veste !','cette','Du zeigst auf diese eine Jacke.','Point out this one jacket.'],
+      ['demonstratif','Regardez ___ pantalon !','ce','Du zeigst auf diese eine Hose.','Point out this one pair of trousers.'],
+      ['vowel','Je voudrais visiter ___ hôtel.','cet','Du meinst dieses eine Hotel.','You mean this one hotel.'],
+      ['plural','Je cherche ___ chaussures.','ces','Du suchst diese Schuhe, Plural.','You are looking for these shoes, plural.'],
+      ['accord','Deux vestes ___. (bleu)','bleues','Zwei blaue Jacken: Passe das Farbadjektiv an.','Two blue jackets: make the colour adjective agree.'],
+      ['adjectif','Une ___ robe noire. (petit)','petite','Ein kleines schwarzes Kleid: Passe petit an.','A small black dress: use the correct form of petit.'],
+      ['meteo','En été, il ___ chaud.','fait','Im Sommer ist es heiß.','It is hot in summer.'],
+      ['futur','Demain, il va ___ froid.','faire','Morgen wird es kalt. Ergänze das fehlende Verb im Infinitiv.','It will be cold tomorrow. Insert the missing verb in the infinitive.'],
+      ['saison','Il fait froid en ___.','hiver','Ergänze die Jahreszeit „Winter“.','Insert the season “winter”.']
+    ],
+    14:[
+      ['infinitif','Paul aime ___ à la maison.','cuisiner','Paul kocht gern zu Hause.','Paul likes cooking at home.'],
+      ['infinitif','Léa adore ___ des films.','regarder','Léa sieht sehr gern Filme.','Léa loves watching films.'],
+      ['article','Paul aime ___ football.','le','Paul mag Fußball allgemein. Ergänze den bestimmten Artikel.','Paul likes football in general. Insert the definite article.'],
+      ['sport','Le samedi, je joue ___ tennis avec Léa.','au','Samstags spiele ich mit Léa Tennis.','On Saturdays I play tennis with Léa.'],
+      ['negation','Je ___ pas voyager. (aimer)','n’aime','Ich reise nicht gern, schriftlicher Standard. Ergänze n’ und die Verbform.','I do not like travelling, standard written French. Insert n’ and the verb.'],
+      ['preference','Moi, je ___ lire avec Paul. (préférer)','préfère','Ich lese lieber mit Paul.','I prefer reading with Paul.'],
+      ['question','Qu’est-ce que tu ___ le dimanche ? (faire)','fais','Du fragst, was jemand sonntags macht.','Ask what someone does on Sundays.']
+    ],
+    15:[
+      ['futur','Léa et Paul ___ visiter Lyon demain. (aller)','vont','Léa und Paul werden morgen Lyon besuchen.','Léa and Paul are going to visit Lyon tomorrow.'],
+      ['futur','Paul et moi, nous ___ réserver une chambre. (aller)','allons','Paul und ich werden ein Zimmer reservieren.','Paul and I are going to book a room.'],
+      ['infinitif','Demain, nous allons ___ au musée.','aller','Morgen werden wir ins Museum gehen.','Tomorrow we are going to go to the museum.'],
+      ['reservation','Une chambre pour trois ___, du 4 au 7 août.','nuits','Ergänze „Nächte“. Die Ankunft ist am 4., die Abreise am 7. August.','Insert “nights”. Arrival is on 4 August and departure on 7 August.'],
+      ['billet','Un billet aller-___, s’il vous plaît.','retour','Du brauchst Hin- und Rückfahrt. Ergänze das fehlende Wort.','You need an outward and a return journey. Insert the missing word.'],
+      ['depart','À quelle heure ___ le train pour Paris ? (partir)','part','Du fragst nach der Abfahrtszeit.','Ask about the departure time.'],
+      ['prix','Le petit-déjeuner est ___ dans le prix ?','inclus','Du fragst, ob das Frühstück im Preis enthalten ist.','Ask whether breakfast is included in the price.']
+    ],
+    16:[
+      ['pouvoir','Paul et Léa ne ___ pas venir vendredi. (pouvoir)','peuvent','Paul und Léa können Freitag nicht kommen.','Paul and Léa cannot come on Friday.'],
+      ['pouvoir','Paul et moi, nous ___ venir dimanche. (pouvoir)','pouvons','Paul und ich können Sonntag kommen.','Paul and I can come on Sunday.'],
+      ['polite','Madame, vous ___ venir à dix-huit heures ? (pouvoir)','pouvez','Du fragst höflich, ob jemand um 18 Uhr kommen kann.','Politely ask whether someone can come at 18:00.'],
+      ['reporter','On peut ___ le rendez-vous à lundi ?','reporter','Du möchtest den Termin verschieben, nicht absagen.','You want to postpone the appointment, not cancel it.'],
+      ['telephone','Allô Marie, ___ Paul.','c’est','Paul ruft Marie an und nennt seinen eigenen Namen.','Paul calls Marie and gives his own name.'],
+      ['souhait','Bon ___, Léa !','anniversaire','Léa hat heute Geburtstag.','It is Léa’s birthday today.'],
+      ['compliment','C’est très ___ !','joli','Du sagst: Das ist sehr hübsch!','Say: That is very pretty!']
+    ],
+    17:[
+      ['quelle','___ est votre nationalité, Madame ?','Quelle','Du fragst nach der Staatsangehörigkeit.','Ask about nationality.'],
+      ['quelle','___ est votre adresse, Monsieur ?','Quelle','Du fragst nach der Anschrift.','Ask about the address.'],
+      ['quel','___ est le prix de ce cours ?','Quel','Du fragst nach dem Preis.','Ask about the price.'],
+      ['quels','___ sont les horaires de ce cours ?','Quels','Du fragst nach den Unterrichtszeiten.','Ask about class times.'],
+      ['reponse','Merci de me ___ demain.','répondre','Du bittest um eine schriftliche Antwort.','Ask for a written reply.'],
+      ['naissance','Date de ___ : 12 juin.','naissance','Ergänze das Formularfeld „Geburtsdatum“.','Complete the form field “date of birth”.'],
+      ['salutation','___ Madame,','Bonjour','Beginne eine einfache höfliche Nachricht mit „Guten Tag“.','Start a simple polite message with “Hello”.']
+    ],
+    18:[
+      ['negation','Je ___ comprends pas cette phrase.','ne','Ergänze die schriftliche Verneinung.','Complete the standard written negative.'],
+      ['negation','Je ___ parle pas allemand.','ne','Ergänze die schriftliche Verneinung.','Complete the standard written negative.'],
+      ['de','Je n’ai pas ___ questions.','de','Ich habe keine Fragen. Ergänze die Form nach der Verneinung.','I have no questions. Complete the form after the negative.'],
+      ['elision','Je n’ai pas ___adresse.','d’','Ich habe keine Adresse. Ergänze de in der passenden Form.','I have no address. Insert the correct form of de.'],
+      ['conditionnel','___-vous parler plus lentement ?','Pourriez','Verwende die besonders höfliche Form „könnten Sie“.','Use the especially polite form “could you”.'],
+      ['aimerais','J’___ avoir des informations. (aimer, formule polie)','aimerais','Verwende die gelernte höfliche Form „ich hätte gern“.','Use the polite form you learned: “I would like”.'],
+      ['proposition','On ___ regarder la question ensemble. (pouvoir, formule polie)','pourrait','Verwende den höflichen Vorschlag „wir könnten“.','Use the polite suggestion “we could”.']
+    ],
+    19:[
+      ['genre','Sur la table, il y a ___ ordinateur.','un','Ergänze den unbestimmten Singularartikel vor ordinateur.','Insert the indefinite singular article before ordinateur.'],
+      ['genre','Dans le sac, il y a ___ clé.','une','Ergänze den unbestimmten Singularartikel vor clé.','Insert the indefinite singular article before clé.'],
+      ['elision','___ école est près du musée.','L’','Ergänze den bestimmten Artikel vor école.','Insert the definite article before école.'],
+      ['pluriel','Dans le sac : deux ___. (livre)','livres','Schreibe livre im Plural.','Write livre in the plural.'],
+      ['indefini','___ croissants sont sur la table.','Des','Ergänze den unbestimmten Pluralartikel.','Insert the indefinite plural article.'],
+      ['defini','___ clés de Paul sont ici.','Les','Ergänze den bestimmten Pluralartikel.','Insert the definite plural article.'],
+      ['presenter','Paul et Léa ? Ce ___ mes amis.','sont','Ergänze die schriftliche Standardform.','Complete the standard written form.'],
+      ['voici','___ mon billet, ici.','Voici','Du reichst deine Fahrkarte: Hier ist meine Fahrkarte.','Hand over your ticket: Here is my ticket.',['Voilà']],
+      ['voila','___ la gare, là-bas.','Voilà','Du zeigst auf den Bahnhof dort drüben.','Point out the station over there.',['Voici']]
+    ],
+    20:[
+      ['er','Léa et Marc ___ allemand. (parler)','parlent','Léa und Marc sprechen Deutsch.','Léa and Marc speak German.'],
+      ['er','Paul et moi, nous ___ français. (parler)','parlons','Paul und ich sprechen Französisch.','Paul and I speak French.'],
+      ['vous','Madame, vous ___ français ? (parler)','parlez','Du fragst höflich, ob jemand Französisch spricht.','Politely ask whether someone speaks French.'],
+      ['nous','Paul et moi, nous ___ le soir. (travailler)','travaillons','Paul und ich arbeiten abends.','Paul and I work in the evening.'],
+      ['pas','Paul ___ pas le samedi. (travailler)','ne travaille','Paul arbeitet samstags nicht. Ergänze ne und die Verbform.','Paul does not work on Saturdays. Insert ne and the verb.'],
+      ['jamais','Léa ne prend ___ le train.','jamais','Léa fährt nie mit dem Zug.','Léa never takes the train.'],
+      ['de','Nous n’avons pas ___ voiture.','de','Wir haben kein Auto.','We have no car.'],
+      ['obligation','Pour entrer, il faut ___.','réserver','Reservieren ist Pflicht. Setze die Grundform ein.','Booking is required. Insert the infinitive.'],
+      ['interdiction','Il ne ___ pas fumer ici.','faut','Hier darf man nicht rauchen.','Smoking is not allowed here.']
+    ],
+    21:[
+      ['question','___ de personnes viennent ? — Trois.','Combien','Du fragst nach der Anzahl der Personen.','Ask how many people are coming.'],
+      ['question','___ coûte la chambre ? — Soixante euros.','Combien','Du fragst nach dem Zimmerpreis.','Ask the price of the room.'],
+      ['lieu','___ est-ce que Léa habite ? — À Paris.','Où','Du fragst nach einem Wohnort.','Ask where someone lives.'],
+      ['objet','___ ? — C’est un ordinateur.','Qu’est-ce que c’est','Schreibe die gelernte vollständige Frage nach einer Sache; das Fragezeichen steht schon da.','Write the complete question you learned for identifying a thing; the question mark is already given.'],
+      ['possessif','Madame, ce sont ___ enfants ?','vos','Du fragst eine Person höflich: Sind das Ihre Kinder?','Politely ask one person: Are these your children?'],
+      ['leur','Paul et Léa parlent de ___ mère.','leur','Paul und Léa sprechen über ihre gemeinsame Mutter.','Paul and Léa are talking about their mother.'],
+      ['leurs','Paul et Léa parlent de ___ enfants.','leurs','Paul und Léa sprechen über ihre eigenen Kinder.','Paul and Léa are talking about their children.'],
+      ['tonique','Je vais avec ___.','elles','Du gehst mit Léa und Marie. Ersetze beide Namen durch das betonte Pronomen.','You are going with Léa and Marie. Replace both names with the stressed pronoun.'],
+      ['toi','Paul : « Moi, je travaille ici. Et ___, Marie ? »','toi','Paul fragt Marie: Und du?','Paul asks Marie: And you?']
+    ],
+    22:[
+      ['avoir','Hier, Léa et Paul ___ regardé un film.','ont','Setze das passende Hilfsverb ein.','Insert the correct auxiliary.'],
+      ['avoir','Hier, Paul et moi, nous ___ visité Lyon.','avons','Setze das passende Hilfsverb ein.','Insert the correct auxiliary.'],
+      ['participe','Léa a ___ au restaurant. (manger)','mangé','Léa hat im Restaurant gegessen.','Léa ate at the restaurant.'],
+      ['etre','Hier, Léa ___ partie à dix heures.','est','Léa ist gestern um zehn Uhr abgefahren.','Léa left yesterday at ten.'],
+      ['accord','Marie et Léa sont ___. (arriver)','arrivées','Marie und Léa sind angekommen. Passe das Partizip an.','Marie and Léa have arrived. Make the participle agree.'],
+      ['recent','Paul et moi, nous ___ de manger. (venir)','venons','Paul und ich haben gerade gegessen.','Paul and I have just eaten.'],
+      ['depuis','Léa travaille ici ___ trois mois.','depuis','Léa arbeitet seit drei Monaten hier und tut es noch immer.','Léa has worked here for three months and still does.'],
+      ['dans','Je vais partir ___ une semaine.','dans','Ich werde in einer Woche abreisen.','I am going to leave in a week.'],
+      ['passe','Je suis arrivé ___ une semaine.','il y a','Ich bin vor einer Woche angekommen, männlicher Sprecher.','I arrived a week ago, male speaker.']
+    ],
+    23:[
+      ['partitif','Pour la soupe, il faut ___ farine.','de la','Ergänze den Teilungsartikel für eine unbestimmte Menge Mehl.','Insert the partitive article for an unspecified amount of flour.'],
+      ['partitif','Pour la soupe, il faut ___ lait.','du','Ergänze den Teilungsartikel für eine unbestimmte Menge Milch.','Insert the partitive article for an unspecified amount of milk.'],
+      ['elision','Pour la soupe, il faut ___ eau.','de l’','Ergänze den Teilungsartikel für eine unbestimmte Menge Wasser.','Insert the partitive article for an unspecified amount of water.'],
+      ['quantite','Trois cents grammes ___ légumes.','de','Dreihundert Gramm Gemüse.','Three hundred grams of vegetables.'],
+      ['negative','Je ne mets pas ___ sucre.','de','Ich gebe keinen Zucker dazu. Ergänze nur de.','I am not adding sugar. Insert only de.'],
+      ['peu','Un peu ___eau.','d’','Ein wenig Wasser.','A little water.'],
+      ['beaucoup','Beaucoup ___ tomates.','de','Viele Tomaten.','Lots of tomatoes.'],
+      ['but','Une cuillère pour ___ le lait.','mélanger','Ein Löffel zum Mischen der Milch.','A spoon for mixing the milk.'],
+      ['imperatif','___ le lait, puis mélangez. (ajouter, vous)','Ajoutez','Du erklärst höflich: Geben Sie die Milch dazu, dann mischen Sie.','Politely instruct: Add the milk, then mix.']
+    ],
+    24:[
+      ['destination','Paul et Léa vont ___ Allemagne.','en','Paul und Léa fahren nach Deutschland.','Paul and Léa are going to Germany.'],
+      ['destination','Paul et moi, nous allons ___ France.','en','Paul und ich fahren nach Frankreich.','Paul and I are going to France.'],
+      ['masculin','Nous allons ___ Canada en juillet.','au','Wir fahren im Juli nach Kanada.','We are going to Canada in July.'],
+      ['plural','Léa va ___ États-Unis.','aux','Léa fährt in die USA.','Léa is going to the USA.'],
+      ['origine','Paul vient ___Allemagne.','d’','Paul kommt aus Deutschland.','Paul comes from Germany.'],
+      ['origine-pl','Nos amis viennent ___ États-Unis.','des','Unsere Freunde kommen aus den USA.','Our friends come from the USA.'],
+      ['devoir','Paul et moi, nous ___ prendre le train. (devoir)','devons','Paul und ich müssen den Zug nehmen.','Paul and I must take the train.'],
+      ['modal','Paul et Léa ___ rentrer vendredi. (devoir)','doivent','Paul und Léa müssen am Freitag zurückkommen.','Paul and Léa must return on Friday.'],
+      ['transport','Nous partons ___ voiture.','en','Wir fahren mit dem Auto.','We are travelling by car.']
+    ]
+  };
+  for(const [id,rows]of Object.entries(bank)){
+    const s=window.FR_A1_MASTERY_SPECS[id];
+    s.checkTransfers=rows.map(([focus,prompt,answer,context,contextEn,accept=[]],index)=>{
+      const strictAccents=true,accentHint=/[àâçéèêëîïôùûü]/i.test(answer),format=id==='3'&&['telephone','postal'].includes(focus)?focus==='telephone'?'phone':'postal':null,numberWords=id==='3'&&focus==='nombre';
+      const explanation=prompt.replace('___',answer).replace(/\s*\([^)]*\)/g,'').replace(/([’'])\s+/g,'$1');
+      return {type:'gap',prompt,answer,accept,context:context+(accentHint?' Achte auch auf die Akzente.':''),contextEn:contextEn+(accentHint?' Check the accents too.':''),explanation,audio:format?'':explanation,marking:{strictAccents,format,numberWords},family:'transfer:'+focus,checkKey:`L${id}-transfer-${focus}-${index}`};
+    });
+  }
+})();
