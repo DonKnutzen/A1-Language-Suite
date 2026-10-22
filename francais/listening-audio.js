@@ -39,13 +39,13 @@
     if(options.lang&& !/^fr(?:-|$)/i.test(options.lang)){cancel();return original.speakDialogue(turns,options);}
     const synth=window.speechSynthesis;if(!synth||typeof window.SpeechSynthesisUtterance==='undefined')return false;
     const rate=Number(options.rate??.75),parts=plan(turns,rate);if(!parts.length)return false;
-    cancel();const run=generation,pair=voice.dialogueVoices('fr-FR');let index=0,lastTurn=-1,finished=false;
+    cancel();const run=generation,pair=voice.dialogueVoices('fr-FR');const roles=window.A1DialogueVoices?.plan('fr-FR',turns);window.A1DialogueVoices?.announce(roles?.notice||'');let index=0,lastTurn=-1,finished=false;
     function finish(failed){if(finished||run!==generation)return;finished=true;onCancel=null;if(timer!==null)window.clearTimeout(timer);timer=null;(failed?options.onError:options.onEnd)?.();}
     onCancel=()=>{if(finished)return;finished=true;options.onEnd?.();};
     function next(){
       if(run!==generation||finished)return;
       if(index>=parts.length){finish(false);return;}
-      const part=parts[index++],selected=pair[part.gender==='male'?'B':part.gender==='female'?'A':part.speaker]||voice.select('fr-FR');
+      const part=parts[index++],selected=roles?.bySpeaker[part.speaker]||pair[part.gender==='male'?'B':part.gender==='female'?'A':part.speaker]||voice.select('fr-FR');
       const u=new window.SpeechSynthesisUtterance(part.text);u.lang=selected?.lang||'fr-FR';if(selected)u.voice=selected;u.rate=part.rate;u.pitch=1;u.volume=1;
       if(lastTurn!==part.turn){lastTurn=part.turn;options.onTurn?.(part.speaker,part.turn);}
       let handled=false;

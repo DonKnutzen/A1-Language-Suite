@@ -45,7 +45,7 @@ test('German A1 opts in; other course engine callers retain their previous behav
 });
 test('French checks expose replay only after marking and restore it without autoplay',()=>{
  const e=fixture(),lesson=e.w.FR_A1_DATA.lessons[0],state={};const show=()=>{e.w.FR_A1_MASTERY.renderLessonTest({lesson,view:e.view,state,save(){},onBack(){},speak:e.speak});e.view.querySelector('#masteryStart').click();};
- show();assert(!e.view.querySelector('[data-answer-replay]'));const q=state.lessonCheckProgress[1].session.ex[0];e.view.querySelector(`[data-mastery-o="${q.o.indexOf(q.answer)}"]`).click();assert(e.view.querySelector('[data-answer-replay]'));const before=e.audio.length;show();assert.equal(e.audio.length,before);e.view.querySelector('[data-answer-replay]').click();assert.equal(e.audio.at(-1).text,q.audio);e.dom.window.close();
+ show();const session=state.lessonCheckProgress[1].session,q=session.ex.find(q=>q.type==='choice'&&q.audio);session.ex=[q];session.i=0;show();assert(!e.view.querySelector('[data-answer-replay]'));e.view.querySelector(`[data-mastery-o="${q.o.indexOf(q.answer)}"]`).click();assert(e.view.querySelector('[data-answer-replay]'));const before=e.audio.length;show();assert.equal(e.audio.length,before);e.view.querySelector('[data-answer-replay]').click();assert.equal(e.audio.at(-1).text,q.audio);e.dom.window.close();
 });
 test('French first-lesson grammar check has replay only after marking',()=>{
  const e=fixture();e.w.FR_A1_LESSON1.renderGrammarCheck({view:e.view,state:{},save(){},speak:e.speak,onBack(){}});

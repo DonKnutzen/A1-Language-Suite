@@ -301,8 +301,8 @@ window.FR_A1_DATA = {
           "q": "Vous pouvez ___, s’il vous plaît ?",
           "o": [
             "épeler",
-            "répéter",
-            "parler"
+            "épelez",
+            "épelle"
           ],
           "a": 0,
           "audio": "Vous pouvez épeler, s’il vous plaît ?",
@@ -1009,8 +1009,8 @@ window.FR_A1_DATA = {
           "q": "Wie bestellst du höflich Kaffee?",
           "o": [
             "Je voudrais un café, s’il vous plaît.",
-            "Je suis un café.",
-            "Je vais café."
+            "Je voudrais un verre d’eau, s’il vous plaît.",
+            "Je voudrais l’addition, s’il vous plaît."
           ],
           "a": 0,
           "audio": "Je voudrais un café, s’il vous plaît."

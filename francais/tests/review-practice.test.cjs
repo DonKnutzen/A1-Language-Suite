@@ -35,7 +35,7 @@ test('mistakes persist by profile, are cleared after two correct reviews, and re
 });
 test('paused drafts, checked answers, option order and scores survive reopen without recording twice',()=>{
  const e=environment();e.render();e.click('#reviewStart');let s=e.state.reviewPractice.session,q=s.tasks[0];
- if(q.kind==='choice'){e.click(`[data-review-option="${s.order.indexOf(q.answer)}"]`);}else{const input=e.view.querySelector('#reviewInput');input.value=q.answer;input.dispatchEvent(new e.w.Event('input'));e.click('#reviewCheck');}
+ if(q.kind==='choice'){e.click(`[data-review-option="${s.order.indexOf(q.answer)}"]`);e.click('#reviewCheck');}else{const input=e.view.querySelector('#reviewInput');input.value=q.answer;input.dispatchEvent(new e.w.Event('input'));e.click('#reviewCheck');}
  assert.equal(s.answers.length,1);e.render();e.click('#reviewResume');assert(e.view.querySelector('#reviewNext'));assert.equal(s.answers.length,1);
  e.language('en');assert(e.view.querySelector('#reviewNext'));assert(e.view.textContent.includes('Correct'));
  e.click('#reviewNext');s=e.state.reviewPractice.session;
@@ -50,7 +50,7 @@ test('custom selection limits the pool, reports short rounds, and empty selectio
 test('new rounds require explicit replacement; mistake rounds accept unfinished lessons and keep achievements',()=>{
  const e=environment({doneLessons:[],lessonMasteryBest:{1:95},lessonWork:{}});const q=e.api.task(3,'grammar:r0','avoir',{q:'Tu ___ vingt ans.',answer:'as',o:['as','a','ai']});e.api.record(e.state,q,false);
  e.render();e.click('[value="mistakes"]');e.click('#reviewStart');assert.equal(e.state.reviewPractice.session.tasks.length,1);e.click('#reviewPause');const previous=e.state.reviewPractice.session;e.click('#reviewStart');assert.equal(e.state.reviewPractice.session,previous);e.click('#reviewReplace');assert.notEqual(e.state.reviewPractice.session,previous);
- e.click(`[data-review-option="${e.state.reviewPractice.session.order.indexOf('as')}"]`);e.click('#reviewNext');assert.equal(e.completed,1);assert.equal(e.state.lessonMasteryBest[1],95);assert.equal(e.api.pending(e.state).length,1);e.dom.window.close();
+ e.click(`[data-review-option="${e.state.reviewPractice.session.order.indexOf('as')}"]`);e.click('#reviewCheck');e.click('#reviewNext');assert.equal(e.completed,1);assert.equal(e.state.lessonMasteryBest[1],95);assert.equal(e.api.pending(e.state).length,1);e.dom.window.close();
 });
 test('session imports do not double count; strict accents and hard-mode alternatives retain marking policy',()=>{
  const e=environment(),s={ex:[{type:'choice',q:'Bonjour ?',o:['Guten Tag','Gute Nacht'],a:0,answer:'Guten Tag'}],i:0,response:{status:'bad'}};
@@ -131,4 +131,10 @@ test('retired phrase cards leave ongoing mixed rounds while checked feedback and
  e.state.reviewPractice={session:{version:1,tasks:[old,valid],index:0,answers:[{value:old.answer,ok:true}],mode:'mixed',draft:''}};e.render();assert.equal(e.state.reviewPractice.session.tasks[0].id,old.id);assert.equal(e.state.reviewPractice.session.answers[0].ok,true);
  e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode:'mixed',draft:'keep archived'};e.render();assert(!e.state.reviewPractice.session);assert.equal(e.state.reviewPractice.previousQuestionRound.draft,'keep archived');
  e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode:'mistakes',draft:''};e.render();assert.equal(e.state.reviewPractice.session.tasks[0].id,old.id);e.dom.window.close();
+});
+
+test('reported infinitive and coffee mistakes upgrade ungraded drafts while keeping graded history',()=>{
+ const e=environment(),api=e.api,old=api.task(2,'grammar:r1','Buchstabieren',{q:'Vous pouvez ___, s’il vous plaît ?',answer:'épeler',o:['épeler','répéter','parler'],context:'Können Sie bitte buchstabieren?'}),coffee=api.task(6,'lesson','Lektionsübung',{q:'Wie bestellst du höflich Kaffee?',answer:'Je voudrais un café, s’il vous plaît.',o:['Je voudrais un café, s’il vous plaît.','Je suis un café.','Je vais café.']});
+ api.record(e.state,old,false);api.record(e.state,coffee,false);const graded={value:'répéter',ok:false};e.state.reviewPractice.imported=true;e.state.reviewPractice.session={version:1,tasks:[old,old,coffee],index:1,answers:[graded],draft:'répéter',mode:'mistakes',startedAt:1};
+ e.render({initialMode:'mistakes'});const s=e.state.reviewPractice.session;assert.equal(s.tasks[0].id,old.id);assert.equal(JSON.stringify(s.answers[0]),JSON.stringify(graded));assert(s.tasks[1].o.includes('épelez'));assert(!s.tasks[1].o.includes('répéter'));assert(!s.tasks[2].o.includes('Je suis un café.'));assert.equal(s.draft,'');assert(e.state.reviewPractice.items[old.id].retired);e.dom.window.close();
 });

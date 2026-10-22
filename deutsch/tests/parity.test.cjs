@@ -56,9 +56,9 @@ test('German review uses concrete topics only, all distinct taught forms, and on
 });
 test('German mistake memory, settings, frozen responses and draft position survive reopening',()=>{
  const e=environment({doneLessons:[1],lessonWork:{},lessonMasteryBest:{1:88},lessonQuizBest:{}}),api=e.w.DE_A1_REVIEW,q=api.task(1,'grammar:sein','sein',{q:'Ich ___ zu Hause.',o:['bin','bist','ist'],answer:'bin'});
- api.record(e.state,q,false);e.review({initialMode:'mistakes'});e.click('#reviewStart');e.click(`[data-review-option="${e.state.reviewPractice.session.order.indexOf('bin')}"]`);assert(e.view.querySelector('#reviewNext'));assert.equal(api.pending(e.state).length,1);
+ api.record(e.state,q,false);e.review({initialMode:'mistakes'});e.click('#reviewStart');e.click(`[data-review-option="${e.state.reviewPractice.session.order.indexOf('bin')}"]`);e.click('#reviewCheck');assert(e.view.querySelector('#reviewNext'));assert.equal(api.pending(e.state).length,1);
  const s=JSON.parse(JSON.stringify(e.state));e.dom.window.close();const r=environment(s);r.review({initialMode:'mistakes'});r.click('#reviewResume');assert(r.view.querySelector('#reviewNext'));assert(r.view.querySelector('[data-review-option]').disabled);r.click('#reviewNext');assert.equal(r.state.lessonMasteryBest[1],88);
- r.click('#reviewSetup');r.click('#reviewStart');r.click(`[data-review-option="${r.state.reviewPractice.session.order.indexOf('bin')}"]`);r.click('#reviewNext');assert.equal(r.w.DE_A1_REVIEW.pending(r.state).length,0);r.dom.window.close();
+ r.click('#reviewSetup');r.click('#reviewStart');r.click(`[data-review-option="${r.state.reviewPractice.session.order.indexOf('bin')}"]`);r.click('#reviewCheck');r.click('#reviewNext');assert.equal(r.w.DE_A1_REVIEW.pending(r.state).length,0);r.dom.window.close();
 });
 test('German assessment records wrong answers once and preserves ordinary check progress',()=>{
  const e=environment();e.w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:e.w.testData.lessons[0],view:e.view,state:e.state,save:e.save,speak(){},onBack(){}});e.click('#masteryStart');

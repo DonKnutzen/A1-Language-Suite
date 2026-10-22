@@ -32,6 +32,7 @@
     if(/Possessivbegleiter/i.test(unit.title))return possessives();
     if(lesson.id===5&&unit.key==='r1')return family().map(t=>{const m=t.q.match(/^(?:C’|Ce )___ (.+)$/);return m?{...t,legacyTask:{q:'___ '+m[1],answer:t.answer==='est'?'C’est':'Ce sont'}}:t;});
     if(lesson.id===13&&unit.key==='r1')return adjectiveAgreement();
+    tasks=tasks.map(task=>task.q==='Vous pouvez ___, s’il vous plaît ?'&&task.answer==='épeler'?{...task,o:['épeler','épelez','épelle'],legacyTask:{q:task.q,answer:task.answer}}:task);
     const replacements={
       'Je voudrais un café.':{q:'Welche Aussage verwendet die höfliche Wunschform von vouloir?',o:['Je voudrais un café.','Je veux un café.','Je prends un café.']},
       'Combien ça coûte ?':{o:['Combien ça coûte ?','Combien de pommes voulez-vous ?','Combien de personnes ?']},

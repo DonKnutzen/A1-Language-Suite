@@ -103,13 +103,13 @@
   function refreshQuestions(state,lessons,grammarHtml,bank){
     const p=store(state),s=p.session,currentIds=new Set(bank.map(q=>q.id));
     const oldTable=q=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(q.q);
-    const weak=q=>q&&(oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
+    const weak=q=>q&&((q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
     const recognition=q=>/^grammar:/.test(q.topic)&&/^(?:Wie sagst du „.+“ auf Französisch\?|Was bedeutet „.+“\?)$/.test(q.q)&&!currentIds.has(q.id);
     if(!Object.values(p.items||{}).some(item=>!item.retired&&weak(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&(weak(q)||(s.mode!=='mistakes'&&recognition(q)))))return;
     const revised=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml,true),lookup=new Map();
     const key=(q,legacy)=>JSON.stringify([q.lessonId,q.topic,legacy.q,legacy.answer]);
     for(const q of revised)for(const legacy of [q.legacyTask,q.legacyTaskForms].filter(Boolean))lookup.set(key(q,legacy),q);
-    const replacement=q=>lookup.get(key(q,q));
+    const replacement=q=>lookup.get(key(q,q))||(()=>{const source=lessons.find(l=>l.id===q.lessonId)?.quiz?.find(item=>item.q===q.q);return source?task(q.lessonId,q.topic,q.label,source):null;})();
     let changed=false;
     for(const [id,item]of Object.entries(p.items||{})){
       if(item.retired||!weak(item.task))continue;
@@ -210,7 +210,7 @@
       const q=s.tasks[s.index],answer=s.answers[s.index],lesson=lessons.find(l=>l.id===q.lessonId);
       s.order||=q.o?shuffle(q.o):null;
       redraw=()=>{if(view.querySelector('.review-practice'))draw();};
-      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr('Pausieren','Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr('Zusätzliches Training','Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'de'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div>`:`<label for="reviewInput">${tr('Deine Antwort','Your answer')}</label><input class="mixed-input" id="reviewInput" lang="fr" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('fr',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr('Prüfen','Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
+      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr('Pausieren','Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr('Zusätzliches Training','Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'de'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div><button class="primary-btn" id="reviewCheck" ${answer||!s.draft?'disabled':''}>${tr('Prüfen','Check')}</button>`:`<label for="reviewInput">${tr('Deine Antwort','Your answer')}</label><input class="mixed-input" id="reviewInput" lang="fr" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('fr',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr('Prüfen','Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
       view.querySelector('#reviewPause').onclick=setup;
       reviewAudio=q.turns||q.speech?window.A1ReviewAudio.mount({root:view,turns:q.turns,speech:q.speech,targetLang:'fr-FR',uiLang:en()?'en':'de'}):null;
       function feedback(a){
@@ -224,7 +224,16 @@
         if(s.answers[s.index]||!value.trim())return;
         const a={value,ok:accepted(q,value)};s.answers[s.index]=a;record(state,q,a.ok,true);save();cancel();feedback(a);view.querySelector("#reviewNext").focus();
       }
-      view.querySelectorAll('[data-review-option]').forEach((el,i)=>el.onclick=()=>check(s.order[i]));
+      const options=[...view.querySelectorAll('[data-review-option]')];
+      function selectOption(value){
+        if(s.answers[s.index])return;
+        s.draft=value;
+        options.forEach((el,i)=>{const selected=s.order[i]===value;el.classList.toggle('selected',selected);el.setAttribute('aria-pressed',String(selected));});
+        view.querySelector('#reviewCheck').disabled=!value;save();
+      }
+      options.forEach((el,i)=>{el.setAttribute('aria-pressed',String(s.draft===s.order[i]));el.classList.toggle('selected',s.draft===s.order[i]);el.onclick=()=>selectOption(s.order[i]);});
+      if(q.kind==='choice')view.querySelector('#reviewCheck').onclick=()=>check(s.draft);
+
       const input=view.querySelector('#reviewInput');
       if(input){
         input.oninput=()=>{s.draft=input.value;save();};

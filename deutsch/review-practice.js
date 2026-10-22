@@ -168,7 +168,7 @@
       const q=s.tasks[s.index],answer=s.answers[s.index],lesson=lessons.find(l=>l.id===q.lessonId);
       s.order||=q.o?shuffle(q.o):null;
       redraw=()=>{if(view.querySelector('.review-practice'))draw();};
-      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr("Pause",'Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr("Entraînement supplémentaire",'Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'fr'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" lang="${q.answerLang||'de'}" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div>`:`<label for="reviewInput">${tr("Ta réponse",'Your answer')}</label><input class="mixed-input" id="reviewInput" lang="de" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('de',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr("Vérifier",'Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
+      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr("Pause",'Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr("Entraînement supplémentaire",'Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'fr'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" lang="${q.answerLang||'de'}" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div><button class="primary-btn" id="reviewCheck" ${answer||!s.draft?'disabled':''}>${tr("Vérifier",'Check')}</button>`:`<label for="reviewInput">${tr("Ta réponse",'Your answer')}</label><input class="mixed-input" id="reviewInput" lang="de" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('de',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr("Vérifier",'Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
       view.querySelector('#reviewPause').onclick=setup;
       reviewAudio=q.turns||q.speech?window.A1ReviewAudio.mount({root:view,turns:q.turns,speech:q.speech,targetLang:'de-DE',uiLang:en()?'en':'fr'}):null;
       function feedback(a){
@@ -182,7 +182,16 @@
         if(s.answers[s.index]||!value.trim())return;
         const a={value,ok:accepted(q,value)};s.answers[s.index]=a;record(state,q,a.ok,true);save();cancel();feedback(a);view.querySelector("#reviewNext").focus();
       }
-      view.querySelectorAll('[data-review-option]').forEach((el,i)=>el.onclick=()=>check(s.order[i]));
+      const options=[...view.querySelectorAll('[data-review-option]')];
+      function selectOption(value){
+        if(s.answers[s.index])return;
+        s.draft=value;
+        options.forEach((el,i)=>{const selected=s.order[i]===value;el.classList.toggle('selected',selected);el.setAttribute('aria-pressed',String(selected));});
+        view.querySelector('#reviewCheck').disabled=!value;save();
+      }
+      options.forEach((el,i)=>{el.setAttribute('aria-pressed',String(s.draft===s.order[i]));el.classList.toggle('selected',s.draft===s.order[i]);el.onclick=()=>selectOption(s.order[i]);});
+      if(q.kind==='choice')view.querySelector('#reviewCheck').onclick=()=>check(s.draft);
+
       const input=view.querySelector('#reviewInput');
       if(input){
         input.oninput=()=>{s.draft=input.value;save();};

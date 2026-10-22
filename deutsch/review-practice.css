@@ -48,3 +48,5 @@ html.dark-mode .home-mistake-count{background:#e1b36d1a}
 @media(max-width:480px){.review-actions{flex-direction:column}.review-actions>button{flex:auto;min-width:0;width:100%}}
 
 .review-practice .mixed-context{white-space:pre-line}
+
+.review-practice .option-btn[aria-pressed="true"]:not(:disabled){border:2px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);box-shadow:0 0 0 2px var(--accent-soft)}

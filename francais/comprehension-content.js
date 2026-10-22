@@ -2047,5 +2047,5 @@ window.A1_COMPREHENSION_CONTENT = {
     23:[['A','Il faut quoi pour la soupe ?'],['B','Trois carottes, deux pommes de terre et un peu de lait.'],['A','On ajoute du sucre ?'],['B','Non, pas de sucre.'],['A','Comment préparer la soupe ?'],['B','Coupez les légumes avec un couteau, puis ajoutez le lait.'],['A','Et le sel ?'],['B','Il ne faut pas ajouter trop de sel.']],
     24:[['A','Tu pars où en vacances ?'],['B','Je vais en France, à Lyon.'],['A','Tu pars du Canada ?'],['B','Oui, je viens du Canada.'],['A','Tu pars lundi en train ?'],['B','Non, mardi en bus. Je rentre vendredi.'],['A','À quelle heure dois-tu partir ?'],['B','Je dois partir à huit heures. Je vais visiter la ville.']]
   };
-  for(const [id,lines]of Object.entries(scenes))window.A1_COMPREHENSION_CONTENT[id].turns=lines.map(([speaker,text])=>({speaker,text,...(id==='2'?{gender:'male'}:{})}));
+  for(const [id,lines]of Object.entries(scenes))window.A1_COMPREHENSION_CONTENT[id].turns=lines.map(([speaker,text])=>({speaker,text,...(['1','17'].includes(id)?{gender:speaker==='A'?'female':'male'}:id==='2'?{gender:'male'}:{})}));
 })();
