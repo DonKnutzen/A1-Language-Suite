@@ -1500,7 +1500,7 @@ window.DE_A1_HARD_CONTENT = {
     "taskCount": 17
   },
   "7": {
-    "version": 2,
+    "version": 3,
     "text": "Ich möchte eine Jacke kaufen. Die rote Jacke kostet {{0}} Euro. Die blaue kostet {{1}} Euro. Ein T-Shirt kostet {{2}} Euro, ein anderes {{3}}.\nDie rote Jacke ist zu {{4}}. Größe S ist zu {{5}}. Größe XL ist zu {{6}}. Die Hose ist zu {{7}}. Haben Sie eine andere {{8}}? Ich möchte {{9}}.",
     "gaps": [
       {
@@ -1661,12 +1661,12 @@ window.DE_A1_HARD_CONTENT = {
       },
       {
         "kind": "message",
-        "text": "A: Hallo! Ich habe eine Hose für neunzehn Euro gefunden. Leider ist sie zu lang. Die Jacke kostet dreißig Euro, das ist mir zu teuer. Ich kaufe nur ein T-Shirt für dreizehn Euro.",
+        "text": "A: Hallo! Hier ist eine Hose für neunzehn Euro. Leider ist sie zu lang. Die Jacke kostet dreißig Euro, das ist mir zu teuer. Ich kaufe nur ein T-Shirt für dreizehn Euro.",
         "turns": [
           {
             "speaker": "A",
             "gender": "female",
-            "text": "Hallo! Ich habe eine Hose für neunzehn Euro gefunden. Leider ist sie zu lang. Die Jacke kostet dreißig Euro, das ist mir zu teuer. Ich kaufe nur ein T-Shirt für dreizehn Euro."
+            "text": "Hallo! Hier ist eine Hose für neunzehn Euro. Leider ist sie zu lang. Die Jacke kostet dreißig Euro, das ist mir zu teuer. Ich kaufe nur ein T-Shirt für dreizehn Euro."
           }
         ],
         "questions": [
@@ -1706,7 +1706,7 @@ window.DE_A1_HARD_CONTENT = {
         "Explique un problème de taille ou de prix.",
         "Demande une autre taille ou un autre article."
       ],
-      "model": "Hallo Anna! Ich suche eine Jacke. Die blaue Jacke kostet zwanzig Euro, aber Größe S ist zu klein. Die rote ist zu teuer. Hast du die blaue Jacke in Größe M gesehen? Viele Grüße, Nora",
+      "model": "Hallo Anna! Ich suche eine Jacke. Die blaue Jacke kostet zwanzig Euro, aber Größe S ist zu klein. Die rote ist zu teuer. Hast du die blaue Jacke in Größe M? Viele Grüße, Nora",
       "targetWords": 30,
       "minWords": 25
     },
@@ -1725,10 +1725,13 @@ window.DE_A1_HARD_CONTENT = {
         "label": "Comprendre des informations précises"
       }
     },
-    "taskCount": 17
+    "taskCount": 17,
+    "compatibleVersions": [
+      2
+    ]
   },
   "8": {
-    "version": 2,
+    "version": 3,
     "text": "Ich suche eine {{0}} in Bonn. Ich möchte kein {{1}} kaufen. Die Wohnung hat zwei {{2}}, eine {{3}} und ein {{4}}. Sie hat auch einen {{5}}. Die Miete beträgt sechshundert {{6}}.\nIch möchte die Wohnung {{7}}. Kann ich am {{8}} um zehn Uhr kommen? Wie ist die {{9}}?\n\nDie Wohnung {{10}} zwei Zimmer. Wir {{11}} drei Zimmer. Ich {{12}} ein Zimmer mit Balkon.",
     "gaps": [
       {
@@ -1920,12 +1923,12 @@ window.DE_A1_HARD_CONTENT = {
       },
       {
         "kind": "message",
-        "text": "A: Hallo Nora! Ich habe ein Zimmer in Berlin gefunden. Es kostet dreihundert Euro. Es gibt eine Küche und ein Bad, aber keinen Balkon. Die Besichtigung ist am Freitag um elf Uhr. Kommst du mit?",
+        "text": "A: Hallo Nora! Ich habe ein Zimmer in Berlin. Es kostet dreihundert Euro. Es gibt eine Küche und ein Bad, aber keinen Balkon. Die Besichtigung ist am Freitag um elf Uhr. Kommst du mit?",
         "turns": [
           {
             "speaker": "A",
             "gender": "female",
-            "text": "Hallo Nora! Ich habe ein Zimmer in Berlin gefunden. Es kostet dreihundert Euro. Es gibt eine Küche und ein Bad, aber keinen Balkon. Die Besichtigung ist am Freitag um elf Uhr. Kommst du mit?"
+            "text": "Hallo Nora! Ich habe ein Zimmer in Berlin. Es kostet dreihundert Euro. Es gibt eine Küche und ein Bad, aber keinen Balkon. Die Besichtigung ist am Freitag um elf Uhr. Kommst du mit?"
           }
         ],
         "questions": [
@@ -1982,7 +1985,10 @@ window.DE_A1_HARD_CONTENT = {
         "label": "Comprendre des informations précises"
       }
     },
-    "taskCount": 21
+    "taskCount": 21,
+    "compatibleVersions": [
+      2
+    ]
   },
   "9": {
     "version": 2,
@@ -2861,7 +2867,7 @@ window.DE_A1_HARD_CONTENT = {
     "taskCount": 17
   },
   "13": {
-    "version": 2,
+    "version": 3,
     "text": "Guten Tag! Ich möchte ein {{0}} reservieren. Für zwei Personen brauche ich ein {{1}}. Für eine Familie gibt es ein {{2}}. Ich möchte {{3}} Zimmer buchen.\nDer Zug fährt um {{4}} Uhr {{5}}. Der nächste Zug fährt um {{6}} Uhr. Wir kommen um {{7}} Uhr an. Das Frühstück ist um {{8}} Uhr schon vorbei. Ist das Frühstück {{9}}?",
     "gaps": [
       {
@@ -3016,12 +3022,12 @@ window.DE_A1_HARD_CONTENT = {
       },
       {
         "kind": "message",
-        "text": "A: Hallo Nora! Unser Zug fährt morgen früh um acht Uhr ab. Wir treffen uns um Viertel vor acht am Bahnhof. Ich habe ein Doppelzimmer im Hotel Adler reserviert, ohne Frühstück. Bitte bring deine Fahrkarte mit.",
+        "text": "A: Hallo Nora! Unser Zug fährt morgen früh um acht Uhr ab. Wir treffen uns um Viertel vor acht am Bahnhof. Ich möchte ein Doppelzimmer im Hotel Adler, ohne Frühstück. Bitte bring deine Fahrkarte mit.",
         "turns": [
           {
             "speaker": "A",
             "gender": "female",
-            "text": "Hallo Nora! Unser Zug fährt morgen früh um acht Uhr ab. Wir treffen uns um Viertel vor acht am Bahnhof. Ich habe ein Doppelzimmer im Hotel Adler reserviert, ohne Frühstück. Bitte bring deine Fahrkarte mit."
+            "text": "Hallo Nora! Unser Zug fährt morgen früh um acht Uhr ab. Wir treffen uns um Viertel vor acht am Bahnhof. Ich möchte ein Doppelzimmer im Hotel Adler, ohne Frühstück. Bitte bring deine Fahrkarte mit."
           }
         ],
         "questions": [
@@ -3082,7 +3088,10 @@ window.DE_A1_HARD_CONTENT = {
         "label": "Comprendre des informations précises"
       }
     },
-    "taskCount": 17
+    "taskCount": 17,
+    "compatibleVersions": [
+      2
+    ]
   },
   "14": {
     "version": 2,
@@ -3966,7 +3975,7 @@ window.DE_A1_HARD_CONTENT = {
     "taskCount": 17
   },
   "18": {
-    "version": 2,
+    "version": 3,
     "text": "Zuerst {{0}} ich die Aufgabe. Dann {{1}} ich den Text. Danach {{2}} ich die Antwort. Zum Schluss {{3}} ich den Text.\nDie Lehrerin sagt: {{4}} Sie den Text. {{5}} Sie den Text. {{6}} Sie einen Text. {{7}} Sie die Antwort an. Ich habe eine {{8}}. Können Sie bitte {{9}} sprechen?",
     "gaps": [
       {
@@ -4120,12 +4129,12 @@ window.DE_A1_HARD_CONTENT = {
       },
       {
         "kind": "message",
-        "text": "A: Guten Tag! Lesen Sie bitte zuerst die Fragen. Hören Sie dann den Dialog. Kreuzen Sie die Antworten an. Schreiben Sie danach eine kurze Nachricht. Prüfen Sie am Ende Ihren Text. Wenn Sie eine Frage haben, fragen Sie bitte.",
+        "text": "A: Guten Tag! Lesen Sie bitte zuerst die Fragen. Hören Sie dann den Dialog. Kreuzen Sie die Antworten an. Schreiben Sie danach eine kurze Nachricht. Prüfen Sie am Ende Ihren Text. Sie haben eine Frage? Fragen Sie bitte.",
         "turns": [
           {
             "speaker": "A",
             "gender": "female",
-            "text": "Guten Tag! Lesen Sie bitte zuerst die Fragen. Hören Sie dann den Dialog. Kreuzen Sie die Antworten an. Schreiben Sie danach eine kurze Nachricht. Prüfen Sie am Ende Ihren Text. Wenn Sie eine Frage haben, fragen Sie bitte."
+            "text": "Guten Tag! Lesen Sie bitte zuerst die Fragen. Hören Sie dann den Dialog. Kreuzen Sie die Antworten an. Schreiben Sie danach eine kurze Nachricht. Prüfen Sie am Ende Ihren Text. Sie haben eine Frage? Fragen Sie bitte."
           }
         ],
         "questions": [
@@ -4182,7 +4191,10 @@ window.DE_A1_HARD_CONTENT = {
         "label": "Comprendre des informations précises"
       }
     },
-    "taskCount": 17
+    "taskCount": 17,
+    "compatibleVersions": [
+      2
+    ]
   },
   "19": {
     "version": 2,
@@ -4657,7 +4669,7 @@ window.DE_A1_HARD_CONTENT = {
     "taskCount": 17
   },
   "21": {
-    "version": 2,
+    "version": 3,
     "text": "Ich gehe gern ins {{0}}. Meine Freundin geht gern ins {{1}}. Paul geht gern ins {{2}}. Wir gehen auch zusammen ins {{3}}.\nDas Konzert beginnt um {{4}} Uhr. Der Film beginnt um {{5}} Uhr. Das Theater beginnt um {{6}} Uhr. Um {{7}} Uhr ist das Museum geschlossen. Hast du {{8}}? Ich kaufe zwei {{9}}.",
     "gaps": [
       {
@@ -4816,12 +4828,12 @@ window.DE_A1_HARD_CONTENT = {
       },
       {
         "kind": "message",
-        "text": "A: Hallo Nora! Das Museum ist am Sonntag bis achtzehn Uhr geöffnet. Danach können wir ins Kino gehen. Der Film beginnt um zwanzig Uhr. Ich habe schon zwei Karten gekauft. Kommst du mit?",
+        "text": "A: Hallo Nora! Das Museum ist am Sonntag bis achtzehn Uhr geöffnet. Danach können wir ins Kino gehen. Der Film beginnt um zwanzig Uhr. Ich habe schon zwei Karten. Kommst du mit?",
         "turns": [
           {
             "speaker": "A",
             "gender": "female",
-            "text": "Hallo Nora! Das Museum ist am Sonntag bis achtzehn Uhr geöffnet. Danach können wir ins Kino gehen. Der Film beginnt um zwanzig Uhr. Ich habe schon zwei Karten gekauft. Kommst du mit?"
+            "text": "Hallo Nora! Das Museum ist am Sonntag bis achtzehn Uhr geöffnet. Danach können wir ins Kino gehen. Der Film beginnt um zwanzig Uhr. Ich habe schon zwei Karten. Kommst du mit?"
           }
         ],
         "questions": [
@@ -4878,7 +4890,10 @@ window.DE_A1_HARD_CONTENT = {
         "label": "Comprendre des informations précises"
       }
     },
-    "taskCount": 17
+    "taskCount": 17,
+    "compatibleVersions": [
+      2
+    ]
   },
   "22": {
     "version": 2,
@@ -5580,5 +5595,55 @@ window.DE_A1_HARD_CONTENT = {
     "taskCount": 23
   }
 };
-window.DE_A1_HARD_VERSIONS={};
+// Keep the earlier wording available for submitted attempts and archived results.
+// Only prose/audio changes: the questions, correct facts and scoring are unchanged.
+window.DE_A1_HARD_VERSIONS={2:{}};
+(() => {
+  const changes={
+  "7": [
+    [
+      "Ich habe eine Hose für neunzehn Euro gefunden.",
+      "Hier ist eine Hose für neunzehn Euro."
+    ],
+    [
+      "Hast du die blaue Jacke in Größe M gesehen?",
+      "Hast du die blaue Jacke in Größe M?"
+    ]
+  ],
+  "8": [
+    [
+      "Ich habe ein Zimmer in Berlin gefunden.",
+      "Ich habe ein Zimmer in Berlin."
+    ]
+  ],
+  "13": [
+    [
+      "Ich habe ein Doppelzimmer im Hotel Adler reserviert, ohne Frühstück.",
+      "Ich möchte ein Doppelzimmer im Hotel Adler, ohne Frühstück."
+    ]
+  ],
+  "18": [
+    [
+      "Wenn Sie eine Frage haben, fragen Sie bitte.",
+      "Sie haben eine Frage? Fragen Sie bitte."
+    ]
+  ],
+  "21": [
+    [
+      "Ich habe schon zwei Karten gekauft.",
+      "Ich habe schon zwei Karten."
+    ]
+  ]
+};
+  const restore=value=>{
+    if(typeof value==='string'){for(const pairs of Object.values(changes))for(const [oldText,newText]of pairs)value=value.replaceAll(newText,oldText);return value;}
+    if(Array.isArray(value))return value.map(restore);
+    if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([key,item])=>[key,restore(item)]));
+    return value;
+  };
+  for(const id of Object.keys(changes)){
+    const old=restore(window.DE_A1_HARD_CONTENT[id]);old.version=2;delete old.compatibleVersions;
+    window.DE_A1_HARD_VERSIONS[2][id]=old;
+  }
+})();
 window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turns};
