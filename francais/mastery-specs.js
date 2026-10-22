@@ -1642,9 +1642,9 @@ window.FR_A1_MASTERY_SPECS = {
       ['taille','« La taille trente-huit est disponible, mais pas la taille quarante-huit. » Welche Größe gibt es?','38','48','36','Die Verneinung gilt nur für quarante-huit, nicht für trente-huit.',false],
       ['carte','Du möchtest mit Karte zahlen und fragst, ob das möglich ist.','Je peux payer par carte ?','Je peux payer en espèces ?','Je ne peux pas payer par carte ?','Payer par carte bedeutet mit Karte bezahlen.'],
       ['cher','Der Preis ist zu hoch. Welche Aussage nennt genau dieses Problem?','C’est trop cher.','C’est très cher.','C’est peu cher.','Trop bedeutet zu, très sehr und peu wenig.'],
-      ['commande','« Deux kilos de pommes et un kilo de tomates. » Welche Menge Tomaten wird verlangt?','Ein Kilo.','Zwei Kilo.','Drei Kilo.','Un kilo bezieht sich auf die Tomaten.',false],
-      ['changer','Du möchtest statt eines Kilos Äpfel nur zweihundert Gramm bestellen.','Deux cents grammes de pommes, s’il vous plaît.','Deux kilos de pommes, s’il vous plaît.','Deux cents grammes de tomates, s’il vous plaît.','Die erste Antwort ändert die Menge, aber behält das Produkt bei.'],
-      ['demande','Du kennst die Größe des Kleidungsstücks und möchtest seinen Preis wissen.','Combien ça coûte ?','Vous avez quelle taille ?','Je peux payer par carte ?','Combien ça coûte fragt nach dem Preis, nicht nach Größe oder Zahlungsart.']
+      ['commande','« Deux kilos de pommes ? — Non, un kilo de pommes et deux kilos de tomates, s’il vous plaît. » Welche Bestellung gilt nach der Korrektur?','1 kg Äpfel und 2 kg Tomaten.','2 kg Äpfel und 1 kg Tomaten.','1 kg Äpfel und 1 kg Tomaten.','Nach Non wird die ganze Bestellung korrigiert: un kilo de pommes und deux kilos de tomates.',false],
+      ['changer','Du änderst deine Bestellung auf 200 Gramm Äpfel. Welche Mengenangabe ist grammatisch korrekt?','Deux cents grammes de pommes, s’il vous plaît.','Deux cents grammes des pommes, s’il vous plaît.','Deux cents grammes du pommes, s’il vous plaît.','Nach der genauen Menge deux cents grammes steht de vor pommes, kein Teilungsartikel.'],
+      ['demande','Du fragst nach dem Preis eines einzelnen Artikels. Welche Preisfrage ist grammatisch korrekt?','Combien ça coûte ?','Combien ça coûtent ?','Combien ça coûtes ?','Zu ça gehört die Verbform coûte, nicht coûtent oder coûtes.']
     ],
     8:[
       ['logement','« L’appartement a deux chambres et un salon. » Wie viele Wohnräume werden genannt?','Drei.','Zwei.','Vier.','Zwei Schlafzimmer und ein Wohnzimmer ergeben drei Räume.',false],
@@ -1821,6 +1821,12 @@ window.FR_A1_MASTERY_SPECS = {
     const s=window.FR_A1_MASTERY_SPECS[id];
     s.checkTasks=rows.map(([family,q,answer,w1,w2,explanation,audio=true],i)=>({type:'choice',q,o:[answer,w1,w2],answer,explanation,tag:'Anwenden',family,checkKey:`L${id}-context-${family}`,...(audio?{audio:answer}:{})}));
   }
+  const revisedSeven={
+    commande:{q:'« Deux kilos de pommes et un kilo de tomates. » Welche Menge Tomaten wird verlangt?',answer:'Ein Kilo.'},
+    changer:{q:'Du möchtest statt eines Kilos Äpfel nur zweihundert Gramm bestellen.',answer:'Deux cents grammes de pommes, s’il vous plaît.'},
+    demande:{q:'Du kennst die Größe des Kleidungsstücks und möchtest seinen Preis wissen.',answer:'Combien ça coûte ?'}
+  };
+  for(const t of window.FR_A1_MASTERY_SPECS[7].checkTasks)if(revisedSeven[t.family]){t.legacyTask=revisedSeven[t.family];t.qualityRevision=148;}
   // Dedicated typed transfers supplement the existing grammar pool.
   const additions={
     7:[['Je peux payer ___ carte ?','par','Kann ich mit Karte bezahlen?','Bezahlen']],

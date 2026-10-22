@@ -258,7 +258,7 @@
     if(lessonId===7&&unit.key==='r1')return [
       {...f('Du fragst nach dem Gesamtpreis deines Einkaufs.','C’est combien au total ?',['C’est combien par kilo ?','C’est combien par personne ?'],'Frage nach dem ganzen Einkauf.','Ask about the whole purchase.'),audio:'C’est combien au total ?'},
       f('Ça coûte dix-neuf euros ___.','cinquante',['quinze','soixante'],'Das kostet 19,50 Euro.','It costs 19.50 euros.'),
-      f('Ça coûte ___ euros cinquante.','dix-neuf',['neuf','quatre-vingt-dix'],'Das kostet 19,50 Euro.','It costs 19.50 euros.'),
+      {...f('___ ça coûte ?','Combien',['Comment','Quand'],'Wie viel kostet das?','How much does it cost?','Combien fragt nach dem Preis.','Combien asks for the price.'),legacyTask:{q:'Ça coûte ___ euros cinquante.',answer:'dix-neuf'}},
       f('Je peux payer ___ carte ?','par',['en','à'],'Kann ich mit Karte bezahlen?','Can I pay by card?','Die Wendung lautet payer par carte.','The phrase is payer par carte.'),
       f('C’est ___ cher.','trop',['très','peu'],'Das ist zu teuer.','It is too expensive.','Trop bedeutet zu; très bedeutet sehr.','Trop means too; très means very.'),
       f('Je ___ celui-ci.','prends',['prend','prenons'],'Ich nehme dieses hier.','I will take this one.'),

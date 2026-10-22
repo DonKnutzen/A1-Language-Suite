@@ -113,6 +113,16 @@
       const updates=new Map(tasks.filter(q=>['L6-context-commander','L6-context-serveur','L6-context-quantite'].includes(q.checkKey)).map(q=>[q.checkKey,q]));
       session.ex=session.ex.map((q,index)=>index<session.i||(index===session.i&&session.response)?q:(updates.get(q.checkKey)?.q!==q.q&&updates.has(q.checkKey)?updates.get(q.checkKey):q));
     }
+    if(resume&&Number(lessonId)===7){
+      const updates=new Map(tasks.filter(q=>q.qualityRevision===148).map(q=>[q.checkKey,q])),before=JSON.parse(JSON.stringify(session));let changed=false;
+      session.ex=session.ex.map((q,index)=>{
+        if(index<session.i||(index===session.i&&session.response))return q;
+        const next=updates.get(q.checkKey)||[...updates.values()].find(t=>t.legacyTask?.q===q.q);
+        const identity=t=>JSON.stringify([t.q,[...(t.o||[])].sort(),t.answer]);
+        if(!next||identity(next)===identity(q))return q;changed=true;return next;
+      });
+      if(changed&&progress){progress.previousDrafts||=[];progress.previousDrafts.push(before);}
+    }
     const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):3,review=window.A1ExerciseReview?.create();
     let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
     function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}

@@ -2028,9 +2028,9 @@ window.FR_A1_EN = Object.freeze({
       ["Which size is available?", "The negative applies to quarante-huit, not trente-huit."],
       ["You want to pay by card. Ask whether this is possible.", "Payer par carte means to pay by card."],
       ["The price is too high. Which sentence says exactly that?", "Trop means too, très very, and peu little."],
-      ["How many tomatoes are ordered?", "Un kilo refers to the tomatoes.", ["One kilo.", "Two kilos.", "Three kilos."]],
-      ["Instead of one kilo of apples, order just two hundred grams.", "The first answer changes the amount but keeps the same product."],
-      ["You know the size of the item and want its price.", "Combien ça coûte asks about price, not size or payment method."]
+      ["Which order applies after the correction?", "After Non, the whole order is corrected: un kilo de pommes and deux kilos de tomates.", ["1 kg of apples and 2 kg of tomatoes.", "2 kg of apples and 1 kg of tomatoes.", "1 kg of apples and 1 kg of tomatoes."]],
+      ["Change your order to 200 grams of apples. Which quantity expression is grammatically correct?", "After the exact quantity deux cents grammes, use de before pommes, not a partitive article."],
+      ["Ask the price of one item. Which price question is grammatically correct?", "Ça takes the verb form coûte, not coûtent or coûtes."]
     ],
     "8":[
       ["How many rooms are mentioned?", "Two bedrooms and a living room make three rooms.", ["Three.", "Two.", "Four."]],

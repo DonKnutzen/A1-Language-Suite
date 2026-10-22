@@ -102,6 +102,9 @@
   }
   function refreshQuestions(state,lessons,grammarHtml,bank){
     const p=store(state),s=p.session,currentIds=new Set(bank.map(q=>q.id));
+    const revisedSeven=(window.FR_A1_MASTERY.spec?.(7)?.checkTasks||[]).filter(t=>t.qualityRevision===148).map(t=>task(7,'check','Lektionscheck',t));
+    const changedCheck=q=>q?.lessonId===7&&q.topic==='check'&&revisedSeven.find(t=>t.legacyTask.q===q.q&&t.legacyTask.answer===q.answer);
+    const oldPrice=q=>q?.lessonId===7&&q.topic==='grammar:r1'&&q.q==='Ça coûte ___ euros cinquante.'&&q.answer==='dix-neuf';
     const correctedChecks={
       'Du bestellst höflich einen Kaffee und ausdrücklich kein Wasser.':'commander',
       '« Qu’est-ce que vous prenez ? » Du wählst die Suppe.':'serveur',
@@ -111,18 +114,21 @@
     const oldIntro=q=>q.lessonId===7&&lessons.find(l=>l.id===7)?.quiz?.some(source=>(source.q===q.q||source.legacyQuestion===q.q)&&JSON.stringify([...source.o].sort())!==JSON.stringify([...(q.o||[])].sort()));
     const oldOrdering=q=>q.lessonId===6&&q.topic==='grammar:u0'&&!currentIds.has(q.id);
     const oldTable=q=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(q.q);
-    const weak=q=>q&&(oldGenerated(q)||oldIntro(q)||oldOrdering(q)||(q.lessonId===6&&correctedChecks[q.q])||(q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
+    const weak=q=>q&&(changedCheck(q)||oldPrice(q)||oldGenerated(q)||oldIntro(q)||oldOrdering(q)||(q.lessonId===6&&correctedChecks[q.q])||(q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
     const recognition=q=>/^grammar:/.test(q.topic)&&/^(?:Wie sagst du „.+“ auf Französisch\?|Was bedeutet „.+“\?)$/.test(q.q)&&!currentIds.has(q.id);
     if(!Object.values(p.items||{}).some(item=>!item.retired&&weak(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&(weak(q)||(s.mode!=='mistakes'&&recognition(q)))))return;
     const revised=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml,true),lookup=new Map();
     const key=(q,legacy)=>JSON.stringify([q.lessonId,q.topic,legacy.q,legacy.answer]);
-    for(const q of revised)for(const legacy of [q.legacyTask,q.legacyTaskForms].filter(Boolean))lookup.set(key(q,legacy),q);
+    for(const q of [...revised,...revisedSeven])for(const legacy of [q.legacyTask,q.legacyTaskForms].filter(Boolean))lookup.set(key(q,legacy),q);
     const replacement=q=>{const correction=q.lessonId===6&&correctedChecks[q.q],source=correction&&window.FR_A1_MASTERY.spec(6).checkTasks.find(t=>t.family===correction);return source?task(q.lessonId,q.topic,q.label,source):lookup.get(key(q,q))||revised.find(t=>t.lessonId===q.lessonId&&t.topic===q.topic&&t.audio&&t.audio===q.audio)||(()=>{const source=lessons.find(l=>l.id===q.lessonId)?.quiz?.find(item=>item.q===q.q||item.legacyQuestion===q.q);return source?task(q.lessonId,q.topic,q.label,source):null;})();};
     let changed=false;
     for(const [id,item]of Object.entries(p.items||{})){
       if(item.retired||!weak(item.task))continue;
       const next=replacement(item.task);item.retired=true;changed=true;
-      if(next&&next.id!==id&&!p.items[next.id])p.items[next.id]={...copy(item),task:copy(next),retired:false,streak:0};
+      // A new focus has no failed answer yet. Keep its predecessor's history
+      // retired; only an actual response can create a mistake for the new task.
+      const newFocus=next&&(changedCheck(item.task)||oldPrice(item.task))&&next.answer!==item.task.answer;
+      if(next&&next.id!==id&&!p.items[next.id]&&!newFocus)p.items[next.id]={...copy(item),task:copy(next),retired:false,streak:0};
     }
     if(s){
       const before=copy(s),indices=[],tasks=[];

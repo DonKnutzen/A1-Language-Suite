@@ -183,7 +183,7 @@
       const before=JSON.parse(JSON.stringify(saved)),used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(key));let currentChanged=false;
       saved.questions=saved.questions.map((q,index)=>{
         if(index<saved.i||(index===saved.i&&saved.response))return q;
-        const next=pool.tasks.find(t=>t.q===q.q&&t.answer===q.answer&&!used.has(key(t)))||pool.tasks.find(t=>!used.has(key(t)));
+        const next=pool.tasks.find(t=>t.q===q.q&&t.answer===q.answer&&!used.has(key(t)))||pool.tasks.find(t=>t.legacyTask?.q===q.q&&t.legacyTask.answer===q.answer&&!used.has(key(t)))||pool.tasks.find(t=>!used.has(key(t)));
         if(!next){if(index===saved.i)currentChanged=true;return null;}used.add(key(next));
         if(index===saved.i&&JSON.stringify(q)!==JSON.stringify(next))currentChanged=true;return next;
       }).filter(Boolean);

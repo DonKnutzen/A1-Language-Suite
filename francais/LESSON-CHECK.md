@@ -1,6 +1,6 @@
 # Französisch A1: Lektionschecks und Grammatiktraining
 
-Stand: Aufgabenfassung `check-quality-147`.
+Stand: Aufgabenfassung `reports-148`.
 
 Die Lektionschecks kombinieren acht eigene Situations- und Verständnisfragen mit
 vier bis acht selbst einzutippenden Anwendungen. Sie verwenden weder
@@ -70,3 +70,17 @@ Die automatisierten Tests prüfen unter anderem Umfang/Schwerpunktabdeckung,
 Trennung der Pools, Varianten, Antwortprüfung mit Gegenbeispielen, englische
 Anzeigen, Entwürfe und tatsächlichen Durchlauf. Sie ersetzen keine sprachliche
 Beurteilung von Aufgaben und keine Audio-Hörprobe.
+
+## Ergänzung zu den Meldungen aus Export 6
+
+In Lektion 7 ersetzt eine Preisfrage mit Combien die gemeldete Lücke in der
+Eurozahl. Der Check unterscheidet bei einer Preisfrage nun nahe Verbformen;
+bei der geänderten Bestellung unterscheiden sich die Antwortmöglichkeiten in
+der Form nach der Mengenangabe. Eine Bestellkorrektur prüft außerdem beide
+Produktmengen zusammen. Der neue Check bleibt bei 14 Fragen.
+
+Diese vier Korrekturen aktualisieren nur noch unbeantwortete Aufgaben in offenen
+Runden. Bereits bewertete Antworten und Bestwerte bleiben erhalten; die frühere
+Fassung wird archiviert. Wird beim Austausch auch der Prüfgegenstand geändert,
+übernimmt die App keine Fehlerzahl als vermeintlich bereits gemachten Fehler der
+neuen Aufgabe. Der frühere Fehlereintrag bleibt als historischer Eintrag erhalten.
