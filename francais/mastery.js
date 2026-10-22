@@ -114,6 +114,7 @@
       if(!restoring&&task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
       document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
+      window.FR_A1_ANSWER_AUDIO?.mount(document.querySelector('#masteryFeedback .feedback'),{task,playAudio:text=>speak?.(text,true,.8)});
       if(ok&&!restoring)view.querySelector('.option-btn.correct,#masteryInput')?.classList.add('answer-success');
       document.getElementById('masteryNext').onclick=()=>{i++;draft='';response=null;if(i<ex.length){persist();draw();}else finish();};if(!restoring)review?.attach(view,true);
     }

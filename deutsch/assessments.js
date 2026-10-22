@@ -21,7 +21,7 @@
   function runTasks({state,tasks,view,title,onBack,onFinish,speak,session,save,lessonId,step='check',compact=false}){
     window.A1BugReports?.setContext({lessonId:lessonId||null,step});
     const exercises=step==='check'?spreadAnswers(tasks.map(normalize)):shuffle(tasks).map(normalize);window.DE_A1_STUDY.refreshSession(session,exercises);
-    A1ExerciseEngine.run({lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+title:step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
+    A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+title:step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
   function decorate({root,practice,lesson,state,save,speak,onUpdate,onStart}){
     if(!practice)return;

@@ -259,19 +259,22 @@
     function feedback(status,answer,audio,explanation,restoring=false){
       if(!explanation&&opts.selectionOnly&&ex[i].type==='listening')explanation=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio))?.[1]||'';
       const germanAudio=opts.targetLang==='de'?window.DE_A1_ANSWER_AUDIO:null;
+      const frenchAudio=opts.answerAudioAfterResponse&&opts.targetLang==='fr'?window.FR_A1_ANSWER_AUDIO:null;
+      if(frenchAudio)audio=frenchAudio.resolve(ex[i],audio,answer,opts.lesson);
       if(germanAudio)audio=germanAudio.resolve(ex[i],audio,answer,opts.lesson);
       const ok=status==='ok',near=status==='near';
       if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio)play(audio);}
       const message=ok?L.correct:near?`${L.near} ${L.nearAnswer} ${esc(answer)}`:L.wrong+' '+esc(answer);
       document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:esc(opts.finishLabel||L.result)}</button>`;
       germanAudio?.mount(document.getElementById('mixedFeedback').querySelector('.feedback'),{text:audio,autoplay:false,playAudio:play});
+      frenchAudio?.mount(document.getElementById('mixedFeedback').querySelector('.feedback'),{text:audio,playAudio:opts.playAudio});
       if(ok&&!restoring)(opts.view.querySelector('.option-btn.correct,#mixedInput,#orderAnswer')||opts.view.querySelector('#mixedFeedback .good'))?.classList.add('answer-success');
       document.getElementById('mixedNext').onclick=next;if(!restoring)review?.attach(opts.view,true);
     }
     function draw(){
       const q=ex[i];let body='';
       const hint=q.context?`<p class="mixed-context"><strong>${esc(L.meaning)}:</strong> ${esc(q.context)}</p>`:'';
-      if(q.type==='choice')body=`${opts.selectionOnly?hint:''}<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div>${opts.selectionOnly&&q.audio&&!q.q.includes('___')?`<button type="button" class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button>`:''}<div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
+      if(q.type==='choice')body=`${opts.selectionOnly?hint:''}<div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div>${!opts.answerAudioAfterResponse&&opts.selectionOnly&&q.audio&&!q.q.includes('___')?`<button type="button" class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button>`:''}<div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='listening')body=`<div class="mixed-type">🎧 ${esc(L.listen)}</div><div class="quiz-q">${window.A1ExerciseReview?.question(q.q)||esc(q.q)}</div><button class="soft-btn mixed-listen" id="mixedListen">🔊 ${esc(L.audio)}</button><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div>`;
       if(q.type==='gap'||q.type==='text')body=`<label class="mixed-type" for="mixedInput">✍️ ${esc(L[q.type])}</label>${hint}<div class="quiz-q">${esc(q.prompt)}</div><input class="mixed-input" id="mixedInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${esc(L.answer)}">${charBar(opts.targetLang,opts.uiLang)}${q.type==='text'?`<div class="spacer"></div><button class="soft-btn" id="mixedHintBtn">💡 ${esc(L.help)}</button><div class="mixed-hint" id="mixedHint" hidden></div>`:''}<div class="spacer"></div><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button>`;
       if(q.type==='order')body=`<div class="mixed-type">↔️ ${esc(L.order)}</div>${hint}<div class="mixed-order-answer" id="orderAnswer" aria-live="polite"></div><div class="mixed-tokens">${q.tokens.map(t=>`<button class="soft-btn mixed-token" data-id="${t.id}" data-word="${encodeURIComponent(t.w)}">${esc(t.w)}</button>`).join('')}</div><div class="button-row"><button class="secondary-btn" id="orderReset">${esc(L.reset)}</button><button class="primary-btn" id="mixedCheck">${esc(L.check)}</button></div>`;

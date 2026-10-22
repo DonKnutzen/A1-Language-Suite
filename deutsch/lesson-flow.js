@@ -276,7 +276,7 @@
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
       const exercises=DE_A1_STUDY.lessonExercises(l);DE_A1_STUDY.refreshSession(p,exercises);
-      A1ExerciseEngine.run({lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,bugStep:'listen-exercise',review:true,exercises,progress:p,finishLabel:'Continuer : approfondir',selectionOnly:true,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,l.id,p.session);save();},playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
+      A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,targetLang:opts.targetLang,uiLang:opts.uiLang,bugStep:'listen-exercise',review:true,exercises,progress:p,finishLabel:'Continuer : approfondir',selectionOnly:true,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,l.id,p.session);save();},playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
         save(true);goStep('grammar');

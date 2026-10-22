@@ -294,7 +294,7 @@
       remember('exercise');
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
-      A1ExerciseEngine.run({lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.FR_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
+      A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.FR_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
         save(true);goStep('grammar');

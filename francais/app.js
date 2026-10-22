@@ -633,6 +633,7 @@ function startGrammarSet(id){
         else if(j===chosen)b.classList.add('wrong');
       });
       document.getElementById('grammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(q.o[q.a])}${q.explanation?'<p>'+esc(q.explanation)+'</p>':''}</div><div class="spacer"></div><button class="primary-btn" id="nextGrammar">${i<qs.length-1?'Weiter':'Ergebnis'}</button>`;
+      window.FR_A1_ANSWER_AUDIO?.mount(document.querySelector('#grammarFeedback .feedback'),{task:q,playAudio:text=>playCorrectAudio(text,true)});
       document.getElementById('nextGrammar').onclick=()=>{i++;draw();};
     });
   }
