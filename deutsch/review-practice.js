@@ -14,9 +14,9 @@
     if(!Number.isInteger(Number(lessonId))||Number(lessonId)<0)return null;
     const answer=q.answer??q.o?.[q.a],prompt=q.q||q.prompt;
     if(!prompt||typeof answer!=='string'||!answer.trim())return null;
-    const choices=q.o?[...new Set(q.o)]:null;
+    const choices=q.o&&!['gap','text'].includes(q.type)?[...new Set(q.o)]:null;
     if(choices&&(!choices.includes(answer)||choices.length<2))return null;
-    const out={answerLang:q.skill==='recognition'?'fr':'de',lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{})};
+    const out={answerLang:q.answerLang||(q.skill==='recognition'?'fr':'de'),lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{}),...(q.qualityRevision?{qualityRevision:q.qualityRevision}:{})};
     // Content participates in the identity: changed questions cannot silently reuse a grade.
     out.id=JSON.stringify([out.lessonId,topic,prompt,answer,out.accept,out.context,choices?[...choices].sort():null,out.speech,out.turns,out.marking||null]);
     return out;
@@ -29,7 +29,7 @@
     item.task=copy(question);item.lastAt=Date.now();
     if(ok){item.right++;if(inReview)item.streak++;}else{item.wrong++;item.streak=0;item.failedAt=item.lastAt;}
   }
-  const pending=state=>Object.values(store(state).items).filter(x=>x.task&&x.streak<2);
+  const pending=state=>Object.values(store(state).items).filter(x=>x.task&&x.streak<2&&!x.retired);
   function captureSession(state,lessonId,session,topic="lesson",label="Exercices de la leçon"){
     if(!session?.response||session.response.reviewRecorded)return;
     const q=session.ex?.[session.i];if(!q)return;
@@ -92,6 +92,37 @@
     }
     p.grammarPoolUpdated=true;
   }
+  function refreshQuestions(state,lessons,grammarHtml){
+    const p=store(state),s=p.session;
+    if(!window.DE_A1_STUDY?.content)return;
+    const titles=new Set(Object.values(window.DE_A1_STUDY.content).flatMap(units=>units.map(u=>'grammar:'+u.title)));
+    const legacy=q=>q&&q.qualityRevision!==149&&(/^grammar:study-/.test(q.topic)||titles.has(q.topic));
+    if(!Object.values(p.items||{}).some(item=>!item.retired&&legacy(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&legacy(q)))return;
+    const all=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml),ids=new Set(all.map(q=>q.id));
+    const weak=q=>legacy(q)&&!ids.has(q.id);
+    const replacement=q=>all.find(t=>t.lessonId===q.lessonId&&t.answer===q.answer&&t.audio===q.audio);
+    let changed=false;
+    for(const item of Object.values(p.items||{})){
+      if(item.retired||!weak(item.task))continue;
+      item.retired=true;changed=true;
+      const next=replacement(item.task);
+      if(next&&!p.items[next.id])p.items[next.id]={...copy(item),task:copy(next),retired:false,streak:0};
+    }
+    if(s?.tasks.some((q,i)=>!s.answers[i]&&weak(q))){
+      const before=copy(s),indices=[],tasks=[];
+      s.tasks.forEach((q,i)=>{
+        const next=!s.answers[i]&&weak(q)?replacement(q):q;
+        if(next){indices.push(i);tasks.push(copy(next));}
+      });
+      p.previousQuestionRound=before;
+      const sameCurrent=indices.includes(before.index)&&tasks[indices.indexOf(before.index)]?.id===before.tasks[before.index]?.id;
+      s.tasks=tasks;s.answers=indices.map(i=>before.answers[i]||null);s.index=indices.filter(i=>i<before.index).length;
+      if(!sameCurrent){s.draft='';delete s.order;}
+      if(!tasks.length)delete p.session;
+      changed=true;
+    }
+    if(changed)p.questionQualityUpdated=true;
+  }
   function choose(pool,count){
     // Deduplicate the same task across grammar topics, then balance lesson/topic buckets.
     const distinct=new Map();
@@ -104,13 +135,14 @@
   }
   function accepted(q,value){
     if(q.kind==='choice')return value===q.answer;
+    if(q.qualityRevision===149)return window.DE_A1_QUESTIONS.matchesAnswer(value,q);
     if(q.marking)return window.DE_A1_HARD_MODE.matches(value,[q.answer,...q.accept],q.marking);
     return window.DE_A1_HARD_MODE.matches(value,[q.answer,...q.accept],{strictAccents:true});
   }
   let redraw=null;
   window.addEventListener('a1suite:languagechange',()=>redraw?.());
   function render({view,lessons,state,save,onBack,speak,grammarHtml,initialMode}){
-    seed(state);const p=store(state);restrictRound(p);const bank=buildBank(lessons,state,grammarHtml);
+    seed(state);const p=store(state);restrictRound(p);const bank=buildBank(lessons,state,grammarHtml);refreshQuestions(state,lessons,grammarHtml);
     const selectable=bank;
     const topicKeys=new Set(selectable.map(q=>q.lessonId+':'+q.topic));
     let mode=['mixed','custom','mistakes'].includes(initialMode)?initialMode:p.settings?.mode||'mixed',count=p.settings?.count===20?20:10,selected=new Set((p.settings?.selected||[...topicKeys]).filter(key=>topicKeys.has(key)));
@@ -124,7 +156,7 @@
     function setup(){
       redraw=()=>{if(view.querySelector('.review-practice'))setup();};
       const groups=[...new Map(selectable.map(q=>[q.lessonId+':'+q.topic,q])).values()];
-      shell(`${heading()}<section class="card"><h2 tabindex="-1">${tr("Consolider les acquis",'Practise what you have learned')}</h2><p class="muted">${tr("Révise les thèmes étudiés dans les leçons terminées ou retravaille tes erreurs enregistrées.",'Review grammar topics from completed lessons or practise your saved mistakes.')}</p>${p.grammarPoolUpdated?`<p class="muted">${tr("Les rondes en cours utilisent désormais les thèmes de grammaire.",'Ongoing topic rounds now contain grammar tasks only.')}</p>`:''}<fieldset class="review-modes"><legend>${tr("Que veux-tu pratiquer ?",'What would you like to practise?')}</legend>${[['mixed',tr("Tout mélanger",'Mix everything'),tr("Les thèmes des leçons terminées.",'Grammar from your completed lessons.')],['custom',tr("Choisir les thèmes",'Choose topics'),tr("Choisir des leçons et des thèmes précis.",'Select individual lessons and topics.')],['mistakes',tr("Retravailler mes erreurs",'Practise mistakes'),`${pending(state).length} ${tr(pending(state).length===1?"exercice à revoir":"exercices à revoir",pending(state).length===1?'task to review':'tasks to review')}`]].map(([id,label,hint])=>`<label class="review-mode"><input type="radio" name="review-mode" value="${id}" ${mode===id?'checked':''}><span><strong>${label}</strong><small>${hint}</small></span></label>`).join('')}</fieldset><div id="reviewTopics" ${mode==='custom'?'':'hidden'}><div class="review-select-actions"><button class="tiny-btn" id="reviewAll">${tr("Tout sélectionner",'Select all')}</button><button class="tiny-btn" id="reviewNone">${tr("Tout désélectionner",'Clear selection')}</button></div>${lessons.filter(l=>groups.some(g=>g.lessonId===l.id)).map(l=>`<details class="review-lesson"><summary>${l.id}. ${esc(translate(l.title))}</summary><label><input type="checkbox" data-review-lesson="${l.id}">${tr("Alle Themen dieser Lektion","All topics in this lesson")}</label>${groups.filter(g=>g.lessonId===l.id).map(g=>`<label><input type="checkbox" data-review-topic="${g.lessonId}:${esc(g.topic)}" ${selected.has(g.lessonId+':'+g.topic)?'checked':''}>${esc(translate(g.label))}</label>`).join('')}</details>`).join('')}</div><p class="muted" id="reviewMistakeHint" ${mode==='mistakes'?'':'hidden'}>${tr("Deux réponses correctes consécutives en révision : l’exercice est alors consolidé.",'Answer correctly in two successive reviews to clear a task.')}</p><details id="reviewMistakeDetails" ${mode==='mistakes'?'':'hidden'}><summary>${tr("Quelles erreurs sont enregistrées ?",'Which mistakes are saved?')}</summary><p class="muted">${tr("Les nouvelles erreurs sont enregistrées dès maintenant. Les réponses encore disponibles sont reprises ; les anciens scores globaux ne permettent pas de retrouver chaque erreur. Tes textes restent auto-évalués.",'New mistakes are saved from now on; existing individual errors are imported. Earlier overall scores cannot identify individual answers. Free writing remains self-assessed.')}</p></details><label class="review-length" for="reviewCount">${tr("Longueur",'Length')}<select id="reviewCount"><option value="10" ${count===10?'selected':''}>10 ${tr("questions",'questions')}</option><option value="20" ${count===20?'selected':''}>20 ${tr("questions",'questions')}</option></select></label><p id="reviewPoolInfo" class="muted" role="status"></p>${p.session?`<button class="primary-btn" id="reviewResume">${tr("Continuer la ronde",'Resume round')} · ${p.session.index+1}/${p.session.tasks.length}</button>`:''}<button class="${p.session?'secondary':'primary'}-btn" id="reviewStart">${p.session?tr("Nouvelle ronde",'Start a new round'):tr("Commencer la révision",'Start review')}</button><p class="muted">${tr("Tes réponses sont enregistrées. La révision ne modifie pas les meilleurs scores des leçons.",'Your answers are saved. Review does not change lesson best scores.')}</p></section>`);
+      shell(`${heading()}${p.questionQualityUpdated?`<p class="muted" role="status">${tr('Les questions de grammaire ont été mises à jour. Les réponses déjà évaluées et l’historique sont conservés.','Grammar questions have been updated. Graded answers and history are preserved.')}</p>`:''}<section class="card"><h2 tabindex="-1">${tr("Consolider les acquis",'Practise what you have learned')}</h2><p class="muted">${tr("Révise les thèmes étudiés dans les leçons terminées ou retravaille tes erreurs enregistrées.",'Review grammar topics from completed lessons or practise your saved mistakes.')}</p>${p.grammarPoolUpdated?`<p class="muted">${tr("Les rondes en cours utilisent désormais les thèmes de grammaire.",'Ongoing topic rounds now contain grammar tasks only.')}</p>`:''}<fieldset class="review-modes"><legend>${tr("Que veux-tu pratiquer ?",'What would you like to practise?')}</legend>${[['mixed',tr("Tout mélanger",'Mix everything'),tr("Les thèmes des leçons terminées.",'Grammar from your completed lessons.')],['custom',tr("Choisir les thèmes",'Choose topics'),tr("Choisir des leçons et des thèmes précis.",'Select individual lessons and topics.')],['mistakes',tr("Retravailler mes erreurs",'Practise mistakes'),`${pending(state).length} ${tr(pending(state).length===1?"exercice à revoir":"exercices à revoir",pending(state).length===1?'task to review':'tasks to review')}`]].map(([id,label,hint])=>`<label class="review-mode"><input type="radio" name="review-mode" value="${id}" ${mode===id?'checked':''}><span><strong>${label}</strong><small>${hint}</small></span></label>`).join('')}</fieldset><div id="reviewTopics" ${mode==='custom'?'':'hidden'}><div class="review-select-actions"><button class="tiny-btn" id="reviewAll">${tr("Tout sélectionner",'Select all')}</button><button class="tiny-btn" id="reviewNone">${tr("Tout désélectionner",'Clear selection')}</button></div>${lessons.filter(l=>groups.some(g=>g.lessonId===l.id)).map(l=>`<details class="review-lesson"><summary>${l.id}. ${esc(translate(l.title))}</summary><label><input type="checkbox" data-review-lesson="${l.id}">${tr("Tous les thèmes de cette leçon","All topics in this lesson")}</label>${groups.filter(g=>g.lessonId===l.id).map(g=>`<label><input type="checkbox" data-review-topic="${g.lessonId}:${esc(g.topic)}" ${selected.has(g.lessonId+':'+g.topic)?'checked':''}>${esc(translate(g.label))}</label>`).join('')}</details>`).join('')}</div><p class="muted" id="reviewMistakeHint" ${mode==='mistakes'?'':'hidden'}>${tr("Deux réponses correctes consécutives en révision : l’exercice est alors consolidé.",'Answer correctly in two successive reviews to clear a task.')}</p><details id="reviewMistakeDetails" ${mode==='mistakes'?'':'hidden'}><summary>${tr("Quelles erreurs sont enregistrées ?",'Which mistakes are saved?')}</summary><p class="muted">${tr("Les nouvelles erreurs sont enregistrées dès maintenant. Les réponses encore disponibles sont reprises ; les anciens scores globaux ne permettent pas de retrouver chaque erreur. Tes textes restent auto-évalués.",'New mistakes are saved from now on; existing individual errors are imported. Earlier overall scores cannot identify individual answers. Free writing remains self-assessed.')}</p></details><label class="review-length" for="reviewCount">${tr("Longueur",'Length')}<select id="reviewCount"><option value="10" ${count===10?'selected':''}>10 ${tr("questions",'questions')}</option><option value="20" ${count===20?'selected':''}>20 ${tr("questions",'questions')}</option></select></label><p id="reviewPoolInfo" class="muted" role="status"></p>${p.session?`<button class="primary-btn" id="reviewResume">${tr("Continuer la ronde",'Resume round')} · ${p.session.index+1}/${p.session.tasks.length}</button>`:''}<button class="${p.session?'secondary':'primary'}-btn" id="reviewStart">${p.session?tr("Nouvelle ronde",'Start a new round'):tr("Commencer la révision",'Start review')}</button><p class="muted">${tr("Tes réponses sont enregistrées. La révision ne modifie pas les meilleurs scores des leçons.",'Your answers are saved. Review does not change lesson best scores.')}</p></section>`);
       function update(){
         view.querySelectorAll('[data-review-lesson]').forEach(el=>{
           const keys=groups.filter(g=>g.lessonId===Number(el.dataset.reviewLesson)).map(g=>g.lessonId+':'+g.topic),n=keys.filter(k=>selected.has(k)).length;
@@ -146,7 +178,7 @@
       view.querySelector('#reviewCount').onchange=e=>{count=Number(e.target.value);update();};
       view.querySelector('#reviewResume')?.addEventListener('click',draw);
       view.querySelector('#reviewStart').onclick=()=>{
-        const start=()=>{delete p.grammarPoolUpdated;p.session={version:1,tasks:choose(pool(),count).map(copy),index:0,answers:[],draft:'',mode,startedAt:Date.now()};save();draw();};
+        const start=()=>{delete p.grammarPoolUpdated;delete p.questionQualityUpdated;p.session={version:1,tasks:choose(pool(),count).map(copy),index:0,answers:[],draft:'',mode,startedAt:Date.now()};save();draw();};
         if(!p.session)return start();
         view.querySelector('#reviewPoolInfo').innerHTML=`${tr("La nouvelle ronde remplace celle en cours. Les erreurs enregistrées sont conservées.",'The new round replaces your current round. Saved mistakes are kept.')} <button class="tiny-btn" id="reviewReplace">${tr("Confirmer la nouvelle ronde",'Confirm new round')}</button>`;
         view.querySelector('#reviewReplace').onclick=start;
@@ -168,7 +200,7 @@
       const q=s.tasks[s.index],answer=s.answers[s.index],lesson=lessons.find(l=>l.id===q.lessonId);
       s.order||=q.o?shuffle(q.o):null;
       redraw=()=>{if(view.querySelector('.review-practice'))draw();};
-      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr("Pause",'Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr("Entraînement supplémentaire",'Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'fr'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" lang="${q.answerLang||'de'}" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div><button class="primary-btn" id="reviewCheck" ${answer||!s.draft?'disabled':''}>${tr("Vérifier",'Check')}</button>`:`<label for="reviewInput">${tr("Ta réponse",'Your answer')}</label><input class="mixed-input" id="reviewInput" lang="de" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('de',en()?'en':'de')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr("Vérifier",'Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
+      shell(`${heading()}<section class="card" data-bug-task data-bug-lesson="${q.lessonId}" data-bug-step="review"><div class="between"><span class="pill">${s.index+1}/${s.tasks.length}</span><button class="tiny-btn" id="reviewPause">${tr("Pause",'Pause')}</button></div><h2 tabindex="-1">${esc(translate(lesson?.title||tr("Entraînement supplémentaire",'Extra practice')))}</h2><p class="muted">${esc(translate(q.label))}</p>${q.context?`<p class="mixed-context">${esc(translate(q.context))}</p>`:''}${q.turns||q.speech?window.A1ReviewAudio.html(en()?'en':'fr'):''}<div class="quiz-q">${esc(translate(q.q))}</div>${q.kind==='choice'?`<div class="options">${s.order.map((o,i)=>`<button class="option-btn" lang="${q.answerLang||'de'}" data-review-option="${i}" ${answer?'disabled':''}>${esc(translate(o))}</button>`).join('')}</div><button class="primary-btn" id="reviewCheck" ${answer||!s.draft?'disabled':''}>${tr("Vérifier",'Check')}</button>`:`<label for="reviewInput">${tr("Ta réponse",'Your answer')}</label><input class="mixed-input" id="reviewInput" lang="de" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(s.draft)}" ${answer?'disabled':''}>${window.A1ExerciseEngine.charBar('de',en()?'en':'fr')}<button class="primary-btn" id="reviewCheck" ${answer?'disabled':''}>${tr("Vérifier",'Check')}</button>`}<div id="reviewFeedback" role="status"></div></section>`);
       view.querySelector('#reviewPause').onclick=setup;
       reviewAudio=q.turns||q.speech?window.A1ReviewAudio.mount({root:view,turns:q.turns,speech:q.speech,targetLang:'de-DE',uiLang:en()?'en':'fr'}):null;
       function feedback(a){
@@ -202,5 +234,5 @@
     }
     setup();
   }
-  window.DE_A1_REVIEW={task,record,pending,captureSession,captureListening,captureHard,seed,buildBank,choose,accepted,render};
+  window.DE_A1_REVIEW={task,record,pending,captureSession,captureListening,captureHard,seed,buildBank,choose,accepted,refreshQuestions,render};
 })();

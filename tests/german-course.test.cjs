@@ -5,7 +5,7 @@ function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.Math.random=()=>.99;
  w.A1Learning={shuffle:a=>[...a],countWords:s=>s.trim().split(/\s+/).filter(Boolean).length,wireRecorder:()=>{}};
- for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/grammar-ui.js','shared/lesson-topic-info.js','shared/pronunciation.js','shared/exercise-review.js','deutsch/pronouns.js','deutsch/answer-audio.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','deutsch/lesson-flow.js'])w.eval(read(f));
+ for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/grammar-ui.js','shared/lesson-topic-info.js','shared/pronunciation.js','shared/exercise-review.js','deutsch/pronouns.js','deutsch/answer-audio.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','deutsch/lesson-flow.js'])w.eval(read(f));
  const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+';window.testData={lessons,grammarSets,formTasks};');
  w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.testRefs=lessonGrammarReferenceHtml;');
  w.DE_A1_ASSESSMENTS.configure({...w.testData,practiceProgress:{recordGrammar:()=>{}}});
@@ -16,15 +16,15 @@ function render(env,id,s,audio=[],options={}){const {w,view}=env,l=w.testData.le
  w.A1LessonFlow.render({lesson:l,content:c,view,state:s,save:()=>{},lessonCount:24,targetLang:'de',uiLang:'fr',grammarHtml:w.DE_A1_STUDY.grammarHtml(l,w.testRefs(id),text=>`<button data-speak="${text}">🔊</button>`),goalsHtml:'<div class="lesson-goals">Objectifs</div>',pronunciationHtml:w.DE_A1_PRONUNCIATION.render(c),dialogueHtml:w.A1LessonGuide.parts(id,'fr',s=>s,()=>'<button>🔊</button>').dialogue,model:app.speakModel,writingModel:app.writeModel,writingHints:app.hints,writingFields:app.fields,minWords:app.minWords,recorderHtml:()=>'',speakBtn:t=>`<button data-speak="${t}">🔊</button>`,wireSpeakButtons:()=>{},wirePronunciation:()=>{},speak:t=>audio.push(t),renderLearn:()=>{},renderLesson:()=>{},renderMastery:({onBack,onResult})=>w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:l,view,state:s,save:()=>{},speak:t=>audio.push(t),onBack,onResult}),renderGrammarCheck:({onBack})=>w.DE_A1_ASSESSMENTS.renderGrammarCheck({view,state:s,save:()=>{},speak:t=>audio.push(t),onBack}),...options});
 }
 function answerCurrent(w,view,session){const q=session.ex[session.i];if(q.type==='gap'){const input=view.querySelector('#mixedInput');input.value=q.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#mixedCheck').click();}else view.querySelector(`[data-o="${q.a}"]`).click();}
-test('all 24 lessons teach the exact vocabulary and patterns used in lesson checks',()=>{
+test('all 24 lessons teach the opening phrases and checks use valid independent transfer tasks',()=>{
  const env=environment(),{w}=env;
  assert.equal(w.testData.lessons.length,24);
  for(const l of w.testData.lessons){
   const html=w.DE_A1_STUDY.grammarHtml(l,w.testRefs(l.id),()=>'<button>🔊</button>'),panel=w.document.createElement('div');panel.innerHTML=html;
   assert(panel.querySelectorAll('strong').length>=8);assert(!html.includes('**'));assert(!panel.querySelector('details:empty'));
-  const quiz=w.DE_A1_STUDY.lessonExercises(l);assert.equal(quiz.length,10);assert(quiz.every(q=>['choice','listening'].includes(q.type)));assert.equal(w.DE_A1_ASSESSMENTS.makeLessonTest(l).length,12);
+  const quiz=w.DE_A1_STUDY.lessonExercises(l);assert.equal(quiz.length,10);assert(quiz.every(q=>['choice','listening'].includes(q.type)));assert(w.DE_A1_ASSESSMENTS.makeLessonTest(l).length>=12&&w.DE_A1_ASSESSMENTS.makeLessonTest(l).length<=16);
   for(const q of [...quiz,...w.DE_A1_ASSESSMENTS.makeLessonTest(l)]){
-   assert(q.audio&&!q.audio.includes('|')&&!q.audio.includes('___'));if(!q.q?.startsWith('Lies den Dialog:'))assert(panel.textContent.includes(q.audio),`${l.id}: ${q.audio} must be taught`);
+   assert(q.audio&&!q.audio.includes('|')&&!q.audio.includes('___'));if(q.skill!=='transfer'&&!q.q?.startsWith('Lies den Dialog:'))assert(panel.textContent.includes(q.audio),`${l.id}: ${q.audio} must be taught`);
    if(q.type!=='gap'){assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}else assert(q.context&&q.prompt.includes('___'));
   }
   for(const unit of w.DE_A1_STUDY.content[l.id]){assert.equal(w.DE_A1_STUDY.unitTasks(unit).length,unit.practiceCount);const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);}
@@ -112,11 +112,12 @@ test('German opening rounds only test heard phrases, without reverse duplicates 
  }
  dom.window.close();
 });
-test('German final checks apply patterns and use four different contextual facts instead of reversing the opening quiz',()=>{
+test('German final checks use an independent 12–16 question bank instead of repeating the opening or grammar pools',()=>{
  const {dom,w}=environment();w.Math.random=Math.random;
  for(const l of w.testData.lessons){
   const intro=w.DE_A1_STUDY.lessonExercises(l),tasks=w.DE_A1_ASSESSMENTS.makeLessonTest(l);
-  assert.equal(tasks.length,12);assert.equal(tasks.filter(t=>t.skill==='transfer').length,4);assert.equal(new Set(tasks.map(t=>t.q)).size,12);
+  assert(tasks.length>=12&&tasks.length<=16);assert(tasks.every(t=>t.skill==='transfer'));assert.equal(new Set(tasks.map(t=>t.q)).size,tasks.length);
+  const practice=w.DE_A1_STUDY.content[l.id].flatMap(u=>w.DE_A1_STUDY.unitTasks(u));assert(!tasks.some(t=>practice.some(q=>q.q===t.q)),`lesson ${l.id}: copied grammar question`);
   assert(!tasks.some(t=>intro.some(q=>q.q===t.q)),`lesson ${l.id}: copied opening question`);
   const review=w.DE_A1_APPLICATIONS[l.id].review;assert.equal(review.fields.length,3);assert.equal(new Set(review.fields.map(f=>f.q)).size,3);
   for(const f of review.fields){assert.equal(f.o.length,3);assert.equal(new Set(f.o).size,3);assert(f.o.includes(f.answer));}
@@ -130,7 +131,7 @@ test('reviewed German alternatives avoid impossible time phrases and target the 
   const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(tasks.length,unit.practiceCount);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);
   for(const t of tasks){assert(t.answer);assert.equal(t.o.length,3);assert.equal(new Set(t.o).size,3);assert(!/seit morgen|seit übermorgen|am heute|am morgen|Ich heiße Kanada/.test(t.o.join(' ')));}
  }
- const first=w.DE_A1_STUDY.content[1][0],name=w.DE_A1_STUDY.unitTasks(first,{full:true}).find(q=>q.audio==='Ich heiße Claire.'&&q.skill==='recognition');assert(name.o.every(o=>o.startsWith('Je m’appelle ')));
+ const first=w.DE_A1_STUDY.content[1][0],tasks=w.DE_A1_STUDY.unitTasks(first);assert(tasks.every(q=>q.skill==='application'));assert(tasks.some(q=>q.prompt==='Ich ___ Claire.'&&q.answer==='heiße'));assert(tasks.some(q=>q.q.includes('Du ___ aus Kanada.')&&q.o.includes('kommst')));
  dom.window.close();
 });
 test('German question updates retain earned points and checked feedback while upgrading pending items',()=>{
@@ -162,7 +163,7 @@ test('German lessons distinguish female, plural and polite Sie and keep all thre
   const tasks=w.DE_A1_GRAMMAR_DRILLS.topics[title].tasks;for(const role of ['female','plural','formal'])assert(tasks.some(q=>q.pronounRole===role),`${title}: ${role}`);
  }
  const unit=w.DE_A1_STUDY.content[2][1],tasks=w.DE_A1_STUDY.unitTasks(unit);for(const role of ['female','plural','formal'])assert(tasks.some(q=>q.pronounRole===role));
- assert.equal(tasks.length,15);assert.equal(unit.table.length,6);assert(unit.table.some(row=>row[0]==='sie / Sie'));
+ assert.equal(tasks.length,17);assert.equal(unit.table.length,6);assert(unit.table.some(row=>row[0]==='sie / Sie'));
  const html=w.DE_A1_STUDY.grammarHtml(w.testData.lessons[0],w.testRefs(1),s=>`<button data-speak="${s}">🔊</button>`),panel=w.document.createElement('div');panel.innerHTML=html;
  assert(panel.querySelector('.pronoun-guide'));assert(panel.querySelector('.pronoun-guide').textContent.includes('En début de phrase'));
  assert([...panel.querySelectorAll('td,th')].some(cell=>/^sie\s*\/\s*Sie$/.test(cell.textContent)));assert(!panel.firstElementChild.firstElementChild.querySelector('.pronoun-guide'));assert(!panel.querySelector('.deepening-background'));
@@ -175,8 +176,8 @@ test('German mini-test length follows the topic while opening and final checks r
   const tasks=w.DE_A1_STUDY.unitTasks(unit);lengths.add(tasks.length);assert.equal(tasks.length,unit.practiceCount);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);
   assert(w.DE_A1_STUDY.unitTasks(unit,{full:true}).length>=10);
  }
- assert.deepEqual([...lengths].sort((a,b)=>a-b),[10,15]);
+ assert.deepEqual([...lengths].sort((a,b)=>a-b),[10,15,17]);
  assert.equal(w.DE_A1_STUDY.unitTasks(w.DE_A1_STUDY.content[2][0]).length,10);
- assert.equal(w.DE_A1_STUDY.unitTasks(w.DE_A1_STUDY.content[2][1]).length,15);
+ assert.equal(w.DE_A1_STUDY.unitTasks(w.DE_A1_STUDY.content[2][1]).length,17);
  dom.window.close();
 });

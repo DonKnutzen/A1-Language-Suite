@@ -49,21 +49,20 @@
   function gapTasks(unit){
     return unit.rows.map(([marked,fr],i)=>{
       const answer=marked.match(/\|([^|]+)\|/)?.[1],prompt=marked.replace(/\|[^|]+\|/,'___'),o=shuffle([answer,...unit.practice[i].wrong]);
-      return {type:'gap',q:`« ${fr} » — Complète : ${prompt}`,prompt,context:fr,answer,o,a:o.indexOf(answer),audio:plain(marked),explanation:`${plain(marked)} = ${fr}`,skill:'application'};
+      return {type:'gap',qualityRevision:149,marking:{strictAccents:true},...(answer==='geöffnet'?{accept:['offen']}:{}),q:`« ${fr} » — Complète : ${prompt}`,prompt,context:fr,answer,o,a:o.indexOf(answer),audio:plain(marked),explanation:`${plain(marked)} = ${fr}`,skill:'application'};
     });
   }
   function unitTasks(unit,{full=true}={}){
-    const recognitionTasks=unit.rows.map(([de,fr])=>recognition(unit,[plain(de),fr]));
+    const entry=Object.entries(content).find(([,units])=>units.includes(unit));
+    if(!entry)throw new Error('Unknown German study unit');
+    const id=Number(entry[0]),index=entry[1].indexOf(unit);
+    const authored=window.DE_A1_QUESTIONS.practiceTasks(id,index),forms=gapTasks(unit);
     if(unit.conjugation){
       const persons=['Ich','Du','Sie','Wir','Ihr','Sie','Sie'],fr=['Je peux','Tu peux','Elle peut','Nous pouvons','Vous pouvez (plusieurs personnes, familier)','Ils/Elles peuvent','Vous pouvez (forme de politesse)'],indices=[0,1,2,3,4,5,5],roles=['','','female','','familiar','plural','formal'],forms=unit.conjugation.forms;
-      return [...persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i]};}),...gapTasks(unit),...recognitionTasks].map(indexAnswer);
+      const conjugations=persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i],qualityRevision:149};});
+      return [...authored,...conjugations,...gapTasks(unit)].map(indexAnswer);
     }
-    const forms=gapTasks(unit),extra=shuffle([...(unit.extra||[]),...(unit.vocabulary||[])].filter((p,i,a)=>a.findIndex(q=>q[0]===p[0])===i)).slice(0,2).map(p=>recognition(unit,p,{application:true}));
-    if(full)return [...recognitionTasks,...forms,...extra].map(indexAnswer);
-    const count=unit.practiceCount||8;
-    if(count===6){const picked=shuffle(forms).slice(0,2),used=new Set(picked.map(t=>t.audio));return [...recognitionTasks.filter(t=>!used.has(t.audio)),...picked,...extra].map(indexAnswer);}
-    if(count===8)return [...shuffle(recognitionTasks).slice(0,2),...forms,...extra].map(indexAnswer);
-    return [...recognitionTasks,...forms,...extra].map(indexAnswer);
+    return [...authored,...forms].map(indexAnswer);
   }
   function indexAnswer(task){return {...task,a:task.o.indexOf(task.answer)};}
   function balanced(units,pool,count){
@@ -75,24 +74,24 @@
     const units=content[lesson.id],pool=balanced(units,u=>shuffle([...u.rows.map(([de,fr])=>[plain(de),fr]),...u.extra.slice(0,2)]),10);
     return shuffle(pool.map((pair,i)=>recognition(units.find(u=>[...u.rows,...u.extra].some(p=>plain(p[0])===pair[0])),pair,{listening:i>=8}))).map(indexAnswer);
   }
-  function refreshSession(progress,tasks){
+  function refreshSession(progress,tasks,revision=118){
     if(!progress)return;
-    const saved=progress.session;if(!saved?.ex){progress.contentRevision=118;return;}if(progress.contentRevision===118)return;
+    const saved=progress.session;if(!saved?.ex){progress.contentRevision=revision;return;}if(progress.contentRevision===revision)return;
     const current=saved.ex[saved.i];
+    if(revision===149){progress.previousDrafts||=[];progress.previousDrafts.push(JSON.parse(JSON.stringify(saved)));}
+    const identity=q=>JSON.stringify([q?.q,q?.answer,q?.o?[...q.o].sort():null,q?.marking,q?.accept]);
     const used=new Set(saved.ex.slice(0,saved.i+Number(!!saved.response)).map(t=>t.q));
     saved.ex=saved.ex.map((old,i)=>{
       if(i<saved.i||(i===saved.i&&saved.response))return old;
       const replacement=tasks.find(t=>t.q===old.q&&!used.has(t.q))||tasks.find(t=>!used.has(t.q));
       if(!replacement)return old;used.add(replacement.q);return replacement;
     });
-    if(!saved.response&&(saved.ex[saved.i].q!==current.q||saved.ex[saved.i].answer!==current.answer)){saved.draft='';saved.orderPicked=[];saved.choicePicked=null;}
-    progress.contentRevision=118;saved.contentRevision=118;
+    if(!saved.response&&(identity(saved.ex[saved.i])!==identity(current))){saved.draft='';saved.orderPicked=[];saved.choicePicked=null;}
+    progress.contentRevision=revision;saved.contentRevision=revision;
   }
   function assessmentTasks(lesson){
-    const units=content[lesson.id],tasks=balanced(units,u=>shuffle(unitTasks(u,{full:true}).filter(t=>t.skill==='application')),8);
-    const application=window.DE_A1_APPLICATIONS[lesson.id];
-    tasks.push(...application.review.fields.map(field=>({type:'choice',q:`Lies den Dialog: ${application.review.text}\n${field.q}`,o:shuffle(field.o),answer:field.answer,audio:field.answer,skill:'transfer',explanation:application.review.text.split(' / ').join(' ')})),{...application.reading,skill:'transfer'});
-    return window.DE_A1_ASSESSMENTS?.spreadAnswers?window.DE_A1_ASSESSMENTS.spreadAnswers(tasks.map(indexAnswer)):tasks.map(indexAnswer);
+    const tasks=window.DE_A1_QUESTIONS.checkTasks(lesson.id);
+    return window.DE_A1_ASSESSMENTS?.spreadAnswers?window.DE_A1_ASSESSMENTS.spreadAnswers(tasks):tasks;
   }
   function configure(lessons){
     for(const lesson of lessons){

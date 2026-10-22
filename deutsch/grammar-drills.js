@@ -15,7 +15,7 @@
     const first=verbs[0],femaleName=title.includes('heißen')?'Anna':first.ends[2];
     tasks[2]={...gap(`Sie ___ ${femaleName}.`,first.forms[2],[...new Set(first.forms)].filter(f=>f!==first.forms[2]).slice(0,2),`Elle ${first.meaning[2].replace('Tom','Anna')}`),pronounRole:'female'};
     tasks[5].pronounRole='plural';tasks[4].pronounRole='familiar';
-    tasks[9]={...gap(`Sie ___ ${first.ends[4]}.`,first.forms[5],[...new Set(first.forms)].filter(f=>f!==first.forms[5]).slice(0,2),`Vous (forme de politesse) ${first.meaning[4]}`),pronounRole:'formal'};
+    tasks.push({...gap(`Sie ___ ${first.ends[4]}.`,first.forms[5],[...new Set(first.forms)].filter(f=>f!==first.forms[5]).slice(0,2),`Vous (forme de politesse) ${first.meaning[4]}`),pronounRole:'formal'});
     add(title,'g1',tasks);
   }
   conjugation('sein – conjugaison',[
@@ -73,7 +73,7 @@
     ['Ich ___ gern einen Kaffee.','hätte',['hätten','hättest']],['Wir ___ gern die Rechnung.','hätten',['hätte','hättest']],
     ['Ich ___ eine Suppe, bitte.','möchte',['möchten','möchtest']],['Wir ___ zwei Brötchen, bitte.','möchten',['möchte','möchtet']],
     ['___ Sie mir bitte die Speisekarte geben?','Könnten',['Könntest','Könnte']],['___ ich bitte ein Glas Wasser haben?','Kann',['Kannst','Können']],
-    ['Ich hätte ___ einen Tee.','gern',['gestern','dort'],'Je voudrais un thé.'],['Die Rechnung, ___.','bitte',['morgen','hier'],'L’addition, s’il vous plaît.'],
+    ['Du ___ gern einen Tee.','hättest',['hätte','hätten'],'Tu voudrais un thé.'],['___ Sie mir bitte die Rechnung geben?','Könnten',['Könnte','Könntest'],'Pourriez-vous me donner l’addition ?'],
     ['Ich ___ einen Salat, bitte.','nehme',['nimmt','nehmen']],['Wir ___ zwei Kaffees, bitte.','nehmen',['nehme','nehmt']],
     ['___ Sie noch etwas?','Möchten',['Möchtest','Möchtet']],['Ich ___ gern bezahlen.','würde',['würden','würdest']]
   ]);
@@ -125,8 +125,8 @@
   ]);
   rows('Verbes séparables','g6',[
     ['Ich stehe um sieben Uhr ___.','auf',['an','ein']],['Du stehst früh ___.','auf',['mit','ein']],['Wir stehen um acht Uhr ___.','auf',['an','mit']],
-    ['Ich kaufe heute ___.','ein',['auf','an']],['Du kaufst am Samstag ___.','ein',['mit','auf'],'Tu fais les courses samedi.'],['Wir kaufen morgen ___.','ein',['an','mit'],'Nous faisons les courses demain.'],
-    ['Der Zug kommt um zehn Uhr ___.','an',['auf','ein']],['Wann kommt der Bus ___?','an',['ein','auf']],['Wir kommen morgen ___.','an',['mit','auf'],'Nous arrivons demain.'],
+    ['Ich kaufe heute ___.','ein',['auf','an'],'Je fais les courses aujourd’hui (einkaufen).'],['Du kaufst am Samstag ___.','ein',['mit','auf'],'Tu fais les courses samedi.'],['Wir kaufen morgen ___.','ein',['an','mit'],'Nous faisons les courses demain.'],
+    ['Der Zug kommt um zehn Uhr ___.','an',['auf','ein'],'Le train arrive à dix heures (ankommen).'],['Wann kommt der Bus ___?','an',['ein','auf'],'Quand le bus arrive-t-il (ankommen) ?'],['Wir kommen morgen ___.','an',['mit','auf'],'Nous arrivons demain.'],
     ['Ich bringe Wasser ___.','mit',['auf','an']],['Bringst du Brot ___?','mit',['an','auf']],['Bitte bringen Sie ein Buch ___.','mit',['ein','auf']]
   ]);
   rows('kein – nominatif et accusatif','g7',[
@@ -149,6 +149,22 @@
     ['Er liest ___ Buch.','sein',['seine','seinen'],'Il lit son livre.'],['Sie besucht ___ Eltern.','ihre',['ihr','ihren'],'Elle rend visite à ses parents.'],
     ['Wir suchen ___ Schlüssel.','unseren',['unser','unsere'],'Nous cherchons notre clé.'],['Ihr besucht ___ Schwester.','eure',['euer','euren'],'Vous rendez visite à votre sœur (informel).']
   ]);
+  // Every taught possessive stem is practised with masculine, feminine and neuter nouns.
+  // Retain the accusative applications; do not replace one owner with another randomly.
+  const owners=[['mein','meine','mon','ma'],['dein','deine','ton','ta'],['sein','seine','son (à lui)','sa (à lui)'],['ihr','ihre','son (à elle)','sa (à elle)'],['unser','unsere','notre','notre'],['euer','eure','votre (plusieurs proches)','votre (plusieurs proches)'],['Ihr','Ihre','votre (politesse)','votre (politesse)']];
+  const meaning=(owner,noun)=>{const hint=owner.match(/ \(.*\)$/)?.[0]||'';return 'C’est '+owner.replace(/ \(.*\)$/,'')+' '+noun+hint+'.';};
+  const possessives=owners.flatMap(([stem,feminine,mascFr,femFr])=>[
+    gap('Das ist ___ Vater.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'père')),
+    gap('Das ist ___ Mutter.',feminine,[stem,stem==='euer'?'euren':stem+'en'],meaning(femFr,'mère')),
+    gap('Das ist ___ Kind.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'enfant'))
+  ]);
+  const accusative=topics['Possessifs utiles'].tasks.slice(6);
+  add('Possessifs utiles','g7',[...possessives,...accusative]);
+  const plural=topics['Possessif au pluriel'].tasks;
+  add('Possessif au pluriel','g2',[...plural,
+    gap('Das sind ___ Kinder.','Ihre',['Ihr','Ihren'],'Ce sont vos enfants (politesse).'),
+    gap('___ Freunde kommen morgen.','Ihre',['Ihr','Ihren'],'Vos amis viennent demain (politesse).')
+  ]);
   function extendSets(sets){
     for(const {setId,tasks} of Object.values(topics)){
       const set=sets.find(s=>s.id===setId);if(!set)continue;
@@ -159,6 +175,9 @@
     const orders=sets.find(s=>s.id==='g3');
     const order=orders?.questions.find(q=>q.q==='Comment commandes-tu poliment ?');
     if(order)Object.assign(order,{q:'Comment demandes-tu poliment une eau ?',o:['Ich hätte gern ein Wasser.','Ich hätte gern einen Kaffee.','Ich hätte gern eine Suppe.'],a:0,audio:'Ich hätte gern ein Wasser.'});
+    const articles=sets.find(s=>s.id==='g2');
+    const exposed=articles?.questions.find(q=>q.q==='Quel mot est féminin ?');
+    if(exposed)Object.assign(exposed,{q:'Quel article défini : ___ Straße ?',o:['der','die','das'],a:1,audio:'die Straße'});
     const questions=sets.find(s=>s.id==='g4');
     const replacements={
       'Comment demandes-tu le prix ?':{q:'Tu demandes combien coûte cet article.',o:['Wie viel kostet das?','Wie viel kostet der Mantel?','Wie viel kosten die Schuhe?'],a:0,audio:'Wie viel kostet das?'},

@@ -305,7 +305,7 @@
         const check=()=>{
           if(input.disabled||!input.value.trim())return;
           input.disabled=true;document.getElementById('mixedCheck').disabled=true;
-          const exact=norm(input.value)===norm(q.answer);
+          const exact=opts.matchesAnswer?.(input.value,q)??(norm(input.value)===norm(q.answer));
           const near=!exact&&q.type==='text'&&nearSentence(input.value,q.answer);
           feedback(exact?'ok':near?'near':'bad',q.answer,q.audio,q.explanation);
         };
