@@ -21,49 +21,6 @@
   const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
   const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
   const families=[['trente','treize','quarante'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
-  // Authored neighbours keep the same communicative purpose as the correct answer.
-  const closePairs = {
-    'Je suis célibataire.': [['Je suis marié.','Ich bin verheiratet.'],['Je suis divorcé.','Ich bin geschieden.']],
-    'Vous avez quel âge ?': [['Vous habitez où ?','Wo wohnen Sie?'],['Vous êtes né quand ?','Wann sind Sie geboren?']],
-    'Je suis né le 17 avril.': [['Je suis né le 7 avril.','Ich bin am 7. April geboren (männlich).'],['Je suis né le 17 mai.','Ich bin am 17. Mai geboren (männlich).']],
-    'Je suis née le 17 avril.': [['Je suis née le 7 avril.','Ich bin am 7. April geboren (weiblich).'],['Je suis née le 17 mai.','Ich bin am 17. Mai geboren (weiblich).']],
-    'Mon code postal est B3V 1L2.': [['Mon code postal est B3V 2L1.','Meine Postleitzahl ist B3V 2L1.'],['Mon code postal est B2V 1L3.','Meine Postleitzahl ist B2V 1L3.']],
-    'On se voit vendredi soir.': [['On se voit jeudi soir.','Wir sehen uns Donnerstagabend.'],['On se voit vendredi matin.','Wir sehen uns Freitagmorgen.']],
-    'Du lundi au vendredi.': [['Du mardi au vendredi.','Von Dienstag bis Freitag.'],['Du lundi au jeudi.','Von Montag bis Donnerstag.']],
-    'Nous sommes le cinq octobre.': [['Nous sommes le quinze octobre.','Heute ist der fünfzehnte Oktober.'],['Nous sommes le cinq novembre.','Heute ist der fünfte November.']],
-    'le premier juillet': [['le premier juin','der erste Juni'],['le deux juillet','der zweite Juli']],
-    'Rendez-vous devant la bibliothèque.': [['Rendez-vous dans la bibliothèque.','Treffpunkt in der Bibliothek.'],['Rendez-vous devant la gare.','Treffpunkt vor dem Bahnhof.']],
-    'D’accord, mardi à 15 h devant la bibliothèque.': [['D’accord, jeudi à 15 h devant la bibliothèque.','Einverstanden, Donnerstag um 15 Uhr vor der Bibliothek.'],['D’accord, mardi à 16 h devant la bibliothèque.','Einverstanden, Dienstag um 16 Uhr vor der Bibliothek.']],
-    'Je viens plus tard.': [['Je viens plus tôt.','Ich komme früher.'],['Je viens à l’heure.','Ich komme pünktlich.']],
-    'Je suis libre à partir de quinze heures.': [['Je suis libre jusqu’à quinze heures.','Ich habe bis 15 Uhr Zeit.'],['Je suis libre à partir de seize heures.','Ich habe ab 16 Uhr Zeit.']],
-    'Le rendez-vous est mardi à quinze heures.': [['Le rendez-vous est jeudi à quinze heures.','Der Termin ist Donnerstag um 15 Uhr.'],['Le rendez-vous est mardi à seize heures.','Der Termin ist Dienstag um 16 Uhr.']],
-    'Vous êtes disponible mardi à quinze heures ?': [['Vous êtes disponible jeudi à quinze heures ?','Haben Sie Donnerstag um 15 Uhr Zeit?'],['Vous êtes disponible mardi à seize heures ?','Haben Sie Dienstag um 16 Uhr Zeit?']],
-    'À quelle heure ?': [['Quel jour ?','An welchem Tag?'],['À quel endroit ?','An welchem Ort?']]
-  };
-  const allPairs=unit=>unit.pairs||[];
-  function pairTasks(unit){
-    const pairs=allPairs(unit);
-    return pairs.flatMap(([fr,de],i)=>{
-      if(unit.key==='u0'&&fr==='Ça s’écrit M-A-R-T-I-N.')return [{kind:'vocabulary',q:'Du möchtest wissen, wie ein Name geschrieben wird. Was fragst du?',answer:'Comment ça s’écrit ?',o:['Comment ça s’écrit ?','Comment vous vous appelez ?','Vous habitez où ?'],audio:'Comment ça s’écrit ?',explanation:'Comment ça s’écrit ? bedeutet „Wie schreibt man das?“ und fragt nach der Schreibweise.'}];
-      const field=fr.match(/^(Nom|Prénom|Âge|Téléphone|E-mail) :/);
-      if(field){
-        const labels={Nom:'Nachname',Prénom:'Vorname','Âge':'Alter','Téléphone':'Telefon','E-mail':'E-Mail'};
-        const answer=field[1];
-        return [{kind:'vocabulary',q:`Welches französische Formularfeld bedeutet „${labels[answer]}“?`,answer,o:[answer,...shuffle(Object.keys(labels).filter(x=>x!==answer)).slice(0,2)],audio:answer,explanation:`${answer} = ${labels[answer]}`}];
-      }
-      const french=i%2===0,answer=french?fr:de,index=french?0:1;
-      const shape=text=>text.includes('?')?'question':text.trim().split(/\s+/).length<3?'word':'sentence';
-      const similarity=([candidate,native])=>{
-        const tokens=s=>new Set(s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^\p{L}\p{N}]+/u).filter(w=>w.length>2));
-        const a=tokens(fr+' '+de),b=tokens(candidate+' '+native);
-        return [...b].filter(w=>a.has(w)).length*4-Math.abs(candidate.length-fr.length)/30;
-      };
-      const candidates=closePairs[fr]||pairs.filter(p=>shape(p[0])===shape(fr)&&p[0]!==fr).sort((a,b)=>similarity(b)-similarity(a));
-      const wrong=[...new Set([...candidates,...pairs].map(p=>p[index]).filter(x=>x!==answer))];
-      if(wrong.length<2)return [];
-      return [{kind:'vocabulary',q:french?`Wie sagst du „${de}“ auf Französisch?`:`Was bedeutet „${fr}“?`,answer,o:[answer,...wrong.slice(0,2)],audio:fr.replace(/ → /g,', '),explanation:de}];
-    });
-  }
   function specTask(t,rule){
     const answer=t.answer;
     const alternatives=(families.find(a=>a.includes(answer))||[]).filter(a=>a!==answer);
@@ -187,7 +144,7 @@
   }
   function pools(lesson,html){
     return definitions(lesson,html).units.map(unit=>{
-      let tasks=[...pairTasks(unit),...tableTasks(unit.element),...(specs[lesson.id]?.tasks||[]).flatMap((t,i)=>routes[lesson.id]?.[i]===unit.key?[specTask(t,unit.rule)].filter(Boolean):[])];
+      let tasks=[...(window.FR_A1_GRAMMAR_PRACTICE?.fromPairs(unit,lesson.id)||[]),...tableTasks(unit.element),...(specs[lesson.id]?.tasks||[]).flatMap((t,i)=>routes[lesson.id]?.[i]===unit.key?[specTask(t,unit.rule)].filter(Boolean):[])];
       if(lesson.id===6&&unit.key==='r0'){
         const forms=[...(specs[6].tasks||[]).filter(t=>t.tag==='Teilungsartikel'),
           {prompt:'Je voudrais ___ café.',answer:'un',context:'Ich möchte einen Kaffee.'},
@@ -200,6 +157,8 @@
         tasks.push(...(specs[3].tasks||[]).filter((t,i)=>routes[3][i]==='r0'&&!tasks.some(q=>q.q===(t.prompt||t.q))).map(t=>specTask(t,unit.rule)));
       }
       tasks=window.FR_A1_GRAMMAR_PRACTICE?.improve(lesson,unit,tasks)||tasks;
+      const authoredKeys=new Set(tasks.filter(t=>!t.coverage?.startsWith('phrase:')).map(t=>JSON.stringify([t.q,t.answer])));
+      tasks=tasks.filter(t=>!t.coverage?.startsWith('phrase:')||!authoredKeys.has(JSON.stringify([t.q,t.answer])));
       return {key:unit.key,title:unit.preparedTitle||unit.title,rule:unit.rule,tasks};
     });
   }
@@ -217,15 +176,28 @@
     const review=window.A1ExerciseReview?.create();
     const work=state.lessonWork[lesson.id];work.deepening||={};const progress=work.deepening[pool.key]||={};
     const saved=progress.session;const resume=saved?.version===1&&Array.isArray(saved.questions)&&Number.isInteger(saved.i)&&saved.i>=0&&saved.i<saved.questions.length;
-    // Upgrade only unanswered items in the two revised drills; keep earned points and checked feedback.
-    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key)))){
-      const used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(q=>q.q));
+    // Update open tasks without regrading checked answers. Never repeat a task
+    // merely to retain the length of an older, now smaller question pool.
+    const key=q=>JSON.stringify([q.q,q.answer,q.meaning||'']);
+    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key))||lesson.id===7)){
+      const before=JSON.parse(JSON.stringify(saved)),used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(key));let currentChanged=false;
       saved.questions=saved.questions.map((q,index)=>{
         if(index<saved.i||(index===saved.i&&saved.response))return q;
-        const current=pool.tasks.find(t=>t.q===q.q&&!used.has(t.q))||pool.tasks.find(t=>!used.has(t.q))||pool.tasks[index%pool.tasks.length];
-        used.add(current.q);return current;
-      });
-      if(!saved.response)saved.order=null;
+        const next=pool.tasks.find(t=>t.q===q.q&&t.answer===q.answer&&!used.has(key(t)))||pool.tasks.find(t=>!used.has(key(t)));
+        if(!next){if(index===saved.i)currentChanged=true;return null;}used.add(key(next));
+        if(index===saved.i&&JSON.stringify(q)!==JSON.stringify(next))currentChanged=true;return next;
+      }).filter(Boolean);
+      if(JSON.stringify(before.questions)!==JSON.stringify(saved.questions)){progress.previousQuestionSession||=before;progress.questionQualityUpdated=true;}
+      if(currentChanged)saved.order=null;
+    }
+    if(resume&&saved.questions.some((q,index)=>q.kind==='vocabulary'&&index>=saved.i&&!(index===saved.i&&saved.response))){
+      const before=JSON.parse(JSON.stringify(saved)),used=new Set(saved.questions.filter((q,index)=>index<saved.i||(index===saved.i&&saved.response)||q.kind!=='vocabulary').map(key));let currentChanged=false;
+      saved.questions=saved.questions.map((q,index)=>{
+        if(index<saved.i||(index===saved.i&&saved.response)||q.kind!=='vocabulary')return q;
+        const next=pool.tasks.find(t=>t.audio===q.audio&&!used.has(key(t)))||pool.tasks.find(t=>!used.has(key(t)));
+        if(index===saved.i)currentChanged=true;if(!next)return null;used.add(key(next));return next;
+      }).filter(Boolean);
+      progress.previousQuestionSession||=before;progress.questionQualityUpdated=true;if(currentChanged)saved.order=null;
     }
     if(resume){
       const legacyKey=q=>JSON.stringify([q.q,q.answer]),replacements=new Map();
@@ -238,6 +210,7 @@
       });
       if(changed){progress.previousQuestionSession=before;if(currentChanged)saved.order=null;}
     }
+    if(!resume)delete progress.questionQualityUpdated;
     const seen=new Set(progress.seen||[]);
     const prioritize=a=>[...shuffle(a.filter(q=>!seen.has(q.q))),...shuffle(a.filter(q=>seen.has(q.q)))];
     const questions=resume?saved.questions:(window.FR_A1_GRAMMAR_PRACTICE?.select(prioritize(pool.tasks),shuffle)||shuffle(pool.tasks)),stage=panel.querySelector('.deepening-stage');
@@ -256,7 +229,7 @@
     function draw(){
       if(i>=questions.length)return finish();
       const q=questions[i];order=order||shuffle(q.o);persist();
-      stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${q.meaning?`<p class="mixed-context">${esc(window.A1Profile?.getUiLang()==='en'&&q.meaningEn?q.meaningEn:q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${order.map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
+      stage.innerHTML=`<small>${i+1} / ${questions.length}</small>${progress.questionQualityUpdated?'<p class="muted">Aufgaben aktualisiert · bisherige Antworten erhalten.</p>':''}${q.meaning?`<p class="mixed-context">${esc(window.A1Profile?.getUiLang()==='en'&&q.meaningEn?q.meaningEn:q.meaning)}</p>`:''}<div class="quiz-q">${esc(q.q)}</div><div class="options">${order.map(o=>`<button type="button" class="option-btn">${esc(o)}</button>`).join('')}</div><div class="deepening-feedback" aria-live="polite"></div>`;
       function feedback(chosen,restoring=false){
         const ok=chosen===q.answer;
         if(!restoring){if(response)return;if(ok)score++;else mistakes.push(q);window.FR_A1_REVIEW?.record(state,window.FR_A1_REVIEW.task(lesson.id,"grammar:"+pool.key,pool.title,q),ok);response={chosen};persist();}

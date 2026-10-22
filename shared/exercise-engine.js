@@ -251,11 +251,11 @@
     if(resume&&opts.answerAudioAfterResponse&&opts.targetLang==='fr'){
       previous.ex=previous.ex.map((q,index)=>{
         if(index<previous.i||(index===previous.i&&previous.response)||q.type!=='choice')return q;
-        const source=opts.lesson.quiz?.find(item=>item.q===q.q);
-        if(!source||JSON.stringify([...source.o].sort())===JSON.stringify([...q.o].sort()))return q;
+        const source=opts.lesson.quiz?.find(item=>item.q===q.q||item.legacyQuestion===q.q);
+        if(!source||(source.q===q.q&&JSON.stringify([...source.o].sort())===JSON.stringify([...q.o].sort())))return q;
         const o=shuffled(source.o),answer=source.o[source.a];
         if(index===previous.i)previous.choicePicked=null;
-        return {...q,o,a:o.indexOf(answer),answer,audio:source.audio||q.audio};
+        return {...q,q:source.q,o,a:o.indexOf(answer),answer,audio:source.audio||q.audio,context:source.context||q.context||'',explanation:source.explanation||q.explanation};
       });
     }
     const ex=resume?previous.ex:(opts.exercises||make(opts.lesson,opts.lesson.id,opts.uiLang)),L=UI[opts.uiLang]||UI.de;

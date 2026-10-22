@@ -126,11 +126,10 @@ test('old unfinished table questions upgrade without changing graded answers, be
  const pending=e.api.pending(e.state);assert.equal(pending.length,1);assert.equal(pending[0].task.answer,'habitez');assert.equal(pending[0].wrong,1);assert.equal(pending[0].streak,0);assert(e.state.reviewPractice.items[old.id].retired);
  e.click('#reviewResume');assert(e.view.textContent.includes('Vous ___ à Lyon.'));assert([...e.view.querySelectorAll('[data-review-option]')].every(b=>!b.textContent.includes('vous')));assert.equal(s.answers.filter(Boolean).length,1);e.render();assert.equal(e.api.pending(e.state).length,1);assert.equal(e.completed,0);e.dom.window.close();
 });
-test('retired phrase cards leave ongoing mixed rounds while checked feedback and mistake-mode vocabulary remain',()=>{
- const e=environment(),old=e.api.task(2,'grammar:u0','Alphabet',{q:'Wie sagst du „Mein Vorname ist Léa.“ auf Französisch?',answer:'Mon prénom est Léa.',o:['Mon prénom est Léa.','Mon nom de famille est Martin.','avec une cédille : ç']}),valid=e.api.task(1,'l1:etre','être',{q:'Tu ___ français.',answer:'es',o:['es','est','êtes']});
+test('old generated translations upgrade in mixed and mistake rounds while checked feedback remains unchanged',()=>{
+ const e=environment(),old=e.api.task(2,'grammar:u0','Alphabet',{q:'Wie sagst du „Mein Vorname ist Léa.“ auf Französisch?',answer:'Mon prénom est Léa.',audio:'Mon prénom est Léa.',o:['Mon prénom est Léa.','Mon nom de famille est Martin.','avec une cédille : ç']}),valid=e.api.task(1,'l1:etre','être',{q:'Tu ___ français.',answer:'es',o:['es','est','êtes']});
  e.state.reviewPractice={session:{version:1,tasks:[old,valid],index:0,answers:[{value:old.answer,ok:true}],mode:'mixed',draft:''}};e.render();assert.equal(e.state.reviewPractice.session.tasks[0].id,old.id);assert.equal(e.state.reviewPractice.session.answers[0].ok,true);
- e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode:'mixed',draft:'keep archived'};e.render();assert(!e.state.reviewPractice.session);assert.equal(e.state.reviewPractice.previousQuestionRound.draft,'keep archived');
- e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode:'mistakes',draft:''};e.render();assert.equal(e.state.reviewPractice.session.tasks[0].id,old.id);e.dom.window.close();
+ for(const mode of ['mixed','mistakes']){e.state.reviewPractice.session={version:1,tasks:[old],index:0,answers:[],mode,draft:'keep archived'};e.render();const s=e.state.reviewPractice.session;assert(s);assert.notEqual(s.tasks[0].id,old.id);assert.equal(s.tasks[0].answer,'prénom');assert(s.tasks[0].q.includes('___'));assert(!s.answers.some(Boolean));assert.equal(e.state.reviewPractice.previousQuestionRound.draft,'keep archived');}e.dom.window.close();
 });
 
 test('reported infinitive and coffee mistakes upgrade ungraded drafts while keeping graded history',()=>{

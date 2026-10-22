@@ -627,7 +627,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Preis, Gesamtpreis & Bezahlen",
-      "rule": "Combien fragt nach dem Preis. Au total ergänzt „insgesamt“. Ein Preis wie 19,50 € kann als dix-neuf euros cinquante gesprochen werden. Für zwei Produkte verbindest du die Mengen mit et. Celui-ci ist hier ein fester Baustein für „dieses hier“.",
+      "rule": "Combien fragt nach dem Preis. Au total ergänzt „insgesamt“. Ein Preis wie 19,50 € kann als dix-neuf euros cinquante gesprochen werden. Für zwei Produkte verbindest du die Mengen mit et. Celui-ci ist hier ein fester Baustein für „dieses hier“. Trop cher heißt „zu teuer“, très cher „sehr teuer“ und peu cher „preiswert“.",
       "pairs": [
         [
           "C’est combien au total ?",

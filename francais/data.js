@@ -1191,9 +1191,9 @@ window.FR_A1_DATA = {
         {
           "q": "„un kilo de pommes“ =",
           "o": [
-            "eine Tüte Brot",
+            "ein Kilo Tomaten",
             "ein Kilo Äpfel",
-            "ein Glas Apfelsaft"
+            "zwei Kilo Äpfel"
           ],
           "a": 1,
           "audio": "un kilo de pommes"
@@ -1201,23 +1201,24 @@ window.FR_A1_DATA = {
         {
           "q": "„trop cher“ =",
           "o": [
-            "zu groß",
+            "sehr teuer",
             "zu teuer",
-            "zu spät"
+            "preiswert"
           ],
           "a": 1,
           "audio": "C’est trop cher."
         },
         {
-          "q": "Un kilo ___ pommes, s’il vous plaît.",
+          "legacyQuestion": "Un kilo ___ pommes, s’il vous plaît.",
+          "q": "Deux bouteilles ___eau, s’il vous plaît.",
           "o": [
-            "des",
+            "de",
             "du",
-            "de"
+            "d’"
           ],
           "a": 2,
-          "audio": "Un kilo de pommes, s’il vous plaît.",
-          "explanation": "Nach einer konkreten Menge steht de: un kilo de pommes."
+          "audio": "Deux bouteilles d’eau, s’il vous plaît.",
+          "explanation": "Nach bouteilles steht de; vor eau wird es zu d’ verkürzt."
         },
         {
           "q": "Lies den Dialog: Je voudrais un kilo de pommes. / Ça fait trois euros. / Et deux bananes ? / Un euro de plus.\nEin Kilo Äpfel kostet …",
@@ -1251,31 +1252,33 @@ window.FR_A1_DATA = {
           "audio": "Ça coûte dix-neuf euros cinquante."
         },
         {
-          "q": "Wie sagst du „Ich hätte gern ein Kilo Äpfel“ auf Französisch?",
+          "legacyQuestion": "Wie sagst du „Ich hätte gern ein Kilo Äpfel“ auf Französisch?",
+          "q": "Je voudrais un kilo ___ pommes.",
           "o": [
-            "Je voudrais un kilo de pommes.",
-            "Je voudrais deux kilos de pommes.",
-            "Je voudrais un kilo de tomates."
+            "de",
+            "du",
+            "des"
           ],
           "a": 0,
           "audio": "Je voudrais un kilo de pommes."
         },
         {
-          "q": "Wie sagst du „Haben Sie Größe 40“ auf Französisch?",
+          "legacyQuestion": "Wie sagst du „Haben Sie Größe 40“ auf Französisch?",
+          "q": "Welche Größe wird erfragt? « Vous avez une taille quarante ? »",
           "o": [
-            "Vous avez une taille 40 ?",
-            "Vous avez une taille 42 ?",
-            "Vous avez une taille 30 ?"
+            "40",
+            "14",
+            "80"
           ],
           "a": 0,
-          "audio": "Vous avez une taille 40 ?"
+          "audio": "Vous avez une taille quarante ?"
         },
         {
           "q": "Wie sagst du „Das ist zu teuer“ auf Französisch?",
           "o": [
             "C’est trop cher.",
-            "C’est trop petit.",
-            "C’est trop grand."
+            "C’est très cher.",
+            "C’est peu cher."
           ],
           "a": 0,
           "audio": "C’est trop cher."

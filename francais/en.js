@@ -2241,3 +2241,24 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
   'Eau beginnt mit einem Vokal. Deshalb steht de l’eau.':'Eau starts with a vowel, so use de l’eau.',
   'Welche Bestellung enthält einen Kaffee und ein Croissant?':'Which order includes a coffee and a croissant?'
 });
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
+  'Welche französische Angabe passt?':'Which French expression matches?',
+  'Welche Mengenangabe ist grammatisch korrekt?':'Which quantity expression is grammatically correct?',
+  'Bestelle 500 Gramm Tomaten.':'Order 500 grams of tomatoes.',
+  'Bestelle 200 Gramm Käse.':'Order 200 grams of cheese.',
+  'Du brauchst zwei Flaschen Wasser. Welche Mengenangabe passt?':'You need two bottles of water. Which quantity matches?',
+  'Du brauchst einen Liter Milch. Welche Mengenangabe passt?':'You need a litre of milk. Which quantity matches?',
+  'Du fragst nach dem Gesamtpreis deines Einkaufs.':'Ask for the total price of your shopping.',
+  'Welche Größe wird erfragt? « Vous avez une taille quarante ? »':'Which size is being requested? « Vous avez une taille quarante ? »',
+  'Je voudrais un kilo ___ pommes.':'Je voudrais un kilo ___ pommes.',
+  'Nach bouteilles steht de; vor eau wird es zu d’ verkürzt.':'After bouteilles, use de; before eau it contracts to d’.'
+});
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(['un livre','une clé','une baguette','un café'].map(noun=>['Setze in den Plural: '+noun,'Put in the plural: '+noun]))});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
+ 'Trop cher heißt „zu teuer“, très cher „sehr teuer“ und peu cher „preiswert“.':'Trop cher means “too expensive”, très cher “very expensive” and peu cher “inexpensive”.',
+ 'ist hier ein fester Baustein für „dieses hier“. Trop cher heißt „zu teuer“, très cher „sehr teuer“ und peu cher „preiswert“.':'is a fixed expression meaning “this one”. Trop cher means “too expensive”, très cher “very expensive” and peu cher “inexpensive”.'
+});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Aufgaben aktualisiert · bisherige Antworten erhalten.':'Tasks updated · previous answers preserved.'});
