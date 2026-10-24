@@ -1,0 +1,22 @@
+/* Layout regression harness. Run from the repository root with Playwright and browser-temp/chromium available.
+ * Scripts/auth are omitted; env() values are substituted only in served CSS to simulate insets. */
+const fs=require('fs'),path=require('path'),http=require('http'),{chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES?process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright':'playwright');const root=process.cwd();
+const server=http.createServer((req,res)=>{let p=decodeURIComponent(req.url.split('?')[0]);if(p.endsWith('/'))p+='index.html';const file=path.join(root,p);if(!file.startsWith(root)||!fs.existsSync(file)){res.writeHead(404);return res.end();}let data=fs.readFileSync(file);if(file.endsWith('.css'))data=data.toString().replace(/env\(safe-area-inset-(top|bottom|left|right)(?:,\s*0px)?\)/g,(_,side)=>'var(--qa-safe-'+side+', 0px)');if(file.endsWith('index.html'))data=data.toString().replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'');res.setHeader('Content-Type',file.endsWith('.js')?'application/javascript':file.endsWith('.css')?'text/css':file.endsWith('.html')?'text/html':'application/json');res.end(data);});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:root+'/browser-temp/chromium',headless:true,args:['--single-process','--no-sandbox','--no-zygote','--in-process-gpu','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-site-isolation-trials','--disable-features=AudioServiceOutOfProcess,IsolateOrigins,site-per-process'],env:{...process.env,TMPDIR:root+'/browser-temp',FONTCONFIG_PATH:root+'/browser-temp',LD_LIBRARY_PATH:root+'/browser-temp'}}),page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));const cdp=await page.context().newCDPSession(page);let checks=0;
+for(const course of ['francais','deutsch']){
+await page.goto('http://127.0.0.1:'+server.address().port+'/'+course+'/');
+await page.evaluate(()=>{const actions=document.querySelector('.header-actions');actions.insertAdjacentHTML('afterbegin','<button class="theme-toggle">☀️</button>');actions.insertAdjacentHTML('beforeend','<button class="a1-voice-trigger">▥</button><button class="profile-chip">👤 Phillip</button>');document.querySelector('#view').style.minHeight='2200px';});
+for(const [width,height,insets] of [[390,844,{top:47,bottom:34,left:0,right:0}],[320,700,{top:20,bottom:0,left:0,right:0}],[844,390,{top:0,bottom:21,left:47,right:47}],[390,844,{top:0,bottom:0,left:0,right:0}],[1280,900,{top:0,bottom:0,left:0,right:0}]]){
+ await page.setViewportSize({width,height});await page.evaluate(insets=>{for(const [side,n]of Object.entries(insets))document.documentElement.style.setProperty('--qa-safe-'+side,n+'px');},insets);
+ for(const dark of [false,true]){
+  await page.evaluate(dark=>{document.documentElement.classList.toggle('dark-mode',dark);scrollTo(0,0);},dark);
+  const result=await page.evaluate(()=>{const h=document.querySelector('.topbar'),css=getComputedStyle(h);return{paddingTop:parseFloat(css.paddingTop),paddingLeft:parseFloat(css.paddingLeft),paddingRight:parseFloat(css.paddingRight),overflow:document.documentElement.scrollWidth>innerWidth,buttons:[...h.querySelectorAll('button')].filter(b=>b.getBoundingClientRect().width).map(b=>{const r=b.getBoundingClientRect();return {top:r.top,left:r.left,right:r.right,bottom:r.bottom,hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};})};});
+  const min=width<=600?10:18;
+  if(result.paddingTop<min+insets.top||result.paddingLeft<insets.left||result.paddingRight<insets.right||result.overflow||result.buttons.some(b=>b.top<insets.top||!b.hit))throw Error(course+' '+width+' '+JSON.stringify(result));
+  if(width<=760){await page.evaluate(()=>scrollTo(0,180));const top=await page.locator('.topbar').evaluate(e=>e.getBoundingClientRect().top);if(Math.abs(top+180)>2)throw Error('Header does not scroll normally '+top);}
+  if(width===390&&insets.top===47&&dark){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'/tmp/safe-area-'+course+'.png'});}
+  checks++;
+ }
+}
+}
+await browser.close();server.close();if(errors.length)throw Error(errors.join('\n'));console.log(JSON.stringify({courses:2,checks,simulatedSafeAreaValues:true,headerHitTests:true,mobileScroll:true,errors}));})().catch(e=>{console.error(e);server.close();process.exit(1);});

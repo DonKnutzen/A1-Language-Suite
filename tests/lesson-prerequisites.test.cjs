@@ -54,7 +54,7 @@ for(const course of ['francais','deutsch']){
   f.dom.window.close();
  });
  test(course+': HTML and offline cache use matching clarity assets',()=>{
-  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=new-words-154','lesson-flow.js?v=lexical-153','../shared/lesson-ui.css?v=foundations-clarity-152','../shared/vocabulary-trainer.js?v=lexical-153'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-mistake-history-v155'));
+  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=new-words-154','lesson-flow.js?v=lexical-153','../shared/lesson-ui.css?v=foundations-clarity-152','../shared/vocabulary-trainer.js?v=lexical-153'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-ios-safe-area-v156'));
  });
 }
 test('French L9 explains the purpose and actual transformation of the imperative without a vocabulary dump',()=>{
