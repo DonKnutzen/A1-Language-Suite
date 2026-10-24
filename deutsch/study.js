@@ -17,7 +17,7 @@
     [['zwei','deux'],['drei','trois'],['vier','quatre']],
     [['sechshundert','six cents'],['fünfhundert','cinq cents'],['siebenhundert','sept cents']],
     [['ersten','premier'],['zweiten','deuxième'],['dritten','troisième']],
-    [['Vormittag','matin'],['Nachmittag','après-midi'],['Abend','soir']],
+    [['am Vormittag','le matin'],['am Nachmittag','l’après-midi'],['am Abend','le soir']],
     [['geschlossen','fermé'],['geöffnet','ouvert']],
     [['einen Kuchen','un gâteau'],['einen Salat','une salade'],['Brot','du pain']],
     [['den Stift','le stylo'],['das Buch','le livre'],['die Tasche','le sac'],['das Glas','le verre']],
@@ -49,7 +49,7 @@
   function gapTasks(unit){
     return unit.rows.map(([marked,fr],i)=>{
       const answer=marked.match(/\|([^|]+)\|/)?.[1],prompt=marked.replace(/\|[^|]+\|/,'___'),o=shuffle([answer,...unit.practice[i].wrong]);
-      return {type:'gap',qualityRevision:149,marking:{strictAccents:true},...(answer==='geöffnet'?{accept:['offen']}:{}),q:`« ${fr} » — Complète : ${prompt}`,prompt,context:fr,answer,o,a:o.indexOf(answer),audio:plain(marked),explanation:`${plain(marked)} = ${fr}`,skill:'application'};
+      return {type:'gap',didacticRevision:161,qualityRevision:149,marking:{strictAccents:true},...(answer==='geöffnet'?{accept:['offen']}:{}),q:`« ${fr} » — Complète : ${prompt}`,prompt,context:fr,answer,o,a:o.indexOf(answer),audio:plain(marked),explanation:`${plain(marked)} = ${fr}`,skill:'application'};
     });
   }
   function unitTasks(unit,{full=true}={}){
@@ -59,7 +59,7 @@
     const authored=window.DE_A1_QUESTIONS.practiceTasks(id,index),forms=gapTasks(unit);
     if(unit.conjugation){
       const persons=['Ich','Du','Sie','Wir','Ihr','Sie','Sie'],fr=['Je peux','Tu peux','Elle peut','Nous pouvons','Vous pouvez (plusieurs personnes, familier)','Ils/Elles peuvent','Vous pouvez (forme de politesse)'],indices=[0,1,2,3,4,5,5],roles=['','','female','','familiar','plural','formal'],forms=unit.conjugation.forms;
-      const conjugations=persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i],qualityRevision:149};});
+      const conjugations=persons.map((person,i)=>{const answer=forms[indices[i]],o=shuffle([answer,...shuffle([...new Set(forms)].filter(f=>f!==answer)).slice(0,2)]),audio=`${person} ${answer} Deutsch sprechen.`;return {type:'choice',q:`« ${fr[i]} parler allemand. » — Complète : ${person} ___ Deutsch sprechen.`,o,a:o.indexOf(answer),answer,audio,explanation:`${person} + ${answer}. Avec können, sprechen reste à l’infinitif à la fin.`,skill:'application',pronounRole:roles[i],qualityRevision:149,didacticRevision:161};});
       return [...authored,...conjugations,...gapTasks(unit)].map(indexAnswer);
     }
     return [...authored,...forms].map(indexAnswer);
@@ -100,8 +100,13 @@
         window.DE_A1_GRAMMAR_DRILLS.topics[unit.key]={setId:null,tasks:unitTasks(unit)};
       });
       // The opening check only tests phrases that have an audio example on this page.
-      lesson.referencePhrases=lesson.phrases;
-      const phrases=content[lesson.id].flatMap(u=>[...u.rows,...u.extra.slice(0,2)]).map(([de,fr])=>[plain(de),fr]);
+      lesson.referencePhrases||=lesson.phrases;
+      const phrases=content[lesson.id].flatMap(u=>{
+        const series=u.vocabulary?.length?[u.vocabulary.map(p=>p[0]).join(', '),u.vocabulary.map(p=>p[1]).join(', ')]:null;
+        const vocabulary=new Set((u.vocabulary||[]).map(p=>p[0]));
+        const numbers=lesson.id===3&&u===content[3][0]?(u.table||[]).map(([range,text])=>[text,range]):[];
+        return [...numbers,...(series?[series]:[]),...u.rows.filter(p=>!vocabulary.has(plain(p[0]))),...u.extra.slice(0,2).filter(p=>!vocabulary.has(plain(p[0])))].map(([de,fr])=>[plain(de),fr]);
+      });
       lesson.phrases=phrases.filter((p,i)=>phrases.findIndex(q=>q[0]===p[0])===i);
       lesson.quiz=lessonExercises(lesson).map(t=>({...t,q:t.q||t.prompt}));
     }
@@ -110,12 +115,23 @@
     const root=document.createElement('div');root.innerHTML=references;
     // Context notes are already covered by the authored preparation below.
     root.querySelectorAll('.lesson-topic-detail').forEach(el=>el.remove());
+    if(lesson.id===1){
+      const regular=[...root.querySelectorAll('details.grammar-detail')].find(d=>d.querySelector('summary')?.textContent==='Verbes réguliers au présent');
+      regular?.querySelector('.grammar-detail-body')?.insertAdjacentHTML('afterbegin','<p>Enlève <strong>-en</strong> pour trouver le radical : wohnen → wohn-. Avec <strong>arbeiten</strong> (radical arbeit-), ajoute un <strong>e</strong> devant -st et -t pour faciliter la prononciation : du arbeitest, er arbeitet, ihr arbeitet.</p>');
+    }
+    if(lesson.id===5){
+      const possessives=[...root.querySelectorAll('details.grammar-detail')].find(d=>d.querySelector('summary')?.textContent==='Possessifs utiles');
+      const table=possessives?.querySelector('tbody');
+      table?.insertAdjacentHTML('beforeend',`<tr><td>sie (ils / elles)</td><td>ihr ${speakBtn('ihr')}</td><td>ihren ${speakBtn('ihren')}</td><td>ihre ${speakBtn('ihre')}</td></tr>`);
+    }
     const units=content[lesson.id];
     const prepared=units.map((unit,unitIndex)=>{
       const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${esc(b)} ${speakBtn(unit.conjugation?a.split(' (')[0].split(' / ')[0]+' '+b:b)}${unit.conjugation?`<small class="conjugation-example">${esc(((a==='er / sie / es'?'Sie':a.split(' / ')[0].split(' (')[0][0].toUpperCase()+a.split(' / ')[0].split(' (')[0].slice(1)))+' '+b+' Deutsch sprechen.')}</small>`:''}</td></tr>`).join('')}</tbody></table></div>`:'';
       const examples=[...unit.rows,...(unit.extra||[])];
-      const vocabulary=unit.vocabulary?`<div class="deepening-vocabulary">${unit.vocabulary.map(p=>row(p,speakBtn)).join('')}</div>`:'';
-      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body"><div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${examples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
+      const vocabulary=unit.vocabulary?`<div class="deepening-vocabulary"><div class="between"><strong>Écouter la série</strong>${speakBtn(unit.vocabulary.map(p=>p[0]).join(', '))}</div>${unit.vocabulary.map(p=>row(p,speakBtn)).join('')}</div>`:'';
+      const standalone=new Set((unit.vocabulary||[]).map(p=>p[0]));
+      const distinctExamples=examples.filter(p=>!standalone.has(plain(p[0])));
+      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body"><div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${distinctExamples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
     }).join('');
     const taught=new Set(units.flatMap(u=>[...u.rows,...(u.extra||[])].map(p=>plain(p[0]))));
     const extra=[...(lesson.referencePhrases||lesson.phrases),...lesson.phrases,...(window.DE_A1_APPLICATIONS[lesson.id]?.hints||[])].filter(p=>!taught.has(p[0])&&taught.add(p[0]));

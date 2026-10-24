@@ -46,7 +46,7 @@
     function add(q,answer,values,legacyQ,legacyAnswer,coverage){
       const wrong=nearest(answer,values).slice(0,2);if(wrong.length<2)return;
       const audio=complete(q,answer);
-      tasks.push({kind:'form',q,answer,o:[answer,...wrong],audio,explanation:audio,coverage,legacyTask:{q:legacyQ,answer:legacyAnswer}});
+      tasks.push({kind:'form',q,answer,o:[answer,...wrong],audio,explanation:audio,coverage,qualityVersion:161,legacyTask:{q:legacyQ,answer:legacyAnswer}});
     }
     function conjugation(person,raw,values,verb,legacyQ){
       const p=subject(person),reflexive=verb==='s’appeler'||verb==='se lever';
@@ -54,11 +54,11 @@
       const bare=value=>reflexive?value.replace(/^(?:m[’']|t[’']|s[’']|me |te |se |nous |vous )/i,''):value.replace(/^(?:j[’']|je |tu |il |elle |on |nous |vous |ils |elles )/i,'');
       const pronoun=p[0].toUpperCase()+p.slice(1);
       const reflex={je:verb==='s’appeler'?'m’':'me ',tu:verb==='s’appeler'?'t’':'te ',il:verb==='s’appeler'?'s’':'se ',elle:verb==='s’appeler'?'s’':'se ',on:verb==='s’appeler'?'s’':'se ',nous:'nous ',vous:'vous ',ils:verb==='s’appeler'?'s’':'se ',elles:verb==='s’appeler'?'s’':'se '};
-      const prefix=reflexive?pronoun+' '+reflex[p]:verb==='habiter'&&p==='je'?'J’':pronoun+' ';
+      const prefix=reflexive?pronoun+' '+reflex[p]:['habiter','avoir'].includes(verb)&&p==='je'?'J’':pronoun+' ';
       const ending={'être':'à Paris.','habiter':'à Lyon.','parler':'français.','venir':'de France.','pouvoir':'répéter ?','aller':'réserver une chambre.','devoir':'partir à huit heures.','s’appeler':'comment ?','se lever':'à sept heures.','avoir':'vingt ans.'}[verb];
       let q=prefix+'___ '+ending;
       if(verb==='s’appeler'&&p==='je')q='Je m’___ Léa.';
-      if(verb==='s’appeler'&&p==='nous')q='Nous nous ___ Martin.';
+      if(verb==='s’appeler'&&p==='nous')q='Nous nous ___ Léa et Marc.';
       if(verb==='avoir'&&/Passé composé/i.test(title))q='Hier, '+(p==='je'?'j’':p+' ')+'___ travaillé.';
       add(q,bare(raw),values.map(bare),legacyQ,raw,'table:'+verb+':'+p);
     }
@@ -80,7 +80,7 @@
         if(/Teilungsartikel/.test(title)){
           const m=example.match(/^(du|de la|de l[’']|des)\s*(.+)$/);if(m)add('Je voudrais ___ '+m[2]+'.',m[1],['du','de la','de l’','des'],legacyQ,example,'table:partitive:'+m[2]);
         }else if(/ce \/ cet/.test(title)){
-          const m=example.match(/^(ce|cet|cette|ces) (.+)$/);if(m)add('Je voudrais ___ '+m[2]+'.',m[1],['ce','cet','cette','ces'],legacyQ,example,'table:demonstrative:'+m[2]);
+          const m=example.match(/^(ce|cet|cette|ces) (.+)$/);if(m)add((m[2]==='hôtel'?'Je cherche ___ ':'Je voudrais ___ ')+m[2]+'.',m[1],['ce','cet','cette','ces'],legacyQ,example,'table:demonstrative:'+m[2]);
         }else if(/à \+ Artikel|Ziel:/.test(title)){
           const m=example.match(/^(à la|à|en|au|aux) (.+)$/);if(m){
             const values=/à \+ Artikel/.test(title)?['à la','au','aux']:['à','en','au','aux'];
@@ -134,9 +134,11 @@
       if(!el){el=document.createElement('details');el.className='grammar-detail';el.innerHTML=`<summary>${esc(unit.title)}</summary><div class="grammar-detail-body"></div>`;host.append(el);}
       el.dataset.deepeningKey=unit.key;
       const body=el.querySelector('.grammar-detail-body')||el;
+      const closedSeries=lesson.id===4&&['Wochentage','Monate & Datum'].includes(unit.preparedTitle||unit.title)?unit.pairs.filter(([fr])=>/^[a-zéûôî]+$/u.test(fr)):[];
+      const series=closedSeries.length?`<div class="between"><strong>Die Reihe anhören</strong><button type="button" class="speak-btn" data-speak="${encodeURIComponent(closedSeries.map(p=>p[0]).join(', '))}" aria-label="${esc((unit.preparedTitle||unit.title)+' als Reihe anhören')}">🔊</button></div>`:'';
       const pairs=unit.pairs.map(([fr,de])=>`<div class="phrase-row ${fr.length<28?'deepening-word':''}"><div><strong>${esc(fr)}</strong><small>${esc(de)}</small></div><button type="button" class="speak-btn" data-speak="${encodeURIComponent(fr.replace(/ → /g,', '))}" aria-label="${esc(fr)} anhören">🔊</button></div>`).join('');
       const explanation=unit.blocks?.length?`<div class="deepening-rule-blocks">${unit.blocks.map(([title,text])=>`<div><strong>${esc(title)}</strong><p>${formatRule(text,unit.emphasis).replace(/\n/g,'<br>')}</p></div>`).join('')}</div>`:`<p>${formatRule(unit.rule,unit.emphasis)}</p>`;
-      if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}<div class="deepening-examples">${pairs}</div></div>`);
+      if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}${series}<div class="deepening-examples">${pairs}</div></div>`);
       if(unit.notes?.length)body.insertAdjacentHTML('beforeend',`<div class="deepening-background">${unit.notes.join('')}</div>`);
       const relevant=(specs[lesson.id]?.tasks||[]).filter((t,i)=>routes[lesson.id]?.[i]===unit.key);
       const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau')))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
@@ -192,7 +194,7 @@
     // Update open tasks without regrading checked answers. Never repeat a task
     // merely to retain the length of an older, now smaller question pool.
     const key=q=>JSON.stringify([q.q,q.answer,q.meaning||'']);
-    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key))||lesson.id===7||pool.tasks.some(t=>t.qualityVersion===147))){
+    if(resume&&((lesson.id===3&&pool.key==='r0')||(lesson.id===6&&['r0','u0'].includes(pool.key))||lesson.id===7||pool.tasks.some(t=>[147,161].includes(t.qualityVersion)))){
       const before=JSON.parse(JSON.stringify(saved)),used=new Set(saved.questions.slice(0,saved.i+Number(!!saved.response)).map(key));let currentChanged=false;
       saved.questions=saved.questions.map((q,index)=>{
         if(index<saved.i||(index===saved.i&&saved.response))return q;
@@ -262,4 +264,3 @@
   }
   window.FR_A1_DEEPENING={enrich,pools,decorate,topicDone,routes,formatRule};
 })();
-

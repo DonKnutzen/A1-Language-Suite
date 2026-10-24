@@ -2266,6 +2266,9 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,'Aufgaben aktualisiert · bish
 
 // Contexts are display text only; French answers and saved task identities remain stable.
 window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(Object.values(window.FR_A1_MASTERY_SPECS||{}).flatMap(s=>(s.checkTransfers||[]).map(t=>[t.context,t.contextEn]))),
+  'Die Reihe anhören':'Listen to the series',
+  'Wochentage als Reihe anhören':'Listen to the days of the week',
+  'Monate & Datum als Reihe anhören':'Listen to the months',
   'Welche Form passt?':'Which expression fits?',
   'Überarbeiteten Check neu starten':'Start the revised check',
   'Der bisherige Entwurf wird aufbewahrt.':'Your previous draft will be kept.'

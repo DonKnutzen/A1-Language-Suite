@@ -1709,7 +1709,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Comprendre les transports",
-      "rule": "**mit dem Bus / mit der Bahn** indique le transport. Gleis = voie ou quai ; Linie = ligne. **umsteigen** = changer de transport ; **Verspätung** = retard. Les nombres servent à distinguer lignes et quais.",
+      "rule": "**mit dem Bus / mit der Bahn** indique le transport. Gleis = voie ; Linie = ligne. **umsteigen** = changer de transport ; **Verspätung** = retard. Les nombres servent à distinguer lignes et quais.",
       "rows": [
         [
           "Nehmen Sie die Linie |acht|.",

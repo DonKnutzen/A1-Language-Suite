@@ -1588,6 +1588,18 @@
               ]
             ]
           }
+        ],
+        "sein": [
+          {
+            "title": "Être à la maison",
+            "rule": "Zu Hause (aussi zuhause) indique le lieu où l’on est : à la maison. Apprends les deux mots ensemble.",
+            "examples": [
+              [
+                "Ich bin zu Hause.",
+                "Je suis à la maison."
+              ]
+            ]
+          }
         ]
       },
       "words": [
@@ -1598,6 +1610,10 @@
         [
           "nicht",
           "ne … pas"
+        ],
+        [
+          "zu Hause",
+          "à la maison (lieu)"
         ]
       ]
     },
@@ -1902,6 +1918,20 @@
                 "Apporte de l’eau, s’il te plaît."
               ]
             ]
+          },
+          {
+            "title": "Zum et zur : une destination",
+            "rule": "Avec un nom, zu peut indiquer une destination. Zu + dem devient zum (masculin ou neutre), zu + der devient zur (féminin). Zu Hause reste une expression fixe pour le lieu où l’on est.",
+            "examples": [
+              [
+                "Ich gehe zum Bahnhof.",
+                "Je vais à la gare."
+              ],
+              [
+                "Ich gehe zur Post.",
+                "Je vais à la poste."
+              ]
+            ]
           }
         ],
         "Comprendre les transports": [
@@ -2059,6 +2089,20 @@
                 "On joue ensemble ?"
               ]
             ]
+          },
+          {
+            "title": "Lieu ou destination ?",
+            "rule": "Wo? demande où l’on est : zu Hause. Wohin? demande où l’on va : nach Hause. Le français dit dans les deux cas « à la maison » ; retiens la phrase allemande entière.",
+            "examples": [
+              [
+                "Ich bin zu Hause.",
+                "Je suis à la maison."
+              ],
+              [
+                "Ich gehe nach Hause.",
+                "Je rentre à la maison."
+              ]
+            ]
           }
         ]
       },
@@ -2070,6 +2114,10 @@
         [
           "lieber",
           "de préférence"
+        ],
+        [
+          "nach Hause",
+          "à la maison (destination)"
         ]
       ]
     },
@@ -2409,6 +2457,16 @@
                 "Rappelez-moi, s’il vous plaît."
               ]
             ]
+          },
+          {
+            "title": "Le lieu de départ : von zu Hause",
+            "rule": "Von zu Hause signifie depuis la maison. Garde l’expression zu Hause après von. Dans anrufen, an se place à la fin de la phrase.",
+            "examples": [
+              [
+                "Ich rufe von zu Hause an.",
+                "J’appelle depuis la maison."
+              ]
+            ]
           }
         ]
       },
@@ -2424,6 +2482,10 @@
         [
           "kaputt",
           "cassé / en panne"
+        ],
+        [
+          "von zu Hause",
+          "depuis la maison"
         ]
       ]
     },

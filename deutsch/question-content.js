@@ -789,6 +789,20 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
   content[11][1].extra.push(['Können Sie das Wort erklären?','Pouvez-vous expliquer le mot ?'],['Du liest ein Buch.','Tu lis un livre.']);
   content[21][0].extra.push(['Du liest gern.','Tu aimes lire.'],['Anna liest gern.','Anna aime lire.']);
   content[17][0].rule+=' Après helfen et geben, **mir** signifie à moi ; **mich** est employé notamment dans Können Sie mich zurückrufen? Le sujet ich devient **Kann ich …?**, sans terminaison -st.';
+  const contrasts=(id,u,source,rows)=>{content[id][u].contrasts||={};content[id][u].contrasts[source]=rows;};
+  for(const [source,alternatives]of [
+    ['mit Doppel-s',[['mit Doppel-n','avec deux n'],['mit Doppel-m','avec deux m']]],
+    ['ohne Umlaut',[['mit Umlaut','avec tréma allemand'],['mit Eszett','avec un ß']]],
+    ['mit Eszett',[['mit Doppel-s','avec deux s'],['mit Bindestrich','avec trait d’union']]]
+  ])contrasts(2,0,source,alternatives);
+  for(const [field,alternatives]of [
+    ['Geburtsdatum',[['Geburtsort','lieu de naissance'],['Postleitzahl','code postal']]],
+    ['Geburtsort',[['Geburtsdatum','date de naissance'],['Postleitzahl','code postal']]],
+    ['Telefonnummer',[['Postleitzahl','code postal'],['Hausnummer','numéro de rue']]],
+    ['Postleitzahl',[['Telefonnummer','numéro de téléphone'],['Hausnummer','numéro de rue']]]
+  ])contrasts(3,1,field,alternatives);
+  const instructions=[['Lesen Sie den Text.','Lisez le texte.'],['Hören Sie den Text.','Écoutez le texte.'],['Schreiben Sie einen Text.','Écrivez un texte.'],['Kreuzen Sie die Antwort an.','Cochez la réponse.']];
+  for(const pair of instructions)contrasts(18,0,pair[0],instructions.filter(p=>p!==pair).slice(0,2));
   const key=s=>String(s??'').normalize('NFC').replace(/[’‘ʼ]/g,"'").trim().replace(/\s+/g,' ');
   function matchesAnswer(value,q){
     // Umlauts carry meaning: konnte and könnte must remain different.
@@ -797,7 +811,7 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
   }
   const choice=(row,focus)=>{
     const [prompt,answer,w1,w2,context]=row;
-    return {type:'choice',q:`« ${context} » — Complète : ${prompt}`,o:[answer,w1,w2],a:0,answer,audio:prompt.replace('___',answer),context,explanation:prompt.replace('___',answer)+' = '+context,skill:'application',qualityRevision:revision,focus};
+    return {type:'choice',q:prompt==='___'?`Choisis la phrase correcte : « ${context} »`:`« ${context} » — Complète : ${prompt}`,o:[answer,w1,w2],a:0,answer,audio:prompt.replace('___',answer),context,explanation:prompt.replace('___',answer)+' = '+context,skill:'application',qualityRevision:revision,didacticRevision:161,focus};
   };
   function practiceTasks(id,index){return practice[id+'.'+index].map((r,i)=>choice(r,'practice:'+id+':'+index+':'+i));}
   // Interpretive choices are in French; their replay remains an authored German phrase.

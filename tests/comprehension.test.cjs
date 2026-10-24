@@ -3,7 +3,7 @@ const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
 function environment(course='francais'){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/'+course+'/',runScripts:'outside-only'}),w=dom.window;
  w.DE_A1_ASSESSMENTS={topicPractice:()=>null};w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};
- for(const file of [course+'/comprehension-content.js','shared/comprehension.js',course+'/lesson-flow.js'])w.eval(read(file));
+ for(const file of [course+'/comprehension-content.js','shared/comprehension.js',course+'/hard-mode-content.js',course+'/hard-mode.js',course+'/lesson-flow.js'])w.eval(read(file));
  return {dom,w,view:w.document.querySelector('main')};
 }
 function choose(w,view,i,value){const input=[...view.querySelectorAll(`[data-comprehension-answer="${i}"]`)].find(x=>x.value===value);assert(input);input.click();}
@@ -15,8 +15,8 @@ test('all dialogues stay short with close choices and every French lesson has si
  for(const course of ['francais','deutsch']){
   const {dom,w}=environment(course),content=w.A1_COMPREHENSION_CONTENT;assert.equal(Object.keys(content).length,24);
   for(const [id,data] of Object.entries(content)){
-   const turns=course==='francais'?6:4;
-   assert.equal(data.turns.length,turns,course+id);assert.deepEqual([...data.turns].map(t=>t.speaker),Array.from({length:turns},(_,i)=>i%2?'B':'A'));assert(data.turns.every(t=>t.text.length>0&&t.text.length<250));
+   const turns=data.turns.length;assert(turns>=4&&turns<=10,course+id);
+   assert.deepEqual([...data.turns].map(t=>t.speaker),Array.from({length:turns},(_,i)=>i%2?'B':'A'));assert(data.turns.every(t=>t.text.length>0&&t.text.length<250));
    assert(data.turns.map(t=>t.text).join(' ').split(/\s+/).length<=100,course+id+' remains a short dialogue');
    assert.equal(data.fields.length,course==='francais'?6:3);assert.equal(new Set(data.fields.map(f=>f.label)).size,data.fields.length);
    for(const f of data.fields){assert(f.label);assert.equal(new Set(f.options).size,3);assert.equal(f.options.filter(o=>o===f.answer).length,1);}
@@ -35,16 +35,16 @@ test('selection drafts, feedback and best result survive navigation without intr
  view.querySelector('#dialogueRetry').click();assert.equal(work.comprehension.done,true);assert.equal(work.comprehension.best,data.fields.length-1);assert(view.querySelector('#dialogueCheck').disabled);
  dom.window.close();
 });
-test('lesson check needs no speaking or writing; optional tasks remain at the end and legacy completion stays',()=>{
+test('lesson check needs no speaking or writing; Hard Mode remains at the end and legacy completion stays',()=>{
  for(const course of ['francais','deutsch']){
   const env=environment(course),{dom,view}=env,s={doneLessons:[2],lessonQuizBest:{4:80},lessonWork:{4:{writingDraft:'Saved draft'}}};let result;
   flow(env,4,s,opts=>{result=opts;view.innerHTML='<section>Result</section>';s.lessonMasteryBest={4:90};opts.onResult();});
   assert(!view.querySelector('.lesson-step-nav [data-lesson-step="speak"]'));assert(!view.querySelector('.lesson-step-nav [data-lesson-step="write"]'));
-  view.querySelector('[data-lesson-step="check"]').click();assert(view.querySelector('#startMasteryOverview').disabled);assert(view.querySelector('.lesson-optional [data-lesson-step="speak"]'));
+  view.querySelector('[data-lesson-step="check"]').click();assert(view.querySelector('#startMasteryOverview').disabled);assert(view.querySelector('.hard-entry'));
   view.querySelector('[data-lesson-step="comprehension"]').click();assert.equal(view.querySelectorAll('[data-comprehension-field]').length,env.w.A1_COMPREHENSION_CONTENT[4].fields.length);assert(!view.querySelector('details').open);
   const data=env.w.A1_COMPREHENSION_CONTENT[4];data.fields.forEach((f,i)=>choose(env.w,view,i,f.answer));view.querySelector('#dialogueCheck').click();view.querySelector('#dialogueCheck').click();
   assert(!view.querySelector('#startMasteryOverview').disabled);assert(!s.lessonWork[4].speakingDone);assert(!s.lessonWork[4].writingDone);assert.equal(s.lessonWork[4].writingDraft,'Saved draft');assert.deepEqual(s.doneLessons,[2]);
-  view.querySelector('#startMasteryOverview').click();assert(result);assert(view.querySelector('.lesson-optional'));result.onBack();assert(view.querySelector('#nextLessonFromCheck'));assert(s.doneLessons.includes(2));
+  view.querySelector('#startMasteryOverview').click();assert(result);assert(view.querySelector('.hard-entry'));result.onBack();assert(view.querySelector('#nextLessonFromCheck'));assert(s.doneLessons.includes(2));
   dom.window.close();
  }
 });

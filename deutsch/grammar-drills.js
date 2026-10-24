@@ -3,24 +3,26 @@
   'use strict';
   const topics={};
   const gap=(sentence,answer,wrong,context='')=>({q:`${context?`« ${context} » — `:''}Complète : ${sentence}`,o:[answer,...wrong],a:0,audio:sentence.replace('___',answer)});
-  const add=(title,setId,tasks)=>{topics[title]={setId,tasks:tasks.map((q,i)=>{const shift=i%q.o.length,o=[...q.o.slice(shift),...q.o.slice(0,shift)];return {...q,o,a:o.indexOf(q.o[q.a])};})};};
+  const add=(title,setId,tasks)=>{topics[title]={setId,tasks:tasks.map((q,i)=>{const shift=i%q.o.length,o=[...q.o.slice(shift),...q.o.slice(0,shift)];return {...q,o,a:o.indexOf(q.o[q.a]),didacticRevision:161};})};};
+  const contrasts={bin:['bist','sind'],bist:['bin','ist'],ist:['bist','sind'],sind:['seid','ist'],seid:['sind','bist'],habe:['haben','hast'],hast:['hat','habt'],hat:['habt','hast'],haben:['habe','habt'],habt:['haben','hat'],spreche:['sprechen','sprichst'],sprichst:['spricht','sprecht'],spricht:['sprichst','sprecht'],sprechen:['spreche','sprecht'],sprecht:['spricht','sprechen']};
+  const wrongForms=(answer,forms)=>[...new Set([...(contrasts[answer]||[forms[3],forms[4],forms[1],forms[0]]),...forms])].filter(f=>f!==answer&&forms.includes(f)).slice(0,2);
   const persons=['Ich','Du','Er','Wir','Ihr','Sie'];
   const personContext=['Je','Tu','Il','Nous','Vous (plusieurs personnes, informel)','Ils'];
   function conjugation(title,verbs){
     const tasks=[];
     for(const {forms,ends,meaning} of verbs)for(let i=0;i<6;i++){
-      const wrong=[...new Set(forms)].filter(f=>f!==forms[i]).slice(0,2);
+      const wrong=wrongForms(forms[i],forms);
       tasks.push(gap(`${persons[i]} ___ ${ends[i]}.`,forms[i],wrong,`${i===0&&/^(ai |habite |aime |arrive )/.test(meaning[i])?'J’':personContext[i]}${i===0&&/^(ai |habite |aime |arrive )/.test(meaning[i])?'':' '}${meaning[i]}`));
     }
     const first=verbs[0],femaleName=title.includes('heißen')?'Anna':first.ends[2];
-    tasks[2]={...gap(`Sie ___ ${femaleName}.`,first.forms[2],[...new Set(first.forms)].filter(f=>f!==first.forms[2]).slice(0,2),`Elle ${first.meaning[2].replace('Tom','Anna')}`),pronounRole:'female'};
+    tasks[2]={...gap(`Sie ___ ${femaleName}.`,first.forms[2],wrongForms(first.forms[2],first.forms),`Elle ${first.meaning[2].replace('Tom','Anna')}`),pronounRole:'female'};
     tasks[5].pronounRole='plural';tasks[4].pronounRole='familiar';
-    tasks.push({...gap(`Sie ___ ${first.ends[4]}.`,first.forms[5],[...new Set(first.forms)].filter(f=>f!==first.forms[5]).slice(0,2),`Vous (forme de politesse) ${first.meaning[4]}`),pronounRole:'formal'});
+    tasks.push({...gap(`Sie ___ ${title.includes('heißen')?'Weber':first.ends[4]}.`,first.forms[5],wrongForms(first.forms[5],first.forms),`Vous (forme de politesse) ${title.includes('heißen')?'vous appelez Weber':first.meaning[4]}`),pronounRole:'formal'});
     add(title,'g1',tasks);
   }
   conjugation('sein – conjugaison',[
     {forms:['bin','bist','ist','sind','seid','sind'],ends:Array(6).fill('zu Hause'),meaning:['suis à la maison','es à la maison','est à la maison','sommes à la maison','êtes à la maison','sont à la maison']},
-    {forms:['bin','bist','ist','sind','seid','sind'],ends:Array(6).fill('heute im Museum'),meaning:['suis au musée aujourd’hui','es au musée aujourd’hui','est au musée aujourd’hui','sommes au musée aujourd’hui','êtes au musée aujourd’hui','sont au musée aujourd’hui']}
+    {forms:['bin','bist','ist','sind','seid','sind'],ends:Array(6).fill('in Berlin'),meaning:['suis à Berlin','es à Berlin','est à Berlin','sommes à Berlin','êtes à Berlin','sont à Berlin']}
   ]);
   conjugation('haben – conjugaison',[
     {forms:['habe','hast','hat','haben','habt','haben'],ends:Array(6).fill('Zeit'),meaning:['ai du temps','as du temps','a du temps','avons du temps','avez du temps','ont du temps']},
@@ -31,7 +33,7 @@
     {forms:['arbeite','arbeitest','arbeitet','arbeiten','arbeitet','arbeiten'],ends:Array(6).fill('heute'),meaning:['travaille aujourd’hui','travailles aujourd’hui','travaille aujourd’hui','travaillons aujourd’hui','travaillez aujourd’hui','travaillent aujourd’hui']}
   ]);
   conjugation('heißen et sprechen – conjugaison',[
-    {forms:['heiße','heißt','heißt','heißen','heißt','heißen'],ends:['Anna','Paul','Tom','Müller','Schmidt','Weber'],meaning:['m’appelle Anna','t’appelles Paul','s’appelle Tom','nous appelons Müller','vous appelez Schmidt','s’appellent Weber']},
+    {forms:['heiße','heißt','heißt','heißen','heißt','heißen'],ends:['Anna','Paul','Tom','Anna und Paul','Anna und Paul','Anna und Paul'],meaning:['m’appelle Anna','t’appelles Paul','s’appelle Tom','nous appelons Anna et Paul','vous appelez Anna et Paul','s’appellent Anna et Paul']},
     {forms:['spreche','sprichst','spricht','sprechen','sprecht','sprechen'],ends:Array(6).fill('Deutsch'),meaning:['parle allemand','parles allemand','parle allemand','parlons allemand','parlez allemand','parlent allemand']}
   ]);
   // Practise the pronouns themselves before later pages introduce verb paradigms.
@@ -40,13 +42,13 @@
     ['« tu »','du',['ich','ihr'],''],
     ['Anna : « elle »','sie',['Sie','es'],'female'],
     ['Paul : « il »','er',['sie','es'],''],
-    ['« cela » (pronom neutre)','es',['er','sie'],''],
+    ['un nom grammaticalement neutre (3e personne du singulier)','es',['er','sie'],''],
     ['Anna et moi : « nous »','wir',['ihr','sie'],''],
     ['Anna et Paul : « ils »','sie',['Sie','ihr'],'plural'],
     ['Vous parlez à Anna et Léa, deux amies : « vous »','ihr',['wir','Sie'],'familiar'],
     ['Vous vous adressez poliment à Madame Martin : « vous »','Sie',['sie','ihr'],'formal'],
     ['Vous vous adressez poliment à deux clients : « vous »','Sie',['sie','ihr'],'formal']
-  ].map(([meaning,answer,wrong,pronounRole])=>({q:`Quel pronom allemand correspond à ${meaning} ?`,o:[answer,...wrong],a:0,audio:answer,qualityRevision:149,marking:{caseSensitive:true},...(pronounRole?{pronounRole}:{})})));
+  ].map(([meaning,answer,wrong,pronounRole])=>({q:meaning.startsWith('Vous ')?`${meaning.replace(/^Vous parlez/,'Tu parles').replace(/^Vous vous adressez/,'Tu t’adresses')}. Quel pronom personnel allemand emploies-tu ?`:`Quel pronom personnel allemand correspond à ${meaning} ?`,o:[answer,...wrong],a:0,audio:answer,qualityRevision:149,marking:{caseSensitive:true},...(pronounRole?{pronounRole}:{})})));
   const rows=(title,setId,data)=>add(title,setId,data.map(([s,a,w,c])=>gap(s,a,w,c)));
   rows('Articles au nominatif','g2',[
     ['___ Bahnhof ist groß.','Der',['Die','Das']],['___ Wohnung ist klein.','Die',['Der','Das']],['___ Hotel ist neu.','Das',['Der','Die']],
@@ -152,12 +154,13 @@
   ]);
   // Every taught possessive stem is practised with masculine, feminine and neuter nouns.
   // Retain the accusative applications; do not replace one owner with another randomly.
-  const owners=[['mein','meine','mon','ma'],['dein','deine','ton','ta'],['sein','seine','son (à lui)','sa (à lui)'],['ihr','ihre','son (à elle)','sa (à elle)'],['unser','unsere','notre','notre'],['euer','eure','votre (plusieurs proches)','votre (plusieurs proches)'],['Ihr','Ihre','votre (politesse)','votre (politesse)']];
+  const owners=[['mein','meine','mon','ma'],['dein','deine','ton','ta'],['sein','seine','son (à lui)','sa (à lui)'],['ihr','ihre','son (à elle)','sa (à elle)'],['unser','unsere','notre','notre'],['euer','eure','votre (plusieurs proches)','votre (plusieurs proches)'],['Ihr','Ihre','votre (politesse)','votre (politesse)'],['ihr','ihre','leur','leur']];
   const meaning=(owner,noun)=>{const hint=owner.match(/ \(.*\)$/)?.[0]||'';return 'C’est '+owner.replace(/ \(.*\)$/,'')+' '+noun+hint+'.';};
   const possessives=owners.flatMap(([stem,feminine,mascFr,femFr])=>[
     gap('Das ist ___ Vater.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'père')),
     gap('Das ist ___ Mutter.',feminine,[stem,stem==='euer'?'euren':stem+'en'],meaning(femFr,'mère')),
-    gap('Das ist ___ Kind.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'enfant'))
+    gap('Das ist ___ Kind.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'enfant')),
+    gap('Das sind ___ Bücher.',feminine,[stem,stem==='euer'?'euren':stem+'en'],`Ce sont ${{mein:'mes',dein:'tes',sein:'ses',ihr:mascFr==='leur'?'leurs':'ses',unser:'nos',euer:'vos',Ihr:'vos'}[stem]} livres${mascFr.includes('(')?' '+mascFr.match(/\(.*\)/)[0]:stem==='sein'?' (à lui)':stem==='ihr'&&mascFr!=='leur'?' (à elle)':''}.`)
   ]);
   const accusative=topics['Possessifs utiles'].tasks.slice(6);
   add('Possessifs utiles','g7',[...possessives,...accusative]);

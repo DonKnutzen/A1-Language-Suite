@@ -16,7 +16,7 @@
     if(!prompt||typeof answer!=='string'||!answer.trim())return null;
     const choices=q.o&&!['gap','text'].includes(q.type)?[...new Set(q.o)]:null;
     if(choices&&(!choices.includes(answer)||choices.length<2))return null;
-    const out={answerLang:q.answerLang||(q.skill==='recognition'?'fr':'de'),lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{}),...(q.qualityRevision?{qualityRevision:q.qualityRevision}:{})};
+    const out={answerLang:q.answerLang||(q.skill==='recognition'?'fr':'de'),lessonId:Number(lessonId),topic,label,q:prompt,answer,accept:q.accept||[],context:q.context||q.meaning||'',explanation:q.explanation||'',audio:q.audio||'',speech:q.speech||(q.type==='listening'?q.audio:'')||'',turns:q.turns||null,kind:choices?'choice':'gap',...(choices?{o:choices}:{}),...(q.marking?{marking:q.marking}:{}),...(q.qualityRevision?{qualityRevision:q.qualityRevision}:{}),...(q.didacticRevision?{didacticRevision:q.didacticRevision}:{})};
     // Content participates in the identity: changed questions cannot silently reuse a grade.
     out.id=JSON.stringify([out.lessonId,topic,prompt,answer,out.accept,out.context,choices?[...choices].sort():null,out.speech,out.turns,out.marking||null]);
     return out;
@@ -104,14 +104,16 @@
     if(!window.DE_A1_STUDY?.content)return;
     const titles=new Set(Object.values(window.DE_A1_STUDY.content).flatMap(units=>units.map(u=>'grammar:'+u.title)));
     const revisedIntro=q=>q?.lessonId===1&&(q.topic==='grammar:Pronoms personnels'&&q.qualityRevision!==149||/^grammar:(?:study-1-[01]|Se présenter|Poser les premières questions)$/.test(q.topic)&&/(?:Du ___ aus Kanada|Wir ___ in Berlin|Anna ___ Deutsch|Welche Sprachen ___ du)/.test(q.q));
-    const legacy=q=>q&&(revisedIntro(q)||q.qualityRevision!==149&&(/^grammar:study-/.test(q.topic)||titles.has(q.topic)));
+    const legacy=q=>q&&(q.topic?.startsWith('grammar:')&&q.didacticRevision!==161||revisedIntro(q)||q.qualityRevision!==149&&(/^grammar:study-/.test(q.topic)||titles.has(q.topic)));
     if(!Object.values(p.items||{}).some(item=>!item.retired&&legacy(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&legacy(q)))return;
     const all=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml),ids=new Set(all.map(q=>q.id));
     const weak=q=>legacy(q)&&!ids.has(q.id);
-    const replacement=q=>all.find(t=>t.lessonId===q.lessonId&&t.answer===q.answer&&t.audio===q.audio);
+    const replacement=q=>all.find(t=>t.lessonId===q.lessonId&&t.topic===q.topic&&t.answer===q.answer&&t.audio===q.audio);
     let changed=false;
     for(const item of Object.values(p.items||{})){
-      if(item.retired||!weak(item.task))continue;
+      if(item.retired)continue;
+      if(legacy(item.task)&&ids.has(item.task.id)){item.task=copy(all.find(q=>q.id===item.task.id));changed=true;continue;}
+      if(!weak(item.task))continue;
       item.retired=true;changed=true;
       const next=replacement(item.task);
       if(next&&!p.items[next.id])p.items[next.id]={...copy(item),task:copy(next),retired:false,streak:0};
@@ -129,6 +131,7 @@
       if(!tasks.length)delete p.session;
       changed=true;
     }
+    if(s)for(let i=0;i<s.tasks.length;i++)if(!s.answers[i]&&legacy(s.tasks[i])&&ids.has(s.tasks[i].id)){s.tasks[i]=copy(all.find(q=>q.id===s.tasks[i].id));changed=true;}
     if(changed)p.questionQualityUpdated=true;
   }
   function choose(pool,count){

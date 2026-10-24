@@ -22,7 +22,7 @@
     window.A1BugReports?.setContext({lessonId:lessonId||null,step});
     const exercises=spreadAnswers(tasks.map(normalize));
     // A started check keeps its original questions and scoring rules until completion.
-    if(step==='grammar'){const revision=lessonId===1&&['study-1-0','study-1-1','Pronoms personnels'].includes(topicKey)?157:149;window.DE_A1_STUDY.refreshSession(session,exercises,revision);}
+    if(step==='grammar'){const revision=161;window.DE_A1_STUDY.refreshSession(session,exercises,revision);}
     else if(!session.session)session.contentRevision=149;
     A1ExerciseEngine.run({answerAudioAfterResponse:true,matchesAnswer:(value,q)=>q.qualityRevision===149?window.DE_A1_QUESTIONS.matchesAnswer(value,q):undefined,lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+(topicKey||title):step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }

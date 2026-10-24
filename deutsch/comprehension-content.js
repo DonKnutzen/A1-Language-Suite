@@ -61,11 +61,19 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "A",
-        "text": "Und Ihr Familienname?"
+        "text": "Und wie ist Ihr Familienname?"
       },
       {
         "speaker": "B",
-        "text": "Weber. Können Sie bitte langsamer sprechen?"
+        "text": "Können Sie bitte langsamer sprechen?"
+      },
+      {
+        "speaker": "A",
+        "text": "Ihr Familienname, bitte."
+      },
+      {
+        "speaker": "B",
+        "text": "Weber. W, E, B, E, R."
       }
     ],
     "fields": [
@@ -1034,7 +1042,7 @@ window.A1_COMPREHENSION_CONTENT = {
     "turns": [
       {
         "speaker": "A",
-        "text": "Hallo, hier ist Anna. Mein Handy ist kaputt."
+        "text": "Hallo, hier ist Anna. Ich bin im Büro. Mein Handy ist kaputt."
       },
       {
         "speaker": "B",
@@ -1042,7 +1050,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "A",
-        "text": "Bitte morgen um zehn Uhr. Meine Telefonnummer ist 030 555 1840."
+        "text": "Bitte morgen um zehn Uhr im Büro. Die Telefonnummer ist 030 555 1840."
       },
       {
         "speaker": "B",

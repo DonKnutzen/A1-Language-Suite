@@ -3000,16 +3000,13 @@
         "grammar:1": [],
         "grammar:2": [],
         "grammar:3": [
-          "das Haus",
-          "das Museum",
-          "heute",
-          "im",
-          "zu",
           "alt",
           "das Jahr",
           "dreißig"
         ],
-        "grammar:4": [],
+        "grammar:4": [
+          "heute"
+        ],
         "grammar:5": [],
         "comprehension": [
           "auch"
@@ -3024,10 +3021,8 @@
         "auf Wiedersehen",
         "aus",
         "bitte (höflich)",
-        "das Haus",
         "das Hobby",
         "das Jahr",
-        "das Museum",
         "der Name",
         "der Student / die Studentin",
         "der Volleyball",
@@ -3049,7 +3044,6 @@
         "heißen",
         "heute",
         "ich",
-        "im",
         "in",
         "Kanada",
         "kommen",
@@ -3069,7 +3063,7 @@
         "wo",
         "woher",
         "wohnen",
-        "zu"
+        "zu Hause"
       ],
       "hard": [
         "Frankreich",
@@ -3271,6 +3265,7 @@
         "das Formular",
         "hallo",
         "hier",
+        "im",
         "stehen",
         "unter",
         "vielen Dank"
@@ -3804,6 +3799,7 @@
         "grammar:2": [
           "brauchen",
           "das Brötchen",
+          "das Museum",
           "das Wörterbuch",
           "der Bahnhof",
           "der Plan / der Stadtplan",
@@ -4298,7 +4294,6 @@
         "auch",
         "da / dort",
         "das Buch",
-        "das Haus",
         "das Kino",
         "das Museum",
         "das Tennis",
@@ -4333,6 +4328,7 @@
         "mögen / lieben",
         "Montag",
         "morgen",
+        "nach Hause",
         "nicht",
         "Samstag",
         "schwimmen",
@@ -4346,9 +4342,10 @@
         "und",
         "was",
         "wir",
+        "wo",
         "wollen",
         "zehn",
-        "zu",
+        "zu Hause",
         "zusammen"
       ],
       "hard": [
@@ -4385,8 +4382,7 @@
         "nein",
         "sechs",
         "super",
-        "viel",
-        "wo"
+        "viel"
       ],
       "titles": {
         "grammar:0": "Dire ce qu’on aime",
@@ -4754,7 +4750,8 @@
         "treffen",
         "um wie viel Uhr?",
         "was",
-        "wieder"
+        "wieder",
+        "zu Hause"
       ],
       "titles": {
         "grammar:0": "Inviter et préciser",
@@ -4946,7 +4943,6 @@
         "bis morgen",
         "brauchen",
         "danke",
-        "das Haus",
         "das Problem",
         "dein / deine",
         "der Mann",
@@ -5479,6 +5475,7 @@
         "viel",
         "vielen Dank",
         "vom",
+        "von zu Hause",
         "vor / vorher",
         "wie",
         "wiederholen",
@@ -5679,7 +5676,6 @@
         "danke",
         "das Brot",
         "das Büro",
-        "das Haus",
         "dein / deine",
         "denn",
         "der / die / das (bestimmter Artikel)",
@@ -5774,6 +5770,7 @@
         "woher",
         "wohnen",
         "zu",
+        "zu Hause",
         "zuerst",
         "zweimal"
       ],

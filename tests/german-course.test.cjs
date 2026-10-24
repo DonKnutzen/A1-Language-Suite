@@ -108,7 +108,7 @@ test('German opening rounds only test heard phrases, without reverse duplicates 
  for(const l of w.testData.lessons)for(let round=0;round<15;round++){
   const tasks=w.DE_A1_STUDY.lessonExercises(l);assert.equal(tasks.length,10);assert.equal(new Set(tasks.map(q=>q.audio)).size,10,`lesson ${l.id}: repeated phrase`);
   assert.equal(tasks.filter(q=>q.type==='listening').length,2);
-  for(const q of tasks){assert(l.phrases.some(p=>p[0]===q.audio),`${l.id}: unheard expression`);assert(['choice','listening'].includes(q.type));assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}
+  for(const q of tasks){assert(l.phrases.some(p=>p[0]===q.audio||p[0].split(', ').includes(q.audio)),`${l.id}: unheard expression`);assert(['choice','listening'].includes(q.type));assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}
  }
  dom.window.close();
 });

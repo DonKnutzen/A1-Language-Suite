@@ -13,7 +13,11 @@ for(const course of ['francais','deutsch']){
  const grouped=new Map();for(const e of bank){const k=e.target.normalize('NFC');if(!grouped.has(k))grouped.set(k,{target:k,lessons:new Set(),forms:[],meanings:new Set()});const g=grouped.get(k);e.lessons.forEach(id=>g.lessons.add(id));g.forms.push(...e.searchForms||[]);g.meanings.add(e.meaning);}
  const entries=[...grouped.values()].map(e=>{const aliases=[e.target,...e.forms,...e.target.split(' / ')].map(norm).flatMap(s=>[s,s.replace(code==='fr'?/^(?:le |la |les |un |une |l')/:/^(?:der |die |das |ein |eine )/,'').replace(/\s*\([^)]*\)/g,'')]).filter(s=>s.length>1);return{...e,regex:new RegExp('(?<![\\p{L}])(?:'+[...new Set(aliases)].sort((a,b)=>b.length-a.length).map(escape).join('|')+')(?![\\p{L}])','u')};});
  const known=new Set(),lessons={};
- const find=(text,id)=>entries.filter(e=>e.lessons.has(id)&&e.regex.test(norm(text))).map(e=>e.target);
+ // Fixed expressions teach their meaning as a unit; Hause is not a free-standing new noun here.
+ const find=(text,id)=>{
+  const input=norm(text),withoutHome=code==='de'?input.replace(/\b(?:von zu hause|zu hause|zuhause|nach hause)\b/gu,''):input;
+  return entries.filter(e=>e.lessons.has(id)&&e.regex.test(code==='de'&&['zu','das Haus','nach / danach'].includes(e.target)?withoutHome:input)).map(e=>e.target);
+ };
  function taughtHtml(html){const d=w.document.createElement('div');d.innerHTML=html;d.querySelectorAll('.deepening-practice,.lesson1-grammar-practice,button').forEach(e=>e.remove());return [...d.querySelectorAll('.phrase-row strong,.lesson-foundation-example strong,table th,table td,.deepening-form-example strong,.deepening-rule-blocks,.lesson-foundation-rule>p,.lesson-deepening-points,.grammar-concept-note,.lesson1-pronoun-grid b,[data-i18n-ignore]')].map(e=>e.textContent).join('\n');}
  function taskTexts(tasks){return tasks.map(q=>{const answer=q.answer??q.a,langOptions=q.answerLang===code||q.type==='gap'||q.audio===answer||(q.q||q.prompt||'').includes('___');return [q.audio||q.prompt||'',...(langOptions?q.o||[]:[])].join('\n');}).join('\n');}
  for(const l of f.lessons){
