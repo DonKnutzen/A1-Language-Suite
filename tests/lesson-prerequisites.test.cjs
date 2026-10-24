@@ -54,7 +54,7 @@ for(const course of ['francais','deutsch']){
   f.dom.window.close();
  });
  test(course+': HTML and offline cache use matching clarity assets',()=>{
-  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=foundations-clarity-152','lesson-flow.js?v=foundations-clarity-152','../shared/lesson-ui.css?v=foundations-clarity-152','../shared/vocabulary-trainer.js?v=foundations-clarity-152'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-foundations-clarity-v152'));
+  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=lexical-153','lesson-flow.js?v=lexical-153','../shared/lesson-ui.css?v=foundations-clarity-152','../shared/vocabulary-trainer.js?v=lexical-153'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-lexical-v153'));
  });
 }
 test('French L9 explains the purpose and actual transformation of the imperative without a vocabulary dump',()=>{
@@ -74,7 +74,7 @@ test('all new French-course explanations, example translations and glossary mean
   for(const r of [...lesson.intro,...Object.values(lesson.topics).flat()]){for(const field of [r.title,r.rule])assert(dictionary[field[0]]&&field[1]);for(const[,meaning,en]of r.examples)assert(dictionary[meaning]&&en);}
   for(const[,meaning,en]of lesson.words)assert(dictionary[meaning]&&en);
  }
- const el=f.w.document.createElement('div');el.innerHTML=f.w.A1LessonFoundations.vocabularyHtml('fr',9);assert(el.querySelector('dt[lang="fr"][data-i18n-ignore]'));f.dom.window.close();
+ for(const file of ['shared/vocabulary-content.js','shared/vocabulary-trainer.js'])f.w.eval(read(file));const el=f.w.document.createElement('div');el.innerHTML=f.w.A1LessonFoundations.vocabularyHtml('fr',9);assert(el.querySelector('dl[data-i18n-ignore] dt[lang="fr"]'));f.dom.window.close();
 });
 test('emphasised French imperative prose switches languages, and moved examples keep their existing audio button',()=>{
  const f=fixture('francais');f.render(f.lessons[8]);f.view.querySelector('[data-lesson-step="grammar"]').click();f.w.eval(read('francais/en.js'));f.w.eval(read('francais/i18n.js'));f.w.A1Profile.getUiLang=()=> 'en';f.w.dispatchEvent(new f.w.Event('a1suite:languagechange'));

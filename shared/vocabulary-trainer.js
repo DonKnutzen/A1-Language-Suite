@@ -25,6 +25,15 @@
       if(known){if(!known.lessons.includes(lesson.id))known.lessons.push(lesson.id);}
       else{add(word,translation,lesson.id,'word','');lexical.set(key(word).toLocaleLowerCase(),[...bank.values()].at(-1));}
     }
+    // Use verified occurrences, including earlier lessons and inflected search forms.
+    for(const [word,usedIn,forms,translation]of window.A1LessonLexicon?.entries[course]||[]){
+      const relevant=usedIn.filter(id=>lessons.some(l=>Number(l.id)===id));if(!relevant.length)continue;
+      let entry=lexical.get(key(word).toLocaleLowerCase());
+      if(!entry&&translation){add(word,translation,relevant[0],'word','');entry=[...bank.values()].at(-1);lexical.set(key(word).toLocaleLowerCase(),entry);}
+      if(!entry)continue;
+      for(const id of relevant)if(!entry.lessons.includes(id))entry.lessons.push(id);
+      entry.searchForms=[...new Set([...(entry.searchForms||[]),...forms])];
+    }
     for(const e of bank.values())e.lessons.sort((a,b)=>a-b);
     return [...bank.values()].sort((a,b)=>a.target.localeCompare(b.target,target));
   }
@@ -76,6 +85,14 @@
     root.lessonItems[lesson][id]=next;
     return !ok?'savedMistake':wasPending&&!pending(next)?'clearedMistake':null;
   }
+  function matchesSearch(entry,query,course){
+    const haystack=searchKey(entry.target+' '+entry.meaning+' '+(entry.searchForms||[]).join(' '));
+    if(haystack.includes(query))return true;
+    // A learner may copy a heard verb with its pronoun. This is lookup, not marking.
+    const prepared=query.replace(/\b(?:j|m|t|s)'/g,' ');
+    const stripped=prepared.replace(course==='fr'?/^(?:(?:je|tu|il|elle|on|nous|vous|ils|elles|me|te|se)\s+)+/:/^(?:(?:ich|du|er|sie|es|wir|ihr)\s+)+/,'').trim();
+    return stripped!==query&&stripped.length>=2&&(entry.searchForms||[]).some(form=>searchKey(form)===stripped);
+  }
   let cleanupLanguage=null;
   function render(opts){
     cleanupLanguage?.();
@@ -93,7 +110,7 @@
     const isOverview=()=>settings.mode==='mistakes'&&['all','learned'].includes(settings.lesson);
     function selection(){
       const q=searchKey(settings.query),source=settings.mode==='mistakes'?decks().find(d=>d.lessonId===Number(settings.lesson))?.entries||[]:bank;
-      return source.filter(e=>(settings.mode==='mistakes'||settings.lesson==='all'||settings.lesson==='learned'&&e.lessons.some(id=>(state.doneLessons||[]).includes(id))||e.lessons.includes(Number(settings.lesson)))&&(settings.mode==='mistakes'||settings.status==='any'||status(e)===settings.status)&&(!q||searchKey(e.target+' '+e.meaning).includes(q)));
+      return source.filter(e=>(settings.mode==='mistakes'||settings.lesson==='all'||settings.lesson==='learned'&&e.lessons.some(id=>(state.doneLessons||[]).includes(id))||e.lessons.includes(Number(settings.lesson)))&&(settings.mode==='mistakes'||settings.status==='any'||status(e)===settings.status)&&(!q||matchesSearch(e,q,course)));
     }
     save();
     const audio=e=>`<button class="vt-audio" type="button" data-vt-audio="${esc(e.id)}" aria-label="${esc(T.listen+': '+e.target)}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>`;

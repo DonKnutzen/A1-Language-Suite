@@ -2541,6 +2541,8 @@
     ". Genauso werden aus vous tournez → Tournez und aus vous prenez → Prenez. Aller und prendre sind unregelmäßig; ihre vous-Formen lernst du deshalb mit. Die Bildung der Anweisung bleibt gleich.": ". Likewise, vous tournez → Tournez and vous prenez → Prenez. Aller and prendre are irregular, so learn their vous forms explicitly. The instruction is formed in the same way.",
 
     "Mit dem Imperativ gibst du eine Anweisung, etwa eine Wegbeschreibung. Für die höfliche Form nimmst du die Verbform zu vous und lässt das Wort vous weg: vous allez → Allez. Genauso werden aus vous tournez → Tournez und aus vous prenez → Prenez. Aller und prendre sind unregelmäßig; ihre vous-Formen lernst du deshalb mit. Die Bildung der Anweisung bleibt gleich.": "The imperative gives an instruction, such as directions. For the polite form take the verb form used with vous and leave out vous: vous allez → Allez. Likewise, vous tournez → Tournez and vous prenez → Prenez. Aller and prendre are irregular, so learn their vous forms explicitly. The instruction is formed in the same way.",
+    'Wortschatz dieser Lektion':'Lesson vocabulary',
+    'Diese Liste nutzt dieselben Wörter wie der Vokabeltrainer – einschließlich der Wörter aus Hörtexten und Hard Mode. Die Übersetzungen sind auf Deutsch.':'This list uses the same words as the vocabulary trainer, including the listening tasks and Hard Mode. Translations are in German.',
     'Für den ersten Check':'For the first check',
     'Weitere Wörter':'More words',
     'Zum Nachschlagen – auch für Hörtexte und Hard Mode. Diese Wörter kannst du im Vokabeltrainer der Lektion üben.':'For reference, including listening tasks and Hard Mode. Practise these words in the lesson vocabulary trainer.'
@@ -2577,11 +2579,16 @@
     if(practice)practice.before(addition);else body.appendChild(addition);
     return holder.innerHTML;
   }
-  const wordKey=s=>String(s||'').normalize('NFC').toLocaleLowerCase().replace(/^(?:le |la |les |un |une |der |die |das )/u,'').replace(/[.!?]/g,'').trim();
-  function vocabularyHtml(course,id,phrases=[]){
-    const taught=new Set(phrases.map(p=>wordKey(p[0]))),words=(content[course]?.[id]?.words||[]).filter(([word])=>!taught.has(wordKey(word)));
-    if(!words.length)return '';
-    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}"><summary>${course==='fr'?'Weitere Wörter':'Autres mots utiles'} <span class="lesson-extra-count">${words.length}</span></summary><p class="muted">${course==='fr'?'Zum Nachschlagen – auch für Hörtexte und Hard Mode. Diese Wörter kannst du im Vokabeltrainer der Lektion üben.':'À consulter aussi pour les dialogues et le Hard Mode. Tu peux réviser ces mots dans le vocabulaire de la leçon.'}</p><dl>${words.map(([word,meaning])=>`<div><dt lang="${course}" data-i18n-ignore>${esc(word)}</dt><dd>${esc(meaning)}</dd></div>`).join('')}</dl></details>`;
+  function vocabularyHtml(course,id){
+    if(!window.A1Vocabulary)return '';
+    const units=course==='fr'?window.FR_A1_DEEPENING_CONTENT:window.DE_A1_STUDY?.content;
+    const lessons=Object.keys(content[course]||{}).map(id=>({id:Number(id)}));
+    const bank=window.A1Vocabulary.buildBank({course,lessons,units:units||{}}).filter(word=>word.lessons.includes(Number(id)));
+    if(!bank.length)return '';
+    const grouped=new Map();
+    for(const word of bank){const target=word.target.normalize('NFC');if(!grouped.has(target))grouped.set(target,new Set());grouped.get(target).add(word.meaning);}
+    const words=[...grouped].map(([target,meanings])=>[target,[...meanings].join(' / ')]);
+    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}"><summary>${course==='fr'?'Wortschatz dieser Lektion':'Vocabulaire de cette leçon'} <span class="lesson-extra-count">${words.length}</span></summary><p class="muted">${course==='fr'?'Diese Liste nutzt dieselben Wörter wie der Vokabeltrainer – einschließlich der Wörter aus Hörtexten und Hard Mode. Die Übersetzungen sind auf Deutsch.':'Cette liste utilise les mêmes mots que le vocabulaire à réviser, y compris ceux des dialogues et du Hard Mode. Les traductions sont en français.'}</p><dl data-i18n-ignore>${words.map(([word,meaning])=>`<div><dt lang="${course}">${esc(word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(meaning)}</dd></div>`).join('')}</dl></details>`;
   }
   window.A1LessonFoundations=Object.freeze({content,translations,render,enhance,vocabularyHtml});
 })();

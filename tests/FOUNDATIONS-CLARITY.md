@@ -1,5 +1,7 @@
 # Einstiegstexte fachlich und didaktisch neu geordnet
 
+Nachtrag vom 24.10.2026: Die hier beschriebene partielle Liste „Weitere Wörter“ wurde durch eine vollständige Lektionsansicht der Vokabeltrainer-Daten ersetzt. Fehlende Einträge und frühere Verwendungsorte wurden ergänzt. Aktueller Prüfstand und Grenzen: [LEXICAL-COVERAGE.md](LEXICAL-COVERAGE.md). Die thematische Gliederung der Grammatik bleibt erhalten.
+
 Ausgangsstand: `74080dd92e48ec75cc4bd60311ffa11d242a21c0` auf `main`.
 Nachbearbeitung vom 23.10.2026 für Französisch A1 und Deutsch A1.
 
