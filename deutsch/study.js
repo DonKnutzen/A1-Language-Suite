@@ -78,7 +78,7 @@
     if(!progress)return;
     const saved=progress.session;if(!saved?.ex){progress.contentRevision=revision;return;}if(progress.contentRevision===revision)return;
     const current=saved.ex[saved.i];
-    if(revision===149){progress.previousDrafts||=[];progress.previousDrafts.push(JSON.parse(JSON.stringify(saved)));}
+    if(revision>=149){progress.previousDrafts||=[];progress.previousDrafts.push(JSON.parse(JSON.stringify(saved)));}
     const identity=q=>JSON.stringify([q?.q,q?.answer,q?.o?[...q.o].sort():null,q?.marking,q?.accept]);
     const used=new Set(saved.ex.slice(0,saved.i+Number(!!saved.response)).map(t=>t.q));
     saved.ex=saved.ex.map((old,i)=>{

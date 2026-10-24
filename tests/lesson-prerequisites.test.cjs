@@ -54,7 +54,7 @@ for(const course of ['francais','deutsch']){
   f.dom.window.close();
  });
  test(course+': HTML and offline cache use matching clarity assets',()=>{
-  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=new-words-154','lesson-flow.js?v=lexical-153','../shared/lesson-ui.css?v=foundations-clarity-152','../shared/vocabulary-trainer.js?v=lexical-153'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-ios-safe-area-v156'));
+  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=teaching-placement-157','lesson-flow.js?v=teaching-placement-157','../shared/lesson-ui.css?v=teaching-placement-157','../shared/vocabulary-trainer.js?v=teaching-placement-157'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-teaching-placement-v157'));
  });
 }
 test('French L9 explains the purpose and actual transformation of the imperative without a vocabulary dump',()=>{
@@ -65,7 +65,7 @@ test('French L9 explains the purpose and actual transformation of the imperative
 test('French negation and the German irregular forms still precede their relevant practice',()=>{
  const fr=fixture('francais'),de=fixture('deutsch'),text=(f,lang,n,title)=>f.w.A1LessonFoundations.enhance(lang,n,title,'<div class="grammar-detail-body"><div class="deepening-practice"></div></div>');
  for(const[n,title,needle]of [[1,'Grundlagen','Ne … pas'],[4,'Einen Termin vereinbaren & bestätigen','Il n’y a pas de cours.'],[8,'Räume & il y a','il n’y a pas de + Nomen'],[16,'pouvoir','nous voulons'],[22,'Passé composé mit avoir','J’ai pris le bus.']])assert(text(fr,'fr',n,title).includes(needle));
- for(const[n,title,needle]of [[1,'Se présenter','ihr habt'],[6,'Commander un repas','wir hätten'],[9,'Expliquer un chemin','Nimm'],[11,'Apprendre et demander de l’aide','du liest'],[16,'Lire panneaux et restrictions','ich darf']])assert(text(de,'de',n,title).includes(needle));
+ for(const[n,title,needle]of [[6,'Commander un repas','wir hätten'],[9,'Expliquer un chemin','Nimm'],[11,'Apprendre et demander de l’aide','du liest'],[16,'Lire panneaux et restrictions','ich darf']])assert(text(de,'de',n,title).includes(needle));
  fr.dom.window.close();de.dom.window.close();
 });
 test('all new French-course explanations, example translations and glossary meanings have English display equivalents',()=>{

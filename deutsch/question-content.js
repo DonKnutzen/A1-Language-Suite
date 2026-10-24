@@ -15,9 +15,9 @@
   };
   const practice=parse(`
 #1.0
-Du ___ aus Kanada.|kommst|komme|kommen|Tu viens du Canada.
-Wir ___ in Berlin.|wohnen|wohnt|wohnst|Nous habitons à Berlin.
-Anna ___ Deutsch.|spricht|spreche|sprechen|Anna parle allemand.
+Ich ___ aus Deutschland.|komme|kommt|kommen|Je viens d’Allemagne.
+Ich ___ in Berlin.|wohne|wohnt|wohnen|J’habite à Berlin.
+Ich ___ Deutsch.|spreche|spricht|sprechen|Je parle allemand.
 Ich komme ___ Kanada.|aus|in|am|Je viens du Canada.
 Ich wohne ___ Berlin.|in|aus|am|J’habite à Berlin.
 Ich ___ Paul.|heiße|heißt|heißen|Je m’appelle Paul.
@@ -25,7 +25,7 @@ Ich ___ Paul.|heiße|heißt|heißen|Je m’appelle Paul.
 ___ heißen Sie?|Wie|Wo|Woher|Comment vous appelez-vous ?
 ___ kommen Sie?|Woher|Wo|Wie|D’où venez-vous ?
 ___ wohnen Sie?|Wo|Woher|Wie|Où habitez-vous ?
-Welche Sprachen ___ du?|sprichst|sprechen|sprecht|Quelles langues parles-tu ?
+___|Welche Sprachen sprechen Sie?|Welche Sprachen Sie sprechen?|Welche Sprachen spricht Sie?|Pose une question neutre : Quelles langues parlez-vous ?
 Wie ___ es Ihnen?|geht|gehen|gehst|Comment allez-vous ?
 ___|Woher kommen Sie?|Woher Sie kommen?|Woher kommt Sie?|Pose une question neutre : D’où venez-vous ?
 #2.0
@@ -386,7 +386,7 @@ G|Ich komme ___ Kanada und wohne in Berlin.|aus|Je viens du Canada et j’habite
 G|Ich wohne ___ Halifax und spreche Französisch.|in|J’habite à Halifax et je parle français.|préposition-ville
 C|Anna et Paul sont à la maison. Choisis la phrase qui parle d’eux.|Sie sind zu Hause.|Sie ist zu Hause.|Ihr seid zu Hause.|sein-pronoms
 G|Ich ___ dreißig Jahre alt.|bin|J’ai trente ans.|sein-âge
-G|Ihr ___ zwei Kinder.|habt|Vous avez deux enfants, vous deux mes amis.|haben-ihr
+G|Ihr ___ in Berlin.|wohnt|Vous habitez à Berlin, vous deux mes amis.|wohnen-ihr
 G|Anna und ich ___ Deutsch.|sprechen|Anna et moi parlons allemand.|sprechen-wir
 #2
 C|Tu ne comprends pas un nom prononcé rapidement. Demande de l’épeler.|Können Sie den Namen buchstabieren?|Können Sie den Namen wiederholen?|Können Sie den Namen schreiben?|épeler

@@ -1,5 +1,7 @@
 # Wortschatz mit den tatsächlich verwendeten Aufgaben abgleichen
 
+Aktueller Nachtrag: [VOCABULARY-PLACEMENT.md](VOCABULARY-PLACEMENT.md) ersetzt die frühere Platzierung vollständiger/neuer Wortlisten am Anfang und korrigiert die vorgezogenen Erklärungen in Deutsch 1.
+
 ## Anzeige auf neue Wörter begrenzt (Nachtrag)
 
 Auf Wunsch zeigt die eingeklappte Lektionsliste nur noch **neue Vokabeln dieser Lektion**. Maßgeblich ist die früheste Lektionszuordnung im vollständigen Kurswortschatz, unabhängig vom individuellen Lernfortschritt. Bereits früher eingeführte Wörter erscheinen dort nicht erneut. Gleichlautende Karten mit verschiedenen Übersetzungen werden vor der Auswahl zusammengefasst. Ohne neue Wörter entfällt die Liste. Im Vokabeltrainer bleiben sämtliche Einträge, Lektionszuordnungen und Lernstände erhalten. Die folgende ursprüngliche Beschreibung der vollständigen Inline-Liste ist damit hinsichtlich des Anzeigeumfangs überholt.

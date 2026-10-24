@@ -103,7 +103,8 @@
     const p=store(state),s=p.session;
     if(!window.DE_A1_STUDY?.content)return;
     const titles=new Set(Object.values(window.DE_A1_STUDY.content).flatMap(units=>units.map(u=>'grammar:'+u.title)));
-    const legacy=q=>q&&q.qualityRevision!==149&&(/^grammar:study-/.test(q.topic)||titles.has(q.topic));
+    const revisedIntro=q=>q?.lessonId===1&&(q.topic==='grammar:Pronoms personnels'&&q.qualityRevision!==149||/^grammar:(?:study-1-[01]|Se présenter|Poser les premières questions)$/.test(q.topic)&&/(?:Du ___ aus Kanada|Wir ___ in Berlin|Anna ___ Deutsch|Welche Sprachen ___ du)/.test(q.q));
+    const legacy=q=>q&&(revisedIntro(q)||q.qualityRevision!==149&&(/^grammar:study-/.test(q.topic)||titles.has(q.topic)));
     if(!Object.values(p.items||{}).some(item=>!item.retired&&legacy(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&legacy(q)))return;
     const all=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml),ids=new Set(all.map(q=>q.id));
     const weak=q=>legacy(q)&&!ids.has(q.id);

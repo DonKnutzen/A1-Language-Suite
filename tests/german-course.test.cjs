@@ -131,7 +131,7 @@ test('reviewed German alternatives avoid impossible time phrases and target the 
   const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(tasks.length,unit.practiceCount);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);
   for(const t of tasks){assert(t.answer);assert.equal(t.o.length,3);assert.equal(new Set(t.o).size,3);assert(!/seit morgen|seit übermorgen|am heute|am morgen|Ich heiße Kanada/.test(t.o.join(' ')));}
  }
- const first=w.DE_A1_STUDY.content[1][0],tasks=w.DE_A1_STUDY.unitTasks(first);assert(tasks.every(q=>q.skill==='application'));assert(tasks.some(q=>q.prompt==='Ich ___ Claire.'&&q.answer==='heiße'));assert(tasks.some(q=>q.q.includes('Du ___ aus Kanada.')&&q.o.includes('kommst')));
+ const first=w.DE_A1_STUDY.content[1][0],tasks=w.DE_A1_STUDY.unitTasks(first);assert(tasks.every(q=>q.skill==='application'));assert(tasks.some(q=>q.prompt==='Ich ___ Claire.'&&q.answer==='heiße'));assert(tasks.some(q=>q.q.includes('Ich ___ aus Deutschland.')&&q.o.includes('komme')));
  dom.window.close();
 });
 test('German question updates retain earned points and checked feedback while upgrading pending items',()=>{

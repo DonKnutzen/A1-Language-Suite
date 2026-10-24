@@ -1,5 +1,7 @@
 # Einstiegstexte fachlich und didaktisch neu geordnet
 
+Aktueller Nachtrag: [VOCABULARY-PLACEMENT.md](VOCABULARY-PLACEMENT.md) ersetzt die frühere Platzierung vollständiger/neuer Wortlisten am Anfang und korrigiert die vorgezogenen Erklärungen in Deutsch 1.
+
 Nachtrag vom 24.10.2026: Die hier beschriebene partielle Liste „Weitere Wörter“ wurde durch eine vollständige Lektionsansicht der Vokabeltrainer-Daten ersetzt. Fehlende Einträge und frühere Verwendungsorte wurden ergänzt. Aktueller Prüfstand und Grenzen: [LEXICAL-COVERAGE.md](LEXICAL-COVERAGE.md). Die thematische Gliederung der Grammatik bleibt erhalten.
 
 Ausgangsstand: `74080dd92e48ec75cc4bd60311ffa11d242a21c0` auf `main`.

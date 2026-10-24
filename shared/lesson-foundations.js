@@ -1577,46 +1577,6 @@
     "1": {
       "intro": [],
       "topics": {
-        "Se présenter": [
-          {
-            "title": "Les verbes réguliers",
-            "rule": "Le verbe change avec le sujet. Deux personnes, comme Paul und ich, deviennent wir. Pour un verbe régulier en -en, les terminaisons sont -e, -st, -t, -en, -t, -en.",
-            "examples": [
-              [
-                "ich wohne · du wohnst · er wohnt",
-                "j’habite · tu habites · il habite"
-              ],
-              [
-                "wir wohnen · ihr wohnt · sie wohnen",
-                "nous habitons · vous habitez (proches) · ils/elles habitent"
-              ]
-            ]
-          },
-          {
-            "title": "Le changement de voyelle de sprechen",
-            "rule": "Sprechen (parler) est irrégulier : e devient i avec du et er/sie/es. Avec wir, la forme reste sprechen. La conjugaison complète sera reprise dans sa propre page.",
-            "examples": [
-              [
-                "Ich spreche. Du sprichst. Anna spricht. Wir sprechen.",
-                "Je parle. Tu parles. Anna parle. Nous parlons."
-              ]
-            ]
-          },
-          {
-            "title": "Haben : avoir",
-            "rule": "Haben est irrégulier : ses formes ne se déduisent pas du modèle régulier. Apprends la forme avec son sujet. Sie avec majuscule est la politesse; ihr désigne plusieurs proches.",
-            "examples": [
-              [
-                "ich habe · du hast · er/sie/es hat",
-                "j’ai · tu as · il/elle a"
-              ],
-              [
-                "wir haben · ihr habt · sie/Sie haben",
-                "nous avons · vous avez (proches) · ils/elles ont / vous avez (politesse)"
-              ]
-            ]
-          }
-        ],
         "Poser les premières questions": [
           {
             "title": "Répondre avec oui ou non",
@@ -2005,7 +1965,7 @@
             ]
           }
         ],
-        "Métier et horaires": [
+        "Verbes réguliers au présent": [
           {
             "title": "Les terminaisons de arbeiten",
             "rule": "Le radical de arbeiten finit en t. Devant -st et -t, un e facilite la prononciation : arbeitest et arbeitet. Les formes avec wir et Sie se terminent normalement en -en.",
@@ -2561,8 +2521,10 @@
     const rules=content[course]?.[id]?.intro||[];if(!rules.length)return '';
     return `<section class="lesson-foundations is-intro" data-foundations="${course}-${Number(id)}"><h3>${course==='fr'?'Für den ersten Check':'Pour le premier quiz'}</h3>${rulesHtml(course,rules)}</section>`;
   }
-  function enhance(course,id,topic,html){
-    const rules=content[course]?.[id]?.topics[topic]||[];if(!rules.length)return html;
+  function enhance(course,id,topic,html,topicIndex){
+    const rules=content[course]?.[id]?.topics[topic]||[];
+    const vocabulary=Number.isInteger(topicIndex)?preparationHtml(course,id,'grammar:'+topicIndex):'';
+    if(!rules.length&&!vocabulary)return html;
     const holder=document.createElement('div');holder.innerHTML=html;
     const body=holder.querySelector('.grammar-detail-body')||holder;
     const addition=document.createElement('div');addition.className='lesson-foundations is-topic';addition.dataset.foundationTopic=topic;
@@ -2576,27 +2538,42 @@
       const row=[...body.querySelectorAll('.phrase-row')].find(row=>normalized(row.querySelector('strong')?.textContent)===target&&normalized(row.querySelector('small')?.textContent)===meaning);
       if(row)example.replaceWith(row);
     }
-    if(practice)practice.before(addition);else body.appendChild(addition);
+    if(rules.length){if(practice)practice.before(addition);else body.appendChild(addition);}
+    if(vocabulary){const block=document.createElement('div');block.innerHTML=vocabulary;if(practice)practice.before(block);else body.appendChild(block);}
     return holder.innerHTML;
   }
-  function vocabularyHtml(course,id){
-    if(!window.A1Vocabulary)return '';
+  function vocabularyBank(course){
+    if(!window.A1Vocabulary)return [];
     const units=course==='fr'?window.FR_A1_DEEPENING_CONTENT:window.DE_A1_STUDY?.content;
-    const lessons=Object.keys(content[course]||{}).map(id=>({id:Number(id)}));
-    const bank=window.A1Vocabulary.buildBank({course,lessons,units:units||{}});
-    if(!bank.length)return '';
-    // Group before filtering: the same word can have several translation cards.
-    // Its earliest course occurrence determines where it is introduced.
-    const grouped=new Map();
-    for(const word of bank){
-      const target=word.target.normalize('NFC');
-      if(!grouped.has(target))grouped.set(target,{meanings:new Set(),firstLesson:Infinity});
-      const entry=grouped.get(target);entry.meanings.add(word.meaning);
-      entry.firstLesson=Math.min(entry.firstLesson,...word.lessons);
-    }
-    const words=[...grouped].filter(([,entry])=>entry.firstLesson===Number(id)).map(([target,entry])=>[target,[...entry.meanings].join(' / ')]);
-    if(!words.length)return '';
-    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}"><summary>${course==='fr'?'Neue Vokabeln dieser Lektion':'Nouveau vocabulaire de cette leçon'} <span class="lesson-extra-count">${words.length}</span></summary><p class="muted">${course==='fr'?'Hier stehen nur Wörter, die in dieser Lektion neu hinzukommen. Den gesamten Wortschatz findest du im Vokabeltrainer.':'Cette liste présente uniquement les mots introduits dans cette leçon. Retrouve tout le vocabulaire dans le vocabulaire à réviser.'}</p><dl data-i18n-ignore>${words.map(([word,meaning])=>`<div><dt lang="${course}">${esc(word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(meaning)}</dd></div>`).join('')}</dl></details>`;
+    return window.A1Vocabulary.buildBank({course,lessons:Object.keys(content[course]||{}).map(id=>({id:Number(id)})),units:units||{}});
   }
-  window.A1LessonFoundations=Object.freeze({content,translations,render,enhance,vocabularyHtml});
+  function vocabularyRows(course,bank,targets){
+    const grouped=new Map();
+    for(const word of bank){const target=word.target.normalize('NFC');if(targets&&!targets.includes(target))continue;if(!grouped.has(target))grouped.set(target,new Set());grouped.get(target).add(word.meaning);}
+    return `<dl data-i18n-ignore>${[...grouped].map(([word,meanings])=>`<div><dt lang="${course}">${esc(word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc([...meanings].join(' / '))}</dd></div>`).join('')}</dl>`;
+  }
+  function vocabularyHtml(course,id){
+    const bank=vocabularyBank(course).filter(word=>word.lessons.includes(Number(id)));
+    const included=window.A1LessonVocabularyPlan?.[course]?.[id]?.regular;
+    const regular=included?bank.filter(word=>included.includes(word.target.normalize('NFC'))):bank;if(!regular.length)return '';
+    const en=window.A1Profile?.getUiLang()==='en';
+    const title=en?'Lesson word list':course==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon';
+    const hint=en?'For reference. Learn the words alongside the examples and exercises. Additional Hard Mode words appear before that test.':course==='fr'?'Zum Nachschlagen. Du lernst die Wörter bei den passenden Beispielen und Übungen. Zusätzliche Wörter für den Hard Mode stehen vor dessen Start.':'Pour consulter. Tu apprends les mots avec les exemples et exercices correspondants. Les mots supplémentaires du Hard Mode sont présentés avant son début.';
+    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}" data-i18n-ignore><summary>${title}</summary><p class="muted">${hint}</p>${vocabularyRows(course,regular)}</details>`;
+  }
+  function preparationHtml(course,id,stage){
+    const plan=window.A1LessonVocabularyPlan?.[course]?.[id];
+    const targets=stage==='hard'?plan?.hard:plan?.stages[stage];if(!targets?.length)return '';
+    const bank=vocabularyBank(course),en=window.A1Profile?.getUiLang()==='en';
+    const title=en?(stage==='hard'?'Additional words for Hard Mode':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Wörter für diese Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots pour cet exercice');
+    return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4>${vocabularyRows(course,bank,targets)}</section>`;
+  }
+  function hardInstructionsHtml(course,data){
+    if(course!=='fr')return '';
+    const prompts=data.listening.flatMap(block=>block.questions.map(q=>q.q)).join(' '),en=window.A1Profile?.getUiLang()==='en';
+    const expressions=[[/écris/i,'Écris …','Schreibe …','Write …'],[/réponds.*chiffres/i,'Réponds en chiffres.','Antworte mit Ziffern.','Answer in digits.'],[/choisis/i,'Choisis …','Wähle …','Choose …'],[/quelle phrase est correcte/i,'Quelle phrase est correcte ?','Welcher Satz ist richtig?','Which sentence is correct?']].filter(([pattern])=>pattern.test(prompts));
+    if(!expressions.length)return '';
+    return `<details class="lesson-extra-vocabulary" data-hard-instructions data-i18n-ignore><summary>${en?'Understanding the instructions':'Die Aufgabenstellung verstehen'}</summary><dl>${expressions.map(([,fr,de,english])=>`<div><dt lang="fr">${esc(fr)}</dt><dd>${esc(en?english:de)}</dd></div>`).join('')}</dl></details>`;
+  }
+  window.A1LessonFoundations=Object.freeze({content,translations,render,enhance,vocabularyHtml,preparationHtml,hardInstructionsHtml});
 })();

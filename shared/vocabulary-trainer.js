@@ -34,7 +34,11 @@
       for(const id of relevant)if(!entry.lessons.includes(id))entry.lessons.push(id);
       entry.searchForms=[...new Set([...(entry.searchForms||[]),...forms])];
     }
-    for(const e of bank.values())e.lessons.sort((a,b)=>a-b);
+    for(const e of bank.values()){
+      e.lessons.sort((a,b)=>a-b);
+      const plan=window.A1LessonVocabularyPlan?.[course];
+      if(plan)e.studyLessons=e.lessons.filter(id=>[...(plan[id]?.regular||[]),...(plan[id]?.hardOnly||[])].includes(e.target.normalize('NFC')));
+    }
     return [...bank.values()].sort((a,b)=>a.target.localeCompare(b.target,target));
   }
   const TEXT={
@@ -110,7 +114,7 @@
     const isOverview=()=>settings.mode==='mistakes'&&['all','learned'].includes(settings.lesson);
     function selection(){
       const q=searchKey(settings.query),source=settings.mode==='mistakes'?decks().find(d=>d.lessonId===Number(settings.lesson))?.entries||[]:bank;
-      return source.filter(e=>(settings.mode==='mistakes'||settings.lesson==='all'||settings.lesson==='learned'&&e.lessons.some(id=>(state.doneLessons||[]).includes(id))||e.lessons.includes(Number(settings.lesson)))&&(settings.mode==='mistakes'||settings.status==='any'||status(e)===settings.status)&&(!q||matchesSearch(e,q,course)));
+      return source.filter(e=>(settings.mode==='mistakes'||settings.lesson==='all'||settings.lesson==='learned'&&(e.studyLessons||e.lessons).some(id=>(state.doneLessons||[]).includes(id))||(e.studyLessons||e.lessons).includes(Number(settings.lesson)))&&(settings.mode==='mistakes'||settings.status==='any'||status(e)===settings.status)&&(!q||matchesSearch(e,q,course)));
     }
     save();
     const audio=e=>`<button class="vt-audio" type="button" data-vt-audio="${esc(e.id)}" aria-label="${esc(T.listen+': '+e.target)}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>`;
@@ -142,7 +146,7 @@
       if(root.session?.version===2&&root.session.index<root.session.cards.length&&!window.confirm(T.roundNote))return;
       const priority=e=>{const s=progress(e);return !s?1:s.streak===0?0:s.streak<2?2:3;};
       const shuffled=entries.map(e=>({e,r:Math.random()})).sort((a,b)=>priority(a.e)-priority(b.e)||(progress(a.e)?.last||0)-(progress(b.e)?.last||0)||a.r-b.r);
-      const lessonFor=e=>e.lessonId??(e.lessons.includes(Number(settings.lesson))?Number(settings.lesson):e.lessons.find(id=>settings.lesson!=='learned'||(state.doneLessons||[]).includes(id)));
+      const lessonFor=e=>e.lessonId??(e.lessons.includes(Number(settings.lesson))?Number(settings.lesson):(e.studyLessons?.length?e.studyLessons:e.lessons).find(id=>settings.lesson!=='learned'||(state.doneLessons||[]).includes(id)));
       root.session={version:2,cards:shuffled.slice(0,Number(settings.size)).map(x=>({...x.e,lessonId:lessonFor(x.e)})),direction:settings.direction,mode:settings.mode,index:0,ratings:[],draft:'',revealed:false};save();round();
     }
     function round(){

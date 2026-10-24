@@ -34,18 +34,19 @@
     {forms:['heiße','heißt','heißt','heißen','heißt','heißen'],ends:['Anna','Paul','Tom','Müller','Schmidt','Weber'],meaning:['m’appelle Anna','t’appelles Paul','s’appelle Tom','nous appelons Müller','vous appelez Schmidt','s’appellent Weber']},
     {forms:['spreche','sprichst','spricht','sprechen','sprecht','sprechen'],ends:Array(6).fill('Deutsch'),meaning:['parle allemand','parles allemand','parle allemand','parlons allemand','parlez allemand','parlent allemand']}
   ]);
+  // Practise the pronouns themselves before later pages introduce verb paradigms.
   add('Pronoms personnels','g1',[
-    {...gap('Sie ___ zu Hause.','ist',['sind','seid'],'Anna est à la maison. Elle est à la maison.'),pronounRole:'female'},
-    {...gap('Sie ___ zu Hause.','sind',['ist','seid'],'Anna et Paul sont à la maison. Ils sont à la maison.'),pronounRole:'plural'},
-    {...gap('Sie ___ hier.','sind',['ist','seid'],'Vous parlez à Madame Martin : vous êtes ici (politesse).'),pronounRole:'formal'},
-    {...gap('Können ___ mir helfen?','Sie',['sie','ihr'],'Vous demandez poliment de l’aide à Madame Martin.'),pronounRole:'formal'},
-    {...gap('Ihr ___ hier.','seid',['sind','ist'],'Anna et Léa, vous êtes ici (plusieurs personnes, familier).'),pronounRole:'familiar'},
-    {...gap('Sie ___ Deutsch.','spricht',['sprechen','sprecht'],'Anna parle allemand. Elle parle allemand.'),pronounRole:'female'},
-    {...gap('Sie ___ Deutsch.','sprechen',['spricht','sprecht'],'Anna et Paul parlent allemand. Ils parlent allemand.'),pronounRole:'plural'},
-    {...gap('Sprechen ___ Deutsch?','Sie',['sie','du'],'Vous demandez poliment à un client s’il parle allemand.'),pronounRole:'formal'},
-    {...gap('Das ist Anna. Heute ist ___ hier.','sie',['Sie','ihr'],'Vous parlez d’Anna : elle est ici aujourd’hui.'),pronounRole:'female'},
-    {...gap('Haben ___ Zeit?','Sie',['sie','ihr'],'Vous demandez poliment à deux clients s’ils ont du temps.'),pronounRole:'formal'}
-  ]);
+    ['« je »','ich',['du','wir'],''],
+    ['« tu »','du',['ich','ihr'],''],
+    ['Anna : « elle »','sie',['Sie','es'],'female'],
+    ['Paul : « il »','er',['sie','es'],''],
+    ['« cela » (pronom neutre)','es',['er','sie'],''],
+    ['Anna et moi : « nous »','wir',['ihr','sie'],''],
+    ['Anna et Paul : « ils »','sie',['Sie','ihr'],'plural'],
+    ['Vous parlez à Anna et Léa, deux amies : « vous »','ihr',['wir','Sie'],'familiar'],
+    ['Vous vous adressez poliment à Madame Martin : « vous »','Sie',['sie','ihr'],'formal'],
+    ['Vous vous adressez poliment à deux clients : « vous »','Sie',['sie','ihr'],'formal']
+  ].map(([meaning,answer,wrong,pronounRole])=>({q:`Quel pronom allemand correspond à ${meaning} ?`,o:[answer,...wrong],a:0,audio:answer,qualityRevision:149,marking:{caseSensitive:true},...(pronounRole?{pronounRole}:{})})));
   const rows=(title,setId,data)=>add(title,setId,data.map(([s,a,w,c])=>gap(s,a,w,c)));
   rows('Articles au nominatif','g2',[
     ['___ Bahnhof ist groß.','Der',['Die','Das']],['___ Wohnung ist klein.','Die',['Der','Das']],['___ Hotel ist neu.','Das',['Der','Die']],

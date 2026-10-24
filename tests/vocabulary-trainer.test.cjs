@@ -38,7 +38,7 @@ for(const course of ['fr','de']){
   const status=f.$('#vtStatus');status.value='known';status.dispatchEvent(new f.w.Event('change'));assert.equal(f.$$('.vt-entry').length,0);f.dom.window.close();
  });
  test(course+': service worker includes all new assets and bottom nav routes to trainer',()=>{
-  const folder=course==='fr'?'francais':'deutsch',html=read(folder+'/index.html'),sw=read(folder+'/service-worker.js');for(const name of ['vocabulary-content.js','vocabulary-trainer.js','vocabulary-trainer.css']){const revision=name==='vocabulary-trainer.js'?'lexical-153':'vocab-decks-150';assert(html.includes(name+'?v='+revision));assert(sw.includes(name+'?v='+revision));}assert(read(folder+'/app.js').includes(course==='fr'?'practice:renderVocab':"if(route==='practice')renderVocab()"));assert(html.includes(course==='fr'?'<small>Vokabeln</small>':'<small>Vocabulaire</small>'));
+  const folder=course==='fr'?'francais':'deutsch',html=read(folder+'/index.html'),sw=read(folder+'/service-worker.js');for(const name of ['vocabulary-content.js','vocabulary-trainer.js','vocabulary-trainer.css']){const revision=name==='vocabulary-trainer.js'?'teaching-placement-157':'vocab-decks-150';assert(html.includes(name+'?v='+revision));assert(sw.includes(name+'?v='+revision));}assert(read(folder+'/app.js').includes(course==='fr'?'practice:renderVocab':"if(route==='practice')renderVocab()"));assert(html.includes(course==='fr'?'<small>Vokabeln</small>':'<small>Vocabulaire</small>'));
  });
 }
 test('language changes preserve drafts, order and self-assessment; profile states stay separate',()=>{
