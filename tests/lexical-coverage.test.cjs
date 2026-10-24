@@ -15,9 +15,10 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
    const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});
    const labels=[...el.querySelectorAll('dt')].map(e=>e.textContent);
    const regular=f.w.A1LessonVocabularyPlan[code][l.id].regular;
-   const expected=[...new Set(bank.filter(e=>e.lessons.includes(l.id)&&regular.includes(e.target)).map(e=>e.target))];
-   assert.deepEqual([...labels].sort(),expected.map(t=>f.w.A1Vocabulary.displayText(code,t)).sort(),`L${l.id}: complete regular overview`);
-   for(const target of labels){const row=[...el.querySelectorAll('dl>div')].find(row=>row.querySelector('dt').textContent===target);for(const word of bank.filter(e=>f.w.A1Vocabulary.displayText(code,e.target.normalize('NFC'))===target&&e.lessons.includes(l.id)))assert(row.querySelector('dd').textContent.includes(f.w.A1Vocabulary.displayText(code,word.meaning)));}
+   const entries=bank.filter(e=>e.lessons.includes(l.id)&&regular.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e));
+   const expected=[...new Map(entries.map(e=>[JSON.stringify([e.target,e.meaning]),e.target])).values()];
+   assert.deepEqual([...labels].sort(),expected.sort(),`L${l.id}: complete regular overview`);
+   for(const entry of entries){const row=[...el.querySelectorAll('dl>div')].find(row=>row.querySelector('dt').textContent===entry.target&&row.querySelector('dd').textContent===entry.meaning);assert(row,`${l.id}: ${entry.target} → ${entry.meaning}`);}
    if(labels.length){assert(!el.querySelector('details').open);assert(el.textContent.includes(code==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon'));}else assert.equal(html,'');
 
 
@@ -33,7 +34,7 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
   assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.items)),{});assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.lessonItems)),{});f.dom.window.close();
  });
  test(course+': new lexical data is loaded before both consumers and is cached offline',()=>{
-  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(sw.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-vocabulary-notes-v159'));
+  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(sw.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-vocabulary-pairs-v160'));
  });
 }
 test('reviewed source fingerprints cover all question variants, models and actual recordings in all 48 lessons',()=>{

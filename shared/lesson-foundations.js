@@ -2564,9 +2564,13 @@
   });
   function vocabularyRows(course,bank,targets){
     const display=value=>window.A1Vocabulary.displayText?.(course,value)??value;
-    const grouped=new Map();
-    for(const word of bank){const target=word.target.normalize('NFC');if(targets&&!targets.includes(target))continue;if(!grouped.has(target))grouped.set(target,new Set());grouped.get(target).add(word.meaning);}
-    return `<dl data-i18n-ignore>${[...grouped].map(([word,meanings])=>`<div><dt lang="${course}"><span>${esc(display(word))}</span>${wordAudioButton(course,display(word))}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc([...meanings].map(meaning=>display(meaning)).join(' / '))}</dd></div>`).join('')}</dl>`;
+    const rows=new Map();
+    for(const word of bank){
+      const target=word.target.normalize('NFC');if(targets&&!targets.includes(target))continue;
+      const pairs=window.A1Vocabulary.displayPairs?.(course,word)||[{target:display(word.target),meaning:display(word.meaning)}];
+      for(const pair of pairs)rows.set(JSON.stringify([pair.target,pair.meaning]),pair);
+    }
+    return `<dl data-i18n-ignore>${[...rows.values()].map(pair=>`<div><dt lang="${course}"><span>${esc(pair.target)}</span>${wordAudioButton(course,pair.target)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(pair.meaning)}</dd></div>`).join('')}</dl>`;
   }
   function vocabularyHtml(course,id){
     const bank=vocabularyBank(course).filter(word=>word.lessons.includes(Number(id)));
