@@ -50,3 +50,13 @@ html.dark-mode .home-mistake-count{background:#e1b36d1a}
 .review-practice .mixed-context{white-space:pre-line}
 
 .review-practice .option-btn[aria-pressed="true"]:not(:disabled){border:2px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);box-shadow:0 0 0 2px var(--accent-soft)}
+
+.review-error-stats{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:12px}
+.review-error-stats summary{cursor:pointer;font-weight:650}
+.review-error-stats h3{font-size:1rem;margin:18px 0 8px}
+.review-error-stats ol{padding-left:24px;margin-bottom:0}
+.review-error-stats li{padding:12px 0;overflow-wrap:anywhere}
+.review-error-stats li+li{border-top:1px solid var(--line)}
+.review-error-stats li p{margin:6px 0}
+.review-mistake-progress{font-size:.9rem;line-height:1.6}
+.review-mistake-progress span{display:inline-block;color:var(--muted);margin-left:6px}

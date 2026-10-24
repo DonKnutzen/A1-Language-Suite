@@ -32,7 +32,7 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
   assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.items)),{});assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.lessonItems)),{});f.dom.window.close();
  });
  test(course+': new lexical data is loaded before both consumers and is cached offline',()=>{
-  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(sw.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-new-words-v154'));
+  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(sw.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-mistake-history-v155'));
  });
 }
 test('reviewed source fingerprints cover all question variants, models and actual recordings in all 48 lessons',()=>{
