@@ -182,3 +182,10 @@ html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(
 .lesson-vocabulary-preparation{margin:16px 0;padding-top:12px}
 .lesson-vocabulary-preparation h4{font-size:.92rem;margin:0 0 8px}
 .lesson-vocabulary-preparation dl{margin-top:0}
+
+/* On-demand pronunciation beside the target word, shared by both A1 courses. */
+.lesson-extra-vocabulary dt{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.lesson-extra-vocabulary dt>span{min-width:0}
+.lesson-vocabulary-audio{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--accent-soft);color:var(--ink);cursor:pointer}
+.lesson-vocabulary-audio svg{width:20px;height:20px;pointer-events:none}
+.lesson-vocabulary-audio:focus-visible{outline:3px solid var(--accent);outline-offset:3px}

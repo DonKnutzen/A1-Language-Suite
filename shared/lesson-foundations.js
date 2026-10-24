@@ -2547,10 +2547,25 @@
     const units=course==='fr'?window.FR_A1_DEEPENING_CONTENT:window.DE_A1_STUDY?.content;
     return window.A1Vocabulary.buildBank({course,lessons:Object.keys(content[course]||{}).map(id=>({id:Number(id)})),units:units||{}});
   }
+  function wordAudioButton(course,word){
+    const spoken=String(word).replace(/\s*\([^)]*\)/g,'').replace(/\s*\/\s*/g,', ').trim();
+    const en=window.A1Profile?.getUiLang()==='en';
+    const label=en?(course==='fr'?'Listen in French: ':'Listen in German: '):course==='fr'?'Auf Französisch anhören: ':'Écouter en allemand : ';
+    return `<button type="button" class="lesson-vocabulary-audio" data-vocabulary-audio="${esc(spoken)}" data-vocabulary-lang="${course==='fr'?'fr-FR':'de-DE'}" aria-label="${esc(label+word)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>`;
+  }
+  // One delegated listener also covers regenerated pages and Hard Mode preparation.
+  document.addEventListener('click',event=>{
+    const button=event.target.closest?.('button[data-vocabulary-audio]');
+    if(!button||button.disabled||!button.closest('.lesson-extra-vocabulary'))return;
+    const lang=button.dataset.vocabularyLang;
+    if(!['fr-FR','de-DE'].includes(lang))return;
+    event.preventDefault();
+    window.A1Voice?.speak(button.dataset.vocabularyAudio,{lang});
+  });
   function vocabularyRows(course,bank,targets){
     const grouped=new Map();
     for(const word of bank){const target=word.target.normalize('NFC');if(targets&&!targets.includes(target))continue;if(!grouped.has(target))grouped.set(target,new Set());grouped.get(target).add(word.meaning);}
-    return `<dl data-i18n-ignore>${[...grouped].map(([word,meanings])=>`<div><dt lang="${course}">${esc(word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc([...meanings].join(' / '))}</dd></div>`).join('')}</dl>`;
+    return `<dl data-i18n-ignore>${[...grouped].map(([word,meanings])=>`<div><dt lang="${course}"><span>${esc(word)}</span>${wordAudioButton(course,word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc([...meanings].join(' / '))}</dd></div>`).join('')}</dl>`;
   }
   function vocabularyHtml(course,id){
     const bank=vocabularyBank(course).filter(word=>word.lessons.includes(Number(id)));
@@ -2573,7 +2588,7 @@
     const prompts=data.listening.flatMap(block=>block.questions.map(q=>q.q)).join(' '),en=window.A1Profile?.getUiLang()==='en';
     const expressions=[[/écris/i,'Écris …','Schreibe …','Write …'],[/réponds.*chiffres/i,'Réponds en chiffres.','Antworte mit Ziffern.','Answer in digits.'],[/choisis/i,'Choisis …','Wähle …','Choose …'],[/quelle phrase est correcte/i,'Quelle phrase est correcte ?','Welcher Satz ist richtig?','Which sentence is correct?']].filter(([pattern])=>pattern.test(prompts));
     if(!expressions.length)return '';
-    return `<details class="lesson-extra-vocabulary" data-hard-instructions data-i18n-ignore><summary>${en?'Understanding the instructions':'Die Aufgabenstellung verstehen'}</summary><dl>${expressions.map(([,fr,de,english])=>`<div><dt lang="fr">${esc(fr)}</dt><dd>${esc(en?english:de)}</dd></div>`).join('')}</dl></details>`;
+    return `<details class="lesson-extra-vocabulary" data-hard-instructions data-i18n-ignore><summary>${en?'Understanding the instructions':'Die Aufgabenstellung verstehen'}</summary><dl>${expressions.map(([,fr,de,english])=>`<div><dt lang="fr"><span>${esc(fr)}</span>${wordAudioButton('fr',fr)}</dt><dd>${esc(en?english:de)}</dd></div>`).join('')}</dl></details>`;
   }
   window.A1LessonFoundations=Object.freeze({content,translations,render,enhance,vocabularyHtml,preparationHtml,hardInstructionsHtml});
 })();
