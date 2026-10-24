@@ -5,6 +5,76 @@
   const clean=s=>String(s??'').replace(/\|/g,'').trim();
   const key=s=>clean(s).normalize('NFC').replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
   const searchKey=s=>key(s).toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss');
+  // Explanatory notes in German headwords belong to the learner's French language.
+  // Keep raw words and card IDs unchanged for lesson associations and saved decks.
+  const frenchNotes={"höflich":"poli","vertraut":"familier","Einzahl":"singulier","Mehrzahl":"pluriel","Besitz, Einzahl":"un possesseur","Besitz, Mehrzahl":"plusieurs possesseurs","Kleidung":"vêtements","Rachen":"gorge","bestimmter Artikel":"article défini","je nach Kontext":"selon le contexte","aus einer Auswahl":"parmi plusieurs","zeitlich":"temps","Kochen":"cuisine","Anrede":"civilité","je nach Stellung":"selon la position","Medikamente":"médicaments","hinweisend":"démonstratif"};
+  const compactForms={
+  "de": {
+    "deutsch / Deutscher / Deutsche": "deutsch (adj.) / ein Deutscher (m.) / eine Deutsche (f.)",
+    "allemand / allemande": "allemand / allemande (adj.) ; un Allemand (m.) ; une Allemande (f.)",
+    "französisch / Franzose / Französin": "französisch (adj.) / ein Franzose (m.) / eine Französin (f.)",
+    "français / française": "français / française (adj.) ; un Français (m.) ; une Française (f.)",
+    "le médecin": "le médecin / la médecin",
+    "le professeur": "le professeur / la professeure",
+    "le destinataire": "le destinataire / la destinataire",
+    "l’expéditeur (m.)": "l’expéditeur / l’expéditrice",
+    "le propriétaire": "le propriétaire / la propriétaire",
+    "Sie / ihr": "Sie (politesse) / ihr (plusieurs proches)",
+    "vous": "vous (politesse) / vous (plusieurs proches)",
+    "ils / elles": "ils (m. ou mixte) / elles (f.)",
+    "die Tochter / das Mädchen": "die Tochter (famille) / das Mädchen (enfant)",
+    "la fille": "la fille (lien familial) / la fille (jeune fille)",
+    "die Frau / die Ehefrau": "die Frau / die Ehefrau (mariage)",
+    "la femme": "la femme / l’épouse",
+    "le menu": "la carte / le menu",
+    "le temps": "le temps (météo) / le temps (durée)",
+    "le fruit": "les fruits / un fruit",
+    "le feu": "le feu tricolore / le feu",
+    "das Zimmer / das Schlafzimmer": "das Zimmer (hôtel) / das Schlafzimmer",
+    "la chambre": "la chambre (hôtel) / la chambre à coucher",
+    "mein / meine": "mein / meine (selon le nom)",
+    "dein / deine": "dein / deine (selon le nom)",
+    "sein / ihr (Besitz, Einzahl)": "sein / ihr (un possesseur)",
+    "notre / nos": "notre (sing.) / nos (pl.)",
+    "votre / vos": "votre (sing.) / vos (pl.)",
+    "gehen / fahren": "gehen (à pied) / fahren (en véhicule)",
+    "aller": "aller à pied / aller en véhicule",
+    "bon / bonne": "bon / bonne (qualité)",
+    "bien": "bien (manière / état)"
+  },
+  "fr": {
+    "français / française": "français / française (Adjektiv); un Français / une Française (Person)",
+    "französisch / Franzose / Französin": "französisch (Adjektiv); ein Franzose / eine Französin",
+    "allemand / allemande": "allemand / allemande (Adjektiv); un Allemand / une Allemande (Person)",
+    "deutsch / Deutscher / Deutsche": "deutsch (Adjektiv); ein Deutscher / eine Deutsche",
+    "le médecin": "le médecin / la médecin",
+    "le professeur": "le professeur / la professeure",
+    "le destinataire": "le destinataire / la destinataire",
+    "l’expéditeur (m.)": "l’expéditeur / l’expéditrice",
+    "le propriétaire": "le propriétaire / la propriétaire",
+    "la fille": "la fille (Tochter / Mädchen)",
+    "la femme": "la femme (Frau / Ehefrau)",
+    "le menu": "la carte / le menu",
+    "le temps": "le temps (Wetter / Zeit)",
+    "le fruit": "les fruits / un fruit",
+    "le feu": "le feu tricolore / le feu",
+    "la chambre": "la chambre (Hotelzimmer) / la chambre à coucher",
+    "gehen / fahren": "gehen (zu Fuß) / fahren (mit einem Verkehrsmittel)",
+    "bon / bonne": "bon / bonne (Qualität)",
+    "bien": "bien (Art und Weise / Befinden)"
+  }
+};
+  function displayText(course,value){
+    const raw=String(value??''),text=compactForms[course]?.[raw]||raw;
+    return course==='de'?text.replace(/\(([^)]+)\)/g,(whole,note)=>frenchNotes[note]?'('+frenchNotes[note]+')':whole):text;
+  }
+  function displayTarget(course,entry){
+    if(course==='de'&&entry.target==='gut'){
+      if(entry.meaning==='bon / bonne')return 'gut (qualité)';
+      if(entry.meaning==='bien')return 'gut (manière / état)';
+    }
+    return displayText(course,entry.target);
+  }
   function buildBank({course,lessons,units={}}){
     const bank=new Map(),target=course==='fr'?'fr':'de',meaning=target==='fr'?'de':'fr';
     function add(a,b,lesson,kind,note=''){
@@ -90,7 +160,7 @@
     return !ok?'savedMistake':wasPending&&!pending(next)?'clearedMistake':null;
   }
   function matchesSearch(entry,query,course){
-    const haystack=searchKey(entry.target+' '+entry.meaning+' '+(entry.searchForms||[]).join(' '));
+    const haystack=searchKey(entry.target+' '+entry.meaning+' '+displayText(course,entry.target)+' '+displayText(course,entry.meaning)+' '+(entry.searchForms||[]).join(' '));
     if(haystack.includes(query))return true;
     // A learner may copy a heard verb with its pronoun. This is lookup, not marking.
     const prepared=query.replace(/\b(?:j|m|t|s)'/g,' ');
@@ -117,8 +187,8 @@
       return source.filter(e=>(settings.mode==='mistakes'||settings.lesson==='all'||settings.lesson==='learned'&&(e.studyLessons||e.lessons).some(id=>(state.doneLessons||[]).includes(id))||(e.studyLessons||e.lessons).includes(Number(settings.lesson)))&&(settings.mode==='mistakes'||settings.status==='any'||status(e)===settings.status)&&(!q||matchesSearch(e,q,course)));
     }
     save();
-    const audio=e=>`<button class="vt-audio" type="button" data-vt-audio="${esc(e.id)}" aria-label="${esc(T.listen+': '+e.target)}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>`;
-    function wireAudio(entries){view.querySelectorAll('[data-vt-audio]').forEach(b=>b.onclick=()=>{const e=entries.find(x=>x.id===b.dataset.vtAudio);if(e)speak(e.target.replace(/\s*\([^)]*\)/g,''),true);});}
+    const audio=e=>`<button class="vt-audio" type="button" data-vt-audio="${esc(e.id)}" aria-label="${esc(T.listen+': '+displayTarget(course,e))}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>`;
+    function wireAudio(entries){view.querySelectorAll('[data-vt-audio]').forEach(b=>b.onclick=()=>{const e=entries.find(x=>x.id===b.dataset.vtAudio);if(e)speak(displayTarget(course,e).replace(/\s*\([^)]*\)/g,'').replace(/[;/]/g,', '),true);});}
     function deckHtml(groups){return `<div class="vt-decks">${groups.map(d=>`<button class="vt-deck" data-vt-deck="${d.lessonId}"><span><strong>${esc(title(d.lessonId))}</strong><small>${d.lessonId===0?T.legacyHint:T.openDeck}</small></span><span class="vt-deck-count">${d.entries.length} ${countLabel(d.entries.length)}</span></button>`).join('')}</div>`;}
     function openDeck(id,immediately=false){settings.mode='mistakes';settings.lesson=String(id);settings.query='';shown=60;save();list();if(immediately)start();else view.querySelector('#vtStart')?.focus();}
     function wireDecks(immediately=false){view.querySelectorAll('[data-vt-deck]').forEach(b=>b.onclick=()=>openDeck(Number(b.dataset.vtDeck),immediately));}
@@ -138,7 +208,7 @@
       const entries=selection(),overview=isOverview();view.querySelector('#vtCount').textContent=overview?(decks().length?T.pickDeck:T.noMistakes):entries.length+' '+countLabel(entries.length);
       view.querySelector('#vtStart').disabled=!entries.length||overview;
       const container=view.querySelector('#vtList');container.classList.toggle('is-decks',overview);
-      container.innerHTML=overview?deckHtml(decks()):entries.length?entries.slice(0,shown).map(e=>`<article class="vt-entry"><div><strong lang="${course}">${esc(e.target)}</strong><span lang="${course==='fr'?'de':'fr'}">${esc(e.meaning)}</span>${e.note?`<small>${T.plural}: ${esc(e.note)}</small>`:''}<small class="vt-meta">${settings.lesson==='0'?T.legacyDeck:T.lesson+' '+(e.lessons.includes(Number(settings.lesson))?esc(settings.lesson):e.lessons.join(', '))} · ${T[status(e)]}</small></div>${audio(e)}</article>`).join('')+(entries.length>shown?`<button id="vtMore" class="secondary-btn">${T.more}</button>`:''):`<p class="vt-empty">${settings.mode==='mistakes'?T.noMistakes:T.empty}</p>`;
+      container.innerHTML=overview?deckHtml(decks()):entries.length?entries.slice(0,shown).map(e=>`<article class="vt-entry"><div><strong lang="${course}">${esc(displayTarget(course,e))}</strong><span lang="${course==='fr'?'de':'fr'}">${esc(displayText(course,e.meaning))}</span>${e.note?`<small>${T.plural}: ${esc(e.note)}</small>`:''}<small class="vt-meta">${settings.lesson==='0'?T.legacyDeck:T.lesson+' '+(e.lessons.includes(Number(settings.lesson))?esc(settings.lesson):e.lessons.join(', '))} · ${T[status(e)]}</small></div>${audio(e)}</article>`).join('')+(entries.length>shown?`<button id="vtMore" class="secondary-btn">${T.more}</button>`:''):`<p class="vt-empty">${settings.mode==='mistakes'?T.noMistakes:T.empty}</p>`;
       wireAudio(entries);wireDecks();view.querySelector('#vtMore')?.addEventListener('click',()=>{shown+=60;results();});
     }
     function start(){
@@ -157,7 +227,7 @@
         view.innerHTML=`<section class="vt card center" data-i18n-ignore><h2>${T.done}</h2><p class="vt-prompt">${s.ratings.filter(Boolean).length} / ${s.cards.length}</p><p>${T.result}</p>${notice}${remaining.length?`<h3>${T.decks}</h3>${deckHtml(remaining)}<p class="muted">${T.deckRule}</p>`:''}<div class="button-row"><button class="primary-btn" id="vtBack">${T.back}</button></div></section>`;view.querySelector('#vtBack').onclick=list;wireDecks(true);return;
       }
       const reverse=s.direction==='reverse';
-      view.innerHTML=`<section class="vt" data-i18n-ignore><div class="between"><button class="tiny-btn" id="vtBack">← ${T.back}</button><span>${s.index+1} / ${s.cards.length}</span></div><progress value="${s.index}" max="${s.cards.length}" aria-label="${T.remaining}"></progress>${notice}<section class="card vt-card"><p class="eyebrow">${esc(title(e.lessonId))}</p><h2 class="vt-prompt" lang="${reverse?(course==='fr'?'de':'fr'):course}">${esc(reverse?e.meaning:e.target)}</h2>${!reverse||s.revealed?audio(e):''}<label>${T.input}<textarea id="vtInput" rows="3" autocomplete="off" spellcheck="false" ${s.revealed?'readonly':''}>${esc(s.draft)}</textarea></label>${s.revealed?`<div class="vt-answer" lang="${reverse?course:(course==='fr'?'de':'fr')}">${esc(reverse?e.target:e.meaning)}${e.note?`<small class="vt-plural">${T.plural}: ${esc(e.note)}</small>`:''}</div><p class="muted">${T.self}</p><div class="button-row"><button class="secondary-btn" id="vtAgain">${T.again}</button><button class="primary-btn" id="vtYes">${T.yes}</button></div>`:`<button class="primary-btn" id="vtReveal">${T.answer}</button>`}</section></section>`;
+      view.innerHTML=`<section class="vt" data-i18n-ignore><div class="between"><button class="tiny-btn" id="vtBack">← ${T.back}</button><span>${s.index+1} / ${s.cards.length}</span></div><progress value="${s.index}" max="${s.cards.length}" aria-label="${T.remaining}"></progress>${notice}<section class="card vt-card"><p class="eyebrow">${esc(title(e.lessonId))}</p><h2 class="vt-prompt" lang="${reverse?(course==='fr'?'de':'fr'):course}">${esc(reverse?displayText(course,e.meaning):displayTarget(course,e))}</h2>${!reverse||s.revealed?audio(e):''}<label>${T.input}<textarea id="vtInput" rows="3" autocomplete="off" spellcheck="false" ${s.revealed?'readonly':''}>${esc(s.draft)}</textarea></label>${s.revealed?`<div class="vt-answer" lang="${reverse?course:(course==='fr'?'de':'fr')}">${esc(reverse?displayTarget(course,e):displayText(course,e.meaning))}${e.note?`<small class="vt-plural">${T.plural}: ${esc(e.note)}</small>`:''}</div><p class="muted">${T.self}</p><div class="button-row"><button class="secondary-btn" id="vtAgain">${T.again}</button><button class="primary-btn" id="vtYes">${T.yes}</button></div>`:`<button class="primary-btn" id="vtReveal">${T.answer}</button>`}</section></section>`;
       view.querySelector('#vtBack').onclick=list;view.querySelector('#vtInput').oninput=ev=>{s.draft=ev.target.value;save();};wireAudio([e]);
       if(!s.revealed)view.querySelector('#vtReveal').onclick=()=>{s.revealed=true;save();round();view.querySelector('#vtAgain').focus();};
       else for(const [id,ok]of [['vtAgain',false],['vtYes',true]])view.querySelector('#'+id).onclick=()=>{
@@ -171,5 +241,5 @@
     window.addEventListener('a1suite:languagechange',onLanguage);cleanupLanguage=()=>window.removeEventListener('a1suite:languagechange',onLanguage);
     if(opts.resumeRound)round();else list();
   }
-  window.A1Vocabulary={buildBank,searchKey,render,label,prepareState,rate,mistakeDecks};
+  window.A1Vocabulary={buildBank,displayText,displayTarget,searchKey,render,label,prepareState,rate,mistakeDecks};
 })();

@@ -6,10 +6,10 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
   const f=fixture(course);load(f);const plan=f.w.A1LessonVocabularyPlan[code],seen=new Set();
   for(const l of f.lessons){
    const p=plan[l.id];assert(p);f.render(l);const overview=f.view.querySelector('details.lesson-extra-vocabulary');assert(overview&&!overview.open);assert(!overview.querySelector('.lesson-extra-count'));
-   assert.deepEqual([...f.view.querySelectorAll('[data-vocabulary-stage="listen"] dt')].map(x=>x.textContent).sort(),Array.from(p.stages.listen).sort());
+   assert.deepEqual([...f.view.querySelectorAll('[data-vocabulary-stage="listen"] dt')].map(x=>x.textContent).sort(),Array.from(p.stages.listen,t=>f.w.A1Vocabulary.displayText(code,t)).sort());
    f.view.querySelector('[data-lesson-step="grammar"]').click();const buttons=[...f.view.querySelectorAll('[data-grammar-progress]')];assert.equal(buttons.length,Object.keys(p.titles).length);
    const added=new Set(p.stages.listen);for(let i=0;i<buttons.length;i++){
-    f.view.querySelector(`[data-grammar-progress="${i}"]`).click();const page=f.view.querySelector('#lessonGrammarPage'),stage='grammar:'+i,expected=p.stages[stage],actual=[...page.querySelectorAll('[data-vocabulary-stage] dt')].map(x=>x.textContent);assert.deepEqual(actual.sort(),Array.from(expected).sort(),`${l.id} ${p.titles[stage]}`);
+    f.view.querySelector(`[data-grammar-progress="${i}"]`).click();const page=f.view.querySelector('#lessonGrammarPage'),stage='grammar:'+i,expected=p.stages[stage],actual=[...page.querySelectorAll('[data-vocabulary-stage] dt')].map(x=>x.textContent);assert.deepEqual(actual.sort(),Array.from(expected,t=>f.w.A1Vocabulary.displayText(code,t)).sort(),`${l.id} ${p.titles[stage]}`);
     for(const word of expected){assert(!added.has(word),`${l.id}: repeated new word ${word}`);added.add(word);assert(p.regular.includes(word));}
     const prep=page.querySelector('[data-vocabulary-stage]'),practice=page.querySelector('.deepening-practice,.lesson1-grammar-practice,.grammar-topic-practice');if(prep&&practice)assert(prep.compareDocumentPosition(practice)&f.w.Node.DOCUMENT_POSITION_FOLLOWING);
     assert(!prep?.querySelector('.lesson-foundation-rule'));

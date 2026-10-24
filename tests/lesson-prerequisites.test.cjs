@@ -54,7 +54,7 @@ for(const course of ['francais','deutsch']){
   f.dom.window.close();
  });
  test(course+': HTML and offline cache use matching clarity assets',()=>{
-  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=vocabulary-audio-158','lesson-flow.js?v=teaching-placement-157','../shared/lesson-ui.css?v=vocabulary-audio-158','../shared/vocabulary-trainer.js?v=teaching-placement-157'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-vocabulary-audio-v158'));
+  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=vocabulary-notes-159','lesson-flow.js?v=teaching-placement-157','../shared/lesson-ui.css?v=vocabulary-audio-158','../shared/vocabulary-trainer.js?v=vocabulary-notes-159'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-vocabulary-notes-v159'));
  });
 }
 test('French L9 explains the purpose and actual transformation of the imperative without a vocabulary dump',()=>{
