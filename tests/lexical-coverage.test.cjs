@@ -9,11 +9,17 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
   for(const[target,usedIn,forms]of api.entries[code])for(const id of usedIn){const entry=bank.find(e=>e.target===target&&e.lessons.includes(id));assert(entry,`${id}: ${target}`);for(const form of forms)assert(entry.searchForms.includes(form));}
   assert(bank.every(e=>e.kind==='word'));f.dom.window.close();
  });
- test(course+': the inline lesson list is a complete view of the trainer source, including listening preparation',()=>{
+ test(course+': the inline lesson list shows each word only in its first lesson, including listening preparation',()=>{
   const f=fixture(course);words(f);for(const l of f.lessons){
    const html=f.w.A1LessonFoundations.vocabularyHtml(code,l.id),el=f.w.document.createElement('div');el.innerHTML=html;
    const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});
-   const labels=[...el.querySelectorAll('dt')].map(e=>e.textContent);assert(labels.length>=10,`L${l.id}`);for(const word of bank.filter(e=>e.lessons.includes(l.id))){assert(labels.includes(word.target));const row=[...el.querySelectorAll('dl>div')].find(row=>row.querySelector('dt').textContent===word.target);assert(row.querySelector('dd').textContent.includes(word.meaning));}assert(!el.querySelector('details').open);assert(!el.textContent.includes('Weitere Wörter'));
+   const labels=[...el.querySelectorAll('dt')].map(e=>e.textContent);
+   const first=new Map();for(const word of bank){const target=word.target.normalize('NFC');first.set(target,Math.min(first.get(target)??Infinity,...word.lessons));}
+   const expected=[...first].filter(([,id])=>id===l.id).map(([target])=>target);
+   assert.deepEqual([...labels].sort(),expected.sort(),`L${l.id}: only new vocabulary`);
+   for(const target of labels){const row=[...el.querySelectorAll('dl>div')].find(row=>row.querySelector('dt').textContent===target);for(const word of bank.filter(e=>e.target.normalize('NFC')===target))assert(row.querySelector('dd').textContent.includes(word.meaning));}
+   if(labels.length){assert(!el.querySelector('details').open);assert(el.textContent.includes(code==='fr'?'Neue Vokabeln':'Nouveau vocabulaire'));}else assert.equal(html,'');
+
   }
   f.render(f.lessons[10]);f.view.querySelector('[data-lesson-step="comprehension"]').click();assert(f.view.querySelector('details.lesson-extra-vocabulary'));assert(f.view.querySelector('#dialoguePlay'));f.dom.window.close();
  });
@@ -26,7 +32,7 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
   assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.items)),{});assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.lessonItems)),{});f.dom.window.close();
  });
  test(course+': new lexical data is loaded before both consumers and is cached offline',()=>{
-  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(sw.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-lexical-v153'));
+  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(sw.includes('../shared/lesson-lexicon.js?v=lexical-153'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-new-words-v154'));
  });
 }
 test('reviewed source fingerprints cover all question variants, models and actual recordings in all 48 lessons',()=>{

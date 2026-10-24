@@ -1,5 +1,11 @@
 # Wortschatz mit den tatsächlich verwendeten Aufgaben abgleichen
 
+## Anzeige auf neue Wörter begrenzt (Nachtrag)
+
+Auf Wunsch zeigt die eingeklappte Lektionsliste nur noch **neue Vokabeln dieser Lektion**. Maßgeblich ist die früheste Lektionszuordnung im vollständigen Kurswortschatz, unabhängig vom individuellen Lernfortschritt. Bereits früher eingeführte Wörter erscheinen dort nicht erneut. Gleichlautende Karten mit verschiedenen Übersetzungen werden vor der Auswahl zusammengefasst. Ohne neue Wörter entfällt die Liste. Im Vokabeltrainer bleiben sämtliche Einträge, Lektionszuordnungen und Lernstände erhalten. Die folgende ursprüngliche Beschreibung der vollständigen Inline-Liste ist damit hinsichtlich des Anzeigeumfangs überholt.
+
+65 gezielte Tests bestanden, darunter die exakte Auswahl für alle 48 Lektionen, Quellenabdeckung, unveränderte Kartenidentität und Fehlerstapel sowie Asset-Versionen.
+
 Ausgangsstand: `079803b9783978bbe6fe42c7713187f11896f136` auf `main`.
 Nachbearbeitung vom 24.10.2026 für Französisch A1 und Deutsch A1.
 

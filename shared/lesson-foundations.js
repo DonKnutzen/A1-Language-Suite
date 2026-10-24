@@ -2541,8 +2541,8 @@
     ". Genauso werden aus vous tournez → Tournez und aus vous prenez → Prenez. Aller und prendre sind unregelmäßig; ihre vous-Formen lernst du deshalb mit. Die Bildung der Anweisung bleibt gleich.": ". Likewise, vous tournez → Tournez and vous prenez → Prenez. Aller and prendre are irregular, so learn their vous forms explicitly. The instruction is formed in the same way.",
 
     "Mit dem Imperativ gibst du eine Anweisung, etwa eine Wegbeschreibung. Für die höfliche Form nimmst du die Verbform zu vous und lässt das Wort vous weg: vous allez → Allez. Genauso werden aus vous tournez → Tournez und aus vous prenez → Prenez. Aller und prendre sind unregelmäßig; ihre vous-Formen lernst du deshalb mit. Die Bildung der Anweisung bleibt gleich.": "The imperative gives an instruction, such as directions. For the polite form take the verb form used with vous and leave out vous: vous allez → Allez. Likewise, vous tournez → Tournez and vous prenez → Prenez. Aller and prendre are irregular, so learn their vous forms explicitly. The instruction is formed in the same way.",
-    'Wortschatz dieser Lektion':'Lesson vocabulary',
-    'Diese Liste nutzt dieselben Wörter wie der Vokabeltrainer – einschließlich der Wörter aus Hörtexten und Hard Mode. Die Übersetzungen sind auf Deutsch.':'This list uses the same words as the vocabulary trainer, including the listening tasks and Hard Mode. Translations are in German.',
+    'Neue Vokabeln dieser Lektion':'New lesson vocabulary',
+    'Hier stehen nur Wörter, die in dieser Lektion neu hinzukommen. Den gesamten Wortschatz findest du im Vokabeltrainer.':'Only words introduced in this lesson are shown here. Find all words in the vocabulary trainer.',
     'Für den ersten Check':'For the first check',
     'Weitere Wörter':'More words',
     'Zum Nachschlagen – auch für Hörtexte und Hard Mode. Diese Wörter kannst du im Vokabeltrainer der Lektion üben.':'For reference, including listening tasks and Hard Mode. Practise these words in the lesson vocabulary trainer.'
@@ -2583,12 +2583,20 @@
     if(!window.A1Vocabulary)return '';
     const units=course==='fr'?window.FR_A1_DEEPENING_CONTENT:window.DE_A1_STUDY?.content;
     const lessons=Object.keys(content[course]||{}).map(id=>({id:Number(id)}));
-    const bank=window.A1Vocabulary.buildBank({course,lessons,units:units||{}}).filter(word=>word.lessons.includes(Number(id)));
+    const bank=window.A1Vocabulary.buildBank({course,lessons,units:units||{}});
     if(!bank.length)return '';
+    // Group before filtering: the same word can have several translation cards.
+    // Its earliest course occurrence determines where it is introduced.
     const grouped=new Map();
-    for(const word of bank){const target=word.target.normalize('NFC');if(!grouped.has(target))grouped.set(target,new Set());grouped.get(target).add(word.meaning);}
-    const words=[...grouped].map(([target,meanings])=>[target,[...meanings].join(' / ')]);
-    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}"><summary>${course==='fr'?'Wortschatz dieser Lektion':'Vocabulaire de cette leçon'} <span class="lesson-extra-count">${words.length}</span></summary><p class="muted">${course==='fr'?'Diese Liste nutzt dieselben Wörter wie der Vokabeltrainer – einschließlich der Wörter aus Hörtexten und Hard Mode. Die Übersetzungen sind auf Deutsch.':'Cette liste utilise les mêmes mots que le vocabulaire à réviser, y compris ceux des dialogues et du Hard Mode. Les traductions sont en français.'}</p><dl data-i18n-ignore>${words.map(([word,meaning])=>`<div><dt lang="${course}">${esc(word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(meaning)}</dd></div>`).join('')}</dl></details>`;
+    for(const word of bank){
+      const target=word.target.normalize('NFC');
+      if(!grouped.has(target))grouped.set(target,{meanings:new Set(),firstLesson:Infinity});
+      const entry=grouped.get(target);entry.meanings.add(word.meaning);
+      entry.firstLesson=Math.min(entry.firstLesson,...word.lessons);
+    }
+    const words=[...grouped].filter(([,entry])=>entry.firstLesson===Number(id)).map(([target,entry])=>[target,[...entry.meanings].join(' / ')]);
+    if(!words.length)return '';
+    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}"><summary>${course==='fr'?'Neue Vokabeln dieser Lektion':'Nouveau vocabulaire de cette leçon'} <span class="lesson-extra-count">${words.length}</span></summary><p class="muted">${course==='fr'?'Hier stehen nur Wörter, die in dieser Lektion neu hinzukommen. Den gesamten Wortschatz findest du im Vokabeltrainer.':'Cette liste présente uniquement les mots introduits dans cette leçon. Retrouve tout le vocabulaire dans le vocabulaire à réviser.'}</p><dl data-i18n-ignore>${words.map(([word,meaning])=>`<div><dt lang="${course}">${esc(word)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(meaning)}</dd></div>`).join('')}</dl></details>`;
   }
   window.A1LessonFoundations=Object.freeze({content,translations,render,enhance,vocabularyHtml});
 })();
