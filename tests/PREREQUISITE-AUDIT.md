@@ -1,5 +1,7 @@
 # Prüfung der Lernvoraussetzungen: Französisch A1 und Deutsch A1
 
+> **Nachbearbeitung:** Die Inhalte wurden am 23.10.2026 didaktisch neu zugeordnet. Die folgende Bestandsprüfung dokumentiert den ersten Korrekturstand; die aktuelle Platzierung, Trennung von Grammatik und Wortschatz sowie entfernte Dopplungen stehen in [FOUNDATIONS-CLARITY.md](FOUNDATIONS-CLARITY.md). Die frühere pauschale Zusammenfassung vor jedem Quiz und auf jeder Grammatikseite wird nicht mehr verwendet.
+
 Geprüfter Ausgangsstand: `c15776f6dacd907313146266b5b88a8ad1bdc7f7` (`main`), 22.10.2026.
 Umfang: ausschließlich Französisch A1 und Deutsch A1, jeweils 24 Lektionen. Spanisch und die C1-Kurse wurden nicht verändert.
 

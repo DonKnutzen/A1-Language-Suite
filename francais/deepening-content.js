@@ -777,7 +777,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "9": [
     {
       "title": "Einen Weg in zwei Schritten erklären",
-      "rule": "Beim höflichen Imperativ fällt das Pronomen vous weg: vous allez → Allez. Tout droit = geradeaus, à gauche = links, à droite = rechts. Verbinde zwei Schritte mit puis. Diese fertigen Formen genügen für die Sprech- und Schreibaufgabe.",
+      "rule": "Mit dem Imperativ gibst du eine Anweisung, etwa eine Wegbeschreibung. Für die höfliche Form nimmst du die Verbform zu vous und lässt das Wort vous weg: vous allez → Allez. Genauso werden aus vous tournez → Tournez und aus vous prenez → Prenez. Aller und prendre sind unregelmäßig; ihre vous-Formen lernst du deshalb mit. Die Bildung der Anweisung bleibt gleich.",
       "pairs": [
         [
           "Allez tout droit.",

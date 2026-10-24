@@ -18,6 +18,13 @@
     // become cards; never infer a vocabulary item by splitting an arbitrary sentence.
     for(const l of lessons)for(const u of units[l.id]||[])for(const pair of u.vocabulary||[])
       add(pair[0],pair[1],l.id,'word');
+    // The separate lesson glossary uses the same per-lesson vocabulary/mistake decks.
+    const lexical=new Map();for(const item of bank.values())if(item.kind==='word'&&!lexical.has(key(item.target).toLocaleLowerCase()))lexical.set(key(item.target).toLocaleLowerCase(),item);
+    for(const lesson of lessons)for(const [word,translation]of window.A1LessonFoundations?.content[course]?.[lesson.id]?.words||[]){
+      const known=lexical.get(key(word).toLocaleLowerCase());
+      if(known){if(!known.lessons.includes(lesson.id))known.lessons.push(lesson.id);}
+      else{add(word,translation,lesson.id,'word','');lexical.set(key(word).toLocaleLowerCase(),[...bank.values()].at(-1));}
+    }
     for(const e of bank.values())e.lessons.sort((a,b)=>a-b);
     return [...bank.values()].sort((a,b)=>a.target.localeCompare(b.target,target));
   }

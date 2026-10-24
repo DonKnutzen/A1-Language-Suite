@@ -114,6 +114,18 @@
     });
     return {root,host,units};
   }
+  // Keep one copy of an identical translated example inside a topic. Tables remain intact.
+  // This affects display only: authored pairs still supply the original question pools.
+  function removeDuplicateExamples(body){
+    const plain=el=>{const copy=el.cloneNode(true);copy.querySelectorAll('button').forEach(b=>b.remove());return copy.textContent.replace(/\s+/g,' ').trim();};
+    const seen=new Set(),key=(a,b)=>JSON.stringify([a,b]);
+    body.querySelectorAll('table tbody tr').forEach(row=>{const cells=[...row.querySelectorAll('td')];if(cells.length===2)seen.add(key(plain(cells[0]),plain(cells[1])));});
+    body.querySelectorAll('.deepening-examples .phrase-row,.deepening-form-example').forEach(row=>{
+      const target=row.querySelector('strong'),meaning=row.querySelector('small');if(!target||!meaning)return;
+      const id=key(plain(target),plain(meaning));if(seen.has(id))row.remove();else seen.add(id);
+    });
+    body.querySelectorAll('.deepening-examples,.deepening-form-examples').forEach(el=>{if(!el.children.length)el.remove();});
+  }
   function enrich(lesson,html){
     if(!content[lesson.id])return html;
     const {root,host,units}=definitions(lesson,html);
@@ -130,6 +142,7 @@
       const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau')))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
       // The exact patterns tested in the final check are taught before the inline drill.
       if(examples)body.insertAdjacentHTML('beforeend',`<div class="deepening-form-examples">${examples}</div>`);
+      removeDuplicateExamples(body);
       body.insertAdjacentHTML('beforeend',`<div class="deepening-practice" data-deepening-practice="${unit.key}"></div>`);
     }
     // Reference explanations keep their existing emphasis; supplement plain text nodes only.
