@@ -189,3 +189,10 @@ html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(
 .lesson-vocabulary-audio{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--accent-soft);color:var(--ink);cursor:pointer}
 .lesson-vocabulary-audio svg{width:20px;height:20px;pointer-events:none}
 .lesson-vocabulary-audio:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* Keep a compact score badge beside the wrapping heading on narrow screens. */
+.lesson-mastery-intro>.between>div{min-width:0;flex:1}
+.lesson-check-score{flex:0 0 auto;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.4}
+.lesson-retry-copy{display:grid;gap:4px;line-height:1.4}
+.lesson-retry-copy small{font-size:.78rem;font-weight:500}
+.lesson-vocabulary-hint{display:block;color:var(--muted);line-height:1.5;margin:-4px 0 10px}

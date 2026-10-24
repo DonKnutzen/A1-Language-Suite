@@ -13,7 +13,12 @@ for(const course of ['fr','de']){
   const e=fixture(course),lang=course==='fr'?'fr-FR':'de-DE';
   for(const html of [e.api.preparationHtml(course,1,'grammar:0'),e.api.vocabularyHtml(course,1),e.api.preparationHtml(course,1,'hard')]){
    const before=e.calls.length;e.view.innerHTML=html;assert.equal(e.calls.length,before);const buttons=e.view.querySelectorAll('button[data-vocabulary-audio]');assert.equal(buttons.length,2);
-   if(e.view.querySelector('details'))e.view.querySelector('details').open=true;
+   if(e.view.querySelector('details')){
+    const hint=e.view.querySelector('details>p').textContent;
+    assert(hint.includes(course==='fr'?'Präpositionen und Endungen':'prépositions et les terminaisons'));
+    assert(hint.includes(course==='fr'?'passenden Übungen':'exercices concernés'));
+    e.view.querySelector('details').open=true;
+   }else assert(e.view.querySelector('.lesson-vocabulary-hint').textContent.includes(course==='fr'?'Aufgaben':'exercices'));
    const first=buttons[0];assert.equal(first.type,'button');assert(first.getAttribute('aria-label').includes(e.words[0][0]));first.querySelector('path').dispatchEvent(new e.w.MouseEvent('click',{bubbles:true}));
    assert.equal(e.calls.length,before+1);assert.equal(e.calls.at(-1).lang,lang);assert.equal(e.calls.at(-1).text,course==='fr'?'l’étudiant, l’étudiante':'der Schlüssel');assert.equal(first.closest('dt').textContent,e.words[0][0]);
    buttons[1].click();buttons[1].click();assert.equal(e.calls.length,before+3);assert.equal(e.calls.at(-1).text,e.words[1][0]);

@@ -2273,3 +2273,9 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(Object.v
   'Überarbeiteten Check neu starten':'Start the revised check',
   'Der bisherige Entwurf wird aufbewahrt.':'Your previous draft will be kept.'
 });
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
+  'Knapp verfehlt · Versuch’s noch mal':'Almost there · Try again',
+  'Noch nicht bestanden · Versuch’s noch mal':'Not passed yet · Try again',
+  'Schalte den Hard Mode ab 80 % frei.':'Unlock Hard Mode with 80%.'
+});

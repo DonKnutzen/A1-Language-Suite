@@ -5647,3 +5647,62 @@ window.DE_A1_HARD_VERSIONS={2:{}};
   }
 })();
 window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turns};
+
+// Selection-only listening: alternatives are authored for each recorded fact.
+// Preserve every question and the original datasets for submitted/reviewed attempts.
+(() => {
+  const content=window.DE_A1_HARD_CONTENT;
+  const versions=window.DE_A1_HARD_VERSIONS||={};
+  const alternatives={
+    "1":[["Markus","Martin"],["Frankreich","Deutschland"],["Bonn","Halifax"],["Anne","Hanna"],["Berlin","Bonn"],["Basketball","Fußball"]],
+    "2":[["Möller","Müllner"],["Peter","Pauline"],["Anne-Lena","Anna-Lina"],["Punkt","Komma"],["Weger","Weser"]],
+    "3":[["13","31"],["10151","11015"],["030 21 43 56","030 12 34 56"],["Berlin","Köln"],["12","31"],["53101","53121"],["0228 45 76 89","0228 54 67 89"]],
+    "4":[["Montag","Donnerstag"],["16:45","14:15"],["März","Mai"],["Donnerstag","Sonntag"],["16:15","17:30"],["Juni","August"]],
+    "5":[["Tobias","Thorsten"],["Berlin","Bremen"],["1","3"],["Weger","Weser"],["ledig","geschieden"],["Bonn","Bremen"]],
+    "6":[["Zucker","Eis"],["13","29"],["Milch","Eis"],["einen Salat","ein Brot"],["19","30"]],
+    "7":[["eine Hose","ein T-Shirt"],["30","13"],["S","L"],["zu kurz","zu klein"],["eine Jacke","eine Hose"],["19","30"]],
+    "8":[["3","1"],["300","660"],["Montag","Mittwoch"],["20","2"],["eine Wohnung","ein Haus"],["Küche","Bad"],["10:00","11:30"]],
+    "9":[["links","geradeaus"],["3","18"],["10:45","11:15"],["13","8"],["rechts","geradeaus"],["Schule","Krankenhaus"]],
+    "10":[["morgen","übermorgen"],["08:00","10:00"],["im Supermarkt","in der Schule"],["Büro","Supermarkt"],["heute","am Montag"],["09:00","07:00"]],
+    "11":[["Montag","Mittwoch"],["11:00","19:00"],["ein Buch","eine Nachricht"],["am Vormittag","am Abend"],["ein Buch lesen","Deutsch hören"],["Buch","Stift"]],
+    "12":[["Fußball","Basketball"],["Samstag","Freitag"],["10:00","12:00"],["Basketball","Tennis"],["Freitag","Sonntag"],["Brot","Saft"]],
+    "13":[["Einzelzimmer","Familienzimmer"],["3","1"],["18","90"],["07:45","09:00"],["08:00","08:15"]],
+    "14":[["Husten","Halsschmerzen"],["heute","übermorgen"],["09:00","16:00"],["Husten und Halsschmerzen","Fieber und Bauchschmerzen"],["morgen","übermorgen"],["10:00","08:00"]],
+    "15":[["Sonntag","Freitag"],["17:00","19:00"],["einen Salat","ein Brot"],["Sonntag","Freitag"],["Samstag","Montag"],["Saft","Kaffee"]],
+    "16":[["Essen im Café","Lesen im Museum"],["am Eingang","im Museumssaal"],["18:00","16:00"],["10:00","18:00"],["hinter dem Haus","neben dem Eingang"]],
+    "17":[["ein Buch","ein Glas"],["den Stift","das Glas"],["der Stift","das Glas"],["ein Lineal","einen Radiergummi"],["das Buch","den Stift"]],
+    "18":[["den Text hören","die Antwort ankreuzen"],["die falsche Antwort","alle Antworten"],["eine Nachricht schreiben","den Dialog hören"],["die Antworten","die Nachricht"],["einen langen Text","eine kurze Frage"],["warten","weiterlesen"]],
+    "19":[["Kopf","Beine"],["Bauch","Beine"],["14:00","16:00"],["Kopf","Bauch"],["Arztpraxis","Krankenhaus"],["Tee","Saft"]],
+    "20":[["Mantel","Schal"],["kalt und sonnig","warm und windig"],["einen Mantel","ein T-Shirt"],["zu groß","zu lang"],["13","40"]],
+    "21":[["Kino","Museum"],["18:30","20:00"],["vor dem Kino","im Bahnhof"],["Kino","Konzertsaal"],["18:00","19:00"],["3","4"]],
+    "22":[["heute","übermorgen"],["09:00","18:00"],["Telefonnummer","Geburtsdatum"],["Donnerstag","Mittwoch"],["030 45 76 89","030 54 67 89"],["Geburtsdatum","Telefonnummer"]],
+    "23":[["Deutschland","Frankreich"],["14","5"],["Fahrkarte","Führerschein"],["Familienname","Adresse"],["Dienstag","Donnerstag"],["10:00","11:30"]],
+    "24":[["Frankreich","Deutschland"],["Berlin","Bremen"],["18:00","20:00"],["im Bahnhof","vor der Schule"],["Freitag","Samstag"],["einen Kuchen","ein Brot"],["17:00","19:00"]]
+  };
+  for(const [id,data]of Object.entries(content)){
+    (versions[data.version]||={})[id]=JSON.parse(JSON.stringify(data));
+    const rows=alternatives[id];let index=0;
+    for(const block of data.listening)for(const q of block.questions){
+      if(q.options)continue;
+      q.options=[q.answers[0],...rows[index++]];
+      q.q=q.q.replace(/(?:Écris|Réponds)[^.?!]*(?:[.?!]|$)/gu,'').trim();
+      if(!q.q)q.q=({
+        'prénom':'Quel prénom est épelé ?',
+        'nom':'Quel nom de famille est épelé ?',
+        'email':'Quelle adresse électronique est dictée ?',
+        'phone':'Quel numéro de téléphone est dicté ?',
+        'code':'Quel code postal est dicté ?'
+      })[q.format]||'Choisis la bonne réponse.';
+    }
+    // Assess the two names separately from the following punctuation question.
+    if(id==='2'){
+      const q=data.listening[1].questions[0];
+      q.q='Quels sont les deux prénoms ?';
+      q.answers.unshift('Anna und Lena');
+      q.options=['Anna und Lena','Anne und Lena','Anna und Lina'];
+    }
+    if(id==='17')data.listening[1].questions[1].q='Quel autre objet est demandé ?';
+    data.compatibleVersions=[...new Set([data.version,...(data.compatibleVersions||[])])];
+    data.version=4;
+  }
+})();

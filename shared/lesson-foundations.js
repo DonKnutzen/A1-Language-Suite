@@ -2640,7 +2640,7 @@
     const regular=included?bank.filter(word=>included.includes(word.target.normalize('NFC'))):bank;if(!regular.length)return '';
     const en=window.A1Profile?.getUiLang()==='en';
     const title=en?'Lesson word list':course==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon';
-    const hint=en?'For reference. Learn the words alongside the examples and exercises. Additional Hard Mode words appear before that test.':course==='fr'?'Zum Nachschlagen. Du lernst die Wörter bei den passenden Beispielen und Übungen. Zusätzliche Wörter für den Hard Mode stehen vor dessen Start.':'Pour consulter. Tu apprends les mots avec les exemples et exercices correspondants. Les mots supplémentaires du Hard Mode sont présentés avant son début.';
+    const hint=en?'Lesson vocabulary for reference — no need to memorise it all now. Words reappear with the relevant activities; prepositions and endings are explained in the grammar section.':course==='fr'?'Wortschatz der Lektion zum Nachschlagen — du musst ihn jetzt nicht auswendig lernen. Die Wörter erscheinen auch bei den passenden Übungen; Präpositionen und Endungen erklärt die Vertiefung.':'Vocabulaire de la leçon à consulter — inutile de tout mémoriser maintenant. Les mots réapparaissent avec les exercices concernés ; les prépositions et les terminaisons sont expliquées dans la partie approfondissement.';
     return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}" data-i18n-ignore><summary>${title}</summary><p class="muted">${hint}</p>${vocabularyRows(course,regular)}</details>`;
   }
   function preparationHtml(course,id,stage){
@@ -2648,7 +2648,8 @@
     const targets=stage==='hard'?plan?.hard:plan?.stages[stage];if(!targets?.length)return '';
     const bank=vocabularyBank(course),en=window.A1Profile?.getUiLang()==='en';
     const title=en?(stage==='hard'?'Additional words for Hard Mode':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Wörter für diese Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots pour cet exercice');
-    return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4>${vocabularyRows(course,bank,targets)}</section>`;
+    const hint=en?'These words occur in the tasks.':course==='fr'?'Diese Wörter kommen in den Aufgaben vor.':'Ces mots apparaissent dans les exercices.';
+    return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4><small class="lesson-vocabulary-hint">${hint}</small>${vocabularyRows(course,bank,targets)}</section>`;
   }
   function hardInstructionsHtml(course,data){
     if(course!=='fr')return '';

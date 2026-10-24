@@ -630,3 +630,65 @@
   window.FR_A1_HARD_AUDIO={turns:recordingTurns};
   window.FR_A1_HARD_CONTENT=content;
 })();
+
+// Selection-only listening: alternatives are authored for each recorded fact.
+// Preserve every question and the original datasets for submitted/reviewed attempts.
+(() => {
+  const content=window.FR_A1_HARD_CONTENT;
+  const versions=window.FR_A1_HARD_VERSIONS||={};
+  const prompts={
+    '2-0-0':'Quel prénom est épelé, avec quel accent ?',
+    '2-0-1':'Quel nom de famille est épelé ?',
+    '2-1-0':'Quel prénom est épelé, avec quelle orthographe ?',
+    '2-1-3':'Quel nom de famille est épelé ?',
+    '3-1-1':'Quels sont les quatre derniers chiffres du téléphone ?',
+    '5-1-3':'Quelle qualité de la femme de Paul est mentionnée ?',
+    '17-1-0':'Quelle est la date de naissance (jour/mois) ?',
+    '17-1-3':'Quel est le nom de famille ?'
+  };
+  const alternatives={
+    "1":[["Louis","Lucie"],["Paris","Lyon"],["Berlin","Lyon"],["Léna","Lise"]],
+    "2":[["Zoè","Zéo"],["Morin","Moral"],["Francois","Françoise"],["Lille","Lyon"],["Blond","Blanche"]],
+    "3":[["36","16"],["0612405874","0612408573"],["B3V2L1","B3B1L2"],["7","27"],["9214","9142"],["13","30"]],
+    "4":[["mardi","jeudi"],["09:15","09:45"],["5","25"],["08:15","09:30"],["juin","juillet"],["14:45","15:15"]],
+    "5":[["1","3"],["Lyon","Paris"],["Anne","Anaïs"],["6","18"],["timide","sportive"]],
+    "6":[["une pizza","des pâtes"],["du café","du thé"],["la soupe","la salade"],["3","4"],["2","5"]],
+    "7":[["3","4"],["6,50","10,15"],["200","400"],["en espèces","par chèque"],["40","42"],["29,19","39,90"]],
+    "8":[["2","20"],["560","750"],["3","4"],["mardi","vendredi"],["la chambre","le salon"],["sur la table","à côté de la table"]],
+    "9":[["la boulangerie","la banque"],["3","18"],["15","10"],["2","6"],["20","15"],["2","4"]],
+    "10":[["vendredi","mercredi"],["09:00","11:00"],["dans un magasin","dans une école"],["professeur","serveur"],["15:00","18:00"],["07:00","09:00"]],
+    "11":[["06:15","07:30"],["18:00","17:00"],["12:00","14:00"],["22:00","00:00"],["13:00","11:00"]],
+    "12":[["lundi","mercredi"],["mardi","vendredi"],["la fièvre","le mal de tête"],["3","1"]],
+    "13":[["20","2"],["une écharpe","un chapeau"],["12","22"],["rouge","verte"],["l’automne","l’hiver"],["bleu","gris"]],
+    "14":[["le football","le basket"],["samedi","vendredi"],["la lecture","la musique"],["sa sœur","ses collègues"]],
+    "15":[["3","4"],["17:00","21:00"],["11","12"],["4","8"],["20","26"],["08:20","09:40"]],
+    "16":[["vendredi","dimanche"],["18:00","19:15"],["une salade","une boisson"],["vendredi","samedi"],["aujourd’hui","dimanche"]],
+    "17":[["le prénom","la signature"],["mardi","mercredi"],["en haut du formulaire","au milieu du formulaire"],["05/03","13/05"],["lea.martin@exemple.com","lea.martel@exemple.fr"],["Martel","Marin"]],
+    "18":[["un cahier","un livre"],["la dernière phrase","le dernier mot"],["2","20"],["14:00","16:00"]],
+    "19":[["un musée","une gare"],["3","4"],["2","4"],["les croissants","les cafés"]],
+    "20":[["jeudi","mercredi"],["le train","le métro"],["16:00","18:00"],["dans la salle","dans le bureau"]],
+    "21":[["novembre","décembre"],["son frère","Julie"],["son frère","son voisin"],["un livre","un téléphone"]],
+    "22":[["au café","à la maison"],["Marc","Luc"],["3","1"],["2","5"]],
+    "23":[["2","4"],["100","300"],["3","4"],["avec un couteau","avec une fourchette"],["200","300"]],
+    "24":[["France","Allemagne"],["jeudi","samedi"],["Canada","Allemagne"],["Allemagne","Canada"],["07:00","08:00"],["2","4"]]
+  };
+  for(const [id,data]of Object.entries(content)){
+    (versions[data.version]||={})[id]=JSON.parse(JSON.stringify(data));
+    const rows=alternatives[id];let index=0;
+    for(const [b,block]of data.listening.entries())for(const [i,q]of block.questions.entries()){
+      if(q.options)continue;
+      q.options=[q.answers[0],...rows[index++]];
+      q.q=q.q.replace(/(?:Écris|Réponds)[^.?!]*(?:[.?!]|$)/gu,'').trim();
+      if(!q.q)q.q=prompts[id+'-'+b+'-'+i]||({
+        'prénom':'Quel prénom est épelé ?',
+        'nom':'Quel nom de famille est épelé ?',
+        'email':'Quelle adresse électronique est dictée ?',
+        'phone':'Quel numéro de téléphone est dicté ?',
+        'code':'Quel code postal est dicté ?'
+      })[q.format]||'Choisis la bonne réponse.';
+    }
+    if(id==='13')data.listening[0].questions[1].q='Quel objet faut-il prendre ?';
+    data.compatibleVersions=[...new Set([data.version,...(data.compatibleVersions||[])])];
+    data.version=5;
+  }
+})();
