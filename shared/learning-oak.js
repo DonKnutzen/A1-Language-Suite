@@ -69,7 +69,7 @@
  function render({percent=0,lang='de',course}){
   const p=clamp(percent),w=words[langFor(lang)]||words.de;
   // Geometry is mounted synchronously before the browser paints the new home view.
-  return `<div class="learning-oak" data-learning-oak data-course="${course==='deutsch-a1'?'deutsch-a1':'francais-a1'}" data-progress="${p}" data-oak-lang="${lang==='fr'?'fr':'de'}"><div class="oak-scene" role="img" aria-label="${w.title}: ${p} %">${svg(p)}</div><div class="oak-summary"><span class="oak-stage" data-oak-stage>${w.stages[stage(p)]}</span><span class="oak-percent">${p}<small> %</small></span></div></div>`;
+  return `<div class="learning-oak" data-learning-oak data-course="${course==='englisch-a1'?'englisch-a1':course==='deutsch-a1'?'deutsch-a1':'francais-a1'}" data-progress="${p}" data-oak-lang="${lang==='fr'?'fr':'de'}"><div class="oak-scene" role="img" aria-label="${w.title}: ${p} %">${svg(p)}</div><div class="oak-summary"><span class="oak-stage" data-oak-stage>${w.stages[stage(p)]}</span><span class="oak-percent">${p}<small> %</small></span></div></div>`;
  }
  function mount(root){
   if(!root)return ()=>{};

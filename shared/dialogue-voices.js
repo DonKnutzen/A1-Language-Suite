@@ -2,6 +2,7 @@
 (() => {
   'use strict';
   const names={
+    en:{female:/\b(samantha|karen|moira|tessa|serena|susan|zira|aria|jenny|sonia|libby)\b/i,male:/\b(daniel|alex|fred|david|mark|george|guy|ryan|thomas)\b/i},
     fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea|sylvie|vivienne)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel|rémy|remy|alain)\b/i},
     de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}
   };

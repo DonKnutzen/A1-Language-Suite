@@ -1,6 +1,6 @@
 # Language Suite
 
-Browserbasierte Sprachlern-App mit drei A1-Kursen und einem eigenständigen Deutsch-C1-Kurs samt gemeinsamen Profilfunktionen.
+Browserbasierte Sprachlern-App mit vier A1-Kursen und einem eigenständigen Deutsch-C1-Kurs samt gemeinsamen Profilfunktionen.
 
 ## Kurse
 
@@ -8,6 +8,7 @@ Browserbasierte Sprachlern-App mit drei A1-Kursen und einem eigenständigen Deut
 |---|---:|---|
 | Französisch → Deutsch | A1 | `deutsch/` |
 | Deutsch → Französisch | A1 | `francais/` |
+| Deutsch → Englisch | A1 | `englisch/` |
 | Deutsch → Spanisch | A1 | `spanisch/` |
 | Türkisch → Deutsch | **C1** | `turkisch-deutsch/` |
 
@@ -29,6 +30,7 @@ Browserbasierte Sprachlern-App mit drei A1-Kursen und einem eigenständigen Deut
 - `shared/` – gemeinsame Funktionen und UI-Bausteine
 - `deutsch/` – Französisch → Deutsch A1
 - `francais/` – Deutsch → Französisch A1
+- `englisch/` – Deutsch → Englisch A1 für Erwachsene
 - `spanisch/` – Deutsch → Spanisch A1
 - `turkisch-deutsch/` – Türkisch → Deutsch **C1**
 
@@ -36,7 +38,7 @@ Kursbezogene Lehrpläne oder fachliche Dokumentation liegen direkt im jeweiligen
 
 ## Veröffentlichung
 
-Für GitHub Pages den Inhalt dieses Projektordners als zusammenhängenden Stand hochladen. `index.html`, `shared/` und die vier Kursordner müssen auf derselben Ebene bleiben.
+Für GitHub Pages den Inhalt dieses Projektordners als zusammenhängenden Stand hochladen. `index.html`, `shared/` und die fünf Kursordner müssen auf derselben Ebene bleiben.
 
 Die App benötigt für die vorhandenen Lernfunktionen keine kostenpflichtige API und keine zusätzlichen TTS-Modelle. Die Aussprache verwendet die im Browser bzw. Betriebssystem verfügbaren Stimmen. Der C1-Kurs nutzt für Sprachaufnahmen zusätzlich `MediaRecorder`, sofern der Browser diese Funktion unterstützt.
 

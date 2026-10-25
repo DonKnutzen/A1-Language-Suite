@@ -99,7 +99,7 @@ html.dark-mode .theme-toggle{
   </div>
 
   <div class="hero">
-    <h2 id="heroTitle">Ein Profil. Drei A1-Kurse und ein C1-Kurs.</h2>
+    <h2 id="heroTitle">Ein Profil. Vier A1-Kurse und ein C1-Kurs.</h2>
     <p id="heroText"></p>
   </div>
 
@@ -116,6 +116,13 @@ html.dark-mode .theme-toggle{
       <h2>Français A1</h2>
       <p id="frCourseText"></p>
       <span class="pill" id="frCoursePill"></span>
+    </a>
+
+    <a class="course" href="englisch/">
+      <div class="flag">🇬🇧</div>
+      <h2>English A1</h2>
+      <p id="enCourseText"></p>
+      <span class="pill" id="enCoursePill"></span>
     </a>
 
     <a class="course" href="spanisch/">
@@ -137,12 +144,12 @@ html.dark-mode .theme-toggle{
 
 <script>window.A1_APP_META={};</script>
 <script src="shared/config.js"></script><script src="shared/text-size.js?v=text-size-103"></script>
-<script src="shared/profile.js?v=text-size-103"></script>
+<script src="shared/profile.js?v=english-a1-162"></script>
 <script>
 const UI={
   en:{
   "title": "Language trainer",
-  "heroTitle": "One profile. Three A1 courses and one C1 course.",
+  "heroTitle": "One profile. Four A1 courses and one C1 course.",
   "heroText": "Choose the language you want to learn. Progress is saved separately for each profile and course.",
   "deText": "Focused preparation for the Goethe-Zertifikat A1, with explanations in French.",
   "dePill": "Learn German",
@@ -157,7 +164,7 @@ const UI={
 },
   de:{
     title:'Sprachtrainer',
-    heroTitle:'Ein Profil. Drei A1-Kurse und ein C1-Kurs.',
+    heroTitle:'Ein Profil. Vier A1-Kurse und ein C1-Kurs.',
     heroText:'Wähle, welche Sprache du lernen möchtest. Dein Fortschritt wird pro Profil und Kurs getrennt gespeichert.',
     deText:'Gezielte Vorbereitung auf das Goethe-Zertifikat A1 – mit französischen Erklärungen.',dePill:'Deutsch lernen',
     frText:'Gezielte Vorbereitung auf die DELF-A1-Prüfung.',frPill:'Französisch lernen',
@@ -168,7 +175,7 @@ const UI={
   },
   fr:{
     title:'Entraîneur de langues',
-    heroTitle:'Un profil. Trois cours A1 et un cours C1.',
+    heroTitle:'Un profil. Quatre cours A1 et un cours C1.',
     heroText:'Choisis la langue que tu veux apprendre. Ta progression est enregistrée séparément pour chaque profil et chaque cours.',
     deText:'Préparation ciblée au Goethe-Zertifikat A1, avec des explications en français.',dePill:"Apprendre l’allemand",
     frText:'Préparation ciblée au DELF A1.',frPill:'Apprendre le français',
@@ -179,7 +186,7 @@ const UI={
   },
   tr:{
     title:'Dil eğitmeni',
-    heroTitle:'Bir profil. Üç A1 kursu ve bir C1 kursu.',
+    heroTitle:'Bir profil. Dört A1 kursu ve bir C1 kursu.',
     heroText:'Öğrenmek istediğin dili seç. İlerlemen her profil ve kurs için ayrı kaydedilir.',
     deText:'Fransızca açıklamalarla Goethe-Zertifikat A1 sınavına hedefli hazırlık.',dePill:'Almanca öğren',
     frText:'DELF A1 sınavına hedefli hazırlık.',frPill:'Fransızca öğren',
@@ -205,6 +212,9 @@ function renderUi(){
   document.getElementById('deCoursePill').textContent=t.dePill;
   document.getElementById('frCourseText').textContent=t.frText;
   document.getElementById('frCoursePill').textContent=t.frPill;
+  const english={de:['Englisch A1 für Erwachsene mit deutschen Erklärungen, Hörübungen und Alltagssituationen.','Englisch lernen'],en:['Adult A1 English with German explanations, listening practice and everyday situations.','Learn English'],fr:['Anglais A1 pour adultes, avec des explications en allemand et des situations quotidiennes.','Apprendre l’anglais'],tr:['Almanca açıklamalar ve günlük durumlarla yetişkinler için İngilizce A1.','İngilizce öğren']}[l]||['Englisch A1','Englisch lernen'];
+  document.getElementById('enCourseText').textContent=english[0];
+  document.getElementById('enCoursePill').textContent=english[1];
   document.getElementById('esCourseText').textContent=t.esText;
   document.getElementById('esCoursePill').textContent=t.esPill;
   document.getElementById('trDeCourseText').textContent=t.trDeText;

@@ -269,15 +269,15 @@
     function feedback(status,answer,audio,explanation,restoring=false){
       if(!explanation&&opts.selectionOnly&&ex[i].type==='listening')explanation=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio))?.[1]||'';
       const germanAudio=opts.targetLang==='de'?window.DE_A1_ANSWER_AUDIO:null;
-      const frenchAudio=opts.answerAudioAfterResponse&&opts.targetLang==='fr'?window.FR_A1_ANSWER_AUDIO:null;
+      const frenchAudio=opts.answerAudioAfterResponse?(opts.targetLang==='en'?window.EN_A1_ANSWER_AUDIO:opts.targetLang==='fr'?window.FR_A1_ANSWER_AUDIO:null):null;
       if(frenchAudio)audio=frenchAudio.resolve(ex[i],audio,answer,opts.lesson);
       if(germanAudio)audio=germanAudio.resolve(ex[i],audio,answer,opts.lesson);
       const ok=status==='ok',near=status==='near';
-      if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio)play(audio);}
+      if(!restoring){if(ok)score++;else if(near)score+=0.5;response={status,answer,audio,explanation};persist();if(audio&&(opts.targetLang!=='en'||ok))play(audio);}
       const message=ok?L.correct:near?`${L.near} ${L.nearAnswer} ${esc(answer)}`:L.wrong+' '+esc(answer);
       document.getElementById('mixedFeedback').innerHTML=`<div class="feedback ${ok?'good':near?'near':'bad'}" role="status">${message}${explanation?`<p>${esc(explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="mixedNext">${i<ex.length-1?L.next:esc(opts.finishLabel||L.result)}</button>`;
       germanAudio?.mount(document.getElementById('mixedFeedback').querySelector('.feedback'),{text:audio,autoplay:false,playAudio:play});
-      frenchAudio?.mount(document.getElementById('mixedFeedback').querySelector('.feedback'),{text:audio,playAudio:opts.playAudio});
+      if(opts.targetLang!=='en'||ok)frenchAudio?.mount(document.getElementById('mixedFeedback').querySelector('.feedback'),{text:audio,playAudio:opts.playAudio});
       if(ok&&!restoring)(opts.view.querySelector('.option-btn.correct,#mixedInput,#orderAnswer')||opts.view.querySelector('#mixedFeedback .good'))?.classList.add('answer-success');
       document.getElementById('mixedNext').onclick=next;if(!restoring)review?.attach(opts.view,true);
     }

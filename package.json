@@ -1,0 +1,11 @@
+{
+  "name": "a1-language-suite",
+  "private": true,
+  "scripts": {
+    "test": "node --test --test-concurrency=4 tests/*.test.cjs francais/tests/*.test.cjs deutsch/tests/*.test.cjs englisch/tests/*.test.cjs",
+    "test:english": "node --test englisch/tests/*.test.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

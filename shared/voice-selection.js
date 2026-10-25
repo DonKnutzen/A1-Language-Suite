@@ -95,7 +95,7 @@
     dialog.querySelector('#voiceClose').onclick=close;
     dialog.querySelector('#voiceSelect').onchange=e=>{cancel();const v=e.target.value==='auto'?null:list[+e.target.value];persist(lang,{uri:v?.voiceURI||'',name:v?.name||''});renderDialog();};
     dialog.querySelector('#voiceRate').oninput=e=>{persist(lang,{rate:Number(e.target.value)});dialog.querySelector('#voiceRateValue').textContent=e.target.value;};
-    dialog.querySelector('#voicePreview').onclick=()=>speak(({fr:'Bonjour ! Je m’appelle Léa. Je voudrais un café, s’il vous plaît.',de:'Guten Tag! Ich heiße Anna. Ich möchte bitte einen Kaffee.',es:'¡Hola! Me llamo Ana. Quisiera un café, por favor.'})[norm(lang).split('-')[0]],{lang});
+    dialog.querySelector('#voicePreview').onclick=()=>speak(({en:'Hello! My name is Anna. I would like a coffee, please.',fr:'Bonjour ! Je m’appelle Léa. Je voudrais un café, s’il vous plaît.',de:'Guten Tag! Ich heiße Anna. Ich möchte bitte einen Kaffee.',es:'¡Hola! Me llamo Ana. Quisiera un café, por favor.'})[norm(lang).split('-')[0]],{lang});
     dialog.querySelector('#voiceRefresh').onclick=()=>{refresh();renderDialog();};
   }
   function close(){cancel();if(dialog?.close)dialog.close();else dialog?.removeAttribute('open');opener?.focus();}

@@ -62,7 +62,7 @@
       if(playing){window.A1Voice?.cancel();stopped();return;}
       playing=true;play.textContent='■ '+L.stop;root.querySelector('#dialogueStatus').hidden=true;
       const unavailable=()=>{stopped();const status=root.querySelector('#dialogueStatus');status.hidden=false;status.textContent=L.unavailable;};
-      const started=window.A1Voice?.speakDialogue(data.turns,{lang:targetLang==='de'?'de-DE':'fr-FR',rate:p.rate,onTurn:s=>{speaker.textContent=' · '+s;},onEnd:stopped,onError:unavailable});
+      const started=window.A1Voice?.speakDialogue(data.turns,{lang:targetLang==='en'?'en-GB':targetLang==='de'?'de-DE':'fr-FR',rate:p.rate,onTurn:s=>{speaker.textContent=' · '+s;},onEnd:stopped,onError:unavailable});
       if(!started)unavailable();
     };
     update();

@@ -94,7 +94,7 @@
     const entries=Object.entries(drafts);dialog.querySelectorAll('[data-draft-index]').forEach(b=>b.onclick=()=>{const [key,report]=entries[Number(b.dataset.draftIndex)];open(report,key);});
     if(!dialog.open)dialog.show();
   }
-  const stablePanel=()=>['francais-a1','deutsch-a1'].includes(window.A1_APP_META?.course);
+  const stablePanel=()=>['francais-a1','deutsch-a1','englisch-a1'].includes(window.A1_APP_META?.course);
   let dialog,launcher,lastFocus;
   function notify(message){
     document.getElementById('a1BugNotice')?.remove();
