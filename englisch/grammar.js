@@ -9,12 +9,13 @@
   function grammarHtml(lesson){
     return `<div class="lesson-deepening">${lesson.topics.map(t=>`<details class="grammar-detail" data-deepening-key="${t.key}"><summary>${esc(t.title)}</summary><div class="grammar-detail-body"><p class="en-rule">${esc(t.rule)}</p>${pairs(t.examples)}<details class="en-more-examples"><summary>Weitere Beispiele mit Übersetzung</summary>${pairs(t.rows.slice(0,10).map(([s,a,,,m])=>[s.replace('___',a),m]))}</details><div data-english-practice="${t.key}"></div></div></details>`).join('')}</div>`;
   }
-  function topicDone(state,id,key){return state.lessonWork?.[id]?.deepening?.[key]?.done===true;}
+  function topicDone(state,id,key){const p=state.lessonWork?.[id]?.deepening?.[key];return p?.done===true||Number(p?.best||0)>=80;}
   function decorate({root,lesson,state,save,speak,onUpdate}){
     root.querySelectorAll('[data-english-practice]').forEach(host=>{
       const t=lesson.topics.find(t=>t.key===host.dataset.englishPractice);if(!t)return;
       const work=(state.lessonWork||={})[lesson.id]||={};const progress=(work.deepening||={})[t.key]||={};
-      host.innerHTML=`<div class="deepening-practice"><p class="muted">10 Aufgaben zu diesem Thema${progress.best!=null?' · Bestwert '+progress.best+' %':''}</p><button class="primary-btn exercise-start-btn ${progress.done?'is-completed':''}" data-grammar-start>${progress.session?'Übung fortsetzen':progress.done?'Thema wiederholen':'Dieses Thema üben'}</button></div>`;
+      if(Number(progress.best||0)>=80)progress.done=true;
+      host.innerHTML=`<div class="deepening-practice"><p class="muted">10 Aufgaben zu diesem Thema${progress.best!=null?' · Bestwert '+progress.best+' %':''}</p><button class="primary-btn exercise-start-btn ${progress.done?'is-completed':'en-action-current'}" data-grammar-start>${progress.session?'Übung fortsetzen':progress.done?'Thema bestanden · wiederholen':'Dieses Thema üben'}</button></div>`;
       host.querySelector('button').onclick=()=>{
         const view=document.getElementById('view');
         const returnTo=()=>window.EN_A1_OPEN_LESSON?.(lesson.id,{step:'grammar',grammarIndex:lesson.topics.indexOf(t)});
@@ -23,7 +24,14 @@
         A1ExerciseEngine.run({lesson,view,exercises,progress,exerciseVersion:162,review:true,selectionOnly:true,answerAudioAfterResponse:true,targetLang:'en',uiLang:'de',
           playAudio:s=>speak(s,true),playFeedbackAudio:s=>speak(s,false),onBack:returnTo,
           saveProgress:()=>{window.EN_A1_REVIEW?.captureGrammar(state,lesson.id,t.key,t.title,progress.session);save();},
-          onFinish:(score,total)=>{const pct=Math.round(score/total*100);progress.best=Math.max(progress.best||0,pct);progress.done=pct>=80;save(true);onUpdate?.();view.innerHTML=`<section class="card center"><div class="score">${pct} %</div><h2>${score} von ${total} richtig</h2><p>${pct>=80?'Thema abgeschlossen.':'Wiederhole bei Bedarf die Erklärung und Beispiele.'}</p><button class="primary-btn" id="grammarReturn">Zur Erklärung</button></section>`;view.querySelector('button').onclick=returnTo;}
+          onFinish:(score,total)=>{
+            const pct=Math.round(score/total*100);progress.best=Math.max(progress.best||0,pct);progress.done=progress.best>=80;save(true);onUpdate?.();
+            const index=lesson.topics.indexOf(t),next=lesson.topics[index+1];
+            view.innerHTML=`<section class="card center"><div class="score">${pct} %</div><h2>${score} von ${total} richtig</h2><p>${pct>=80?'✓ Thema bestanden.':progress.done?'Dieses Thema hast du bereits bestanden. Du kannst weitergehen oder die Erklärung noch einmal ansehen.':'Noch nicht bestanden. Sieh dir die Erklärung und Beispiele noch einmal an.'}</p><div class="button-row"><button class="${progress.done?'secondary':'primary'}-btn ${progress.done?'':'en-action-current'}" id="grammarReturn">Zur Erklärung</button>${progress.done?`<button class="primary-btn lesson-next-ready" id="grammarNext">Weiter: ${esc(next?.title||'Hörverstehen')} →</button>`:''}</div></section>`;
+            view.querySelector('#grammarReturn').onclick=returnTo;
+            const button=view.querySelector('#grammarNext');
+            if(button){button.onclick=()=>window.EN_A1_OPEN_LESSON?.(lesson.id,next?{step:'grammar',grammarIndex:index+1}:{step:'comprehension'});button.focus();}
+          }
         });
       };
     });

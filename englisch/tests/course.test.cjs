@@ -64,7 +64,7 @@ test('intro resumes exact order and score; automatic answer audio never leaks be
   view.querySelector('#mixedBack').click();view.querySelector('#startQuiz').click();
   const s=w.EN_A1_APP.state.lessonWork[1].session;assert.equal(s.i,1);assert.equal(s.score,1);assert.equal(JSON.stringify(s.ex),before);
   while(view.querySelector('#mixedNext')||view.querySelector('[data-o]'))chooseCorrect(f);
-  assert.equal(w.EN_A1_APP.state.lessonQuizBest[1],100);assert(view.querySelector('.en-rule'));
+  assert.equal(w.EN_A1_APP.state.lessonQuizBest[1],100);assert(view.querySelector('#startQuiz.is-completed'));assert(view.querySelector('#nextLessonStep.lesson-next-ready'));
   assert(f.saved.every(args=>args[0]==='englisch-a1'));
   f.close();
 });
@@ -167,5 +167,45 @@ test('a final round retains its sampled questions and typed drafts when paused',
   const s=w.EN_A1_APP.state.training.final.session;assert.equal(s.ex.length,32);const before=JSON.stringify(s.ex);
   view.querySelector('#mixedBack').click();view.querySelector('#finalMock').click();assert.equal(JSON.stringify(w.EN_A1_APP.state.training.final.session.ex),before);
   w.EN_A1_APP.renderTraining();for(const key of ['reading','listening','speaking','writing','grammar','form'])assert(view.querySelector(`[data-skill="${key}"]`));
+  f.close();
+});
+function finishGrammar(f,id,key,correct=10){
+  for(let i=0;i<10;i++){
+    const s=f.w.EN_A1_APP.state.lessonWork[id].deepening[key].session,q=s.ex[s.i];
+    f.view.querySelector(`[data-o="${i<correct?q.a:(q.a+1)%q.o.length}"]`).click();
+    f.view.querySelector('#mixedNext').click();
+  }
+}
+test('home highlights Continue and the tree only explains growth',()=>{
+  const f=fixture(),{view}=f,button=view.querySelector('#continueLesson');
+  assert(button.classList.contains('home-continue-btn'));assert(button.classList.contains('en-action-current'));assert(!button.classList.contains('continue-btn'));
+  const tree=view.querySelector('.en-course-summary');assert(tree.textContent.includes('Mit jeder bestandenen Lektion wächst dein Baum.'));assert.equal(tree.querySelectorAll('button').length,0);
+  assert(!tree.textContent.includes('deutsche Erklärungen'));assert(view.textContent.includes('So lernst du'));
+  f.close();
+});
+test('passing the vocabulary check leaves a distinct result and focuses the glowing next step',()=>{
+  const f=fixture(),{w,view}=f;w.EN_A1_APP.renderLesson(1,{step:'listen'});
+  assert.equal(view.querySelector('#startQuiz').dataset.actionState,'new');assert(view.querySelector('#startQuiz.en-action-current'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
+  view.querySelector('#startQuiz').click();for(let i=0;i<10;i++)chooseCorrect(f);
+  const result=view.querySelector('#startQuiz'),next=view.querySelector('#nextLessonStep');
+  assert.equal(result.dataset.actionState,'passed');assert(result.textContent.includes('Vokabel-Check bestanden'));assert(result.textContent.includes('100 %'));assert(result.classList.contains('is-completed'));assert(!result.classList.contains('en-action-current'));
+  assert(next.classList.contains('lesson-next-ready'));assert.equal(w.document.activeElement,next);next.click();
+  assert(view.querySelector('[data-grammar-start].en-action-current'));assert(!view.querySelector('#nextGrammarTopic.lesson-next-ready'));
+  f.close();
+});
+test('an unsuccessful vocabulary attempt is a retry, not a passed check or a highlighted next step',()=>{
+  const f=fixture(),{w,view}=f;w.EN_A1_APP.renderLesson(1,{step:'listen'});view.querySelector('#startQuiz').click();
+  for(let i=0;i<10;i++){const s=w.EN_A1_APP.state.lessonWork[1].session,q=s.ex[s.i];view.querySelector(`[data-o="${(q.a+1)%q.o.length}"]`).click();view.querySelector('#mixedNext').click();}
+  const button=view.querySelector('#startQuiz');assert.equal(button.dataset.actionState,'retry');assert(!button.classList.contains('is-completed'));assert(button.classList.contains('en-action-current'));assert(button.textContent.includes('erneut üben'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
+  assert.equal(w.A1LessonFlow.resumePosition(w.EN_A1_DATA.lessons[0],w.EN_A1_APP.state).step,'listen');
+  f.close();
+});
+test('passed grammar topics offer direct next-topic and listening navigation; earlier bests survive a retry',()=>{
+  const f=fixture(),{w,view}=f;w.EN_A1_APP.renderLesson(2,{step:'grammar',grammarIndex:0});view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t0');
+  let next=view.querySelector('#grammarNext');assert(next.classList.contains('lesson-next-ready'));assert(next.textContent.includes('Verneinen'));next.click();
+  assert(view.querySelector('.en-rule').textContent.includes('not'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
+  view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t1');next=view.querySelector('#grammarNext');assert(next.textContent.includes('Hörverstehen'));next.click();assert(view.querySelector('#dialoguePlay'));
+  w.EN_A1_APP.renderLesson(2,{step:'grammar',grammarIndex:0});assert(view.querySelector('[data-grammar-start].is-completed'));assert(view.querySelector('#nextGrammarTopic.lesson-next-ready'));
+  view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t0',0);assert.equal(w.EN_A1_APP.state.lessonWork[2].deepening.t0.best,100);assert(w.EN_A1_APP.state.lessonWork[2].deepening.t0.done);assert(view.querySelector('#grammarNext'));
   f.close();
 });
