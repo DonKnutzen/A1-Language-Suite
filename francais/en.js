@@ -2273,3 +2273,20 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(Object.v
   'Überarbeiteten Check neu starten':'Start the revised check',
   'Der bisherige Entwurf wird aufbewahrt.':'Your previous draft will be kept.'
 });
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
+  'Knapp verfehlt · Versuch’s noch mal':'Almost there · Try again',
+  'Noch nicht bestanden · Versuch’s noch mal':'Not passed yet · Try again',
+  'Schalte den Hard Mode ab 80 % frei.':'Unlock Hard Mode with 80%.'
+});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...{
+  "Bei s’appeler richtet sich das Reflexivpronomen nach der Person. Das -er-Verb hat eine Schreibbesonderheit: zwei l bei je, tu, il/elle/on und ils/elles, ein l bei nous und vous. Die üblichen -er-Endungen bleiben. Vor dem Vokal werden me, te und se zu m’, t’ und s’.": "With s’appeler, the reflexive pronoun follows the subject. This -er verb has a spelling change: two ls with je, tu, il/elle/on and ils/elles, one l with nous and vous. The usual -er endings remain. Before the vowel, me, te and se become m’, t’ and s’.",
+  "Aller ist trotz -er unregelmäßig: je vais, nous allons, ils vont. Die übrigen Formen stehen in der Tabelle. Bei aller + Infinitiv wird nur aller konjugiert; der zweite Teil bleibt in der Grundform. Damit kündigst du einen Plan an.": "Despite ending in -er, aller is irregular: je vais, nous allons, ils vont. The table gives the other forms. In aller + infinitive, only aller is conjugated; the second verb stays in its base form. This announces a plan.",
+  "Pouvoir ist unregelmäßig: je peux, nous pouvons, ils peuvent. Die Formen kennst du aus Lektion 2. Bei pouvoir + Infinitiv wird nur pouvoir konjugiert; das zweite Verb bleibt in der Grundform.": "Pouvoir is irregular: je peux, nous pouvons, ils peuvent. You met these forms in lesson 2. In pouvoir + infinitive, only pouvoir is conjugated; the second verb stays in its base form.",
+  "Devoir ist unregelmäßig: je dois, nous devons, ils doivent. Die Tabelle zeigt die übrigen Formen. Bei devoir + Infinitiv wird nur devoir konjugiert; das zweite Verb bleibt in der Grundform.": "Devoir is irregular: je dois, nous devons, ils doivent. The table gives the other forms. In devoir + infinitive, only devoir is conjugated; the second verb stays in its base form.",
+  "Bei se lever richtet sich das Reflexivpronomen nach der Person. Das Verb behält die -er-Endungen, aber e wird bei je, tu, il/elle/on und ils/elles zu è: je me lève. Bei nous und vous bleibt e: nous nous levons, vous vous levez.": "With se lever, the reflexive pronoun follows the subject. The -er endings remain, but e changes to è with je, tu, il/elle/on and ils/elles: je me lève. With nous and vous, e remains: nous nous levons, vous vous levez.",
+  "Venir ist unregelmäßig: je viens, nous venons und ils viennent zeigen die verschiedenen Stammformen. Verwende für die übrigen Personen die Tabelle. Die Wendung venir de nennt hier die Herkunft.": "Venir is irregular: je viens, nous venons and ils viennent show its different stems. Use the table for the other subjects. Here, venir de expresses origin."
+}});
+
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,"Il faut ist die feste Präsensform des unpersönlichen Verbs falloir. Il bezeichnet hier keine bestimmte Person; die Form bleibt gleich. Danach folgt ein Infinitiv.":"Il faut is the fixed present-tense form of the impersonal verb falloir. Il does not refer to a particular person here; the form stays the same. It is followed by an infinitive."});

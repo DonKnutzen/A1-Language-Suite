@@ -175,7 +175,7 @@ html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(
 .lesson-foundations{margin:18px 0;overflow-wrap:anywhere}.lesson-foundations.is-intro{border-left:3px solid var(--accent);padding:0 0 0 13px}.lesson-foundations.is-intro>h3{font-size:1rem;margin:0 0 12px}
 .lesson-foundation-rule+.lesson-foundation-rule{margin-top:18px}.lesson-foundation-rule h4{font-size:.95rem;margin:0 0 6px}.lesson-foundation-rule p{font-size:.92rem;line-height:1.65;margin:6px 0 10px}
 .lesson-foundation-examples{display:grid;gap:8px}.lesson-foundation-example{display:grid;gap:3px;font-size:.92rem;line-height:1.5;padding-left:12px;border-left:2px solid var(--line)}.lesson-foundation-example span{color:var(--muted);font-size:.9em}
-.lesson-extra-vocabulary{border-top:1px solid var(--line);margin-top:20px;padding-top:14px}.lesson-extra-vocabulary summary{cursor:pointer;font-weight:650;line-height:1.5;list-style-position:inside}.lesson-extra-count{font-size:.8em;font-weight:500;color:var(--muted);margin-left:6px}.lesson-extra-vocabulary>p{font-size:.85rem;line-height:1.6;margin:12px 0}.lesson-extra-vocabulary dl{margin:12px 0 0;display:grid;gap:8px}.lesson-extra-vocabulary dl>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;padding:6px 0}.lesson-extra-vocabulary dt,.lesson-extra-vocabulary dd{margin:0;line-height:1.5;font-size:.9rem;overflow-wrap:anywhere}.lesson-extra-vocabulary dd{color:var(--muted)}
+.lesson-extra-vocabulary{border-top:1px solid var(--line);margin-top:20px;padding-top:14px}.lesson-extra-vocabulary summary{cursor:pointer;font-weight:650;line-height:1.5;list-style-position:inside}.lesson-extra-count{font-size:.8em;font-weight:500;color:var(--muted);margin-left:6px}.lesson-extra-vocabulary>p{font-size:.85rem;line-height:1.6;margin:12px 0}.lesson-extra-vocabulary dl{margin:10px 0 0;display:grid;gap:2px}.lesson-extra-vocabulary dl>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:baseline;gap:10px;padding:3px 0}.lesson-extra-vocabulary dt,.lesson-extra-vocabulary dd{margin:0;line-height:1.5;font-size:.9rem;overflow-wrap:anywhere}.lesson-extra-vocabulary dd{color:var(--muted)}
 .lesson-extra-vocabulary summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:3px}
 @media(max-width:430px){.lesson-foundation-rule p{font-size:.9rem}.lesson-extra-vocabulary dl>div{gap:8px}}
 
@@ -184,8 +184,15 @@ html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(
 .lesson-vocabulary-preparation dl{margin-top:0}
 
 /* On-demand pronunciation beside the target word, shared by both A1 courses. */
-.lesson-extra-vocabulary dt{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.lesson-extra-vocabulary dt{display:flex;align-items:center;justify-content:space-between;gap:6px}
 .lesson-extra-vocabulary dt>span{min-width:0}
-.lesson-vocabulary-audio{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--accent-soft);color:var(--ink);cursor:pointer}
-.lesson-vocabulary-audio svg{width:20px;height:20px;pointer-events:none}
+.lesson-vocabulary-audio{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;min-height:32px;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--accent-soft);color:var(--ink);cursor:pointer}
+.lesson-vocabulary-audio svg{width:16px;height:16px;pointer-events:none}
 .lesson-vocabulary-audio:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* Keep a compact score badge beside the wrapping heading on narrow screens. */
+.lesson-mastery-intro>.between>div{min-width:0;flex:1}
+.lesson-check-score{flex:0 0 auto;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.4}
+.lesson-retry-copy{display:grid;gap:4px;line-height:1.4}
+.lesson-retry-copy small{font-size:.78rem;font-weight:500}
+.lesson-vocabulary-hint{display:block;color:var(--muted);line-height:1.5;margin:-4px 0 10px}

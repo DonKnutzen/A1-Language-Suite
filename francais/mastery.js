@@ -88,7 +88,7 @@
   function introHtml(lesson,state){
     const b=best(state,lesson.id),tried=attempted(state,lesson.id),count=state.lessonCheckProgress?.[lesson.id]?.session?.ex?.length||testCount(lesson.id);
     return `<div class="lesson-mastery-intro compact">
-      <div class="between"><div><div class="eyebrow">LEKTIONS-CHECK</div><strong>Zum Schluss: alles noch einmal gemischt</strong></div><span class="pill ${tried?'green':'gray'}">${tried?(b+' %'):'offen'}</span></div>
+      <div class="between"><div><div class="eyebrow">LEKTIONS-CHECK</div><strong>Zum Schluss: alles noch einmal gemischt</strong></div><span class="pill lesson-check-score ${b>=PASS?'green':tried?'amber':'gray'}">${tried?(b+' %'):'offen'}</span></div>
       <p class="muted">${count} Fragen aus den wichtigsten Wendungen und Grammatikmustern dieser Lektion.</p>
     </div>`;
   }
@@ -170,12 +170,13 @@
   }
 
   function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
-    const tasks=makeLessonTest(lesson),b=best(state,lesson.id);
+    const tasks=makeLessonTest(lesson);
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
+      const b=best(state,lesson.id);
       const older=progress.session&&(progress.session.contentVersion||1)<3;
-      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${older?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${attempted(state,lesson.id)?'is-completed':''}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button>${older?'<button class="secondary-btn" id="masteryNewCheck">Überarbeiteten Check neu starten</button><p class="muted">Der bisherige Entwurf wird aufbewahrt.</p>':''}</section>`;
+      view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${older?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${best(state,lesson.id)>=PASS?'is-completed':attempted(state,lesson.id)?'is-retry':''}" id="masteryStart">${progress.session?'Test fortsetzen':attempted(state,lesson.id)&&b<PASS?`<span class="lesson-retry-copy"><span>${b>=60?'Knapp verfehlt':'Noch nicht bestanden'} · Versuch’s noch mal</span><small>Schalte den Hard Mode ab 80 % frei.</small></span>`:b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button>${older?'<button class="secondary-btn" id="masteryNewCheck">Überarbeiteten Check neu starten</button><p class="muted">Der bisherige Entwurf wird aufbewahrt.</p>':''}</section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
       document.getElementById('masteryStart').onclick=()=>runTasks({reviewState:state,progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;

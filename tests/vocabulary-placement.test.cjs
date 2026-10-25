@@ -1,16 +1,16 @@
 const{test}=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),{fixture}=require('./helpers/a1-fixture.cjs');
 const read=p=>fs.readFileSync(p,'utf8');
-function shown(f,code,targets){const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});return [...new Map(bank.filter(e=>targets.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e)).map(p=>[JSON.stringify([p.target,p.meaning]),p.target])).values()];}
+function shown(f,code,targets,lessonId){const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});return [...new Map(bank.filter(e=>targets.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e,{lessonId})).map(p=>[JSON.stringify([p.target,p.meaning]),p.target])).values()];}
 function load(f){for(const file of ['shared/lesson-vocabulary-plan.js','shared/lesson-lexicon.js','shared/vocabulary-content.js','shared/vocabulary-trainer.js'])f.w.eval(read(file));}
 for(const[course,code]of [['francais','fr'],['deutsch','de']]){
  test(course+': all 24 lesson sequences put their supplementary words at the intended activity, with a quiet complete overview',()=>{
   const f=fixture(course);load(f);const plan=f.w.A1LessonVocabularyPlan[code],seen=new Set();
   for(const l of f.lessons){
    const p=plan[l.id];assert(p);f.render(l);const overview=f.view.querySelector('details.lesson-extra-vocabulary');assert(overview&&!overview.open);assert(!overview.querySelector('.lesson-extra-count'));
-   assert.deepEqual([...f.view.querySelectorAll('[data-vocabulary-stage="listen"] dt')].map(x=>x.textContent).sort(),shown(f,code,p.stages.listen).sort());
+   assert.deepEqual([...f.view.querySelectorAll('[data-vocabulary-stage="listen"] dt')].map(x=>x.textContent).sort(),shown(f,code,p.stages.listen,l.id).sort());
    f.view.querySelector('[data-lesson-step="grammar"]').click();const buttons=[...f.view.querySelectorAll('[data-grammar-progress]')];assert.equal(buttons.length,Object.keys(p.titles).length);
    const added=new Set(p.stages.listen);for(let i=0;i<buttons.length;i++){
-    f.view.querySelector(`[data-grammar-progress="${i}"]`).click();const page=f.view.querySelector('#lessonGrammarPage'),stage='grammar:'+i,expected=p.stages[stage],actual=[...page.querySelectorAll('[data-vocabulary-stage] dt')].map(x=>x.textContent);assert.deepEqual(actual.sort(),shown(f,code,expected).sort(),`${l.id} ${p.titles[stage]}`);
+    f.view.querySelector(`[data-grammar-progress="${i}"]`).click();const page=f.view.querySelector('#lessonGrammarPage'),stage='grammar:'+i,expected=p.stages[stage],actual=[...page.querySelectorAll('[data-vocabulary-stage] dt')].map(x=>x.textContent);assert.deepEqual(actual.sort(),shown(f,code,expected,l.id).sort(),`${l.id} ${p.titles[stage]}`);
     for(const word of expected){assert(!added.has(word),`${l.id}: repeated new word ${word}`);added.add(word);assert(p.regular.includes(word));}
     const prep=page.querySelector('[data-vocabulary-stage]'),practice=page.querySelector('.deepening-practice,.lesson1-grammar-practice,.grammar-topic-practice');if(prep&&practice)assert(prep.compareDocumentPosition(practice)&f.w.Node.DOCUMENT_POSITION_FOLLOWING);
     assert(!prep?.querySelector('.lesson-foundation-rule'));
@@ -23,7 +23,7 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
  });
  test(course+': additional Hard Mode words appear before starting and never alongside running questions',()=>{
   const f=fixture(course);load(f);f.w.A1Voice={cancel(){}};for(const file of [course+'/hard-mode-content.js',course+'/hard-mode.js'])f.w.eval(read(file));const api=f.w[code==='fr'?'FR_A1_HARD_MODE':'DE_A1_HARD_MODE'];
-  for(const l of f.lessons){f.state.lessonMasteryBest[l.id]=90;api.render({lesson:l,view:f.view,state:f.state,save(){},onBack(){}});const begin=f.view.querySelector('#hardBegin');assert(begin,l.id);const prep=f.view.querySelector('[data-vocabulary-stage="hard"]'),words=f.w.A1LessonVocabularyPlan[code][l.id].hard;assert.equal(!!prep,words.length>0);if(prep){assert(prep.compareDocumentPosition(begin)&f.w.Node.DOCUMENT_POSITION_FOLLOWING);assert.deepEqual([...prep.querySelectorAll('dt')].map(n=>n.textContent).sort(),shown(f,code,words).sort());assert(!prep.querySelector('input,textarea,.hard-transcript'));}begin.click();assert(!f.view.querySelector('[data-vocabulary-stage="hard"],[data-hard-instructions]'));}
+  for(const l of f.lessons){f.state.lessonMasteryBest[l.id]=90;api.render({lesson:l,view:f.view,state:f.state,save(){},onBack(){}});const begin=f.view.querySelector('#hardBegin');assert(begin,l.id);const prep=f.view.querySelector('[data-vocabulary-stage="hard"]'),words=f.w.A1LessonVocabularyPlan[code][l.id].hard;assert.equal(!!prep,words.length>0);if(prep){assert(prep.compareDocumentPosition(begin)&f.w.Node.DOCUMENT_POSITION_FOLLOWING);assert.deepEqual([...prep.querySelectorAll('dt')].map(n=>n.textContent).sort(),shown(f,code,words,l.id).sort());assert(!prep.querySelector('input,textarea,.hard-transcript'));}begin.click();assert(!f.view.querySelector('[data-vocabulary-stage="hard"],[data-hard-instructions]'));}
   f.dom.window.close();
  });
 }

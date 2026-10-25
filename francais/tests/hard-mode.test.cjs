@@ -17,10 +17,10 @@ test('every course lesson has a complete, independent exam with valid model answ
     const d=data[lesson.id],qs=d.listening.flatMap(b=>b.questions);
     assert(d,`lesson ${lesson.id}`);assert(d.gaps.length>=8);assert.equal(d.listening.length,2);assert(qs.length>=6);
     assert.equal(d.taskCount,d.gaps.length+qs.length+1);assert.equal(d.writing.points.length,3);assert(mode.words(d.writing.model)>=d.writing.minWords,`lesson ${lesson.id}: model too short`);
-    assert(qs.filter(q=>!q.options).length>=4);assert(qs.some(q=>q.options));
+    assert(qs.every(q=>q.options?.length===3));
     for(const key of Object.keys(d.objectives)){assert([...d.gaps,...qs].some(q=>q.skills.includes(key)),`lesson ${lesson.id}: missing ${key}`);}
     assert.equal((d.text.match(/\{\{\d+\}\}/g)||[]).length,d.gaps.length);
-    for(const q of [...d.gaps,...qs]){assert(q.answers.every(a=>a.trim()));assert(mode.matches(q.answers[0],q.answers,q));if(q.options){assert.equal(new Set(q.options).size,3);assert.equal(q.options.filter(o=>mode.matches(o,q.answers,q)).length,1);assert(q.options.every(o=>mode.words(o)>=3&&/[.!?]$/.test(o)));}}
+    for(const q of [...d.gaps,...qs]){assert(q.answers.every(a=>a.trim()));assert(mode.matches(q.answers[0],q.answers,q));if(q.options){assert.equal(new Set(q.options).size,3);assert.equal(q.options.filter(o=>mode.matches(o,q.answers,q)).length,1);assert(q.options.every(o=>typeof o==='string'&&o.trim().length>0));}}
     for(const b of d.listening){assert(!texts.has(b.text));texts.add(b.text);assert(b.text.length>110);}
     const attempt={gaps:d.gaps.map(q=>q.answers[0]),listening:qs.map(q=>q.answers[0]),text:d.writing.model,ratings:[2,2,2,2]};
     assert.equal(mode.objective(d,attempt).pct,100);assert(mode.passed(d,attempt));

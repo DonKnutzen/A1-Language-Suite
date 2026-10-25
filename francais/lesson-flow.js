@@ -75,12 +75,9 @@
     const grammarTopics=[...grammarRoot.querySelectorAll('details.grammar-detail')];
     const basicElements=[...grammarRoot.children].filter(el=>el.tagName!=='SUMMARY'&&!el.matches('details.grammar-detail'));
     const grammarBasics=basicElements.map(el=>el.outerHTML).join('');
-    const intro=basicElements.filter(el=>!el.matches('.lesson-deepening-title')).map(el=>el.outerHTML).join('');
-    // Pronouns are a real first topic in lesson 1; other intros belong with the first explanation.
-    if(!lesson1&&grammarTopics.length){
-      const firstBody=grammarTopics[0].querySelector('.grammar-detail-body')||grammarTopics[0];
-      firstBody.insertAdjacentHTML('afterbegin',intro);
-    }
+    // Each topic already includes its own explanation. The lesson overview mixes
+    // several subjects, so do not prepend it to an unrelated first study page.
+    // Lesson 1 retains its separate foundations page below.
     const grammarPages=[...(lesson1||!grammarTopics.length?[{title:'Grundlagen',html:grammarBasics}]:[]),...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML,practiceKey:el.dataset.deepeningKey||null}))];
     const pronunciation=opts.pronunciationHtml||'';
     if(pronunciation){
@@ -127,7 +124,7 @@
       return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)?.[1]||optionalTitle)}</strong><small>${['speak','write'].includes(activeStep)?esc(activeStep==='speak'?L.speak:L.write):(steps.findIndex(([key])=>key===activeStep)+1)+' / '+steps.length}</small></div><nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · erledigt':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
     }
     function stepHead(){
-      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>${activeStep==='listen'&&opts.renderVocabulary?`<button type="button" class="vt-lesson-link" id="lessonVocabulary">${esc(opts.vocabularyLabel)} →</button>`:''}`;
+      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
     function refreshNextAction(){
       const ready=activeStep==='grammar'?grammarTopicDone(grammarIndex):activeStep==='listen'?p.quizDone===true:stepDone(activeStep);
@@ -142,7 +139,7 @@
         segment.setAttribute('aria-label',`${grammarPages[i].title}${done?' · erledigt':''}${i===grammarIndex?' · aktuell':''}`);
       });
     }
-    function wireStepNav(){const vocab=view.querySelector('#lessonVocabulary');if(vocab)vocab.onclick=()=>{window.A1Voice?.cancel();opts.renderVocabulary();};view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
+    function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
     function stepFooter(){
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1];
       if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Zum Lektionscheck</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;
@@ -240,7 +237,7 @@
       if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('fr',l.id)||''}${window.A1LessonFoundations?.preparationHtml('fr',l.id,'listen')||''}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Bestwert: ${best()} %</p>`:''}${!p.quizDone?'<small class="exercise-entry-hint">10 kurze Fragen</small>':''}<button class="primary-btn exercise-start-btn ${p.quizDone?'is-completed':''}" id="startQuiz">${p.quizDone?`<span class="exercise-completed-mark" aria-hidden="true">✓</span><span class="exercise-entry-copy"><span>10 Aufgaben abgeschlossen</span><small>Übung wiederholen ↻</small></span>`:p.session?'Vokabel-Check fortsetzen':'Vokabel-Check starten'}</button></div>${window.A1LessonFoundations?.vocabularyHtml('fr',l.id,l.phrases)||''}</section>`;
       if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Fortschritt der Vertiefung">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · erledigt':''}${i===grammarIndex?' · aktuell':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thema ${grammarIndex+1} von ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${window.A1LessonFoundations?.enhance('fr',l.id,grammarPages[grammarIndex].title,grammarPages[grammarIndex].html,grammarIndex)||grammarPages[grammarIndex].html}</div></section>`;
       if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Abschluss-Test</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${FR_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${FR_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${FR_A1_LESSON1.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${FR_A1_LESSON1.grammarCheckTried(state)?'Abschluss-Test wiederholen':'12 Fragen starten'}</button></section>`;
-      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryAttempted()?'is-completed':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryAttempted()?'Lektions-Check wiederholen':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
+      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryPassed()?'is-completed':masteryAttempted()?'is-retry':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryPassed()?'Lektions-Check wiederholen':masteryAttempted()?`<span class="lesson-retry-copy"><span>${masteryBest()>=60?'Knapp verfehlt':'Noch nicht bestanden'} · Versuch’s noch mal</span><small>Schalte den Hard Mode ab 80 % frei.</small></span>`:'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
       if(activeStep==='comprehension')body=`${window.A1LessonFoundations?.preparationHtml('fr',l.id,'comprehension')||''}<div id="lessonComprehension"></div>`;
       view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
       if(activeStep==='check')renderExtras();

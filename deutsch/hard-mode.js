@@ -83,11 +83,11 @@
     const progress=state.lessonWork?.[id]?.hardMode;
     return [progress?.attempt,...(progress?.history||[])].filter(achievedResult).sort((a,b)=>b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total;
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct*100>=attempt.result.total*95;
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-green'):'';
   const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
   function badgeMarkup(gold){
-    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Or obtenu · 100 % · écrit autoévalué','Gold earned · 100% · writing self-assessed'):t('Distinction dès 85 % · écrit autoévalué','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 100 %':'85 % +'}</span>`;
+    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Or obtenu · dès 95 % · écrit autoévalué','Gold earned · at least 95% · writing self-assessed'):t('Distinction dès 85 % · écrit autoévalué','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 95–100 %':'85 % +'}</span>`;
   }
   let redraw=null,redrawEntry=null,checkDetached=null;
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
@@ -99,6 +99,7 @@
     return `<section class="hard-entry ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="Hard Mode">
       <button type="button" class="hard-entry-button" data-hard-start ${open?'':'disabled'} aria-describedby="hardEntryHint-${lesson.id}">${lock}<strong>Hard Mode</strong><span>${label}${open?' →':''}</span></button>
       ${open?`<div class="hard-entry-info"><div class="hard-entry-meta"><span>3 ${t("parties",'parts')}</span><span>${data.taskCount||data.gaps.length+questions(data).length+1} ${t("exercices",'tasks')}</span><span>≈ ${(data.minutes||[25,35]).join('–')} Min.</span></div><p id="hardEntryHint-${lesson.id}">${t("Texte à trous · Compréhension orale · Message personnel",'Cloze text · Listening · Your own message')}</p><small>${done?t("✓ Objectif atteint · écrit auto-évalué",'✓ Practice target met · writing self-assessed'):p?.passedAt?t("Nouveaux exercices disponibles · résultats précédents conservés",'Updated tasks available · previous results are saved'):t("Déverrouillé · progression enregistrée.",'Unlocked · Progress is saved.')}</small></div>`:`<small id="hardEntryHint-${lesson.id}" class="hard-entry-hint">${t("Dès 80 % au bilan de la leçon",'Unlocks at 80% in the lesson check')}</small>`}
+      <small class="hard-entry-optional">${t("Facultatif · Non requis pour terminer la leçon.",'Optional · Not required to complete the lesson.')}</small>
     </section>`;
   }
   function renderEntry({lesson,view,state,onStart}){
@@ -125,7 +126,7 @@
       data=candidate?.version===version?candidate:null;
       allQuestions=data?questions(data):[];
       if(data){progress.contentVersions[version]||=JSON.parse(JSON.stringify(data));
-        if(a&&data.version>=2&&!Array.isArray(a.optionOrders)&&!(a.phase==='running'&&data.version<latestData.version))a.optionOrders=allQuestions.map(q=>q.options?shuffle(q.options):null);
+        if(a?.phase==='running'&&data.version>=2&&!Array.isArray(a.optionOrders)&&!(a.phase==='running'&&data.version<latestData.version))a.optionOrders=allQuestions.map(q=>q.options?shuffle(q.options):null);
       }
     }
     bindDataset();
@@ -138,10 +139,17 @@
       const orders=[],answers=[],plays=[];let offset=0;
       latestData.listening.forEach((block,b)=>{
         const before=old.listening[b],used=new Set();
-        block.questions.forEach(q=>{
-          const index=before?.questions.findIndex((candidate,i)=>!used.has(i)&&key(candidate)===key(q))??-1;
+        block.questions.forEach((q,qi)=>{
+          let index=before?.questions.findIndex((candidate,i)=>!used.has(i)&&key(candidate)===key(q))??-1;
+          let selected=index>=0?previous.listening?.[offset+index]||'':'';
+          const original=before?.questions[qi];
+          if(index<0&&before?.text===block.text&&original&&!original.options&&q.options&&JSON.stringify(original.answers)===JSON.stringify(q.answers)&&!used.has(qi)){
+            index=qi;
+            const value=previous.listening?.[offset+index]||'';
+            selected=q.options.find(o=>o===value)||(answerMatches(old,original,value)?q.options.find(o=>answerMatches(latestData,q,o)):'')||'';
+          }
           if(index>=0)used.add(index);
-          answers.push(index>=0?previous.listening?.[offset+index]||'':'');
+          answers.push(selected);
           const saved=index>=0?previous.optionOrders?.[offset+index]:null;
           orders.push(q.options?(Array.isArray(saved)&&saved.length===q.options.length&&new Set(saved).size===q.options.length&&saved.every(o=>q.options.includes(o))?[...saved]:shuffle(q.options)):null);
         });
@@ -177,7 +185,7 @@
       root=view.firstElementChild;
       checkDetached=()=>{if(!root?.isConnected&&playing!==null)cancelAudio();};
       redraw=()=>{if(root?.isConnected){
-        const active=document.activeElement,selector=active?.id?'#'+active.id:active?.dataset?.hardGap!==undefined?`[data-hard-gap="${active.dataset.hardGap}"]`:active?.dataset?.hardListen!==undefined?`[data-hard-listen="${active.dataset.hardListen}"]`:null;
+        const active=document.activeElement,selector=active?.id?'#'+active.id:active?.dataset?.hardGap!==undefined?`[data-hard-gap="${active.dataset.hardGap}"]`:active?.dataset?.hardListen!==undefined?`[data-hard-listen="${active.dataset.hardListen}"]:checked`:null;
         const start=active?.selectionStart,end=active?.selectionEnd;
         a?draw():intro();if(selector){const restored=root.querySelector(selector);restored?.focus({preventScroll:true});if(restored?.setSelectionRange&&typeof start==='number')restored.setSelectionRange(start,end);}
       }};
@@ -192,7 +200,7 @@
       return `<div class="between"><button class="tiny-btn" id="hardBack">← ${t("Retour à la leçon",'Back to lesson')}</button><span class="hard-eyebrow">HARD MODE</span></div><h2 id="hardHeading" tabindex="-1">${lesson.id}. ${esc(en()?window.DE_A1_I18N?.translate(lesson.title)||lesson.title:lesson.title)}</h2>${a?`<p class="hard-save-status" id="hardSaveStatus" role="status">${esc(storageError)||t("Progression enregistrée",'Progress saved')}</p>`:''}${a?.updatedFromVersion?`<p class="hard-version-note">${t("Questions actualisées. Réponses compatibles conservées ; ancien brouillon dans l’historique.",'Listening questions updated. Matching responses retained; the previous draft is in history.')} <button class="tiny-btn" id="hardPreviousDraft">${t("Ancien brouillon",'Previous draft')}</button></p>`:''}${a&&data&&data.version!==latestData.version?`<p class="hard-version-note">${t(`Gespeicherter Versuch · Version ${data.version}. Aktuell ist Version ${latestData.version}. Dieser Versuch behält seine bisherigen Fragen. Die überarbeiteten Fragen erhältst du mit einem neuen Versuch; dieser Entwurf bleibt im Verlauf gespeichert.`,`Saved attempt · version ${data.version}. Current version: ${latestData.version}. This attempt keeps its original questions. Start a new attempt for the revised questions; this draft will be saved in your history.`)} <button class="tiny-btn" id="hardCurrentVersion">${t("Commencer les exercices actuels",'Start current tasks')}</button></p>`:''}`;
     }
     function intro(){
-      mount(`${heading()}<section class="card hard-intro"><span class="hard-eyebrow">${t("TA LEÇON EN MODE EXAMEN",'YOUR LESSON IN EXAM MODE')}</span><h3>${t("Trois parties pour consolider tes acquis.",'Three parts. Your knowledge.')}</h3><ol><li><strong>${t("Texte à trous",'Cloze text')}</strong> · ${data.gaps.length} ${t("mots ou groupes de mots à saisir",'words or phrases to type')}</li><li><strong>${t("Compréhension orale",'Listening')}</strong> · ${allQuestions.length} ${t("questions · trois écoutes par texte · vitesse 75 %",'questions, three plays per recording · 75% speed')}</li><li><strong>${t("Message personnel",'Free writing')}</strong> · ${t(`trois points, environ ${data.writing.targetWords||'30'} mots`,`three content points, about ${data.writing.targetWords||'30'} words`)}</li></ol><p>${t(`Durée indicative : ${(data.minutes||[25,35]).join('–')} minutes, sans limite. Tu peux faire une pause et modifier tes réponses. Les solutions et transcriptions apparaissent après la remise.`,`Indicative time: about ${(data.minutes||[25,35]).join('–')} minutes, with no time limit. You can pause and edit answers. Answers and transcripts appear only after submission.`)}</p><p>${rules()}</p><p class="muted">${t("Exercices originaux de niveau A1, sans équivalence officielle à un examen. Audio avec la voix allemande du navigateur. Tu évalues ton texte à l’aide d’un exemple et d’une grille.",'Original A1 practice, not an official exam. Audio uses the German browser voice. Free writing is self-assessed against an example.')}</p>${window.A1LessonFoundations?.preparationHtml('de',lesson.id,'hard')||''}${window.A1LessonFoundations?.hardInstructionsHtml('de',data)||''}<button class="hard-start" id="hardBegin">${t("Commencer le test",'Start the test')} →</button></section>`);
+      mount(`${heading()}<section class="card hard-intro"><p class="muted hard-optional-note">${t("Facultatif · Non requis pour terminer la leçon.",'Optional · Not required to complete the lesson.')}</p><span class="hard-eyebrow">${t("TA LEÇON EN MODE EXAMEN",'YOUR LESSON IN EXAM MODE')}</span><h3>${t("Trois parties pour consolider tes acquis.",'Three parts. Your knowledge.')}</h3><ol><li><strong>${t("Texte à trous",'Cloze text')}</strong> · ${data.gaps.length} ${t("mots ou groupes de mots à saisir",'words or phrases to type')}</li><li><strong>${t("Compréhension orale",'Listening')}</strong> · ${allQuestions.length} ${t("questions · trois écoutes par texte · vitesse 75 %",'questions, three plays per recording · 75% speed')}</li><li><strong>${t("Message personnel",'Free writing')}</strong> · ${t(`trois points, environ ${data.writing.targetWords||'30'} mots`,`three content points, about ${data.writing.targetWords||'30'} words`)}</li></ol><p>${t(`Durée indicative : ${(data.minutes||[25,35]).join('–')} minutes, sans limite. Tu peux faire une pause et modifier tes réponses. Les solutions et transcriptions apparaissent après la remise.`,`Indicative time: about ${(data.minutes||[25,35]).join('–')} minutes, with no time limit. You can pause and edit answers. Answers and transcripts appear only after submission.`)}</p><p>${rules()}</p><p class="muted">${t("Exercices originaux de niveau A1, sans équivalence officielle à un examen. Audio avec la voix allemande du navigateur. Tu évalues ton texte à l’aide d’un exemple et d’une grille.",'Original A1 practice, not an official exam. Audio uses the German browser voice. Free writing is self-assessed against an example.')}</p>${window.A1LessonFoundations?.preparationHtml('de',lesson.id,'hard')||''}${window.A1LessonFoundations?.hardInstructionsHtml('de',data)||''}<button class="hard-start" id="hardBegin">${t("Commencer le test",'Start the test')} →</button></section>`);
       root.querySelector('#hardBegin').onclick=fresh;
     }
     function unknownVersion(){
@@ -238,9 +246,9 @@
     }
     function listening(){
       let index=0;
-      return `<section class="card"><span class="hard-eyebrow">02 · ${allQuestions.length} ${t("QUESTIONS",'QUESTIONS')}</span><h3>${t("Écoute attentivement.",'Listen carefully.')}</h3><p class="muted">${t("Lis d’abord les questions. Chaque texte est disponible trois fois, à 75 %. Saisis des réponses courtes ; les choix proposent des phrases complètes.",'Read the questions first. Each recording can be played three times, at 75% speed. Type short answers; multiple-choice options are complete sentences.')}</p>${isSubmitted()?'':accents()}<p class="hard-error" id="hardAudioError" role="status">${esc(error)}</p><button class="tiny-btn" type="button" data-hard-stop ${playing===null?'hidden':''}>${t("Arrêter · cette écoute est comptée",'Stop playback · counts as a play')}</button>${data.listening.map((block,b)=>`<section class="hard-recording"><div class="between"><h4>${t("Enregistrement",'Recording')} ${b+1}${block.kind?' · '+(block.kind==='dialogue'?t("Dialogue",'Dialogue'):t("Message / annonce",'Message / announcement')):''}</h4><button class="secondary-btn" data-hard-play="${b}" ${!isSubmitted()&&(a.plays[b]>=AUDIO_PLAYS||playing!==null)?'disabled':''}>▶ ${t("Écouter",'Listen')} ${isSubmitted()?'':`(${a.plays[b]}/${AUDIO_PLAYS})`}</button></div>${block.questions.map(q=>{
+      return `<section class="card"><span class="hard-eyebrow">02 · ${allQuestions.length} ${t("QUESTIONS",'QUESTIONS')}</span><h3>${t("Écoute attentivement.",'Listen carefully.')}</h3><p class="muted">${t("Lis d’abord les questions. Chaque texte est disponible trois fois, à 75 %. Choisis une réponse à chaque question.",'Read the questions first. Each recording can be played three times, at 75% speed. Choose one answer for each question.')}</p><p class="hard-error" id="hardAudioError" role="status">${esc(error)}</p><button class="tiny-btn" type="button" data-hard-stop ${playing===null?'hidden':''}>${t("Arrêter · cette écoute est comptée",'Stop playback · counts as a play')}</button>${data.listening.map((block,b)=>`<section class="hard-recording"><div class="between"><h4>${t("Enregistrement",'Recording')} ${b+1}${block.kind?' · '+(block.kind==='dialogue'?t("Dialogue",'Dialogue'):t("Message / annonce",'Message / announcement')):''}</h4><button class="secondary-btn" data-hard-play="${b}" ${!isSubmitted()&&(a.plays[b]>=AUDIO_PLAYS||playing!==null)?'disabled':''}>▶ ${t("Écouter",'Listen')} ${isSubmitted()?'':`(${a.plays[b]}/${AUDIO_PLAYS})`}</button></div>${block.questions.map(q=>{
         const i=index++;
-        return `<fieldset class="hard-question"><legend>${data.gaps.length+i+1}. ${esc(q.q)}</legend>${isSubmitted()?answerFeedback(q,a.listening[i]):q.options?(a.optionOrders?.[i]||q.options).map((o,j)=>`<label class="hard-option"><input type="radio" name="hard-q-${i}" value="${esc(o)}" data-hard-listen="${i}" ${a.listening[i]===o?'checked':''}><span lang="de">${esc(o)}</span></label>`).join(''):`<input type="text" inputmode="${q.format==='number'||q.format==='code'?'decimal':q.format==='phone'?'tel':q.format==='email'?'email':'text'}" data-hard-listen="${i}" value="${esc(a.listening[i])}" aria-label="${esc(q.q)}" maxlength="160" autocomplete="off" autocapitalize="off" spellcheck="false" lang="de">`}</fieldset>`;
+        return `<fieldset class="hard-question"><legend>${data.gaps.length+i+1}. ${esc(q.q)}</legend>${isSubmitted()?answerFeedback(q,a.listening[i]):(a.optionOrders?.[i]||q.options||[]).map((o,j)=>`<label class="hard-option"><input type="radio" name="hard-q-${i}" value="${esc(o)}" data-hard-listen="${i}" ${a.listening[i]===o?'checked':''}><span lang="de">${esc(o)}</span></label>`).join('')}</fieldset>`;
       }).join('')}${isSubmitted()?`<div class="hard-transcript" lang="de"><strong>${t("Transcription",'Transcript')}</strong><p>${esc(block.text)}</p></div>`:''}</section>`).join('')}</section>`;
     }
     function writing(){

@@ -115,3 +115,6 @@ html.dark-mode .hard-entry-hint,html.dark-mode .hard-entry-meta,html.dark-mode .
 .hard-entry-meta{gap:5px;font-size:.72rem}
 .hard-entry-meta span+span:before{margin-right:5px}
 .hard-entry-button>span,.hard-entry.is-unlocked .hard-entry-button>span{max-width:none;white-space:nowrap}
+
+.hard-entry-optional{display:block;margin:7px 2px 0;color:var(--muted);font-size:.75rem;line-height:1.4}
+.hard-optional-note{margin-top:0;font-size:.85rem}

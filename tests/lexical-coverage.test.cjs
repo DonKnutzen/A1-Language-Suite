@@ -15,7 +15,7 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
    const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});
    const labels=[...el.querySelectorAll('dt')].map(e=>e.textContent);
    const regular=f.w.A1LessonVocabularyPlan[code][l.id].regular;
-   const entries=bank.filter(e=>e.lessons.includes(l.id)&&regular.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e));
+   const entries=bank.filter(e=>e.lessons.includes(l.id)&&regular.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e,{lessonId:l.id}));
    const expected=[...new Map(entries.map(e=>[JSON.stringify([e.target,e.meaning]),e.target])).values()];
    assert.deepEqual([...labels].sort(),expected.sort(),`L${l.id}: complete regular overview`);
    for(const entry of entries){const row=[...el.querySelectorAll('dl>div')].find(row=>row.querySelector('dt').textContent===entry.target&&row.querySelector('dd').textContent===entry.meaning);assert(row,`${l.id}: ${entry.target} → ${entry.meaning}`);}
@@ -34,7 +34,7 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
   assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.items)),{});assert.deepEqual(JSON.parse(JSON.stringify(state.vocabularyTrainer.lessonItems)),{});f.dom.window.close();
  });
  test(course+': new lexical data is loaded before both consumers and is cached offline',()=>{
-  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=didactic-161'));assert(sw.includes('../shared/lesson-lexicon.js?v=didactic-161'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-didactic-v161'));
+  const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');assert(html.includes('../shared/lesson-lexicon.js?v=vocabulary-context-164'));assert(sw.includes('../shared/lesson-lexicon.js?v=vocabulary-context-164'));assert(html.indexOf('lesson-lexicon.js')<html.indexOf('vocabulary-trainer.js'));assert(sw.includes('live-vocabulary-context-v164'));
  });
 }
 test('reviewed source fingerprints cover all question variants, models and actual recordings in all 48 lessons',()=>{

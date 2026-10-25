@@ -1188,4 +1188,36 @@ window.A1_COMPREHENSION_CONTENT = {
 };
 
 // Explicit speaker roles for the German voice adapter.
-Object.values(window.A1_COMPREHENSION_CONTENT).forEach(block=>block.turns.forEach(turn=>{turn.gender=turn.speaker==='A'?'female':'male';}));
+/* Authored roles for each dialogue: named Anna/Paul and Lukas retain their identity.
+   Unnamed speakers also keep one voice throughout; the opening role varies by lesson. */
+(() => {
+  const roles={
+    1:{A:'female',B:'male'},
+    2:{A:'female',B:'male'},
+    3:{A:'male',B:'female'},
+    4:{A:'male',B:'female'},
+    5:{A:'female',B:'male'},
+    6:{A:'male',B:'female'},
+    7:{A:'female',B:'male'},
+    8:{A:'male',B:'female'},
+    9:{A:'male',B:'female'},
+    10:{A:'female',B:'male'},
+    11:{A:'male',B:'female'},
+    12:{A:'female',B:'male'},
+    13:{A:'male',B:'female'},
+    14:{A:'female',B:'male'},
+    15:{A:'male',B:'female'},
+    16:{A:'female',B:'male'},
+    17:{A:'male',B:'female'},
+    18:{A:'female',B:'male'},
+    19:{A:'male',B:'female'},
+    20:{A:'female',B:'male'},
+    21:{A:'male',B:'female'},
+    22:{A:'female',B:'male'},
+    23:{A:'male',B:'female'},
+    24:{A:'female',B:'male'}
+  };
+  Object.entries(window.A1_COMPREHENSION_CONTENT).forEach(([id,block])=>{
+    block.turns.forEach(turn=>{turn.gender=roles[id][turn.speaker];});
+  });
+})();

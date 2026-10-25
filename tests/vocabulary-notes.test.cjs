@@ -44,16 +44,16 @@ test('forward gut cards provide the intended sense before asking for the French 
  const e=fixture();e.state.vocabularyTrainer={version:2,items:{},lessonItems:{},lessonDecksImported:true,settings:{query:'qualité',direction:'forward',lesson:'all'}};e.render();e.view.querySelector('#vtStart').click();assert.equal(e.state.vocabularyTrainer.session.cards[0].target,'gut');assert.equal(e.view.querySelector('.vt-prompt').textContent,'gut (qualité)');
  for(const card of e.bank.filter(x=>x.target==='gut'))assert.equal(e.api.displayTarget('de',card),card.meaning==='bien'?'gut (manière / état)':'gut (qualité)');e.dom.window.close();
 });
-test('welcher/welche/welches use three real noun examples with the French noun gender, in both courses',()=>{
+test('question words use no arbitrary noun examples; lesson 1 uses its actual language question',()=>{
  for(const course of ['de','fr']){const e=fixture(course),raw=e.bank.find(x=>course==='de'?x.target==='welcher / welche / welches':x.meaning==='welcher / welche / welches');assert(raw);
- const rows=JSON.parse(JSON.stringify(e.api.displayPairs(course,raw))),expected=[['quel train ?','welcher Zug?'],['quelle rue ?','welche Straße?'],['quel livre ?','welches Buch?']].map(([fr,de])=>({target:course==='de'?de:fr,meaning:course==='de'?fr:de}));assert.deepEqual(rows,expected);
- e.state.vocabularyTrainer={version:2,items:{},lessonItems:{},lessonDecksImported:true,settings:{query:'welches',direction:'forward',lesson:'all'}};e.render();const article=[...e.view.querySelectorAll('.vt-entry')].find(n=>n.textContent.includes('welches Buch?'));assert(article);assert.deepEqual([...article.querySelectorAll('.vt-pair')].map(n=>[n.querySelector('strong').textContent,n.querySelector('span').textContent]),expected.map(p=>[p.target,p.meaning]));
- const holder=e.w.document.createElement('div');holder.innerHTML=e.w.A1LessonFoundations.vocabularyHtml(course,4);for(const p of expected)assert([...holder.querySelectorAll('dl>div')].some(n=>n.querySelector('dt').textContent===p.target&&n.querySelector('dd').textContent===p.meaning));e.dom.window.close();}
+ const rows=e.api.displayPairs(course,raw);assert.equal(rows.length,1);assert(!/Zug|Straße|Buch|train|rue|livre/.test(JSON.stringify(rows)));
+ if(course==='de')assert.deepEqual(JSON.parse(JSON.stringify(e.api.displayPairs(course,raw,{lessonId:1}))),[{target:'Welche Sprachen?',meaning:'Quelles langues ?'}]);
+ e.state.vocabularyTrainer={version:2,items:{},lessonItems:{},lessonDecksImported:true,settings:{query:'welches',direction:'forward',lesson:'all'}};e.render();assert(!e.view.querySelector('.vt-entry').textContent.includes('Buch'));e.dom.window.close();}
 });
-test('articles, demonstratives and possessives never equate German neuter with French feminine by position',()=>{
- const e=fixture(),examples=[['der / die / das (bestimmter Artikel)','le / la / les','das Buch','le livre'],['dieser / diese / dieses (hinweisend)','ce / cet / cette / ces','dieses Hotel','cet hôtel'],['mein / meine','mon / ma / mes','meine Bücher','mes livres'],['nächster / nächste / nächstes','prochain / prochaine','der nächste Zug','le prochain train']];
- for(const[target,meaning,de,fr]of examples){assert(e.api.displayPairs('de',{target,meaning}).some(p=>p.target===de&&p.meaning===fr),target);}
- const pairs=e.api.displayPairs('de',{target:'sein / ihr (Besitz, Einzahl)',meaning:'son / sa / ses'});assert(pairs.some(p=>p.target==='sein Buch'&&p.meaning==='son livre (à lui)'));assert(pairs.some(p=>p.target==='ihr Buch'&&p.meaning==='son livre (à elle)'));e.dom.window.close();
+test('article and possessive references explain form families without inventing noun content or equating genders',()=>{
+ const e=fixture(),groups=[['der / die / das (bestimmter Artikel)','le / la / les'],['dieser / diese / dieses (hinweisend)','ce / cet / cette / ces'],['mein / meine','mon / ma / mes'],['nächster / nächste / nächstes','prochain / prochaine']];
+ for(const[target,meaning]of groups){const rows=e.api.displayPairs('de',{target,meaning});assert(rows.length);assert(!/Buch|Bücher|Straße|Zug|Hotel/.test(JSON.stringify(rows)));}
+ const owners=e.api.displayPairs('de',{target:'sein / ihr (Besitz, Einzahl)',meaning:'son / sa / ses'});assert.equal(owners.length,2);assert(owners[0].meaning.includes('à lui'));assert(owners[1].meaning.includes('à elle'));e.dom.window.close();
 });
 test('different senses and masculine/feminine forms remain paired instead of accidental slash-to-slash matches',()=>{
  const e=fixture();for(const[target,meaning,pairs]of [

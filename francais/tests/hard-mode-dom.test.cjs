@@ -22,11 +22,11 @@ test('locked entry and direct route require 80%, not an old completion flag',()=
   assert(e.view.querySelector('[data-hard-start]').disabled);e.render();assert(!e.view.querySelector('#hardBegin'));assert(!e.state.lessonWork);e.dom.window.close();
 });
 test('draft, position and play counts survive reopening; errors do not consume a play',()=>{
-  const e=environment();e.begin();e.input('[data-hard-gap="0"]','m’app');e.page(1);e.input('[data-hard-listen="0"]','Lu');
+  const e=environment();e.begin();e.input('[data-hard-gap="0"]','m’app');e.page(1);e.click('[data-hard-listen="0"][value="Luc"]');
   e.click('[data-hard-play="0"]');assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],1);e.audio.options.onError();assert.equal(e.state.lessonWork[1].hardMode.attempt.plays[0],0);
   e.click('[data-hard-play="0"]');e.audio.options.onEnd();e.click('[data-hard-play="0"]');e.audio.options.onEnd();assert(!e.view.querySelector('[data-hard-play="0"]').disabled);e.click('[data-hard-play="0"]');assert.equal(e.audio.options.rate,.75);e.audio.options.onEnd();assert(e.view.querySelector('[data-hard-play="0"]').disabled);
   const saved=JSON.parse(JSON.stringify(e.state));e.dom.window.close();const restored=environment(1,saved);restored.render();
-  assert.equal(restored.view.querySelector('[data-hard-listen="0"]').value,'Lu');assert(restored.view.querySelector('[data-hard-play="0"]').disabled);assert(!restored.view.querySelector('.hard-transcript'));
+  assert.equal(restored.view.querySelector('[data-hard-listen="0"]:checked').value,'Luc');assert(restored.view.querySelector('[data-hard-play="0"]').disabled);assert(!restored.view.querySelector('.hard-transcript'));
   restored.page(0);assert.equal(restored.view.querySelector('[data-hard-gap="0"]').value,'m’app');restored.dom.window.close();
 });
 test('language changes preserve input and locked or unlocked entry behavior',()=>{
@@ -63,7 +63,7 @@ test('audio keeps focus, error refunds only once, language changes keep the acti
 test('unknown versions keep every answer across language changes and archive before restart',()=>{
   const state={lessonMasteryBest:{1:80},lessonWork:{1:{hardMode:{attempt:{version:0,gaps:['ancien'],listening:['écoute'],text:'Mon brouillon.',ratings:[1,2,1,2],phase:'running',page:0}}}}};
   const e=environment(1,state);e.render();assert(e.view.querySelector('.hard-old-draft').textContent.includes('écoute'));e.language('en');assert(e.view.querySelector('#hardUpdatedStart'));assert(!e.view.querySelector('[data-hard-gap]'));
-  e.click('#hardUpdatedStart');assert.equal(state.lessonWork[1].hardMode.history[0].text,'Mon brouillon.');assert.equal(state.lessonWork[1].hardMode.attempt.version,4);e.dom.window.close();
+  e.click('#hardUpdatedStart');assert.equal(state.lessonWork[1].hardMode.history[0].text,'Mon brouillon.');assert.equal(state.lessonWork[1].hardMode.attempt.version,e.data.version);e.dom.window.close();
 });
 test('submitted version 1 keeps original tasks and scoring when reopened',()=>{
   const e=environment(),d=e.w.FR_A1_HARD_LEGACY[1];e.state.lessonWork={1:{hardMode:{attempt:{version:1,phase:'submitted',page:0,gaps:d.gaps.map(q=>q.answers[0]),listening:d.listening.flatMap(b=>b.questions).map(q=>q.answers[0]),plays:[0,0],text:d.writing.model,ratings:[null,null,null,null]}}}};
@@ -85,6 +85,6 @@ test('old-version success cannot replace an already achieved current-version sta
 
 test('v2 drafts update on resume while keeping their old result and unchanged gap entries',()=>{
  const e=environment(),d=e.w.FR_A1_HARD_VERSIONS[2][1];e.state.lessonWork={1:{hardMode:{attempt:{version:2,phase:'running',page:1,gaps:Array(d.gaps.length).fill('ancien'),listening:Array(d.listening.flatMap(b=>b.questions).length).fill(''),plays:[2,0],text:'',ratings:[null,null,null,null]},passedAt:123,passedVersion:2}}};
- e.render();const p=e.state.lessonWork[1].hardMode;assert.equal(p.attempt.version,4);assert.equal(p.history[0].version,2);assert.equal(p.history[0].plays[0],2);assert.equal(p.passedVersion,2);assert.equal(p.attempt.plays[0],0);
- for(let i=0;i<3;i++){e.click('[data-hard-play="0"]');assert.equal(e.audio.options.rate,.75);e.audio.options.onEnd();}assert(e.view.querySelector('[data-hard-play="0"]').disabled);e.language('en');assert.equal(p.attempt.version,4);e.page(0);assert.equal(e.view.querySelector('[data-hard-gap="0"]').value,'ancien');e.dom.window.close();
+ e.render();const p=e.state.lessonWork[1].hardMode;assert.equal(p.attempt.version,e.data.version);assert.equal(p.history[0].version,2);assert.equal(p.history[0].plays[0],2);assert.equal(p.passedVersion,2);assert.equal(p.attempt.plays[0],0);
+ for(let i=0;i<3;i++){e.click('[data-hard-play="0"]');assert.equal(e.audio.options.rate,.75);e.audio.options.onEnd();}assert(e.view.querySelector('[data-hard-play="0"]').disabled);e.language('en');assert.equal(p.attempt.version,e.data.version);e.page(0);assert.equal(e.view.querySelector('[data-hard-gap="0"]').value,'ancien');e.dom.window.close();
 });
