@@ -58,7 +58,7 @@ for(const course of ['francais','deutsch']){
   for(const path of ['../shared/lesson-foundations.js','../shared/grammar-ui.js','../shared/dialogue-voices.js','lesson-flow.js','../shared/lesson-ui.css','../shared/vocabulary-trainer.js']){
    const asset=[...index.matchAll(/(?:src|href)="([^"]+)"/g)].map(m=>m[1]).find(url=>url.startsWith(path+'?v='));assert(asset,path);assert(worker.includes(asset),asset);
   }
-  assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-grammar-voices-v166'));
+  assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-gold-95-v167'));
  });
 }
 test('French L9 explains the purpose and actual transformation of the imperative without a vocabulary dump',()=>{

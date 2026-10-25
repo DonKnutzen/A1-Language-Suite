@@ -21,3 +21,9 @@ Ausgangsstand: `9d22c2651c8fedcefcab99c6a3ce6fab073fb261`.
 26 Chromium-Prüfungen: beide Kurse, 320/390/1280 Pixel, Hell-/Dunkelmodus, Ergebnisse unter/über 80 %, einzeilige Prozentanzeige und tatsächliche Auswahlinteraktion im Hard Mode. Screenshots wurden visuell geprüft. Keine tatsächliche Browseraussprache wurde neu bewertet.
 
 Die vollständige deutsche Paritätstestsammlung enthält außerdem eine bereits auf dem unveränderten Ausgangsstand fehlschlagende Prüfung zur Fehlertraining-Sitzung (`German mistake memory, settings, frozen responses and draft position survive reopening`); diese separate Bestandsabweichung wurde nicht als behoben ausgegeben.
+
+## Gold ab 95 % · Revision 167
+
+Die goldene Hard-Mode-Auszeichnung gilt in allen 48 A1-Lektionen ab einschließlich 95 % bis 100 %, bei einem abgeschlossenen und bestandenen Versuch. Ergebnisansicht und Lektionskarte verwenden dieselbe Grenze; auch gespeicherte passende Altversuche werden bei der Anzeige berücksichtigt. Dafür werden keine Ergebnisse umgeschrieben. Badge und Hinweise nennen jetzt 95–100 % bzw. „ab 95 %“. Die Prüfung verwendet die tatsächlichen Aufgabenpunkte, damit ein nur auf 95 % gerundetes Ergebnis darunter keine goldene Auszeichnung erhält.
+
+37 gezielte Tests bestanden: echte Hard-Mode-Abgaben aller 48 Lektionen, frühere Ergebnisse nach erneutem Laden, Ergebnisansicht und Karten-Auszeichnung, Grenze bei 95 % / knapp darunter / 100 %, Schreiben und Bestehensbedingungen sowie passende Offline-Dateiversionen. Beide A1-Caches und die Hard-Mode-Skriptversionen sind auf Revision 167 aktualisiert.

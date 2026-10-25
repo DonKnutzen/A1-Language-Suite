@@ -79,11 +79,11 @@
     const progress=state.lessonWork?.[id]?.hardMode;
     return [progress?.attempt,...(progress?.history||[])].filter(achievedResult).sort((a,b)=>b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total;
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct*100>=attempt.result.total*95;
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
   const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
   function badgeMarkup(gold){
-    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Gold erreicht · 100 % · Schreiben selbst geprüft','Gold earned · 100% · writing self-assessed'):t('Auszeichnung ab 85 % · Schreiben selbst geprüft','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 100 %':'85 % +'}</span>`;
+    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Gold erreicht · ab 95 % · Schreiben selbst geprüft','Gold earned · at least 95% · writing self-assessed'):t('Auszeichnung ab 85 % · Schreiben selbst geprüft','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 95–100 %':'85 % +'}</span>`;
   }
   let redraw=null,redrawEntry=null,checkDetached=null;
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
