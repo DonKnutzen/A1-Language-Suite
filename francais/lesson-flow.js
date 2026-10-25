@@ -127,7 +127,7 @@
       return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)?.[1]||optionalTitle)}</strong><small>${['speak','write'].includes(activeStep)?esc(activeStep==='speak'?L.speak:L.write):(steps.findIndex(([key])=>key===activeStep)+1)+' / '+steps.length}</small></div><nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · erledigt':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
     }
     function stepHead(){
-      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>${activeStep==='listen'&&opts.renderVocabulary?`<button type="button" class="vt-lesson-link" id="lessonVocabulary">${esc(opts.vocabularyLabel)} →</button>`:''}`;
+      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
     function refreshNextAction(){
       const ready=activeStep==='grammar'?grammarTopicDone(grammarIndex):activeStep==='listen'?p.quizDone===true:stepDone(activeStep);
@@ -142,7 +142,7 @@
         segment.setAttribute('aria-label',`${grammarPages[i].title}${done?' · erledigt':''}${i===grammarIndex?' · aktuell':''}`);
       });
     }
-    function wireStepNav(){const vocab=view.querySelector('#lessonVocabulary');if(vocab)vocab.onclick=()=>{window.A1Voice?.cancel();opts.renderVocabulary();};view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
+    function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
     function stepFooter(){
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1];
       if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Zum Lektionscheck</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;

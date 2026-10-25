@@ -2624,12 +2624,12 @@
     event.preventDefault();
     window.A1Voice?.speak(button.dataset.vocabularyAudio,{lang});
   });
-  function vocabularyRows(course,bank,targets){
+  function vocabularyRows(course,bank,targets,lessonId){
     const display=value=>window.A1Vocabulary.displayText?.(course,value)??value;
     const rows=new Map();
     for(const word of bank){
       const target=word.target.normalize('NFC');if(targets&&!targets.includes(target))continue;
-      const pairs=window.A1Vocabulary.displayPairs?.(course,word)||[{target:display(word.target),meaning:display(word.meaning)}];
+      const pairs=window.A1Vocabulary.displayPairs?.(course,word,{lessonId})||[{target:display(word.target),meaning:display(word.meaning)}];
       for(const pair of pairs)rows.set(JSON.stringify([pair.target,pair.meaning]),pair);
     }
     return `<dl data-i18n-ignore>${[...rows.values()].map(pair=>`<div><dt lang="${course}"><span>${esc(pair.target)}</span>${wordAudioButton(course,pair.target)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(pair.meaning)}</dd></div>`).join('')}</dl>`;
@@ -2640,8 +2640,8 @@
     const regular=included?bank.filter(word=>included.includes(word.target.normalize('NFC'))):bank;if(!regular.length)return '';
     const en=window.A1Profile?.getUiLang()==='en';
     const title=en?'Lesson word list':course==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon';
-    const hint=en?'Lesson vocabulary for reference — no need to memorise it all now. Words reappear with the relevant activities; prepositions and endings are explained in the grammar section.':course==='fr'?'Wortschatz der Lektion zum Nachschlagen — du musst ihn jetzt nicht auswendig lernen. Die Wörter erscheinen auch bei den passenden Übungen; Präpositionen und Endungen erklärt die Vertiefung.':'Vocabulaire de la leçon à consulter — inutile de tout mémoriser maintenant. Les mots réapparaissent avec les exercices concernés ; les prépositions et les terminaisons sont expliquées dans la partie approfondissement.';
-    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}" data-i18n-ignore><summary>${title}</summary><p class="muted">${hint}</p>${vocabularyRows(course,regular)}</details>`;
+    const hint=en?'An overview: you learn these words step by step during the lesson, so you do not need to memorise them here. Find them again in the Vocabulary tab; grammar explains prepositions and endings.':course==='fr'?'Nur eine Übersicht: Du lernst die Wörter nach und nach in der Lektion. Du musst sie hier nicht auswendig lernen. Du findest sie auch im Reiter „Vokabeln“. Präpositionen und Endungen erklärt die Vertiefung.':'Un aperçu : tu apprends ces mots au fil de la leçon, inutile de tout mémoriser ici. Retrouve-les dans l’onglet « Vocabulaire ». Les prépositions et les terminaisons sont expliquées dans la partie approfondissement.';
+    return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}" data-i18n-ignore><summary>${title}</summary><p class="muted">${hint}</p>${vocabularyRows(course,regular,undefined,id)}</details>`;
   }
   function preparationHtml(course,id,stage){
     const plan=window.A1LessonVocabularyPlan?.[course]?.[id];
@@ -2649,7 +2649,7 @@
     const bank=vocabularyBank(course),en=window.A1Profile?.getUiLang()==='en';
     const title=en?(stage==='hard'?'Additional words for Hard Mode':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Wörter für diese Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots pour cet exercice');
     const hint=en?'These words occur in the tasks.':course==='fr'?'Diese Wörter kommen in den Aufgaben vor.':'Ces mots apparaissent dans les exercices.';
-    return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4><small class="lesson-vocabulary-hint">${hint}</small>${vocabularyRows(course,bank,targets)}</section>`;
+    return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4><small class="lesson-vocabulary-hint">${hint}</small>${vocabularyRows(course,bank,targets,id)}</section>`;
   }
   function hardInstructionsHtml(course,data){
     if(course!=='fr')return '';

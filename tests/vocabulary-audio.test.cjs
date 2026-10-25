@@ -16,7 +16,7 @@ for(const course of ['fr','de']){
    if(e.view.querySelector('details')){
     const hint=e.view.querySelector('details>p').textContent;
     assert(hint.includes(course==='fr'?'Präpositionen und Endungen':'prépositions et les terminaisons'));
-    assert(hint.includes(course==='fr'?'passenden Übungen':'exercices concernés'));
+    assert(hint.includes(course==='fr'?'Reiter „Vokabeln“':'onglet « Vocabulaire »'));
     e.view.querySelector('details').open=true;
    }else assert(e.view.querySelector('.lesson-vocabulary-hint').textContent.includes(course==='fr'?'Aufgaben':'exercices'));
    const first=buttons[0];assert.equal(first.type,'button');assert(first.getAttribute('aria-label').includes(e.words[0][0]));first.querySelector('path').dispatchEvent(new e.w.MouseEvent('click',{bubbles:true}));
