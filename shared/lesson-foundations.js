@@ -1154,8 +1154,8 @@
               "Distinguishing want and can"
             ],
             "rule": [
-              "Die Einladung Tu veux … ? verwendet vouloir (wollen), nicht pouvoir (können). Beide Verben stehen hier mit einem zweiten Verb in der Grundform.",
-              "The invitation Tu veux … ? uses vouloir (want), not pouvoir (can). Here both verbs are followed by another verb in the infinitive."
+              "Vouloir ist unregelmäßig. Die Einladung Tu veux … ? verwendet vouloir (wollen), nicht pouvoir (können). Beide Verben stehen hier mit einem zweiten Verb in der Grundform.",
+              "Vouloir is irregular. The invitation Tu veux … ? uses vouloir (want), not pouvoir (can). Here both verbs are followed by another verb in the infinitive."
             ],
             "examples": [
               [
@@ -1776,7 +1776,7 @@
         "Commander un repas": [
           {
             "title": "Une demande pour plusieurs personnes",
-            "rule": "Les demandes polies changent avec la personne. Ces formes sont ici des blocs pour commander; tu n’as pas besoin de former le conditionnel de tous les verbes.",
+            "rule": "Möchte et hätte sont des formes polies à apprendre avec leur sujet. Avec er/sie/es, elles restent möchte et hätte, sans -t supplémentaire. Ce sont ici des blocs pour commander, pas une conjugaison régulière à déduire.",
             "examples": [
               [
                 "ich hätte · du hättest · er/sie hätte",
@@ -1903,7 +1903,7 @@
         "Expliquer un chemin": [
           {
             "title": "À un proche : Geh ou Nimm",
-            "rule": "Gehen Sie et Nehmen Sie sont des consignes polies. Avec un proche, utilise Geh et Nimm, sans du. Pour mitbringen (apporter), mit reste à la fin. Garde la même forme d’adresse pendant l’échange.",
+            "rule": "Gehen Sie et Nehmen Sie sont des consignes polies. Avec un proche, utilise Geh et Nimm, sans du. Nimm est la forme irrégulière de nehmen pour cette consigne. Pour mitbringen (apporter), mit reste à la fin. Garde la même forme d’adresse pendant l’échange.",
             "examples": [
               [
                 "Gehen Sie geradeaus. → Geh geradeaus.",
@@ -2192,7 +2192,7 @@
         "Répondre à une invitation": [
           {
             "title": "Une obligation avec müssen",
-            "rule": "Müssen signifie devoir. Il change de forme avec le sujet; le deuxième verbe reste à l’infinitif à la fin. Une obligation de travailler peut expliquer une absence.",
+            "rule": "Müssen (= devoir) est irrégulier : ich muss, du musst, er/sie/es muss; au pluriel, le ü revient (wir müssen, ihr müsst, sie/Sie müssen). Le deuxième verbe reste à l’infinitif à la fin. Une obligation de travailler peut expliquer une absence.",
             "examples": [
               [
                 "ich muss · du musst · er/sie muss",
@@ -2251,7 +2251,7 @@
         "Lire panneaux et restrictions": [
           {
             "title": "Une permission avec dürfen",
-            "rule": "Dürfen signifie avoir le droit de. Man signifie on et utilise la forme du singulier. Avec nicht, dürfen exprime une interdiction, pas une absence d’obligation.",
+            "rule": "Dürfen (= avoir le droit de) est irrégulier : ich darf, man darf, mais wir dürfen. Man signifie on et utilise la forme du singulier. Avec nicht, dürfen exprime une interdiction, pas une absence d’obligation.",
             "examples": [
               [
                 "ich darf · du darfst · er/sie darf",

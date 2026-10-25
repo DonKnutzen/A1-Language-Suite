@@ -3,10 +3,10 @@
   'use strict';
   const names={
     fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea|sylvie|vivienne)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel|rémy|remy|alain)\b/i},
-    de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}
+    de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|martin|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}
   };
   function gender(voice,lang){
-    const n=voice?.name||'',known=names[lang.split('-')[0]];
+    const n=[voice?.name,voice?.voiceURI].filter(Boolean).join(' ').replace(/[_-]/g,' '),known=names[lang.split('-')[0]];
     return /\bfemale\b/i.test(n)||known?.female.test(n)?'female':/\bmale\b/i.test(n)||known?.male.test(n)?'male':null;
   }
   function plan(lang,turns){
@@ -14,8 +14,10 @@
     for(const speaker of speakers){
       const wanted=turns.find(t=>t.speaker===speaker&&['male','female'].includes(t.gender))?.gender;
       const matching=wanted?list.filter(v=>gender(v,lang)===wanted):list;
-      const candidates=matching.length?matching:list;
-      const selected=candidates.find(v=>!used.has(v.voiceURI||v.name))||candidates[0]||chosen;
+      const unidentified=list.filter(v=>!gender(v,lang));
+      const candidates=matching.length?matching:wanted&&unidentified.length?unidentified:list;
+      const unused=candidates.filter(v=>!used.has(v.voiceURI||v.name)),pool=unused.length?unused:candidates;
+      const selected=pool.includes(chosen)?chosen:voice.automatic?.(lang,pool)||pool[0]||chosen;
       bySpeaker[speaker]=selected;if(selected)used.add(selected.voiceURI||selected.name);
       if(wanted&&gender(selected,lang)!==wanted){if(gender(selected,lang))mismatch=true;else unknown=true;}
     }

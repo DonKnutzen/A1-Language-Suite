@@ -150,7 +150,7 @@
     // Reference explanations keep their existing emphasis; supplement plain text nodes only.
     const terms=(content[lesson.id]||[]).flatMap(unit=>unit.emphasis||[]);
     host.querySelectorAll('p,li').forEach(paragraph=>{
-      if(paragraph.closest('.deepening-preparation,.deepening-form-examples,.phrase-row'))return;
+      if(paragraph.closest('.grammar-concept-note,.deepening-preparation,.deepening-form-examples,.phrase-row'))return;
       const walker=document.createTreeWalker(paragraph,NodeFilter.SHOW_TEXT);
       const nodes=[];while(walker.nextNode())if(!walker.currentNode.parentElement.closest('strong,button'))nodes.push(walker.currentNode);
       nodes.forEach(node=>{const html=formatRule(node.textContent,terms);if(!html.includes('<strong>'))return;const span=document.createElement('span');span.innerHTML=html;node.replaceWith(...span.childNodes);});

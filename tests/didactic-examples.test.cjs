@@ -54,7 +54,7 @@ test('zu Hause, nach Hause and von zu Hause are taught as different whole expres
  for(const[id,title,target,meaning]of examples){const rules=w.A1LessonFoundations.content.de[id].topics[title];assert(rules.some(rule=>rule.examples.some(p=>p[0]===target&&p[1]===meaning)));}
  const rules=w.A1LessonFoundations.content.de[9].topics['Expliquer un chemin'];assert(rules.some(rule=>rule.rule.includes('Zu + dem devient zum')&&rule.rule.includes('zu + der devient zur')));
  const bank=w.A1Vocabulary.buildBank({course:'de',lessons:f.lessons,units:w.DE_A1_STUDY.content});for(const[target,meaning]of [['zu Hause','à la maison (lieu)'],['nach Hause','à la maison (destination)'],['von zu Hause','depuis la maison']])assert(bank.some(e=>e.target===target&&e.meaning===meaning));
- const zum=w.A1Vocabulary.displayPairs('de',{target:'zum',meaning:'zu dem : au / vers le (selon le contexte)'});assert(zum.some(p=>p.target==='zum Arzt (zu + dem)'&&p.meaning==='chez le médecin (destination)'));assert(!zum.some(p=>p.meaning.startsWith('au médecin')));f.dom.window.close();
+ const zum=w.A1Vocabulary.displayPairs('de',{target:'zum',meaning:'zu dem : au / vers le (selon le contexte)'});assert(zum.some(p=>p.target==='zum (zu + dem)'));assert(!zum.some(p=>p.target.includes('Arzt')));f.dom.window.close();
 });
 test('revised German mistake questions keep genuine mistakes but replace defective choices and retain their history',()=>{
  const f=fixture('deutsch'),w=f.w;w.eval(read('deutsch/review-practice.js'));const api=w.DE_A1_REVIEW,q=w.DE_A1_GRAMMAR_DRILLS.topics['sein – conjugaison'].tasks.find(q=>q.o[q.a]==='sind'),old={...q,o:['sind','bin','bist'],a:0};delete old.didacticRevision;

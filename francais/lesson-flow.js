@@ -75,12 +75,9 @@
     const grammarTopics=[...grammarRoot.querySelectorAll('details.grammar-detail')];
     const basicElements=[...grammarRoot.children].filter(el=>el.tagName!=='SUMMARY'&&!el.matches('details.grammar-detail'));
     const grammarBasics=basicElements.map(el=>el.outerHTML).join('');
-    const intro=basicElements.filter(el=>!el.matches('.lesson-deepening-title')).map(el=>el.outerHTML).join('');
-    // Pronouns are a real first topic in lesson 1; other intros belong with the first explanation.
-    if(!lesson1&&grammarTopics.length){
-      const firstBody=grammarTopics[0].querySelector('.grammar-detail-body')||grammarTopics[0];
-      firstBody.insertAdjacentHTML('afterbegin',intro);
-    }
+    // Each topic already includes its own explanation. The lesson overview mixes
+    // several subjects, so do not prepend it to an unrelated first study page.
+    // Lesson 1 retains its separate foundations page below.
     const grammarPages=[...(lesson1||!grammarTopics.length?[{title:'Grundlagen',html:grammarBasics}]:[]),...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML,practiceKey:el.dataset.deepeningKey||null}))];
     const pronunciation=opts.pronunciationHtml||'';
     if(pronunciation){

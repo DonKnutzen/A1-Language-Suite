@@ -3,7 +3,7 @@ window.DE_A1_STUDY_CONTENT = {
   "1": [
     {
       "title": "Se présenter",
-      "rule": "Le verbe conjugué est en deuxième position. **heißen** donne le nom, **kommen aus** l’origine, **wohnen in** la ville et **sprechen** la langue. Après ich : heiße, komme, wohne, spreche. Le nom des langues prend une majuscule.",
+      "rule": "Dans une déclaration, le verbe conjugué occupe le deuxième groupe, pas forcément le deuxième mot : « Mein Name » forme un groupe devant ist. **heißen** donne le nom, **kommen aus** l’origine, **wohnen in** la ville et **sprechen** la langue. Après ich : heiße, komme, wohne, spreche. Le nom des langues prend une majuscule.",
       "rows": [
         [
           "Ich |heiße| Claire.",
@@ -1110,7 +1110,7 @@ window.DE_A1_STUDY_CONTENT = {
   "6": [
     {
       "title": "Commander un repas",
-      "rule": "**Ich hätte gern …** et **Ich möchte …** sont deux demandes polies. Le produit est à l’accusatif : der Kaffee → **einen Kaffee**, die Suppe → **eine Suppe**, das Wasser → **ein Wasser**. Apprends le produit avec son article.",
+      "rule": "**Ich hätte gern …** et **Ich möchte …** sont deux demandes polies. Le produit est ici l’objet direct, à l’accusatif. Au masculin : **ein Kaffee → einen Kaffee** et **der Kaffee → den Kaffee**. Au féminin et au neutre : **eine Suppe**, **ein Wasser**. Apprends le produit avec son article.",
       "rows": [
         [
           "Ich hätte gern |einen| Kaffee.",
@@ -2407,7 +2407,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Départs et arrivées",
-      "rule": "Les verbes **abfahren** et **ankommen** se séparent au présent : Der Zug fährt … **ab** ; er kommt … **an**. Wann demande l’heure. Pour une date : vom … bis zum … . Une heure de départ n’est pas une durée.",
+      "rule": "Dans une phrase principale sans modal, **abfahren** et **ankommen** se séparent : le verbe de base se conjugue, **ab / an** vont à la fin : Der Zug fährt … ab; er kommt … an. **Fährt** garde le changement de voyelle de fahren, vu en leçon 9. Après **kann**, l’infinitif abfahren reste entier à la fin. Wann demande l’heure. Pour une date : vom … bis zum … . Une heure de départ n’est pas une durée.",
       "rows": [
         [
           "Der Zug fährt um |acht| Uhr ab.",
