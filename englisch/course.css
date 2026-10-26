@@ -38,3 +38,13 @@ html.dark-mode .primary-btn.lesson-next-ready{
   html.dark-mode .primary-btn.en-action-current,html.dark-mode .primary-btn.lesson-next-ready{animation:none}
   .en-action-current::after,.lesson-next-ready::after{display:none;animation:none}
 }
+
+/* Small teaching sections; the complete reference list remains collapsed. */
+.en-stage-vocabulary{margin:20px 0;padding:16px;border:1px solid var(--line,#cbd5e1);border-radius:14px;background:color-mix(in srgb,var(--panel,#fff) 94%,#3b82f6)}
+.en-stage-vocabulary h3{margin:0 0 7px;font-size:1.05rem}
+.en-stage-vocabulary>p{margin:0 0 12px;font-size:.88rem;line-height:1.5}
+.en-vocabulary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+.en-vocabulary-grid .phrase-row{margin:0;padding:10px 0;min-width:0}
+.en-vocabulary-grid .phrase-row>div{min-width:0;overflow-wrap:anywhere}
+.en-vocabulary-grid .phrase-row small{display:block;line-height:1.5}
+@media(max-width:600px){.en-vocabulary-grid{grid-template-columns:minmax(0,1fr)}}

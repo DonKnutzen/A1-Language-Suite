@@ -2640,7 +2640,7 @@
     const regular=included?bank.filter(word=>included.includes(word.target.normalize('NFC'))):bank;if(!regular.length)return '';
     const en=window.A1Profile?.getUiLang()==='en';
     const title=en?'Lesson word list':course==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon';
-    const hint=en?'For reference. Learn the words alongside the examples and exercises. Additional Hard Mode words appear before that test.':course==='fr'?'Zum Nachschlagen. Du lernst die Wörter bei den passenden Beispielen und Übungen. Zusätzliche Wörter für den Hard Mode stehen vor dessen Start.':'Pour consulter. Tu apprends les mots avec les exemples et exercices correspondants. Les mots supplémentaires du Hard Mode sont présentés avant son début.';
+    const hint=en?'This list is for reference and orientation. You will learn the words step by step through the examples and exercises in this lesson. You do not need to memorise them in advance.':course==='fr'?'Diese Liste dient zur Orientierung und zum Nachschlagen. Du lernst die Wörter im Verlauf der Lektion Schritt für Schritt anhand von Beispielen und Übungen. Du musst sie nicht vorab auswendig lernen.':'Cette liste sert de repère et de référence. Tu apprendras les mots progressivement, avec les exemples et les exercices de la leçon. Tu n’as pas besoin de les mémoriser à l’avance.';
     return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}" data-i18n-ignore><summary>${title}</summary><p class="muted">${hint}</p>${vocabularyRows(course,regular)}</details>`;
   }
   function preparationHtml(course,id,stage){

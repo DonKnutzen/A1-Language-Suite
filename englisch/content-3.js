@@ -14,46 +14,46 @@ There is some cheese.|Es gibt etwas Käse.|Es gibt keinen Käse.|Es gibt etwas F
 There are some tomatoes.|Es gibt einige Tomaten.|Es gibt einige Kartoffeln.|Es gibt keine Tomaten.
 A cup of tea.|Eine Tasse Tee.|Ein Glas Tee.|Eine Tasse Kaffee.
 I don't eat meat.|Ich esse kein Fleisch.|Ich esse keinen Fisch.|Ich kaufe kein Fleisch.`,
-    [topic('Zählbar oder nicht zählbar','Zählbare Nomen haben Einzahl und Mehrzahl: an egg, two eggs. Milk, water, rice und bread gelten in der üblichen Lebensmittelbedeutung als nicht zählbar: kein a milk oder two rices. Zum Zählen brauchst du eine Einheit: a bottle of milk, two cups of tea. Some milk steht mit is, some eggs mit are.',
+    [topic('Zählbar oder nicht zählbar','Zählbare Nomen haben Einzahl und Mehrzahl: an egg, two eggs. Milk, water, rice und bread gelten in der üblichen Lebensmittelbedeutung als nicht zählbar: kein a milk oder two rices. Zum Zählen brauchst du eine Einheit: a bottle of milk, two cups of tea. Some milk steht mit is, some eggs mit are. No kann vor einem Nomen „kein/keine“ bedeuten: no rice = kein Reis.',
       `an egg / two eggs|ein Ei / zwei Eier
 some rice|etwas Reis
 two bottles of water|zwei Flaschen Wasser`,
-      `I need two ___.|eggs|egg|egges|Ich brauche zwei Eier.
+      `I need two ___.|eggs|egg|an egg|Ich brauche zwei Eier.
 There ___ some milk.|is|are|am|Es gibt etwas Milch.
 There ___ some eggs.|are|is|am|Es gibt einige Eier.
 Two bottles ___ water.|of|for|at|Zwei Flaschen Wasser.
 A cup ___ tea.|of|on|in|Eine Tasse Tee.
-I need ___ apple.|an|a|two|Ich brauche einen Apfel.
+I need ___ apple.|an|a|the|Ich brauche einen Apfel.
 We need some ___.|rice|rices|a rice|Wir brauchen etwas Reis.
 Two ___ of milk.|litres|litre|milks|Zwei Liter Milch.
-I need ___ egg.|an|a|some eggs|Ich brauche ein Ei.
-Three ___ of tea.|cups|cup|teas of cups|Drei Tassen Tee.
+I need ___ egg.|an|a|the|Ich brauche ein Ei.
+Three ___ of tea.|cups|cup|cup of tea|Drei Tassen Tee.
 There ___ some cheese.|is|are|am|Es gibt etwas Käse.
 There ___ some bananas.|are|is|am|Es gibt einige Bananen.
 Four glasses ___ water.|of|at|on|Vier Gläser Wasser.
-We buy two ___.|tomatoes|tomatos|tomato|Wir kaufen zwei Tomaten.
+We buy two ___.|tomatoes|a tomato|tomato|Wir kaufen zwei Tomaten.
 I need a bottle ___ milk.|of|in|on|Ich brauche eine Flasche Milch.
 She eats some ___.|bread|breads|a bread|Sie isst etwas Brot.`),
-    topic('Some und any','In bejahten Aussagen steht meistens some. In neutralen Fragen und Verneinungen steht meistens any. Das gilt für nicht zählbare Nomen und Mehrzahl: some milk, any eggs. Nicht beide Wörter gleichzeitig. Bei Angeboten und Bitten kann some auch in Fragen stehen; solche höflichen Muster lernst du in der nächsten Lektion.',
+    topic('Some und any','In bejahten Aussagen steht meistens some. In neutralen Fragen und Verneinungen steht meistens any. Das gilt für nicht zählbare Nomen und Mehrzahl: some milk, any eggs. Nicht beide Wörter gleichzeitig. Bei Angeboten und Bitten kann some auch in Fragen stehen; solche höflichen Muster lernst du in der nächsten Lektion. Some und any können je nach Erwartung beide in einer Frage vorkommen. Hier wählst du für ausdrücklich neutrale Fragen die übliche Form any; für „überhaupt keine“ ebenfalls any.',
       `We have some eggs.|Wir haben einige Eier.
 Do you have any milk?|Hast du Milch?
 We don't have any rice.|Wir haben keinen Reis.`,
-      `We have ___ milk.|some|a|an|Wir haben etwas Milch.
-We don't have ___ milk.|any|a|an|Wir haben keine Milch.
-Do you have ___ eggs?|any|a|an|Hast du Eier? Neutrale Frage.
-There are ___ tomatoes.|some|a|an|Es gibt einige Tomaten.
-There aren't ___ potatoes.|any|a|an|Es gibt keine Kartoffeln.
-Is there ___ cheese?|any|a|an|Gibt es Käse? Neutrale Frage.
-I need ___ rice.|some|a|an|Ich brauche etwas Reis.
-He doesn't eat ___ meat.|any|a|an|Er isst kein Fleisch.
-Are there ___ bananas?|any|a|an|Gibt es Bananen? Neutrale Frage.
-She buys ___ vegetables.|some|a|an|Sie kauft etwas Gemüse.
-There is ___ bread.|some|a|an|Es gibt etwas Brot.
-We don't need ___ water.|any|a|an|Wir brauchen kein Wasser.
-Does she have ___ oranges?|any|a|an|Hat sie Orangen? Neutrale Frage.
-They buy ___ fish.|some|a|an|Sie kaufen etwas Fisch zum Essen.
-There isn't ___ tea.|any|a|an|Es gibt keinen Tee.
-I have ___ apples.|some|a|an|Ich habe einige Äpfel.`)],
+      `We have ___ milk.|some|any|an|Wir haben etwas Milch. Bejahte Aussage über unseren Vorrat.
+We don't have ___ milk.|any|some|an|Wir haben überhaupt keine Milch.
+Do you have ___ eggs?|any|some|an|Hast du Eier? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
+There are ___ tomatoes.|some|any|an|Es gibt einige Tomaten. Bejahte Aussage über den Vorrat.
+There aren't ___ potatoes.|any|some|an|Es gibt überhaupt keine Kartoffeln.
+Is there ___ cheese?|any|some|an|Gibt es Käse? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
+I need ___ rice.|some|any|an|Ich brauche etwas Reis. Eine unbestimmte Menge ist gemeint.
+He doesn't eat ___ meat.|any|some|an|Er isst überhaupt kein Fleisch.
+Are there ___ bananas?|any|some|an|Gibt es Bananen? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
+She buys ___ vegetables.|some|any|an|Sie kauft etwas Gemüse. Bejahte Aussage über ihren Einkauf.
+There is ___ bread.|some|any|an|Es gibt etwas Brot. Bejahte Aussage über den Vorrat.
+We don't need ___ water.|any|some|an|Wir brauchen überhaupt kein Wasser.
+Does she have ___ oranges?|any|some|an|Hat sie Orangen? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
+They buy ___ fish.|some|any|an|Sie kaufen etwas Fisch zum Essen. Eine unbestimmte Menge, keine einzelnen Tiere.
+There isn't ___ tea.|any|some|an|Es gibt überhaupt keinen Tee.
+I have ___ apples.|some|any|an|Ich habe einige Äpfel. Bejahte Aussage über meinen Vorrat.`)],
     'Schreibe eine Einkaufsliste als kurze Nachricht. Nenne Lebensmittel, eine Menge und etwas, das fehlt.',
     ['Nenne drei Lebensmittel.','Nenne eine Menge mit einer Einheit.','Sage, was nicht vorhanden ist.'],
     "We need some milk, rice and eggs. Please buy two bottles of water and a kilo of potatoes. We don't have any cheese. Do we have any tomatoes?",
@@ -83,19 +83,19 @@ Would you like some tea?|Möchtest du etwas Tee?`,
 She would ___ a salad.|like|likes|to like|Sie hätte gern einen Salat.
 ___ you like some tea?|Would|Do|Are|Möchtest du etwas Tee? Höfliches Angebot.
 I'd ___ some soup.|like|likes|to like|Ich hätte gern etwas Suppe.
-He ___ like a sandwich.|would|woulds|is would|Er hätte gern ein Sandwich.
+He ___ like a sandwich.|would|does|is would|Er hätte gern ein Sandwich.
 I ___ tea.|like|would like|am like|Ich mag Tee allgemein.
 We ___ like the bill, please.|would|are|do|Wir hätten gern die Rechnung.
 Would she ___ some water?|like|likes|to like|Möchte sie etwas Wasser?
 I ___ like meat in my soup.|wouldn't|don't would|am not would|Ich möchte kein Fleisch in meiner Suppe. Wouldn't = would not.
 They would ___ two coffees.|like|likes|to like|Sie hätten gern zwei Kaffee. Hier: zwei Tassen Kaffee.
-Mia ___ like a dessert.|would|woulds|is|Mia hätte gern eine Nachspeise.
+Mia ___ like a dessert.|would|does|is|Mia hätte gern eine Nachspeise.
 ___ you like a sandwich?|Would|Are|Have|Möchtest du ein Sandwich? Höfliches Angebot.
 Leo would ___ some rice.|like|likes|to like|Leo hätte gern etwas Reis.
 I ___ coffee.|like|would like|am like|Ich mag Kaffee im Allgemeinen.
 We'd ___ the menu, please.|like|likes|to like|Wir hätten gern die Speisekarte.
 Would your friends ___ some soup?|like|likes|to like|Möchten deine Freunde etwas Suppe?`),
-    topic('How much und how many','How many steht vor zählbarer Mehrzahl: How many eggs? How much steht vor nicht zählbaren Nomen: How much water? Für Preise: How much is it? / How much are they? Two coffees bedeutet im Café zwei Tassen Kaffee. Card = Karte; cash = Bargeld.',
+    topic('How much und how many','How many steht vor zählbarer Mehrzahl: How many eggs? How much steht vor nicht zählbaren Nomen: How much water? Für Preise: How much is it? / How much are they? Two coffees bedeutet im Café zwei Tassen Kaffee. Card = Karte; cash = Bargeld. By card = mit Karte, in cash = bar. Wouldn’t like bedeutet „möchte nicht“; die Verneinung gehört zu would.',
       `How many sandwiches?|Wie viele Sandwiches?
 How much water?|Wie viel Wasser?
 How much is the salad?|Wie viel kostet der Salat?`,
@@ -142,7 +142,7 @@ The red coat is cheaper.|Der rote Mantel ist günstiger.
 This room is bigger.|Dieses Zimmer ist größer.`,
       `This bag is ___ than that bag.|smaller|small|more small|Diese Tasche ist kleiner als jene.
 The red coat is ___.|cheaper|cheap|more cheap|Der rote Mantel ist günstiger.
-This room is ___.|bigger|biger|more big|Dieses Zimmer ist größer.
+This room is ___.|bigger|big|more big|Dieses Zimmer ist größer.
 The jacket is ___ than the shirt.|warmer|warm|more warm|Die Jacke ist wärmer als das Hemd.
 This dress is ___.|longer|long|more long|Dieses Kleid ist länger.
 These trousers are ___.|shorter|short|more short|Diese Hose ist kürzer.
@@ -151,29 +151,29 @@ The water is ___.|colder|cold|more cold|Das Wasser ist kälter.
 This house is ___.|older|old|more old|Dieses Haus ist älter.
 The shirt is ___.|newer|new|more new|Das Hemd ist neuer.
 This chair is ___ than that chair.|smaller|small|more small|Dieser Stuhl ist kleiner als jener.
-The blue bag is ___.|bigger|biger|more big|Die blaue Tasche ist größer.
+The blue bag is ___.|bigger|big|more big|Die blaue Tasche ist größer.
 These shoes are ___.|cheaper|cheap|more cheap|Diese Schuhe sind günstiger.
 This coat is ___ than my coat.|warmer|warm|more warm|Dieser Mantel ist wärmer als mein Mantel.
 Her jacket is ___.|longer|long|more long|Ihre Jacke ist länger.
 This phone is newer ___ my phone.|than|then|as|Dieses Telefon ist neuer als mein Telefon.`),
-    topic('More, better und worse','Längere Adjektive bilden den Vergleich meistens mit more: expensive → more expensive. Good wird better, bad wird worse. Diese Formen nicht mit more kombinieren. Too heißt zu: too big = zu groß. One kann ein bereits genanntes Nomen ersetzen: the smaller one = das kleinere Exemplar.',
+    topic('More, better und worse','Längere Adjektive bilden den Vergleich meistens mit more: expensive → more expensive. Good wird better, bad wird worse. Diese Formen nicht mit more kombinieren. Too heißt zu: too big = zu groß. One kann ein bereits genanntes Nomen ersetzen: the smaller one = das kleinere Exemplar. Ours steht ohne folgendes Nomen für „unseres/unsere“: our coats → ours. Die übliche Vergleichsform von good ist better, von bad worse.',
       `This coat is more expensive.|Dieser Mantel ist teurer.
 This size is better.|Diese Größe ist besser.
 I'd like the smaller one.|Ich hätte gern das kleinere Exemplar.`,
       `This coat is ___ expensive.|more|most|very more|Dieser Mantel ist teurer.
-This size is ___.|better|gooder|more good|Diese Größe ist besser.
-That phone is ___.|worse|badder|more bad|Jenes Telefon ist schlechter.
-These shoes are ___ expensive than those.|more|most|expensiver|Diese Schuhe sind teurer als jene.
+This size is ___.|better|good|more good|Diese Größe ist besser.
+That phone is ___.|worse|bad|more bad|Jenes Telefon ist schlechter.
+These shoes are ___ expensive than those.|more|most|expensive|Diese Schuhe sind teurer als jene.
 This coat is ___ big.|too|two|to|Dieser Mantel ist zu groß.
 I'd like the smaller ___.|one|ones|a|Ich hätte gern das kleinere Exemplar.
-The blue shirt is ___ than the red shirt.|better|gooder|more better|Das blaue Hemd ist besser als das rote.
+The blue shirt is ___ than the red shirt.|better|good|more better|Das blaue Hemd ist besser als das rote.
 This jacket is more expensive ___ that coat.|than|then|as|Diese Jacke ist teurer als jener Mantel.
 These trousers are ___ short.|too|to|two|Diese Hose ist zu kurz.
-That bag is ___ than this bag.|worse|more worse|badder|Jene Tasche ist schlechter als diese.
-Her dress is ___ expensive.|more|most|expensiver|Ihr Kleid ist teurer.
-These shoes are ___ than my shoes.|better|more better|gooder|Diese Schuhe sind besser als meine.
+That bag is ___ than this bag.|worse|more worse|bad|Jene Tasche ist schlechter als diese.
+Her dress is ___ expensive.|more|most|expensive|Ihr Kleid ist teurer.
+These shoes are ___ than my shoes.|better|more better|good|Diese Schuhe sind besser als meine.
 This size is ___ small.|too|to|two|Diese Größe ist zu klein.
-The red phone is ___.|worse|more worse|badder|Das rote Telefon ist schlechter.
+The red phone is ___.|worse|more worse|bad|Das rote Telefon ist schlechter.
 I'd like the cheaper ___.|one|ones|a|Ich hätte gern das günstigere Exemplar.
 Their coats are more expensive ___ ours.|than|then|as|Ihre Mäntel sind teurer als unsere. Ours = unsere.`)],
     'Vergleiche zwei Kleidungsstücke. Nenne Größe oder Farbe und frage nach Preis oder Anprobe.',
@@ -197,7 +197,7 @@ The station is on the right.|Der Bahnhof ist rechts.|Der Bahnhof ist links.|Die 
 I go to work on foot.|Ich gehe zu Fuß zur Arbeit.|Ich fahre mit dem Bus zur Arbeit.|Ich fahre mit dem Zug zur Arbeit.
 Get off at the next stop.|Steig an der nächsten Haltestelle aus.|Steig an der ersten Haltestelle ein.|Warte an der nächsten Haltestelle.
 Is this bus for the airport?|Fährt dieser Bus zum Flughafen?|Fährt dieser Bus zum Bahnhof?|Ist das der Flughafen?`,
-    [topic('Aufforderungen und Verbote','Für eine Aufforderung steht die Grundform ohne Subjekt: Go straight on. Ein Verbot beginnt mit don’t: Don’t cross here. Please macht die Aufforderung höflicher. Let’s + Grundform schlägt etwas Gemeinsames vor: Let’s take the bus. Get on = einsteigen, get off = aussteigen.',
+    [topic('Aufforderungen und Verbote','Für eine Aufforderung steht die Grundform ohne Subjekt: Go straight on. Ein Verbot beginnt mit don’t: Don’t cross here. In Bitten wie Repeat, please. hast du diese Grundform schon als feste Wendung kennengelernt. Please macht die Aufforderung höflicher. Let’s + Grundform schlägt etwas Gemeinsames vor: Let’s take the bus. Get on = einsteigen, get off = aussteigen.',
       `Turn right, please.|Biege bitte rechts ab.
 Don't cross here.|Überquere hier nicht die Straße.
 Let's take the train.|Nehmen wir den Zug.`,
@@ -243,7 +243,7 @@ Take the ___ street on the right.|third|three|thirty|Nimm die dritte Straße rec
     '{Go|gehen: Aufforderung} straight on. {Turn|abbiegen: Aufforderung} left at the traffic lights. Do not {cross|überqueren, Grundform} here. {Take|nehmen: Aufforderung} bus eight. Get {off|aussteigen: get …} at the next stop. We go {to|zum Ziel} the station. We can go {by|mit dem Bus} bus or {on|zu Fuß} foot.',
     `Du sagst: zweite Straße rechts.|Take the second street on the right.|Take the third street on the right.|Take the second street on the left.
 Du möchtest die Bahnsteignummer wissen.|Which platform?|Which bus stop?|What time?
-Du möchtest aussteigen lassen.|Get off at the next stop.|Get on at the next stop.|Wait at the next stop.
+Du sagst jemandem, wo er aussteigen soll.|Get off at the next stop.|Get on at the next stop.|Wait at the next stop.
 Du beschreibst einen Fußweg.|Go on foot.|Go by bus.|Go by train.`);
   add(17,'Was passiert gerade?',
     ['Laufende Tätigkeiten beschreiben','Present Continuous mit be + -ing bilden','Aktuelle Handlungen erfragen und verneinen'],
@@ -265,20 +265,20 @@ They are running.|Sie laufen gerade.`,
       `I ___ writing a message.|am|is|are|Ich schreibe gerade eine Nachricht.
 She ___ making dinner.|is|am|are|Sie macht gerade Abendessen.
 They ___ waiting for the bus.|are|is|am|Sie warten gerade auf den Bus.
-He is ___.|running|runing|runs|Er läuft gerade.
-We are ___.|sitting|siting|sits|Wir sitzen gerade.
-Anna is ___ an email.|writing|writeing|writes|Anna schreibt gerade eine E-Mail.
-Ben is ___ dinner.|making|makeing|makes|Ben macht gerade Abendessen.
+He is ___.|running|run|runs|Er läuft gerade.
+We are ___.|sitting|sit|sits|Wir sitzen gerade.
+Anna is ___ an email.|writing|write|writes|Anna schreibt gerade eine E-Mail.
+Ben is ___ dinner.|making|make|makes|Ben macht gerade Abendessen.
 You ___ wearing a blue shirt.|are|am|is|Du trägst gerade ein blaues Hemd.
 It ___ raining.|is|are|am|Es regnet gerade.
-We are ___ the kitchen.|cleaning|cleanning|cleans|Wir putzen gerade die Küche.
+We are ___ the kitchen.|cleaning|clean|cleans|Wir putzen gerade die Küche.
 Mia ___ talking on the phone.|is|are|am|Mia telefoniert gerade.
 Leo and I ___ reading.|are|is|am|Leo und ich lesen gerade.
-My sister is ___ outside.|running|runing|runs|Meine Schwester läuft gerade draußen.
-They are ___ a message.|sending|sendding|sends|Sie senden gerade eine Nachricht.
-He is ___ at the picture.|looking|lookking|looks|Er sieht sich gerade das Bild an.
+My sister is ___ outside.|running|run|runs|Meine Schwester läuft gerade draußen.
+They are ___ a message.|sending|send|sends|Sie senden gerade eine Nachricht.
+He is ___ at the picture.|looking|look|looks|Er sieht sich gerade das Bild an.
 I ___ waiting at the station.|am|are|is|Ich warte gerade am Bahnhof.`),
-    topic('Fragen und Verneinungen im Continuous','Bei Fragen steht be vor dem Subjekt: Are you working? Das Verb behält -ing. Zum Verneinen steht not nach be: She isn’t working. Du benutzt dabei kein do/does. What are you doing? fragt nach der gerade ausgeführten Tätigkeit.',
+    topic('Fragen und Verneinungen im Continuous','Bei Fragen steht be vor dem Subjekt: Are you working? Das Verb behält -ing. Zum Verneinen steht not nach be: She isn’t working. Du benutzt dabei kein do/does. Auch swim verdoppelt den Endkonsonanten: swimming. What are you doing? fragt nach der gerade ausgeführten Tätigkeit.',
       `Are you waiting?|Wartest du gerade?
 She isn't working now.|Sie arbeitet gerade nicht.
 What are they doing?|Was machen sie gerade?`,
@@ -339,7 +339,7 @@ My parents usually ___ tea.|drink|are drinking|drinks|Das ist ihre normale Gewoh
 Our daughter ___ an email now.|is writing|writes|write|Sie ist gerade jetzt am Schreiben.
 Ben often ___ his friends.|visits|is visiting|visit|Ben besucht regelmäßig seine Freunde.
 Anna ___ for the train at the moment.|is waiting|waits|wait|Anna wartet gerade jetzt auf den Zug.`),
-    topic('Zustände: like, know, want und need','Einige häufige Verben beschreiben Zustände, Wünsche oder Wissen. In ihrer gewöhnlichen A1-Bedeutung nutzt du meist das Present Simple: I like it, I know, I want water, I need help. Auch wenn der Wunsch jetzt besteht: I need help, nicht I am needing help. He/she/it behält -s; Fragen und Verneinungen verwenden do/does.',
+    topic('Zustände: like, know, want und need','Einige häufige Verben beschreiben Zustände, Wünsche oder Wissen. In ihrer gewöhnlichen A1-Bedeutung nutzt du meist das Present Simple: I like it, I know, I want water, I need help. Auch wenn der Wunsch jetzt besteht: I need help, nicht I am needing help. He/she/it behält -s; Fragen und Verneinungen verwenden do/does. Him ist die Objektform von he: help him = ihm helfen. Need to help heißt „helfen müssen“; need help heißt „Hilfe brauchen“.',
       `I need help now.|Ich brauche jetzt Hilfe.
 She knows my name.|Sie kennt meinen Namen.
 Do you understand?|Verstehst du?`,
@@ -366,5 +366,5 @@ They ___ want coffee.|don't|aren't|doesn't|Sie möchten keinen Kaffee.`)],
     `Du fragst nach einer regelmäßigen Tätigkeit.|What do you do on Sundays?|What are you doing now?|Where are you right now?
 Du brauchst jetzt Hilfe.|I need help now.|I am helping now.|I need to help him now.
 Du beschreibst dein übliches Getränk.|I usually drink tea.|I am drinking tea now.|I don't drink tea.
-Du beschreibst Bens aktuelle Tätigkeit.|Ben is writing an email now.|Ben writes emails every day.|Ben likes writing emails.`);
+Du beschreibst Bens aktuelle Tätigkeit.|Ben is writing an email now.|Ben writes emails every day.|Ben reads emails every day.`);
 })();

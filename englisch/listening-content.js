@@ -40,7 +40,7 @@ Anzahl der Äpfel|3|2|5`),
 Wie lautet die Nummer? Ziffern.|32|23|22|number
 Wie viele Bücher gibt es? Ziffern.|5|4|6|number
 Wie viele Telefone gibt es?|2|3|5|number`),
-    scene('f:I am fifteen, not fifty. My number is twelve. There are four apples and six books in my bag.',`Wie alt ist die Person? Ziffern.|15|50|5|number
+    scene('f:I am fifteen, not fifty. My number is twelve. Four apples and six books are in my bag.',`Wie alt ist die Person? Ziffern.|15|50|5|number
 Wie lautet die Nummer? Ziffern.|12|20|21|number
 Wie viele Äpfel gibt es? Ziffern.|4|3|6|number
 Wie viele Bücher gibt es?|6|4|5|number`));
@@ -110,7 +110,7 @@ Welche Größe hat das Hemd? Englisch.|small|big|long
 Welche Farbe haben die Taschen? Englisch.|black|blue|red
 Wie werden die Bücher beschrieben?|new|old|big`));
   add(9,
-    scene('m:Our flat has two bedrooms. The kitchen is next to the bathroom. My phone is on the table. My bag is under the bed.',`Anzahl der Schlafzimmer|2|3|1
+    scene('m:Yes. Our flat has two bedrooms. The kitchen is next to the bathroom. My phone is on the table. My bag is under the bed.',`Anzahl der Schlafzimmer|2|3|1
 Raum neben der Küche|bathroom|bedroom|living room
 Ort des Telefons|on the table|under the table|on the bed
 Ort der Tasche|under the bed|on the bed|under the table`),
@@ -128,11 +128,11 @@ Uhrzeit des Termins|9:30|8:30|9:15
 Treffpunkt|office|station|café
 Monat des Kursbeginns|May|March|June`),
     scene('m:We meet on Tuesday at quarter past ten. The appointment is at the station. The course starts in September.',`An welchem Tag ist das Treffen? Englisch.|Tuesday|Thursday|Wednesday
-Um wie viel Uhr? Format 10:15.|10:15~quarter past ten~ten fifteen|10:45|9:15|time
+Um wie viel Uhr? Ziffern im Format H:MM.|10:15~quarter past ten~ten fifteen|10:45|9:15|time
 Wo ist der Treffpunkt? Englisch.|station~the station~at the station|office|café
 In welchem Monat beginnt der Kurs?|September|November|December`),
     scene('f:Our appointment is on Friday at quarter to six. We meet at the café. My course starts in April.',`An welchem Tag ist der Termin? Englisch.|Friday|Thursday|Saturday
-Um wie viel Uhr? Gemeint ist 17:45 Uhr, Format 17:45.|17:45~5:45~quarter to six~five forty-five|18:15|16:45|time
+Um wie viel Uhr nachmittags? Ziffern im 24-Stunden-Format H:MM.|17:45~5:45~quarter to six~five forty-five|18:15|16:45|time
 Wo ist der Treffpunkt? Englisch.|café~cafe~the café~the cafe|office|station
 In welchem Monat beginnt der Kurs?|April|August|March`));
   add(11,
@@ -147,7 +147,7 @@ Welche Aktivität macht sie nie?|play football|play tennis|swim`),
     scene('m:I visit my parents twice a week. They live in Berlin. I go there on Tuesday and Saturday. I always go with my sister.',`Wie oft pro Woche besucht die Person ihre Eltern? Englisch.|twice~twice a week|once|three times
 In welcher Stadt wohnen die Eltern?|Berlin|London|Halifax
 Welcher zweite Besuchstag wird genannt? Englisch.|Saturday|Sunday|Thursday
-Mit wem geht die Person immer? Englisch.|sister~my sister~her sister~his sister|brother|mother`));
+Mit wem geht die Person immer? Englisch.|sister~my sister~his sister|brother|mother`));
   add(12,
     scene('f:I can swim, but I cannot drive. My brother can drive. Can you help me with this suitcase? Can I sit here?',`Fähigkeit der sprechenden Person|swim|drive|sing
 Was kann sie nicht?|drive|swim|cook
@@ -164,7 +164,7 @@ Was kann sie nicht tragen?|suitcase|phone|book`));
   add(13,
     scene('m:We need two bottles of milk and a kilo of potatoes. We have some eggs. We do not have any rice.',`Milch: Anzahl Flaschen|2|3|1
 Kartoffeln: Menge in Kilo|1|2|3
-Schon vorhanden|eggs|rice|milk
+Als bereits vorhanden genannt|eggs|rice|milk
 Nicht vorhanden|rice|eggs|potatoes`),
     scene('f:Please buy three bottles of water and two kilos of tomatoes. We have some cheese, but we do not have any bread.',`Wie viele Flaschen Wasser? Ziffern.|3|2|4|number
 Wie viele Kilo Tomaten? Ziffern.|2|3|1|number
@@ -181,7 +181,7 @@ Getränk|water|tea|coffee
 Preis der Suppe in Pfund|6|8|5`),
     scene('m:I would like a sandwich with cheese. I would like tea, not coffee. The sandwich is four pounds fifty. I can pay in cash.',`Was wird bestellt? Essen auf Englisch.|sandwich~a sandwich|salad|soup
 Welche Zutat ist im Essen? Englisch.|cheese|meat|fish
-Wie viel kostet das Essen in Pfund? Format 4.50.|4.50~4,50|4.15|5.40|number
+Wie viel kostet das Essen in Pfund? Ziffern mit zwei Nachkommastellen.|4.50~4,50|4.15|5.40|number
 Was wird getrunken?|tea|coffee|water`),
     scene('f:I would like a salad without tomatoes. I would like a coffee. The salad is eight pounds. I can pay by card.',`Was wird bestellt? Essen auf Englisch.|salad~a salad|sandwich|soup
 Welche Zutat wird nicht gewünscht? Englisch.|tomatoes|potatoes|cheese
@@ -212,11 +212,11 @@ Welcher Bahnsteig?|5|3|4|number`),
     scene('f:Take bus twenty-one. Get off at the second stop. Turn right at the school. The airport bus leaves at half past nine.',`Welche Busnummer wird zuerst genannt? Ziffern.|21|12|31|number
 An welcher Haltestelle aussteigen? Englisch.|second~the second|first|third
 In welche Richtung an der Schule? Englisch.|right|left|straight on
-Wann fährt der Flughafenbus? Format 9:30.|9:30~09:30~half past nine~nine thirty|8:30|9:15|time`));
+Wann fährt der Flughafenbus? Ziffern im Format H:MM.|9:30~09:30~half past nine~nine thirty|8:30|9:15|time`));
   add(17,
     scene('m:I am waiting for the train. Anna is writing an email. Ben is talking on the phone. We are not working now.',`Worauf wird gewartet?|train|bus|taxi
-Tätigkeit der zweiten Person|writing an email|reading a book|cooking dinner
-Tätigkeit der dritten Person|talking on the phone|writing a message|watching television
+Was macht Anna gerade?|writing an email|reading a book|cooking dinner
+Was macht Ben gerade?|talking on the phone|writing a message|watching television
 Arbeiten die Personen gerade?|no|yes|only one`),
     scene('f:I am cooking dinner. My brother is cleaning the kitchen. My sister is writing a message. It is raining outside.',`Welche Mahlzeit wird zubereitet? Englisch.|dinner|breakfast|lunch
 Welcher Raum wird geputzt? Englisch.|kitchen~the kitchen|bedroom|bathroom
@@ -258,7 +258,7 @@ Uhrzeit des Termins|10:00|12:00|9:00
 Warteort|small room|kitchen|outside
 Verbot|use the phone|drink water|sit here`),
     scene('m:I have got a cold. My appointment is at quarter past eleven. The doctor is in room three. I must wait outside the room.',`Welche Beschwerde? Englisch.|cold~a cold|headache|stomach ache
-Wann ist der Termin? Format 11:15.|11:15~quarter past eleven~eleven fifteen|11:45|10:15|time
+Wann ist der Termin? Ziffern im Format H:MM.|11:15~quarter past eleven~eleven fifteen|11:45|10:15|time
 Welche Raumnummer? Ziffern.|3|2|4|number
 Wo muss die Person warten?|outside the room|inside the room|in the kitchen`),
     scene('f:My son has got a stomach ache. His appointment is on Thursday at half past two. We must wait in room five. We must not eat here.',`Welche Beschwerde? Englisch.|stomach ache~a stomach ache~stomachache|cold|headache
@@ -285,23 +285,23 @@ Essen|fish|meat|soup
 Tag ohne Arbeit|Sunday|Saturday|Monday`),
     scene('m:Yesterday I went to London. I bought a jacket. I had lunch at one. In the evening I called my sister.',`In welche Stadt fuhr die Person?|London|Berlin|Halifax
 Was kaufte sie? Englisch.|jacket~a jacket|coat|shirt
-Um wie viel Uhr aß sie zu Mittag? Format 13:00.|13:00~1:00~one~one o'clock|12:00|14:00|time
+Um wie viel Uhr aß sie zu Mittag? Ziffern im Format H:MM.|13:00~1:00~one~one o'clock|12:00|14:00|time
 Wen rief sie an?|sister|brother|father`),
     scene('f:Last Sunday I stayed at home. I cleaned the kitchen. I cooked soup. I did not watch television. I called my mother.',`Wo war die Person? Englisch.|at home~home|at work|at the beach
 Welchen Raum putzte sie? Englisch.|kitchen~the kitchen|bathroom|bedroom
 Was kochte sie? Englisch.|soup~some soup|rice|fish
 Wen rief sie an?|mother|father|sister`));
   add(23,
-    scene('m:Would you like to go to the cinema on Friday? Let’s meet at half past six at the station. Anna cannot come, but Ben can.',`Vorgeschlagene Aktivität|cinema|tennis|dinner
+    scene('m:Yes. Would you like to go to the cinema on Friday? Let’s meet at half past six at the station. Anna cannot come, but Ben can.',`Vorgeschlagene Aktivität|cinema|tennis|dinner
 Tag|Friday|Thursday|Saturday
 Uhrzeit|6:30|5:30|6:15
 Treffpunkt|station|café|office`),
     scene('f:Let’s cook dinner on Saturday. We can meet at seven at my house. I would like to make soup.',`An welchem Tag ist das Treffen? Englisch.|Saturday|Sunday|Friday
-Um wie viel Uhr? Gemeint ist abends. Format 19:00.|19:00~7:00~seven~seven o'clock|18:00|20:00|time
+Um wie viel Uhr abends? Ziffern im 24-Stunden-Format H:MM.|19:00~7:00~seven~seven o'clock|18:00|20:00|time
 Wo ist das Treffen? Englisch.|at my house~my house~house~at her house|at the station|at the café
 Was möchte die Person kochen?|soup|fish|rice`),
     scene('m:I can’t come on Tuesday. Wednesday is good for me. Let’s meet at quarter past five at the café. We can go to the park after that.',`An welchem Tag kann die Person kommen? Englisch.|Wednesday|Tuesday|Thursday
-Um wie viel Uhr? Gemeint ist nachmittags. Format 17:15.|17:15~5:15~quarter past five~five fifteen|17:45|16:15|time
+Um wie viel Uhr nachmittags? Ziffern im 24-Stunden-Format H:MM.|17:15~5:15~quarter past five~five fifteen|17:45|16:15|time
 Wo ist der Treffpunkt? Englisch.|café~cafe~the café~the cafe|station|office
 Wohin geht es danach?|park|cinema|beach`));
   add(24,
@@ -320,14 +320,14 @@ Wie viele Nächte werden gewünscht?|1|2|3|number`));
   // The normal section mixes conversations with short personal announcements.
   // Each question uses structures already introduced by its lesson.
   const openings={
-    3:'How old are you?',7:'When do you work?',8:'Is this your bag?',
-    9:'Where are the keys?',10:'What time is our appointment?',
+    3:'How old are you?',7:'When do you work?',8:'What colour is this bag?',
+    9:'Is there a bedroom in your flat?',10:'What time is our appointment?',
     11:'How often do you play tennis?',12:'Can you swim?',13:'What do you need?',
     14:'What would you like?',15:'Can I help you?',16:'Where is the station?',
     17:'What are you doing?',18:'Where do you usually work?',
     19:'What is the weather like?',20:'Have you got an appointment?',
     21:'Where were you last week?',22:'What did you do last weekend?',
-    23:'Would you like to go to the cinema?',24:'Have you got a reservation?'
+    23:'Are you free on Friday?',24:'Have you got a reservation?'
   };
   for(const [id,text]of Object.entries(openings)){
     const turns=bank[id][0].turns,gender=turns[0].gender==='female'?'male':'female';

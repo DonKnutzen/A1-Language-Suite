@@ -14,7 +14,7 @@ Yes, I do.|Ja, das tue ich.|Nein, das tue ich nicht.|Ja, das tut sie.
 No, she doesn't.|Nein, das tut sie nicht.|Ja, das tut sie.|Nein, das tun sie nicht.
 We don't study on Saturday.|Wir lernen samstags nicht.|Wir lernen sonntags nicht.|Sie lernen samstags nicht.
 Why do you study English?|Warum lernst du Englisch?|Wann lernst du Englisch?|Wo lernst du Englisch?`,
-    [topic('Do und does in Fragen','Vor I/you/we/they steht do, vor he/she/it does. Danach folgt immer die Grundform: Does she work?, niemals Does she works? Fragewörter stehen davor: Where does she work? Bei be verwendest du kein do: Is she here?',
+    [topic('Do und does in Fragen','Vor I/you/we/they steht do, vor he/she/it does. Danach folgt immer die Grundform: Does she work?, niemals Does she works? Fragewörter stehen davor: Where does she work? Bei be verwendest du kein do: Is she here? On steht hier vor Wochentagen: on Monday = am Montag.',
       `Do you live here?|Wohnst du hier?
 Does she work here?|Arbeitet sie hier?
 Where does he live?|Wo wohnt er?`,
@@ -99,22 +99,22 @@ That bag ___ old.|is|are|am|Jene Tasche ist alt.`),
       `a blue bag / blue bags|eine blaue Tasche / blaue Taschen
 an old phone|ein altes Telefon
 A pen is here. The pen is blue.|Ein Stift ist hier. Der Stift ist blau.`,
-      `It is ___ old phone.|an|a|two|Es ist ein altes Telefon.
-It is ___ new phone.|a|an|two|Es ist ein neues Telefon.
-They are ___ bags.|blue|blues|blue's|Es sind blaue Taschen.
-This is a ___.|red shirt|shirt red|reds shirt|Das ist ein rotes Hemd.
-The chair is ___.|white|a white|whites|Der Stuhl ist weiß.
-These are ___ tables.|small|smalls|a small|Das sind kleine Tische.
+      `It is ___ old phone.|an|a|the|Es ist ein altes Telefon.
+It is ___ new phone.|a|an|the|Es ist ein neues Telefon.
+They are ___ bags.|blue|a blue|blue's|Es sind blaue Taschen.
+This is a ___.|red shirt|shirt red|red shirts|Das ist ein rotes Hemd.
+The chair is ___.|white|a white|black|Der Stuhl ist weiß.
+These are ___ tables.|small|big|a small|Das sind kleine Tische.
 I have a pen. ___ pen is blue.|The|An|These|Ich habe einen Stift. Der bereits genannte Stift ist blau.
-This is ___ big bag.|a|an|two|Das ist eine große Tasche.
-It is ___ English book.|an|a|two|Es ist ein englisches Buch.
-The phones are ___.|new|news|a new|Die Telefone sind neu.
-That is ___ old chair.|an|a|two|Das ist ein alter Stuhl.
-These are ___ shirts.|green|greens|a green|Das sind grüne Hemden.
+This is ___ big bag.|a|an|the|Das ist eine große Tasche.
+It is ___ English book.|an|a|the|Es ist ein englisches Buch.
+The phones are ___.|new|old|a new|Die Telefone sind neu.
+That is ___ old chair.|an|a|the|Das ist ein alter Stuhl.
+These are ___ shirts.|green|blue|a green|Das sind grüne Hemden.
 She has a bag. ___ bag is black.|The|An|These|Sie hat eine Tasche. Die bereits genannte Tasche ist schwarz.
-It is a ___.|white table|table white|whites table|Es ist ein weißer Tisch.
-Those chairs are ___.|big|bigs|a big|Jene Stühle sind groß.
-This is ___ small key.|a|an|two|Das ist ein kleiner Schlüssel.`)],
+It is a ___.|white table|table white|white tables|Es ist ein weißer Tisch.
+Those chairs are ___.|big|small|a big|Jene Stühle sind groß.
+This is ___ small key.|a|an|the|Das ist ein kleiner Schlüssel.`)],
     'Beschreibe drei Gegenstände. Sage, welche nah oder weiter weg sind, und nenne Farben oder Größen.',
     ['Beschreibe einen nahen Gegenstand.','Beschreibe mehrere weiter entfernte Gegenstände.','Nenne mindestens zwei Eigenschaften.'],
     'This is my bag. It is blue. These are my keys. That is a new phone. Those are white shirts. The bag is small, but the shirts are big.',
@@ -156,7 +156,7 @@ ___ there a window?|Is|Are|Am|Gibt es ein Fenster?
 ___ there two beds?|Are|Is|Am|Gibt es zwei Betten?
 There ___ a phone in the room.|isn't|aren't|don't|Im Zimmer gibt es kein Telefon.
 Are there three rooms? No, there ___.|aren't|isn't|don't|Nein, es gibt nicht drei Zimmer.`),
-    topic('Lagepräpositionen','In = in, on = auf, under = unter, next to = neben, behind = hinter, in front of = vor, opposite = gegenüber und between = zwischen. Nach between nennst du beide Bezugspunkte mit and. Die Präposition beschreibt die Lage; benutze die deutsche Ortsangabe zur Auswahl.',
+    topic('Lagepräpositionen','In = in, on = auf, under = unter, next to = neben, behind = hinter, in front of = vor, opposite = gegenüber und between = zwischen. Bei zwei ausdrücklich genannten Bezugspunkten verbindet and die beiden: between the kitchen and the bathroom. Eine Mehrzahl kann die Bezugspunkte zusammenfassen: between the books. Die Präposition beschreibt die Lage; benutze die deutsche Ortsangabe zur Auswahl.',
       `The phone is on the table.|Das Telefon liegt auf dem Tisch.
 The bag is under the bed.|Die Tasche liegt unter dem Bett.
 The kitchen is between the bedrooms.|Die Küche ist zwischen den Schlafzimmern.`,
@@ -217,7 +217,7 @@ Quarter past one is ___.|1:15|12:45|1:45|Wähle die digitale Uhrzeit.
 Twenty past eight is ___.|8:20|7:40|8:40|Wähle die digitale Uhrzeit.
 Ten past four is ___.|4:10|3:50|4:50|Wähle die digitale Uhrzeit.
 Three thirty is ___.|3:30|3:13|2:30|Wähle die digitale Uhrzeit.`),
-    topic('At, on und in bei Zeiten','At steht vor Uhrzeiten: at ten, at 9:30; auch at night. On steht vor Wochentagen und konkreten Tagen: on Monday, on 12 May. In steht vor Monaten, Jahren und Tagesabschnitten: in May, in 2026, in the morning. The first/second/third sind der erste/zweite/dritte; Datumsangaben können auch als Ziffern geschrieben werden.',
+    topic('At, on und in bei Zeiten','At steht vor Uhrzeiten: at ten, at 9:30; auch at night. On steht vor Wochentagen und konkreten Tagen: on Monday, on 12 May. In steht vor Monaten, Jahren und Tagesabschnitten: in May, in 2026, in the morning. The first/second/third sind der erste/zweite/dritte; Datumsangaben können auch als Ziffern geschrieben werden. In dieser Lektion liest du Datumszahlen als Ziffern; gesprochen heißt on 12 May „on the twelfth of May“. Die Datumszahlen musst du hier noch nicht selbst sprechen.',
       `at nine / on Friday / in June|um neun / am Freitag / im Juni
 on 12 May|am 12. Mai
 in the evening / at night|am Abend / nachts`,
@@ -278,15 +278,15 @@ They ___ cook together.|sometimes|always|never|Sie kochen manchmal zusammen.
 I go to the park ___ a week.|once|twice|never|Ich gehe einmal pro Woche in den Park.
 He swims ___ a week.|twice|once|always|Er schwimmt zweimal pro Woche.
 We ___ tea.|never drink|don't never drink|never drinks|Wir trinken nie Tee.`),
-    topic('Fragewörter im Alltag','What fragt nach einer Sache oder Tätigkeit, where nach einem Ort, when nach einer Zeit, why nach einem Grund und how often nach Häufigkeit. Mit Tätigkeitsverben folgt do/does; bei be folgt am/is/are. Eine because-Antwort passt zu why.',
-      `Where do you swim? In the park.|Wo schwimmst du? Im Park.
+    topic('Fragewörter im Alltag','What fragt nach einer Sache oder Tätigkeit, where nach einem Ort, when nach einer Zeit, why nach einem Grund und how often nach Häufigkeit. Mit Tätigkeitsverben folgt do/does; bei be folgt am/is/are. Eine because-Antwort passt zu why. Nach Verben und Präpositionen stehen Objektformen: me = mich/mir, us = uns, them = sie/ihnen. We visit them = Wir besuchen sie; they visit us = Sie besuchen uns.',
+      `Where do you play tennis? In the park.|Wo spielst du Tennis? Im Park.
 When do you cook? On Sunday.|Wann kochst du? Am Sonntag.
 How often do you read? Every day.|Wie oft liest du? Jeden Tag.`,
       `___ do you swim? Twice a week.|How often|Where|Why|Wie oft schwimmst du?
 ___ do you work? In London.|Where|When|Why|Wo arbeitest du?
 ___ do you study? On Monday.|When|Where|What|Wann lernst du?
 ___ do you cook? Because I like it.|Why|Where|When|Warum kochst du?
-___ do you do? I play tennis.|What|Where|When|Was machst du?
+___ do you do in your free time? I play tennis.|What|Where|When|Was machst du in deiner Freizeit?
 How often ___ she swim?|does|do|is|Wie oft schwimmt sie?
 Where ___ they play football?|do|does|are|Wo spielen sie Fußball?
 When ___ he at home?|is|does|do|Wann ist er zu Hause?
@@ -304,7 +304,7 @@ When ___ the appointment?|is|does|do|Wann ist der Termin?`)],
     'I {often|oft} play tennis. I swim {twice|zweimal} a week. My sister {never|nie} drinks coffee. She is {always|immer} early. We {sometimes|manchmal} visit our friends. {Where|wo} do they live? In London. {When|wann} do we visit them? On Sunday. {Why|warum} do we go there? Because they are our friends.',
     `Du fragst nach Häufigkeit.|How often do you swim?|Where do you swim?|Why do you swim?
 Du sagst, dass du nie Kaffee trinkst.|I never drink coffee.|I sometimes drink coffee.|I don't often drink coffee.
-Du nennst zwei Trainingstage pro Woche.|I play tennis twice a week.|I play tennis once a week.|I play tennis twice a day.
+Du sagst, dass du zweimal pro Woche Tennis spielst.|I play tennis twice a week.|I play tennis once a week.|I play tennis twice a day.
 Du möchtest einen Grund erfahren.|Why do you study English?|When do you study English?|Where do you study English?`);
   add(12,'Können & höflich bitten',
     ['Fähigkeiten mit can beschreiben','Mit can’t verneinen','Einfache Bitten und Erlaubnisfragen formulieren'],
@@ -319,22 +319,22 @@ Can I use your phone?|Darf ich dein Telefon benutzen?|Darfst du mein Telefon ben
 Yes, of course.|Ja, natürlich.|Nein, leider nicht.|Ja, manchmal.
 Sorry, I can't.|Entschuldigung, ich kann nicht.|Entschuldigung, ich weiß nicht.|Entschuldigung, ich kann.
 Can you carry this bag?|Kannst du diese Tasche tragen?|Kannst du diesen Koffer tragen?|Kann ich diese Tasche tragen?`,
-    [topic('Can: gleiche Form für alle','Can steht bei allen Personen gleich. Danach folgt die Grundform ohne to: She can drive. Kein -s an can oder am folgenden Verb. Verneinung: cannot oder can’t. Can beschreibt eine Fähigkeit; die Häufigkeit einer Tätigkeit ist eine andere Information.',
+    [topic('Can: gleiche Form für alle','Can steht bei allen Personen gleich. Danach folgt die Grundform ohne to: She can drive. Kein -s an can oder am folgenden Verb. Verneinung: cannot oder can’t. Can beschreibt eine Fähigkeit; die Häufigkeit einer Tätigkeit ist eine andere Information. Can’t bedeutet je nach Situation „kann nicht“ oder „darf nicht“; cannot ist dieselbe Verneinung ausgeschrieben.',
       `I can swim. She can swim.|Ich kann schwimmen. Sie kann schwimmen.
 He cannot drive.|Er kann nicht Auto fahren.
 We can speak English.|Wir können Englisch sprechen.`,
-      `I ___ swim.|can|cans|am can|Ich kann schwimmen.
+      `I ___ swim.|can|does|am can|Ich kann schwimmen.
 She can ___.|drive|drives|to drive|Sie kann Auto fahren.
 He ___ dance.|can't|don't can|doesn't can|Er kann nicht tanzen.
 We can ___ English.|speak|speaks|to speak|Wir können Englisch sprechen.
-They ___ sing.|can|cans|are can|Sie können singen.
+They ___ sing.|can|does|are can|Sie können singen.
 Anna can ___.|cook|cooks|to cook|Anna kann kochen.
 Ben ___ drive.|cannot|doesn't can|not can|Ben kann nicht Auto fahren.
 You can ___ here.|wait|waits|to wait|Du kannst hier warten.
 My sister can ___.|dance|dances|to dance|Meine Schwester kann tanzen.
 We ___ come on Friday.|can't|don't can|aren't can|Wir können am Freitag nicht kommen.
 Leo can ___ the bag.|carry|carries|to carry|Leo kann die Tasche tragen.
-Mia ___ sing.|can|cans|is can|Mia kann singen.
+Mia ___ sing.|can|does|is can|Mia kann singen.
 Our parents can ___ English.|speak|speaks|to speak|Unsere Eltern können Englisch sprechen.
 I ___ drive.|can't|don't can|am not can|Ich kann nicht Auto fahren.
 He can ___ the window.|open|opens|to open|Er kann das Fenster öffnen.

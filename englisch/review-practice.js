@@ -112,9 +112,41 @@
     }
     p.grammarPoolUpdated=true;
   }
-  function refreshQuestions(){
-    // New course: there are no legacy French drafts to migrate.
-    // Saved task snapshots retain their original wording and scoring policy.
+  function refreshQuestions(state,lessons){
+    const p=store(state),catalogue=[];
+    const add=(id,topic,label,qs)=>qs.forEach(q=>{const next=task(id,topic,label,q);if(next)catalogue.push(next);});
+    for(const l of lessons){
+      for(const t of l.topics)add(l.id,'grammar:'+t.key,t.title,t.practice);
+      add(l.id,'lesson','Lektionsübungen',l.quiz);
+      add(l.id,'check','Lektionscheck',window.EN_A1_MASTERY_SPECS[l.id].checkTasks);
+      const normal=window.A1_COMPREHENSION_CONTENT[l.id];
+      add(l.id,'listening','Hörverstehen',normal.fields.map(f=>({q:f.label,answer:f.answer,o:f.options,turns:normal.turns})));
+      const hard=window.EN_A1_HARD_CONTENT[l.id];
+      add(l.id,'hard-gap','Hard Mode · Lückentext',hard.gaps.map((g,i)=>({q:hard.text.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':hard.gaps[Number(n)].answers[0]),answer:g.answers[0],accept:g.answers.slice(1),context:g.hint,marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}})));
+      for(const block of hard.listening)add(l.id,'hard-listening','Hard Mode · Hörverstehen',block.questions.map(q=>({q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:block.turns,marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}})));
+    }
+    const exact=new Map(catalogue.map(q=>[q.id,q])),key=q=>JSON.stringify([q.lessonId,q.topic,q.q,q.answer]),groups=new Map();
+    for(const q of catalogue){const k=key(q);if(!groups.has(k))groups.set(k,[]);groups.get(k).push(q);}
+    const replacements=new Map();
+    for(const [id,item]of Object.entries(p.items)){
+      if(item.retired||!item.task)continue;
+      const unchanged=exact.get(id);if(unchanged){item.task=copy(unchanged);continue;}
+      const candidates=groups.get(key(item.task))||[],next=candidates.length===1?candidates[0]:null;
+      // Keep the old record intact. Changed questions cannot keep an old grade silently.
+      item.retired=true;item.retiredReason='Aufgabe überarbeitet';p.questionQualityUpdated=true;
+      if(next){p.items[next.id]||={...copy(item),task:copy(next),retired:false,revisedFrom:id};replacements.set(id,next);}
+    }
+    const s=p.session;
+    if(s?.tasks?.some(q=>!exact.has(q.id))){
+      (p.previousContentRounds||=[]).push(copy(s));
+      const kept=s.tasks.map((q,i)=>({q:exact.get(q.id)||replacements.get(q.id),i})).filter(x=>x.q);
+      if(!kept.length)delete p.session;
+      else{
+        s.tasks=kept.map(x=>copy(x.q));s.answers=kept.map(x=>s.answers[x.i]||null);s.index=kept.filter(x=>x.i<s.index).length;
+        s.draft='';delete s.order;
+      }
+      p.questionQualityUpdated=true;
+    }
   }
   function choose(pool,count){
     // Deduplicate the same task across grammar topics, then balance lesson/topic buckets.

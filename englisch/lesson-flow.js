@@ -83,18 +83,6 @@
     }
     const grammarPages=[...(lesson1||!grammarTopics.length?[{title:'Grundlagen',html:grammarBasics}]:[]),...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML,practiceKey:el.dataset.deepeningKey||null}))];
     const pronunciation=opts.pronunciationHtml||'';
-    if(pronunciation){
-      const bonus=pronunciation.replace('Akzente mitnennen','Akzente');
-      if(false){
-        const alphabet=grammarPages.find(page=>page.practiceKey==='u0');
-        if(alphabet){
-          const panel=document.createElement('div');panel.innerHTML=bonus;
-          const details=panel.querySelector('details');
-          if(details){details.querySelector('summary')?.remove();alphabet.html=alphabet.html.replace('<div class="grammar-detail-body">','<div class="grammar-detail-body"><div class="lesson-pronunciation-bonus"><div class="pronunciation-alphabet">'+details.innerHTML+'</div></div>');}
-          grammarPages.splice(grammarPages.indexOf(alphabet),1);grammarPages.unshift(alphabet);
-        }
-      }else grammarPages[grammarPages.length-1].html+=`<div class="lesson-pronunciation-bonus">${bonus}</div>`;
-    }
     function remember(mode='overview'){
       p.resume={step:activeStep,grammarIndex,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?(grammarPages[grammarIndex]?.practiceKey||grammarPracticeKey(grammarIndex)||null):null};
       state.lastLessonId=l.id;save();
@@ -127,7 +115,7 @@
       return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)?.[1]||optionalTitle)}</strong><small>${['speak','write'].includes(activeStep)?esc(activeStep==='speak'?L.speak:L.write):(steps.findIndex(([key])=>key===activeStep)+1)+' / '+steps.length}</small></div><nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · erledigt':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
     }
     function stepHead(){
-      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>${activeStep==='listen'&&opts.renderVocabulary?`<button type="button" class="vt-lesson-link" id="lessonVocabulary">${esc(opts.vocabularyLabel)} →</button>`:''}`;
+      return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
     function refreshNextAction(){
       const ready=activeStep==='grammar'?grammarTopicDone(grammarIndex):activeStep==='listen'?passed():stepDone(activeStep);
@@ -149,7 +137,7 @@
         segment.setAttribute('aria-label',`${grammarPages[i].title}${done?' · erledigt':''}${i===grammarIndex?' · aktuell':''}`);
       });
     }
-    function wireStepNav(){const vocab=view.querySelector('#lessonVocabulary');if(vocab)vocab.onclick=()=>{window.A1Voice?.cancel();opts.renderVocabulary();};view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
+    function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
     function stepFooter(){
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1];
       if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Zum Lektionscheck</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;
@@ -244,7 +232,7 @@
       const heardSet=new Set(p.heardPhrases);
       const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} gehört</small></div><div class="lesson-audio-rows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="tiny-btn" id="previousAudioPage" aria-label="Vorherige Hörbeispiele">←</button><small id="audioPageStatus" aria-live="polite"></small><button type="button" class="tiny-btn" id="nextAudioPage" aria-label="Nächste Hörbeispiele">→</button></div>`:''}</section>`;
       let body='';
-      if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('en',l.id)||''}${window.A1LessonFoundations?.preparationHtml('en',l.id,'listen')||''}${vocabCheckHtml()}${window.A1LessonFoundations?.vocabularyHtml('en',l.id,l.phrases)||''}</section>`;
+      if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('en',l.id)||''}${pronunciation}${window.A1LessonFoundations?.preparationHtml('en',l.id,'listen')||''}${vocabCheckHtml()}${window.A1LessonFoundations?.vocabularyHtml('en',l.id,l.phrases)||''}</section>`;
       if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Fortschritt der Vertiefung">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · erledigt':''}${i===grammarIndex?' · aktuell':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thema ${grammarIndex+1} von ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${window.A1LessonFoundations?.enhance('en',l.id,grammarPages[grammarIndex].title,grammarPages[grammarIndex].html,grammarIndex)||grammarPages[grammarIndex].html}</div></section>`;
       if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Abschluss-Test</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${EN_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${EN_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${EN_A1_LESSON1.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${EN_A1_LESSON1.grammarCheckTried(state)?'Abschluss-Test wiederholen':'12 Fragen starten'}</button></section>`;
       if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryPassed()?'is-completed':checkReady()?'en-action-current':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryPassed()?'Lektions-Check bestanden · wiederholen':masteryAttempted()?'Lektions-Check erneut üben':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="primary-btn lesson-next-ready" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)} →</button>`:''}</section>`;

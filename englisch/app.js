@@ -90,7 +90,7 @@
   }
   function runRound(key,title,tasks,onBack){
     cleanup();const p=(state.training[key]||={});
-    A1ExerciseEngine.run({lesson:{id:0,title},view,exercises:tasks.map(q=>{const o=A1Learning.shuffle(q.o);return {...q,o,a:o.indexOf(q.answer)};}),progress:p,exerciseVersion:162,targetLang:'en',uiLang:'de',review:true,answerAudioAfterResponse:true,
+    A1ExerciseEngine.run({lesson:{id:0,title},view,exercises:tasks.map(q=>{const o=A1Learning.shuffle(q.o);return {...q,o,a:o.indexOf(q.answer)};}),progress:p,exerciseVersion:162,selectionOnly:true,targetLang:'en',uiLang:'de',review:true,answerAudioAfterResponse:true,
       saveProgress:()=>save(),playAudio:t=>speak(t,true),playFeedbackAudio:t=>speak(t,false),onBack,
       onFinish:(score,total)=>{const pct=Math.round(score/total*100);p.best=Math.max(p.best||0,pct);if(key==='final')state.bestMock=Math.max(state.bestMock,pct);save(true);view.innerHTML=`<section class="card center"><h2>${esc(title)}</h2><div class="score">${pct} %</div><p>${score} von ${total} richtig</p><button class="primary-btn" id="roundBack">Zur Auswahl</button></section>`;view.querySelector('button').onclick=onBack;}
     });

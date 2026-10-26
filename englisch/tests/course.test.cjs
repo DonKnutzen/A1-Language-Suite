@@ -34,6 +34,7 @@ test('all 24 lessons have independent, valid exercise contracts and sufficient w
     for(const t of l.topics){assert.equal(t.practice.length,10);assert.equal(t.transfer.length,6);assert(t.rule.length>100);assert(t.examples.length>=3);for(const q of t.practice)practice.add(JSON.stringify([q.q,q.answer,q.context]));}
     const qs=[...l.topics.flatMap(t=>t.practice),...w.EN_A1_MASTERY_SPECS[l.id].checkTasks];
     for(const q of qs){assert(q.context||l.contexts.some(c=>c[0]===q.q),`${l.id}: missing context`);assert(q.answer);assert(q.audio);if(q.o){assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert(q.o.includes(q.answer));}}
+    for(const q of w.EN_A1_MASTERY.practiceTasks(l).slice(0,10)){const original=l.quiz.find(x=>x.q===q.q);assert.deepEqual([...q.o].sort(),[...original.o].sort());}
     const check=w.EN_A1_MASTERY.makeLessonTest(l);assert.equal(check.length,16);assert(check.filter(q=>q.type==='gap').length>=6);for(const q of check)assert(!practice.has(JSON.stringify([q.q,q.answer,q.context])),`${l.id}: drill repeated in check: ${q.q}`);
     const hard=w.EN_A1_HARD_CONTENT[l.id];assert.equal(hard.gaps.length,8);assert.equal(hard.listening.length,2);assert.equal(hard.listening.flatMap(b=>b.questions).length,8);assert(w.EN_A1_HARD_MODE.words(hard.writing.model)>=hard.writing.minWords);
     for(const g of hard.gaps)assert(w.EN_A1_HARD_MODE.matches(g.answers[0],g.answers,g));
@@ -208,4 +209,45 @@ test('passed grammar topics offer direct next-topic and listening navigation; ea
   w.EN_A1_APP.renderLesson(2,{step:'grammar',grammarIndex:0});assert(view.querySelector('[data-grammar-start].is-completed'));assert(view.querySelector('#nextGrammarTopic.lesson-next-ready'));
   view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t0',0);assert.equal(w.EN_A1_APP.state.lessonWork[2].deepening.t0.best,100);assert(w.EN_A1_APP.state.lessonWork[2].deepening.t0.done);assert(view.querySelector('#grammarNext'));
   f.close();
+});
+
+test('word teaching is staged, audio is opt-in and the glossary appears only at the lesson overview',()=>{
+ const f=fixture(),{w,view}=f;const start=f.spoken.length;
+ for(const l of w.EN_A1_DATA.lessons){
+  const p=w.EN_A1_VOCABULARY.plan[l.id];
+  w.EN_A1_APP.renderLesson(l.id,{step:'listen'});assert(!view.querySelector('#lessonVocabulary'));assert(!view.querySelector('.en-glossary').open);assert(view.querySelector('.en-glossary').textContent.includes('nicht vorab auswendig'));
+  assert.equal(view.querySelectorAll('[data-vocabulary-stage="listen"] .phrase-row').length,p.stages.listen.length);
+  for(let i=0;i<2;i++){w.EN_A1_APP.renderLesson(l.id,{step:'grammar',grammarIndex:i});assert.equal(view.querySelectorAll('[data-vocabulary-stage] .phrase-row').length,p.stages['grammar:'+i].length);}
+  w.EN_A1_APP.renderLesson(l.id,{step:'comprehension'});assert(!view.querySelector('.en-glossary'));assert(!view.querySelector('[data-vocabulary-stage]'));
+ }
+ assert.equal(f.spoken.length,start);w.EN_A1_APP.renderLesson(3,{step:'listen'});assert(view.textContent.includes('Zahlen hören und unterscheiden'));const b=view.querySelector('[data-vocabulary-stage] [data-speak]');const text=decodeURIComponent(b.dataset.speak);b.click();assert.equal(f.spoken.at(-1).text,text);assert.equal(f.spoken.at(-1).lang,'en-GB');f.close();
+});
+test('expanded vocabulary keeps old saved card identities and supplies German meanings for contractions',()=>{
+ const f=fixture(),{w}=f,bank=w.A1Vocabulary.buildBank({course:'en',lessons:w.EN_A1_DATA.lessons});
+ for(const l of w.EN_A1_DATA.lessons)for(const [target,meaning]of l.vocabulary){const id=JSON.stringify(['word',target.replace(/[’‘]/g,"'"),meaning.replace(/[’‘]/g,"'")]);assert(bank.some(e=>e.id===id),id);}
+ const cant=bank.find(e=>e.target==='can’t');assert(w.A1Vocabulary.displayPairs('en',cant)[0].meaning.includes('kann nicht'));assert(bank.some(e=>e.target==='quiet'&&e.lessons.includes(20)));f.close();
+});
+test('equivalent full negatives are accepted in every typed lesson-check gap',()=>{
+ const f=fixture(),{w}=f;let count=0;
+ for(const l of w.EN_A1_DATA.lessons)for(const q of w.EN_A1_MASTERY_SPECS[l.id].checkTasks)if(q.type==='gap')for(const alternative of q.accept||[]){assert(w.EN_A1_MASTERY.accepted(q,alternative),q.q);count++;}
+ assert(count>=6);assert(!w.EN_A1_MASTERY.passed({lessonMasteryBest:{1:40},lessonMasteryLast:{1:40}},1));assert(w.EN_A1_MASTERY.passed({lessonMasteryBest:{1:80}},1));f.close();
+});
+test('unanswered revised grammar tasks are updated once while the original draft and grades are preserved',()=>{
+ const f=fixture(),{w}=f,t=w.EN_A1_DATA.lessons[12].topics[1],q=t.practice[0],old={...q,o:['some','a','an']};
+ const p={best:90,session:{version:162,ex:[old],i:0,score:0,draft:'some',response:null}},before=JSON.stringify(p.session);
+ w.EN_A1_DEEPENING.refreshPractice(p,t.practice);assert.equal(JSON.stringify(p.previousDrafts[0]),before);assert(p.session.ex[0].o.includes('any'));assert.equal(p.best,90);w.EN_A1_DEEPENING.refreshPractice(p,t.practice);assert.equal(p.previousDrafts.length,1);f.close();
+});
+test('revised saved errors use current options while old records remain archived',()=>{
+ const f=fixture(),{w,view}=f,s=w.EN_A1_APP.state,l=w.EN_A1_DATA.lessons[12],t=l.topics[1],q={...t.practice[0],o:['some','a','an']};
+ w.EN_A1_REVIEW.record(s,w.EN_A1_REVIEW.task(13,'grammar:t1',t.title,q),false);const old=Object.keys(s.reviewPractice.items)[0];
+ w.EN_A1_REVIEW.render({view,lessons:w.EN_A1_DATA.lessons,state:s,save(){},onBack(){},speak(){},grammarHtml:w.EN_A1_DEEPENING.grammarHtml,initialMode:'mistakes'});
+ assert(s.reviewPractice.items[old].retired);const current=w.EN_A1_REVIEW.pending(s);assert.equal(current.length,1);assert(current[0].task.o.includes('any'));assert.equal(current[0].wrong,1);f.close();
+});
+test('the mixed final shows the German context required to disambiguate grammar choices',()=>{
+ const f=fixture(),{w,view}=f;w.EN_A1_APP.renderExam();view.querySelector('#finalMock').click();const p=w.EN_A1_APP.state.training.final;while(!p.session.ex[p.session.i].context){const q=p.session.ex[p.session.i];view.querySelector(`[data-o="${q.a}"]`).click();view.querySelector('#mixedNext').click();}assert(view.querySelector('.mixed-context'));assert(view.querySelector('.mixed-context').textContent.includes(p.session.ex[p.session.i].context));f.close();
+});
+test('a completed English daily round returns to a visibly completed home card and remains repeatable',()=>{
+ const f=fixture(),{w,view}=f,s=w.EN_A1_APP.state;s.doneLessons=[1];w.EN_A1_APP.setRoute('home');assert(view.querySelector('.daily-review-card.is-due'));view.querySelector('#homeReview').click();view.querySelector('#reviewStart').click();
+ while(s.reviewPractice.session){const session=s.reviewPractice.session,q=session.tasks[session.index];view.querySelector(`[data-review-option="${session.order.indexOf(q.answer)}"]`).click();view.querySelector('#reviewCheck').click();view.querySelector('#reviewNext').click();}
+ assert.equal(s.reviewPractice.daily.rounds,1);w.EN_A1_APP.setRoute('home');assert(view.querySelector('.daily-review-card.is-complete'));assert(view.querySelector('.daily-review-completed').textContent.includes('Eine Runde abgeschlossen'));assert.equal(view.querySelector('#homeReview').textContent,'Weitere Runde üben');f.close();
 });

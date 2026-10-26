@@ -42,15 +42,15 @@ good → better → the best|gut → besser → am besten`,
 This is the ___ bag.|biggest|bigger|most big|Das ist die größte Tasche.
 This is the ___ coat.|cheapest|cheaper|most cheap|Das ist der günstigste Mantel.
 This is ___ best day.|the|a|an|Das ist der beste Tag.
-That is the ___ hotel.|most expensive|more expensive|expensivest|Das ist das teuerste Hotel.
-It is the ___ weather.|worst|worse|baddest|Es ist das schlechteste Wetter.
+That is the ___ hotel.|most expensive|more expensive|expensive|Das ist das teuerste Hotel.
+It is the ___ weather.|worst|worse|bad|Es ist das schlechteste Wetter.
 This is the ___ jacket.|warmest|warmer|most warm|Das ist die wärmste Jacke.
 That is the ___ house.|oldest|older|most old|Das ist das älteste Haus.
 She is the ___ person here.|youngest|younger|most young|Sie ist hier die jüngste Person. Young = jung.
-This is the ___ day.|best|better|goodest|Das ist der beste Tag.
+This is the ___ day.|best|better|good|Das ist der beste Tag.
 This is the ___ table.|largest|larger|most large|Das ist der größte Tisch. Large = groß.
 It is the ___ month.|coldest|colder|most cold|Es ist der kälteste Monat.
-That is the ___ phone.|most expensive|more expensive|expensivest|Das ist das teuerste Telefon.
+That is the ___ phone.|most expensive|more expensive|expensive|Das ist das teuerste Telefon.
 This is the ___ street.|shortest|shorter|most short|Das ist die kürzeste Straße.
 This is ___ worst room.|the|a|an|Das ist das schlechteste Zimmer.
 It is the ___ day.|hottest|hotter|most hot|Es ist der heißeste Tag.`)],
@@ -58,8 +58,8 @@ It is the ___ day.|hottest|hotter|most hot|Es ist der heißeste Tag.`)],
     ['Beschreibe das heutige Wetter.','Wähle mit einem Superlativ.','Nenne einen einfachen Grund.'],
     'It is cold and windy today. I need a warm coat. The blue coat is the warmest, but it is the most expensive. I like the red coat best because it is cheaper.',
     '{It|Wetter-Subjekt} is cold today. It is {raining|rain: -ing} now. There {are|be: Mehrzahl} clouds. In {winter|Winter} it is often cold. This coat is the {warmest|warm: Superlativ}. That bag is the {biggest|big: Superlativ}. This is the {best|good: Superlativ} room. It is the {most|Superlativ vor expensive} expensive hotel.',
-    `Du fragst nach dem Wetter heute.|What is the weather like today?|What was the weather like yesterday?|When is the weather cold?
-Du wählst das günstigste von drei Zimmern.|This is the cheapest room.|This room is cheaper than mine.|This is an expensive room.
+    `Du fragst nach dem Wetter heute.|What is the weather like today?|What is the weather like in winter?|When is the weather cold?
+Du wählst das günstigste von drei Zimmern.|This is the cheapest room.|This room is cheaper than my room.|This is an expensive room.
 Es schneit gerade.|It is snowing now.|It snows every winter.|There is rain now.
 Du nennst den besten Tag.|This is the best day.|This is a better day.|This is the worst day.`);
   add(20,'Befinden & einfache Regeln',
@@ -102,16 +102,16 @@ Please sit here.|Setz dich bitte hierhin.`,
       `You ___ wait here.|must|mustn't|can't|Du musst hier warten. Regel der Anmeldung.
 You ___ eat here.|mustn't|must|can|Du darfst hier nicht essen. Verbotsschild.
 She must ___ here.|sit|sits|to sit|Sie muss hier sitzen.
-We ___ be quiet.|must|musts|are must|Wir müssen leise sein. Quiet = leise.
+We ___ be quiet.|must|does|are must|Wir müssen leise sein. Quiet = leise.
 He mustn't ___ the door.|open|opens|to open|Er darf die Tür nicht öffnen.
 You ___ use your phone here.|mustn't|must|can|Du darfst hier kein Telefon benutzen. Verbot.
 They must ___ outside.|wait|waits|to wait|Sie müssen draußen warten.
-Anna ___ show her ticket.|must|musts|is must|Anna muss ihre Fahrkarte zeigen. Show = zeigen.
+Anna ___ show her ticket.|must|does|is must|Anna muss ihre Fahrkarte zeigen. Show = zeigen.
 You mustn't ___ here.|run|runs|to run|Du darfst hier nicht laufen. Verbot.
 We must ___ on time.|come|comes|to come|Wir müssen pünktlich kommen. On time = pünktlich.
 Leo must ___ his hands.|wash|washes|to wash|Leo muss seine Hände waschen. Regel.
 You ___ park here.|mustn't|must|can|Du darfst hier nicht parken. Park = parken.
-Mia ___ wait for the doctor.|must|musts|is must|Mia muss auf den Arzt warten.
+Mia ___ wait for the doctor.|must|does|is must|Mia muss auf den Arzt warten.
 They mustn't ___ here.|sit|sits|to sit|Sie dürfen hier nicht sitzen.
 We must ___ the door.|close|closes|to close|Wir müssen die Tür schließen.
 You ___ buy a ticket.|must|mustn't|can't|Du musst eine Fahrkarte kaufen. Pflicht.`)],
@@ -121,7 +121,7 @@ You ___ buy a ticket.|must|mustn't|can't|Du musst eine Fahrkarte kaufen. Pflicht
     'I {have|have got: I} got a headache. My sister {has|have got: she} got a cold. {Have|Frage: you} you got an appointment? Yes, I {have|kurze Antwort}. We {must|müssen} wait here. We {must not~mustn’t~mustn\'t|nicht dürfen} eat here. The doctor is {in|in} the next room. Please {sit|sitzen: Aufforderung} here.',
     `Du beschreibst Kopfschmerzen.|I've got a headache.|I've got a stomach ache.|I've got a cold.
 Ein Schild verbietet Essen.|You mustn't eat here.|You must eat here.|You don't need to eat here.
-Du möchtest einen Arzttermin.|Can I have an appointment with the doctor?|Can I work with the doctor?|Have you got a doctor's phone?
+Du möchtest einen Arzttermin.|Can I have an appointment with the doctor?|Can I work with the doctor?|Have you got an appointment with the doctor?
 Du fragst, ob Emma eine Erkältung hat.|Has Emma got a cold?|Is Emma cold?|Has Emma got a headache?`);
   add(21,'Gestern: was & were',
     ['Über frühere Orte und Zustände sprechen','Was und were verwenden','There was und there were verstehen'],
@@ -136,53 +136,53 @@ There was a café.|Es gab ein Café.|Es gibt ein Café.|Es gab zwei Cafés.
 There were two rooms.|Es gab zwei Zimmer.|Es gibt zwei Zimmer.|Es gab ein Zimmer.
 I was born in Germany.|Ich wurde in Deutschland geboren.|Ich wohne in Deutschland.|Ich war gestern in Deutschland.
 They were tired last night.|Sie waren gestern Abend müde.|Sie sind heute Abend müde.|Wir waren gestern Abend müde.`,
-    [topic('Be in der Vergangenheit','I/he/she/it verwendet was. You/we/they verwenden were. Verneinung: wasn’t / weren’t. Fragen stellen was/were vor das Subjekt: Were you here? Kein did vor was/were. Yesterday = gestern, last week = letzte Woche, two days ago = vor zwei Tagen. Born steht mit be: I was born in Berlin.',
+    [topic('Be in der Vergangenheit','I/he/she/it verwendet was. You/we/they verwenden were. Verneinung: wasn’t / weren’t. Fragen stellen was/were vor das Subjekt: Were you here? Fragen mit was/were brauchen kein weiteres Hilfsverb. Yesterday = gestern, last week = letzte Woche, two days ago = vor zwei Tagen. Born steht mit be: I was born in Berlin.',
       `I was tired yesterday.|Ich war gestern müde.
 They were at home.|Sie waren zu Hause.
 Was she in London?|War sie in London?`,
       `I ___ at home yesterday.|was|were|am|Ich war gestern zu Hause.
 She ___ at work.|was|were|is|Sie war bei der Arbeit.
 We ___ in London last week.|were|was|are|Wir waren letzte Woche in London.
-___ you at the station?|Were|Was|Did|Warst du am Bahnhof?
-___ he in Berlin?|Was|Were|Did|War er in Berlin?
+___ you at the station?|Were|Was|Is|Warst du am Bahnhof?
+___ he in Berlin?|Was|Were|Is|War er in Berlin?
 They ___ tired last night.|were|was|are|Sie waren gestern Abend müde.
-Anna ___ at home.|wasn't|weren't|didn't|Anna war nicht zu Hause.
-We ___ at the beach.|weren't|wasn't|didn't|Wir waren nicht am Strand.
-I was ___ in Germany.|born|birth|bore|Ich wurde in Deutschland geboren.
-Was she here? Yes, she ___.|was|were|did|Ja, sie war hier.
+Anna ___ at home.|wasn't|weren't|isn't|Anna war nicht zu Hause.
+We ___ at the beach.|weren't|wasn't|aren't|Wir waren nicht am Strand.
+I ___ born in Germany.|was|were|am|Ich wurde in Deutschland geboren.
+Was she here? Yes, she ___.|was|were|is|Ja, sie war hier.
 Leo ___ at the hospital yesterday.|was|were|is|Leo war gestern im Krankenhaus.
 Mia and I ___ happy.|were|was|are|Mia und ich waren glücklich.
-Where ___ your parents last week?|were|was|did|Wo waren deine Eltern letzte Woche?
-___ the weather cold?|Was|Were|Did|War das Wetter kalt?
+Where ___ your parents last week?|were|was|is|Wo waren deine Eltern letzte Woche?
+___ the weather cold?|Was|Were|Is|War das Wetter kalt?
 They ___ here two days ago.|were|was|are|Sie waren vor zwei Tagen hier.
-Were you tired? No, I ___.|wasn't|weren't|didn't|Nein, ich war nicht müde.`),
-    topic('There was und there were','There was + Einzahl und there were + Mehrzahl bedeuten es gab. Fragen: Was there …? / Were there …? Verneinung: There wasn’t … / There weren’t … . Bei nicht zählbaren Nomen steht was: There was some water. Diese Formen beschreiben eine frühere Situation.',
+Were you tired? No, I ___.|wasn't|weren't|isn't|Nein, ich war nicht müde.`),
+    topic('There was und there were','There was + Einzahl und there were + Mehrzahl bedeuten es gab. Fragen: Was there …? / Were there …? Verneinung: There wasn’t … / There weren’t … . Bei nicht zählbaren Nomen steht was: There was some water. Diese Formen beschreiben eine frühere Situation. Besitz mit einem Namen wird mit ’s gebildet: my sister’s house = das Haus meiner Schwester.',
       `There was a café near the hotel.|Es gab ein Café in der Nähe des Hotels.
 There were two bedrooms.|Es gab zwei Schlafzimmer.
 Was there a kitchen?|Gab es eine Küche?`,
       `There ___ a café.|was|were|is|Es gab ein Café.
 There ___ two rooms.|were|was|are|Es gab zwei Zimmer.
-___ there a kitchen?|Was|Were|Did|Gab es eine Küche?
-___ there three chairs?|Were|Was|Did|Gab es drei Stühle?
-There ___ any water.|wasn't|weren't|didn't|Es gab kein Wasser.
-There ___ any eggs.|weren't|wasn't|didn't|Es gab keine Eier.
+___ there a kitchen?|Was|Were|Is|Gab es eine Küche?
+___ there three chairs?|Were|Was|Is|Gab es drei Stühle?
+There ___ any water.|wasn't|weren't|isn't|Es gab kein Wasser.
+There ___ any eggs.|weren't|wasn't|aren't|Es gab keine Eier.
 There ___ some milk.|was|were|are|Es gab etwas Milch.
-Was there a bus? Yes, there ___.|was|were|did|Ja, es gab einen Bus.
-Were there two beds? Yes, there ___.|were|was|did|Ja, es gab zwei Betten.
-There ___ a phone in the room.|wasn't|weren't|didn't|Es gab kein Telefon im Zimmer.
+Was there a bus? Yes, there ___.|was|were|is|Ja, es gab einen Bus.
+Were there two beds? Yes, there ___.|were|was|is|Ja, es gab zwei Betten.
+There ___ a phone in the room.|wasn't|weren't|isn't|Es gab kein Telefon im Zimmer.
 There ___ a shop near the station.|was|were|is|Es gab einen Laden in der Nähe des Bahnhofs.
 There ___ four people.|were|was|are|Es gab vier Personen.
-___ there any bread?|Was|Were|Did|Gab es Brot?
-___ there any tomatoes?|Were|Was|Did|Gab es Tomaten?
-There ___ any coffee.|wasn't|weren't|didn't|Es gab keinen Kaffee.
-Were there three rooms? No, there ___.|weren't|wasn't|didn't|Nein, es gab nicht drei Zimmer.`)],
+___ there any bread?|Was|Were|Is|Gab es Brot?
+___ there any tomatoes?|Were|Was|Is|Gab es Tomaten?
+There ___ any coffee.|wasn't|weren't|isn't|Es gab keinen Kaffee.
+Were there three rooms? No, there ___.|weren't|wasn't|aren't|Nein, es gab nicht drei Zimmer.`)],
     'Beschreibe einen vergangenen Tag oder Aufenthalt: Ort, Befinden und etwas, das dort vorhanden war.',
     ['Nenne einen vergangenen Zeitpunkt.','Nenne Ort und Befinden.','Beschreibe mit there was/were, was vorhanden war.'],
     'Last week I was in London. The weather was cold, but I was happy. There was a café near the hotel. There were two chairs in my room. Were you there too?',
     'Yesterday I {was|be, Vergangenheit: I} at home. My parents {were|be, Vergangenheit: they} in London. My sister {was|be, Vergangenheit: she} tired. There {was|es gab, Einzahl} a café near the hotel. There {were|es gab, Mehrzahl} two rooms. {Were|Frage: you} you there? No, I {was not~wasn’t~wasn\'t|verneinen: I}. I was {born|geboren} in Berlin.',
     `Du fragst nach dem gestrigen Aufenthaltsort.|Where were you yesterday?|Where are you today?|When were you at home?
 Du beschreibst zwei frühere Zimmer.|There were two rooms.|There was one room.|There are two rooms.
-Du sagst, dass Anna gestern nicht arbeitete: Ort.|Anna wasn't at work yesterday.|Anna isn't at work today.|Anna was at work yesterday.
+Du sagst, dass Anna gestern nicht bei der Arbeit war.|Anna wasn't at work yesterday.|Anna isn't at work today.|Anna was at work yesterday.
 Du nennst deinen Geburtsort.|I was born in Berlin.|I was in Berlin yesterday.|I live in Berlin.`);
   add(22,'Vom Wochenende erzählen',
     ['Einfache vergangene Tätigkeiten beschreiben','Regelmäßige und häufige unregelmäßige Formen verwenden','Mit did Fragen stellen und verneinen'],
@@ -197,26 +197,26 @@ I didn't watch television.|Ich sah nicht fern.|Ich sehe nie fern.|Ich sah fern.
 What did you do yesterday?|Was hast du gestern gemacht?|Was machst du heute?|Wo warst du gestern?
 We ate fish and drank water.|Wir aßen Fisch und tranken Wasser.|Wir essen Fisch und trinken Wasser.|Wir aßen Fleisch und tranken Wasser.
 She called her brother.|Sie rief ihren Bruder an.|Ihr Bruder rief sie an.|Sie ruft gerade ihren Bruder an.`,
-    [topic('Past Simple: Aussagen','Regelmäßige Verben bekommen -ed: work → worked. Nach End-e nur -d: live → lived. Konsonant + y wird -ied: study → studied. Häufige unregelmäßige Formen musst du lernen: go → went, have → had, eat → ate, drink → drank, see → saw, buy → bought. In Aussagen ist die Past-Simple-Form für alle Personen gleich.',
+    [topic('Past Simple: Aussagen','Regelmäßige Verben bekommen -ed: work → worked. Nach End-e nur -d: live → lived. Konsonant + y wird -ied: study → studied. Nach einem Vokal bleibt y: stay → stayed. Im britischen Englisch heißt es travel → travelled. Häufige unregelmäßige Formen musst du lernen: go → went, have → had, eat → ate, drink → drank, see → saw, buy → bought. In Aussagen ist die Past-Simple-Form für alle Personen gleich.',
       `I worked. She worked.|Ich arbeitete. Sie arbeitete.
 We went to London.|Wir fuhren nach London.
 He bought a phone.|Er kaufte ein Telefon.`,
       `I ___ my parents yesterday.|visited|visit|visits|Ich besuchte gestern meine Eltern.
 She ___ on Saturday.|worked|work|works|Sie arbeitete am Samstag.
-We ___ to the beach.|went|go|goed|Wir fuhren zum Strand.
-He ___ breakfast at eight.|had|has|haved|Er frühstückte um acht.
-They ___ fish.|ate|eat|eated|Sie aßen Fisch.
-I ___ water.|drank|drink|drinked|Ich trank Wasser.
-She ___ a new phone.|bought|buy|buyed|Sie kaufte ein neues Telefon.
-We ___ our friends.|saw|see|seed|Wir sahen unsere Freunde.
-Ben ___ English yesterday.|studied|studyed|studies|Ben lernte gestern Englisch.
+We ___ to the beach.|went|go|goes|Wir fuhren zum Strand.
+He ___ breakfast at eight.|had|has|have|Er frühstückte um acht.
+They ___ fish.|ate|eat|eats|Sie aßen Fisch.
+I ___ water.|drank|drink|drinks|Ich trank Wasser.
+She ___ a new phone.|bought|buy|buys|Sie kaufte ein neues Telefon.
+We ___ our friends.|saw|see|sees|Wir sahen unsere Freunde.
+Ben ___ English yesterday.|studied|study|studies|Ben lernte gestern Englisch.
 Anna ___ her brother.|called|call|calls|Anna rief ihren Bruder an.
 Leo ___ dinner last night.|cooked|cook|cooks|Leo kochte gestern Abend Abendessen.
 Mia ___ television yesterday.|watched|watch|watches|Mia sah gestern fern.
-My parents ___ to London last week.|went|goed|go|Meine Eltern fuhren letzte Woche nach London.
-I ___ a sandwich yesterday.|ate|eated|eat|Ich aß gestern ein Sandwich.
-We ___ some milk.|bought|buyed|buy|Wir kauften etwas Milch.
-He ___ in Berlin last year.|lived|liveed|lives|Er wohnte letztes Jahr in Berlin.`),
+My parents ___ to London last week.|went|goes|go|Meine Eltern fuhren letzte Woche nach London.
+I ___ a sandwich yesterday.|ate|eats|eat|Ich aß gestern ein Sandwich.
+We ___ some milk.|bought|buys|buy|Wir kauften etwas Milch.
+He ___ in Berlin last year.|lived|live|lives|Er wohnte letztes Jahr in Berlin.`),
     topic('Did und didn’t + Grundform','Bei Fragen und Verneinungen zeigt did die Vergangenheit. Das Tätigkeitsverb steht deshalb in der Grundform: Did you go? / I didn’t go. Kein went oder -ed nach did. Kurze Antworten: Yes, I did. / No, I didn’t. Bei be bleibt es bei was/were ohne did.',
       `Did you work yesterday?|Hast du gestern gearbeitet?
 She didn't go to London.|Sie fuhr nicht nach London.
@@ -243,7 +243,7 @@ They didn't ___ dinner at home.|have|had|has|Sie aßen nicht zu Hause zu Abend.`
     'Last Saturday I {visited|visit: Vergangenheit} my parents. We {went|go: Vergangenheit} to the beach. My sister {had|have: Vergangenheit} breakfast at home. We {ate|eat: Vergangenheit} fish and {drank|drink: Vergangenheit} water. I did not {watch|nach did not} television. {Did|Frage Vergangenheit} you work? No, I {did not~didn’t~didn\'t|kurze verneinte Antwort}.',
     `Du fragst nach dem vergangenen Wochenende.|What did you do last weekend?|What do you do every weekend?|What are you doing this weekend?
 Du sagst, dass du gestern nicht gearbeitet hast.|I didn't work yesterday.|I don't work on Mondays.|I wasn't tired yesterday.
-Du erzählst vom Kauf eines Telefons.|I bought a phone.|I have a phone.|I buy phones.
+Du sagst, dass du ein Telefon gekauft hast.|I bought a phone.|I have a phone.|I buy phones.
 Du fragst, ob Anna gestern zu Hause war.|Was Anna at home yesterday?|Did Anna go home yesterday?|Is Anna at home today?`);
   add(23,'Wünsche & Verabredungen',
     ['Mit want to und would like to einen Wunsch ausdrücken','Mit let’s und can etwas vorschlagen','Einladungen annehmen oder ablehnen'],
@@ -323,7 +323,7 @@ Please send a confirmation.|Senden Sie bitte eine Bestätigung.|Senden Sie bitte
       `I'd like a room for two nights.|Ich hätte gern ein Zimmer für zwei Nächte.
 Can you confirm the price?|Können Sie den Preis bestätigen?
 Is there a bathroom?|Gibt es ein Badezimmer?`,
-      `I'd like ___ single room.|a|an|two|Ich hätte gern ein Einzelzimmer.
+      `I'd like ___ single room.|a|an|the|Ich hätte gern ein Einzelzimmer.
 I'd like ___ book a room.|to|for|at|Ich würde gern ein Zimmer buchen. Book = buchen.
 Can you ___ the time?|confirm|confirms|to confirm|Können Sie die Uhrzeit bestätigen?
 Have you ___ a reservation?|got|get|getting|Haben Sie eine Reservierung?
@@ -333,13 +333,13 @@ ___ there a bathroom near reception?|Is|Does|Are|Gibt es ein Badezimmer in der N
 Can you ___ the number?|repeat|repeats|to repeat|Können Sie die Nummer wiederholen?
 My arrival is ___ Friday.|on|in|at|Meine Ankunft ist am Freitag.
 The train leaves ___ ten.|at|on|in|Der Zug fährt um zehn ab.
-I'd like ___ double room.|a|an|two|Ich hätte gern ein Doppelzimmer.
+I'd like ___ double room.|a|an|the|Ich hätte gern ein Doppelzimmer.
 Can you ___ a confirmation?|send|sends|to send|Können Sie eine Bestätigung senden?
 Our reservation is ___ three nights.|for|on|at|Unsere Reservierung ist für drei Nächte.
 ___ there two single rooms?|Are|Is|Do|Gibt es zwei Einzelzimmer?
 My departure is ___ Monday.|on|in|at|Meine Abreise ist am Montag.
 I'd ___ to check the address.|like|likes|to like|Ich würde gern die Adresse prüfen.`),
-    topic('Bekanntes anwenden: heute und gestern','Prüfe vor der Antwort den Zeitpunkt und die Satzart. Gewohnheit: Present Simple. Gerade jetzt: be + -ing. Vergangenes be: was/were. Vergangene Tätigkeit: Past Simple; nach did wieder die Grundform. Höfliche Wünsche bleiben would like. Diese Seite fasst die bereits gelernten Unterschiede zusammen.',
+    topic('Bekanntes anwenden: heute und gestern','Prüfe vor der Antwort den Zeitpunkt und die Satzart. Gewohnheit: Present Simple. Gerade jetzt: be + -ing. Vergangenes be: was/were. Vergangene Tätigkeit: Past Simple; nach did wieder die Grundform. Höfliche Wünsche bleiben would like. Diese Seite fasst die bereits gelernten Unterschiede zusammen. Zusätzliche unregelmäßige Formen in den Antwortmöglichkeiten: take → took, send → sent. Nach didn’t und did verwendest du weiterhin take und send.',
       `I usually stay here.|Ich übernachte normalerweise hier.
 I am waiting now.|Ich warte gerade.
 I stayed here last week.|Ich habe letzte Woche hier übernachtet.`,
@@ -365,6 +365,6 @@ We usually ___ by train.|travel|are travelling|travelled|Wir reisen normalerweis
     'I would {like|höflicher Wunsch} a single room {for|für eine Dauer} two nights. My arrival is {on|am: Tag} Friday {at|um: Uhrzeit} six. {Is|Frage: be} breakfast included? Can you {send|senden, Grundform} a confirmation? Last week I {was|be, Vergangenheit: I} in London. I did not {have|nach did not} a reservation.',
     `Du möchtest zwei Nächte in einem Einzelzimmer bleiben.|I'd like a single room for two nights.|I'd like a double room for two nights.|I'd like a single room for three nights.
 Du fragst nach eingeschlossenem Frühstück.|Is breakfast included?|Is dinner included?|Is breakfast available?
-Du bittest um eine Bestätigung.|Please send a confirmation.|Please send the bill.|Please confirm my surname.
+Du bittest das Hotel, dir eine Reservierungsbestätigung zu senden.|Please send a confirmation.|Please send the bill.|Please confirm my surname.
 Du beschreibst ein zu kleines Zimmer in der Vergangenheit.|The room was too small.|The room is too small.|The room was too big.`);
 })();

@@ -12,20 +12,7 @@
   const spec=id=>specs[String(id)]||{goals:[],tasks:[]};
 
   function phraseTasks(lesson){
-    if(Number(lesson.id)!==1)return (lesson.quiz||[]).map(q=>{
-      if(q.context&&q.q.includes('___'))return {type:'gap',prompt:q.q,answer:q.o[q.a],context:q.context,audio:q.audio,explanation:q.explanation,tag:'Lektionsinhalt'};
-      return {type:'choice',q:q.q,o:shuffled(q.o),answer:q.o[q.a],audio:q.audio,explanation:q.explanation,tag:'Lektionsinhalt'};
-    });
-    const pairs=(lesson?.phrases||[]).filter(p=>p?.[0]&&p?.[1]);
-    const words=s=>new Set(norm(s).split(' ').filter(w=>w.length>2&&!['ich','und','ein','eine','das','der','die','mir','mich'].includes(w)));
-    return pairs.map(([target,native])=>{
-      const key=words(native);
-      const wrong=pairs.map(p=>p[1]).filter(candidate=>norm(candidate)!==norm(native))
-        .filter((candidate,i,all)=>all.findIndex(x=>norm(x)===norm(candidate))===i)
-        .map(candidate=>({candidate,similarity:[...words(candidate)].filter(w=>key.has(w)).length}))
-        .sort((a,b)=>b.similarity-a.similarity).slice(0,2).map(x=>x.candidate);
-      return {type:'choice',q:`Was bedeutet „${target}“?`,o:shuffled([native,...wrong]),answer:native,audio:target,tag:'Lektionsinhalt'};
-    });
+    return (lesson.quiz||[]).map(q=>({type:'choice',q:q.q,o:shuffled(q.o),answer:q.o[q.a],audio:q.audio,explanation:q.explanation,tag:'Lektionsinhalt'}));
   }
   function customTasks(lesson){
     return (spec(lesson.id).tasks||[]).map(t=>{
@@ -72,8 +59,8 @@
   function testCount(id){const l=byId(id);if(!l)return 0;return makeLessonTest(l).length;}
   function best(state,id){return Number(state?.lessonMasteryBest?.[id]||0);}
   function attempted(state,id){return !!(state?.lessonMasteryLast&&Object.prototype.hasOwnProperty.call(state.lessonMasteryLast,id));}
-  function passed(state,id){return attempted(state,id);}
-  function passedCount(state){return lessons.filter(l=>attempted(state,l.id)).length;}
+  function passed(state,id){return best(state,id)>=PASS;}
+  function passedCount(state){return lessons.filter(l=>passed(state,l.id)).length;}
   function completePassedLessons(state,courseLessons=lessons){
     if(!Array.isArray(state.doneLessons))state.doneLessons=[];
     let changed=false;
@@ -123,7 +110,7 @@
       });
       if(changed&&progress){progress.previousDrafts||=[];progress.previousDrafts.push(before);}
     }
-    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):3,review=window.A1ExerciseReview?.create();
+    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):4,review=window.A1ExerciseReview?.create();
     let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
     function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
@@ -174,7 +161,7 @@
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
-      const older=progress.session&&(progress.session.contentVersion||1)<3;
+      const older=progress.session&&(progress.session.contentVersion||1)<4;
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${older?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${b>=PASS?'is-completed':'en-action-current'}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button>${older?'<button class="secondary-btn" id="masteryNewCheck">Überarbeiteten Check neu starten</button><p class="muted">Der bisherige Entwurf wird aufbewahrt.</p>':''}</section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
       document.getElementById('masteryStart').onclick=()=>runTasks({reviewState:state,progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{

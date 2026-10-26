@@ -10,7 +10,7 @@
     ["I work on Wednesday. I don't work on Thursday. I study English on Friday.",'Arbeitstag|Wednesday|Thursday|Friday','Lerntag|Friday|Wednesday|Thursday'],
     ['These bags are red. Those shirts are blue. This phone is new. That chair is old.','Farbe der Taschen|red|blue|green','Zustand des Telefons|new|old|small'],
     ['There are three bedrooms. The kitchen is next to the living room. The keys are under the table.','Schlafzimmer|3|2|4','Ort der Schlüssel|under the table|on the table|under the bed'],
-    ['Appointment: Wednesday, 16 June, at quarter to three. Place: office.','Tag|Wednesday|Tuesday|Thursday','Uhrzeit|14:45|15:15|13:45'],
+    ['Appointment: Wednesday, at quarter to three. Month: June. Place: office.','Tag|Wednesday|Tuesday|Thursday','Uhrzeit|14:45|15:15|13:45'],
     ['I cook every day. I play tennis once a week. I never go to the cinema.','Tennis pro Woche|once|twice|every day','Kino: Häufigkeit|never|sometimes|often'],
     ["I can sing, but I can't dance. Can you help me with this bag? Please close the window.",'Fähigkeit|sing|dance|drive','Was soll geschlossen werden?|window|door|bag'],
     ["Shopping: four eggs, two kilos of apples, one bottle of milk. We don't need any bread.",'Eier|4|2|6','Nicht benötigt|bread|milk|apples'],

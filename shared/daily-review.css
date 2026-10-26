@@ -7,3 +7,18 @@ html.dark-mode .daily-review-card.card{background:linear-gradient(145deg,#193931
 @keyframes daily-review-glow{0%,100%{box-shadow:inset 0 1px 0 #ffffff38,0 0 9px #2bbfae35,0 5px 18px #0f766e26}50%{box-shadow:inset 0 1px 0 #ffffff50,0 0 21px #2bbfae65,0 6px 22px #0f766e40}}@keyframes daily-review-sheen{0%,54%{transform:translateX(-140%) skewX(-18deg);opacity:0}60%{opacity:.85}86%{transform:translateX(470%) skewX(-18deg);opacity:.85}100%{transform:translateX(470%) skewX(-18deg);opacity:0}}
 @media(hover:hover){.daily-review-primary:hover{filter:brightness(1.08)}.daily-review-errors:hover{background:#c4933620;border-color:#b99a60}}@media(prefers-reduced-motion:reduce){.daily-review-card.is-due .daily-review-primary{animation:none;box-shadow:inset 0 1px 0 #ffffff40,0 0 15px #2bbfae45}.daily-review-card.is-due .daily-review-primary::after{display:none;animation:none}}
 @media(max-width:420px){.daily-review-card.card{padding:18px}.daily-review-heading h2{font-size:20px}.daily-review-primary{font-size:16px;padding-left:16px}.daily-review-errors{font-size:13px}}
+.daily-review-card.is-complete{border:1px solid #7eaf90;background:linear-gradient(135deg,#e1f3e7,var(--panel) 80%);box-shadow:inset 0 1px 0 #fff,0 3px 15px #23633b0b}
+.daily-review-card.is-complete .daily-review-symbol{width:46px;height:46px;border-radius:50%;border-color:#2e8551;background:#2e8551;color:#fff}
+.daily-review-card.is-complete .daily-review-status{display:inline-flex;margin-top:6px;padding:3px 9px;border-radius:999px;background:#d3eadb;color:#23633b;font-weight:750}
+.daily-review-completed{margin:16px 0;padding:13px 15px;border:1px solid #bedac8;border-radius:13px;background:#ffffff80;color:#245b38}
+.daily-review-completed>strong{font-size:15px;line-height:1.4}
+.daily-review-completed>p{margin:5px 0 0;font-size:13px;line-height:1.5;color:#4d6957}
+.daily-review-card.is-complete .daily-review-primary{min-height:50px;background:#f4fbf6;color:#286641;border-color:#b3cfbd;box-shadow:none;font-size:15px;animation:none}
+.daily-review-card.is-complete .daily-review-arrow{background:#e3f1e8;border-color:#bfd7c8}
+html.dark-mode .daily-review-card.is-complete{background:linear-gradient(135deg,#183b29,#1b2933 80%);border-color:#4b825e;box-shadow:inset 0 1px 0 #a4e5b410}
+html.dark-mode .daily-review-card.is-complete .daily-review-symbol{color:#effff3;background:#2e744b;border-color:#70aa82}
+html.dark-mode .daily-review-card.is-complete .daily-review-status{background:#28553a;color:#b6ecc6}
+html.dark-mode .daily-review-completed{background:#203e2d;border-color:#39604a;color:#cff2db}
+html.dark-mode .daily-review-completed>p{color:#b2cdbb}
+html.dark-mode .daily-review-card.is-complete .daily-review-primary{background:#22392c;color:#c3ead0;border-color:#42654e}
+html.dark-mode .daily-review-card.is-complete .daily-review-arrow{background:#2d4b39;border-color:#4b6d56}

@@ -25,7 +25,7 @@ You are Tom.|Du bist Tom.|Er ist Tom.|Wir sind Tom und Anna.
 She is from Canada.|Sie kommt aus Kanada.|Er kommt aus Kanada.|Sie kommt aus Deutschland.
 We are Anna and Tom.|Wir sind Anna und Tom.|Sie sind Anna und Tom.|Ihr seid Anna und Tom.
 Goodbye!|Auf Wiedersehen!|Guten Abend!|Guten Morgen!`,
-    [topic('Personalpronomen','I steht immer groß. You bedeutet du, ihr oder Sie; die Situation zeigt, wer gemeint ist. He = er, she = sie (eine Person), it = es. We = wir, they = sie (mehrere Personen). Im Englischen braucht ein Aussagesatz normalerweise ein Subjekt.',
+    [topic('Personalpronomen','I steht immer groß. You bedeutet du, ihr oder Sie; die Situation zeigt, wer gemeint ist. He = er, she = sie (eine Person), it = es. We = wir, they = sie (mehrere Personen). Im Englischen braucht ein Aussagesatz normalerweise ein Subjekt. In My name is … bedeutet my name „mein Name“; die Besitzwörter lernst du in Lektion 4 genauer.',
       `I am Anna.|Ich bin Anna.
 She is Emma.|Sie ist Emma.
 They are Tom and Emma.|Sie sind Tom und Emma.`,
@@ -86,7 +86,7 @@ How are you?|Wie geht es dir?|Wie heißt du?|Wo bist du?
 I am fine, thank you.|Mir geht es gut, danke.|Mir geht es nicht gut, danke.|Ihr geht es gut, danke.
 Spell your name, please.|Buchstabiere bitte deinen Namen.|Wiederhole bitte deinen Namen.|Schreibe bitte deinen Namen.
 Repeat, please.|Wiederhole bitte.|Buchstabiere bitte.|Langsamer, bitte.`,
-    [topic('Fragen mit be','Bei Ja/Nein-Fragen steht am/is/are vor dem Subjekt: You are → Are you? Die kurze Antwort wiederholt be: Yes, I am. / No, I am not. Nach what und where folgt ebenfalls be vor dem Subjekt. What is your name? fragt nach dem Namen; Where are you from? nach der Herkunft.',
+    [topic('Fragen mit be','Bei Ja/Nein-Fragen steht am/is/are vor dem Subjekt: You are → Are you? Die kurze Antwort wiederholt be: Yes, I am. / No, I am not. Nach what und where folgt ebenfalls be vor dem Subjekt. What is your name? fragt nach dem Namen; Where are you from? nach der Herkunft. Your name = dein/Ihr Name, her name = ihr Name, his name = sein Name. Diese festen Wortgruppen helfen dir beim Nachfragen.',
       `Are you Anna?|Bist du Anna?
 Is he from Canada?|Kommt er aus Kanada?
 Where are you from?|Woher kommst du?`,
@@ -147,22 +147,22 @@ Two books.|Zwei Bücher.|Zwölf Bücher.|Zwei Taschen.
 Three children.|Drei Kinder.|Dreizehn Kinder.|Drei Personen.
 My number is twenty-one.|Meine Nummer ist einundzwanzig.|Meine Nummer ist zwölf.|Meine Nummer ist einunddreißig.
 How old are you?|Wie alt bist du?|Wie geht es dir?|Woher kommst du?`,
-    [topic('A, an und Alter mit be','A und an bedeuten ein/eine. Entscheidend ist der nächste Laut: a book, an apple, an umbrella. Vor einem gesprochenen Konsonanten steht a; vor einem gesprochenen Vokal an. Das Alter steht mit be: I am twenty, nicht I have twenty. One bis nine, ten bis nineteen und die Zehner werden getrennt geübt.',
+    [topic('A, an und Alter mit be','A und an bedeuten ein/eine. The bedeutet der/die/das und verweist auf etwas Bestimmtes. Wenn die deutsche Bedeutung ein/eine lautet, wählst du hier a oder an. Entscheidend ist der nächste Laut: a book, an apple, an umbrella. Vor einem gesprochenen Konsonanten steht a; vor einem gesprochenen Vokal an. Das Alter steht mit be: I am twenty, nicht I have twenty. One bis nine, ten bis nineteen und die Zehner werden getrennt geübt. This is … heißt „Das ist …“. Bei 21 bis 99 verbindet ein Bindestrich Zehner und Einer: twenty-one; one hundred bedeutet einhundert.',
       `a phone / an apple|ein Telefon / ein Apfel
 I am twenty-one years old.|Ich bin einundzwanzig Jahre alt.
 thirteen / thirty|dreizehn / dreißig`,
-      `This is ___ book.|a|an|two|Das ist ein Buch.
-This is ___ apple.|an|a|two|Das ist ein Apfel.
-This is ___ phone.|a|an|two|Das ist ein Telefon.
-This is ___ orange.|an|a|two|Das ist eine Orange.
-This is ___ bag.|a|an|two|Das ist eine Tasche.
-This is ___ umbrella.|an|a|two|Das ist ein Regenschirm.
+      `This is ___ book.|a|an|the|Das ist ein Buch.
+This is ___ apple.|an|a|the|Das ist ein Apfel.
+This is ___ phone.|a|an|the|Das ist ein Telefon.
+This is ___ orange.|an|a|the|Das ist eine Orange.
+This is ___ bag.|a|an|the|Das ist eine Tasche.
+This is ___ umbrella.|an|a|the|Das ist ein Regenschirm.
 I ___ twenty years old.|am|is|are|Ich bin zwanzig Jahre alt.
 She ___ thirty years old.|is|am|are|Sie ist dreißig Jahre alt.
 We ___ twenty-one.|are|am|is|Wir sind einundzwanzig.
 He is ___.|thirteen|thirty|three|Er ist dreizehn.
-This is ___ English book.|an|a|two|Das ist ein englisches Buch.
-This is ___ German phone.|a|an|two|Das ist ein deutsches Telefon.
+This is ___ English book.|an|a|the|Das ist ein englisches Buch.
+This is ___ German phone.|a|an|the|Das ist ein deutsches Telefon.
 Mia ___ forty.|is|are|am|Mia ist vierzig.
 Leo and Mia ___ thirty.|are|am|is|Leo und Mia sind dreißig.
 My number is ___.|twenty-two|twelve|thirty-two|Meine Nummer ist zweiundzwanzig.
@@ -176,17 +176,17 @@ Three ___.|phones|phone|phone’s|Drei Telefone.
 Four ___.|bags|bag|bag’s|Vier Taschen.
 Two ___.|apples|apple|apple’s|Zwei Äpfel.
 Three ___.|oranges|orange|orange’s|Drei Orangen.
-Two ___.|buses|bus|buss|Zwei Busse. Bus = Bus.
-Two ___.|cities|citys|city|Zwei Städte. City = Stadt.
-Three ___.|children|childs|child|Drei Kinder.
+Two ___.|buses|bus|bus’s|Zwei Busse. Bus = Bus.
+Two ___.|cities|city’s|city|Zwei Städte. City = Stadt.
+Three ___.|children|child’s|child|Drei Kinder.
 Four ___.|people|person’s|person|Vier Personen. Verwende die alltägliche unregelmäßige Mehrzahl.
-Two ___.|women|womans|woman|Zwei Frauen. Woman = Frau.
+Two ___.|women|woman’s|woman|Zwei Frauen. Woman = Frau.
 Five ___.|umbrellas|umbrella|umbrella’s|Fünf Regenschirme.
 Six ___.|books|book|book’s|Sechs Bücher.
 Seven ___.|phones|phone|phone’s|Sieben Telefone.
-Two ___.|men|mans|man|Zwei Männer. Man = Mann.
-Five ___.|children|childs|child|Fünf Kinder.
-Three ___.|cities|citys|city|Drei Städte.`)],
+Two ___.|men|man’s|man|Zwei Männer. Man = Mann.
+Five ___.|children|child’s|child|Fünf Kinder.
+Three ___.|cities|city’s|city|Drei Städte.`)],
     'Nenne deinen Namen und dein Alter. Beschreibe zwei Dinge in deiner Tasche mit Zahlen.',
     ['Nenne Name und Alter.','Nenne eine Sache in der Einzahl.','Nenne eine Sache in der Mehrzahl.'],
     'Hello! My name is Emma. I am thirty years old. This is a bag. One phone and two books are in my bag.',
@@ -208,7 +208,7 @@ This is our house.|Das ist unser Haus.|Das ist ihr Haus.|Das ist mein Haus.
 Their son is ten.|Ihr Sohn ist zehn.|Ihr Sohn ist zwölf.|Unsere Tochter ist zehn.
 My parents are in Berlin.|Meine Eltern sind in Berlin.|Deine Eltern sind in Berlin.|Meine Eltern kommen aus Berlin.
 Our family is here.|Unsere Familie ist hier.|Ihre Familie ist hier.|Unsere Familie ist dort.`,
-    [topic('Have und has','Have bedeutet haben. I, you, we und they verwenden have. He, she und it verwenden has. Auch ein einzelner Name verwendet has: Anna has a cat. Verwechsle has nicht mit is: She has a daughter, aber She is a mother.',
+    [topic('Have und has','Have bedeutet haben. I, you, we und they verwenden have. He, she und it verwenden has. Auch ein einzelner Name verwendet has: Anna has a cat. Verwechsle has nicht mit is: She has a daughter, aber She is a mother. This is … heißt „Das ist …“, these are … heißt „Das sind …“. The bezeichnet etwas Bestimmtes: the cat = die Katze.',
       `I have a brother.|Ich habe einen Bruder.
 She has a sister.|Sie hat eine Schwester.
 We have two children.|Wir haben zwei Kinder.`,
@@ -228,7 +228,7 @@ I ___ a car.|have|has|am|Ich habe ein Auto.
 Her brother ___ a cat.|has|have|is|Ihr Bruder hat eine Katze.
 His sisters ___ a phone.|have|has|are|Seine Schwestern haben ein Telefon.
 You ___ three books.|have|has|are|Ihr habt drei Bücher.`),
-    topic('Possessivbegleiter','My, your, his, her, its, our und their stehen vor dem Nomen. Sie richten sich nach dem Besitzer: Ben → his sister, Emma → her brother. Die Form ändert sich nicht mit der Mehrzahl: my book / my books. Its zeigt Besitz bei einer Sache oder einem Tier; it’s bedeutet it is.',
+    topic('Possessivbegleiter','My, your, his, her, its, our und their stehen vor dem Nomen. Sie richten sich nach dem Besitzer: Ben → his sister, Emma → her brother. Die Form ändert sich nicht mit der Mehrzahl: my book / my books. Me heißt mich/mir und steht nicht vor einem Nomen; yours steht allein für deinen Besitz: This book is yours = Dieses Buch gehört dir. Its zeigt Besitz bei einer Sache oder einem Tier; it’s bedeutet it is.',
       `Ben has a sister. His sister is Emma.|Ben hat eine Schwester. Seine Schwester ist Emma.
 Emma has a brother. Her brother is Ben.|Emma hat einen Bruder. Ihr Bruder ist Ben.
 We have a dog. Our dog is here.|Wir haben einen Hund. Unser Hund ist hier.`,
@@ -253,7 +253,7 @@ This is ___ brother.|my|I|me|Das ist mein Bruder.`)],
     'This is my family. My sister is Emma. She is twenty. My brother is Ben. He has a dog. His dog is in our house.',
     'This is {my|mein} family. I {have|Form von have} a sister. {Her|ihr, Besitzerin weiblich} name is Anna. She {has|Form von have} a cat. My brother is Ben. {His|sein} dog is here. We {have|Form von have} two children. {Our|unser} son is ten. Anna and Ben have a house. {Their|ihr, mehrere Besitzer} house is in Berlin.',
     `Dein Bruder hat eine Tochter.|My brother has a daughter.|My brother has a son.|My sister has a daughter.
-Du zeigst das Auto deiner Eltern.|This is their car.|This is our car.|This is her car.
+Das Auto gehört deinen Eltern. Du sagst: Das ist ihr Auto.|This is their car.|This is our car.|This is her car.
 Emma besitzt einen Hund. Du sprichst über ihren Hund.|Her dog is here.|His dog is here.|Their dog is here.
 Du und Ben habt eine Katze.|We have a cat.|They have a cat.|We have a dog.`);
   add(5,'Alltag: wohnen, arbeiten, lernen',
@@ -296,18 +296,18 @@ I am here because I work here.|Ich bin hier, weil ich hier arbeite.`,
       `I work ___ I study.|and|but|because|Ich arbeite und ich lerne.
 I like coffee, ___ I drink tea.|but|and|because|Ich mag Kaffee, aber ich trinke Tee.
 I am here ___ I work here.|because|but|and|Ich bin hier, weil ich hier arbeite.
-I am ___ teacher.|a|an|two|Ich bin Lehrer.
-She is ___ English teacher.|an|a|two|Sie ist Englischlehrerin.
+I am ___ teacher.|a|an|the|Ich bin Lehrer.
+She is ___ English teacher.|an|a|the|Sie ist Englischlehrerin.
 We speak German ___ English.|and|because|but|Wir sprechen Deutsch und Englisch.
 They live here, ___ they work in Berlin.|but|because|and|Sie wohnen hier, aber sie arbeiten in Berlin.
 I drink water ___ I like water.|because|but|and|Ich trinke Wasser, weil ich Wasser mag.
-He is ___ student.|a|an|two|Er ist Student.
+He is ___ student.|a|an|the|Er ist Student.
 I study English ___ I work in London.|because|but|and|Ich lerne Englisch, weil ich in London arbeite.
 You work ___ you study.|and|because|but|Du arbeitest und du lernst.
 We like tea, ___ we drink water.|but|and|because|Wir mögen Tee, aber wir trinken Wasser.
 They study English ___ they live in Canada.|because|and|but|Sie lernen Englisch, weil sie in Kanada wohnen.
-Ben is ___ teacher.|a|an|two|Ben ist Lehrer.
-Emma is ___ English student.|an|a|two|Emma ist Englischstudentin.
+Ben is ___ teacher.|a|an|the|Ben ist Lehrer.
+Emma is ___ English student.|an|a|the|Emma ist Englischstudentin.
 I read ___ I like books.|because|and|but|Ich lese, weil ich Bücher mag.`)],
     'Beschreibe deinen Alltag: Wohnort, Arbeit oder Lernen und ein Getränk, das du magst.',
     ['Nenne Wohnort und Tätigkeit.','Nenne ein Getränk.','Verbinde zwei Aussagen mit and, but oder because.'],
@@ -336,21 +336,21 @@ I watch television. He watches television.|Ich sehe fern. Er sieht fern.
 I study English. Anna studies English.|Ich lerne Englisch. Anna lernt Englisch.`,
       `She ___ in an office.|works|work|working|Sie arbeitet in einem Büro.
 He ___ in London.|lives|live|living|Er wohnt in London.
-Emma ___ English.|studies|studys|study|Emma lernt Englisch.
-Ben ___ television.|watches|watchs|watch|Ben sieht fern.
-She ___ the car.|washes|washs|wash|Sie wäscht das Auto.
-He ___ to work.|goes|gos|go|Er geht zur Arbeit.
-Anna ___ English.|teaches|teachs|teach|Anna unterrichtet Englisch.
+Emma ___ English.|studies|studying|study|Emma lernt Englisch.
+Ben ___ television.|watches|watching|watch|Ben sieht fern.
+She ___ the car.|washes|washing|wash|Sie wäscht das Auto.
+He ___ to work.|goes|going|go|Er geht zur Arbeit.
+Anna ___ English.|teaches|teaching|teach|Anna unterrichtet Englisch.
 Tom ___ early.|starts|start|starting|Tom fängt früh an.
-She ___ late.|finishes|finishs|finish|Sie hört spät auf.
-He ___ his work.|does|dos|do|Er macht seine Arbeit.
-My sister ___ German.|studies|studys|study|Meine Schwester lernt Deutsch.
+She ___ late.|finishes|finishing|finish|Sie hört spät auf.
+He ___ his work.|does|doing|do|Er macht seine Arbeit.
+My sister ___ German.|studies|studying|study|Meine Schwester lernt Deutsch.
 Her father ___ in a shop.|works|work|working|Ihr Vater arbeitet in einem Laden.
-Our son ___ television.|watches|watchs|watch|Unser Sohn sieht fern.
-Their mother ___ English.|teaches|teachs|teach|Ihre Mutter unterrichtet Englisch.
-My brother ___ the car.|washes|washs|wash|Mein Bruder wäscht das Auto.
-Mia ___ to school.|goes|gos|go|Mia geht zur Schule.`),
-    topic('Be, have und andere Verben','Be beschreibt Identität und Zustand: She is a teacher. Have beschreibt Besitz, aber auch feste Wendungen wie have breakfast = frühstücken. Tätigkeiten verwenden ihr eigenes Verb: She teaches English. In normalen Present-Simple-Aussagen steht kein zusätzliches is vor works, lives oder studies.',
+Our son ___ television.|watches|watching|watch|Unser Sohn sieht fern.
+Their mother ___ English.|teaches|teaching|teach|Ihre Mutter unterrichtet Englisch.
+My brother ___ the car.|washes|washing|wash|Mein Bruder wäscht das Auto.
+Mia ___ to school.|goes|going|go|Mia geht zur Schule.`),
+    topic('Be, have und andere Verben','Be beschreibt Identität und Zustand: She is a teacher. Have beschreibt Besitz, aber auch feste Wendungen wie have breakfast = frühstücken. Tätigkeiten verwenden ihr eigenes Verb: She teaches English. In normalen Present-Simple-Aussagen steht kein zusätzliches is vor works, lives oder studies. Feste Wendungen: go to work = zur Arbeit gehen, by bus = mit dem Bus, in the evening = am Abend.',
       `She is a teacher.|Sie ist Lehrerin.
 She has a job.|Sie hat eine Arbeit.
 She teaches English.|Sie unterrichtet Englisch.`,
@@ -374,7 +374,7 @@ My sister ___ dinner early.|has|is|goes|Meine Schwester isst früh zu Abend.`)],
     ['Stelle die Person vor.','Beschreibe Tätigkeit und Ort.','Nenne eine weitere Gewohnheit.'],
     'My sister is Emma. She is a teacher. She teaches English in London. She starts early and has breakfast at home. She watches television in the evening.',
     'My brother {is|Form von be} Ben. He {has|Form von have} a job in London. He {works|arbeiten: he} in a shop. He {goes|gehen: he} to work by bus. He {has|have breakfast} breakfast at home. My sister {studies|lernen: she} English. She {watches|ansehen: she} television in the evening. She {finishes|beenden: she} work late.',
-    `Du beschreibst Annas Tätigkeit als Lehrerin.|She teaches English.|She studies English.|She speaks English at home.
+    `Anna unterrichtet Englisch. Du beschreibst ihre Tätigkeit.|She teaches English.|She studies English.|She speaks English at home.
 Du sagst, dass Ben spät Feierabend hat.|He finishes late.|He starts late.|He finishes early.
 Du beschreibst Frühstück zu Hause.|She has breakfast at home.|She has dinner at home.|She works at home.
 Du sagst, dass dein Bruder in Kanada wohnt.|My brother lives in Canada.|My brother is from Canada.|My brother works in Canada.`);

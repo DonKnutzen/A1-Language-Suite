@@ -3,12 +3,13 @@
   'use strict';
   const lessons=window.EN_A1_AUTHORING.lessons;
   const specs={},hard={},comprehension={},vocabulary=[],foundations={en:{}};
+  const fullForms={"don't":'do not',"doesn't":'does not',"isn't":'is not',"aren't":'are not',"can't":'cannot',cannot:"can't","wouldn't":'would not',"mustn't":'must not',"hasn't":'has not',"haven't":'have not',"wasn't":'was not',"weren't":'were not',"didn't":'did not'};
   function rowTask(row,lessonId,topicIndex,index,rule){
     const [prompt,answer,b,c,meaning]=row;
     const audio=prompt.replace('___',answer);
-    return {type:'choice',kind:'form',q:'Ergänze: '+prompt,answer,o:[answer,b,c],a:0,context:meaning,meaning,
+    return {type:'choice',kind:'form',q:'Ergänze: '+prompt,answer,o:[answer,b,c],a:0,context:meaning,meaning,accept:fullForms[answer]?[fullForms[answer]]:[],
       audio,answerLang:'en',family:`L${lessonId}-t${topicIndex}`,checkKey:`en-${lessonId}-${topicIndex}-${index}`,
-      explanation:`${audio} = ${meaning} ${rule.split(/(?<=[.!?])\s/)[0]}`};
+      explanation:`${audio} = ${meaning} ${window.EN_A1_FEEDBACK[lessonId][topicIndex]}`};
   }
   for(const l of lessons){
     l.quiz=l.phraseRows.map(([target,meaning,b,c])=>({q:`Was bedeutet „${target}“?`,o:[meaning,b,c],a:0,audio:target,explanation:meaning}));
@@ -27,7 +28,7 @@
     });
     const scenes=window.EN_A1_LISTENING[l.id];
     comprehension[l.id]={title:l.title,...scenes[0]};
-    hard[l.id]={version:2,minutes:l.id<4?[15,25]:[20,30],text,gaps,
+    hard[l.id]={version:3,minutes:l.id<4?[15,25]:[20,30],text,gaps,
       listening:scenes.slice(1).map(s=>({turns:s.turns,text:s.turns.map(t=>t.text).join(' '),questions:s.fields.map((f,i)=>({q:f.label,answers:[f.answer,...f.accept],...(i===3?{options:f.options}:{}),...(f.format?{format:f.format}:{}),strictAccents:true}))})),
       writing:{situation:l.transfer.speaking,points:l.points,model:l.model,minWords:l.id<4?15:25,targetWords:l.id<4?20:35}};
     foundations.en[l.id]={words:l.vocabulary};
