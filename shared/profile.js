@@ -887,8 +887,7 @@ applyTheme();
       if(current && !force){
         const cloudMode = cloudConfigured && current.mode === 'cloud';
         ov.innerHTML = `<div class="profile-modal">
-          ${languageSelector(lang)}
-          ${window.A1TextSize?.selector(lang)||''}
+
           <h2>${tr('profile',lang)}</h2>
           <p>${tr('signedInAs',lang)} <strong>${escapeHtml(current.username)}</strong>.</p>
           <div class="profile-note">${cloudMode ? tr('cloudActive',lang) : tr('localActive',lang)}</div>
@@ -935,7 +934,7 @@ applyTheme();
 
       const R=recoveryText(lang);
       ov.innerHTML = `<div class="profile-modal">
-        ${languageSelector(lang)}
+        ${!META.course?languageSelector(lang):''}
           ${window.A1TextSize?.selector(lang)||''}
         <h2>${tr('learningProfile',lang)}</h2>
         <p>${tr('intro',lang)}</p>
@@ -1016,16 +1015,17 @@ applyTheme();
 
   function injectThemeButton(){
     const target=document.querySelector('.header-actions');
-    if(!target||target.querySelector('.a1-settings-button'))return;
+    if(!META.course||!target||target.querySelector('.a1-settings-button'))return;
     const button=document.createElement('button');
     button.type='button';button.className='switch-btn a1-settings-button';
-    button.innerHTML='<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.86 1.86-.06-.06A1.7 1.7 0 0 0 16 18.4a1.7 1.7 0 0 0-1 1.55V21h-2.6v-.1a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.88.34l-.06.06-1.86-1.86.06-.06A1.7 1.7 0 0 0 8 15.95a1.7 1.7 0 0 0-1.55-1H6v-2.6h.45a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.88L7.6 9.4l1.86-1.86.06.06A1.7 1.7 0 0 0 11.4 8a1.7 1.7 0 0 0 1-1.55V6h2.6v.45a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.06-.06L19.8 9.4l-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.55 1H21v2.6h-.05A1.7 1.7 0 0 0 19.4 15Z"/></svg>';
+    button.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>';
     button.setAttribute('aria-label','Einstellungen');button.setAttribute('aria-expanded','false');
     const panel=document.createElement('section');panel.className='a1-settings-panel';panel.hidden=true;
     panel.setAttribute('aria-label','Einstellungen');
     const style=document.createElement('style');style.textContent=`
-      .a1-settings-button{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;width:42px;height:42px;padding:8px;flex:none}
-      .a1-settings-button svg{display:block;width:21px;height:21px}
+      .header-actions>.a1-settings-button{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:32px;width:32px;height:32px;padding:0;flex:0 0 32px;border-radius:10px;background:var(--panel,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#cbd5e1);box-shadow:none}
+      .topbar .header-actions>.profile-chip{height:32px;min-height:32px;border-radius:10px;background:var(--panel,#fff)}
+      .a1-settings-button svg{display:block;width:20px;height:20px}
       .a1-settings-panel{position:absolute;right:0;top:calc(100% + 6px);width:min(340px,calc(100vw - 24px));max-height:75vh;overflow:auto;z-index:110;background:var(--panel,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#cbd5e1);border-radius:16px;padding:16px;box-shadow:0 12px 35px #0005}
       .a1-settings-panel[hidden]{display:none!important}
       .a1-settings-panel h2{font-size:18px;margin:0 0 12px}
@@ -1037,7 +1037,7 @@ applyTheme();
       .a1-settings-panel .a1-settings-audio{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
       .a1-settings-panel .a1-text-size{margin:12px 0}
       .a1-settings-panel .a1-settings-audio .switch-btn{position:static!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:42px;min-width:44px}
-      .a1-settings-panel #audioToggle{width:auto!important;padding:8px 12px!important;white-space:nowrap}
+      .a1-settings-panel #audioToggle{display:inline-flex!important;width:auto!important;padding:8px 12px!important;white-space:nowrap}
       .a1-settings-panel #voiceSettings{width:100%!important;justify-content:flex-start!important;gap:10px;padding:9px 12px!important}
       .a1-settings-panel #voiceSettings::after{content:attr(data-settings-label);font-size:14px;font-weight:650}
       .a1-settings-panel .a1-settings-audio{display:grid;grid-template-columns:1fr;align-items:stretch}
@@ -1058,19 +1058,18 @@ applyTheme();
       const dark=document.documentElement.classList.contains('dark-mode');
       // Preserve existing audio nodes and their click handlers before replacing menu content.
       for(const id of ['audioToggle','voiceSettings']){const el=document.getElementById(id);if(el)audioHome.append(el);}
-      panel.innerHTML=`<h2>${names[0]}</h2><span class="a1-settings-label">${names[1]}</span><div class="a1-settings-choices languages" data-setting="language"></div><span class="a1-settings-label">${names[2]}</span><div class="a1-settings-choices" data-setting="theme"></div><div class="a1-settings-text"></div><span class="a1-settings-label">${names[5]}</span><div class="a1-settings-audio"></div>`;
+      panel.innerHTML=`<h2>${names[0]}</h2><span class="a1-settings-label">${names[2]}</span><div class="a1-settings-choices" data-setting="theme"></div><div class="a1-settings-text"></div><span class="a1-settings-label">${names[5]}</span><div class="a1-settings-audio"></div>`;
       const choices=(container,options,current,change)=>{
         for(const [value,label] of options){
           const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-pressed',String(value===current));b.onclick=()=>{change(value);container.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));};container.append(b);
         }
       };
-      choices(panel.querySelector('[data-setting="language"]'),[['de','Deutsch'],['fr','Français'],['en','English'],['tr','Türkçe']],lang,value=>setUiLang(value));
       choices(panel.querySelector('[data-setting="theme"]'),[['dark',names[3]],['light',names[4]]],dark?'dark':'light',value=>{localStorage.setItem(THEME_KEY,value);applyTheme();});
       const size=panel.querySelector('.a1-settings-text');size.innerHTML=window.A1TextSize?.selector(lang)||'';window.A1TextSize?.wire(size);
       moveAudio();
     };
     button.onclick=()=>{if(!panel.hidden){close();return;}render();panel.hidden=false;button.setAttribute('aria-expanded','true');};
-    document.addEventListener('pointerdown',e=>{if(!panel.hidden&&!panel.contains(e.target)&&e.target!==button)close();});
+    document.addEventListener('pointerdown',e=>{if(!panel.hidden&&!panel.contains(e.target)&&!button.contains(e.target))close();});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){close();button.focus();}});
     // Voice controls mount asynchronously. Watch only direct header additions; moving
     // them into the panel must not recursively trigger the observer.
