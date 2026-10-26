@@ -18,7 +18,7 @@ function environment(state={doneLessons:[],lessonWork:{},lessonQuizBest:{},lesso
 test('all 24 German hard modes have valid gaps, explicit voice roles, complete models and independent snapshots',()=>{
  const e=environment();assert.equal(Object.keys(e.w.DE_A1_HARD_CONTENT).length,24);
  for(let id=1;id<=24;id++){
-  const d=e.w.DE_A1_HARD_CONTENT[id];assert.equal(d.version,[7,8,13,18,21].includes(id)?3:2);assert(d.gaps.length>=8);assert.equal((d.text.match(/\{\{\d+\}\}/g)||[]).length,d.gaps.length);assert.equal(d.listening.length,2);assert.equal(d.writing.points.length,3);assert(e.w.DE_A1_HARD_MODE.words(d.writing.model)>=d.writing.minWords,`model L${id}`);
+  const d=e.w.DE_A1_HARD_CONTENT[id];assert.equal(d.version,4);assert(d.gaps.length>=8);assert.equal((d.text.match(/\{\{\d+\}\}/g)||[]).length,d.gaps.length);assert.equal(d.listening.length,2);assert.equal(d.writing.points.length,3);assert(e.w.DE_A1_HARD_MODE.words(d.writing.model)>=d.writing.minWords,`model L${id}`);
   for(const [i,g]of d.gaps.entries()){assert(d.text.includes('{{'+i+'}}'));assert(g.answers.every(Boolean));assert(g.hint);assert(e.w.DE_A1_HARD_MODE.matches(g.answers[0],g.answers,g));}
   for(const b of d.listening){assert(b.turns.length>0);assert(b.questions.length>=3);assert(b.turns.every(t=>['male','female'].includes(t.gender)));for(const q of b.questions){assert(q.answers.length);if(q.options)assert.equal(q.options.filter(o=>q.answers.includes(o)).length,1);assert(e.w.DE_A1_HARD_MODE.matches(q.answers[0],q.answers,q));}}
  }e.dom.window.close();

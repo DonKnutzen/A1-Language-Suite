@@ -5647,3 +5647,123 @@ window.DE_A1_HARD_VERSIONS={2:{}};
   }
 })();
 window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turns};
+
+// Listening tests comprehension, not spelling. Each pair was written for the
+// corresponding recording: nearby times/numbers, competing details or vocabulary
+// from the same topic. Never derive distractors from an unrelated answer pool.
+(() => {
+  const alternatives={
+    1:[
+      [['Martin','Paul'],['Frankreich','Deutschland'],['Bonn','Bremen'],['Er spricht nur Deutsch.','Er spricht nur Französisch.']],
+      [['Lea','Lena'],['Hamburg','Hannover'],['Fußball','Basketball']]
+    ],
+    2:[
+      [['Miller','Möller'],['Paula','Peter'],['Sie möchte den Familiennamen noch einmal hören.','Sie möchte den Vornamen buchstabieren.']],
+      [['Anne-Lena','Anna-Lina'],['Punkt','Umlaut'],['Wagner','Werner']]
+    ],
+    3:[
+      [['13','33'],['10151','11015'],['030 21 43 56','030 21 34 65'],['Berlin','Bremen']],
+      [['12','22'],['53101','53117'],['0228 45 76 89','0228 45 67 98']]
+    ],
+    4:[
+      [['Montag','Donnerstag'],['16:45','14:15'],['März','Mai']],
+      [['Donnerstag','Sonntag'],['17:30','16:15'],['Juni','August']]
+    ],
+    5:[
+      [['Paul','Tobias'],['Berlin','Bremen'],['1','3']],
+      [['Wagner','Werner'],['ledig','geschieden'],['Bonn','Bremen']]
+    ],
+    6:[
+      [['einen Salat','einen Kuchen'],['Zucker','Milch und Zucker'],['13','29']],
+      [['Milch','Milch und Zucker'],['einen Salat','einen Kuchen'],['19','23']]
+    ],
+    7:[
+      [['eine Hose','ein T-Shirt'],['30','19'],['S','L']],
+      [['zu kurz','zu teuer'],['eine Hose','eine Jacke'],['19','30']]
+    ],
+    8:[
+      [['3','4'],['650','660'],['Montag','Donnerstag'],['20','21']],
+      [['eine Wohnung','ein Haus'],['Küche','Bad'],['10:00','11:30']]
+    ],
+    9:[
+      [['links','geradeaus'],['3','18'],['10:45','10:30']],
+      [['13','8'],['rechts','geradeaus'],['Schule','Krankenhaus']]
+    ],
+    10:[
+      [['morgen','am Montag'],['08:00','09:30'],['im Supermarkt','in der Schule']],
+      [['im Büro','in der Schule'],['heute','am Freitag'],['09:00','08:30']]
+    ],
+    11:[
+      [['Montag','Mittwoch'],['11:00','19:00'],['ein Buch','die Hausaufgaben']],
+      [['am Vormittag','am Abend'],['Sie liest ein Buch.','Sie sucht ihr Wörterbuch.'],['ein Buch','die Hausaufgaben']]
+    ],
+    12:[
+      [['Fußball','Volleyball'],['Samstag','Freitag'],['10:00','10:30']],
+      [['Basketball','Fußball'],['Freitag','Sonntag'],['Saft','Milch']]
+    ],
+    13:[
+      [['Einzelzimmer','Familienzimmer'],['1','3'],['18','88']],
+      [['07:45','08:15'],['08:00','08:15'],['Ja, das Zimmer ist mit Frühstück.','Das Zimmer ist nur am Freitag mit Frühstück.']]
+    ],
+    14:[
+      [['Husten','Halsschmerzen'],['heute','übermorgen'],['09:00','16:00']],
+      [['Fieber und Halsschmerzen','Husten und Kopfschmerzen'],['morgen','übermorgen'],['08:00','10:00']]
+    ],
+    15:[
+      [['Freitag','Sonntag'],['17:00','19:00'],['einen Salat','Wasser']],
+      [['Freitag','Sonntag'],['Samstag','Montag'],['Saft','Kaffee']]
+    ],
+    16:[
+      [['Fotografieren ist erlaubt.','Fotografieren ist nur im Café erlaubt.'],['am Eingang','vor dem Museum'],['18:00','16:00']],
+      [['Ja, heute ist es geöffnet.','Heute öffnet es erst um neun Uhr.'],['08:00','18:00'],['hinter dem Haus','auf dem Parkplatz']]
+    ],
+    17:[
+      [['das Buch','das Glas'],['den Stift','das Glas'],['Der Mann braucht es noch.','Die Frau hat schon ein Glas.']],
+      [['die Tasche','der Stift'],['ein Buch','eine Tasche'],['das Buch','den Stift']]
+    ],
+    18:[
+      [['den Text hören','die Antwort ankreuzen'],['die richtige Frage','das richtige Wort'],['den Text schreiben','den Text hören']],
+      [['die Antworten','die Nachricht'],['einen langen Text','eine Frage'],['die Antwort ankreuzen','den Text prüfen']]
+    ],
+    19:[
+      [['Kopfschmerzen','die Beine'],['Bauch','die Beine'],['14:00','17:00']],
+      [['Kopf','Bauch'],['die Arztpraxis','das Krankenhaus'],['Tee','Saft']]
+    ],
+    20:[
+      [['Es ist warm und windig.','Es ist kalt und sonnig.'],['eine Jacke','einen Pullover'],['kalt und windig','kalt und sonnig']],
+      [['einen Mantel','ein T-Shirt'],['zu groß','zu teuer'],['13','33']]
+    ],
+    21:[
+      [['Kino','Theater'],['18:30','19:30'],['im Bahnhof','vor dem Kino']],
+      [['Kino','Theater'],['18:00','20:30'],['1','3']]
+    ],
+    22:[
+      [['heute','übermorgen'],['09:00','18:00'],['die Telefonnummer','das Foto']],
+      [['Montag','Donnerstag'],['030 45 76 89','030 45 67 98'],['die Telefonnummer','das Geburtsdatum']]
+    ],
+    23:[
+      [['Deutschland','Frankreich'],['3','5'],['eine Fahrkarte','eine Briefmarke']],
+      [['der Familienname','die Adresse'],['Dienstag','Donnerstag'],['10:00','11:30']]
+    ],
+    24:[
+      [['Frankreich','Deutschland'],['Berlin','Bremen'],['18:00','19:30'],['im Bahnhof','vor dem Kino']],
+      [['Freitag','Samstag'],['einen Kuchen','Wasser'],['17:00','19:00']]
+    ]
+  };
+  const content=window.DE_A1_HARD_CONTENT,versions=window.DE_A1_HARD_VERSIONS;
+  for(const [id,data]of Object.entries(content)){
+    (versions[data.version]||={})[id]||=JSON.parse(JSON.stringify(data));
+    data.version=4;data.compatibleVersions=[];
+    data.listening.forEach((block,b)=>block.questions.forEach((q,i)=>{
+      q.options=[q.answers[0],...alternatives[id][b][i]];
+    }));
+  }
+  const photoRule=content[16].listening[0].questions[0];
+  photoRule.q='Quelle règle concernant les photos est annoncée ?';
+  photoRule.answers=['Fotografieren ist verboten.'];
+  photoRule.options[0]=photoRule.answers[0];
+  // The answer is a count of siblings, not an amount of money.
+  content[5].listening[0].questions[2].format='number';
+  // The recording describes today, without specifying the morning.
+  content[20].listening[0].questions[0].q='Quel temps fait-il aujourd’hui avant la pluie de l’après-midi ?';
+})();

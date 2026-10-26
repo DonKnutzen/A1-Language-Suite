@@ -54,7 +54,7 @@ for(const course of ['francais','deutsch']){
   f.dom.window.close();
  });
  test(course+': HTML and offline cache use matching clarity assets',()=>{
-  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=supplement-167','lesson-flow.js?v=course-audit-165','../shared/lesson-ui.css?v=vocabulary-audio-158','../shared/vocabulary-trainer.js?v=didactic-161'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert(worker.includes('live-supplement-v167'));
+  const index=read(course+'/index.html'),worker=read(course+'/service-worker.js');for(const asset of ['../shared/lesson-foundations.js?v=supplement-167','lesson-flow.js?v=course-audit-165','../shared/lesson-ui.css?v=vocabulary-audio-158','../shared/vocabulary-trainer.js?v=didactic-161'])assert(index.includes(asset)&&worker.includes(asset));assert(index.indexOf('lesson-foundations.js')<index.indexOf('lesson-flow.js'));assert.match(worker,/const CACHE="(?:francais|deutsch)-a1-live-[a-z-]+-v\d+";/);
  });
 }
 test('French L9 explains the purpose and actual transformation of the imperative without a vocabulary dump',()=>{
@@ -84,7 +84,7 @@ test('emphasised French imperative prose switches languages, and moved examples 
 test('simplified German audio and writing avoid untaught past tense, preserve facts and archive previous versions',()=>{
  const dom=new JSDOM('',{runScripts:'outside-only'}),w=dom.window;w.eval(read('deutsch/hard-mode-content.js'));
  for(const id of [7,8,13,18,21]){
-  const current=w.DE_A1_HARD_CONTENT[id],old=w.DE_A1_HARD_VERSIONS[2][id];assert.equal(current.version,3);assert.equal(old.version,2);assert(current.compatibleVersions.includes(2));
+  const current=w.DE_A1_HARD_VERSIONS[3][id],old=w.DE_A1_HARD_VERSIONS[2][id];assert.equal(current.version,3);assert.equal(old.version,2);assert(current.compatibleVersions.includes(2));
   assert.deepEqual(current.gaps,old.gaps);assert.deepEqual(current.listening.map(b=>b.questions),old.listening.map(b=>b.questions));
   assert.notEqual(JSON.stringify(current.listening),JSON.stringify(old.listening));
   for(const block of current.listening){assert.equal(block.text.replace(/^A: |\n[A-Z]: /g,' ').trim(),block.turns.map(t=>t.text).join(' '));assert(!/\b(?:gefunden|reserviert|gekauft)\b/.test(block.text));}
@@ -100,7 +100,7 @@ test('changed German recordings migrate running drafts, but submitted work and p
   w.DE_A1_HARD_MODE.render({lesson:f.lessons[6],view,state,save(){},onBack(){}});
   assert.equal(progress.bestByVersion[2],95);assert.equal(progress.bestObjective,95);assert.equal(progress.passedVersion,2);assert.equal(state.lessonMasteryBest[7],88);
   if(phase==='running'){
-   assert.equal(progress.attempt.version,3);assert.equal(JSON.stringify(progress.history[0]),snapshot);assert.deepEqual([...progress.attempt.plays],[1,0]);assert.equal(progress.attempt.text,original.writing.model);assert.equal(progress.contentVersions[2].version,2);
+   assert.equal(progress.attempt.version,4);assert.equal(JSON.stringify(progress.history[0]),snapshot);assert.deepEqual([...progress.attempt.plays],[0,0]);assert.equal(progress.attempt.text,original.writing.model);assert.equal(progress.contentVersions[2].version,2);
   }else{
    assert.equal(progress.attempt.version,2);assert.equal(progress.attempt.text,original.writing.model);assert(view.querySelector('#hardWriting').readOnly);assert(view.textContent.includes('gesehen'));
   }

@@ -1,29 +1,45 @@
-/* Loaded only by the two A1 courses. Never infer gender from a speaker letter. */
+/* Authored roles take precedence; unannotated two-person dialogues use mixed defaults. */
 (() => {
   'use strict';
   const names={
     en:{female:/\b(samantha|karen|moira|tessa|serena|susan|zira|aria|jenny|sonia|libby|shelley|flo|grandma)\b/i,male:/\b(daniel|alex|fred|david|mark|george|guy|ryan|thomas|eddy|reed|grandpa)\b/i},
     fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea|sylvie|vivienne)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel|rémy|remy|alain)\b/i},
-    de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}
+    de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa|helena|amala|elke|gisela|klarissa|tanja)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick|martin|bernd|klaus|ralf|felix|jonas)\b/i}
   };
   function gender(voice,lang){
-    const n=voice?.name||'',known=names[lang.split('-')[0]];
+    if(['female','male'].includes(voice?.gender))return voice.gender;
+    // Providers may expose the name only in the URI (Apple) or attach Neural /
+    // Multilingual directly to it (Microsoft). Neither identifies a new speaker.
+    const n=[voice?.name,voice?.voiceURI].filter(Boolean).join(' ').replace(/Multilingual|Neural|Online|Natural|Desktop/gi,' '),known=names[lang.toLowerCase().split(/[-_]/)[0]];
     return /\bfemale\b/i.test(n)||known?.female.test(n)?'female':/\bmale\b/i.test(n)||known?.male.test(n)?'male':null;
   }
   function plan(lang,turns){
     const authored=Object.values(window.A1_COMPREHENSION_CONTENT||{}).map(b=>b.turns).find(lines=>lines?.length===turns.length&&lines.every((t,i)=>t.speaker===turns[i].speaker&&t.text===turns[i].text));
     turns=turns.map((t,i)=>({...t,gender:t.gender||authored?.[i]?.gender}));
-    const voice=window.A1Voice,list=voice.matching?.(lang)||[],chosen=voice.select?.(lang),speakers=[...new Set(turns.map(t=>t.speaker))],used=new Set(),bySpeaker={};let mismatch=false,unknown=false;
-    for(const speaker of speakers){
-      const wanted=turns.find(t=>t.speaker===speaker&&['male','female'].includes(t.gender))?.gender;
+    const voice=window.A1Voice,list=voice.matching?.(lang)||[],chosen=voice.select?.(lang),speakers=[...new Set(turns.map(t=>t.speaker))],used=new Set(),bySpeaker={},wantedBySpeaker={};let mismatch=false,unknown=false;
+    const identity=v=>v?.voiceURI||v?.name;
+    for(const speaker of speakers)wantedBySpeaker[speaker]=turns.find(t=>t.speaker===speaker&&['male','female'].includes(t.gender))?.gender;
+    if(speakers.length===2){
+      const ordered=speakers.includes('A')&&speakers.includes('B')?['A','B']:speakers;
+      for(const [i,speaker]of ordered.entries())if(!wantedBySpeaker[speaker]){
+        const other=wantedBySpeaker[ordered[1-i]];
+        wantedBySpeaker[speaker]=other?(other==='female'?'male':'female'):(i===0?'female':'male');
+      }
+    }
+    for(const [index,speaker]of speakers.entries()){
+      const wanted=wantedBySpeaker[speaker];
       const matching=wanted?list.filter(v=>gender(v,lang)===wanted):list;
       const candidates=matching.length?matching:wanted?[...list.filter(v=>!gender(v,lang)),...list.filter(v=>gender(v,lang))]:list;
-      const unused=candidates.filter(v=>!used.has(v.voiceURI||v.name));
+      const unused=candidates.filter(v=>!used.has(identity(v)));
       const available=unused.length?unused:candidates;
+      const remaining=speakers.slice(index+1).map(s=>wantedBySpeaker[s]);
+      const unreserved=available.filter(v=>!remaining.includes(gender(v,lang)));
+      const pool=!matching.length&&unreserved.length?unreserved:available;
+      const preferred=pool.find(v=>identity(v)===identity(chosen));
       const englishName=/^en(?:-|$)/i.test(lang)?wanted==='female'?'samantha':wanted==='male'?'daniel':null:null;
-      const recommended=englishName?voice.automatic?.(lang,available.filter(v=>new RegExp('\\b'+englishName+'\\b','i').test(v.name))):null;
-      const selected=recommended||(matching.length?available.includes(chosen)?chosen:voice.automatic?.(lang,available):available[0])||available[0]||chosen;
-      bySpeaker[speaker]=selected;if(selected)used.add(selected.voiceURI||selected.name);
+      const recommended=englishName?voice.automatic?.(lang,pool.filter(v=>new RegExp('\\b'+englishName+'\\b','i').test(v.name))):null;
+      const selected=recommended||preferred||voice.automatic?.(lang,pool)||pool[0]||chosen;
+      bySpeaker[speaker]=selected;if(selected)used.add(identity(selected));
       if(wanted&&gender(selected,lang)!==wanted){if(gender(selected,lang))mismatch=true;else unknown=true;}
     }
     const notice=speakers.length>1&&used.size<speakers.length?'single':mismatch?'gender':unknown?'unknown':'';

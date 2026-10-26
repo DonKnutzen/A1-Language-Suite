@@ -3066,6 +3066,8 @@
         "zu Hause"
       ],
       "hard": [
+        "der Basketball",
+        "der Fußball",
         "Frankreich",
         "hallo",
         "Herr (Anrede)",
@@ -3073,6 +3075,8 @@
         "nur"
       ],
       "hardOnly": [
+        "der Basketball",
+        "der Fußball",
         "Frankreich",
         "hallo",
         "Herr (Anrede)",
@@ -3144,7 +3148,6 @@
         "also",
         "danke",
         "dann",
-        "die Stadt",
         "ein / eine",
         "hören",
         "ja",
@@ -3156,7 +3159,6 @@
         "also",
         "danke",
         "dann",
-        "die Stadt",
         "ein / eine",
         "guten Tag",
         "heißen",
@@ -3763,6 +3765,7 @@
         "dieser / diese / dieses (hinweisend)",
         "helfen",
         "kaufen",
+        "kurz",
         "leider",
         "passen"
       ],
@@ -3779,6 +3782,7 @@
         "helfen",
         "hier",
         "kaufen",
+        "kurz",
         "leider",
         "nur",
         "passen",
@@ -4266,6 +4270,7 @@
         "neun",
         "neunzehn",
         "sprechen",
+        "suchen",
         "vielen Dank",
         "von",
         "zuerst"
@@ -4351,6 +4356,7 @@
       "hard": [
         "der Park",
         "der Platz",
+        "der Saft",
         "mitspielen",
         "super"
       ],
@@ -4368,6 +4374,8 @@
         "der Gruß",
         "der Park",
         "der Platz",
+        "der Saft",
+        "die Milch",
         "drei",
         "elf",
         "frei",
@@ -4473,7 +4481,6 @@
       ],
       "hard": [
         "buchen",
-        "das Abendessen",
         "das Hotel",
         "die Familie",
         "die Stadt",
@@ -4490,7 +4497,6 @@
         "brauchen",
         "bringen",
         "buchen",
-        "das Abendessen",
         "das Hotel",
         "dein / deine",
         "der Bahnhof",
@@ -4631,6 +4637,7 @@
         "kein / keine",
         "nein",
         "neun",
+        "übermorgen",
         "vielen Dank",
         "vier",
         "wehtun",
@@ -4729,6 +4736,7 @@
       ],
       "hard": [
         "bei mir zu Hause",
+        "der Saft",
         "schon",
         "wieder"
       ],
@@ -4738,6 +4746,8 @@
         "bis",
         "brauchen",
         "dann",
+        "der Kaffee",
+        "der Saft",
         "die Zeit",
         "haben",
         "hallo",
@@ -4842,6 +4852,7 @@
       ],
       "hardOnly": [
         "am",
+        "auf",
         "das Café",
         "das Haus",
         "das Krankenhaus",
@@ -4934,7 +4945,7 @@
         "die Hilfe",
         "die Sache",
         "lassen",
-        "leer",
+        "schon",
         "sehr"
       ],
       "hardOnly": [
@@ -4954,23 +4965,22 @@
         "etwas",
         "für",
         "gehören",
+        "haben",
         "hallo",
         "in",
         "kein / keine",
-        "klein",
         "lassen",
-        "leer",
         "lernen",
         "lesen",
         "mögen / lieben",
         "müssen",
         "nehmen",
         "nett",
+        "schon",
         "schreiben",
         "sehr",
         "sein",
-        "vielen Dank",
-        "zu"
+        "vielen Dank"
       ],
       "titles": {
         "grammar:0": "Formuler une demande",
@@ -5144,6 +5154,8 @@
         "zum"
       ],
       "hard": [
+        "der Saft",
+        "die Arztpraxis",
         "fehlen",
         "in Ordnung",
         "schon"
@@ -5152,7 +5164,11 @@
         "aber",
         "an",
         "bitte (höflich)",
+        "das Krankenhaus",
         "der Moment",
+        "der Saft",
+        "der Tee",
+        "die Arztpraxis",
         "die Uhr",
         "drei",
         "es",
@@ -5263,6 +5279,8 @@
       ],
       "hard": [
         "anderer / andere / anderes",
+        "das T-Shirt",
+        "der Pullover",
         "der Regen",
         "der Wind",
         "die Sonne",
@@ -5277,9 +5295,11 @@
         "auch",
         "blau",
         "das Geschäft",
+        "das T-Shirt",
         "der Euro",
         "der Gruß",
         "der Nachmittag",
+        "der Pullover",
         "der Regen",
         "der Wind",
         "die Größe",
@@ -5288,6 +5308,7 @@
         "drei",
         "dreißig",
         "für",
+        "groß",
         "gut",
         "hallo",
         "klein",
@@ -5300,12 +5321,14 @@
         "scheinen",
         "schon",
         "spazieren gehen",
+        "teuer",
         "treffen",
         "viel",
         "vor (zeitlich) / es gibt",
         "vor / vorher",
         "wieder",
-        "zu"
+        "zu",
+        "zu teuer"
       ],
       "titles": {
         "grammar:0": "Décrire la météo",
@@ -5497,9 +5520,11 @@
         "danke",
         "dann",
         "das Formular",
+        "das Geburtsdatum",
         "dein / deine",
         "der Vormittag",
         "die Zeit",
+        "Donnerstag",
         "es",
         "gehen / fahren",
         "guten Tag",
@@ -5594,6 +5619,7 @@
         "der Brief",
         "der Schalter",
         "fehlen",
+        "Frankreich",
         "schon",
         "stehen",
         "unter"
@@ -5613,8 +5639,12 @@
         "der Schalter",
         "Deutschland",
         "die Anmeldung",
+        "die Fahrkarte",
+        "Dienstag",
+        "Donnerstag",
         "elf",
         "fehlen",
+        "Frankreich",
         "Frau (Anrede)",
         "freundlich",
         "für",
@@ -5775,19 +5805,23 @@
         "zweimal"
       ],
       "hard": [
+        "Frankreich",
         "schon"
       ],
       "hardOnly": [
         "achtzehn",
         "bis",
         "dann",
+        "das Kino",
         "das Wasser",
         "der Bahnhof",
+        "Deutschland",
         "die Adresse",
         "die Nachricht",
         "die Zeit",
         "ein bisschen",
         "euer / Ihr / eure / Ihre",
+        "Frankreich",
         "hallo",
         "ihr / ihre (Besitz, Mehrzahl)",
         "kaufen",

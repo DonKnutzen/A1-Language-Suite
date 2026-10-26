@@ -67,6 +67,7 @@
   }
   // Voice metadata has no standard gender field. Use known device names when available.
   function dialogueVoices(lang){
+    if(window.A1DialogueVoices)return window.A1DialogueVoices.plan(lang,[{speaker:'A'},{speaker:'B'}]).bySpeaker;
     const base=norm(lang).split('-')[0],list=matching(lang),chosen=select(lang);
     const names={fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel)\b/i},de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}}[base];
     const gender=v=>{const name=v?.name||'';return /\bfemale\b/i.test(name)||names?.female.test(name)?'female':/\bmale\b/i.test(name)||names?.male.test(name)?'male':null;};
@@ -76,7 +77,8 @@
   }
   function speakDialogue(turns,options={}){
     if(!synth||typeof SpeechSynthesisUtterance==='undefined'||!turns?.length)return false;
-    cancel();const runToken=token,lang=options.lang||'fr-FR',pair=dialogueVoices(lang);
+    cancel();const runToken=token,lang=options.lang||'fr-FR',roles=window.A1DialogueVoices?.plan(lang,turns),pair=roles?.bySpeaker||dialogueVoices(lang);
+    window.A1DialogueVoices?.announce(roles?.notice||'');
     const parts=turns.filter(t=>String(t.text||'').trim());let i=0;
     const fail=()=>{if(runToken===token){current=null;options.onError?.();}};
     function next(){
