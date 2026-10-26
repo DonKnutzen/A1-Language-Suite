@@ -105,6 +105,8 @@ In Englisch, Französisch und Deutsch wurde der obere Wortschatz-Link entfernt. 
 
 ## D. Verbleibende Grenzen und Auffälligkeiten
 
+- Die Live-Seite liefert die neuen Module aus. Das vollständige manuelle Durchspielen im Live-Browser war hier durch die Lernprofil-Anmeldung begrenzt. Die betroffenen Abläufe wurden in der isolierten DOM-Testumgebung geprüft. Eine zusätzliche isolierte Browser-Vorschau wurde von der Browser-Sicherheitsrichtlinie abgelehnt; sie wird nicht als erfolgte Sichtprüfung ausgewiesen.
+
 - Die 72 Hörtexte wurden vollständig als Text samt Fragen und Lösungen geprüft. Sprachwahl, Rollen, Wiedergabesteuerung und Auswertungsaufrufe wurden technisch getestet. **Nicht vollständig akustisch geprüft** sind alle 72 Ausgaben mit der konkret auf dem Gerät des Lernenden installierten TTS-Stimme. Stimmenqualität, Namen und buchstabierte Zeichen können vom Browser und Betriebssystem abhängen.
 - Freies Sprechen und Schreiben erhalten eine angeleitete Selbstbewertung, keine automatische fachliche Sprachkorrektur. Der Kurs vergibt kein validiertes Sprachzertifikat.
 - Die Wortzuordnung ist ein überprüftes technisches Hilfsmittel. Sie erkennt bekannte Flexionsformen und Wendungen; sie beweist keine semantische oder didaktische Fehlerfreiheit. Die Bewertung von Natürlichkeit und Progression erfolgte zusätzlich anhand der Inhalte.
