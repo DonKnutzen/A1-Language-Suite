@@ -4,34 +4,10 @@
   const plan={
   "1": {
     "stages": {
-      "listen": [
-        "hello",
-        "good morning",
-        "good evening",
-        "my",
-        "name",
-        "be",
-        "I",
-        "from",
-        "Germany",
-        "in",
-        "you",
-        "she",
-        "Canada",
-        "we",
-        "and",
-        "goodbye"
-      ],
-      "grammar:0": [
-        "they",
-        "he",
-        "it"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
-        "England",
-        "first name",
-        "English",
-        "German"
+        "England"
       ]
     },
     "regular": [
@@ -64,41 +40,16 @@
   },
   "2": {
     "stages": {
-      "listen": [
-        "what",
-        "your",
-        "where",
-        "yes",
-        "no",
-        "not",
-        "how",
-        "thank you",
-        "fine",
-        "spell",
-        "please",
-        "repeat"
-      ],
-      "grammar:0": [
-        "correct",
-        "here",
-        "her"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
-        "isn't",
-        "aren't",
         "there",
-        "his",
+        "first name",
         "surname",
         "not fine",
         "tired",
         "country",
-        "city",
-        "sorry",
-        "slowly",
-        "letter",
-        "again",
-        "alphabet",
-        "address"
+        "city"
       ]
     },
     "regular": [
@@ -156,58 +107,13 @@
   },
   "3": {
     "stages": {
-      "listen": [
-        "twenty",
-        "year",
-        "old",
-        "thirty",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "forty",
-        "fifty",
-        "this",
-        "a",
-        "book",
-        "an",
-        "apple",
-        "two",
-        "three",
-        "child",
-        "number",
-        "one"
-      ],
+      "listen": [],
       "grammar:0": [
-        "phone",
-        "the",
-        "orange",
-        "bag",
-        "umbrella",
-        "twelve",
-        "five"
+        "English",
+        "German"
       ],
       "grammar:1": [
-        "four",
-        "bus",
-        "person",
-        "woman",
-        "six",
-        "seven",
-        "man",
-        "eighteen",
-        "eighty",
-        "eight",
-        "sixty",
-        "sixteen",
-        "zero",
-        "nine",
-        "ten",
-        "eleven",
-        "hundred",
-        "seventeen",
-        "nineteen",
-        "seventy",
-        "ninety"
+        "man"
       ]
     },
     "regular": [
@@ -284,34 +190,10 @@
   },
   "4": {
     "stages": {
-      "listen": [
-        "sister",
-        "have",
-        "brother",
-        "daughter",
-        "dog",
-        "our",
-        "house",
-        "their",
-        "son",
-        "parent",
-        "family"
-      ],
-      "grammar:0": [
-        "cat",
-        "car",
-        "father"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
-        "mother",
-        "these",
-        "me",
-        "its",
-        "yours",
-        "fish",
-        "wife",
-        "husband",
-        "friend"
+        "fish"
       ]
     },
     "regular": [
@@ -377,33 +259,12 @@
   },
   "5": {
     "stages": {
-      "listen": [
-        "live",
-        "work",
-        "office",
-        "study",
-        "speak",
-        "read",
-        "drink",
-        "tea",
-        "eat",
-        "bread",
-        "at home",
-        "like",
-        "but",
-        "coffee",
-        "together"
-      ],
+      "listen": [],
       "grammar:0": [],
       "grammar:1": [
-        "because",
-        "teacher",
-        "water",
-        "student",
         "shop",
         "French",
-        "with",
-        "home"
+        "with"
       ]
     },
     "regular": [
@@ -463,37 +324,16 @@
   },
   "6": {
     "stages": {
-      "listen": [
-        "by bus",
-        "go",
-        "to",
-        "watch",
-        "television",
-        "wash",
-        "teach",
-        "breakfast",
-        "start",
-        "early",
-        "finish",
-        "late"
-      ],
+      "listen": [],
       "grammar:0": [
-        "does",
         "do",
-        "school",
-        "play"
+        "school"
       ],
       "grammar:1": [
-        "job",
-        "dinner",
-        "in the evening",
         "at night",
         "train",
         "at",
-        "café",
-        "every day",
-        "morning",
-        "evening"
+        "café"
       ]
     },
     "regular": [
@@ -572,31 +412,15 @@
   },
   "7": {
     "stages": {
-      "listen": [
-        "don’t",
-        "doesn’t",
-        "on",
-        "Sunday",
-        "when",
-        "Saturday",
-        "why"
-      ],
-      "grammar:0": [
-        "Monday"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
         "Friday",
         "Tuesday",
         "Wednesday",
         "milk",
         "at work",
-        "Thursday",
-        "who",
-        "week",
-        "weekend",
-        "today",
-        "tomorrow",
-        "every"
+        "Thursday"
       ]
     },
     "regular": [
@@ -674,26 +498,10 @@
   },
   "8": {
     "stages": {
-      "listen": [
-        "that",
-        "chair",
-        "key",
-        "those",
-        "blue",
-        "new",
-        "shirt",
-        "white",
-        "table",
-        "small",
-        "red",
-        "colour"
-      ],
-      "grammar:0": [
-        "pen"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
         "black",
-        "big",
         "green",
         "long"
       ]
@@ -748,31 +556,11 @@
   },
   "9": {
     "stages": {
-      "listen": [
-        "there is",
-        "kitchen",
-        "there are",
-        "bedroom",
-        "bathroom",
-        "under",
-        "next to",
-        "bed",
-        "behind",
-        "door",
-        "in front of",
-        "window",
-        "flat",
-        "near"
-      ],
+      "listen": [],
       "grammar:0": [
-        "room",
         "living room"
       ],
-      "grammar:1": [
-        "between",
-        "opposite",
-        "floor"
-      ]
+      "grammar:1": []
     },
     "regular": [
       "there is",
@@ -837,25 +625,9 @@
   },
   "10": {
     "stages": {
-      "listen": [
-        "half past",
-        "quarter past",
-        "quarter to",
-        "appointment",
-        "course",
-        "May",
-        "free",
-        "time",
-        "see you"
-      ],
-      "grammar:0": [
-        "past",
-        "o’clock",
-        "a.m.",
-        "p.m."
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
-        "June",
         "open",
         "September",
         "afternoon",
@@ -867,19 +639,7 @@
         "good",
         "for",
         "month",
-        "place",
-        "minute",
-        "hour",
-        "January",
-        "February",
-        "July",
-        "August",
-        "October",
-        "November",
-        "December",
-        "first",
-        "second",
-        "third"
+        "place"
       ]
     },
     "regular": [
@@ -970,38 +730,21 @@
       "second",
       "third"
     ],
-    "hard": [],
+    "hard": [
+      "November",
+      "December",
+      "August"
+    ],
     "hardOnly": []
   },
   "11": {
     "stages": {
-      "listen": [
-        "often",
-        "tennis",
-        "never",
-        "sometimes",
-        "cinema",
-        "always",
-        "how often",
-        "swim",
-        "twice",
-        "free time",
-        "listen to",
-        "music",
-        "visit",
-        "cook"
-      ],
+      "listen": [],
       "grammar:0": [
-        "usually",
-        "once",
-        "football",
         "park"
       ],
       "grammar:1": [
-        "us",
-        "three times",
-        "walk",
-        "them"
+        "three times"
       ]
     },
     "regular": [
@@ -1092,29 +835,11 @@
   },
   "12": {
     "stages": {
-      "listen": [
-        "can",
-        "drive",
-        "can’t",
-        "dance",
-        "help",
-        "sit",
-        "use",
-        "of course",
-        "carry"
-      ],
-      "grammar:0": [
-        "cannot",
-        "sing",
-        "wait",
-        "come"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
-        "close",
         "ticket",
-        "suitcase",
-        "stand",
-        "take"
+        "suitcase"
       ]
     },
     "regular": [
@@ -1194,31 +919,14 @@
   },
   "13": {
     "stages": {
-      "listen": [
-        "need",
-        "some",
-        "any",
-        "egg",
-        "rice",
-        "bottle",
-        "of",
-        "kilo",
-        "potato",
-        "vegetable",
-        "cheese",
-        "tomato",
-        "cup",
-        "meat"
-      ],
+      "listen": [],
       "grammar:0": [
-        "litre",
         "banana",
         "glass",
         "buy"
       ],
       "grammar:1": [
-        "shopping",
-        "food"
+        "shopping"
       ]
     },
     "regular": [
@@ -1292,41 +1000,15 @@
   },
   "14": {
     "stages": {
-      "listen": [
-        "would like",
-        "would",
-        "how much",
-        "soup",
-        "how many",
-        "sandwich",
-        "without",
-        "bill",
-        "menu",
-        "pound",
-        "by card",
-        "pay"
-      ],
+      "listen": [],
       "grammar:0": [
-        "salad",
-        "wouldn't",
         "dessert"
       ],
       "grammar:1": [
-        "much",
-        "many",
-        "cost",
         "want",
         "also",
         "in cash",
-        "or",
-        "order",
-        "restaurant",
-        "chicken",
-        "euro",
-        "dollar",
-        "cash",
-        "lunch",
-        "card"
+        "or"
       ]
     },
     "regular": [
@@ -1426,37 +1108,15 @@
   },
   "15": {
     "stages": {
-      "listen": [
-        "size",
-        "try on",
-        "coat",
-        "cheap",
-        "shoes",
-        "more",
-        "expensive",
-        "jacket",
-        "warm",
-        "than",
-        "better",
-        "too"
-      ],
+      "listen": [],
       "grammar:0": [
-        "dress",
-        "trousers",
-        "short",
-        "large",
         "then",
-        "as",
-        "cold",
-        "happy"
+        "as"
       ],
       "grammar:1": [
         "most",
         "very",
-        "worse",
-        "bad",
-        "ours",
-        "clothes"
+        "bad"
       ]
     },
     "regular": [
@@ -1551,33 +1211,13 @@
   },
   "16": {
     "stages": {
-      "listen": [
-        "straight on",
-        "traffic lights",
-        "turn",
-        "left",
-        "cross",
-        "leave",
-        "which",
-        "platform",
-        "right",
-        "on foot",
-        "get off",
-        "next",
-        "stop",
-        "airport"
-      ],
+      "listen": [],
       "grammar:0": [
-        "let us",
-        "get",
-        "road",
-        "get on"
+        "road"
       ],
       "grammar:1": [
-        "by",
         "straight",
-        "street",
-        "taxi"
+        "who"
       ]
     },
     "regular": [
@@ -1674,33 +1314,18 @@
   },
   "17": {
     "stages": {
-      "listen": [
-        "write",
-        "message",
-        "make",
-        "wear",
-        "now",
-        "clean",
-        "rain",
-        "talk"
-      ],
+      "listen": [],
       "grammar:0": [
-        "run",
-        "email",
         "outside",
         "send",
         "look at",
         "picture"
       ],
       "grammar:1": [
+        "taxi",
         "only",
         "wait for",
-        "hi",
-        "at the moment",
-        "phone call",
-        "inside",
-        "busy",
-        "right now"
+        "hi"
       ]
     },
     "regular": [
@@ -1801,26 +1426,11 @@
   },
   "18": {
     "stages": {
-      "listen": [
-        "every morning",
-        "understand",
-        "know",
-        "break"
-      ],
+      "listen": [],
       "grammar:0": [],
       "grammar:1": [
-        "remember",
-        "prefer",
         "question",
-        "him",
-        "believe",
-        "different",
-        "same",
-        "each",
-        "this week",
-        "every week",
-        "tonight",
-        "normally"
+        "him"
       ]
     },
     "regular": [
@@ -1928,7 +1538,9 @@
       "again"
     ],
     "hard": [
+      "normally",
       "phone number",
+      "address",
       "postcode"
     ],
     "hardOnly": [
@@ -1942,33 +1554,14 @@
   },
   "19": {
     "stages": {
-      "listen": [
-        "weather",
-        "sunny",
-        "winter",
-        "cloud",
-        "best",
-        "hotel",
-        "summer"
-      ],
+      "listen": [],
       "grammar:0": [
-        "cloudy",
-        "sky",
-        "windy",
         "wind",
-        "snow",
-        "hot",
         "spring",
         "wet"
       ],
       "grammar:1": [
-        "worst",
-        "young",
-        "dry",
-        "sun",
-        "autumn",
-        "holiday",
-        "beach"
+        "dry"
       ]
     },
     "regular": [
@@ -2059,7 +1652,10 @@
       "holiday",
       "beach"
     ],
-    "hard": [],
+    "hard": [
+      "beach",
+      "this week"
+    ],
     "hardOnly": [
       "often",
       "near",
@@ -2069,37 +1665,11 @@
   },
   "20": {
     "stages": {
-      "listen": [
-        "have got",
-        "headache",
-        "doctor",
-        "pharmacy",
-        "must",
-        "mustn’t",
-        "hasn't"
-      ],
-      "grammar:0": [
-        "haven't",
-        "medicine",
-        "stomach ache"
-      ],
+      "listen": [],
+      "grammar:0": [],
       "grammar:1": [
-        "quiet",
-        "show",
-        "on time",
         "hand",
-        "reception",
-        "head",
-        "arm",
-        "leg",
-        "foot",
-        "feet",
-        "tooth",
-        "teeth",
-        "stomach",
-        "ill",
-        "rule",
-        "rest"
+        "reception"
       ]
     },
     "regular": [
@@ -2198,7 +1768,9 @@
       "rule",
       "rest"
     ],
-    "hard": [],
+    "hard": [
+      "inside"
+    ],
     "hardOnly": [
       "sister",
       "next",
@@ -2215,28 +1787,12 @@
   },
   "21": {
     "stages": {
-      "listen": [
-        "was",
-        "yesterday",
-        "last week",
-        "were",
-        "wasn’t",
-        "born",
-        "last night"
-      ],
+      "listen": [],
       "grammar:0": [
-        "weren’t",
-        "hospital",
-        "ago"
+        "hospital"
       ],
       "grammar:1": [
-        "village",
-        "last year",
-        "before",
-        "after",
-        "town",
-        "meeting",
-        "hungry"
+        "village"
       ]
     },
     "regular": [
@@ -2341,34 +1897,13 @@
   },
   "22": {
     "stages": {
-      "listen": [
-        "visited",
-        "worked",
-        "went",
-        "had",
-        "bought",
-        "did",
-        "enjoy",
-        "didn’t",
-        "ate",
-        "drank",
-        "called"
-      ],
+      "listen": [],
       "grammar:0": [
-        "saw",
-        "see",
-        "call",
-        "cooked",
-        "watched"
+        "last year"
       ],
       "grammar:1": [
         "last",
-        "played",
-        "walked",
-        "stayed",
-        "cleaned",
-        "travelled",
-        "returned"
+        "home"
       ]
     },
     "regular": [
@@ -2481,7 +2016,11 @@
       "travelled",
       "returned"
     ],
-    "hard": [],
+    "hard": [
+      "lunch",
+      "stayed",
+      "cleaned"
+    ],
     "hardOnly": [
       "sister",
       "jacket",
@@ -2494,25 +2033,14 @@
   },
   "23": {
     "stages": {
-      "listen": [
-        "would like to",
-        "want to",
-        "after work",
-        "sounds good"
+      "listen": [],
+      "grammar:0": [
+        "meeting"
       ],
-      "grammar:0": [],
       "grammar:1": [
         "sound",
         "idea",
-        "let’s",
-        "invite",
-        "party",
-        "birthday",
-        "great",
-        "another",
-        "plan",
-        "next week",
-        "before dinner"
+        "after"
       ]
     },
     "regular": [
@@ -2631,32 +2159,17 @@
   },
   "24": {
     "stages": {
-      "listen": [
-        "reservation",
-        "single room",
-        "included",
-        "confirm",
-        "arrival",
-        "night",
-        "confirmation"
-      ],
+      "listen": [],
       "grammar:0": [
-        "price",
-        "book a room",
         "double room",
         "departure",
         "check"
       ],
       "grammar:1": [
-        "stay",
         "passport",
         "travel",
-        "available",
-        "postcode",
-        "problem",
-        "contact",
-        "information",
-        "answer"
+        "travelled",
+        "available"
       ]
     },
     "regular": [
@@ -2771,7 +2284,9 @@
       "answer"
     ],
     "hard": [
-      "phone number"
+      "phone number",
+      "zero",
+      "postcode"
     ],
     "hardOnly": [
       "not",

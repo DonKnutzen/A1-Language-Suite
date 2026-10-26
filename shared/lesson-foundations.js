@@ -2647,7 +2647,7 @@
     const plan=window.A1LessonVocabularyPlan?.[course]?.[id];
     const targets=stage==='hard'?plan?.hard:plan?.stages[stage];if(!targets?.length)return '';
     const bank=vocabularyBank(course),en=window.A1Profile?.getUiLang()==='en';
-    const title=en?(stage==='hard'?'Additional words for Hard Mode':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Wörter für diese Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots pour cet exercice');
+    const title=en?(stage==='hard'?'Additional words for Hard Mode':course==='de'?'Additional words for this lesson':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Wörter für diese Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots supplémentaires de cette leçon');
     return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4>${vocabularyRows(course,bank,targets)}</section>`;
   }
   function hardInstructionsHtml(course,data){

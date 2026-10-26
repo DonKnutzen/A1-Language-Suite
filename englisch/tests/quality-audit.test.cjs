@@ -9,6 +9,7 @@ test('every English source segment is covered and vocabulary precedes its assess
  const known=new Set();
  for(const l of lessons){
   for(const stage of ['listen','grammar:0','grammar:1','comprehension','check','application','reading']){
+   for(const word of plan[l.id].taught[stage]||[])known.add(word);
    for(const word of plan[l.id].stages[stage]||[]){assert(!known.has(norm(word)),`${l.id}: repeated introduction ${word}`);known.add(norm(word));}
    for(const s of output.corpus.filter(s=>s.lesson===l.id&&s.stage===stage))for(const word of s.words)assert(known.has(word),`L${l.id} ${stage}: ${word} in ${s.text}`);
   }
@@ -38,10 +39,17 @@ test('the early course avoids later there-is/are, possession-have and past-be in
   if(l.id<9)assert(!/\bthere (?:is|are)\b/i.test(s),l.id);
   if(l.id<21)assert(!/\b(?:was|were|wasn't|weren't)\b/i.test(s),l.id);
  }
- assert(plan[17].hard.includes('snow'));assert(!plan[18].stages.listen.includes('snow'));assert(plan[19].stages['grammar:0'].includes('snow'),'optional exposure must not replace normal teaching');
+ assert(plan[17].hard.includes('snow'));assert(!plan[18].stages.listen.includes('snow'));assert(plan[19].taught['grammar:0'].includes('snow'),'optional exposure must not replace normal teaching');
 });
 test('invented spelling distractors are absent and some/any actually contrasts the two forms',()=>{
  const bad=/\b(?:biger|expensiver|expensivest|gooder|badder|goodest|baddest|runing|writeing|makeing|cleanning|sendding|lookking|goed|haved|eated|drinked|buyed|studyed|liveed|studys|watchs|washs|teachs|finishs|childs|womans|mans|tomatos)\b/;
  for(const l of lessons)for(const t of l.topics)for(const row of t.rows)for(const cell of row.slice(0,4))assert(!bad.test(cell),cell);
  for(const row of lessons[12].topics[1].rows){assert(row.slice(1,4).includes('some'));assert(row.slice(1,4).includes('any'));}
+});
+test('supplementary lists exclude translated listening and grammar examples',()=>{
+ for(const l of lessons)for(const [stage,words]of Object.entries(plan[l.id].stages)){
+  assert(words.every(word=>!plan[l.id].taught[stage].includes(norm(word))),`L${l.id} ${stage}`);
+  if(stage==='listen')assert.equal(words.length,0,'all introductory checks use already translated phrases');
+ }
+ assert(!plan[1].stages['grammar:0'].includes('he'));assert(plan[1].stages['grammar:1'].includes('England'),'an untranslated alternative still needs preparation');
 });

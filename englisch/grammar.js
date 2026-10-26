@@ -10,7 +10,7 @@
   function stageHtml(id,stage){
     const words=stage==='hard'?lexicon.plan[id].hard:lexicon.plan[id].stages[stage]||[];
     if(!words.length)return '';
-    return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Hard Mode':'Wörter für diesen Abschnitt'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words))}</div></aside>`;
+    return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Hard Mode':'Zusätzliche Wörter in dieser Lektion'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words))}</div></aside>`;
   }
   function pools(lesson){return lesson.topics.map(t=>({key:t.key,title:t.title,tasks:t.practice}));}
   function grammarHtml(lesson){

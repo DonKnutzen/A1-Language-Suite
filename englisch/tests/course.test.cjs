@@ -220,7 +220,7 @@ test('word teaching is staged, audio is opt-in and the glossary appears only at 
   for(let i=0;i<2;i++){w.EN_A1_APP.renderLesson(l.id,{step:'grammar',grammarIndex:i});assert.equal(view.querySelectorAll('[data-vocabulary-stage] .phrase-row').length,p.stages['grammar:'+i].length);}
   w.EN_A1_APP.renderLesson(l.id,{step:'comprehension'});assert(!view.querySelector('.en-glossary'));assert(!view.querySelector('[data-vocabulary-stage]'));
  }
- assert.equal(f.spoken.length,start);w.EN_A1_APP.renderLesson(3,{step:'listen'});assert(view.textContent.includes('Zahlen hören und unterscheiden'));const b=view.querySelector('[data-vocabulary-stage] [data-speak]');const text=decodeURIComponent(b.dataset.speak);b.click();assert.equal(f.spoken.at(-1).text,text);assert.equal(f.spoken.at(-1).lang,'en-GB');f.close();
+ assert.equal(f.spoken.length,start);w.EN_A1_APP.renderLesson(3,{step:'listen'});assert(view.textContent.includes('Zahlen hören und unterscheiden'));const b=view.querySelector('.en-glossary [data-speak]');const text=decodeURIComponent(b.dataset.speak);b.click();assert.equal(f.spoken.at(-1).text,text);assert.equal(f.spoken.at(-1).lang,'en-GB');f.close();
 });
 test('expanded vocabulary keeps old saved card identities and supplies German meanings for contractions',()=>{
  const f=fixture(),{w}=f,bank=w.A1Vocabulary.buildBank({course:'en',lessons:w.EN_A1_DATA.lessons});
