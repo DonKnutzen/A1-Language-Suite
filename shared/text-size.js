@@ -2,8 +2,8 @@
 (() => {
   'use strict';
   const KEY='a1suite.textSize',levels={standard:1,large:1.12,larger:1.25};
-  const labels={de:['Schriftgröße','Standard','Größer','Noch größer'],fr:['Taille du texte','Standard','Grande','Très grande'],en:['Text size','Standard','Larger','Largest'],tr:['Yazı boyutu','Standart','Büyük','Daha büyük']};
-  let selected='standard',frame=null,width=innerWidth;
+  const labels={de:['Schriftgröße','Kleiner','Standard','Noch größer'],fr:['Taille du texte','Petit','Standard','Très grand'],en:['Text size','Smaller','Standard','Largest'],tr:['Yazı boyutu','Küçük','Standart','Daha büyük']};
+  let selected='large',frame=null,width=innerWidth;
   try{const saved=localStorage.getItem(KEY);if(Object.hasOwn(levels,saved))selected=saved;}catch{}
   const root=document.documentElement;
   const style=document.createElement('style');style.textContent=`
