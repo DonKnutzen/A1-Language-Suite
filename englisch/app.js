@@ -67,7 +67,7 @@
     view.querySelector('#finalMock').onclick=()=>{
       const grammar=lessons.map(l=>{const t=l.topics[(l.id-1)%2];return {...t.transfer[(l.id-1)%t.transfer.length],lessonId:l.id,tag:`L${l.id}`};});
       const reading=A1Learning.shuffle(EN_A1_READING).slice(0,4).map(r=>{const f=r.fields[0];return{type:'choice',q:r.text+'\n\n'+f.q,answer:f.answer,o:f.o,a:0};});
-      const listening=A1Learning.shuffle(lessons.filter(l=>l.id>=7)).slice(0,4).map(l=>{const d=A1_COMPREHENSION_CONTENT[l.id],f=d.fields[0];return{type:'listening',q:f.label,answer:f.answer,o:f.options,a:0,audio:d.turns.map(t=>t.text).join(' '),speech:d.turns.map(t=>t.text).join(' ')};});
+      const listening=A1Learning.shuffle(lessons.filter(l=>l.id>=7)).slice(0,4).map(l=>{const d=A1_COMPREHENSION_CONTENT[l.id],f=d.fields[0];return{type:'listening',q:f.label,answer:f.answer,o:f.options,a:0,audio:d.turns.map(t=>t.text).join(' '),speech:d.turns.map(t=>t.text).join(' '),turns:d.turns};});
       runRound('final','Gemischter A1-Abschluss',A1Learning.shuffle([...grammar,...reading,...listening]),renderExam);
     };
   }
@@ -82,7 +82,7 @@
       if(b.dataset.skill==='form')return renderForm();
       if(b.dataset.skill==='listening'){
         const d=A1_COMPREHENSION_CONTENT[id];
-        return runRound('listen-'+id,'Hören · '+l.title,d.fields.map(f=>({type:'listening',q:f.label,answer:f.answer,o:f.options,a:0,audio:d.turns.map(t=>t.text).join(' '),speech:d.turns.map(t=>t.text).join(' ')})),renderTraining);
+        return runRound('listen-'+id,'Hören · '+l.title,d.fields.map(f=>({type:'listening',q:f.label,answer:f.answer,o:f.options,a:0,audio:d.turns.map(t=>t.text).join(' '),speech:d.turns.map(t=>t.text).join(' '),turns:d.turns})),renderTraining);
       }
       const r=EN_A1_READING[id-1];
       runRound('read-'+id,'Lesen · '+l.title,r.fields.map(f=>({type:'choice',q:r.text+'\n\n'+f.q,answer:f.answer,o:f.o,a:0})),renderTraining);
@@ -90,8 +90,9 @@
   }
   function runRound(key,title,tasks,onBack){
     cleanup();const p=(state.training[key]||={});
+    for(const q of p.session?.ex||[])if(q.type==='listening'&&!q.turns){const d=Object.values(A1_COMPREHENSION_CONTENT).find(d=>d.turns.map(t=>t.text).join(' ')===q.audio);if(d)q.turns=d.turns;}
     A1ExerciseEngine.run({lesson:{id:0,title},view,exercises:tasks.map(q=>{const o=A1Learning.shuffle(q.o);return {...q,o,a:o.indexOf(q.answer)};}),progress:p,exerciseVersion:162,selectionOnly:true,targetLang:'en',uiLang:'de',review:true,answerAudioAfterResponse:true,
-      saveProgress:()=>save(),playAudio:t=>speak(t,true),playFeedbackAudio:t=>speak(t,false),onBack,
+      saveProgress:()=>save(),playDialogue:turns=>A1Voice.speakDialogue(turns,{lang:'en-GB',rate:.82}),playAudio:t=>speak(t,true),playFeedbackAudio:t=>speak(t,false),onBack,
       onFinish:(score,total)=>{const pct=Math.round(score/total*100);p.best=Math.max(p.best||0,pct);if(key==='final')state.bestMock=Math.max(state.bestMock,pct);save(true);view.innerHTML=`<section class="card center"><h2>${esc(title)}</h2><div class="score">${pct} %</div><p>${score} von ${total} richtig</p><button class="primary-btn" id="roundBack">Zur Auswahl</button></section>`;view.querySelector('button').onclick=onBack;}
     });
   }

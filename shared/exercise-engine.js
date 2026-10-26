@@ -293,7 +293,7 @@
       opts.view.innerHTML=`<div class="between"><button class="tiny-btn" id="mixedBack">${esc(L.back)}</button><span class="pill">${i+1}/${ex.length}</span></div><section class="${opts.compact?'exercise-inline-card':'card'}" ${opts.bugStep?`data-bug-task data-bug-lesson="${opts.lesson.id||''}" data-bug-step="${esc(opts.bugStep)}" data-bug-question="${esc(q.q||q.prompt||q.context||'')}" data-bug-audio="${esc(q.audio||'')}"`:''} style="margin-top:12px">${body}<div id="mixedFeedback"></div></section>`;
       document.getElementById('mixedBack').onclick=()=>{persist();opts.onBack();};
       if(q.type==='choice'||q.type==='listening'){
-        if(document.getElementById('mixedListen'))document.getElementById('mixedListen').onclick=()=>opts.playAudio(/^Lies den Dialog:/i.test(q.q)?q.q.replace(/^Lies den Dialog:\s*/i,'').split('\n')[0].split(/\s+\/\s+/).join(' '):q.audio);
+        if(document.getElementById('mixedListen'))document.getElementById('mixedListen').onclick=()=>q.turns&&opts.playDialogue?opts.playDialogue(q.turns):opts.playAudio(/^Lies den Dialog:/i.test(q.q)?q.q.replace(/^Lies den Dialog:\s*/i,'').split('\n')[0].split(/\s+\/\s+/).join(' '):q.audio);
         document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const c=+b.dataset.o,ok=c===q.a;choicePicked=c;document.querySelectorAll('[data-o]').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('correct');else if(j===c)x.classList.add('wrong');});feedback(ok?'ok':'bad',q.answer,q.audio,q.explanation);});
       }
       if(q.type==='gap'||q.type==='text'){

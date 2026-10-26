@@ -251,3 +251,6 @@ test('a completed English daily round returns to a visibly completed home card a
  while(s.reviewPractice.session){const session=s.reviewPractice.session,q=session.tasks[session.index];view.querySelector(`[data-review-option="${session.order.indexOf(q.answer)}"]`).click();view.querySelector('#reviewCheck').click();view.querySelector('#reviewNext').click();}
  assert.equal(s.reviewPractice.daily.rounds,1);w.EN_A1_APP.setRoute('home');assert(view.querySelector('.daily-review-card.is-complete'));assert(view.querySelector('.daily-review-completed').textContent.includes('Eine Runde abgeschlossen'));assert.equal(view.querySelector('#homeReview').textContent,'Weitere Runde üben');f.close();
 });
+test('extra listening and final listening keep both speaker roles rather than flattening their audio',()=>{
+ const f=fixture(),{w,view}=f;let turns;w.A1Voice.speakDialogue=t=>{turns=t;return true;};w.EN_A1_APP.renderTraining();view.querySelector('[data-skill="listening"]').click();view.querySelector('#mixedListen').click();assert.equal(turns.length,2);assert.deepEqual([...new Set(turns.map(t=>t.gender))].sort(),['female','male']);w.EN_A1_APP.renderExam();view.querySelector('#finalMock').click();for(const q of w.EN_A1_APP.state.training.final.session.ex.filter(q=>q.type==='listening'))assert(q.turns.length>=2);f.close();
+});

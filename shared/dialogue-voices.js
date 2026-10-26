@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const names={
-    en:{female:/\b(samantha|karen|moira|tessa|serena|susan|zira|aria|jenny|sonia|libby)\b/i,male:/\b(daniel|alex|fred|david|mark|george|guy|ryan|thomas)\b/i},
+    en:{female:/\b(samantha|karen|moira|tessa|serena|susan|zira|aria|jenny|sonia|libby|shelley|flo|grandma)\b/i,male:/\b(daniel|alex|fred|david|mark|george|guy|ryan|thomas|eddy|reed|grandpa)\b/i},
     fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea|sylvie|vivienne)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel|rémy|remy|alain)\b/i},
     de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick)\b/i}
   };
@@ -11,12 +11,16 @@
     return /\bfemale\b/i.test(n)||known?.female.test(n)?'female':/\bmale\b/i.test(n)||known?.male.test(n)?'male':null;
   }
   function plan(lang,turns){
+    const authored=Object.values(window.A1_COMPREHENSION_CONTENT||{}).map(b=>b.turns).find(lines=>lines?.length===turns.length&&lines.every((t,i)=>t.speaker===turns[i].speaker&&t.text===turns[i].text));
+    turns=turns.map((t,i)=>({...t,gender:t.gender||authored?.[i]?.gender}));
     const voice=window.A1Voice,list=voice.matching?.(lang)||[],chosen=voice.select?.(lang),speakers=[...new Set(turns.map(t=>t.speaker))],used=new Set(),bySpeaker={};let mismatch=false,unknown=false;
     for(const speaker of speakers){
       const wanted=turns.find(t=>t.speaker===speaker&&['male','female'].includes(t.gender))?.gender;
       const matching=wanted?list.filter(v=>gender(v,lang)===wanted):list;
-      const candidates=matching.length?matching:list;
-      const selected=candidates.find(v=>!used.has(v.voiceURI||v.name))||candidates[0]||chosen;
+      const candidates=matching.length?matching:wanted?[...list.filter(v=>!gender(v,lang)),...list.filter(v=>gender(v,lang))]:list;
+      const unused=candidates.filter(v=>!used.has(v.voiceURI||v.name));
+      const available=unused.length?unused:candidates;
+      const selected=(matching.length?available.includes(chosen)?chosen:voice.automatic?.(lang,available):available[0])||available[0]||chosen;
       bySpeaker[speaker]=selected;if(selected)used.add(selected.voiceURI||selected.name);
       if(wanted&&gender(selected,lang)!==wanted){if(gender(selected,lang))mismatch=true;else unknown=true;}
     }

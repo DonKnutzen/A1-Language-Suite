@@ -104,7 +104,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "A",
-        "text": "Bien sûr. Mon prénom est François : F, R, A, N, C cédille, O, I, S."
+        "text": "Bien sûr. Mon prénom est Françoise : F, R, A, N, C cédille, O, I, S, E."
       },
       {
         "speaker": "B",
@@ -140,7 +140,7 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "parler plus lentement"
       },
       {
-        "label": "Was soll François wiederholen?",
+        "label": "Was soll Françoise wiederholen?",
         "options": [
           "le nom de famille",
           "l’alphabet",
@@ -152,10 +152,10 @@ window.A1_COMPREHENSION_CONTENT = {
         "label": "Vorname von Person A",
         "options": [
           "Francis",
-          "François",
+          "Françoise",
           "Franck"
         ],
-        "answer": "François"
+        "answer": "Françoise"
       },
       {
         "label": "Besonderer Buchstabe in diesem Vornamen",
@@ -2023,7 +2023,7 @@ window.A1_COMPREHENSION_CONTENT = {
 (() => {
   const scenes={
     1:[['A','Bonjour ! Comment allez-vous ?'],['B','Ça va bien, merci. Et vous ?'],['A','Très bien, merci. Je m’appelle Léa. Je viens d’Allemagne et j’habite à Lyon. Et vous ?'],['B','Je m’appelle Paul. J’habite à Paris.'],['A','Vous parlez français ?'],['B','Oui, et un peu allemand.'],['A','Enchantée, Paul. Au revoir !'],['B','Au revoir, Léa !']],
-    2:[['A','Bonjour. Votre prénom, s’il vous plaît ?'],['B','Lucas. Ça s’écrit L, U, C, A, S.'],['A','Et votre nom de famille ?'],['B','Morel. M, O, R, E, L. Vous pouvez parler plus lentement, s’il vous plaît ?'],['A','Bien sûr. Je m’appelle François.'],['B','Vous pouvez répéter votre prénom, s’il vous plaît ?'],['A','François. Ça s’écrit F, R, A, N, C cédille, O, I, S.'],['B','Merci, François.']],
+    2:[['A','Bonjour. Votre prénom, s’il vous plaît ?'],['B','Lucas. Ça s’écrit L, U, C, A, S.'],['A','Et votre nom de famille ?'],['B','Morel. M, O, R, E, L. Vous pouvez parler plus lentement, s’il vous plaît ?'],['A','Bien sûr. Je m’appelle Françoise.'],['B','Vous pouvez répéter votre prénom, s’il vous plaît ?'],['A','Françoise. Ça s’écrit F, R, A, N, C cédille, O, I, S, E.'],['B','Merci, Françoise.']],
     3:[['A','Bonjour. Pour le formulaire, quel âge avez-vous ?'],['B','J’ai vingt-six ans. Et vous ?'],['A','Moi, j’ai trente-deux ans. Votre numéro de téléphone commence par zéro six ?'],['B','Non. Mon numéro est zéro sept, quatre-vingt-douze, trente, vingt et un, quinze.'],['A','Merci. Et votre adresse ?'],['B','Vingt et un, rue Victor-Hugo.'],['A','Quel est votre code postal ?'],['B','B3V 1L2.'],['A','Et votre date de naissance ?'],['B','Je suis né le dix-sept avril.']],
     4:[['A','Vous êtes libre mardi à quinze heures ?'],['B','Mardi, non. Je suis libre mercredi à quinze heures trente.'],['A','D’accord. Devant la bibliothèque ?'],['B','Oui. Mercredi, le premier juillet, à quinze heures trente.'],['A','Et jeudi, vous êtes libre le matin ?'],['B','Non, seulement le soir.'],['A','Alors, on se voit mercredi devant la bibliothèque.'],['B','D’accord. À mercredi !']],
     5:[['A','Tu as des frères et sœurs ?'],['B','Oui, un frère et deux sœurs. Mon frère s’appelle Paul. Il est calme.'],['A','Et Léa, c’est ta sœur ?'],['B','Non, Léa, c’est ma mère. Mon père s’appelle Marc.'],['A','Comment est ta mère ?'],['B','Elle est sympa.'],['A','Ta famille habite ici ?'],['B','Oui, nous habitons ici.']],
@@ -2047,5 +2047,5 @@ window.A1_COMPREHENSION_CONTENT = {
     23:[['A','Il faut quoi pour la soupe ?'],['B','Trois carottes, deux pommes de terre et un peu de lait.'],['A','On ajoute du sucre ?'],['B','Non, pas de sucre.'],['A','Comment préparer la soupe ?'],['B','Coupez les légumes avec un couteau, puis ajoutez le lait.'],['A','Et le sel ?'],['B','Il ne faut pas ajouter trop de sel.']],
     24:[['A','Tu pars où en vacances ?'],['B','Je vais en France, à Lyon.'],['A','Tu pars du Canada ?'],['B','Oui, je viens du Canada.'],['A','Tu pars lundi en train ?'],['B','Non, mardi en bus. Je rentre vendredi.'],['A','À quelle heure dois-tu partir ?'],['B','Je dois partir à huit heures. Je vais visiter la ville.']]
   };
-  for(const [id,lines]of Object.entries(scenes))window.A1_COMPREHENSION_CONTENT[id].turns=lines.map(([speaker,text])=>({speaker,text,...(['1','17'].includes(id)?{gender:speaker==='A'?'female':'male'}:id==='2'?{gender:'male'}:{})}));
+  for(const [id,lines]of Object.entries(scenes))window.A1_COMPREHENSION_CONTENT[id].turns=lines.map(([speaker,text])=>({speaker,text,gender:speaker==='A'?'female':'male'}));
 })();

@@ -1168,7 +1168,7 @@
   const reviewedCorpus = {
   "fr": {
     "1": "f1e78ec2805a3e6dca279139a0d829e4cca95b3c74ba530782f8be55e7e119f2",
-    "2": "e5f4b0439ecca54e6a5cdeb82abf0b5d11d393ecd37ba3cabf2b5a0fffad6e40",
+    "2": "5b69e2aa61ce080eaba0c62145255296cab7c142734a4a68c9d0fe28da2ab945",
     "3": "777bddec9e8ecb0d3b37219d312c9cf2d67b0afeb2a73b00ebef008f253bded9",
     "4": "b01d9754f6666555f9f022073514e79efefcd444d6e310760904bbcef512821c",
     "5": "fa288f7c4ff666dada63c67d73982d82557697dbda8f5189d3ba3a0ffaf1c6d0",

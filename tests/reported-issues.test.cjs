@@ -31,7 +31,7 @@ test('reported content has natural coffee alternatives and the requested infinit
  const dom=new JSDOM('',{runScripts:'outside-only'}),w=dom.window;for(const f of ['francais/data.js','francais/comprehension-content.js','francais/grammar-practice.js'])w.eval(read(f));
  const coffee=w.FR_A1_DATA.lessons[5].quiz.find(q=>q.q==='Wie bestellst du höflich Kaffee?');assert(coffee.o.every(o=>o.startsWith('Je voudrais ')&&o.endsWith('s’il vous plaît.')));assert.equal(coffee.o.filter(o=>o.includes('café')).length,1);
  const q=w.FR_A1_DATA.lessons[1].quiz.find(q=>q.q==='Vous pouvez ___, s’il vous plaît ?');assert.deepEqual(Array.from(q.o),['épeler','épelez','épelle']);
- const Paul=w.A1_COMPREHENSION_CONTENT[5];assert(Paul.turns.some(t=>/Paul\. Il est calme\./.test(t.text)));assert.equal(Paul.fields.find(f=>f.label==='Eigenschaft von Paul').answer,'calme');assert(w.A1_COMPREHENSION_CONTENT[2].turns.every(t=>t.gender==='male'));dom.window.close();
+ const Paul=w.A1_COMPREHENSION_CONTENT[5];assert(Paul.turns.some(t=>/Paul\. Il est calme\./.test(t.text)));assert.equal(Paul.fields.find(f=>f.label==='Eigenschaft von Paul').answer,'calme');assert(w.A1_COMPREHENSION_CONTENT[2].turns.every(t=>t.gender===(t.speaker==='A'?'female':'male')));assert.equal(w.A1_COMPREHENSION_CONTENT[2].fields[4].answer,'Françoise');dom.window.close();
 });
 test('paced playback includes every sentence of the reported Paul dialogue',()=>{
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org',runScripts:'outside-only'}),w=dom.window,spoken=[],timers=[];
