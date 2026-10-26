@@ -48,3 +48,18 @@ html.dark-mode .primary-btn.lesson-next-ready{
 .en-vocabulary-grid .phrase-row>div{min-width:0;overflow-wrap:anywhere}
 .en-vocabulary-grid .phrase-row small{display:block;line-height:1.5}
 @media(max-width:600px){.en-vocabulary-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Reviewed rules keep one idea per paragraph; verb forms line up on small screens. */
+.en-rule{margin:14px 0 20px}
+.en-rule>p{margin:0 0 12px;line-height:1.65}
+.en-rule>p:last-child{margin-bottom:0}
+.en-rule-table-wrap{max-width:100%;overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:12px}
+.en-rule-table{width:100%;border-collapse:collapse;font-size:.94rem;text-align:left}
+.en-rule-table caption{text-align:left;font-weight:700;padding:12px;background:var(--accent-soft);color:var(--accent-ink)}
+.en-rule-table th,.en-rule-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.en-rule-table thead th{font-size:.82rem;color:var(--muted);font-weight:700}
+.en-rule-table tbody th{font-weight:400;overflow-wrap:anywhere}
+.en-rule-table td{font-weight:700;white-space:nowrap}
+.en-rule-table tbody tr:last-child>*{border-bottom:0}
+.en-rule-table tbody tr:nth-child(even){background:var(--bg)}
+@media(max-width:400px){.en-rule-table{font-size:.85rem}.en-rule-table th,.en-rule-table td{padding:9px 7px}}

@@ -13,8 +13,12 @@
     return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Hard Mode':'Zusätzliche Wörter in dieser Lektion'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words))}</div></aside>`;
   }
   function pools(lesson){return lesson.topics.map(t=>({key:t.key,title:t.title,tasks:t.practice}));}
+  function ruleHtml(topic){
+    const table=topic.formTable;
+    return `<div class="en-rule">${topic.rule.split('\n\n').map(p=>`<p>${esc(p)}</p>`).join('')}${table?`<div class="en-rule-table-wrap"><table class="en-rule-table"><caption>${esc(table.caption)}</caption><thead><tr>${table.headings.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${table.rows.map(row=>`<tr><th scope="row">${esc(row[0])}</th>${row.slice(1).map(cell=>`<td lang="en">${esc(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:''}</div>`;
+  }
   function grammarHtml(lesson){
-    return `<div class="lesson-deepening">${lesson.topics.map(t=>`<details class="grammar-detail" data-deepening-key="${t.key}"><summary>${esc(t.title)}</summary><div class="grammar-detail-body"><p class="en-rule">${esc(t.rule)}</p>${pairs(t.examples)}<details class="en-more-examples"><summary>Weitere Beispiele mit Übersetzung</summary>${pairs(t.rows.slice(0,10).map(([s,a,,,m])=>[s.replace('___',a),m]))}</details><div data-english-practice="${t.key}"></div></div></details>`).join('')}</div>`;
+    return `<div class="lesson-deepening">${lesson.topics.map((t,index)=>`<details class="grammar-detail" data-deepening-key="${t.key}"><summary>${esc(t.title)}</summary><div class="grammar-detail-body">${ruleHtml(t)}${pairs(t.examples)}<details class="en-more-examples"><summary>Weitere Beispiele mit Übersetzung</summary>${pairs(t.rows.slice(0,10).map(([s,a,,,m])=>[s.replace('___',a),m]))}</details>${stageHtml(lesson.id,'grammar:'+index)}<div data-english-practice="${t.key}"></div></div></details>`).join('')}</div>`;
   }
   function topicDone(state,id,key){const p=state.lessonWork?.[id]?.deepening?.[key];return p?.done===true||Number(p?.best||0)>=80;}
   function refreshPractice(progress,tasks){
@@ -65,5 +69,5 @@
     return `${stageHtml(id,'hard')}<p class="muted">Im Hard Mode schreibst du die englischen Angaben selbst. Bei Zahlen, Uhrzeiten und Codes steht das gewünschte Format in der Frage.</p>${Number(id)===24?'<p>Postleitzahlen im englischsprachigen Raum können aus Buchstaben und Ziffern bestehen. Höre die Zeichen einzeln ab; ein Leerzeichen ist optional.</p>':''}`;
   };
   window.EN_A1_DEEPENING={pools,grammarHtml,enrich:grammarHtml,topicDone,decorate,refreshPractice};
-  window.A1LessonFoundations={content:window.EN_A1_FOUNDATIONS,render:(_course,id)=>stageHtml(id,'listen'),enhance:(_course,id,_title,html,index)=>stageHtml(id,'grammar:'+index)+html,vocabularyHtml,preparationHtml,hardInstructionsHtml:()=>''};
+  window.A1LessonFoundations={content:window.EN_A1_FOUNDATIONS,render:(_course,id)=>stageHtml(id,'listen'),enhance:(_course,_id,_title,html)=>html,vocabularyHtml,preparationHtml,hardInstructionsHtml:()=>''};
 })();

@@ -14,7 +14,7 @@ There is some cheese.|Es gibt etwas Käse.|Es gibt keinen Käse.|Es gibt etwas F
 There are some tomatoes.|Es gibt einige Tomaten.|Es gibt einige Kartoffeln.|Es gibt keine Tomaten.
 A cup of tea.|Eine Tasse Tee.|Ein Glas Tee.|Eine Tasse Kaffee.
 I don't eat meat.|Ich esse kein Fleisch.|Ich esse keinen Fisch.|Ich kaufe kein Fleisch.`,
-    [topic('Zählbar oder nicht zählbar','Zählbare Nomen haben Einzahl und Mehrzahl: an egg, two eggs. Milk, water, rice und bread gelten in der üblichen Lebensmittelbedeutung als nicht zählbar: kein a milk oder two rices. Zum Zählen brauchst du eine Einheit: a bottle of milk, two cups of tea. Some milk steht mit is, some eggs mit are. No kann vor einem Nomen „kein/keine“ bedeuten: no rice = kein Reis.',
+    [topic('Zählbar oder nicht zählbar','Zählbare Nomen haben Einzahl und Mehrzahl: an egg, two eggs.\n\nMilk, water, rice und bread gelten in der üblichen Lebensmittelbedeutung als nicht zählbar: kein a milk oder two rices.\n\nZum Zählen brauchst du eine Einheit: a bottle of milk, two cups of tea.\n\nSome milk steht mit is, some eggs mit are.\n\nNo kann vor einem Nomen „kein/keine“ bedeuten: no rice = kein Reis.',
       `an egg / two eggs|ein Ei / zwei Eier
 some rice|etwas Reis
 two bottles of water|zwei Flaschen Wasser`,
@@ -34,7 +34,7 @@ Four glasses ___ water.|of|at|on|Vier Gläser Wasser.
 We buy two ___.|tomatoes|a tomato|tomato|Wir kaufen zwei Tomaten.
 I need a bottle ___ milk.|of|in|on|Ich brauche eine Flasche Milch.
 She eats some ___.|bread|breads|a bread|Sie isst etwas Brot.`),
-    topic('Some und any','In bejahten Aussagen steht meistens some. In neutralen Fragen und Verneinungen steht meistens any. Das gilt für nicht zählbare Nomen und Mehrzahl: some milk, any eggs. Nicht beide Wörter gleichzeitig. Bei Angeboten und Bitten kann some auch in Fragen stehen; solche höflichen Muster lernst du in der nächsten Lektion. Some und any können je nach Erwartung beide in einer Frage vorkommen. Hier wählst du für ausdrücklich neutrale Fragen die übliche Form any; für „überhaupt keine“ ebenfalls any.',
+    topic('Some und any','In bejahten Aussagen steht meistens some. In neutralen Fragen und Verneinungen steht meistens any.\n\nDas gilt für nicht zählbare Nomen und Mehrzahl: some milk, any eggs. Nicht beide Wörter gleichzeitig.\n\nBei Angeboten und Bitten kann some auch in Fragen stehen; solche höflichen Muster lernst du in der nächsten Lektion.\n\nSome und any können je nach Erwartung beide in einer Frage vorkommen. Hier wählst du für ausdrücklich neutrale Fragen die übliche Form any; für „überhaupt keine“ ebenfalls any.',
       `We have some eggs.|Wir haben einige Eier.
 Do you have any milk?|Hast du Milch?
 We don't have any rice.|Wir haben keinen Reis.`,
@@ -75,7 +75,7 @@ Can I have the menu, please?|Kann ich bitte die Speisekarte haben?|Kann ich bitt
 It is twelve pounds.|Es kostet zwölf Pfund.|Es kostet zwanzig Pfund.|Es kostet zwölf Euro.
 I'd like some soup.|Ich hätte gern etwas Suppe.|Ich mag Suppe.|Ich hätte gern etwas Salat.
 Can I pay by card?|Kann ich mit Karte bezahlen?|Kann ich bar bezahlen?|Kann ich später bezahlen?`,
-    [topic('Would like für Wünsche','I would like oder I’d like bedeutet ich möchte / ich hätte gern. Es ist eine höfliche Bestellung. I like beschreibt dagegen eine allgemeine Vorliebe. Would bleibt für alle Personen gleich. Fragen beginnen mit Would: Would you like …? Bei Angeboten ist some üblich: Would you like some tea?',
+    [topic('Would like für Wünsche','I would like oder I’d like bedeutet ich möchte / ich hätte gern.\n\nEs ist eine höfliche Bestellung.\n\nI like beschreibt dagegen eine allgemeine Vorliebe.\n\nWould bleibt für alle Personen gleich.\n\nFragen beginnen mit Would: Would you like …?\n\nBei Angeboten ist some üblich: Would you like some tea?',
       `I'd like a sandwich, please.|Ich hätte gern ein Sandwich.
 I like sandwiches.|Ich mag Sandwiches allgemein.
 Would you like some tea?|Möchtest du etwas Tee?`,
@@ -95,7 +95,7 @@ Leo would ___ some rice.|like|likes|to like|Leo hätte gern etwas Reis.
 I ___ coffee.|like|would like|am like|Ich mag Kaffee im Allgemeinen.
 We'd ___ the menu, please.|like|likes|to like|Wir hätten gern die Speisekarte.
 Would your friends ___ some soup?|like|likes|to like|Möchten deine Freunde etwas Suppe?`),
-    topic('How much und how many','How many steht vor zählbarer Mehrzahl: How many eggs? How much steht vor nicht zählbaren Nomen: How much water? Für Preise: How much is it? / How much are they? Two coffees bedeutet im Café zwei Tassen Kaffee. Card = Karte; cash = Bargeld. By card = mit Karte, in cash = bar. Wouldn’t like bedeutet „möchte nicht“; die Verneinung gehört zu would.',
+    topic('How much und how many','How many steht vor zählbarer Mehrzahl: How many eggs?\n\nHow much steht vor nicht zählbaren Nomen: How much water?\n\nFür Preise: How much is it? / How much are they?\n\nTwo coffees bedeutet im Café zwei Tassen Kaffee.\n\nCard = Karte; cash = Bargeld. By card = mit Karte, in cash = bar.\n\nWouldn’t like bedeutet „möchte nicht“; die Verneinung gehört zu would.',
       `How many sandwiches?|Wie viele Sandwiches?
 How much water?|Wie viel Wasser?
 How much is the salad?|Wie viel kostet der Salat?`,
@@ -136,7 +136,7 @@ This size is better.|Diese Größe ist besser.|Diese Größe ist schlechter.|Die
 It is too big.|Es ist zu groß.|Es ist zu klein.|Es ist groß genug.
 I'd like the smaller one.|Ich hätte gern das kleinere.|Ich hätte gern das größere.|Ich hätte gern das günstigere.
 I can pay in cash.|Ich kann bar bezahlen.|Ich kann mit Karte bezahlen.|Ich kann nicht bar bezahlen.`,
-    [topic('Kurze Adjektive: -er und than','Für einen Vergleich bekommt ein kurzes Adjektiv meistens -er: small → smaller, cheap → cheaper. Nach End-e nur -r: large → larger. Bei kurzem betontem Vokal + Endkonsonant wird der Konsonant oft verdoppelt: big → bigger. Konsonant + y wird -ier: happy → happier. Than bedeutet als. Kein more zusammen mit -er.',
+    [topic('Kurze Adjektive: -er und than','Für einen Vergleich bekommt ein kurzes Adjektiv meistens -er: small → smaller, cheap → cheaper.\n\nNach End-e nur -r: large → larger.\n\nBei kurzem betontem Vokal + Endkonsonant wird der Konsonant oft verdoppelt: big → bigger.\n\nKonsonant + y wird -ier: happy → happier.\n\nThan bedeutet als. Kein more zusammen mit -er.',
       `This bag is smaller than that bag.|Diese Tasche ist kleiner als jene.
 The red coat is cheaper.|Der rote Mantel ist günstiger.
 This room is bigger.|Dieses Zimmer ist größer.`,
@@ -156,7 +156,7 @@ These shoes are ___.|cheaper|cheap|more cheap|Diese Schuhe sind günstiger.
 This coat is ___ than my coat.|warmer|warm|more warm|Dieser Mantel ist wärmer als mein Mantel.
 Her jacket is ___.|longer|long|more long|Ihre Jacke ist länger.
 This phone is newer ___ my phone.|than|then|as|Dieses Telefon ist neuer als mein Telefon.`),
-    topic('More, better und worse','Längere Adjektive bilden den Vergleich meistens mit more: expensive → more expensive. Good wird better, bad wird worse. Diese Formen nicht mit more kombinieren. Too heißt zu: too big = zu groß. One kann ein bereits genanntes Nomen ersetzen: the smaller one = das kleinere Exemplar. Ours steht ohne folgendes Nomen für „unseres/unsere“: our coats → ours. Die übliche Vergleichsform von good ist better, von bad worse.',
+    topic('More, better und worse','Längere Adjektive bilden den Vergleich meistens mit more: expensive → more expensive.\n\nGood wird better, bad wird worse.\n\nDiese Formen nicht mit more kombinieren.\n\nToo heißt zu: too big = zu groß.\n\nOne kann ein bereits genanntes Nomen ersetzen: the smaller one = das kleinere Exemplar.\n\nOurs steht ohne folgendes Nomen für „unseres/unsere“: our coats → ours.',
       `This coat is more expensive.|Dieser Mantel ist teurer.
 This size is better.|Diese Größe ist besser.
 I'd like the smaller one.|Ich hätte gern das kleinere Exemplar.`,
@@ -197,7 +197,7 @@ The station is on the right.|Der Bahnhof ist rechts.|Der Bahnhof ist links.|Die 
 I go to work on foot.|Ich gehe zu Fuß zur Arbeit.|Ich fahre mit dem Bus zur Arbeit.|Ich fahre mit dem Zug zur Arbeit.
 Get off at the next stop.|Steig an der nächsten Haltestelle aus.|Steig an der ersten Haltestelle ein.|Warte an der nächsten Haltestelle.
 Is this bus for the airport?|Fährt dieser Bus zum Flughafen?|Fährt dieser Bus zum Bahnhof?|Ist das der Flughafen?`,
-    [topic('Aufforderungen und Verbote','Für eine Aufforderung steht die Grundform ohne Subjekt: Go straight on. Ein Verbot beginnt mit don’t: Don’t cross here. In Bitten wie Repeat, please. hast du diese Grundform schon als feste Wendung kennengelernt. Please macht die Aufforderung höflicher. Let’s + Grundform schlägt etwas Gemeinsames vor: Let’s take the bus. Get on = einsteigen, get off = aussteigen.',
+    [topic('Aufforderungen und Verbote','Für eine Aufforderung steht die Grundform ohne Subjekt: Go straight on.\n\nEin Verbot beginnt mit don’t: Don’t cross here.\n\nIn Bitten wie Repeat, please. hast du diese Grundform schon als feste Wendung kennengelernt.\n\nPlease macht die Aufforderung höflicher.\n\nLet’s + Grundform schlägt etwas Gemeinsames vor: Let’s take the bus.\n\nGet on = einsteigen, get off = aussteigen.',
       `Turn right, please.|Biege bitte rechts ab.
 Don't cross here.|Überquere hier nicht die Straße.
 Let's take the train.|Nehmen wir den Zug.`,
@@ -217,7 +217,7 @@ ___ the next bus.|Take|Takes|To take|Nimm den nächsten Bus.
 Let's ___ here.|wait|waits|to wait|Warten wir hier.
 ___ on at this stop.|Get|Gets|To get|Steig an dieser Haltestelle ein.
 Don't ___ the door.|open|opens|to open|Öffne die Tür nicht.`),
-    topic('Ort, Richtung und Verkehrsmittel','To bezeichnet ein Ziel: go to the station. At bezeichnet einen Ort: wait at the station. Verkehrsmittel meist mit by ohne Artikel: by bus, by train; zu Fuß heißt on foot. Für Bahnsteige: from platform three. First/second/third benennen die Reihenfolge. Which fragt nach einer Auswahl.',
+    topic('Ort, Richtung und Verkehrsmittel','To bezeichnet ein Ziel: go to the station.\n\nAt bezeichnet einen Ort: wait at the station.\n\nVerkehrsmittel meist mit by ohne Artikel: by bus, by train; zu Fuß heißt on foot.\n\nFür Bahnsteige: from platform three.\n\nFirst/second/third benennen die Reihenfolge. Which fragt nach einer Auswahl: „welcher“, „welche“ oder „welches“.',
       `I go to work by bus.|Ich fahre mit dem Bus zur Arbeit.
 Wait at the station.|Warte am Bahnhof.
 The train leaves from platform three.|Der Zug fährt von Bahnsteig drei ab.`,
@@ -258,7 +258,7 @@ What are you doing?|Was machst du gerade?|Was machst du normalerweise?|Wo bist d
 We are cleaning the kitchen.|Wir putzen gerade die Küche.|Wir putzen gerade das Badezimmer.|Wir kochen gerade in der Küche.
 It is raining.|Es regnet gerade.|Es ist kalt.|Es regnet oft.
 She is talking on the phone.|Sie telefoniert gerade.|Sie schreibt gerade auf dem Telefon.|Sie hört gerade Musik.`,
-    [topic('Be + Verb mit -ing','Das Present Continuous beschreibt etwas, das gerade geschieht. Du brauchst am/is/are + -ing: I am working. Ein End-e fällt meist weg: write → writing, make → making. Bei run und sit wird der letzte Konsonant verdoppelt: running, sitting. Verwechsle dies nicht mit einer Gewohnheit im Present Simple.',
+    [topic('Be + Verb mit -ing','Das Present Continuous beschreibt etwas, das gerade geschieht.\n\nDu brauchst am/is/are + -ing: I am working.\n\nEin End-e fällt meist weg: write → writing, make → making.\n\nBei run und sit wird der letzte Konsonant verdoppelt: running, sitting.\n\nVerwechsle dies nicht mit einer Gewohnheit im Present Simple.',
       `I am working now.|Ich arbeite gerade.
 She is writing a message.|Sie schreibt gerade eine Nachricht.
 They are running.|Sie laufen gerade.`,
@@ -278,7 +278,7 @@ My sister is ___ outside.|running|run|runs|Meine Schwester läuft gerade drauße
 They are ___ a message.|sending|send|sends|Sie senden gerade eine Nachricht.
 He is ___ at the picture.|looking|look|looks|Er sieht sich gerade das Bild an.
 I ___ waiting at the station.|am|are|is|Ich warte gerade am Bahnhof.`),
-    topic('Fragen und Verneinungen im Continuous','Bei Fragen steht be vor dem Subjekt: Are you working? Das Verb behält -ing. Zum Verneinen steht not nach be: She isn’t working. Du benutzt dabei kein do/does. Auch swim verdoppelt den Endkonsonanten: swimming. What are you doing? fragt nach der gerade ausgeführten Tätigkeit.',
+    topic('Fragen und Verneinungen im Continuous','Bei Fragen steht be vor dem Subjekt: Are you working?\n\nDas Verb behält -ing.\n\nZum Verneinen steht not nach be: She isn’t working.\n\nDu benutzt dabei kein do/does.\n\nAuch swim verdoppelt den Endkonsonanten: swimming.\n\nWhat are you doing? fragt nach der gerade ausgeführten Tätigkeit.',
       `Are you waiting?|Wartest du gerade?
 She isn't working now.|Sie arbeitet gerade nicht.
 What are they doing?|Was machen sie gerade?`,
@@ -319,7 +319,7 @@ Do you know her name?|Kennst du ihren Namen?|Kennst du seinen Namen?|Verstehst d
 We need a break.|Wir brauchen eine Pause.|Wir machen gerade eine Pause.|Wir wollen keine Pause.
 What do you want?|Was möchtest du?|Was brauchst du?|Was weißt du?
 He is wearing a coat today.|Er trägt heute gerade einen Mantel.|Er trägt immer einen Mantel.|Er kauft heute einen Mantel.`,
-    [topic('Gewohnheit und laufende Handlung','Present Simple beschreibt Gewohnheiten: every day, usually, often. Present Continuous beschreibt laufende oder vorübergehende Handlungen: now, at the moment. Eine Zeitangabe allein ist keine starre Regel; lies die Situation. I work here heißt ich arbeite hier grundsätzlich, I am working heißt ich bin gerade am Arbeiten.',
+    [topic('Gewohnheit und laufende Handlung','Present Simple beschreibt Gewohnheiten: every day, usually, often.\n\nPresent Continuous beschreibt laufende oder vorübergehende Handlungen: now, at the moment.\n\nEine Zeitangabe allein ist keine starre Regel; lies die Situation.\n\nI work here heißt ich arbeite hier grundsätzlich, I am working heißt ich bin gerade am Arbeiten.',
       `I read every evening.|Ich lese jeden Abend.
 I am reading now.|Ich lese gerade.
 She usually walks, but today she is taking the bus.|Sie geht normalerweise zu Fuß, nimmt heute aber gerade den Bus.`,
@@ -339,7 +339,7 @@ My parents usually ___ tea.|drink|are drinking|drinks|Das ist ihre normale Gewoh
 Our daughter ___ an email now.|is writing|writes|write|Sie ist gerade jetzt am Schreiben.
 Ben often ___ his friends.|visits|is visiting|visit|Ben besucht regelmäßig seine Freunde.
 Anna ___ for the train at the moment.|is waiting|waits|wait|Anna wartet gerade jetzt auf den Zug.`),
-    topic('Zustände: like, know, want und need','Einige häufige Verben beschreiben Zustände, Wünsche oder Wissen. In ihrer gewöhnlichen A1-Bedeutung nutzt du meist das Present Simple: I like it, I know, I want water, I need help. Auch wenn der Wunsch jetzt besteht: I need help, nicht I am needing help. He/she/it behält -s; Fragen und Verneinungen verwenden do/does. Him ist die Objektform von he: help him = ihm helfen. Need to help heißt „helfen müssen“; need help heißt „Hilfe brauchen“.',
+    topic('Zustände: like, know, want und need','Einige häufige Verben beschreiben Zustände, Wünsche oder Wissen.\n\nIn ihrer gewöhnlichen A1-Bedeutung nutzt du meist das Present Simple: I like it, I know, I want water, I need help.\n\nAuch wenn der Wunsch jetzt besteht: I need help, nicht I am needing help.\n\nHe/she/it behält -s; Fragen und Verneinungen verwenden do/does.\n\nHim ist die Objektform von he: help him = ihm helfen.\n\nNeed to help heißt „helfen müssen“; need help heißt „Hilfe brauchen“.',
       `I need help now.|Ich brauche jetzt Hilfe.
 She knows my name.|Sie kennt meinen Namen.
 Do you understand?|Verstehst du?`,

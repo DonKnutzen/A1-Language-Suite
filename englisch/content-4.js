@@ -14,7 +14,7 @@ This is the biggest bag.|Das ist die größte Tasche.|Das ist die kleinste Tasch
 It is the best day.|Es ist der beste Tag.|Es ist ein besserer Tag.|Es ist der schlechteste Tag.
 This is the most expensive hotel.|Das ist das teuerste Hotel.|Dieses Hotel ist teurer.|Das ist das günstigste Hotel.
 I like summer best.|Ich mag den Sommer am liebsten.|Ich mag den Winter am liebsten.|Ich mag den Sommer nicht.`,
-    [topic('Wetter mit it, Dinge mit there','Für Wetter benutzt du it: It is cold / sunny / windy. Bei einer laufenden Wetterhandlung steht is + -ing: It is raining. There is/are sagt, was vorhanden ist: There are clouds. In summer und in winter stehen ohne the, wenn du allgemein von der Jahreszeit sprichst.',
+    [topic('Wetter mit it, Dinge mit there','Für Wetter benutzt du it: It is cold / sunny / windy.\n\nBei einer laufenden Wetterhandlung steht is + -ing: It is raining.\n\nThere is/are sagt, was vorhanden ist: There are clouds.\n\nIn summer und in winter stehen ohne the, wenn du allgemein von der Jahreszeit sprichst.',
       `It is cloudy.|Es ist bewölkt.
 It is raining now.|Es regnet gerade.
 There are clouds in the sky.|Am Himmel sind Wolken. Sky = Himmel.`,
@@ -34,7 +34,7 @@ It ___ raining now.|is|does|are|Es regnet gerade.
 It is warm ___ spring.|in|on|at|Im Frühling ist es warm.
 It is ___ outside.|wet|a wet|wets|Draußen ist es nass.
 What is the weather ___?|like|likes|liking|Wie ist das Wetter?`),
-    topic('Superlative: the smallest und the best','Wenn du etwas aus einer Gruppe als am kleinsten/größten bezeichnest, verwendest du the + -est: the smallest. Die Schreibregeln entsprechen dem Vergleich: big → biggest, happy → happiest. Längere Adjektive: the most expensive. Good → the best; bad → the worst. Beim Vergleich zweier Dinge steht -er + than; bei der Spitzenposition in der Gruppe -est.',
+    topic('Superlative: the smallest und the best','Wenn du etwas aus einer Gruppe als am kleinsten/größten bezeichnest, verwendest du the + -est: the smallest.\n\nDie Schreibregeln entsprechen dem Vergleich: big → biggest, happy → happiest.\n\nLängere Adjektive: the most expensive.\n\nGood → the best; bad → the worst.\n\nBeim Vergleich zweier Dinge steht -er + than; bei der Spitzenposition in der Gruppe -est.',
       `small → smaller → the smallest|klein → kleiner → am kleinsten
 expensive → more expensive → the most expensive|teuer → teurer → am teuersten
 good → better → the best|gut → besser → am besten`,
@@ -75,7 +75,7 @@ You must wait here.|Du musst hier warten.|Du darfst hier nicht warten.|Du kannst
 You mustn't eat here.|Du darfst hier nicht essen.|Du musst hier nicht essen.|Du musst hier essen.
 He hasn't got a phone.|Er hat kein Telefon.|Er benutzt kein Telefon.|Er braucht kein Telefon.
 Can I have an appointment?|Kann ich einen Termin bekommen?|Habe ich einen Termin?|Kann ich den Termin absagen?`,
-    [topic('Have got und has got','Have got bedeutet haben und ist besonders im britischen Englisch häufig: I have got / I’ve got; she has got / she’s got. Fragen: Have you got …? / Has she got …? Verneinung: haven’t got / hasn’t got. Verwende nicht do zusammen mit got. She’s got bedeutet she has got; she’s ill bedeutet she is ill.',
+    [topic('Have got und has got','Have got bedeutet haben und ist besonders im britischen Englisch häufig: I have got / I’ve got; she has got / she’s got.\n\nFragen: Have you got …? / Has she got …?\n\nVerneinung: haven’t got / hasn’t got.\n\nVerwende nicht do zusammen mit got.\n\nShe’s got bedeutet she has got; she’s ill bedeutet she is ill.',
       `I've got a headache.|Ich habe Kopfschmerzen.
 Has she got a cold?|Hat sie eine Erkältung?
 He hasn't got a phone.|Er hat kein Telefon.`,
@@ -95,7 +95,7 @@ My parents ___ got a car.|have|has|are|Meine Eltern haben ein Auto.
 I ___ got a cold.|haven't|hasn't|don't|Ich habe keine Erkältung.
 Have they got a phone? Yes, they ___.|have|do|are|Ja, sie haben ein Telefon.
 Our son ___ got any medicine.|hasn't|haven't|doesn't|Unser Sohn hat kein Medikament.`),
-    topic('Must und mustn’t','Must + Grundform drückt eine Pflicht aus. Mustn’t bedeutet ein Verbot: nicht dürfen. Es bedeutet nicht nicht müssen. Die Form ist für alle Personen gleich, ohne -s und ohne to. Hier übst du Hausregeln und Hinweise, keine medizinischen Behandlungsanweisungen. Als Aufforderung kannst du auch eine Grundform mit please benutzen.',
+    topic('Must und mustn’t','Must + Grundform drückt eine Pflicht aus.\n\nMustn’t bedeutet ein Verbot: nicht dürfen. Es bedeutet nicht nicht müssen.\n\nDie Form ist für alle Personen gleich, ohne -s und ohne to.\n\nHier übst du Hausregeln und Hinweise, keine medizinischen Behandlungsanweisungen.\n\nAls Aufforderung kannst du auch eine Grundform mit please benutzen.',
       `You must wait here.|Du musst hier warten.
 You mustn't eat here.|Du darfst hier nicht essen.
 Please sit here.|Setz dich bitte hierhin.`,
@@ -136,7 +136,7 @@ There was a café.|Es gab ein Café.|Es gibt ein Café.|Es gab zwei Cafés.
 There were two rooms.|Es gab zwei Zimmer.|Es gibt zwei Zimmer.|Es gab ein Zimmer.
 I was born in Germany.|Ich wurde in Deutschland geboren.|Ich wohne in Deutschland.|Ich war gestern in Deutschland.
 They were tired last night.|Sie waren gestern Abend müde.|Sie sind heute Abend müde.|Wir waren gestern Abend müde.`,
-    [topic('Be in der Vergangenheit','I/he/she/it verwendet was. You/we/they verwenden were. Verneinung: wasn’t / weren’t. Fragen stellen was/were vor das Subjekt: Were you here? Fragen mit was/were brauchen kein weiteres Hilfsverb. Yesterday = gestern, last week = letzte Woche, two days ago = vor zwei Tagen. Born steht mit be: I was born in Berlin.',
+    [topic('Be in der Vergangenheit','I/he/she/it verwendet was.\n\nYou/we/they verwenden were.\n\nVerneinung: wasn’t / weren’t.\n\nFragen stellen was/were vor das Subjekt: Were you here? Fragen mit was/were brauchen kein weiteres Hilfsverb.\n\nYesterday = gestern, last week = letzte Woche, two days ago = vor zwei Tagen.\n\nBorn steht mit be: I was born in Berlin.',
       `I was tired yesterday.|Ich war gestern müde.
 They were at home.|Sie waren zu Hause.
 Was she in London?|War sie in London?`,
@@ -156,7 +156,7 @@ Where ___ your parents last week?|were|was|is|Wo waren deine Eltern letzte Woche
 ___ the weather cold?|Was|Were|Is|War das Wetter kalt?
 They ___ here two days ago.|were|was|are|Sie waren vor zwei Tagen hier.
 Were you tired? No, I ___.|wasn't|weren't|isn't|Nein, ich war nicht müde.`),
-    topic('There was und there were','There was + Einzahl und there were + Mehrzahl bedeuten es gab. Fragen: Was there …? / Were there …? Verneinung: There wasn’t … / There weren’t … . Bei nicht zählbaren Nomen steht was: There was some water. Diese Formen beschreiben eine frühere Situation. Besitz mit einem Namen wird mit ’s gebildet: my sister’s house = das Haus meiner Schwester.',
+    topic('There was und there were','There was + Einzahl und there were + Mehrzahl bedeuten es gab.\n\nFragen: Was there …? / Were there …?\n\nVerneinung: There wasn’t … / There weren’t … .\n\nBei nicht zählbaren Nomen steht was: There was some water.\n\nDiese Formen beschreiben eine frühere Situation.\n\nBesitz mit einem Namen wird mit ’s gebildet: my sister’s house = das Haus meiner Schwester.',
       `There was a café near the hotel.|Es gab ein Café in der Nähe des Hotels.
 There were two bedrooms.|Es gab zwei Schlafzimmer.
 Was there a kitchen?|Gab es eine Küche?`,
@@ -197,7 +197,7 @@ I didn't watch television.|Ich sah nicht fern.|Ich sehe nie fern.|Ich sah fern.
 What did you do yesterday?|Was hast du gestern gemacht?|Was machst du heute?|Wo warst du gestern?
 We ate fish and drank water.|Wir aßen Fisch und tranken Wasser.|Wir essen Fisch und trinken Wasser.|Wir aßen Fleisch und tranken Wasser.
 She called her brother.|Sie rief ihren Bruder an.|Ihr Bruder rief sie an.|Sie ruft gerade ihren Bruder an.`,
-    [topic('Past Simple: Aussagen','Regelmäßige Verben bekommen -ed: work → worked. Nach End-e nur -d: live → lived. Konsonant + y wird -ied: study → studied. Nach einem Vokal bleibt y: stay → stayed. Im britischen Englisch heißt es travel → travelled. Häufige unregelmäßige Formen musst du lernen: go → went, have → had, eat → ate, drink → drank, see → saw, buy → bought. In Aussagen ist die Past-Simple-Form für alle Personen gleich.',
+    [topic('Past Simple: Aussagen','Regelmäßige Verben bekommen -ed: work → worked.\n\nNach End-e nur -d: live → lived.\n\nKonsonant + y wird -ied: study → studied.\n\nNach einem Vokal bleibt y: stay → stayed.\n\nIm britischen Englisch heißt es travel → travelled.\n\nHäufige unregelmäßige Formen musst du lernen: go → went, have → had, eat → ate, drink → drank, see → saw, buy → bought.\n\nIn Aussagen ist die Past-Simple-Form für alle Personen gleich.',
       `I worked. She worked.|Ich arbeitete. Sie arbeitete.
 We went to London.|Wir fuhren nach London.
 He bought a phone.|Er kaufte ein Telefon.`,
@@ -217,7 +217,7 @@ My parents ___ to London last week.|went|goes|go|Meine Eltern fuhren letzte Woch
 I ___ a sandwich yesterday.|ate|eats|eat|Ich aß gestern ein Sandwich.
 We ___ some milk.|bought|buys|buy|Wir kauften etwas Milch.
 He ___ in Berlin last year.|lived|live|lives|Er wohnte letztes Jahr in Berlin.`),
-    topic('Did und didn’t + Grundform','Bei Fragen und Verneinungen zeigt did die Vergangenheit. Das Tätigkeitsverb steht deshalb in der Grundform: Did you go? / I didn’t go. Kein went oder -ed nach did. Kurze Antworten: Yes, I did. / No, I didn’t. Bei be bleibt es bei was/were ohne did.',
+    topic('Did und didn’t + Grundform','Bei Fragen und Verneinungen zeigt did die Vergangenheit.\n\nDas Tätigkeitsverb steht deshalb in der Grundform: Did you go? / I didn’t go.\n\nKein went oder -ed nach did.\n\nKurze Antworten: Yes, I did. / No, I didn’t.\n\nBei be bleibt es bei was/were ohne did.',
       `Did you work yesterday?|Hast du gestern gearbeitet?
 She didn't go to London.|Sie fuhr nicht nach London.
 Where did he live?|Wo wohnte er?`,
@@ -258,7 +258,7 @@ Can we meet after work?|Können wir uns nach der Arbeit treffen?|Können wir uns
 That sounds good.|Das klingt gut.|Das ist zu spät.|Das klappt nicht.
 I can't come on Saturday.|Ich kann am Samstag nicht kommen.|Ich kann am Sonntag nicht kommen.|Ich möchte am Samstag nicht kommen.
 See you at half past six.|Bis halb sieben.|Bis halb sechs.|Bis Viertel nach sechs.`,
-    [topic('Want to und would like to','Vor einer gewünschten Tätigkeit steht want to oder would like to + Grundform: I want to go, I’d like to go. Vor einem Nomen brauchst du kein to: I want water. He/she/it verwendet wants; nach would bleibt like unverändert. Want und would like beschreiben einen Wunsch; sie sind keine eigene Zukunftszeit.',
+    [topic('Want to und would like to','Vor einer gewünschten Tätigkeit steht want to oder would like to + Grundform: I want to go, I’d like to go.\n\nVor einem Nomen brauchst du kein to: I want water.\n\nHe/she/it verwendet wants; nach would bleibt like unverändert.\n\nWant und would like beschreiben einen Wunsch; sie sind keine eigene Zukunftszeit.',
       `I want to meet on Friday.|Ich möchte mich am Freitag treffen.
 She wants to come.|Sie möchte kommen.
 I'd like to visit London.|Ich würde gern London besuchen.`,
@@ -278,7 +278,7 @@ They want ___ go to the park.|to|for|at|Sie möchten in den Park gehen.
 Does your sister ___ to come?|want|wants|wanting|Möchte deine Schwester kommen?
 We'd like to ___ on Monday.|meet|meets|meeting|Wir würden uns gern am Montag treffen.
 I ___ want to work tonight.|don't|doesn't|am not|Ich möchte heute Abend nicht arbeiten.`),
-    topic('Vorschlagen und reagieren','Let’s bedeutet let us und schlägt mit der Grundform etwas Gemeinsames vor. Can we …? fragt nach einer gemeinsamen Möglichkeit. Are you free …? fragt nach Zeit. Wenn du nicht kommen kannst, kannst du mit but einen anderen Vorschlag anschließen. Me ist die Objektform von I: for me = für mich. Nach Präpositionen steht nicht I.',
+    topic('Vorschlagen und reagieren','Let’s bedeutet let us und schlägt mit der Grundform etwas Gemeinsames vor.\n\nCan we …? fragt nach einer gemeinsamen Möglichkeit.\n\nAre you free …? fragt nach Zeit.\n\nWenn du nicht kommen kannst, kannst du mit but einen anderen Vorschlag anschließen.\n\nMe ist die Objektform von I: for me = für mich. Nach Präpositionen steht nicht I.',
       `Let's meet after work.|Treffen wir uns nach der Arbeit.
 Can we meet on Tuesday?|Können wir uns am Dienstag treffen?
 Friday is good for me.|Freitag passt mir.`,
@@ -319,7 +319,7 @@ The room was too small.|Das Zimmer war zu klein.|Das Zimmer ist zu klein.|Das Zi
 Can you repeat the number?|Können Sie die Nummer wiederholen?|Können Sie den Namen buchstabieren?|Können Sie die Nummer ändern?
 Here is my address.|Hier ist meine Adresse.|Hier ist meine Nummer.|Dort ist meine Adresse.
 Please send a confirmation.|Senden Sie bitte eine Bestätigung.|Senden Sie bitte eine Rechnung.|Senden Sie bitte eine Nachricht morgen.`,
-    [topic('Bekanntes anwenden: Wünsche und Informationen','Du verbindest bekannte Muster: I’d like + Nomen; I’d like to + Verb; Can you + Grundform; Have you got …? und Is there …? . Ein Einzelzimmer heißt single room, ein Doppelzimmer double room. Für einen Zeitraum steht for: for two nights. Du lernst hier keine neue Zeitform.',
+    [topic('Bekanntes anwenden: Wünsche und Informationen','Du verbindest bekannte Muster: I’d like + Nomen; I’d like to + Verb; Can you + Grundform; Have you got …? und Is there …? .\n\nEin Einzelzimmer heißt single room, ein Doppelzimmer double room.\n\nFür einen Zeitraum steht for: for two nights.\n\nDu lernst hier keine neue Zeitform.',
       `I'd like a room for two nights.|Ich hätte gern ein Zimmer für zwei Nächte.
 Can you confirm the price?|Können Sie den Preis bestätigen?
 Is there a bathroom?|Gibt es ein Badezimmer?`,
@@ -339,7 +339,7 @@ Our reservation is ___ three nights.|for|on|at|Unsere Reservierung ist für drei
 ___ there two single rooms?|Are|Is|Do|Gibt es zwei Einzelzimmer?
 My departure is ___ Monday.|on|in|at|Meine Abreise ist am Montag.
 I'd ___ to check the address.|like|likes|to like|Ich würde gern die Adresse prüfen.`),
-    topic('Bekanntes anwenden: heute und gestern','Prüfe vor der Antwort den Zeitpunkt und die Satzart. Gewohnheit: Present Simple. Gerade jetzt: be + -ing. Vergangenes be: was/were. Vergangene Tätigkeit: Past Simple; nach did wieder die Grundform. Höfliche Wünsche bleiben would like. Diese Seite fasst die bereits gelernten Unterschiede zusammen. Zusätzliche unregelmäßige Formen in den Antwortmöglichkeiten: take → took, send → sent. Nach didn’t und did verwendest du weiterhin take und send.',
+    topic('Bekanntes anwenden: heute und gestern','Prüfe vor der Antwort den Zeitpunkt und die Satzart.\n\nGewohnheit: Present Simple.\n\nGerade jetzt: be + -ing.\n\nVergangenes be: was/were.\n\nVergangene Tätigkeit: Past Simple; nach did wieder die Grundform.\n\nHöfliche Wünsche bleiben would like.\n\nDiese Seite fasst die bereits gelernten Unterschiede zusammen.\n\nZusätzliche unregelmäßige Formen in den Antwortmöglichkeiten: take → took, send → sent.\n\nNach didn’t und did verwendest du weiterhin take und send.',
       `I usually stay here.|Ich übernachte normalerweise hier.
 I am waiting now.|Ich warte gerade.
 I stayed here last week.|Ich habe letzte Woche hier übernachtet.`,

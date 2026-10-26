@@ -25,7 +25,7 @@ You are Tom.|Du bist Tom.|Er ist Tom.|Wir sind Tom und Anna.
 She is from Canada.|Sie kommt aus Kanada.|Er kommt aus Kanada.|Sie kommt aus Deutschland.
 We are Anna and Tom.|Wir sind Anna und Tom.|Sie sind Anna und Tom.|Ihr seid Anna und Tom.
 Goodbye!|Auf Wiedersehen!|Guten Abend!|Guten Morgen!`,
-    [topic('Personalpronomen','I steht immer groß. You bedeutet du, ihr oder Sie; die Situation zeigt, wer gemeint ist. He = er, she = sie (eine Person), it = es. We = wir, they = sie (mehrere Personen). Im Englischen braucht ein Aussagesatz normalerweise ein Subjekt. In My name is … bedeutet my name „mein Name“; die Besitzwörter lernst du in Lektion 4 genauer.',
+    [topic('Personalpronomen','I steht immer groß. You bedeutet du, ihr oder Sie; die Situation zeigt, wer gemeint ist.\n\nHe = er, she = sie (eine Person), it = es. We = wir, they = sie (mehrere Personen).\n\nIm Englischen braucht ein Aussagesatz normalerweise ein Subjekt.\n\nIn My name is … bedeutet my name „mein Name“; die Besitzwörter lernst du in Lektion 4 genauer.',
       `I am Anna.|Ich bin Anna.
 She is Emma.|Sie ist Emma.
 They are Tom and Emma.|Sie sind Tom und Emma.`,
@@ -45,7 +45,7 @@ ___ are Mia and Leo.|They|She|He|Sie sind Mia und Leo.
 ___ are in Canada.|You|He|I|Ihr seid in Kanada.
 ___ is in Germany.|She|I|They|Sie ist in Deutschland.
 ___ are from London.|We|He|She|Wir kommen aus London.`),
-    topic('Be: am, is und are','Be ist unregelmäßig: I am; you are; he/she/it is; we are; they are. Die Kurzformen sind I’m, you’re, he’s, she’s, it’s, we’re und they’re. Hier übst du die ausgeschriebenen Formen.',
+    topic('Be: am, is und are','Be bedeutet „sein“. Es ist unregelmäßig: Die Form hängt vom Subjekt ab. Die Tabelle zeigt dir die ausgeschriebenen Formen und ihre Kurzformen.\n\nHier übst du die ausgeschriebenen Formen. Die Kurzformen haben dieselbe Bedeutung und sind vor allem beim Sprechen üblich.',
       `I am from Germany.|Ich komme aus Deutschland.
 He is Tom.|Er ist Tom.
 We are in Canada.|Wir sind in Kanada.`,
@@ -86,7 +86,7 @@ How are you?|Wie geht es dir?|Wie heißt du?|Wo bist du?
 I am fine, thank you.|Mir geht es gut, danke.|Mir geht es nicht gut, danke.|Ihr geht es gut, danke.
 Spell your name, please.|Buchstabiere bitte deinen Namen.|Wiederhole bitte deinen Namen.|Schreibe bitte deinen Namen.
 Repeat, please.|Wiederhole bitte.|Buchstabiere bitte.|Langsamer, bitte.`,
-    [topic('Fragen mit be','Bei Ja/Nein-Fragen steht am/is/are vor dem Subjekt: You are → Are you? Die kurze Antwort wiederholt be: Yes, I am. / No, I am not. Nach what und where folgt ebenfalls be vor dem Subjekt. What is your name? fragt nach dem Namen; Where are you from? nach der Herkunft. Your name = dein/Ihr Name, her name = ihr Name, his name = sein Name. Diese festen Wortgruppen helfen dir beim Nachfragen.',
+    [topic('Fragen mit be','Bei Ja/Nein-Fragen steht am/is/are vor dem Subjekt: You are → Are you?\n\nDie kurze Antwort wiederholt be: Yes, I am. / No, I am not. In einer bejahten Kurzantwort bleibt das Verb ausgeschrieben: Yes, I am, nicht Yes, I’m.\n\nNach what und where folgt ebenfalls be vor dem Subjekt. What is your name? fragt nach dem Namen; Where are you from? nach der Herkunft.\n\nYour name = dein/Ihr Name, her name = ihr Name, his name = sein Name. Diese festen Wortgruppen helfen dir beim Nachfragen.',
       `Are you Anna?|Bist du Anna?
 Is he from Canada?|Kommt er aus Kanada?
 Where are you from?|Woher kommst du?`,
@@ -106,7 +106,7 @@ ___ we in London?|Are|Am|Is|Sind wir in London?
 What ___ her name?|is|am|are|Wie heißt sie?
 Is Anna here? No, she ___ not.|is|are|am|Nein, sie ist nicht hier.
 Are you from London? No, I ___ not.|am|are|is|Nein, ich komme nicht aus London.`),
-    topic('Verneinen und unterscheiden','Bei be steht not nach dem Verb: I am not; she is not; they are not. Is not kann isn’t heißen, are not kann aren’t heißen. I am not wird I’m not, niemals I amn’t. What = was, where = wo/woher und how = wie.',
+    topic('Verneinen und unterscheiden','Bei be steht not nach dem Verb: I am not; she is not; they are not.\n\nIs not kann isn’t heißen, are not kann aren’t heißen. I am not wird I’m not, im hier vermittelten Standardenglisch nicht I amn’t.\n\nWhat = was, where = wo/woher und how = wie.',
       `She is not Anna.|Sie ist nicht Anna.
 They are not from Germany.|Sie kommen nicht aus Deutschland.
 How are you?|Wie geht es dir?`,
@@ -147,7 +147,7 @@ Two books.|Zwei Bücher.|Zwölf Bücher.|Zwei Taschen.
 Three children.|Drei Kinder.|Dreizehn Kinder.|Drei Personen.
 My number is twenty-one.|Meine Nummer ist einundzwanzig.|Meine Nummer ist zwölf.|Meine Nummer ist einunddreißig.
 How old are you?|Wie alt bist du?|Wie geht es dir?|Woher kommst du?`,
-    [topic('A, an und Alter mit be','A und an bedeuten ein/eine. The bedeutet der/die/das und verweist auf etwas Bestimmtes. Wenn die deutsche Bedeutung ein/eine lautet, wählst du hier a oder an. Entscheidend ist der nächste Laut: a book, an apple, an umbrella. Vor einem gesprochenen Konsonanten steht a; vor einem gesprochenen Vokal an. Das Alter steht mit be: I am twenty, nicht I have twenty. One bis nine, ten bis nineteen und die Zehner werden getrennt geübt. This is … heißt „Das ist …“. Bei 21 bis 99 verbindet ein Bindestrich Zehner und Einer: twenty-one; one hundred bedeutet einhundert.',
+    [topic('A, an und Alter mit be','A und an bedeuten ein/eine. The bedeutet der/die/das und verweist auf etwas Bestimmtes. Wenn die deutsche Bedeutung ein/eine lautet, wählst du hier a oder an.\n\nEntscheidend ist der nächste Laut: a book, an apple, an umbrella. Vor einem gesprochenen Konsonanten steht a; vor einem gesprochenen Vokal an.\n\nDas Alter steht mit be: I am twenty, nicht I have twenty.\n\nOne bis nine, ten bis nineteen und die Zehner werden getrennt geübt. This is … heißt „Das ist …“. Bei 21 bis 99 verbindet ein Bindestrich Zehner und Einer: twenty-one; one hundred bedeutet einhundert.',
       `a phone / an apple|ein Telefon / ein Apfel
 I am twenty-one years old.|Ich bin einundzwanzig Jahre alt.
 thirteen / thirty|dreizehn / dreißig`,
@@ -167,7 +167,7 @@ Mia ___ forty.|is|are|am|Mia ist vierzig.
 Leo and Mia ___ thirty.|are|am|is|Leo und Mia sind dreißig.
 My number is ___.|twenty-two|twelve|thirty-two|Meine Nummer ist zweiundzwanzig.
 Anna is ___.|fifty|fifteen|five|Anna ist fünfzig.`),
-    topic('Mehrzahl bilden','Meistens kommt -s hinzu: book → books. Nach s, sh, ch und x meist -es: bus → buses. Nach Konsonant + y wird y zu -ies: city → cities. Einige Formen sind unregelmäßig: child → children, person → people, man → men, woman → women. Vor der Mehrzahl steht kein a/an. Ein Apostroph bildet keine Mehrzahl: apples, nicht apple’s.',
+    topic('Mehrzahl bilden','Meistens kommt -s hinzu: book → books.\n\nNach s, sh, ch und x meist -es: bus → buses. Nach Konsonant + y wird y zu -ies: city → cities.\n\nEinige Formen sind unregelmäßig: child → children, person → people, man → men, woman → women.\n\nVor der Mehrzahl steht kein a/an. Ein Apostroph bildet keine Mehrzahl: apples, nicht apple’s.',
       `one book → two books|ein Buch → zwei Bücher
 one city → two cities|eine Stadt → zwei Städte
 one child → two children|ein Kind → zwei Kinder`,
@@ -208,7 +208,7 @@ This is our house.|Das ist unser Haus.|Das ist ihr Haus.|Das ist mein Haus.
 Their son is ten.|Ihr Sohn ist zehn.|Ihr Sohn ist zwölf.|Unsere Tochter ist zehn.
 My parents are in Berlin.|Meine Eltern sind in Berlin.|Deine Eltern sind in Berlin.|Meine Eltern kommen aus Berlin.
 Our family is here.|Unsere Familie ist hier.|Ihre Familie ist hier.|Unsere Familie ist dort.`,
-    [topic('Have und has','Have bedeutet haben. I, you, we und they verwenden have. He, she und it verwenden has. Auch ein einzelner Name verwendet has: Anna has a cat. Verwechsle has nicht mit is: She has a daughter, aber She is a mother. This is … heißt „Das ist …“, these are … heißt „Das sind …“. The bezeichnet etwas Bestimmtes: the cat = die Katze.',
+    [topic('Have und has','Have bedeutet haben. I, you, we und they verwenden have. He, she und it verwenden has.\n\nAuch ein einzelner Name verwendet has: Anna has a cat.\n\nVerwechsle has nicht mit is: She has a daughter, aber She is a mother.\n\nThis is … heißt „Das ist …“, these are … heißt „Das sind …“. The bezeichnet etwas Bestimmtes: the cat = die Katze.',
       `I have a brother.|Ich habe einen Bruder.
 She has a sister.|Sie hat eine Schwester.
 We have two children.|Wir haben zwei Kinder.`,
@@ -228,7 +228,7 @@ I ___ a car.|have|has|am|Ich habe ein Auto.
 Her brother ___ a cat.|has|have|is|Ihr Bruder hat eine Katze.
 His sisters ___ a phone.|have|has|are|Seine Schwestern haben ein Telefon.
 You ___ three books.|have|has|are|Ihr habt drei Bücher.`),
-    topic('Possessivbegleiter','My, your, his, her, its, our und their stehen vor dem Nomen. Sie richten sich nach dem Besitzer: Ben → his sister, Emma → her brother. Die Form ändert sich nicht mit der Mehrzahl: my book / my books. Me heißt mich/mir und steht nicht vor einem Nomen; yours steht allein für deinen Besitz: This book is yours = Dieses Buch gehört dir. Its zeigt Besitz bei einer Sache oder einem Tier; it’s bedeutet it is.',
+    topic('Possessivbegleiter','My, your, his, her, its, our und their stehen vor dem Nomen.\n\nSie richten sich nach dem Besitzer: Ben → his sister, Emma → her brother.\n\nDie Form ändert sich nicht mit der Mehrzahl: my book / my books.\n\nMe heißt mich/mir und steht nicht vor einem Nomen; yours steht allein für deinen Besitz: This book is yours = Dieses Buch gehört dir.\n\nIts zeigt Besitz bei einer Sache oder einem Tier; it’s bedeutet it is.',
       `Ben has a sister. His sister is Emma.|Ben hat eine Schwester. Seine Schwester ist Emma.
 Emma has a brother. Her brother is Ben.|Emma hat einen Bruder. Ihr Bruder ist Ben.
 We have a dog. Our dog is here.|Wir haben einen Hund. Unser Hund ist hier.`,
@@ -269,7 +269,7 @@ We eat bread.|Wir essen Brot.|Sie essen Brot.|Wir haben Brot.
 I work at home.|Ich arbeite zu Hause.|Ich wohne hier.|Ich lerne zu Hause.
 I like tea, but I drink coffee.|Ich mag Tee, trinke aber Kaffee.|Ich mag Kaffee, trinke aber Tee.|Ich mag Tee und trinke Tee.
 We study together.|Wir lernen zusammen.|Sie lernen zusammen.|Wir arbeiten zusammen.`,
-    [topic('Present Simple: Grundform','Für Gewohnheiten und allgemeine Tatsachen nutzt du das Present Simple. Mit I, you, we und they steht die Grundform des Verbs: I live, you work, we study, they speak. Kein zusätzliches am/are: I work, nicht I am work. Bei he/she/it kommt eine Endung hinzu; das lernst du als Nächstes.',
+    [topic('Present Simple: Grundform','Für Gewohnheiten und allgemeine Tatsachen nutzt du das Present Simple.\n\nMit I, you, we und they steht die Grundform des Verbs: I live, you work, we study, they speak.\n\nKein zusätzliches am/are: I work, nicht I am work.\n\nBei he/she/it kommt eine Endung hinzu; das lernst du als Nächstes.',
       `I live in Berlin.|Ich wohne in Berlin.
 We study English.|Wir lernen Englisch.
 They work at home.|Sie arbeiten zu Hause.`,
@@ -289,7 +289,7 @@ Ben and I ___ German.|speak|speaks|speaking|Ben und ich sprechen Deutsch.
 Anna and Tom ___ tea.|drink|drinks|drinking|Anna und Tom trinken Tee.
 I ___ English books.|read|reads|reading|Ich lese englische Bücher.
 They ___ bread at home.|eat|eats|eating|Sie essen zu Hause Brot.`),
-    topic('And, but und because','And fügt hinzu, but zeigt einen Gegensatz, because nennt einen Grund. Nach because bleibt die englische Reihenfolge Subjekt + Verb: because I work here. Für einen Beruf mit be steht meist a/an: I am a teacher. Bei Nationalitäten steht kein Artikel: I am German.',
+    topic('And, but und because','And fügt hinzu, but zeigt einen Gegensatz, because nennt einen Grund.\n\nNach because bleibt die englische Reihenfolge Subjekt + Verb: because I work here.\n\nFür einen Beruf mit be steht meist a/an: I am a teacher. Bei Nationalitäten steht kein Artikel: I am German.',
       `I work and I study.|Ich arbeite und ich lerne.
 I like tea, but I drink coffee.|Ich mag Tee, aber ich trinke Kaffee.
 I am here because I work here.|Ich bin hier, weil ich hier arbeite.`,
@@ -330,7 +330,7 @@ She teaches English.|Sie unterrichtet Englisch.|Sie lernt Englisch.|Sie spricht 
 He has breakfast at home.|Er frühstückt zu Hause.|Er isst zu Hause zu Abend.|Er arbeitet zu Hause.
 She starts early.|Sie fängt früh an.|Sie hört früh auf.|Sie fängt spät an.
 He finishes late.|Er hört spät auf.|Er fängt spät an.|Er hört früh auf.`,
-    [topic('He, she, it: die -s-Regel','Im Present Simple bekommen he, she, it und einzelne Namen meist -s: work → works. Nach -s, -sh, -ch, -x und oft -o steht -es: watches, washes, goes, does. Nach Konsonant + y wird y zu -ies: study → studies. Nach Vokal + y nur -s: play → plays.',
+    [topic('He, she, it: die -s-Regel','Im Present Simple bekommen he, she, it und einzelne Namen meist -s: work → works.\n\nNach -s, -sh, -ch, -x und oft -o steht -es: watches, washes, goes, does.\n\nNach Konsonant + y wird y zu -ies: study → studies.\n\nNach Vokal + y nur -s: play → plays.',
       `I work. She works.|Ich arbeite. Sie arbeitet.
 I watch television. He watches television.|Ich sehe fern. Er sieht fern.
 I study English. Anna studies English.|Ich lerne Englisch. Anna lernt Englisch.`,
@@ -350,7 +350,7 @@ Our son ___ television.|watches|watching|watch|Unser Sohn sieht fern.
 Their mother ___ English.|teaches|teaching|teach|Ihre Mutter unterrichtet Englisch.
 My brother ___ the car.|washes|washing|wash|Mein Bruder wäscht das Auto.
 Mia ___ to school.|goes|going|go|Mia geht zur Schule.`),
-    topic('Be, have und andere Verben','Be beschreibt Identität und Zustand: She is a teacher. Have beschreibt Besitz, aber auch feste Wendungen wie have breakfast = frühstücken. Tätigkeiten verwenden ihr eigenes Verb: She teaches English. In normalen Present-Simple-Aussagen steht kein zusätzliches is vor works, lives oder studies. Feste Wendungen: go to work = zur Arbeit gehen, by bus = mit dem Bus, in the evening = am Abend.',
+    topic('Be, have und andere Verben','Be beschreibt Identität und Zustand: She is a teacher.\n\nHave beschreibt Besitz, aber auch feste Wendungen wie have breakfast = frühstücken.\n\nTätigkeiten verwenden ihr eigenes Verb: She teaches English.\n\nIn normalen Present-Simple-Aussagen steht kein zusätzliches is vor works, lives oder studies.\n\nFeste Wendungen: go to work = zur Arbeit gehen, by bus = mit dem Bus, in the evening = am Abend.',
       `She is a teacher.|Sie ist Lehrerin.
 She has a job.|Sie hat eine Arbeit.
 She teaches English.|Sie unterrichtet Englisch.`,
@@ -379,5 +379,10 @@ Du sagst, dass Ben spät Feierabend hat.|He finishes late.|He starts late.|He fi
 Du beschreibst Frühstück zu Hause.|She has breakfast at home.|She has dinner at home.|She works at home.
 Du sagst, dass dein Bruder in Kanada wohnt.|My brother lives in Canada.|My brother is from Canada.|My brother works in Canada.`);
 
+  lessons[0].topics[1].formTable={
+    caption:'Be im Present Simple',
+    headings:['Bedeutung','Ausgeschrieben','Kurzform'],
+    rows:[['ich bin','I am','I’m'],['du bist / ihr seid / Sie sind','you are','you’re'],['er ist','he is','he’s'],['sie ist','she is','she’s'],['es ist','it is','it’s'],['wir sind','we are','we’re'],['sie sind (Mehrzahl)','they are','they’re']]
+  };
   window.EN_A1_AUTHORING={lessons,add,topic};
 })();

@@ -254,3 +254,27 @@ test('a completed English daily round returns to a visibly completed home card a
 test('extra listening and final listening keep both speaker roles rather than flattening their audio',()=>{
  const f=fixture(),{w,view}=f;let turns;w.A1Voice.speakDialogue=t=>{turns=t;return true;};w.EN_A1_APP.renderTraining();view.querySelector('[data-skill="listening"]').click();view.querySelector('#mixedListen').click();assert.equal(turns.length,2);assert.deepEqual([...new Set(turns.map(t=>t.gender))].sort(),['female','male']);w.EN_A1_APP.renderExam();view.querySelector('#finalMock').click();for(const q of w.EN_A1_APP.state.training.final.session.ex.filter(q=>q.type==='listening'))assert(q.turns.length>=2);f.close();
 });
+
+test('all grammar pages place supplementary words between translated examples and the practice entry',()=>{
+  const f=fixture(),{w,view}=f;
+  for(const lesson of w.EN_A1_DATA.lessons)for(let index=0;index<lesson.topics.length;index++){
+    w.EN_A1_APP.renderLesson(lesson.id,{step:'grammar',grammarIndex:index});
+    const body=view.querySelector('.grammar-detail-body');
+    assert(body.querySelectorAll('.en-rule>p').length>=2,`L${lesson.id} topic ${index}: readable rule paragraphs`);
+    assert.equal(view.querySelectorAll('[data-vocabulary-stage]').length,w.EN_A1_VOCABULARY.plan[lesson.id].stages['grammar:'+index].length?1:0);
+    const vocabulary=body.querySelector('[data-vocabulary-stage]');
+    if(vocabulary){
+      assert.equal(vocabulary.previousElementSibling.className,'en-more-examples');
+      assert.equal(vocabulary.nextElementSibling.dataset.englishPractice,lesson.topics[index].key);
+      assert(vocabulary.nextElementSibling.querySelector('[data-grammar-start]'));
+    }
+  }
+  w.EN_A1_APP.renderLesson(1,{step:'grammar',grammarIndex:1});
+  const table=view.querySelector('.en-rule-table');
+  assert.equal(table.querySelectorAll('thead th[scope="col"]').length,3);
+  assert.deepEqual([...table.querySelectorAll('tbody tr')].map(row=>[...row.children].map(cell=>cell.textContent)),[
+    ['ich bin','I am','I’m'],['du bist / ihr seid / Sie sind','you are','you’re'],['er ist','he is','he’s'],['sie ist','she is','she’s'],['es ist','it is','it’s'],['wir sind','we are','we’re'],['sie sind (Mehrzahl)','they are','they’re']
+  ]);
+  assert.equal(table.querySelectorAll('tbody th[scope="row"]').length,7);
+  f.close();
+});

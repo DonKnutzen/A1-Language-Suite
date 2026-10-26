@@ -14,7 +14,7 @@ Yes, I do.|Ja, das tue ich.|Nein, das tue ich nicht.|Ja, das tut sie.
 No, she doesn't.|Nein, das tut sie nicht.|Ja, das tut sie.|Nein, das tun sie nicht.
 We don't study on Saturday.|Wir lernen samstags nicht.|Wir lernen sonntags nicht.|Sie lernen samstags nicht.
 Why do you study English?|Warum lernst du Englisch?|Wann lernst du Englisch?|Wo lernst du Englisch?`,
-    [topic('Do und does in Fragen','Vor I/you/we/they steht do, vor he/she/it does. Danach folgt immer die Grundform: Does she work?, niemals Does she works? Fragewörter stehen davor: Where does she work? Bei be verwendest du kein do: Is she here? On steht hier vor Wochentagen: on Monday = am Montag.',
+    [topic('Do und does in Fragen','Vor I/you/we/they steht do, vor he/she/it does.\n\nDanach folgt immer die Grundform: Does she work?, niemals Does she works?\n\nFragewörter stehen davor: Where does she work?\n\nBei be verwendest du kein do: Is she here?\n\nOn steht hier vor Wochentagen: on Monday = am Montag.',
       `Do you live here?|Wohnst du hier?
 Does she work here?|Arbeitet sie hier?
 Where does he live?|Wo wohnt er?`,
@@ -34,7 +34,7 @@ Does Mia ___ television?|watch|watches|watching|Sieht Mia fern?
 When ___ Ben and Emma work?|do|does|are|Wann arbeiten Ben und Emma?
 ___ you from Germany?|Are|Do|Does|Kommst du aus Deutschland?
 Does your sister ___ in Canada?|live|lives|living|Wohnt deine Schwester in Kanada?`),
-    topic('Don’t und doesn’t','I/you/we/they don’t + Grundform; he/she/it doesn’t + Grundform. Die Endung -s steckt bereits in does: He doesn’t drink. Kurze Antworten verwenden das Hilfsverb: Yes, she does. / No, she doesn’t. Verneine be weiterhin mit not: She isn’t here.',
+    topic('Don’t und doesn’t','I/you/we/they don’t + Grundform; he/she/it doesn’t + Grundform.\n\nDie Endung -s steckt bereits in does: He doesn’t drink.\n\nKurze Antworten verwenden das Hilfsverb: Yes, she does. / No, she doesn’t.\n\nVerneine be weiterhin mit not: She isn’t here.',
       `I don't drink coffee.|Ich trinke keinen Kaffee.
 She doesn't drink tea.|Sie trinkt keinen Tee.
 Does he work here? Yes, he does.|Arbeitet er hier? Ja.`,
@@ -75,7 +75,7 @@ The shirts are white.|Die Hemden sind weiß.|Die Hemden sind schwarz.|Das Hemd i
 This table is small.|Dieser Tisch ist klein.|Dieser Tisch ist groß.|Jener Tisch ist klein.
 That is a red chair.|Das dort ist ein roter Stuhl.|Das dort ist ein blauer Stuhl.|Das hier sind rote Stühle.
 What colour is it?|Welche Farbe hat es?|Welche Größe hat es?|Wie alt ist es?`,
-    [topic('This, that, these und those','This und these zeigen auf etwas Nahes; that und those auf etwas weiter Entferntes. Einzahl: this/that + is. Mehrzahl: these/those + are. Die Form hängt von Nähe und Anzahl ab, nicht vom deutschen Geschlecht. Es wird in jeder Aufgabe gesagt, ob etwas nah oder fern ist.',
+    [topic('This, that, these und those','This und these zeigen auf etwas Nahes; that und those auf etwas weiter Entferntes.\n\nEinzahl: this/that + is. Mehrzahl: these/those + are.\n\nDie Form hängt von Nähe und Anzahl ab, nicht vom deutschen Geschlecht. Es wird in jeder Aufgabe gesagt, ob etwas nah oder fern ist.',
       `This is a key.|Das hier ist ein Schlüssel.
 These are keys.|Das hier sind Schlüssel.
 Those are books.|Das dort sind Bücher.`,
@@ -95,7 +95,7 @@ ___ chairs are red.|These|This|That|Diese mehreren Stühle hier.
 ___ is his phone.|That|Those|These|Jenes eine Telefon dort drüben.
 These keys ___ new.|are|is|am|Diese Schlüssel sind neu.
 That bag ___ old.|is|are|am|Jene Tasche ist alt.`),
-    topic('Adjektive und Artikel','Adjektive stehen vor dem Nomen: a blue bag. Sie bekommen keine Mehrzahlendung: blue bags. Nach be stehen sie ohne Artikel: The bag is blue. The bezeichnet etwas Bestimmtes oder bereits Genanntes und bleibt in Einzahl und Mehrzahl gleich. Bei a/an entscheidet der Laut des direkt folgenden Wortes: an old phone, a new phone.',
+    topic('Adjektive und Artikel','Adjektive stehen vor dem Nomen: a blue bag.\n\nSie bekommen keine Mehrzahlendung: blue bags.\n\nNach be stehen sie ohne Artikel: The bag is blue.\n\nThe bezeichnet etwas Bestimmtes oder bereits Genanntes und bleibt in Einzahl und Mehrzahl gleich.\n\nBei a/an entscheidet der Laut des direkt folgenden Wortes: an old phone, a new phone.',
       `a blue bag / blue bags|eine blaue Tasche / blaue Taschen
 an old phone|ein altes Telefon
 A pen is here. The pen is blue.|Ein Stift ist hier. Der Stift ist blau.`,
@@ -136,7 +136,7 @@ The bed is in the bedroom.|Das Bett ist im Schlafzimmer.|Das Bett ist im Wohnzim
 The chair is behind the door.|Der Stuhl ist hinter der Tür.|Der Stuhl ist vor der Tür.|Der Stuhl ist neben der Tür.
 The table is in front of the window.|Der Tisch ist vor dem Fenster.|Der Tisch ist hinter dem Fenster.|Der Tisch ist neben dem Fenster.
 Our flat is near the school.|Unsere Wohnung ist in der Nähe der Schule.|Unsere Wohnung ist gegenüber der Schule.|Unsere Wohnung ist in der Nähe des Ladens.`,
-    [topic('There is und there are','There is + Einzahl und there are + Mehrzahl bedeuten es gibt. Fragen drehen die Reihenfolge um: Is there …? / Are there …? Verneinung: There isn’t … / There aren’t … . Verwechsle there = dort/es gibt nicht mit their = ihr (Besitz).',
+    [topic('There is und there are','There is + Einzahl und there are + Mehrzahl bedeuten es gibt.\n\nFragen drehen die Reihenfolge um: Is there …? / Are there …?\n\nVerneinung: There isn’t … / There aren’t … .\n\nVerwechsle there = dort/es gibt nicht mit their = ihr (Besitz).',
       `There is a kitchen.|Es gibt eine Küche.
 There are two rooms.|Es gibt zwei Zimmer.
 Is there a bathroom?|Gibt es ein Badezimmer?`,
@@ -156,7 +156,7 @@ ___ there a window?|Is|Are|Am|Gibt es ein Fenster?
 ___ there two beds?|Are|Is|Am|Gibt es zwei Betten?
 There ___ a phone in the room.|isn't|aren't|don't|Im Zimmer gibt es kein Telefon.
 Are there three rooms? No, there ___.|aren't|isn't|don't|Nein, es gibt nicht drei Zimmer.`),
-    topic('Lagepräpositionen','In = in, on = auf, under = unter, next to = neben, behind = hinter, in front of = vor, opposite = gegenüber und between = zwischen. Bei zwei ausdrücklich genannten Bezugspunkten verbindet and die beiden: between the kitchen and the bathroom. Eine Mehrzahl kann die Bezugspunkte zusammenfassen: between the books. Die Präposition beschreibt die Lage; benutze die deutsche Ortsangabe zur Auswahl.',
+    topic('Lagepräpositionen','In = in, on = auf, under = unter, next to = neben, behind = hinter, in front of = vor, opposite = gegenüber und between = zwischen.\n\nBei zwei ausdrücklich genannten Bezugspunkten verbindet and die beiden: between the kitchen and the bathroom.\n\nEine Mehrzahl kann die Bezugspunkte zusammenfassen: between the books.\n\nDie Präposition beschreibt die Lage; benutze die deutsche Ortsangabe zur Auswahl.',
       `The phone is on the table.|Das Telefon liegt auf dem Tisch.
 The bag is under the bed.|Die Tasche liegt unter dem Bett.
 The kitchen is between the bedrooms.|Die Küche ist zwischen den Schlafzimmern.`,
@@ -197,7 +197,7 @@ Are you free on Friday?|Hast du am Freitag Zeit?|Hast du am Donnerstag Zeit?|Has
 At half past two, please.|Um halb drei, bitte.|Um halb zwei, bitte.|Um Viertel nach zwei, bitte.
 What time is it?|Wie spät ist es?|Welcher Tag ist heute?|Wann arbeitest du?
 See you on Tuesday!|Bis Dienstag!|Bis Donnerstag!|Bis morgen!`,
-    [topic('Uhrzeiten sicher verstehen','Seven o’clock = 7:00, quarter past seven = 7:15, half past seven = 7:30 und quarter to eight = 7:45. Achtung: half past seven ist deutsch halb acht. Die digitale Form seven thirty ist ebenfalls üblich. Am = vor Mittag, pm = nach Mittag; 12 am ist Mitternacht, 12 pm ist Mittag.',
+    [topic('Uhrzeiten sicher verstehen','Seven o’clock = 7:00, quarter past seven = 7:15, half past seven = 7:30 und quarter to eight = 7:45.\n\nAchtung: half past seven ist deutsch halb acht.\n\nDie digitale Form seven thirty ist ebenfalls üblich.\n\nAm = vor Mittag, pm = nach Mittag; 12 am ist Mitternacht, 12 pm ist Mittag.',
       `half past eight = eight thirty|8:30, halb neun
 quarter to six = five forty-five|5:45, Viertel vor sechs
 ten past three = three ten|3:10, zehn nach drei`,
@@ -217,7 +217,7 @@ Quarter past one is ___.|1:15|12:45|1:45|Wähle die digitale Uhrzeit.
 Twenty past eight is ___.|8:20|7:40|8:40|Wähle die digitale Uhrzeit.
 Ten past four is ___.|4:10|3:50|4:50|Wähle die digitale Uhrzeit.
 Three thirty is ___.|3:30|3:13|2:30|Wähle die digitale Uhrzeit.`),
-    topic('At, on und in bei Zeiten','At steht vor Uhrzeiten: at ten, at 9:30; auch at night. On steht vor Wochentagen und konkreten Tagen: on Monday, on 12 May. In steht vor Monaten, Jahren und Tagesabschnitten: in May, in 2026, in the morning. The first/second/third sind der erste/zweite/dritte; Datumsangaben können auch als Ziffern geschrieben werden. In dieser Lektion liest du Datumszahlen als Ziffern; gesprochen heißt on 12 May „on the twelfth of May“. Die Datumszahlen musst du hier noch nicht selbst sprechen.',
+    topic('At, on und in bei Zeiten','At steht vor Uhrzeiten: at ten, at 9:30; auch at night.\n\nOn steht vor Wochentagen und konkreten Tagen: on Monday, on 12 May.\n\nIn steht vor Monaten, Jahren und Tagesabschnitten: in May, in 2026, in the morning.\n\nThe first/second/third sind der erste/zweite/dritte; Datumsangaben können auch als Ziffern geschrieben werden.\n\nIn dieser Lektion liest du Datumszahlen als Ziffern; gesprochen heißt on 12 May „on the twelfth of May“. Die Datumszahlen musst du hier noch nicht selbst sprechen.',
       `at nine / on Friday / in June|um neun / am Freitag / im Juni
 on 12 May|am 12. Mai
 in the evening / at night|am Abend / nachts`,
@@ -258,7 +258,7 @@ What do you do in your free time?|Was machst du in deiner Freizeit?|Wann hast du
 I listen to music.|Ich höre Musik.|Ich mache Musik.|Ich lese über Musik.
 We visit our friends on Sunday.|Wir besuchen sonntags unsere Freunde.|Wir besuchen samstags unsere Freunde.|Unsere Freunde besuchen uns sonntags.
 Why do you cook at home?|Warum kochst du zu Hause?|Wann kochst du zu Hause?|Wie oft kochst du zu Hause?`,
-    [topic('Häufigkeitswörter','Always = immer, usually = normalerweise, often = oft, sometimes = manchmal und never = nie. Meist stehen sie vor dem Tätigkeitsverb: She often swims. Bei be stehen sie nach dem Verb: She is often here. Never enthält schon die Verneinung; kein zusätzliches don’t. Once a week = einmal pro Woche, twice a week = zweimal pro Woche.',
+    [topic('Häufigkeitswörter','Always = immer, usually = normalerweise, often = oft, sometimes = manchmal und never = nie.\n\nMeist stehen sie vor dem Tätigkeitsverb: She often swims.\n\nBei be stehen sie nach dem Verb: She is often here.\n\nNever enthält schon die Verneinung; kein zusätzliches don’t.\n\nOnce a week = einmal pro Woche, twice a week = zweimal pro Woche.',
       `I often cook.|Ich koche oft.
 He is always early.|Er ist immer früh dran.
 We swim twice a week.|Wir schwimmen zweimal pro Woche.`,
@@ -278,7 +278,7 @@ They ___ cook together.|sometimes|always|never|Sie kochen manchmal zusammen.
 I go to the park ___ a week.|once|twice|never|Ich gehe einmal pro Woche in den Park.
 He swims ___ a week.|twice|once|always|Er schwimmt zweimal pro Woche.
 We ___ tea.|never drink|don't never drink|never drinks|Wir trinken nie Tee.`),
-    topic('Fragewörter im Alltag','What fragt nach einer Sache oder Tätigkeit, where nach einem Ort, when nach einer Zeit, why nach einem Grund und how often nach Häufigkeit. Mit Tätigkeitsverben folgt do/does; bei be folgt am/is/are. Eine because-Antwort passt zu why. Nach Verben und Präpositionen stehen Objektformen: me = mich/mir, us = uns, them = sie/ihnen. We visit them = Wir besuchen sie; they visit us = Sie besuchen uns.',
+    topic('Fragewörter im Alltag','What fragt nach einer Sache oder Tätigkeit, where nach einem Ort, when nach einer Zeit, why nach einem Grund und how often nach Häufigkeit.\n\nMit Tätigkeitsverben folgt do/does; bei be folgt am/is/are.\n\nEine because-Antwort passt zu why.\n\nNach Verben und Präpositionen stehen Objektformen: me = mich/mir, us = uns, them = sie/ihnen.\n\nWe visit them = Wir besuchen sie; they visit us = Sie besuchen uns.',
       `Where do you play tennis? In the park.|Wo spielst du Tennis? Im Park.
 When do you cook? On Sunday.|Wann kochst du? Am Sonntag.
 How often do you read? Every day.|Wie oft liest du? Jeden Tag.`,
@@ -319,7 +319,7 @@ Can I use your phone?|Darf ich dein Telefon benutzen?|Darfst du mein Telefon ben
 Yes, of course.|Ja, natürlich.|Nein, leider nicht.|Ja, manchmal.
 Sorry, I can't.|Entschuldigung, ich kann nicht.|Entschuldigung, ich weiß nicht.|Entschuldigung, ich kann.
 Can you carry this bag?|Kannst du diese Tasche tragen?|Kannst du diesen Koffer tragen?|Kann ich diese Tasche tragen?`,
-    [topic('Can: gleiche Form für alle','Can steht bei allen Personen gleich. Danach folgt die Grundform ohne to: She can drive. Kein -s an can oder am folgenden Verb. Verneinung: cannot oder can’t. Can beschreibt eine Fähigkeit; die Häufigkeit einer Tätigkeit ist eine andere Information. Can’t bedeutet je nach Situation „kann nicht“ oder „darf nicht“; cannot ist dieselbe Verneinung ausgeschrieben.',
+    [topic('Can: gleiche Form für alle','Can steht bei allen Personen gleich.\n\nDanach folgt die Grundform ohne to: She can drive. Kein -s an can oder am folgenden Verb.\n\nVerneinung: cannot oder can’t.\n\nCan beschreibt eine Fähigkeit; die Häufigkeit einer Tätigkeit ist eine andere Information.\n\nCan’t bedeutet je nach Situation „kann nicht“ oder „darf nicht“; cannot ist dieselbe Verneinung ausgeschrieben.',
       `I can swim. She can swim.|Ich kann schwimmen. Sie kann schwimmen.
 He cannot drive.|Er kann nicht Auto fahren.
 We can speak English.|Wir können Englisch sprechen.`,
@@ -339,7 +339,7 @@ Our parents can ___ English.|speak|speaks|to speak|Unsere Eltern können Englisc
 I ___ drive.|can't|don't can|am not can|Ich kann nicht Auto fahren.
 He can ___ the window.|open|opens|to open|Er kann das Fenster öffnen.
 They can ___ here.|sit|sits|to sit|Sie können hier sitzen.`),
-    topic('Fragen und Bitten mit can','Bei Fragen steht can vor dem Subjekt: Can you help me? Es kommt kein do/does dazu. Can I …? fragt oft nach Erlaubnis; Can you …? bittet oft die andere Person um etwas. Please macht die Bitte höflicher. Kurze Antworten: Yes, I can. / No, I can’t.',
+    topic('Fragen und Bitten mit can','Bei Fragen steht can vor dem Subjekt: Can you help me?\n\nEs kommt kein do/does dazu.\n\nCan I …? fragt oft nach Erlaubnis; Can you …? bittet oft die andere Person um etwas.\n\nPlease macht die Bitte höflicher.\n\nKurze Antworten: Yes, I can. / No, I can’t.',
       `Can I use your phone?|Darf ich dein Telefon benutzen?
 Can you open the door, please?|Kannst du bitte die Tür öffnen?
 Can she swim? Yes, she can.|Kann sie schwimmen? Ja.`,
