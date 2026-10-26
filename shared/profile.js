@@ -11,7 +11,7 @@ let resetVersion=0;
 const SYNC_PENDING=new Map();
 
 function applyTheme(){
-  const theme = localStorage.getItem(THEME_KEY) || 'light';
+  const theme = localStorage.getItem(THEME_KEY) || 'dark';
   document.documentElement.classList.toggle('dark-mode', theme === 'dark');
 }
 
@@ -1015,19 +1015,54 @@ applyTheme();
   }
 
   function injectThemeButton(){
-  const target = document.querySelector('.header-actions');
-  if(!target || target.querySelector('.theme-toggle')) return;
-
-  const themeBtn = document.createElement('button');
-  themeBtn.className = 'theme-toggle';
-  themeBtn.type = 'button';
-  themeBtn.setAttribute('aria-label', 'Dark Mode');
-  themeBtn.textContent =
-    document.documentElement.classList.contains('dark-mode') ? '☀️' : '🌙';
-
-  themeBtn.onclick = toggleTheme;
-  target.prepend(themeBtn);
-}
+    const target=document.querySelector('.header-actions');
+    if(!target||target.querySelector('.a1-settings-button'))return;
+    const button=document.createElement('button');
+    button.type='button';button.className='switch-btn a1-settings-button';
+    button.textContent='⚙';button.setAttribute('aria-label','Einstellungen');
+    button.setAttribute('aria-expanded','false');
+    const panel=document.createElement('section');panel.className='a1-settings-panel';panel.hidden=true;
+    panel.setAttribute('aria-label','Einstellungen');
+    const style=document.createElement('style');style.textContent=`
+      .a1-settings-button{font-size:23px;min-width:44px;min-height:44px}
+      .a1-settings-panel{position:absolute;right:12px;top:calc(100% + 6px);width:min(340px,calc(100vw - 24px));max-height:75vh;overflow:auto;z-index:110;background:var(--panel,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#cbd5e1);border-radius:16px;padding:16px;box-shadow:0 12px 35px #0005}
+      .a1-settings-panel[hidden]{display:none!important}
+      .a1-settings-panel h2{font-size:18px;margin:0 0 12px}
+      .a1-settings-panel label{display:block;margin:12px 0 6px;font-weight:650;font-size:14px}
+      .a1-settings-panel select{width:100%;padding:9px;border-radius:9px;background:var(--panel,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#cbd5e1)}
+      .a1-settings-panel .a1-settings-audio{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+      .a1-settings-panel .a1-text-size{margin:12px 0}
+      .a1-settings-panel .a1-settings-audio .switch-btn{position:static}
+    `;document.head.append(style);
+    target.style.position='relative';target.prepend(button);target.append(panel);
+    const close=()=>{panel.hidden=true;button.setAttribute('aria-expanded','false');};
+    const render=()=>{
+      const lang=getUiLang();const names={de:['Einstellungen','Sprache','Darstellung','Dunkel','Hell','Audio'],fr:['Paramètres','Langue','Apparence','Sombre','Clair','Audio'],en:['Settings','Language','Appearance','Dark','Light','Audio'],tr:['Ayarlar','Dil','Görünüm','Koyu','Açık','Ses']}[lang]||[];
+      const dark=document.documentElement.classList.contains('dark-mode');
+      panel.innerHTML=`<h2>${names[0]}</h2><label for="a1SettingsLanguage">${names[1]}</label><select id="a1SettingsLanguage"><option value="de">Deutsch</option><option value="fr">Français</option><option value="en">English</option><option value="tr">Türkçe</option></select><label for="a1SettingsTheme">${names[2]}</label><select id="a1SettingsTheme"><option value="dark">${names[3]}</option><option value="light">${names[4]}</option></select><div class="a1-settings-text"></div><label>${names[5]}</label><div class="a1-settings-audio"></div>`;
+      panel.querySelector('#a1SettingsLanguage').value=lang;
+      panel.querySelector('#a1SettingsLanguage').onchange=e=>setUiLang(e.target.value);
+      panel.querySelector('#a1SettingsTheme').value=dark?'dark':'light';
+      panel.querySelector('#a1SettingsTheme').onchange=e=>{const v=e.target.value;localStorage.setItem(THEME_KEY,v);applyTheme();};
+      const size=panel.querySelector('.a1-settings-text');size.innerHTML=window.A1TextSize?.selector(lang)||'';window.A1TextSize?.wire(size);
+      moveAudio();
+    };
+    const moveAudio=()=>{
+      const audio=panel.querySelector('.a1-settings-audio');if(!audio)return;
+      for(const id of ['audioToggle','voiceSettings']){
+        const el=document.getElementById(id);if(el&&el.parentElement!==audio)audio.append(el);
+      }
+    };
+    button.onclick=()=>{if(!panel.hidden){close();return;}render();panel.hidden=false;button.setAttribute('aria-expanded','true');};
+    document.addEventListener('pointerdown',e=>{if(!panel.hidden&&!panel.contains(e.target)&&e.target!==button)close();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){close();button.focus();}});
+    new MutationObserver(()=>{if(!panel.hidden)moveAudio();else{
+      // Keep existing audio controls in the menu even while it is closed.
+      moveAudio();
+    }}).observe(target,{childList:true});
+    // Initialize the panel once so existing audio controls are moved out of the header.
+    render();close();
+  }
 
 function injectChip(){
   const p = getCurrent();
