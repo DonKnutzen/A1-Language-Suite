@@ -189,3 +189,11 @@ html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(
 .lesson-vocabulary-audio{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--accent-soft);color:var(--ink);cursor:pointer}
 .lesson-vocabulary-audio svg{width:20px;height:20px;pointer-events:none}
 .lesson-vocabulary-audio:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* Compact, vertically centered lesson word list on mobile and desktop. */
+.lesson-extra-vocabulary dl{gap:3px}
+.lesson-extra-vocabulary dl>div{align-items:center;padding:3px 0;column-gap:12px}
+.lesson-extra-vocabulary dt,.lesson-extra-vocabulary dd{align-self:center}
+.lesson-extra-vocabulary dd{display:flex;align-items:center;min-height:40px}
+.lesson-extra-vocabulary .lesson-vocabulary-audio{width:40px;min-height:40px;height:40px;padding:8px}
+.lesson-extra-vocabulary .lesson-vocabulary-audio svg{width:18px;height:18px}
