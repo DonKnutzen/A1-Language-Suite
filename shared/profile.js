@@ -1036,7 +1036,11 @@ applyTheme();
       .a1-settings-choices button[aria-pressed="true"]{background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:#fff;font-weight:700}
       .a1-settings-panel .a1-settings-audio{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
       .a1-settings-panel .a1-text-size{margin:12px 0}
-      .a1-settings-panel .a1-settings-audio .switch-btn{position:static}
+      .a1-settings-panel .a1-settings-audio .switch-btn{position:static!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:42px;min-width:44px}
+      .a1-settings-panel #audioToggle{width:auto!important;padding:8px 12px!important;white-space:nowrap}
+      .a1-settings-panel #voiceSettings{width:100%!important;justify-content:flex-start!important;gap:10px;padding:9px 12px!important}
+      .a1-settings-panel #voiceSettings::after{content:attr(data-settings-label);font-size:14px;font-weight:650}
+      .a1-settings-panel .a1-settings-audio{display:grid;grid-template-columns:1fr;align-items:stretch}
     `;document.head.append(style);
     target.style.position='relative';target.prepend(button);target.append(panel);
     const audioHome=document.createElement('span');audioHome.hidden=true;target.append(audioHome);
@@ -1046,6 +1050,7 @@ applyTheme();
       for(const id of ['audioToggle','voiceSettings']){
         const el=document.getElementById(id);
         if(el&&el.parentElement!==audio)audio.append(el);
+        if(el&&id==='voiceSettings')el.dataset.settingsLabel=({de:'Stimmen & Sprechtempo',fr:'Voix et vitesse',en:'Voices & speaking speed',tr:'Sesler ve konuşma hızı'}[getUiLang()]||'Stimmen & Sprechtempo');
       }
     };
     const render=()=>{
