@@ -20,7 +20,9 @@
       const candidates=matching.length?matching:wanted?[...list.filter(v=>!gender(v,lang)),...list.filter(v=>gender(v,lang))]:list;
       const unused=candidates.filter(v=>!used.has(v.voiceURI||v.name));
       const available=unused.length?unused:candidates;
-      const selected=(matching.length?available.includes(chosen)?chosen:voice.automatic?.(lang,available):available[0])||available[0]||chosen;
+      const englishName=/^en(?:-|$)/i.test(lang)?wanted==='female'?'samantha':wanted==='male'?'daniel':null:null;
+      const recommended=englishName?voice.automatic?.(lang,available.filter(v=>new RegExp('\\b'+englishName+'\\b','i').test(v.name))):null;
+      const selected=recommended||(matching.length?available.includes(chosen)?chosen:voice.automatic?.(lang,available):available[0])||available[0]||chosen;
       bySpeaker[speaker]=selected;if(selected)used.add(selected.voiceURI||selected.name);
       if(wanted&&gender(selected,lang)!==wanted){if(gender(selected,lang))mismatch=true;else unknown=true;}
     }

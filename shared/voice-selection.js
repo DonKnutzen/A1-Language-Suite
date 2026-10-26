@@ -17,7 +17,9 @@
   function pref(lang){const p=preferences()[norm(lang)];return p&&typeof p==='object'?p:{};}
   function persist(lang,patch){const p=preferences();p[norm(lang)]={...pref(lang),...patch};try{localStorage.setItem(key,JSON.stringify(p));}catch{}}
   function refresh(){try{voices=synth?synth.getVoices():[];}catch{voices=[];}return voices;}
-  function matching(lang){const base=norm(lang).split('-')[0];return refresh().filter(v=>norm(v.lang).split('-')[0]===base);}
+  // Albert is unsuitable for the English course, including saved preferences and dialogues.
+  const allowed=(v,lang)=>norm(lang).split('-')[0]!=='en'||! /\balbert\b/i.test(String(v.name||'')+' '+String(v.voiceURI||''));
+  function matching(lang){const base=norm(lang).split('-')[0];return refresh().filter(v=>norm(v.lang).split('-')[0]===base&&allowed(v,lang));}
   function quality(v){const s=String(v.name||'')+' '+String(v.voiceURI||'');return /premium|neural|natural/i.test(s)?3:/enhanced|erweitert|améliorée/i.test(s)?2:/compact/i.test(s)?0:1;}
   function appleScore(v,lang){
     const wanted=norm(lang),base=wanted.split('-')[0],vl=norm(v.lang),s=norm(v.name+' '+v.voiceURI);
@@ -29,6 +31,11 @@
     return n;
   }
   function automatic(lang,list=matching(lang)){
+    list=list.filter(v=>allowed(v,lang));
+    if(norm(lang).split('-')[0]==='en'){
+      const samantha=list.filter(v=>/\bsamantha\b/i.test(v.name)&&norm(v.lang)==='en-us').sort((a,b)=>quality(b)-quality(a));
+      if(samantha.length)return samantha[0];
+    }
     if(!isApple)return list.find(v=>norm(v.lang)===norm(lang))||list[0]||null;
     return list.map((v,i)=>({v,i,score:appleScore(v,lang)})).sort((a,b)=>b.score-a.score||a.i-b.i)[0]?.v||null;
   }
@@ -38,6 +45,7 @@
     if(!synth||!texts?.length)return;
     cancel();const runToken=token,parts=texts.map(t=>String(t||'').trim()).filter(Boolean),lang=options.lang||'fr-FR';
     const p=pref(lang),voice=select(lang),savedRate=Number(p.rate);
+    if(norm(lang).split('-')[0]==='en'&&!voice){showError();return;}
     const rate=Number.isFinite(savedRate)&&savedRate>=.65&&savedRate<=1.2?savedRate:isApple?1:(options.rate??.82);
     let i=0;
     function next(){
@@ -75,6 +83,7 @@
       if(runToken!==token)return;
       if(i>=parts.length){current=null;options.onEnd?.();return;}
       const turn=parts[i++],voice=pair[turn.speaker]||select(lang);
+      if(norm(lang).split('-')[0]==='en'&&!voice){fail();return;}
       const u=new SpeechSynthesisUtterance(turn.text);current=u;
       u.lang=voice?.lang||lang;if(voice)u.voice=voice;
       // Dialogues deliberately use the exercise tempo, independently of voice-preview preferences.

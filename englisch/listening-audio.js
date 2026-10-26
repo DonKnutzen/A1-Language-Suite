@@ -26,6 +26,7 @@
     function next(){
       if(run!==generation||finished)return;if(i>=parts.length)return finish(false);
       const part=parts[i++],chosen=roles.bySpeaker[part.speaker]||voice.select('en-GB');
+      if(!chosen)return finish(true);
       const u=new SpeechSynthesisUtterance(part.text);u.lang=chosen?.lang||'en-GB';if(chosen)u.voice=chosen;u.rate=part.rate;
       options.onTurn?.(part.speaker,i-1);let handled=false;
       u.onend=()=>{if(handled||run!==generation)return;handled=true;timer=setTimeout(next,part.pause);};
