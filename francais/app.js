@@ -121,14 +121,16 @@ function renderHome(){
   const next=A1LessonFlow.continuation(lessons,state);
   const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
   const allDone=completed.length===lessons.length;
+  const interrupted=A1LessonFlow.hasActiveSession(state,next.id);
+  const started=!!state.lessonWork?.[next.id]?.resume;
   view.innerHTML=`
 
     <section class="card home-continue-card" aria-labelledby="continueTitle">
-      <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':'WEITERLERNEN'}</span><span class="pill">Lektion ${next.id}</span></div>
+      <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':interrupted?'UNTERBROCHENE ÜBUNG':'NÄCHSTE OFFENE LEKTION'}</span><span class="pill">Lektion ${next.id}</span></div>
       <h2 id="continueTitle">${esc(next.title)}</h2>
       <div class="home-learning-goal"><span class="home-detail-label">Dein Lernziel</span><p>${esc(next.canDo[0])}</p></div>
 
-      <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':'Fortsetzen'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+      <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':interrupted?'Übung fortsetzen':started?'Lektion fortsetzen':'Lektion starten'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
     ${A1DailyReview.html(state,{lang:A1Profile.getUiLang()==='en'?'en':'de',available:completed.length>0||FR_A1_REVIEW.pending(state).length>0,mistakes:FR_A1_REVIEW.pending(state).length})}
     <section class="card course-progress-card" data-streak-anchor>
@@ -154,6 +156,7 @@ function renderLearn(){
       <p class="muted">Dieser Kurs bereitet dich gezielt auf die DELF-A1-Prüfung vor. ${FR_A1_MASTERY.passedCount(state)}/${lessons.length} Lektions-Checks durchgeführt.</p>
       <div class="progress"><div style="width:${lessonPct()}%"></div></div>
     </section>
+    <details class="card course-orientation-help"><summary>So funktioniert der Kurs</summary><p>Öffne eine Lektion und folge den nummerierten Lernschritten. Du kannst Erklärungen schon vorab ansehen. Für den Lektions-Check musst du den Vokabel-Check abschließen (ab Lektion 2 mit mindestens 70 % richtigen Antworten) und das Hörverstehen bearbeiten. „Hard Mode“ ist eine freiwillige Zusatzübung nach mindestens 80 % im Lektions-Check.</p><p>Die Angaben auf jeder Lektion zeigen gehörte Beispiele, das beste Übungsergebnis und erledigte Schritte. „Offen“ bedeutet noch nicht abgeschlossen.</p></details>
     <div class="list">
       ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''} ${window.FR_A1_HARD_MODE.achievementClass(window.FR_A1_HARD_MODE.achievement(state,l.id))}" data-lesson="${l.id}">
         <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>${window.FR_A1_HARD_MODE.achievement(state,l.id)?window.FR_A1_HARD_MODE.achievementBadge(window.FR_A1_HARD_MODE.achievement(state,l.id)):''}

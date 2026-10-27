@@ -1024,3 +1024,13 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 #lessonGrammarPage .deepening-examples small{font-size:.8rem;margin-top:2px}
 #lessonGrammarPage .deepening-examples .speak-btn{width:32px;height:32px;min-width:32px;font-size:14px}
 #lessonGrammarPage .grammar-table .speak-btn{width:30px;height:30px;min-width:30px;margin-left:6px;font-size:14px;vertical-align:middle}
+
+/* Short guidance alongside the course decisions it explains. */
+.course-orientation-help{padding:14px 18px}
+.course-orientation-help summary{cursor:pointer;font-weight:800;color:var(--accent-ink)}
+.course-orientation-help p{margin:12px 0 0;line-height:1.55}
+.lesson-prerequisite-note{margin:10px 0 0;font-size:13px;line-height:1.5}
+.lesson-quiz-result{margin-top:12px}
+.lesson-quiz-result .score{margin-bottom:6px}
+.lesson-quiz-result .button-row{margin-top:18px}
+.lesson-quiz-result+.exercise-review-nav{margin:12px 0 18px}

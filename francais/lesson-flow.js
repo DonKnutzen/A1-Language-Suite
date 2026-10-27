@@ -23,20 +23,31 @@
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
     const hardContent=window.FR_A1_HARD_CONTENT?.[lesson.id],hardDone=!!p.hardMode?.passedAt&&(p.hardMode.passedVersion===hardContent?.version||hardContent?.compatibleVersions?.includes(p.hardMode.passedVersion));
+    const masteryTried=masteryBest>0||Object.prototype.hasOwnProperty.call(state.lessonMasteryLast||{},lesson.id);
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${step('Hard Mode',hardDone?'✓':masteryDone?'—':'🔒',hardDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,`${heard}/${total} gehört`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10 richtig`:p.session?'In Arbeit':'Offen',quizDone)}${step('Hörverstehen',comprehension?'Erledigt':'Offen',comprehension)}${step('Lektions-Check',masteryTried?`${masteryBest} %`:'Offen',masteryDone)}${step('Hard Mode',hardDone?'Erledigt':masteryDone?'Optional':'Gesperrt',hardDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+  }
+  function hasActiveSession(state,id){
+    const work=state.lessonWork?.[id]||{};
+    return !!(work.session||work.comprehension?.session||state.lessonCheckProgress?.[id]?.session||(id===1&&state.lessonGrammarCheckProgress?.[1]?.session)||Object.values(work.deepening||{}).some(item=>item?.session)||(id===1&&Object.values(state.lessonGrammarPractice?.[1]||{}).some(item=>item?.session)));
   }
   function continuation(lessons,state){
-    const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
-    const pending=last&&(!state.doneLessons?.includes(last.id)||state.lessonCheckProgress?.[last.id]?.session||(position&&position.step!=='check'));
-    return (pending&&last)||lessons.find(l=>!state.doneLessons?.includes(l.id))||last||lessons[lessons.length-1];
+    const last=lessons.find(l=>l.id===state.lastLessonId);
+    return (last&&hasActiveSession(state,last.id)&&last)||lessons.find(l=>!state.doneLessons?.includes(l.id))||last||lessons[lessons.length-1];
   }
   function resumePosition(lesson,state){
     const p=state.lessonWork?.[lesson.id]||{},saved=p.resume;
-    if(saved&&['speak','write'].includes(saved.step))return {step:'check'};
+    const quizReady=lesson.id===1?p.quizDone===true:Number(state.lessonQuizBest?.[lesson.id]||0)>=70;
+    const checkReady=state.doneLessons?.includes(lesson.id)||Object.prototype.hasOwnProperty.call(state.lessonMasteryLast||{},lesson.id)||(quizReady&&p.comprehension?.done===true);
+    const fallback=()=>({step:quizReady?'comprehension':'listen'});
+    if(saved&&['speak','write'].includes(saved.step))return checkReady?{step:'check'}:fallback();
     const allowed=['listen','grammar','grammar-check','comprehension','check','speak','write','hard'];
-    if(saved&&allowed.includes(saved.step))return {...saved};
-    if(state.lessonCheckProgress?.[lesson.id]?.session)return {step:'check',mode:'exercise'};
+    if(state.lessonCheckProgress?.[lesson.id]?.session&&checkReady)return {step:'check',mode:'exercise'};
+    if(saved&&allowed.includes(saved.step)){
+      if(saved.step==='check'&&!checkReady)return fallback();
+      if(saved.step==='hard'&&Number(state.lessonMasteryBest?.[lesson.id]||0)<80)return checkReady?{step:'check'}:fallback();
+      return {...saved};
+    }
     if(p.session)return {step:'listen',mode:'exercise'};
     if(p.comprehension?.done)return {step:'check'};
     if(p.quizDone||Number(state.lessonQuizBest?.[lesson.id])>=70)return {step:'grammar',nextIncomplete:true};
@@ -237,10 +248,10 @@
       const heardSet=new Set(p.heardPhrases);
       const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} gehört</small></div><div class="lesson-audio-rows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="tiny-btn" id="previousAudioPage" aria-label="Vorherige Hörbeispiele">←</button><small id="audioPageStatus" aria-live="polite"></small><button type="button" class="tiny-btn" id="nextAudioPage" aria-label="Nächste Hörbeispiele">→</button></div>`:''}</section>`;
       let body='';
-      if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('fr',l.id)||''}${window.A1LessonFoundations?.preparationHtml('fr',l.id,'listen')||''}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Bestwert: ${best()} %</p>`:''}${!p.quizDone?'<small class="exercise-entry-hint">10 kurze Fragen</small>':''}<button class="primary-btn exercise-start-btn ${p.quizDone?'is-completed':''}" id="startQuiz">${p.quizDone?`<span class="exercise-completed-mark" aria-hidden="true">✓</span><span class="exercise-entry-copy"><span>10 Aufgaben abgeschlossen</span><small>Übung wiederholen ↻</small></span>`:p.session?'Vokabel-Check fortsetzen':'Vokabel-Check starten'}</button></div>${window.A1LessonFoundations?.vocabularyHtml('fr',l.id,l.phrases)||''}</section>`;
+       if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('fr',l.id)||''}${window.A1LessonFoundations?.preparationHtml('fr',l.id,'listen')||''}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Bestwert: ${best()} %</p>`:''}${!p.quizDone?'<small class="exercise-entry-hint">10 kurze Fragen</small>':''}<button class="primary-btn exercise-start-btn ${p.quizDone?'is-completed':''}" id="startQuiz">${p.quizDone?`<span class="exercise-completed-mark" aria-hidden="true">✓</span><span class="exercise-entry-copy"><span>10 Aufgaben abgeschlossen</span><small>Übung wiederholen ↻</small></span>`:p.session?'Vokabel-Check fortsetzen':'Vokabel-Check starten'}</button><p class="muted lesson-prerequisite-note">Du kannst die Vertiefung schon ansehen. Für den Lektions-Check brauchst du ${lesson1?'einen abgeschlossenen Vokabel-Check':'mindestens 70 % richtige Antworten im Vokabel-Check'} und abgeschlossenes Hörverstehen.</p></div>${window.A1LessonFoundations?.vocabularyHtml('fr',l.id,l.phrases)||''}</section>`;
       if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Fortschritt der Vertiefung">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · erledigt':''}${i===grammarIndex?' · aktuell':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thema ${grammarIndex+1} von ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${window.A1LessonFoundations?.enhance('fr',l.id,grammarPages[grammarIndex].title,grammarPages[grammarIndex].html,grammarIndex)||grammarPages[grammarIndex].html}</div></section>`;
       if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Abschluss-Test</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${FR_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${FR_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${FR_A1_LESSON1.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${FR_A1_LESSON1.grammarCheckTried(state)?'Abschluss-Test wiederholen':'12 Fragen starten'}</button></section>`;
-      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryAttempted()?'is-completed':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryAttempted()?'Lektions-Check wiederholen':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
+       if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryAttempted()?'is-completed':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryAttempted()?'Lektions-Check wiederholen':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">${!passed()?lesson1?'Schließe zuerst den Vokabel-Check ab. Danach brauchst du noch das Hörverstehen.':'Erreiche zuerst mindestens 70 % richtige Antworten im Vokabel-Check. Danach brauchst du noch das Hörverstehen.':'Schließe zuerst das Hörverstehen ab, um den Lektions-Check zu starten.'}</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
       if(activeStep==='comprehension')body=`${window.A1LessonFoundations?.preparationHtml('fr',l.id,'comprehension')||''}<div id="lessonComprehension"></div>`;
       view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
       if(activeStep==='check')renderExtras();
@@ -290,14 +301,23 @@
       }));
       window.scrollTo({top:0,behavior:'instant'});
     }
-    function drawQuiz(){
+     function drawQuizResult(score=p.quizLastCorrect,total=p.quizLastTotal){
+       remember('result');
+       const pct=Number(p.quizLast||0),count=Number.isFinite(score)&&Number.isFinite(total)&&total>0?`${score} von ${total} richtig`:`${pct} % richtig`;
+       view.innerHTML=`<div class="between"><button class="tiny-btn" id="quizResultBack">← Lektion</button><span class="pill">VOKABEL-CHECK</span></div><section class="card center lesson-quiz-result"><div class="score">${pct} %</div><h2>${esc(count)}</h2><p class="muted">${lesson1?'Der Vokabel-Check ist abgeschlossen.':pct>=70?'Vokabel-Check geschafft.':'Für den Lektions-Check brauchst du mindestens 70 % richtige Antworten.'} Dein bester Wert: ${best()} %.</p><div class="button-row"><button class="secondary-btn" id="quizResultRepeat">Noch einmal üben</button><button class="primary-btn" id="quizResultContinue">Weiter zur Vertiefung</button></div></section>`;
+       document.getElementById('quizResultBack').onclick=()=>goStep('listen');
+       document.getElementById('quizResultRepeat').onclick=drawQuiz;
+       document.getElementById('quizResultContinue').onclick=()=>goStep('grammar');
+       window.scrollTo({top:0,behavior:'instant'});
+     }
+     function drawQuiz(){
       remember('exercise');
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
-      A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.FR_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
+       A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Ergebnis ansehen',reviewResultLabel:'Antworten ansehen',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.FR_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
-        state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
-        save(true);goStep('grammar');
+         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;p.quizLastCorrect=score;p.quizLastTotal=total;
+         save(true);drawQuizResult(score,total);
       }});
     }
     function drawApplication(){
@@ -366,7 +386,8 @@
       else activeStep=lesson1&&!FR_A1_LESSON1.grammarCheckTried(state)?'grammar-check':'comprehension';
     }
     if(activeStep==='hard')drawHardMode();
-    else if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
+     else if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
+     else if(activeStep==='listen'&&position.mode==='result'&&p.quizDone)drawQuizResult();
     else if(activeStep==='check'&&position.mode==='exercise'){
       drawMastery();if(state.lessonCheckProgress?.[l.id]?.session)view.querySelector('#masteryStart')?.click();
     }else if(activeStep==='grammar-check'&&position.mode==='exercise'){
@@ -381,7 +402,7 @@
       }
     }
   }
-  window.A1LessonFlow={render,listProgress,resumePosition,continuation};
+   window.A1LessonFlow={render,listProgress,resumePosition,continuation,hasActiveSession};
 })();
 
 

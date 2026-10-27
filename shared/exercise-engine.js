@@ -264,7 +264,7 @@
     persist();
     const play=text=>(opts.playFeedbackAudio||opts.playAudio)(text);
     function next(){i++;response=null;draft='';orderPicked=[];choicePicked=null;
-      if(i<ex.length){persist();draw();}else{if(progress){delete progress.session;opts.saveProgress?.();}opts.onFinish(score,ex.length);review?.attach(opts.view);}}
+      if(i<ex.length){persist();draw();}else{if(progress){delete progress.session;opts.saveProgress?.();}opts.onFinish(score,ex.length);review?.attach(opts.view,false,opts.reviewResultLabel);}}
 
     function feedback(status,answer,audio,explanation,restoring=false){
       if(!explanation&&opts.selectionOnly&&ex[i].type==='listening')explanation=opts.lesson.phrases?.find(p=>norm(p[0])===norm(audio))?.[1]||'';
