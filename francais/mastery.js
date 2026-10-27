@@ -131,7 +131,10 @@
       if(!restoring){if(ok)score++;if(reviewState)window.FR_A1_REVIEW?.record(reviewState,window.FR_A1_REVIEW.task(lessonId||task.lessonId||Number(task.tag?.match(/^L(\d+)/)?.[1]),"check","Lektionscheck",task),ok);response={ok,chosen:response?.chosen};persist();}
       if(!restoring&&task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
-      document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
+      const repair=!ok?window.FR_A1_MOTIVATION?.repairFor(lessonId,task):null;
+      const en=window.A1Profile?.getUiLang?.()==='en';
+      document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div>${repair?`<div class="motivation-repair"><strong>${en?'Try it in a new sentence':'Jetzt in einem neuen Satz anwenden'}</strong><p>${esc(repair.hint)}</p><label for="masteryRepairInput">${esc(repair.prompt)}</label><input id="masteryRepairInput" class="mixed-input" autocomplete="off" spellcheck="false" placeholder="${en?'Your answer…':'Deine Antwort…'}"><button type="button" class="secondary-btn" id="masteryRepairCheck">${en?'Check without points':'Ohne Wertung prüfen'}</button><p id="masteryRepairResult" role="status"></p></div>`:''}<div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
+      if(repair){const input=document.getElementById('masteryRepairInput'),result=document.getElementById('masteryRepairResult');document.getElementById('masteryRepairCheck').onclick=()=>{if(!input.value.trim())return;const correct=norm(input.value)===norm(repair.answer);result.textContent=correct?(en?'✓ Exactly. You used the form yourself.':'✓ Genau. Du hast die Form selbst angewendet.'):(en?'Possible answer: ':'Mögliche Antwort: ')+repair.answer+(en?' — feel free to try again.':' — versuche es gern erneut.');result.className=correct?'feedback good':'feedback near';};}
       window.FR_A1_ANSWER_AUDIO?.mount(document.querySelector('#masteryFeedback .feedback'),{task,playAudio:text=>speak?.(text,true,.8)});
       if(ok&&!restoring)view.querySelector('.option-btn.correct,#masteryInput')?.classList.add('answer-success');
       document.getElementById('masteryNext').onclick=()=>{i++;draft='';response=null;if(i<ex.length){persist();draw();}else finish();};if(!restoring)review?.attach(view,true);
@@ -169,7 +172,7 @@
     persist();draw();
   }
 
-  function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
+  function renderLessonTest({lesson,view,state,save,onBack,onNext,speak,onResult}){
     const tasks=makeLessonTest(lesson),b=best(state,lesson.id);
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
@@ -181,8 +184,10 @@
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryBest=state.lessonMasteryBest||{};state.lessonMasteryLast=state.lessonMasteryLast||{};
         state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(Number(state.lessonMasteryBest[lesson.id]||0),pct);save(true);
-        view.innerHTML=`<section class="card center"><span class="pill">LEKTIONS-CHECK</span><div class="score">${pct}%</div><h2>${score}/${total} richtig</h2><p class="muted">Das ist dein aktueller Stand. Du kannst den Check jederzeit wiederholen und vorher einzelne Teile noch einmal üben.</p><div class="button-row"><button class="secondary-btn" id="masteryAgain">Noch einmal</button><button class="primary-btn" id="masteryReturn">Zur Lektion</button></div></section>`;
-        document.getElementById('masteryAgain').onclick=intro;document.getElementById('masteryReturn').onclick=onBack;onResult?.();
+        const passed=pct>=PASS;
+        const en=window.A1Profile?.getUiLang?.()==='en';
+        view.innerHTML=`<section class="card center"><span class="pill">LEKTIONS-CHECK</span><div class="score">${pct}%</div><h2>${score}/${total} ${en?'correct':'richtig'}</h2>${window.FR_A1_MOTIVATION?.resultHtml(lesson,passed)||'<p class="muted">Du kannst den Check jederzeit wiederholen.</p>'}<div class="button-row"><button class="secondary-btn" id="masteryAgain">${en?'Try again':'Noch einmal'}</button><button class="primary-btn" id="masteryReturn">${passed?(en?'Back to lesson':'Zur Lektion'):(en?'Practise this lesson':'Gezielt weiterüben')}</button></div>${passed&&onNext?`<button class="secondary-btn" id="masteryNextLesson">${en?'Next lesson':'Nächste Lektion'} →</button>`:''}</section>`;
+        document.getElementById('masteryAgain').onclick=intro;document.getElementById('masteryReturn').onclick=onBack;document.getElementById('masteryNextLesson')?.addEventListener('click',onNext);onResult?.();
       }});
       document.getElementById('masteryNewCheck')?.addEventListener('click',()=>{
         progress.previousDrafts||=[];progress.previousDrafts.push(JSON.parse(JSON.stringify(progress.session)));delete progress.session;save();intro();document.getElementById('masteryStart').click();
