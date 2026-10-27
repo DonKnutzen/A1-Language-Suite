@@ -5,5 +5,20 @@
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0f172a",
-  "description": "Spanisch-A1-Kurs zur gezielten Vorbereitung auf die DELE-A1-Prüfung."
+  "description": "Spanisch-A1-Kurs zur gezielten Vorbereitung auf die DELE-A1-Prüfung.",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "../shared/icons/spanisch-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../shared/icons/spanisch-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

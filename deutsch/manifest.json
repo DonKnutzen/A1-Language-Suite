@@ -5,5 +5,20 @@
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0f172a",
-  "description": "Cours d’allemand A1 pour une préparation ciblée au Goethe-Zertifikat A1."
+  "description": "Cours d’allemand A1 pour une préparation ciblée au Goethe-Zertifikat A1.",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "../shared/icons/deutsch-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../shared/icons/deutsch-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
