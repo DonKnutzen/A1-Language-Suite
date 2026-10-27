@@ -246,10 +246,34 @@ test('continue restores an unfinished lesson check without resetting or counting
  const question=view.querySelector('.quiz-q').textContent;
  render(w,view,4,state,[],[],options);assert.equal(view.querySelector('.quiz-q').textContent,question);assert(view.querySelector('#masteryNext'));assert.equal(p.session.score,1);view.querySelector('#masteryNext').click();assert.equal(p.session.i,1);dom.window.close();
 });
-test('home continuation prefers the last unfinished lesson, then advances after a passed final check',()=>{
+test('home continuation prefers the first open lesson unless an exercise is interrupted',()=>{
  const {dom,w}=appEnvironment(),lessons=w.FR_A1_DATA.lessons,state={lastLessonId:8,doneLessons:[1,2],lessonWork:{8:{resume:{step:'grammar',grammarIndex:2}}}};
- assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);state.doneLessons.push(8);state.lessonWork[8].resume.step='check';assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);
+ assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);state.doneLessons.push(8);state.lessonWork[8].resume.step='check';assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);
  state.lessonCheckProgress={8:{session:{i:2}}};assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);state.lastLessonId=999;assert.equal(w.A1LessonFlow.continuation(lessons,state).id,3);dom.window.close();
+});
+test('an active deepening exercise remains the next home action',()=>{
+ const {dom,w}=appEnvironment(),lessons=w.FR_A1_DATA.lessons,state={lastLessonId:8,doneLessons:[],lessonWork:{8:{deepening:{r0:{session:{i:2}}}}}};
+ assert.equal(w.A1LessonFlow.continuation(lessons,state).id,8);
+ assert.equal(w.A1LessonFlow.hasActiveSession(state,8),true);dom.window.close();
+});
+test('a saved locked lesson check reopens at the next available learning step',()=>{
+ const {dom,w}=appEnvironment(),l=lesson(w,1),state={doneLessons:[],lessonQuizBest:{},lessonWork:{1:{resume:{step:'check'}}}};
+ assert.equal(w.A1LessonFlow.resumePosition(l,state).step,'listen');
+ state.lessonWork[1].quizDone=true;
+ assert.equal(w.A1LessonFlow.resumePosition(l,state).step,'comprehension');
+ state.lessonWork[1].comprehension={done:true};
+ assert.equal(w.A1LessonFlow.resumePosition(l,state).step,'check');dom.window.close();
+});
+test('lesson quiz shows a result before moving to deepening and labels the score',()=>{
+ const {dom,w,view}=appEnvironment(),state={doneLessons:[],lessonQuizBest:{},lessonWork:{}};
+ w.A1ExerciseEngine={makeAuthored:()=>[],run:opts=>opts.onFinish(2,10)};
+ render(w,view,2,state);view.querySelector('#startQuiz').click();
+ assert.match(view.textContent,/2 von 10 richtig/);
+ assert.match(view.textContent,/Antworten ansehen|Weiter zur Vertiefung/);
+ assert.equal(state.lessonWork[2].quizLast,20);
+ assert.match(w.A1LessonFlow.listProgress(lesson(w,2),state),/2\/10 richtig/);
+ view.querySelector('#quizResultContinue').click();
+ assert(view.querySelector('[data-lesson-step="grammar"][aria-current="step"]'));dom.window.close();
 });
 
 test('reported avoir and article mini-tests require choosing the actual forms with clear context',()=>{
