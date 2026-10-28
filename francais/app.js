@@ -121,14 +121,12 @@ function renderHome(){
   const next=A1LessonFlow.continuation(lessons,state);
   const completed=lessons.filter(l=>state.doneLessons.includes(l.id));
   const allDone=completed.length===lessons.length;
-  const paused=state.lessonWork?.[next.id]?.motivationPaused;
   view.innerHTML=`
 
     <section class="card home-continue-card" aria-labelledby="continueTitle">
       <div class="between"><span class="eyebrow">${allDone?'WIEDERHOLEN':'WEITERLERNEN'}</span><span class="pill">Lektion ${next.id}</span></div>
       <h2 id="continueTitle">${esc(next.title)}</h2>
       <div class="home-learning-goal"><span class="home-detail-label">Dein Lernziel</span><p>${esc(next.canDo[0])}</p></div>
-      ${paused?`<p class="motivation-home-note">${A1Profile.getUiLang()==='en'?'Your progress is saved. You can continue where you stopped.':'Dein Zwischenstand ist gespeichert. Du kannst genau dort weitermachen.'}</p>`:''}
 
       <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Weiter üben':'Fortsetzen'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
@@ -493,11 +491,11 @@ function renderLesson(id){
     renderVocabulary:()=>renderVocab(id,()=>renderLesson(id)),vocabularyLabel:A1Vocabulary.label('fr','lessonLink'),
     lesson:l,content:c,view,state,save,resume:true,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
     goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
-    renderMastery:({onBack,onResult,onNext})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak,onResult,onNext}),
+    renderMastery:({onBack,onResult})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak,onResult}),
     renderHardMode:({onBack})=>FR_A1_HARD_MODE.render({lesson:l,view,state,save,onBack}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,
     model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints||LESSON_WRITING_HINTS[id],writingHelpText:app.writingHelpText,fullModel:true,recorderHtml:id=>recorderHtml(id,true),
-    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn,renderHome:()=>setRoute('home')
+    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });
 }
 

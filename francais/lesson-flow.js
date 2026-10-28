@@ -28,12 +28,12 @@
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
-    const pending=last&&(!state.doneLessons?.includes(last.id)||state.lessonCheckProgress?.[last.id]?.session||state.lessonWork?.[last.id]?.motivationPaused||(position&&position.step!=='check'));
+    const pending=last&&(!state.doneLessons?.includes(last.id)||state.lessonCheckProgress?.[last.id]?.session||(position&&position.step!=='check'));
     return (pending&&last)||lessons.find(l=>!state.doneLessons?.includes(l.id))||last||lessons[lessons.length-1];
   }
   function resumePosition(lesson,state){
     const p=state.lessonWork?.[lesson.id]||{},saved=p.resume;
-    if(saved&&['speak','write'].includes(saved.step))return p.motivationPaused?{...saved}:{step:'check'};
+    if(saved&&['speak','write'].includes(saved.step))return {step:'check'};
     const allowed=['listen','grammar','grammar-check','comprehension','check','speak','write','hard'];
     if(saved&&allowed.includes(saved.step))return {...saved};
     if(state.lessonCheckProgress?.[lesson.id]?.session)return {step:'check',mode:'exercise'};
@@ -44,7 +44,6 @@
   }
   function render(opts){
     const {lesson:l,content:c,view,state}=opts,L=UI[opts.uiLang]||UI.de;
-    const motivation=opts.targetLang==='fr'?window.FR_A1_MOTIVATION:null;
     const lesson1=opts.targetLang==='fr'&&Number(l.id)===1&&!!window.FR_A1_LESSON1;
     if(!state.lessonWork||typeof state.lessonWork!=='object'||Array.isArray(state.lessonWork))state.lessonWork={};
     const valid=state.lessonWork[l.id];
@@ -146,11 +145,10 @@
     function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
     function stepFooter(){
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1];
-      const close=html=>motivation?`${html}${p.lastCheckpoint&&motivation.checkpointHtml(l,p.lastCheckpoint)||''}<button type="button" class="tiny-btn motivation-pause" id="pauseLesson">${window.A1Profile?.getUiLang?.()==='en'?'Stop here for today':'Für heute abschließen'}</button>`:html;
-      if(['speak','write'].includes(activeStep))return close(`<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Zum Lektionscheck</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`);
-      if(activeStep==='comprehension')return close('<div class="lesson-step-footer"><button class="secondary-btn" id="previousLessonStep">← Zurück</button></div>');
-      if(activeStep==='grammar')return close(`<div class="lesson-step-footer">${grammarIndex?`<button class="secondary-btn" id="previousGrammarTopic">← Zurück</button>`:'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>'}${grammarIndex<grammarPages.length-1?`<button class="primary-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:next?`<button class="primary-btn" id="nextLessonStep">Weiter: ${esc(next[1])} →</button>`:''}</div>`);
-      return close(`<div class="lesson-step-footer">${i?'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>':''}${next?`<button class="primary-btn" id="nextLessonStep">Weiter: ${esc(next[1])} →</button>`:''}</div>`);
+      if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Zum Lektionscheck</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;
+      if(activeStep==='comprehension')return '<div class="lesson-step-footer"><button class="secondary-btn" id="previousLessonStep">← Zurück</button></div>';
+      if(activeStep==='grammar')return `<div class="lesson-step-footer">${grammarIndex?`<button class="secondary-btn" id="previousGrammarTopic">← Zurück</button>`:'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>'}${grammarIndex<grammarPages.length-1?`<button class="primary-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:next?`<button class="primary-btn" id="nextLessonStep">Weiter: ${esc(next[1])} →</button>`:''}</div>`;
+      return `<div class="lesson-step-footer">${i?'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>':''}${next?`<button class="primary-btn" id="nextLessonStep">Weiter: ${esc(next[1])} →</button>`:''}</div>`;
     }
     function wireStepFooter(){
       document.getElementById('backLearn').onclick=opts.renderLearn;wireStepNav();refreshNextAction();
@@ -160,7 +158,6 @@
       view.querySelectorAll('[data-grammar-progress]').forEach(btn=>btn.onclick=()=>goGrammarTopic(Number(btn.dataset.grammarProgress),true));
       document.getElementById('previousLessonStep')?.addEventListener('click',()=>goStep(steps[i-1][0]));
       document.getElementById('nextLessonStep')?.addEventListener('click',()=>goStep(steps[i+1][0]));
-      document.getElementById('pauseLesson')?.addEventListener('click',()=>{p.motivationPaused=true;remember();opts.renderHome?.();});
     }
     function expandContent(root){
       // Explanations stay visible; answers and self-check solutions keep their reveal controls.
@@ -173,7 +170,6 @@
     }
     function goStep(key){
       if(!steps.some(([id])=>id===key)&&!['speak','write','hard'].includes(key))return;
-      if(motivation&&activeStep!==key&&(activeStep==='listen'?p.quizDone===true:stepDone(activeStep)))p.lastCheckpoint=activeStep;
       if(activeStep==='grammar'&&steps.findIndex(([id])=>id===key)>steps.findIndex(([id])=>id==='grammar'))markGrammarRead();
       activeStep=key;
       if(key==='hard')drawHardMode();else if(key==='speak'||key==='write')drawApplication();else drawOverview();
@@ -217,7 +213,7 @@
       window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       if(!hasMastery)return;
       window.A1Voice?.cancel();remember('exercise');
-      opts.renderMastery({onBack:()=>goStep('check'),onResult:()=>{remember();renderExtras();wireStepNav();},onNext:()=>l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn()});
+      opts.renderMastery({onBack:()=>goStep('check'),onResult:()=>{remember();renderExtras();wireStepNav();}});
     }
     function refresh(){
       document.getElementById('lessonPartStatus').innerHTML=statuses();
@@ -246,7 +242,7 @@
       if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Abschluss-Test</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${FR_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${FR_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${FR_A1_LESSON1.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${FR_A1_LESSON1.grammarCheckTried(state)?'Abschluss-Test wiederholen':'12 Fragen starten'}</button></section>`;
       if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryAttempted()?'is-completed':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryAttempted()?'Lektions-Check wiederholen':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="secondary-btn" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)}</button>`:''}</section>`;
       if(activeStep==='comprehension')body=`${window.A1LessonFoundations?.preparationHtml('fr',l.id,'comprehension')||''}<div id="lessonComprehension"></div>`;
-      view.innerHTML=`${stepHead()}${motivation?.sceneHtml(l.id,activeStep)||''}${body}${stepFooter()}`;
+      view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
       if(activeStep==='check')renderExtras();
       wireStepFooter();
       if(activeStep==='listen'){
@@ -298,7 +294,7 @@
       remember('exercise');
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
-      A1ExerciseEngine.run({answerAudioAfterResponse:true,motivationRepair:q=>motivation?.repairFor(l.id,q),lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.FR_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
+      A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.FR_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
         save(true);goStep('grammar');
@@ -312,18 +308,14 @@
       const formFields=[['name','Nom','text'],['firstName','Prénom','text'],['age','Âge','text'],['phone','Téléphone','tel'],['email','E-mail','email']];
       const formHtml=miniForm?`<div class="lesson-mini-form">${formFields.map(([key,label,type])=>`<label for="lessonField-${key}">${label}<input class="text-input" id="lessonField-${key}" data-writing-field="${key}" type="${type}" ${key==='age'?'inputmode="numeric"':''} maxlength="160" value="${esc(p.writingFields?.[key]||'')}" autocomplete="off"></label>`).join('')}</div>`:'';
       const appHead=stepHead()+`<div id="lessonPartStatus" hidden>${statuses()}</div>`;
-      const situation=lesson1&&motivation?motivation.choiceHtml(p.sceneChoice||'course'):'';
-      const speakingPrompt=lesson1&&motivation?motivation.prompt('speak',p.sceneChoice||'course'):c.transfer.speaking;
-      const writingPrompt=lesson1&&motivation?motivation.prompt('write',p.sceneChoice||'course'):c.transfer.writing;
-      view.innerHTML=`${appHead}${situation}
-        <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${taskPrompt(speakingPrompt,'speak')}</p>${opts.recorderHtml(recId)}${dialogueHelp()}<button class="soft-btn exercise-start-btn" id="showSpeakingModel">Laut beantwortet · Beispiel vergleichen</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><p class="muted">Prüfe mit dem Beispiel, ob deine Antwort die Aufgabe erfüllt.</p><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>✓ Geprüft · Sprechaufgabe abschließen</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
-        <section class="card lesson-flow" id="lessonWritingSection"><div class="between"><h3>✍️ ${esc(L.write)}</h3><span id="writingStatus"></span></div><label class="lesson-task-prompt" for="${miniForm?'lessonField-name':'lessonWriting'}">${taskPrompt(writingPrompt,'write')}</label>${opts.targetLang==='fr'&&l.id===2?`<p class="muted">${esc(L.dictateTip)}</p><button class="soft-btn" data-pron-spell="${esc(writingModel.toUpperCase())}" data-pron-lang="fr">🔊 ${esc(L.dictate)}</button>`:''}${Array.isArray(opts.writingHints)&&opts.writingHints.length?`<button class="soft-btn lesson-help-toggle" id="writingHelpBtn" aria-expanded="false" aria-controls="writingHelp">💡 ${esc(L.writeHelp)}</button><div class="lesson-writing-help lesson-help-content" id="writingHelp" hidden><p class="muted">${esc(opts.writingHelpText||L.writeHelpText)}</p>${opts.writingHints.map(h=>{const target=Array.isArray(h)?h[0]:h,native=Array.isArray(h)?h[1]:'';return `<div class="phrase-row"><div><strong>${esc(target)}</strong>${native?`<small>${esc(native)}</small>`:''}</div></div>`;}).join('')}</div>`:''}${formHtml}<textarea ${miniForm?'hidden':''} class="text-area lesson-writing" id="lessonWriting" placeholder="${esc(opts.placeholder||L.placeholder)}">${esc(p.writingDraft||'')}</textarea>${A1ExerciseEngine.charBar(opts.targetLang,opts.uiLang)}<p class="muted" id="writingCount"></p><button class="soft-btn" id="showWritingModel">${esc(L.compare)}</button><div id="writingModel" role="status"></div></section>
+      view.innerHTML=`${appHead}
+        <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${taskPrompt(c.transfer.speaking,'speak')}</p>${opts.recorderHtml(recId)}${dialogueHelp()}<button class="soft-btn exercise-start-btn" id="showSpeakingModel">Laut beantwortet · Beispiel vergleichen</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><p class="muted">Prüfe mit dem Beispiel, ob deine Antwort die Aufgabe erfüllt.</p><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>✓ Geprüft · Sprechaufgabe abschließen</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
+        <section class="card lesson-flow" id="lessonWritingSection"><div class="between"><h3>✍️ ${esc(L.write)}</h3><span id="writingStatus"></span></div><label class="lesson-task-prompt" for="${miniForm?'lessonField-name':'lessonWriting'}">${taskPrompt(c.transfer.writing,'write')}</label>${opts.targetLang==='fr'&&l.id===2?`<p class="muted">${esc(L.dictateTip)}</p><button class="soft-btn" data-pron-spell="${esc(writingModel.toUpperCase())}" data-pron-lang="fr">🔊 ${esc(L.dictate)}</button>`:''}${Array.isArray(opts.writingHints)&&opts.writingHints.length?`<button class="soft-btn lesson-help-toggle" id="writingHelpBtn" aria-expanded="false" aria-controls="writingHelp">💡 ${esc(L.writeHelp)}</button><div class="lesson-writing-help lesson-help-content" id="writingHelp" hidden><p class="muted">${esc(opts.writingHelpText||L.writeHelpText)}</p>${opts.writingHints.map(h=>{const target=Array.isArray(h)?h[0]:h,native=Array.isArray(h)?h[1]:'';return `<div class="phrase-row"><div><strong>${esc(target)}</strong>${native?`<small>${esc(native)}</small>`:''}</div></div>`;}).join('')}</div>`:''}${formHtml}<textarea ${miniForm?'hidden':''} class="text-area lesson-writing" id="lessonWriting" placeholder="${esc(opts.placeholder||L.placeholder)}">${esc(p.writingDraft||'')}</textarea>${A1ExerciseEngine.charBar(opts.targetLang,opts.uiLang)}<p class="muted" id="writingCount"></p><button class="soft-btn" id="showWritingModel">${esc(L.compare)}</button><div id="writingModel" role="status"></div></section>
         <section class="card lesson-flow-finish"><div id="lessonCompletion" class="lesson-completion" role="status"></div>${hasMastery?`<button class="primary-btn" id="startMasteryFromApplication" ${lesson1?'':'disabled'}>🏁 ${lesson1?'Lektions-Check':'Abschlusstest starten'} · ${opts.masteryCount||''} Fragen</button><div class="spacer"></div>`:''}<div class="button-row"><button class="secondary-btn" id="repeatQuiz">${esc(lesson1?'10 Hör-/Satzübungen wiederholen':L.quizAgain)}</button><button class="primary-btn" id="nextLesson" disabled>${esc(l.id<opts.lessonCount?L.next:L.all)}</button></div></section>`;
       document.getElementById('lessonSpeaking').hidden=activeStep!=='speak';
       document.getElementById('lessonWritingSection').hidden=activeStep!=='write';
       view.querySelector('.lesson-flow-finish').hidden=true;
       view.insertAdjacentHTML('beforeend',stepFooter());wireStepFooter();
-      view.querySelectorAll('[name="lessonSituation"]').forEach(input=>input.onchange=()=>{p.sceneChoice=input.value;save();view.querySelector('#lessonSpeaking .lesson-task-prompt').innerHTML=taskPrompt(motivation.prompt('speak',p.sceneChoice),'speak');view.querySelector('#lessonWritingSection .lesson-task-prompt').innerHTML=taskPrompt(motivation.prompt('write',p.sceneChoice),'write');});
       document.getElementById('repeatQuiz').onclick=drawQuiz;
       if(hasMastery)document.getElementById('startMasteryFromApplication').onclick=drawMastery;
       document.getElementById('nextLesson').onclick=()=>{if(complete())l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn();};
@@ -373,11 +365,6 @@
       if(first>=0)grammarIndex=first;
       else activeStep=lesson1&&!FR_A1_LESSON1.grammarCheckTried(state)?'grammar-check':'comprehension';
     }
-    if(lesson1&&motivation&&!p.motivationSeen&&!p.resume&&!p.quizDone&&!p.session&&!p.heardPhrases.length&&!masteryAttempted()){
-      motivation.mountMission({view,speak:opts.speak,selected:p.sceneChoice||'course',onChoice:value=>{p.sceneChoice=value;save();},onDone:()=>{p.motivationSeen=true;p.motivationDone=true;save();drawOverview();},onSkip:()=>{p.motivationSeen=true;save();drawOverview();}});
-      return;
-    }
-    if(motivation)p.motivationPaused=false;
     if(activeStep==='hard')drawHardMode();
     else if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
     else if(activeStep==='check'&&position.mode==='exercise'){
