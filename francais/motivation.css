@@ -1,0 +1,14 @@
+.motivation-mission{padding:22px}
+.motivation-mission h2{margin:10px 0}
+.motivation-dialogue,.motivation-scene,.motivation-result{border:1px solid var(--line);border-radius:16px;background:var(--accent-soft);padding:14px;margin:16px 0}
+.motivation-dialogue{display:grid;gap:8px}.motivation-dialogue>span{font-size:12px;font-weight:800;color:var(--accent-ink)}.motivation-dialogue .soft-btn{width:max-content}
+.motivation-choices{border:0;padding:0;display:grid;gap:8px;margin:18px 0}.motivation-choices legend,.motivation-situation legend{font-weight:800;margin-bottom:8px}.motivation-choices .option-btn{text-align:left}
+.motivation-name{display:flex;align-items:center;gap:8px;margin:10px 0 16px;flex-wrap:wrap;font-size:18px;font-weight:700}.motivation-name input{min-width:140px;flex:1;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:var(--panel);color:var(--ink)}
+.motivation-success{padding:12px 0}.motivation-success strong{font-size:22px}.motivation-success .primary-btn{margin-top:8px}
+.motivation-scene{background:var(--panel);border-left:4px solid var(--accent);margin:0 0 14px}.motivation-scene strong{color:var(--accent-ink)}.motivation-scene p{margin:5px 0 0}
+.motivation-checkpoint{border-radius:12px;background:var(--success-soft);color:var(--ink);padding:10px 12px;line-height:1.45}
+.motivation-pause{margin-top:10px;width:100%}.motivation-home-note{font-size:13px;color:var(--muted);margin:10px 0 0}
+.motivation-situation{border:0;padding:0;margin:0 0 18px;display:grid;gap:8px}.motivation-situation label{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer}.motivation-situation input{accent-color:var(--accent)}
+.motivation-result{text-align:left;background:var(--panel);margin:18px 0}.motivation-result h3{margin:0 0 6px}.motivation-result p{margin:6px 0}
+.motivation-repair{border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0;background:var(--panel)}.motivation-repair p{margin:6px 0 10px}.motivation-repair label{display:block;font-weight:700;margin:9px 0}.motivation-repair .secondary-btn{margin-top:9px}.motivation-repair #mixedRepairResult{margin-bottom:0}
+@media(max-width:560px){.motivation-mission{padding:18px}.motivation-name{font-size:16px}}
