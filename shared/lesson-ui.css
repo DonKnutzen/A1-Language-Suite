@@ -197,3 +197,12 @@ html .exercise-start-btn:not(.is-completed):focus-visible{outline:3px solid var(
 .lesson-extra-vocabulary dd{display:flex;align-items:center;min-height:40px}
 .lesson-extra-vocabulary .lesson-vocabulary-audio{width:40px;min-height:40px;height:40px;padding:8px}
 .lesson-extra-vocabulary .lesson-vocabulary-audio svg{width:18px;height:18px}
+
+/* Long alphabet lines must wrap inside the available space, beside audio controls. */
+.lesson-core-phrase{min-width:0;align-items:flex-start}
+.lesson-core-phrase>div{flex:1;min-width:0;overflow-wrap:anywhere}
+.lesson-core-phrase strong,.lesson-core-phrase small{white-space:normal;overflow-wrap:anywhere}
+.lesson-core-phrase .speak-btn{flex-shrink:0}
+.lesson-audio-page-summary{padding:10px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:8px;font-weight:600;line-height:1.5}
+.lesson-audio-pager{flex-wrap:wrap}
+.lesson-audio-pager .lesson-audio-next{font-size:14px;white-space:normal;background:var(--accent);color:#fff;padding:10px 12px}
