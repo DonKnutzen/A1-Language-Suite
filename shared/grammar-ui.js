@@ -32,7 +32,7 @@
     deutsch:{
       'Pronoms personnels':'Le pronom indique qui fait l’action et détermine la forme du verbe.',
       'sein – conjugaison':'sein est irrégulier : choisis la forme qui correspond à la personne.',
-      'haben – conjugaison':'haben est irrégulier : choisis la forme qui correspond à la personne.',
+      'haben – conjugaison':'Haben est irrégulier : le b disparaît dans du hast et er/sie/es hat. Les autres personnes gardent hab-.',
       'Articles au nominatif':'Le nominatif sert surtout à marquer le sujet. L’article dépend du genre et du nombre du nom.',
       'Articles à l’accusatif':'L’accusatif marque souvent l’objet direct. Au masculin, l’article change clairement de forme.',
       'Mots interrogatifs utiles':'Le mot interrogatif indique l’information recherchée et se place au début de la question.',
@@ -40,7 +40,7 @@
       'Modalverben – formes utiles':'Le modal se conjugue selon la personne ; le verbe principal reste à l’infinitif.',
       'kein – nominatif et accusatif':'kein nie un nom pour exprimer « aucun / pas de » ; sa terminaison dépend du genre et du cas.',
       'Possessifs utiles':'Le possessif s’adapte au nom qui suit et au cas utilisé.',
-      'heißen et sprechen – conjugaison':'La forme du verbe dépend de la personne ; sprechen change de voyelle avec du et er/sie.',
+      'heißen et sprechen – conjugaison':'Sprechen est irrégulier : e devient i avec du et er/sie/es (du sprichst, er spricht), mais ihr sprecht. Heißen est un verbe fort, sans changement de voyelle au présent. Après ß, du prend -t : du heißt, sans s supplémentaire.',
       'Ordre des mots':'Le type de phrase détermine la position du verbe conjugué.',
       'Verbes séparables':'Dans une proposition principale, le préfixe séparé se place à la fin.'
     },

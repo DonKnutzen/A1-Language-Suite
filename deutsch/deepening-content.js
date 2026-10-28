@@ -3,7 +3,7 @@ window.DE_A1_STUDY_CONTENT = {
   "1": [
     {
       "title": "Se présenter",
-      "rule": "Le verbe conjugué est en deuxième position. **heißen** donne le nom, **kommen aus** l’origine, **wohnen in** la ville et **sprechen** la langue. Après ich : heiße, komme, wohne, spreche. Le nom des langues prend une majuscule.",
+      "rule": "Dans une déclaration, le verbe conjugué occupe le deuxième groupe, pas forcément le deuxième mot. **heißen** donne le nom, **kommen aus** l’origine, **wohnen in** la ville et **sprechen** la langue. Après ich : heiße, komme, wohne, spreche. Le nom des langues prend une majuscule.",
       "rows": [
         [
           "Ich |heiße| Claire.",

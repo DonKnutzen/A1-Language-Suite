@@ -2012,7 +2012,7 @@
         "Expliquer un chemin": [
           {
             "title": "À un proche : Geh ou Nimm",
-            "rule": "Gehen Sie et Nehmen Sie sont des consignes polies. Avec un proche, utilise Geh et Nimm, sans du. Pour mitbringen (apporter), mit reste à la fin. Garde la même forme d’adresse pendant l’échange.",
+            "rule": "Gehen Sie et Nehmen Sie sont des consignes polies. Avec un proche, utilise Geh et Nimm, sans du. Nimm est la forme irrégulière de nehmen pour cette consigne. Pour mitbringen (apporter), mit reste à la fin. Garde la même forme d’adresse pendant l’échange.",
             "examples": [
               [
                 "Gehen Sie geradeaus. → Geh geradeaus.",
@@ -2067,6 +2067,16 @@
                 "Je prends le bus. Je prends le train."
               ]
             ]
+          },
+          {
+            "title": "Müssen dans une consigne",
+            "rule": "Sie müssen … signifie vous devez. Avec Sie, müssen garde la forme de base; umsteigen reste à l’infinitif à la fin. Retiens cette consigne ici; les autres formes de müssen sont expliquées en leçon 15.",
+            "examples": [
+              [
+                "Sie müssen am Bahnhof umsteigen.",
+                "Vous devez changer à la gare."
+              ]
+            ]
           }
         ]
       },
@@ -2102,6 +2112,16 @@
                 "Veuillez prévenir mon collègue."
               ]
             ]
+          },
+          {
+            "title": "Meinen Kollegen : deux changements",
+            "rule": "Dans informieren Sie meinen Kollegen, la personne prévenue est l’objet direct. Mein devient meinen à l’accusatif masculin. Comme Name, le nom masculin Kollege prend aussi -n : der Kollege → den Kollegen. Retiens ici le groupe entier.",
+            "examples": [
+              [
+                "Bitte informieren Sie meinen Kollegen.",
+                "Veuillez prévenir mon collègue."
+              ]
+            ]
           }
         ],
         "Verbes réguliers au présent": [
@@ -2116,6 +2136,22 @@
               [
                 "wir arbeiten · ihr arbeitet · sie arbeiten",
                 "nous travaillons · vous travaillez (proches) · ils/elles travaillent"
+              ]
+            ]
+          }
+        ],
+        "Métier et horaires": [
+          {
+            "title": "Im Büro et in der Schule",
+            "rule": "Pour le lieu où l’on travaille, in est suivi du datif : das Büro devient dem Büro, et in dem se contracte en im. Die Schule devient der Schule; in der reste séparé. Als introduit le métier, pas le lieu.",
+            "examples": [
+              [
+                "Ich arbeite im Büro.",
+                "Je travaille au bureau."
+              ],
+              [
+                "Ich arbeite in der Schule.",
+                "Je travaille à l’école."
               ]
             ]
           }
@@ -2168,6 +2204,18 @@
               ]
             ]
           }
+        ],
+        "Parler du cours": [
+          {
+            "title": "Seit et le pluriel au datif",
+            "rule": "Seit signifie depuis et demande le datif. Au pluriel, Monate reçoit un n : seit sechs Monaten. Le présent décrit une activité qui continue; le français utilise aussi le présent dans cette phrase.",
+            "examples": [
+              [
+                "Ich lerne seit sechs Monaten Deutsch.",
+                "J’apprends l’allemand depuis six mois."
+              ]
+            ]
+          }
         ]
       },
       "words": [
@@ -2213,6 +2261,18 @@
               ]
             ]
           }
+        ],
+        "Dire ce qu’on aime": [
+          {
+            "title": "Ins Kino : une destination",
+            "rule": "Ins = in das. Avec gehen, ins Kino indique où tu vas. Kino est neutre : das Kino. Apprends cette destination comme un groupe; la même contraction reviendra avec ins Museum en leçon 21.",
+            "examples": [
+              [
+                "Ich gehe lieber ins Kino.",
+                "Je préfère aller au cinéma."
+              ]
+            ]
+          }
         ]
       },
       "words": [
@@ -2232,7 +2292,20 @@
     },
     "13": {
       "intro": [],
-      "topics": {},
+      "topics": {
+        "Réserver une chambre": [
+          {
+            "title": "Für : personnes et durée",
+            "rule": "Für signifie ici pour. Nacht devient Nächte au pluriel; les nombres servent à compter les nuits ou les personnes. Une durée comme für zwei Nächte ne donne pas l’heure de départ.",
+            "examples": [
+              [
+                "für zwei Personen · für drei Nächte",
+                "pour deux personnes · pour trois nuits"
+              ]
+            ]
+          }
+        ]
+      },
       "words": [
         [
           "das Einzelzimmer",
@@ -2278,6 +2351,18 @@
               ]
             ]
           }
+        ],
+        "Prendre rendez-vous et prévenir": [
+          {
+            "title": "Beim Arzt : une contraction",
+            "rule": "Beim = bei dem. Bei demande le datif : der Arzt devient dem Arzt. Le groupe beim Arzt signifie ici chez le médecin; il ne s’agit pas d’un nouveau verbe ou d’un possessif.",
+            "examples": [
+              [
+                "Ich brauche einen Termin beim Arzt.",
+                "J’ai besoin d’un rendez-vous chez le médecin."
+              ]
+            ]
+          }
         ]
       },
       "words": [
@@ -2301,7 +2386,7 @@
         "Répondre à une invitation": [
           {
             "title": "Une obligation avec müssen",
-            "rule": "Müssen signifie devoir. Il change de forme avec le sujet; le deuxième verbe reste à l’infinitif à la fin. Une obligation de travailler peut expliquer une absence.",
+            "rule": "Müssen signifie devoir et est irrégulier : muss au singulier avec ich et er/sie, mais müssen avec wir. Il change de forme avec le sujet; le deuxième verbe reste à l’infinitif à la fin. Une obligation de travailler peut expliquer une absence.",
             "examples": [
               [
                 "ich muss · du musst · er/sie muss",
@@ -2341,6 +2426,18 @@
               ]
             ]
           }
+        ],
+        "Inviter et préciser": [
+          {
+            "title": "Chez moi : bei mir",
+            "rule": "Dans cette invitation, bei mir signifie chez moi. Bei demande le datif : le pronom est mir, pas ich. Ce lieu est celui de la fête. Pour indiquer une destination vers quelqu’un, on emploie souvent zu; ces deux mots ne sont pas interchangeables partout.",
+            "examples": [
+              [
+                "Die Party ist um achtzehn Uhr bei mir.",
+                "La fête est à dix-huit heures chez moi."
+              ]
+            ]
+          }
         ]
       },
       "words": [
@@ -2360,7 +2457,7 @@
         "Lire panneaux et restrictions": [
           {
             "title": "Une permission avec dürfen",
-            "rule": "Dürfen signifie avoir le droit de. Man signifie on et utilise la forme du singulier. Avec nicht, dürfen exprime une interdiction, pas une absence d’obligation.",
+            "rule": "Dürfen signifie avoir le droit de et est irrégulier : ich darf, man darf, mais wir dürfen. Man signifie on et utilise la forme du singulier. Avec nicht, dürfen exprime une interdiction, pas une absence d’obligation.",
             "examples": [
               [
                 "ich darf · du darfst · er/sie darf",
@@ -2373,6 +2470,18 @@
               [
                 "Darf ich fotografieren? Hier darf man nicht fotografieren.",
                 "Ai-je le droit de photographier ? Ici, on n’a pas le droit de photographier."
+              ]
+            ]
+          }
+        ],
+        "Horaires et annonces": [
+          {
+            "title": "Fällt … aus : annulation",
+            "rule": "Ausfallen est séparable. Sans modal, aus se place à la fin et fallen devient fällt avec der Zug : a → ä. La phrase signifie que le train est annulé; aus n’est pas ici une indication de provenance.",
+            "examples": [
+              [
+                "Der Zug fällt heute aus.",
+                "Le train est annulé aujourd’hui."
               ]
             ]
           }
@@ -2399,7 +2508,24 @@
     },
     "17": {
       "intro": [],
-      "topics": {},
+      "topics": {
+        "Formuler une demande": [
+          {
+            "title": "À qui et quoi ?",
+            "rule": "Dans mir den Stift geben, mir (= à moi) désigne le destinataire au datif; den Stift désigne l’objet donné à l’accusatif. Der Stift devient den Stift, tandis que das Buch et die Tasche gardent ici leur article. Helfen demande aussi le datif : mir helfen, pas mich helfen.",
+            "examples": [
+              [
+                "Können Sie mir bitte den Stift geben?",
+                "Pouvez-vous me donner le stylo, s’il vous plaît ?"
+              ],
+              [
+                "Können Sie mir bitte helfen?",
+                "Pouvez-vous m’aider, s’il vous plaît ?"
+              ]
+            ]
+          }
+        ]
+      },
       "words": [
         [
           "nett",
@@ -2417,7 +2543,20 @@
     },
     "18": {
       "intro": [],
-      "topics": {},
+      "topics": {
+        "Comprendre les consignes": [
+          {
+            "title": "Ihren Namen : votre nom comme objet",
+            "rule": "Ihr est le possessif de politesse, avec une majuscule. Devant le nom masculin objet direct, il devient Ihren. Name reçoit aussi -n, comme en leçon 2 : Ihr Name → Ihren Namen. Ce n’est pas un pluriel.",
+            "examples": [
+              [
+                "Schreiben Sie bitte Ihren Namen.",
+                "Écrivez votre nom, s’il vous plaît."
+              ]
+            ]
+          }
+        ]
+      },
       "words": [
         [
           "prüfen",
@@ -2443,7 +2582,20 @@
     },
     "19": {
       "intro": [],
-      "topics": {},
+      "topics": {
+        "Demander une aide médicale": [
+          {
+            "title": "Diese Tabletten : ces comprimés",
+            "rule": "Diese signifie ici ces : il s’agit d’un démonstratif, pas d’un possessif. Tablette devient Tabletten au pluriel. Dans cette consigne, diese Tabletten est ce qu’il faut prendre; diese garde la même forme au nominatif et à l’accusatif pluriels.",
+            "examples": [
+              [
+                "Nehmen Sie diese Tabletten.",
+                "Prenez ces comprimés."
+              ]
+            ]
+          }
+        ]
+      },
       "words": [
         [
           "der Arm",
@@ -2498,6 +2650,16 @@
               [
                 "Morgen ist es warm.",
                 "Demain, il fera chaud."
+              ]
+            ]
+          },
+          {
+            "title": "Es dans les expressions météo",
+            "rule": "Es est le sujet grammatical de es regnet et es schneit; il ne désigne pas une personne. Le français utilise aussi un il impersonnel : il pleut, il neige. Après Heute, le verbe passe devant es, sans changer le sens de es.",
+            "examples": [
+              [
+                "Es regnet. → Heute regnet es.",
+                "Il pleut. → Aujourd’hui, il pleut."
               ]
             ]
           }
@@ -2574,6 +2736,26 @@
               [
                 "Ich rufe von zu Hause an.",
                 "J’appelle depuis la maison."
+              ]
+            ]
+          }
+        ],
+        "Écrire un SMS clair": [
+          {
+            "title": "Dir, Ihnen, mich et Sie",
+            "rule": "Dir (= à toi) et Ihnen (= à vous, politesse) désignent le destinataire avec schicken. Avec zurückrufen, la personne rappelée est un objet direct : mich (= me) ou Sie (= vous). Le choix du pronom dépend donc à la fois de la personne et du verbe.",
+            "examples": [
+              [
+                "Ich schicke dir ein Foto.",
+                "Je t’envoie une photo."
+              ],
+              [
+                "Ich schicke Ihnen eine E-Mail.",
+                "Je vous envoie un e-mail."
+              ],
+              [
+                "Können Sie mich zurückrufen?",
+                "Pouvez-vous me rappeler ?"
               ]
             ]
           }
