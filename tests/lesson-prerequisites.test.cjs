@@ -19,9 +19,32 @@ function fixture(course){
  }
  w.eval(read(course+'/lesson-flow.js'));
  const view=w.document.getElementById('view'),state={doneLessons:[24],lessonWork:{},lessonQuizBest:{},lessonMasteryBest:{24:95}};
- const render=l=>w.A1LessonFlow.render({lesson:l,content:original(l),view,state,targetLang:course==='francais'?'fr':'de',uiLang:course==='francais'?'de':'fr',lessonCount:24,grammarHtml:html(l),save(){},speak(){},speakBtn:()=>'<button>Audio</button>',wireSpeakButtons(){},recorderHtml:()=>'',renderLearn(){},renderLesson(){},renderMastery(){}});
+ const render=(l,resume=false)=>w.A1LessonFlow.render({resume,lesson:l,content:original(l),view,state,targetLang:course==='francais'?'fr':'de',uiLang:course==='francais'?'de':'fr',lessonCount:24,grammarHtml:html(l),save(){},speak(){},speakBtn:()=>'<button>Audio</button>',wireSpeakButtons(){},recorderHtml:()=>'',renderLearn(){},renderLesson(){},renderMastery(){}});
  return {dom,w,view,state,lessons,render,html};
 }
+test('German audio examples use one destination button and preserve every example and saved page',()=>{
+ const f=fixture('deutsch');let paged=0;
+ for(const l of f.lessons){
+  f.render(l);
+  assert(!f.view.querySelector('[data-audio-page-summary],#previousAudioPage,#nextAudioPage,#audioPageStatus'));
+  const button=f.view.querySelector('#switchAudioPage');
+  if(l.phrases.length<=8){assert(!button);continue;}
+  paged++;const count=Math.ceil(l.phrases.length/6),seen=new Set();
+  assert.equal(f.view.querySelectorAll('.lesson-audio-pager button').length,1);
+  const visible=()=>[...f.view.querySelectorAll('[data-core-row]')].filter(r=>!r.hidden).map(r=>Number(r.dataset.coreRow));
+  const first=visible();
+  for(let page=0;page<count;page++){
+   visible().forEach(i=>seen.add(i));
+   assert.equal(button.textContent,page===count-1?'← Exemples audio · page 1':`Exemples audio · page ${page+2} →`);
+   button.click();
+  }
+  assert.equal(seen.size,l.phrases.length);assert.deepEqual(visible(),first);
+  button.click();f.render(l,true);
+  assert.equal(f.state.lessonWork[l.id].resume.audioPage,1);
+  assert.equal(f.view.querySelector('#switchAudioPage').textContent,count===2?'← Exemples audio · page 1':'Exemples audio · page 3 →');
+ }
+ assert(paged>0);f.dom.window.close();
+});
 for(const course of ['francais','deutsch']){
  test(course+': all 24 lessons keep prerequisites at their actual topic, without repeating a full course summary',()=>{
   const f=fixture(course),{w,view}=f,lang=course==='francais'?'fr':'de';let additions=0;

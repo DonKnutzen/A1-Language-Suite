@@ -1032,3 +1032,6 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 .pronoun-example{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.88rem}
 .pronoun-example .speak-btn{width:30px;height:30px;min-width:30px;font-size:14px}
 .pronoun-hint{font-size:.85rem;color:var(--accent-ink);background:var(--accent-soft);padding:8px 10px;border-radius:9px;margin:0 0 12px;line-height:1.4}
+
+/* One clear destination for the audio examples, in the same position on each page. */
+.lesson-audio-pager .lesson-audio-switch{width:100%;min-height:48px;padding:14px 18px;font-size:1rem;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
