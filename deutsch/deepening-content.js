@@ -318,7 +318,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Faire épeler et répéter",
-      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes. Dans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben. Dans **den Namen** (= le nom), **den** est un article défini à l’accusatif : il indique ce qu’on écrit ou épelle. **Der Name → den Namen** : ce nom prend aussi -n. Apprends ici le groupe entier; les cas seront détaillés plus tard. Ce n’est pas un possessif : **mein Name** signifie mon nom, **Ihr Name** votre nom (politesse).",
+      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes. Dans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
       "rows": [
         [
           "Können Sie das bitte |buchstabieren|?",
@@ -1110,7 +1110,7 @@ window.DE_A1_STUDY_CONTENT = {
   "6": [
     {
       "title": "Commander un repas",
-      "rule": "**Ich hätte gern …** et **Ich möchte …** sont deux demandes polies. Le produit est à l’accusatif : der Kaffee → **einen Kaffee**, die Suppe → **eine Suppe**, das Wasser → **ein Wasser**. Apprends le produit avec son article.",
+      "rule": "**Ich hätte gern …** et **Ich möchte …** sont deux demandes polies. Le produit est l’objet direct, à l’accusatif. Au masculin : **ein Kaffee → einen Kaffee**; avec l’article défini : **der Kaffee → den Kaffee**. Au féminin et au neutre : **eine Suppe**, **ein Wasser**. Apprends le produit avec son article.",
       "rows": [
         [
           "Ich hätte gern |einen| Kaffee.",

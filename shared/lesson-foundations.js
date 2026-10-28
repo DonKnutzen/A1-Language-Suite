@@ -1587,6 +1587,16 @@
                 "Habitez-vous à Paris ? — Non, je n’habite pas à Paris."
               ]
             ]
+          },
+          {
+            "title": "Vous : Sie ou Ihnen ?",
+            "rule": "Sie est la forme de politesse. Dans la formule Wie geht es Ihnen?, Ihnen désigne aussi la personne à qui tu parles : c’est le pronom au datif, pas un possessif. Apprends cette question comme un bloc; la traduction française ne montre pas ce changement.",
+            "examples": [
+              [
+                "Wie geht es Ihnen? — Gut, danke.",
+                "Comment allez-vous ? — Bien, merci."
+              ]
+            ]
           }
         ],
         "sein": [
@@ -1597,6 +1607,16 @@
               [
                 "Ich bin zu Hause.",
                 "Je suis à la maison."
+              ]
+            ]
+          },
+          {
+            "title": "Dire son âge",
+            "rule": "Pour l’âge, l’allemand utilise sein, pas haben : Ich bin … Jahre alt. Le français utilise avoir. Le nombre change, mais le modèle reste le même.",
+            "examples": [
+              [
+                "Ich bin dreißig Jahre alt.",
+                "J’ai trente ans."
               ]
             ]
           }
@@ -1619,7 +1639,50 @@
     },
     "2": {
       "intro": [],
-      "topics": {},
+      "topics": {
+        "Lettres et signes": [
+          {
+            "title": "Man et mit einem Punkt",
+            "rule": "Man signifie on; ce n’est pas Mann (= homme). Avec mit, l’article est au datif : ein Punkt devient einem Punkt. Apprends ici mit einem Punkt comme un groupe; mit Umlaut et mit Bindestrich sont des indications abrégées sans article.",
+            "examples": [
+              [
+                "Anna schreibt man mit Doppel-n.",
+                "Anna s’écrit avec deux n."
+              ],
+              [
+                "mit einem Punkt",
+                "avec un point"
+              ]
+            ]
+          }
+        ],
+        "Faire épeler et répéter": [
+          {
+            "title": "Den Namen : article et terminaison",
+            "rule": "Den est ici un article défini à l’accusatif, pas un possessif : il marque ce qu’on écrit ou épelle. Der Name devient den Namen; ce nom prend aussi -n. Retenir ce groupe suffit ici. Mein Name (= mon nom) et Ihr Name (= votre nom, politesse) contiennent, eux, un possessif.",
+            "examples": [
+              [
+                "der Name → den Namen",
+                "le nom → le nom (objet direct)"
+              ],
+              [
+                "Ich kann den Namen buchstabieren.",
+                "Je peux épeler le nom."
+              ]
+            ]
+          },
+          {
+            "title": "Das peut remplacer un mot",
+            "rule": "Dans Können Sie das buchstabieren?, das signifie cela : il remplace le nom ou le mot déjà mentionné. Ce n’est pas l’article placé devant un nom. Bitte rend la demande polie.",
+            "examples": [
+              [
+                "Können Sie das bitte buchstabieren?",
+                "Pouvez-vous épeler cela, s’il vous plaît ?"
+              ]
+            ]
+          }
+        ]
+      },
       "words": [
         [
           "der Umlaut",
@@ -1658,6 +1721,16 @@
               [
                 "neunzehnhundertsechsundneunzig",
                 "mille neuf cent quatre-vingt-seize"
+              ]
+            ]
+          },
+          {
+            "title": "Nommer sa date de naissance",
+            "rule": "Dans Ich bin am … geboren, bin … geboren signifie je suis né(e). Apprends cette formule pour ta date de naissance; tu n’as pas à construire une nouvelle conjugaison ici.",
+            "examples": [
+              [
+                "Ich bin am siebzehnten April geboren.",
+                "Je suis né(e) le dix-sept avril."
               ]
             ]
           }
@@ -1726,6 +1799,22 @@
               ]
             ]
           }
+        ],
+        "Mois et dates": [
+          {
+            "title": "Am, im et zum sont des contractions",
+            "rule": "Am = an dem, im = in dem, vom = von dem et zum = zu dem. Pour les dates de cette leçon, retiens les groupes entiers : am + jour ou date, im + mois, vom … bis zum … pour une période. Les terminaisons après ces petits mots ne se déduisent pas de la traduction française.",
+            "examples": [
+              [
+                "im April · am siebzehnten April",
+                "en avril · le dix-sept avril"
+              ],
+              [
+                "vom ersten bis zum dritten August",
+                "du premier au trois août"
+              ]
+            ]
+          }
         ]
       },
       "words": [
@@ -1750,6 +1839,16 @@
               [
                 "Ich wohne mit meiner Frau in Bonn.",
                 "J’habite à Bonn avec ma femme."
+              ]
+            ]
+          },
+          {
+            "title": "Le possesseur et le nom jouent deux rôles différents",
+            "rule": "Mein indique que la personne ou la chose est à moi; la terminaison dépend du nom et de sa fonction. Mein Vater et meine Mutter signifient mon père et ma mère, quel que soit le genre de la personne qui parle. Après haben, mein Vater devient meinen Vater : le nom est l’objet direct.",
+            "examples": [
+              [
+                "mein Vater · meine Mutter · meine Eltern",
+                "mon père · ma mère · mes parents"
               ]
             ]
           }
@@ -1828,6 +1927,16 @@
               [
                 "Die rote Jacke ist zu teuer. Ich nehme die blaue.",
                 "La veste rouge est trop chère. Je prends la bleue."
+              ]
+            ]
+          },
+          {
+            "title": "Zu devant un adjectif",
+            "rule": "Dans zu teuer, zu klein ou zu groß, zu signifie trop. Ici, il ne désigne pas une destination. Apprends le sens du groupe : ce petit mot n’a pas toujours la même traduction.",
+            "examples": [
+              [
+                "Das ist zu teuer.",
+                "C’est trop cher."
               ]
             ]
           }
