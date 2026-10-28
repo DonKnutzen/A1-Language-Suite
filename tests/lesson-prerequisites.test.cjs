@@ -22,8 +22,8 @@ function fixture(course){
  const render=(l,resume=false)=>w.A1LessonFlow.render({resume,lesson:l,content:original(l),view,state,targetLang:course==='francais'?'fr':'de',uiLang:course==='francais'?'de':'fr',lessonCount:24,grammarHtml:html(l),save(){},speak(){},speakBtn:()=>'<button>Audio</button>',wireSpeakButtons(){},recorderHtml:()=>'',renderLearn(){},renderLesson(){},renderMastery(){}});
  return {dom,w,view,state,lessons,render,html};
 }
-test('German audio examples use one destination button and preserve every example and saved page',()=>{
- const f=fixture('deutsch');let paged=0;
+for(const course of ['deutsch','francais'])test(course+': audio examples use one destination button and preserve every example and saved page',()=>{
+ const f=fixture(course),label=course==='deutsch'?'Exemples audio · page':'Hörbeispiele · Seite';let paged=0;
  for(const l of f.lessons){
   f.render(l);
   assert(!f.view.querySelector('[data-audio-page-summary],#previousAudioPage,#nextAudioPage,#audioPageStatus'));
@@ -35,13 +35,13 @@ test('German audio examples use one destination button and preserve every exampl
   const first=visible();
   for(let page=0;page<count;page++){
    visible().forEach(i=>seen.add(i));
-   assert.equal(button.textContent,page===count-1?'← Exemples audio · page 1':`Exemples audio · page ${page+2} →`);
+   assert.equal(button.textContent,page===count-1?`← ${label} 1`:`${label} ${page+2} →`);
    button.click();
   }
   assert.equal(seen.size,l.phrases.length);assert.deepEqual(visible(),first);
   button.click();f.render(l,true);
   assert.equal(f.state.lessonWork[l.id].resume.audioPage,1);
-  assert.equal(f.view.querySelector('#switchAudioPage').textContent,count===2?'← Exemples audio · page 1':'Exemples audio · page 3 →');
+  assert.equal(f.view.querySelector('#switchAudioPage').textContent,count===2?`← ${label} 1`:`${label} 3 →`);
  }
  assert(paged>0);f.dom.window.close();
 });

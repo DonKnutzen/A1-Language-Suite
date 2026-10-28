@@ -1024,3 +1024,6 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 #lessonGrammarPage .deepening-examples small{font-size:.8rem;margin-top:2px}
 #lessonGrammarPage .deepening-examples .speak-btn{width:32px;height:32px;min-width:32px;font-size:14px}
 #lessonGrammarPage .grammar-table .speak-btn{width:30px;height:30px;min-width:30px;margin-left:6px;font-size:14px;vertical-align:middle}
+
+/* One clear destination for the audio examples, in the same position on each page. */
+.lesson-audio-pager .lesson-audio-switch{width:100%;min-height:48px;padding:14px 18px;font-size:1rem;line-height:1.4;white-space:normal;overflow-wrap:anywhere}

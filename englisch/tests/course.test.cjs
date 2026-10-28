@@ -278,3 +278,20 @@ test('all grammar pages place supplementary words between translated examples an
   assert.equal(table.querySelectorAll('tbody th[scope="row"]').length,7);
   f.close();
 });
+
+test('all English audio example pages use one reversible button and retain every example',()=>{
+ const f=fixture(),{w,view}=f;
+ for(let id=1;id<=24;id++){
+  w.EN_A1_APP.renderLesson(id,{step:'listen'});
+  assert(!view.querySelector('[data-audio-page-summary],#previousAudioPage,#nextAudioPage,#audioPageStatus'));
+  assert.equal(view.querySelectorAll('.lesson-audio-pager button').length,1);
+  const rows=()=>[...view.querySelectorAll('[data-core-row]')].filter(r=>!r.hidden).map(r=>Number(r.dataset.coreRow));
+  const first=rows(),button=view.querySelector('#switchAudioPage');
+  assert.equal(button.textContent,'Hörbeispiele · Seite 2 →');button.click();
+  const second=rows();assert.equal(new Set([...first,...second]).size,w.EN_A1_DATA.lessons[id-1].phrases.length);
+  assert.equal(button.textContent,'← Hörbeispiele · Seite 1');
+  assert.equal(w.EN_A1_APP.state.lessonWork[id].resume.audioPage,1);
+  button.click();assert.deepEqual(rows(),first);
+ }
+ f.close();
+});
