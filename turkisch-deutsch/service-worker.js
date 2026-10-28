@@ -1,6 +1,6 @@
-const CACHE='deutsch-c1-tr-v14-compact-progress';
+const CACHE="deutsch-c1-tr-ux-1";
 const LEGACY_PREFIXES=['deutsch-a1-tr','deutsch-c1-tr'];
-const ASSETS=[
+const ASSETS=["../shared/experience.css?v=ux-1",
   './','./index.html','./styles.css','./app.js','./lesson-content.js','./manifest.json',
   '../shared/config.js','../shared/profile.js','../shared/streak.js','../shared/learning.js','../shared/voice-selection.js'
 ];

@@ -1,0 +1,148 @@
+/* Shared visual hierarchy for every course. No lesson or scoring logic lives here. */
+:root{
+  --surface-subtle:#f3f6fb;
+  --surface-raised:#fff;
+  --focus-ring:#1746a2;
+  --shadow:0 4px 18px rgba(15,23,42,.055);
+}
+html.dark-mode{
+  --accent:#2563eb;
+  --surface-subtle:#172033;
+  --surface-raised:#1e293b;
+  --focus-ring:#a8cbff;
+  --muted:#aab8cc;
+  --shadow:0 5px 22px rgba(0,0,0,.16);
+}
+
+/* Keep the overview inviting and the working screens quiet. */
+.view{min-width:0}
+.card:not(.hero),.lesson,.practice-card{
+  border-color:var(--line);
+  box-shadow:var(--shadow);
+}
+.card:not(.hero){padding:clamp(16px,3.8vw,22px)}
+.card h2,.card h3{line-height:1.3;overflow-wrap:anywhere}
+.card p,.lesson,.practice-card,.feedback,.mixed-context{overflow-wrap:anywhere}
+.section-title{margin-block:25px 12px}
+.section-title h2,.section-title h3{letter-spacing:-.015em}
+.eyebrow{line-height:1.35}
+.metric,.audio-panel,.reading-text,.transcript{
+  background:var(--surface-subtle);
+  border-color:var(--line);
+}
+
+/* The next lesson is prominent through position and contrast, without perpetual motion. */
+.home-continue-card{
+  animation:none!important;
+  background:linear-gradient(150deg,var(--accent-soft),var(--panel) 58%);
+  border-color:color-mix(in srgb,var(--accent) 34%,var(--line));
+  box-shadow:0 8px 24px rgba(15,23,42,.09);
+}
+.home-continue-card .home-learning-goal{margin-bottom:18px}
+.primary-btn.home-continue-btn{
+  animation:none!important;
+  background:var(--accent);
+  border:1px solid transparent;
+  box-shadow:0 5px 15px rgba(37,99,235,.23);
+}
+.home-continue-btn::after{display:none!important}
+.home-continue-arrow{box-shadow:none}
+html.dark-mode .home-continue-card{box-shadow:0 9px 28px rgba(0,0,0,.19)}
+html.dark-mode .primary-btn.home-continue-btn{box-shadow:0 5px 16px rgba(0,0,0,.23)}
+.daily-review-card.is-due .daily-review-primary{animation:none!important;box-shadow:0 5px 16px rgba(15,118,110,.2)}
+.daily-review-card.is-due .daily-review-primary::after,.lesson.is-hard-gold::after{display:none!important}
+.lesson-finale-btn:not(.is-completed),html.dark-mode .primary-btn.lesson-finale-btn:not(.is-completed){
+  animation:none!important;
+  background:var(--accent);
+  background-size:auto;
+  border:1px solid color-mix(in srgb,var(--accent) 72%,#fff);
+  box-shadow:0 5px 15px rgba(37,99,235,.2);
+}
+html .lesson-finale-btn.is-completed{animation:none!important}
+
+/* A consistent action ladder: primary, secondary, then quiet utility controls. */
+.primary-btn,.secondary-btn,.soft-btn,.option-btn,.tab-btn{
+  min-height:44px;
+  line-height:1.35;
+  transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease;
+}
+.primary-btn{box-shadow:0 2px 8px rgba(37,99,235,.13)}
+.secondary-btn{border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line))}
+.soft-btn{background:var(--surface-subtle)}
+.tiny-btn{min-height:36px;line-height:1.25}
+.switch-btn,.theme-toggle,.profile-chip{min-height:44px}
+.primary-btn:disabled,.secondary-btn:disabled,.soft-btn:disabled,.option-btn:disabled{
+  box-shadow:none;cursor:default;
+}
+@media(hover:hover){
+  .primary-btn:not(:disabled):hover{filter:brightness(1.055);box-shadow:0 5px 15px rgba(37,99,235,.2)}
+  .secondary-btn:not(:disabled):hover,.soft-btn:not(:disabled):hover{border-color:var(--accent);background:var(--accent-soft)}
+  .lesson:hover,.practice-card:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 8px 22px rgba(15,23,42,.09)}
+  .option-btn:not(:disabled):not(.correct):not(.wrong):hover{border-color:var(--accent);background:var(--accent-soft)}
+}
+.primary-btn:not(:disabled):active,.secondary-btn:not(:disabled):active,.soft-btn:not(:disabled):active,.option-btn:not(:disabled):active{transform:scale(.99)}
+
+/* Answer states appear only after a choice has been checked. */
+.quiz-q,.mixed-prompt{line-height:1.5}
+.options{gap:10px}
+.option-btn{background:var(--panel);border:1px solid var(--line);padding-inline:16px}
+.option-btn.correct,.feedback.good{border-color:var(--success)}
+.option-btn.wrong,.feedback.bad{border-color:var(--danger)}
+.feedback{border-left-width:4px;line-height:1.55}
+.feedback.good{border-left-color:var(--success)}
+.feedback.bad{border-left-color:var(--danger)}
+.feedback.near{border-left-color:var(--warning)}
+.solution{line-height:1.55}
+.mixed-context{border-left-width:4px}
+html .exercise-start-btn:not(.is-completed){animation:none!important;box-shadow:0 3px 12px rgba(5,150,105,.15)}
+html .primary-btn.lesson-next-ready{animation:none!important;box-shadow:0 5px 15px rgba(37,99,235,.22)}
+
+/* Progress, navigation, and audio remain legible without color alone. */
+.progress{background:var(--line)}
+.progress>div{background:var(--accent);transition:width .35s ease}
+.lesson.done{border-color:color-mix(in srgb,var(--success) 44%,var(--line))}
+.lesson-list-step.done strong,.lesson-mini-step.done strong{font-weight:850}
+.bottom-nav{box-shadow:0 -5px 18px rgba(15,23,42,.045)}
+.nav-item{min-height:50px;min-width:0}
+.nav-item.active{font-weight:800}
+.speak-btn{min-width:44px;min-height:44px;background:var(--accent-soft);color:var(--accent-ink)}
+.audio-panel{border-style:solid}
+.record-status{line-height:1.45}
+
+/* Keyboard focus and text scaling work in both color modes. */
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--focus-ring);
+  outline-offset:3px;
+}
+.text-input:focus-visible,.text-area:focus-visible,.select-input:focus-visible,.mixed-input:focus-visible{
+  border-color:var(--focus-ring);
+}
+.button-row>*{min-width:0}
+.card,.lesson,.practice-card,.option-btn,.feedback{max-width:100%}
+@media(max-width:430px){
+  .button-row,.button-row.three{grid-template-columns:minmax(0,1fr)}
+  .topbar{gap:8px}
+  .header-actions{flex-wrap:wrap;justify-content:flex-end}
+  .lesson-list-progress{gap:5px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  .home-milestones.is-waiting{opacity:1;transform:none}
+}
+
+/* Course selection uses the same measured spacing and interaction language. */
+.shell .hero{margin-block:26px 20px;padding:clamp(22px,5vw,34px);box-shadow:0 12px 30px rgba(15,23,42,.12)}
+.shell .hero h2{font-size:clamp(1.45rem,3.5vw,2rem);line-height:1.23;letter-spacing:-.025em;max-width:24ch}
+.shell .hero p{max-width:64ch}
+.shell .grid{gap:14px}
+.shell .course{display:flex;flex-direction:column;min-width:0;min-height:214px;padding:22px;box-shadow:var(--shadow);border-color:#d8e1ee}
+.shell .course h2{line-height:1.25;letter-spacing:-.02em;overflow-wrap:anywhere}
+.shell .course p{flex:1;overflow-wrap:anywhere}
+.shell .course .pill{align-self:flex-start;line-height:1.3}
+.shell .note{border-color:#d8e1ee;box-shadow:var(--shadow)}
+.shell .lang-toggle button{min-width:44px;min-height:44px}
+.shell .course:focus-visible,.shell .lang-toggle button:focus-visible{outline:3px solid #1746a2;outline-offset:3px}
+@media(hover:hover){.shell .course:hover{border-color:#93b7f5;box-shadow:0 9px 24px rgba(15,23,42,.11)}}
+html.dark-mode .shell .course,html.dark-mode .shell .note{border-color:#41516a}
+html.dark-mode .shell .course:focus-visible,html.dark-mode .shell .lang-toggle button:focus-visible{outline-color:#a8cbff}
+@media(max-width:760px){.shell .course{min-height:0}.shell .hero{margin-block:20px 16px}}
