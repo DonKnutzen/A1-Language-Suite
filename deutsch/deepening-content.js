@@ -318,7 +318,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Faire épeler et répéter",
-      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes. Dans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
+      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes. Dans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben. Dans **den Namen** (= le nom), **den** est un article défini à l’accusatif : il indique ce qu’on écrit ou épelle. **Der Name → den Namen** : ce nom prend aussi -n. Apprends ici le groupe entier; les cas seront détaillés plus tard. Ce n’est pas un possessif : **mein Name** signifie mon nom, **Ihr Name** votre nom (politesse).",
       "rows": [
         [
           "Können Sie das bitte |buchstabieren|?",
