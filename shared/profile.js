@@ -192,6 +192,9 @@ applyTheme();
   function registry(){ try{return JSON.parse(localStorage.getItem(REGISTRY_KEY) || '{}');}catch{return {};} }
   function saveRegistry(r){ localStorage.setItem(REGISTRY_KEY, JSON.stringify(r)); }
   function getUiLang(){
+    // This course teaches German with French explanations. Keep the stored
+    // suite preference for the landing page and courses that support it.
+    if(META.course==='deutsch-a1')return 'fr';
     const p = getCurrent();
     return cleanLang(p?.uiLang || localStorage.getItem(UI_LANG_KEY) || browserLang());
   }

@@ -2902,8 +2902,8 @@
   }
   function wordAudioButton(course,word){
     const spoken=String(word).replace(/\s*\([^)]*\)/g,'').replace(/\s*\/\s*/g,', ').trim();
-    const en=window.A1Profile?.getUiLang()==='en';
-    const label=en?(course==='fr'?'Listen in French: ':'Listen in German: '):course==='fr'?'Auf Französisch anhören: ':'Écouter en allemand : ';
+    const en=course==='fr'&&window.A1Profile?.getUiLang()==='en';
+    const label=en?'Listen in French: ':course==='fr'?'Auf Französisch anhören: ':'Écouter en allemand : ';
     return `<button type="button" class="lesson-vocabulary-audio" data-vocabulary-audio="${esc(spoken)}" data-vocabulary-lang="${course==='fr'?'fr-FR':'de-DE'}" aria-label="${esc(label+word)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>`;
   }
   // One delegated listener also covers regenerated pages and Hard Mode preparation.
@@ -2929,7 +2929,7 @@
     const bank=vocabularyBank(course).filter(word=>word.lessons.includes(Number(id)));
     const included=window.A1LessonVocabularyPlan?.[course]?.[id]?.regular;
     const regular=included?bank.filter(word=>included.includes(word.target.normalize('NFC'))):bank;if(!regular.length)return '';
-    const en=window.A1Profile?.getUiLang()==='en';
+    const en=course==='fr'&&window.A1Profile?.getUiLang()==='en';
     const title=en?'Lesson word list':course==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon';
     const hint=en?'This list is for reference and orientation. You will learn the words step by step through the examples and exercises in this lesson. You do not need to memorise them in advance.':course==='fr'?'Diese Liste dient zur Orientierung und zum Nachschlagen. Du lernst die Wörter im Verlauf der Lektion Schritt für Schritt anhand von Beispielen und Übungen. Du musst sie nicht vorab auswendig lernen.':'Cette liste sert de repère et de référence. Tu apprendras les mots progressivement, avec les exemples et les exercices de la leçon. Tu n’as pas besoin de les mémoriser à l’avance.';
     return `<details class="lesson-extra-vocabulary" data-foundation-words="${course}-${Number(id)}" data-i18n-ignore><summary>${title}</summary><p class="muted">${hint}</p>${vocabularyRows(course,regular)}</details>`;
@@ -2937,8 +2937,8 @@
   function preparationHtml(course,id,stage){
     const plan=window.A1LessonVocabularyPlan?.[course]?.[id];
     const targets=stage==='hard'?plan?.hard:plan?.stages[stage];if(!targets?.length)return '';
-    const bank=vocabularyBank(course),en=window.A1Profile?.getUiLang()==='en';
-    const title=en?(stage==='hard'?'Additional words for Hard Mode':course==='de'?'Additional words for this lesson':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Weitere Vokabeln für die Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots supplémentaires de cette leçon');
+    const bank=vocabularyBank(course),en=course==='fr'&&window.A1Profile?.getUiLang()==='en';
+    const title=en?(stage==='hard'?'Additional words for Hard Mode':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Weitere Vokabeln für die Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots supplémentaires de cette leçon');
     return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4>${vocabularyRows(course,bank,targets)}</section>`;
   }
   function hardInstructionsHtml(course,data){
