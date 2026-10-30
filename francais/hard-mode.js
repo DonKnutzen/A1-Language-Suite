@@ -77,17 +77,18 @@
   }
   function achievement(state,id){
     const progress=state.lessonWork?.[id]?.hardMode;
-    return [progress?.attempt,...(progress?.history||[]),progress?.challenge?.attempt,...(progress?.challenge?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
+    return [progress?.attempt,...(progress?.history||[]),progress?.challenge?.attempt,...(progress?.challenge?.history||[]),progress?.pilot?.attempt,...(progress?.pilot?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total&&(attempt.kind!=='lesson-challenge'||attempt.hintsUsed===0);
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total&&(!['lesson-challenge','hard-pilot'].includes(attempt.kind)||attempt.hintsUsed===0);
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
-  const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
-  function badgeMarkup(gold){
-    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Gold erreicht · 100 % · Schreiben selbst geprüft','Gold earned · 100% · writing self-assessed'):t('Auszeichnung ab 85 % · Schreiben selbst geprüft','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 100 %':'85 % +'}</span>`;
+  const achievementBadge=attempt=>badgeMarkup(goldResult(attempt),attempt?.kind==='hard-pilot');
+  function badgeMarkup(gold,pilot=false){
+    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-pilot="${pilot}" data-i18n-ignore title="${esc(pilot?t(gold?'Gold · alle Antworten beim ersten Prüfen ohne Hilfen korrekt':'Mindestens 85 % beim ersten Prüfen korrekt',gold?'Gold · all answers correct on first check without hints':'At least 85% correct on first check'):gold?t('Gold erreicht · 100 % · Schreiben selbst geprüft','Gold earned · 100% · writing self-assessed'):t('Auszeichnung ab 85 % · Schreiben selbst geprüft','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 100 %':'85 % +'}</span>`;
   }
   let redraw=null,redrawEntry=null,checkDetached=null;
-  window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
+  window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true',el.dataset.pilot==='true');});});
   function entryHtml(lesson,state){
+    if(window.FR_A1_HARD_PILOT?.supports(lesson.id))return window.FR_A1_HARD_PILOT.entryHtml(lesson,state);
     if(window.FR_A1_LESSON_CHALLENGE?.supports(lesson.id))return window.FR_A1_LESSON_CHALLENGE.entryHtml(lesson,state);
     const open=unlocked(state,lesson.id),p=state.lessonWork?.[lesson.id]?.hardMode,data=window.FR_A1_HARD_CONTENT[lesson.id];
     const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
@@ -109,6 +110,10 @@
     if(!unlocked(state,lesson.id)){
       view.innerHTML=`<section class="card" data-i18n-ignore><h2>🔒 Hard Mode</h2><p>${t('Bestehe zuerst den Lektionscheck mit mindestens 80 %.','Pass the lesson check with at least 80% first.')}</p><button class="secondary-btn" id="hardLockedBack">${t('Zur Lektion','Back to lesson')}</button></section>`;
       view.querySelector('button').onclick=onBack;return;
+    }
+    if(!legacy&&window.FR_A1_HARD_PILOT?.supports(lesson.id)){
+      redraw=null;checkDetached=null;
+      return window.FR_A1_HARD_PILOT.render({lesson,view,state,save,onBack,onPrevious:()=>window.FR_A1_LESSON_CHALLENGE.render({lesson,view,state,save,onBack,onLegacy:()=>render({lesson,view,state,save,onBack,legacy:true})})});
     }
     if(!legacy&&window.FR_A1_LESSON_CHALLENGE?.supports(lesson.id)){
       redraw=null;checkDetached=null;
