@@ -124,7 +124,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3
+      ]
     },
     {
       "title": "Poser les premières questions",
@@ -249,7 +255,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3
+      ]
     }
   ],
   "2": [
@@ -314,11 +326,20 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Faire épeler et répéter",
-      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes. Dans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
+      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes.\n\nDans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
       "rows": [
         [
           "Können Sie das bitte |buchstabieren|?",
@@ -426,7 +447,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 10
+      "practiceCount": 10,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     }
   ],
   "3": [
@@ -527,7 +553,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     },
     {
       "title": "Dates et coordonnées",
@@ -602,7 +636,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ],
   "4": [
@@ -667,7 +709,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3
+      ]
     },
     {
       "title": "Jours de la semaine",
@@ -760,7 +808,8 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": []
     },
     {
       "title": "Mois et dates",
@@ -873,7 +922,11 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        4,
+        5
+      ]
     },
     {
       "title": "Fixer un rendez-vous",
@@ -952,7 +1005,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "5": [
@@ -1029,7 +1088,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        4
+      ]
     },
     {
       "title": "Informations personnelles",
@@ -1104,7 +1168,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ],
   "6": [
@@ -1191,7 +1263,14 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ]
     },
     {
       "title": "Préciser et payer",
@@ -1280,7 +1359,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "7": [
@@ -1357,7 +1442,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Trouver un article",
@@ -1450,7 +1541,16 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ]
     }
   ],
   "8": [
@@ -1515,7 +1615,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     },
     {
       "title": "Demander une visite",
@@ -1618,7 +1726,16 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
     }
   ],
   "9": [
@@ -1705,7 +1822,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     },
     {
       "title": "Comprendre les transports",
@@ -1794,7 +1919,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "10": [
@@ -1871,7 +2002,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        2,
+        4,
+        5
+      ]
     },
     {
       "title": "Prévenir au travail",
@@ -1950,7 +2087,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "11": [
@@ -2041,7 +2184,14 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        2,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Apprendre et demander de l’aide",
@@ -2166,7 +2316,17 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
     }
   ],
   "12": [
@@ -2253,7 +2413,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     },
     {
       "title": "Organiser le week-end",
@@ -2316,7 +2481,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     }
   ],
   "13": [
@@ -2403,7 +2573,14 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        3,
+        4,
+        5
+      ]
     },
     {
       "title": "Départs et arrivées",
@@ -2478,7 +2655,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     }
   ],
   "14": [
@@ -2565,7 +2747,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        4
+      ]
     },
     {
       "title": "Prendre rendez-vous et prévenir",
@@ -2644,7 +2831,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "15": [
@@ -2725,7 +2918,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Répondre à une invitation",
@@ -2810,7 +3009,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     }
   ],
   "16": [
@@ -2901,7 +3105,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Horaires et annonces",
@@ -2964,7 +3174,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         }
       ],
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        4,
+        5
+      ]
     }
   ],
   "17": [
@@ -3051,7 +3267,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     },
     {
       "title": "Accepter et refuser",
@@ -3176,7 +3397,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ],
   "18": [
@@ -3263,7 +3492,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     },
     {
       "title": "Décrire une méthode simple",
@@ -3388,7 +3625,14 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
     }
   ],
   "19": [
@@ -3465,7 +3709,11 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1
+      ]
     },
     {
       "title": "Demander une aide médicale",
@@ -3594,7 +3842,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "20": [
@@ -3685,7 +3939,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Choisir ses vêtements",
@@ -3770,7 +4030,14 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ]
     }
   ],
   "21": [
@@ -3857,7 +4124,14 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6,
+        7
+      ]
     },
     {
       "title": "Proposer une sortie",
@@ -3946,7 +4220,13 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5,
+        6
+      ]
     }
   ],
   "22": [
@@ -4023,7 +4303,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     },
     {
       "title": "Écrire un SMS clair",
@@ -4098,7 +4383,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     }
   ],
   "23": [
@@ -4189,7 +4479,16 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
     },
     {
       "title": "Remplir un formulaire",
@@ -4264,7 +4563,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 6
+      "practiceCount": 6,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ],
   "24": [
@@ -4391,7 +4698,15 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     },
     {
       "title": "Préparer un message complet",
@@ -4466,7 +4781,12 @@ window.DE_A1_STUDY_CONTENT = {
           ]
         ]
       },
-      "practiceCount": 8
+      "practiceCount": 8,
+      "exampleIndices": [
+        0,
+        4,
+        5
+      ]
     }
   ]
 };

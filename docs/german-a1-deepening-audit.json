@@ -1,0 +1,1924 @@
+{
+  "baseCommit": "ab02602",
+  "scope": {
+    "lessons": 24,
+    "pages": 60
+  },
+  "before": [
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 1,
+      "topic": "Se présenter",
+      "audio": 16,
+      "visibleAudio": 16,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 9,
+      "text": 865
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 2,
+      "topic": "Poser les premières questions",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1233
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 3,
+      "topic": "Pronoms personnels",
+      "audio": 9,
+      "visibleAudio": 9,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 0,
+      "text": 599
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 4,
+      "topic": "sein – conjugaison",
+      "audio": 13,
+      "visibleAudio": 13,
+      "rows": 2,
+      "visibleRows": 2,
+      "vocab": 4,
+      "text": 771
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 5,
+      "topic": "Verbes réguliers au présent",
+      "audio": 22,
+      "visibleAudio": 22,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 1,
+      "text": 660
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 6,
+      "topic": "heißen et sprechen – conjugaison",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 2,
+      "visibleRows": 2,
+      "vocab": 0,
+      "text": 892
+    },
+    {
+      "id": 2,
+      "title": "Alphabet et épellation",
+      "page": 1,
+      "topic": "Lettres et signes",
+      "audio": 44,
+      "visibleAudio": 44,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 1,
+      "text": 1299
+    },
+    {
+      "id": 2,
+      "title": "Alphabet et épellation",
+      "page": 2,
+      "topic": "Faire épeler et répéter",
+      "audio": 19,
+      "visibleAudio": 19,
+      "rows": 11,
+      "visibleRows": 11,
+      "vocab": 2,
+      "text": 1981
+    },
+    {
+      "id": 3,
+      "title": "Nombres, téléphones et dates",
+      "page": 1,
+      "topic": "Construire les nombres",
+      "audio": 9,
+      "visibleAudio": 9,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 968
+    },
+    {
+      "id": 3,
+      "title": "Nombres, téléphones et dates",
+      "page": 2,
+      "topic": "Dates et coordonnées",
+      "audio": 35,
+      "visibleAudio": 35,
+      "rows": 20,
+      "visibleRows": 20,
+      "vocab": 12,
+      "text": 2945
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 1,
+      "topic": "Lire et dire l’heure",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 603
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 2,
+      "topic": "Jours de la semaine",
+      "audio": 10,
+      "visibleAudio": 10,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 2,
+      "text": 464
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 3,
+      "topic": "Mois et dates",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 14,
+      "visibleRows": 14,
+      "vocab": 3,
+      "text": 1013
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 4,
+      "topic": "Fixer un rendez-vous",
+      "audio": 25,
+      "visibleAudio": 25,
+      "rows": 18,
+      "visibleRows": 18,
+      "vocab": 5,
+      "text": 2400
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 1,
+      "topic": "Présenter sa famille",
+      "audio": 8,
+      "visibleAudio": 8,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 2,
+      "text": 1254
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 2,
+      "topic": "Informations personnelles",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 15,
+      "visibleRows": 15,
+      "vocab": 3,
+      "text": 1027
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 3,
+      "topic": "Possessifs utiles",
+      "audio": 38,
+      "visibleAudio": 38,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 7,
+      "text": 855
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 4,
+      "topic": "haben – conjugaison",
+      "audio": 13,
+      "visibleAudio": 13,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 4,
+      "text": 639
+    },
+    {
+      "id": 6,
+      "title": "Manger et boire",
+      "page": 1,
+      "topic": "Commander un repas",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1310
+    },
+    {
+      "id": 6,
+      "title": "Manger et boire",
+      "page": 2,
+      "topic": "Préciser et payer",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 11,
+      "visibleRows": 11,
+      "vocab": 5,
+      "text": 1182
+    },
+    {
+      "id": 7,
+      "title": "Achats et prix",
+      "page": 1,
+      "topic": "Prix et quantités",
+      "audio": 8,
+      "visibleAudio": 8,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 1,
+      "text": 865
+    },
+    {
+      "id": 7,
+      "title": "Achats et prix",
+      "page": 2,
+      "topic": "Trouver un article",
+      "audio": 20,
+      "visibleAudio": 20,
+      "rows": 15,
+      "visibleRows": 15,
+      "vocab": 3,
+      "text": 1858
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "page": 1,
+      "topic": "Décrire un logement",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1298
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "page": 2,
+      "topic": "Demander une visite",
+      "audio": 16,
+      "visibleAudio": 16,
+      "rows": 14,
+      "visibleRows": 14,
+      "vocab": 2,
+      "text": 1160
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "page": 3,
+      "topic": "Articles à l’accusatif",
+      "audio": 21,
+      "visibleAudio": 21,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 10,
+      "text": 780
+    },
+    {
+      "id": 9,
+      "title": "Ville, itinéraire et transports",
+      "page": 1,
+      "topic": "Expliquer un chemin",
+      "audio": 7,
+      "visibleAudio": 7,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 1,
+      "text": 1393
+    },
+    {
+      "id": 9,
+      "title": "Ville, itinéraire et transports",
+      "page": 2,
+      "topic": "Comprendre les transports",
+      "audio": 20,
+      "visibleAudio": 20,
+      "rows": 14,
+      "visibleRows": 14,
+      "vocab": 4,
+      "text": 2124
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "page": 1,
+      "topic": "Métier et horaires",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 819
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "page": 2,
+      "topic": "Prévenir au travail",
+      "audio": 13,
+      "visibleAudio": 13,
+      "rows": 13,
+      "visibleRows": 13,
+      "vocab": 0,
+      "text": 1639
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "page": 3,
+      "topic": "Verbes réguliers au présent",
+      "audio": 25,
+      "visibleAudio": 25,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 2,
+      "text": 1124
+    },
+    {
+      "id": 11,
+      "title": "École et cours de langue",
+      "page": 1,
+      "topic": "Parler du cours",
+      "audio": 8,
+      "visibleAudio": 8,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 1,
+      "text": 976
+    },
+    {
+      "id": 11,
+      "title": "École et cours de langue",
+      "page": 2,
+      "topic": "Apprendre et demander de l’aide",
+      "audio": 23,
+      "visibleAudio": 23,
+      "rows": 15,
+      "visibleRows": 15,
+      "vocab": 6,
+      "text": 2021
+    },
+    {
+      "id": 12,
+      "title": "Loisirs, sport et week-end",
+      "page": 1,
+      "topic": "Dire ce qu’on aime",
+      "audio": 8,
+      "visibleAudio": 8,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 2,
+      "text": 845
+    },
+    {
+      "id": 12,
+      "title": "Loisirs, sport et week-end",
+      "page": 2,
+      "topic": "Organiser le week-end",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 16,
+      "visibleRows": 16,
+      "vocab": 0,
+      "text": 1840
+    },
+    {
+      "id": 13,
+      "title": "Voyage, hôtel et vacances",
+      "page": 1,
+      "topic": "Réserver une chambre",
+      "audio": 7,
+      "visibleAudio": 7,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 1,
+      "text": 1104
+    },
+    {
+      "id": 13,
+      "title": "Voyage, hôtel et vacances",
+      "page": 2,
+      "topic": "Départs et arrivées",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 16,
+      "visibleRows": 16,
+      "vocab": 0,
+      "text": 1363
+    },
+    {
+      "id": 14,
+      "title": "Santé et médecin",
+      "page": 1,
+      "topic": "Décrire des symptômes",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 864
+    },
+    {
+      "id": 14,
+      "title": "Santé et médecin",
+      "page": 2,
+      "topic": "Prendre rendez-vous et prévenir",
+      "audio": 20,
+      "visibleAudio": 20,
+      "rows": 15,
+      "visibleRows": 15,
+      "vocab": 3,
+      "text": 1678
+    },
+    {
+      "id": 15,
+      "title": "Invitations et messages courts",
+      "page": 1,
+      "topic": "Inviter et préciser",
+      "audio": 7,
+      "visibleAudio": 7,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 0,
+      "text": 1005
+    },
+    {
+      "id": 15,
+      "title": "Invitations et messages courts",
+      "page": 2,
+      "topic": "Répondre à une invitation",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 15,
+      "visibleRows": 15,
+      "vocab": 1,
+      "text": 2415
+    },
+    {
+      "id": 16,
+      "title": "Panneaux, annonces et messages publics",
+      "page": 1,
+      "topic": "Lire panneaux et restrictions",
+      "audio": 7,
+      "visibleAudio": 7,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 0,
+      "text": 1206
+    },
+    {
+      "id": 16,
+      "title": "Panneaux, annonces et messages publics",
+      "page": 2,
+      "topic": "Horaires et annonces",
+      "audio": 19,
+      "visibleAudio": 19,
+      "rows": 14,
+      "visibleRows": 14,
+      "vocab": 2,
+      "text": 1599
+    },
+    {
+      "id": 17,
+      "title": "Demandes et réponses polies",
+      "page": 1,
+      "topic": "Formuler une demande",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1177
+    },
+    {
+      "id": 17,
+      "title": "Demandes et réponses polies",
+      "page": 2,
+      "topic": "Accepter et refuser",
+      "audio": 12,
+      "visibleAudio": 12,
+      "rows": 10,
+      "visibleRows": 10,
+      "vocab": 0,
+      "text": 1101
+    },
+    {
+      "id": 18,
+      "title": "Stratégie pour l’examen A1",
+      "page": 1,
+      "topic": "Comprendre les consignes",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 829
+    },
+    {
+      "id": 18,
+      "title": "Stratégie pour l’examen A1",
+      "page": 2,
+      "topic": "Décrire une méthode simple",
+      "audio": 16,
+      "visibleAudio": 16,
+      "rows": 13,
+      "visibleRows": 13,
+      "vocab": 1,
+      "text": 1426
+    },
+    {
+      "id": 19,
+      "title": "Corps et santé",
+      "page": 1,
+      "topic": "Nommer les douleurs",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 562
+    },
+    {
+      "id": 19,
+      "title": "Corps et santé",
+      "page": 2,
+      "topic": "Demander une aide médicale",
+      "audio": 15,
+      "visibleAudio": 15,
+      "rows": 13,
+      "visibleRows": 13,
+      "vocab": 0,
+      "text": 1512
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "page": 1,
+      "topic": "Décrire la météo",
+      "audio": 10,
+      "visibleAudio": 10,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 3,
+      "text": 1111
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "page": 2,
+      "topic": "Choisir ses vêtements",
+      "audio": 11,
+      "visibleAudio": 11,
+      "rows": 11,
+      "visibleRows": 11,
+      "vocab": 0,
+      "text": 1201
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "page": 3,
+      "topic": "Articles à l’accusatif",
+      "audio": 13,
+      "visibleAudio": 13,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 1,
+      "text": 552
+    },
+    {
+      "id": 21,
+      "title": "Loisirs, culture et médias",
+      "page": 1,
+      "topic": "Parler de ses goûts",
+      "audio": 8,
+      "visibleAudio": 8,
+      "rows": 8,
+      "visibleRows": 8,
+      "vocab": 0,
+      "text": 632
+    },
+    {
+      "id": 21,
+      "title": "Loisirs, culture et médias",
+      "page": 2,
+      "topic": "Proposer une sortie",
+      "audio": 15,
+      "visibleAudio": 15,
+      "rows": 13,
+      "visibleRows": 13,
+      "vocab": 0,
+      "text": 1648
+    },
+    {
+      "id": 22,
+      "title": "Téléphone, messages et technologie",
+      "page": 1,
+      "topic": "Laisser un message",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1192
+    },
+    {
+      "id": 22,
+      "title": "Téléphone, messages et technologie",
+      "page": 2,
+      "topic": "Écrire un SMS clair",
+      "audio": 15,
+      "visibleAudio": 15,
+      "rows": 13,
+      "visibleRows": 13,
+      "vocab": 0,
+      "text": 1699
+    },
+    {
+      "id": 23,
+      "title": "Services publics, poste et démarches",
+      "page": 1,
+      "topic": "À la poste et au guichet",
+      "audio": 7,
+      "visibleAudio": 7,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 0,
+      "text": 935
+    },
+    {
+      "id": 23,
+      "title": "Services publics, poste et démarches",
+      "page": 2,
+      "topic": "Remplir un formulaire",
+      "audio": 13,
+      "visibleAudio": 13,
+      "rows": 11,
+      "visibleRows": 11,
+      "vocab": 0,
+      "text": 1121
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "page": 1,
+      "topic": "Répondre et se faire comprendre",
+      "audio": 11,
+      "visibleAudio": 11,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 5,
+      "text": 736
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "page": 2,
+      "topic": "Préparer un message complet",
+      "audio": 16,
+      "visibleAudio": 16,
+      "rows": 16,
+      "visibleRows": 16,
+      "vocab": 0,
+      "text": 1266
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "page": 3,
+      "topic": "Ordre des mots",
+      "audio": 8,
+      "visibleAudio": 8,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 3,
+      "text": 643
+    }
+  ],
+  "after": [
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 1,
+      "topic": "Se présenter",
+      "audio": 14,
+      "visibleAudio": 5,
+      "rows": 5,
+      "visibleRows": 5,
+      "vocab": 9,
+      "text": 794
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 2,
+      "topic": "Poser les premières questions",
+      "audio": 4,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 1176
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 3,
+      "topic": "Pronoms personnels",
+      "audio": 9,
+      "visibleAudio": 9,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 0,
+      "text": 599
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 4,
+      "topic": "sein – conjugaison",
+      "audio": 12,
+      "visibleAudio": 9,
+      "rows": 2,
+      "visibleRows": 2,
+      "vocab": 3,
+      "text": 759
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 5,
+      "topic": "Verbes réguliers au présent",
+      "audio": 22,
+      "visibleAudio": 21,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 1,
+      "text": 645
+    },
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "page": 6,
+      "topic": "heißen et sprechen – conjugaison",
+      "audio": 18,
+      "visibleAudio": 18,
+      "rows": 2,
+      "visibleRows": 2,
+      "vocab": 0,
+      "text": 889
+    },
+    {
+      "id": 2,
+      "title": "Alphabet et épellation",
+      "page": 1,
+      "topic": "Lettres et signes",
+      "audio": 44,
+      "visibleAudio": 43,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 1,
+      "text": 1290
+    },
+    {
+      "id": 2,
+      "title": "Alphabet et épellation",
+      "page": 2,
+      "topic": "Faire épeler et répéter",
+      "audio": 16,
+      "visibleAudio": 9,
+      "rows": 8,
+      "visibleRows": 3,
+      "vocab": 2,
+      "text": 1562
+    },
+    {
+      "id": 3,
+      "title": "Nombres, téléphones et dates",
+      "page": 1,
+      "topic": "Construire les nombres",
+      "audio": 9,
+      "visibleAudio": 9,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 971
+    },
+    {
+      "id": 3,
+      "title": "Nombres, téléphones et dates",
+      "page": 2,
+      "topic": "Dates et coordonnées",
+      "audio": 31,
+      "visibleAudio": 9,
+      "rows": 17,
+      "visibleRows": 6,
+      "vocab": 11,
+      "text": 2633
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 1,
+      "topic": "Lire et dire l’heure",
+      "audio": 4,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 503
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 2,
+      "topic": "Jours de la semaine",
+      "audio": 10,
+      "visibleAudio": 8,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 2,
+      "text": 455
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 3,
+      "topic": "Mois et dates",
+      "audio": 18,
+      "visibleAudio": 15,
+      "rows": 14,
+      "visibleRows": 14,
+      "vocab": 3,
+      "text": 1004
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "page": 4,
+      "topic": "Fixer un rendez-vous",
+      "audio": 20,
+      "visibleAudio": 7,
+      "rows": 13,
+      "visibleRows": 5,
+      "vocab": 5,
+      "text": 1838
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 1,
+      "topic": "Présenter sa famille",
+      "audio": 5,
+      "visibleAudio": 3,
+      "rows": 3,
+      "visibleRows": 3,
+      "vocab": 2,
+      "text": 1132
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 2,
+      "topic": "Informations personnelles",
+      "audio": 17,
+      "visibleAudio": 6,
+      "rows": 15,
+      "visibleRows": 6,
+      "vocab": 2,
+      "text": 1019
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 3,
+      "topic": "Possessifs utiles",
+      "audio": 38,
+      "visibleAudio": 31,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 7,
+      "text": 843
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "page": 4,
+      "topic": "haben – conjugaison",
+      "audio": 13,
+      "visibleAudio": 9,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 4,
+      "text": 627
+    },
+    {
+      "id": 6,
+      "title": "Manger et boire",
+      "page": 1,
+      "topic": "Commander un repas",
+      "audio": 5,
+      "visibleAudio": 5,
+      "rows": 5,
+      "visibleRows": 5,
+      "vocab": 0,
+      "text": 1262
+    },
+    {
+      "id": 6,
+      "title": "Manger et boire",
+      "page": 2,
+      "topic": "Préciser et payer",
+      "audio": 15,
+      "visibleAudio": 6,
+      "rows": 8,
+      "visibleRows": 4,
+      "vocab": 5,
+      "text": 1033
+    },
+    {
+      "id": 7,
+      "title": "Achats et prix",
+      "page": 1,
+      "topic": "Prix et quantités",
+      "audio": 5,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 1,
+      "text": 704
+    },
+    {
+      "id": 7,
+      "title": "Achats et prix",
+      "page": 2,
+      "topic": "Trouver un article",
+      "audio": 19,
+      "visibleAudio": 9,
+      "rows": 14,
+      "visibleRows": 7,
+      "vocab": 3,
+      "text": 1818
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "page": 1,
+      "topic": "Décrire un logement",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1301
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "page": 2,
+      "topic": "Demander une visite",
+      "audio": 14,
+      "visibleAudio": 7,
+      "rows": 13,
+      "visibleRows": 7,
+      "vocab": 1,
+      "text": 1103
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "page": 3,
+      "topic": "Articles à l’accusatif",
+      "audio": 21,
+      "visibleAudio": 11,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 10,
+      "text": 768
+    },
+    {
+      "id": 9,
+      "title": "Ville, itinéraire et transports",
+      "page": 1,
+      "topic": "Expliquer un chemin",
+      "audio": 7,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 1,
+      "text": 1383
+    },
+    {
+      "id": 9,
+      "title": "Ville, itinéraire et transports",
+      "page": 2,
+      "topic": "Comprendre les transports",
+      "audio": 17,
+      "visibleAudio": 6,
+      "rows": 11,
+      "visibleRows": 4,
+      "vocab": 4,
+      "text": 1956
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "page": 1,
+      "topic": "Métier et horaires",
+      "audio": 4,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 711
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "page": 2,
+      "topic": "Prévenir au travail",
+      "audio": 10,
+      "visibleAudio": 4,
+      "rows": 10,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 1481
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "page": 3,
+      "topic": "Verbes réguliers au présent",
+      "audio": 25,
+      "visibleAudio": 23,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 2,
+      "text": 1109
+    },
+    {
+      "id": 11,
+      "title": "École et cours de langue",
+      "page": 1,
+      "topic": "Parler du cours",
+      "audio": 6,
+      "visibleAudio": 5,
+      "rows": 5,
+      "visibleRows": 5,
+      "vocab": 1,
+      "text": 858
+    },
+    {
+      "id": 11,
+      "title": "École et cours de langue",
+      "page": 2,
+      "topic": "Apprendre et demander de l’aide",
+      "audio": 23,
+      "visibleAudio": 10,
+      "rows": 15,
+      "visibleRows": 8,
+      "vocab": 6,
+      "text": 2013
+    },
+    {
+      "id": 12,
+      "title": "Loisirs, sport et week-end",
+      "page": 1,
+      "topic": "Dire ce qu’on aime",
+      "audio": 4,
+      "visibleAudio": 3,
+      "rows": 3,
+      "visibleRows": 3,
+      "vocab": 1,
+      "text": 674
+    },
+    {
+      "id": 12,
+      "title": "Loisirs, sport et week-end",
+      "page": 2,
+      "topic": "Organiser le week-end",
+      "audio": 15,
+      "visibleAudio": 5,
+      "rows": 13,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 1663
+    },
+    {
+      "id": 13,
+      "title": "Voyage, hôtel et vacances",
+      "page": 1,
+      "topic": "Réserver une chambre",
+      "audio": 6,
+      "visibleAudio": 5,
+      "rows": 5,
+      "visibleRows": 5,
+      "vocab": 1,
+      "text": 1007
+    },
+    {
+      "id": 13,
+      "title": "Voyage, hôtel et vacances",
+      "page": 2,
+      "topic": "Départs et arrivées",
+      "audio": 15,
+      "visibleAudio": 5,
+      "rows": 13,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 1194
+    },
+    {
+      "id": 14,
+      "title": "Santé et médecin",
+      "page": 1,
+      "topic": "Décrire des symptômes",
+      "audio": 3,
+      "visibleAudio": 3,
+      "rows": 3,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 720
+    },
+    {
+      "id": 14,
+      "title": "Santé et médecin",
+      "page": 2,
+      "topic": "Prendre rendez-vous et prévenir",
+      "audio": 17,
+      "visibleAudio": 6,
+      "rows": 12,
+      "visibleRows": 4,
+      "vocab": 3,
+      "text": 1489
+    },
+    {
+      "id": 15,
+      "title": "Invitations et messages courts",
+      "page": 1,
+      "topic": "Inviter et préciser",
+      "audio": 4,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 805
+    },
+    {
+      "id": 15,
+      "title": "Invitations et messages courts",
+      "page": 2,
+      "topic": "Répondre à une invitation",
+      "audio": 15,
+      "visibleAudio": 5,
+      "rows": 12,
+      "visibleRows": 3,
+      "vocab": 1,
+      "text": 2276
+    },
+    {
+      "id": 16,
+      "title": "Panneaux, annonces et messages publics",
+      "page": 1,
+      "topic": "Lire panneaux et restrictions",
+      "audio": 4,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 1048
+    },
+    {
+      "id": 16,
+      "title": "Panneaux, annonces et messages publics",
+      "page": 2,
+      "topic": "Horaires et annonces",
+      "audio": 17,
+      "visibleAudio": 7,
+      "rows": 12,
+      "visibleRows": 4,
+      "vocab": 2,
+      "text": 1463
+    },
+    {
+      "id": 17,
+      "title": "Demandes et réponses polies",
+      "page": 1,
+      "topic": "Formuler une demande",
+      "audio": 3,
+      "visibleAudio": 3,
+      "rows": 3,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 921
+    },
+    {
+      "id": 17,
+      "title": "Demandes et réponses polies",
+      "page": 2,
+      "topic": "Accepter et refuser",
+      "audio": 12,
+      "visibleAudio": 8,
+      "rows": 10,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1107
+    },
+    {
+      "id": 18,
+      "title": "Stratégie pour l’examen A1",
+      "page": 1,
+      "topic": "Comprendre les consignes",
+      "audio": 6,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 831
+    },
+    {
+      "id": 18,
+      "title": "Stratégie pour l’examen A1",
+      "page": 2,
+      "topic": "Décrire une méthode simple",
+      "audio": 15,
+      "visibleAudio": 7,
+      "rows": 12,
+      "visibleRows": 5,
+      "vocab": 1,
+      "text": 1361
+    },
+    {
+      "id": 19,
+      "title": "Corps et santé",
+      "page": 1,
+      "topic": "Nommer les douleurs",
+      "audio": 2,
+      "visibleAudio": 2,
+      "rows": 2,
+      "visibleRows": 2,
+      "vocab": 0,
+      "text": 409
+    },
+    {
+      "id": 19,
+      "title": "Corps et santé",
+      "page": 2,
+      "topic": "Demander une aide médicale",
+      "audio": 12,
+      "visibleAudio": 6,
+      "rows": 10,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 1372
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "page": 1,
+      "topic": "Décrire la météo",
+      "audio": 7,
+      "visibleAudio": 4,
+      "rows": 4,
+      "visibleRows": 4,
+      "vocab": 3,
+      "text": 954
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "page": 2,
+      "topic": "Choisir ses vêtements",
+      "audio": 10,
+      "visibleAudio": 5,
+      "rows": 10,
+      "visibleRows": 5,
+      "vocab": 0,
+      "text": 1147
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "page": 3,
+      "topic": "Articles à l’accusatif",
+      "audio": 13,
+      "visibleAudio": 12,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 1,
+      "text": 540
+    },
+    {
+      "id": 21,
+      "title": "Loisirs, culture et médias",
+      "page": 1,
+      "topic": "Parler de ses goûts",
+      "audio": 5,
+      "visibleAudio": 5,
+      "rows": 5,
+      "visibleRows": 5,
+      "vocab": 0,
+      "text": 482
+    },
+    {
+      "id": 21,
+      "title": "Loisirs, culture et médias",
+      "page": 2,
+      "topic": "Proposer une sortie",
+      "audio": 12,
+      "visibleAudio": 6,
+      "rows": 10,
+      "visibleRows": 4,
+      "vocab": 0,
+      "text": 1420
+    },
+    {
+      "id": 22,
+      "title": "Téléphone, messages et technologie",
+      "page": 1,
+      "topic": "Laisser un message",
+      "audio": 3,
+      "visibleAudio": 3,
+      "rows": 3,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 967
+    },
+    {
+      "id": 22,
+      "title": "Téléphone, messages et technologie",
+      "page": 2,
+      "topic": "Écrire un SMS clair",
+      "audio": 12,
+      "visibleAudio": 5,
+      "rows": 10,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 1594
+    },
+    {
+      "id": 23,
+      "title": "Services publics, poste et démarches",
+      "page": 1,
+      "topic": "À la poste et au guichet",
+      "audio": 7,
+      "visibleAudio": 7,
+      "rows": 7,
+      "visibleRows": 7,
+      "vocab": 0,
+      "text": 938
+    },
+    {
+      "id": 23,
+      "title": "Services publics, poste et démarches",
+      "page": 2,
+      "topic": "Remplir un formulaire",
+      "audio": 13,
+      "visibleAudio": 8,
+      "rows": 11,
+      "visibleRows": 6,
+      "vocab": 0,
+      "text": 1128
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "page": 1,
+      "topic": "Répondre et se faire comprendre",
+      "audio": 8,
+      "visibleAudio": 6,
+      "rows": 6,
+      "visibleRows": 6,
+      "vocab": 2,
+      "text": 717
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "page": 2,
+      "topic": "Préparer un message complet",
+      "audio": 13,
+      "visibleAudio": 3,
+      "rows": 13,
+      "visibleRows": 3,
+      "vocab": 0,
+      "text": 1074
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "page": 3,
+      "topic": "Ordre des mots",
+      "audio": 8,
+      "visibleAudio": 5,
+      "rows": 0,
+      "visibleRows": 0,
+      "vocab": 3,
+      "text": 631
+    }
+  ],
+  "omittedDeepeningRepeats": [
+    {
+      "id": 1,
+      "title": "Saluer et se présenter",
+      "topics": [
+        {
+          "title": "Se présenter",
+          "omitted": [
+            "Guten Morgen.",
+            "Auf Wiedersehen."
+          ]
+        },
+        {
+          "title": "Poser les premières questions",
+          "omitted": [
+            "Wie geht es Ihnen?",
+            "Und Sie?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Alphabet et épellation",
+      "topics": [
+        {
+          "title": "Lettres et signes",
+          "omitted": []
+        },
+        {
+          "title": "Faire épeler et répéter",
+          "omitted": [
+            "Können Sie das bitte wiederholen?",
+            "Können Sie bitte langsamer sprechen?",
+            "Können Sie den Namen bitte schreiben?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Nombres, téléphones et dates",
+      "topics": [
+        {
+          "title": "Construire les nombres",
+          "omitted": []
+        },
+        {
+          "title": "Dates et coordonnées",
+          "omitted": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Heure et rendez-vous",
+      "topics": [
+        {
+          "title": "Lire et dire l’heure",
+          "omitted": [
+            "Es ist zehn Uhr dreißig.",
+            "Es ist zehn Uhr fünfzehn."
+          ]
+        },
+        {
+          "title": "Jours de la semaine",
+          "omitted": []
+        },
+        {
+          "title": "Mois et dates",
+          "omitted": []
+        },
+        {
+          "title": "Fixer un rendez-vous",
+          "omitted": [
+            "Der Termin ist am Dienstag um elf Uhr.",
+            "Der Termin ist am Mittwoch um zehn Uhr.",
+            "Der Termin ist am Freitag um elf Uhr."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Famille et informations personnelles",
+      "topics": [
+        {
+          "title": "Présenter sa famille",
+          "omitted": [
+            "Das ist mein Bruder.",
+            "Das ist meine Schwester.",
+            "Das ist mein Sohn."
+          ]
+        },
+        {
+          "title": "Informations personnelles",
+          "omitted": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Manger et boire",
+      "topics": [
+        {
+          "title": "Commander un repas",
+          "omitted": [
+            "Ich hätte gern einen Salat."
+          ]
+        },
+        {
+          "title": "Préciser et payer",
+          "omitted": [
+            "Ohne Zucker, bitte.",
+            "Ohne Milch, bitte.",
+            "Ohne Eis, bitte."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Achats et prix",
+      "topics": [
+        {
+          "title": "Prix et quantités",
+          "omitted": [
+            "Das kostet dreißig Euro.",
+            "Das kostet dreizehn Euro.",
+            "Das kostet neunzehn Euro."
+          ]
+        },
+        {
+          "title": "Trouver un article",
+          "omitted": [
+            "Das ist zu lang."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Logement et adresse",
+      "topics": [
+        {
+          "title": "Décrire un logement",
+          "omitted": []
+        },
+        {
+          "title": "Demander une visite",
+          "omitted": [
+            "Ich suche ein Haus."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Ville, itinéraire et transports",
+      "topics": [
+        {
+          "title": "Expliquer un chemin",
+          "omitted": []
+        },
+        {
+          "title": "Comprendre les transports",
+          "omitted": [
+            "Nehmen Sie die Linie drei.",
+            "Nehmen Sie die Linie dreizehn.",
+            "Nehmen Sie die Linie achtzehn."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Travail et lieu de travail",
+      "topics": [
+        {
+          "title": "Métier et horaires",
+          "omitted": [
+            "Ich arbeite im Krankenhaus.",
+            "Ich arbeite im Supermarkt."
+          ]
+        },
+        {
+          "title": "Prévenir au travail",
+          "omitted": [
+            "Ich komme morgen später.",
+            "Ich komme am Montag später.",
+            "Ich komme am Freitag später."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "École et cours de langue",
+      "topics": [
+        {
+          "title": "Parler du cours",
+          "omitted": [
+            "Der Kurs ist am Nachmittag.",
+            "Der Kurs ist am Wochenende."
+          ]
+        },
+        {
+          "title": "Apprendre et demander de l’aide",
+          "omitted": []
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Loisirs, sport et week-end",
+      "topics": [
+        {
+          "title": "Dire ce qu’on aime",
+          "omitted": [
+            "Ich spiele gern Tennis.",
+            "Ich spiele gern Volleyball.",
+            "Ich spiele gern Basketball."
+          ]
+        },
+        {
+          "title": "Organiser le week-end",
+          "omitted": [
+            "Am Sonntag spiele ich Fußball.",
+            "Am Montag spiele ich Fußball.",
+            "Am Freitag spiele ich Fußball."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Voyage, hôtel et vacances",
+      "topics": [
+        {
+          "title": "Réserver une chambre",
+          "omitted": [
+            "Ich möchte ein Familienzimmer reservieren."
+          ]
+        },
+        {
+          "title": "Départs et arrivées",
+          "omitted": [
+            "Der Zug fährt um neun Uhr ab.",
+            "Der Zug fährt um zehn Uhr ab.",
+            "Der Zug fährt um elf Uhr ab."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Santé et médecin",
+      "topics": [
+        {
+          "title": "Décrire des symptômes",
+          "omitted": [
+            "Ich habe Kopfschmerzen.",
+            "Ich habe Halsschmerzen.",
+            "Ich habe seit heute Husten."
+          ]
+        },
+        {
+          "title": "Prendre rendez-vous et prévenir",
+          "omitted": [
+            "Ich kann morgen nicht kommen.",
+            "Ich kann am Montag nicht kommen.",
+            "Ich kann am Dienstag nicht kommen."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Invitations et messages courts",
+      "topics": [
+        {
+          "title": "Inviter et préciser",
+          "omitted": [
+            "Ich feiere am Sonntag Geburtstag.",
+            "Ich feiere am Montag Geburtstag.",
+            "Ich feiere am Freitag Geburtstag."
+          ]
+        },
+        {
+          "title": "Répondre à une invitation",
+          "omitted": [
+            "Ich bringe einen Salat mit.",
+            "Ich bringe Brot mit.",
+            "Ich bringe Wasser mit."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Panneaux, annonces et messages publics",
+      "topics": [
+        {
+          "title": "Lire panneaux et restrictions",
+          "omitted": [
+            "Parken ist verboten.",
+            "Fotografieren ist verboten.",
+            "Essen ist verboten."
+          ]
+        },
+        {
+          "title": "Horaires et annonces",
+          "omitted": [
+            "Das Geschäft ist morgen geschlossen.",
+            "Das Geschäft ist morgen geöffnet."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Demandes et réponses polies",
+      "topics": [
+        {
+          "title": "Formuler une demande",
+          "omitted": [
+            "Können Sie mir bitte das Buch geben?",
+            "Können Sie mir bitte die Tasche geben?",
+            "Können Sie mir bitte das Glas geben?"
+          ]
+        },
+        {
+          "title": "Accepter et refuser",
+          "omitted": []
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Stratégie pour l’examen A1",
+      "topics": [
+        {
+          "title": "Comprendre les consignes",
+          "omitted": []
+        },
+        {
+          "title": "Décrire une méthode simple",
+          "omitted": [
+            "Zuerst höre ich den Dialog."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Corps et santé",
+      "topics": [
+        {
+          "title": "Nommer les douleurs",
+          "omitted": [
+            "Mein Hals tut weh.",
+            "Mein Bauch tut weh.",
+            "Mein Rücken tut weh.",
+            "Meine Arme tun weh."
+          ]
+        },
+        {
+          "title": "Demander une aide médicale",
+          "omitted": [
+            "Ich brauche einen Arzt.",
+            "Ich brauche eine Apotheke.",
+            "Ich brauche Wasser."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Météo et vêtements",
+      "topics": [
+        {
+          "title": "Décrire la météo",
+          "omitted": [
+            "Heute ist es warm.",
+            "Heute ist es sonnig.",
+            "Heute ist es windig."
+          ]
+        },
+        {
+          "title": "Choisir ses vêtements",
+          "omitted": [
+            "Ich brauche einen Regenschirm."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Loisirs, culture et médias",
+      "topics": [
+        {
+          "title": "Parler de ses goûts",
+          "omitted": [
+            "Ich gehe gern ins Museum.",
+            "Ich gehe gern ins Theater.",
+            "Ich gehe gern ins Konzert."
+          ]
+        },
+        {
+          "title": "Proposer une sortie",
+          "omitted": [
+            "Das Konzert beginnt um neunzehn Uhr.",
+            "Das Konzert beginnt um zwanzig Uhr.",
+            "Das Konzert beginnt um einundzwanzig Uhr."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Téléphone, messages et technologie",
+      "topics": [
+        {
+          "title": "Laisser un message",
+          "omitted": [
+            "Bitte rufen Sie mich morgen zurück.",
+            "Bitte rufen Sie mich am Montag zurück.",
+            "Bitte rufen Sie mich am Dienstag zurück."
+          ]
+        },
+        {
+          "title": "Écrire un SMS clair",
+          "omitted": [
+            "Ich schicke dir eine E-Mail.",
+            "Ich schicke dir ein Foto.",
+            "Ich schicke dir meine Adresse."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "title": "Services publics, poste et démarches",
+      "topics": [
+        {
+          "title": "À la poste et au guichet",
+          "omitted": []
+        },
+        {
+          "title": "Remplir un formulaire",
+          "omitted": []
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Révision A1 et langage de l’examen",
+      "topics": [
+        {
+          "title": "Répondre et se faire comprendre",
+          "omitted": []
+        },
+        {
+          "title": "Préparer un message complet",
+          "omitted": [
+            "Ich komme am Sonntag um sechs Uhr.",
+            "Ich komme am Montag um sechs Uhr.",
+            "Ich komme am Freitag um sechs Uhr."
+          ]
+        }
+      ]
+    }
+  ]
+}

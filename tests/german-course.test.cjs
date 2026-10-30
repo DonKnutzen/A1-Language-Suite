@@ -24,7 +24,7 @@ test('all 24 lessons teach the opening phrases and checks use valid independent 
   assert(panel.querySelectorAll('strong').length>=8);assert(!html.includes('**'));assert(!panel.querySelector('details:empty'));
   const quiz=w.DE_A1_STUDY.lessonExercises(l);assert.equal(quiz.length,10);assert(quiz.every(q=>['choice','listening'].includes(q.type)));assert(w.DE_A1_ASSESSMENTS.makeLessonTest(l).length>=12&&w.DE_A1_ASSESSMENTS.makeLessonTest(l).length<=16);
   for(const q of [...quiz,...w.DE_A1_ASSESSMENTS.makeLessonTest(l)]){
-   assert(q.audio&&!q.audio.includes('|')&&!q.audio.includes('___'));if(q.skill!=='transfer'&&!q.q?.startsWith('Lies den Dialog:'))assert(panel.textContent.includes(q.audio),`${l.id}: ${q.audio} must be taught`);
+   assert(q.audio&&!q.audio.includes('|')&&!q.audio.includes('___'));if(q.skill!=='transfer'&&!q.q?.startsWith('Lies den Dialog:'))assert(panel.textContent.includes(q.audio)||l.phrases.some(p=>p[0]===q.audio),`${l.id}: ${q.audio} must be taught in listening or deepening`);
    if(q.type!=='gap'){assert.equal(q.o.length,3);assert.equal(new Set(q.o).size,3);assert.equal(q.o[q.a],q.answer);}else assert(q.context&&q.prompt.includes('___'));
   }
   for(const unit of w.DE_A1_STUDY.content[l.id]){assert.equal(w.DE_A1_STUDY.unitTasks(unit).length,unit.practiceCount);const tasks=w.DE_A1_STUDY.unitTasks(unit);assert.equal(new Set(tasks.map(q=>q.q)).size,tasks.length);}
@@ -39,7 +39,7 @@ test('all lessons render separate learning steps with practice after each prepar
  for(let id=1;id<=24;id++){
   render(env,id,state());assert(!view.querySelector('.pronunciation-panel'),'pronunciation belongs in deepening');assert.equal(view.querySelectorAll('[data-core-row]:not([hidden])').length,Math.ceil(w.testData.lessons[id-1].phrases.length/Math.ceil(w.testData.lessons[id-1].phrases.length/6)));
   view.querySelector('[data-lesson-step="grammar"]').click();const count=view.querySelectorAll('[data-grammar-progress]').length;assert(count>=2);
-  for(let page=0;page<count;page++){if(page)view.querySelector(`[data-grammar-progress="${page}"]`).click();assert(view.querySelector('#lessonGrammarPage').textContent.trim().length>50);assert(!view.querySelector('#lessonGrammarPage details'));if(page<2)assert(view.querySelector('#topicPracticeStart'));}
+  for(let page=0;page<count;page++){if(page)view.querySelector(`[data-grammar-progress="${page}"]`).click();assert(view.querySelector('#lessonGrammarPage').textContent.trim().length>50);assert(!view.querySelector('#lessonGrammarPage details:not(.lesson-extra-vocabulary):not(.deepening-reference)'));if(page<2)assert(view.querySelector('#topicPracticeStart'));}
   openExtra(view,'speak');assert(view.querySelector('#speechHelp').hidden);
   openExtra(view,'write');assert(view.querySelector('#writingHelp').hidden);
  }
