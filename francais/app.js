@@ -495,7 +495,7 @@ function renderLesson(id){
     renderHardMode:({onBack})=>FR_A1_HARD_MODE.render({lesson:l,view,state,save,onBack}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,
     model:app.speakModel,writingModel:id===2?'Martin':app.writeModel,placeholder:app.placeholder,writingHints:app.writingHints||LESSON_WRITING_HINTS[id],writingHelpText:app.writingHelpText,fullModel:true,recorderHtml:id=>recorderHtml(id,true),
-    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
+    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:t=>playCorrectAudio(t,true),renderLesson,renderLearn
   });
 }
 
@@ -783,6 +783,7 @@ function renderReadingTask(part,onDone=null,forced=null,progressLabel=''){
       else if(j===chosen)b.classList.add('wrong');
     });
     document.getElementById('readFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig · Französisch wird abgespielt':'✗ Richtige Antwort: '+esc(options[correct])}</div><div class="spacer"></div><button class="primary-btn" id="nextRead">${onDone?'Weiter':'Neue Aufgabe'}</button>`;
+    window.A1AnswerFeedback?.mount(document.querySelector('#readFeedback .feedback'),{text:part===2?(correct===0?task.aText:task.bText):part===4?options[correct]:(task.a?'Vrai. '+task.statement:'Faux. '+(task.text||task.sign)),lang:'fr'});
     document.getElementById('nextRead').onclick=()=>onDone?onDone(ok):renderReadingTask(part);
   });
 }
@@ -824,6 +825,7 @@ function renderFormTask(onDone=null,forced=null){
     document.getElementById('formFeedback').innerHTML=`
       <div class="feedback ${passed?'good':'bad'}"><strong>${correct}/${task.fields.length}</strong><div style="margin-top:8px;line-height:1.7">${details}</div></div>
       <div class="spacer"></div><button class="primary-btn" id="nextForm">${onDone?'Weiter':'Neues Formular'}</button>`;
+    window.A1AnswerFeedback?.mount(document.querySelector('#formFeedback .feedback'),{text:task.fields.map(f=>f.answers[0]).join('. '),lang:'fr'});
     document.getElementById('nextForm').onclick=()=>onDone?onDone(correct):renderFormTask();
   };
 }

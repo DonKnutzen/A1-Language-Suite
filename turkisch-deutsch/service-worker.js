@@ -1,7 +1,7 @@
-const CACHE='deutsch-c1-tr-v14-compact-progress';
+const CACHE='deutsch-c1-tr-answer-autoplay-v179';
 const LEGACY_PREFIXES=['deutsch-a1-tr','deutsch-c1-tr'];
-const ASSETS=[
-  './','./index.html','./styles.css','./app.js','./lesson-content.js','./manifest.json',
+const ASSETS=["../shared/answer-feedback.js?v=answer-autoplay-179",
+  './','./index.html','./styles.css','./app.js?v=answer-autoplay-179','./lesson-content.js','./manifest.json',
   '../shared/config.js','../shared/profile.js','../shared/streak.js','../shared/learning.js','../shared/voice-selection.js'
 ];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));self.skipWaiting();});

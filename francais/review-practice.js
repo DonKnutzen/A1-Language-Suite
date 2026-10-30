@@ -256,7 +256,7 @@
       }
       function check(value){
         if(s.answers[s.index]||!value.trim())return;
-        const a={value,ok:accepted(q,value)};s.answers[s.index]=a;record(state,q,a.ok,true);save();cancel();feedback(a);view.querySelector("#reviewNext").focus();
+        const a={value,ok:accepted(q,value)};s.answers[s.index]=a;record(state,q,a.ok,true);save();cancel();feedback(a);if(q.audio&&!q.turns&&!q.speech)speak(q.audio,true);view.querySelector("#reviewNext").focus();
       }
       const options=[...view.querySelectorAll('[data-review-option]')];
       function selectOption(value){

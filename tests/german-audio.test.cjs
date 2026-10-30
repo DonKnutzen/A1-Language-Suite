@@ -40,12 +40,12 @@ function standalone(){
  const app=read('deutsch/app.js');for(const [start,end]of [['function startGrammarSet','function renderVocab'],['function renderListeningTask','function renderReadingMenu'],['function renderReadingTask','function renderWritingMenu'],['function renderFormTask','function renderEmailTask']])w.eval(app.slice(app.indexOf(start),app.indexOf(end)));
  return env;
 }
-test('standalone German grammar, listening and reading practice and exam feedback all autoplay and replay',()=>{
+test('standalone German grammar and reading autoplay, while listening corrections stay manual',()=>{
  const {dom,w,view,audio}=standalone();w.startGrammarSet('test');view.querySelector('[data-o="0"]').click();assert.equal(audio.at(-1).text,'Ich wohne hier.');view.querySelector('[data-answer-replay]').click();assert.equal(audio.length,2);
  for(const exam of [false,true]){
   for(const part of [1,2,3,4]){
    const task={id:'hear-'+part,q:'Was kostet das?',statement:'Das kostet drei Euro.',speech:'Das kostet zwei Euro.',o:['zwei Euro','drei Euro','vier Euro'],a:part===2?false:0};
-   w.renderListeningTask(part,task,exam);const before=audio.length;view.querySelector('[data-o="1"]').click();assert.equal(audio.length,before+1);assert.match(audio.at(-1).text,part===2?/Falsch.*zwei Euro/:/zwei Euro/);view.querySelector('[data-answer-replay]').click();assert.equal(audio.length,before+2);
+   w.renderListeningTask(part,task,exam);const before=audio.length;view.querySelector('[data-o="1"]').click();assert.equal(audio.length,before);view.querySelector('[data-answer-replay]').click();assert.equal(audio.length,before+1);assert.match(audio.at(-1).text,part===2?/Falsch.*zwei Euro/:/zwei Euro/);
   }
   for(const part of [1,2,3,4]){
    const task={id:'read-'+part,q:'Was kostet das?',need:'Eine Fahrkarte',text:'Die Fahrkarte kostet zwei Euro.',statement:'Die Fahrkarte kostet drei Euro.',where:'Am Bahnhof',sign:'Heute geschlossen.',aText:'Die Fahrkarte kostet zwei Euro.',bText:'Die Fahrkarte kostet drei Euro.',o:['zwei Euro','drei Euro','vier Euro'],a:part===1||part===3?false:0};

@@ -346,7 +346,7 @@
       const box=byId(`activityResult-${l.id}-${a.id}`); if(box) box.innerHTML='<div class="feedback near">Önce sesi bir kez dinle. Bu görev sınavdaki tek-dinleme baskısını çalıştırır.</div>';
       return null;
     }
-    if(['mc','tf','reading','listening'].includes(a.type)) return gradeMC(`act-${l.id}-${a.id}`,activityQuestions(a));
+    if(['mc','tf','reading','listening'].includes(a.type)) return gradeMC(`act-${l.id}-${a.id}`,activityQuestions(a),true,a.type!=='listening');
     let score=0,total=0;
     const selects=[...block.querySelectorAll('[data-act-select]')];
     selects.forEach((sel,i)=>{
@@ -361,6 +361,7 @@
         const opts=a.type==='match'?(a.options||[]):((a.blanks||[])[i]?.options||[]);
         const why=a.type==='match'?((a.why||[])[i]||''):((a.blanks||[])[i]?.why||'');
         exp.textContent=`Doğru: ${opts[correct]||''}${why?' · '+why:''}`; exp.hidden=false;
+        correctAnswerAudio(sel.parentElement,opts[correct]);
       }
     });
     return {score,total};
@@ -461,7 +462,11 @@
     return `<div class="question-block"><div class="quiz-q">${label?esc(label):`${i+1}. ${esc(q.q)}`}</div><div class="options">${(q.o||[]).map((o,j)=>`<label class="radio-option"><input type="radio" name="${esc(group)}-${i}" value="${j}"><span>${esc(o)}</span></label>`).join('')}</div>${q.why?`<div class="answer-explanation" id="why-${group}-${i}" hidden>${esc(q.why)}</div>`:''}</div>`;
   }
 
-  function gradeMC(group, questions, reveal=true) {
+  function correctAnswerAudio(root,text){
+    return window.A1AnswerFeedback?.mount(root,{text,lang:'de',uiLang:'tr',enqueue:true});
+  }
+
+  function gradeMC(group, questions, reveal=true, feedbackAudio=true) {
     let score=0;
     questions.forEach((q,i) => {
       const hit = document.querySelector(`input[name="${CSS.escape(group+'-'+i)}"]:checked`);
@@ -474,6 +479,7 @@
           r.disabled=true;
         });
         const why=byId(`why-${group}-${i}`); if(why) why.hidden=false;
+        if(feedbackAudio){const input=document.querySelector(`input[name="${CSS.escape(group+'-'+i)}"]`);correctAnswerAudio(input?.closest('.question-block'),window.A1AnswerFeedback?.resolve({...q,prompt:q.q?.includes('___')?q.q:undefined}));}
       }
     });
     return {score,total:questions.length};
@@ -557,7 +563,7 @@
   function gradeReadingPart(data,k,group,reveal=true) {
     if(k==='part3') {
       let score=0;
-      data.answers.forEach((a,i)=>{const s=byId(`${group}-gap-${i}`); if(Number(s.value)===Number(a))score++; if(reveal){s.classList.toggle('correct-select',Number(s.value)===Number(a));s.disabled=true;}});
+      data.answers.forEach((a,i)=>{const s=byId(`${group}-gap-${i}`); if(Number(s.value)===Number(a))score++; if(reveal){s.classList.toggle('correct-select',Number(s.value)===Number(a));s.disabled=true;correctAnswerAudio(s.parentElement,data.candidates[a]?.replace(/^[A-J]:\s*/,''));}});
       return {score,total:data.answers.length};
     }
     return gradeMC(group,data.items,reveal);
@@ -613,7 +619,7 @@
     setView(`<button class="tiny-btn" id="backListen">← Dinleme</button><section class="card" style="margin-top:12px"><div class="eyebrow">GOETHE C1 ANTRENMANI</div><h2>${esc(data.title)}</h2><p class="muted">Soruları önce oku. Sesi durdurup geri sarma yok; gerçek sınavdaki işlem akışını taklit etmeye çalış.</p></section><section class="card">${listeningPartHtml(data,k,group)}<button class="primary-btn" id="gradeListen">Kontrol et</button><div id="listenResult"></div></section>`,()=>{
       byId('backListen').onclick=renderListeningMenu;
       if(k==='part3') data.segments.forEach((s,i)=>wireLimitedPlay(`${group}-play-${i}`,s.script,1)); else wireLimitedPlay(`${group}-play`,data.script,data.plays);
-      byId('gradeListen').onclick=()=>{const qs=flattenedListeningQuestions(data,k);const r=gradeMC(group,qs);const p=pct(r.score,r.total);state.practiceBest[`listening:${k}`]=Math.max(Number(state.practiceBest[`listening:${k}`]||0),p);save();byId('listenResult').innerHTML=scoreResult(r.score,r.total,p);};
+      byId('gradeListen').onclick=()=>{const qs=flattenedListeningQuestions(data,k);const r=gradeMC(group,qs,true,false);const p=pct(r.score,r.total);state.practiceBest[`listening:${k}`]=Math.max(Number(state.practiceBest[`listening:${k}`]||0),p);save();byId('listenResult').innerHTML=scoreResult(r.score,r.total,p);};
     });
   }
 
@@ -719,7 +725,7 @@
       byId('backGoethe').onclick=renderGoetheHub;startCountdown(40,()=>byId('gradeGoetheListen')?.click());
       for(const k of ['part1','part2','part4'])wireLimitedPlay(`glisten-${k}-play`,L[k].script,L[k].plays);
       L.part3.segments.forEach((s,i)=>wireLimitedPlay(`glisten-part3-play-${i}`,s.script,1));
-      byId('gradeGoetheListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;for(const k of ['part1','part2','part3','part4']){const qs=flattenedListeningQuestions(L[k],k);const r=gradeMC(`glisten-${k}`,qs);score+=r.score;total+=r.total;}const p=pct(score,total);state.goetheBest.listening=Math.max(Number(state.goetheBest.listening||0),p);state.examAttempts.goetheListening=(state.examAttempts.goetheListening||0)+1;save();byId('goetheListenResult').innerHTML=`<div class="score">${score}/30</div><div class="feedback ${score>=18?'good':'bad'}"><strong>${score>=18?'Geçme eşiği karşılandı':'Henüz geçme eşiğinin altında'}</strong><br>Resmî eşik: 18/30 (%60). Bu deneme: ${p}%.</div>`;byId('gradeGoetheListen').disabled=true;};
+      byId('gradeGoetheListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;for(const k of ['part1','part2','part3','part4']){const qs=flattenedListeningQuestions(L[k],k);const r=gradeMC(`glisten-${k}`,qs,true,false);score+=r.score;total+=r.total;}const p=pct(score,total);state.goetheBest.listening=Math.max(Number(state.goetheBest.listening||0),p);state.examAttempts.goetheListening=(state.examAttempts.goetheListening||0)+1;save();byId('goetheListenResult').innerHTML=`<div class="score">${score}/30</div><div class="feedback ${score>=18?'good':'bad'}"><strong>${score>=18?'Geçme eşiği karşılandı':'Henüz geçme eşiğinin altında'}</strong><br>Resmî eşik: 18/30 (%60). Bu deneme: ${p}%.</div>`;byId('gradeGoetheListen').disabled=true;};
     });
   }
 
@@ -817,9 +823,9 @@
       byId('dtbEmail').oninput=()=>{state.dtbComponents.emailDraft=byId('dtbEmail').value.slice(0,16000);byId('dtbEmailCount').textContent=window.A1Learning.countWords(byId('dtbEmail').value);save();};
       byId('dtbEmailGrade').onchange=()=>{state.dtbComponents.emailGrade=byId('dtbEmailGrade').value;save();};
       byId('gradeDtbRead').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;
-        R.part1.answers.forEach((a,i)=>{const s=byId('dr1-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
+        R.part1.answers.forEach((a,i)=>{const s=byId('dr1-'+i);correctAnswerAudio(s.parentElement,a>=0?R.part1.articles[a].title:'Keine passende Zuordnung.');if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
         const a2=gradeMC('dr2',R.part2.items);score+=a2.score;total+=a2.total;
-        R.part3.answers.forEach((a,i)=>{const s=byId('dr3-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
+        R.part3.answers.forEach((a,i)=>{const s=byId('dr3-'+i);correctAnswerAudio(s.parentElement,a>=0?R.part3.tips[a]:'Keine passende Zuordnung.');if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
         const a4=gradeMC('dr4',R.part4.items);score+=a4.score;total+=a4.total; const arw=gradeMC('drw',R.readWrite.items);score+=arw.score;total+=arw.total;
         const pts=score*3; updateDtbBest('reading',pts); state.dtbComponents.emailDraft=byId('dtbEmail').value.slice(0,16000); state.dtbComponents.emailGrade=byId('dtbEmailGrade').value; state.examAttempts.dtbReading=(state.examAttempts.dtbReading||0)+1; save();
         byId('dtbReadResult').innerHTML=`<div class="score">${pts} / 60</div><div class="feedback ${pts>=36?'good':'near'}"><strong>${score}/${total} doğru</strong> · beceri eşiği 36/60. E-posta yazma puanı ayrı olarak Yazma becerisine gider.</div>`;byId('gradeDtbRead').disabled=true;};
@@ -838,9 +844,9 @@
       byId('backDtb').onclick=renderDtbHub; startCountdown(25,()=>byId('gradeDtbListen')?.click());
       L.part1.conversations.forEach((c,i)=>wireLimitedPlay('dh1play'+i,c.script,1));L.part2.scripts.forEach((s,i)=>wireLimitedPlay('dh2play'+i,s,1));wireLimitedPlay('dh3play',L.part3.script,1);L.part4.messages.forEach((m,i)=>wireLimitedPlay('dh4play'+i,m.script,1));wireLimitedPlay('dhwplay',L.hearWrite.script,1);
       byId('gradeDtbListen').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let score=0,total=0;
-        L.part1.conversations.forEach((c,i)=>{const r=gradeMC('dh1-'+i,c.items);score+=r.score;total+=r.total;});
+        L.part1.conversations.forEach((c,i)=>{const r=gradeMC('dh1-'+i,c.items,true,false);score+=r.score;total+=r.total;});
         L.part2.answers.forEach((a,i)=>{const s=byId('dh2-'+i);if(Number(s.value)===a)score++;total++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});
-        const r3=gradeMC('dh3',L.part3.items);score+=r3.score;total+=r3.total; const r4=gradeMC('dh4',L.part4.messages);score+=r4.score;total+=r4.total; const rw=gradeMC('dhw',[L.hearWrite.reason]);score+=rw.score;total+=rw.total;
+        const r3=gradeMC('dh3',L.part3.items,true,false);score+=r3.score;total+=r3.total; const r4=gradeMC('dh4',L.part4.messages,true,false);score+=r4.score;total+=r4.total; const rw=gradeMC('dhw',[L.hearWrite.reason],true,false);score+=rw.score;total+=rw.total;
         const pts=score*3; updateDtbBest('listening',pts);
         const E=L.hearWrite.expected; let note=0; const n=normalizeText(byId('dhnName').value),ph=normalizeText(byId('dhnPhone').value),info=normalizeText(byId('dhnInfo').value),todo=normalizeText(byId('dhnTodo').value);
         if(n.includes(normalizeText(E.name))) note+=0.5; if(ph.replace(/\s/g,'').includes(normalizeText(E.phone).replace(/\s/g,''))) note+=0.5; E.info.forEach(k=>{if(info.includes(normalizeText(k)))note+=1;}); const todoWords=['liefertermin','prüf','rückmeldung']; if(todoWords.filter(k=>todo.includes(normalizeText(k))).length>=2)note+=1; note=Math.min(6,note); state.dtbComponents.phoneNotePoints=note; state.examAttempts.dtbListening=(state.examAttempts.dtbListening||0)+1; save();
@@ -858,7 +864,7 @@
     <section class="card"><h3>Schreiben · Stellungnahme</h3><p class="muted">İki konudan birini seç. Avantaj/dezavantajları tart, örnek ver, kendi görüşünü belirt ve bir sonuç çıkar.</p>${W.statementPrompts.map((p,i)=>`<label class="radio-option"><input type="radio" name="dtbStatementChoice" value="${i}"><span><strong>${esc(p.title)}</strong><br><small>${esc(p.prompt)}</small></span></label>`).join('')}<textarea class="text-area writing-area" id="dtbStatement">${esc(C.statementDraft||'')}</textarea><div class="word-count"><span id="dtbStatementCount">${window.A1Learning.countWords(C.statementDraft||'')}</span> kelime</div></section>
     <section class="card"><h3>Resmî DTB yazma puan yapısına göre öz değerlendirme</h3><p class="muted">A = C1 gut erfüllt · B = C1 erfüllt · C = B2 erfüllt · D = unter B2. Kriterium II–IV iki uzun yazma performansının genel dil niteliğini değerlendirir.</p><div class="rubric-grid">${dtbGradeSelect('dwEmail','Lesen+Schreiben e-postası · Kriter I (7 P)',C.emailGrade||'')}${dtbGradeSelect('dwStatement','Stellungnahme · Kriter I (14 P)',C.statementGrades?.statement||'')}${dtbGradeSelect('dwComm','Kriter II · Kommunikative Gestaltung (9 P)',C.statementGrades?.comm||'')}${dtbGradeSelect('dwCorrect','Kriter III · Formale Richtigkeit (9 P)',C.statementGrades?.correct||'')}${dtbGradeSelect('dwRange','Kriter IV · Spektrum sprachlicher Mittel (9 P)',C.statementGrades?.range||'')}</div><div class="notice">Telefon notu: ${formatPoint(C.phoneNotePoints||0)}/6 · Sprachbausteine henüz bu denemede puanlanacak.</div><button class="primary-btn" id="gradeDtbWrite">Bloğu bitir ve Yazma puanını hesapla</button><div id="dtbWriteResult"></div></section>`,()=>{
       byId('backDtb').onclick=renderDtbHub; startCountdown(45,()=>byId('gradeDtbWrite')?.click()); byId('dtbStatement').oninput=()=>{C.statementDraft=byId('dtbStatement').value.slice(0,20000);byId('dtbStatementCount').textContent=window.A1Learning.countWords(byId('dtbStatement').value);save();};
-      byId('gradeDtbWrite').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let b1=0;W.blocks1.answers.forEach((a,i)=>{const s=byId('db1-'+i);if(Number(s.value)===a)b1++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});const b2=gradeMC('db2',W.blocks2.items);const language=(b1+b2.score)*0.5;C.languagePoints=language; C.statementDraft=byId('dtbStatement').value.slice(0,20000); C.emailGrade=byId('dwEmail').value; const grades={statement:byId('dwStatement').value,comm:byId('dwComm').value,correct:byId('dwCorrect').value,range:byId('dwRange').value}; C.statementGrades=grades;
+      byId('gradeDtbWrite').onclick=()=>{if(activeTimer){clearInterval(activeTimer);activeTimer=null;}let b1=0;W.blocks1.answers.forEach((a,i)=>{const s=byId('db1-'+i);correctAnswerAudio(s.parentElement,W.blocks1.options[a]);if(Number(s.value)===a)b1++;s.disabled=true;s.classList.toggle('correct-select',Number(s.value)===a);});const b2=gradeMC('db2',W.blocks2.items);const language=(b1+b2.score)*0.5;C.languagePoints=language; C.statementDraft=byId('dtbStatement').value.slice(0,20000); C.emailGrade=byId('dwEmail').value; const grades={statement:byId('dwStatement').value,comm:byId('dwComm').value,correct:byId('dwCorrect').value,range:byId('dwRange').value}; C.statementGrades=grades;
         if(!C.emailGrade || Object.values(grades).some(x=>!x)){save();byId('dtbWriteResult').innerHTML=`<div class="feedback near">Sprachbausteine: ${formatPoint(language)}/6. Yazma toplam puanı için beş öz-değerlendirme alanının tamamında A–D seç.</div>`;return;}
         const pts=dtbGradeMap(C.emailGrade,7)+dtbGradeMap(grades.statement,14)+dtbGradeMap(grades.comm,9)+dtbGradeMap(grades.correct,9)+dtbGradeMap(grades.range,9)+Number(C.phoneNotePoints||0)+language; updateDtbBest('writing',pts); state.examAttempts.dtbWriting=(state.examAttempts.dtbWriting||0)+1; save();
         byId('dtbWriteResult').innerHTML=`<div class="score">${formatPoint(pts)} / 60</div><div class="feedback ${pts>=36?'good':'near'}">E-posta Kriter I + telefon notu + 12 Sprachbausteine + Stellungnahme Kriter I + genel Kriter II–IV birlikte hesaplandı.</div>`;};

@@ -27,7 +27,7 @@ test('all 24 French lesson rounds hide choice answer audio but retain real liste
    if(q.type==='choice'){assert(!e.view.querySelector('#mixedListen'),`L${lesson.id}: ${q.q}`);checked++;}
    else{assert.equal(q.type,'listening');e.view.querySelector('#mixedListen').click();assert.equal(e.audio.at(-1).text,q.audio);listening++;}
    assert(!e.view.querySelector('[data-answer-replay]'));e.view.querySelector(`[data-o="${q.a}"]`).click();
-   if(q.audio){assert(e.view.querySelector('[data-answer-replay]'));assert.equal(e.audio.length,before+(q.type==='listening'?2:1));}
+   if(q.audio){assert(e.view.querySelector('[data-answer-replay]'));assert.equal(e.audio.length,before+1);}
    e.view.querySelector('#mixedNext').click();
   }
  }

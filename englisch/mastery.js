@@ -116,10 +116,10 @@
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
     function feedback(ok,task,restoring=false){
       if(!restoring){if(ok)score++;if(reviewState)window.EN_A1_REVIEW?.record(reviewState,window.EN_A1_REVIEW.task(lessonId||task.lessonId||Number(task.tag?.match(/^L(\d+)/)?.[1]),"check","Lektionscheck",task),ok);response={ok,chosen:response?.chosen};persist();}
-      if(ok&&!restoring&&task.audio&&speak)speak(task.audio,false,.80);
+      if(!restoring&&task.type!=='listening'&&task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
       document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
-      if(ok)window.EN_A1_ANSWER_AUDIO?.mount(document.querySelector('#masteryFeedback .feedback'),{task,playAudio:text=>speak?.(text,true,.8)});
+      window.EN_A1_ANSWER_AUDIO?.mount(document.querySelector('#masteryFeedback .feedback'),{task,playAudio:text=>speak?.(text,true,.8)});
       if(ok&&!restoring)view.querySelector('.option-btn.correct,#masteryInput')?.classList.add('answer-success');
       document.getElementById('masteryNext').onclick=()=>{i++;draft='';response=null;if(i<ex.length){persist();draw();}else finish();};if(!restoring)review?.attach(view,true);
     }

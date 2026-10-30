@@ -129,7 +129,7 @@
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
     function feedback(ok,task,restoring=false){
       if(!restoring){if(ok)score++;if(reviewState)window.FR_A1_REVIEW?.record(reviewState,window.FR_A1_REVIEW.task(lessonId||task.lessonId||Number(task.tag?.match(/^L(\d+)/)?.[1]),"check","Lektionscheck",task),ok);response={ok,chosen:response?.chosen};persist();}
-      if(!restoring&&task.audio&&speak)speak(task.audio,true,.80);
+      if(!restoring&&task.type!=='listening'&&task.audio&&speak)speak(task.audio,true,.80);
       const answer=task.answer;
       document.getElementById('masteryFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtig ist: '+esc(answer)}${task.explanation?`<p>${esc(task.explanation)}</p>`:''}</div><div class="spacer"></div><button class="primary-btn" id="masteryNext">${i<ex.length-1?'Weiter':'Ergebnis'}</button>`;
       window.FR_A1_ANSWER_AUDIO?.mount(document.querySelector('#masteryFeedback .feedback'),{task,playAudio:text=>speak?.(text,true,.8)});

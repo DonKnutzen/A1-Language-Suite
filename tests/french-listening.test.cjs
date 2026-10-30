@@ -14,13 +14,13 @@ test('all French lessons use ten authored questions with unique options and a va
 test('leaving and reloading resumes question order and graded feedback without duplicate scoring',()=>{
  const {dom,w,view}=environment(),lesson=w.FR_A1_DATA.lessons[1],progress={},audio=[];let completed=null,saves=0;
  const run=()=>w.A1ExerciseEngine.run({lesson,view,targetLang:'fr',uiLang:'de',exercises:w.A1ExerciseEngine.makeAuthored(lesson),progress,exerciseVersion:94,saveProgress:()=>saves++,playAudio:t=>audio.push(t),onBack:()=>view.replaceChildren(),onFinish:(score,total)=>completed={score,total}});
- run();const first=view.querySelector('.quiz-q').textContent;
+ run();const expectedAudio=progress.session.ex.filter(q=>q.type!=='listening').length;const first=view.querySelector('.quiz-q').textContent;
  view.querySelector(`[data-o="${progress.session.ex[0].a}"]`).click();assert.equal(progress.session.score,1);assert.equal(audio.length,1);assert.equal(view.querySelectorAll('.answer-success').length,1);
  view.querySelector('#mixedBack').click();run();assert.equal(view.querySelector('.quiz-q').textContent,first);assert(view.querySelector('#mixedNext'));assert.equal(view.querySelectorAll('.answer-success').length,0);assert.equal(progress.session.score,1);assert.equal(audio.length,1);
  view.querySelector('#mixedNext').click();assert.equal(progress.session.i,1);
  while(progress.session.i<5){view.querySelector(`[data-o="${progress.session.ex[progress.session.i].a}"]`).click();view.querySelector('#mixedNext').click();}
  while(progress.session){const q=progress.session.ex[progress.session.i];if(q.type==='gap'){const input=view.querySelector('#mixedInput');input.value=q.answer;input.dispatchEvent(new w.Event('input'));view.querySelector('#mixedCheck').click();}else view.querySelector(`[data-o="${q.a}"]`).click();view.querySelector('#mixedNext').click();}
- assert.deepEqual(completed,{score:10,total:10});assert(saves>10);assert(!progress.session);assert.equal(audio.length,10);dom.window.close();
+ assert.deepEqual(completed,{score:10,total:10});assert(saves>10);assert(!progress.session);assert.equal(audio.length,expectedAudio);dom.window.close();
 });
 test('legacy callers keep the existing generator and need no persistence options',()=>{
  const {dom,w}=environment();const legacy=w.A1ExerciseEngine.make({id:1,phrases:[['Hallo','Bonjour'],['Danke','Merci'],['Tschüss','Au revoir']],quiz:[]},1,'fr');assert(legacy.length);dom.window.close();

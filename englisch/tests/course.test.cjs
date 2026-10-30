@@ -61,7 +61,7 @@ test('intro resumes exact order and score; automatic answer audio never leaks be
   const f=fixture(),{w,view}=f;
   w.EN_A1_APP.renderLesson(1,{step:'listen'});view.querySelector('#startQuiz').click();
   assert.equal(f.spoken.length,0);const before=JSON.stringify(w.EN_A1_APP.state.lessonWork[1].session.ex);
-  chooseCorrect(f);assert.equal(f.spoken.length,0,'audio is off by default');
+  chooseCorrect(f);assert.equal(f.spoken.length,1,'correct-answer audio plays even when optional example autoplay is off');
   view.querySelector('#mixedBack').click();view.querySelector('#startQuiz').click();
   const s=w.EN_A1_APP.state.lessonWork[1].session;assert.equal(s.i,1);assert.equal(s.score,1);assert.equal(JSON.stringify(s.ex),before);
   while(view.querySelector('#mixedNext')||view.querySelector('[data-o]'))chooseCorrect(f);

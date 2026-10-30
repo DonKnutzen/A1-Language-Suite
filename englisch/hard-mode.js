@@ -250,10 +250,16 @@
     function footer(){
       return `<div class="hard-footer">${a.page>0?`<button class="secondary-btn" data-hard-page="${a.page-1}">← ${t('Zurück','Back')}</button>`:''}${a.page<2?`<button class="primary-btn" data-hard-page="${a.page+1}">${t('Weiter','Next')} →</button>`:isSubmitted()?'':`<button class="hard-start" id="hardSubmit">${t('Alle drei Teile abgeben','Submit all three parts')}</button>`}${a.completedAt?`<button class="secondary-btn" id="hardResult">${t('Ergebnis','Result')}</button>`:''}</div><p class="hard-error" id="hardValidation" role="alert"></p>${progress.history.length?`<button class="tiny-btn" id="hardHistory">${t('Frühere Versuche','Previous attempts')} (${progress.history.length})</button>`:''}`;
     }
+    function answerAudio(autoplay=false){
+      if(!isSubmitted()||(!autoplay&&a.page!==0))return;
+      const text=data.text.replace(/\{\{(\d+)\}\}/g,(_,n)=>data.gaps[n].answers[0]);
+      window.A1AnswerFeedback?.mount(root.querySelector('.hard-cloze')?.parentElement||root.querySelector('#hardValidation'),{text,lang:'en',uiLang:'de',autoplay});
+    }
     function draw(){
       if(!data)return unknownVersion();
       if(a.phase==='reviewed'&&a.page===3)return result();
       mount(`${heading()}${nav()}${[cloze,listening,writing][a.page]?.()||writing()}${footer()}`);
+      answerAudio(false);
       const rememberInput=el=>{
         if(isSubmitted())return;
         if(el.hasAttribute('data-hard-gap'))a.gaps[Number(el.dataset.hardGap)]=el.value;
@@ -278,7 +284,7 @@
         const missing=a.gaps.filter(s=>!s.trim()).length+a.listening.filter(s=>!s.trim()).length,short=words(a.text)<data.writing.minWords;
         root.querySelector('#hardValidation').innerHTML=`${esc(t(`Verbindlich abgeben? ${missing} offene Antworten; ${words(a.text)} Wörter (mindestens ${data.writing.minWords}). Leere Antworten zählen als falsch.${short?' Die Mindestwortzahl ist noch nicht erreicht.':''} Danach sind keine Änderungen möglich.`,`Submit now? ${missing} unanswered items; ${words(a.text)} words (minimum ${data.writing.minWords}). Empty answers count as incorrect.${short?' The minimum word count has not been reached.':''} Answers cannot be edited afterwards.`))}<div class="button-row"><button class="secondary-btn" id="hardCancelSubmit">${t('Weiter bearbeiten','Keep editing')}</button><button class="hard-start" id="hardConfirmSubmit">${t('Jetzt abgeben','Submit now')}</button></div>`;
         root.querySelector('#hardCancelSubmit').onclick=()=>root.querySelector('#hardValidation').replaceChildren();
-        root.querySelector('#hardConfirmSubmit').onclick=()=>{cancelAudio();a.phase='submitted';a.submittedAt=Date.now();window.EN_A1_REVIEW?.captureHard(state,lesson.id,data,a);a.page=2;focusHeading=true;persist();draw();};
+        root.querySelector('#hardConfirmSubmit').onclick=()=>{cancelAudio();a.phase='submitted';a.submittedAt=Date.now();window.EN_A1_REVIEW?.captureHard(state,lesson.id,data,a);a.page=2;focusHeading=true;persist();draw();answerAudio(true);};
         root.querySelector('#hardConfirmSubmit').focus();
       });
       root.querySelector('#hardComplete')?.addEventListener('click',()=>{
