@@ -60,8 +60,10 @@
 .hard-pilot .pilot-memory-grid .memory-card.is-form{background:repeating-linear-gradient(-45deg,#ffffff1a 0 8px,transparent 8px 16px),linear-gradient(140deg,#ff5d8f,#ff9f1c)}
 .hard-pilot .pilot-memory-grid .memory-card:not(.is-open):not(.is-found) span{font-size:1.9rem;text-shadow:0 2px 0 #0004}
 .hard-pilot .pilot-memory-grid .memory-card:not(:disabled):hover{transform:translateY(-3px) rotate(-1deg)}
-.hard-pilot .pilot-memory-grid .memory-card.is-open{background:#fff;color:#2a1440;animation:game-flip .35s ease-out}
-.hard-pilot .pilot-memory-grid .memory-card.is-found{background:hsl(var(--pair-hue) 85% 66%);color:#1a1030;box-shadow:0 0 0 3px #fff6,0 6px 0 #0004;animation:game-pop .4s ease-out}
+.hard-pilot .pilot-memory-grid .memory-card.is-open{background:#fff;color:#2a1440}
+.hard-pilot .pilot-memory-grid .memory-card.is-found{background:hsl(var(--pair-hue) 85% 66%);color:#1a1030;box-shadow:0 0 0 3px #fff6,0 6px 0 #0004}
+.hard-pilot .pilot-memory-grid .memory-card.is-open.is-fresh{animation:game-flip .35s ease-out}
+.hard-pilot .pilot-memory-grid .memory-card.is-found.is-fresh{animation:game-pop .4s ease-out}
 .hard-pilot .memory-counter{display:inline-block;padding:6px 14px;border-radius:999px;background:linear-gradient(135deg,#7b61ff55,#ff5d8f55)}
 .hard-pilot .pilot-memory-results h4{font-size:1.2rem}
 .hard-pilot .pilot-memory-results tbody tr:nth-child(4n+1) th{color:#ff9ab1}.hard-pilot .pilot-memory-results tbody tr:nth-child(4n+2) th{color:#ffd166}.hard-pilot .pilot-memory-results tbody tr:nth-child(4n+3) th{color:#77dec5}.hard-pilot .pilot-memory-results tbody tr:nth-child(4n) th{color:#9fb6ff}
