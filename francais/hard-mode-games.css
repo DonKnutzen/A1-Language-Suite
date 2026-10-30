@@ -282,3 +282,17 @@
 .quiz-end .arcade-score{font-size:2.4rem;background:linear-gradient(180deg,#fff3c4,#ffd166 45%,#f4a62a);-webkit-background-clip:text;background-clip:text;color:transparent}
 @media(max-width:560px){.quiz-prize{font-size:1.2rem}.quiz-question{min-height:84px;font-size:1.08rem;padding:20px 14px}.hard-pilot .quiz-answer{min-height:56px}}
 @media(prefers-reduced-motion:reduce){.quiz-stage::before,.quiz-question,.quiz-suspense,.quiz-confirm .hard-start{animation:none!important}}
+
+/* ---------- Quiz jokers with drawn icons (build 201) ---------- */
+.quiz-jokers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.hard-pilot .quiz-joker{display:grid;justify-items:center;align-content:center;gap:4px;min-width:0;min-height:74px;padding:10px 6px;font-size:1rem}
+.hard-pilot .quiz-joker .quiz-icon{width:34px;height:34px;filter:drop-shadow(0 3px 8px #0006);transition:transform .2s}
+.hard-pilot .quiz-joker:not(:disabled):hover .quiz-icon{transform:scale(1.12) rotate(-4deg)}
+.hard-pilot .quiz-joker small{font-size:.8rem;font-weight:800;line-height:1.2;text-align:center}
+.hard-pilot .quiz-joker[data-quiz-joker="cut"] small{font-size:.95rem;font-weight:900;letter-spacing:.06em;color:#9fe8ff}
+.hard-pilot .quiz-joker[data-quiz-joker="hint"] small{color:#ffe08a}
+.hard-pilot .quiz-walk{margin-left:0}
+.hard-pilot .quiz-walk small{color:#ffe08a}
+.hard-pilot .quiz-joker:disabled{text-decoration:none;opacity:.32;filter:grayscale(.8)}
+.hard-pilot .quiz-joker:disabled::after{content:'';position:absolute;width:62%;height:3px;border-radius:2px;background:#ff5d8f;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg)}
+.hard-pilot .quiz-joker{position:relative}

@@ -70,7 +70,7 @@ Marking fix (build 194, all three Hard Mode courses): a space before French punc
 - 🎈 Ballon-Jagd – the sentence is spoken by the browser voice; pop the matching balloon before it escapes (German/English meaning appears after 3.5 s or when no voice is available); 3 lives.
 - 🧺 Wort-Fänger – catch only the word that fits the gap with a draggable basket (or arrow keys); 3 lives.
 - ⚡ Blitz-Sortierer – swipe/tap/arrow-key cards to origin vs home, tu vs vous, être vs venir; 5 s per card shrinking to 2 s; 3 lives.
-- 💎 Millionen-Turm – an original quiz show: 10 graded questions with four answers on a prize ladder up to €1,000,000 (safe level €1,000), three jokers (remove two, hint, swap), walk away at any time, synthesised background music, drum roll and fanfares.
+- 💎 Millionen-Turm – an original quiz show: 10 graded questions with four answers on a prize ladder up to €1,000,000 (safe level €1,000), two jokers (50/50 removes two wrong answers, hint; the swap joker was removed in build 201), walk away at any time, synthesised background music, drum roll and fanfares.
 
 Canvas games run on `requestAnimationFrame`, pause when the page is hidden or on Escape, and fall back to a message without canvas support. Sounds are synthesised with the Web Audio API (no audio files); sound effects and voice can be switched off and the choice is remembered on the device. Game logic is unit-tested in `tests/hard-mode-arcade.test.cjs`; real touch feel, audio and speech output still need checking on a device.
 
