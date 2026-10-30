@@ -60,7 +60,7 @@
       notice='';persist();draw();focusHeading();
     }
     const focusHeading=()=>{root.querySelector('#challengeHeading')?.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});};
-    function progressHtml(){return `<div class="challenge-progress"><span>${a.solved.filter(Boolean).length} ${t('von 8 geschafft','of 8 completed')}</span><div role="progressbar" aria-label="${t('Gelöste Aufgaben','Completed tasks')}" aria-valuenow="${a.solved.filter(Boolean).length}" aria-valuemin="0" aria-valuemax="8">${a.solved.map(ok=>`<i class="${ok?'is-done':''}"></i>`).join('')}</div></div>`;}
+    function progressHtml(){return `<div class="challenge-progress"><span>${a.solved.filter(Boolean).length}/8 ${t('korrekt','correct')}</span><div role="progressbar" aria-label="${t('Korrekte Antworten','Correct answers')}" aria-valuenow="${a.solved.filter(Boolean).length}" aria-valuemin="0" aria-valuemax="8">${a.solved.map(ok=>`<i class="${ok?'is-done':''}"></i>`).join('')}</div></div>`;}
     function hintsHtml(q,i){
       if(a.checked[i])return '';
       const open=a.helpOpen?.[i]??a.hints[i]>0;

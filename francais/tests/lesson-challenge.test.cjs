@@ -79,7 +79,7 @@ test('audio cancellation ignores stale callbacks and language changes keep ongoi
 test('all new browser assets are versioned and precached, and the helper loads before the router',()=>{
   const html=fs.readFileSync(path.join(repo,'francais/index.html'),'utf8'),sw=fs.readFileSync(path.join(repo,'francais/service-worker.js'),'utf8');
   for(const name of ['lesson-challenge.js','lesson-challenge.css','hard-mode.js']){const url=html.match(new RegExp('(?:src|href)="('+name.replace('.','\\.')+'\\?[^\"]+)"'))?.[1];assert(url,name);assert(sw.includes(JSON.stringify('./'+url)),url);}
-  assert(html.indexOf('lesson-challenge.js')<html.indexOf('src="hard-mode.js'));assert(sw.includes('lesson1-challenge-v180'));
+  assert(html.indexOf('lesson-challenge.js')<html.indexOf('src="hard-mode.js'));assert(sw.includes('lesson1-challenge-v181'));
 });
 test('hints can be collapsed and reopened, and text answers can be checked with Enter',()=>{
   const e=environment();e.begin();for(let i=0;i<2;i++){e.answer(right[i]);e.click('#challengeNext');}
