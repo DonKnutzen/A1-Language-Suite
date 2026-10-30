@@ -61,3 +61,15 @@ Each page of the lesson 1 Hard Mode is presented as its own colourful mini-game:
 This is a UI-only change: tasks, answers, saved attempt format, scoring and the content version are unchanged, so no new version is required. Styles live in `hard-mode-games.css`; reduced-motion preferences disable all animations and confetti. The page buttons 1–6 (and the tiles on the intro map) jump straight to any game; “Previous page” always works, and “Next” on the last page leads to the first unfinished page before the result. During a correction round, finished games stay viewable read-only. A “Restart Hard Mode” button under the save status starts a fresh attempt at any time after confirmation; the previous attempt is archived under “Previous attempts”. The state before this change is tagged `vor-minispiele` in git.
 
 Marking fix (build 194, all three Hard Mode courses): a space before French punctuation no longer decides correctness. Previously the trailing `?` was stripped before whitespace was collapsed, so a model such as “Comment vous vous appelez ?” kept a trailing space and rejected “Comment vous vous appelez?”. Already graded attempts are not re-scored.
+
+## Arcade / Spielhalle (lesson 1, build 196)
+
+`hard-mode-arcade.js` adds five bonus games reachable from the 🕹️ button in the page bar, the intro and the result screen. They reuse lesson 1 language only and never change the Hard Mode attempt or its score; best scores and stars (0–3 per game) are stored in `lessonWork[1].hardMode.pilot.arcade`.
+
+- 🎯 Wurf-Arena – slingshot (drag back and release, or tap a target / keys 1–4) at moving targets carrying forms of être, venir, habiter and parler; 45 s, wrong hits cost 3 s, tapped throws home in on their target.
+- 🎈 Ballon-Jagd – the sentence is spoken by the browser voice; pop the matching balloon before it escapes (German/English meaning appears after 3.5 s or when no voice is available); 3 lives.
+- 🧺 Wort-Fänger – catch only the word that fits the gap with a draggable basket (or arrow keys); 3 lives.
+- ⚡ Blitz-Sortierer – swipe/tap/arrow-key cards to origin vs home, tu vs vous, être vs venir; 5 s per card shrinking to 2 s; 3 lives.
+- 💎 Millionen-Turm – an original quiz show: 10 graded questions with four answers on a prize ladder up to €1,000,000 (safe level €1,000), three jokers (remove two, hint, swap), walk away at any time, synthesised background music, drum roll and fanfares.
+
+Canvas games run on `requestAnimationFrame`, pause when the page is hidden or on Escape, and fall back to a message without canvas support. Sounds are synthesised with the Web Audio API (no audio files); sound effects and voice can be switched off and the choice is remembered on the device. Game logic is unit-tested in `tests/hard-mode-arcade.test.cjs`; real touch feel, audio and speech output still need checking on a device.
