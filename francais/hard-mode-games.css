@@ -240,3 +240,45 @@
 .quiz-ladder li.is-current span{color:#1a1030}
 @media(max-width:560px){.quiz-board{grid-template-columns:1fr}.quiz-ladder{grid-template-columns:repeat(5,minmax(0,1fr));order:-1;font-size:.66rem}.quiz-ladder li{grid-template-columns:1fr;justify-items:center;padding:4px 2px;border-radius:10px}.quiz-ladder li span,.quiz-ladder li i{display:none}.quiz-answers{grid-template-columns:1fr}.quiz-question{font-size:1.08rem}}
 @media(prefers-reduced-motion:reduce){.quiz-stage *,.arcade-stage *,.arcade-hub *{animation:none!important;transition:none!important}}
+
+/* ---------- Quiz show polish (build 198) ---------- */
+.quiz-stage{padding:20px 16px 22px;background:radial-gradient(90% 55% at 50% -5%,#6d3cff55,transparent 70%),radial-gradient(60% 40% at 50% 105%,#ff5d8f33,transparent 70%),linear-gradient(180deg,#1b0f45,#0b0722 75%);border:1px solid #ffffff1f}
+.quiz-stage::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 72% 12%,#fff8,transparent),radial-gradient(1.5px 1.5px at 88% 40%,#fff7,transparent),radial-gradient(1px 1px at 30% 60%,#fff6,transparent),radial-gradient(1.5px 1.5px at 55% 85%,#fff6,transparent),radial-gradient(1px 1px at 8% 80%,#fff7,transparent);animation:quiz-twinkle 4s ease-in-out infinite alternate}
+@keyframes quiz-twinkle{from{opacity:.45}to{opacity:1}}
+.quiz-lights i{width:160px;background:linear-gradient(#b388ff2e,transparent 70%)}
+.quiz-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.quiz-chip{padding:6px 12px;border-radius:999px;background:#ffffff14;border:1px solid #ffffff2a;font-weight:800;font-size:.82rem;color:#e9e1ff;letter-spacing:.03em}
+.quiz-prize{display:grid;justify-items:end;line-height:1.1;font-size:1.45rem;font-weight:900;background:linear-gradient(180deg,#fff3c4,#ffd166 45%,#f4a62a);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 6px #ffb3473d)}
+.quiz-prize small{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c5b5cb;-webkit-text-fill-color:#c5b5cb}
+.quiz-question{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-height:96px;padding:22px 18px;border:2px solid transparent;border-radius:24px;background:linear-gradient(135deg,#21154f,#16305f) padding-box,linear-gradient(120deg,#ffd166,#ff5d8f,#4cc9f0,#b388ff,#ffd166) border-box;background-size:100% 100%,300% 300%;animation:quiz-border 8s linear infinite;box-shadow:0 18px 40px -22px #4cc9f0,inset 0 1px 0 #ffffff22;font-size:1.22rem}
+@keyframes quiz-border{to{background-position:0 0,300% 0}}
+.quiz-q-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);display:grid;place-items:center;min-width:34px;height:28px;padding:0 10px;border-radius:999px;background:linear-gradient(180deg,#ffe08a,#f4a62a);color:#2a1440;font-size:.85rem;font-weight:900;box-shadow:0 4px 12px -4px #f4a62a}
+.hard-pilot .quiz-answer{position:relative;overflow:hidden;min-height:62px;border:1.5px solid #8f7bff88;border-radius:18px;background:linear-gradient(180deg,#2a2268,#1a1545);box-shadow:inset 0 1px 0 #ffffff26,0 6px 16px -10px #000;font-size:1.02rem}
+.hard-pilot .quiz-answer::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff2a,transparent);transform:skewX(-20deg);transition:left .5s ease}
+.hard-pilot .quiz-answer:hover:not(:disabled)::after{left:120%}
+.hard-pilot .quiz-answer b{width:34px;height:34px;background:linear-gradient(180deg,#ffe08a,#f4a62a);box-shadow:0 2px 8px -2px #f4a62a;font-size:.95rem}
+.hard-pilot .quiz-answer.is-selected{background:linear-gradient(180deg,#ffb84d,#ff8a00);border-color:#fff3c4;color:#2a1440;box-shadow:0 0 0 3px #ffd16655,0 10px 24px -10px #ff8a00}
+.hard-pilot .quiz-answer.is-selected b{background:#2a1440;color:#ffd166}
+.hard-pilot .quiz-answer.is-correct{background:linear-gradient(180deg,#3cf0b6,#06b984);border-color:#d9fff1;color:#06281d;box-shadow:0 0 0 4px #06d6a055,0 0 28px #06d6a088}
+.hard-pilot .quiz-answer.is-correct b{background:#06281d;color:#3cf0b6}
+.hard-pilot .quiz-answer.is-wrong{background:linear-gradient(180deg,#ff6b88,#d81b46);border-color:#ffd0da;box-shadow:0 0 0 4px #ff4d6d44}
+.quiz-suspense{text-align:center;font-weight:800;letter-spacing:.06em;color:#ffd166;animation:quiz-pulse .6s ease-in-out infinite alternate}
+@keyframes quiz-pulse{from{opacity:.45;transform:scale(.98)}to{opacity:1;transform:scale(1.02)}}
+.quiz-win-banner{justify-self:center;padding:10px 20px;border-radius:999px;background:linear-gradient(90deg,#06d6a0,#4cc9f0);color:#06281d;font-weight:900;font-size:1.1rem;box-shadow:0 10px 30px -10px #06d6a0;animation:game-pop .45s ease-out}
+.quiz-win-banner b{margin-right:6px}
+.quiz-confirm .hard-start{border-radius:18px;font-size:1.05rem;letter-spacing:.02em;box-shadow:0 10px 26px -12px #ff5d8f;animation:quiz-cta .9s ease-in-out infinite alternate}
+@keyframes quiz-cta{from{transform:scale(1)}to{transform:scale(1.03)}}
+.hard-pilot .quiz-joker{min-width:74px;border:1.5px solid #4cc9f0aa;border-radius:18px;background:linear-gradient(180deg,#1b3566,#112244);box-shadow:inset 0 1px 0 #ffffff22}
+.hard-pilot .quiz-joker:not(:disabled):hover{transform:translateY(-2px);border-color:#4cc9f0}
+.hard-pilot .quiz-walk{border-color:#ffd166aa;background:linear-gradient(180deg,#4a3410,#2c1f08)}
+.quiz-ladder{gap:4px;padding:10px;border-radius:20px;background:linear-gradient(180deg,#140b38cc,#0b0722cc);border:1px solid #ffffff22;box-shadow:inset 0 1px 0 #ffffff14}
+.quiz-ladder li{transition:background .3s,color .3s}
+.quiz-ladder li.is-safe b{color:#ffd166}
+.quiz-ladder li.is-done span{color:#06d6a0}
+.quiz-ladder li.is-current{background:linear-gradient(90deg,#ffb84d,#ffd166);box-shadow:0 0 18px -4px #ffd166}
+.quiz-intro .arcade-big-icon{font-size:4.2rem;filter:drop-shadow(0 8px 20px #b388ff88)}
+.quiz-intro h3{font-size:2rem;letter-spacing:.02em}
+.quiz-intro .hard-start{max-width:340px}
+.quiz-end .arcade-score{font-size:2.4rem;background:linear-gradient(180deg,#fff3c4,#ffd166 45%,#f4a62a);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:560px){.quiz-prize{font-size:1.2rem}.quiz-question{min-height:84px;font-size:1.08rem;padding:20px 14px}.hard-pilot .quiz-answer{min-height:56px}}
+@media(prefers-reduced-motion:reduce){.quiz-stage::before,.quiz-question,.quiz-suspense,.quiz-confirm .hard-start{animation:none!important}}

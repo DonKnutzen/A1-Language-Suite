@@ -276,9 +276,11 @@ const money=n=>new Intl.NumberFormat(en()?'en-GB':'de-DE',{style:'currency',curr
 const short=n=>n>=1e6?t('1 Mio. €','€1M'):n>=1000?t(n/1000+'k €','€'+n/1000+'k'):t(n+' €','€'+n);
 function quizSet(){return LADDER.map((_,i)=>pick(QUESTIONS.filter(q=>q.l===i+1)));}
 // Optional sound files in francais/audio/quiz/<name>.mp3 (see README there). A missing file falls back to the synthesised sound.
-const QUIZ_SOUNDS={intro:'start',q1:'fragen-1',q2:'fragen-2',q3:'fragen-3',lock:'festgelegt',right:'richtig',safe:'sicher',million:'million',wrong1:'falsch-1',wrong2:'falsch-2',joker:'joker',walk:'aussteigen'};
+// Three prize ranges (questions 1–4, 5–7, 8–10) each have their own loop, right and wrong sound.
+const QUIZ_SOUNDS={intro:'start',loop1:'schleife-1',loop2:'schleife-2',loop3:'schleife-3',lock:'festgelegt',right1:'richtig-1',right2:'richtig-2',right3:'richtig-3',wrong1:'falsch-1',wrong2:'falsch-2',wrong3:'falsch-3',joker:'joker',walk:'aussteigen'};
+const tier=level=>level<4?1:level<7?2:3;
 function quizAudio(base='audio/quiz/'){
- const files={},ok={};let loop=null,loopSlot=null,shot=null;
+ const files={},ok={};let loop=null,loopSlot=null,shot=null;const layers=new Set();
  if(typeof window.Audio==='function')for(const [slot,name] of Object.entries(QUIZ_SOUNDS)){try{const a=new window.Audio();a.preload='auto';const ready=()=>{ok[slot]=true;};a.addEventListener('canplaythrough',ready,{once:true});a.addEventListener('loadeddata',ready,{once:true});a.addEventListener('error',()=>{ok[slot]=false;},{once:true});a.src=base+name+'.mp3';files[slot]=a;}catch{}}
  const has=slot=>soundOn()&&ok[slot]===true;
  const go=(a,repeat)=>{a.muted=false;a.loop=repeat;try{a.currentTime=0;}catch{}try{Promise.resolve(a.play?.()).catch(()=>{});}catch{}};
@@ -288,41 +290,46 @@ function quizAudio(base='audio/quiz/'){
   // Mobile browsers only allow sounds started from a tap; touching every file once at game start unlocks them for later.
   unlock(skip=[]){for(const [slot,a] of Object.entries(files)){if(skip.includes(slot))continue;try{a.muted=true;Promise.resolve(a.play?.()).then(()=>{if(a.muted){halt(a);a.muted=false;}},()=>{a.muted=false;});}catch{a.muted=false;}}},
   play(slot,onEnd){if(!has(slot))return false;if(shot!==files[slot])halt(shot);shot=files[slot];if(onEnd)shot.addEventListener('ended',onEnd,{once:true});go(shot,false);return true;},
+  // Plays on top of everything else without stopping it (joker).
+  over(slot){if(!has(slot))return false;layers.add(files[slot]);go(files[slot],false);return true;},
   loop(slot){if(!has(slot)){this.stopLoop();return false;}if(loopSlot===slot&&loop&&!loop.paused)return true;this.stopLoop();loop=files[slot];loopSlot=slot;go(loop,true);return true;},
   stopLoop(){halt(loop);loop=null;loopSlot=null;},
   stopShot(){halt(shot);shot=null;},
-  stopAll(){this.stopLoop();this.stopShot();}
+  stopAll(){this.stopLoop();this.stopShot();layers.forEach(halt);layers.clear();}
  };
 }
 function runQuiz(host,{best=0,onEnd,onExit}={}){
  const S={level:0,set:quizSet(),jokers:{cut:true,hint:true,swap:true},removed:[],showHint:false,selected:null,phase:'intro',won:0,order:null};
  let tune=null,timers=[],dead=false;const snd=quizAudio();
- // Questions 1–4, 5–9 and the million question each have their own background loop.
- function background(){if(S.intro)return;const slot=S.level<SAFE?'q1':S.level<LADDER.length-1?'q2':'q3';if(snd.loop(slot)){tune?.stop();tune=null;return;}if(!tune&&soundOn())tune=music();tune?.level(S.level);tune?.on(soundOn());}
+ // The loop waits while the start or a result sound is still playing (S.hold), then resumes for the current prize range.
+ function background(){if(S.hold||(S.phase!=='ask'&&S.phase!=='confirm'))return;if(snd.loop('loop'+tier(S.level))){tune?.stop();tune=null;return;}if(!tune&&soundOn())tune=music();tune?.level(S.level);tune?.on(soundOn());}
+ function hold(slot,fallbackMs){if(!snd.play(slot,release))return false;S.hold=true;later(release,fallbackMs);return true;}
+ function release(){if(!S.hold)return;S.hold=false;later(background,600);}
  const later=(fn,ms)=>timers.push(setTimeout(()=>{if(!dead&&host.isConnected)fn();},ms));
  const q=()=>S.set[S.level];
  function newOrder(){S.order=shuffle([0,1,2,3]);S.removed=[];S.showHint=false;S.selected=null;}
- function ladder(){return `<ol class="quiz-ladder" aria-label="${t('Gewinnstufen','Prize ladder')}">${LADDER.map((v,i)=>`<li class="${i===S.level&&S.phase!=='end'?'is-current':''} ${i<S.level?'is-done':''} ${i===SAFE?'is-safe':''}"><span>${i+1}</span><b>${short(v)}</b>${i===SAFE?'<i aria-label="'+t('Sicherheitsstufe','Safe level')+'">🛟</i>':''}</li>`).reverse().join('')}</ol>`;}
+ function ladder(){return `<ol class="quiz-ladder" aria-label="${t('Gewinnstufen','Prize ladder')}">${LADDER.map((v,i)=>`<li class="${i===S.level&&S.phase!=='end'?'is-current':''} ${i<S.level?'is-done':''} ${i===SAFE?'is-safe':''}"><span>${i<S.level?'✓':i+1}</span><b>${short(v)}</b>${i===SAFE?'<i aria-label="'+t('Sicherheitsstufe','Safe level')+'">🛟</i>':''}</li>`).reverse().join('')}</ol>`;}
  function frame(inner){host.innerHTML=`<div class="arcade-stage quiz-show"><div class="quiz-stage"><div class="quiz-lights" aria-hidden="true"><i></i><i></i><i></i></div>${inner}</div>${controls()}</div>`;bindControls(host,{exit,sound:on=>{if(!on){snd.stopAll();tune?.on(false);}else if(S.phase==='ask'||S.phase==='confirm')background();}});host.querySelector('[data-arcade-pause]')?.remove();}
  function intro(){S.phase='intro';frame(`<div class="quiz-intro"><span class="arcade-big-icon" aria-hidden="true">💎</span><h3>${t('Millionen-Turm','Million tower')}</h3><p>${t('10 Fragen zu Lektion 1, jede mit 4 Antworten. Jede richtige Antwort bringt dich eine Stufe höher – bis zur Million! Ab 1.000 € bist du sicher 🛟. Du kannst jederzeit mit deinem Gewinn aussteigen.','10 questions on lesson 1, each with 4 answers. Every right answer takes you one step higher – up to a million! From €1,000 you are safe 🛟. You can walk away with your winnings at any time.')}</p><p>${t('Joker:','Jokers:')} ✂️ ${t('Zwei raus','Remove two')} · 💡 ${t('Tipp','Hint')} · 🔄 ${t('Frage tauschen','Swap question')}</p>${best?`<p class="arcade-best">🏆 ${t('Rekord','Best')}: ${money(best)}</p>`:''}<button type="button" class="hard-start" data-quiz-start>▶ ${t('Spiel starten','Start the game')}</button></div>`);host.querySelector('[data-quiz-start]').onclick=start;}
- function start(){ac();Object.assign(S,{level:0,set:quizSet(),jokers:{cut:true,hint:true,swap:true},won:0,phase:'ask',reveal:false,intro:false});newOrder();snd.stopAll();tune?.stop();tune=null;snd.unlock(['intro','q1']);
-  const introDone=()=>{if(!S.intro)return;S.intro=false;if(S.phase==='ask'||S.phase==='confirm')background();};
-  if(snd.play('intro',introDone)){S.intro=true;later(introDone,12000);}else sfx.fanfare();ask();}
+ function start(){ac();Object.assign(S,{level:0,set:quizSet(),jokers:{cut:true,hint:true,swap:true},won:0,phase:'ask',reveal:false,hold:false});newOrder();snd.stopAll();tune?.stop();tune=null;snd.unlock(['intro','loop1']);
+  if(!hold('intro',12000))sfx.fanfare();ask();}
  function ask(){if(S.phase!=='suspense'&&S.phase!=='reveal')S.phase=S.selected===null?'ask':'confirm';if(S.phase==='ask'||S.phase==='confirm')background();const cur=q(),letters='ABCD';
-  frame(`<div class="quiz-board"><div class="quiz-main"><p class="quiz-level">${t('Frage','Question')} ${S.level+1}/10 · ${t('Es geht um','Playing for')} <b>${money(LADDER[S.level])}</b></p><div class="quiz-question" lang="${/___/.test(cur.q[0])?'fr':''}">${E(tx(cur.q))}</div>${S.showHint?`<p class="quiz-hint">💡 ${E(tx(cur.h))}</p>`:''}
+  frame(`<div class="quiz-board"><div class="quiz-main"><div class="quiz-level quiz-topbar"><span class="quiz-chip">${t('Frage','Question')} ${S.level+1}/10</span><span class="quiz-prize"><small>${t('Es geht um','Playing for')}</small>${money(LADDER[S.level])}</span></div><div class="quiz-question"><span class="quiz-q-badge" aria-hidden="true">${S.level+1}</span><span ${/___/.test(cur.q[0])?'lang="fr"':''}>${E(tx(cur.q))}</span></div>${S.showHint?`<p class="quiz-hint">💡 ${E(tx(cur.h))}</p>`:''}
   <div class="quiz-answers">${S.order.map((k,n)=>`<button type="button" class="quiz-answer ${S.selected===k?'is-selected':''} ${S.reveal?(k===0?'is-correct':S.selected===k?'is-wrong':''):''}" data-quiz-answer="${k}" ${S.removed.includes(k)||S.phase==='suspense'||S.phase==='reveal'?'disabled':''} ${typeof cur.o[k]==='string'?'lang="fr"':''}><b>${letters[n]}</b><span>${S.removed.includes(k)?'':E(tx(cur.o[k]))}</span></button>`).join('')}</div>
+  ${S.reveal&&S.selected===0?`<div class="quiz-win-banner" role="status"><b>✓ ${t('Richtig!','Correct!')}</b> ${money(LADDER[S.level])}${S.level===SAFE?` · 🛟 ${t('sicher','safe')}`:''}</div>`:''}${S.phase==='suspense'?`<div class="quiz-suspense" role="status">${t('Antwort festgelegt …','Answer locked in …')}</div>`:''}
   ${S.phase==='confirm'?`<div class="quiz-confirm"><button type="button" class="hard-start" data-quiz-lock>✔ ${t('Sicher – Antwort festlegen!','I’m sure – lock it in!')}</button></div>`:''}
   <div class="quiz-jokers">${[['cut','✂️',t('Zwei raus','Remove two')],['hint','💡',t('Tipp','Hint')],['swap','🔄',t('Tauschen','Swap')]].map(([k,icon,name])=>`<button type="button" class="quiz-joker" data-quiz-joker="${k}" ${S.jokers[k]&&S.phase!=='suspense'&&S.phase!=='reveal'?'':'disabled'} aria-label="${name}">${icon}<small>${name}</small></button>`).join('')}<button type="button" class="quiz-joker quiz-walk" data-quiz-walk ${S.phase==='suspense'||S.phase==='reveal'?'disabled':''}>💰<small>${t('Aussteigen','Walk away')}: ${money(S.won)}</small></button></div></div>${ladder()}</div>`);
   host.querySelectorAll('[data-quiz-answer]').forEach(b=>b.onclick=()=>{if(S.phase!=='ask'&&S.phase!=='confirm')return;S.selected=Number(b.dataset.quizAnswer);sfx.select();ask();});
   host.querySelector('[data-quiz-lock]')?.addEventListener('click',lock);
   host.querySelectorAll('[data-quiz-joker]').forEach(b=>b.onclick=()=>joker(b.dataset.quizJoker));
   host.querySelector('[data-quiz-walk]').onclick=()=>end('walk');}
- function joker(k){if(!S.jokers[k])return;S.jokers[k]=false;if(!snd.play('joker'))sfx.select();if(k==='cut'){S.removed=shuffle([1,2,3].filter(i=>i!==S.selected)).slice(0,2);if(S.removed.includes(S.selected))S.selected=null;}else if(k==='hint')S.showHint=true;else{const others=QUESTIONS.filter(x=>x.l===q().l&&x!==q());if(others.length)S.set[S.level]=pick(others);newOrder();}ask();}
- function lock(){S.phase='suspense';S.intro=false;snd.stopLoop();tune?.on(false);if(!snd.play('lock'))sfx.drumroll(1.5);ask();later(reveal,1600);}
- function reveal(){const ok=S.selected===0,last=S.level===LADDER.length-1;S.reveal=true;S.phase='reveal';snd.stopShot();ask();
-  if(ok){S.won=LADDER[S.level];if(!snd.play(last?'million':S.level===SAFE?'safe':'right'))sfx[last?'big':'fanfare']();say(q().s);later(()=>{S.reveal=false;if(S.level===LADDER.length-1)return end('win');S.level++;S.phase='ask';newOrder();ask();},2200);}
-  else{if(!snd.play(S.level<SAFE?'wrong1':'wrong2'))sfx.sad();later(()=>{S.reveal=false;end('lost');},2400);}}
- function end(how){const amount=how==='lost'?(S.level>SAFE?LADDER[SAFE]:0):S.won;S.phase='end';S.intro=false;tune?.stop();tune=null;snd.stopLoop();if(how==='walk'&&!snd.play('walk'))sfx.fanfare();const stars=starsFor(QUIZ,amount),record=amount>best;if(record)best=amount;onEnd?.({score:amount,stars});
+ function joker(k){if(!S.jokers[k])return;S.jokers[k]=false;if(!snd.over('joker'))sfx.select();if(k==='cut'){S.removed=shuffle([1,2,3].filter(i=>i!==S.selected)).slice(0,2);if(S.removed.includes(S.selected))S.selected=null;}else if(k==='hint')S.showHint=true;else{const others=QUESTIONS.filter(x=>x.l===q().l&&x!==q());if(others.length)S.set[S.level]=pick(others);newOrder();}ask();}
+ // Lock-in: loop stops, lock-in sound, 2 s suspense, then the right/wrong sound of the current prize range.
+ function lock(){S.phase='suspense';S.hold=false;snd.stopLoop();tune?.on(false);if(!snd.play('lock'))sfx.drumroll(1.8);ask();later(reveal,2000);}
+ function reveal(){const ok=S.selected===0,last=S.level===LADDER.length-1,range=tier(S.level);S.reveal=true;S.phase='reveal';snd.stopShot();ask();
+  if(ok){S.won=LADDER[S.level];if(!hold('right'+range,10000))sfx[last?'big':'fanfare']();say(q().s);later(()=>{S.reveal=false;if(S.level===LADDER.length-1)return end('win');S.level++;S.phase='ask';newOrder();ask();},2200);}
+  else{if(!snd.play('wrong'+range))sfx.sad();later(()=>{S.reveal=false;end('lost');},2400);}}
+ function end(how){const amount=how==='lost'?(S.level>SAFE?LADDER[SAFE]:0):S.won;S.phase='end';S.hold=false;tune?.stop();tune=null;snd.stopLoop();if(how==='walk'&&!snd.play('walk'))sfx.fanfare();const stars=starsFor(QUIZ,amount),record=amount>best;if(record)best=amount;onEnd?.({score:amount,stars});
   frame(`<div class="quiz-intro quiz-end ${how==='win'?'is-million':''}"><span class="arcade-big-icon" aria-hidden="true">${how==='win'?'💎':amount?'💰':'😬'}</span><h3>${how==='win'?t('MILLIONÄR! 🎉','MILLIONAIRE! 🎉'):how==='walk'?t('Klug ausgestiegen!','Smart move!'):t('Leider falsch!','Sorry, wrong!')}</h3><p class="arcade-score">${money(amount)}</p><p class="arcade-result-stars" aria-label="${stars}/3">${[1,2,3].map(k=>`<i class="${k<=stars?'is-lit':''}">★</i>`).join('')}</p>${record&&amount?`<p class="arcade-record">🎉 ${t('Neuer Rekord!','New record!')}</p>`:''}${how==='lost'?`<p>${t('Richtig war','The right answer was')}: <b lang="fr">${E(tx(q().o[0]))}</b></p>`:''}<div class="arcade-actions"><button type="button" class="hard-start" data-quiz-start>↻ ${t('Neues Spiel','New game')}</button><button type="button" class="secondary-btn" data-arcade-back>← ${t('Spielhalle','Arcade')}</button></div></div>`);
   host.querySelector('[data-quiz-start]').onclick=start;host.querySelector('[data-arcade-back]').onclick=exit;}
  function stop(){if(dead)return;dead=true;timers.forEach(clearTimeout);tune?.stop();tune=null;snd.stopAll();try{window.A1Voice?.cancel?.();}catch{}}
