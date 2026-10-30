@@ -1,0 +1,144 @@
+/* Hard Mode mini-games: colourful skin for the lesson 1 pilot. Layout and scoring live in hard-mode-pilot.js. */
+.hard-pilot,.game-memory{--g1:#b388ff;--g2:#ff5d8f}
+.game-match{--g1:#06d6a0;--g2:#c3f73a}
+.game-order{--g1:#ff9f1c;--g2:#ffd166}
+.game-text{--g1:#4cc9f0;--g2:#7b61ff}
+.game-listening{--g1:#ff5d8f;--g2:#7b61ff}
+
+/* Intro: the game map */
+.game-intro h3{font-size:1.45rem}
+.game-map{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.game-tile{display:grid;gap:4px;justify-items:center;align-content:start;text-align:center;padding:14px 8px;border-radius:18px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#1a1030;box-shadow:0 6px 0 #0004}
+.game-tile .game-icon{font-size:2.1rem;line-height:1.1}
+.game-tile strong{font-size:.92rem;line-height:1.3}
+.game-tile small{color:#2a1440;font-size:.75rem;line-height:1.3}
+.game-tile:nth-child(odd) .game-icon{animation:game-bob 2.6s ease-in-out infinite}
+.game-tile:nth-child(even) .game-icon{animation:game-bob 2.6s ease-in-out .6s infinite}
+@media(max-width:520px){.game-map{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Progress and page navigation */
+.game-progress [role=progressbar] i{height:9px}
+.game-progress i.is-done:nth-child(6n+1){background:#ff5d8f}.game-progress i.is-done:nth-child(6n+2){background:#ff9f1c}.game-progress i.is-done:nth-child(6n+3){background:#ffd166}.game-progress i.is-done:nth-child(6n+4){background:#06d6a0}.game-progress i.is-done:nth-child(6n+5){background:#4cc9f0}.game-progress i.is-done:nth-child(6n){background:#b388ff}
+.game-stars{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:999px;background:#ffd16633;font-weight:800}
+.hard-pilot .game-nav span{display:grid;justify-items:center;gap:2px;border:2px solid transparent;border-radius:14px;background:color-mix(in srgb,var(--g1) 16%,transparent);font-weight:700}
+.game-nav span i{font-style:normal;font-size:1.15rem;line-height:1.2}
+.hard-pilot .game-nav span[aria-current]{background:linear-gradient(135deg,var(--g1),var(--g2));color:#1a1030;border-color:#fff8;transform:translateY(-2px);box-shadow:0 6px 14px -6px var(--g2)}
+.hard-pilot .game-nav span.is-done:not([aria-current]){background:#06d6a022;border-color:#06d6a066}
+
+/* Page banner */
+.hard-pilot .game-banner{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#1a1030;box-shadow:0 12px 30px -14px var(--g2)}
+.hard-pilot .game-banner .hard-eyebrow{color:#2a1440;opacity:.85}
+.hard-pilot .game-banner h3{color:#1a1030;margin:4px 0}
+.hard-pilot .game-banner p{color:#2a1440;margin:4px 0 0}
+.game-banner .game-icon{flex:none;font-size:2.8rem;line-height:1;filter:drop-shadow(0 4px 6px #0003);animation:game-bob 2.4s ease-in-out infinite}
+.game-rule{font-weight:650}
+
+/* Task cards */
+.hard-mode.hard-pilot .card.game-card{position:relative;border:2px solid color-mix(in srgb,var(--g1) 55%,transparent);border-radius:22px;background:radial-gradient(120% 80% at 100% 0%,color-mix(in srgb,var(--g2) 20%,transparent),transparent 60%),#1c1c2e;transition:border-color .3s,box-shadow .3s}
+.hard-mode.hard-pilot .card.game-card.is-won{border-color:#06d6a0;box-shadow:0 0 0 4px #06d6a022}
+.hard-mode.hard-pilot .card.game-card.is-won::after{content:'⭐';position:absolute;top:-16px;right:18px;font-size:1.7rem;animation:game-pop .5s ease-out}
+.hard-pilot .game-card>.hard-eyebrow{color:var(--g1)}
+.hard-pilot .game-card .challenge-feedback{border-radius:16px}
+.hard-pilot .game-card .challenge-feedback.is-correct{border:2px solid #06d6a0;background:linear-gradient(135deg,#06d6a024,#4cc9f01c);animation:game-pop .4s ease-out}
+.hard-pilot .game-card .challenge-feedback.is-practice{border:2px solid #ffd166;background:#ffd16614}
+.game-cheer{display:inline-block;margin-right:4px;font-size:1.15em;font-weight:900}
+.is-correct .game-cheer{background:linear-gradient(90deg,#ffd166,#ff5d8f);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Memory */
+.hard-pilot .pilot-memory-grid{gap:10px}
+.hard-pilot .pilot-memory-grid .memory-card{position:relative;border:0;border-radius:16px;min-height:92px;font-size:.95rem;font-weight:800;color:#fff;background:repeating-linear-gradient(45deg,#ffffff1a 0 8px,transparent 8px 16px),linear-gradient(140deg,#7b61ff,#b388ff);box-shadow:0 6px 0 #0005;transition:transform .2s}
+.hard-pilot .pilot-memory-grid .memory-card.is-form{background:repeating-linear-gradient(-45deg,#ffffff1a 0 8px,transparent 8px 16px),linear-gradient(140deg,#ff5d8f,#ff9f1c)}
+.hard-pilot .pilot-memory-grid .memory-card:not(.is-open):not(.is-found) span{font-size:1.9rem;text-shadow:0 2px 0 #0004}
+.hard-pilot .pilot-memory-grid .memory-card:not(:disabled):hover{transform:translateY(-3px) rotate(-1deg)}
+.hard-pilot .pilot-memory-grid .memory-card.is-open{background:#fff;color:#2a1440;animation:game-flip .35s ease-out}
+.hard-pilot .pilot-memory-grid .memory-card.is-found{background:hsl(var(--pair-hue) 85% 66%);color:#1a1030;box-shadow:0 0 0 3px #fff6,0 6px 0 #0004;animation:game-pop .4s ease-out}
+.hard-pilot .memory-counter{display:inline-block;padding:6px 14px;border-radius:999px;background:linear-gradient(135deg,#7b61ff55,#ff5d8f55)}
+.hard-pilot .pilot-memory-results h4{font-size:1.2rem}
+.hard-pilot .pilot-memory-results tbody tr:nth-child(4n+1) th{color:#ff9ab1}.hard-pilot .pilot-memory-results tbody tr:nth-child(4n+2) th{color:#ffd166}.hard-pilot .pilot-memory-results tbody tr:nth-child(4n+3) th{color:#77dec5}.hard-pilot .pilot-memory-results tbody tr:nth-child(4n) th{color:#9fb6ff}
+
+/* String game (matching) */
+.hard-pilot .pilot-connect button{border:2px solid color-mix(in srgb,var(--match-color) 55%,transparent);border-radius:16px;background:color-mix(in srgb,var(--match-color) 12%,#242134);font-weight:600;transition:transform .15s,background .2s}
+.hard-pilot .pilot-connect-right button:not(.is-linked){--match-color:#8f86b8}
+.hard-pilot .pilot-connect button.is-linked{background:color-mix(in srgb,var(--match-color) 32%,#1c1c2e);border-color:var(--match-color);box-shadow:none}
+.hard-pilot .pilot-connect button.is-selected{transform:scale(1.04);background:color-mix(in srgb,var(--match-color) 45%,#1c1c2e)}
+.hard-pilot .pilot-connect-lines path{stroke-width:4;stroke-linecap:round}
+.hard-pilot .pilot-connect-lines circle{r:5px}
+
+/* Word train (sentence building) */
+.game-train{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px;min-height:68px;margin:16px 0;padding:12px 12px 16px;border-radius:16px;background:repeating-linear-gradient(90deg,#a98bb0 0 12px,transparent 12px 20px) left bottom 6px/100% 3px no-repeat,#ffffff0a}
+.game-loco{font-size:2.2rem;line-height:1}
+.game-train-empty{align-self:center;color:#c5b5cb;font-size:.92rem}
+.hard-pilot .game-wagon{position:relative;width:auto;min-height:46px;height:auto;margin-bottom:6px;padding:9px 13px 12px;border:0;border-radius:10px 10px 5px 5px;background:hsl(var(--hue) 82% 66%);color:#1a1030;font:inherit;font-weight:800;box-shadow:inset 0 -4px 0 #0003;cursor:pointer;animation:game-roll .35s ease-out}
+.hard-pilot .game-wagon::before,.hard-pilot .game-wagon::after{content:'';position:absolute;bottom:-7px;width:11px;height:11px;border-radius:50%;background:#2a1d3a;border:2px solid #d8c8e0}
+.hard-pilot .game-wagon::before{left:8px}.hard-pilot .game-wagon::after{right:8px}
+.hard-pilot .game-wagon:disabled{cursor:default}
+.game-train.is-departing .game-loco{animation:game-chug .5s ease-in-out 3}
+.hard-pilot .game-depot button[data-pilot-token]{border:2px solid hsl(var(--hue) 82% 66%);border-radius:12px;background:hsl(var(--hue) 55% 26%);color:#fff;font-weight:650;transition:transform .15s}
+.hard-pilot .game-depot button[data-pilot-token]:not(:disabled):hover{transform:translateY(-2px)}
+.hard-pilot .game-depot button:disabled{opacity:.3}
+.hard-pilot .game-depot .game-undo{background:#ffffff12;border:2px dashed #a98bb0;border-radius:12px}
+
+/* Magic gaps (typed answers) */
+.game-bubble{display:flex;gap:12px;align-items:flex-start;margin:14px 0}
+.game-speaker{flex:none;font-size:2.1rem;line-height:1;animation:game-bob 3s ease-in-out infinite}
+.game-bubble>div{position:relative;flex:1;min-width:0;padding:10px 16px;border-radius:18px;background:#fbf7ff;color:#1a1030}
+.game-bubble>div::before{content:'';position:absolute;left:-9px;top:14px;border:9px solid transparent;border-right-color:#fbf7ff;border-left:0}
+.hard-pilot .game-bubble .challenge-sentence{margin:4px 0;padding:0;border:0;background:none;color:#1a1030;font-weight:600}
+.hard-pilot .game-bubble .pilot-field{margin:4px 0}
+.game-gap-line>span{font-size:1.1rem;line-height:2.3;font-weight:600}
+.hard-pilot input.game-gap{display:inline-block;width:9ch;min-width:6ch;max-width:100%;min-height:40px;margin:0 6px;padding:4px 10px;border:0;border-bottom:3px solid #7b61ff;border-radius:10px;background:linear-gradient(135deg,#4cc9f040,#b388ff40);color:#1a1030;font:inherit;font-weight:800;text-align:center;animation:game-glow 2.2s ease-in-out infinite}
+@supports(field-sizing:content){.hard-pilot input.game-gap{width:auto;field-sizing:content}}
+.hard-pilot input.game-gap:focus{outline:3px solid #7b61ff;outline-offset:2px;animation:none}
+.hard-pilot input.game-gap[readonly]{animation:none}
+.hard-pilot .is-won input.game-gap{background:#06d6a055;border-bottom-color:#06d6a0}
+.hard-pilot .is-retry input.game-gap{background:#ffd16670;border-bottom-color:#ff9f1c}
+.hard-pilot .game-wand input{border:2px solid var(--g1);border-radius:14px;background:#ffffff0d;color:#fff;padding:10px 14px;font-weight:650}
+.hard-pilot .game-wand input:focus{outline:3px solid var(--g2);outline-offset:2px}
+.game-accents{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+.hard-pilot .game-accents button{width:auto;min-width:42px;min-height:42px;height:auto;padding:4px 8px;border:2px solid color-mix(in srgb,var(--g1) 70%,transparent);border-radius:12px;background:color-mix(in srgb,var(--g1) 18%,#1c1c2e);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.hard-pilot .game-accents button:hover{background:color-mix(in srgb,var(--g1) 35%,#1c1c2e)}
+
+/* Radio quiz (listening) */
+.game-radio{margin:0 0 16px;padding:12px 16px 4px;border-radius:20px;background:linear-gradient(135deg,#2a1d4a,#3b1f45);border:2px solid #7b61ff66;color:#f4edf7}
+.game-radio .challenge-audio{align-items:center;margin-top:4px}
+.hard-pilot .game-radio #pilotListen{border:0;border-radius:999px;background:linear-gradient(135deg,#ff5d8f,#7b61ff);color:#fff;font-weight:800}
+.hard-pilot .game-radio #pilotListen:disabled{opacity:.5}
+.game-eq{display:inline-flex;gap:4px;align-items:flex-end;height:32px;padding:0 4px}
+.game-eq i{width:6px;height:25%;border-radius:3px;background:linear-gradient(#ffd166,#ff5d8f)}
+.game-radio.is-playing .game-eq i{animation:game-eq .7s ease-in-out infinite alternate}
+.game-radio.is-playing .game-eq i:nth-child(2){animation-delay:.15s}.game-radio.is-playing .game-eq i:nth-child(3){animation-delay:.3s}.game-radio.is-playing .game-eq i:nth-child(4){animation-delay:.1s}.game-radio.is-playing .game-eq i:nth-child(5){animation-delay:.25s}
+.game-quiz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hard-mode.hard-pilot .hard-option.game-quiz-card{position:relative;align-items:center;margin:0;min-height:64px;padding:12px;border:2px solid hsl(var(--hue) 80% 64%);border-radius:16px;background:hsl(var(--hue) 55% 22%);color:#fff;transition:transform .15s,background .2s}
+.hard-mode.hard-pilot .game-quiz-card input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.hard-mode.hard-pilot .game-quiz-card:has(input:focus-visible){outline:3px solid #fff;outline-offset:2px}
+.hard-mode.hard-pilot .game-quiz-card:has(input:checked){background:hsl(var(--hue) 82% 66%);color:#1a1030;font-weight:700;transform:scale(1.02)}
+.hard-mode.hard-pilot .game-quiz-card:not(:has(input:checked)):hover{transform:translateY(-2px)}
+.game-letter{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:#fff;color:hsl(var(--hue) 70% 35%);font-weight:900}
+.hard-mode.hard-pilot .game-quiz:disabled .game-quiz-card:not(.is-answer):not(:has(input:checked)){opacity:.45}
+.hard-mode.hard-pilot .game-quiz-card.is-answer{box-shadow:0 0 0 4px #06d6a0}
+@media(max-width:480px){.game-quiz{grid-template-columns:1fr}}
+
+/* Result */
+.hard-mode.hard-pilot .game-result{position:relative;text-align:center}
+.hard-mode.hard-pilot .game-result.is-won{border:2px solid #ffd166;background:radial-gradient(100% 70% at 50% 0%,#ffd16630,transparent 70%),#1c1c2e}
+.game-trophy{display:grid;justify-items:center;gap:6px;margin:6px 0 12px}
+.game-trophy-icon{font-size:4.2rem;line-height:1;animation:game-bob 2s ease-in-out infinite}
+.game-trophy-stars i{font-style:normal;font-size:2.3rem;margin:0 4px;color:#ffffff2e}
+.game-trophy-stars i.is-lit{color:#ffd166;text-shadow:0 0 14px #ffd166;animation:game-pop .5s ease-out backwards}
+.game-trophy-stars i:nth-child(2){animation-delay:.2s}.game-trophy-stars i:nth-child(3){animation-delay:.4s}
+
+/* Confetti */
+.game-confetti{position:absolute;left:50%;top:35%;width:0;height:0;pointer-events:none;z-index:5;animation:game-fade 1.4s linear forwards}
+.game-confetti i{position:absolute;width:8px;height:12px;border-radius:2px;background:var(--c);animation:game-burst 1.2s cubic-bezier(.2,.7,.3,1) var(--d) both}
+
+@keyframes game-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes game-pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+@keyframes game-flip{0%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+@keyframes game-glow{0%,100%{box-shadow:0 0 0 0 #7b61ff00}50%{box-shadow:0 0 0 4px #7b61ff40}}
+@keyframes game-eq{from{height:20%}to{height:100%}}
+@keyframes game-roll{from{transform:translateX(-14px);opacity:0}to{transform:none;opacity:1}}
+@keyframes game-chug{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px) rotate(-4deg)}}
+@keyframes game-burst{0%{transform:translate(0,0) rotate(0);opacity:1}45%{transform:translate(calc(var(--x)*.7),var(--y)) rotate(calc(var(--r)*.5));opacity:1}100%{transform:translate(var(--x),calc(var(--y) + 170px)) rotate(var(--r));opacity:0}}
+@keyframes game-fade{0%,85%{opacity:1}100%{opacity:0}}
+
+@media(prefers-reduced-motion:reduce){.hard-pilot *,.hard-pilot *::before,.hard-pilot *::after{animation:none!important;transition:none!important}.game-confetti{display:none}}
