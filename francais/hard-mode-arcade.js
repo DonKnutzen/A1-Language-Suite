@@ -304,9 +304,14 @@ const ICONS={
 };
 function quizAudio(base='audio/quiz/'){
  const files={},ok={};let loop=null,loopSlot=null,shot=null;const layers=new Set();
- if(typeof window.Audio==='function')for(const [slot,name] of Object.entries(QUIZ_SOUNDS)){try{const a=new window.Audio();a.preload='auto';const ready=()=>{ok[slot]=true;};a.addEventListener('canplaythrough',ready,{once:true});a.addEventListener('loadeddata',ready,{once:true});a.addEventListener('error',()=>{ok[slot]=false;},{once:true});a.src=base+name+'.mp3';files[slot]=a;}catch{}}
+ // Each file is downloaded completely before it counts as ready, so the first play of a long loop does not stutter while it streams.
+ const whole=typeof window.fetch==='function'&&typeof window.URL?.createObjectURL==='function';
+ if(typeof window.Audio==='function')for(const [slot,name] of Object.entries(QUIZ_SOUNDS)){try{const a=new window.Audio();a.preload='auto';files[slot]=a;const url=base+name+'.mp3';
+  a.addEventListener('error',()=>{ok[slot]=false;},{once:true});
+  if(whole){a.addEventListener('canplaythrough',()=>{ok[slot]=true;},{once:true});window.fetch(url).then(r=>r.ok?r.blob():Promise.reject(new Error(r.status))).then(blob=>{a.src=URL.createObjectURL(blob);a.load?.();},()=>{ok[slot]=false;});}
+  else{const ready=()=>{ok[slot]=true;};a.addEventListener('canplaythrough',ready,{once:true});a.addEventListener('loadeddata',ready,{once:true});a.src=url;}}catch{}}
  const has=slot=>soundOn()&&ok[slot]===true;
- const go=(a,repeat)=>{a.muted=false;a.loop=repeat;try{a.currentTime=0;}catch{}try{Promise.resolve(a.play?.()).catch(()=>{});}catch{}};
+ const go=(a,repeat)=>{a.muted=false;a.loop=repeat;try{if(a.currentTime)a.currentTime=0;}catch{}try{Promise.resolve(a.play?.()).catch(()=>{});}catch{}};
  const halt=a=>{try{a?.pause?.();}catch{}};
  return {
   has,
@@ -315,7 +320,7 @@ function quizAudio(base='audio/quiz/'){
   whenReady(slot,fn){const a=files[slot];if(!a)return;const once=()=>{a.removeEventListener('canplaythrough',once);a.removeEventListener('loadeddata',once);fn();};a.addEventListener('canplaythrough',once);a.addEventListener('loadeddata',once);},
   custom:()=>Object.values(ok).some(Boolean),
   // Mobile browsers only allow sounds started from a tap; starting and immediately pausing every file at game start unlocks them silently.
-  unlock(skip=[]){for(const [slot,a] of Object.entries(files)){if(skip.includes(slot))continue;try{a.muted=true;Promise.resolve(a.play?.()).catch(()=>{});halt(a);try{a.currentTime=0;}catch{}}catch{}a.muted=false;}},
+  unlock(skip=[]){for(const [slot,a] of Object.entries(files)){if(skip.includes(slot))continue;try{a.muted=true;Promise.resolve(a.play?.()).catch(()=>{});halt(a);try{if(a.currentTime)a.currentTime=0;}catch{}}catch{}a.muted=false;}},
   play(slot,onEnd){if(!has(slot))return false;if(shot!==files[slot])halt(shot);shot=files[slot];if(onEnd)shot.addEventListener('ended',onEnd,{once:true});go(shot,false);return true;},
   // Plays on top of everything else without stopping it (joker).
   over(slot){if(!has(slot))return false;layers.add(files[slot]);go(files[slot],false);return true;},
