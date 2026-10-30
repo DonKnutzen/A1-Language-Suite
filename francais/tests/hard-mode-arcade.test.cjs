@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM,VirtualConsole}=require('jsdom');
 const root=path.resolve(__dirname,'../..');
 function env(state={lessonMasteryBest:{1:80}}){const dom=new JSDOM('<main id="view"></main>',{runScripts:'outside-only',url:'https://example.org/',virtualConsole:new VirtualConsole()}),w=dom.window;const spoken=[],jobs=[];w.scrollTo=()=>{};w.A1Profile={getUiLang:()=>'de'};w.A1Voice={cancel(){},speak:text=>spoken.push(text),speakSequence:texts=>spoken.push(...texts),speakDialogue:()=>true};
- for(const f of ['shared/answer-feedback.js','francais/data.js','francais/hard-mode-content.js','francais/lesson-challenge.js','francais/hard-mode-arcade.js','francais/hard-mode-pilot.js','francais/hard-mode.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
+ for(const f of ['shared/answer-feedback.js','francais/data.js','francais/hard-mode-content.js','francais/lesson-challenge.js','shared/quiz-show.js','francais/hard-mode-arcade.js','francais/hard-mode-pilot.js','francais/hard-mode.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
  const view=w.document.querySelector('main'),lesson=w.FR_A1_DATA.lessons.find(l=>l.id===1);let saves=0;
  const render=()=>w.FR_A1_HARD_MODE.render({lesson,view,state,save:()=>{saves++;},onBack:()=>view.replaceChildren()});
  const click=s=>{const el=view.querySelector(s);assert(el,s);el.click();};

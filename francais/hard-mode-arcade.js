@@ -290,96 +290,12 @@ const QUESTIONS=[
  Q(10,'Welcher Satz ist komplett richtig?','Which sentence is completely correct?',['Je viens de Berlin et j’habite à Lyon.','Je viens à Berlin et j’habite de Lyon.','Je vient de Berlin et j’habite à Lyon.','Je viens de Berlin et je habite à Lyon.'],['venir de + Herkunft, habiter à + Wohnort, und vor Vokal: j’.','venir de + origin, habiter à + home, and before a vowel: j’.'],'Je viens de Berlin et j’habite à Lyon.'),
  Q(10,'Vous ___ de Paris et vous ___ à Lyon.','Vous ___ de Paris et vous ___ à Lyon.',['venez · habitez','venez · habitons','venons · habitez','viens · habites'],['Zweimal vous, also zweimal -ez.','vous twice, so -ez twice.'],'Vous venez de Paris et vous habitez à Lyon.')
 ];
-const money=n=>new Intl.NumberFormat(en()?'en-GB':'de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
-const short=n=>n>=1e6?t('1 Mio. €','€1M'):n>=1000?t(n/1000+'k €','€'+n/1000+'k'):t(n+' €','€'+n);
-function quizSet(){return LADDER.map((_,i)=>pick(QUESTIONS.filter(q=>q.l===i+1)));}
-// Optional sound files in francais/audio/quiz/<name>.mp3 (see README there). A missing file falls back to the synthesised sound.
-// Three prize ranges (questions 1–4, 5–7, 8–10) each have their own loop, right and wrong sound.
-const QUIZ_SOUNDS={intro:'start',loop1:'schleife-1',loop2:'schleife-2',loop3:'schleife-3',lock:'festgelegt',right1:'richtig-1',right2:'richtig-2',right3:'richtig-3',wrong1:'falsch-1',wrong2:'falsch-2',wrong3:'falsch-3',joker:'joker',walk:'aussteigen'};
-const tier=level=>level<4?1:level<7?2:3;
-const ICONS={
- half:'<svg class="quiz-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="#1d2f5e" stroke="#4cc9f0" stroke-width="2"/><path d="M16 3a13 13 0 0 1 0 26z" fill="#4cc9f0"/><path d="M16 3v26" stroke="#fff" stroke-width="2"/></svg>',
- hint:'<svg class="quiz-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="11" fill="#ffd16633"/><path d="M16 5a8 8 0 0 0-4.8 14.4c.8.6 1.3 1.5 1.3 2.5V23h7v-1.1c0-1 .5-1.9 1.3-2.5A8 8 0 0 0 16 5z" fill="#ffd166" stroke="#fff3c4" stroke-width="1.5" stroke-linejoin="round"/><path d="M13 26.5h6M14 29h4" stroke="#fff3c4" stroke-width="2" stroke-linecap="round"/><path d="M16 9.5a3.5 3.5 0 0 0-3.5 3.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>',
- walk:'<svg class="quiz-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 5h6a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2h-6" fill="none" stroke="#ffd166" stroke-width="2.4" stroke-linecap="round"/><path d="M13 10l6 6-6 6M19 16H5" fill="none" stroke="#fff3c4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-};
-function quizAudio(base='audio/quiz/'){
- const files={},ok={};let loop=null,loopSlot=null,shot=null;const layers=new Set();
- // Each file is downloaded completely before it counts as ready, so the first play of a long loop does not stutter while it streams.
- const whole=typeof window.fetch==='function'&&typeof window.URL?.createObjectURL==='function';
- if(typeof window.Audio==='function')for(const [slot,name] of Object.entries(QUIZ_SOUNDS)){try{const a=new window.Audio();a.preload='auto';files[slot]=a;const url=base+name+'.mp3';
-  a.addEventListener('error',()=>{ok[slot]=false;},{once:true});
-  if(whole){a.addEventListener('canplaythrough',()=>{ok[slot]=true;},{once:true});window.fetch(url).then(r=>r.ok?r.blob():Promise.reject(new Error(r.status))).then(blob=>{a.src=URL.createObjectURL(blob);a.load?.();},()=>{ok[slot]=false;});}
-  else{const ready=()=>{ok[slot]=true;};a.addEventListener('canplaythrough',ready,{once:true});a.addEventListener('loadeddata',ready,{once:true});a.src=url;}}catch{}}
- const has=slot=>soundOn()&&ok[slot]===true;
- const go=(a,repeat)=>{a.muted=false;a.loop=repeat;try{if(a.currentTime)a.currentTime=0;}catch{}try{Promise.resolve(a.play?.()).catch(()=>{});}catch{}};
- const halt=a=>{try{a?.pause?.();}catch{}};
- return {
-  has,
-  // 'ready', 'pending' (file exists but is still loading) or 'missing' (no file: use the synthesised sound).
-  state:slot=>ok[slot]===true?'ready':ok[slot]===false||!files[slot]?'missing':'pending',
-  whenReady(slot,fn){const a=files[slot];if(!a)return;const once=()=>{a.removeEventListener('canplaythrough',once);a.removeEventListener('loadeddata',once);fn();};a.addEventListener('canplaythrough',once);a.addEventListener('loadeddata',once);},
-  custom:()=>Object.values(ok).some(Boolean),
-  // Mobile browsers only allow sounds started from a tap; starting and immediately pausing every file at game start unlocks them silently.
-  unlock(skip=[]){for(const [slot,a] of Object.entries(files)){if(skip.includes(slot))continue;try{a.muted=true;Promise.resolve(a.play?.()).catch(()=>{});halt(a);try{if(a.currentTime)a.currentTime=0;}catch{}}catch{}a.muted=false;}},
-  play(slot,onEnd){if(!has(slot))return false;if(shot!==files[slot])halt(shot);shot=files[slot];if(onEnd)shot.addEventListener('ended',onEnd,{once:true});go(shot,false);return true;},
-  // Plays on top of everything else without stopping it (joker).
-  over(slot){if(!has(slot))return false;layers.add(files[slot]);go(files[slot],false);return true;},
-  loop(slot){if(!has(slot)){this.stopLoop();return false;}if(loopSlot===slot&&loop&&!loop.paused)return true;this.stopLoop();loop=files[slot];loopSlot=slot;go(loop,true);return true;},
-  stopLoop(){halt(loop);loop=null;loopSlot=null;},
-  stopShot(){halt(shot);shot=null;},
-  stopAll(){this.stopLoop();this.stopShot();layers.forEach(halt);layers.clear();}
- };
-}
-// A running game is saved after every change; locking in commits the outcome at once, so leaving during the suspense cannot undo an answer.
-const resumable=g=>!!g&&Array.isArray(g.set)&&g.set.length===LADDER.length&&g.set.every((n,i)=>QUESTIONS[n]?.l===i+1)&&Number.isInteger(g.level)&&g.level>=0&&g.level<LADDER.length;
-function runQuiz(host,{best=0,onEnd,onExit,saved=null,onSave}={}){
- const S={level:0,set:quizSet(),jokers:{cut:true,hint:true},removed:[],showHint:false,selected:null,phase:'intro',won:0,order:null};
- let tune=null,timers=[],dead=false;const snd=quizAudio();
- // The loop waits while the start or a result sound is still playing (S.hold), then resumes for the current prize range.
- // The quiz only plays the uploaded files: a file that is still loading is waited for, a missing file stays silent.
- function background(){if(S.hold||(S.phase!=='ask'&&S.phase!=='confirm'))return;const slot='loop'+tier(S.level),state=snd.state(slot);
-  if(state!=='missing'){tune?.stop();tune=null;if(state==='ready')snd.loop(slot);else{snd.stopLoop();snd.whenReady(slot,()=>later(background,0));}return;}
-  snd.stopLoop();tune?.stop();tune=null;}
- // Plays an uploaded file cue; without a file the moment stays silent.
- function cue(slot,{over=false,onEnd}={}){return snd.state(slot)==='ready'&&(over?snd.over(slot):snd.play(slot,onEnd));}
- function hold(slot,fallbackMs){if(!cue(slot,{onEnd:release}))return false;S.hold=true;later(release,fallbackMs);return true;}
- function release(){if(!S.hold)return;S.hold=false;later(background,600);}
- const later=(fn,ms)=>timers.push(setTimeout(()=>{if(!dead&&host.isConnected)fn();},ms));
- const q=()=>S.set[S.level];
- const snapshot=(extra={})=>({set:S.set.map(x=>QUESTIONS.indexOf(x)),level:S.level,won:S.won,jokers:{...S.jokers},order:S.order,removed:S.removed,showHint:S.showHint,...extra});
- function newOrder(){S.order=shuffle([0,1,2,3]);S.removed=[];S.showHint=false;S.selected=null;}
- function ladder(){return `<ol class="quiz-ladder" aria-label="${t('Gewinnstufen','Prize ladder')}">${LADDER.map((v,i)=>`<li class="${i===S.level&&S.phase!=='end'?'is-current':''} ${i<S.level?'is-done':''} ${i===SAFE?'is-safe':''}"><span>${i<S.level?'✓':i+1}</span><b>${short(v)}</b>${i===SAFE?'<i aria-label="'+t('Sicherheitsstufe','Safe level')+'">🛟</i>':''}</li>`).reverse().join('')}</ol>`;}
- function frame(inner){host.innerHTML=`<div class="arcade-stage quiz-show"><div class="quiz-stage"><div class="quiz-lights" aria-hidden="true"><i></i><i></i><i></i></div>${inner}</div>${controls()}</div>`;bindControls(host,{exit,sound:on=>{if(!on){snd.stopAll();tune?.on(false);}else if(S.phase==='ask'||S.phase==='confirm')background();}});host.querySelector('[data-arcade-pause]')?.remove();host.querySelector('[data-arcade-voice]')?.remove();}
- function intro(){S.phase='intro';frame(`<div class="quiz-intro"><span class="arcade-big-icon" aria-hidden="true">💎</span><h3>${t('Millionen-Turm','Million tower')}</h3><p>${t('10 Fragen zu Lektion 1, jede mit 4 Antworten. Jede richtige Antwort bringt dich eine Stufe höher – bis zur Million! Ab 1.000 € bist du sicher 🛟. Du kannst jederzeit mit deinem Gewinn aussteigen.','10 questions on lesson 1, each with 4 answers. Every right answer takes you one step higher – up to a million! From €1,000 you are safe 🛟. You can walk away with your winnings at any time.')}</p><p>${t('Joker:','Jokers:')} <b>50/50</b> ${t('(zwei falsche Antworten weg)','(removes two wrong answers)')} · 💡 ${t('Tipp','Hint')}</p>${best?`<p class="arcade-best">🏆 ${t('Rekord','Best')}: ${money(best)}</p>`:''}${resumable(saved)?`<button type="button" class="hard-start" data-quiz-resume>▶ ${t('Weiter bei Frage','Continue at question')} ${saved.level+1} · ${money(LADDER[saved.level])}</button><button type="button" class="secondary-btn" data-quiz-start>↻ ${t('Neues Spiel','New game')}</button>`:`<button type="button" class="hard-start" data-quiz-start>▶ ${t('Spiel starten','Start the game')}</button>`}</div>`);host.querySelector('[data-quiz-start]').onclick=()=>start();host.querySelector('[data-quiz-resume]')?.addEventListener('click',()=>start(saved));}
- function start(from){Object.assign(S,{level:0,set:quizSet(),jokers:{cut:true,hint:true},won:0,phase:'ask',reveal:false,hold:false});newOrder();
-  if(resumable(from)){Object.assign(S,{set:from.set.map(n=>QUESTIONS[n]),level:from.level,won:from.won||0,jokers:{cut:from.jokers?.cut!==false,hint:from.jokers?.hint!==false}});if(Array.isArray(from.order)&&from.order.length===4){S.order=from.order;S.removed=Array.isArray(from.removed)?from.removed:[];S.showHint=!!from.showHint;}}snd.stopAll();tune?.stop();tune=null;snd.unlock(['intro','loop1']);
-  hold('intro',12000);ask();}
- function ask(){if(S.phase!=='suspense'&&S.phase!=='reveal')S.phase=S.selected===null?'ask':'confirm';if(S.phase==='ask'||S.phase==='confirm'){background();saved=snapshot();onSave?.(saved);}const cur=q(),letters='ABCD';
-  frame(`<div class="quiz-board"><div class="quiz-main"><div class="quiz-level quiz-topbar"><span class="quiz-chip">${t('Frage','Question')} ${S.level+1}/10</span><span class="quiz-prize"><small>${t('Es geht um','Playing for')}</small>${money(LADDER[S.level])}</span></div><div class="quiz-question"><span class="quiz-q-badge" aria-hidden="true">${S.level+1}</span><span ${/___/.test(cur.q[0])?'lang="fr"':''}>${E(tx(cur.q))}</span></div>${S.showHint?`<p class="quiz-hint">💡 ${E(tx(cur.h))}</p>`:''}
-  <div class="quiz-answers">${S.order.map((k,n)=>`<button type="button" class="quiz-answer ${S.selected===k?'is-selected':''} ${S.reveal?(k===0?'is-correct':S.selected===k?'is-wrong':''):''}" data-quiz-answer="${k}" ${S.removed.includes(k)||S.phase==='suspense'||S.phase==='reveal'?'disabled':''} ${typeof cur.o[k]==='string'?'lang="fr"':''}><b>${letters[n]}</b><span>${S.removed.includes(k)?'':E(tx(cur.o[k]))}</span></button>`).join('')}</div>
-  ${S.reveal&&S.selected===0?`<div class="quiz-win-banner" role="status"><b>✓ ${t('Richtig!','Correct!')}</b> ${money(LADDER[S.level])}${S.level===SAFE?` · 🛟 ${t('sicher','safe')}`:''}</div>`:''}${S.phase==='suspense'?`<div class="quiz-suspense" role="status">${t('Antwort festgelegt …','Answer locked in …')}</div>`:''}
-  ${S.phase==='confirm'?`<div class="quiz-confirm"><button type="button" class="hard-start" data-quiz-lock>✔ ${t('Sicher – Antwort festlegen!','I’m sure – lock it in!')}</button></div>`:''}
-  <div class="quiz-jokers">${[['cut',ICONS.half,'50/50'],['hint',ICONS.hint,t('Tipp','Hint')]].map(([k,icon,name])=>`<button type="button" class="quiz-joker" data-quiz-joker="${k}" ${S.jokers[k]&&S.phase!=='suspense'&&S.phase!=='reveal'?'':'disabled'} aria-label="${name}">${icon}<small>${name}</small></button>`).join('')}<button type="button" class="quiz-joker quiz-walk" data-quiz-walk ${S.phase==='suspense'||S.phase==='reveal'?'disabled':''}>${ICONS.walk}<small>${t('Aussteigen','Walk away')}: ${money(S.won)}</small></button></div></div>${ladder()}</div>`);
-  host.querySelectorAll('[data-quiz-answer]').forEach(b=>b.onclick=()=>{if(S.phase!=='ask'&&S.phase!=='confirm')return;S.selected=Number(b.dataset.quizAnswer);ask();});
-  host.querySelector('[data-quiz-lock]')?.addEventListener('click',lock);
-  host.querySelectorAll('[data-quiz-joker]').forEach(b=>b.onclick=()=>joker(b.dataset.quizJoker));
-  host.querySelector('[data-quiz-walk]').onclick=()=>end('walk');}
- function joker(k){if(!S.jokers[k])return;S.jokers[k]=false;cue('joker',{over:true});if(k==='cut'){S.removed=shuffle([1,2,3].filter(i=>i!==S.selected)).slice(0,2);if(S.removed.includes(S.selected))S.selected=null;}else if(k==='hint')S.showHint=true;ask();}
- // Lock-in: loop stops, lock-in sound, 3 s suspense, then the right/wrong sound of the current prize range.
- function lock(){const right=S.selected===0;saved=right&&S.level<LADDER.length-1?snapshot({level:S.level+1,won:LADDER[S.level],order:null,removed:[],showHint:false}):null;onSave?.(saved);S.phase='suspense';S.hold=false;snd.stopLoop();tune?.on(false);cue('lock');ask();later(reveal,3000);}
- function reveal(){const ok=S.selected===0,last=S.level===LADDER.length-1,range=tier(S.level);S.reveal=true;S.phase='reveal';snd.stopShot();ask();
-  if(ok){S.won=LADDER[S.level];hold('right'+range,10000);later(()=>{S.reveal=false;if(S.level===LADDER.length-1)return end('win');S.level++;S.phase='ask';newOrder();ask();},2200);}
-  else{cue('wrong'+range);later(()=>{S.reveal=false;end('lost');},2400);}}
- function end(how){const amount=how==='lost'?(S.level>SAFE?LADDER[SAFE]:0):S.won;S.phase='end';saved=null;onSave?.(null);S.hold=false;tune?.stop();tune=null;snd.stopLoop();if(how==='walk')cue('walk');const stars=starsFor(QUIZ,amount),record=amount>best;if(record)best=amount;onEnd?.({score:amount,stars});
-  frame(`<div class="quiz-intro quiz-end ${how==='win'?'is-million':''}"><span class="arcade-big-icon" aria-hidden="true">${how==='win'?'💎':amount?'💰':'😬'}</span><h3>${how==='win'?t('MILLIONÄR! 🎉','MILLIONAIRE! 🎉'):how==='walk'?t('Klug ausgestiegen!','Smart move!'):t('Leider falsch!','Sorry, wrong!')}</h3><p class="arcade-score">${money(amount)}</p><p class="arcade-result-stars" aria-label="${stars}/3">${[1,2,3].map(k=>`<i class="${k<=stars?'is-lit':''}">★</i>`).join('')}</p>${record&&amount?`<p class="arcade-record">🎉 ${t('Neuer Rekord!','New record!')}</p>`:''}${how==='lost'?`<p>${t('Richtig war','The right answer was')}: <b lang="fr">${E(tx(q().o[0]))}</b></p>`:''}<div class="arcade-actions"><button type="button" class="hard-start" data-quiz-start>↻ ${t('Neues Spiel','New game')}</button><button type="button" class="secondary-btn" data-arcade-back>← ${t('Spielhalle','Arcade')}</button></div></div>`);
-  host.querySelector('[data-quiz-start]').onclick=start;host.querySelector('[data-arcade-back]').onclick=exit;}
- function stop(){if(dead)return;dead=true;timers.forEach(clearTimeout);tune?.stop();tune=null;snd.stopAll();try{window.A1Voice?.cancel?.();}catch{}}
- function exit(){stop();onExit?.();}
- intro();return stop;
-}
+// Lesson 1 uses the hand-written questions above; the show itself lives in shared/quiz-show.js. Old saves stored question numbers.
+function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()=>{};const old=opts.saved;const saved=old&&!old.qs&&Array.isArray(old.set)?{...old,qs:old.set.map(n=>QUESTIONS[n])}:old;
+ return show.mount(host,{...opts,saved,pool:QUESTIONS,course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:t('Spielhalle','Arcade')});}
 
 function mount(host,id,opts={}){if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};
 const meta=g=>({id:g.id,icon:g.icon,theme:g.theme,name:g.name,tag:g.tag,stars:g.stars});
-window.FR_A1_ARCADE={games:[...GAMES,QUIZ].map(meta),mount,format:(id,score)=>id==='quiz'?money(score):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,QUIZ_SOUNDS},engines};
+window.FR_A1_ARCADE={games:[...GAMES,QUIZ].map(meta),mount,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
 })();

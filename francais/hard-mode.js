@@ -178,9 +178,21 @@
     }
     function cancelAudio(){audioRun++;if(audioTimer)window.clearTimeout(audioTimer);audioTimer=null;playing=null;window.A1Voice?.cancel();}
     function leave(){cancelAudio();redraw=null;checkDetached=null;onBack();}
+    // Quiz show for this lesson (shared/quiz-show.js): its saved game, best prize and stars live next to the Hard Mode attempt.
+    const quizData=()=>{const hm=((state.lessonWork||={})[lesson.id]||={}).hardMode||={};return hm.quiz||={};};
+    const quizEntry=()=>{if(!window.A1_QUIZ_SHOW)return '';const Q=quizData(),show=window.A1_QUIZ_SHOW;const info=Q.game?`▶ ${t('Weiter bei Frage','Continue at question')} ${Number(Q.game.level)+1}`:Q.best?`🏆 ${t('Rekord','Best')}: ${show.money(Q.best,'fr')} · ${'★'.repeat(Q.stars||0)}${'☆'.repeat(3-(Q.stars||0))}`:t('10 Fragen zu dieser Lektion – immer schwerer','10 questions on this lesson – ever harder');return `<button type="button" class="quiz-entry" data-hard-quiz><span aria-hidden="true">💎</span><span>${t('Millionen-Turm','Million tower')}<small>${info}</small></span></button>`;};
+    function openQuiz(){
+      if(playing!==null)cancelAudio();redraw=null;checkDetached=null;const Q=quizData();let stop=null;
+      view.innerHTML=`<div class="quiz-page" data-i18n-ignore data-bug-lesson="${lesson.id}"><div data-quiz-host></div></div>`;
+      const keep=()=>{try{save(false);}catch{}};
+      stop=window.A1_QUIZ_SHOW.mount(view.querySelector('[data-quiz-host]'),{pool:window.A1_QUIZ_SHOW.generate('fr',lesson.id),course:'fr',lessonLabel:`${t('Lektion','Lesson')} ${lesson.id}`,audioBase:'audio/quiz/',best:Q.best||0,saved:Q.game||null,backLabel:'Hard Mode',
+        onSave:game=>{if(game)Q.game=game;else delete Q.game;keep();},onEnd:({score,stars})=>{if(score>(Q.best||0))Q.best=score;Q.stars=Math.max(Q.stars||0,stars);keep();},onExit:()=>{stop=null;render({lesson,view,state,save,onBack});}});
+      window.scrollTo?.({top:0,behavior:'instant'});
+    }
     function mount(html){
       view.innerHTML=`<div class="hard-mode" data-i18n-ignore data-bug-lesson="${lesson.id}">${html}</div>`;
       root=view.firstElementChild;
+      root.firstElementChild?.insertAdjacentHTML('afterend',quizEntry());root.querySelector('[data-hard-quiz]')?.addEventListener('click',openQuiz);
       checkDetached=()=>{if(!root?.isConnected&&playing!==null)cancelAudio();};
       redraw=()=>{if(root?.isConnected){
         const active=document.activeElement,selector=active?.id?'#'+active.id:active?.dataset?.hardGap!==undefined?`[data-hard-gap="${active.dataset.hardGap}"]`:active?.dataset?.hardListen!==undefined?`[data-hard-listen="${active.dataset.hardListen}"]`:null;

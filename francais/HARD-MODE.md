@@ -81,3 +81,17 @@ Quiz sound flow and look (build 198): sound slots now follow three prize ranges 
 Quiz progress and difficulty (build 202): the running quiz is saved in `lessonWork[1].hardMode.pilot.arcade.quiz` after every change (question set, level, winnings, jokers, answer order, removed answers, hint) and offered as "Weiter bei Frage X" on the quiz start screen and the arcade tile. Locking in commits the outcome before the suspense, so leaving the page cannot undo an answer; a wrong answer, walking away or winning clears the save. The pool now has 3–4 questions per level: meaning questions first, then verb forms, and from level 7 near-identical spelling and grammar traps (êtes/étes/êtez, tu parles/parle, viennent/vienent, j’habite/je habite, venir de/habiter à).
 
 Quiz audio (build 204): on the user's request the quiz plays only the uploaded files – no synthesised music, fanfares, drum roll, beeps or speech; a missing file is silent and the voice toggle is hidden in the quiz. Files are fetched completely before first play (build 203) to avoid stutter. The four action games keep their built-in sounds.
+
+## Quiz show in every Hard Mode (build 205)
+
+`shared/quiz-show.js` (+ `shared/quiz-show.css`) now hosts the quiz show for both courses. French lesson 1 keeps its hand-written questions in the arcade; every other French lesson and all 24 German lessons get a "💎 Millionen-Turm / La tour du million" button below the Hard Mode header. Questions are generated from the lesson's own material with rising difficulty:
+
+| Level | Question | Material |
+|---|---|---|
+| 1–3 | What does the word mean? | lesson vocabulary (`shared/vocabulary-content.js`) |
+| 4 | How do you say it? | lesson vocabulary, random distractors |
+| 5–6 | How do you say it? | look-alike words from all lessons so far |
+| 7–8 | Fill the gap (with the Hard Mode hint) | the lesson's Hard Mode cloze sentences |
+| 9–10 | Fill the gap | look-alike forms from every lesson so far |
+
+The interface follows the course (German for the French course, French for the German course, English when chosen). Saved game, best prize and stars are stored per lesson in `lessonWork[id].hardMode.quiz`. Both courses play the uploaded sounds from `francais/audio/quiz/`. Tests: `tests/quiz-show.test.cjs` checks all 48 lessons (each level ≥3 questions, four distinct answers) and the integration in both courses.

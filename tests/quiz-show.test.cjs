@@ -1,0 +1,35 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM,VirtualConsole}=require('jsdom');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+function env(course,id,{ui=course==='de'?'fr':'de',state}={}){
+ const dom=new JSDOM('<main id="view"></main>',{url:`https://example.test/${course==='de'?'deutsch':'francais'}/`,runScripts:'outside-only',virtualConsole:new VirtualConsole()}),w=dom.window;
+ w.scrollTo=()=>{};w.A1Profile={getUiLang:()=>ui};w.A1Voice={cancel(){},speak(){},speakDialogue(){return true;}};w.speechSynthesis={};w.SpeechSynthesisUtterance=class{};
+ const jobs=[];w.setTimeout=fn=>{jobs.push(fn);return jobs.length;};w.clearTimeout=()=>{};
+ const files=course==='de'?['shared/vocabulary-content.js','deutsch/hard-mode-content.js','shared/quiz-show.js','deutsch/hard-mode.js']:['shared/vocabulary-content.js','francais/data.js','francais/hard-mode-content.js','shared/quiz-show.js','francais/hard-mode.js'];
+ for(const f of files)w.eval(read(f));
+ state||={lessonMasteryBest:{[id]:80},lessonWork:{}};let saves=0;const view=w.document.querySelector('main');
+ const lesson=course==='de'?{id,title:'Test'}:w.FR_A1_DATA.lessons.find(l=>l.id===id);
+ const render=()=>(course==='de'?w.DE_A1_HARD_MODE:w.FR_A1_HARD_MODE).render({lesson,view,state,save(){saves++;},onBack(){},legacy:true});
+ const click=s=>{const el=view.querySelector(s);assert(el,s);el.click();};
+ return {dom,w,view,state,render,click,flush(){while(jobs.length)jobs.shift()();},get saves(){return saves;},get quiz(){return state.lessonWork[id]?.hardMode?.quiz;}};}
+
+test('every lesson of both courses has questions for all ten levels with four distinct answers and one right one',()=>{const e=env('fr',1),Q=e.w.A1_QUIZ_SHOW;e.w.eval(read('deutsch/hard-mode-content.js'));
+ for(const course of ['fr','de'])for(let id=1;id<=24;id++){const pool=Q.generate(course,id);
+  for(let l=1;l<=10;l++)assert(pool.filter(q=>q.l===l).length>=3,`${course} ${id} level ${l}`);
+  for(const q of pool){assert.equal(q.o.length,4,`${course} ${id} ${q.q[0]}`);assert.equal(new Set(q.o.map(o=>String(o).trim().toLowerCase())).size,4,`${course} ${id} ${q.q[0]} ${q.o}`);assert(q.q[0]&&q.h[0]);}
+  for(const q of pool.filter(q=>q.kind.startsWith('gap')))assert(q.q[0].includes('___'));
+  const set=Q.pickSet(pool);assert.equal(set.length,10);assert.deepEqual(Array.from(set,q=>q.l),[1,2,3,4,5,6,7,8,9,10]);assert.equal(new Set(set.map(q=>q.q[0])).size,10);}
+ e.dom.window.close();});
+test('difficulty rises: meaning first, then the target word, then gap sentences with look-alike forms at the top',()=>{const e=env('de',20),Q=e.w.A1_QUIZ_SHOW;const set=Q.pickSet(Q.generate('de',20));
+ assert.deepEqual(Array.from(set,q=>q.kind),['meaning','meaning','meaning','word','word-near','word-near','gap','gap','gap-near','gap-near']);
+ assert(set[0].q[2].startsWith('Que veut dire'));assert.equal(set[0].ol,'fr');assert.equal(set[3].ol,'de');assert(set[9].q[2].includes('___'));e.dom.window.close();});
+test('French Hard Mode lessons offer the quiz with German interface text and keep its progress per lesson',()=>{const e=env('fr',7);e.render();const entry=e.view.querySelector('[data-hard-quiz]');assert(entry);assert(entry.textContent.includes('Millionen-Turm'));e.click('[data-hard-quiz]');
+ assert(e.view.textContent.includes('Lektion 7'));e.click('[data-quiz-start]');assert(e.view.textContent.includes('Frage 1/10'));assert(e.quiz.game);assert.equal(e.quiz.game.level,0);
+ e.click('[data-quiz-answer="0"]');e.click('[data-quiz-lock]');assert.equal(e.quiz.game.level,1);e.flush();e.click('[data-quiz-walk]');assert.equal(e.quiz.best,50);assert(!e.quiz.game);assert(e.view.textContent.includes('Klug ausgestiegen'));
+ e.click('[data-arcade-back]');assert(e.view.querySelector('[data-hard-quiz]').textContent.includes('50'));assert(e.saves>0);e.dom.window.close();});
+test('German Hard Mode lessons offer the quiz in French and resume a saved game',()=>{const e=env('de',12);e.render();assert(e.view.querySelector('[data-hard-quiz]').textContent.includes('La tour du million'));e.click('[data-hard-quiz]');
+ assert(e.view.textContent.includes('Leçon 12'));e.click('[data-quiz-start]');assert(e.view.textContent.includes('Question 1/10'));e.click('[data-quiz-answer="0"]');e.click('[data-quiz-lock]');e.flush();assert(e.view.textContent.includes('Question 2/10'));
+ const prompt=e.view.querySelector('.quiz-question').textContent;e.click('[data-arcade-exit]');assert(e.view.querySelector('[data-hard-quiz]').textContent.includes('Continuer à la question 2'));
+ e.click('[data-hard-quiz]');e.click('[data-quiz-resume]');assert(e.view.textContent.includes('Question 2/10'));assert.equal(e.view.querySelector('.quiz-question').textContent,prompt);
+ e.click('[data-quiz-answer="1"]');e.click('[data-quiz-lock]');e.flush();assert(e.view.textContent.includes('Dommage'));assert(!e.quiz.game);e.dom.window.close();});
+test('both course pages load and precache the shared quiz before the Hard Mode script',()=>{for(const course of ['francais','deutsch']){const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');for(const asset of ['../shared/quiz-show.js','../shared/quiz-show.css']){const url=html.match(new RegExp('(?:src|href)="('+asset.replace(/[.]/g,'\\.')+'\\?[^"]+)"'))?.[1];assert(url,course+' '+asset);assert(sw.includes(JSON.stringify(url)),course+' cache '+url);}
+ assert(html.indexOf('shared/quiz-show.js')<html.indexOf('src="hard-mode.js'));}});
