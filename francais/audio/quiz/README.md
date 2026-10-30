@@ -30,7 +30,7 @@ Nur Sounds verwenden, die du nutzen darfst – z. B. eigene Aufnahmen oder lizen
 
 1. Spielstart → `schleife-1` läuft (nach `start.mp3`, falls vorhanden).
 2. „Antwort festlegen“ → Schleife stoppt, `festgelegt.mp3` spielt.
-3. 2 Sekunden später → Auflösung mit `richtig-X` oder `falsch-X` des aktuellen Bereichs.
+3. 3 Sekunden später → Auflösung mit `richtig-X` oder `falsch-X` des aktuellen Bereichs.
 4. Richtig: Wenn der Richtig-Sound zu Ende ist, kurze Pause, dann wieder die Schleife – nach Frage 4 `schleife-2`, nach Frage 7 `schleife-3`.
 5. Falsch: Das Spiel endet nach dem Falsch-Sound.
 

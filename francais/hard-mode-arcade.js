@@ -324,8 +324,8 @@ function runQuiz(host,{best=0,onEnd,onExit}={}){
   host.querySelectorAll('[data-quiz-joker]').forEach(b=>b.onclick=()=>joker(b.dataset.quizJoker));
   host.querySelector('[data-quiz-walk]').onclick=()=>end('walk');}
  function joker(k){if(!S.jokers[k])return;S.jokers[k]=false;if(!snd.over('joker'))sfx.select();if(k==='cut'){S.removed=shuffle([1,2,3].filter(i=>i!==S.selected)).slice(0,2);if(S.removed.includes(S.selected))S.selected=null;}else if(k==='hint')S.showHint=true;else{const others=QUESTIONS.filter(x=>x.l===q().l&&x!==q());if(others.length)S.set[S.level]=pick(others);newOrder();}ask();}
- // Lock-in: loop stops, lock-in sound, 2 s suspense, then the right/wrong sound of the current prize range.
- function lock(){S.phase='suspense';S.hold=false;snd.stopLoop();tune?.on(false);if(!snd.play('lock'))sfx.drumroll(1.8);ask();later(reveal,2000);}
+ // Lock-in: loop stops, lock-in sound, 3 s suspense, then the right/wrong sound of the current prize range.
+ function lock(){S.phase='suspense';S.hold=false;snd.stopLoop();tune?.on(false);if(!snd.play('lock'))sfx.drumroll(1.8);ask();later(reveal,3000);}
  function reveal(){const ok=S.selected===0,last=S.level===LADDER.length-1,range=tier(S.level);S.reveal=true;S.phase='reveal';snd.stopShot();ask();
   if(ok){S.won=LADDER[S.level];if(!hold('right'+range,10000))sfx[last?'big':'fanfare']();say(q().s);later(()=>{S.reveal=false;if(S.level===LADDER.length-1)return end('win');S.level++;S.phase='ask';newOrder();ask();},2200);}
   else{if(!snd.play('wrong'+range))sfx.sad();later(()=>{S.reveal=false;end('lost');},2400);}}
