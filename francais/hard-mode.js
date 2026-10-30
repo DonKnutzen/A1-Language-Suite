@@ -73,13 +73,13 @@
   // Award a completed, passed attempt using raw counts, never a rounded display score.
   function achievedResult(attempt){
     const r=attempt?.result;
-    return attempt?.phase==='reviewed'&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*85;
+    return (attempt?.phase==='reviewed'||(attempt?.kind==='lesson-challenge'&&attempt.phase==='completed'))&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*85;
   }
   function achievement(state,id){
     const progress=state.lessonWork?.[id]?.hardMode;
-    return [progress?.attempt,...(progress?.history||[])].filter(achievedResult).sort((a,b)=>b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
+    return [progress?.attempt,...(progress?.history||[]),progress?.challenge?.attempt,...(progress?.challenge?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total;
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total&&(attempt.kind!=='lesson-challenge'||attempt.hintsUsed===0);
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
   const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
   function badgeMarkup(gold){
@@ -88,6 +88,7 @@
   let redraw=null,redrawEntry=null,checkDetached=null;
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
   function entryHtml(lesson,state){
+    if(window.FR_A1_LESSON_CHALLENGE?.supports(lesson.id))return window.FR_A1_LESSON_CHALLENGE.entryHtml(lesson,state);
     const open=unlocked(state,lesson.id),p=state.lessonWork?.[lesson.id]?.hardMode,data=window.FR_A1_HARD_CONTENT[lesson.id];
     const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
     const lock=`<svg class="hard-lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0${open?'':'v3'}"/><path d="M12 14v3"/></svg>`;
@@ -102,12 +103,16 @@
     function update(){host.innerHTML=entryHtml(lesson,state);host.querySelector('[data-hard-start]').onclick=onStart;}
     redrawEntry=()=>{if(host.isConnected)update();};update();
   }
-  function render({lesson,view,state,save,onBack}){
+  function render({lesson,view,state,save,onBack,legacy=false}){
     const latestData=window.FR_A1_HARD_CONTENT[lesson.id];
     if(!latestData)return onBack();
     if(!unlocked(state,lesson.id)){
       view.innerHTML=`<section class="card" data-i18n-ignore><h2>🔒 Hard Mode</h2><p>${t('Bestehe zuerst den Lektionscheck mit mindestens 80 %.','Pass the lesson check with at least 80% first.')}</p><button class="secondary-btn" id="hardLockedBack">${t('Zur Lektion','Back to lesson')}</button></section>`;
       view.querySelector('button').onclick=onBack;return;
+    }
+    if(!legacy&&window.FR_A1_LESSON_CHALLENGE?.supports(lesson.id)){
+      redraw=null;checkDetached=null;
+      return window.FR_A1_LESSON_CHALLENGE.render({lesson,view,state,save,onBack,onLegacy:()=>render({lesson,view,state,save,onBack,legacy:true})});
     }
     const work=(state.lessonWork||={})[lesson.id]||={};
     const progress=work.hardMode||={};
