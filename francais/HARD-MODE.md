@@ -54,8 +54,8 @@ The earlier checks verified fresh v4 attempts but intentionally left running v1�
 
 55 targeted tests pass, including migration of all 24 lessons from each of v1/v2/v3, unchanged submitted results, response/order/count preservation, exact archival and idempotence. A Chromium regression first runs the previously published renderer against a persisted v3 draft and confirms the visible clue, then reloads the corrected renderer against the same storage and verifies automatic correction, draft/history access, retained best results and a second reload.
 
-## Mini-game skin (lesson 1 pilot, build 192)
+## Mini-game skin (lesson 1 pilot, build 193)
 
 Each page of the lesson 1 Hard Mode is presented as its own colourful mini-game: card memory, string game (tap-to-connect), word train (sentence building with surplus wagons; tapping a wagon unhooks it), magic gaps (inline typed gaps in a speech bubble plus an accent keyboard for é è ê à ç ’ î ô) and radio quiz (listening with A–D quiz cards and an equaliser while audio plays). Correct answers trigger confetti and a star; the result screen shows a trophy with 1–3 stars from the first-check score (≥90 % three, ≥70 % two).
 
-This is a UI-only change: tasks, answers, saved attempt format, scoring and the content version are unchanged, so no new version is required. Styles live in `hard-mode-games.css`; reduced-motion preferences disable all animations and confetti. The state before this change is tagged `vor-minispiele` in git.
+This is a UI-only change: tasks, answers, saved attempt format, scoring and the content version are unchanged, so no new version is required. Styles live in `hard-mode-games.css`; reduced-motion preferences disable all animations and confetti. A “Restart Hard Mode” button under the save status starts a fresh attempt at any time after confirmation; the previous attempt is archived under “Previous attempts”. The state before this change is tagged `vor-minispiele` in git.

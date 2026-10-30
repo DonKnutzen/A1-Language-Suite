@@ -5,6 +5,11 @@
 .game-text{--g1:#4cc9f0;--g2:#7b61ff}
 .game-listening{--g1:#ff5d8f;--g2:#7b61ff}
 
+/* Restart */
+.game-restart{margin:6px 0 4px}
+.game-restart p{margin:6px 0;font-size:.92rem}
+.game-restart-actions{display:flex;flex-wrap:wrap;gap:8px}
+
 /* Intro: the game map */
 .game-intro h3{font-size:1.45rem}
 .game-map{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
