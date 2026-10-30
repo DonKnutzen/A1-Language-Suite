@@ -7,7 +7,7 @@
   const t=(de,english)=>en()?english:de;
   const words=text=>(String(text).match(/[\p{L}\p{N}]+(?:[’'’-][\p{L}\p{N}]+)*/gu)||[]).length;
   function normalize(value,strictAccents=true){
-    let text=String(value??'').normalize('NFC').trim().toLocaleLowerCase('de').replace(/[’‘]/g,"'").replace(/[.,;!?]+$/g,'').replace(/\s+/g,' ').replace(/\s*'\s*/g,"'").replace(/[‐‑–]/g,'-');
+    let text=String(value??'').normalize('NFC').trim().toLocaleLowerCase('de').replace(/[’‘]/g,"'").replace(/\s+([.,;:!?])/g,'$1').replace(/[.,;!?]+$/g,'').replace(/\s+/g,' ').trim().replace(/\s*'\s*/g,"'").replace(/[‐‑–]/g,'-');
     return strictAccents?text:text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss');
   }
   // Preserve the original scoring of saved v1 attempts, including its formatting rules.
