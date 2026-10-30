@@ -1035,3 +1035,43 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 
 /* One clear destination for the audio examples, in the same position on each page. */
 .lesson-audio-pager .lesson-audio-switch{width:100%;min-height:48px;padding:14px 18px;font-size:1rem;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
+
+/* German A1 deepening: one explanation, selected contrasts, then practice. */
+#lessonGrammarPage .deepening-rule-blocks{margin:10px 0 14px;gap:10px}
+#lessonGrammarPage .deepening-rule-blocks>p{font-size:.94rem;line-height:1.55}
+#lessonGrammarPage .grammar-table{min-width:0;font-size:.94rem}
+#lessonGrammarPage .grammar-table th,#lessonGrammarPage .grammar-table td{white-space:normal;overflow-wrap:break-word;vertical-align:middle}
+#lessonGrammarPage .grammar-table th{line-height:1.4}
+#lessonGrammarPage .study-conjugation{table-layout:fixed}
+#lessonGrammarPage .study-conjugation th{width:43%;font-weight:600;background:transparent}
+#lessonGrammarPage .study-conjugation td{font-weight:800}
+#lessonGrammarPage .study-conjugation td>span{flex:1}
+#lessonGrammarPage .study-conjugation td{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:48px}
+#lessonGrammarPage .grammar-table .speak-btn,#lessonGrammarPage .grammar-table .grammar-audio-btn,
+#lessonGrammarPage .deepening-examples .speak-btn,#lessonGrammarPage .deepening-vocabulary .speak-btn{width:44px;min-width:44px;height:44px;margin:0;flex-shrink:0}
+#lessonGrammarPage .deepening-series{grid-column:1/-1;padding:0 0 6px}
+#lessonGrammarPage .deepening-vocabulary .phrase-row{align-items:center}
+#lessonGrammarPage .deepening-examples .phrase-row{padding:5px 0;align-items:center}
+#lessonGrammarPage .deepening-reference{margin:16px 0 0;border-top:1px solid var(--line);color:var(--ink)}
+#lessonGrammarPage .deepening-reference>summary,
+#lessonGrammarPage details.lesson-vocabulary-preparation>summary{padding:12px 0;min-height:44px;cursor:pointer;font-size:.9rem;font-weight:700;line-height:1.4}
+#lessonGrammarPage .deepening-reference .deepening-background{margin:0;font-size:.9rem;color:var(--ink)}
+#lessonGrammarPage details.lesson-vocabulary-preparation{padding:0 12px;margin:14px 0}
+#lessonGrammarPage details.lesson-vocabulary-preparation dl{margin-top:0}
+#lessonGrammarPage .deepening-reference summary:focus-visible,
+#lessonGrammarPage details.lesson-vocabulary-preparation summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+@media(max-width:540px){
+  /* Keep comparisons side by side. Put audio below each form to make room for
+     the complete word, instead of shrinking the type or adding three rows. */
+  #lessonGrammarPage .study-matrix{table-layout:fixed;font-size:.88rem}
+  #lessonGrammarPage .study-matrix th,#lessonGrammarPage .study-matrix td{padding:7px 2px;text-align:center}
+  #lessonGrammarPage .study-matrix th:first-child{width:22%}
+  #lessonGrammarPage .study-matrix thead th{font-size:.82rem}
+  #lessonGrammarPage .study-matrix td .grammar-audio-btn{display:block;margin:5px auto 0}
+  #lessonGrammarPage .study-number-table th{width:24%}
+  #lessonGrammarPage .deepening-vocabulary{gap:0 10px}
+  #lessonGrammarPage .deepening-vocabulary .phrase-row{flex-wrap:wrap;position:relative;padding-right:0}
+  #lessonGrammarPage .deepening-vocabulary .phrase-row>div{flex:1;min-width:52px}
+  .lesson-grammar-position{gap:8px;margin-bottom:12px}
+  .lesson-grammar-segment{height:44px}
+}

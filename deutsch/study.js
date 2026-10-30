@@ -7,6 +7,61 @@
   const plain=s=>s.replace(/\|/g,'');
   function ruleHtml(text){return text.split(/(\*\*[^*]+\*\*)/).map(p=>p.startsWith('**')?`<strong>${esc(p.slice(2,-2))}</strong>`:esc(p)).join('');}
   const row=(pair,speakBtn)=>`<div class="phrase-row"><div><strong>${esc(plain(pair[0]))}</strong><small>${esc(pair[1])}</small></div>${speakBtn(plain(pair[0]))}</div>`;
+  // Authored selections keep grammatical contrasts. Unselected sentences may only
+  // disappear here when the identical audio remains in the opening listening tab.
+  function studyExamples(lesson,unit){
+    const examples=[...unit.rows,...(unit.extra||[])],selected=new Set(unit.exampleIndices||examples.map((_,i)=>i));
+    const listening=new Set(lesson.phrases.map(p=>p[0]));
+    return examples.filter((pair,i)=>selected.has(i)||!listening.has(plain(pair[0])));
+  }
+  function responsiveTables(root){
+    for(const table of root.querySelectorAll('.grammar-table')){
+      const headers=[...table.querySelectorAll('thead th')];
+      headers.forEach(th=>{
+        th.scope='col';
+        if(th.textContent==='Personne'){th.textContent='Pers.';th.setAttribute('abbr','Personne');th.title='Personne';}
+      });
+      // One horizontal paradigm becomes six real pronoun/form rows, with its
+      // existing audio controls and text preserved (also easier for screen readers).
+      const rows=[...table.querySelectorAll('tbody tr')];
+      if(headers.length===6&&rows.length===1){
+        const body=table.tBodies[0],cells=[...rows[0].cells];body.replaceChildren();
+        headers.forEach((th,i)=>{const tr=document.createElement('tr');th.scope='row';tr.append(th,cells[i]);body.append(tr);});
+        table.tHead.remove();table.classList.add('study-conjugation');
+      }else if(headers.length>2){
+        table.classList.add('study-matrix');
+        for(const tr of rows){
+          [...tr.cells].forEach((cell,i)=>{
+            if(i===0){const th=document.createElement('th');th.scope='row';th.innerHTML=cell.innerHTML;cell.replaceWith(th);}
+          });
+        }
+      }
+    }
+  }
+  function compactPage(root){
+    // Supplementary exercise words remain available before practice, without a
+    // second always-open glossary dominating the grammar explanation.
+    for(const section of root.querySelectorAll('section.lesson-vocabulary-preparation')){
+      const words=new Map();
+      for(const row of section.querySelectorAll('dl>div')){
+        const target=row.querySelector('dt')?.textContent.normalize('NFC').trim(),meaning=row.querySelector('dd');
+        if(!target||!meaning)continue;
+        const previous=words.get(target);
+        if(previous){
+          const meanings=previous.textContent.split(' ; ');
+          if(!meanings.includes(meaning.textContent))previous.textContent+=' ; '+meaning.textContent;
+          row.remove();
+        }else words.set(target,meaning);
+      }
+      const detail=document.createElement('details');detail.className=section.className;
+      for(const {name,value} of section.attributes)if(name!=='class')detail.setAttribute(name,value);
+      const title=section.querySelector('h4'),summary=document.createElement('summary');
+      summary.textContent='Mots pour les exercices';title?.remove();detail.append(summary,...section.childNodes);section.replaceWith(detail);
+    }
+    // References follow the practice entry; the explanation and its application
+    // stay adjacent. Each reference is still searchable and keyboard accessible.
+    root.querySelectorAll('.deepening-reference').forEach(detail=>root.append(detail));
+  }
   // Alternatives change one taught detail, not the entire topic of the sentence.
   const contrastGroups=[
     [['heute','aujourd’hui'],['morgen','demain'],['übermorgen','après-demain']],
@@ -126,14 +181,19 @@
     }
     const units=content[lesson.id];
     const prepared=units.map((unit,unitIndex)=>{
-      const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${esc(b)} ${speakBtn(unit.conjugation?a.split(' (')[0].split(' / ')[0]+' '+b:b)}${unit.conjugation?`<small class="conjugation-example">${esc(((a==='er / sie / es'?'Sie':a.split(' / ')[0].split(' (')[0][0].toUpperCase()+a.split(' / ')[0].split(' (')[0].slice(1)))+' '+b+' Deutsch sprechen.')}</small>`:''}</td></tr>`).join('')}</tbody></table></div>`:'';
-      const examples=[...unit.rows,...(unit.extra||[])];
-      const vocabulary=unit.vocabulary?`<div class="deepening-vocabulary"><div class="between"><strong>Écouter la série</strong>${speakBtn(unit.vocabulary.map(p=>p[0]).join(', '))}</div>${unit.vocabulary.map(p=>row(p,speakBtn)).join('')}</div>`:'';
+      const table=unit.table?`<div class="grammar-table-wrap"><table class="grammar-table ${unit.conjugation?'study-conjugation':'study-number-table'}"><tbody>${unit.table.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td><span>${esc(b)}</span> ${speakBtn(unit.conjugation?a.split(' (')[0].split(' / ')[0]+' '+b:b)}</td></tr>`).join('')}</tbody></table></div>`:'';
+      const examples=studyExamples(lesson,unit);
+      const vocabulary=unit.vocabulary?`<div class="deepening-vocabulary"><div class="between deepening-series"><strong>Écouter la série</strong>${speakBtn(unit.vocabulary.map(p=>p[0]).join(', '))}</div>${unit.vocabulary.map(p=>row(p,speakBtn)).join('')}</div>`:'';
       const standalone=new Set((unit.vocabulary||[]).map(p=>p[0]));
       const distinctExamples=examples.filter(p=>!standalone.has(plain(p[0])));
-      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body"><div class="deepening-rule-blocks">${unit.rule.split(/(?<=\.)\s+(?=[A-ZÀ-ÖØ-Þ*])/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${distinctExamples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
+      return `<details class="grammar-detail" data-grammar-original-title="${unit.key}"><summary>${esc(unit.title)}</summary><div class="grammar-detail-body"><div class="deepening-rule-blocks">${unit.rule.split(/\n\s*\n/).map(p=>`<p>${ruleHtml(p)}</p>`).join('')}</div>${table}${vocabulary}<div class="deepening-examples">${distinctExamples.map(p=>row(p,speakBtn)).join('')}</div></div></details>`;
     }).join('');
     const taught=new Set(units.flatMap(u=>[...u.rows,...(u.extra||[])].map(p=>plain(p[0]))));
+    // These exact series already have their own audio in a table or word grid.
+    for(const unit of units){
+      if(unit.vocabulary)taught.add(unit.vocabulary.map(p=>p[0]).join(', '));
+      if(!unit.conjugation)for(const [,text] of unit.table||[])taught.add(text);
+    }
     const extra=[...(lesson.referencePhrases||lesson.phrases),...lesson.phrases,...(window.DE_A1_APPLICATIONS[lesson.id]?.hints||[])].filter(p=>!taught.has(p[0])&&taught.add(p[0]));
     const holder=document.createElement('div');holder.innerHTML=prepared;
     if(lesson.id===1){
@@ -143,8 +203,9 @@
         const target=title?[...root.querySelectorAll('.grammar-detail')].find(d=>d.querySelector('summary')?.textContent===title)?.querySelector('.grammar-detail-body'):holder.firstElementChild.querySelector('.deepening-examples');
         target?.insertAdjacentHTML('beforeend',row(pair,speakBtn));
       }
-    }else if(extra.length)holder.lastElementChild.querySelector('.grammar-detail-body').insertAdjacentHTML('beforeend',`<div class="deepening-background"><strong>Autres exemples de la leçon</strong>${extra.map(p=>row(p,speakBtn)).join('')}</div>`);
-    return `<div class="lesson-deepening">${holder.innerHTML}${root.innerHTML}</div>`;
+    }else if(extra.length)holder.lastElementChild.querySelector('.grammar-detail-body').insertAdjacentHTML('beforeend',`<details class="deepening-reference"><summary>Autres expressions · référence</summary><div class="deepening-background">${extra.map(p=>row(p,speakBtn)).join('')}</div></details>`);
+    const result=document.createElement('div');result.innerHTML=holder.innerHTML+root.innerHTML;responsiveTables(result);
+    return `<div class="lesson-deepening">${result.innerHTML}</div>`;
   }
-  window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml};
+  window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml,studyExamples,compactPage};
 })();

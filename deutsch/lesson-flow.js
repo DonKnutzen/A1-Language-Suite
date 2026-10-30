@@ -143,7 +143,7 @@
     }
     function expandContent(root){
       // Explanations stay visible; answers and self-check solutions keep their reveal controls.
-      [...root.querySelectorAll('details:not(.lesson-extra-vocabulary)')].reverse().forEach(detail=>{
+      [...root.querySelectorAll('details:not(.lesson-extra-vocabulary):not(.deepening-reference)')].reverse().forEach(detail=>{
         const section=document.createElement('section');section.className=detail.className;
         const summary=detail.querySelector(':scope > summary');
         if(summary){const heading=document.createElement('h3');heading.className='lesson-content-heading';heading.innerHTML=summary.innerHTML;section.appendChild(heading);summary.remove();}
@@ -266,6 +266,7 @@
       document.getElementById('nextLessonFromCheck')?.addEventListener('click',()=>l.id<opts.lessonCount?opts.renderLesson(l.id+1):opts.renderLearn());
       document.getElementById('startGrammarCheck')?.addEventListener('click',drawGrammarCheck);
       if(activeStep==='grammar')DE_A1_ASSESSMENTS.decorate({root:view,practice:grammarPractices[grammarIndex],lesson:l,state,save,speak:opts.speak,onUpdate:refreshSteps,onStart:()=>remember('exercise')});
+      if(activeStep==='grammar')window.DE_A1_STUDY?.compactPage(view.querySelector('#lessonGrammarPage'));
       expandContent(view);
       if(activeStep==='comprehension')window.A1Comprehension.render({root:view.querySelector('#lessonComprehension'),data:window.A1_COMPREHENSION_CONTENT[l.id],work:p,lessonId:l.id,targetLang:opts.targetLang,uiLang:opts.uiLang,save:completed=>{if(!p.comprehension?.graded&&p.comprehension)delete p.comprehension.reviewRecorded;window.DE_A1_REVIEW?.captureListening(state,l.id,window.A1_COMPREHENSION_CONTENT[l.id],p.comprehension);save(completed);},onUpdate:refreshSteps,onContinue:()=>goStep('check')});
       opts.wireSpeakButtons();opts.wirePronunciation?.(view);
