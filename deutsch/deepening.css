@@ -1,0 +1,126 @@
+/* Deepening pages (German course): one calm layout for rules, examples, tables and audio.
+   Applied by deepening-tidy.js, which adds .deepening-tidy to #lessonGrammarPage. */
+#lessonGrammarPage.deepening-tidy{--tidy-gap:22px;--tidy-soft:color-mix(in srgb,var(--accent) 7%,transparent);--tidy-chip:color-mix(in srgb,var(--accent) 12%,transparent);--tidy-chip-hover:color-mix(in srgb,var(--accent) 22%,transparent)}
+
+/* Headings and running text */
+#lessonGrammarPage.deepening-tidy .lesson-content-heading{margin:6px 0 16px;font-size:1.3rem;line-height:1.3;font-weight:800;color:var(--ink)}
+#lessonGrammarPage.deepening-tidy .grammar-detail{margin:0;padding:0;border:0;background:none}
+#lessonGrammarPage.deepening-tidy .grammar-detail-body{display:grid;gap:var(--tidy-gap);padding:0;background:none;border:0}
+#lessonGrammarPage.deepening-tidy .grammar-detail-body p,
+#lessonGrammarPage.deepening-tidy .deepening-rule-blocks>p{margin:0;font-size:1rem;line-height:1.65;color:var(--ink)}
+#lessonGrammarPage.deepening-tidy .deepening-rule-blocks{display:grid;gap:12px;margin:0}
+#lessonGrammarPage.deepening-tidy .deepening-rule-blocks>*{margin:0;padding:0;border:0;background:none}
+#lessonGrammarPage.deepening-tidy strong{color:inherit;font-weight:700}
+#lessonGrammarPage.deepening-tidy p strong{color:var(--ink)}
+#lessonGrammarPage.deepening-tidy .grammar-concept-note{color:var(--muted);font-size:.95rem}
+
+/* Sub-sections all share one heading style */
+#lessonGrammarPage.deepening-tidy .lesson-foundations{display:grid;gap:var(--tidy-gap);margin:0;padding:0;border:0;background:none}
+#lessonGrammarPage.deepening-tidy .lesson-foundation-rule{display:grid;gap:10px;margin:0;padding:0;border:0;background:none}
+#lessonGrammarPage.deepening-tidy .lesson-foundation-rule h4,
+#lessonGrammarPage.deepening-tidy .grammar-detail-body h4{display:flex;align-items:center;gap:10px;margin:0;font-size:1.05rem;line-height:1.35;font-weight:800;color:var(--ink)}
+#lessonGrammarPage.deepening-tidy .lesson-foundation-rule h4::before,
+#lessonGrammarPage.deepening-tidy .grammar-detail-body h4::before{content:'';flex:none;width:4px;height:18px;border-radius:4px;background:var(--accent)}
+#lessonGrammarPage.deepening-tidy .lesson-foundation-rule p{color:var(--ink)}
+
+/* Inline bold keeps the size of the surrounding text */
+#lessonGrammarPage.deepening-tidy p strong,#lessonGrammarPage.deepening-tidy p span,#lessonGrammarPage.deepening-tidy p em{font-size:inherit;line-height:inherit}
+
+/* "sie ou Sie ?" guide sits in the page like every other sub-section */
+#lessonGrammarPage.deepening-tidy .pronoun-guide{display:grid;gap:10px;margin:0;padding:0;border:0;background:none;box-shadow:none}
+
+/* Every example looks the same: German line, translation below, one speaker button on the right */
+#lessonGrammarPage.deepening-tidy .deepening-examples,
+#lessonGrammarPage.deepening-tidy .pronoun-examples,
+#lessonGrammarPage.deepening-tidy .lesson-foundation-examples,
+#lessonGrammarPage.deepening-tidy .deepening-background{display:block;margin:0;padding:2px 14px;border:1px solid var(--line);border-radius:14px;background:var(--tidy-soft)}
+#lessonGrammarPage.deepening-tidy .deepening-examples:empty{display:none}
+#lessonGrammarPage.deepening-tidy .deepening-examples .phrase-row,
+#lessonGrammarPage.deepening-tidy .deepening-background .phrase-row,
+#lessonGrammarPage.deepening-tidy .pronoun-example,
+#lessonGrammarPage.deepening-tidy .lesson-foundation-example{display:flex;align-items:center;gap:12px;width:100%;margin:0;padding:12px 0;border:0;border-top:1px solid var(--line);border-radius:0;background:none;box-shadow:none;font-size:1rem}
+#lessonGrammarPage.deepening-tidy .deepening-examples .phrase-row:first-child,
+#lessonGrammarPage.deepening-tidy .deepening-background .phrase-row:first-child,
+#lessonGrammarPage.deepening-tidy .pronoun-example:first-child,
+#lessonGrammarPage.deepening-tidy .lesson-foundation-example:first-child{border-top:0}
+#lessonGrammarPage.deepening-tidy .phrase-row>div,
+#lessonGrammarPage.deepening-tidy .tidy-example-text{flex:1;min-width:0}
+#lessonGrammarPage.deepening-tidy .phrase-row strong,
+#lessonGrammarPage.deepening-tidy .tidy-example-text strong{display:block;font-size:1rem;line-height:1.45;font-weight:700;color:var(--ink)}
+#lessonGrammarPage.deepening-tidy .phrase-row small,
+#lessonGrammarPage.deepening-tidy .tidy-example-text span{display:block;margin-top:3px;font-size:.9rem;line-height:1.45;color:var(--muted);font-style:normal}
+
+/* One speaker button everywhere */
+#lessonGrammarPage.deepening-tidy .tidy-audio{display:inline-grid;place-items:center;flex:none;width:38px;min-width:38px;height:38px;min-height:38px;margin:0;padding:0;border:0;border-radius:50%;background:var(--tidy-chip);color:var(--accent);font-size:0;cursor:pointer;box-shadow:none;transition:background .15s}
+#lessonGrammarPage.deepening-tidy .tidy-audio:hover{background:var(--tidy-chip-hover)}
+#lessonGrammarPage.deepening-tidy .tidy-audio:focus-visible,
+#lessonGrammarPage.deepening-tidy .say-word:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#lessonGrammarPage.deepening-tidy .tidy-speaker{width:18px;height:18px}
+
+/* Tables: quiet lines, the German word is the play button */
+#lessonGrammarPage.deepening-tidy .grammar-table-wrap{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;overflow-x:auto}
+#lessonGrammarPage.deepening-tidy .grammar-table{width:100%;min-width:0;border-collapse:collapse;font-size:.97rem;background:none}
+#lessonGrammarPage.deepening-tidy .grammar-table th,
+#lessonGrammarPage.deepening-tidy .grammar-table td{padding:9px 12px;border:0;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;white-space:normal;overflow-wrap:break-word;background:none;color:var(--ink);font-weight:400;line-height:1.4}
+#lessonGrammarPage.deepening-tidy .grammar-table tr:last-child>*{border-bottom:0}
+#lessonGrammarPage.deepening-tidy .grammar-table thead th{padding:8px 12px;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800;color:var(--muted);background:var(--tidy-soft)}
+#lessonGrammarPage.deepening-tidy .grammar-table tbody th{font-weight:700;color:var(--muted);width:30%}
+#lessonGrammarPage.deepening-tidy .grammar-table td:not(:has(.say-word)){color:var(--muted)}
+#lessonGrammarPage.deepening-tidy .say-word{display:inline-flex;align-items:center;gap:7px;width:auto;min-width:0;height:auto;min-height:34px;margin:0;padding:5px 10px 5px 9px;border:0;border-radius:10px;background:var(--tidy-chip);color:var(--ink);font:inherit;font-weight:700;line-height:1.3;text-align:left;cursor:pointer;box-shadow:none;transition:background .15s}
+#lessonGrammarPage.deepening-tidy .say-word:hover{background:var(--tidy-chip-hover)}
+#lessonGrammarPage.deepening-tidy .say-word .tidy-speaker{width:14px;height:14px;color:var(--accent);opacity:.85}
+#lessonGrammarPage.deepening-tidy .study-matrix td .say-word{display:inline-flex;margin:0}
+
+/* Base form: one compact info line */
+#lessonGrammarPage.deepening-tidy .grammar-lemma-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0;padding:10px 12px;border-radius:12px;background:var(--tidy-soft);font-size:.95rem;line-height:1.4}
+#lessonGrammarPage.deepening-tidy .grammar-lemma-line>strong:first-child{font-weight:600;color:var(--muted)}
+#lessonGrammarPage.deepening-tidy .grammar-lemma-translation{color:var(--muted)}
+
+/* Word lists and fold-outs */
+#lessonGrammarPage.deepening-tidy .deepening-vocabulary{margin:0;padding:2px 14px;border:1px solid var(--line);border-radius:14px;background:var(--tidy-soft)}
+#lessonGrammarPage.deepening-tidy .deepening-vocabulary .phrase-row{padding:10px 0;border-top:1px solid var(--line)}
+#lessonGrammarPage.deepening-tidy .deepening-series{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+#lessonGrammarPage.deepening-tidy details.lesson-vocabulary-preparation,
+#lessonGrammarPage.deepening-tidy .deepening-reference{margin:0;padding:0 14px;border:1px solid var(--line);border-radius:14px;background:none}
+#lessonGrammarPage.deepening-tidy details.lesson-vocabulary-preparation>summary,
+#lessonGrammarPage.deepening-tidy .deepening-reference>summary{display:flex;align-items:center;min-height:48px;padding:0;font-size:.95rem;font-weight:700;color:var(--ink);cursor:pointer}
+#lessonGrammarPage.deepening-tidy .deepening-reference .deepening-background{margin:0 0 14px}
+
+@media(max-width:560px){
+  #lessonGrammarPage.deepening-tidy{--tidy-gap:18px}
+  #lessonGrammarPage.deepening-tidy .lesson-content-heading{font-size:1.18rem}
+  #lessonGrammarPage.deepening-tidy .grammar-table th,#lessonGrammarPage.deepening-tidy .grammar-table td{padding:8px 8px}
+  #lessonGrammarPage.deepening-tidy .grammar-table{font-size:.92rem}
+  #lessonGrammarPage.deepening-tidy .say-word{padding:4px 8px 4px 7px;gap:5px}
+}
+@media(prefers-reduced-motion:reduce){#lessonGrammarPage.deepening-tidy *{transition:none!important}}
+
+/* Pronunciation corner: same heading, text and word buttons as the rest of the page */
+#lessonGrammarPage.deepening-tidy .lesson-pronunciation-bonus{margin:0}
+#lessonGrammarPage.deepening-tidy .pronunciation-panel{display:grid;gap:10px;margin:0;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--tidy-soft);box-shadow:none}
+#lessonGrammarPage.deepening-tidy .pronunciation-panel .lesson-content-heading{display:flex;align-items:center;gap:10px;margin:0;font-size:1.05rem;line-height:1.35}
+#lessonGrammarPage.deepening-tidy .pronunciation-panel .lesson-content-heading::before{content:'';flex:none;width:4px;height:18px;border-radius:4px;background:var(--accent)}
+#lessonGrammarPage.deepening-tidy .pronunciation-panel .lesson-content-heading strong{font-weight:800}
+#lessonGrammarPage.deepening-tidy .pronunciation-panel p.muted{margin:0;font-size:.95rem;line-height:1.6;color:var(--muted)}
+#lessonGrammarPage.deepening-tidy .pronunciation-words{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0}
+#lessonGrammarPage.deepening-tidy .pronunciation-word.say-word{width:auto;min-height:36px;border:0}
+
+/* Extra word list: word with its speaker, meaning below – like the example rows */
+#lessonGrammarPage.deepening-tidy details.lesson-extra-vocabulary dl{margin:0 0 12px;padding:0;display:block}
+#lessonGrammarPage.deepening-tidy details.lesson-extra-vocabulary dl>div{display:block;padding:10px 0;border-top:1px solid var(--line)}
+#lessonGrammarPage.deepening-tidy details.lesson-extra-vocabulary dl>div:first-child{border-top:0}
+#lessonGrammarPage.deepening-tidy details.lesson-extra-vocabulary dt{display:flex;align-items:center;gap:8px;margin:0;font-weight:700;color:var(--ink)}
+#lessonGrammarPage.deepening-tidy details.lesson-extra-vocabulary dd{margin:3px 0 0;font-size:.9rem;color:var(--muted)}
+#lessonGrammarPage.deepening-tidy .lesson-vocabulary-audio{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;min-width:30px;min-height:30px;padding:0;border:0;border-radius:50%;background:var(--tidy-chip);color:var(--accent);cursor:pointer}
+#lessonGrammarPage.deepening-tidy .lesson-vocabulary-audio svg{width:16px;height:16px}
+
+/* Multi-column tables (e.g. wohnen · kommen · arbeiten): headers keep German spelling, columns stay compact */
+#lessonGrammarPage.deepening-tidy .grammar-table thead th{text-transform:none;letter-spacing:0;font-size:.8rem}
+#lessonGrammarPage.deepening-tidy .study-matrix tbody th{width:auto;white-space:nowrap}
+#lessonGrammarPage.deepening-tidy .study-matrix th,#lessonGrammarPage.deepening-tidy .study-matrix td{padding:8px 6px}
+#lessonGrammarPage.deepening-tidy .study-matrix .say-word{padding:4px 7px;gap:4px;font-size:.92rem}
+#lessonGrammarPage.deepening-tidy .study-matrix .say-word .tidy-speaker{width:11px;height:11px}
+@media(max-width:420px){#lessonGrammarPage.deepening-tidy .study-matrix .say-word .tidy-speaker{display:none}#lessonGrammarPage.deepening-tidy .study-matrix .say-word{padding:4px 6px}}
+#lessonGrammarPage.deepening-tidy .lesson-pronunciation-bonus,#lessonGrammarPage.deepening-tidy .grammar-detail+.grammar-detail{margin-top:var(--tidy-gap)}
+#lessonGrammarPage.deepening-tidy .tidy-speaker{flex:none}
+#lessonGrammarPage.deepening-tidy .study-number-table .say-word{width:100%;justify-content:space-between}
