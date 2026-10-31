@@ -66,29 +66,120 @@ const COURSES={
  fr:{target:'fr',meaning:'de',lessons:'frLessons',hard:()=>window.FR_A1_HARD_CONTENT,lang:['Französisch','French','français']},
  de:{target:'de',meaning:'fr',lessons:'deLessons',hard:()=>window.DE_A1_HARD_CONTENT,lang:['Deutsch','German','allemand']}
 };
-function gapSentences(data){if(!data?.text)return [];const out=[];const parts=String(data.text).split(/\n+|(?<=[.!?])\s+/);for(const part of parts){for(const m of part.matchAll(/\{\{(\d+)\}\}/g)){const i=Number(m[1]),gap=data.gaps[i];if(!gap?.answers?.length)continue;const sentence=part.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':(data.gaps[Number(n)]?.answers?.[0]??'…')).trim();out.push({sentence,answers:gap.answers,hint:gap.hint||''});}}return out;}
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
+function gapSentences(data){if(!data?.text)return [];const out=[];const parts=String(data.text).split(/\n+|(?<=[.!?])\s+/);
+ parts.forEach((part,p)=>{const ids=[...part.matchAll(/\{\{(\d+)\}\}/g)].map(m=>Number(m[1])).filter(i=>data.gaps[i]?.answers?.length);
+  const fill=(over={})=>part.replace(/\{\{(\d+)\}\}(?=(.?))/g,(_,n,next)=>{const v=over[n]??data.gaps[Number(n)]?.answers?.[0]??'…';return v+(/\p{L}/u.test(next)&&!/[’']$/.test(v)?' ':'');}).replace(/([’'])\s+/g,'$1').trim();
+  for(const i of ids){const gap=data.gaps[i];out.push({key:p+':'+i,id:i,sentence:part.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':(data.gaps[Number(n)]?.answers?.[0]??'…')).trim(),answers:gap.answers,hint:gap.hint||'',fill,ids,before:part.split('{{'+i+'}}')[0].trim()});}});
+ return out;}
 function hintText(hint){const parts=String(hint).split(' / ');return parts.length===2?(en()?parts[1]:parts[0]):String(hint);}
+
+/* Close wrong answers: other forms of the same word – the kind of choice an A1 exam actually tests. */
+const WORD_SETS={
+ de:[['der','die','das','den','dem','des'],['ein','eine','einen','einem','einer','eines'],['kein','keine','keinen','keinem','keiner'],['mein','meine','meinen','meinem','meiner'],['dein','deine','deinen','deinem','deiner'],['sein','seine','seinen','seinem','seiner'],['ihr','ihre','ihren','ihrem','ihrer'],['unser','unsere','unseren','unserem'],['euer','eure','euren','eurem'],['mich','mir','dich','dir'],['in','im','ins'],['an','am','ans'],['zu','zum','zur'],['von','vom'],['bin','bist','ist','sind','seid'],['habe','hast','hat','haben','habt'],['wo','woher','wohin','wie','wann','was','wer'],['am','um','im','an'],['heute','morgen','übermorgen','gestern']],
+ fr:[['le','la','les','l’'],['un','une','des'],['du','de la','des','de','d’'],['au','aux','à la','à l’','à'],['mon','ma','mes','ton','ta','tes','son','sa','ses','notre','nos','votre','vos','leur','leurs'],['ce','cet','cette','ces'],['je','j’'],['de','d’'],['me','m’'],['te','t’'],['se','s’'],['ne','n’'],['que','qu’'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['fais','fait','faisons','faites','font'],['où','ou'],['à','a'],['aujourd’hui','demain','hier','après-demain'],['le','à','en','au']]
+};
+const ENDINGS={de:['est','et','en','st','er','es','e','n','t','s'],fr:['ons','ent','ez','ées','ée','és','es','e','s','x','t']};
+// Real learner slips only: dropping a mark (é→e, ü→u, ß→ss) or mixing up look-alikes (é/è/ê, ie/ei) – never marks on random letters.
+const MARKS={de:[['ä','a'],['ö','o'],['ü','u'],['ß','ss'],['ie','ei'],['ei','ie']],fr:[['é','e'],['è','e'],['ê','e'],['é','è'],['è','é'],['ê','é'],['é','ê'],['à','a'],['ù','u'],['î','i'],['ô','o'],['ç','c']]};
+const INFINITIVE={fr:/^(s’|se )?[a-zàâçéèêëîïôûü]+(er|ir|re|oir)$/,de:/^[a-zäöüß]+(en|ern|eln)$/};
+function variants(word,course,verb){const w=String(word),out=new Set(),m=w.match(/^(.*?)([^\s’']+)$/),head=m?m[1]:'',tail=m?m[2]:w;
+ const lead=w.match(/^(\S+)(\s.+)$/),keepCase=(orig,x)=>/^\p{Lu}/u.test(orig)?x.charAt(0).toUpperCase()+x.slice(1):x;
+ for(const set of WORD_SETS[course]){if(set.includes(w))set.forEach(x=>out.add(x));else if(head&&set.includes(tail))set.forEach(x=>out.add(head+x));
+  if(lead&&set.includes(lead[1].toLowerCase()))set.forEach(x=>out.add(keepCase(lead[1],x)+lead[2]));}
+ if(verb&&tail.length>=4)for(const e of ENDINGS[course])if(tail.endsWith(e)&&tail.length-e.length>=2){const stem=tail.slice(0,-e.length);for(const f of ['',...ENDINGS[course]])out.add(head+stem+f);break;}
+ for(const [from,to] of MARKS[course]){let i=tail.indexOf(from);while(i>=0){out.add(head+tail.slice(0,i)+to+tail.slice(i+from.length));i=tail.indexOf(from,i+1);}}
+ out.delete(w);return [...out].map(v=>v.replace(/([’'])\s+/g,'$1')).filter(v=>v.trim().length>0&&v!==w);}
+// A German verb right after a sentence-initial "Sie/sie" could be "she" (-t) or "they/you" (-en): never offer the other reading.
+function ambiguous(s,answer,cand,course){if(course!=='de'||!/^(Sie|sie)$/.test(s.before))return false;const plural=a=>/en$|^sind$|^haben$/.test(a),single=a=>/t$|^ist$|^hat$/.test(a);return (plural(answer)&&single(cand))||(single(answer)&&plural(cand));}
+// French gender/number endings after je/tu/vous are open (speaker unknown), so they are only used for verbs.
+function genderOnly(answer,cand){const a=norm(answer),c=norm(cand);return [a+'e',a+'s',a+'es',a+'x'].includes(c)||[c+'e',c+'s',c+'es',c+'x'].includes(a);}
+function common(a,b){let best=0;for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++){let k=0;while(a[i+k]&&a[i+k]===b[j+k])k++;if(k>best)best=k;}return best;}
+// Wrong answers from the word's own family: other forms of the same verb in the course, article/possessive/pronoun sets,
+// and (from level 7) realistic spelling slips. "formable" means the family alone gives three close options.
+function closeOptions(s,course,{lemma,lexicon,synthetic}){const answer=s.answers[0],banned=new Set(s.answers.map(norm)),family=[],spelling=[],look=[];
+ const base=norm(String(s.hint).split(' / ')[0].split(',')[0]),forms=lemma.get(base)||new Set();
+ const verb=INFINITIVE[course].test(base)&&(forms.size>=2||course==='de');
+ // After an elided word (C’, j’, l’) only a vowel or h can follow.
+ const elided=/[’']$/.test(s.before);
+ const ok=c=>c&&!banned.has(norm(c))&&!ambiguous(s,answer,c,course)&&!(course==='fr'&&!verb&&genderOnly(answer,c))&&!(elided&&!/^[aeiouyhàâéèêîïôûü]/i.test(c));
+ for(const c of forms)if(ok(c))family.push(c);
+ for(const c of variants(answer,course,verb)){if(!ok(c))continue;const last=norm(c).split(/[\s’']/).pop();(lexicon.has(last)||lexicon.has(norm(c))?family:spelling).push(c);}
+ // Last resort only: course words sharing most of the answer (einundzwanzig ~ einunddreißig).
+ const a=norm(answer),cap=w=>/^\p{Lu}/u.test(answer)?w.charAt(0).toUpperCase()+w.slice(1):w;
+ const ownFirst=take0();
+ if(ownFirst.length<3&&a.length>=5&&!/\s/.test(a))for(const w of lexicon){if(w.length<4||Math.abs(w.length-a.length)>3||w[0]!==a[0]||!ok(cap(w)))continue;if(common(w,a)>=Math.ceil(a.length*.6))look.push(cap(w));}
+ function take0(){const seen=[];for(const c of [...family,...(synthetic?spelling:[])]){if(!seen.some(p=>norm(p)===norm(c)))seen.push(c);if(seen.length===3)break;}return seen;}
+ const rank=list=>[...new Set(list)].map(c=>[c,distance(c,answer)/Math.max(c.length,answer.length)+Math.random()*.02]).sort((x,y)=>x[1]-y[1]).map(x=>x[0]);
+ const take=lists=>{const picks=[];for(const c of lists.flat()){if(picks.length===3)break;if(!picks.some(p=>norm(p)===norm(c)))picks.push(c);}return picks;};
+ const own=take([rank(family),synthetic?rank(spelling):[]]),picks=own.length===3?own:take([own,rank(look)]);
+ if(picks.length<3)return null;
+ return {picks,formable:own.length===3,score:picks.reduce((n,c)=>n+distance(c,answer)/Math.max(c.length,answer.length),0)/3-picks.filter(c=>family.includes(c)).length*.06-(/[’'äöüßéèêàçîôù]/.test(answer)?.08:0)-(verb?.1:0)};}
+
 function generate(course,lessonId){
  const C=COURSES[course];if(!C)return [];const id=Number(lessonId),V=window.A1_VOCABULARY_CONTENT||[],H=C.hard()||{};
  const inLesson=v=>(v[C.lessons]||[]).includes(id),upTo=v=>(v[C.lessons]||[]).some(n=>n<=id);
  const pairs=(list)=>{const seenT=new Set(),seenM=new Set(),out=[];for(const v of list){const t=v[C.target],m=v[C.meaning];if(!t||!m||seenT.has(norm(t))||seenM.has(norm(m)))continue;seenT.add(norm(t));seenM.add(norm(m));out.push({t,m});}return out;};
  let lesson=pairs(V.filter(inLesson));const earlier=pairs(V.filter(upTo));if(lesson.length<8)lesson=pairs([...V.filter(inLesson),...shuffle(V.filter(upTo))]).slice(0,Math.max(8,lesson.length));
- const lang=C.lang,qs=[];
+ const lang=C.lang,qs=[],hintFor=w=>[`Beginnt mit „${startsWith(w)}“`,`Starts with “${startsWith(w)}”`,`Commence par « ${startsWith(w)} »`];
  // Levels 1–3: what does the word mean?
  for(const p of lesson){const wrong=distractors(p.m,lesson.map(x=>x.m));if(wrong.length<3)continue;
-  qs.push({l:0,kind:'meaning',q:[`Was bedeutet „${p.t}“?`,`What does “${p.t}” mean?`,`Que veut dire « ${p.t} » ?`],o:[p.m,...wrong],ol:C.meaning,h:[`Beginnt mit „${startsWith(p.m)}“`,`Starts with “${startsWith(p.m)}”`,`Commence par « ${startsWith(p.m)} »`]});}
- // Levels 4–6: how do you say it? (5–6 with look-alike words)
+  qs.push({id:'m:'+p.t,l:[1,2,3],kind:'meaning',q:[`Was bedeutet „${p.t}“?`,`What does “${p.t}” mean?`,`Que veut dire « ${p.t} » ?`],o:[p.m,...wrong],ol:C.meaning,h:hintFor(p.m)});}
+ // Level 4: how do you say it? Level 5: the same with look-alike words.
  for(const p of lesson)for(const near of [false,true]){const wrong=distractors(p.t,(near?earlier:lesson).map(x=>x.t),{near});if(wrong.length<3)continue;
-  qs.push({l:0,kind:near?'word-near':'word',q:[`Wie heißt „${p.m}“ auf ${lang[0]}?`,`How do you say “${p.m}” in ${lang[1]}?`,`Comment dit-on « ${p.m} » en ${lang[2]} ?`],o:[p.t,...wrong],ol:C.target,h:[`Beginnt mit „${startsWith(p.t)}“`,`Starts with “${startsWith(p.t)}”`,`Commence par « ${startsWith(p.t)} »`]});}
- // Levels 7–10: the lesson's own gap sentences; 9–10 with look-alike forms from every lesson so far.
- const sentences=gapSentences(H[id]),allGaps=Object.entries(H).filter(([k])=>Number(k)<=id).flatMap(([,d])=>(d.gaps||[]).flatMap(g=>g.answers||[]));
- for(const s of sentences)for(const near of [false,true]){const answer=s.answers[0];const wrong=distractors(answer,near?[...allGaps,...earlier.map(x=>x.t)]:sentences.map(x=>x.answers[0]),{near,exclude:s.answers});if(wrong.length<3)continue;
-  const hint=s.hint?` (${hintText(s.hint)})`:'';qs.push({l:0,kind:near?'gap-near':'gap',q:[`${s.sentence}${hint}`,`${s.sentence}${hint}`,`${s.sentence}${hint}`],pl:C.target,o:[answer,...wrong],ol:C.target,h:[`Beginnt mit „${startsWith(answer)}“`,`Starts with “${startsWith(answer)}”`,`Commence par « ${startsWith(answer)} »`]});}
- const levels={meaning:[1,2,3],word:[4],'word-near':[5,6],gap:[7,8],'gap-near':[9,10]};
- return qs.flatMap(q=>levels[q.kind].map(l=>({...q,l})));
+  qs.push({id:(near?'wn:':'w:')+p.t,l:[near?5:4],kind:near?'word-near':'word',q:[`Wie heißt „${p.m}“ auf ${lang[0]}?`,`How do you say “${p.m}” in ${lang[1]}?`,`Comment dit-on « ${p.m} » en ${lang[2]} ?`],o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});}
+ // Levels 6–10 use the lesson's cloze sentences, ranked from easier to hardest by how close the wrong forms are.
+ const lemma=new Map(),lexicon=new Set();
+ for(const data of Object.values(H)){for(const g of data.gaps||[]){const k=norm(g.hint||'');if(!k)continue;if(!lemma.has(k))lemma.set(k,new Set());g.answers.forEach(a=>lemma.get(k).add(a));}
+  String(data.text||'').replace(/\{\{(\d+)\}\}/g,(_,n)=>' '+(data.gaps?.[n]?.answers?.[0]||'')+' ').toLowerCase().split(/[\s.,!?;:«»„“"()…—–-]+/).forEach(t=>t&&lexicon.add(t));}
+ for(const v of V){String(v[C.target]||'').toLowerCase().split(/[\s,/()?!.;:«»„“"…]+/).forEach(t=>t&&lexicon.add(t));}
+ for(const set of WORD_SETS[course])set.forEach(w=>lexicon.add(norm(w)));
+ const sentences=gapSentences(H[id]),hintOf=s=>s.hint?` (${hintText(s.hint)})`:'';
+ // Grammar-rule hints ("à + le : dos", "arbeiten : je") would give the answer away when whole sentences are compared.
+ const ruleHint=s=>/[+:]/.test(s.hint)||INFINITIVE[course].test(norm(String(s.hint).split(',')[0]));
+ const sentenceHint=s=>ruleHint(s)?'':hintOf(s);
+ const formed=sentences.map(s=>({s,real:closeOptions(s,course,{lemma,lexicon,synthetic:false}),close:closeOptions(s,course,{lemma,lexicon,synthetic:true})})).filter(x=>x.close);
+ let strong=formed.filter(x=>x.close.formable);
+ // Like the real exam, the top levels may revisit the hardest sentences of earlier lessons when this lesson has few.
+ for(let back=id-1;back>=1&&strong.length<8;back--)strong=strong.concat(gapSentences(H[back]).map(s=>({s:{...s,key:back+'/'+s.key},close:closeOptions(s,course,{lemma,lexicon,synthetic:true})})).filter(x=>x.close?.formable).sort((x,y)=>x.close.score-y.close.score).slice(0,8-strong.length));
+ const hardPool=strong.length>=3?strong:formed;
+ const byScore=[...hardPool].sort((x,y)=>x.close.score-y.close.score),n=byScore.length;
+ const slice=(from,to,min=3)=>{const a=Math.floor(n*from),b=Math.max(Math.ceil(n*to),a+min);return b>n?byScore.slice(Math.max(0,n-min)):byScore.slice(a,b);};
+ const gapQ=(x,level,kind,picks)=>({id:kind+':'+x.s.key,src:x.s.key,l:[level],kind,q:Array(3).fill(`${x.s.sentence}${hintOf(x.s)}`),pl:C.target,o:[x.s.answers[0],...picks],ol:C.target,h:hintFor(x.s.answers[0])});
+ // 6: real forms of the same word · 7: plus spelling traps · 8: the closest third of the lesson
+ const easier=[...formed].sort((x,y)=>y.close.score-x.close.score);
+ for(const x of [...easier,...strong.filter(y=>!formed.includes(y))])qs.push(gapQ(x,6,'gap-form',(x.real||x.close).picks));
+ // Lessons with few word families: level 6 uses the lesson's own sentences with the most similar answers of the lesson.
+ if(qs.filter(q=>q.kind==='gap-form').length<6)for(const s of sentences){if(qs.filter(q=>q.kind==='gap-form').length>=8)break;if(formed.some(x=>x.s.key===s.key))continue;const wrong=distractors(s.answers[0],[...sentences.map(x=>x.answers[0]),...lesson.map(p=>p.t)],{near:true,exclude:s.answers});if(wrong.length===3)qs.push(gapQ({s},6,'gap-form',wrong));}
+ for(const x of slice(.25,.85))qs.push(gapQ(x,7,'gap-close',x.close.picks));
+ for(const x of slice(.6,1))qs.push(gapQ(x,8,'gap-hard',x.close.picks));
+ // 9: which whole sentence is right? · 10: two gaps in one sentence, errors in either or both
+ const whichQ=[`Welcher Satz ist richtig?`,`Which sentence is correct?`,`Quelle phrase est correcte ?`];
+ for(const x of slice(.5,1)){const o=[x.s.fill(),...x.close.picks.map(c=>x.s.fill({[x.s.id]:c}))];if(new Set(o.map(norm)).size<4)continue;
+  qs.push({id:'s:'+x.s.key,src:x.s.key,l:[9],kind:'sentence',q:whichQ.map(t=>t+sentenceHint(x.s)),o,ol:C.target,h:[`Achte auf „${startsWith(x.s.answers[0])}“`,`Look at “${startsWith(x.s.answers[0])}”`,`Regarde « ${startsWith(x.s.answers[0])} »`]});}
+ const twoQ=[`Welcher Satz ist komplett richtig?`,`Which sentence is completely correct?`,`Quelle phrase est entièrement correcte ?`];
+ const pairsSeen=new Set();
+  for(const x of byScore){if(x.s.ids.length<2)continue;const other=hardPool.find(y=>y.s.key!==x.s.key&&y.s.fill===x.s.fill&&!pairsSeen.has([x.s.key,y.s.key].sort().join('|')));if(!other)continue;pairsSeen.add([x.s.key,other.s.key].sort().join('|'));const a=x.close.picks[0],b=other.close.picks[0];
+  const o=[x.s.fill(),x.s.fill({[x.s.id]:a}),x.s.fill({[other.s.id]:b}),x.s.fill({[x.s.id]:a,[other.s.id]:b})];if(new Set(o.map(norm)).size<4)continue;
+  qs.push({id:'d:'+x.s.key,src:x.s.key,also:other.s.key,l:[10],kind:'sentence-double',q:twoQ.map(t=>t+([x.s,other.s].filter(s=>!ruleHint(s)).map(s=>hintText(s.hint)).join(' · ').replace(/^(.+)$/,' ($1)'))),o,ol:C.target,h:[`Zwei Stellen prüfen: „${startsWith(x.s.answers[0])}“ und „${startsWith(other.s.answers[0])}“`,`Check two places: “${startsWith(x.s.answers[0])}” and “${startsWith(other.s.answers[0])}”`,`Vérifie deux endroits : « ${startsWith(x.s.answers[0])} » et « ${startsWith(other.s.answers[0])} »`]});}
+ // The million question is always among the hardest of the lesson; without two-gap sentences the hardest single ones are used.
+ if(qs.filter(q=>q.kind==='sentence-double').length<3)for(const q of qs.filter(q=>q.kind==='sentence').slice(-3))qs.push({...q,id:'x:'+q.src,l:[10],kind:'sentence-hardest'});
+ return qs.flatMap(q=>q.l.map(l=>({...q,l})));
 }
-// One question per level; falls back to the closest easier level when a level has none.
-function pickSet(pool){const used=new Set();return LADDER.map((_,i)=>{for(let l=i+1;l>=1;l--){const options=pool.filter(q=>q.l===l&&!used.has(q.q[0]));if(options.length){const q=pick(options);used.add(q.q[0]);return q;}}return pick(pool);});}
+// One question per level, never the same sentence twice in a game. The ladder is filled from the top, so the
+// million question gets the hardest sentence first; an empty level falls back to the closest easier one.
+function pickSet(pool){const used=new Set(),srcs=new Set(),set=[];const free=q=>!used.has(q.id||q.q[0])&&!(q.src&&srcs.has(q.src))&&!(q.also&&srcs.has(q.also));
+ for(let i=LADDER.length-1;i>=0;i--){let chosen=null;for(let l=i+1;l>=1&&!chosen;l--){const options=pool.filter(q=>q.l===l&&free(q));if(options.length)chosen=pick(options);}chosen||=pick(pool);used.add(chosen.id||chosen.q[0]);if(chosen.src)srcs.add(chosen.src);if(chosen.also)srcs.add(chosen.also);set[i]=chosen;}
+ return set;}
 const resumable=g=>!!g&&Array.isArray(g.qs)&&g.qs.length===LADDER.length&&g.qs.every(q=>q&&Array.isArray(q.o)&&q.o.length===4&&q.q)&&Number.isInteger(g.level)&&g.level>=0&&g.level<LADDER.length;
 
 /* ---------- The show ---------- */
@@ -140,5 +231,5 @@ function mount(host,{pool=[],course='fr',lessonLabel=null,audioBase='audio/quiz/
  function exit(){stop();onExit?.();}
  intro();return stop;
 }
-window.A1_QUIZ_SHOW={mount,generate,pickSet,starsFor,money:(n,course)=>{if(course)ui=course==='de'?'fr':'de';return money(n);},LADDER,SAFE,SOUNDS};
+window.A1_QUIZ_SHOW={mount,generate,pickSet,starsFor,WORD_SETS,money:(n,course)=>{if(course)ui=course==='de'?'fr':'de';return money(n);},LADDER,SAFE,SOUNDS};
 })();
