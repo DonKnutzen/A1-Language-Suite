@@ -189,7 +189,7 @@
       }
       if(view.querySelector('.hard-entry'))return;
       const host=document.createElement('div');view.append(host);
-      window.DE_A1_HARD_MODE.renderEntry({lesson:l,view:host,state,onStart:()=>{remember();window.A1Voice?.cancel();window.DE_A1_HARD_MODE.render({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
+      window.DE_A1_HARD_MODE.renderEntry({lesson:l,view:host,state,onStart:()=>{remember();window.A1Voice?.cancel();window.DE_A1_HARD_MODE.render({lesson:l,view,state,save,onBack:()=>goStep('check')});},onQuiz:()=>{remember();window.DE_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
     }
     function drawMastery(){
       window.A1BugReports?.setContext({lessonId:l.id,step:'check',grammarIndex:activeStep==='grammar'?grammarIndex:null});

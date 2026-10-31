@@ -99,9 +99,33 @@
       ${open?`<div class="hard-entry-info"><div class="hard-entry-meta"><span>3 ${t('Teile','parts')}</span><span>${data.taskCount||data.gaps.length+questions(data).length+1} ${t('Aufgaben','tasks')}</span><span>≈ ${(data.minutes||[25,35]).join('–')} Min.</span></div><p id="hardEntryHint-${lesson.id}">${t('Lückentext · Hörverstehen · Eigene Nachricht','Cloze text · Listening · Your own message')}</p><small>${done?t('✓ Trainingsziel erreicht · Schreiben selbst geprüft','✓ Practice target met · writing self-assessed'):p?.passedAt?t('Neue Aufgaben verfügbar · frühere Ergebnisse bleiben gespeichert','Updated tasks available · previous results are saved'):t('Freigeschaltet · Fortschritt wird gespeichert.','Unlocked · Progress is saved.')}</small></div>`:`<small id="hardEntryHint-${lesson.id}" class="hard-entry-hint">${t('Ab 80 % im Lektionscheck','Unlocks at 80% in the lesson check')}</small>`}
     </section>`;
   }
-  function renderEntry({lesson,view,state,onStart}){
+  // Quiz show (shared/quiz-show.js): its own button below Hard Mode, unlocked together with it. Saved game, best prize and stars live next to the Hard Mode attempt.
+  function quizStore(state,id){const hm=()=>((state.lessonWork||={})[id]||={}).hardMode||={};
+   if(Number(id)===1&&window.FR_A1_ARCADE){const ar=()=>{const x=(hm().pilot||={}).arcade||={};x.best||={};x.stars||={};return x;},cur=state.lessonWork?.[id]?.hardMode?.pilot?.arcade;
+   return {game:cur?.quiz||null,best:cur?.best?.quiz||0,stars:cur?.stars?.quiz||0,keep(g){if(g)ar().quiz=g;else delete ar().quiz;},end(score,stars){const x=ar();if(score>(x.best.quiz||0))x.best.quiz=score;x.stars.quiz=Math.max(x.stars.quiz||0,stars);}};}
+   const cur=state.lessonWork?.[id]?.hardMode?.quiz,Q=()=>hm().quiz||={};
+   return {game:cur?.game||null,best:cur?.best||0,stars:cur?.stars||0,keep(g){if(g)Q().game=g;else delete Q().game;},end(score,stars){const q=Q();if(score>(q.best||0))q.best=score;q.stars=Math.max(q.stars||0,stars);}};}
+  function quizEntryHtml(lesson,state){
+    if(!window.A1_QUIZ_SHOW)return '';const open=unlocked(state,lesson.id),Q=quizStore(state,lesson.id);
+    const lock=`<svg class="quiz-lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0${open?'':'v3'}"/><path d="M12 14v3"/></svg>`;
+    const label=!open?t('Gesperrt','Locked'):Q.game?`${t('Weiter bei Frage','Continue at question')} ${Number(Q.game.level)+1} →`:Q.best?`🏆 ${window.A1_QUIZ_SHOW.money(Q.best,'fr')}<i>${'★'.repeat(Q.stars)}${'☆'.repeat(3-Q.stars)}</i>`:t('Spielen','Play')+' →';
+    return `<section class="quiz-entry-card ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="${t('Millionen-Turm','Million tower')}">
+      <button type="button" class="quiz-entry-button" data-quiz-entry ${open?'':'disabled'}>${lock}<strong>${t('Millionen-Turm','Million tower')}<small>${t('10 Fragen · immer schwerer','10 questions · ever harder')}</small></strong><span>${label}</span></button>
+      ${open?'':`<small class="quiz-entry-hint">${t('Wird zusammen mit dem Hard Mode freigeschaltet','Unlocks together with Hard Mode')}</small>`}
+    </section>`;
+  }
+  function openQuiz({lesson,view,state,save,onBack}){
+    if(!window.A1_QUIZ_SHOW||!unlocked(state,lesson.id))return onBack();
+    window.A1Voice?.cancel();redraw=null;checkDetached=null;const Q=quizStore(state,lesson.id),keep=()=>{try{save(false);}catch{}};
+    view.innerHTML=`<div class="quiz-page" data-i18n-ignore data-bug-lesson="${lesson.id}"><div data-quiz-host></div></div>`;
+    const host=view.querySelector('[data-quiz-host]'),opts={best:Q.best,saved:Q.game,backLabel:t('Lektion','Lesson'),onSave:g=>{Q.keep(g);keep();},onEnd:({score,stars})=>{Q.end(score,stars);keep();},onExit:onBack};
+    if(Number(lesson.id)===1&&window.FR_A1_ARCADE)window.FR_A1_ARCADE.mount(host,'quiz',opts);
+    else window.A1_QUIZ_SHOW.mount(host,{...opts,pool:window.A1_QUIZ_SHOW.generate('fr',lesson.id),course:'fr',lessonLabel:`${t('Lektion','Lesson')} ${lesson.id}`,audioBase:'audio/quiz/'});
+    window.scrollTo?.({top:0,behavior:'instant'});
+  }
+  function renderEntry({lesson,view,state,onStart,onQuiz}){
     const host=document.createElement('div');view.appendChild(host);
-    function update(){host.innerHTML=entryHtml(lesson,state);host.querySelector('[data-hard-start]').onclick=onStart;}
+    function update(){host.innerHTML=entryHtml(lesson,state)+(onQuiz?quizEntryHtml(lesson,state):'');host.querySelector('[data-hard-start]').onclick=onStart;const quiz=host.querySelector('[data-quiz-entry]');if(quiz)quiz.onclick=onQuiz;}
     redrawEntry=()=>{if(host.isConnected)update();};update();
   }
   function render({lesson,view,state,save,onBack,legacy=false}){
@@ -178,21 +202,9 @@
     }
     function cancelAudio(){audioRun++;if(audioTimer)window.clearTimeout(audioTimer);audioTimer=null;playing=null;window.A1Voice?.cancel();}
     function leave(){cancelAudio();redraw=null;checkDetached=null;onBack();}
-    // Quiz show for this lesson (shared/quiz-show.js): its saved game, best prize and stars live next to the Hard Mode attempt.
-    const quizData=()=>{const hm=((state.lessonWork||={})[lesson.id]||={}).hardMode||={};return hm.quiz||={};};
-    const quizEntry=()=>{if(!window.A1_QUIZ_SHOW)return '';const Q=quizData(),show=window.A1_QUIZ_SHOW;const info=Q.game?`▶ ${t('Weiter bei Frage','Continue at question')} ${Number(Q.game.level)+1}`:Q.best?`🏆 ${t('Rekord','Best')}: ${show.money(Q.best,'fr')} · ${'★'.repeat(Q.stars||0)}${'☆'.repeat(3-(Q.stars||0))}`:t('10 Fragen zu dieser Lektion – immer schwerer','10 questions on this lesson – ever harder');return `<button type="button" class="quiz-entry" data-hard-quiz><span aria-hidden="true">💎</span><span>${t('Millionen-Turm','Million tower')}<small>${info}</small></span></button>`;};
-    function openQuiz(){
-      if(playing!==null)cancelAudio();redraw=null;checkDetached=null;const Q=quizData();let stop=null;
-      view.innerHTML=`<div class="quiz-page" data-i18n-ignore data-bug-lesson="${lesson.id}"><div data-quiz-host></div></div>`;
-      const keep=()=>{try{save(false);}catch{}};
-      stop=window.A1_QUIZ_SHOW.mount(view.querySelector('[data-quiz-host]'),{pool:window.A1_QUIZ_SHOW.generate('fr',lesson.id),course:'fr',lessonLabel:`${t('Lektion','Lesson')} ${lesson.id}`,audioBase:'audio/quiz/',best:Q.best||0,saved:Q.game||null,backLabel:'Hard Mode',
-        onSave:game=>{if(game)Q.game=game;else delete Q.game;keep();},onEnd:({score,stars})=>{if(score>(Q.best||0))Q.best=score;Q.stars=Math.max(Q.stars||0,stars);keep();},onExit:()=>{stop=null;render({lesson,view,state,save,onBack});}});
-      window.scrollTo?.({top:0,behavior:'instant'});
-    }
     function mount(html){
       view.innerHTML=`<div class="hard-mode" data-i18n-ignore data-bug-lesson="${lesson.id}">${html}</div>`;
       root=view.firstElementChild;
-      root.firstElementChild?.insertAdjacentHTML('afterend',quizEntry());root.querySelector('[data-hard-quiz]')?.addEventListener('click',openQuiz);
       checkDetached=()=>{if(!root?.isConnected&&playing!==null)cancelAudio();};
       redraw=()=>{if(root?.isConnected){
         const active=document.activeElement,selector=active?.id?'#'+active.id:active?.dataset?.hardGap!==undefined?`[data-hard-gap="${active.dataset.hardGap}"]`:active?.dataset?.hardListen!==undefined?`[data-hard-listen="${active.dataset.hardListen}"]`:null;
@@ -356,5 +368,5 @@
   }
   // Cancel speech if navigation removes the test without calling its back button.
   new MutationObserver(()=>checkDetached?.()).observe(document.getElementById('view')||document.body,{childList:true});
-  window.FR_A1_HARD_MODE={unlocked,entryHtml,renderEntry,render,normalize,matches,words,objective,passed,achievedResult,goldResult,achievement,achievementClass,achievementBadge};
+  window.FR_A1_HARD_MODE={unlocked,entryHtml,renderEntry,render,quizEntryHtml,openQuiz,normalize,matches,words,objective,passed,achievedResult,goldResult,achievement,achievementClass,achievementBadge};
 })();

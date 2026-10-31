@@ -117,3 +117,21 @@
 .quiz-show .quiz-joker{position:relative}
 
 @media(prefers-reduced-motion:reduce){.quiz-show *,.quiz-show *::before,.quiz-show *::after,.quiz-entry{animation:none!important;transition:none!important}}
+/* ---------- Quiz show entry on the lesson page, right below Hard Mode ---------- */
+.quiz-entry-card{margin:-10px 0 22px;padding:10px;border:1px solid #7b5cff38;border-radius:20px;background:#7b5cff0a}
+.quiz-entry-button{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:14px 17px;border:1px solid #ffffff55;border-radius:13px;background:linear-gradient(110deg,#ff4d6d,#ff9f1c,#ffd60a,#2ec4b6,#3a86ff,#8338ec,#ff4d6d);background-size:300% 100%;color:#fff;font:inherit;text-align:left;text-shadow:0 1px 2px #0006;box-shadow:inset 0 1px 0 #ffffff55,0 6px 20px -6px #8338ec88;animation:quiz-rainbow 9s linear infinite;cursor:pointer;transition:transform .15s}
+.quiz-entry-button>*{position:relative;z-index:1}
+.quiz-entry-button::after{content:"";position:absolute;z-index:0;pointer-events:none;left:-40%;top:-60%;width:25%;height:220%;background:linear-gradient(90deg,transparent,#ffffff70,transparent);transform:skewX(-18deg);animation:hard-button-sheen 5.5s ease-in-out infinite}
+.quiz-entry-button:not(:disabled):hover{transform:translateY(-2px)}
+.quiz-entry-button:focus-visible{outline:3px solid #ffd166;outline-offset:3px}
+.quiz-entry-button strong{display:flex;flex-direction:column;font-size:1.1rem;font-weight:800;letter-spacing:-.015em}
+.quiz-entry-button strong small{font-size:.74rem;font-weight:650;opacity:.92}
+.quiz-entry-button>span{margin-left:auto;padding:6px 8px;border:1px solid #ffffff40;border-radius:9px;background:#00000026;font-size:.8rem;font-weight:700;line-height:1.35;text-align:right;max-width:15ch}
+.quiz-entry-button>span i{display:block;font-style:normal;color:#ffe08a;letter-spacing:.08em}
+.quiz-lock-icon{width:25px;height:28px;flex:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px #0005)}
+.quiz-entry-card.is-locked .quiz-entry-button{cursor:not-allowed;filter:saturate(.45) brightness(.9);animation-duration:18s}
+.quiz-entry-card.is-locked .quiz-entry-button::after{display:none}
+.quiz-entry-hint{display:block;margin:9px 4px 1px;font-size:.78rem;line-height:1.5;color:var(--muted,#666171);text-align:center}
+@keyframes quiz-rainbow{to{background-position:300% 50%}}
+@media(max-width:400px){.quiz-entry-button{gap:9px;padding:13px 11px}.quiz-entry-button strong{font-size:1rem}.quiz-entry-button>span{font-size:.72rem;max-width:11ch}.quiz-lock-icon{width:22px}}
+@media(prefers-reduced-motion:reduce){.quiz-entry-button,.quiz-entry-button::after{animation:none!important}}

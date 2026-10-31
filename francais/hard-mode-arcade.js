@@ -292,7 +292,7 @@ const QUESTIONS=[
 ];
 // Lesson 1 uses the hand-written questions above; the show itself lives in shared/quiz-show.js. Old saves stored question numbers.
 function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()=>{};const old=opts.saved;const saved=old&&!old.qs&&Array.isArray(old.set)?{...old,qs:old.set.map(n=>QUESTIONS[n])}:old;
- return show.mount(host,{...opts,saved,pool:QUESTIONS,course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:t('Spielhalle','Arcade')});}
+ return show.mount(host,{...opts,saved,pool:QUESTIONS,course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
 
 function mount(host,id,opts={}){if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};

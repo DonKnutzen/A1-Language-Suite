@@ -202,7 +202,7 @@
     }
     function renderExtras(){
       if(view.querySelector('.hard-entry')||!window.FR_A1_HARD_MODE)return;
-      FR_A1_HARD_MODE.renderEntry({lesson:l,view,state,onStart:()=>goStep('hard')});
+      FR_A1_HARD_MODE.renderEntry({lesson:l,view,state,onStart:()=>goStep('hard'),onQuiz:()=>{remember('exercise');FR_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
     }
     function drawHardMode(){
       if(!opts.renderHardMode)return goStep('check');
