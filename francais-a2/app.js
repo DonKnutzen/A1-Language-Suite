@@ -168,7 +168,7 @@ function renderLearn(){
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));
 }
 
-const LESSON_APPLICATIONS={};
+const LESSON_APPLICATIONS=D.applications||{};
 
 const LESSON_WRITING_HINTS = {};
 

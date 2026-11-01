@@ -279,7 +279,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       1
     ],
-    "dePlural": "die Sprachen"
+    "dePlural": "die Sprachen",
+    "frA2Lessons": [
+      1
+    ]
   },
   {
     "fr": "le pays",
@@ -797,7 +800,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       3
     ],
-    "dePlural": "die Nummern"
+    "dePlural": "die Nummern",
+    "frA2Lessons": [
+      4
+    ]
   },
   {
     "fr": "le téléphone",
@@ -1310,6 +1316,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       5
+    ],
+    "frA2Lessons": [
+      1
     ]
   },
   {
@@ -1321,7 +1330,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       5
     ],
-    "dePlural": "die Söhne"
+    "dePlural": "die Söhne",
+    "frA2Lessons": [
+      1
+    ]
   },
   {
     "fr": "l’enfant (m./f.)",
@@ -1406,6 +1418,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       5
+    ],
+    "frA2Lessons": [
+      1
     ]
   },
   {
@@ -1416,6 +1431,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       5
+    ],
+    "frA2Lessons": [
+      1
     ]
   },
   {
@@ -1861,6 +1879,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       7
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -2156,7 +2177,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8
     ],
-    "dePlural": "die Badezimmer"
+    "dePlural": "die Badezimmer",
+    "frA2Lessons": [
+      2
+    ]
   },
   {
     "fr": "les toilettes",
@@ -2178,7 +2202,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8
     ],
-    "dePlural": "die Wohnzimmer"
+    "dePlural": "die Wohnzimmer",
+    "frA2Lessons": [
+      2
+    ]
   },
   {
     "fr": "la porte",
@@ -2287,7 +2314,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8
     ],
-    "dePlural": "die Stockwerke"
+    "dePlural": "die Stockwerke",
+    "frA2Lessons": [
+      2
+    ]
   },
   {
     "fr": "le loyer",
@@ -2298,7 +2328,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8
     ],
-    "dePlural": "die Mieten"
+    "dePlural": "die Mieten",
+    "frA2Lessons": [
+      2
+    ]
   },
   {
     "fr": "le jardin",
@@ -2320,7 +2353,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8
     ],
-    "dePlural": "die Balkone"
+    "dePlural": "die Balkone",
+    "frA2Lessons": [
+      2
+    ]
   },
   {
     "fr": "louer",
@@ -2549,6 +2585,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      3
     ]
   },
   {
@@ -2807,6 +2846,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       11
+    ],
+    "frA2Lessons": [
+      1
     ]
   },
   {
@@ -2975,6 +3017,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -3025,6 +3070,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -3035,6 +3083,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      6
     ]
   },
   {
@@ -3934,6 +3985,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       13
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -3944,6 +3998,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       13
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -3964,6 +4021,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       13
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -3996,7 +4056,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       13
     ],
-    "dePlural": "die Hotels"
+    "dePlural": "die Hotels",
+    "frA2Lessons": [
+      6
+    ]
   },
   {
     "fr": "la réservation",
@@ -4114,7 +4177,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       13
     ],
-    "dePlural": "die Strände"
+    "dePlural": "die Strände",
+    "frA2Lessons": [
+      6
+    ]
   },
   {
     "fr": "la mer",
@@ -4125,7 +4191,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       13
     ],
-    "dePlural": "die Meere"
+    "dePlural": "die Meere",
+    "frA2Lessons": [
+      6
+    ]
   },
   {
     "fr": "inviter",
@@ -4269,6 +4338,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       15
+    ],
+    "frA2Lessons": [
+      4
     ]
   },
   {
@@ -4379,7 +4451,10 @@ window.A1_VOCABULARY_CONTENT = [
       22,
       23
     ],
-    "dePlural": "die Nachrichten"
+    "dePlural": "die Nachrichten",
+    "frA2Lessons": [
+      4
+    ]
   },
   {
     "fr": "envoyer",
@@ -5297,6 +5372,9 @@ window.A1_VOCABULARY_CONTENT = [
       4,
       15,
       24
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -5758,7 +5836,10 @@ window.A1_VOCABULARY_CONTENT = [
       13,
       24
     ],
-    "dePlural": "die Berge / die Gebirge"
+    "dePlural": "die Berge / die Gebirge",
+    "frA2Lessons": [
+      6
+    ]
   },
   {
     "fr": "visiter",
@@ -5769,6 +5850,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       13,
       24
+    ],
+    "frA2Lessons": [
+      6
     ]
   },
   {
@@ -6565,6 +6649,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      3
     ]
   },
   {
@@ -6575,6 +6662,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      3
     ]
   },
   {
@@ -6596,7 +6686,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       9
     ],
-    "dePlural": "die Plätze"
+    "dePlural": "die Plätze",
+    "frA2Lessons": [
+      3
+    ]
   },
   {
     "fr": "le pont",
@@ -6607,7 +6700,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       9
     ],
-    "dePlural": "die Brücken"
+    "dePlural": "die Brücken",
+    "frA2Lessons": [
+      3
+    ]
   },
   {
     "fr": "le parc",
@@ -6639,6 +6735,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      3
     ]
   },
   {
@@ -6822,6 +6921,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -6882,6 +6984,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      3
     ]
   },
   {
@@ -6892,6 +6997,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      3
     ]
   },
   {
@@ -7051,6 +7159,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       12,
       21
+    ],
+    "frA2Lessons": [
+      5
     ]
   },
   {
@@ -7512,5 +7623,320 @@ window.A1_VOCABULARY_CONTENT = [
       24
     ],
     "dePlural": "die Gründe"
+  },
+  {
+    "fr": "divorcé / divorcée",
+    "de": "geschieden",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      1
+    ]
+  },
+  {
+    "fr": "depuis",
+    "de": "seit",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      1
+    ]
+  },
+  {
+    "fr": "il y a (+ Zeit)",
+    "de": "vor + Zeitangabe",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      1
+    ]
+  },
+  {
+    "fr": "le temps libre",
+    "de": "die Freizeit",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      1
+    ]
+  },
+  {
+    "fr": "la randonnée",
+    "de": "das Wandern",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      1
+    ]
+  },
+  {
+    "fr": "l’infirmier / l’infirmière",
+    "de": "der Krankenpfleger / die Krankenpflegerin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      1
+    ]
+  },
+  {
+    "fr": "la pièce",
+    "de": "das Zimmer",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "le rez-de-chaussée",
+    "de": "das Erdgeschoss",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "l’ascenseur (m.)",
+    "de": "der Aufzug",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "clair / claire",
+    "de": "hell",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "meilleur / meilleure",
+    "de": "besser",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "le quartier",
+    "de": "das Viertel",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "l’ancien / l’ancienne",
+    "de": "der / die frühere",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      2
+    ]
+  },
+  {
+    "fr": "ensuite",
+    "de": "dann",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      3
+    ]
+  },
+  {
+    "fr": "jusqu’à",
+    "de": "bis",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      3
+    ]
+  },
+  {
+    "fr": "le tram",
+    "de": "die Straßenbahn",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      3
+    ]
+  },
+  {
+    "fr": "descendre",
+    "de": "aussteigen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      3
+    ]
+  },
+  {
+    "fr": "allô",
+    "de": "hallo am Telefon",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "de la part de",
+    "de": "im Auftrag von",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "laisser",
+    "de": "lassen, hinterlassen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "rappeler",
+    "de": "zurückrufen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "répondre",
+    "de": "antworten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "téléphoner",
+    "de": "telefonieren",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "la réunion",
+    "de": "die Besprechung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "dommage",
+    "de": "schade",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "volontiers",
+    "de": "gern",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      4
+    ]
+  },
+  {
+    "fr": "dernier / dernière",
+    "de": "letzter / letzte",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      5
+    ]
+  },
+  {
+    "fr": "arrêter de",
+    "de": "aufhören zu",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      5
+    ]
+  },
+  {
+    "fr": "pleuvoir",
+    "de": "regnen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      5
+    ]
+  },
+  {
+    "fr": "les vacances (f.)",
+    "de": "die Ferien, der Urlaub",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      6
+    ]
+  },
+  {
+    "fr": "espérer",
+    "de": "hoffen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      6
+    ]
+  },
+  {
+    "fr": "le village",
+    "de": "das Dorf",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      6
+    ]
+  },
+  {
+    "fr": "plaire",
+    "de": "gefallen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      6
+    ]
+  },
+  {
+    "fr": "soudain",
+    "de": "plötzlich",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      6
+    ]
+  },
+  {
+    "fr": "l’excursion (f.)",
+    "de": "der Ausflug",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      6
+    ]
   }
 ];

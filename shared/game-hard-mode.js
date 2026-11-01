@@ -8,7 +8,7 @@ const shuffle=xs=>{const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.fl
 const norm=s=>String(s??'').normalize('NFC').trim().toLowerCase();
 const calm=()=>!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const COURSES={
- fr:{content:()=>window.FR_A1_HARD_CONTENT,mode:()=>window.FR_A1_HARD_MODE,audio:()=>window.FR_A1_HARD_AUDIO,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR',ui:'de',first:2,accents:['é','è','ê','à','ç','’','î','ô','û']},
+ fr:{content:()=>window.FR_A1_HARD_CONTENT,mode:()=>window.FR_A1_HARD_MODE,audio:()=>window.FR_A1_HARD_AUDIO,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR',ui:'de',first:window.A1_APP_META?.course==='francais-a2'?1:2,accents:['é','è','ê','à','ç','’','î','ô','û']},
  de:{content:()=>window.DE_A1_HARD_CONTENT,mode:()=>window.DE_A1_HARD_MODE,audio:()=>window.DE_A1_HARD_AUDIO,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE',ui:'fr',first:1,accents:['ä','ö','ü','ß','Ä','Ö','Ü']}
 };
 let course='fr';
