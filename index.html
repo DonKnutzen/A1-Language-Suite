@@ -123,6 +123,13 @@ html.dark-mode .theme-toggle{
       <span class="pill" id="frCoursePill"></span>
     </a>
 
+    <a class="course" href="francais-a2/">
+      <div class="flag">🇫🇷</div>
+      <h2>Français A2</h2>
+      <p id="frA2CourseText"></p>
+      <span class="pill" id="frA2CoursePill"></span>
+    </a>
+
     <a class="course" href="englisch/">
       <div class="flag">🇬🇧</div>
       <h2>English A1</h2>
@@ -149,17 +156,19 @@ html.dark-mode .theme-toggle{
 
 <script>window.A1_APP_META={};</script>
 <script src="shared/config.js"></script><script src="shared/text-size.js?v=text-size-103"></script>
-<script src="shared/profile.js?v=settings-final-171"></script>
+<script src="shared/profile.js?v=a2-course-172"></script>
 <script>
 const UI={
   en:{
   "title": "Language trainer",
-  "heroTitle": "One profile. Four A1 courses and one C1 course.",
+  "heroTitle": "One profile. Four A1 courses, one A2 course and one C1 course.",
   "heroText": "Choose the language you want to learn. Progress is saved separately for each profile and course.",
   "deText": "Focused preparation for the Goethe-Zertifikat A1, with explanations in French.",
   "dePill": "Learn German",
   "frText": "Focused preparation for DELF A1, with explanations in German or English.",
   "frPill": "Learn French",
+  "frA2Text": "Builds on A1 and prepares you for telc Français A2, with explanations in German.",
+  "frA2Pill": "Continue with French A2",
   "esText": "Focused preparation for DELE A1.",
   "esPill": "Learn Spanish",
   "trDeText": "Turkish explanations, C1 grammar and focused preparation for the Deutsch-Test für den Beruf C1; Goethe C1 remains available as extra practice.",
@@ -169,10 +178,11 @@ const UI={
 },
   de:{
     title:'Sprachtrainer',
-    heroTitle:'Ein Profil. Vier A1-Kurse und ein C1-Kurs.',
+    heroTitle:'Ein Profil. Vier A1-Kurse, ein A2-Kurs und ein C1-Kurs.',
     heroText:'Wähle, welche Sprache du lernen möchtest. Dein Fortschritt wird pro Profil und Kurs getrennt gespeichert.',
     deText:'Gezielte Vorbereitung auf das Goethe-Zertifikat A1 – mit französischen Erklärungen.',dePill:'Deutsch lernen',
     frText:'Gezielte Vorbereitung auf die DELF-A1-Prüfung.',frPill:'Französisch lernen',
+    frA2Text:'Baut auf A1 auf und bereitet auf die Prüfung telc Français A2 vor – mit deutschen Erklärungen.',frA2Pill:'Französisch A2 lernen',
     esText:'Gezielte Vorbereitung auf die DELE-A1-Prüfung.',esPill:'Spanisch lernen',
     trDeText:'Türkische Erklärungen, C1-Grammatik und gezielte Vorbereitung auf den Deutsch-Test für den Beruf C1; Goethe C1 bleibt als Zusatztraining verfügbar.',trDePill:'Deutsch C1 auf Türkisch lernen',
     noteLocal:'<strong>Profile:</strong> Benutzername + PIN, ohne E-Mail. Der Fortschritt wird auf diesem Gerät gespeichert.',
@@ -180,10 +190,11 @@ const UI={
   },
   fr:{
     title:'Entraîneur de langues',
-    heroTitle:'Un profil. Quatre cours A1 et un cours C1.',
+    heroTitle:'Un profil. Quatre cours A1, un cours A2 et un cours C1.',
     heroText:'Choisis la langue que tu veux apprendre. Ta progression est enregistrée séparément pour chaque profil et chaque cours.',
     deText:'Préparation ciblée au Goethe-Zertifikat A1, avec des explications en français.',dePill:"Apprendre l’allemand",
     frText:'Préparation ciblée au DELF A1.',frPill:'Apprendre le français',
+    frA2Text:'Suite du niveau A1 et préparation au telc Français A2, avec des explications en allemand.',frA2Pill:'Continuer en français A2',
     esText:'Préparation ciblée au DELE A1.',esPill:"Apprendre l’espagnol",
     trDeText:'Explications en turc, grammaire C1 et préparation ciblée au Deutsch-Test für den Beruf C1 ; Goethe C1 reste disponible comme entraînement complémentaire.',trDePill:"Apprendre l’allemand C1 en turc",
     noteLocal:"<strong>Profils :</strong> nom d’utilisateur + PIN, sans e-mail. La progression est enregistrée sur cet appareil.",
@@ -191,10 +202,11 @@ const UI={
   },
   tr:{
     title:'Dil eğitmeni',
-    heroTitle:'Bir profil. Dört A1 kursu ve bir C1 kursu.',
+    heroTitle:'Bir profil. Dört A1 kursu, bir A2 kursu ve bir C1 kursu.',
     heroText:'Öğrenmek istediğin dili seç. İlerlemen her profil ve kurs için ayrı kaydedilir.',
     deText:'Fransızca açıklamalarla Goethe-Zertifikat A1 sınavına hedefli hazırlık.',dePill:'Almanca öğren',
     frText:'DELF A1 sınavına hedefli hazırlık.',frPill:'Fransızca öğren',
+    frA2Text:'A1 üzerine kurulur ve Almanca açıklamalarla telc Français A2 sınavına hazırlar.',frA2Pill:'Fransızca A2 öğren',
     esText:'DELE A1 sınavına hedefli hazırlık.',esPill:'İspanyolca öğren',
     trDeText:'Türkçe açıklamalar, C1 grameri ve Deutsch-Test für den Beruf C1 sınavına hedefli hazırlık; Goethe C1 ek antrenman olarak korunur.',trDePill:'Türkçe ile Almanca C1 öğren',
     noteLocal:'<strong>Profiller:</strong> Kullanıcı adı + PIN, e-posta gerekmez. İlerleme bu cihazda kaydedilir.',
@@ -217,6 +229,8 @@ function renderUi(){
   document.getElementById('deCoursePill').textContent=t.dePill;
   document.getElementById('frCourseText').textContent=t.frText;
   document.getElementById('frCoursePill').textContent=t.frPill;
+  document.getElementById('frA2CourseText').textContent=t.frA2Text;
+  document.getElementById('frA2CoursePill').textContent=t.frA2Pill;
   const english={de:['Englisch A1 für Erwachsene mit deutschen Erklärungen, Hörübungen und Alltagssituationen.','Englisch lernen'],en:['Adult A1 English with German explanations, listening practice and everyday situations.','Learn English'],fr:['Anglais A1 pour adultes, avec des explications en allemand et des situations quotidiennes.','Apprendre l’anglais'],tr:['Almanca açıklamalar ve günlük durumlarla yetişkinler için İngilizce A1.','İngilizce öğren']}[l]||['Englisch A1','Englisch lernen'];
   document.getElementById('enCourseText').textContent=english[0];
   document.getElementById('enCoursePill').textContent=english[1];

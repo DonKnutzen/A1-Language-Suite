@@ -239,7 +239,7 @@
   function courseKey(){
     const p=(location.pathname||'').toLowerCase();
     if(p.includes('/turkisch-deutsch/'))return 'turkisch-deutsch';
-    if(p.includes('/francais/'))return 'francais';
+    if(p.includes('/francais/')||p.includes('/francais-a2/'))return 'francais';
     if(p.includes('/spanisch/'))return 'spanisch';
     if(p.includes('/deutsch/'))return 'deutsch';
     return '';

@@ -224,6 +224,7 @@ applyTheme();
   function courseCode(course){
     if(course === 'de' || course === 'deutsch-a1') return 'de';
     if(course === 'fr' || course === 'francais-a1') return 'fr';
+    if(course === 'fr-a2' || course === 'francais-a2') return 'fr-a2';
     if(course === 'en' || course === 'englisch-a1') return 'en';
     if(course === 'es' || course === 'spanisch-a1') return 'es';
     if(course === 'de-tr' || course === 'deutsch-a1-tr') return 'de-tr';
@@ -837,6 +838,7 @@ applyTheme();
         const courseMeta = {
           de:{flag:'🇩🇪',title:'Deutsch'},
           fr:{flag:'🇫🇷',title:'Français'},
+          'fr-a2':{flag:'🇫🇷',title:'Français A2'},
           en:{flag:'🇬🇧',title:'English A1'},
           es:{flag:'🇪🇸',title:'Español'},
           'de-tr':{flag:'🇩🇪',title:'Deutsch A1 · Türkçe'},
