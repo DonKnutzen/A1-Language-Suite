@@ -26,6 +26,7 @@ test('Français A2 has its own course id, progress key, cache and landing tile',
  assert(!html.includes('lesson1-practice.js'),'A1 lesson 1 drills stay in the A1 course');
  for(const file of html.matchAll(/src="(?!\.\.\/)([^"?]+)/g))assert(fs.existsSync(path.join(root,'francais-a2',file[1])),file[1]);
  assert(read('index.html').includes('<a class="course" href="francais-a2/">'));
+ assert(read('shared/profile.js').includes("if(META.course==='francais-a2')return 'de';"),'A2 stays German even with an English suite preference');
  assert(read('shared/profile.js').includes("if(course === 'fr-a2' || course === 'francais-a2') return 'fr-a2';"));
 });
 test('the A2 lesson plan has 24 lessons, each tied to a part of the telc Français A2 exam',()=>{

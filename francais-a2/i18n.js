@@ -8,7 +8,7 @@
   const plain=s=>s.trim().replace(/\s+/g,' ');
   const bare=s=>plain(s).replace(/[.!?…]+$/,'').toLocaleLowerCase('de');
   const variants=new Map(Object.entries(dictionary).map(([de,en])=>[bare(de),en]));
-  const english=()=>window.A1Profile?.getUiLang()==='en';
+  const english=()=>false;
   function translate(text,depth=0){
     const s=plain(text);if(!s||depth>4)return text;
     if(Object.hasOwn(dictionary,s))return dictionary[s];
@@ -124,7 +124,7 @@
   }
   function updateLanguage(){
     document.documentElement.lang=english()?'en':'de';
-    document.title=english()?'Français A1 – DELF exam trainer':'Français A1 – DELF Prüfungstrainer';
+    document.title='Français A2 – telc Prüfungstrainer';
     const button=document.getElementById('courseLanguage');
     if(button){button.textContent=english()?'DE':'EN';button.title=english()?'Switch to German':'Auf Englisch wechseln';button.setAttribute('aria-label',button.title);}
     apply();

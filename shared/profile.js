@@ -195,6 +195,8 @@ applyTheme();
     // This course teaches German with French explanations. Keep the stored
     // suite preference for the landing page and courses that support it.
     if(META.course==='deutsch-a1')return 'fr';
+    // Français A2 is explained in German only until an English layer exists.
+    if(META.course==='francais-a2')return 'de';
     const p = getCurrent();
     return cleanLang(p?.uiLang || localStorage.getItem(UI_LANG_KEY) || browserLang());
   }
