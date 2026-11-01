@@ -90,8 +90,14 @@
   /* ---------- reading question and answer from the rendered exercise ---------- */
   const CARD_SELECTOR='.hard-review-item,[data-pilot-task],fieldset,.exercise-inline-card,.quiz-stage,.quiz-card,section.card,.card,section,article';
   const QUESTION_SELECTOR='.quiz-q,.quiz-question,legend,.lesson-task-prompt,.question,.review-question,.daily-review-question,h3,h2';
-  const ANSWER_LABEL=/(?:Richtig ist|Richtige Antwort|Richtig|Lösung|Bonne réponse|La bonne réponse|Réponse correcte|Réponse possible|Possible answer|Correct answer|Correct)\s*:\s*/i;
-  const textOf=el=>clean(el?.textContent||'');
+  const ANSWER_LABEL=/(?:Richtig ist|Richtige Antwort|Richtig|Lösung|Bonne réponse|La bonne réponse|Réponse correcte|Réponse possible|Possible answer|Correct answer|Correct)(?:\s+(?:is|ist|war|est|était))?\s*:\s*/i;
+  // line breaks become spaces, so "…la tête.<br>Depuis…" does not run together
+  const textOf=el=>{
+    if(!el)return '';
+    if(!el.querySelector?.('br'))return clean(el.textContent||'');
+    const copy=el.cloneNode(true);copy.querySelectorAll('br').forEach(br=>br.replaceWith(' '));
+    return clean(copy.textContent||'');
+  };
   function stripUi(text){
     return clean(String(text||'').replace(/🔊.*$/,'').replace(/^[✓✗×]\s*/,'').replace(/\s*·\s*(Französisch|Deutsch|French|German).*$/i,''));
   }
@@ -139,7 +145,9 @@
     const situation=textOf(box.querySelector('.notice,.situation')).replace(/^[^:]{0,20}:\s*/,'');
     // Screens can name the answer explicitly (quiz show end screen).
     if(anchor.dataset.explainAnswer){answer=anchor.dataset.explainAnswer;question=anchor.dataset.explainQuestion||question;}
-    return {answer,chosen,sentence,question,explanation,passage,comprehension,ads,situation,ok};
+    // a sentence quoted in the question (« Léa habite avec ses parents. »); clean() drops the quote marks
+    const quote=clean((questionEl?.textContent||'').match(/[«„]\s*([^»“]{6,}?)\s*[»“]/)?.[1]);
+    return {answer,chosen,sentence,question,quote,explanation,passage,comprehension,ads,situation,ok};
   }
 
   /* ---------- mounting ---------- */

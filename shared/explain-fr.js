@@ -443,6 +443,13 @@
     if(aT.some(t=>SEASONS[t]))add('season',seasonsCard(aT.find(t=>SEASONS[t])));
     if(aT.some(t=>['soixante','quatre','vingt','vingts','septante','nonante','cent','mille','trente','quarante','cinquante','seize','quinze','quatorze','treize','douze','onze'].includes(t))||/\b(1[7-9]|[2-9]\d)\b/.test(answer))add('num',numberCard());
     if(cards.length<2&&/\b[jlmtsdnc]'|\bqu'/.test(aT.join(' ')))add('elision',elisionCard());
+    // Answer without French grammar ("Léa’s.") → explain the French sentence quoted in the question.
+    const quoted=!cards.length&&!ctx.__quoted&&/\s/.test(ctx.quote||'')&&ctx.quote;
+    if(quoted){
+      // small words (ses, sa, mon …) usually carry the point of such questions, so they go before verb tables
+      const sub=explain({...ctx,__quoted:true,answer:quoted,sentence:quoted,question:'',chosen:'',comprehension:false},helpers).sort((a,b)=>/^Verb/.test(a.title)-/^Verb/.test(b.title));
+      if(sub.length)return [H.card('Der Satz',`<p lang="fr"><b>${H.esc(quoted)}</b></p><p>Antwort: <b>${H.esc(answer)}</b></p>`),...sub.slice(0,2)];
+    }
     if(!cards.length)add('vocab',vocabCard(answer));
     // the complete solution sentence, with the answer marked
     if(full&&answer&&full!==answer&&full.toLowerCase().includes(answer.toLowerCase())){

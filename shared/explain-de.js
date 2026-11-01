@@ -365,6 +365,8 @@
       if(ps&&(!['ihr','sein'].includes(w)||/^[A-ZÄÖÜ]/.test(W[i+1]||''))){add('poss',possessiveCard(t,W,i));return;}
       if(PERS.some(r=>r.slice(1).includes(t)||r.slice(1).includes(w))&&!['sie','es','ihr'].includes(w)||t==='Ihnen'){add('pron',pronounCard(t,W,i));return;}
       if(t==='Sie'&&aT.length<=2){add('sie',sieCard());return;}
+      // dates: am siebzehnten April – the ordinal takes -ten (1–19) or -sten (from 20)
+      if(w==='am'&&/^\d+\.$|^[a-zäöüß]+(ten|sten)$/i.test(W[i+1]||'')&&W.slice(i+2,i+4).some(x=>MONTHS.includes(x.toLowerCase()))){add('timeprep',timePrepCard(w));add('date',H.card('La date',`<p>Pour une date : <b>am</b> + nombre ordinal en <b>-ten / -sten</b> + mois : <i>am ersten Mai, am dritten Juni, am siebzehnten April, am zwanzigsten Juli</i>. À l’écrit : <i>am 17. April</i>.</p><p><small>1–19 → <b>-ten</b> (attention : ersten, dritten, siebten, achten) · à partir de 20 → <b>-sten</b> (zwanzigsten, einunddreißigsten).</small></p>`));return;}
       if(['am','um','im'].includes(w)&&(DAYS.includes((W[i+1]||'').toLowerCase())||MONTHS.includes((W[i+1]||'').toLowerCase())||/^\d/.test(W[i+1]||'')||['halb','viertel','mitternacht'].includes((W[i+1]||'').toLowerCase())||W.slice(i+1,i+4).some(x=>/^uhr$/i.test(x)))){add('timeprep',timePrepCard(w));if(W.some(x=>/^uhr$/i.test(x)))add('time',timeCard());return;}
       // "Viertel nach / vor vier", "fünf nach acht": nach and vor tell the time here
       const NUMW=/^(eins|ein|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|zwanzig|\d+)$/i;
@@ -382,11 +384,23 @@
     if(/(zig|ßig|zehn|hundert|tausend)\b/i.test(answer)&&!/(Uhr)/.test(answer)||/\b([2-9]\d)\b/.test(answer)&&!/Uhr/.test(answer))add('num',numberCard());
     if(isSentence&&/\bSie\b/.test(answer)&&ctx.chosen&&/\b(du|dich|dir)\b/.test(ctx.chosen))add('sie',sieCard());
     // a noun as answer: show its gender from the article in the sentence (im = in dem → der/das)
-    if(aT.length===1&&/^[A-ZÄÖÜ]/.test(answer)&&offset>0){
+    // months and days: the point is the time preposition (im März, am Montag), not a gender guess
+    if(aT.length===1&&offset>0&&['im','am'].includes(W[offset-1].toLowerCase())&&(MONTHS.includes(answer.toLowerCase())||DAYS.includes(answer.toLowerCase()))){
+      add('timeprep',timePrepCard(W[offset-1].toLowerCase()));
+      add('month',H.card(`Nom : ${answer}`,`<p>Les jours, les mois et les saisons sont <b>masculins</b> : der Montag, der März, der Sommer. D’où <b>am</b> Montag (an dem) et <b>im</b> März (in dem).</p>`));
+    }
+    else if(aT.length===1&&/^[A-ZÄÖÜ]/.test(answer)&&offset>0){
       const before=W[offset-1].toLowerCase();
       const g={der:'masculin (der) ou datif féminin',die:'féminin (die) ou pluriel',das:'neutre (das)',den:'masculin à l’accusatif (der → den)',dem:'masculin ou neutre au datif',im:'masculin ou neutre (im = in dem)',am:'masculin ou neutre (am = an dem)',zum:'masculin ou neutre (zum = zu dem)',zur:'féminin (zur = zu der)',ins:'neutre (ins = in das)',ein:'masculin ou neutre',eine:'féminin',einen:'masculin (accusatif)',einem:'masculin ou neutre (datif)',einer:'féminin (datif)'}[before];
       const meaning=vocabCard(answer);
       if(g)add('noun',H.card(`Nom : ${answer}`,`<p>L’article précédent (<b>${H.esc(W[offset-1])}</b>) peut correspondre à ${g}. Il faut tenir compte du cas et du nombre avant de conclure au genre de <b>${H.esc(answer)}</b>.${meaning?' '+meaning.body.replace(/<\/?p>/g,''):''}</p><p><small>En allemand, les noms s’écrivent toujours avec une <b>majuscule</b>. Apprends chaque nom avec son article.</small></p>${genderRule(answer)}`));
+    }
+    // Answer without German grammar (« Celle de Léa. ») → explain the German sentence quoted in the question.
+    const quoted=!cards.length&&!ctx.__quoted&&/\s/.test(ctx.quote||'')&&ctx.quote;
+    if(quoted){
+      // small words (sein, ihr, den …) usually carry the point of such questions, so they go before verb tables
+      const sub=explain({...ctx,__quoted:true,answer:quoted,sentence:quoted,question:'',chosen:'',comprehension:false},helpers).sort((a,b)=>/^(Verbe|Ordre des mots)/.test(a.title)-/^(Verbe|Ordre des mots)/.test(b.title));
+      if(sub.length)return [H.card('La phrase',`<p lang="de"><b>${H.esc(quoted)}</b></p><p>Réponse : <b>${H.esc(answer)}</b></p>`),...sub.slice(0,2)];
     }
     if(!cards.length)add('vocab',vocabCard(answer));
     if(full&&answer&&full!==answer&&full.toLowerCase().includes(answer.toLowerCase())){
