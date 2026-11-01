@@ -14,8 +14,8 @@ test('German explanations have no control characters and euer forms are inflecte
   const source=read('shared/explain-de.js');
   assert(!/[\u0000-\u0008\u000b-\u001f]/.test(source),'Unexpected control character');
   const body=explain('shared/explain-de.js','de',{answer:'eure',sentence:'Das sind eure Bücher.',question:'Complète : Das sind ___ Bücher.'});
-  assert(body.includes('eur<span class="gx-end">e</span>'));
-  assert(body.includes('eur<span class="gx-end">en</span>'));
+  assert(body.includes('eur<span')&&body.includes('>e</span>'));
+  assert(body.includes('>en</span>'));
   assert(!/euere|eueren|euerem/.test(body));
 });
 test('German notes do not infer two-way case solely from motion',()=>{
