@@ -297,6 +297,27 @@
     const add=(key,c)=>{if(c&&!seen.has(key)&&cards.length<4){seen.add(key);cards.push(c);}};
     const isSentence=aT.length>=3;
 
+    // The exercise families below ask for a pronoun, an irregular plural or an
+    // everyday time expression: these need the actual answer-specific reason,
+    // rather than a generic "memorise it" fallback.
+    if(/pronom personnel allemand|pronom personnel allemand emploies-tu/i.test(q)&&/^(ich|du|er|sie|es|wir|ihr|Sie)$/.test(answer)){
+      const meanings={ich:'je : 1re personne du singulier',du:'tu : 2e personne du singulier (familier)',er:'il : masculin singulier',es:'il/elle : genre neutre, singulier',wir:'nous : 1re personne du pluriel',ihr:'vous : 2e personne du pluriel, familier',sie:'elle au singulier ou ils/elles au pluriel selon le contexte',Sie:'vous : forme de politesse (singulier ou pluriel)'};
+      const detail=answer==='sie'&&/Anna et Paul|« ils »/.test(q)?'Ici, Anna et Paul sont plusieurs personnes : sie = ils.':answer==='sie'&&/« elle »/.test(q)?'Ici, Anna est une seule personne : sie = elle.':answer==='ihr'?'Ici, on tutoie deux personnes : ihr. Pour le vouvoiement, on écrit Sie avec une majuscule.':'Choisis le pronom d’après la personne, le nombre et le registre.';
+      add('subject-pronoun',H.card('Pronom personnel',`<p><b>${H.esc(answer)}</b> = ${meanings[answer]}.</p><p>${detail}</p>${H.table(['Allemand','Français'],[['ich','je'],['du','tu'],['er / sie / es','il / elle / neutre'],['wir','nous'],['ihr','vous (familier pluriel)'],['sie','ils / elles'],['Sie','vous (poli)']],[])}`));
+    }
+    const pluralSource=q.match(/pluriel au nominatif de « ([^»]+) »/i);
+    if(pluralSource){
+      const singular=pluralSource[1];
+      const examples={'Kind':'+ -er : Kinder','Buch':'voyelle modifiée (u → ü) + -er','Auto':'+ -s : Autos','Zimmer':'même forme au singulier et au pluriel','Tisch':'+ -e : Tische','Stuhl':'voyelle modifiée (u → ü) + -e','Tag':'+ -e : Tage','Freund':'+ -e : Freunde','Wohnung':'+ -en : Wohnungen','Straße':'+ -n : Straßen','Frau':'+ -en : Frauen','Mann':'voyelle modifiée (a → ä) + -er'};
+      add('plural',H.card('Pluriel du nom',`<p><b>${H.esc(singular)} → ${H.esc(answer)}</b>. Formation : <b>${examples[singular]||'forme à apprendre avec le nom'}</b>.</p><p><small>Les pluriels allemands peuvent prendre -e, -er, -n/-en, -s, changer de voyelle (Umlaut), ou rester inchangés. Apprends toujours le pluriel avec le nom.</small></p>`));
+    }
+    const timeExpr=q.match(/Que signifie « ([^»]+) »/i);
+    if(timeExpr&&/^(morgen|heute|gestern|am)\s/i.test(timeExpr[1])){
+      const meanings={morgen:'demain',heute:"aujourd’hui",gestern:'hier',früh:'tôt / le matin',Morgen:'matin',Abend:'soir',Nachmittag:'après-midi',Nacht:'nuit',Wochenende:'week-end'};
+      const parts=timeExpr[1].split(/\s+/).map(w=>meanings[w]?`<b>${H.esc(w)}</b> = ${meanings[w]}`:'').filter(Boolean);
+      add('time-expression',H.card('Expression de temps',`<p><b>${H.esc(timeExpr[1])}</b> = <b>${H.esc(answer)}</b>.</p><p>${parts.join(' · ')}</p><p><small>Avec <b>morgen</b> (« demain »), la minuscule le distingue de <b>Morgen</b> (« matin »). Pour le week-end : <b>am Wochenende</b>.</small></p>`));
+    }
+
     // lettered answers (A / B): compare the situation with the texts
     if(/^[A-F]$/.test(answer.trim())&&ctx.ads?.length){
       const rows=ctx.ads.map(ad=>[`<b>${H.esc(ad.label)}</b>${ad.label===answer.trim()?' ✓':''}`,H.esc(ad.text)]);
