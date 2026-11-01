@@ -70,19 +70,26 @@ const SOUND=new Map();
 const sound=s=>{let k=SOUND.get(s);if(k===undefined){k=core(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').replace(/ph/g,'f').replace(/qu/g,'k').replace(/ck/g,'k').replace(/c(?=[aou]|$)/g,'k').replace(/v/g,'f').replace(/z/g,'ts').replace(/ie/g,'i').replace(/h/g,'').replace(/[^a-z ]/g,'').replace(/(.)\1/g,'$1');SOUND.set(s,k);}return k;};
 // A wrong answer must really be wrong: not the same word, not a longer form of it and no shared content word.
 function unlike(a,w,not){const ac=core(a),c=core(w);if(!c||c===ac||c.includes(ac)||ac.includes(c)||not.some(x=>core(x)===c))return false;const at=ac.split(/[\s/]+/);return !c.split(/[\s/]+/).some(t=>t.length>2&&at.includes(t));}
-function best3(scored){const out=[];for(const [w] of scored.sort((x,y)=>x[1]-y[1])){if(out.some(o=>core(o)===core(w)||sound(o)===sound(w)))continue;out.push(w);if(out.length===3)break;}return out;}
-// Up to 500 €: sound-alikes – rhymes and same beginnings rank first, same article and word count are preferred.
-function soundAlikes(answer,pool,not=[]){const a=sound(answer),art=article(answer),n=core(answer).split(/\s+/).length,seen=new Set(),scored=[];
+function best3(scored,n=3){const out=[];for(const [w] of scored.sort((x,y)=>x[1]-y[1])){if(out.some(o=>core(o)===core(w)||sound(o)===sound(w)))continue;out.push(w);if(out.length===n)break;}return out;}
+// Sound-alikes – rhymes and same beginnings rank first, same article and word count are preferred. Lower score = closer.
+function soundScored(answer,pool,not=[]){const a=sound(answer),art=article(answer),n=core(answer).split(/\s+/).length,seen=new Set(),scored=[];
  for(const w of pool){const s=sound(w);if(!s||s===a||seen.has(w)||Math.abs(s.length-a.length)>Math.max(3,a.length*.6)||!unlike(answer,w,not))continue;seen.add(w);
   let pre=0;while(pre<Math.min(a.length,s.length)&&a[pre]===s[pre])pre++;if(pre>=5&&pre>=Math.min(a.length,s.length)*.6)continue;
   let score=distance(a,s)/Math.max(a.length,s.length);const tail=Math.min(3,a.length-1);if(tail>=2&&a.slice(-tail)===s.slice(-tail))score-=.18;if(a[0]===s[0])score-=.1;
   score+=Math.abs(s.length-a.length)/Math.max(s.length,a.length)*.4;if(article(w)!==art)score+=.15;if(core(w).split(/\s+/).length!==n)score+=.2;scored.push([w,score+Math.random()*.06]);}
- return best3(scored);}
+ return scored.sort((x,y)=>x[1]-y[1]);}
 // From 1.000 €: serious near misses – same topic, same article, same kind of word, similar length.
-function sameShape(answer,pool,not=[],own=new Set()){const a=core(answer),art=article(answer),n=a.split(/\s+/).length,parts=a.split('/').length,upper=w=>/^\p{Lu}/u.test(String(w).replace(ART,'').trim()),seen=new Set(),scored=[];
+function sameShape(answer,pool,not=[],own=new Set(),count=3){const a=core(answer),art=article(answer),n=a.split(/\s+/).length,parts=a.split('/').length,upper=w=>/^\p{Lu}/u.test(String(w).replace(ART,'').trim()),seen=new Set(),scored=[];
  for(const w of pool){const c=core(w);if(seen.has(c)||!unlike(answer,w,not))continue;seen.add(c);
   let score=Math.abs(c.length-a.length)/Math.max(c.length,a.length)*.5+Math.random()*.3;if(article(w)!==art)score+=.45;if(c.split(/\s+/).length!==n)score+=.4;if(upper(w)!==upper(answer))score+=.4;if(c.split('/').length!==parts)score+=.5;if(!own.has(norm(w)))score+=.35;if(c.slice(-2)===a.slice(-2))score-=.15;scored.push([w,score]);}
- return best3(scored);}
+ return best3(scored,count);}
+// Up to 500 €: one or two wrong answers that really sound like the right one („Kind“ – „Kino“), never forced;
+// the others are close words of the same topic and shape.
+const FUNNY=.3;
+function lowOptions(answer,soundPool,shapePool,not,own){const funny=[];
+ for(const [w,score] of soundScored(answer,soundPool,not)){if(score>FUNNY||funny.length===2)break;if(!funny.some(o=>core(o)===core(w)||sound(o)===sound(w)))funny.push(w);}
+ const rest=sameShape(answer,shapePool,[...not,...funny],own,3-funny.length).filter(w=>!funny.some(o=>sound(o)===sound(w)));
+ return [...funny,...rest].slice(0,3);}
 function startsWith(word){const w=String(word);return w.length>3?w.slice(0,2)+'…':w.slice(0,1)+'…';}
 const COURSES={
  fr:{target:'fr',meaning:'de',lessons:'frLessons',hard:()=>window.FR_A1_HARD_CONTENT,lang:['Französisch','French','français']},
@@ -156,13 +163,13 @@ function generate(course,lessonId){
  const allM=V.map(v=>v[C.meaning]).filter(Boolean),allT=V.map(v=>v[C.target]).filter(Boolean);
  // Other entries with the same word or the same meaning are right too, so they never become wrong answers.
  const twins=p=>V.filter(v=>norm(v[C.target]||'')===norm(p.t)||norm(v[C.meaning]||'')===norm(p.m)).flatMap(v=>[v[C.target],v[C.meaning]]);
- const own=new Set(lesson.map(x=>norm(x.t))),themed=pairs(V.filter(v=>(v[C.lessons]||[]).some(n=>n<=id&&n>=id-2)));
+ const own=new Set(lesson.map(x=>norm(x.t))),ownM=new Set(lesson.map(x=>norm(x.m))),themed=pairs(V.filter(v=>(v[C.lessons]||[]).some(n=>n<=id&&n>=id-2)));
  const meaningQ=[p=>`Was bedeutet „${p.t}“?`,p=>`What does “${p.t}” mean?`,p=>`Que veut dire « ${p.t} » ?`],sayQ=[p=>`Wie heißt „${p.m}“ auf ${lang[0]}?`,p=>`How do you say “${p.m}” in ${lang[1]}?`,p=>`Comment dit-on « ${p.m} » en ${lang[2]} ?`];
  for(const p of lesson){const base={src:'v:'+norm(p.t),w:keys(p.t,p.m)},not=twins(p);
-  // 10 € – 200 €: what does it mean? Funny sound-alikes („Katze“ – „Tatze“, „Glatze“): close, but good for a laugh.
-  for(const [l,list] of [[[1,2],allM],[[3],earlier.map(x=>x.m)]]){const wrong=soundAlikes(p.m,list,not);if(wrong.length===3)qs.push({...base,id:'m'+l[0]+':'+p.t,l,kind:'meaning',q:meaningQ.map(f=>f(p)),o:[p.m,...wrong],ol:C.meaning,h:hintFor(p.m)});}
-  // 200 € / 500 €: how do you say it? Sound-alikes in the new language, at 500 € only from words already learned.
-  for(const [l,list] of [[4,allT],[5,earlier.map(x=>x.t)]]){const wrong=soundAlikes(p.t,list,not);if(wrong.length===3)qs.push({...base,id:'w'+l+':'+p.t,l:[l],kind:'word',q:sayQ.map(f=>f(p)),o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});}
+  // 10 € – 200 €: what does it mean? One or two real sound-alikes where they fit, the rest close words of the topic.
+  for(const [l,list] of [[[1,2],allM],[[3],earlier.map(x=>x.m)]]){const wrong=lowOptions(p.m,list,themed.map(x=>x.m),not,ownM);if(wrong.length===3)qs.push({...base,id:'m'+l[0]+':'+p.t,l,kind:'meaning',q:meaningQ.map(f=>f(p)),o:[p.m,...wrong],ol:C.meaning,h:hintFor(p.m)});}
+  // 200 € / 500 €: how do you say it? The same mix in the new language, at 500 € the sound-alikes only from words already learned.
+  for(const [l,list] of [[4,allT],[5,earlier.map(x=>x.t)]]){const wrong=lowOptions(p.t,list,themed.map(x=>x.t),not,own);if(wrong.length===3)qs.push({...base,id:'w'+l+':'+p.t,l:[l],kind:'word',q:sayQ.map(f=>f(p)),o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});}
   // 1.000 €: no more jokes – words of the same topic with the same article and shape.
   {const wrong=sameShape(p.t,themed.map(x=>x.t),not,own);if(wrong.length===3)qs.push({...base,id:'wn:'+p.t,l:[6],kind:'word-near',q:sayQ.map(f=>f(p)),o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});}}
  // Levels 7–12 use the lesson's cloze sentences, ranked from easier to hardest by how close the wrong forms are.
