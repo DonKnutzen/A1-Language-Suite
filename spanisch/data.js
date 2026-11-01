@@ -46,8 +46,8 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „¡Hola!“?",
           "o": [
-            "Wir sehen uns um zehn.",
-            "eins, zwei, drei",
+            "Guten Abend!",
+            "Guten Morgen!",
             "Hallo!"
           ],
           "a": 2,
@@ -57,8 +57,8 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Buenos días.“?",
           "o": [
             "Guten Morgen.",
-            "Ich frühstücke Kaffee und Brot.",
-            "Es ist kalt und windig."
+            "Guten Abend.",
+            "Gute Nacht."
           ],
           "a": 0,
           "audio": "Buenos días."
@@ -66,9 +66,9 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Me llamo Laura.“?",
           "o": [
-            "schöne Ferien",
+            "Ich heiße Lara.",
             "Ich heiße Laura.",
-            "Wir essen um zwei."
+            "Sie heißt Laura."
           ],
           "a": 1,
           "audio": "Me llamo Laura."
@@ -76,8 +76,8 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Soy de Alemania.“?",
           "o": [
-            "Man schreibt M-U-L-L-E-R.",
-            "Ich möchte Spanisch lernen.",
+            "Ich wohne in Deutschland.",
+            "Ich komme aus Österreich.",
             "Ich komme aus Deutschland."
           ],
           "a": 2,
@@ -86,9 +86,9 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Vivo en Halifax.“?",
           "o": [
-            "Lesen Sie zuerst die Frage.",
+            "Ich komme aus Halifax.",
             "Ich wohne in Halifax.",
-            "Was machst du beruflich?"
+            "Ich wohne in Hamburg."
           ],
           "a": 1,
           "audio": "Vivo en Halifax."
@@ -96,9 +96,9 @@ window.ES_A1_DATA = {
         {
           "q": "Wie sagst du „Ich spreche Deutsch und ein bisschen Spanisch.“ auf Spanisch?",
           "o": [
-            "Llámame esta tarde.",
+            "Hablo español y un poco de alemán.",
             "Hablo alemán y un poco de español.",
-            "Preséntese durante uno o dos minutos."
+            "Hablo alemán y español."
           ],
           "a": 1,
           "audio": "Hablo alemán y un poco de español."
@@ -106,8 +106,8 @@ window.ES_A1_DATA = {
         {
           "q": "Wie sagst du „Freut mich.“ auf Spanisch?",
           "o": [
-            "Comemos a las dos.",
-            "Vivo en Halifax.",
+            "Muchas gracias.",
+            "Hasta luego.",
             "Mucho gusto."
           ],
           "a": 2,
@@ -116,8 +116,8 @@ window.ES_A1_DATA = {
         {
           "q": "Wie sagst du „Wie heißt du?“ auf Spanisch?",
           "o": [
-            "Mis padres viven en Berlín.",
-            "Nombre y apellidos",
+            "¿Cómo estás?",
+            "¿Cómo se llama?",
             "¿Cómo te llamas?"
           ],
           "a": 2,
@@ -126,8 +126,8 @@ window.ES_A1_DATA = {
         {
           "q": "Wie sagst du „Hallo!“ auf Spanisch?",
           "o": [
-            "Tengo dos hermanos.",
-            "Quiero reservar una habitación.",
+            "¡Adiós!",
+            "¡Buenas noches!",
             "¡Hola!"
           ],
           "a": 2,
@@ -136,9 +136,9 @@ window.ES_A1_DATA = {
         {
           "q": "Wie sagst du „Guten Morgen.“ auf Spanisch?",
           "o": [
-            "Se alquila todo el año.",
+            "Buenas tardes.",
             "Buenos días.",
-            "¿Qué número de teléfono tienes?"
+            "Buenas noches."
           ],
           "a": 1,
           "audio": "Buenos días."
