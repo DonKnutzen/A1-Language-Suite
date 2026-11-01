@@ -249,7 +249,8 @@ function bindControls(host,{pause,exit,sound}){const q=s=>host.querySelector(s);
 
 /* ---------- Game 5: quiz show "Millionen-Turm" ---------- */
 const LADDER=[10,50,100,200,500,1000,5000,25000,100000,250000,500000,1000000],SAFE=5;
-const RUNGS={1:[1,2],2:[3],3:[4],4:[5],5:[6],6:[7],7:[8],8:[9],9:[10],10:[11,12]};
+// Up to 500 € lesson 1 uses the generated rhyme questions; the hand-written ones fill 1.000 € to the million.
+const RUNGS={1:[],2:[],3:[],4:[6],5:[6],6:[7],7:[8],8:[9],9:[10],10:[11,12]};
 const Q=(l,de,english,options,hint,line)=>({l,q:[de,english],o:options,h:hint,s:line});
 const QUESTIONS=[
  Q(1,'Was sagst du am Abend zur Begrüßung?','What do you say as a greeting in the evening?',['Bonsoir !','Bonne nuit !','Au revoir !','Merci !'],['Bonne nuit sagt man erst beim Schlafengehen.','Bonne nuit is only for going to bed.'],'Bonsoir !'),
@@ -293,7 +294,7 @@ const QUESTIONS=[
 ];
 // Lesson 1 uses the hand-written questions above; the show itself lives in shared/quiz-show.js. Old saves stored question numbers.
 function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()=>{};const old=opts.saved;const saved=old&&!old.qs&&Array.isArray(old.set)?{...old,qs:old.set.map(n=>QUESTIONS[n])}:old;
- return show.mount(host,{...opts,saved,pool:QUESTIONS.flatMap((q,n)=>RUNGS[q.l].map(l=>({...q,id:'q'+n,src:q.s,l}))),course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
+ return show.mount(host,{...opts,saved,pool:[...show.generate('fr',1).filter(q=>q.l<=5),...QUESTIONS.flatMap((q,n)=>RUNGS[q.l].map(l=>({...q,id:'q'+n,src:q.s,l})))],course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
 
 function mount(host,id,opts={}){if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};

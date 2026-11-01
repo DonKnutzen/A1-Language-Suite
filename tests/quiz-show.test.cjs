@@ -27,10 +27,11 @@ test('difficulty rises over twelve rungs: meaning, the word, a serious near miss
   assert.deepEqual(kinds.slice(0,3),['meaning','meaning','meaning']);assert.deepEqual(kinds.slice(3,5),['word','word']);assert.equal(kinds[5],'word-near');assert(kinds.slice(6,9).every(k=>k.startsWith('gap')),kinds.join());assert(kinds.slice(9).every(k=>k.startsWith('sentence')),kinds.join());
   assert(set[0].q[2].startsWith('Que veut dire'));assert.equal(set[0].ol,'fr');assert.equal(set[3].ol,'de');assert(set[6].q[2].includes('___'));assert(set[11].q[2].startsWith('Quelle phrase'));}
  e.dom.window.close();});
-test('up to 500 € one or two wrong answers sound like the right one where it fits, the others come from the same topic; from 1.000 € they share its article and topic',()=>{const e=env('fr',9),Q=e.w.A1_QUIZ_SHOW,pool=Q.generate('fr',9);
- const travel=['taxi','train','métro','vélo','voiture','tramway','billet','quai','départ','gare','arrêt','avion','bateau','pont','place','plan','rue'],has=(o,list)=>list.some(t=>String(o).includes(t));
- for(let run=0;run<4;run++){const bus=Q.generate('fr',9).find(q=>q.kind==='word'&&q.o[0]==='le bus'&&q.l===4);assert(bus,'le bus');assert(bus.o.slice(1).some(o=>has(o,['jus','bras','but','Fuß','Bus','Fuss'])||/fu|us$/i.test(o))||bus.o.slice(1).filter(o=>has(o,travel)).length>=2,bus.o.join());}
- const low=pool.filter(q=>q.kind==='word'&&q.ol==='fr');assert(low.filter(q=>q.o.slice(1).some(o=>has(o,travel))).length>=low.length*.5,'topic words');
+test('up to 500 € every question is a pun: all four answers rhyme; from 1.000 € they share its article and topic',()=>{const e=env('fr',9),Q=e.w.A1_QUIZ_SHOW;e.w.eval(read('deutsch/hard-mode-content.js'));
+ for(const course of ['fr','de'])for(let id=1;id<=24;id++)for(const q of Q.generate(course,id).filter(q=>q.l<=5)){const keys=q.o.map(o=>Q.rhyme(o,q.ol));assert(keys[0],q.o[0]);assert(keys.every(k=>k===keys[0]),`${course} ${id}: ${q.o.join(' · ')}`);}
+ const bus=Q.generate('fr',9).find(q=>q.kind==='word'&&q.o[0]==='le bus');assert(bus);assert(bus.o.includes('le jus')||bus.o.includes('le menu')||bus.o.includes('le début'),bus.o.join());
+ const fr1=e.w.document.createElement('div');assert(Q.generate('fr',1).some(q=>q.l===1));
+ const pool=Q.generate('fr',9);
  const art=s=>(String(s).match(/^(der|die|das|le|la|les|l’)\s*/)||[''])[0].trim();
  const near=pool.filter(q=>q.kind==='word-near'&&art(q.o[0]));assert(near.length>5);assert(near.filter(q=>q.o.slice(1).every(o=>art(o)===art(q.o[0]))).length>=near.length*.7);e.dom.window.close();});
 test('a game never asks the same word or the same sentence twice',()=>{const e=env('fr',1),Q=e.w.A1_QUIZ_SHOW;e.w.eval(read('deutsch/hard-mode-content.js'));let games=0,repeats=0;

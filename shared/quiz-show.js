@@ -71,25 +71,26 @@ const sound=s=>{let k=SOUND.get(s);if(k===undefined){k=core(s).normalize('NFD').
 // A wrong answer must really be wrong: not the same word, not a longer form of it and no shared content word.
 function unlike(a,w,not){const ac=core(a),c=core(w);if(!c||c===ac||c.includes(ac)||ac.includes(c)||not.some(x=>core(x)===c))return false;const at=ac.split(/[\s/]+/);return !c.split(/[\s/]+/).some(t=>t.length>2&&at.includes(t));}
 function best3(scored,n=3){const out=[];for(const [w] of scored.sort((x,y)=>x[1]-y[1])){if(out.some(o=>core(o)===core(w)||sound(o)===sound(w)))continue;out.push(w);if(out.length===n)break;}return out;}
-// Sound-alikes – rhymes and same beginnings rank first, same article and word count are preferred. Lower score = closer.
-function soundScored(answer,pool,not=[]){const a=sound(answer),art=article(answer),n=core(answer).split(/\s+/).length,seen=new Set(),scored=[];
- for(const w of pool){const s=sound(w);if(!s||s===a||seen.has(w)||Math.abs(s.length-a.length)>Math.max(3,a.length*.6)||!unlike(answer,w,not))continue;seen.add(w);
-  let pre=0;while(pre<Math.min(a.length,s.length)&&a[pre]===s[pre])pre++;if(pre>=5&&pre>=Math.min(a.length,s.length)*.6)continue;
-  let score=distance(a,s)/Math.max(a.length,s.length);const tail=Math.min(3,a.length-1);if(tail>=2&&a.slice(-tail)===s.slice(-tail))score-=.18;if(a[0]===s[0])score-=.1;
-  score+=Math.abs(s.length-a.length)/Math.max(s.length,a.length)*.4;if(article(w)!==art)score+=.15;if(core(w).split(/\s+/).length!==n)score+=.2;scored.push([w,score+Math.random()*.06]);}
- return scored.sort((x,y)=>x[1]-y[1]);}
 // From 1.000 €: serious near misses – same topic, same article, same kind of word, similar length.
 function sameShape(answer,pool,not=[],own=new Set(),count=3){const a=core(answer),art=article(answer),n=a.split(/\s+/).length,parts=a.split('/').length,upper=w=>/^\p{Lu}/u.test(String(w).replace(ART,'').trim()),seen=new Set(),scored=[];
  for(const w of pool){const c=core(w);if(seen.has(c)||!unlike(answer,w,not))continue;seen.add(c);
   let score=Math.abs(c.length-a.length)/Math.max(c.length,a.length)*.5+Math.random()*.3;if(article(w)!==art)score+=.45;if(c.split(/\s+/).length!==n)score+=.4;if(upper(w)!==upper(answer))score+=.4;if(c.split('/').length!==parts)score+=.5;if(!own.has(norm(w)))score+=.35;if(c.slice(-2)===a.slice(-2))score-=.15;scored.push([w,score]);}
  return best3(scored,count);}
-// Up to 500 €: one or two wrong answers that really sound like the right one („Kind“ – „Kino“), never forced;
-// the others are close words of the same topic and shape.
-const FUNNY=.3;
-function lowOptions(answer,soundPool,shapePool,not,own){const funny=[];
- for(const [w,score] of soundScored(answer,soundPool,not)){if(score>FUNNY||funny.length===2)break;if(!funny.some(o=>core(o)===core(w)||sound(o)===sound(w)))funny.push(w);}
- const rest=sameShape(answer,shapePool,[...not,...funny],own,3-funny.length).filter(w=>!funny.some(o=>sound(o)===sound(w)));
- return [...funny,...rest].slice(0,3);}
+// Up to 500 € every question is a little pun: all four answers rhyme („die Mutter“ – „die Butter“). The rhyme is the
+// sound from the last stressed vowel of the last word: German skips an unstressed -e/-er/-en ending, French drops silent endings.
+const lastWord=s=>String(s).toLowerCase().replace(/\([^)]*\)/g,'').replace(/[…?!.,;]/g,'').split('/')[0].trim().replace(ART,'').split(/[\s’']+/).filter(Boolean).pop()||'';
+function rhymeDe(w){const s=lastWord(w).replace(/ß/g,'ss').replace(/ie/g,'ī').replace(/[ae]i/g,'ā').replace(/eu|äu/g,'ō').replace(/ä/g,'e').replace(/ah|aa/g,'a').replace(/eh|ee/g,'e').replace(/oh|oo/g,'o').replace(/uh/g,'u').replace(/tz/g,'ts').replace(/ck/g,'k').replace(/dt|d$/g,'t').replace(/(.)\1/g,'$1');
+ const groups=[...s.matchAll(/[aeiouüöīāō]+/g)];if(!groups.length)return '';let g=groups[groups.length-1];if(groups.length>1&&g[0]==='e'&&/(e|er|en|el|em|ern|eln)$/.test(s))g=groups[groups.length-2];return s.slice(g.index);}
+function rhymeFr(w){let s=lastWord(w).normalize('NFC');
+ s=s.replace(/(ain|ein|in|un|ym)(?![aeiouyéèên])/g,'ĩ').replace(/(an|en|am|em)(?![aeiouyéèênm])/g,'ã').replace(/(on|om)(?![aeiouyéèên])/g,'õ').replace(/gue$/,'g').replace(/(et|ets|ai|ais|ait|aient)$/,'è').replace(/(er|ez|ée|ées|és)$/,'é')
+  .replace(/^(.{2,}?)(es|e|s|t|x|d|ts|ds)$/,'$1').replace(/eaux?|au|ô/g,'o').replace(/[èêë]/g,'è').replace(/oi/g,'wa').replace(/qu/g,'k').replace(/c(?=[aou])|ck/g,'k').replace(/ph/g,'f').replace(/(.)\1/g,'$1');
+ const groups=[...s.matchAll(/wa|[aeiouyéèàâîïûùĩãõ]+/g)];if(!groups.length)return '';return s.slice(groups[groups.length-1].index);}
+const RHYME=new Map();
+const rhyme=(w,lang)=>{const key=lang+'|'+w;let k=RHYME.get(key);if(k===undefined){k=lang==='de'?rhymeDe(w):rhymeFr(w);RHYME.set(key,k);}return k;};
+// Three rhymes for the answer, preferring the same article; none (and so no question) when the course has no three.
+function rhymes(answer,pool,lang,not=[]){const k=rhyme(answer,lang);if(!k)return [];const art=article(answer),scored=[];
+ for(const w of pool){if(rhyme(w,lang)!==k||!unlike(answer,w,not))continue;scored.push([w,(article(w)===art?0:.4)+Math.random()*.5]);}
+ return best3(scored);}
 function startsWith(word){const w=String(word);return w.length>3?w.slice(0,2)+'…':w.slice(0,1)+'…';}
 const COURSES={
  fr:{target:'fr',meaning:'de',lessons:'frLessons',hard:()=>window.FR_A1_HARD_CONTENT,lang:['Französisch','French','français']},
@@ -165,11 +166,13 @@ function generate(course,lessonId){
  const twins=p=>V.filter(v=>norm(v[C.target]||'')===norm(p.t)||norm(v[C.meaning]||'')===norm(p.m)).flatMap(v=>[v[C.target],v[C.meaning]]);
  const own=new Set(lesson.map(x=>norm(x.t))),ownM=new Set(lesson.map(x=>norm(x.m))),themed=pairs(V.filter(v=>(v[C.lessons]||[]).some(n=>n<=id&&n>=id-2)));
  const meaningQ=[p=>`Was bedeutet „${p.t}“?`,p=>`What does “${p.t}” mean?`,p=>`Que veut dire « ${p.t} » ?`],sayQ=[p=>`Wie heißt „${p.m}“ auf ${lang[0]}?`,p=>`How do you say “${p.m}” in ${lang[1]}?`,p=>`Comment dit-on « ${p.m} » en ${lang[2]} ?`];
- for(const p of lesson){const base={src:'v:'+norm(p.t),w:keys(p.t,p.m)},not=twins(p);
-  // 10 € – 200 €: what does it mean? One or two real sound-alikes where they fit, the rest close words of the topic.
-  for(const [l,list] of [[[1,2],allM],[[3],earlier.map(x=>x.m)]]){const wrong=lowOptions(p.m,list,themed.map(x=>x.m),not,ownM);if(wrong.length===3)qs.push({...base,id:'m'+l[0]+':'+p.t,l,kind:'meaning',q:meaningQ.map(f=>f(p)),o:[p.m,...wrong],ol:C.meaning,h:hintFor(p.m)});}
-  // 200 € / 500 €: how do you say it? The same mix in the new language, at 500 € the sound-alikes only from words already learned.
-  for(const [l,list] of [[4,allT],[5,earlier.map(x=>x.t)]]){const wrong=lowOptions(p.t,list,themed.map(x=>x.t),not,own);if(wrong.length===3)qs.push({...base,id:'w'+l+':'+p.t,l:[l],kind:'word',q:sayQ.map(f=>f(p)),o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});}
+ const inThis=p=>own.has(norm(p.t)),rhymeCount={m:0,t:0};
+ for(const p of [...lesson,...shuffle(earlier.filter(x=>!own.has(norm(x.t))))]){const base={src:'v:'+norm(p.t),w:keys(p.t,p.m)},not=twins(p);
+  // 10 € – 500 €: a pun every time – all four answers rhyme. 10–200 €: what does it mean? 200 / 500 €: how do you say it
+  // (at 100 € and 500 € the rhymes come from words already learned where there are three).
+  if(inThis(p)||rhymeCount.m<10)for(const [l,list] of [[[1,2],allM],[[3],earlier.map(x=>x.m)]]){let wrong=rhymes(p.m,list,C.meaning,not);if(wrong.length<3&&l[0]===3)wrong=rhymes(p.m,allM,C.meaning,not);if(wrong.length===3){qs.push({...base,id:'m'+l[0]+':'+p.t,l,kind:'meaning',q:meaningQ.map(f=>f(p)),o:[p.m,...wrong],ol:C.meaning,h:hintFor(p.m)});rhymeCount.m+=.5;}}
+  if(inThis(p)||rhymeCount.t<10)for(const [l,list] of [[4,allT],[5,earlier.map(x=>x.t)]]){let wrong=rhymes(p.t,list,C.target,not);if(wrong.length<3&&l===5)wrong=rhymes(p.t,allT,C.target,not);if(wrong.length===3){qs.push({...base,id:'w'+l+':'+p.t,l:[l],kind:'word',q:sayQ.map(f=>f(p)),o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});rhymeCount.t+=.5;}}
+  if(!inThis(p))continue;
   // 1.000 €: no more jokes – words of the same topic with the same article and shape.
   {const wrong=sameShape(p.t,themed.map(x=>x.t),not,own);if(wrong.length===3)qs.push({...base,id:'wn:'+p.t,l:[6],kind:'word-near',q:sayQ.map(f=>f(p)),o:[p.t,...wrong],ol:C.target,h:hintFor(p.t)});}}
  // Levels 7–12 use the lesson's cloze sentences, ranked from easier to hardest by how close the wrong forms are.
@@ -271,5 +274,5 @@ function mount(host,{pool=[],course='fr',lessonLabel=null,audioBase='audio/quiz/
  function exit(){stop();onExit?.();}
  intro();return stop;
 }
-window.A1_QUIZ_SHOW={mount,generate,pickSet,starsFor,WORD_SETS,money:(n,course)=>{if(course)ui=course==='de'?'fr':'de';return money(n);},LADDER,SAFE,SOUNDS};
+window.A1_QUIZ_SHOW={mount,generate,pickSet,starsFor,WORD_SETS,rhyme,money:(n,course)=>{if(course)ui=course==='de'?'fr':'de';return money(n);},LADDER,SAFE,SOUNDS};
 })();
