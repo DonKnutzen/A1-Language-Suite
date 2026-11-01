@@ -849,10 +849,69 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     '23:consigne-signer':'Bitte hier unterschreiben.',
     '24:opposition':'Ich komme gern, aber erst um acht.'
   };
+  const CHECK_RATIONALES=  {
+    "1:3": "Im Text steht « Ich spreche Deutsch und Französisch » : Anna parle allemand et français, donc deux langues. Rien ne dit qu’elle habite en France.",
+    "1:4": "Guten Morgen est la salutation du matin. Guten Abend s’utilise le soir ; Auf Wiedersehen sert à dire au revoir.",
+    "2:1": "Müller contient un u avec tréma, écrit ü. Muller n’a pas d’Umlaut ; Mülller contient un l en trop.",
+    "2:3": "Bitte noch einmal signifie « Encore une fois, s’il vous plaît ». C’est la formule utilisée pour demander une répétition.",
+    "3:2": "Geburtsort signifie lieu de naissance : on attend une ville, ici Halifax, et non une date ou un code postal.",
+    "3:4": "Les chiffres sont null (0), drei (3), null (0), eins (1), acht (8). Dans cet ordre, on obtient 03018.",
+    "4:3": "Samstag = samedi et Sonntag = dimanche. Ce sont les deux jours du week-end.",
+    "4:4": "On emploie am devant une date précise, puis le jour sous sa forme ordinale : am siebzehnten April.",
+    "4:5": "Vom ersten bis zum dritten August signifie du 1er au 3 août. Le mois et les deux bornes doivent correspondre.",
+    "4:7": "Le septième mois est Juli (juillet). Juni est le sixième mois, Januar le premier.",
+    "5:1": "Ein Sohn = un fils, eine Tochter = une fille. Cela fait zwei Kinder, deux enfants.",
+    "5:4": "Familienname signifie nom de famille. Dans Anna Klein, Anna est le prénom et Klein le nom de famille.",
+    "5:5": "Familienstand est l’état civil ; verheiratet signifie marié(e), et non célibataire ou divorcé(e).",
+    "6:4": "Mit Zucker signifie avec sucre et ohne Milch sans lait. La commande est donc un thé sucré sans lait.",
+    "7:0": "Ein Brot kostet drei Euro : le pain coûte à lui seul trois euros. Le prix des pommes n’est pas à ajouter.",
+    "7:3": "Größe vierzig ist zu klein et la demande porte ensuite sur zweiundvierzig (42) : la personne veut une taille plus grande.",
+    "8:0": "Drei Zimmer indique trois pièces ; kein Balkon signifie qu’il n’y a pas de balcon. Küche et Bad sont mentionnés séparément.",
+    "8:1": "Pour une annonce de logement, Wohnung frei signifie qu’un appartement est disponible. Frei n’indique pas ici un prix nul.",
+    "8:2": "Miete 600 Euro indique le loyer. Nebenkosten inklusive signifie que les charges sont comprises.",
+    "9:0": "Zuerst = d’abord, geradeaus = tout droit, dann = ensuite, rechts = à droite. L’ordre des étapes est essentiel.",
+    "9:3": "Gleis signifie voie ou quai ferroviaire ; Gleis drei indique la voie 3, et non une heure.",
+    "9:4": "Umsteigen signifie changer de train ou de correspondance. Am Bahnhof précise que cela se fait à la gare.",
+    "9:5": "Verspätung signifie retard. Dix minutes sont annoncées ; le train n’est pas déclaré annulé.",
+    "10:0": "Lehrer signifie professeur/enseignant, et Schule signifie école. Verkäufer et Arzt désignent d’autres métiers.",
+    "10:3": "Heute habe ich frei indique que la personne ne travaille pas aujourd’hui ; morgen arbeite ich dit qu’elle travaille demain.",
+    "11:0": "Vormittag est la matinée, tandis que Nachmittag est l’après-midi. Le cours a lieu am Vormittag.",
+    "11:1": "Seit + durée indique une situation commencée dans le passé qui se poursuit : l’apprentissage dure depuis six mois.",
+    "11:4": "Ich lese ein Buch vient avant und mache dann die Hausaufgaben. Dann marque l’action suivante : les devoirs.",
+    "12:1": "Lieber marque une préférence : Ich gehe lieber ins Kino = je préfère aller au cinéma.",
+    "13:0": "Doppelzimmer = chambre double, für zwei Personen = pour deux personnes, drei Nächte = trois nuits : une seule réservation comporte ces trois détails.",
+    "13:1": "Du 2 au 4 août, les nuits passées sur place sont celles du 2 et du 3 : zwei Nächte.",
+    "13:3": "Ankommen est arriver ; kommt ... an est le verbe séparable conjugué. Um elf Uhr indique 11 heures.",
+    "14:1": "Müde = fatigué(e) et Husten = toux. Il n’est question ni de fièvre ni de mal de tête.",
+    "14:4": "Brauche = avoir besoin de ; Termin beim Arzt = rendez-vous chez le médecin ; morgen = demain.",
+    "14:5": "Gute Besserung ! est une formule pour souhaiter un bon rétablissement, pas un bon repas ou un bon voyage.",
+    "15:0": "Am Freitag = vendredi ; um neunzehn Uhr = 19 h ; bei mir = chez moi. Les trois informations doivent être conservées.",
+    "16:0": "Nur für Kunden signifie « réservé aux clients ». Nur exprime ici la restriction : seules ces personnes peuvent stationner.",
+    "16:4": "Der Zug fällt aus veut dire que le train est supprimé/annulé. Verspätung désigne seulement un retard.",
+    "17:2": "Tut mir leid signale un regret, et das geht nicht signifie « ce n’est pas possible » : c’est un refus.",
+    "17:3": "Einen Moment, bitte signifie « Un instant, s’il vous plaît » : on demande de patienter.",
+    "17:4": "Noch einmal, bitte signifie « Encore une fois, s’il vous plaît ». C’est une demande de répétition.",
+    "17:5": "Ja, natürlich signifie « Oui, bien sûr » ; Hier, bitte accompagne la remise d’un objet. Les autres options expriment une hésitation ou un refus.",
+    "18:0": "Kreuzen ... an est un verbe séparable signifiant cocher ; die richtige Antwort est la bonne réponse.",
+    "18:1": "Zweimal signifie deux fois. Le dialogue sera donc diffusé à deux reprises.",
+    "18:5": "Un message complet comporte une formule d’appel, une réponse à chacun des trois points demandés et une formule de fin.",
+    "19:4": "Nehmen Sie diese Tabletten est une consigne polie : « Prenez ces comprimés ». Nehmen est l’impératif de politesse.",
+    "20:0": "Heute regnet es décrit aujourd’hui ; Morgen ist es sonnig décrit demain. La prévision est donc ensoleillée.",
+    "20:1": "Kalt signifie froid et windig signifie venteux. Les deux adjectifs décrivent le temps.",
+    "20:3": "Dans une phrase déclarative allemande, le verbe conjugué est en deuxième position : Heute schneit es.",
+    "22:0": "Hallo, hier ist Paul permet d’identifier la personne au téléphone : c’est Paul qui demande à être rappelé.",
+    "22:1": "Heute kann ich nicht s’oppose à Ich rufe Sie morgen zurück : le rappel se fera demain.",
+    "23:1": "Unterschreiben signifie signer ; hier précise l’endroit où apposer sa signature.",
+    "23:2": "Geboren in Bonn donne le lieu de naissance ; wohnt in Berlin donne le domicile. Geburtsort demande Bonn.",
+    "23:3": "Familienname est le nom de famille : Paul est le prénom, Weber le nom. Hauptstraße est la rue.",
+    "24:0": "Ich komme aus Kanada donne le pays d’origine ; wohne jetzt in Bonn donne le domicile actuel.",
+    "24:1": "Ich komme gern exprime l’acceptation ; aber erst um acht précise que la personne arrivera seulement à huit heures.",
+    "24:5": "Viele Grüße est une formule de fin amicale. Sehr geehrte Frau Klein et Liebe Anna servent plutôt à commencer un message."
+  };
   function checkTasks(id){
-    return checks[id].map(row=>{
+    return checks[id].map((row,rowIndex)=>{
       const [type,prompt,answer,x,y,focus]=row;
-      if(type==='C')return {type:'choice',q:prompt,o:[answer,x,y],a:0,answer,audio:checkAudio[id+':'+focus]||answer,answerLang:checkAudio[id+':'+focus]?'fr':'de',context:'',explanation:checkAudio[id+':'+focus]||answer,skill:'transfer',focus,qualityRevision:revision};
+      if(type==='C')return {type:'choice',q:prompt,o:[answer,x,y],a:0,answer,audio:checkAudio[id+':'+focus]||answer,answerLang:checkAudio[id+':'+focus]?'fr':'de',context:'',explanation:CHECK_RATIONALES[id+':'+rowIndex]||checkAudio[id+':'+focus]||answer,skill:'transfer',focus,qualityRevision:revision};
       return {type:'gap',q:`« ${x} » — Complète : ${prompt}`,prompt,context:x,answer,accept:[],audio:prompt.replace('___',answer),explanation:prompt.replace('___',answer)+' = '+x,skill:'transfer',focus:y,marking:{strictAccents:true},qualityRevision:revision};
     });
   }
