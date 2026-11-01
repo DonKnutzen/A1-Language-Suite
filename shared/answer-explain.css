@@ -1,0 +1,29 @@
+/* Lightbulb next to every graded answer; opens the matching grammar or content explanation. */
+.gx-host{position:relative}
+.gx-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;margin:8px 0 0;padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;line-height:1}
+.gx-btn:hover{border-color:var(--accent)}
+.gx-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.gx-btn[aria-expanded="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+.gx-btn .gx-icon{font-size:1.05rem}
+.gx-options-row{display:flex;justify-content:flex-start}
+.gx-panel{margin:10px 0 4px;padding:14px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;background:var(--panel);color:var(--ink);text-align:left;font-size:.94rem;line-height:1.55;font-weight:400}
+.gx-panel[hidden]{display:none}
+.gx-card+.gx-card{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+.gx-card h4{margin:0 0 6px;font-size:1rem;color:var(--accent-ink)}
+.gx-card p{margin:6px 0}
+.gx-card ul{margin:6px 0;padding-left:20px}
+.gx-card li{margin:2px 0}
+.gx-card small{color:var(--muted)}
+.gx-wrong{margin:0 0 10px;padding:8px 10px;border-radius:10px;background:var(--danger-soft,rgba(239,68,68,.12))}
+.gx-table-wrap{overflow-x:auto;margin:8px 0;-webkit-overflow-scrolling:touch}
+.gx-table{border-collapse:collapse;min-width:min(100%,280px);font-size:.9rem}
+.gx-table th,.gx-table td{padding:5px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.gx-table td:first-child,.gx-table th{white-space:nowrap}
+.gx-table th{background:var(--accent-soft);color:var(--accent-ink);font-weight:700}
+.gx-table tr.gx-hl td,.gx-table td.gx-hl{background:#facc1533;font-weight:800}
+.gx-table b,.gx-end{color:var(--accent-ink);font-weight:800}
+.gx-sentence{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.gx-slot{display:flex;flex-direction:column;align-items:flex-start;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg,transparent)}
+.gx-slot small{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}
+.gx-slot.gx-verb{border-color:var(--accent);background:var(--accent-soft)}
+.gx-mark{background:#facc1540;border-radius:4px;padding:0 3px;font-weight:800}

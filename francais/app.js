@@ -707,7 +707,7 @@ function renderListeningTask(part,examMode=false,onDone=null,forced=null,progres
       else if(j===chosen)b.classList.add('wrong');
     });
     document.getElementById('hearFeedback').innerHTML=`
-      <div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Falsch'}</div>
+      <div class="feedback ${ok?'good':'bad'}" data-explain-source="${esc(task.speech||'')}">${ok?'✓ Richtig':'✗ Falsch'}</div>
       ${examMode?'':`<div class="transcript"><strong>Transkript:</strong><br>${esc(task.speech)}</div>`}
       <div class="spacer"></div><button class="primary-btn" id="nextHear">${onDone?'Weiter':'Neue Aufgabe'}</button>`;
     document.getElementById('nextHear').onclick=()=>onDone?onDone(ok):renderListeningTask(part,false);
