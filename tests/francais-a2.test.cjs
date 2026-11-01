@@ -89,7 +89,7 @@ test('every authored A2 lesson has complete, close-option practice in all steps,
 });
 test('telc practice parts score like the exam and a full simulation reports points and grade',()=>{
  const {dom,w,errors,view}=page(),D=w.FR_A1_DATA,click=s=>view.querySelector(s).click();
- assert.equal(D.telc.length,2);
+ assert.equal(D.telc.length,3);assert.equal(new Set(D.telc.map(t=>t.id)).size,3);
  for(const t of D.telc){assert.equal(t.el1.items.length,10);assert.equal(t.el2.reduce((n,d)=>n+d.answers.length,0),8);
   assert.equal(t.co1.items.length+t.co2.length+t.co3.length,12);assert.equal(4+t.ce2.reduce((n,b)=>n+b.items.length,0)+t.ce3.items.length,12);
   assert.equal(t.ee.points.length,6);assert.equal(t.oral.part3.options.length,6);
@@ -113,6 +113,8 @@ test('telc practice parts score like the exam and a full simulation reports poin
  for(let i=0;i<5;i++){click('#telcCheck');if(view.querySelector('#telcCheck')?.textContent==='Bewertung übernehmen'){
    view.querySelectorAll('[data-rate]').forEach(g=>g.querySelector('button').click());click('#telcCheck');}click('#telcCheck');}
  assert.match(view.textContent,/von 100 Punkten/);assert.match(view.textContent,/Mündlich 27\/27/);
+ for(const later of D.telc.slice(1)){w.document.querySelector('[data-route="exam"]').click();click(`[data-part="el"][data-test="${later.id}"]`);answerAll(later);click('#telcCheck');
+  assert.match(view.querySelector('#telcScore').textContent,/13 von 13 Punkten/,later.id);}
  assert.equal(w.FR_A2_TELC.grade(64),'passable');assert.equal(w.FR_A2_TELC.grade(59.5),'nicht bestanden');
  assert.deepEqual(errors,[]);dom.window.close();
 });

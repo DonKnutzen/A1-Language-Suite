@@ -1,4 +1,4 @@
-/* Two original practice tests in the telc Français A2 format (see plan.cjs → exam).
+/* Three original practice tests in the telc Français A2 format (see plan.cjs → exam).
    Same parts, item counts and task types as the sample; all texts are written for this course. */
 const V=(text,statement,a,explanation)=>({text,statement,a,explanation});
 module.exports={telc:[
@@ -147,5 +147,78 @@ module.exports={telc:[
   part2:[['votre dernier week-end','où ? avec qui ? quoi ?'],['votre plat préféré','quoi ? quand ? recette ?'],['votre moyen de transport','lequel ? pourquoi ? combien de temps ?'],['un animal','lequel ? nom ? qui s’en occupe ?'],['votre anniversaire','date ? fête ? cadeaux ?']],
   part3:{task:'Vous et votre partenaire voulez faire une sortie samedi prochain. Mettez-vous d’accord sur deux activités. Donnez vos raisons.',options:['aller à la piscine','faire un pique-nique','visiter un château','aller au zoo','faire les magasins','aller au concert']},
   model:['On pourrait aller au zoo le matin ? J’adore les animaux.','Bof, je préfère visiter un château, parce qu’il va pleuvoir.','D’accord, le château le matin, et le soir un concert. On se retrouve à neuf heures à la gare ?']}
+},
+{
+ id:'t3',title:'Modelltest 3',
+ el1:{text:'Cher Paul,\nje suis désolé de ne pas t’avoir écrit plus tôt. Depuis le mois dernier, je {1} dans une nouvelle entreprise, à Toulouse. Le travail me plaît beaucoup, mais les journées sont longues : je commence à huit heures et je {2} rarement avant dix-neuf heures. Mes collègues sont sympas ; une collègue m’a {3} à trouver un appartement. Il est petit, mais il a un balcon {4} donne sur un parc. Le week-end dernier, je suis allé {5} la mer avec des amis : nous {6} beaucoup ri ! Et toi, comment vas-tu ? Je pense souvent {7} nos soirées à Lille. Si tu as le temps, viens me voir en mai : je te {8} la ville. Dis-moi {9} tu préfères venir, en train ou en avion, et {10} de temps tu peux rester.\nAmitiés,\nMaxime',
+  items:[
+   [['travaille','travaillais','ai travaillé'],'Seit letztem Monat und bis heute: Präsens mit depuis – je travaille.'],
+   [['finis','fini','finir'],'Präsens, 1. Person von finir: je finis. Fini ist das Partizip, finir der Infinitiv.'],
+   [['aidé','aidée','aider'],'Avoir + Partizip. Das Objekt m’ steht vor dem Verb und meint Maxime, einen Mann: aidé ohne Endung.'],
+   [['qui','que','où'],'Le balcon ist Subjekt von donne: Relativpronomen qui.'],
+   [['à','en','dans'],'Ans Meer fahren: aller à la mer.'],
+   [['avons','sommes','étions'],'Rire bildet das passé composé mit avoir: nous avons ri.'],
+   [['à','de','pour'],'An etwas denken: penser à quelque chose.'],
+   [['montrerai','montrais','montrerais'],'Si + Präsens im Nebensatz → Futur im Hauptsatz: je te montrerai.'],
+   [['comment','combien','quel'],'Auf welche Weise – mit dem Zug oder dem Flugzeug: comment.'],
+   [['combien','comment','quand'],'Wie lange: combien de temps.']
+  ]},
+ el2:[
+  {title:'À la pharmacie',box:['AU REVOIR','BON APPÉTIT','ÇA FAIT COMBIEN','JE VOUDRAIS','TANT PIS','TENEZ'],
+   lines:[['A','Bonjour. {11} quelque chose contre le mal de gorge.'],['B','Vous avez de la fièvre ?'],['A','Non, mais je tousse un peu.'],['B','Alors prenez ces pastilles. {12}.'],['A','Merci. {13} ?'],['B','Six euros vingt.'],['A','Voilà. Merci et {14} !']],
+   answers:['JE VOUDRAIS','TENEZ','ÇA FAIT COMBIEN','AU REVOIR'],
+   explanations:['Höflich um etwas bitten: Je voudrais.','Etwas überreichen (Sie-Form): Tenez.','Nach dem Preis fragen: Ça fait combien ?','Verabschiedung im Geschäft: Au revoir.']},
+  {title:'Au téléphone',box:['ALLÔ','BIEN SÛR','C’EST DE LA PART DE QUI','NE QUITTEZ PAS','PAS DU TOUT','QUEL DOMMAGE'],
+   lines:[['C','{15}, bonjour. Je voudrais parler à Madame Roux, s’il vous plaît.'],['D','{16} ?'],['C','De Marc Lambert.'],['D','Un instant, {17}… Désolée, elle est en réunion. Vous pouvez rappeler demain ?'],['C','Oui, {18}. Merci, au revoir.']],
+   answers:['ALLÔ','C’EST DE LA PART DE QUI','NE QUITTEZ PAS','BIEN SÛR'],
+   explanations:['Am Telefon melden: Allô.','Fragen, wer anruft: C’est de la part de qui ?','Bitten, am Apparat zu bleiben: Ne quittez pas.','Zustimmen: Bien sûr.']}
+ ],
+ co1:{intro:'Cinq personnes parlent des achats sur Internet.',items:[
+  V('J’achète presque tout sur Internet : les vêtements, les livres, même la nourriture pour mon chien. C’est pratique, je n’ai pas le temps d’aller en ville.','Sophie fait souvent ses achats en ligne.',true,'Presque tout sur Internet = fast alles online.'),
+  V('Moi, je n’achète jamais de chaussures en ligne. Je veux les essayer avant. Et renvoyer un colis, c’est compliqué.','Marc achète ses chaussures sur Internet.',false,'Er kauft nie Schuhe online; er will sie vorher anprobieren.'),
+  V('Je commande les courses sur le site du supermarché, et je vais les chercher en voiture le samedi. Je gagne beaucoup de temps.','Fatima se fait livrer les courses à la maison.',false,'Sie holt die Einkäufe selbst mit dem Auto ab.'),
+  V('J’ai une petite librairie. Depuis que les gens commandent en ligne, j’ai moins de clients. C’est difficile pour nous.','Gérard a moins de clients qu’avant.',true,'J’ai moins de clients = weniger Kunden.'),
+  V('Avant, je commandais beaucoup. Mais maintenant, je préfère le marché du quartier : je parle avec les vendeurs et les produits sont frais.','Laura commande de plus en plus sur Internet.',false,'Früher bestellte sie viel; heute geht sie lieber auf den Markt.')
+ ]},
+ co2:[
+  V('Bonjour, ici la bibliothèque municipale. Le livre que vous avez réservé est arrivé. Vous pouvez venir le chercher jusqu’au vendredi quinze. Après cette date, il sera proposé à un autre lecteur.','Vous avez jusqu’à vendredi pour chercher le livre.',true,'Jusqu’au vendredi quinze = bis Freitag, den 15.'),
+  V('Salut Camille, c’est Antoine. Pour samedi, changement de programme : on ne se retrouve pas devant le cinéma, mais au café juste en face, à vingt heures moins le quart.','Antoine et Camille se retrouvent devant le cinéma.',false,'Treffpunkt ist das Café gegenüber, nicht das Kino.')
+ ],
+ co3:[
+  {situation:'Vous êtes dans le métro à Paris. Vous voulez descendre à la station Bastille.',text:'Mesdames et messieurs, en raison de travaux, la station Bastille est fermée jusqu’à dimanche. Les trains ne s’arrêtent pas à cette station.',statement:'Vous pouvez descendre à Bastille.',a:false,explanation:'Die Station ist wegen Bauarbeiten geschlossen; die Züge halten dort nicht.'},
+  {situation:'Vous êtes au musée. Il est seize heures quarante-cinq.',text:'Mesdames et messieurs, le musée fermera ses portes dans quinze minutes. Merci de vous diriger vers la sortie.',statement:'Le musée ferme à dix-sept heures.',a:true,explanation:'In fünfzehn Minuten: 16.45 Uhr + 15 Minuten = 17 Uhr.'},
+  {situation:'Vous voulez faire une randonnée dans les Alpes samedi.',text:'Pour ce week-end dans les Alpes : samedi, des orages en fin de journée ; dimanche, ciel bleu et températures agréables partout.',statement:'Samedi, il fera beau toute la journée.',a:false,explanation:'Am Samstag gibt es gegen Abend Gewitter.'},
+  {situation:'Vous voulez dîner au restaurant lundi soir.',text:'Bonjour, vous êtes bien au restaurant Le Petit Jardin. Nous sommes ouverts du mardi au dimanche, midi et soir. Pour réserver, laissez votre nom et votre numéro après le bip.',statement:'Vous pouvez manger dans ce restaurant lundi soir.',a:false,explanation:'Geöffnet nur Dienstag bis Sonntag; montags ist geschlossen.'},
+  {situation:'Vous êtes au stade. Votre voiture est sur le parking B.',text:'Information pour les spectateurs : à la fin du match, la sortie du parking A sera fermée. Les voitures du parking B peuvent sortir normalement par la rue Pasteur.',statement:'Vous pouvez quitter le parking comme d’habitude.',a:true,explanation:'Parkplatz B ist nicht betroffen: sortir normalement.'}
+ ],
+ ce1:{titles:['Les Français partent moins loin','Un nouveau parc au bord de la Loire','Le train moins cher pour les jeunes','La bibliothèque ouvre le dimanche','Les chiens interdits dans les parcs','Plus de cours de natation à l’école','Le marché de Noël attire les touristes','Les jeunes font moins de sport'],
+  texts:[
+   ['Cet été, six Français sur dix ont passé leurs vacances en France. Beaucoup ont choisi une région proche de chez eux, souvent pour économiser de l’argent.',0],
+   ['À partir de septembre, la médiathèque de Nantes sera aussi ouverte le dimanche après-midi, de quatorze à dix-huit heures. C’était une demande des familles et des étudiants.',3],
+   ['Les moins de vingt-sept ans peuvent maintenant acheter une carte à quarante-neuf euros par an. Avec cette carte, ils paient leurs billets de train trente pour cent moins cher.',2],
+   ['Dans la région, seulement un enfant sur deux sait nager à l’entrée au collège. Les écoles vont donc proposer dix heures de piscine en plus par an.',5]
+  ]},
+ ce2:[
+  {intro:'Vous trouvez ce message de votre voisine :',text:'Bonjour,\nje fais une petite fête samedi soir pour mon anniversaire. Il y aura un peu de musique jusqu’à minuit. Si le bruit vous gêne, n’hésitez pas à frapper à ma porte. Et si vous voulez, venez boire un verre avec nous !\nCorinne, 3e étage',
+   items:[['Corinne invite ses voisins à sa fête.',true,'Venez boire un verre avec nous = kommt auf ein Glas vorbei.'],['La musique va durer toute la nuit.',false,'Musik gibt es nur bis Mitternacht.']]},
+  {intro:'Dans votre immeuble, vous lisez cette information :',text:'Information aux habitants\n– Les poubelles jaunes sont pour le papier et le plastique.\n– Les poubelles vertes sont pour le verre.\n– Les poubelles sont vidées le mardi et le vendredi matin.\n– Les vieux meubles ne doivent pas rester dans la cour.',
+   items:[['On met les bouteilles en verre dans la poubelle jaune.',false,'Glas gehört in die grüne Tonne.'],['Les poubelles sont vidées deux fois par semaine.',true,'Dienstag und Freitag = zweimal pro Woche.']]}
+ ],
+ ce3:{intro:'Vous passez un week-end à Strasbourg.',
+  sections:[
+   ['a','La Petite France','Ce vieux quartier au bord de l’eau est célèbre pour ses maisons à colombages. On peut s’y promener pendant des heures et prendre de belles photos.'],
+   ['b','La cathédrale','Elle est ouverte tous les jours. Si vous avez de bonnes jambes, montez les 332 marches jusqu’à la plateforme : la vue sur la ville est superbe.'],
+   ['c','Les bateaux-promenades','Une promenade de 70 minutes sur l’Ill. Pendant le trajet, des explications sur l’histoire de la ville sont proposées en douze langues.'],
+   ['d','Le Parlement européen','Quand il n’y a pas de session, on peut visiter le bâtiment gratuitement. N’oubliez pas votre pièce d’identité.'],
+   ['e','Le parc de l’Orangerie','Le plus vieux parc de la ville, avec un petit lac où l’on peut louer une barque, et des cigognes en liberté.'],
+   ['f','Les winstubs','Ces restaurants traditionnels servent la choucroute et la tarte flambée dans une ambiance chaleureuse.']],
+  items:[['Vous voulez découvrir la ville sur l’eau et écouter des explications.','c'],['Vous voulez goûter la cuisine typique d’Alsace.','f'],['Vous voulez voir la ville d’en haut.','b'],['Vous voulez ramer sur un lac.','e']]},
+ ee:{task:'Vous voulez suivre un cours de cuisine française pendant vos vacances. Vous écrivez à une amie française qui habite à Bordeaux.',
+  points:['Le type de cours','Les dates de vos vacances','Le prix','Un logement pas cher','Le chemin depuis la gare','Une soirée ensemble'],
+  model:'Chère Émilie,\ncomment vas-tu ? Cet été, je voudrais suivre un cours de cuisine française à Bordeaux, du 4 au 8 août. Est-ce que tu connais une bonne école ? Je ne veux pas payer plus de trois cents euros pour la semaine. Et est-ce que tu pourrais me conseiller un logement pas trop cher ? Bien sûr, on passera une soirée ensemble !\nÀ bientôt, je t’embrasse,\nNina'},
+ oral:{part1:['nom ?','âge ?','ville ?','profession ?','langues ?','famille ?','week-end ?'],
+  part2:[['votre logement','pièces ? quartier ? depuis quand ?'],['votre chemin pour aller au travail','comment ? combien de temps ?'],['votre téléphone portable','pour quoi faire ? combien d’heures ?'],['votre dernier voyage','où ? quand ? quel temps ?'],['vos achats','où ? en ligne ? au marché ?']],
+  part3:{task:'Vous et votre partenaire voulez organiser l’anniversaire d’un ami commun. Mettez-vous d’accord sur deux choses à faire. Qui fait quoi ?',options:['préparer un gâteau','acheter un cadeau','réserver un restaurant','inviter les amis','décorer l’appartement','choisir la musique']},
+  model:['Je propose de faire un gâteau au chocolat, c’est son dessert préféré.','Bonne idée ! Moi, je préfère acheter le cadeau, parce que je ne sais pas bien cuisiner.','D’accord : tu achètes le cadeau et moi, je fais le gâteau. On s’appelle vendredi ?']}
 }
 ]};
