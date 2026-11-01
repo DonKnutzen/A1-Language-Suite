@@ -42,6 +42,10 @@ const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const rand=a=>a[Math.floor(Math.random()*a.length)];
 const shuffle=A1Learning.shuffle;
+function randomizedChoices(task){
+  const correct=task.o[task.a],o=shuffle([...task.o]);
+  return {...task,o,a:o.indexOf(correct)};
+}
 const normalize=s=>String(s||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;:!?]/g,'').replace(/\s+/g,' ');
 const totalListening=()=>Object.values(D.listening).reduce((s,a)=>s+a.length,0);
 const totalReading=()=>Object.values(D.reading).reduce((s,a)=>s+a.length,0);
@@ -600,7 +604,7 @@ function renderGrammarMenu(){
 
 function startGrammarSet(id){
   const set=D.grammarSets.find(x=>x.id===id);
-  const qs=shuffle(set.questions).slice(0,10);
+  const qs=shuffle(set.questions).slice(0,10).map(randomizedChoices);
   let i=0,score=0;
   function draw(){
     if(i>=qs.length){
@@ -673,7 +677,7 @@ function startListeningPractice(part){
 }
 
 function renderListeningTask(part,examMode=false,onDone=null,forced=null,progressLabel=''){
-  const arr=D.listening['part'+part],task=forced||rand(arr);
+  const arr=D.listening['part'+part],original=forced||rand(arr),task=part===2?original:randomizedChoices(original);
   let plays=0,answered=false;
   const maxPlays=examMode?2:99;
   const options=part===2?['Richtig','Falsch']:task.o;
@@ -747,7 +751,7 @@ function startReadingPractice(part){
 }
 
 function renderReadingTask(part,onDone=null,forced=null,progressLabel=''){
-  const task=forced||rand(D.reading['part'+part]);
+  const original=forced||rand(D.reading['part'+part]),task=part===4?randomizedChoices(original):original;
   let body='',options=[],correct=0;
   if(part===1){
     body=`<div class="reading-text">${esc(task.text).replace(/\n/g,'<br>')}</div><div class="quiz-q">${esc(task.statement)}</div>`;
