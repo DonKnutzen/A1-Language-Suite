@@ -77,7 +77,8 @@ window.FR_A1_DATA = {
             "Au revoir !"
           ],
           "a": 1,
-          "audio": "Salut !"
+          "audio": "Salut !",
+          "explanation": "Salut ist eine informelle Begrüßung wie „Hi“ oder „Hallo“. Bonjour ist neutraler und passt auch zu höflichen Situationen."
         },
         {
           "q": "Was bedeutet „Bonsoir !“?",
@@ -353,7 +354,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "e accent aigu",
-          "explanation": "É trägt einen accent aigu; è einen accent grave und ê einen accent circonflexe."
+          "explanation": "Der accent aigu ist der Akutstrich auf é. Die Zeichen è (accent grave) und ê (accent circonflexe) sind andere Akzente."
         }
       ],
       "canDo": [
@@ -665,7 +666,8 @@ window.FR_A1_DATA = {
             "Uhrzeit"
           ],
           "a": 2,
-          "audio": "À quelle heure ?"
+          "audio": "À quelle heure ?",
+          "explanation": "À quelle heure ? fragt ausdrücklich nach einer Uhrzeit: „Um wie viel Uhr?“. Die Antwort kann zum Beispiel à huit heures lauten."
         },
         {
           "q": "„mercredi“ =",
@@ -869,7 +871,7 @@ window.FR_A1_DATA = {
             "die Tochter"
           ],
           "a": 0,
-          "explanation": "une sœur bedeutet „eine Schwester“; im Dialog heißt diese Schwester Julie.",
+          "explanation": "Im Dialog steht « Oui, une sœur. Elle s’appelle Julie. »: Julie ist die Schwester. Une sœur bedeutet eine Schwester.",
           "audio": "Oui, une sœur. Elle s’appelle Julie."
         },
         {
@@ -1054,7 +1056,7 @@ window.FR_A1_DATA = {
             "Kaffee und Sandwich"
           ],
           "a": 2,
-          "explanation": "Un café et un sandwich bedeutet „ein Kaffee und ein Sandwich“.",
+          "explanation": "Die Bestellung lautet « Un café et un sandwich » – also ein Kaffee und ein Sandwich. « Au fromage ? » fragt nur nach der Füllung.",
           "audio": "Un café et un sandwich, s’il vous plaît."
         },
         {
@@ -1228,7 +1230,7 @@ window.FR_A1_DATA = {
             "1 €"
           ],
           "a": 1,
-          "explanation": "Ça fait trois euros bedeutet „Das macht drei Euro“.",
+          "explanation": "Auf die Bestellung « un kilo de pommes » folgt « Ça fait trois euros ». Die zusätzlich bestellten Bananen kosten einen Euro mehr.",
           "audio": "Ça fait trois euros."
         },
         {
@@ -1390,7 +1392,8 @@ window.FR_A1_DATA = {
             "besichtigen"
           ],
           "a": 2,
-          "audio": "Quand est-ce que je peux visiter ?"
+          "audio": "Quand est-ce que je peux visiter ?",
+          "explanation": "Beim Suchen einer Wohnung bedeutet visiter un appartement „eine Wohnung besichtigen“. Das Verb visiter heißt je nach Kontext besuchen oder besichtigen."
         },
         {
           "q": "Dans ma chambre, ___ un lit.",
@@ -1411,7 +1414,7 @@ window.FR_A1_DATA = {
             "vier Zimmer"
           ],
           "a": 0,
-          "explanation": "Trois : deux chambres et un salon nennt insgesamt drei Zimmer.",
+          "explanation": "Auf « Combien de pièces ? » lautet die Antwort « Trois : deux chambres et un salon ». Zwei Schlafzimmer und ein Wohnzimmer ergeben drei Zimmer.",
           "audio": "Trois : deux chambres et un salon."
         },
         {
@@ -1452,7 +1455,8 @@ window.FR_A1_DATA = {
             "avec jardin"
           ],
           "a": 0,
-          "audio": "avec balcon"
+          "audio": "avec balcon",
+          "explanation": "Avec bedeutet „mit“, sans bedeutet „ohne“. Die kurze Immobilienangabe avec balcon heißt „mit Balkon“."
         },
         {
           "q": "Wie sagst du „Die Adresse ist Victor-Hugo-Straße 12“ auf Französisch?",
@@ -1551,10 +1555,11 @@ window.FR_A1_DATA = {
           "o": [
             "Kasse",
             "Straße",
-            "Gleis/Bahnsteig"
+            "Bahnsteig"
           ],
           "a": 2,
-          "audio": "C’est quel quai ?"
+          "audio": "C’est quel quai ?",
+          "explanation": "Le quai ist der Bahnsteig, an dem man wartet oder einsteigt. Die eigentliche Gleisnummer wird auf Französisch häufig mit voie angegeben."
         },
         {
           "q": "„retard“ =",
@@ -1585,7 +1590,7 @@ window.FR_A1_DATA = {
             "nach links"
           ],
           "a": 2,
-          "explanation": "puis tournez à gauche bedeutet „dann biegen Sie links ab“.",
+          "explanation": "Die Wegbeschreibung lautet « tout droit, puis tournez à gauche »: zuerst geradeaus, anschließend nach links.",
           "audio": "Allez tout droit, puis tournez à gauche."
         },
         {
@@ -1758,7 +1763,7 @@ window.FR_A1_DATA = {
             "in einem Hotel"
           ],
           "a": 1,
-          "explanation": "Dans une école bedeutet „in einer Schule“.",
+          "explanation": "Auf « Vous travaillez où ? » folgt « Dans une école »: Die Person arbeitet in einer Schule. École bedeutet Schule.",
           "audio": "Dans une école."
         },
         {
@@ -1935,7 +1940,7 @@ window.FR_A1_DATA = {
             "6 Uhr"
           ],
           "a": 0,
-          "explanation": "À sept heures bedeutet „um sieben Uhr“.",
+          "explanation": "Die Antwort « À sept heures » nennt die Uhrzeit des Aufstehens. Sept = sieben.",
           "audio": "À sept heures."
         },
         {
@@ -2109,7 +2114,7 @@ window.FR_A1_DATA = {
             "heute Morgen"
           ],
           "a": 2,
-          "explanation": "Depuis ce matin bedeutet „seit heute Morgen“.",
+          "explanation": "Depuis ce matin bedeutet „seit heute Morgen“. Depuis bezeichnet hier einen Zeitraum, der begonnen hat und noch andauert.",
           "audio": "Depuis ce matin."
         },
         {
@@ -2471,7 +2476,7 @@ window.FR_A1_DATA = {
             "samstagabends"
           ],
           "a": 0,
-          "explanation": "le samedi matin bedeutet „samstagmorgens“.",
+          "explanation": "Auf « Le dimanche ? » folgt « Non, le samedi matin ». Tennis wird also am Samstagmorgen gespielt, nicht am Sonntag.",
           "audio": "Non, le samedi matin."
         },
         {
@@ -2644,7 +2649,7 @@ window.FR_A1_DATA = {
             "zwei Nächte"
           ],
           "a": 2,
-          "explanation": "pour deux nuits bedeutet „für zwei Nächte“.",
+          "explanation": "« Une chambre pour deux nuits » bedeutet ein Zimmer für zwei Nächte. Pour nennt hier die Reservierungsdauer.",
           "audio": "Une chambre pour deux nuits, s’il vous plaît."
         },
         {
@@ -3029,7 +3034,8 @@ window.FR_A1_DATA = {
             "Surnom"
           ],
           "a": 0,
-          "audio": "Nom"
+          "audio": "Nom",
+          "explanation": "Nom bezeichnet in Formularen häufig den Nachnamen; prénom bezeichnet ausdrücklich den Vornamen."
         },
         {
           "q": "Wie sagst du „Vorname“ auf Französisch?",
@@ -3039,7 +3045,8 @@ window.FR_A1_DATA = {
             "Surnom"
           ],
           "a": 0,
-          "audio": "Prénom"
+          "audio": "Prénom",
+          "explanation": "Prénom ist der Vorname (z. B. Anna), nom de famille ist der Familienname (z. B. Martin)."
         },
         {
           "q": "Wie sagst du „Geburtsdatum“ auf Französisch?",
@@ -3059,7 +3066,8 @@ window.FR_A1_DATA = {
             "Lieu de naissance"
           ],
           "a": 0,
-          "audio": "Nationalité"
+          "audio": "Nationalité",
+          "explanation": "Nationalité bedeutet Nationalität. Das Wort wird mit -ité geschrieben und trägt einen accent aigu."
         },
         {
           "q": "Wie sagst du „E-Mail-Adresse“ auf Französisch?",
@@ -3069,7 +3077,8 @@ window.FR_A1_DATA = {
             "Numéro de téléphone"
           ],
           "a": 0,
-          "audio": "Adresse électronique"
+          "audio": "Adresse électronique",
+          "explanation": "Adresse électronique bedeutet E-Mail-Adresse. Adresse allein kann auch die Postanschrift meinen."
         }
       ],
       "canDo": [
@@ -3179,7 +3188,8 @@ window.FR_A1_DATA = {
             "Donne-moi…"
           ],
           "a": 0,
-          "audio": "Je voudrais…"
+          "audio": "Je voudrais…",
+          "explanation": "Je voudrais … bedeutet höflich „Ich hätte gern …“. Die Wendung ist bei Bitten, Bestellungen und Anfragen üblich."
         },
         {
           "q": "„Pouvez-vous répéter?“ =",
@@ -3210,7 +3220,7 @@ window.FR_A1_DATA = {
             "Die Frage wurde nicht verstanden."
           ],
           "a": 2,
-          "explanation": "Je ne comprends pas bedeutet „Ich verstehe nicht“; deshalb bittet die Person um Wiederholung.",
+          "explanation": "« Je ne comprends pas » bedeutet „Ich verstehe nicht“. Deshalb bittet die Person anschließend mit « répéter plus lentement » um langsame Wiederholung.",
           "audio": "Excusez-moi, je ne comprends pas."
         },
         {
@@ -3371,7 +3381,8 @@ window.FR_A1_DATA = {
             "das Hotel"
           ],
           "a": 1,
-          "audio": "la gare"
+          "audio": "la gare",
+          "explanation": "La gare ist der Bahnhof. Le quai ist der Bahnsteig; une gare kann mehrere quais haben."
         },
         {
           "q": "Ce ___ des livres.",
@@ -3392,7 +3403,7 @@ window.FR_A1_DATA = {
             "einem Lehrer"
           ],
           "a": 1,
-          "explanation": "tes clés bedeutet „deine Schlüssel“; sie gehören also der angesprochenen Person.",
+          "explanation": "« Ce sont tes clés ? » fragt „Sind das deine Schlüssel?“. Tes bezieht sich auf die angesprochene Person.",
           "audio": "Et ce sont tes clés ?"
         },
         {
@@ -3573,7 +3584,7 @@ window.FR_A1_DATA = {
             "mit dem Zug"
           ],
           "a": 0,
-          "explanation": "Tu vas à pied ? — Oui. zeigt: Die Person geht zu Fuß.",
+          "explanation": "« Je ne prends pas le bus » schließt den Bus aus; auf « Tu vas à pied ? » antwortet die Person « Oui ». À pied bedeutet zu Fuß.",
           "audio": "Tu vas à pied ? Oui."
         },
         {
@@ -3604,7 +3615,8 @@ window.FR_A1_DATA = {
             "Wo ist Ihr Auto?"
           ],
           "a": 1,
-          "audio": "Vous avez une voiture ?"
+          "audio": "Vous avez une voiture ?",
+          "explanation": "Vous avez une voiture ? heißt „Haben Sie ein Auto?“. Vous ist die höfliche oder plurale Anrede; avez kommt von avoir."
         },
         {
           "q": "Wie sagst du „Ich sehe nie fern“?",
@@ -3762,7 +3774,7 @@ window.FR_A1_DATA = {
             "in der Garage"
           ],
           "a": 2,
-          "explanation": "Dans le garage bedeutet „in der Garage“.",
+          "explanation": "Auf die Frage nach den Fahrrädern folgt « Dans le garage »: Sie befinden sich in der Garage.",
           "audio": "Dans le garage."
         },
         {
@@ -3773,7 +3785,8 @@ window.FR_A1_DATA = {
             "Seit wann"
           ],
           "a": 2,
-          "audio": "Depuis quand ?"
+          "audio": "Depuis quand ?",
+          "explanation": "Depuis quand ? fragt „Seit wann?“. Depuis weist auf den Beginn einer bis jetzt andauernden Situation hin."
         },
         {
           "q": "Welcher Begleiter passt zu „frère“?",
@@ -3959,7 +3972,7 @@ window.FR_A1_DATA = {
             "gearbeitet"
           ],
           "a": 1,
-          "explanation": "J’ai regardé un film bedeutet „Ich habe einen Film gesehen“.",
+          "explanation": "Im Dialog steht « Et le soir ? — J’ai regardé un film ». Am Abend hat die Person einen Film angesehen.",
           "audio": "J’ai regardé un film à la maison."
         },
         {
@@ -3991,7 +4004,8 @@ window.FR_A1_DATA = {
             "Ich fahre seit zwei Tagen."
           ],
           "a": 1,
-          "audio": "Je pars dans deux jours."
+          "audio": "Je pars dans deux jours.",
+          "explanation": "Dans deux jours bedeutet „in zwei Tagen“ (zukünftig), nicht „seit zwei Tagen“. Je pars heißt „ich fahre/​reise ab“."
         },
         {
           "q": "Welche Reihenfolge ist logisch?",
@@ -4154,7 +4168,7 @@ window.FR_A1_DATA = {
             "Wasser"
           ],
           "a": 0,
-          "explanation": "Non, pas de lait bedeutet „Nein, keine Milch“.",
+          "explanation": "Die Zutaten sind Karotten, Kartoffel und Wasser. Auf « Du lait aussi ? » folgt « Non, pas de lait »: Es kommt keine Milch hinein.",
           "audio": "Non, pas de lait."
         },
         {
@@ -4165,7 +4179,8 @@ window.FR_A1_DATA = {
             "ein Kilo Äpfel"
           ],
           "a": 2,
-          "audio": "un kilo de pommes"
+          "audio": "un kilo de pommes",
+          "explanation": "Un kilo de pommes heißt „ein Kilo Äpfel“. Nach Mengenangaben steht meist de: un kilo de pommes."
         },
         {
           "q": "Nach einer Mengenangabe steht meist …",
@@ -4297,7 +4312,7 @@ window.FR_A1_DATA = {
             "nach Lyon am Montag"
           ],
           "a": 2,
-          "explanation": "En France, à Lyon nennt das Ziel; lundi nennt den Reisetag.",
+          "explanation": "Die Person reist « en France, à Lyon » und fährt « lundi » los. Ziel ist Lyon in Frankreich, Abfahrt am Montag.",
           "audio": "En France, à Lyon. Lundi. Je prends le train."
         },
         {
@@ -6400,7 +6415,8 @@ window.FR_A1_DATA = {
         {
           "label": "Langues",
           "answers": [
-            "allemand, anglais et français", "allemand, anglais et un peu français",
+            "allemand, anglais et français",
+            "allemand, anglais et un peu français",
             "allemand anglais français"
           ]
         },
