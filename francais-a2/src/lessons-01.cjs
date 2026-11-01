@@ -197,7 +197,7 @@ module.exports=[
 {
  id:3,
  phrases:[
-  ['Excusez-moi, je cherche la route de Grenoble.','Entschuldigung, ich suche die Straße nach Grenoble.'],
+  ['Excusez-moi, je cherche la route d’Annecy.','Entschuldigung, ich suche die Straße nach Annecy.'],
   ['D’abord, vous allez tout droit jusqu’au feu rouge.','Zuerst fahren Sie geradeaus bis zur roten Ampel.'],
   ['Ensuite, vous tournez à gauche.','Dann biegen Sie links ab.'],
   ['Après le pont, prenez la première à droite.','Nehmen Sie nach der Brücke die erste rechts.'],
@@ -294,8 +294,8 @@ module.exports=[
 {
  id:4,
  phrases:[
-  ['Allô, bonjour, je suis bien chez Monsieur Vaillant ?','Hallo, guten Tag, bin ich richtig bei Herrn Vaillant?'],
-  ['Est-ce que je peux parler à Monique, s’il vous plaît ?','Kann ich bitte Monique sprechen?'],
+  ['Allô, bonjour, je suis bien chez Madame Lefort ?','Hallo, guten Tag, bin ich richtig bei Frau Lefort?'],
+  ['Est-ce que je peux parler à Hélène, s’il vous plaît ?','Kann ich bitte Hélène sprechen?'],
   ['C’est de la part de qui ?','Wer ist am Apparat?'],
   ['Désolé, elle n’est pas là.','Tut mir leid, sie ist nicht da.'],
   ['Vous voulez laisser un message ?','Möchten Sie eine Nachricht hinterlassen?'],
@@ -312,17 +312,17 @@ module.exports=[
   ['Was bedeutet „Ne quittez pas“?',['Bleiben Sie dran.','Legen Sie nicht auf, ich rufe zurück.','Gehen Sie nicht weg.'],'Ne quittez pas, je vous la passe.','Am Telefon: Ne quittez pas = Bitte bleiben Sie in der Leitung.'],
   ['Je ___ téléphone ce soir. (ihnen, mehrere Personen)',['leur','lui','les'],'Je leur téléphone ce soir.','Téléphoner à des personnes → leur. Leur bekommt hier kein -s.'],
   ['Was bedeutet „rappeler“?',['zurückrufen','sich erinnern','noch einmal schreiben'],'Elle peut me rappeler avant six heures ?','Rappeler quelqu’un = jemanden zurückrufen.'],
-  ['Welche Antwort passt zu „Je peux parler à Monique ?“, wenn sie nicht da ist?',['Désolé, elle n’est pas là.','Désolé, c’est un faux numéro.','Oui, c’est moi.'],'Désolé, elle n’est pas là.','Elle n’est pas là = Sie ist nicht da.'],
+  ['Welche Antwort passt zu „Je peux parler à Hélène ?“, wenn sie nicht da ist?',['Désolé, elle n’est pas là.','Désolé, c’est un faux numéro.','Oui, c’est moi.'],'Désolé, elle n’est pas là.','Elle n’est pas là = Sie ist nicht da.'],
   ['Vous voulez ___ un message ?',['laisser','prendre','quitter'],'Vous voulez laisser un message ?','Der Anrufer laisse un message (hinterlässt); wer abnimmt, prend un message (nimmt sie auf).'],
   ['Was bedeutet „Vous pouvez répéter le numéro ?“',['Können Sie die Nummer wiederholen?','Können Sie die Nummer aufschreiben?','Können Sie die Nummer ändern?'],'Vous pouvez répéter le numéro ?','Répéter = wiederholen.'],
   ['Pierre möchte seine Schwester sprechen. Du sagst: « Ne quitte pas, je ___ passe. » (sie dir)',['te la','te lui','lui la'],'Ne quitte pas, je te la passe.','Je te la passe = Ich gebe sie dir (ans Telefon). Te steht vor la.']
  ],
- dialogue:['Allô, bonjour. Est-ce que je peux parler à Monique ?','C’est de la part de qui ?','C’est Julie, une collègue.','Désolé, elle est partie faire des courses.','Dommage. Vous pouvez lui dire de me rappeler ?','Bien sûr, je lui dirai. Mais elle peut vous rappeler quand ?','Si possible avant six heures. Merci et au revoir !'],
+ dialogue:['Allô, bonjour. Est-ce que je peux parler à Hélène ?','C’est de la part de qui ?','C’est Julie, une collègue.','Désolé, elle est à la piscine.','Ah bon. Vous pouvez lui dire de me rappeler ?','Bien sûr, je lui dirai. Elle a votre numéro ?','Oui. Ce soir, si possible. Merci et au revoir !'],
  pron:['allô / lui','In allô liegt die Betonung auf der letzten Silbe. Bei lui gleitet das u schnell in das i: [lɥi]. Sprich am Telefon langsam und deutlich, vor allem Namen und Nummern.'],
  transfer:['Spiele ein Telefongespräch: Du möchtest eine Person sprechen, sie ist nicht da, du hinterlässt eine Nachricht.','Schreibe eine kurze Telefonnotiz: wer angerufen hat, warum, und wann die Person zurückrufen soll.'],
  domains:['Mündliche Interaktion','Mündliche Rezeption','Schriftliche Produktion'],
- app:{speak:'Allô, bonjour. Ici Julie Bernard. Est-ce que je peux parler à Monique, s’il vous plaît ? Ah, elle n’est pas là. Vous pouvez lui dire que j’ai appelé ? Elle peut me rappeler avant six heures au 06 12 34 56 78. Merci beaucoup, au revoir !',
-  write:'Message pour Monique :\nJulie a téléphoné à 15 heures.\nElle veut te parler du cours de samedi.\nRappelle-la avant six heures, s’il te plaît.',
+ app:{speak:'Allô, bonjour. Ici Julie Bernard. Est-ce que je peux parler à Hélène, s’il vous plaît ? Ah, elle n’est pas là. Vous pouvez lui dire que j’ai appelé ? Elle peut me rappeler avant six heures au 06 12 34 56 78. Merci beaucoup, au revoir !',
+  write:'Message pour Hélène :\nJulie a téléphoné à 15 heures.\nElle veut te parler du cours de samedi.\nRappelle-la avant six heures, s’il te plaît.',
   placeholder:'Schreibe eine Telefonnotiz …',help:'Nenne Anrufer, Uhrzeit, Grund und Rückrufwunsch.',
   hints:[['… a téléphoné à … heures.','… hat um … Uhr angerufen.'],['Il / Elle veut te parler de …','Er / Sie möchte mit dir über … sprechen.'],['Rappelle-le / -la avant …','Ruf ihn / sie vor … zurück.']]},
  goals:['Ein Telefongespräch beginnen, nach einer Person fragen und reagieren, wenn sie nicht da ist.','Eine Nachricht hinterlassen oder aufnehmen.','Indirekte Objektpronomen lui / leur vor dem Verb verwenden.'],
@@ -348,7 +348,7 @@ module.exports=[
  ],
  check:[
   ['Am Telefon fragt man dich: « C’est de la part de qui ? » Was antwortest du?',['C’est Lucas Meyer.','C’est pour demain.','C’est à six heures.'],'Gefragt ist der Name des Anrufers.','partde','C’est Lucas Meyer.'],
-  ['« Désolé, Monique est sortie. Vous voulez qu’elle vous rappelle ? » Was bietet der Mann an?',['Monique ruft zurück.','Er gibt dir Moniques Handynummer.','Du sollst morgen wieder anrufen.'],'Rappeler = zurückrufen.','rappeler'],
+  ['« Désolé, Hélène est sortie. Vous voulez qu’elle vous rappelle ? » Was bietet der Mann an?',['Hélène ruft zurück.','Er gibt dir Hélènes Handynummer.','Du sollst morgen wieder anrufen.'],'Rappeler = zurückrufen.','rappeler'],
   ['Du willst sagen: „Ich rufe ihn heute Abend an.“',['Je lui téléphone ce soir.','Je le téléphone ce soir.','Je téléphone lui ce soir.'],'Téléphoner à quelqu’un → lui, vor dem Verb.','lui','Je lui téléphone ce soir.'],
   ['Du willst sagen: „Ich schreibe ihnen eine E-Mail.“',['Je leur écris un e-mail.','Je les écris un e-mail.','Je lui écris un e-mail.'],'Écrire à des personnes → leur.','leur','Je leur écris un e-mail.'],
   ['Die Person, die du suchst, ist nicht da. Du möchtest eine Nachricht hinterlassen.',['Est-ce que je peux laisser un message ?','Est-ce que je peux prendre un message ?','Est-ce que je peux quitter un message ?'],'Der Anrufer hinterlässt: laisser un message.','message','Est-ce que je peux laisser un message ?'],
@@ -567,7 +567,7 @@ module.exports=[
  intro:['Nous étions dans un petit hôtel près de la mer.',['Nous étions dans un grand hôtel près de la mer.','Nous sommes dans un petit hôtel près de la mer.']],
  hard:{
   obj:[['imparfait','imparfait bilden'],['choix','imparfait und passé composé unterscheiden'],['vacances','Über Ferien sprechen'],['comprendre','Einen Ferienbericht hörend verstehen']],
-  text:'Chère Corinne, l’été dernier, nous sommes {partis|partir, Partizip, Plural|choix} en Corse. Nous {étions|être, imparfait, nous|imparfait} dans un petit hôtel près de la plage. Il {faisait|faire, imparfait|imparfait} beau et chaud. Tous les matins, les enfants {jouaient|jouer, imparfait, ils|imparfait} dans la mer. Le soir, on {mangeait|manger, imparfait, on|imparfait} au restaurant. J’{espérais|espérer, imparfait, je|imparfait} visiter beaucoup de villages. Un jour, nous {avons|Hilfsverb (visiter)|choix} visité Bonifacio. Mais le lendemain, il a {plu|pleuvoir, Partizip|choix} toute la journée. Nous {sommes|Hilfsverb (rester)|choix} restés à l’hôtel. C’{était|être, imparfait|imparfait} un peu cher, mais ça nous a beaucoup {plu|plaire, Partizip|vacances}. L’année prochaine, nous retournons en {vacances|Ferien|vacances} à la mer !',
+  text:'Chère Anne, l’été dernier, nous sommes {partis|partir, Partizip, Plural|choix} en Corse. Nous {étions|être, imparfait, nous|imparfait} dans un petit hôtel près de la plage. Il {faisait|faire, imparfait|imparfait} beau et chaud. Tous les matins, les enfants {jouaient|jouer, imparfait, ils|imparfait} dans la mer. Le soir, on {mangeait|manger, imparfait, on|imparfait} au restaurant. J’{espérais|espérer, imparfait, je|imparfait} visiter beaucoup de villages. Un jour, nous {avons|Hilfsverb (visiter)|choix} visité Bonifacio. Mais le lendemain, il a {plu|pleuvoir, Partizip|choix} toute la journée. Nous {sommes|Hilfsverb (rester)|choix} restés à l’hôtel. C’{était|être, imparfait|imparfait} un peu cher, mais ça nous a beaucoup {plu|plaire, Partizip|vacances}. L’année prochaine, nous retournons en {vacances|Ferien|vacances} à la mer !',
   listen:[
    {text:'L’année dernière, je suis partie au Maroc avec une amie. Nous étions dans une petite maison à Marrakech. Il faisait très chaud. Un jour, nous avons fait une excursion dans le désert. C’était magnifique.',voice:'female',
     q:[['Où est-elle partie ?','au Maroc',['au Maroc','en Tunisie','en Espagne'],'vacances'],['Comment était le temps ?','Il faisait très chaud.',['Il faisait très chaud.','Il pleuvait souvent.','Il faisait froid le soir.'],'imparfait'],['Qu’est-ce qu’elles ont fait un jour ?','une excursion dans le désert',['une excursion dans le désert','une promenade à la plage','une visite du musée'],'choix']]},

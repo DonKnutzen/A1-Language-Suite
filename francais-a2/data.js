@@ -400,8 +400,8 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
-          "Excusez-moi, je cherche la route de Grenoble.",
-          "Entschuldigung, ich suche die Straße nach Grenoble."
+          "Excusez-moi, je cherche la route d’Annecy.",
+          "Entschuldigung, ich suche die Straße nach Annecy."
         ],
         [
           "D’abord, vous allez tout droit jusqu’au feu rouge.",
@@ -595,12 +595,12 @@ window.FR_A1_DATA = {
       ],
       "phrases": [
         [
-          "Allô, bonjour, je suis bien chez Monsieur Vaillant ?",
-          "Hallo, guten Tag, bin ich richtig bei Herrn Vaillant?"
+          "Allô, bonjour, je suis bien chez Madame Lefort ?",
+          "Hallo, guten Tag, bin ich richtig bei Frau Lefort?"
         ],
         [
-          "Est-ce que je peux parler à Monique, s’il vous plaît ?",
-          "Kann ich bitte Monique sprechen?"
+          "Est-ce que je peux parler à Hélène, s’il vous plaît ?",
+          "Kann ich bitte Hélène sprechen?"
         ],
         [
           "C’est de la part de qui ?",
@@ -703,7 +703,7 @@ window.FR_A1_DATA = {
           "explanation": "Rappeler quelqu’un = jemanden zurückrufen."
         },
         {
-          "q": "Welche Antwort passt zu „Je peux parler à Monique ?“, wenn sie nicht da ist?",
+          "q": "Welche Antwort passt zu „Je peux parler à Hélène ?“, wenn sie nicht da ist?",
           "o": [
             "Désolé, c’est un faux numéro.",
             "Oui, c’est moi.",
@@ -759,13 +759,13 @@ window.FR_A1_DATA = {
         "explanation": "In allô liegt die Betonung auf der letzten Silbe. Bei lui gleitet das u schnell in das i: [lɥi]. Sprich am Telefon langsam und deutlich, vor allem Namen und Nummern."
       },
       "dialogue": [
-        "Allô, bonjour. Est-ce que je peux parler à Monique ?",
+        "Allô, bonjour. Est-ce que je peux parler à Hélène ?",
         "C’est de la part de qui ?",
         "C’est Julie, une collègue.",
-        "Désolé, elle est partie faire des courses.",
-        "Dommage. Vous pouvez lui dire de me rappeler ?",
-        "Bien sûr, je lui dirai. Mais elle peut vous rappeler quand ?",
-        "Si possible avant six heures. Merci et au revoir !"
+        "Désolé, elle est à la piscine.",
+        "Ah bon. Vous pouvez lui dire de me rappeler ?",
+        "Bien sûr, je lui dirai. Elle a votre numéro ?",
+        "Oui. Ce soir, si possible. Merci et au revoir !"
       ],
       "transfer": {
         "speaking": "Spiele ein Telefongespräch: Du möchtest eine Person sprechen, sie ist nicht da, du hinterlässt eine Nachricht.",
@@ -1173,15 +1173,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 7,
-      "status": "planned",
       "title": "Pläne für das Wochenende",
       "topic": "Projets",
       "skills": [
         "Sprechen",
         "Schreiben"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Samedi prochain, je ferai les courses.",
+          "Nächsten Samstag werde ich einkaufen."
+        ],
+        [
+          "Nous irons chez mes parents dimanche.",
+          "Wir werden am Sonntag zu meinen Eltern fahren."
+        ],
+        [
+          "Il fera beau ce week-end.",
+          "Dieses Wochenende wird es schön."
+        ],
+        [
+          "Je te raconterai tout à mon retour.",
+          "Ich werde dir bei meiner Rückkehr alles erzählen."
+        ],
+        [
+          "On se verra la semaine prochaine.",
+          "Wir sehen uns nächste Woche."
+        ],
+        [
+          "Quand tu arriveras, je t’appellerai.",
+          "Wenn du ankommst, rufe ich dich an."
+        ],
+        [
+          "Je vais partir vendredi soir.",
+          "Ich fahre Freitagabend weg."
+        ],
+        [
+          "Nous aurons le temps de visiter le musée.",
+          "Wir werden Zeit haben, das Museum zu besuchen."
+        ],
+        [
+          "Tu seras là samedi ?",
+          "Wirst du am Samstag da sein?"
+        ],
+        [
+          "Je pourrai venir après le travail.",
+          "Ich werde nach der Arbeit kommen können."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Samedi prochain, je ___ les courses. (faire, Futur)",
+          "o": [
+            "faisais",
+            "fais",
+            "ferai"
+          ],
+          "a": 2,
+          "audio": "Samedi prochain, je ferai les courses.",
+          "explanation": "Faire hat den Futurstamm fer-: je ferai."
+        },
+        {
+          "q": "Was bedeutet „On se verra la semaine prochaine“?",
+          "o": [
+            "Wir würden uns nächste Woche sehen.",
+            "Wir sehen uns nächste Woche.",
+            "Wir haben uns letzte Woche gesehen."
+          ],
+          "a": 1,
+          "audio": "On se verra la semaine prochaine.",
+          "explanation": "Verra ist futur simple von voir (Stamm verr-)."
+        },
+        {
+          "q": "Il ___ beau ce week-end. (faire, Futur)",
+          "o": [
+            "ferait",
+            "fera",
+            "faisait"
+          ],
+          "a": 1,
+          "audio": "Il fera beau ce week-end.",
+          "explanation": "Wetter in der Zukunft: il fera beau. Ferait wäre conditionnel."
+        },
+        {
+          "q": "Nous ___ chez mes parents. (aller, Futur)",
+          "o": [
+            "allerons",
+            "allons",
+            "irons"
+          ],
+          "a": 2,
+          "audio": "Nous irons chez mes parents dimanche.",
+          "explanation": "Aller hat den Futurstamm ir-: nous irons."
+        },
+        {
+          "q": "Quand tu ___, je t’appellerai. (arriver)",
+          "o": [
+            "arrives",
+            "arriveras",
+            "arrivais"
+          ],
+          "a": 1,
+          "audio": "Quand tu arriveras, je t’appellerai.",
+          "explanation": "Nach quand steht im Französischen Futur, wenn die Handlung in der Zukunft liegt."
+        },
+        {
+          "q": "Welche Endung hat das futur simple bei je?",
+          "o": [
+            "-é",
+            "-ais",
+            "-ai"
+          ],
+          "a": 2,
+          "audio": "Je te raconterai tout à mon retour.",
+          "explanation": "Futur: Infinitiv + -ai, -as, -a, -ons, -ez, -ont."
+        },
+        {
+          "q": "Tu ___ là samedi ? (être, Futur)",
+          "o": [
+            "sera",
+            "serais",
+            "seras"
+          ],
+          "a": 2,
+          "audio": "Tu seras là samedi ?",
+          "explanation": "Être hat den Futurstamm ser-: tu seras."
+        },
+        {
+          "q": "Was bedeutet „Je vais partir vendredi“?",
+          "o": [
+            "Ich fahre am Freitag weg.",
+            "Ich fuhr freitags weg.",
+            "Ich bin am Freitag weggefahren."
+          ],
+          "a": 0,
+          "audio": "Je vais partir vendredi soir.",
+          "explanation": "Futur proche: aller + Infinitiv für nahe Pläne."
+        },
+        {
+          "q": "Nous ___ le temps. (avoir, Futur)",
+          "o": [
+            "aurons",
+            "avions",
+            "avons"
+          ],
+          "a": 0,
+          "audio": "Nous aurons le temps de visiter le musée.",
+          "explanation": "Avoir hat den Futurstamm aur-: nous aurons."
+        },
+        {
+          "q": "Welche Zeitangabe zeigt auf die Zukunft?",
+          "o": [
+            "la semaine dernière",
+            "la semaine prochaine",
+            "il y a une semaine"
+          ],
+          "a": 1,
+          "audio": "On se verra la semaine prochaine.",
+          "explanation": "Prochain = nächster, dernier = letzter."
+        }
+      ],
       "canDo": [
         "Ich kann über Pläne sprechen und sagen, was passiert, wenn wir uns sehen."
       ],
@@ -1190,15 +1341,26 @@ window.FR_A1_DATA = {
         "explanation": "Futur simple für Zukunft und Versprechen: on se verra, je te raconterai; quand + Futur."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "je ferai / je ferais",
+        "explanation": "Je ferai (Futur) endet auf [e], je ferais (conditionnel) auf [ɛ]. Viele Sprecher unterscheiden das kaum – achte deshalb beim Lesen auf die Endung -ai oder -ais."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Qu’est-ce que tu feras le week-end prochain ?",
+        "Samedi, j’irai à la piscine avec ma fille.",
+        "Et dimanche ?",
+        "Nous irons chez mes parents, s’il fait beau.",
+        "Tu seras libre lundi soir ?",
+        "Oui, on se verra au café. Je te raconterai tout !"
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Erzähle, was du nächstes Wochenende machen wirst, und frage deinen Partner nach seinen Plänen.",
+        "writing": "Schreibe eine kurze Nachricht über deine Pläne mit mindestens drei Verben im futur simple."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Produktion",
+        "Mündliche Interaktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Éléments langagiers, Partie 1 : futur simple",
         "Épreuves orales, Partie 2 : votre prochain week-end"
@@ -1206,15 +1368,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 8,
-      "status": "planned",
       "title": "Haustiere",
       "topic": "Animaux de compagnie",
       "skills": [
         "Sprechen",
         "Hören"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "J’ai un chien qui s’appelle Filou.",
+          "Ich habe einen Hund, der Filou heißt."
+        ],
+        [
+          "C’est le chat que ma sœur a adopté.",
+          "Das ist die Katze, die meine Schwester adoptiert hat."
+        ],
+        [
+          "Mon chien adore courir dans le parc.",
+          "Mein Hund liebt es, im Park zu rennen."
+        ],
+        [
+          "Je le promène deux fois par jour.",
+          "Ich gehe zweimal am Tag mit ihm spazieren."
+        ],
+        [
+          "Il est petit, noir et très gentil.",
+          "Er ist klein, schwarz und sehr lieb."
+        ],
+        [
+          "Je dois lui donner à manger le matin.",
+          "Ich muss ihm morgens zu fressen geben."
+        ],
+        [
+          "Vous avez un animal de compagnie ?",
+          "Haben Sie ein Haustier?"
+        ],
+        [
+          "Les animaux sont interdits dans l’immeuble.",
+          "Tiere sind im Wohnhaus verboten."
+        ],
+        [
+          "Mon voisin garde mon chat pendant les vacances.",
+          "Mein Nachbar passt in den Ferien auf meine Katze auf."
+        ],
+        [
+          "Je suis allergique aux chats.",
+          "Ich bin allergisch gegen Katzen."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "J’ai un chien ___ s’appelle Filou.",
+          "o": [
+            "que",
+            "qui",
+            "où"
+          ],
+          "a": 1,
+          "audio": "J’ai un chien qui s’appelle Filou.",
+          "explanation": "Qui ersetzt das Subjekt des Relativsatzes: der Hund heißt Filou."
+        },
+        {
+          "q": "C’est le chat ___ ma sœur a adopté.",
+          "o": [
+            "que",
+            "dont",
+            "qui"
+          ],
+          "a": 0,
+          "audio": "C’est le chat que ma sœur a adopté.",
+          "explanation": "Que ersetzt das Objekt: ma sœur a adopté le chat."
+        },
+        {
+          "q": "Was ist „un animal de compagnie“?",
+          "o": [
+            "ein Haustier",
+            "ein Tierarzt",
+            "ein Zootier"
+          ],
+          "a": 0,
+          "audio": "Vous avez un animal de compagnie ?",
+          "explanation": "Animal de compagnie = Haustier. Der Tierarzt heißt le vétérinaire."
+        },
+        {
+          "q": "Je ___ promène deux fois par jour. (den Hund)",
+          "o": [
+            "le",
+            "lui",
+            "la"
+          ],
+          "a": 0,
+          "audio": "Je le promène deux fois par jour.",
+          "explanation": "Promener quelqu’un ohne à → direktes Objekt le."
+        },
+        {
+          "q": "Was bedeutet „Mon voisin garde mon chat“?",
+          "o": [
+            "Mein Nachbar sucht meine Katze.",
+            "Mein Nachbar behält meine Katze.",
+            "Mein Nachbar passt auf meine Katze auf."
+          ],
+          "a": 2,
+          "audio": "Mon voisin garde mon chat pendant les vacances.",
+          "explanation": "Garder un animal = auf ein Tier aufpassen."
+        },
+        {
+          "q": "Was bedeutet „interdit“?",
+          "o": [
+            "verboten",
+            "selten",
+            "erlaubt"
+          ],
+          "a": 0,
+          "audio": "Les animaux sont interdits dans l’immeuble.",
+          "explanation": "Interdit = verboten; autorisé = erlaubt."
+        },
+        {
+          "q": "Mon chien adore ___ dans le parc.",
+          "o": [
+            "couru",
+            "courir",
+            "court"
+          ],
+          "a": 1,
+          "audio": "Mon chien adore courir dans le parc.",
+          "explanation": "Nach adorer / aimer steht der Infinitiv."
+        },
+        {
+          "q": "Wie sagst du „Ich bin allergisch gegen Katzen“?",
+          "o": [
+            "Je suis allergique de chats.",
+            "Je suis allergique aux chats.",
+            "J’ai allergique les chats."
+          ],
+          "a": 1,
+          "audio": "Je suis allergique aux chats.",
+          "explanation": "Allergique à; à + les = aux."
+        },
+        {
+          "q": "Le perroquet ___ je t’ai montré parle !",
+          "o": [
+            "qui",
+            "que",
+            "où"
+          ],
+          "a": 1,
+          "audio": "Le perroquet que je t’ai montré parle !",
+          "explanation": "Je t’ai montré le perroquet → Objekt → que."
+        },
+        {
+          "q": "Welche Beschreibung passt zu einem Hund?",
+          "o": [
+            "Il est petit, noir et très gentil.",
+            "Il est petits, noirs et très gentils.",
+            "Il est petite, noire et très gentille."
+          ],
+          "a": 0,
+          "audio": "Il est petit, noir et très gentil.",
+          "explanation": "Le chien ist männlich Singular: petit, noir, gentil."
+        }
+      ],
       "canDo": [
         "Ich kann über Haustiere sprechen, sie beschreiben und Fragen dazu stellen."
       ],
@@ -1223,30 +1536,192 @@ window.FR_A1_DATA = {
         "explanation": "qui ersetzt das Subjekt, que das Objekt: un chien qui aime courir, le chat que j’ai adopté."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "chien / chat",
+        "explanation": "Ch spricht man im Französischen [ʃ] wie deutsch „sch“: chien [ʃjɛ̃], chat [ʃa]. Das t von chat bleibt stumm. Qui [ki] und que [kə] klar unterscheiden."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Vous avez un animal de compagnie ?",
+        "Oui, j’ai un chien qui s’appelle Filou.",
+        "Il est comment ?",
+        "Il est petit et très gentil. Il adore courir.",
+        "Qui le garde pendant les vacances ?",
+        "C’est mon voisin, un monsieur que je connais bien."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Sprich über ein Haustier (eigenes oder von Bekannten): Art, Name, Aussehen, Pflege. Stelle zwei Fragen dazu.",
+        "writing": "Beschreibe ein Tier in vier Sätzen mit qui und que."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Interaktion",
+        "Mündliche Produktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Épreuves orales, Partie 2 : animaux de compagnie (chien, chat)"
       ]
     },
     {
       "id": 9,
-      "status": "planned",
       "title": "Mein Lieblingsgericht",
       "topic": "Plat préféré",
       "skills": [
         "Sprechen",
         "Lesen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Mon plat préféré, c’est la ratatouille.",
+          "Mein Lieblingsgericht ist Ratatouille."
+        ],
+        [
+          "Il faut des tomates, des courgettes et des oignons.",
+          "Man braucht Tomaten, Zucchini und Zwiebeln."
+        ],
+        [
+          "Des tomates ? J’en prends un kilo.",
+          "Tomaten? Ich nehme ein Kilo davon."
+        ],
+        [
+          "Du fromage ? Non merci, je n’en mange pas.",
+          "Käse? Nein danke, ich esse keinen."
+        ],
+        [
+          "Tu veux de la salade ? Oui, j’en veux bien.",
+          "Möchtest du Salat? Ja, gern."
+        ],
+        [
+          "On coupe les légumes en petits morceaux.",
+          "Man schneidet das Gemüse in kleine Stücke."
+        ],
+        [
+          "Ça cuit pendant quarante minutes.",
+          "Das kocht vierzig Minuten lang."
+        ],
+        [
+          "Je mange de la viande une fois par semaine.",
+          "Ich esse einmal pro Woche Fleisch."
+        ],
+        [
+          "C’est un plat typique de ma région.",
+          "Das ist ein typisches Gericht meiner Region."
+        ],
+        [
+          "C’est délicieux, mais un peu épicé.",
+          "Es ist köstlich, aber etwas scharf."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Des tomates ? J’___ prends un kilo.",
+          "o": [
+            "y",
+            "en",
+            "les"
+          ],
+          "a": 1,
+          "audio": "Des tomates ? J’en prends un kilo.",
+          "explanation": "En ersetzt eine Mengenangabe mit de: des tomates → en."
+        },
+        {
+          "q": "Du fromage ? Je n’___ mange pas.",
+          "o": [
+            "en",
+            "y",
+            "le"
+          ],
+          "a": 0,
+          "audio": "Du fromage ? Non merci, je n’en mange pas.",
+          "explanation": "Du / de la / des + Nomen → en, auch in der Verneinung: je n’en mange pas."
+        },
+        {
+          "q": "Was bedeutet „Mon plat préféré“?",
+          "o": [
+            "mein Lieblingsgericht",
+            "mein Lieblingsteller",
+            "meine Lieblingsspeisekarte"
+          ],
+          "a": 0,
+          "audio": "Mon plat préféré, c’est la ratatouille.",
+          "explanation": "Le plat = das Gericht; l’assiette = der Teller."
+        },
+        {
+          "q": "Il faut ___ tomates.",
+          "o": [
+            "de les",
+            "des",
+            "les"
+          ],
+          "a": 1,
+          "audio": "Il faut des tomates, des courgettes et des oignons.",
+          "explanation": "Für eine unbestimmte Menge steht der Teilungsartikel des."
+        },
+        {
+          "q": "Was bedeutet „épicé“?",
+          "o": [
+            "scharf gewürzt",
+            "salzig",
+            "süß"
+          ],
+          "a": 0,
+          "audio": "C’est délicieux, mais un peu épicé.",
+          "explanation": "Épicé = scharf / stark gewürzt; sucré = süß; salé = salzig."
+        },
+        {
+          "q": "Tu veux de la salade ? — Oui, j’___ veux bien.",
+          "o": [
+            "en",
+            "lui",
+            "la"
+          ],
+          "a": 0,
+          "audio": "Oui, j’en veux bien.",
+          "explanation": "De la salade → en."
+        },
+        {
+          "q": "Was bedeutet „Ça cuit pendant quarante minutes“?",
+          "o": [
+            "Das kostet vierzig Euro.",
+            "Das kocht vierzig Minuten lang.",
+            "Das ist in vierzig Minuten fertig gegessen."
+          ],
+          "a": 1,
+          "audio": "Ça cuit pendant quarante minutes.",
+          "explanation": "Cuire = kochen, garen; pendant = während, lang."
+        },
+        {
+          "q": "On coupe les légumes en petits ___ .",
+          "o": [
+            "morceaux",
+            "morcels",
+            "morceau"
+          ],
+          "a": 0,
+          "audio": "On coupe les légumes en petits morceaux.",
+          "explanation": "Le morceau → les morceaux (Plural auf -x)."
+        },
+        {
+          "q": "Wie oft? « une fois par semaine »",
+          "o": [
+            "jede zweite Woche",
+            "einmal am Tag",
+            "einmal pro Woche"
+          ],
+          "a": 2,
+          "audio": "Je mange de la viande une fois par semaine.",
+          "explanation": "Une fois par semaine = einmal pro Woche."
+        },
+        {
+          "q": "Des œufs ? J’en voudrais ___ .",
+          "o": [
+            "les six",
+            "six",
+            "de six"
+          ],
+          "a": 1,
+          "audio": "Des œufs ? J’en voudrais six.",
+          "explanation": "Mit en steht die Zahl allein am Ende: j’en voudrais six."
+        }
+      ],
       "canDo": [
         "Ich kann mein Lieblingsgericht beschreiben, Zutaten und Mengen nennen und nach Essgewohnheiten fragen."
       ],
@@ -1255,30 +1730,192 @@ window.FR_A1_DATA = {
         "explanation": "en ersetzt de + Nomen und Mengenangaben: Des tomates ? J’en prends un kilo."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "en / un",
+        "explanation": "En [ɑ̃] und un [œ̃] / [ɛ̃] sind verschiedene Nasale. Bei j’en‿ai, n’en‿ai wird gebunden: [ʒɑ̃ne]. Sprich je n’en mange pas zusammenhängend: [ʒənɑ̃mɑ̃ʒpa]."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Quel est ton plat préféré ?",
+        "La ratatouille, c’est un plat de ma région.",
+        "Qu’est-ce qu’il faut ?",
+        "Des tomates, des courgettes, des aubergines et des oignons.",
+        "Tu mets de l’ail ?",
+        "Oui, j’en mets beaucoup. C’est délicieux !"
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Beschreibe dein Lieblingsgericht: Zutaten, Mengen, Zubereitung und wann du es isst.",
+        "writing": "Schreibe ein kurzes Rezept (Zutaten + drei Schritte) mit mindestens zwei Sätzen mit en."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Produktion",
+        "Mündliche Interaktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Épreuves orales, Partie 2 : votre plat préféré"
       ]
     },
     {
       "id": 10,
-      "status": "planned",
       "title": "Einladen und feiern",
       "topic": "Inviter et fêter",
       "skills": [
         "Schreiben",
         "Lesen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Je suis très contente pour toi !",
+          "Ich freue mich sehr für dich!"
+        ],
+        [
+          "Quelle chance !",
+          "Was für ein Glück!"
+        ],
+        [
+          "Félicitations pour ton nouveau travail !",
+          "Herzlichen Glückwunsch zur neuen Arbeit!"
+        ],
+        [
+          "Il faut fêter ça ensemble.",
+          "Das müssen wir zusammen feiern."
+        ],
+        [
+          "Je t’invite au restaurant samedi soir.",
+          "Ich lade dich am Samstagabend ins Restaurant ein."
+        ],
+        [
+          "Dis-moi si ça te va.",
+          "Sag mir, ob dir das passt."
+        ],
+        [
+          "Écris-moi de préférence par SMS.",
+          "Schreib mir am besten eine SMS."
+        ],
+        [
+          "Moi aussi, j’ai quelque chose à te raconter.",
+          "Ich habe dir auch etwas zu erzählen."
+        ],
+        [
+          "Quel beau cadeau !",
+          "Was für ein schönes Geschenk!"
+        ],
+        [
+          "Merci pour l’invitation, je viens avec plaisir.",
+          "Danke für die Einladung, ich komme gern."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "___ chance ! (Ausruf)",
+          "o": [
+            "Quel",
+            "Quelle",
+            "Quels"
+          ],
+          "a": 1,
+          "audio": "Quelle chance !",
+          "explanation": "La chance ist weiblich → Quelle chance !"
+        },
+        {
+          "q": "___ beau cadeau !",
+          "o": [
+            "Quel",
+            "Quelle",
+            "Quelles"
+          ],
+          "a": 0,
+          "audio": "Quel beau cadeau !",
+          "explanation": "Le cadeau ist männlich → Quel."
+        },
+        {
+          "q": "Je t’invite ___ restaurant.",
+          "o": [
+            "au",
+            "à la",
+            "à le"
+          ],
+          "a": 0,
+          "audio": "Je t’invite au restaurant samedi soir.",
+          "explanation": "À + le wird zu au."
+        },
+        {
+          "q": "Was bedeutet „Il faut fêter ça ensemble“?",
+          "o": [
+            "Das müssen wir zusammen feiern.",
+            "Das feiert man allein.",
+            "Wir haben das schon gefeiert."
+          ],
+          "a": 0,
+          "audio": "Il faut fêter ça ensemble.",
+          "explanation": "Fêter = feiern; ensemble = zusammen."
+        },
+        {
+          "q": "Was bedeutet „Dis-moi si ça te va“?",
+          "o": [
+            "Sag mir, ob dir das passt.",
+            "Sag mir, wohin du gehst.",
+            "Sag mir, wie es dir geht."
+          ],
+          "a": 0,
+          "audio": "Dis-moi si ça te va.",
+          "explanation": "Ça te va ? = Passt dir das? Ça va ? allein fragt nach dem Befinden."
+        },
+        {
+          "q": "Wie gratulierst du zur neuen Arbeit?",
+          "o": [
+            "Félicitations pour ton nouveau travail !",
+            "Bon appétit pour ton nouveau travail !",
+            "Bonne route pour ton nouveau travail !"
+          ],
+          "a": 0,
+          "audio": "Félicitations pour ton nouveau travail !",
+          "explanation": "Félicitations = herzlichen Glückwunsch."
+        },
+        {
+          "q": "Écris-moi de préférence ___ SMS.",
+          "o": [
+            "par",
+            "en",
+            "avec"
+          ],
+          "a": 0,
+          "audio": "Écris-moi de préférence par SMS.",
+          "explanation": "Par SMS, par e-mail = per SMS, per E-Mail. De préférence = am besten."
+        },
+        {
+          "q": "Was bedeutet „J’ai quelque chose à te raconter“?",
+          "o": [
+            "Ich muss dir etwas zeigen.",
+            "Ich habe etwas für dich gekauft.",
+            "Ich habe dir etwas zu erzählen."
+          ],
+          "a": 2,
+          "audio": "Moi aussi, j’ai quelque chose à te raconter.",
+          "explanation": "Raconter = erzählen; quelque chose = etwas."
+        },
+        {
+          "q": "Du nimmst eine Einladung an. Was sagst du?",
+          "o": [
+            "Merci, ce n’est pas possible.",
+            "Merci, je viens avec plaisir.",
+            "Merci, je suis désolé."
+          ],
+          "a": 1,
+          "audio": "Merci pour l’invitation, je viens avec plaisir.",
+          "explanation": "Avec plaisir = gern."
+        },
+        {
+          "q": "Je suis très ___ pour toi ! (Frau)",
+          "o": [
+            "contents",
+            "contente",
+            "content"
+          ],
+          "a": 1,
+          "audio": "Je suis très contente pour toi !",
+          "explanation": "Eine Frau sagt contente; das Adjektiv richtet sich nach der Sprecherin."
+        }
+      ],
       "canDo": [
         "Ich kann auf eine gute Nachricht reagieren, jemanden zum Essen einladen und um Antwort bitten."
       ],
@@ -1287,30 +1924,192 @@ window.FR_A1_DATA = {
         "explanation": "Quel / Quelle + Nomen als Ausruf (Quelle chance !); inviter quelqu’un au restaurant (à + le = au)."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "quel / quelle",
+        "explanation": "Quel, quelle, quels und quelles klingen alle gleich: [kɛl]. Den Unterschied siehst du nur in der Schrift. Ausrufe sprichst du mit fallender Melodie und Betonung am Ende: Quelle chance !"
       },
-      "dialogue": [],
+      "dialogue": [
+        "J’ai réussi mon permis de conduire !",
+        "Félicitations ! Quelle bonne nouvelle !",
+        "Merci ! Je suis très contente.",
+        "Il faut fêter ça. Je t’invite au restaurant vendredi.",
+        "Avec plaisir ! À quelle heure ?",
+        "Vers vingt heures. Dis-moi si ça te va !"
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Reagiere auf eine gute Nachricht, gratuliere und lade jemanden zum Feiern ein (Ort, Tag, Uhrzeit).",
+        "writing": "Schreibe eine persönliche Einladung per E-Mail mit Anrede, Glückwunsch, Vorschlag und Grußformel."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Produktion",
+        "Schriftliche Interaktion",
+        "Mündliche Interaktion"
+      ],
       "telc": [
         "Éléments langagiers, Partie 1 : lettre personnelle"
       ]
     },
     {
       "id": 11,
-      "status": "planned",
       "title": "Im Supermarkt",
       "topic": "Au supermarché",
       "skills": [
         "Hören",
         "Lesen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Voici nos offres spéciales de la semaine.",
+          "Hier sind unsere Sonderangebote der Woche."
+        ],
+        [
+          "Le kilo de pommes est à deux euros seulement.",
+          "Das Kilo Äpfel kostet nur zwei Euro."
+        ],
+        [
+          "Le fromage est à dix-huit euros le kilo.",
+          "Der Käse kostet achtzehn Euro das Kilo."
+        ],
+        [
+          "Au rayon fruits et légumes, les fraises sont en promotion.",
+          "In der Obst- und Gemüseabteilung sind die Erdbeeren im Angebot."
+        ],
+        [
+          "Profitez de nos offres jusqu’à demain !",
+          "Nutzen Sie unsere Angebote bis morgen!"
+        ],
+        [
+          "Je ne prends qu’une bouteille d’eau.",
+          "Ich nehme nur eine Flasche Wasser."
+        ],
+        [
+          "C’est combien, la pièce ?",
+          "Wie viel kostet das Stück?"
+        ],
+        [
+          "Deux paquets pour le prix d’un.",
+          "Zwei Packungen zum Preis von einer."
+        ],
+        [
+          "Où se trouve le rayon boulangerie ?",
+          "Wo ist die Bäckereiabteilung?"
+        ],
+        [
+          "Vous payez à la caisse numéro trois.",
+          "Sie zahlen an Kasse drei."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Was bedeutet „le kilo de pommes est à deux euros“?",
+          "o": [
+            "Ein Kilo Äpfel kostet zwei Euro.",
+            "Zwei Kilo Äpfel kosten einen Euro.",
+            "Die Äpfel wiegen zwei Kilo."
+          ],
+          "a": 0,
+          "audio": "Le kilo de pommes est à deux euros seulement.",
+          "explanation": "Être à + Preis: etwas kostet …"
+        },
+        {
+          "q": "Le fromage est à dix-huit euros ___ kilo.",
+          "o": [
+            "au",
+            "le",
+            "par le"
+          ],
+          "a": 1,
+          "audio": "Le fromage est à dix-huit euros le kilo.",
+          "explanation": "Preis pro Einheit: … euros le kilo, … euros la pièce."
+        },
+        {
+          "q": "Was ist „le rayon“ im Supermarkt?",
+          "o": [
+            "die Kasse",
+            "der Einkaufswagen",
+            "die Abteilung"
+          ],
+          "a": 2,
+          "audio": "Au rayon fruits et légumes…",
+          "explanation": "Le rayon = die Abteilung, das Regal; la caisse = die Kasse."
+        },
+        {
+          "q": "Was bedeutet „en promotion“?",
+          "o": [
+            "neu im Sortiment",
+            "ausverkauft",
+            "im Angebot"
+          ],
+          "a": 2,
+          "audio": "Les fraises sont en promotion.",
+          "explanation": "En promotion / en promo = im Sonderangebot."
+        },
+        {
+          "q": "Je ___ prends qu’une bouteille.",
+          "o": [
+            "ne",
+            "pas",
+            "n’"
+          ],
+          "a": 0,
+          "audio": "Je ne prends qu’une bouteille d’eau.",
+          "explanation": "Ne … que = nur: Je ne prends qu’une bouteille."
+        },
+        {
+          "q": "Was bedeutet „Je ne prends qu’une bouteille“?",
+          "o": [
+            "Ich nehme nur eine Flasche.",
+            "Ich nehme noch eine Flasche.",
+            "Ich nehme keine Flasche."
+          ],
+          "a": 0,
+          "audio": "Je ne prends qu’une bouteille d’eau.",
+          "explanation": "Ne … que ist keine Verneinung, sondern bedeutet „nur“."
+        },
+        {
+          "q": "C’est combien, ___ pièce ?",
+          "o": [
+            "la",
+            "une",
+            "le"
+          ],
+          "a": 0,
+          "audio": "C’est combien, la pièce ?",
+          "explanation": "Preis pro Stück: la pièce."
+        },
+        {
+          "q": "Was bedeutet „deux paquets pour le prix d’un“?",
+          "o": [
+            "zwei Packungen zum Preis von einer",
+            "zwei Packungen für zwei Euro",
+            "eine Packung gratis ab drei"
+          ],
+          "a": 0,
+          "audio": "Deux paquets pour le prix d’un.",
+          "explanation": "Le prix = der Preis."
+        },
+        {
+          "q": "Profitez de nos offres ___ demain !",
+          "o": [
+            "jusqu’à",
+            "depuis",
+            "pendant"
+          ],
+          "a": 0,
+          "audio": "Profitez de nos offres jusqu’à demain !",
+          "explanation": "Jusqu’à = bis."
+        },
+        {
+          "q": "Wo bezahlst du?",
+          "o": [
+            "à la caisse",
+            "au rayon",
+            "à l’entrée"
+          ],
+          "a": 0,
+          "audio": "Vous payez à la caisse numéro trois.",
+          "explanation": "Payer à la caisse = an der Kasse zahlen."
+        }
+      ],
       "canDo": [
         "Ich kann Sonderangebote und Durchsagen im Geschäft verstehen und Preise pro Menge vergleichen."
       ],
@@ -1319,15 +2118,26 @@ window.FR_A1_DATA = {
         "explanation": "à + Preis + le kilo / la pièce: Le kilo de tomates est à 5 € seulement; ne … que."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "euros / un euro",
+        "explanation": "Bei Zahlen + euros wird gebunden: deux‿euros [døzøʁo], trois‿euros [tʁwazøʁo], six‿euros [sizøʁo], dix‿euros [dizøʁo]. Neuf euros: [nœvøʁo]. In Durchsagen kommen Preise oft schnell – höre auf die Zahl direkt vor euros."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Excusez-moi, où se trouve le rayon fromages ?",
+        "Au fond du magasin, à gauche.",
+        "Et le camembert est en promotion ?",
+        "Oui, deux pour le prix d’un cette semaine.",
+        "Super ! Je n’en prends qu’un, quand même.",
+        "Vous payez à la caisse, à l’entrée."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Spiele ein Gespräch im Supermarkt: nach einer Abteilung fragen, nach dem Angebot und dem Preis pro Kilo oder Stück.",
+        "writing": "Schreibe eine kurze Einkaufsliste mit Mengen und Preisen und einem Satz mit ne … que."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Rezeption",
+        "Schriftliche Rezeption",
+        "Mündliche Interaktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 2 : annonce au supermarché",
         "Compréhension orale, Partie 3 : annonce au supermarché"
@@ -1335,15 +2145,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 12,
-      "status": "planned",
       "title": "Absagen und sich entschuldigen",
       "topic": "Messages et excuses",
       "skills": [
         "Hören",
         "Schreiben"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Allô Camille ? C’est Romain.",
+          "Hallo Camille? Hier ist Romain."
+        ],
+        [
+          "Je suis désolé, mais je ne pourrai pas venir demain.",
+          "Es tut mir leid, aber ich kann morgen nicht kommen."
+        ],
+        [
+          "J’ai mal à la gorge et de la fièvre.",
+          "Ich habe Halsschmerzen und Fieber."
+        ],
+        [
+          "Je ne me sens pas bien.",
+          "Ich fühle mich nicht gut."
+        ],
+        [
+          "Je t’appelle dès que ça va mieux.",
+          "Ich rufe dich an, sobald es mir besser geht."
+        ],
+        [
+          "Dis bonjour à tout le monde !",
+          "Grüß alle von mir!"
+        ],
+        [
+          "Excuse-moi pour le retard.",
+          "Entschuldige die Verspätung."
+        ],
+        [
+          "Je dois annuler notre rendez-vous.",
+          "Ich muss unseren Termin absagen."
+        ],
+        [
+          "On peut le reporter à jeudi ?",
+          "Können wir ihn auf Donnerstag verschieben?"
+        ],
+        [
+          "Ce n’est pas grave.",
+          "Das ist nicht schlimm."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Je ne ___ pas venir ce soir. (pouvoir, Futur)",
+          "o": [
+            "pouvrai",
+            "peux",
+            "pourrai"
+          ],
+          "a": 2,
+          "audio": "Je suis désolée, mais je ne pourrai pas venir ce soir.",
+          "explanation": "Pouvoir hat den Futurstamm pourr-: je pourrai."
+        },
+        {
+          "q": "Was bedeutet „J’ai mal à la gorge“?",
+          "o": [
+            "Ich habe Kopfschmerzen.",
+            "Ich habe Halsschmerzen.",
+            "Ich habe Bauchschmerzen."
+          ],
+          "a": 1,
+          "audio": "J’ai mal à la gorge et de la fièvre.",
+          "explanation": "La gorge = der Hals; la tête = der Kopf; le ventre = der Bauch."
+        },
+        {
+          "q": "Wie entschuldigst du dich höflich?",
+          "o": [
+            "Je suis dommage.",
+            "Je suis désolé.",
+            "Je suis pardon."
+          ],
+          "a": 1,
+          "audio": "Je suis désolé, mais…",
+          "explanation": "Je suis désolé(e) = es tut mir leid."
+        },
+        {
+          "q": "Was bedeutet „annuler“?",
+          "o": [
+            "verschieben",
+            "bestätigen",
+            "absagen"
+          ],
+          "a": 2,
+          "audio": "Je dois annuler notre rendez-vous.",
+          "explanation": "Annuler = absagen; reporter = verschieben."
+        },
+        {
+          "q": "On peut le ___ à jeudi ? (verschieben)",
+          "o": [
+            "annuler",
+            "rappeler",
+            "reporter"
+          ],
+          "a": 2,
+          "audio": "On peut le reporter à jeudi ?",
+          "explanation": "Reporter à = verschieben auf."
+        },
+        {
+          "q": "Was antwortest du auf eine Entschuldigung, wenn es kein Problem ist?",
+          "o": [
+            "Ce n’est pas possible.",
+            "Ce n’est pas vrai.",
+            "Ce n’est pas grave."
+          ],
+          "a": 2,
+          "audio": "Ce n’est pas grave.",
+          "explanation": "Ce n’est pas grave = das ist nicht schlimm."
+        },
+        {
+          "q": "Je ne viens pas ___ je suis malade.",
+          "o": [
+            "donc",
+            "parce que",
+            "pour"
+          ],
+          "a": 1,
+          "audio": "Je ne viens pas parce que je suis malade.",
+          "explanation": "Parce que leitet einen Grund ein."
+        },
+        {
+          "q": "Was bedeutet „Je ne me sens pas bien“?",
+          "o": [
+            "Ich höre nicht gut.",
+            "Ich fühle mich nicht gut.",
+            "Ich rieche nichts."
+          ],
+          "a": 1,
+          "audio": "Je ne me sens pas bien.",
+          "explanation": "Se sentir bien / mal = sich gut / schlecht fühlen."
+        },
+        {
+          "q": "Excuse-moi ___ le retard.",
+          "o": [
+            "de",
+            "pour",
+            "à"
+          ],
+          "a": 1,
+          "audio": "Excuse-moi pour le retard.",
+          "explanation": "S’excuser / excuser pour + Nomen."
+        },
+        {
+          "q": "Was bedeutet „Dis bonjour à tout le monde !“ am Ende einer Nachricht?",
+          "o": [
+            "Sag allen guten Tag, wenn du kommst!",
+            "Alle grüßen dich.",
+            "Grüß alle von mir!"
+          ],
+          "a": 2,
+          "audio": "Dis bonjour à tout le monde !",
+          "explanation": "Dire bonjour à quelqu’un = jemanden grüßen."
+        }
+      ],
       "canDo": [
         "Ich kann eine Nachricht auf dem Anrufbeantworter verstehen und selbst absagen, mich entschuldigen und einen Grund nennen."
       ],
@@ -1352,15 +2313,26 @@ window.FR_A1_DATA = {
         "explanation": "Je suis désolé(e), mais je ne pourrai pas venir … ; Begründung mit parce que / car."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "désolé / désolée",
+        "explanation": "Désolé und désolée klingen gleich. Sprich je ne pourrai pas venir zusammenhängend: [ʒənpuʁepavəniʁ]. Bei pourrai hört man das doppelte r nicht länger."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Allô Camille ? C’est Romain.",
+        "Salut Romain ! Tu viens demain ?",
+        "Je suis désolé, je ne pourrai pas venir. J’ai de la fièvre.",
+        "Oh, dommage ! Ce n’est pas grave. Soigne-toi bien.",
+        "Merci. On peut reporter à la semaine prochaine ?",
+        "Bien sûr. Je t’appelle lundi."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Sage am Telefon eine Verabredung ab: entschuldige dich, nenne einen Grund und schlage einen neuen Termin vor.",
+        "writing": "Schreibe eine kurze Absage-Nachricht (ca. 40 Wörter) mit Entschuldigung, Grund und neuem Vorschlag."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Rezeption",
+        "Schriftliche Produktion",
+        "Mündliche Interaktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 2 : message sur le répondeur"
       ]
@@ -1816,8 +2788,8 @@ window.FR_A1_DATA = {
       ]
     },
     "4": {
-      "speakModel": "Allô, bonjour. Ici Julie Bernard. Est-ce que je peux parler à Monique, s’il vous plaît ? Ah, elle n’est pas là. Vous pouvez lui dire que j’ai appelé ? Elle peut me rappeler avant six heures au 06 12 34 56 78. Merci beaucoup, au revoir !",
-      "writeModel": "Message pour Monique :\nJulie a téléphoné à 15 heures.\nElle veut te parler du cours de samedi.\nRappelle-la avant six heures, s’il te plaît.",
+      "speakModel": "Allô, bonjour. Ici Julie Bernard. Est-ce que je peux parler à Hélène, s’il vous plaît ? Ah, elle n’est pas là. Vous pouvez lui dire que j’ai appelé ? Elle peut me rappeler avant six heures au 06 12 34 56 78. Merci beaucoup, au revoir !",
+      "writeModel": "Message pour Hélène :\nJulie a téléphoné à 15 heures.\nElle veut te parler du cours de samedi.\nRappelle-la avant six heures, s’il te plaît.",
       "placeholder": "Schreibe eine Telefonnotiz …",
       "writingHelpText": "Nenne Anrufer, Uhrzeit, Grund und Rückrufwunsch.",
       "writingHints": [
@@ -1872,6 +2844,126 @@ window.FR_A1_DATA = {
         [
           "Un jour, nous avons …",
           "An einem Tag haben wir …"
+        ]
+      ]
+    },
+    "7": {
+      "speakModel": "Le week-end prochain, je ferai beaucoup de choses. Samedi matin, j’irai au marché. L’après-midi, je verrai des amis en ville. Dimanche, s’il fait beau, nous irons à la campagne. Et vous, qu’est-ce que vous ferez le week-end prochain ?",
+      "writeModel": "Samedi, j’irai au marché.\nL’après-midi, je verrai des amis.\nDimanche, nous ferons une promenade.\nQuand je rentrerai, je t’appellerai.",
+      "placeholder": "Schreibe über deine Pläne …",
+      "writingHelpText": "Verwende Futurstämme wie ir-, fer-, ser-, aur- und verr-.",
+      "writingHints": [
+        [
+          "Samedi, j’irai …",
+          "Am Samstag werde ich … gehen."
+        ],
+        [
+          "Nous ferons …",
+          "Wir werden … machen."
+        ],
+        [
+          "Quand …, je …",
+          "Wenn …, werde ich …"
+        ]
+      ]
+    },
+    "8": {
+      "speakModel": "J’ai une chatte qui s’appelle Mimi. C’est une chatte que j’ai trouvée dans la rue il y a trois ans. Elle est grise et très calme. Je lui donne à manger le matin et le soir. Pendant les vacances, c’est ma voisine qui la garde. Et vous, vous avez un animal ?",
+      "writeModel": "J’ai un chien qui s’appelle Rex.\nC’est un chien que j’ai adopté l’année dernière.\nIl est grand et très gentil.\nJe le promène tous les soirs.",
+      "placeholder": "Beschreibe ein Tier …",
+      "writingHelpText": "Verbinde Sätze mit qui (Subjekt) und que (Objekt).",
+      "writingHints": [
+        [
+          "J’ai un … qui …",
+          "Ich habe einen …, der …"
+        ],
+        [
+          "C’est un … que …",
+          "Das ist ein …, den …"
+        ],
+        [
+          "Je le / la promène …",
+          "Ich gehe mit ihm / ihr …"
+        ]
+      ]
+    },
+    "9": {
+      "speakModel": "Mon plat préféré, c’est la quiche lorraine. Il faut des œufs, de la crème, du lard et une pâte. Des œufs, j’en mets trois. On mélange tout et ça cuit pendant trente minutes. Je la mange souvent le dimanche avec une salade. Et vous, quel est votre plat préféré ?",
+      "writeModel": "Mon plat préféré, c’est la soupe de légumes.\nIl faut des carottes, des pommes de terre et un oignon.\nDes carottes ? J’en prends quatre.\nÇa cuit pendant vingt minutes.",
+      "placeholder": "Beschreibe dein Lieblingsgericht …",
+      "writingHelpText": "Nenne Zutaten mit des / du / de la und ersetze eine Menge durch en.",
+      "writingHints": [
+        [
+          "Il faut des / du / de la …",
+          "Man braucht …"
+        ],
+        [
+          "J’en prends / mets …",
+          "Ich nehme / gebe … davon."
+        ],
+        [
+          "Ça cuit pendant …",
+          "Das kocht … lang."
+        ]
+      ]
+    },
+    "10": {
+      "speakModel": "Tu as réussi ton examen ? Félicitations, quelle bonne nouvelle ! Il faut fêter ça ensemble. Je t’invite au restaurant vendredi soir, vers vingt heures. Dis-moi si ça te va. Écris-moi de préférence par SMS.",
+      "writeModel": "Chère Léa,\nFélicitations pour ton examen ! Quelle bonne nouvelle !\nIl faut fêter ça : je t’invite au restaurant vendredi soir.\nDis-moi si ça te va.\nJe t’embrasse,\nAnna",
+      "placeholder": "Schreibe eine Einladung …",
+      "writingHelpText": "Beginne mit Chère / Cher, gratuliere, lade ein und beende mit einer Grußformel.",
+      "writingHints": [
+        [
+          "Félicitations pour …",
+          "Herzlichen Glückwunsch zu …"
+        ],
+        [
+          "Je t’invite au / à la …",
+          "Ich lade dich ins / in die … ein."
+        ],
+        [
+          "Je t’embrasse / Bises",
+          "Liebe Grüße"
+        ]
+      ]
+    },
+    "11": {
+      "speakModel": "Excusez-moi, où se trouve le rayon fruits et légumes ? Les tomates sont en promotion ? Le kilo est à combien ? Je ne prends qu’un kilo, s’il vous plaît. Et le fromage, c’est combien la pièce ?",
+      "writeModel": "Liste de courses :\n1 kilo de tomates (5 € le kilo)\n2 paquets de pâtes (en promotion)\n6 œufs\nJe ne prends qu’une bouteille d’eau.",
+      "placeholder": "Schreibe deine Einkaufsliste …",
+      "writingHelpText": "Nenne Mengen und Preise und benutze einmal ne … que.",
+      "writingHints": [
+        [
+          "… est à … euros le kilo.",
+          "… kostet … Euro das Kilo."
+        ],
+        [
+          "… sont en promotion.",
+          "… sind im Angebot."
+        ],
+        [
+          "Je ne prends que …",
+          "Ich nehme nur …"
+        ]
+      ]
+    },
+    "12": {
+      "speakModel": "Allô Camille ? C’est Romain. Je suis désolé, mais je ne pourrai pas venir à notre dîner demain. J’ai mal à la gorge et de la fièvre. Est-ce qu’on peut reporter à jeudi prochain ? Je t’appelle dès que ça va mieux. Dis bonjour à tout le monde !",
+      "writeModel": "Chère Camille,\nJe suis désolé, mais je ne pourrai pas venir demain.\nJ’ai de la fièvre.\nOn peut reporter à jeudi prochain ?\nBises,\nRomain",
+      "placeholder": "Schreibe eine Absage …",
+      "writingHelpText": "Entschuldige dich, nenne einen Grund mit parce que oder car und schlage einen neuen Termin vor.",
+      "writingHints": [
+        [
+          "Je suis désolé(e), mais je ne pourrai pas …",
+          "Es tut mir leid, aber ich kann nicht …"
+        ],
+        [
+          "… parce que / car …",
+          "… weil / denn …"
+        ],
+        [
+          "On peut reporter à … ?",
+          "Können wir auf … verschieben?"
         ]
       ]
     }
@@ -2011,8 +3103,8 @@ window.FR_A1_DATA = {
     },
     {
       "id": "a2g2",
-      "title": "Lektionen 5–6",
-      "subtitle": "Passé composé · Imparfait und passé composé",
+      "title": "Lektionen 5–8",
+      "subtitle": "Passé composé · Imparfait und passé composé · Futur simple · Relativpronomen qui / que",
       "questions": [
         {
           "q": "Ergänze: Hier, j’___ acheté des fruits.",
@@ -2037,11 +3129,33 @@ window.FR_A1_DATA = {
           "explanation": "Nous étions dans un camping. = Wir waren auf einem Campingplatz."
         },
         {
+          "q": "Ergänze: Je ___ à Paul demain. (parler)",
+          "o": [
+            "parlais",
+            "parlerais",
+            "parlerai"
+          ],
+          "a": 2,
+          "audio": "Je parlerai à Paul demain.",
+          "explanation": "Je parlerai à Paul demain. = Ich werde morgen mit Paul sprechen."
+        },
+        {
+          "q": "Ergänze: J’ai un chat ___ dort toute la journée.",
+          "o": [
+            "que",
+            "qu’",
+            "qui"
+          ],
+          "a": 2,
+          "audio": "J’ai un chat qui dort toute la journée.",
+          "explanation": "J’ai un chat qui dort toute la journée. = Ich habe eine Katze, die den ganzen Tag schläft."
+        },
+        {
           "q": "Ergänze: Nous ___ regardé un film.",
           "o": [
             "avons",
-            "ont",
-            "sommes"
+            "sommes",
+            "ont"
           ],
           "a": 0,
           "audio": "Nous avons regardé un film.",
@@ -2050,8 +3164,8 @@ window.FR_A1_DATA = {
         {
           "q": "Ergänze: Il ___ très chaud. (faire)",
           "o": [
-            "a fait",
             "faisais",
+            "a fait",
             "faisait"
           ],
           "a": 2,
@@ -2059,11 +3173,33 @@ window.FR_A1_DATA = {
           "explanation": "Il faisait très chaud. = Es war sehr heiß."
         },
         {
+          "q": "Ergänze: Nous ___ le train. (prendre)",
+          "o": [
+            "prenderons",
+            "prendrons",
+            "prenons"
+          ],
+          "a": 1,
+          "audio": "Nous prendrons le train.",
+          "explanation": "Bei -re fällt das e weg: prendr- + ons."
+        },
+        {
+          "q": "Ergänze: C’est le chien ___ j’ai trouvé.",
+          "o": [
+            "où",
+            "que",
+            "qui"
+          ],
+          "a": 1,
+          "audio": "C’est le chien que j’ai trouvé.",
+          "explanation": "C’est le chien que j’ai trouvé. = Das ist der Hund, den ich gefunden habe."
+        },
+        {
           "q": "Ergänze: Tu as ___ du sport ? (faire)",
           "o": [
             "fait",
-            "faisé",
-            "fais"
+            "fais",
+            "faisé"
           ],
           "a": 0,
           "audio": "Tu as fait du sport ?",
@@ -2072,57 +3208,130 @@ window.FR_A1_DATA = {
         {
           "q": "Ergänze: J’___ une petite chambre. (avoir)",
           "o": [
-            "avais",
+            "ai eu",
             "avait",
-            "ai eu"
+            "avais"
           ],
-          "a": 0,
+          "a": 2,
           "audio": "J’avais une petite chambre.",
           "explanation": "Je → -ais: j’avais."
+        }
+      ]
+    },
+    {
+      "id": "a2g3",
+      "title": "Lektionen 9–12",
+      "subtitle": "Pronomen en · Ausrufe und Präpositionen · Preis pro Menge · Absage mit Futur",
+      "questions": [
+        {
+          "q": "Ergänze: Du pain ? J’___ achète tous les jours.",
+          "o": [
+            "en",
+            "y",
+            "le"
+          ],
+          "a": 0,
+          "audio": "Du pain ? J’en achète tous les jours.",
+          "explanation": "Du pain ? J’en achète tous les jours. = Brot? Ich kaufe jeden Tag welches."
         },
         {
-          "q": "Ergänze: Ils ont ___ le bus. (prendre)",
+          "q": "Ergänze: ___ chance !",
           "o": [
-            "prend",
-            "prendu",
-            "pris"
+            "Quels",
+            "Quelle",
+            "Quel"
           ],
-          "a": 2,
-          "audio": "Ils ont pris le bus.",
-          "explanation": "Prendre → pris."
+          "a": 1,
+          "audio": "Quelle chance !",
+          "explanation": "Quelle chance ! = Was für ein Glück!"
         },
         {
-          "q": "Ergänze: Les enfants ___ sur la plage. (jouer)",
+          "q": "Ergänze: Les tomates sont ___ trois euros le kilo.",
           "o": [
-            "jouions",
-            "jouait",
-            "jouaient"
+            "de",
+            "à",
+            "pour"
           ],
-          "a": 2,
-          "audio": "Les enfants jouaient sur la plage.",
-          "explanation": "Les enfants jouaient sur la plage. = Die Kinder spielten am Strand."
+          "a": 1,
+          "audio": "Les tomates sont à trois euros le kilo.",
+          "explanation": "Les tomates sont à trois euros le kilo. = Die Tomaten kosten drei Euro das Kilo."
         },
         {
-          "q": "Ergänze: Je n’ai pas ___ ton message. (voir)",
+          "q": "Ergänze: Je ne ___ pas venir ce soir. (pouvoir, Futur)",
           "o": [
-            "voi",
-            "vé",
-            "vu"
+            "pouvrai",
+            "pourrai",
+            "pourrais"
           ],
-          "a": 2,
-          "audio": "Je n’ai pas vu ton message.",
-          "explanation": "Voir → vu."
+          "a": 1,
+          "audio": "Je ne pourrai pas venir ce soir.",
+          "explanation": "Je ne pourrai pas venir ce soir. = Ich kann heute Abend nicht kommen."
         },
         {
-          "q": "Ergänze: Vous ___ à l’hôtel ? (être)",
+          "q": "Ergänze: Des tomates ? J’en prends un ___ .",
           "o": [
-            "étais",
-            "étions",
-            "étiez"
+            "morceau",
+            "litre",
+            "kilo"
           ],
           "a": 2,
-          "audio": "Vous étiez à l’hôtel ?",
-          "explanation": "Vous étiez à l’hôtel ? = Wart ihr im Hotel?"
+          "audio": "Des tomates ? J’en prends un kilo .",
+          "explanation": "Des tomates ? J’en prends un kilo . = Tomaten? Ich nehme ein Kilo."
+        },
+        {
+          "q": "Ergänze: ___ beau cadeau !",
+          "o": [
+            "Quelles",
+            "Quelle",
+            "Quel"
+          ],
+          "a": 2,
+          "audio": "Quel beau cadeau !",
+          "explanation": "Quel beau cadeau ! = Was für ein schönes Geschenk!"
+        },
+        {
+          "q": "Ergänze: Le melon est à deux euros ___ pièce.",
+          "o": [
+            "la",
+            "le",
+            "une"
+          ],
+          "a": 0,
+          "audio": "Le melon est à deux euros la pièce.",
+          "explanation": "Le melon est à deux euros la pièce. = Die Melone kostet zwei Euro das Stück."
+        },
+        {
+          "q": "Ergänze: Je ne ___ pas là samedi. (être, Futur)",
+          "o": [
+            "serai",
+            "serais",
+            "suis"
+          ],
+          "a": 0,
+          "audio": "Je ne serai pas là samedi.",
+          "explanation": "Je ne serai pas là samedi. = Ich bin am Samstag nicht da."
+        },
+        {
+          "q": "Ergänze: De la viande ? Je n’___ mange pas.",
+          "o": [
+            "la",
+            "y",
+            "en"
+          ],
+          "a": 2,
+          "audio": "De la viande ? Je n’en mange pas.",
+          "explanation": "De la viande ? Je n’en mange pas. = Fleisch? Ich esse keines."
+        },
+        {
+          "q": "Ergänze: ___ bonne nouvelle !",
+          "o": [
+            "Quelle",
+            "Quelles",
+            "Quel"
+          ],
+          "a": 0,
+          "audio": "Quelle bonne nouvelle !",
+          "explanation": "Quelle bonne nouvelle ! = Was für eine gute Nachricht!"
         }
       ]
     }

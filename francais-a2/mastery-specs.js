@@ -1342,13 +1342,13 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "choice",
-        "q": "« Désolé, Monique est sortie. Vous voulez qu’elle vous rappelle ? » Was bietet der Mann an?",
+        "q": "« Désolé, Hélène est sortie. Vous voulez qu’elle vous rappelle ? » Was bietet der Mann an?",
         "o": [
-          "Monique ruft zurück.",
-          "Er gibt dir Moniques Handynummer.",
+          "Hélène ruft zurück.",
+          "Er gibt dir Hélènes Handynummer.",
           "Du sollst morgen wieder anrufen."
         ],
-        "answer": "Monique ruft zurück.",
+        "answer": "Hélène ruft zurück.",
         "explanation": "Rappeler = zurückrufen.",
         "tag": "Anwenden",
         "family": "rappeler",
@@ -2335,6 +2335,2308 @@ window.FR_A1_MASTERY_SPECS = {
         },
         "family": "transfer:cetait",
         "checkKey": "A2L6-transfer-cetait-6"
+      }
+    ]
+  },
+  "7": {
+    "goals": [
+      "Über Pläne für das Wochenende sprechen und nachfragen.",
+      "Das futur simple regelmäßiger und wichtiger unregelmäßiger Verben bilden.",
+      "quand + Futur und futur proche passend verwenden."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ___ à Paul demain. (parler)",
+        "answer": "parlerai",
+        "o": [
+          "parlerai",
+          "parlerais",
+          "parlais"
+        ],
+        "context": "Ich werde morgen mit Paul sprechen.",
+        "tag": "futur",
+        "explanation": "Je parlerai à Paul demain. = Ich werde morgen mit Paul sprechen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Nous ___ le train. (prendre)",
+        "answer": "prendrons",
+        "o": [
+          "prendrons",
+          "prenderons",
+          "prenons"
+        ],
+        "context": "Wir werden den Zug nehmen.",
+        "tag": "futur",
+        "explanation": "Bei -re fällt das e weg: prendr- + ons."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Elle ___ contente. (être)",
+        "answer": "sera",
+        "o": [
+          "sera",
+          "serait",
+          "est"
+        ],
+        "context": "Sie wird zufrieden sein.",
+        "tag": "futur",
+        "explanation": "Elle sera contente. = Sie wird zufrieden sein."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Ils ___ à huit heures. (venir)",
+        "answer": "viendront",
+        "o": [
+          "viendront",
+          "venront",
+          "viennent"
+        ],
+        "context": "Sie werden um acht kommen.",
+        "tag": "futur",
+        "explanation": "Venir → viendr-."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Tu ___ m’aider ? (pouvoir)",
+        "answer": "pourras",
+        "o": [
+          "pourras",
+          "pouvras",
+          "peux"
+        ],
+        "context": "Wirst du mir helfen können?",
+        "tag": "futur",
+        "explanation": "Pouvoir → pourr-."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "On se ___ demain. (voir)",
+        "answer": "verra",
+        "o": [
+          "verra",
+          "voira",
+          "voit"
+        ],
+        "context": "Wir sehen uns morgen.",
+        "tag": "futur",
+        "explanation": "Voir → verr-."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Quand tu ___, je t’appellerai. (arriver)",
+        "answer": "arriveras",
+        "o": [
+          "arriveras",
+          "arrives",
+          "arriverais"
+        ],
+        "context": "Wenn du ankommst, rufe ich dich an.",
+        "tag": "quand",
+        "explanation": "Quand tu arriveras, je t’appellerai. = Wenn du ankommst, rufe ich dich an."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Quand il ___ beau, nous sortirons. (faire)",
+        "answer": "fera",
+        "o": [
+          "fera",
+          "fait",
+          "faisait"
+        ],
+        "context": "Wenn es schön ist, gehen wir raus.",
+        "tag": "quand",
+        "explanation": "Quand il fera beau, nous sortirons. = Wenn es schön ist, gehen wir raus."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ___ partir ce soir. (futur proche)",
+        "answer": "vais",
+        "o": [
+          "vais",
+          "irai",
+          "suis"
+        ],
+        "context": "Ich fahre heute Abend weg.",
+        "tag": "futur proche",
+        "explanation": "Je vais partir ce soir. = Ich fahre heute Abend weg."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Quand je ___ à Paris, je t’écrirai. (être)",
+        "answer": "serai",
+        "o": [
+          "serai",
+          "suis",
+          "serais"
+        ],
+        "context": "Wenn ich in Paris bin, schreibe ich dir.",
+        "tag": "quand",
+        "explanation": "Quand je serai à Paris, je t’écrirai. = Wenn ich in Paris bin, schreibe ich dir."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "« Je te montrerai les photos quand on se verra samedi. » Wann siehst du die Fotos?",
+        "o": [
+          "beim Treffen am Samstag",
+          "sofort per E-Mail",
+          "gar nicht"
+        ],
+        "answer": "beim Treffen am Samstag",
+        "explanation": "Quand on se verra = wenn wir uns sehen werden.",
+        "tag": "Anwenden",
+        "family": "verra",
+        "checkKey": "A2L7-context-verra"
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst: Wenn ich nach Hause komme, rufe ich dich an.",
+        "o": [
+          "Quand je rentrerai, je t’appellerai.",
+          "Quand je rentre, je t’appelais.",
+          "Quand je rentrais, je t’appellerai."
+        ],
+        "answer": "Quand je rentrerai, je t’appellerai.",
+        "explanation": "Nach quand + Zukunft steht im Französischen Futur.",
+        "tag": "Anwenden",
+        "family": "quand",
+        "checkKey": "A2L7-context-quand",
+        "audio": "Quand je rentrerai, je t’appellerai."
+      },
+      {
+        "type": "choice",
+        "q": "« Demain, il fera beau le matin, mais il pleuvra l’après-midi. » Wann regnet es?",
+        "o": [
+          "morgen Nachmittag",
+          "morgen früh",
+          "heute Nachmittag"
+        ],
+        "answer": "morgen Nachmittag",
+        "explanation": "Il pleuvra = es wird regnen; l’après-midi = am Nachmittag.",
+        "tag": "Anwenden",
+        "family": "meteo",
+        "checkKey": "A2L7-context-meteo"
+      },
+      {
+        "type": "choice",
+        "q": "Welche Form ist das futur simple von aller (nous)?",
+        "o": [
+          "nous irons",
+          "nous allerons",
+          "nous allions"
+        ],
+        "answer": "nous irons",
+        "explanation": "Aller → ir-.",
+        "tag": "Anwenden",
+        "family": "aller",
+        "checkKey": "A2L7-context-aller"
+      },
+      {
+        "type": "choice",
+        "q": "Dein Partner fragt nach deinem nächsten Wochenende. Welche Frage stellt er?",
+        "o": [
+          "Qu’est-ce que tu feras le week-end prochain ?",
+          "Qu’est-ce que tu as fait le week-end prochain ?",
+          "Qu’est-ce que tu faisais le week-end prochain ?"
+        ],
+        "answer": "Qu’est-ce que tu feras le week-end prochain ?",
+        "explanation": "Für die Zukunft: futur simple (tu feras).",
+        "tag": "Anwenden",
+        "family": "question",
+        "checkKey": "A2L7-context-question",
+        "audio": "Qu’est-ce que tu feras le week-end prochain ?"
+      },
+      {
+        "type": "choice",
+        "q": "Du versprichst, am Samstag da zu sein.",
+        "o": [
+          "Je serai là samedi.",
+          "J’étais là samedi.",
+          "Je serais là samedi."
+        ],
+        "answer": "Je serai là samedi.",
+        "explanation": "Être → ser-: je serai.",
+        "tag": "Anwenden",
+        "family": "etre",
+        "checkKey": "A2L7-context-etre",
+        "audio": "Je serai là samedi."
+      },
+      {
+        "type": "choice",
+        "q": "« Nous aurons le temps de visiter le château. » Was bedeutet das?",
+        "o": [
+          "Wir werden Zeit haben, das Schloss zu besichtigen.",
+          "Wir hatten Zeit, das Schloss zu besichtigen.",
+          "Wir haben keine Zeit für das Schloss."
+        ],
+        "answer": "Wir werden Zeit haben, das Schloss zu besichtigen.",
+        "explanation": "Aurons = futur simple von avoir.",
+        "tag": "Anwenden",
+        "family": "avoir",
+        "checkKey": "A2L7-context-avoir"
+      },
+      {
+        "type": "choice",
+        "q": "« Ce soir, je vais rester à la maison. » Welche Zeitform ist das?",
+        "o": [
+          "futur proche",
+          "futur simple",
+          "passé composé"
+        ],
+        "answer": "futur proche",
+        "explanation": "Aller + Infinitiv = futur proche.",
+        "tag": "Anwenden",
+        "family": "proche",
+        "checkKey": "A2L7-context-proche"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Demain, je ___ à ma mère. (téléphoner)",
+        "answer": "téléphonerai",
+        "accept": [],
+        "context": "Morgen rufst du deine Mutter an. Setze das Futur ein.",
+        "explanation": "Demain, je téléphonerai à ma mère.",
+        "audio": "Demain, je téléphonerai à ma mère.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:regulier",
+        "checkKey": "A2L7-transfer-regulier-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Vous ___ à l’heure ? (être)",
+        "answer": "serez",
+        "accept": [],
+        "context": "Werdet ihr pünktlich sein?",
+        "explanation": "Vous serez à l’heure ?",
+        "audio": "Vous serez à l’heure ?",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:etre",
+        "checkKey": "A2L7-transfer-etre-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Samedi, nous ___ à la mer. (aller)",
+        "answer": "irons",
+        "accept": [],
+        "context": "Am Samstag fahrt ihr ans Meer.",
+        "explanation": "Samedi, nous irons à la mer.",
+        "audio": "Samedi, nous irons à la mer.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:aller",
+        "checkKey": "A2L7-transfer-aller-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il ___ chaud demain. (faire)",
+        "answer": "fera",
+        "accept": [],
+        "context": "Morgen wird es heiß.",
+        "explanation": "Il fera chaud demain.",
+        "audio": "Il fera chaud demain.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:faire",
+        "checkKey": "A2L7-transfer-faire-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "On se ___ lundi. (voir)",
+        "answer": "verra",
+        "accept": [],
+        "context": "Ihr seht euch am Montag.",
+        "explanation": "On se verra lundi.",
+        "audio": "On se verra lundi.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:voir",
+        "checkKey": "A2L7-transfer-voir-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Quand tu ___ à Lyon, écris-moi ! (être)",
+        "answer": "seras",
+        "accept": [],
+        "context": "Wenn du in Lyon bist, schreib mir!",
+        "explanation": "Quand tu seras à Lyon, écris-moi !",
+        "audio": "Quand tu seras à Lyon, écris-moi !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:quand",
+        "checkKey": "A2L7-transfer-quand-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Mes amis ___ dimanche. (venir)",
+        "answer": "viendront",
+        "accept": [],
+        "context": "Deine Freunde kommen am Sonntag.",
+        "explanation": "Mes amis viendront dimanche.",
+        "audio": "Mes amis viendront dimanche.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:venir",
+        "checkKey": "A2L7-transfer-venir-6"
+      },
+      {
+        "type": "gap",
+        "prompt": "J’___ trente ans en mai. (avoir)",
+        "answer": "aurai",
+        "accept": [],
+        "context": "Du wirst im Mai dreißig.",
+        "explanation": "J’aurai trente ans en mai.",
+        "audio": "J’aurai trente ans en mai.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:avoir",
+        "checkKey": "A2L7-transfer-avoir-7"
+      }
+    ]
+  },
+  "8": {
+    "goals": [
+      "Über Haustiere sprechen und sie beschreiben.",
+      "Sätze mit den Relativpronomen qui und que verbinden.",
+      "Fragen zu Pflege und Alltag mit einem Tier stellen und beantworten."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "J’ai un chat ___ dort toute la journée.",
+        "answer": "qui",
+        "o": [
+          "qui",
+          "que",
+          "qu’"
+        ],
+        "context": "Ich habe eine Katze, die den ganzen Tag schläft.",
+        "tag": "qui",
+        "explanation": "J’ai un chat qui dort toute la journée. = Ich habe eine Katze, die den ganzen Tag schläft."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "C’est le chien ___ j’ai trouvé.",
+        "answer": "que",
+        "o": [
+          "que",
+          "qui",
+          "où"
+        ],
+        "context": "Das ist der Hund, den ich gefunden habe.",
+        "tag": "que",
+        "explanation": "C’est le chien que j’ai trouvé. = Das ist der Hund, den ich gefunden habe."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "La dame ___ promène le chien est ma voisine.",
+        "answer": "qui",
+        "o": [
+          "qui",
+          "que",
+          "qu’"
+        ],
+        "context": "Die Frau, die den Hund ausführt, ist meine Nachbarin.",
+        "tag": "qui",
+        "explanation": "La dame qui promène le chien est ma voisine. = Die Frau, die den Hund ausführt, ist meine Nachbarin."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le lapin ___ il a acheté est blanc.",
+        "answer": "qu’",
+        "o": [
+          "qu’",
+          "qui",
+          "que"
+        ],
+        "context": "Das Kaninchen, das er gekauft hat, ist weiß.",
+        "tag": "que",
+        "explanation": "Vor Vokal wird que zu qu’: qu’il."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "C’est un animal ___ aime l’eau.",
+        "answer": "qui",
+        "o": [
+          "qui",
+          "que",
+          "qu’"
+        ],
+        "context": "Das ist ein Tier, das Wasser liebt.",
+        "tag": "qui",
+        "explanation": "C’est un animal qui aime l’eau. = Das ist ein Tier, das Wasser liebt."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Ma chatte est ___ . (noir)",
+        "answer": "noire",
+        "o": [
+          "noire",
+          "noir",
+          "noirs"
+        ],
+        "context": "Meine Katze ist schwarz.",
+        "tag": "Adjektiv",
+        "explanation": "Ma chatte est noire . = Meine Katze ist schwarz."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ___ promène tous les soirs. (den Hund)",
+        "answer": "le",
+        "o": [
+          "le",
+          "lui",
+          "la"
+        ],
+        "context": "Ich gehe jeden Abend mit ihm raus.",
+        "tag": "Pronomen",
+        "explanation": "Je le promène tous les soirs. = Ich gehe jeden Abend mit ihm raus."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ___ donne à manger. (dem Hund)",
+        "answer": "lui",
+        "o": [
+          "lui",
+          "le",
+          "leur"
+        ],
+        "context": "Ich gebe ihm zu fressen.",
+        "tag": "Pronomen",
+        "explanation": "Donner à quelqu’un → lui."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Les chiens sont ___ dans le magasin.",
+        "answer": "interdits",
+        "o": [
+          "interdits",
+          "interdit",
+          "autorisé"
+        ],
+        "context": "Hunde sind im Geschäft verboten.",
+        "tag": "Adjektiv",
+        "explanation": "Les chiens sont interdits dans le magasin. = Hunde sind im Geschäft verboten."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Qui ___ ton chat pendant les vacances ?",
+        "answer": "garde",
+        "o": [
+          "garde",
+          "regarde",
+          "promène"
+        ],
+        "context": "Wer passt in den Ferien auf deine Katze auf?",
+        "tag": "Pflege",
+        "explanation": "Qui garde ton chat pendant les vacances ? = Wer passt in den Ferien auf deine Katze auf?"
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "« Mon fils a un hamster qui dort le jour et qui joue la nuit. » Wann spielt der Hamster?",
+        "o": [
+          "nachts",
+          "tagsüber",
+          "morgens"
+        ],
+        "answer": "nachts",
+        "explanation": "Qui joue la nuit = der nachts spielt.",
+        "tag": "Anwenden",
+        "family": "qui",
+        "checkKey": "A2L8-context-qui"
+      },
+      {
+        "type": "choice",
+        "q": "Welcher Satz ist richtig?",
+        "o": [
+          "Le chat que nous avons adopté est très calme.",
+          "Le chat qui nous avons adopté est très calme.",
+          "Le chat que a adopté est très calme."
+        ],
+        "answer": "Le chat que nous avons adopté est très calme.",
+        "explanation": "Nous avons adopté le chat → Objekt → que.",
+        "tag": "Anwenden",
+        "family": "que",
+        "checkKey": "A2L8-context-que",
+        "audio": "Le chat que nous avons adopté est très calme."
+      },
+      {
+        "type": "choice",
+        "q": "« Les animaux sont interdits dans l’hôtel. » Darfst du deinen Hund mitnehmen?",
+        "o": [
+          "Nein, Tiere sind verboten.",
+          "Ja, aber nur kleine Hunde.",
+          "Ja, gegen Aufpreis."
+        ],
+        "answer": "Nein, Tiere sind verboten.",
+        "explanation": "Interdit = verboten.",
+        "tag": "Anwenden",
+        "family": "interdit",
+        "checkKey": "A2L8-context-interdit"
+      },
+      {
+        "type": "choice",
+        "q": "Du fragst deinen Partner in der Prüfung nach Haustieren.",
+        "o": [
+          "Tu as un animal de compagnie ?",
+          "Tu es un animal de compagnie ?",
+          "Tu fais un animal de compagnie ?"
+        ],
+        "answer": "Tu as un animal de compagnie ?",
+        "explanation": "Avoir un animal = ein Tier haben.",
+        "tag": "Anwenden",
+        "family": "question",
+        "checkKey": "A2L8-context-question",
+        "audio": "Tu as un animal de compagnie ?"
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst, dass deine Nachbarin auf deine Katze aufpasst.",
+        "o": [
+          "Ma voisine garde mon chat.",
+          "Ma voisine regarde mon chat.",
+          "Ma voisine promène mon chat."
+        ],
+        "answer": "Ma voisine garde mon chat.",
+        "explanation": "Garder = aufpassen auf.",
+        "tag": "Anwenden",
+        "family": "garder",
+        "checkKey": "A2L8-context-garder",
+        "audio": "Ma voisine garde mon chat."
+      },
+      {
+        "type": "choice",
+        "q": "« Je promène mon chien trois fois par jour. » Wie oft geht die Person mit dem Hund raus?",
+        "o": [
+          "dreimal täglich",
+          "dreimal pro Woche",
+          "jeden dritten Tag"
+        ],
+        "answer": "dreimal täglich",
+        "explanation": "Trois fois par jour = dreimal am Tag.",
+        "tag": "Anwenden",
+        "family": "frequence",
+        "checkKey": "A2L8-context-frequence"
+      },
+      {
+        "type": "choice",
+        "q": "Du beschreibst deine Hündin.",
+        "o": [
+          "Ma chienne est petite et blanche.",
+          "Ma chienne est petit et blanc.",
+          "Ma chienne est petits et blancs."
+        ],
+        "answer": "Ma chienne est petite et blanche.",
+        "explanation": "La chienne ist weiblich: petite, blanche.",
+        "tag": "Anwenden",
+        "family": "accord",
+        "checkKey": "A2L8-context-accord",
+        "audio": "Ma chienne est petite et blanche."
+      },
+      {
+        "type": "choice",
+        "q": "« C’est la voisine qui me donne des œufs. » Wer gibt die Eier?",
+        "o": [
+          "die Nachbarin",
+          "die Person, die spricht",
+          "beide"
+        ],
+        "answer": "die Nachbarin",
+        "explanation": "Qui ersetzt la voisine als Subjekt.",
+        "tag": "Anwenden",
+        "family": "sujet",
+        "checkKey": "A2L8-context-sujet"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "J’ai un chien ___ adore jouer.",
+        "answer": "qui",
+        "accept": [],
+        "context": "Ich habe einen Hund, der gern spielt.",
+        "explanation": "J’ai un chien qui adore jouer.",
+        "audio": "J’ai un chien qui adore jouer.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:qui",
+        "checkKey": "A2L8-transfer-qui-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "C’est la dame ___ habite en face.",
+        "answer": "qui",
+        "accept": [],
+        "context": "Das ist die Frau, die gegenüber wohnt.",
+        "explanation": "C’est la dame qui habite en face.",
+        "audio": "C’est la dame qui habite en face.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:qui",
+        "checkKey": "A2L8-transfer-qui-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Voici le chat ___ j’ai adopté.",
+        "answer": "que",
+        "accept": [],
+        "context": "Hier ist die Katze, die ich adoptiert habe.",
+        "explanation": "Voici le chat que j’ai adopté.",
+        "audio": "Voici le chat que j’ai adopté.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:que",
+        "checkKey": "A2L8-transfer-que-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le chien ___ il promène est énorme.",
+        "answer": "qu’",
+        "accept": [],
+        "context": "Der Hund, mit dem er spazieren geht, ist riesig.",
+        "explanation": "Le chien qu’il promène est énorme.",
+        "audio": "Le chien qu’il promène est énorme.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:quelide",
+        "checkKey": "A2L8-transfer-quelide-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Ma chatte est très ___ . (gentil)",
+        "answer": "gentille",
+        "accept": [],
+        "context": "Deine Katze ist sehr lieb.",
+        "explanation": "Ma chatte est très gentille .",
+        "audio": "Ma chatte est très gentille .",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:accord",
+        "checkKey": "A2L8-transfer-accord-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Mon chien ? Je ___ promène le soir.",
+        "answer": "le",
+        "accept": [],
+        "context": "Deinen Hund führst du abends aus.",
+        "explanation": "Mon chien ? Je le promène le soir.",
+        "audio": "Mon chien ? Je le promène le soir.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:pronom",
+        "checkKey": "A2L8-transfer-pronom-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je ___ donne à manger à sept heures. (à mon chat)",
+        "answer": "lui",
+        "accept": [],
+        "context": "Du fütterst deine Katze um sieben.",
+        "explanation": "Je lui donne à manger à sept heures.",
+        "audio": "Je lui donne à manger à sept heures.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:lui",
+        "checkKey": "A2L8-transfer-lui-6"
+      }
+    ]
+  },
+  "9": {
+    "goals": [
+      "Das Lieblingsgericht beschreiben, Zutaten und Mengen nennen.",
+      "Mengenangaben mit dem Pronomen en ersetzen.",
+      "Nach Essgewohnheiten fragen und antworten."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Du pain ? J’___ achète tous les jours.",
+        "answer": "en",
+        "o": [
+          "en",
+          "le",
+          "y"
+        ],
+        "context": "Brot? Ich kaufe jeden Tag welches.",
+        "tag": "en",
+        "explanation": "Du pain ? J’en achète tous les jours. = Brot? Ich kaufe jeden Tag welches."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Des tomates ? J’en prends un ___ .",
+        "answer": "kilo",
+        "o": [
+          "kilo",
+          "litre",
+          "morceau"
+        ],
+        "context": "Tomaten? Ich nehme ein Kilo.",
+        "tag": "Menge",
+        "explanation": "Des tomates ? J’en prends un kilo . = Tomaten? Ich nehme ein Kilo."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "De la viande ? Je n’___ mange pas.",
+        "answer": "en",
+        "o": [
+          "en",
+          "la",
+          "y"
+        ],
+        "context": "Fleisch? Ich esse keines.",
+        "tag": "en",
+        "explanation": "De la viande ? Je n’en mange pas. = Fleisch? Ich esse keines."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Des enfants ? Elle ___ a trois.",
+        "answer": "en",
+        "o": [
+          "en",
+          "les",
+          "y"
+        ],
+        "context": "Kinder? Sie hat drei.",
+        "tag": "en",
+        "explanation": "Des enfants ? Elle en a trois. = Kinder? Sie hat drei."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Du sucre ? Il en met ___ .",
+        "answer": "beaucoup",
+        "o": [
+          "beaucoup",
+          "beaucoup de",
+          "très"
+        ],
+        "context": "Zucker? Er nimmt viel davon.",
+        "tag": "Menge",
+        "explanation": "Mit en steht beaucoup allein."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Il faut ___ farine.",
+        "answer": "de la",
+        "o": [
+          "de la",
+          "du",
+          "des"
+        ],
+        "context": "Man braucht Mehl.",
+        "tag": "Teilungsartikel",
+        "explanation": "La farine ist weiblich: de la farine."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Il faut ___ lait.",
+        "answer": "du",
+        "o": [
+          "du",
+          "de la",
+          "des"
+        ],
+        "context": "Man braucht Milch.",
+        "tag": "Teilungsartikel",
+        "explanation": "Il faut du lait. = Man braucht Milch."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "On ___ les oignons. (couper)",
+        "answer": "coupe",
+        "o": [
+          "coupe",
+          "coupes",
+          "coupent"
+        ],
+        "context": "Man schneidet die Zwiebeln.",
+        "tag": "on",
+        "explanation": "On coupe les oignons. = Man schneidet die Zwiebeln."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ne mange jamais ___ viande.",
+        "answer": "de",
+        "o": [
+          "de",
+          "de la",
+          "la"
+        ],
+        "context": "Ich esse nie Fleisch.",
+        "tag": "Verneinung",
+        "explanation": "Nach ne … jamais wird de la zu de."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je mange du poisson une fois ___ semaine.",
+        "answer": "par",
+        "o": [
+          "par",
+          "pour",
+          "à la"
+        ],
+        "context": "Ich esse einmal pro Woche Fisch.",
+        "tag": "Häufigkeit",
+        "explanation": "Je mange du poisson une fois par semaine. = Ich esse einmal pro Woche Fisch."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Am Markt: « Des pommes ? Combien ? » Du möchtest zwei Kilo.",
+        "o": [
+          "J’en voudrais deux kilos.",
+          "Je les voudrais deux kilos.",
+          "J’y voudrais deux kilos."
+        ],
+        "answer": "J’en voudrais deux kilos.",
+        "explanation": "Des pommes → en; die Menge steht am Ende.",
+        "tag": "Anwenden",
+        "family": "en",
+        "checkKey": "A2L9-context-en",
+        "audio": "J’en voudrais deux kilos."
+      },
+      {
+        "type": "choice",
+        "q": "« Du café ? Non merci, je n’en bois jamais le soir. » Was stimmt?",
+        "o": [
+          "Die Person trinkt abends nie Kaffee.",
+          "Die Person trinkt nur abends Kaffee.",
+          "Die Person trinkt abends wenig Kaffee."
+        ],
+        "answer": "Die Person trinkt abends nie Kaffee.",
+        "explanation": "Ne … jamais = nie; en = Kaffee.",
+        "tag": "Anwenden",
+        "family": "jamais",
+        "checkKey": "A2L9-context-jamais"
+      },
+      {
+        "type": "choice",
+        "q": "Dein Partner fragt in der Prüfung nach deinem Lieblingsgericht.",
+        "o": [
+          "Quel est ton plat préféré ?",
+          "Quelle est ta assiette préférée ?",
+          "Qu’est-ce que tu cuisines hier ?"
+        ],
+        "answer": "Quel est ton plat préféré ?",
+        "explanation": "Le plat préféré = das Lieblingsgericht.",
+        "tag": "Anwenden",
+        "family": "question",
+        "checkKey": "A2L9-context-question",
+        "audio": "Quel est ton plat préféré ?"
+      },
+      {
+        "type": "choice",
+        "q": "« Pour la soupe, il faut trois carottes et un oignon. » Wie viele Karotten braucht man?",
+        "o": [
+          "drei",
+          "eine",
+          "zwei"
+        ],
+        "answer": "drei",
+        "explanation": "Trois carottes = drei Karotten.",
+        "tag": "Anwenden",
+        "family": "quantite",
+        "checkKey": "A2L9-context-quantite"
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst, dass du einmal pro Woche Fleisch isst.",
+        "o": [
+          "Je mange de la viande une fois par semaine.",
+          "Je mange la viande une fois la semaine.",
+          "Je mange de viande une semaine par fois."
+        ],
+        "answer": "Je mange de la viande une fois par semaine.",
+        "explanation": "Teilungsartikel de la + une fois par semaine.",
+        "tag": "Anwenden",
+        "family": "frequence",
+        "checkKey": "A2L9-context-frequence",
+        "audio": "Je mange de la viande une fois par semaine."
+      },
+      {
+        "type": "choice",
+        "q": "« Ça cuit pendant une heure à feu doux. » Wie lange kocht das Gericht?",
+        "o": [
+          "eine Stunde",
+          "eine halbe Stunde",
+          "zehn Minuten"
+        ],
+        "answer": "eine Stunde",
+        "explanation": "Pendant une heure = eine Stunde lang.",
+        "tag": "Anwenden",
+        "family": "cuire",
+        "checkKey": "A2L9-context-cuire"
+      },
+      {
+        "type": "choice",
+        "q": "Du isst keinen Käse.",
+        "o": [
+          "Je ne mange pas de fromage.",
+          "Je ne mange pas du fromage.",
+          "Je mange pas le fromage de."
+        ],
+        "answer": "Je ne mange pas de fromage.",
+        "explanation": "Nach der Verneinung wird du zu de.",
+        "tag": "Anwenden",
+        "family": "negation",
+        "checkKey": "A2L9-context-negation",
+        "audio": "Je ne mange pas de fromage."
+      },
+      {
+        "type": "choice",
+        "q": "« C’est délicieux, mais trop épicé pour moi. » Was stört die Person?",
+        "o": [
+          "Es ist zu scharf.",
+          "Es ist zu salzig.",
+          "Es ist zu süß."
+        ],
+        "answer": "Es ist zu scharf.",
+        "explanation": "Épicé = scharf gewürzt.",
+        "tag": "Anwenden",
+        "family": "gout",
+        "checkKey": "A2L9-context-gout"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Des fraises ? J’___ achète un kilo.",
+        "answer": "en",
+        "accept": [],
+        "context": "Erdbeeren? Du kaufst ein Kilo davon.",
+        "explanation": "Des fraises ? J’en achète un kilo.",
+        "audio": "Des fraises ? J’en achète un kilo.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:en",
+        "checkKey": "A2L9-transfer-en-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Du thé ? Oui, j’___ veux bien.",
+        "answer": "en",
+        "accept": [],
+        "context": "Tee? Ja, gern.",
+        "explanation": "Du thé ? Oui, j’en veux bien.",
+        "audio": "Du thé ? Oui, j’en veux bien.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:en",
+        "checkKey": "A2L9-transfer-en-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Des œufs ? Je n’___ ai plus.",
+        "answer": "en",
+        "accept": [],
+        "context": "Eier? Du hast keine mehr.",
+        "explanation": "Des œufs ? Je n’en ai plus.",
+        "audio": "Des œufs ? Je n’en ai plus.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:negation",
+        "checkKey": "A2L9-transfer-negation-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il faut ___ crème. (Sahne)",
+        "answer": "de la",
+        "accept": [],
+        "context": "Man braucht Sahne.",
+        "explanation": "Il faut de la crème.",
+        "audio": "Il faut de la crème.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:partitif",
+        "checkKey": "A2L9-transfer-partitif-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je bois ___ eau.",
+        "answer": "de l’",
+        "accept": [],
+        "context": "Du trinkst Wasser.",
+        "explanation": "Je bois de l’eau.",
+        "audio": "Je bois de l’eau.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:partitif",
+        "checkKey": "A2L9-transfer-partitif-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je ne bois jamais ___ alcool.",
+        "answer": "d’",
+        "accept": [],
+        "context": "Du trinkst nie Alkohol.",
+        "explanation": "Je ne bois jamais d’alcool.",
+        "audio": "Je ne bois jamais d’alcool.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:jamais",
+        "checkKey": "A2L9-transfer-jamais-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "On ___ le riz pendant dix minutes. (cuire)",
+        "answer": "cuit",
+        "accept": [],
+        "context": "Man kocht den Reis zehn Minuten.",
+        "explanation": "On cuit le riz pendant dix minutes.",
+        "audio": "On cuit le riz pendant dix minutes.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:recette",
+        "checkKey": "A2L9-transfer-recette-6"
+      }
+    ]
+  },
+  "10": {
+    "goals": [
+      "Auf eine gute Nachricht reagieren und gratulieren.",
+      "Jemanden schriftlich und mündlich einladen und um Antwort bitten.",
+      "Ausrufe mit quel / quelle und Präpositionen wie au / à la richtig verwenden."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "___ chance !",
+        "answer": "Quelle",
+        "o": [
+          "Quelle",
+          "Quel",
+          "Quels"
+        ],
+        "context": "Was für ein Glück!",
+        "tag": "quel",
+        "explanation": "Quelle chance ! = Was für ein Glück!"
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "___ beau cadeau !",
+        "answer": "Quel",
+        "o": [
+          "Quel",
+          "Quelle",
+          "Quelles"
+        ],
+        "context": "Was für ein schönes Geschenk!",
+        "tag": "quel",
+        "explanation": "Quel beau cadeau ! = Was für ein schönes Geschenk!"
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "___ bonne nouvelle !",
+        "answer": "Quelle",
+        "o": [
+          "Quelle",
+          "Quel",
+          "Quelles"
+        ],
+        "context": "Was für eine gute Nachricht!",
+        "tag": "quel",
+        "explanation": "Quelle bonne nouvelle ! = Was für eine gute Nachricht!"
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "___ jolies fleurs !",
+        "answer": "Quelles",
+        "o": [
+          "Quelles",
+          "Quels",
+          "Quelle"
+        ],
+        "context": "Was für hübsche Blumen!",
+        "tag": "quel",
+        "explanation": "Les fleurs ist weiblich Plural → Quelles."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "___ beaux enfants !",
+        "answer": "Quels",
+        "o": [
+          "Quels",
+          "Quelles",
+          "Quel"
+        ],
+        "context": "Was für schöne Kinder!",
+        "tag": "quel",
+        "explanation": "Quels beaux enfants ! = Was für schöne Kinder!"
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je t’invite ___ restaurant.",
+        "answer": "au",
+        "o": [
+          "au",
+          "à la",
+          "aux"
+        ],
+        "context": "Ich lade dich ins Restaurant ein.",
+        "tag": "à + Artikel",
+        "explanation": "Je t’invite au restaurant. = Ich lade dich ins Restaurant ein."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "On va ___ piscine ?",
+        "answer": "à la",
+        "o": [
+          "à la",
+          "au",
+          "aux"
+        ],
+        "context": "Gehen wir ins Schwimmbad?",
+        "tag": "à + Artikel",
+        "explanation": "On va à la piscine ? = Gehen wir ins Schwimmbad?"
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je vous invite ___ mon anniversaire.",
+        "answer": "à",
+        "o": [
+          "à",
+          "au",
+          "pour"
+        ],
+        "context": "Ich lade euch zu meinem Geburtstag ein.",
+        "tag": "à",
+        "explanation": "Je vous invite à mon anniversaire. = Ich lade euch zu meinem Geburtstag ein."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "___ pour ton examen !",
+        "answer": "Félicitations",
+        "o": [
+          "Félicitations",
+          "Désolé",
+          "Dommage"
+        ],
+        "context": "Glückwunsch zur Prüfung!",
+        "tag": "gratulieren",
+        "explanation": "Félicitations pour ton examen ! = Glückwunsch zur Prüfung!"
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Merci, je viens avec ___ !",
+        "answer": "plaisir",
+        "o": [
+          "plaisir",
+          "chance",
+          "surprise"
+        ],
+        "context": "Danke, ich komme gern!",
+        "tag": "annehmen",
+        "explanation": "Merci, je viens avec plaisir ! = Danke, ich komme gern!"
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Deine Freundin schreibt: « J’ai trouvé un appartement près du parc ! » Wie reagierst du?",
+        "o": [
+          "Quelle chance !",
+          "Quel dommage !",
+          "Bon courage !"
+        ],
+        "answer": "Quelle chance !",
+        "explanation": "Quelle chance = Was für ein Glück – passt zu einer guten Nachricht.",
+        "tag": "Anwenden",
+        "family": "reaction",
+        "checkKey": "A2L10-context-reaction",
+        "audio": "Quelle chance !"
+      },
+      {
+        "type": "choice",
+        "q": "« Je t’invite à la crêperie jeudi soir. Dis-moi si ça te va. » Was sollst du tun?",
+        "o": [
+          "antworten, ob dir der Termin passt",
+          "die Crêperie reservieren",
+          "am Donnerstag anrufen"
+        ],
+        "answer": "antworten, ob dir der Termin passt",
+        "explanation": "Dis-moi si ça te va = sag mir, ob es dir passt.",
+        "tag": "Anwenden",
+        "family": "repondre",
+        "checkKey": "A2L10-context-repondre"
+      },
+      {
+        "type": "choice",
+        "q": "Du lädst einen Kollegen zu deinem Geburtstag ein.",
+        "o": [
+          "Je t’invite à mon anniversaire.",
+          "Je t’invite au mon anniversaire.",
+          "Je t’invite pour mon anniversaire à."
+        ],
+        "answer": "Je t’invite à mon anniversaire.",
+        "explanation": "Inviter à + Possessiv: à mon anniversaire.",
+        "tag": "Anwenden",
+        "family": "inviter",
+        "checkKey": "A2L10-context-inviter",
+        "audio": "Je t’invite à mon anniversaire."
+      },
+      {
+        "type": "choice",
+        "q": "Welcher Ausruf ist richtig?",
+        "o": [
+          "Quelle belle surprise !",
+          "Quel belle surprise !",
+          "Quels belle surprise !"
+        ],
+        "answer": "Quelle belle surprise !",
+        "explanation": "La surprise ist weiblich: Quelle belle surprise.",
+        "tag": "Anwenden",
+        "family": "quel",
+        "checkKey": "A2L10-context-quel",
+        "audio": "Quelle belle surprise !"
+      },
+      {
+        "type": "choice",
+        "q": "« Écris-moi de préférence par SMS, je ne lis pas souvent mes e-mails. » Warum soll man eine SMS schicken?",
+        "o": [
+          "Die Person liest selten E-Mails.",
+          "Ihr Handy ist kaputt.",
+          "Eine SMS ist billiger."
+        ],
+        "answer": "Die Person liest selten E-Mails.",
+        "explanation": "Ne … pas souvent = nicht oft.",
+        "tag": "Anwenden",
+        "family": "sms",
+        "checkKey": "A2L10-context-sms"
+      },
+      {
+        "type": "choice",
+        "q": "Du nimmst eine Einladung gern an.",
+        "o": [
+          "Merci, avec plaisir !",
+          "Merci, quel dommage !",
+          "Merci, ce n’est pas grave !"
+        ],
+        "answer": "Merci, avec plaisir !",
+        "explanation": "Avec plaisir = gern.",
+        "tag": "Anwenden",
+        "family": "accepter",
+        "checkKey": "A2L10-context-accepter",
+        "audio": "Merci, avec plaisir !"
+      },
+      {
+        "type": "choice",
+        "q": "« J’ai aussi quelque chose à te raconter, mais je te le dirai au restaurant. » Wann erfährst du es?",
+        "o": [
+          "im Restaurant",
+          "in der nächsten E-Mail",
+          "gleich am Telefon"
+        ],
+        "answer": "im Restaurant",
+        "explanation": "Je te le dirai au restaurant = ich sage es dir im Restaurant.",
+        "tag": "Anwenden",
+        "family": "surprise",
+        "checkKey": "A2L10-context-surprise"
+      },
+      {
+        "type": "choice",
+        "q": "Du gratulierst zur bestandenen Prüfung.",
+        "o": [
+          "Félicitations pour ton examen !",
+          "Désolé pour ton examen !",
+          "Bon appétit pour ton examen !"
+        ],
+        "answer": "Félicitations pour ton examen !",
+        "explanation": "Félicitations = herzlichen Glückwunsch.",
+        "tag": "Anwenden",
+        "family": "feliciter",
+        "checkKey": "A2L10-context-feliciter",
+        "audio": "Félicitations pour ton examen !"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "___ bonne idée ! (Ausruf)",
+        "answer": "Quelle",
+        "accept": [],
+        "context": "Was für eine gute Idee!",
+        "explanation": "Quelle bonne idée !",
+        "audio": "Quelle bonne idée !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:quelle",
+        "checkKey": "A2L10-transfer-quelle-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "___ temps magnifique ! (Ausruf)",
+        "answer": "Quel",
+        "accept": [],
+        "context": "Was für ein herrliches Wetter!",
+        "explanation": "Quel temps magnifique !",
+        "audio": "Quel temps magnifique !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:quel",
+        "checkKey": "A2L10-transfer-quel-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "___ beaux souvenirs ! (Ausruf)",
+        "answer": "Quels",
+        "accept": [],
+        "context": "Was für schöne Erinnerungen!",
+        "explanation": "Quels beaux souvenirs !",
+        "audio": "Quels beaux souvenirs !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:quels",
+        "checkKey": "A2L10-transfer-quels-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "On se retrouve ___ café ? (à + le)",
+        "answer": "au",
+        "accept": [],
+        "context": "Treffen wir uns im Café?",
+        "explanation": "On se retrouve au café ?",
+        "audio": "On se retrouve au café ?",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:au",
+        "checkKey": "A2L10-transfer-au-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je t’invite ___ Jeux olympiques ! (à + les)",
+        "answer": "aux",
+        "accept": [],
+        "context": "Du lädst jemanden zu den Olympischen Spielen ein.",
+        "explanation": "Je t’invite aux Jeux olympiques !",
+        "audio": "Je t’invite aux Jeux olympiques !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:aux",
+        "checkKey": "A2L10-transfer-aux-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "___ pour ton mariage ! (Glückwunsch)",
+        "answer": "Félicitations",
+        "accept": [],
+        "context": "Du gratulierst zur Hochzeit.",
+        "explanation": "Félicitations pour ton mariage !",
+        "audio": "Félicitations pour ton mariage !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:feliciter",
+        "checkKey": "A2L10-transfer-feliciter-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il faut ___ ça ensemble ! (feiern)",
+        "answer": "fêter",
+        "accept": [],
+        "context": "Das müssen wir zusammen feiern.",
+        "explanation": "Il faut fêter ça ensemble !",
+        "audio": "Il faut fêter ça ensemble !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:fete",
+        "checkKey": "A2L10-transfer-fete-6"
+      }
+    ]
+  },
+  "11": {
+    "goals": [
+      "Sonderangebote und Durchsagen im Supermarkt verstehen.",
+      "Preise pro Kilo oder Stück verstehen und vergleichen.",
+      "Mit ne … que und seulement „nur“ ausdrücken."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Les tomates sont ___ trois euros le kilo.",
+        "answer": "à",
+        "o": [
+          "à",
+          "de",
+          "pour"
+        ],
+        "context": "Die Tomaten kosten drei Euro das Kilo.",
+        "tag": "Preis",
+        "explanation": "Les tomates sont à trois euros le kilo. = Die Tomaten kosten drei Euro das Kilo."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le melon est à deux euros ___ pièce.",
+        "answer": "la",
+        "o": [
+          "la",
+          "le",
+          "une"
+        ],
+        "context": "Die Melone kostet zwei Euro das Stück.",
+        "tag": "Preis",
+        "explanation": "Le melon est à deux euros la pièce. = Die Melone kostet zwei Euro das Stück."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Un litre ___ lait, s’il vous plaît.",
+        "answer": "de",
+        "o": [
+          "de",
+          "du",
+          "de la"
+        ],
+        "context": "Einen Liter Milch, bitte.",
+        "tag": "Menge",
+        "explanation": "Nach einer Mengenangabe steht nur de."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Un paquet ___ café coûte quatre euros.",
+        "answer": "de",
+        "o": [
+          "de",
+          "du",
+          "des"
+        ],
+        "context": "Eine Packung Kaffee kostet vier Euro.",
+        "tag": "Menge",
+        "explanation": "Un paquet de café coûte quatre euros. = Eine Packung Kaffee kostet vier Euro."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le jambon est à quinze euros ___ kilo.",
+        "answer": "le",
+        "o": [
+          "le",
+          "au",
+          "un"
+        ],
+        "context": "Der Schinken kostet fünfzehn Euro das Kilo.",
+        "tag": "Preis",
+        "explanation": "Le jambon est à quinze euros le kilo. = Der Schinken kostet fünfzehn Euro das Kilo."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ___ prends qu’un kilo.",
+        "answer": "ne",
+        "o": [
+          "ne",
+          "n’",
+          "pas"
+        ],
+        "context": "Ich nehme nur ein Kilo.",
+        "tag": "ne … que",
+        "explanation": "Je ne prends qu’un kilo. = Ich nehme nur ein Kilo."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Il n’y a ___ deux caisses ouvertes.",
+        "answer": "que",
+        "o": [
+          "que",
+          "pas",
+          "plus"
+        ],
+        "context": "Es sind nur zwei Kassen offen.",
+        "tag": "ne … que",
+        "explanation": "Il n’y a que deux caisses ouvertes. = Es sind nur zwei Kassen offen."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ne bois que ___ thé.",
+        "answer": "du",
+        "o": [
+          "du",
+          "de",
+          "le"
+        ],
+        "context": "Ich trinke nur Tee.",
+        "tag": "ne … que",
+        "explanation": "Ne … que ist keine Verneinung: du bleibt."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "C’est à cinq euros ___ .",
+        "answer": "seulement",
+        "o": [
+          "seulement",
+          "que",
+          "pas"
+        ],
+        "context": "Es kostet nur fünf Euro.",
+        "tag": "seulement",
+        "explanation": "C’est à cinq euros seulement . = Es kostet nur fünf Euro."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Nous n’avons ___ dix minutes.",
+        "answer": "que",
+        "o": [
+          "que",
+          "pas",
+          "jamais"
+        ],
+        "context": "Wir haben nur zehn Minuten.",
+        "tag": "ne … que",
+        "explanation": "Nous n’avons que dix minutes. = Wir haben nur zehn Minuten."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Durchsage: « Les poires à trois euros le kilo seulement ; le saumon à dix-huit euros le kilo. » Was kostet ein Kilo Birnen?",
+        "o": [
+          "3 €",
+          "18 €",
+          "13 €"
+        ],
+        "answer": "3 €",
+        "explanation": "Die 18 € gehören zum Lachs.",
+        "tag": "Anwenden",
+        "family": "prix",
+        "checkKey": "A2L11-context-prix"
+      },
+      {
+        "type": "choice",
+        "q": "« Profitez de nos offres spéciales jusqu’à demain ! » Wie lange gelten die Angebote?",
+        "o": [
+          "bis morgen",
+          "ab morgen",
+          "eine Woche lang"
+        ],
+        "answer": "bis morgen",
+        "explanation": "Jusqu’à demain = bis morgen.",
+        "tag": "Anwenden",
+        "family": "jusqua",
+        "checkKey": "A2L11-context-jusqua"
+      },
+      {
+        "type": "choice",
+        "q": "Du willst nur ein Baguette.",
+        "o": [
+          "Je ne prends qu’une baguette.",
+          "Je ne prends pas une baguette.",
+          "Je prends que pas une baguette."
+        ],
+        "answer": "Je ne prends qu’une baguette.",
+        "explanation": "Ne … que = nur.",
+        "tag": "Anwenden",
+        "family": "neque",
+        "checkKey": "A2L11-context-neque",
+        "audio": "Je ne prends qu’une baguette."
+      },
+      {
+        "type": "choice",
+        "q": "« Les yaourts : deux paquets pour le prix d’un ! » Wie viele Packungen bezahlst du, wenn du zwei nimmst?",
+        "o": [
+          "eine",
+          "zwei",
+          "keine"
+        ],
+        "answer": "eine",
+        "explanation": "Pour le prix d’un = zum Preis von einer.",
+        "tag": "Anwenden",
+        "family": "offre",
+        "checkKey": "A2L11-context-offre"
+      },
+      {
+        "type": "choice",
+        "q": "Du suchst Käse im Supermarkt.",
+        "o": [
+          "Excusez-moi, où est le rayon fromages ?",
+          "Excusez-moi, où est la caisse fromages ?",
+          "Excusez-moi, combien est le rayon fromages ?"
+        ],
+        "answer": "Excusez-moi, où est le rayon fromages ?",
+        "explanation": "Le rayon = die Abteilung.",
+        "tag": "Anwenden",
+        "family": "rayon",
+        "checkKey": "A2L11-context-rayon",
+        "audio": "Excusez-moi, où est le rayon fromages ?"
+      },
+      {
+        "type": "choice",
+        "q": "« Il n’y a que deux caisses ouvertes. » Was bedeutet das?",
+        "o": [
+          "Es sind nur zwei Kassen offen.",
+          "Zwei Kassen sind geschlossen.",
+          "Es gibt keine offene Kasse."
+        ],
+        "answer": "Es sind nur zwei Kassen offen.",
+        "explanation": "Ne … que = nur, keine Verneinung.",
+        "tag": "Anwenden",
+        "family": "sens",
+        "checkKey": "A2L11-context-sens"
+      },
+      {
+        "type": "choice",
+        "q": "Du fragst nach dem Preis pro Stück.",
+        "o": [
+          "C’est combien, la pièce ?",
+          "C’est combien de pièces ?",
+          "C’est quelle pièce ?"
+        ],
+        "answer": "C’est combien, la pièce ?",
+        "explanation": "La pièce = das Stück.",
+        "tag": "Anwenden",
+        "family": "piece",
+        "checkKey": "A2L11-context-piece",
+        "audio": "C’est combien, la pièce ?"
+      },
+      {
+        "type": "choice",
+        "q": "« Les fraises sont en promotion au rayon fruits et légumes. » Was stimmt?",
+        "o": [
+          "Erdbeeren sind im Angebot.",
+          "Erdbeeren sind ausverkauft.",
+          "Erdbeeren gibt es an der Kasse."
+        ],
+        "answer": "Erdbeeren sind im Angebot.",
+        "explanation": "En promotion = im Angebot.",
+        "tag": "Anwenden",
+        "family": "promo",
+        "checkKey": "A2L11-context-promo"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Les pommes sont ___ deux euros le kilo.",
+        "answer": "à",
+        "accept": [],
+        "context": "Die Äpfel kosten zwei Euro das Kilo.",
+        "explanation": "Les pommes sont à deux euros le kilo.",
+        "audio": "Les pommes sont à deux euros le kilo.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:prix",
+        "checkKey": "A2L11-transfer-prix-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Les avocats sont à un euro ___ pièce.",
+        "answer": "la",
+        "accept": [],
+        "context": "Die Avocados kosten einen Euro das Stück.",
+        "explanation": "Les avocats sont à un euro la pièce.",
+        "audio": "Les avocats sont à un euro la pièce.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:unite",
+        "checkKey": "A2L11-transfer-unite-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je voudrais une bouteille ___ jus d’orange.",
+        "answer": "de",
+        "accept": [],
+        "context": "Du möchtest eine Flasche Orangensaft.",
+        "explanation": "Je voudrais une bouteille de jus d’orange.",
+        "audio": "Je voudrais une bouteille de jus d’orange.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:quantite",
+        "checkKey": "A2L11-transfer-quantite-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je n’ai ___ dix euros sur moi.",
+        "answer": "que",
+        "accept": [],
+        "context": "Du hast nur zehn Euro dabei.",
+        "explanation": "Je n’ai que dix euros sur moi.",
+        "audio": "Je n’ai que dix euros sur moi.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:neque",
+        "checkKey": "A2L11-transfer-neque-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Elle ___ mange que des légumes.",
+        "answer": "ne",
+        "accept": [],
+        "context": "Sie isst nur Gemüse.",
+        "explanation": "Elle ne mange que des légumes.",
+        "audio": "Elle ne mange que des légumes.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:neque",
+        "checkKey": "A2L11-transfer-neque-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le pain est à un euro ___ . (nur)",
+        "answer": "seulement",
+        "accept": [],
+        "context": "Das Brot kostet nur einen Euro.",
+        "explanation": "Le pain est à un euro seulement .",
+        "audio": "Le pain est à un euro seulement .",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:seulement",
+        "checkKey": "A2L11-transfer-seulement-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "L’offre est valable ___ samedi.",
+        "answer": "jusqu’à",
+        "accept": [],
+        "context": "Das Angebot gilt bis Samstag.",
+        "explanation": "L’offre est valable jusqu’à samedi.",
+        "audio": "L’offre est valable jusqu’à samedi.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:jusqua",
+        "checkKey": "A2L11-transfer-jusqua-6"
+      }
+    ]
+  },
+  "12": {
+    "goals": [
+      "Eine Nachricht auf dem Anrufbeantworter verstehen.",
+      "Absagen, sich entschuldigen und einen Grund nennen.",
+      "Einen Termin verschieben und auf Entschuldigungen reagieren."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ne ___ pas venir ce soir. (pouvoir, Futur)",
+        "answer": "pourrai",
+        "o": [
+          "pourrai",
+          "pouvrai",
+          "pourrais"
+        ],
+        "context": "Ich kann heute Abend nicht kommen.",
+        "tag": "futur",
+        "explanation": "Je ne pourrai pas venir ce soir. = Ich kann heute Abend nicht kommen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ne ___ pas là samedi. (être, Futur)",
+        "answer": "serai",
+        "o": [
+          "serai",
+          "suis",
+          "serais"
+        ],
+        "context": "Ich bin am Samstag nicht da.",
+        "tag": "futur",
+        "explanation": "Je ne serai pas là samedi. = Ich bin am Samstag nicht da."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je reste à la maison ___ je suis malade.",
+        "answer": "parce que",
+        "o": [
+          "parce que",
+          "pour",
+          "mais"
+        ],
+        "context": "Ich bleibe zu Hause, weil ich krank bin.",
+        "tag": "Grund",
+        "explanation": "Je reste à la maison parce que je suis malade. = Ich bleibe zu Hause, weil ich krank bin."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ne viens pas, ___ mon fils est malade. (denn)",
+        "answer": "car",
+        "o": [
+          "car",
+          "donc",
+          "mais"
+        ],
+        "context": "Ich komme nicht, denn mein Sohn ist krank.",
+        "tag": "Grund",
+        "explanation": "Je ne viens pas, car mon fils est malade. = Ich komme nicht, denn mein Sohn ist krank."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je suis ___, j’ai trop de travail.",
+        "answer": "désolé",
+        "o": [
+          "désolé",
+          "dommage",
+          "grave"
+        ],
+        "context": "Tut mir leid, ich habe zu viel Arbeit.",
+        "tag": "Entschuldigung",
+        "explanation": "Je suis désolé, j’ai trop de travail. = Tut mir leid, ich habe zu viel Arbeit."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je dois ___ le rendez-vous. (absagen)",
+        "answer": "annuler",
+        "o": [
+          "annuler",
+          "reporter",
+          "rappeler"
+        ],
+        "context": "Ich muss den Termin absagen.",
+        "tag": "Termin",
+        "explanation": "Je dois annuler le rendez-vous. = Ich muss den Termin absagen."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "On peut ___ à demain ? (verschieben)",
+        "answer": "reporter",
+        "o": [
+          "reporter",
+          "annuler",
+          "arriver"
+        ],
+        "context": "Können wir auf morgen verschieben?",
+        "tag": "Termin",
+        "explanation": "On peut reporter à demain ? = Können wir auf morgen verschieben?"
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Ce n’est pas ___ . (nicht schlimm)",
+        "answer": "grave",
+        "o": [
+          "grave",
+          "dommage",
+          "désolé"
+        ],
+        "context": "Das ist nicht schlimm.",
+        "tag": "reagieren",
+        "explanation": "Ce n’est pas grave . = Das ist nicht schlimm."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "___ ! Je voulais te voir. (schade)",
+        "answer": "Dommage",
+        "o": [
+          "Dommage",
+          "Bravo",
+          "Volontiers"
+        ],
+        "context": "Schade! Ich wollte dich sehen.",
+        "tag": "reagieren",
+        "explanation": "Dommage ! Je voulais te voir. = Schade! Ich wollte dich sehen."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Soigne-___ bien !",
+        "answer": "toi",
+        "o": [
+          "toi",
+          "te",
+          "moi"
+        ],
+        "context": "Gute Besserung!",
+        "tag": "reagieren",
+        "explanation": "Imperativ mit reflexivem Verb: soigne-toi."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Anrufbeantworter: « Désolé, je ne pourrai pas venir au cours de yoga jeudi. Je dois travailler tard. » Was stimmt?",
+        "o": [
+          "Die Person kommt am Donnerstag nicht.",
+          "Die Person kommt etwas später.",
+          "Die Person kommt am Donnerstag früher."
+        ],
+        "answer": "Die Person kommt am Donnerstag nicht.",
+        "explanation": "Je ne pourrai pas venir = ich kann nicht kommen.",
+        "tag": "Anwenden",
+        "family": "absence",
+        "checkKey": "A2L12-context-absence"
+      },
+      {
+        "type": "choice",
+        "q": "Warum kommt sie nicht? « J’ai de la fièvre et mal à la tête. »",
+        "o": [
+          "Sie ist krank.",
+          "Sie hat keine Zeit.",
+          "Sie hat den Bus verpasst."
+        ],
+        "answer": "Sie ist krank.",
+        "explanation": "De la fièvre = Fieber; mal à la tête = Kopfschmerzen.",
+        "tag": "Anwenden",
+        "family": "raison",
+        "checkKey": "A2L12-context-raison"
+      },
+      {
+        "type": "choice",
+        "q": "Du willst den Termin auf Freitag verschieben.",
+        "o": [
+          "On peut reporter le rendez-vous à vendredi ?",
+          "On peut annuler le rendez-vous à vendredi ?",
+          "On peut rappeler le rendez-vous vendredi ?"
+        ],
+        "answer": "On peut reporter le rendez-vous à vendredi ?",
+        "explanation": "Reporter à = verschieben auf.",
+        "tag": "Anwenden",
+        "family": "reporter",
+        "checkKey": "A2L12-context-reporter",
+        "audio": "On peut reporter le rendez-vous à vendredi ?"
+      },
+      {
+        "type": "choice",
+        "q": "Ein Freund entschuldigt sich, dass er fünf Minuten zu spät ist. Du reagierst freundlich.",
+        "o": [
+          "Ce n’est pas grave.",
+          "C’est très grave.",
+          "Ce n’est pas possible."
+        ],
+        "answer": "Ce n’est pas grave.",
+        "explanation": "Ce n’est pas grave = nicht schlimm.",
+        "tag": "Anwenden",
+        "family": "reagir",
+        "checkKey": "A2L12-context-reagir",
+        "audio": "Ce n’est pas grave."
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst ab, weil du arbeiten musst.",
+        "o": [
+          "Je ne pourrai pas venir parce que je dois travailler.",
+          "Je ne pourrai pas venir pour je dois travailler.",
+          "Je ne pourrai pas venir donc je dois travailler."
+        ],
+        "answer": "Je ne pourrai pas venir parce que je dois travailler.",
+        "explanation": "Parce que leitet den Grund ein.",
+        "tag": "Anwenden",
+        "family": "parceque",
+        "checkKey": "A2L12-context-parceque",
+        "audio": "Je ne pourrai pas venir parce que je dois travailler."
+      },
+      {
+        "type": "choice",
+        "q": "« Je te rappelle la semaine prochaine. » Wann ruft die Person an?",
+        "o": [
+          "nächste Woche",
+          "heute Abend",
+          "letzte Woche"
+        ],
+        "answer": "nächste Woche",
+        "explanation": "La semaine prochaine = nächste Woche.",
+        "tag": "Anwenden",
+        "family": "rappeler",
+        "checkKey": "A2L12-context-rappeler"
+      },
+      {
+        "type": "choice",
+        "q": "Deine Freundin ist krank. Was wünschst du ihr?",
+        "o": [
+          "Soigne-toi bien !",
+          "Bon appétit !",
+          "Bonne route !"
+        ],
+        "answer": "Soigne-toi bien !",
+        "explanation": "Soigne-toi bien = gute Besserung.",
+        "tag": "Anwenden",
+        "family": "souhait",
+        "checkKey": "A2L12-context-souhait",
+        "audio": "Soigne-toi bien !"
+      },
+      {
+        "type": "choice",
+        "q": "Welche Form ist richtig? « Nous ne ___ pas là dimanche. »",
+        "o": [
+          "serons",
+          "sommes été",
+          "serions"
+        ],
+        "answer": "serons",
+        "explanation": "Être im futur simple: nous serons.",
+        "tag": "Anwenden",
+        "family": "futur",
+        "checkKey": "A2L12-context-futur",
+        "audio": "Nous ne serons pas là dimanche."
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Je ne ___ pas venir demain. (pouvoir, Futur)",
+        "answer": "pourrai",
+        "accept": [],
+        "context": "Du kannst morgen nicht kommen.",
+        "explanation": "Je ne pourrai pas venir demain.",
+        "audio": "Je ne pourrai pas venir demain.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:pouvoir",
+        "checkKey": "A2L12-transfer-pouvoir-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Nous ne ___ pas là ce week-end. (être, Futur)",
+        "answer": "serons",
+        "accept": [],
+        "context": "Ihr seid dieses Wochenende nicht da.",
+        "explanation": "Nous ne serons pas là ce week-end.",
+        "audio": "Nous ne serons pas là ce week-end.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:etre",
+        "checkKey": "A2L12-transfer-etre-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je reste au lit ___ j’ai de la fièvre. (weil)",
+        "answer": "parce que",
+        "accept": [],
+        "context": "Du bleibst im Bett, weil du Fieber hast.",
+        "explanation": "Je reste au lit parce que j’ai de la fièvre.",
+        "audio": "Je reste au lit parce que j’ai de la fièvre.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:parceque",
+        "checkKey": "A2L12-transfer-parceque-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il n’est pas venu, ___ il était malade. (denn)",
+        "answer": "car",
+        "accept": [],
+        "context": "Er ist nicht gekommen, denn er war krank.",
+        "explanation": "Il n’est pas venu, car il était malade.",
+        "audio": "Il n’est pas venu, car il était malade.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:car",
+        "checkKey": "A2L12-transfer-car-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "On peut ___ le cours à mardi ? (verschieben)",
+        "answer": "reporter",
+        "accept": [],
+        "context": "Kann man den Kurs auf Dienstag verschieben?",
+        "explanation": "On peut reporter le cours à mardi ?",
+        "audio": "On peut reporter le cours à mardi ?",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:reporter",
+        "checkKey": "A2L12-transfer-reporter-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je dois ___ ma réservation. (absagen)",
+        "answer": "annuler",
+        "accept": [],
+        "context": "Du musst deine Reservierung stornieren.",
+        "explanation": "Je dois annuler ma réservation.",
+        "audio": "Je dois annuler ma réservation.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:annuler",
+        "checkKey": "A2L12-transfer-annuler-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je suis ___ , je suis en retard. (Frau)",
+        "answer": "désolée",
+        "accept": [],
+        "context": "Eine Frau entschuldigt sich für die Verspätung.",
+        "explanation": "Je suis désolée , je suis en retard.",
+        "audio": "Je suis désolée , je suis en retard.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:desole",
+        "checkKey": "A2L12-transfer-desole-6"
       }
     ]
   }

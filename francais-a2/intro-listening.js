@@ -47,5 +47,53 @@ window.FR_A1_INTRO_LISTENING = {
       "Nous étions dans un petit hôtel près de la mer.",
       "Nous sommes dans un petit hôtel près de la mer."
     ]
+  },
+  "7": {
+    "audio": "On se verra la semaine prochaine.",
+    "o": [
+      "On se verra la semaine prochaine.",
+      "On se voit la semaine prochaine.",
+      "On se verra le week-end prochain."
+    ]
+  },
+  "8": {
+    "audio": "J’ai un chien qui s’appelle Filou.",
+    "o": [
+      "J’avais un chien qui s’appelait Filou.",
+      "J’ai un chat qui s’appelle Filou.",
+      "J’ai un chien qui s’appelle Filou."
+    ]
+  },
+  "9": {
+    "audio": "Des tomates ? J’en prends un kilo.",
+    "o": [
+      "Des pommes ? J’en prends un kilo.",
+      "Des tomates ? J’en prends un kilo.",
+      "Des tomates ? J’en prends deux kilos."
+    ]
+  },
+  "10": {
+    "audio": "Je t’invite au restaurant samedi soir.",
+    "o": [
+      "Je t’invite au restaurant dimanche soir.",
+      "Je t’invite au restaurant samedi soir.",
+      "Je t’invite au cinéma samedi soir."
+    ]
+  },
+  "11": {
+    "audio": "Le kilo de pommes est à deux euros seulement.",
+    "o": [
+      "Le kilo de pommes est à deux euros seulement.",
+      "Le kilo de poires est à deux euros seulement.",
+      "Le kilo de pommes est à douze euros seulement."
+    ]
+  },
+  "12": {
+    "audio": "Je suis désolé, mais je ne pourrai pas venir demain.",
+    "o": [
+      "Je suis désolé, mais je pourrai venir demain.",
+      "Je suis désolé, mais je ne pourrai pas venir demain.",
+      "Je suis désolé, mais je ne pourrai pas venir ce soir."
+    ]
   }
 };

@@ -275,5 +275,281 @@ window.FR_A2_FOUNDATIONS = {
         "beach"
       ]
     ]
+  },
+  "7": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "prochain / prochaine",
+        "nächster / nächste",
+        "next"
+      ],
+      [
+        "le futur simple",
+        "das Futur",
+        "future tense"
+      ],
+      [
+        "je serai",
+        "ich werde sein",
+        "I will be"
+      ],
+      [
+        "j’irai",
+        "ich werde gehen",
+        "I will go"
+      ],
+      [
+        "je ferai",
+        "ich werde machen",
+        "I will do"
+      ],
+      [
+        "on se verra",
+        "wir sehen uns",
+        "we will see each other"
+      ],
+      [
+        "raconter",
+        "erzählen",
+        "to tell"
+      ],
+      [
+        "le retour",
+        "die Rückkehr",
+        "return"
+      ]
+    ]
+  },
+  "8": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "l’animal de compagnie (m.)",
+        "das Haustier",
+        "pet"
+      ],
+      [
+        "le chien / la chienne",
+        "der Hund / die Hündin",
+        "dog"
+      ],
+      [
+        "le chat / la chatte",
+        "der Kater / die Katze",
+        "cat"
+      ],
+      [
+        "qui",
+        "der / die / das (Subjekt)",
+        "who, which"
+      ],
+      [
+        "que",
+        "den / die / das (Objekt)",
+        "whom, which"
+      ],
+      [
+        "promener",
+        "spazieren führen",
+        "to walk"
+      ],
+      [
+        "garder",
+        "aufpassen auf",
+        "to look after"
+      ],
+      [
+        "interdit / interdite",
+        "verboten",
+        "forbidden"
+      ]
+    ]
+  },
+  "9": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "le plat (préféré)",
+        "das (Lieblings-)Gericht",
+        "(favourite) dish"
+      ],
+      [
+        "en",
+        "davon",
+        "some, of it"
+      ],
+      [
+        "un kilo de",
+        "ein Kilo",
+        "a kilo of"
+      ],
+      [
+        "le morceau",
+        "das Stück",
+        "piece"
+      ],
+      [
+        "cuire",
+        "kochen, garen",
+        "to cook"
+      ],
+      [
+        "épicé / épicée",
+        "scharf gewürzt",
+        "spicy"
+      ],
+      [
+        "une fois par semaine",
+        "einmal pro Woche",
+        "once a week"
+      ],
+      [
+        "la recette",
+        "das Rezept",
+        "recipe"
+      ]
+    ]
+  },
+  "10": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "Quelle chance !",
+        "Was für ein Glück!",
+        "How lucky!"
+      ],
+      [
+        "Félicitations !",
+        "Herzlichen Glückwunsch!",
+        "Congratulations!"
+      ],
+      [
+        "fêter",
+        "feiern",
+        "to celebrate"
+      ],
+      [
+        "inviter à / au",
+        "einladen zu / in",
+        "to invite to"
+      ],
+      [
+        "ensemble",
+        "zusammen",
+        "together"
+      ],
+      [
+        "ça te va ?",
+        "passt dir das?",
+        "does that suit you?"
+      ],
+      [
+        "de préférence",
+        "am besten",
+        "preferably"
+      ],
+      [
+        "avec plaisir",
+        "gern",
+        "with pleasure"
+      ]
+    ]
+  },
+  "11": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "l’offre spéciale (f.)",
+        "das Sonderangebot",
+        "special offer"
+      ],
+      [
+        "le rayon",
+        "die Abteilung",
+        "department, aisle"
+      ],
+      [
+        "en promotion",
+        "im Angebot",
+        "on special offer"
+      ],
+      [
+        "… euros le kilo",
+        "… Euro das Kilo",
+        "… euros a kilo"
+      ],
+      [
+        "la pièce",
+        "das Stück",
+        "piece"
+      ],
+      [
+        "ne … que",
+        "nur",
+        "only"
+      ],
+      [
+        "seulement",
+        "nur",
+        "only"
+      ],
+      [
+        "la caisse",
+        "die Kasse",
+        "checkout"
+      ]
+    ]
+  },
+  "12": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "je suis désolé(e)",
+        "es tut mir leid",
+        "I’m sorry"
+      ],
+      [
+        "je ne pourrai pas",
+        "ich werde nicht können",
+        "I won’t be able to"
+      ],
+      [
+        "la fièvre",
+        "das Fieber",
+        "fever"
+      ],
+      [
+        "annuler",
+        "absagen",
+        "to cancel"
+      ],
+      [
+        "reporter à",
+        "verschieben auf",
+        "to postpone to"
+      ],
+      [
+        "parce que / car",
+        "weil / denn",
+        "because"
+      ],
+      [
+        "ce n’est pas grave",
+        "das ist nicht schlimm",
+        "it doesn’t matter"
+      ],
+      [
+        "dommage",
+        "schade",
+        "what a pity"
+      ]
+    ]
   }
 };

@@ -414,5 +414,418 @@ window.FR_A1_DEEPENING_CONTENT = {
         "tous les matins"
       ]
     }
+  ],
+  "7": [
+    {
+      "title": "Das futur simple",
+      "rule": "Das futur simple bildest du meist aus dem Infinitiv + Endung: je -ai, tu -as, il -a, nous -ons, vous -ez, ils -ont: je parlerai, nous finirons. Bei -re fällt das e weg: prendre → je prendrai. Wichtige unregelmäßige Stämme: être → ser-, avoir → aur-, aller → ir-, faire → fer-, voir → verr-, venir → viendr-, pouvoir → pourr-.",
+      "pairs": [
+        [
+          "Je parlerai à Paul.",
+          "Ich werde mit Paul sprechen."
+        ],
+        [
+          "Nous prendrons le train.",
+          "Wir werden den Zug nehmen."
+        ],
+        [
+          "Elle sera contente.",
+          "Sie wird zufrieden sein."
+        ],
+        [
+          "Ils viendront à huit heures.",
+          "Sie werden um acht Uhr kommen."
+        ],
+        [
+          "Tu pourras m’aider ?",
+          "Wirst du mir helfen können?"
+        ]
+      ],
+      "emphasis": [
+        "Infinitiv",
+        "-ai",
+        "-as",
+        "-ons",
+        "-ez",
+        "-ont",
+        "ser-",
+        "aur-",
+        "ir-",
+        "fer-",
+        "verr-"
+      ]
+    },
+    {
+      "title": "quand + Futur, futur proche",
+      "rule": "Im Deutschen sagt man „Wenn du ankommst, rufe ich an“ im Präsens. Im Französischen stehen nach quand beide Teile im Futur: Quand tu arriveras, je t’appellerai. Für feste, nahe Pläne benutzt man oft das futur proche: aller + Infinitiv – je vais partir.",
+      "pairs": [
+        [
+          "Quand tu arriveras, je t’appellerai.",
+          "Wenn du ankommst, rufe ich dich an."
+        ],
+        [
+          "Quand il fera beau, nous sortirons.",
+          "Wenn es schön ist, gehen wir raus."
+        ],
+        [
+          "Je vais partir ce soir.",
+          "Ich fahre heute Abend weg."
+        ],
+        [
+          "On va manger au restaurant.",
+          "Wir gehen essen."
+        ],
+        [
+          "Quand je serai à Paris, je t’écrirai.",
+          "Wenn ich in Paris bin, schreibe ich dir."
+        ]
+      ],
+      "emphasis": [
+        "quand",
+        "beide Teile im Futur",
+        "futur proche",
+        "aller + Infinitiv"
+      ]
+    }
+  ],
+  "8": [
+    {
+      "title": "Relativpronomen qui und que",
+      "rule": "Mit qui und que verbindest du zwei Sätze. Qui ersetzt das Subjekt; danach folgt direkt ein Verb: un chien qui aime courir. Que ersetzt das direkte Objekt; danach folgt ein Subjekt: le chat que j’ai adopté. Vor Vokal wird que zu qu’, qui wird nie verkürzt.",
+      "pairs": [
+        [
+          "J’ai un chien qui s’appelle Filou.",
+          "Ich habe einen Hund, der Filou heißt."
+        ],
+        [
+          "C’est le chat que ma sœur a adopté.",
+          "Das ist die Katze, die meine Schwester adoptiert hat."
+        ],
+        [
+          "La voisine qui garde mon chat est sympa.",
+          "Die Nachbarin, die auf meine Katze aufpasst, ist nett."
+        ],
+        [
+          "Le livre que je lis parle des chiens.",
+          "Das Buch, das ich lese, handelt von Hunden."
+        ],
+        [
+          "C’est un animal qu’on voit souvent.",
+          "Das ist ein Tier, das man oft sieht."
+        ]
+      ],
+      "emphasis": [
+        "qui",
+        "que",
+        "Subjekt",
+        "direkte Objekt",
+        "qu’"
+      ]
+    },
+    {
+      "title": "Tiere beschreiben und versorgen",
+      "rule": "Aussehen beschreibst du mit être + Adjektiv: il est petit, elle est grise. Das Adjektiv passt sich an: un chat noir, une chatte noire. Für die Pflege: promener le chien, donner à manger à …, garder un animal. Mit Pronomen: je le promène, je lui donne à manger.",
+      "pairs": [
+        [
+          "Ma chatte est grise et calme.",
+          "Meine Katze ist grau und ruhig."
+        ],
+        [
+          "Je promène le chien le soir.",
+          "Ich gehe abends mit dem Hund raus."
+        ],
+        [
+          "Je lui donne à manger.",
+          "Ich gebe ihm / ihr zu fressen."
+        ],
+        [
+          "Qui garde ton lapin ?",
+          "Wer passt auf dein Kaninchen auf?"
+        ],
+        [
+          "Les chiens sont interdits ici.",
+          "Hunde sind hier verboten."
+        ]
+      ],
+      "emphasis": [
+        "être + Adjektiv",
+        "promener",
+        "donner à manger",
+        "garder",
+        "le",
+        "lui"
+      ]
+    }
+  ],
+  "9": [
+    {
+      "title": "Das Pronomen en",
+      "rule": "En ersetzt ein Nomen mit du, de la, de l’, des oder de (Teilungsartikel, unbestimmte Menge): Tu veux du pain ? – Oui, j’en veux. Bei einer Zahl oder Menge bleibt diese am Satzende: Des œufs ? J’en prends six. / J’en prends un kilo. En steht vor dem Verb, in der Verneinung zwischen ne und Verb: je n’en mange pas.",
+      "pairs": [
+        [
+          "Du pain ? J’en achète tous les jours.",
+          "Brot? Ich kaufe jeden Tag welches."
+        ],
+        [
+          "Des tomates ? J’en prends un kilo.",
+          "Tomaten? Ich nehme ein Kilo."
+        ],
+        [
+          "Des enfants ? J’en ai deux.",
+          "Kinder? Ich habe zwei."
+        ],
+        [
+          "De la viande ? Je n’en mange pas.",
+          "Fleisch? Ich esse keines."
+        ],
+        [
+          "Du sucre ? Il en met beaucoup.",
+          "Zucker? Er nimmt viel davon."
+        ]
+      ],
+      "emphasis": [
+        "en",
+        "du",
+        "de la",
+        "des",
+        "vor dem Verb",
+        "je n’en mange pas"
+      ]
+    },
+    {
+      "title": "Rezepte und Essgewohnheiten",
+      "rule": "In Rezepten benutzt man oft on oder den Imperativ: On coupe les légumes. / Coupez les légumes. Zutaten nennst du mit il faut + Teilungsartikel. Häufigkeit: une fois par semaine, tous les jours, souvent, rarement, ne … jamais.",
+      "pairs": [
+        [
+          "Il faut de la farine et du lait.",
+          "Man braucht Mehl und Milch."
+        ],
+        [
+          "On coupe les oignons.",
+          "Man schneidet die Zwiebeln."
+        ],
+        [
+          "Faites cuire pendant dix minutes.",
+          "Lassen Sie es zehn Minuten kochen."
+        ],
+        [
+          "Je mange du poisson une fois par semaine.",
+          "Ich esse einmal pro Woche Fisch."
+        ],
+        [
+          "Je ne mange jamais de viande.",
+          "Ich esse nie Fleisch."
+        ]
+      ],
+      "emphasis": [
+        "on",
+        "il faut",
+        "une fois par semaine",
+        "souvent",
+        "ne … jamais"
+      ]
+    }
+  ],
+  "10": [
+    {
+      "title": "Ausrufe mit quel / quelle",
+      "rule": "Mit quel + Nomen drückst du Freude oder Überraschung aus. Quel richtet sich nach dem Nomen: quel (m. Sg.), quelle (f. Sg.), quels (m. Pl.), quelles (f. Pl.). Ein Adjektiv kann dazwischen stehen: Quel beau cadeau ! Ohne Nomen sagt man: C’est super ! / Génial !",
+      "pairs": [
+        [
+          "Quelle chance !",
+          "Was für ein Glück!"
+        ],
+        [
+          "Quel beau cadeau !",
+          "Was für ein schönes Geschenk!"
+        ],
+        [
+          "Quelle bonne nouvelle !",
+          "Was für eine gute Nachricht!"
+        ],
+        [
+          "Quels beaux enfants !",
+          "Was für schöne Kinder!"
+        ],
+        [
+          "Quelles jolies fleurs !",
+          "Was für hübsche Blumen!"
+        ]
+      ],
+      "emphasis": [
+        "quel",
+        "quelle",
+        "quels",
+        "quelles"
+      ]
+    },
+    {
+      "title": "Einladen, annehmen, gratulieren",
+      "rule": "Einladen: inviter quelqu’un à + Ort / Anlass: je t’invite au restaurant, à mon anniversaire, à la piscine (à + le = au, à + les = aux). Gratulieren: Félicitations ! / Bravo ! Annehmen: avec plaisir, volontiers. Um Antwort bitten: Dis-moi si ça marche.",
+      "pairs": [
+        [
+          "Je t’invite à mon anniversaire.",
+          "Ich lade dich zu meinem Geburtstag ein."
+        ],
+        [
+          "On va au cinéma ?",
+          "Gehen wir ins Kino?"
+        ],
+        [
+          "Félicitations pour ton examen !",
+          "Glückwunsch zur Prüfung!"
+        ],
+        [
+          "Avec plaisir !",
+          "Gern!"
+        ],
+        [
+          "Réponds-moi avant jeudi.",
+          "Antworte mir bis Donnerstag."
+        ]
+      ],
+      "emphasis": [
+        "inviter",
+        "à + le = au",
+        "Félicitations",
+        "avec plaisir",
+        "volontiers"
+      ]
+    }
+  ],
+  "11": [
+    {
+      "title": "Preise pro Menge",
+      "rule": "Preis pro Einheit: être à + Preis + Artikel + Einheit: Les tomates sont à 3 € le kilo, les melons à 2 € la pièce. In Durchsagen steht oft: le kilo de tomates à 5 € seulement. Mengen: un kilo de, un litre de, une bouteille de, un paquet de – danach immer de ohne Artikel.",
+      "pairs": [
+        [
+          "Les tomates sont à trois euros le kilo.",
+          "Die Tomaten kosten drei Euro das Kilo."
+        ],
+        [
+          "Le melon est à deux euros la pièce.",
+          "Die Melone kostet zwei Euro das Stück."
+        ],
+        [
+          "Un litre de lait, s’il vous plaît.",
+          "Einen Liter Milch, bitte."
+        ],
+        [
+          "Un paquet de café coûte quatre euros.",
+          "Eine Packung Kaffee kostet vier Euro."
+        ],
+        [
+          "Le saumon est à dix-huit euros le kilo.",
+          "Der Lachs kostet achtzehn Euro das Kilo."
+        ]
+      ],
+      "emphasis": [
+        "être à",
+        "le kilo",
+        "la pièce",
+        "un litre de",
+        "un paquet de"
+      ]
+    },
+    {
+      "title": "nur: ne … que und seulement",
+      "rule": "„Nur“ heißt seulement oder ne … que. Bei ne … que steht ne vor dem Verb und que direkt vor dem, was eingeschränkt wird: Je ne prends qu’un kilo. Es ist keine Verneinung: Der Teilungsartikel bleibt (je ne bois que du thé). Seulement kann nach dem Verb oder am Ende stehen: à cinq euros seulement.",
+      "pairs": [
+        [
+          "Je ne prends qu’un kilo.",
+          "Ich nehme nur ein Kilo."
+        ],
+        [
+          "Il n’y a que deux caisses ouvertes.",
+          "Es sind nur zwei Kassen offen."
+        ],
+        [
+          "Je ne bois que du thé.",
+          "Ich trinke nur Tee."
+        ],
+        [
+          "C’est à cinq euros seulement.",
+          "Es kostet nur fünf Euro."
+        ],
+        [
+          "Nous n’avons que dix minutes.",
+          "Wir haben nur zehn Minuten."
+        ]
+      ],
+      "emphasis": [
+        "seulement",
+        "ne … que",
+        "keine Verneinung",
+        "que"
+      ]
+    }
+  ],
+  "12": [
+    {
+      "title": "Absagen mit Futur und Begründung",
+      "rule": "Für eine Absage in der Zukunft passt das futur simple: je ne pourrai pas venir, je ne serai pas là. Den Grund nennst du mit parce que oder car (denn): parce que je suis malade. Höflich beginnt man mit je suis désolé(e) oder excuse-moi / excusez-moi.",
+      "pairs": [
+        [
+          "Je ne pourrai pas venir ce soir.",
+          "Ich kann heute Abend nicht kommen."
+        ],
+        [
+          "Je ne serai pas là samedi.",
+          "Ich bin am Samstag nicht da."
+        ],
+        [
+          "Je suis désolé, j’ai trop de travail.",
+          "Tut mir leid, ich habe zu viel Arbeit."
+        ],
+        [
+          "Je reste à la maison parce que je suis malade.",
+          "Ich bleibe zu Hause, weil ich krank bin."
+        ],
+        [
+          "Je ne viens pas, car mon fils est malade.",
+          "Ich komme nicht, denn mein Sohn ist krank."
+        ]
+      ],
+      "emphasis": [
+        "futur simple",
+        "je ne pourrai pas",
+        "parce que",
+        "car",
+        "je suis désolé(e)"
+      ]
+    },
+    {
+      "title": "Verschieben und reagieren",
+      "rule": "Annuler heißt absagen, reporter à verschieben auf: On peut reporter à jeudi ? Auf eine Entschuldigung reagierst du mit ce n’est pas grave (nicht schlimm), pas de problème oder dommage ! (schade). Gute Besserung wünschst du mit soigne-toi bien oder bon rétablissement.",
+      "pairs": [
+        [
+          "Je dois annuler le rendez-vous.",
+          "Ich muss den Termin absagen."
+        ],
+        [
+          "On peut reporter à demain ?",
+          "Können wir auf morgen verschieben?"
+        ],
+        [
+          "Ce n’est pas grave.",
+          "Das ist nicht schlimm."
+        ],
+        [
+          "Dommage !",
+          "Schade!"
+        ],
+        [
+          "Soigne-toi bien !",
+          "Gute Besserung!"
+        ]
+      ],
+      "emphasis": [
+        "annuler",
+        "reporter à",
+        "ce n’est pas grave",
+        "dommage",
+        "soigne-toi bien"
+      ]
+    }
   ]
 };

@@ -1723,6 +1723,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       6
+    ],
+    "frA2Lessons": [
+      9
     ]
   },
   {
@@ -1734,7 +1737,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       6
     ],
-    "dePlural": "die Fische"
+    "dePlural": "die Fische",
+    "frA2Lessons": [
+      8
+    ]
   },
   {
     "fr": "l’œuf (m.)",
@@ -1967,7 +1973,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       7
     ],
-    "dePlural": "die Preise"
+    "dePlural": "die Preise",
+    "frA2Lessons": [
+      11
+    ]
   },
   {
     "fr": "l’argent (m.)",
@@ -2080,7 +2089,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       7
     ],
-    "dePlural": "die Flaschen"
+    "dePlural": "die Flaschen",
+    "frA2Lessons": [
+      11
+    ]
   },
   {
     "fr": "le paquet",
@@ -2091,7 +2103,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       7
     ],
-    "dePlural": "die Packungen"
+    "dePlural": "die Packungen",
+    "frA2Lessons": [
+      11
+    ]
   },
   {
     "fr": "la caisse",
@@ -2102,7 +2117,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       7
     ],
-    "dePlural": "die Kassen"
+    "dePlural": "die Kassen",
+    "frA2Lessons": [
+      11
+    ]
   },
   {
     "fr": "la taille",
@@ -2814,6 +2832,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       10
+    ],
+    "frA2Lessons": [
+      7
     ]
   },
   {
@@ -3374,6 +3395,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       14,
       19
+    ],
+    "frA2Lessons": [
+      12
     ]
   },
   {
@@ -3385,6 +3409,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       14,
       19
+    ],
+    "frA2Lessons": [
+      12
     ]
   },
   {
@@ -3943,6 +3970,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       12,
       21
+    ],
+    "frA2Lessons": [
+      12
     ]
   },
   {
@@ -3965,6 +3995,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       12,
       21
+    ],
+    "frA2Lessons": [
+      10
     ]
   },
   {
@@ -4011,6 +4044,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       13
+    ],
+    "frA2Lessons": [
+      7
     ]
   },
   {
@@ -4204,6 +4240,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       15
+    ],
+    "frA2Lessons": [
+      10
     ]
   },
   {
@@ -4224,6 +4263,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       15
+    ],
+    "frA2Lessons": [
+      12
     ]
   },
   {
@@ -4265,7 +4307,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       15
     ],
-    "dePlural": "die Einladungen"
+    "dePlural": "die Einladungen",
+    "frA2Lessons": [
+      10
+    ]
   },
   {
     "fr": "l’anniversaire (m.)",
@@ -4276,7 +4321,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       15
     ],
-    "dePlural": "die Geburtstage"
+    "dePlural": "die Geburtstage",
+    "frA2Lessons": [
+      10
+    ]
   },
   {
     "fr": "le cadeau",
@@ -4288,7 +4336,10 @@ window.A1_VOCABULARY_CONTENT = [
       15
     ],
     "dePlural": "die Geschenke",
-    "frPlural": "les cadeaux"
+    "frPlural": "les cadeaux",
+    "frA2Lessons": [
+      10
+    ]
   },
   {
     "fr": "samedi prochain",
@@ -4328,6 +4379,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       15
+    ],
+    "frA2Lessons": [
+      7
     ]
   },
   {
@@ -4371,6 +4425,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       15
+    ],
+    "frA2Lessons": [
+      7
     ]
   },
   {
@@ -4499,7 +4556,10 @@ window.A1_VOCABULARY_CONTENT = [
       22,
       23
     ],
-    "dePlural": "die Handys"
+    "dePlural": "die Handys",
+    "frA2Lessons": [
+      10
+    ]
   },
   {
     "fr": "le mot de passe",
@@ -4749,6 +4809,9 @@ window.A1_VOCABULARY_CONTENT = [
       17,
       18,
       24
+    ],
+    "frA2Lessons": [
+      8
     ]
   },
   {
@@ -4957,6 +5020,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8,
       11
+    ],
+    "frA2Lessons": [
+      8
     ]
   },
   {
@@ -4968,6 +5034,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       8,
       11
+    ],
+    "frA2Lessons": [
+      8
     ]
   },
   {
@@ -5120,6 +5189,9 @@ window.A1_VOCABULARY_CONTENT = [
       1,
       10,
       24
+    ],
+    "frA2Lessons": [
+      11
     ]
   },
   {
@@ -5542,6 +5614,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       6,
       7
+    ],
+    "frA2Lessons": [
+      9
     ]
   },
   {
@@ -5597,6 +5672,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       6,
       7
+    ],
+    "frA2Lessons": [
+      9
     ]
   },
   {
@@ -5714,6 +5792,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       6,
       7
+    ],
+    "frA2Lessons": [
+      9
     ]
   },
   {
@@ -5747,6 +5828,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       6,
       7
+    ],
+    "frA2Lessons": [
+      9
     ]
   },
   {
@@ -5758,6 +5842,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       13,
       24
+    ],
+    "frA2Lessons": [
+      7
     ]
   },
   {
@@ -6202,6 +6289,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       5
+    ],
+    "frA2Lessons": [
+      8
     ]
   },
   {
@@ -6265,6 +6355,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       5
+    ],
+    "frA2Lessons": [
+      8
     ]
   },
   {
@@ -6431,6 +6524,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       6
+    ],
+    "frA2Lessons": [
+      11
     ]
   },
   {
@@ -6471,6 +6567,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       7
+    ],
+    "frA2Lessons": [
+      11
     ]
   },
   {
@@ -6535,7 +6634,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       7
     ],
-    "dePlural": "die Stücke"
+    "dePlural": "die Stücke",
+    "frA2Lessons": [
+      9
+    ]
   },
   {
     "fr": "le meuble",
@@ -6779,6 +6881,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      12
     ]
   },
   {
@@ -6789,6 +6894,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      7
     ]
   },
   {
@@ -6999,7 +7107,8 @@ window.A1_VOCABULARY_CONTENT = [
       12
     ],
     "frA2Lessons": [
-      3
+      3,
+      10
     ]
   },
   {
@@ -7937,6 +8046,313 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [],
     "frA2Lessons": [
       6
+    ]
+  },
+  {
+    "fr": "prochain / prochaine",
+    "de": "nächster / nächste",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      7
+    ]
+  },
+  {
+    "fr": "raconter",
+    "de": "erzählen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      7
+    ]
+  },
+  {
+    "fr": "la surprise",
+    "de": "die Überraschung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      7
+    ]
+  },
+  {
+    "fr": "la nouvelle",
+    "de": "die Neuigkeit",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      7
+    ]
+  },
+  {
+    "fr": "la campagne",
+    "de": "das Land",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      7
+    ]
+  },
+  {
+    "fr": "fêter",
+    "de": "feiern",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      7,
+      10
+    ]
+  },
+  {
+    "fr": "l’animal de compagnie (m.)",
+    "de": "das Haustier",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      8
+    ]
+  },
+  {
+    "fr": "le lapin",
+    "de": "das Kaninchen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      8
+    ]
+  },
+  {
+    "fr": "promener",
+    "de": "spazieren führen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      8
+    ]
+  },
+  {
+    "fr": "garder",
+    "de": "aufpassen auf",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      8
+    ]
+  },
+  {
+    "fr": "adopter",
+    "de": "adoptieren",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      8
+    ]
+  },
+  {
+    "fr": "allergique",
+    "de": "allergisch",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      8
+    ]
+  },
+  {
+    "fr": "le plat",
+    "de": "das Gericht",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      9
+    ]
+  },
+  {
+    "fr": "préféré / préférée",
+    "de": "Lieblings-",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      9
+    ]
+  },
+  {
+    "fr": "la courgette",
+    "de": "die Zucchini",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      9
+    ]
+  },
+  {
+    "fr": "l’ail (m.)",
+    "de": "der Knoblauch",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      9
+    ]
+  },
+  {
+    "fr": "épicé / épicée",
+    "de": "scharf gewürzt",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      9
+    ]
+  },
+  {
+    "fr": "délicieux / délicieuse",
+    "de": "köstlich",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      9
+    ]
+  },
+  {
+    "fr": "la chance",
+    "de": "das Glück",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      10
+    ]
+  },
+  {
+    "fr": "les félicitations (f.)",
+    "de": "die Glückwünsche",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      10
+    ]
+  },
+  {
+    "fr": "de préférence",
+    "de": "am besten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      10
+    ]
+  },
+  {
+    "fr": "heureux / heureuse",
+    "de": "glücklich",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      10
+    ]
+  },
+  {
+    "fr": "l’offre (f.)",
+    "de": "das Angebot",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      11
+    ]
+  },
+  {
+    "fr": "spécial / spéciale",
+    "de": "besonders, Sonder-",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      11
+    ]
+  },
+  {
+    "fr": "le rayon",
+    "de": "die Abteilung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      11
+    ]
+  },
+  {
+    "fr": "la promotion",
+    "de": "das Sonderangebot",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      11
+    ]
+  },
+  {
+    "fr": "profiter de",
+    "de": "nutzen, genießen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      11
+    ]
+  },
+  {
+    "fr": "désolé / désolée",
+    "de": "es tut mir leid",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
+    ]
+  },
+  {
+    "fr": "attraper",
+    "de": "sich holen, fangen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
+    ]
+  },
+  {
+    "fr": "reporter",
+    "de": "verschieben",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
+    ]
+  },
+  {
+    "fr": "grave",
+    "de": "schlimm",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
+    ]
+  },
+  {
+    "fr": "se reposer",
+    "de": "sich ausruhen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
+    ]
+  },
+  {
+    "fr": "car",
+    "de": "denn",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
+    ]
+  },
+  {
+    "fr": "le copain / la copine",
+    "de": "der Freund / die Freundin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      12
     ]
   }
 ];

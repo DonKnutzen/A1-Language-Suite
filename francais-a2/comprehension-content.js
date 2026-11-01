@@ -599,5 +599,605 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "viele Touristen"
       }
     ]
+  },
+  "7": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Tu as des projets pour le week-end ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui ! Vendredi soir, je vais au concert avec Julien.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et samedi ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Samedi, j’irai voir mes grands-parents à Dijon. Je prendrai le train de neuf heures.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Tu rentreras quand ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Dimanche soir. Quand je serai rentré, je t’appellerai.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "D’accord. On pourra aller au cinéma lundi ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Bonne idée ! On se verra devant le cinéma à vingt heures.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Freitagabend",
+        "options": [
+          "Konzert",
+          "Restaurant",
+          "Kino"
+        ],
+        "answer": "Konzert"
+      },
+      {
+        "label": "Samstag besucht er",
+        "options": [
+          "Julien",
+          "seine Großeltern",
+          "seine Eltern"
+        ],
+        "answer": "seine Großeltern"
+      },
+      {
+        "label": "Stadt",
+        "options": [
+          "Dieppe",
+          "Dijon",
+          "Lyon"
+        ],
+        "answer": "Dijon"
+      },
+      {
+        "label": "Zug um",
+        "options": [
+          "19 Uhr",
+          "10 Uhr",
+          "9 Uhr"
+        ],
+        "answer": "9 Uhr"
+      },
+      {
+        "label": "Rückkehr",
+        "options": [
+          "Montag früh",
+          "Samstagabend",
+          "Sonntagabend"
+        ],
+        "answer": "Sonntagabend"
+      },
+      {
+        "label": "Treffen am Montag",
+        "options": [
+          "20 Uhr am Bahnhof",
+          "18 Uhr im Café",
+          "20 Uhr vor dem Kino"
+        ],
+        "answer": "20 Uhr vor dem Kino"
+      }
+    ]
+  },
+  "8": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Vous avez un animal de compagnie ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, deux ! Un chien qui s’appelle Oscar et un chat.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Et le chat, il s’appelle comment ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Caramel. C’est un chat que mes enfants ont trouvé dans le jardin.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Ils sont faciles ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Le chat, oui. Mais le chien, je dois le promener trois fois par jour.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Et pendant les vacances ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "C’est ma mère qui les garde. Elle habite à la campagne.",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Name des Hundes",
+        "options": [
+          "Filou",
+          "Oscar",
+          "Caramel"
+        ],
+        "answer": "Oscar"
+      },
+      {
+        "label": "Name der Katze",
+        "options": [
+          "Mimi",
+          "Oscar",
+          "Caramel"
+        ],
+        "answer": "Caramel"
+      },
+      {
+        "label": "Katze gefunden von",
+        "options": [
+          "der Mutter",
+          "dem Nachbarn",
+          "den Kindern"
+        ],
+        "answer": "den Kindern"
+      },
+      {
+        "label": "Fundort",
+        "options": [
+          "im Park",
+          "auf der Straße",
+          "im Garten"
+        ],
+        "answer": "im Garten"
+      },
+      {
+        "label": "Spaziergänge täglich",
+        "options": [
+          "dreimal",
+          "zweimal",
+          "einmal"
+        ],
+        "answer": "dreimal"
+      },
+      {
+        "label": "Urlaubsbetreuung",
+        "options": [
+          "die Mutter",
+          "eine Tierpension",
+          "die Nachbarin"
+        ],
+        "answer": "die Mutter"
+      }
+    ]
+  },
+  "9": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Pour la fête, tu fais ta salade de pâtes ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui ! Il faut des pâtes, des tomates, du jambon et du fromage.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Des pâtes, tu en as ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, j’en ai deux paquets. Mais je n’ai plus de tomates.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Je peux en acheter. Combien ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Un kilo, s’il te plaît. Et du basilic, si tu en trouves.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "D’accord. Et le jambon ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Non, pas de jambon : Laura ne mange pas de viande. On met des olives.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Gericht",
+        "options": [
+          "Nudelsalat",
+          "Ratatouille",
+          "Suppe"
+        ],
+        "answer": "Nudelsalat"
+      },
+      {
+        "label": "Nudeln vorhanden",
+        "options": [
+          "keine",
+          "zwei Packungen",
+          "eine Packung"
+        ],
+        "answer": "zwei Packungen"
+      },
+      {
+        "label": "Fehlt",
+        "options": [
+          "Nudeln",
+          "Tomaten",
+          "Käse"
+        ],
+        "answer": "Tomaten"
+      },
+      {
+        "label": "Menge Tomaten",
+        "options": [
+          "500 Gramm",
+          "1 Kilo",
+          "2 Kilo"
+        ],
+        "answer": "1 Kilo"
+      },
+      {
+        "label": "Kraut",
+        "options": [
+          "Petersilie",
+          "Basilikum",
+          "Thymian"
+        ],
+        "answer": "Basilikum"
+      },
+      {
+        "label": "Statt Schinken",
+        "options": [
+          "Käse",
+          "Thunfisch",
+          "Oliven"
+        ],
+        "answer": "Oliven"
+      }
+    ]
+  },
+  "10": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Allô Inès ? C’est Clara. J’ai une bonne nouvelle : j’ai réussi mon examen !",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Bravo ! Félicitations ! Quelle bonne nouvelle !",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Merci ! Je fais une petite fête samedi. Tu viens ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Avec plaisir ! C’est où ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Chez moi, à partir de dix-neuf heures.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Je peux apporter quelque chose ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Un dessert, si tu veux. Paul apporte les boissons.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "D’accord, je ferai une tarte aux pommes.",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Gute Nachricht",
+        "options": [
+          "neuer Job",
+          "neue Wohnung",
+          "bestandene Prüfung"
+        ],
+        "answer": "bestandene Prüfung"
+      },
+      {
+        "label": "Fest am",
+        "options": [
+          "Sonntag",
+          "Freitag",
+          "Samstag"
+        ],
+        "answer": "Samstag"
+      },
+      {
+        "label": "Ort",
+        "options": [
+          "bei Inès",
+          "bei Clara",
+          "im Restaurant"
+        ],
+        "answer": "bei Clara"
+      },
+      {
+        "label": "Beginn",
+        "options": [
+          "ab 19 Uhr",
+          "ab 17 Uhr",
+          "ab 20 Uhr"
+        ],
+        "answer": "ab 19 Uhr"
+      },
+      {
+        "label": "Inès bringt",
+        "options": [
+          "einen Nachtisch",
+          "Brot",
+          "Getränke"
+        ],
+        "answer": "einen Nachtisch"
+      },
+      {
+        "label": "Kuchen",
+        "options": [
+          "Schokoladenkuchen",
+          "Apfelkuchen",
+          "Erdbeertorte"
+        ],
+        "answer": "Apfelkuchen"
+      }
+    ]
+  },
+  "11": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Chers clients, bonjour ! Voici nos offres de la semaine.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Au rayon boucherie, le poulet est à huit euros le kilo.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Au rayon fruits, les oranges sont à deux euros cinquante le kilo.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et à la boulangerie : trois croissants pour deux euros seulement.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Excusez-moi, l’offre sur les croissants, c’est jusqu’à quand ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Jusqu’à dimanche, madame.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Et il n’y a qu’une caisse ouverte ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Non, la caisse numéro quatre ouvre maintenant.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Hähnchen pro Kilo",
+        "options": [
+          "18 €",
+          "4 €",
+          "8 €"
+        ],
+        "answer": "8 €"
+      },
+      {
+        "label": "Orangen pro Kilo",
+        "options": [
+          "2,50 €",
+          "5,20 €",
+          "2 €"
+        ],
+        "answer": "2,50 €"
+      },
+      {
+        "label": "Croissant-Angebot",
+        "options": [
+          "3 für 2 €",
+          "2 für 3 €",
+          "3 für 3 €"
+        ],
+        "answer": "3 für 2 €"
+      },
+      {
+        "label": "Angebot gilt bis",
+        "options": [
+          "Samstag",
+          "Sonntag",
+          "morgen"
+        ],
+        "answer": "Sonntag"
+      },
+      {
+        "label": "Problem der Kundin",
+        "options": [
+          "Croissants ausverkauft",
+          "nur eine Kasse offen",
+          "Preis falsch"
+        ],
+        "answer": "nur eine Kasse offen"
+      },
+      {
+        "label": "Neue Kasse",
+        "options": [
+          "Nummer 4",
+          "Nummer 3",
+          "Nummer 14"
+        ],
+        "answer": "Nummer 4"
+      }
+    ]
+  },
+  "12": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Bonjour, ici Marc Lambert. Je vous appelle pour notre rendez-vous de demain à dix heures.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Je suis désolé, mais je ne pourrai pas venir : mon fils est malade.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Est-ce qu’on peut reporter le rendez-vous à vendredi matin ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Rappelez-moi, s’il vous plaît, au 06 33 42 18 90. Merci et bonne journée.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Allô, monsieur Lambert ? Ici Sophie Roux. J’ai eu votre message.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Ce n’est pas grave. Vendredi, c’est possible à neuf heures trente.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Parfait, merci beaucoup !",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "De rien. J’espère que votre fils ira mieux. À vendredi !",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Ursprünglicher Termin",
+        "options": [
+          "morgen 9 Uhr",
+          "heute 10 Uhr",
+          "morgen 10 Uhr"
+        ],
+        "answer": "morgen 10 Uhr"
+      },
+      {
+        "label": "Grund der Absage",
+        "options": [
+          "der Sohn ist krank",
+          "er ist krank",
+          "er hat einen anderen Termin"
+        ],
+        "answer": "der Sohn ist krank"
+      },
+      {
+        "label": "Gewünschter Tag",
+        "options": [
+          "Freitagvormittag",
+          "Samstag",
+          "Donnerstag"
+        ],
+        "answer": "Freitagvormittag"
+      },
+      {
+        "label": "Neue Uhrzeit",
+        "options": [
+          "9:30 Uhr",
+          "10 Uhr",
+          "9 Uhr"
+        ],
+        "answer": "9:30 Uhr"
+      },
+      {
+        "label": "Reaktion von Frau Roux",
+        "options": [
+          "nicht schlimm",
+          "schade",
+          "unmöglich"
+        ],
+        "answer": "nicht schlimm"
+      },
+      {
+        "label": "Wünscht",
+        "options": [
+          "viel Erfolg",
+          "Besserung für den Sohn",
+          "eine gute Reise"
+        ],
+        "answer": "Besserung für den Sohn"
+      }
+    ]
   }
 };
