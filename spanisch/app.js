@@ -35,6 +35,12 @@ const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const rand=a=>a[Math.floor(Math.random()*a.length)];
 const shuffle=A1Learning.shuffle;
+// Answer positions are randomized when a task is presented, not baked into the bank.
+// Preserve the actual correct answer and any question-specific explanation.
+function randomizedChoices(task){
+  const correct=task.o[task.a],options=shuffle([...task.o]);
+  return {...task,o:options,a:options.indexOf(correct)};
+}
 const normalize=s=>String(s||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;:!?¿¡]/g,'').replace(/\s+/g,' ');
 const totalListening=()=>Object.values(D.listening).reduce((s,a)=>s+a.length,0);
 const totalReading=()=>Object.values(D.reading).reduce((s,a)=>s+a.length,0);
@@ -217,7 +223,7 @@ function renderGrammarMenu(){
   document.querySelectorAll('[data-gset]').forEach(b=>b.onclick=()=>renderGrammarIntro(b.dataset.gset));
 }
 function startGrammarSet(id){
-  const set=D.grammarSets.find(x=>x.id===id),qs=shuffle(set.questions).slice(0,10);let i=0,score=0;
+  const set=D.grammarSets.find(x=>x.id===id),qs=shuffle(set.questions).slice(0,10).map(randomizedChoices);let i=0,score=0;
   function draw(){
     if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.grammarBest[id]=Math.max(state.grammarBest[id]||0,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">Audio wird nur abgespielt, wenn es eindeutig zur spanischen Aufgabe gehört.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Noch einmal</button><button class="primary-btn" id="backGrammar">Alle Sets</button></div></section>`;document.getElementById('againGrammar').onclick=()=>startGrammarSet(id);document.getElementById('backGrammar').onclick=renderGrammarMenu;return;}
     const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backGrammar">← Grammatik</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="eyebrow">${esc(set.title)}</div><div class="quiz-q">${esc(q.q)}</div><div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div><div id="grammarFeedback"></div></section>`;
@@ -242,7 +248,7 @@ function startListeningPractice(part){
   next();
 }
 function renderListeningTask(part,examMode=false,onDone=null,forced=null,progressLabel='',timerText=''){
-  const task=forced||rand(D.listening['part'+part]);let plays=0,answered=false;const maxPlays=examMode?2:99;
+  const task=randomizedChoices(forced||rand(D.listening['part'+part]));let plays=0,answered=false;const maxPlays=examMode?2:99;
   view.innerHTML=`${timerText?`<div class="notice" style="margin-bottom:10px">⏱ ${esc(timerText)}</div>`:''}<div class="between"><button class="tiny-btn" id="backListen">← ${examMode?'Prüfung':'Hören'}</button><span class="pill">${progressLabel||'Tarea '+part}</span></div><section class="card" style="margin-top:12px"><div class="audio-panel"><button class="speak-btn large" id="playAudio">▶️</button><div><strong>Audio abspielen</strong></div><div class="play-count" id="playCount">${examMode?`0/${maxPlays} Wiedergaben`:'Training · beliebig oft'}</div></div><div class="quiz-q">${esc(task.q)}</div><div class="options">${task.o.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="hearFeedback"></div></section>`;
   document.getElementById('backListen').onclick=()=>examMode?renderExam():renderListeningMenu();
   document.getElementById('playAudio').onclick=()=>{if(plays>=maxPlays)return;plays++;speak(task.speech,true,.76);document.getElementById('playCount').textContent=examMode?`${plays}/${maxPlays} Wiedergaben`:'Training · beliebig oft';if(plays>=maxPlays)document.getElementById('playAudio').disabled=true;};
@@ -264,7 +270,7 @@ function startReadingPractice(part){
   next();
 }
 function renderReadingTask(part,onDone=null,forced=null,progressLabel='',examMode=false,timerText=''){
-  const task=forced||rand(D.reading['part'+part]);
+  const task=randomizedChoices(forced||rand(D.reading['part'+part]));
   view.innerHTML=`${timerText?`<div class="notice" style="margin-bottom:10px">⏱ ${esc(timerText)}</div>`:''}<div class="between"><button class="tiny-btn" id="backRead">← ${examMode?'Prüfung':'Lesen'}</button><span class="pill">${progressLabel||'Tarea '+part}</span></div><section class="card" style="margin-top:12px"><div class="reading-text">${esc(task.text).replace(/\n/g,'<br>')}</div><div class="quiz-q">${esc(task.q)}</div><div class="options">${task.o.map((o,i)=>`<button class="option-btn" data-o="${i}">${esc(o)}</button>`).join('')}</div><div id="readFeedback"></div></section>`;
   document.getElementById('backRead').onclick=()=>examMode?renderExam():renderReadingMenu;
   document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{const chosen=+btn.dataset.o,ok=chosen===task.a;if(ok){if(!state.masteredReading.includes(task.id)){state.masteredReading.push(task.id);save();}}document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===task.a)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('readFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Richtig':'✗ Richtige Antwort: '+esc(task.o[task.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextRead">${onDone?'Weiter':'Neue Aufgabe'}</button>`;window.A1AnswerFeedback?.mount(document.querySelector('#readFeedback .feedback'),{text:task.audio||task.o[task.a],lang:'es'});document.getElementById('nextRead').onclick=()=>onDone?onDone(ok):renderReadingTask(part);});
