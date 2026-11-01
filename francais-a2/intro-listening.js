@@ -143,5 +143,53 @@ window.FR_A1_INTRO_LISTENING = {
       "Trente pour cent d’entre eux le lisent en ligne.",
       "Treize pour cent d’entre eux le lisent en ligne."
     ]
+  },
+  "19": {
+    "audio": "Colmar est la ville la plus jolie d’Alsace.",
+    "o": [
+      "Colmar est la ville la plus jolie d’Alsace.",
+      "Colmar est la ville la plus jolie de France.",
+      "Colmar est la ville la moins jolie d’Alsace."
+    ]
+  },
+  "20": {
+    "audio": "On pourrait faire une sortie à la campagne.",
+    "o": [
+      "On pourrait faire une sortie à la campagne.",
+      "On pourrait faire une sortie à la montagne.",
+      "On pourra faire une sortie à la campagne."
+    ]
+  },
+  "21": {
+    "audio": "Notez cinq mots nouveaux par jour.",
+    "o": [
+      "Notez quinze mots nouveaux par jour.",
+      "Notez cinq mots nouveaux par jour.",
+      "Notez cinq phrases nouvelles par jour."
+    ]
+  },
+  "22": {
+    "audio": "Est-ce que vous pourriez chercher une école de langues ?",
+    "o": [
+      "Est-ce que vous pourriez chercher une école de langues ?",
+      "Est-ce que vous pouvez chercher une école de langues ?",
+      "Est-ce que vous pourriez chercher une école de danse ?"
+    ]
+  },
+  "23": {
+    "audio": "Paris ? J’y vais demain.",
+    "o": [
+      "Paris ? J’en viens demain.",
+      "Paris ? J’y vais dimanche.",
+      "Paris ? J’y vais demain."
+    ]
+  },
+  "24": {
+    "audio": "Vous entendrez chaque texte deux fois.",
+    "o": [
+      "Vous lirez chaque texte deux fois.",
+      "Vous entendrez chaque texte une fois.",
+      "Vous entendrez chaque texte deux fois."
+    ]
   }
 };

@@ -325,7 +325,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       2
     ],
-    "dePlural": "die Buchstaben"
+    "dePlural": "die Buchstaben",
+    "frA2Lessons": [
+      22
+    ]
   },
   {
     "fr": "le prénom",
@@ -479,6 +482,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       2
+    ],
+    "frA2Lessons": [
+      24
     ]
   },
   {
@@ -1921,6 +1927,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       7
+    ],
+    "frA2Lessons": [
+      22
     ]
   },
   {
@@ -2031,6 +2040,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       7
+    ],
+    "frA2Lessons": [
+      22
     ]
   },
   {
@@ -2592,6 +2604,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      23
     ]
   },
   {
@@ -2602,6 +2617,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      23
     ]
   },
   {
@@ -2625,6 +2643,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       9
+    ],
+    "frA2Lessons": [
+      23
     ]
   },
   {
@@ -2921,7 +2942,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       11
     ],
-    "dePlural": "die Antworten"
+    "dePlural": "die Antworten",
+    "frA2Lessons": [
+      22
+    ]
   },
   {
     "fr": "le livre",
@@ -3026,6 +3050,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       11
+    ],
+    "frA2Lessons": [
+      24
     ]
   },
   {
@@ -3126,6 +3153,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      23
     ]
   },
   {
@@ -3136,6 +3166,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      23
     ]
   },
   {
@@ -3156,6 +3189,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       12
+    ],
+    "frA2Lessons": [
+      23
     ]
   },
   {
@@ -3817,6 +3853,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       12,
       21
+    ],
+    "frA2Lessons": [
+      20
     ]
   },
   {
@@ -3861,6 +3900,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       12,
       21
+    ],
+    "frA2Lessons": [
+      20
     ]
   },
   {
@@ -4021,7 +4063,8 @@ window.A1_VOCABULARY_CONTENT = [
       21
     ],
     "frA2Lessons": [
-      10
+      10,
+      23
     ]
   },
   {
@@ -4825,7 +4868,8 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "dePlural": "die Ausgänge",
     "frA2Lessons": [
-      15
+      15,
+      20
     ]
   },
   {
@@ -4912,7 +4956,10 @@ window.A1_VOCABULARY_CONTENT = [
       18,
       24
     ],
-    "dePlural": "die Prüfungen"
+    "dePlural": "die Prüfungen",
+    "frA2Lessons": [
+      24
+    ]
   },
   {
     "fr": "la consigne",
@@ -4926,7 +4973,10 @@ window.A1_VOCABULARY_CONTENT = [
       18,
       24
     ],
-    "dePlural": "die Aufgabenstellungen"
+    "dePlural": "die Aufgabenstellungen",
+    "frA2Lessons": [
+      24
+    ]
   },
   {
     "fr": "cocher",
@@ -5975,7 +6025,8 @@ window.A1_VOCABULARY_CONTENT = [
       24
     ],
     "frA2Lessons": [
-      6
+      6,
+      19
     ]
   },
   {
@@ -7371,6 +7422,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       12,
       21
+    ],
+    "frA2Lessons": [
+      20
     ]
   },
   {
@@ -8141,7 +8195,8 @@ window.A1_VOCABULARY_CONTENT = [
     "frLessons": [],
     "deLessons": [],
     "frA2Lessons": [
-      7
+      7,
+      20
     ]
   },
   {
@@ -8899,6 +8954,457 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [],
     "frA2Lessons": [
       18
+    ]
+  },
+  {
+    "fr": "la région",
+    "de": "die Region",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "le site",
+    "de": "die Sehenswürdigkeit, der Ort",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "le touriste / la touriste",
+    "de": "der Tourist / die Touristin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "la vue",
+    "de": "die Aussicht",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "le coucher de soleil",
+    "de": "der Sonnenuntergang",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "la falaise",
+    "de": "die Klippe",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "la rivière",
+    "de": "der Fluss",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "se baigner",
+    "de": "baden",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "pique-niquer",
+    "de": "picknicken",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "l’escalade (f.)",
+    "de": "das Klettern",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "célèbre",
+    "de": "berühmt",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      19
+    ]
+  },
+  {
+    "fr": "le zoo",
+    "de": "der Zoo",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "faire les magasins",
+    "de": "shoppen gehen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "plutôt que",
+    "de": "lieber als",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "l’idée (f.)",
+    "de": "die Idee",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "se retrouver",
+    "de": "sich treffen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "proposer",
+    "de": "vorschlagen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "devant",
+    "de": "vor",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      20
+    ]
+  },
+  {
+    "fr": "le conseil",
+    "de": "der Rat, der Tipp",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "noter",
+    "de": "notieren",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "traduire",
+    "de": "übersetzen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "ressembler à",
+    "de": "ähneln",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "recommander",
+    "de": "empfehlen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "la faute",
+    "de": "der Fehler",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "la peur",
+    "de": "die Angst",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "l’école de langues (f.)",
+    "de": "die Sprachschule",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21,
+      22
+    ]
+  },
+  {
+    "fr": "le cours intensif",
+    "de": "der Intensivkurs",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "s’inscrire",
+    "de": "sich anmelden",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "durer",
+    "de": "dauern",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "la famille d’accueil",
+    "de": "die Gastfamilie",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      21
+    ]
+  },
+  {
+    "fr": "l’aide (f.)",
+    "de": "die Hilfe",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "loger",
+    "de": "unterbringen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "les repas (m.)",
+    "de": "die Mahlzeiten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "la visite",
+    "de": "die Besichtigung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "d’avance",
+    "de": "im Voraus",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "avoir hâte de",
+    "de": "sich freuen auf",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "embrasser",
+    "de": "umarmen, küssen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      22
+    ]
+  },
+  {
+    "fr": "quelquefois",
+    "de": "manchmal",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      23
+    ]
+  },
+  {
+    "fr": "contre",
+    "de": "gegen, an",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      23
+    ]
+  },
+  {
+    "fr": "chacun / chacune",
+    "de": "jeder / jede",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      23
+    ]
+  },
+  {
+    "fr": "la librairie",
+    "de": "die Buchhandlung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      23
+    ]
+  },
+  {
+    "fr": "le mur",
+    "de": "die Wand",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      23
+    ]
+  },
+  {
+    "fr": "l’épreuve (f.)",
+    "de": "der Prüfungsteil",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "vrai / vraie",
+    "de": "richtig, wahr",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "la feuille de réponse",
+    "de": "der Antwortbogen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "réussir",
+    "de": "bestehen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "le partenaire / la partenaire",
+    "de": "der Partner / die Partnerin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "se mettre d’accord",
+    "de": "sich einigen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "l’écoute (f.)",
+    "de": "das Hören",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
+    ]
+  },
+  {
+    "fr": "la lecture",
+    "de": "das Lesen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      24
     ]
   }
 ];

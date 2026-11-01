@@ -827,5 +827,281 @@ window.FR_A2_FOUNDATIONS = {
         "law"
       ]
     ]
+  },
+  "19": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "le / la plus …",
+        "der / die / das …ste",
+        "the most …"
+      ],
+      [
+        "le / la moins …",
+        "am wenigsten …",
+        "the least …"
+      ],
+      [
+        "le meilleur / la meilleure",
+        "der / die / das beste",
+        "the best"
+      ],
+      [
+        "l’un des …",
+        "einer / eines der …",
+        "one of the …"
+      ],
+      [
+        "on peut + Infinitiv",
+        "man kann",
+        "you can"
+      ],
+      [
+        "le coucher de soleil",
+        "der Sonnenuntergang",
+        "sunset"
+      ],
+      [
+        "au bord de",
+        "am Ufer / Rand von",
+        "on the edge of"
+      ],
+      [
+        "l’escalade (f.)",
+        "das Klettern",
+        "climbing"
+      ]
+    ]
+  },
+  "20": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "on pourrait",
+        "wir könnten",
+        "we could"
+      ],
+      [
+        "j’aimerais bien",
+        "ich würde gern",
+        "I would like"
+      ],
+      [
+        "préférer … plutôt que",
+        "lieber … als",
+        "to prefer … rather than"
+      ],
+      [
+        "ça ne me dit rien",
+        "dazu habe ich keine Lust",
+        "I don’t fancy it"
+      ],
+      [
+        "pourquoi pas ?",
+        "warum nicht?",
+        "why not?"
+      ],
+      [
+        "se retrouver",
+        "sich treffen",
+        "to meet up"
+      ],
+      [
+        "la sortie",
+        "der Ausflug",
+        "outing"
+      ],
+      [
+        "faire les magasins",
+        "shoppen gehen",
+        "to go shopping"
+      ]
+    ]
+  },
+  "21": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "notez",
+        "notieren Sie",
+        "write down"
+      ],
+      [
+        "ne traduisez pas",
+        "übersetzen Sie nicht",
+        "don’t translate"
+      ],
+      [
+        "soyez / ayez",
+        "seien Sie / haben Sie",
+        "be / have"
+      ],
+      [
+        "recommander de",
+        "empfehlen zu",
+        "to recommend"
+      ],
+      [
+        "suivre un cours",
+        "einen Kurs besuchen",
+        "to take a course"
+      ],
+      [
+        "s’inscrire",
+        "sich anmelden",
+        "to enrol"
+      ],
+      [
+        "la famille d’accueil",
+        "die Gastfamilie",
+        "host family"
+      ],
+      [
+        "la faute",
+        "der Fehler",
+        "mistake"
+      ]
+    ]
+  },
+  "22": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "Cher / Chère / Chers …,",
+        "Lieber / Liebe …,",
+        "Dear …,"
+      ],
+      [
+        "je vous écris parce que",
+        "ich schreibe euch, weil",
+        "I’m writing because"
+      ],
+      [
+        "est-ce que vous pourriez … ?",
+        "könntet ihr …?",
+        "could you …?"
+      ],
+      [
+        "je voudrais",
+        "ich möchte",
+        "I would like"
+      ],
+      [
+        "merci d’avance",
+        "danke im Voraus",
+        "thanks in advance"
+      ],
+      [
+        "j’ai hâte de",
+        "ich freue mich auf",
+        "I can’t wait to"
+      ],
+      [
+        "je vous embrasse",
+        "liebe Grüße",
+        "love"
+      ],
+      [
+        "la formule",
+        "die Formel",
+        "formula"
+      ]
+    ]
+  },
+  "23": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "le / la / les",
+        "ihn / sie / sie",
+        "him / her / them"
+      ],
+      [
+        "lui / leur",
+        "ihm, ihr / ihnen",
+        "to him, her / them"
+      ],
+      [
+        "y",
+        "dort, dorthin",
+        "there"
+      ],
+      [
+        "en",
+        "davon",
+        "some, of it"
+      ],
+      [
+        "près de",
+        "in der Nähe von",
+        "near"
+      ],
+      [
+        "à côté de",
+        "neben",
+        "next to"
+      ],
+      [
+        "contre",
+        "an, gegen",
+        "against"
+      ],
+      [
+        "quelquefois",
+        "manchmal",
+        "sometimes"
+      ]
+    ]
+  },
+  "24": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "les éléments langagiers",
+        "die Sprachbausteine",
+        "language elements"
+      ],
+      [
+        "la compréhension orale",
+        "das Hörverstehen",
+        "listening comprehension"
+      ],
+      [
+        "la compréhension écrite",
+        "das Leseverstehen",
+        "reading comprehension"
+      ],
+      [
+        "l’expression écrite",
+        "der schriftliche Ausdruck",
+        "written production"
+      ],
+      [
+        "vrai / faux",
+        "richtig / falsch",
+        "true / false"
+      ],
+      [
+        "la feuille de réponse",
+        "der Antwortbogen",
+        "answer sheet"
+      ],
+      [
+        "se mettre d’accord",
+        "sich einigen",
+        "to agree"
+      ],
+      [
+        "réussir",
+        "bestehen",
+        "to pass"
+      ]
+    ]
   }
 };

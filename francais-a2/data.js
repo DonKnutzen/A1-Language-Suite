@@ -3505,15 +3505,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 19,
-      "status": "planned",
       "title": "Reiseziele in Frankreich",
       "topic": "Voyager en France",
       "skills": [
         "Lesen",
         "Sprechen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Colmar est la ville la plus jolie d’Alsace.",
+          "Colmar ist die hübscheste Stadt im Elsass."
+        ],
+        [
+          "C’est l’un des plus vieux villages de la région.",
+          "Das ist eines der ältesten Dörfer der Region."
+        ],
+        [
+          "Le Mont-Saint-Michel est le site le plus visité de Normandie.",
+          "Der Mont-Saint-Michel ist der meistbesuchte Ort der Normandie."
+        ],
+        [
+          "On peut faire du canoë sur la rivière.",
+          "Man kann auf dem Fluss Kanu fahren."
+        ],
+        [
+          "La vue depuis la tour est magnifique.",
+          "Die Aussicht vom Turm ist großartig."
+        ],
+        [
+          "Il faut découvrir la ville à pied.",
+          "Man muss die Stadt zu Fuß entdecken."
+        ],
+        [
+          "L’été, il y a beaucoup de touristes.",
+          "Im Sommer gibt es viele Touristen."
+        ],
+        [
+          "C’est le meilleur restaurant du quartier.",
+          "Das ist das beste Restaurant im Viertel."
+        ],
+        [
+          "On peut pique-niquer au bord du lac.",
+          "Man kann am Seeufer picknicken."
+        ],
+        [
+          "Cette église est la moins connue de la ville.",
+          "Diese Kirche ist die am wenigsten bekannte der Stadt."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Colmar est la ville la ___ jolie d’Alsace.",
+          "o": [
+            "très",
+            "plus",
+            "mieux"
+          ],
+          "a": 1,
+          "audio": "Colmar est la ville la plus jolie d’Alsace.",
+          "explanation": "Superlativ: le / la / les plus + Adjektiv."
+        },
+        {
+          "q": "C’est la ville la plus jolie ___ la région.",
+          "o": [
+            "dans",
+            "de",
+            "que"
+          ],
+          "a": 1,
+          "audio": "Colmar est la ville la plus jolie d’Alsace.",
+          "explanation": "Nach dem Superlativ steht de für den Bereich: de la région, d’Alsace."
+        },
+        {
+          "q": "Was bedeutet „l’un des plus vieux villages“?",
+          "o": [
+            "ein sehr altes Dorf",
+            "das älteste Dorf",
+            "eines der ältesten Dörfer"
+          ],
+          "a": 2,
+          "audio": "C’est l’un des plus vieux villages de la région.",
+          "explanation": "L’un des + Superlativ = einer / eines der …"
+        },
+        {
+          "q": "C’est le ___ restaurant du quartier. (gut, Superlativ)",
+          "o": [
+            "mieux",
+            "meilleur",
+            "plus bon"
+          ],
+          "a": 1,
+          "audio": "C’est le meilleur restaurant du quartier.",
+          "explanation": "Bon → le meilleur."
+        },
+        {
+          "q": "On peut ___ du canoë.",
+          "o": [
+            "jouer",
+            "aller",
+            "faire"
+          ],
+          "a": 2,
+          "audio": "On peut faire du canoë sur la rivière.",
+          "explanation": "Sport treiben: faire du canoë, faire de la randonnée."
+        },
+        {
+          "q": "Was bedeutet „au bord du lac“?",
+          "o": [
+            "hinter dem See",
+            "mitten im See",
+            "am Seeufer"
+          ],
+          "a": 2,
+          "audio": "On peut pique-niquer au bord du lac.",
+          "explanation": "Au bord de = am Rand / Ufer von."
+        },
+        {
+          "q": "Was bedeutet „la moins connue“?",
+          "o": [
+            "die neueste",
+            "die am wenigsten bekannte",
+            "die bekannteste"
+          ],
+          "a": 1,
+          "audio": "Cette église est la moins connue de la ville.",
+          "explanation": "Le / la moins + Adjektiv = am wenigsten …"
+        },
+        {
+          "q": "Was bedeutet „Il faut découvrir la ville à pied“?",
+          "o": [
+            "Man findet die Stadt zu Fuß nicht.",
+            "Man muss die Stadt zu Fuß entdecken.",
+            "Man darf nicht zu Fuß in die Stadt."
+          ],
+          "a": 1,
+          "audio": "Il faut découvrir la ville à pied.",
+          "explanation": "Il faut + Infinitiv = man muss."
+        },
+        {
+          "q": "Le Mont-Saint-Michel est le site le plus ___ de Normandie.",
+          "o": [
+            "visités",
+            "visité",
+            "visite"
+          ],
+          "a": 1,
+          "audio": "Le Mont-Saint-Michel est le site le plus visité de Normandie.",
+          "explanation": "Le site (m. Sg.) → visité."
+        },
+        {
+          "q": "Les plages de Bretagne sont ___ plus belles de France.",
+          "o": [
+            "les",
+            "la",
+            "des"
+          ],
+          "a": 0,
+          "audio": "Les plages de Bretagne sont les plus belles de France.",
+          "explanation": "Plural → les plus."
+        }
+      ],
       "canDo": [
         "Ich kann einen Reisetext überfliegen, die passende Information für einen Wunsch finden und einen Ort beschreiben."
       ],
@@ -3522,29 +3673,191 @@ window.FR_A1_DATA = {
         "explanation": "le / la / les plus + Adjektiv: la ville la plus spectaculaire, l’un des plus vieux villages."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "la plus jolie",
+        "explanation": "Vor einem Konsonanten spricht man plus [ply]; vor Vokal bindet man: les plus‿anciens [plyzɑ̃sjɛ̃]. Le meilleur [məjœʁ] – das ll wird wie j gesprochen."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu connais l’Alsace ?",
+        "Oui ! Colmar est la ville la plus jolie de la région.",
+        "Qu’est-ce qu’on peut faire là-bas ?",
+        "On peut visiter la vieille ville et faire du vélo dans les vignes.",
+        "Il y a beaucoup de touristes ?",
+        "L’été, oui. Il faut y aller au printemps."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Beschreibe einen Ort, den du besonders magst, mit zwei Superlativen, und sage, was man dort machen kann.",
+        "writing": "Schreibe eine kurze Empfehlung für Touristen über deine Region (Sehenswürdigkeit, Aktivität, beste Reisezeit)."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Rezeption",
+        "Mündliche Produktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension écrite, Partie 3 : informations touristiques"
       ]
     },
     {
       "id": 20,
-      "status": "planned",
       "title": "Etwas gemeinsam unternehmen",
       "topic": "Se mettre d’accord",
       "skills": [
         "Sprechen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Qu’est-ce qu’on fait samedi prochain ?",
+          "Was machen wir nächsten Samstag?"
+        ],
+        [
+          "On pourrait faire une sortie à la campagne.",
+          "Wir könnten einen Ausflug aufs Land machen."
+        ],
+        [
+          "J’aimerais bien aller au zoo.",
+          "Ich würde gern in den Zoo gehen."
+        ],
+        [
+          "Je préfère faire du vélo plutôt que faire les magasins.",
+          "Ich fahre lieber Rad, als einkaufen zu gehen."
+        ],
+        [
+          "Pourquoi pas ? C’est une bonne idée.",
+          "Warum nicht? Das ist eine gute Idee."
+        ],
+        [
+          "Non, ça ne me dit rien.",
+          "Nein, dazu habe ich keine Lust."
+        ],
+        [
+          "Parce qu’il fera beau, on peut rester dehors.",
+          "Weil es schön wird, können wir draußen bleiben."
+        ],
+        [
+          "Le matin, on va courir, et le soir, on va au concert.",
+          "Morgens gehen wir laufen, abends ins Konzert."
+        ],
+        [
+          "On se retrouve à quelle heure ?",
+          "Um wie viel Uhr treffen wir uns?"
+        ],
+        [
+          "D’accord, on fait comme ça !",
+          "Einverstanden, so machen wir es!"
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Wie machst du einen höflichen Vorschlag?",
+          "o": [
+            "On pourrait aller au zoo.",
+            "On a pu aller au zoo.",
+            "On peut allé au zoo."
+          ],
+          "a": 0,
+          "audio": "On pourrait faire une sortie à la campagne.",
+          "explanation": "On pourrait + Infinitiv (Conditionnel) = wir könnten …"
+        },
+        {
+          "q": "Je préfère faire du vélo ___ faire les magasins.",
+          "o": [
+            "plutôt que",
+            "plus que",
+            "au lieu"
+          ],
+          "a": 0,
+          "audio": "Je préfère faire du vélo plutôt que faire les magasins.",
+          "explanation": "Préférer … plutôt que … = lieber … als …"
+        },
+        {
+          "q": "Was bedeutet „Ça ne me dit rien“?",
+          "o": [
+            "Das sagt mir nichts Neues.",
+            "Dazu habe ich keine Lust.",
+            "Ich sage nichts."
+          ],
+          "a": 1,
+          "audio": "Non, ça ne me dit rien.",
+          "explanation": "Ça ne me dit rien = das reizt mich nicht."
+        },
+        {
+          "q": "J’___ bien aller au concert. (aimer, Conditionnel)",
+          "o": [
+            "aimerais",
+            "aime",
+            "aimerai"
+          ],
+          "a": 0,
+          "audio": "J’aimerais bien aller au concert.",
+          "explanation": "Conditionnel: Futurstamm + Imparfait-Endung: j’aimerais."
+        },
+        {
+          "q": "Wie stimmst du einem Vorschlag zu?",
+          "o": [
+            "Pourquoi pas ? C’est une bonne idée.",
+            "Pourquoi ? C’est une mauvaise idée.",
+            "Parce que non."
+          ],
+          "a": 0,
+          "audio": "Pourquoi pas ? C’est une bonne idée.",
+          "explanation": "Pourquoi pas ? = warum nicht?"
+        },
+        {
+          "q": "Was bedeutet „faire une sortie à la campagne“?",
+          "o": [
+            "einen Ausflug aufs Land machen",
+            "vom Land wegziehen",
+            "eine Kampagne starten"
+          ],
+          "a": 0,
+          "audio": "On pourrait faire une sortie à la campagne.",
+          "explanation": "Une sortie = ein Ausflug; la campagne = das Land."
+        },
+        {
+          "q": "On ___ retrouve à quelle heure ?",
+          "o": [
+            "nous",
+            "on",
+            "se"
+          ],
+          "a": 2,
+          "audio": "On se retrouve à quelle heure ?",
+          "explanation": "Se retrouver = sich treffen; mit on: on se retrouve."
+        },
+        {
+          "q": "Was bedeutet „faire les magasins“?",
+          "o": [
+            "Geschäfte bauen",
+            "im Laden arbeiten",
+            "einen Einkaufsbummel machen"
+          ],
+          "a": 2,
+          "audio": "…plutôt que faire les magasins.",
+          "explanation": "Faire les magasins = shoppen gehen."
+        },
+        {
+          "q": "Welche Begründung passt? « On va au parc ___ il fera beau. »",
+          "o": [
+            "parce qu’",
+            "donc",
+            "mais"
+          ],
+          "a": 0,
+          "audio": "On va au parc parce qu’il fera beau.",
+          "explanation": "Parce que + Grund; vor il wird es zu parce qu’."
+        },
+        {
+          "q": "Was bedeutet „On fait comme ça“?",
+          "o": [
+            "Wir machen es anders.",
+            "Wie machen wir das?",
+            "So machen wir es."
+          ],
+          "a": 2,
+          "audio": "D’accord, on fait comme ça !",
+          "explanation": "Comme ça = so."
+        }
+      ],
       "canDo": [
         "Ich kann Vorschläge machen, sie begründen, ablehnen und mich mit jemandem auf zwei Aktivitäten und eine Uhrzeit einigen."
       ],
@@ -3553,30 +3866,192 @@ window.FR_A1_DATA = {
         "explanation": "On pourrait + Infinitiv; je préfère … plutôt que …; parce que."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "on pourrait / on pourra",
+        "explanation": "On pourrait [puʁɛ] (Vorschlag) endet offen, on pourra [puʁa] (Futur) mit a. Vorschläge sprichst du mit steigender Melodie wie eine Frage: On pourrait aller au zoo ?"
       },
-      "dialogue": [],
+      "dialogue": [
+        "Qu’est-ce qu’on fait samedi ?",
+        "On pourrait aller au zoo ?",
+        "Bof, je préfère faire du vélo plutôt qu’aller au zoo. Il fera beau.",
+        "D’accord. Et le soir, on va au concert ?",
+        "Pourquoi pas ! On se retrouve à quelle heure ?",
+        "À dix heures devant chez moi. On fait comme ça !"
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Plane mit deinem Partner einen gemeinsamen Samstag: macht Vorschläge, begründet, lehnt ab und einigt euch auf zwei Aktivitäten mit Uhrzeit.",
+        "writing": "Schreibe eine Nachricht mit zwei Vorschlägen für das Wochenende, jeweils mit Begründung."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Interaktion",
+        "Mündliche Produktion",
+        "Schriftliche Interaktion"
+      ],
       "telc": [
         "Épreuves orales, Partie 3 : Se mettre d’accord"
       ]
     },
     {
       "id": 21,
-      "status": "planned",
       "title": "Französisch lernen",
       "topic": "Apprendre le français",
       "skills": [
         "Lesen",
         "Schreiben"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Notez cinq mots nouveaux par jour.",
+          "Schreiben Sie sich jeden Tag fünf neue Wörter auf."
+        ],
+        [
+          "Cherchez les mots qui ressemblent à votre langue.",
+          "Suchen Sie die Wörter, die Ihrer Sprache ähneln."
+        ],
+        [
+          "Il faut parler le plus souvent possible.",
+          "Man muss so oft wie möglich sprechen."
+        ],
+        [
+          "On vous recommande de regarder des films en version originale.",
+          "Man empfiehlt Ihnen, Filme in Originalfassung zu sehen."
+        ],
+        [
+          "Écrivez votre liste de courses en français.",
+          "Schreiben Sie Ihre Einkaufsliste auf Französisch."
+        ],
+        [
+          "Je voudrais suivre un cours intensif à Montpellier.",
+          "Ich möchte einen Intensivkurs in Montpellier besuchen."
+        ],
+        [
+          "Le cours dure quatre semaines.",
+          "Der Kurs dauert vier Wochen."
+        ],
+        [
+          "On peut habiter dans une famille d’accueil.",
+          "Man kann bei einer Gastfamilie wohnen."
+        ],
+        [
+          "N’ayez pas peur de faire des fautes.",
+          "Haben Sie keine Angst, Fehler zu machen."
+        ],
+        [
+          "Ne traduisez pas chaque mot.",
+          "Übersetzen Sie nicht jedes Wort."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "___ cinq mots nouveaux par jour. (noter, vous, Imperativ)",
+          "o": [
+            "Noter",
+            "Notez",
+            "Notons"
+          ],
+          "a": 1,
+          "audio": "Notez cinq mots nouveaux par jour.",
+          "explanation": "Höflicher Imperativ: vous-Form ohne vous: vous notez → Notez."
+        },
+        {
+          "q": "Was bedeutet „Cherchez les mots qui ressemblent à votre langue“?",
+          "o": [
+            "Suchen Sie Wörter, die Sie nicht kennen.",
+            "Suchen Sie Wörter, die Ihrer Sprache ähneln.",
+            "Übersetzen Sie alle Wörter."
+          ],
+          "a": 1,
+          "audio": "Cherchez les mots qui ressemblent à votre langue.",
+          "explanation": "Ressembler à = ähneln."
+        },
+        {
+          "q": "On vous recommande ___ regarder des films.",
+          "o": [
+            "de",
+            "pour",
+            "à"
+          ],
+          "a": 0,
+          "audio": "On vous recommande de regarder des films en version originale.",
+          "explanation": "Recommander de + Infinitiv."
+        },
+        {
+          "q": "Was bedeutet „en version originale“?",
+          "o": [
+            "mit Untertiteln auf Deutsch",
+            "in Originalfassung",
+            "in einer neuen Version"
+          ],
+          "a": 1,
+          "audio": "…des films en version originale.",
+          "explanation": "La version originale (VO) = Originalfassung."
+        },
+        {
+          "q": "N’___ pas peur de faire des fautes. (avoir, Imperativ)",
+          "o": [
+            "ayons",
+            "ayez",
+            "avez"
+          ],
+          "a": 1,
+          "audio": "N’ayez pas peur de faire des fautes.",
+          "explanation": "Avoir hat einen unregelmäßigen Imperativ: aie, ayons, ayez."
+        },
+        {
+          "q": "Ne ___ pas chaque mot. (traduire, Imperativ)",
+          "o": [
+            "traduisez",
+            "traduis",
+            "traduire"
+          ],
+          "a": 0,
+          "audio": "Ne traduisez pas chaque mot.",
+          "explanation": "Verneinter Imperativ: Ne + Verb + pas."
+        },
+        {
+          "q": "Il faut parler le plus souvent ___ .",
+          "o": [
+            "possible",
+            "possibles",
+            "pouvoir"
+          ],
+          "a": 0,
+          "audio": "Il faut parler le plus souvent possible.",
+          "explanation": "Le plus souvent possible = so oft wie möglich."
+        },
+        {
+          "q": "Was ist „une famille d’accueil“?",
+          "o": [
+            "eine Gastfamilie",
+            "eine große Familie",
+            "ein Familienhotel"
+          ],
+          "a": 0,
+          "audio": "On peut habiter dans une famille d’accueil.",
+          "explanation": "Accueillir = empfangen, aufnehmen."
+        },
+        {
+          "q": "Le cours ___ quatre semaines.",
+          "o": [
+            "dure",
+            "fait durer",
+            "est durée"
+          ],
+          "a": 0,
+          "audio": "Le cours dure quatre semaines.",
+          "explanation": "Durer = dauern."
+        },
+        {
+          "q": "Je voudrais ___ un cours intensif.",
+          "o": [
+            "prendre part",
+            "suivre",
+            "faire partie"
+          ],
+          "a": 1,
+          "audio": "Je voudrais suivre un cours intensif à Montpellier.",
+          "explanation": "Suivre un cours = einen Kurs besuchen."
+        }
+      ],
       "canDo": [
         "Ich kann Lerntipps und Informationen zu einem Sprachkurs verstehen und Ratschläge geben."
       ],
@@ -3585,15 +4060,26 @@ window.FR_A1_DATA = {
         "explanation": "Imperativ der Höflichkeitsform (écrivez, notez); il faut + Infinitiv; on vous recommande de + Infinitiv."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "notez / notes",
+        "explanation": "Notez [nɔte] endet auf [e]; das z ist stumm. Bei ayez [eje] hörst du zwei Silben. Ratschläge sprichst du freundlich mit fallender Melodie am Satzende."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu as des conseils pour apprendre le français ?",
+        "Oui : notez chaque jour quelques mots nouveaux.",
+        "Et pour parler ?",
+        "Il faut parler le plus souvent possible. N’ayez pas peur des fautes !",
+        "Je voudrais aussi suivre un cours en France.",
+        "Bonne idée ! Et habitez dans une famille d’accueil, c’est le mieux."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Gib einem Freund drei Tipps zum Französischlernen und erzähle, welcher Tipp dir am meisten hilft.",
+        "writing": "Schreibe eine Liste mit vier Lerntipps im höflichen Imperativ, einer davon verneint."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Rezeption",
+        "Mündliche Interaktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension écrite, Partie 2 : conseils",
         "Expression écrite : cours de français en France"
@@ -3601,14 +4087,165 @@ window.FR_A1_DATA = {
     },
     {
       "id": 22,
-      "status": "planned",
       "title": "Einen persönlichen Brief schreiben",
       "topic": "Écrire une lettre",
       "skills": [
         "Schreiben"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Chers amis,",
+          "Liebe Freunde,"
+        ],
+        [
+          "J’espère que vous allez bien.",
+          "Ich hoffe, es geht euch gut."
+        ],
+        [
+          "Je vous écris parce que j’ai besoin de votre aide.",
+          "Ich schreibe euch, weil ich eure Hilfe brauche."
+        ],
+        [
+          "Je voudrais suivre un cours de français à Paris.",
+          "Ich möchte einen Französischkurs in Paris besuchen."
+        ],
+        [
+          "Est-ce que vous pourriez chercher une école de langues ?",
+          "Könntet ihr eine Sprachschule suchen?"
+        ],
+        [
+          "Vous connaissez une famille où je pourrais habiter ?",
+          "Kennt ihr eine Familie, bei der ich wohnen könnte?"
+        ],
+        [
+          "Le cours serait du 3 au 28 juillet.",
+          "Der Kurs wäre vom 3. bis 28. Juli."
+        ],
+        [
+          "Merci d’avance pour votre réponse.",
+          "Danke im Voraus für eure Antwort."
+        ],
+        [
+          "J’ai hâte de vous revoir.",
+          "Ich freue mich darauf, euch wiederzusehen."
+        ],
+        [
+          "Je vous embrasse,",
+          "Liebe Grüße,"
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Wie beginnst du einen Brief an mehrere Freunde?",
+          "o": [
+            "Mesdames, Messieurs,",
+            "Chers amis,",
+            "Cher amis,"
+          ],
+          "a": 1,
+          "audio": "Chers amis,",
+          "explanation": "Cher richtet sich nach den Empfängern: chers (m. Pl. / gemischt)."
+        },
+        {
+          "q": "Est-ce que vous ___ chercher une école ? (könntet)",
+          "o": [
+            "pourriez",
+            "pourrez",
+            "pouvez"
+          ],
+          "a": 0,
+          "audio": "Est-ce que vous pourriez chercher une école de langues ?",
+          "explanation": "Conditionnel von pouvoir = höfliche Bitte: vous pourriez."
+        },
+        {
+          "q": "Was bedeutet „Merci d’avance“?",
+          "o": [
+            "Danke für früher",
+            "Danke vielmals",
+            "Danke im Voraus"
+          ],
+          "a": 2,
+          "audio": "Merci d’avance pour votre réponse.",
+          "explanation": "D’avance = im Voraus."
+        },
+        {
+          "q": "Welche Grußformel passt an Freunde?",
+          "o": [
+            "Salutations commerciales,",
+            "Veuillez agréer mes salutations distinguées.",
+            "Je vous embrasse,"
+          ],
+          "a": 2,
+          "audio": "Je vous embrasse,",
+          "explanation": "Je t’embrasse / je vous embrasse, bises = herzliche Grüße an Freunde."
+        },
+        {
+          "q": "Je vous écris ___ j’ai besoin de votre aide.",
+          "o": [
+            "parce que",
+            "pour",
+            "donc"
+          ],
+          "a": 0,
+          "audio": "Je vous écris parce que j’ai besoin de votre aide.",
+          "explanation": "Parce que nennt den Grund des Schreibens."
+        },
+        {
+          "q": "Was bedeutet „J’ai hâte de vous revoir“?",
+          "o": [
+            "Ich freue mich darauf, euch wiederzusehen.",
+            "Ich habe keine Zeit, euch zu sehen.",
+            "Ich habe euch eilig gesehen."
+          ],
+          "a": 0,
+          "audio": "J’ai hâte de vous revoir.",
+          "explanation": "Avoir hâte de = es kaum erwarten können."
+        },
+        {
+          "q": "Le cours ___ du 3 au 28 juillet. (wäre)",
+          "o": [
+            "serait",
+            "sera",
+            "était"
+          ],
+          "a": 0,
+          "audio": "Le cours serait du 3 au 28 juillet.",
+          "explanation": "Conditionnel von être: serait."
+        },
+        {
+          "q": "Vous connaissez une famille ___ je pourrais habiter ?",
+          "o": [
+            "que",
+            "où",
+            "qui"
+          ],
+          "a": 1,
+          "audio": "Vous connaissez une famille où je pourrais habiter ?",
+          "explanation": "Où als Relativpronomen für einen Ort."
+        },
+        {
+          "q": "Je voudrais ___ un cours de français.",
+          "o": [
+            "suivi",
+            "suis",
+            "suivre"
+          ],
+          "a": 2,
+          "audio": "Je voudrais suivre un cours de français à Paris.",
+          "explanation": "Nach je voudrais steht der Infinitiv."
+        },
+        {
+          "q": "Was bedeutet „J’espère que vous allez bien“?",
+          "o": [
+            "Ich hoffe, ihr kommt gut an.",
+            "Ich hoffe, ihr geht gern.",
+            "Ich hoffe, es geht euch gut."
+          ],
+          "a": 2,
+          "audio": "J’espère que vous allez bien.",
+          "explanation": "Aller bien = gut gehen (Befinden)."
+        }
+      ],
       "canDo": [
         "Ich kann Freunden einen kurzen Brief mit passender Anrede und Grußformel schreiben und drei Punkte einer Anfrage behandeln."
       ],
@@ -3617,30 +4254,191 @@ window.FR_A1_DATA = {
         "explanation": "Est-ce que tu pourrais … ? Conditionnel der Höflichkeit; Konnektoren et, mais, parce que."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "pourriez / pouvez",
+        "explanation": "Vous pourriez [puʁje] (könntet) und vous pouvez [puve] (könnt) unterscheiden sich durch das r und die Endung -iez. Höfliche Bitten sprichst du mit steigender Melodie."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Je dois écrire une lettre à mes amis parisiens.",
+        "Pour quoi faire ?",
+        "Je voudrais suivre un cours de français à Paris en juillet.",
+        "Demande-leur s’ils pourraient chercher une école.",
+        "Oui, et aussi une famille où je pourrais habiter.",
+        "N’oublie pas : « Chers amis » au début et « Je vous embrasse » à la fin !"
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Erkläre einem Partner, was in einen persönlichen Brief gehört (Anrede, Grund, Bitten, Gruß), und formuliere zwei höfliche Bitten.",
+        "writing": "Schreibe einen Brief an Freunde in Frankreich: Du möchtest einen Sprachkurs machen. Behandle drei Punkte (Schule, Termine, Preis, Unterkunft, Essen, Stadtbesichtigung) mit Anrede und Grußformel."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Produktion",
+        "Schriftliche Interaktion"
+      ],
       "telc": [
         "Expression écrite (lettre) : trois points et formules"
       ]
     },
     {
       "id": 23,
-      "status": "planned",
       "title": "Kleine Wörter: Pronomen, Präpositionen, Adverbien",
       "topic": "Petits mots",
       "skills": [
         "Lesen",
         "Schreiben"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Je l’ai toujours sur moi.",
+          "Ich habe es immer bei mir."
+        ],
+        [
+          "Je ne vais jamais au cinéma seul.",
+          "Ich gehe nie allein ins Kino."
+        ],
+        [
+          "On fête ça ensemble ?",
+          "Feiern wir das zusammen?"
+        ],
+        [
+          "Quelquefois, je travaille le samedi.",
+          "Manchmal arbeite ich samstags."
+        ],
+        [
+          "La boulangerie est près de la gare.",
+          "Die Bäckerei ist in der Nähe des Bahnhofs."
+        ],
+        [
+          "Le café est à côté de la poste.",
+          "Das Café ist neben der Post."
+        ],
+        [
+          "Le vélo est contre le mur.",
+          "Das Fahrrad steht an der Wand."
+        ],
+        [
+          "Paris ? J’y vais demain.",
+          "Paris? Ich fahre morgen hin."
+        ],
+        [
+          "Du thé ? J’en bois souvent.",
+          "Tee? Den trinke ich oft."
+        ],
+        [
+          "Mes parents ? Je leur téléphone chaque dimanche.",
+          "Meine Eltern? Ich rufe sie jeden Sonntag an."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Mon portable ? Je ___ ai toujours sur moi.",
+          "o": [
+            "lui",
+            "en",
+            "l’"
+          ],
+          "a": 2,
+          "audio": "Je l’ai toujours sur moi.",
+          "explanation": "Direktes Objekt (le portable) → le, vor Vokal l’."
+        },
+        {
+          "q": "Je ne vais ___ au cinéma seul. (nie)",
+          "o": [
+            "jamais",
+            "quelquefois",
+            "toujours"
+          ],
+          "a": 0,
+          "audio": "Je ne vais jamais au cinéma seul.",
+          "explanation": "Ne … jamais = nie."
+        },
+        {
+          "q": "On fête ça ___ ? (zusammen)",
+          "o": [
+            "quelquefois",
+            "chacune",
+            "ensemble"
+          ],
+          "a": 2,
+          "audio": "On fête ça ensemble ?",
+          "explanation": "Ensemble = zusammen."
+        },
+        {
+          "q": "La boulangerie est ___ la gare. (in der Nähe)",
+          "o": [
+            "près de",
+            "contre",
+            "à côté"
+          ],
+          "a": 0,
+          "audio": "La boulangerie est près de la gare.",
+          "explanation": "Près de = in der Nähe von. À côté braucht auch de."
+        },
+        {
+          "q": "Le café est à côté ___ la poste.",
+          "o": [
+            "à",
+            "par",
+            "de"
+          ],
+          "a": 2,
+          "audio": "Le café est à côté de la poste.",
+          "explanation": "À côté de = neben."
+        },
+        {
+          "q": "Le vélo est ___ le mur. (an, angelehnt)",
+          "o": [
+            "près",
+            "contre",
+            "chez"
+          ],
+          "a": 1,
+          "audio": "Le vélo est contre le mur.",
+          "explanation": "Contre = gegen, an (berührend)."
+        },
+        {
+          "q": "Paris ? J’___ vais demain.",
+          "o": [
+            "le",
+            "y",
+            "en"
+          ],
+          "a": 1,
+          "audio": "Paris ? J’y vais demain.",
+          "explanation": "Y ersetzt einen Ort mit à / en / dans: J’y vais."
+        },
+        {
+          "q": "Du thé ? J’___ bois souvent.",
+          "o": [
+            "en",
+            "y",
+            "le"
+          ],
+          "a": 0,
+          "audio": "Du thé ? J’en bois souvent.",
+          "explanation": "En ersetzt du / de la / des + Nomen."
+        },
+        {
+          "q": "Mes parents ? Je ___ téléphone chaque dimanche.",
+          "o": [
+            "leur",
+            "les",
+            "lui"
+          ],
+          "a": 0,
+          "audio": "Je leur téléphone chaque dimanche.",
+          "explanation": "Téléphoner à + Personen → leur."
+        },
+        {
+          "q": "___, je travaille le samedi. (manchmal)",
+          "o": [
+            "Toujours",
+            "Quelquefois",
+            "Jamais"
+          ],
+          "a": 1,
+          "audio": "Quelquefois, je travaille le samedi.",
+          "explanation": "Quelquefois = manchmal."
+        }
+      ],
       "canDo": [
         "Ich kann in einem Text die passenden Pronomen, Präpositionen und Adverbien erkennen und einsetzen."
       ],
@@ -3649,22 +4447,32 @@ window.FR_A1_DATA = {
         "explanation": "Pronomen le / lui / y / en; près de, à côté de; toujours, jamais, ensemble, quelquefois."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "j’y vais / j’en ai",
+        "explanation": "J’y vais [ʒivɛ] und j’en ai [ʒɑ̃ne] klingen ähnlich kurz – achte auf den Nasal bei en. Bei Pronomen vor Vokal wird gebunden: on‿y va [ɔ̃niva], les‿ai [lezɛ]."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu as ton portable ?",
+        "Oui, je l’ai toujours sur moi.",
+        "Tu vas à la fête de Marc ?",
+        "Oui, j’y vais avec Léa. On y va ensemble ?",
+        "D’accord. Tu lui as acheté un cadeau ?",
+        "Pas encore. Il y a une librairie à côté de la gare."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Beantworte Fragen deines Partners mit Pronomen statt Nomen (le / lui / y / en) und nenne, wie oft du etwas tust.",
+        "writing": "Schreibe fünf kurze Antworten auf Fragen und ersetze jedes Mal das Nomen durch ein Pronomen."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Rezeption",
+        "Schriftliche Produktion",
+        "Mündliche Interaktion"
+      ],
       "telc": [
         "Éléments langagiers, Partie 1 : texte lacunaire"
       ]
     },
     {
       "id": 24,
-      "status": "planned",
       "title": "Prüfungstraining telc Français A2",
       "topic": "Préparation à l’examen",
       "skills": [
@@ -3673,8 +4481,160 @@ window.FR_A1_DATA = {
         "Schreiben",
         "Sprechen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "L’examen écrit commence par les éléments langagiers.",
+          "Die schriftliche Prüfung beginnt mit den Sprachbausteinen."
+        ],
+        [
+          "Vous avez quinze minutes pour cette partie.",
+          "Sie haben fünfzehn Minuten für diesen Teil."
+        ],
+        [
+          "Vous entendrez chaque texte deux fois.",
+          "Sie hören jeden Text zweimal."
+        ],
+        [
+          "Marquez vos réponses sur la feuille de réponse.",
+          "Markieren Sie Ihre Antworten auf dem Antwortbogen."
+        ],
+        [
+          "Décidez si les phrases sont vraies ou fausses.",
+          "Entscheiden Sie, ob die Sätze richtig oder falsch sind."
+        ],
+        [
+          "Lisez d’abord les titres, puis les textes.",
+          "Lesen Sie zuerst die Überschriften, dann die Texte."
+        ],
+        [
+          "Choisissez trois des six points.",
+          "Wählen Sie drei der sechs Punkte."
+        ],
+        [
+          "N’oubliez pas les formules au début et à la fin.",
+          "Vergessen Sie die Formeln am Anfang und am Ende nicht."
+        ],
+        [
+          "À l’oral, posez des questions à votre partenaire.",
+          "Stellen Sie in der mündlichen Prüfung Ihrem Partner Fragen."
+        ],
+        [
+          "Il faut au moins soixante points pour réussir.",
+          "Man braucht mindestens sechzig Punkte zum Bestehen."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Womit beginnt die schriftliche Prüfung telc Français A2?",
+          "o": [
+            "mit dem Brief",
+            "mit den Éléments langagiers",
+            "mit dem Hörverstehen"
+          ],
+          "a": 1,
+          "audio": "L’examen écrit commence par les éléments langagiers.",
+          "explanation": "Reihenfolge: Éléments langagiers – Hören – Lesen – Schreiben."
+        },
+        {
+          "q": "Wie oft hörst du jeden Text?",
+          "o": [
+            "einmal",
+            "zweimal",
+            "dreimal"
+          ],
+          "a": 1,
+          "audio": "Vous entendrez chaque texte deux fois.",
+          "explanation": "Im Hörverstehen hört man jeden Text zweimal."
+        },
+        {
+          "q": "Was bedeutet „la feuille de réponse“?",
+          "o": [
+            "das Wörterbuch",
+            "der Antwortbogen",
+            "das Aufgabenheft"
+          ],
+          "a": 1,
+          "audio": "Marquez vos réponses sur la feuille de réponse.",
+          "explanation": "Nur Antworten auf dem Antwortbogen zählen."
+        },
+        {
+          "q": "Wie viele Punkte brauchst du zum Bestehen?",
+          "o": [
+            "50 von 100",
+            "60 von 100",
+            "70 von 100"
+          ],
+          "a": 1,
+          "audio": "Il faut au moins soixante points pour réussir.",
+          "explanation": "Bestanden ab 60 Punkten; ab 90 „très bien“."
+        },
+        {
+          "q": "Wie viele Punkte des Briefs musst du behandeln?",
+          "o": [
+            "alle sechs",
+            "drei von sechs",
+            "zwei von sechs"
+          ],
+          "a": 1,
+          "audio": "Choisissez trois des six points.",
+          "explanation": "Drei Punkte + Briefform werden bewertet (4 × 3 Punkte)."
+        },
+        {
+          "q": "Wie lange dauert das Leseverstehen?",
+          "o": [
+            "30 Minuten",
+            "20 Minuten",
+            "15 Minuten"
+          ],
+          "a": 0,
+          "audio": "Compréhension de textes écrits : 30 minutes.",
+          "explanation": "Éléments langagiers 15, Hören ca. 20, Lesen 30, Schreiben 15 Minuten."
+        },
+        {
+          "q": "Was bedeutet „vrai ou faux“?",
+          "o": [
+            "richtig oder falsch",
+            "wahr oder gelogen",
+            "leicht oder schwer"
+          ],
+          "a": 0,
+          "audio": "Décidez si les phrases sont vraies ou fausses.",
+          "explanation": "Auf dem Bogen: + für vrai, − für faux."
+        },
+        {
+          "q": "Wie markierst du „richtig“ auf dem Antwortbogen?",
+          "o": [
+            "mit x",
+            "mit −",
+            "mit +"
+          ],
+          "a": 2,
+          "audio": "Marquez PLUS pour vrai.",
+          "explanation": "+ = vrai, − = faux."
+        },
+        {
+          "q": "Was zählt im mündlichen Teil 2?",
+          "o": [
+            "einen Vortrag halten",
+            "einen Text vorlesen",
+            "Informationen austauschen und Fragen stellen"
+          ],
+          "a": 2,
+          "audio": "À l’oral, posez des questions à votre partenaire.",
+          "explanation": "Teil 2: Échanger des informations."
+        },
+        {
+          "q": "Wie lange dauert die Vorbereitung auf die mündliche Prüfung?",
+          "o": [
+            "15 Minuten",
+            "5 Minuten",
+            "30 Minuten"
+          ],
+          "a": 0,
+          "audio": "Vous avez quinze minutes pour vous préparer.",
+          "explanation": "15 Minuten Vorbereitung, ca. 10 Minuten Prüfung."
+        }
+      ],
       "canDo": [
         "Ich kenne Aufbau, Zeiten und Punkte der Prüfung telc Français A2 und kann die Aufgabentypen sicher bearbeiten."
       ],
@@ -3683,15 +4643,26 @@ window.FR_A1_DATA = {
         "explanation": "Richtig/falsch, Zuordnung und Lückentext: erst Aufgabe lesen, dann Schlüsselwörter im Text suchen."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "vrai / faux",
+        "explanation": "Vrai [vʁɛ] und faux [fo] kommen in Anweisungen oft vor. Bei deux fois [døfwa] wird nicht gebunden. Sprich in der mündlichen Prüfung lieber langsam und deutlich als schnell."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu passes l’examen telc A2 samedi ?",
+        "Oui ! D’abord les éléments langagiers, puis l’écoute et la lecture.",
+        "Et l’expression écrite ?",
+        "Une lettre : trois points sur six, avec les formules.",
+        "Et l’oral ?",
+        "À deux : on se présente, on échange des informations et on se met d’accord."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Erkläre einem Mitlernenden in eigenen Worten den Ablauf der Prüfung telc Français A2 (Teile, Zeiten, Punkte).",
+        "writing": "Schreibe dir drei persönliche Strategien für den Prüfungstag auf."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Rezeption",
+        "Mündliche Interaktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Structure du test",
         "Évaluation, points à attribuer, notes"
@@ -4056,6 +5027,126 @@ window.FR_A1_DATA = {
         [
           "De plus en plus de …",
           "Immer mehr …"
+        ]
+      ]
+    },
+    "19": {
+      "speakModel": "Je vous conseille la Normandie. Le Mont-Saint-Michel est le site le plus visité de la région. On peut aussi faire du vélo au bord de la mer. Le meilleur moment pour y aller, c’est en mai, parce qu’il y a moins de touristes.",
+      "writeModel": "Ma région, c’est la Bavière.\nLe château de Neuschwanstein est le plus connu.\nOn peut faire de la randonnée dans les Alpes.\nLe meilleur moment, c’est en septembre.",
+      "placeholder": "Empfiehl deine Region …",
+      "writingHelpText": "Nutze le / la plus …, le meilleur und on peut + Infinitiv.",
+      "writingHints": [
+        [
+          "… est le / la plus … de …",
+          "… ist der / die / das …ste von …"
+        ],
+        [
+          "On peut + Infinitiv …",
+          "Man kann …"
+        ],
+        [
+          "Le meilleur moment, c’est …",
+          "Die beste Zeit ist …"
+        ]
+      ]
+    },
+    "20": {
+      "speakModel": "Samedi, on pourrait faire une sortie à la campagne, parce qu’il fera beau. Je préfère faire du vélo plutôt que faire les magasins. Le soir, j’aimerais bien aller au concert. On se retrouve à neuf heures à la gare ? Qu’est-ce que tu en penses ?",
+      "writeModel": "Salut Lina,\nSamedi, on pourrait faire du vélo à la campagne, parce qu’il fera beau.\nLe soir, j’aimerais bien aller au concert.\nOn se retrouve à neuf heures ?\nBises,\nTom",
+      "placeholder": "Schreibe zwei Vorschläge …",
+      "writingHelpText": "Vorschlag mit on pourrait, Vorliebe mit je préfère … plutôt que, Grund mit parce que.",
+      "writingHints": [
+        [
+          "On pourrait …",
+          "Wir könnten …"
+        ],
+        [
+          "Je préfère … plutôt que …",
+          "Ich … lieber als …"
+        ],
+        [
+          "… parce que …",
+          "… weil …"
+        ]
+      ]
+    },
+    "21": {
+      "speakModel": "Pour apprendre le français, il faut pratiquer tous les jours. Notez quelques mots nouveaux par jour. Regardez des séries en version originale. Et n’ayez pas peur de faire des fautes ! Moi, je voudrais suivre un cours intensif en France l’été prochain.",
+      "writeModel": "Mes conseils :\nNotez cinq mots par jour.\nÉcoutez la radio française.\nParlez le plus souvent possible.\nNe traduisez pas chaque mot.",
+      "placeholder": "Schreibe vier Lerntipps …",
+      "writingHelpText": "Benutze den Imperativ der vous-Form; ein Tipp ist verneint.",
+      "writingHints": [
+        [
+          "Notez / Écoutez / Parlez …",
+          "Notieren / Hören / Sprechen Sie …"
+        ],
+        [
+          "Ne … pas …",
+          "… Sie nicht …"
+        ],
+        [
+          "Il faut …",
+          "Man muss …"
+        ]
+      ]
+    },
+    "22": {
+      "speakModel": "Chers amis, je vous écris parce que je voudrais suivre un cours de français à Paris en juillet. Est-ce que vous pourriez m’aider à trouver une école de langues ? Vous connaissez peut-être une famille où je pourrais habiter ? Merci d’avance, je vous embrasse !",
+      "writeModel": "Chers Paul et Marie,\nJ’espère que vous allez bien. Je voudrais suivre un cours de français à Paris du 3 au 28 juillet. Est-ce que vous pourriez chercher une école de langues pour moi ? Vous connaissez aussi une famille où je pourrais habiter ? Et combien coûte un cours, à peu près ?\nMerci d’avance !\nJe vous embrasse,\nLaura",
+      "placeholder": "Schreibe deinen Brief (ca. 50 Wörter) …",
+      "writingHelpText": "Anrede, Grund des Schreibens, drei Punkte als höfliche Fragen, Dank und Grußformel.",
+      "writingHints": [
+        [
+          "Chers amis, / Chère Anne,",
+          "Liebe Freunde, / Liebe Anne,"
+        ],
+        [
+          "Est-ce que vous pourriez … ?",
+          "Könntet ihr …?"
+        ],
+        [
+          "Merci d’avance. Je vous embrasse,",
+          "Danke im Voraus. Liebe Grüße,"
+        ]
+      ]
+    },
+    "23": {
+      "speakModel": "Mon portable ? Je l’ai toujours sur moi. Le marché ? J’y vais quelquefois le samedi. Du café ? J’en bois deux tasses le matin. Ma sœur ? Je lui téléphone souvent. Et je ne vais jamais au travail en voiture : la boulangerie est près de chez moi, mon bureau aussi !",
+      "writeModel": "Mon vélo ? Je le prends tous les jours.\nLa piscine ? J’y vais le mercredi.\nDes fruits ? J’en mange beaucoup.\nMes amis ? Je leur écris souvent.",
+      "placeholder": "Antworte mit Pronomen …",
+      "writingHelpText": "Ersetze das Nomen durch le / la / les, lui / leur, y oder en.",
+      "writingHints": [
+        [
+          "… ? Je le / la / les …",
+          "… ? Ich … ihn / sie …"
+        ],
+        [
+          "… ? J’y vais …",
+          "… ? Ich gehe / fahre … hin."
+        ],
+        [
+          "… ? J’en …",
+          "… ? Ich … davon …"
+        ]
+      ]
+    },
+    "24": {
+      "speakModel": "L’examen telc Français A2 a une partie écrite et une partie orale. À l’écrit, il y a d’abord les éléments langagiers, ensuite la compréhension orale, la compréhension écrite et une lettre. À l’oral, on se présente, on échange des informations et on se met d’accord sur deux activités. Il faut soixante points pour réussir.",
+      "writeModel": "Mes stratégies :\nJe lis d’abord les questions.\nJe cherche les mots-clés dans le texte.\nJe traite trois points dans ma lettre.\nJe n’oublie pas les formules.",
+      "placeholder": "Schreibe deine Strategien …",
+      "writingHelpText": "Formuliere drei bis vier Sätze mit je oder il faut.",
+      "writingHints": [
+        [
+          "Je lis d’abord …",
+          "Ich lese zuerst …"
+        ],
+        [
+          "Je cherche …",
+          "Ich suche …"
+        ],
+        [
+          "Je n’oublie pas …",
+          "Ich vergesse … nicht."
         ]
       ]
     }
@@ -4546,8 +5637,8 @@ window.FR_A1_DATA = {
     },
     {
       "id": "a2g5",
-      "title": "Lektionen 17–18",
-      "subtitle": "Meinung äußern · Zahlen und Anteile",
+      "title": "Lektionen 17–20",
+      "subtitle": "Meinung äußern · Zahlen und Anteile · Superlativ · Vorschlagen und begründen",
       "questions": [
         {
           "q": "Ergänze: Je ___ que c’est pratique. (finden)",
@@ -4572,13 +5663,35 @@ window.FR_A1_DATA = {
           "explanation": "Deux Français sur trois partent en vacances. = Zwei von drei Franzosen verreisen."
         },
         {
-          "q": "Ergänze: À mon ___, c’est trop cher.",
+          "q": "Ergänze: C’est la ville la ___ jolie de la région.",
           "o": [
-            "avis",
-            "idée",
-            "opinion de"
+            "très",
+            "plus",
+            "plus de"
+          ],
+          "a": 1,
+          "audio": "C’est la ville la plus jolie de la région.",
+          "explanation": "C’est la ville la plus jolie de la région. = Das ist die hübscheste Stadt der Region."
+        },
+        {
+          "q": "Ergänze: On ___ aller au cinéma. (könnten)",
+          "o": [
+            "pourrait",
+            "pourra",
+            "peut"
           ],
           "a": 0,
+          "audio": "On pourrait aller au cinéma.",
+          "explanation": "On pourrait aller au cinéma. = Wir könnten ins Kino gehen."
+        },
+        {
+          "q": "Ergänze: À mon ___, c’est trop cher.",
+          "o": [
+            "idée",
+            "opinion de",
+            "avis"
+          ],
+          "a": 2,
           "audio": "À mon avis, c’est trop cher.",
           "explanation": "À mon avis, c’est trop cher. = Meiner Meinung nach ist das zu teuer."
         },
@@ -4594,10 +5707,32 @@ window.FR_A1_DATA = {
           "explanation": "La moitié des habitants a moins de trente ans. = Die Hälfte der Einwohner ist unter dreißig."
         },
         {
+          "q": "Ergänze: C’est le musée le ___ cher. (billigste)",
+          "o": [
+            "plus",
+            "mieux",
+            "moins"
+          ],
+          "a": 2,
+          "audio": "C’est le musée le moins cher.",
+          "explanation": "C’est le musée le moins cher. = Das ist das billigste Museum."
+        },
+        {
+          "q": "Ergänze: Ça te ___ de faire du vélo ?",
+          "o": [
+            "dit",
+            "fait",
+            "va"
+          ],
+          "a": 0,
+          "audio": "Ça te dit de faire du vélo ?",
+          "explanation": "Ça te dit de faire du vélo ? = Hast du Lust, Rad zu fahren?"
+        },
+        {
           "q": "Ergänze: Je suis d’accord ___ toi.",
           "o": [
-            "à",
             "de",
+            "à",
             "avec"
           ],
           "a": 2,
@@ -4607,57 +5742,130 @@ window.FR_A1_DATA = {
         {
           "q": "Ergänze: Les prix ont augmenté ___ trois pour cent.",
           "o": [
-            "par",
+            "de",
             "à",
-            "de"
-          ],
-          "a": 2,
-          "audio": "Les prix ont augmenté de trois pour cent.",
-          "explanation": "Les prix ont augmenté de trois pour cent. = Die Preise sind um drei Prozent gestiegen."
-        },
-        {
-          "q": "Ergänze: Ça me ___ au cinéma. (stören)",
-          "o": [
-            "gêne",
-            "gêné",
-            "gênes"
+            "par"
           ],
           "a": 0,
-          "audio": "Ça me gêne au cinéma.",
-          "explanation": "Ça me gêne au cinéma. = Im Kino stört mich das."
-        },
+          "audio": "Les prix ont augmenté de trois pour cent.",
+          "explanation": "Les prix ont augmenté de trois pour cent. = Die Preise sind um drei Prozent gestiegen."
+        }
+      ]
+    },
+    {
+      "id": "a2g6",
+      "title": "Lektionen 21–24",
+      "subtitle": "Ratschläge geben · Höfliche Bitte im Brief · Kleine Wörter im Kontext · Prüfungsstrategien",
+      "questions": [
         {
-          "q": "Ergänze: De moins en ___ de jeunes fument.",
+          "q": "Ergänze: ___ les mots nouveaux. (noter)",
           "o": [
-            "peu",
-            "moins",
-            "plus"
+            "Notes",
+            "Notez",
+            "Notent"
           ],
           "a": 1,
-          "audio": "De moins en moins de jeunes fument.",
-          "explanation": "De moins en moins de jeunes fument. = Immer weniger junge Leute rauchen."
+          "audio": "Notez les mots nouveaux.",
+          "explanation": "Notez les mots nouveaux. = Notieren Sie die neuen Wörter."
         },
         {
-          "q": "Ergänze: Je ne suis pas du ___ d’accord.",
+          "q": "Ergänze: Est-ce que tu ___ m’aider ? (könntest)",
           "o": [
-            "toute",
-            "tout",
-            "tous"
+            "pourras",
+            "pourrais",
+            "peux"
           ],
           "a": 1,
-          "audio": "Je ne suis pas du tout d’accord.",
-          "explanation": "Je ne suis pas du tout d’accord. = Ich bin überhaupt nicht einverstanden."
+          "audio": "Est-ce que tu pourrais m’aider ?",
+          "explanation": "Est-ce que tu pourrais m’aider ? = Könntest du mir helfen?"
         },
         {
-          "q": "Ergänze: Vingt pour cent d’___ elles travaillent à temps partiel.",
+          "q": "Ergänze: Le train ? Je ___ prends à huit heures.",
           "o": [
-            "parmi",
-            "entre",
-            "eux"
+            "le",
+            "y",
+            "lui"
+          ],
+          "a": 0,
+          "audio": "Le train ? Je le prends à huit heures.",
+          "explanation": "Le train ? Je le prends à huit heures. = Den Zug? Ich nehme ihn um acht."
+        },
+        {
+          "q": "Ergänze: Vous entendrez chaque texte deux ___ .",
+          "o": [
+            "fois",
+            "heures",
+            "temps"
+          ],
+          "a": 0,
+          "audio": "Vous entendrez chaque texte deux fois .",
+          "explanation": "Vous entendrez chaque texte deux fois . = Sie hören jeden Text zweimal."
+        },
+        {
+          "q": "Ergänze: Ne ___ pas chaque mot. (traduire)",
+          "o": [
+            "traduisez",
+            "traduire",
+            "traduisez-pas"
+          ],
+          "a": 0,
+          "audio": "Ne traduisez pas chaque mot.",
+          "explanation": "Ne traduisez pas chaque mot. = Übersetzen Sie nicht jedes Wort."
+        },
+        {
+          "q": "Ergänze: Vous ___ chercher une école ? (könntet)",
+          "o": [
+            "pourrez",
+            "pourriez",
+            "pouvez"
           ],
           "a": 1,
-          "audio": "Vingt pour cent d’entre elles travaillent à temps partiel.",
-          "explanation": "Vingt pour cent d’entre elles travaillent à temps partiel. = Zwanzig Prozent von ihnen arbeiten Teilzeit."
+          "audio": "Vous pourriez chercher une école ?",
+          "explanation": "Vous pourriez chercher une école ? = Könntet ihr eine Schule suchen?"
+        },
+        {
+          "q": "Ergänze: Ma mère ? Je ___ écris.",
+          "o": [
+            "en",
+            "la",
+            "lui"
+          ],
+          "a": 2,
+          "audio": "Ma mère ? Je lui écris.",
+          "explanation": "Ma mère ? Je lui écris. = Meine Mutter? Ich schreibe ihr."
+        },
+        {
+          "q": "Ergänze: Marquez vos réponses sur la ___ de réponse.",
+          "o": [
+            "fiche",
+            "page",
+            "feuille"
+          ],
+          "a": 2,
+          "audio": "Marquez vos réponses sur la feuille de réponse.",
+          "explanation": "Marquez vos réponses sur la feuille de réponse. = Markieren Sie Ihre Antworten auf dem Antwortbogen."
+        },
+        {
+          "q": "Ergänze: ___ patient ! (être)",
+          "o": [
+            "Soyez",
+            "Soyons",
+            "Êtes"
+          ],
+          "a": 0,
+          "audio": "Soyez patient !",
+          "explanation": "Être → soyez."
+        },
+        {
+          "q": "Ergänze: Je ___ savoir le prix. (vouloir, höflich)",
+          "o": [
+            "voudrai",
+            "veux",
+            "voudrais"
+          ],
+          "a": 2,
+          "audio": "Je voudrais savoir le prix.",
+          "explanation": "Je voudrais savoir le prix. = Ich würde gern den Preis wissen."
         }
       ]
     }

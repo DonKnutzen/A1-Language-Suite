@@ -1245,5 +1245,433 @@ window.FR_A1_DEEPENING_CONTENT = {
         "ne … que"
       ]
     }
+  ],
+  "19": [
+    {
+      "title": "Der Superlativ",
+      "rule": "Der Superlativ hat den Artikel vor plus / moins: la ville la plus jolie, le site le plus visité, les plages les plus belles. Der Bereich folgt mit de: le plus haut de France. Bon → le meilleur / la meilleure, l’un des / l’une des + Superlativ = einer / eine der …",
+      "pairs": [
+        [
+          "C’est la ville la plus jolie d’Alsace.",
+          "Das ist die hübscheste Stadt im Elsass."
+        ],
+        [
+          "C’est le musée le moins cher.",
+          "Das ist das billigste Museum."
+        ],
+        [
+          "Ce sont les plages les plus belles.",
+          "Das sind die schönsten Strände."
+        ],
+        [
+          "C’est la meilleure crêperie de Rennes.",
+          "Das ist die beste Crêperie in Rennes."
+        ],
+        [
+          "C’est l’une des plus vieilles églises.",
+          "Das ist eine der ältesten Kirchen."
+        ]
+      ],
+      "emphasis": [
+        "le plus",
+        "la plus",
+        "les plus",
+        "le moins",
+        "de",
+        "le meilleur",
+        "l’un des"
+      ]
+    },
+    {
+      "title": "Empfehlungen im Reisetext",
+      "rule": "Reisetexte geben Tipps mit on peut + Infinitiv (man kann), il faut + Infinitiv (man muss / sollte), nous vous conseillons de + Infinitiv. Achte beim Lesen auf Schlüsselwörter für Aktivitäten: se baigner, pique-niquer, faire de l’escalade, visiter les églises, regarder le coucher de soleil.",
+      "pairs": [
+        [
+          "On peut se baigner dans la rivière.",
+          "Man kann im Fluss baden."
+        ],
+        [
+          "Il faut visiter le château.",
+          "Man muss das Schloss besichtigen."
+        ],
+        [
+          "Nous vous conseillons de venir le soir.",
+          "Wir empfehlen Ihnen, abends zu kommen."
+        ],
+        [
+          "On peut faire de l’escalade.",
+          "Man kann klettern."
+        ],
+        [
+          "Le coucher de soleil est magnifique.",
+          "Der Sonnenuntergang ist großartig."
+        ]
+      ],
+      "emphasis": [
+        "on peut",
+        "il faut",
+        "nous vous conseillons de",
+        "se baigner",
+        "pique-niquer",
+        "le coucher de soleil"
+      ]
+    }
+  ],
+  "20": [
+    {
+      "title": "Vorschlagen und reagieren",
+      "rule": "Vorschläge: On pourrait + Infinitiv (Conditionnel von pouvoir), Et si on allait … ?, Ça te dit de + Infinitiv ? Wunsch: j’aimerais bien / je voudrais bien + Infinitiv. Zustimmen: Bonne idée ! Pourquoi pas ? D’accord ! Ablehnen: Bof … / Ça ne me dit rien. / Je n’ai pas très envie.",
+      "pairs": [
+        [
+          "On pourrait aller au cinéma.",
+          "Wir könnten ins Kino gehen."
+        ],
+        [
+          "Ça te dit de faire du vélo ?",
+          "Hast du Lust, Rad zu fahren?"
+        ],
+        [
+          "J’aimerais bien voir ce film.",
+          "Ich würde diesen Film gern sehen."
+        ],
+        [
+          "Bonne idée !",
+          "Gute Idee!"
+        ],
+        [
+          "Bof, je n’ai pas très envie.",
+          "Na ja, ich habe nicht so große Lust."
+        ]
+      ],
+      "emphasis": [
+        "On pourrait",
+        "Ça te dit de",
+        "j’aimerais bien",
+        "Bonne idée",
+        "Pourquoi pas",
+        "Ça ne me dit rien"
+      ]
+    },
+    {
+      "title": "Vorlieben begründen und sich einigen",
+      "rule": "Vergleiche zwei Aktivitäten mit je préfère A plutôt que B (ich mache lieber A als B). Begründe mit parce que + Satz oder car. Am Ende einigt ihr euch auf Zeit und Ort: On se retrouve à … heures, devant … / Alors, le matin … et l’après-midi …",
+      "pairs": [
+        [
+          "Je préfère courir plutôt qu’aller à la piscine.",
+          "Ich gehe lieber laufen als ins Schwimmbad."
+        ],
+        [
+          "Je préfère le zoo parce que j’adore les animaux.",
+          "Ich mag den Zoo lieber, weil ich Tiere liebe."
+        ],
+        [
+          "On se retrouve à dix heures devant la gare.",
+          "Wir treffen uns um zehn vor dem Bahnhof."
+        ],
+        [
+          "Le matin, on va au marché, et l’après-midi, au parc.",
+          "Morgens gehen wir auf den Markt, nachmittags in den Park."
+        ],
+        [
+          "D’accord, on fait comme ça.",
+          "Einverstanden, so machen wir es."
+        ]
+      ],
+      "emphasis": [
+        "je préfère",
+        "plutôt que",
+        "parce que",
+        "On se retrouve",
+        "le matin",
+        "l’après-midi"
+      ]
+    }
+  ],
+  "21": [
+    {
+      "title": "Ratschläge im Imperativ",
+      "rule": "Der höfliche Imperativ ist die vous-Form ohne vous: vous notez → Notez. Verneint: Ne traduisez pas. Unregelmäßig: être → soyez, avoir → ayez. Für allgemeine Ratschläge: il faut + Infinitiv, on vous recommande / conseille de + Infinitiv.",
+      "pairs": [
+        [
+          "Notez les mots nouveaux.",
+          "Notieren Sie die neuen Wörter."
+        ],
+        [
+          "Ne traduisez pas chaque mot.",
+          "Übersetzen Sie nicht jedes Wort."
+        ],
+        [
+          "Soyez patient.",
+          "Seien Sie geduldig."
+        ],
+        [
+          "Ayez toujours un carnet.",
+          "Haben Sie immer ein Notizbuch dabei."
+        ],
+        [
+          "On vous conseille de lire des BD.",
+          "Man rät Ihnen, Comics zu lesen."
+        ]
+      ],
+      "emphasis": [
+        "vous-Form ohne vous",
+        "Ne traduisez pas",
+        "soyez",
+        "ayez",
+        "il faut",
+        "recommande de",
+        "conseille de"
+      ]
+    },
+    {
+      "title": "Einen Sprachkurs wählen",
+      "rule": "Wichtige Wörter für einen Kurs: une école de langues, un cours intensif, suivre un cours, durer (dauern), le prix, s’inscrire (sich anmelden), habiter dans une famille d’accueil, prendre ses repas (die Mahlzeiten einnehmen), une visite de la ville. Achte im Text darauf, ob etwas empfohlen, erlaubt oder verlangt wird.",
+      "pairs": [
+        [
+          "Je voudrais m’inscrire à un cours intensif.",
+          "Ich möchte mich für einen Intensivkurs anmelden."
+        ],
+        [
+          "Le cours dure trois semaines.",
+          "Der Kurs dauert drei Wochen."
+        ],
+        [
+          "Le prix comprend les repas.",
+          "Im Preis sind die Mahlzeiten enthalten."
+        ],
+        [
+          "On peut habiter dans une famille d’accueil.",
+          "Man kann bei einer Gastfamilie wohnen."
+        ],
+        [
+          "L’école organise une visite de la ville.",
+          "Die Schule organisiert eine Stadtführung."
+        ]
+      ],
+      "emphasis": [
+        "une école de langues",
+        "un cours intensif",
+        "s’inscrire",
+        "durer",
+        "une famille d’accueil",
+        "les repas"
+      ]
+    }
+  ],
+  "22": [
+    {
+      "title": "Höfliche Bitten mit dem Conditionnel",
+      "rule": "Das Conditionnel macht Bitten höflich. Bildung: Futurstamm + Imparfait-Endungen: je pourrais, tu pourrais, vous pourriez; je voudrais; j’aimerais; ce serait. Typische Bitten: Est-ce que tu pourrais / vous pourriez + Infinitiv ? Je voudrais savoir … J’aimerais bien …",
+      "pairs": [
+        [
+          "Est-ce que tu pourrais m’aider ?",
+          "Könntest du mir helfen?"
+        ],
+        [
+          "Vous pourriez chercher une école ?",
+          "Könntet ihr eine Schule suchen?"
+        ],
+        [
+          "Je voudrais savoir le prix.",
+          "Ich würde gern den Preis wissen."
+        ],
+        [
+          "J’aimerais habiter dans une famille.",
+          "Ich würde gern bei einer Familie wohnen."
+        ],
+        [
+          "Ce serait super !",
+          "Das wäre super!"
+        ]
+      ],
+      "emphasis": [
+        "Conditionnel",
+        "pourrais",
+        "pourriez",
+        "voudrais",
+        "aimerais",
+        "serait"
+      ]
+    },
+    {
+      "title": "Aufbau eines persönlichen Briefs",
+      "rule": "Anrede: Cher Paul, / Chère Anne, / Chers amis, (Komma). Einstieg: J’espère que tu vas bien. Grund: Je t’écris / Je vous écris parce que … Dann die drei Punkte, verbunden mit et, mais, parce que, aussi. Schluss: Merci d’avance, J’ai hâte de te voir. Gruß: Je t’embrasse, / Bises, / À bientôt, + Name. Für telc zählen Inhalt der drei Punkte und die Briefform.",
+      "pairs": [
+        [
+          "Chère Anne,",
+          "Liebe Anne,"
+        ],
+        [
+          "J’espère que tu vas bien.",
+          "Ich hoffe, es geht dir gut."
+        ],
+        [
+          "Je t’écris parce que j’ai une question.",
+          "Ich schreibe dir, weil ich eine Frage habe."
+        ],
+        [
+          "Merci d’avance pour ton aide.",
+          "Danke im Voraus für deine Hilfe."
+        ],
+        [
+          "Bises, à bientôt !",
+          "Küsschen, bis bald!"
+        ]
+      ],
+      "emphasis": [
+        "Cher",
+        "Chère",
+        "Chers",
+        "Je t’écris parce que",
+        "et",
+        "mais",
+        "parce que",
+        "Merci d’avance",
+        "Je t’embrasse"
+      ]
+    }
+  ],
+  "23": [
+    {
+      "title": "Welches Pronomen? le, lui, y, en",
+      "rule": "Frage dich, was ersetzt wird: Direktes Objekt ohne Präposition → le / la / les (Je le prends). Person mit à → lui / leur (Je lui téléphone). Ort mit à / en / dans → y (J’y vais). Menge mit du / de la / des oder Zahl → en (J’en bois). Alle stehen vor dem konjugierten Verb.",
+      "pairs": [
+        [
+          "Le train ? Je le prends à huit heures.",
+          "Den Zug? Ich nehme ihn um acht."
+        ],
+        [
+          "Ma mère ? Je lui écris.",
+          "Meine Mutter? Ich schreibe ihr."
+        ],
+        [
+          "Lyon ? Nous y habitons.",
+          "Lyon? Wir wohnen dort."
+        ],
+        [
+          "Des pommes ? J’en achète trois.",
+          "Äpfel? Ich kaufe drei."
+        ],
+        [
+          "Les clés ? Je les ai oubliées.",
+          "Die Schlüssel? Ich habe sie vergessen."
+        ]
+      ],
+      "emphasis": [
+        "le / la / les",
+        "lui / leur",
+        "y",
+        "en",
+        "vor dem konjugierten Verb"
+      ]
+    },
+    {
+      "title": "Präpositionen und kleine Adverbien",
+      "rule": "Ort: près de (in der Nähe), loin de (weit), à côté de (neben), en face de (gegenüber), contre (an, gegen). De + le = du: à côté du cinéma. Häufigkeit: toujours (immer), souvent (oft), quelquefois (manchmal), ne … jamais (nie). Ensemble = zusammen, chacun / chacune = jeder / jede.",
+      "pairs": [
+        [
+          "J’habite près du parc.",
+          "Ich wohne in der Nähe des Parks."
+        ],
+        [
+          "La pharmacie est en face de l’église.",
+          "Die Apotheke ist gegenüber der Kirche."
+        ],
+        [
+          "Je suis toujours à l’heure.",
+          "Ich bin immer pünktlich."
+        ],
+        [
+          "Nous mangeons souvent ensemble.",
+          "Wir essen oft zusammen."
+        ],
+        [
+          "Je ne fume jamais.",
+          "Ich rauche nie."
+        ]
+      ],
+      "emphasis": [
+        "près de",
+        "à côté de",
+        "en face de",
+        "contre",
+        "du",
+        "toujours",
+        "souvent",
+        "quelquefois",
+        "ne … jamais",
+        "ensemble"
+      ]
+    }
+  ],
+  "24": [
+    {
+      "title": "Die schriftliche Prüfung",
+      "rule": "1. Éléments langagiers (15 Min.): Teil 1 Lückentext mit a, b, c (10 Items, je 0,5 P.), Teil 2 Wörter aus einem Kasten in Dialoge einsetzen (8 Items, je 1 P.). 2. Compréhension orale (ca. 20 Min.): drei Teile richtig/falsch, jeder Text zweimal, je 2 P. 3. Compréhension écrite (30 Min.): Text–Titel zuordnen, richtig/falsch, Situation–Textabschnitt zuordnen, je 2 P. 4. Expression écrite (15 Min.): Brief mit drei von sechs Punkten plus Anrede und Gruß (max. 12 P.).",
+      "pairs": [
+        [
+          "Lisez le texte et décidez quel mot manque.",
+          "Lesen Sie den Text und entscheiden Sie, welches Wort fehlt."
+        ],
+        [
+          "Vous n’utiliserez un mot qu’une seule fois.",
+          "Sie verwenden jedes Wort nur einmal."
+        ],
+        [
+          "Vous entendrez chaque texte deux fois.",
+          "Sie hören jeden Text zweimal."
+        ],
+        [
+          "Décidez quel texte correspond à quel titre.",
+          "Entscheiden Sie, welcher Text zu welcher Überschrift passt."
+        ],
+        [
+          "Vous avez quinze minutes pour écrire votre lettre.",
+          "Sie haben fünfzehn Minuten für Ihren Brief."
+        ]
+      ],
+      "emphasis": [
+        "Éléments langagiers",
+        "Compréhension orale",
+        "Compréhension écrite",
+        "Expression écrite",
+        "deux fois",
+        "trois von sechs"
+      ]
+    },
+    {
+      "title": "Die mündliche Prüfung und Strategien",
+      "rule": "Mündlich (ca. 10 Min., 15 Min. Vorbereitung, meist zu zweit): Teil 1 Faire connaissance – sich vorstellen, Zusatzfragen beantworten. Teil 2 Échanger des informations – zu 2–3 Themen Fragen stellen und antworten (wo? wann? mit wem?). Teil 3 Se mettre d’accord – Vorschläge machen, begründen, sich auf zwei Aktivitäten einigen. Strategien: Aufgabe zuerst lesen, Schlüsselwörter suchen, bei richtig/falsch auf Verneinungen und Zahlen achten, im Gespräch aktiv nachfragen.",
+      "pairs": [
+        [
+          "Pouvez-vous nous parler de vous ?",
+          "Können Sie uns etwas über sich erzählen?"
+        ],
+        [
+          "Posez des questions ! Échangez vos informations !",
+          "Stellen Sie Fragen! Tauschen Sie Informationen aus!"
+        ],
+        [
+          "Faites des propositions ! Donnez vos raisons !",
+          "Machen Sie Vorschläge! Begründen Sie!"
+        ],
+        [
+          "Mettez-vous d’accord sur deux activités.",
+          "Einigen Sie sich auf zwei Aktivitäten."
+        ],
+        [
+          "Pardon, vous pouvez répéter ?",
+          "Entschuldigung, können Sie das wiederholen?"
+        ]
+      ],
+      "emphasis": [
+        "Faire connaissance",
+        "Échanger des informations",
+        "Se mettre d’accord",
+        "Schlüsselwörter",
+        "Verneinungen",
+        "Zahlen"
+      ]
+    }
   ]
 };

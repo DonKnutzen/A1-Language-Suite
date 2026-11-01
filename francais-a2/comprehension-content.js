@@ -1799,5 +1799,605 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "sie lesen anders"
       }
     ]
+  },
+  "19": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Bonjour, je voudrais des idées pour visiter la région.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Bien sûr. Vous aimez la nature ou les villes ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Plutôt la nature. Et j’adore les couchers de soleil.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Alors allez aux falaises d’Étretat. Le coucher de soleil y est le plus beau de la côte.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et pour faire du sport ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "On peut faire du kayak sur la Seine, à vingt kilomètres d’ici.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Il y a un endroit pour pique-niquer ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, le parc du château. C’est le plus calme de la ville.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Die Touristin mag",
+        "options": [
+          "Städte",
+          "Natur",
+          "Museen"
+        ],
+        "answer": "Natur"
+      },
+      {
+        "label": "Empfehlung für Sonnenuntergang",
+        "options": [
+          "die Klippen von Étretat",
+          "der Hafen",
+          "der Park"
+        ],
+        "answer": "die Klippen von Étretat"
+      },
+      {
+        "label": "Sport",
+        "options": [
+          "Radfahren",
+          "Klettern",
+          "Kajak auf der Seine"
+        ],
+        "answer": "Kajak auf der Seine"
+      },
+      {
+        "label": "Entfernung",
+        "options": [
+          "2 km",
+          "12 km",
+          "20 km"
+        ],
+        "answer": "20 km"
+      },
+      {
+        "label": "Picknick",
+        "options": [
+          "im Wald",
+          "im Schlosspark",
+          "am Strand"
+        ],
+        "answer": "im Schlosspark"
+      },
+      {
+        "label": "Der Park ist",
+        "options": [
+          "der größte der Stadt",
+          "der älteste der Stadt",
+          "der ruhigste der Stadt"
+        ],
+        "answer": "der ruhigste der Stadt"
+      }
+    ]
+  },
+  "20": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Alors, samedi prochain, qu’est-ce qu’on fait ensemble ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "On pourrait aller courir au parc le matin ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Courir ? Bof. Je préfère faire du vélo, parce que j’ai mal au genou.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "D’accord, du vélo. On pourrait aller jusqu’au lac.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Bonne idée ! Et l’après-midi ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Faire les magasins ? J’ai besoin de chaussures.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Ça ne me dit rien. Pourquoi pas un concert le soir ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Parfait ! Alors vélo le matin et concert à vingt heures. On se retrouve à neuf heures chez toi.",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Erster Vorschlag der Frau",
+        "options": [
+          "laufen im Park",
+          "Fahrrad fahren",
+          "Zoo"
+        ],
+        "answer": "laufen im Park"
+      },
+      {
+        "label": "Warum lehnt er ab?",
+        "options": [
+          "schlechtes Wetter",
+          "Knieschmerzen",
+          "keine Zeit"
+        ],
+        "answer": "Knieschmerzen"
+      },
+      {
+        "label": "Ziel der Radtour",
+        "options": [
+          "die Stadt",
+          "der Wald",
+          "der See"
+        ],
+        "answer": "der See"
+      },
+      {
+        "label": "Warum will sie shoppen?",
+        "options": [
+          "sie braucht Schuhe",
+          "sie braucht eine Jacke",
+          "es ist Ausverkauf"
+        ],
+        "answer": "sie braucht Schuhe"
+      },
+      {
+        "label": "Abendprogramm",
+        "options": [
+          "Kino um 20 Uhr",
+          "Konzert um 20 Uhr",
+          "Restaurant um 19 Uhr"
+        ],
+        "answer": "Konzert um 20 Uhr"
+      },
+      {
+        "label": "Treffpunkt",
+        "options": [
+          "9 Uhr bei ihm",
+          "9 Uhr am See",
+          "10 Uhr bei ihr"
+        ],
+        "answer": "9 Uhr bei ihm"
+      }
+    ]
+  },
+  "21": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "École Soleil, bonjour !",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Bonjour, je voudrais des informations sur vos cours d’été.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Nous avons des cours intensifs de deux ou quatre semaines, vingt heures par semaine.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Et le prix ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Deux semaines, c’est quatre cent cinquante euros. Quatre semaines, huit cents euros.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "On peut habiter dans une famille ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Oui, avec le petit-déjeuner et le dîner. Et le mercredi, nous organisons une visite de la ville.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Parfait. Je voudrais m’inscrire pour quatre semaines en juillet.",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Kurslänge",
+        "options": [
+          "1 oder 3 Wochen",
+          "2 oder 4 Wochen",
+          "nur 4 Wochen"
+        ],
+        "answer": "2 oder 4 Wochen"
+      },
+      {
+        "label": "Stunden pro Woche",
+        "options": [
+          "25",
+          "12",
+          "20"
+        ],
+        "answer": "20"
+      },
+      {
+        "label": "Preis 2 Wochen",
+        "options": [
+          "540 €",
+          "450 €",
+          "800 €"
+        ],
+        "answer": "450 €"
+      },
+      {
+        "label": "Gastfamilie mit",
+        "options": [
+          "Frühstück und Abendessen",
+          "nur Frühstück",
+          "allen Mahlzeiten"
+        ],
+        "answer": "Frühstück und Abendessen"
+      },
+      {
+        "label": "Mittwoch",
+        "options": [
+          "kein Unterricht",
+          "Stadtführung",
+          "Kochkurs"
+        ],
+        "answer": "Stadtführung"
+      },
+      {
+        "label": "Anmeldung",
+        "options": [
+          "4 Wochen im Juli",
+          "4 Wochen im Juni",
+          "2 Wochen im Juli"
+        ],
+        "answer": "4 Wochen im Juli"
+      }
+    ]
+  },
+  "22": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Tu as reçu la lettre de Laura ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, elle veut suivre un cours de français à Paris en juillet.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Elle nous demande de chercher une école ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, et elle aimerait habiter dans une famille, près du métro.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "On pourrait demander à nos voisins, les Martin. Ils ont une chambre libre.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Bonne idée. Elle demande aussi le prix des repas.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et elle voudrait visiter la ville avec nous le premier week-end.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Avec plaisir ! Je lui réponds ce soir.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Laura möchte",
+        "options": [
+          "in Paris Urlaub machen",
+          "in Paris arbeiten",
+          "einen Sprachkurs in Paris"
+        ],
+        "answer": "einen Sprachkurs in Paris"
+      },
+      {
+        "label": "Wann",
+        "options": [
+          "im Juli",
+          "im August",
+          "im Juni"
+        ],
+        "answer": "im Juli"
+      },
+      {
+        "label": "Wohnwunsch",
+        "options": [
+          "Hotel im Zentrum",
+          "Familie in Metro-Nähe",
+          "eigene Wohnung"
+        ],
+        "answer": "Familie in Metro-Nähe"
+      },
+      {
+        "label": "Idee für Unterkunft",
+        "options": [
+          "die Nachbarn Martin",
+          "bei ihnen selbst",
+          "eine Jugendherberge"
+        ],
+        "answer": "die Nachbarn Martin"
+      },
+      {
+        "label": "Weitere Frage",
+        "options": [
+          "Öffnungszeiten",
+          "Preis des Kurses",
+          "Preis der Mahlzeiten"
+        ],
+        "answer": "Preis der Mahlzeiten"
+      },
+      {
+        "label": "Erstes Wochenende",
+        "options": [
+          "Museumstag",
+          "Ausflug ans Meer",
+          "Stadtbesichtigung"
+        ],
+        "answer": "Stadtbesichtigung"
+      }
+    ]
+  },
+  "23": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Tu connais la nouvelle librairie ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, elle est à côté de la boulangerie, en face de la mairie.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Tu y vas souvent ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Quelquefois, le samedi. J’y achète des BD pour mon fils.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Il en lit beaucoup ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oh oui, il en lit trois par semaine ! Il ne regarde jamais la télé.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et tes parents, ils lisent ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Mon père, toujours. Je lui offre un livre à chaque anniversaire.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Lage der Buchhandlung",
+        "options": [
+          "neben der Post",
+          "neben dem Rathaus",
+          "neben der Bäckerei"
+        ],
+        "answer": "neben der Bäckerei"
+      },
+      {
+        "label": "Gegenüber",
+        "options": [
+          "der Bäckerei",
+          "der Kirche",
+          "dem Rathaus"
+        ],
+        "answer": "dem Rathaus"
+      },
+      {
+        "label": "Wie oft geht er hin",
+        "options": [
+          "nie",
+          "jeden Tag",
+          "manchmal samstags"
+        ],
+        "answer": "manchmal samstags"
+      },
+      {
+        "label": "Comics pro Woche",
+        "options": [
+          "zwei",
+          "dreizehn",
+          "drei"
+        ],
+        "answer": "drei"
+      },
+      {
+        "label": "Fernsehen beim Sohn",
+        "options": [
+          "manchmal",
+          "nie",
+          "oft"
+        ],
+        "answer": "nie"
+      },
+      {
+        "label": "Geschenk für den Vater",
+        "options": [
+          "ein Buch",
+          "eine DVD",
+          "eine Uhr"
+        ],
+        "answer": "ein Buch"
+      }
+    ]
+  },
+  "24": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Bonjour à tous. Nous commençons l’examen par les éléments langagiers. Vous avez quinze minutes.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Ensuite, la compréhension orale : vous entendrez chaque texte deux fois.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Excusez-moi, on écrit les réponses dans le livret ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Non, sur la feuille de réponse, avec un crayon.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Après l’écoute, vous avez trente minutes pour la lecture.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "À la fin, vous écrivez une lettre en quinze minutes.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Et l’oral, c’est quand ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Cet après-midi, à deux, avec quinze minutes de préparation.",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Erster Teil",
+        "options": [
+          "Hörverstehen",
+          "Éléments langagiers",
+          "Brief"
+        ],
+        "answer": "Éléments langagiers"
+      },
+      {
+        "label": "Zeit dafür",
+        "options": [
+          "15 Minuten",
+          "20 Minuten",
+          "30 Minuten"
+        ],
+        "answer": "15 Minuten"
+      },
+      {
+        "label": "Hörtexte hört man",
+        "options": [
+          "einmal",
+          "dreimal",
+          "zweimal"
+        ],
+        "answer": "zweimal"
+      },
+      {
+        "label": "Antworten auf",
+        "options": [
+          "den Antwortbogen",
+          "das Aufgabenheft",
+          "ein Extrablatt"
+        ],
+        "answer": "den Antwortbogen"
+      },
+      {
+        "label": "Lesen",
+        "options": [
+          "15 Minuten",
+          "30 Minuten",
+          "45 Minuten"
+        ],
+        "answer": "30 Minuten"
+      },
+      {
+        "label": "Mündliche Prüfung",
+        "options": [
+          "am nächsten Tag",
+          "morgens allein",
+          "nachmittags zu zweit"
+        ],
+        "answer": "nachmittags zu zweit"
+      }
+    ]
   }
 };
