@@ -205,7 +205,7 @@ const GAMES=[
  {id:'catch',icon:'🧺',theme:'match',name:['Wort-Fänger','Word catcher'],tag:['Verbformen im Satz','Verb forms in sentences'],rule:['Fang mit dem Korb nur das Wort, das in die Lücke passt. Falsche Wörter kosten ein Leben. 3 Leben.','Catch only the word that fits the gap. Wrong words cost a life. 3 lives.'],stars:[50,130,220],create:createCatch},
  {id:'sort',icon:'⚡',theme:'text',name:['Blitz-Sortierer','Lightning sort'],tag:['Herkunft/Wohnort · tu/vous · être/venir','Origin/home · tu/vous · être/venir'],rule:['Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben.','Swipe each card to the right side – fast. Time gets shorter and shorter! 3 lives.'],stars:[60,150,260],create:createSort}
 ];
-const QUIZ={id:'quiz',icon:'💎',theme:'memory',name:['Millionen-Turm','Million tower'],tag:['10 Fragen · 4 Antworten · 2 Joker','10 questions · 4 answers · 2 jokers'],stars:[1000,100000,1000000]};
+const QUIZ={id:'quiz',icon:'💎',theme:'memory',name:['Millionen-Turm','Million tower'],tag:['12 Fragen · 4 Antworten · 2 Joker','12 questions · 4 answers · 2 jokers'],stars:[1000,100000,1000000]};
 const starsFor=(def,score)=>def.stars.filter(s=>score>=s).length;
 
 function run(host,def,{best=0,onEnd,onExit}={}){
@@ -248,7 +248,8 @@ function bindControls(host,{pause,exit,sound}){const q=s=>host.querySelector(s);
  q('[data-arcade-voice]').onclick=e=>{const on=!voiceOn();store.set('a1-arcade-voice',on?'on':'off');e.currentTarget.textContent=(on?'🗣️ ':'🤐 ')+t('Stimme','Voice');e.currentTarget.setAttribute('aria-pressed',String(on));if(!on)try{window.A1Voice?.cancel?.();}catch{}};}
 
 /* ---------- Game 5: quiz show "Millionen-Turm" ---------- */
-const LADDER=[50,100,200,500,1000,5000,25000,100000,500000,1000000],SAFE=4;
+const LADDER=[10,50,100,200,500,1000,5000,25000,100000,250000,500000,1000000],SAFE=5;
+const RUNGS={1:[1,2],2:[3],3:[4],4:[5],5:[6],6:[7],7:[8],8:[9],9:[10],10:[11,12]};
 const Q=(l,de,english,options,hint,line)=>({l,q:[de,english],o:options,h:hint,s:line});
 const QUESTIONS=[
  Q(1,'Was sagst du am Abend zur Begrüßung?','What do you say as a greeting in the evening?',['Bonsoir !','Bonne nuit !','Au revoir !','Merci !'],['Bonne nuit sagt man erst beim Schlafengehen.','Bonne nuit is only for going to bed.'],'Bonsoir !'),
@@ -292,7 +293,7 @@ const QUESTIONS=[
 ];
 // Lesson 1 uses the hand-written questions above; the show itself lives in shared/quiz-show.js. Old saves stored question numbers.
 function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()=>{};const old=opts.saved;const saved=old&&!old.qs&&Array.isArray(old.set)?{...old,qs:old.set.map(n=>QUESTIONS[n])}:old;
- return show.mount(host,{...opts,saved,pool:QUESTIONS,course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
+ return show.mount(host,{...opts,saved,pool:QUESTIONS.flatMap((q,n)=>RUNGS[q.l].map(l=>({...q,id:'q'+n,src:q.s,l}))),course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
 
 function mount(host,id,opts={}){if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};

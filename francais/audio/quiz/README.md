@@ -8,9 +8,9 @@ Nur Sounds verwenden, die du nutzen darfst – z. B. eigene Aufnahmen oder lizen
 
 | Bereich | Fragen | Gewinnstufen |
 |---|---|---|
-| 1 | 1–4 | 50 € – 500 € |
-| 2 | 5–7 | 1.000 € – 25.000 € |
-| 3 | 8–10 | 100.000 € – 1 Million € |
+| 1 | 1–5 | 10 € – 500 € |
+| 2 | 6–8 | 1.000 € – 25.000 € |
+| 3 | 9–12 | 100.000 € – 1 Million € |
 
 ## Dateien
 

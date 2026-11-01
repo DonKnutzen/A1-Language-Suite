@@ -110,7 +110,7 @@
     const lock=`<svg class="quiz-lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0${open?'':'v3'}"/><path d="M12 14v3"/></svg>`;
     const label=!open?t("Verrouillé",'Locked'):Q.game?`${t("Continuer · question",'Continue at question')} ${Number(Q.game.level)+1} →`:Q.best?`🏆 ${window.A1_QUIZ_SHOW.money(Q.best,'de')}<i>${'★'.repeat(Q.stars)}${'☆'.repeat(3-Q.stars)}</i>`:t("Jouer",'Play')+' →';
     return `<section class="quiz-entry-card ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="${t("La tour du million",'Million tower')}">
-      <button type="button" class="quiz-entry-button" data-quiz-entry ${open?'':'disabled'}>${lock}<strong>${t("La tour du million",'Million tower')}<small>${t("10 questions · de plus en plus dures",'10 questions · ever harder')}</small></strong><span>${label}</span></button>
+      <button type="button" class="quiz-entry-button" data-quiz-entry ${open?'':'disabled'}>${lock}<strong>${t("La tour du million",'Million tower')}<small>${t("12 questions · de plus en plus dures",'12 questions · ever harder')}</small></strong><span>${label}</span></button>
       ${open?'':`<small class="quiz-entry-hint">${t("Se débloque avec le Hard Mode",'Unlocks together with Hard Mode')}</small>`}
     </section>`;
   }
