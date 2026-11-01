@@ -87,3 +87,32 @@ test('every authored A2 lesson has complete, close-option practice in all steps,
  }
  dom.window.close();
 });
+test('telc practice parts score like the exam and a full simulation reports points and grade',()=>{
+ const {dom,w,errors,view}=page(),D=w.FR_A1_DATA,click=s=>view.querySelector(s).click();
+ assert.equal(D.telc.length,2);
+ for(const t of D.telc){assert.equal(t.el1.items.length,10);assert.equal(t.el2.reduce((n,d)=>n+d.answers.length,0),8);
+  assert.equal(t.co1.items.length+t.co2.length+t.co3.length,12);assert.equal(4+t.ce2.reduce((n,b)=>n+b.items.length,0)+t.ce3.items.length,12);
+  assert.equal(t.ee.points.length,6);assert.equal(t.oral.part3.options.length,6);
+  for(const d of t.el2)for(const a of d.answers)assert(d.box.includes(a),a);}
+ const answerAll=t=>{
+  t.el1.items.forEach((it,i)=>[...view.querySelectorAll(`[data-pick="el1-${i}"] button`)].find(b=>b.textContent.endsWith(' '+it[0][0])).click());
+  t.el2.flatMap(d=>d.answers).forEach((a,k)=>{view.querySelector(`[data-pick="el2-${k}"]`).value=a;});
+ };
+ const t=D.telc[0];
+ w.document.querySelector('[data-route="exam"]').click();click('[data-part="el"][data-test="t1"]');answerAll(t);click('#telcCheck');
+ assert.match(view.querySelector('#telcScore').textContent,/13 von 13 Punkten/);
+ click('#telcCheck');click('[data-part="co"][data-test="t1"]');
+ const co=[...t.co1.items,...t.co2,...t.co3];co.forEach((x,i)=>view.querySelector(`[data-vf="co-${i}"] [data-v="${x.a?1:0}"]`).click());click('#telcCheck');
+ assert.match(view.querySelector('#telcScore').textContent,/24 von 24 Punkten/);assert(view.querySelector('.transcript'));
+ click('#telcCheck');click('[data-part="ce"][data-test="t1"]');
+ t.ce1.texts.forEach(([,a],i)=>{view.querySelector(`[data-pick="ce1-${i}"]`).value=String(a);});
+ t.ce2.flatMap(b=>b.items).forEach((it,i)=>view.querySelector(`[data-vf="ce2-${i}"] [data-v="${it[1]?1:0}"]`).click());
+ t.ce3.items.forEach(([,a],i)=>view.querySelector(`[data-pick="ce3-${i}"] [data-v="${a}"]`).click());click('#telcCheck');
+ assert.match(view.querySelector('#telcScore').textContent,/24 von 24 Punkten/);
+ click('#telcCheck');click('[data-sim="t2"]');
+ for(let i=0;i<5;i++){click('#telcCheck');if(view.querySelector('#telcCheck')?.textContent==='Bewertung übernehmen'){
+   view.querySelectorAll('[data-rate]').forEach(g=>g.querySelector('button').click());click('#telcCheck');}click('#telcCheck');}
+ assert.match(view.textContent,/von 100 Punkten/);assert.match(view.textContent,/Mündlich 27\/27/);
+ assert.equal(w.FR_A2_TELC.grade(64),'passable');assert.equal(w.FR_A2_TELC.grade(59.5),'nicht bestanden');
+ assert.deepEqual(errors,[]);dom.window.close();
+});

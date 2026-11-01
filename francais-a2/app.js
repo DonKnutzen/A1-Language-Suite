@@ -204,24 +204,21 @@ function renderLesson(id){
 }
 
 function renderPractice(){
+  const sets=D.telc.length,ctx={view,state,save,speak};
   view.innerHTML=`
-    <section class="card hero"><h2>Üben</h2><p class="muted">Die Kernübungen bestehen jetzt aus ungefähr 10 Fragen pro Runde.</p></section>
+    <section class="card hero"><h2>Üben</h2><p class="muted">Vokabeln und Grammatik aus den Lektionen sowie jeder Prüfungsteil im Format telc Français A2.</p></section>
     <div class="grid">
       <button class="practice-card" id="pVocab"><span class="icon">🧠</span><strong>Vokabeln</strong><small>${lessons.reduce((s,l)=>s+l.phrases.length,0)} Kernphrasen mit Audio</small></button>
-      <button class="practice-card" id="pGrammar"><span class="icon">🧩</span><strong>Grammatik & Sprachbausteine</strong><small>${D.grammarSets.length} Sets · ${D.grammarSets.reduce((s,x)=>s+x.questions.length,0)} Fragen</small></button>
-      <button class="practice-card" id="pListen"><span class="icon">🎧</span><strong>Hören</strong><small>${totalListening()} Audioaufgaben · 10 pro Runde</small></button>
-      <button class="practice-card" id="pRead"><span class="icon">📖</span><strong>Lesen</strong><small>${totalReading()} Aufgaben · 10 pro Runde</small></button>
-      <button class="practice-card" id="pWrite"><span class="icon">✍️</span><strong>Schreiben</strong><small>${D.forms.length} Formulare à 10 Felder + ${D.writing.length} Texte</small></button>
-      <button class="practice-card" id="pSpeak"><span class="icon">🎤</span><strong>Sprechen</strong><small>${D.interview.length} Fragen · ${D.infoCards.length} Karten · ${D.roleplays.length} Rollenspiele</small></button>
+      <button class="practice-card" id="pGrammar"><span class="icon">🧩</span><strong>Grammatik</strong><small>${D.grammarSets.length} Sets · ${D.grammarSets.reduce((s,x)=>s+x.questions.length,0)} Fragen</small></button>
+      <button class="practice-card" id="pEl"><span class="icon">🔤</span><strong>Sprachbausteine</strong><small>Éléments langagiers · ${sets} Modelltests</small></button>
+      <button class="practice-card" id="pListen"><span class="icon">🎧</span><strong>Hören</strong><small>3 Teile · 12 Aufgaben je Test</small></button>
+      <button class="practice-card" id="pRead"><span class="icon">📖</span><strong>Lesen</strong><small>3 Teile · 12 Aufgaben je Test</small></button>
+      <button class="practice-card" id="pWrite"><span class="icon">✍️</span><strong>Schreiben</strong><small>Brief · 3 von 6 Punkten</small></button>
+      <button class="practice-card" id="pSpeak"><span class="icon">🎤</span><strong>Sprechen</strong><small>Vorstellen · Austauschen · Sich einigen</small></button>
     </div>`;
-  const empty={pGrammar:!D.grammarSets.length,pListen:!totalListening(),pRead:!totalReading(),pWrite:!D.forms.length&&!D.writing.length,pSpeak:!D.interview.length&&!D.infoCards.length&&!D.roleplays.length};
-  for(const [id,off] of Object.entries(empty))if(off){const b=document.getElementById(id);b.disabled=true;b.querySelector('small').textContent='Folgt mit den Lektionsinhalten';}
-  document.getElementById('pVocab').onclick=renderVocab;
-  document.getElementById('pGrammar').onclick=renderGrammarMenu;
-  document.getElementById('pListen').onclick=renderListeningMenu;
-  document.getElementById('pRead').onclick=renderReadingMenu;
-  document.getElementById('pWrite').onclick=renderWritingMenu;
-  document.getElementById('pSpeak').onclick=renderSpeakingMenu;
+  document.getElementById("pVocab").onclick=renderVocab;
+  document.getElementById("pGrammar").onclick=renderGrammarMenu;
+  for(const [id,part] of [["pEl","el"],["pListen","co"],["pRead","ce"],["pWrite","ee"],["pSpeak","oral"]])document.getElementById(id).onclick=()=>FR_A2_TELC.renderPart(ctx,part,D.telc[Math.floor(Math.random()*sets)].id);
   practiceProgress?.decorate();
 }
 
@@ -666,12 +663,7 @@ function renderRoleplay(){
 }
 
 function renderExam(){
-  const E=D.curriculum.exam,row=p=>`<li><strong>${esc(p.title)}</strong> · ${p.items} Items · ${esc(p.form)} · ${p.points} P.</li>`;
-  view.innerHTML=`
-    <section class="card hero"><span class="pill">TELC FRANÇAIS A2</span><h2 style="margin-top:12px">Prüfungstraining</h2><p class="muted">Schriftliche Prüfung mit vier Subtests, danach die mündliche Paarprüfung. Bestanden ab ${E.pass} von ${E.max} Punkten.</p></section>
-    ${E.written.map(t=>`<section class="card"><h3 lang="fr">${esc(t.title)}</h3><p class="muted">${t.minutes} Minuten${t.note?' · '+esc(t.note):''}</p><ul>${t.parts.map(row).join('')}</ul></section>`).join('')}
-    <section class="card"><h3 lang="fr">${esc(E.oral.title)}</h3><p class="muted">${E.oral.preparation} Minuten Vorbereitung · etwa ${E.oral.minutes} Minuten Prüfung · ${esc(E.oral.format)}</p><ul>${E.oral.parts.map(p=>`<li lang="fr"><strong>${esc(p.title)}</strong> · bis ${p.points} P.</li>`).join('')}</ul></section>
-    <section class="card"><h3>Noten</h3><ul>${E.grades.map(([min,label])=>`<li>ab ${min} Punkten: <span lang="fr">${esc(label)}</span></li>`).join('')}</ul><p class="muted">Quelle: ${esc(E.source)}. Eigene Übungsaufgaben, keine Originalaufgaben. Die Prüfungssimulation folgt mit Lektion 24.</p></section>`;
+  FR_A2_TELC.renderExam({view,state,save,speak});
 }
 
 function renderExamDelf(){
