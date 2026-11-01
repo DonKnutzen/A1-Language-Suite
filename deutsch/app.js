@@ -1768,6 +1768,10 @@ function clamp(n,a,b){return Math.max(a,Math.min(b,n));}
 function unique(arr){return [...new Set(arr)];}
 function randomItem(arr){return arr[Math.floor(Math.random()*arr.length)];}
 function shuffle(arr){return A1Learning.shuffle(arr);}
+function randomizedChoices(task){
+  const correct=task.o[task.a],o=shuffle([...task.o]);
+  return {...task,o,a:o.indexOf(correct)};
+}
 function normalize(s=''){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9@.]+/g,' ').trim().replace(/\s+/g,' ');}
 function lessonPct(){return Math.round(state.doneLessons.length/lessons.length*100);}
 function totalListening(){return Object.values(listening).reduce((n,a)=>n+a.length,0);}
@@ -1921,7 +1925,7 @@ function renderGrammarMenu(){
 }
 
 function startGrammarSet(id){
-  const set=grammarSets.find(x=>x.id===id),qs=shuffle(set.questions).slice(0,10);let i=0,score=0;
+  const set=grammarSets.find(x=>x.id===id),qs=shuffle(set.questions).slice(0,10).map(randomizedChoices);let i=0,score=0;
   function draw(){
     if(i>=qs.length){const pct=Math.round(score/qs.length*100);state.grammarBest[id]=Math.max(state.grammarBest[id]||0,pct);save(true);view.innerHTML=`<section class="card center"><span class="pill ${pct>=70?'green':'amber'}">${esc(set.title)}</span><div class="score">${pct}%</div><h2>${score}/${qs.length}</h2><p class="muted">La bonne réponse est lue après chaque réponse.</p><div class="button-row"><button class="secondary-btn" id="againGrammar">Recommencer</button><button class="primary-btn" id="backGrammar">Toutes les séries</button></div></section>`;document.getElementById('againGrammar').onclick=()=>startGrammarSet(id);document.getElementById('backGrammar').onclick=renderGrammarMenu;return;}
     const q=qs[i];view.innerHTML=`<div class="between"><button class="tiny-btn" id="backGrammar">← Grammaire</button><span class="pill">${i+1}/${qs.length}</span></div><section class="card" style="margin-top:12px"><div class="eyebrow">${esc(set.title)}</div><div class="quiz-q">${esc(q.q)}</div>${DE_A1_PRONOUNS.hint(q)?`<p class="pronoun-hint">${esc(DE_A1_PRONOUNS.hint(q))}</p>`:''}<div class="options">${q.o.map((o,j)=>`<button class="option-btn" data-o="${j}">${esc(o)}</button>`).join('')}</div><div id="grammarFeedback"></div></section>`;document.getElementById('backGrammar').onclick=renderGrammarMenu;document.querySelectorAll('[data-o]').forEach(btn=>btn.onclick=()=>{const chosen=+btn.dataset.o,ok=chosen===q.a;window.DE_A1_REVIEW?.record(state,window.DE_A1_REVIEW.task(0,'extra-grammar:'+id,set.title,q),ok);save();if(ok)score++;practiceProgress.recordGrammar(set,q);document.querySelectorAll('[data-o]').forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===chosen)b.classList.add('wrong');});document.getElementById('grammarFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${ok?'✓ Correct':'✗ Bonne réponse : '+esc(q.o[q.a])}</div><div class="spacer"></div><button class="primary-btn" id="nextGrammar">${i<qs.length-1?'Suivant':'Résultat'}</button>`;DE_A1_ANSWER_AUDIO.mount(document.querySelector('#grammarFeedback .feedback'),{task:q,playAudio:t=>playCorrectAudio(t,true)});document.getElementById('nextGrammar').onclick=()=>{i++;draw();};});
@@ -1947,7 +1951,7 @@ function startListeningPractice(part){
 }
 
 function renderListeningTask(part,item=null,examMode=false,onDone=null,progressLabel=''){
-  const task=item||randomItem(listening[part]);let plays=0,answered=false;const maxPlays=part===2?1:2;
+  const original=item||randomItem(listening[part]),task=part===2?original:randomizedChoices(original);let plays=0,answered=false;const maxPlays=part===2?1:2;
   function draw(){
     const options=part===2?['Richtig','Falsch']:task.o;
     view.innerHTML=`<div class="between"><button class="tiny-btn" id="backHear">← Hören</button><span class="pill">${progressLabel||'Teil '+part}</span></div><section class="card" style="margin-top:12px"><div class="audio-panel"><button class="speak-btn large" id="playAudio">▶️</button><div><strong>Audio abspielen</strong></div><div class="play-count">${examMode?`${plays}/${maxPlays} écoute(s) utilisée(s)`:'Mode entraînement · répétition libre'}</div></div><div class="quiz-q">${esc(part===2?task.statement:task.q)}</div><div class="options">${options.map((x,j)=>`<button class="option-btn" data-o="${j}">${esc(x)}</button>`).join('')}</div><div id="hearFeedback"></div></section>`;
@@ -1971,7 +1975,7 @@ function startReadingPractice(part){
 }
 
 function renderReadingTask(part,item=null,examMode=false,onDone=null,progressLabel=''){
-  const task=item||randomItem(reading[part]);let body='',options=[],correct=0,audio='';
+  const original=item||randomItem(reading[part]),task=part===4?randomizedChoices(original):original;let body='',options=[],correct=0,audio='';
   if(part===1){body=`<div class="reading-text">${esc(task.text)}</div><div class="quiz-q">${esc(task.statement)}</div>`;options=['Richtig','Falsch'];correct=task.a?0:1;audio=task.statement;}
   if(part===2){body=`<div class="notice"><strong>Situation :</strong> ${esc(task.need)}</div><div class="ad-grid" style="margin-top:12px"><div class="ad-box"><strong>A</strong>${esc(task.aText)}</div><div class="ad-box"><strong>B</strong>${esc(task.bText)}</div></div><div class="quiz-q">Wo finden Sie die passende Information?</div>`;options=['A','B'];correct=task.a;audio=task.audio||(task.a===0?task.aText:task.bText);}
   if(part===3){body=`<div class="muted" style="margin-bottom:8px">${esc(task.where)}</div><div class="sign">${esc(task.sign).replace(/\n/g,'<br>')}</div><div class="quiz-q">${esc(task.statement)}</div>`;options=['Richtig','Falsch'];correct=task.a?0:1;audio=task.statement;}
