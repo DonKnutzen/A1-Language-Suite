@@ -54,3 +54,17 @@ test('Spanish estar is explained as two syllables, not one',()=>{
   assert(source.includes('zweiten Silbe: es-tá'));
   assert(!source.includes('Es hat nur eine Silbe.'));
 });
+
+test('Spanish grammar bank explains each graded answer and UI renders the reason',()=>{
+  const window={};
+  vm.runInNewContext(read('spanisch/data.js'),{window});
+  const sets=window.ES_A1_DATA.grammarSets;
+  assert.equal(sets.length,8);
+  for(const set of sets){
+    assert.equal(set.questions.length,10,set.id);
+    for(const q of set.questions)assert(q.explanation?.trim(),set.id+': '+q.q);
+  }
+  const ui=read('spanisch/app.js');
+  assert(ui.includes('grammar-answer-explanation'));
+  assert(ui.includes('esc(q.explanation)'));
+});
