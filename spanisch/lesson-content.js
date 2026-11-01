@@ -175,7 +175,7 @@ window.A1_COURSE_CONTENT=[
     },
     "pronunciation": {
       "focus": "está und es",
-      "explanation": "Das Akzentzeichen in está markiert die Betonung am Ende. Es hat nur eine Silbe. Höre beide Formen und sprich sie mit dem jeweiligen Satz.",
+      "explanation": "Das Akzentzeichen in está markiert die Betonung auf der zweiten Silbe: es-tá. Ohne Akzent würde nach der Grundregel die erste Silbe betont. Vergleiche esta (diese) und está (er/sie/es ist). Höre beide Formen und sprich sie mit dem jeweiligen Satz.",
       "samples": [
         "está",
         "es"
