@@ -51,7 +51,8 @@ window.ES_A1_DATA = {
             "Hallo!"
           ],
           "a": 2,
-          "audio": "¡Hola!"
+          "audio": "¡Hola!",
+          "explanation": "¡Hola! bedeutet „Hallo“ und kann zur Begrüßung in vielen Alltagssituationen verwendet werden. „Guten Morgen“ heißt buenos días, „Guten Abend“ meist buenas tardes oder buenas noches."
         },
         {
           "q": "Was bedeutet „Buenos días.“?",
@@ -61,7 +62,8 @@ window.ES_A1_DATA = {
             "Gute Nacht."
           ],
           "a": 0,
-          "audio": "Buenos días."
+          "audio": "Buenos días.",
+          "explanation": "Buenos días bedeutet „Guten Morgen“ beziehungsweise „Guten Tag“ am Vormittag. Buenas tardes und buenas noches verwendet man zu anderen Tageszeiten."
         },
         {
           "q": "Was bedeutet „Me llamo Laura.“?",
@@ -71,7 +73,8 @@ window.ES_A1_DATA = {
             "Sie heißt Laura."
           ],
           "a": 1,
-          "audio": "Me llamo Laura."
+          "audio": "Me llamo Laura.",
+          "explanation": "Me llamo Laura heißt „Ich heiße Laura“. Me llamo ist die Ich-Form von llamarse („heißen“); mit vivo en ... sagst du dagegen, wo du wohnst."
         },
         {
           "q": "Was bedeutet „Soy de Alemania.“?",
@@ -81,7 +84,8 @@ window.ES_A1_DATA = {
             "Ich komme aus Deutschland."
           ],
           "a": 2,
-          "audio": "Soy de Alemania."
+          "audio": "Soy de Alemania.",
+          "explanation": "Soy de Alemania bedeutet „Ich komme aus Deutschland“. Soy de + Ort beschreibt die Herkunft. Vivo en + Ort bedeutet „Ich wohne in ...“."
         },
         {
           "q": "Was bedeutet „Vivo en Halifax.“?",
@@ -91,7 +95,8 @@ window.ES_A1_DATA = {
             "Ich wohne in Hamburg."
           ],
           "a": 1,
-          "audio": "Vivo en Halifax."
+          "audio": "Vivo en Halifax.",
+          "explanation": "Vivo en Halifax heißt „Ich wohne in Halifax“. Vivo kommt von vivir („wohnen/leben“), en gibt hier den Wohnort an."
         },
         {
           "q": "Wie sagst du „Ich spreche Deutsch und ein bisschen Spanisch.“ auf Spanisch?",
@@ -101,7 +106,8 @@ window.ES_A1_DATA = {
             "Hablo alemán y español."
           ],
           "a": 1,
-          "audio": "Hablo alemán y un poco de español."
+          "audio": "Hablo alemán y un poco de español.",
+          "explanation": "Hablo = „ich spreche“, alemán = „Deutsch“, español = „Spanisch“. Un poco de bedeutet „ein bisschen“; die Reihenfolge der Sprachen ist entscheidend."
         },
         {
           "q": "Wie sagst du „Freut mich.“ auf Spanisch?",
@@ -111,7 +117,8 @@ window.ES_A1_DATA = {
             "Mucho gusto."
           ],
           "a": 2,
-          "audio": "Mucho gusto."
+          "audio": "Mucho gusto.",
+          "explanation": "Mucho gusto bedeutet bei einer Vorstellung „Freut mich“. Muchas gracias heißt „Vielen Dank“, hasta luego „Bis später“."
         },
         {
           "q": "Wie sagst du „Wie heißt du?“ auf Spanisch?",
@@ -121,7 +128,8 @@ window.ES_A1_DATA = {
             "¿Cómo te llamas?"
           ],
           "a": 2,
-          "audio": "¿Cómo te llamas?"
+          "audio": "¿Cómo te llamas?",
+          "explanation": "¿Cómo te llamas? bedeutet „Wie heißt du?“ und ist informell. ¿Cómo se llama? kann die höfliche Anrede „Wie heißen Sie?“ oder eine Frage über eine dritte Person sein."
         },
         {
           "q": "Wie sagst du „Hallo!“ auf Spanisch?",
@@ -131,7 +139,8 @@ window.ES_A1_DATA = {
             "¡Hola!"
           ],
           "a": 2,
-          "audio": "¡Hola!"
+          "audio": "¡Hola!",
+          "explanation": "¡Hola! heißt „Hallo“. ¡Adiós! verwendet man zur Verabschiedung, buenas noches zur Begrüßung am Abend oder zum Gute-Nacht-Sagen."
         },
         {
           "q": "Wie sagst du „Guten Morgen.“ auf Spanisch?",
@@ -141,7 +150,8 @@ window.ES_A1_DATA = {
             "Buenas noches."
           ],
           "a": 1,
-          "audio": "Buenos días."
+          "audio": "Buenos días.",
+          "explanation": "Buenos días bedeutet „Guten Morgen“ bzw. „Guten Tag“ am Vormittag. Buenas tardes bedeutet „Guten Tag/Guten Nachmittag“, buenas noches „Guten Abend/Gute Nacht“."
         }
       ]
     },
