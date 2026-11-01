@@ -1,7 +1,10 @@
-/* Lesson 1 arcade: fast action games and a quiz show built from the lesson's language. Bonus play; Hard Mode scores are unaffected. */
+/* Arcade: fast action games built from a lesson's language – lesson 1 has hand-written content, every other lesson of both
+   courses gets its content from its Hard Mode test and vocabulary. Bonus play; Hard Mode scores are unaffected. */
 (() => {
 'use strict';
-const en=()=>window.A1Profile?.getUiLang()==='en',t=(de,english)=>en()?english:de,tx=p=>Array.isArray(p)?p[en()?1:0]:p;
+// German interface for the French course, French for the German course (FR_UI), English when chosen.
+const en=()=>window.A1Profile?.getUiLang()==='en',fr=()=>!en()&&cur().course==='de';
+const t=(de,english)=>en()?english:fr()?(FR_UI[de]??de):de,tx=p=>Array.isArray(p)?(en()?p[1]:fr()?(p[2]??FR_UI[p[0]]??p[0]):p[0]):p;
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pick=xs=>xs[Math.floor(Math.random()*xs.length)];
 const shuffle=xs=>{const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
@@ -41,6 +44,36 @@ const SORTS=[
  {title:['être oder venir?','être or venir?'],sides:[['🧍 être','🧍 être'],['🚶 venir','🚶 venir']],cards:[['suis',0],['es',0],['est',0],['sommes',0],['êtes',0],['sont',0],['viens',1],['vient',1],['venons',1],['venez',1],['viennent',1]]}
 ];
 
+/* ---------- Content of other lessons ---------- */
+const FR_UI={'Ball zurückziehen & loslassen – oder Ziel antippen':'Tire la balle et lâche – ou touche une cible','Dieses Spiel braucht einen Browser mit Grafikunterstützung (Canvas).':'Ce jeu a besoin d’un navigateur avec le canvas.','Entwischt! ':'Envolé ! ','Los geht’s!':'C’est parti !','Neuer Rekord!':'Nouveau record !','Nochmal':'Rejouer','Oben antippen = nochmal hören':'Touche en haut pour réécouter','Pause':'Pause','Punkte':'points','Rekord':'Record','Spiel vorbei!':'Partie terminée !','Spielhalle':'Salle de jeux','Stimme':'Voix','Töne':'Sons','Was hörst du? Platz den richtigen Ballon!':'Qu’entends-tu ? Éclate le bon ballon !','Weiter':'Reprendre','Wischen oder Seite antippen':'Glisse ou touche un côté','Zeit um!':'Temps écoulé !','Ziehen oder ← → zum Fangen':'Glisse ou ← → pour attraper','Zu langsam!':'Trop lent !',
+ 'Wurf-Arena':'L’arène de tir','Ballon-Jagd':'La chasse aux ballons','Wort-Fänger':'L’attrape-mots','Blitz-Sortierer':'Le tri éclair',
+ 'Zieh den Ball wie eine Schleuder zurück und triff die richtige Verbform. Antippen eines Ziels wirft auch. Falsche Treffer kosten 3 Sekunden – du hast 45 Sekunden!':'Tire la balle comme une fronde et touche la bonne forme. Toucher une cible lance aussi. Une erreur coûte 3 secondes – tu as 45 secondes !',
+ 'Hör genau hin und platz den Ballon mit dem Satz, den du hörst – bevor er wegfliegt! 3 Leben.':'Écoute bien et éclate le ballon avec ce que tu entends – avant qu’il s’envole ! 3 vies.',
+ 'Fang mit dem Korb nur das Wort, das in die Lücke passt. Falsche Wörter kosten ein Leben. 3 Leben.':'Attrape seulement le mot qui va dans le trou. Un mauvais mot coûte une vie. 3 vies.',
+ 'Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben.':'Glisse chaque carte du bon côté – vite. Le temps raccourcit ! 3 vies.'};
+let L=null;
+function cur(){return L||{course:'fr',voice:'fr-FR',formRound,PHRASES,SORTS};}
+const lnorm=s=>String(s??'').normalize('NFC').trim().toLowerCase();
+// Throw and catch use the lesson's cloze sentences with the quiz show's look-alike options; balloons the lesson's words;
+// the sorter asks for the article and for right or wrong forms.
+function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR'},de:{H:window.DE_A1_HARD_CONTENT,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE'}}[course],data=cfg?.H?.[id];if(!data)return null;
+ const ui=(de,english,f)=>course==='de'?[de,english,f]:[de,english];
+ const rounds=[];for(const q of window.A1_QUIZ_SHOW?.generate(course,id)||[]){if(!String(q.kind).startsWith('gap')||!String(q.q[0]).includes('___'))continue;const m=String(q.q[0]).match(/^(.*?)(?: \(([^)]*)\))?$/),[before,after]=m[1].split('___');if(rounds.some(r=>r.before===before&&r.after===after))continue;rounds.push({before,after,verb:m[2]||'…',answer:q.o[0],others:q.o.slice(1),own:!String(q.src||'').includes('/'),sentence:(before+q.o[0]+after).replace(/([’'])\s+/g,'$1')});}
+ if(rounds.filter(r=>r.own).length>=4)rounds.splice(0,rounds.length,...rounds.filter(r=>r.own));
+ if(!rounds.length)data.gaps.forEach((g,n)=>{const text=String(data.text);const s=(text.match(/[^.!?\n]*\{\{\d+\}\}[^.!?\n]*[.!?]?/g)||[]).find(x=>x.includes('{{'+n+'}}'));if(!s)return;const filled=s.replace(/\{\{(\d+)\}\}/g,(_,k)=>Number(k)===n?'___':data.gaps[Number(k)].answers[0]).trim(),[before,after]=filled.split('___');rounds.push({before,after,verb:g.hint||'…',answer:g.answers[0],others:shuffle(data.gaps.map(x=>x.answers[0]).filter(x=>lnorm(x)!==lnorm(g.answers[0]))).slice(0,3),sentence:before+g.answers[0]+after});});
+ const formRoundL=(count=4)=>{const r=pick(rounds);return {...r,options:shuffle([r.answer,...shuffle(r.others).slice(0,count-1)])};};
+ const V=window.A1_VOCABULARY_CONTENT||[],words=(test)=>{const seen=new Set();return V.filter(v=>test(v[cfg.lessons]||[])&&v[cfg.target]&&v[cfg.meaning]&&!/[()…]/.test(v[cfg.target])&&v[cfg.target].length<=24).filter(v=>!seen.has(lnorm(v[cfg.target]))&&seen.add(lnorm(v[cfg.target])));};
+ let own=words(ls=>ls.includes(Number(id)));if(own.length<8)own=[...own,...shuffle(words(ls=>ls.some(n=>n<Number(id)))).slice(0,8-own.length)];
+ const PHRASESL=own.map(v=>[v[cfg.target],[v[cfg.meaning],v[cfg.meaning],v[cfg.meaning]]]);
+ const nouns=words(ls=>ls.some(n=>n<=Number(id))),SORTSL=[];
+ if(course==='fr'){const g=nouns.filter(v=>/^(le|la) /.test(v.fr)).map(v=>[v.fr.slice(3),v.fr.startsWith('le ')?0:1]);if(g.length>=10)SORTSL.push({title:['le oder la?','le or la?'],sides:[['♂ le','♂ le'],['♀ la','♀ la']],cards:shuffle(g).slice(0,24)});}
+ else{const g=nouns.filter(v=>/^(der|die) /.test(v.de)&&!/\//.test(v.de)).map(v=>[v.de.replace(/^(der|die) /,''),v.de.startsWith('der ')?0:1]);if(g.length>=10)SORTSL.push({title:['der oder die?','der or die?','der ou die ?'],sides:[['der','der','der'],['die','die','die']],cards:shuffle(g).slice(0,24)});}
+ const forms=shuffle(rounds).slice(0,12).flatMap(r=>[[r.sentence,0],[(r.before+r.others[0]+r.after).replace(/([’'])\s+/g,'$1'),1]]);
+ if(forms.length>=10)SORTSL.push({title:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✓ richtig','✓ right','✓ juste'],['✗ falsch','✗ wrong','✗ faux']],cards:forms});
+ if(!SORTSL.length)SORTSL.push(...SORTS);
+ return {course,voice:cfg.voice,formRound:rounds.length?formRoundL:formRound,PHRASES:PHRASESL.length>=4?PHRASESL:PHRASES,SORTS:SORTSL,tags:{throw:ui('Formen aus dem Lückentext','Forms from the cloze text','Les formes du texte à trous'),balloons:ui('Wörter der Lektion hören','Hear the lesson’s words','Écouter les mots de la leçon'),catch:ui('Das Wort für die Lücke','The word for the gap','Le mot pour le trou'),sort:ui(SORTSL.map(x=>x.title[0]).join(' · '),SORTSL.map(x=>x.title[1]).join(' · '),SORTSL.map(x=>x.title[2]??x.title[0]).join(' · '))}};}
+function lessonGames(course,id){L=lessonContent(course,id);const tags=L?.tags;const list=GAMES.map(g=>({id:g.id,icon:g.icon,theme:g.theme,title:tx(g.name),tagline:tags?tx(tags[g.id]):tx(g.tag)}));L=null;return list;}
+
 /* ---------- Sound: tiny synthesised effects and music, no files ---------- */
 let audio=null;
 function ac(){if(!audio){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{audio=new C();}catch{return null;}}if(audio.state==='suspended')audio.resume?.();return audio;}
@@ -56,7 +89,7 @@ const sfx={
  sad(){[392,330,262,196].forEach((f,i)=>tone(f,f*.97,.32,{type:'triangle',vol:.05,at:i*.2}));},
  drumroll(sec){for(let x=0,i=0;x<sec;i++){const gap=Math.max(.045,.16-i*.008);tone(140,90,.05,{type:'square',vol:.035,at:x});x+=gap;}}
 };
-function say(text){if(!voiceOn()||!text)return;try{window.A1Voice?.speak?.(text,{lang:'fr-FR',rate:.9});}catch{}}
+function say(text){if(!voiceOn()||!text)return;try{window.A1Voice?.speak?.(text,{lang:cur().voice,rate:.9});}catch{}}
 function music(){
  const c=soundOn()?ac():null;if(!c)return {level(){},on(){},stop(){}};
  const master=c.createGain();master.gain.value=.55;master.connect(c.destination);
@@ -81,7 +114,7 @@ function createThrow(api){
  const S={score:0,combo:0,time:45,round:null,targets:[],ball:null,drag:null,roundT:0,lock:0,hits:0};
  const home=()=>({x:api.w/2,y:api.h-70}),bob=t=>t.y+Math.sin(t.phase)*8;
  function resetBall(){const p=home();S.ball={x:p.x,y:p.y,vx:0,vy:0,fly:false,grav:true};}
- function next(){S.round=formRound(4);S.roundT=0;const n=4,top=150,speed=45+Math.min(130,S.hits*9),r=Math.min(46,api.w/9+8);S.targets=S.round.options.map((word,i)=>({word,r,x:api.w/n*(i+.5),y:top+(i%2?Math.min(110,api.h*.2):0),vx:(Math.random()<.5?-1:1)*speed*(.6+Math.random()*.6),phase:Math.random()*6,color:COLORS[(i+S.hits)%COLORS.length],gone:false}));resetBall();}
+ function next(){S.round=cur().formRound(4);S.roundT=0;const n=4,top=150,speed=45+Math.min(130,S.hits*9),r=Math.min(46,api.w/9+8);S.targets=S.round.options.map((word,i)=>({word,r,x:api.w/n*(i+.5),y:top+(i%2?Math.min(110,api.h*.2):0),vx:(Math.random()<.5?-1:1)*speed*(.6+Math.random()*.6),phase:Math.random()*6,color:COLORS[(i+S.hits)%COLORS.length],gone:false}));resetBall();}
  function launch(vx,vy,grav){Object.assign(S.ball,{vx,vy,grav,fly:true});api.sfx.throw();}
  // A tapped target is homed in on, so the ball never hits another target on the way.
  function aimAt(tg){S.ball.aim=tg;launch(0,0,false);}
@@ -122,7 +155,7 @@ function createBalloons(api){
  const S={score:0,combo:0,lives:3,wave:0,balloons:[],target:null,t:0,lock:0};
  const canSpeak=()=>voiceOn()&&!!window.A1Voice?.speak&&!!window.speechSynthesis;
  function size(n){const rx=Math.min(78,api.w/(n*2)-6);return {rx,ry:rx*1.18};}
- function next(){S.wave++;S.t=0;S.target=pick(PHRASES);const items=shuffle([S.target,...shuffle(PHRASES.filter(p=>p!==S.target)).slice(0,api.w<420?2:3)]);const speed=46+Math.min(75,S.wave*4.5),{rx,ry}=size(items.length);S.balloons=items.map((p,i)=>({p,rx,ry,x:api.w/items.length*(i+.5),y:api.h-ry*.3+Math.random()*70,vy:speed*(.85+Math.random()*.35),wob:Math.random()*6,color:COLORS[(i+S.wave)%COLORS.length],popped:false}));if(canSpeak())setTimeout(()=>api.say(S.target[0]),250);}
+ function next(){S.wave++;S.t=0;S.target=pick(cur().PHRASES);const items=shuffle([S.target,...shuffle(cur().PHRASES.filter(p=>p!==S.target)).slice(0,api.w<420?2:3)]);const speed=46+Math.min(75,S.wave*4.5),{rx,ry}=size(items.length);S.balloons=items.map((p,i)=>({p,rx,ry,x:api.w/items.length*(i+.5),y:api.h-ry*.3+Math.random()*70,vy:speed*(.85+Math.random()*.35),wob:Math.random()*6,color:COLORS[(i+S.wave)%COLORS.length],popped:false}));if(canSpeak())setTimeout(()=>api.say(S.target[0]),250);}
  next();
  const hinted=()=>!canSpeak()||S.t>3.5;
  return {
@@ -149,7 +182,7 @@ function createBalloons(api){
 function createCatch(api){
  const S={score:0,combo:0,lives:3,round:null,words:[],spawn:.4,since:2,caught:0,keys:{},basket:{x:api.w/2},done:'',doneT:0};
  const bw=()=>Math.min(130,api.w*.32),by=()=>api.h-46;
- function next(){S.round=formRound(3);for(const wd of S.words)wd.fade=true;S.spawn=.5;S.since=2;}
+ function next(){S.round=cur().formRound(3);for(const wd of S.words)wd.fade=true;S.spawn=.5;S.since=2;}
  next();
  return {
   get over(){return S.lives<=0;},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},
@@ -174,10 +207,10 @@ function createCatch(api){
 /* ---------- Game 4: lightning sort ---------- */
 function createSort(api){
  const S={score:0,combo:0,lives:3,n:0,set:0,queue:[],card:null,drag:0,start:null};
- function deal(){if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side]=S.queue.pop(),limit=Math.max(2,5-S.n*.09);S.card={text,side,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
+ function deal(){const SORTS=cur().SORTS;if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side]=S.queue.pop(),limit=Math.max(2,5-S.n*.09);S.card={text,side,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
  function choose(side){const cd=S.card;if(!cd||cd.state!=='live')return;cd.dir=side?1:-1;
   if(side===cd.side){S.combo++;const pts=10+Math.min(20,S.combo*2)+Math.round(cd.t/cd.limit*8);S.score+=pts;cd.state='out';api.burst(side?api.w*.8:api.w*.2,api.h*.45,pick(COLORS),20);api.float(api.w/2,api.h*.3,'+'+pts);api.sfx.hit();if(cd.text.includes(' '))api.say(cd.text);}
-  else{S.lives--;S.combo=0;cd.state='wrong';cd.flash=.45;api.sfx.miss();api.shake(10);api.float(api.w/2,api.h*.3,'✗ '+tx(SORTS[S.set].sides[cd.side]),'#ff8fa3');}}
+  else{S.lives--;S.combo=0;cd.state='wrong';cd.flash=.45;api.sfx.miss();api.shake(10);api.float(api.w/2,api.h*.3,'✗ '+tx(cur().SORTS[S.set].sides[cd.side]),'#ff8fa3');}}
  deal();
  return {
   get over(){return S.lives<=0&&(!S.card||S.card.state==='gone');},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},
@@ -187,7 +220,7 @@ function createSort(api){
    else if(cd.state==='out'){cd.x+=cd.dir*1700*dt;if(Math.abs(cd.x)>api.w){cd.state='gone';if(S.lives>0)deal();}}},
   pointer(type,x){if(type==='down'){S.start=x;S.drag=0;}else if(type==='move'&&S.start!==null){S.drag=x-S.start;}else if(type==='up'&&S.start!==null){const d=S.drag;S.start=null;S.drag=0;if(Math.abs(d)>60)choose(d>0?1:0);else if(Math.abs(d)<10)choose(x>api.w/2?1:0);}},
   key(type,key){if(type!=='down')return false;if(key==='ArrowLeft'){choose(0);return true;}if(key==='ArrowRight'){choose(1);return true;}return false;},
-  draw(c,w,h){const set=SORTS[S.set];c.fillStyle='#3b1f6e';c.fillRect(0,0,w/2,h);c.fillStyle='#0f4c5c';c.fillRect(w/2,0,w/2,h);
+  draw(c,w,h){const set=cur().SORTS[S.set];c.fillStyle='#3b1f6e';c.fillRect(0,0,w/2,h);c.fillStyle='#0f4c5c';c.fillRect(w/2,0,w/2,h);
    label(c,tx(set.title),w/2,66,{size:18,color:'#ffd166',maxW:w-24});
    for(const s of [0,1]){const cx=s?w*.75:w*.25;rr(c,cx-w*.22,h-74,w*.44,52,26);c.fillStyle=s?'#06d6a0':'#ff5d8f';c.fill();label(c,(s?'':'← ')+tx(set.sides[s])+(s?' →':''),cx,h-48,{size:17,color:'#1a1030',maxW:w*.4});}
    const cd=S.card;if(!cd||cd.state==='gone')return;const cw=Math.min(w-48,330),ch=150,cx=w/2+cd.x+(cd.state==='live'?S.drag:0),cy=h*.47,sc=.85+cd.enter*.15;
@@ -296,8 +329,8 @@ const QUESTIONS=[
 function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()=>{};const old=opts.saved;const saved=old&&!old.qs&&Array.isArray(old.set)?{...old,qs:old.set.map(n=>QUESTIONS[n])}:old;
  return show.mount(host,{...opts,saved,pool:[...show.generate('fr',1).filter(q=>q.l<=5),...QUESTIONS.flatMap((q,n)=>RUNGS[q.l].map(l=>({...q,id:'q'+n,src:q.s,l})))],course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
 
-function mount(host,id,opts={}){if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
+function mount(host,id,opts={}){L=opts.course&&opts.lesson?lessonContent(opts.course,opts.lesson):null;if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};
 const meta=g=>({id:g.id,icon:g.icon,theme:g.theme,name:g.name,tag:g.tag,stars:g.stars});
-window.FR_A1_ARCADE={games:GAMES.map(meta),mount,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
+window.FR_A1_ARCADE={games:GAMES.map(meta),mount,lessonGames,lessonContent,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
 })();

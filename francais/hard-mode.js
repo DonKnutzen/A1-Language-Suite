@@ -77,9 +77,9 @@
   }
   function achievement(state,id){
     const progress=state.lessonWork?.[id]?.hardMode;
-    return [progress?.attempt,...(progress?.history||[]),progress?.challenge?.attempt,...(progress?.challenge?.history||[]),progress?.pilot?.attempt,...(progress?.pilot?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
+    return [progress?.attempt,...(progress?.history||[]),progress?.challenge?.attempt,...(progress?.challenge?.history||[]),progress?.pilot?.attempt,...(progress?.pilot?.history||[]),progress?.games?.attempt,...(progress?.games?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total&&(!['lesson-challenge','hard-pilot'].includes(attempt.kind)||attempt.hintsUsed===0);
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total&&(!['lesson-challenge','hard-pilot','hard-games'].includes(attempt.kind)||attempt.hintsUsed===0);
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
   const achievementBadge=attempt=>badgeMarkup(goldResult(attempt),attempt?.kind==='hard-pilot');
   function badgeMarkup(gold,pilot=false){
@@ -89,6 +89,8 @@
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true',el.dataset.pilot==='true');});});
   function entryHtml(lesson,state){
     if(window.FR_A1_HARD_PILOT?.supports(lesson.id))return window.FR_A1_HARD_PILOT.entryHtml(lesson,state);
+    // Lessons 2–24: the Hard Mode test as mini-games (shared/game-hard-mode.js).
+    if(window.A1_GAME_HARD?.supports('fr',lesson.id))return window.A1_GAME_HARD.entryHtml({course:'fr',lesson,state,unlocked:unlocked(state,lesson.id)});
     if(window.FR_A1_LESSON_CHALLENGE?.supports(lesson.id))return window.FR_A1_LESSON_CHALLENGE.entryHtml(lesson,state);
     const open=unlocked(state,lesson.id),p=state.lessonWork?.[lesson.id]?.hardMode,data=window.FR_A1_HARD_CONTENT[lesson.id];
     const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
@@ -134,6 +136,10 @@
     if(!unlocked(state,lesson.id)){
       view.innerHTML=`<section class="card" data-i18n-ignore><h2>🔒 Hard Mode</h2><p>${t('Bestehe zuerst den Lektionscheck mit mindestens 80 %.','Pass the lesson check with at least 80% first.')}</p><button class="secondary-btn" id="hardLockedBack">${t('Zur Lektion','Back to lesson')}</button></section>`;
       view.querySelector('button').onclick=onBack;return;
+    }
+    if(!legacy&&window.A1_GAME_HARD?.supports('fr',lesson.id)){
+      redraw=null;checkDetached=null;
+      return window.A1_GAME_HARD.render({course:'fr',lesson,view,state,save,onBack,onLegacy:()=>render({lesson,view,state,save,onBack,legacy:true})});
     }
     if(!legacy&&window.FR_A1_HARD_PILOT?.supports(lesson.id)){
       redraw=null;checkDetached=null;

@@ -81,9 +81,9 @@
   }
   function achievement(state,id){
     const progress=state.lessonWork?.[id]?.hardMode;
-    return [progress?.attempt,...(progress?.history||[])].filter(achievedResult).sort((a,b)=>b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
+    return [progress?.attempt,...(progress?.history||[]),progress?.games?.attempt,...(progress?.games?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total;
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct===attempt.result.total&&(attempt.kind!=='hard-games'||attempt.hintsUsed===0);
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-green'):'';
   const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
   function badgeMarkup(gold){
@@ -92,6 +92,8 @@
   let redraw=null,redrawEntry=null,checkDetached=null;
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
   function entryHtml(lesson,state){
+    // The Hard Mode test as mini-games (shared/game-hard-mode.js).
+    if(window.A1_GAME_HARD?.supports('de',lesson.id))return window.A1_GAME_HARD.entryHtml({course:'de',lesson,state,unlocked:unlocked(state,lesson.id)});
     const open=unlocked(state,lesson.id),p=state.lessonWork?.[lesson.id]?.hardMode,data=window.DE_A1_HARD_CONTENT[lesson.id];
     const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
     const lock=`<svg class="hard-lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0${open?'':'v3'}"/><path d="M12 14v3"/></svg>`;
@@ -127,12 +129,16 @@
     function update(){host.innerHTML=entryHtml(lesson,state)+(onQuiz?quizEntryHtml(lesson,state):'');host.querySelector('[data-hard-start]').onclick=onStart;const quiz=host.querySelector('[data-quiz-entry]');if(quiz)quiz.onclick=onQuiz;}
     redrawEntry=()=>{if(host.isConnected)update();};update();
   }
-  function render({lesson,view,state,save,onBack}){
+  function render({lesson,view,state,save,onBack,legacy=false}){
     const latestData=window.DE_A1_HARD_CONTENT[lesson.id];
     if(!latestData)return onBack();
     if(!unlocked(state,lesson.id)){
       view.innerHTML=`<section class="card" data-i18n-ignore><h2>🔒 Hard Mode</h2><p>${t("Obtiens d’abord au moins 80 % au bilan de la leçon.",'Pass the lesson check with at least 80% first.')}</p><button class="secondary-btn" id="hardLockedBack">${t("Retour à la leçon",'Back to lesson')}</button></section>`;
       view.querySelector('button').onclick=onBack;return;
+    }
+    if(!legacy&&window.A1_GAME_HARD?.supports('de',lesson.id)){
+      redraw=null;checkDetached=null;
+      return window.A1_GAME_HARD.render({course:'de',lesson,view,state,save,onBack,onLegacy:()=>render({lesson,view,state,save,onBack,legacy:true})});
     }
     const work=(state.lessonWork||={})[lesson.id]||={};
     const progress=work.hardMode||={};
