@@ -332,6 +332,16 @@
   function explain(ctx,helpers){
     H=helpers;
     const answer=ctx.answer||'';
+    // When a learner chooses a German translation, analysing those German
+    // words as French morphology would be misleading. Explain the actual
+    // French audio/source and connect it with the selected German meaning.
+    if(!ctx.__sourceTranslation&&ctx.sentence&&answer&&
+       (/^Was bedeutet\b/i.test(ctx.question||'')||/„[^“]+“\s*=/.test(ctx.question||''))&&
+       ctx.sentence.toLowerCase().trim()!==answer.toLowerCase().trim()){
+      const source=ctx.sentence;
+      const sourceCards=explain({...ctx,__sourceTranslation:true,answer:source,sentence:source,question:'',chosen:''},helpers);
+      return [H.card('Übersetzung und Erklärung',`<p lang="fr"><b>${H.esc(source)}</b></p><p>Das bedeutet: <b>${H.esc(answer)}</b>.</p>`),...sourceCards.slice(0,2)];
+    }
     const full=ctx.sentence||((ctx.question||'').includes('___')?(ctx.question||'').replace(/^.*?:\s*(?=[^:]*___)/,'').replace(/_{3,}/,answer):answer);
     const aT=tokens(answer);
     // W is the full solution sentence when it contains the answer; offset is where the answer starts.
