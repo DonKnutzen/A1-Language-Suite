@@ -122,3 +122,19 @@ test('Spanish answer randomization preserves the correct answer and task identit
   assert.equal(shuffled.id,task.id);
   assert.equal(shuffled.explanation,task.explanation);
 });
+
+test('German and French MC question display shuffles options while preserving scoring',()=>{
+  for(const path of ['deutsch/app.js','francais/app.js']){
+    const source=read(path);
+    const match=source.match(/function randomizedChoices\(task\)\{([\s\S]*?)\n\}/);
+    assert(match,'No answer shuffling in '+path);
+    const randomize=new Function('shuffle','return function randomizedChoices(task){'+match[1]+'\n}')(a=>a.reverse());
+    const answer={o:['erstes','zweites','drittes'],a:0,audio:'Beispiel',explanation:'Regel'};
+    const result=randomize(answer);
+    assert.equal(result.o[result.a],answer.o[answer.a],path);
+    assert.equal(result.a,2,path);
+    assert.equal(result.audio,answer.audio,path);
+    assert.equal(result.explanation,answer.explanation,path);
+    assert(source.includes('.map(randomizedChoices)'),path);
+  }
+});
