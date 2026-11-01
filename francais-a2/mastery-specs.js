@@ -4639,5 +4639,2282 @@ window.FR_A1_MASTERY_SPECS = {
         "checkKey": "A2L12-transfer-desole-6"
       }
     ]
+  },
+  "13": {
+    "goals": [
+      "Einen Arzttermin vereinbaren und Beschwerden beschreiben.",
+      "Bandansagen einer Praxis verstehen (Öffnung, Notfall, Rückruf).",
+      "Ausdrücke wie avoir mal à, en raison de, en cas de verwenden."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "J’ai mal ___ dos.",
+        "answer": "au",
+        "o": [
+          "au",
+          "à la",
+          "aux"
+        ],
+        "context": "Ich habe Rückenschmerzen.",
+        "tag": "avoir mal à",
+        "explanation": "J’ai mal au dos. = Ich habe Rückenschmerzen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "J’ai mal ___ gorge.",
+        "answer": "à la",
+        "o": [
+          "à la",
+          "au",
+          "aux"
+        ],
+        "context": "Ich habe Halsschmerzen.",
+        "tag": "avoir mal à",
+        "explanation": "J’ai mal à la gorge. = Ich habe Halsschmerzen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "J’ai mal ___ dents.",
+        "answer": "aux",
+        "o": [
+          "aux",
+          "au",
+          "à la"
+        ],
+        "context": "Ich habe Zahnschmerzen.",
+        "tag": "avoir mal à",
+        "explanation": "Les dents → à + les = aux."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "J’ai de la fièvre ___ hier.",
+        "answer": "depuis",
+        "o": [
+          "depuis",
+          "il y a",
+          "pendant"
+        ],
+        "context": "Ich habe seit gestern Fieber.",
+        "tag": "depuis",
+        "explanation": "J’ai de la fièvre depuis hier. = Ich habe seit gestern Fieber."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ___ beaucoup. (tousser)",
+        "answer": "tousse",
+        "o": [
+          "tousse",
+          "tousses",
+          "toussent"
+        ],
+        "context": "Ich huste viel.",
+        "tag": "Symptome",
+        "explanation": "Je tousse beaucoup. = Ich huste viel."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Le cabinet est fermé en ___ de travaux.",
+        "answer": "raison",
+        "o": [
+          "raison",
+          "cas",
+          "place"
+        ],
+        "context": "Die Praxis ist wegen Bauarbeiten geschlossen.",
+        "tag": "Ansage",
+        "explanation": "Le cabinet est fermé en raison de travaux. = Die Praxis ist wegen Bauarbeiten geschlossen."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "En ___ d’urgence, appelez le 15.",
+        "answer": "cas",
+        "o": [
+          "cas",
+          "raison",
+          "fois"
+        ],
+        "context": "Im Notfall rufen Sie die 15 an.",
+        "tag": "Ansage",
+        "explanation": "En cas d’urgence, appelez le 15. = Im Notfall rufen Sie die 15 an."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "___-vous à la pharmacie de garde.",
+        "answer": "Adressez",
+        "o": [
+          "Adressez",
+          "Adresse",
+          "Adressons"
+        ],
+        "context": "Wenden Sie sich an die Notdienstapotheke.",
+        "tag": "Imperativ",
+        "explanation": "Adressez-vous à la pharmacie de garde. = Wenden Sie sich an die Notdienstapotheke."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "___ demain à partir de huit heures. (rappeler)",
+        "answer": "Rappelez",
+        "o": [
+          "Rappelez",
+          "Rappellez",
+          "Rappelle"
+        ],
+        "context": "Rufen Sie morgen ab acht wieder an.",
+        "tag": "Imperativ",
+        "explanation": "Rappelez demain à partir de huit heures. = Rufen Sie morgen ab acht wieder an."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je voudrais ___ rendez-vous.",
+        "answer": "prendre",
+        "o": [
+          "prendre",
+          "faire",
+          "donner"
+        ],
+        "context": "Ich möchte einen Termin vereinbaren.",
+        "tag": "Termin",
+        "explanation": "Je voudrais prendre rendez-vous. = Ich möchte einen Termin vereinbaren."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Ansage: « Le cabinet est fermé jusqu’au 15 août pour les vacances. Pour une urgence, adressez-vous à la maison médicale de la rue Hoche. » Was machst du im Notfall?",
+        "o": [
+          "Ich gehe zur Maison médicale in der Rue Hoche.",
+          "Ich warte bis zum 15. August.",
+          "Ich rufe die Praxis noch einmal an."
+        ],
+        "answer": "Ich gehe zur Maison médicale in der Rue Hoche.",
+        "explanation": "Pour une urgence, adressez-vous à … = im Notfall wenden Sie sich an …",
+        "tag": "Anwenden",
+        "family": "urgence",
+        "checkKey": "A2L13-context-urgence"
+      },
+      {
+        "type": "choice",
+        "q": "« La pharmacie est fermée ce matin en raison d’un inventaire. » Warum ist die Apotheke geschlossen?",
+        "o": [
+          "wegen einer Inventur",
+          "wegen Urlaub",
+          "wegen Krankheit"
+        ],
+        "answer": "wegen einer Inventur",
+        "explanation": "En raison de = wegen; un inventaire = eine Inventur.",
+        "tag": "Anwenden",
+        "family": "raison",
+        "checkKey": "A2L13-context-raison"
+      },
+      {
+        "type": "choice",
+        "q": "Du hast seit drei Tagen Rückenschmerzen.",
+        "o": [
+          "J’ai mal au dos depuis trois jours.",
+          "J’ai mal à le dos depuis trois jours.",
+          "J’ai mal au dos il y a trois jours."
+        ],
+        "answer": "J’ai mal au dos depuis trois jours.",
+        "explanation": "Au dos und depuis für eine andauernde Situation.",
+        "tag": "Anwenden",
+        "family": "douleur",
+        "checkKey": "A2L13-context-douleur",
+        "audio": "J’ai mal au dos depuis trois jours."
+      },
+      {
+        "type": "choice",
+        "q": "Die Ärztin sagt: « Prenez un comprimé matin et soir pendant cinq jours. » Wie oft nimmst du die Tablette?",
+        "o": [
+          "zweimal am Tag",
+          "fünfmal am Tag",
+          "einmal am Tag"
+        ],
+        "answer": "zweimal am Tag",
+        "explanation": "Matin et soir = morgens und abends.",
+        "tag": "Anwenden",
+        "family": "medicament",
+        "checkKey": "A2L13-context-medicament"
+      },
+      {
+        "type": "choice",
+        "q": "Am Telefon der Praxis: Du möchtest einen Termin für nächste Woche.",
+        "o": [
+          "Je voudrais prendre rendez-vous pour la semaine prochaine.",
+          "Je voudrais prendre rendez-vous la semaine dernière.",
+          "Je voudrais un rendez-vous il y a une semaine."
+        ],
+        "answer": "Je voudrais prendre rendez-vous pour la semaine prochaine.",
+        "explanation": "Prochain = nächster.",
+        "tag": "Anwenden",
+        "family": "rdv",
+        "checkKey": "A2L13-context-rdv",
+        "audio": "Je voudrais prendre rendez-vous pour la semaine prochaine."
+      },
+      {
+        "type": "choice",
+        "q": "« Vous pouvez rappeler demain à partir de huit heures. » Ab wann kannst du morgen anrufen?",
+        "o": [
+          "ab 8 Uhr",
+          "bis 8 Uhr",
+          "um 18 Uhr"
+        ],
+        "answer": "ab 8 Uhr",
+        "explanation": "À partir de = ab.",
+        "tag": "Anwenden",
+        "family": "horaire",
+        "checkKey": "A2L13-context-horaire"
+      },
+      {
+        "type": "choice",
+        "q": "Die Ärztin fragt: « Qu’est-ce qui ne va pas ? » Du hast Fieber und Husten.",
+        "o": [
+          "J’ai de la fièvre et je tousse.",
+          "Je suis fièvre et je tousse.",
+          "J’ai fièvre et tousse."
+        ],
+        "answer": "J’ai de la fièvre et je tousse.",
+        "explanation": "Avoir de la fièvre; tousser.",
+        "tag": "Anwenden",
+        "family": "symptome",
+        "checkKey": "A2L13-context-symptome",
+        "audio": "J’ai de la fièvre et je tousse."
+      },
+      {
+        "type": "choice",
+        "q": "« Restez au lit et buvez beaucoup d’eau. » Was sollst du tun?",
+        "o": [
+          "im Bett bleiben und viel trinken",
+          "spazieren gehen und Wasser kaufen",
+          "zur Arbeit gehen"
+        ],
+        "answer": "im Bett bleiben und viel trinken",
+        "explanation": "Rester au lit = im Bett bleiben; boire = trinken.",
+        "tag": "Anwenden",
+        "family": "conseil",
+        "checkKey": "A2L13-context-conseil"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "J’ai mal ___ ventre.",
+        "answer": "au",
+        "accept": [],
+        "context": "Du hast Bauchschmerzen.",
+        "explanation": "J’ai mal au ventre.",
+        "audio": "J’ai mal au ventre.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:malau",
+        "checkKey": "A2L13-transfer-malau-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il a mal ___ tête.",
+        "answer": "à la",
+        "accept": [],
+        "context": "Er hat Kopfschmerzen.",
+        "explanation": "Il a mal à la tête.",
+        "audio": "Il a mal à la tête.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:malala",
+        "checkKey": "A2L13-transfer-malala-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Elle a mal ___ oreilles.",
+        "answer": "aux",
+        "accept": [],
+        "context": "Sie hat Ohrenschmerzen.",
+        "explanation": "Elle a mal aux oreilles.",
+        "audio": "Elle a mal aux oreilles.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:malaux",
+        "checkKey": "A2L13-transfer-malaux-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le cours est annulé en ___ de la grève.",
+        "answer": "raison",
+        "accept": [],
+        "context": "Der Kurs fällt wegen des Streiks aus.",
+        "explanation": "Le cours est annulé en raison de la grève.",
+        "audio": "Le cours est annulé en raison de la grève.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:raison",
+        "checkKey": "A2L13-transfer-raison-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "En ___ de problème, appelez-moi.",
+        "answer": "cas",
+        "accept": [],
+        "context": "Im Fall eines Problems rufen Sie mich an.",
+        "explanation": "En cas de problème, appelez-moi.",
+        "audio": "En cas de problème, appelez-moi.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:cas",
+        "checkKey": "A2L13-transfer-cas-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "___-vous à l’accueil. (s’adresser)",
+        "answer": "Adressez",
+        "accept": [],
+        "context": "Wenden Sie sich an den Empfang.",
+        "explanation": "Adressez-vous à l’accueil.",
+        "audio": "Adressez-vous à l’accueil.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:adresser",
+        "checkKey": "A2L13-transfer-adresser-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je voudrais ___ rendez-vous. (vereinbaren)",
+        "answer": "prendre",
+        "accept": [],
+        "context": "Du möchtest einen Termin vereinbaren.",
+        "explanation": "Je voudrais prendre rendez-vous.",
+        "audio": "Je voudrais prendre rendez-vous.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:rdv",
+        "checkKey": "A2L13-transfer-rdv-6"
+      }
+    ]
+  },
+  "14": {
+    "goals": [
+      "Durchsagen am Bahnhof verstehen und entscheiden, ob sie für mich wichtig sind.",
+      "Fahrkarten kaufen und nach Gleis, Anschluss und Verspätung fragen.",
+      "Ankündigungen im futur simple und mit en raison de verstehen."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le train pour Lyon ___ voie 3. (partir)",
+        "answer": "partira",
+        "o": [
+          "partira",
+          "partirait",
+          "part"
+        ],
+        "context": "Der Zug nach Lyon wird von Gleis 3 abfahren.",
+        "tag": "Futur",
+        "explanation": "Le train pour Lyon partira voie 3. = Der Zug nach Lyon wird von Gleis 3 abfahren."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le TGV ___ avec dix minutes de retard. (arriver)",
+        "answer": "arrivera",
+        "o": [
+          "arrivera",
+          "arrivait",
+          "arriverait"
+        ],
+        "context": "Der TGV wird mit zehn Minuten Verspätung ankommen.",
+        "tag": "Futur",
+        "explanation": "Le TGV arrivera avec dix minutes de retard. = Der TGV wird mit zehn Minuten Verspätung ankommen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le train de 14 h 10 est ___ . (fällt aus)",
+        "answer": "supprimé",
+        "o": [
+          "supprimé",
+          "retardé",
+          "composté"
+        ],
+        "context": "Der Zug um 14.10 Uhr fällt aus.",
+        "tag": "Durchsage",
+        "explanation": "Le train de 14 h 10 est supprimé . = Der Zug um 14.10 Uhr fällt aus."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "En ___ d’un incident, le trafic est interrompu.",
+        "answer": "raison",
+        "o": [
+          "raison",
+          "cas",
+          "retard"
+        ],
+        "context": "Wegen eines Zwischenfalls ist der Verkehr unterbrochen.",
+        "tag": "Durchsage",
+        "explanation": "En raison d’un incident, le trafic est interrompu. = Wegen eines Zwischenfalls ist der Verkehr unterbrochen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le train a vingt minutes de ___ .",
+        "answer": "retard",
+        "o": [
+          "retard",
+          "avance",
+          "voie"
+        ],
+        "context": "Der Zug hat zwanzig Minuten Verspätung.",
+        "tag": "Durchsage",
+        "explanation": "Le train a vingt minutes de retard . = Der Zug hat zwanzig Minuten Verspätung."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Un aller ___ pour Nice, s’il vous plaît.",
+        "answer": "simple",
+        "o": [
+          "simple",
+          "retour",
+          "seul"
+        ],
+        "context": "Eine einfache Fahrt nach Nizza, bitte.",
+        "tag": "Fahrkarte",
+        "explanation": "Un aller simple pour Nice, s’il vous plaît. = Eine einfache Fahrt nach Nizza, bitte."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Un ___ en deuxième classe. (hin und zurück)",
+        "answer": "aller-retour",
+        "o": [
+          "aller-retour",
+          "aller simple",
+          "retour simple"
+        ],
+        "context": "Hin und zurück, zweite Klasse.",
+        "tag": "Fahrkarte",
+        "explanation": "Un aller-retour en deuxième classe. = Hin und zurück, zweite Klasse."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Le train part de quelle ___ ?",
+        "answer": "voie",
+        "o": [
+          "voie",
+          "voiture",
+          "route"
+        ],
+        "context": "Von welchem Gleis fährt der Zug?",
+        "tag": "Gleis",
+        "explanation": "Le train part de quelle voie ? = Von welchem Gleis fährt der Zug?"
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "J’ai une ___ à Dijon. (Anschluss)",
+        "answer": "correspondance",
+        "o": [
+          "correspondance",
+          "connexion",
+          "direction"
+        ],
+        "context": "Ich habe einen Anschluss in Dijon.",
+        "tag": "Anschluss",
+        "explanation": "J’ai une correspondance à Dijon. = Ich habe einen Anschluss in Dijon."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Il faut ___ le billet. (entwerten)",
+        "answer": "composter",
+        "o": [
+          "composter",
+          "comporter",
+          "compter"
+        ],
+        "context": "Man muss die Fahrkarte entwerten.",
+        "tag": "Fahrkarte",
+        "explanation": "Il faut composter le billet. = Man muss die Fahrkarte entwerten."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Du wartest auf den Zug nach Paris. Durchsage: « Le train en direction de Nantes arrivera avec trente minutes de retard. » Ist die Durchsage wichtig für dich?",
+        "o": [
+          "Nein, sie betrifft den Zug nach Nantes.",
+          "Ja, mein Zug hat Verspätung.",
+          "Ja, mein Zug fällt aus."
+        ],
+        "answer": "Nein, sie betrifft den Zug nach Nantes.",
+        "explanation": "Die Verspätung gilt nur für die Richtung Nantes.",
+        "tag": "Anwenden",
+        "family": "important",
+        "checkKey": "A2L14-context-important"
+      },
+      {
+        "type": "choice",
+        "q": "« Le TER de 9 h 15 pour Rouen est supprimé en raison d’une grève. » Was ist los?",
+        "o": [
+          "Der Zug fällt wegen eines Streiks aus.",
+          "Der Zug hat wegen eines Streiks Verspätung.",
+          "Der Zug fährt wegen eines Streiks früher."
+        ],
+        "answer": "Der Zug fällt wegen eines Streiks aus.",
+        "explanation": "Supprimé = fällt aus; une grève = ein Streik.",
+        "tag": "Anwenden",
+        "family": "supprime",
+        "checkKey": "A2L14-context-supprime"
+      },
+      {
+        "type": "choice",
+        "q": "Du möchtest nach Lille und zurück, zweite Klasse.",
+        "o": [
+          "Un aller-retour pour Lille en deuxième classe, s’il vous plaît.",
+          "Un aller simple pour Lille en deuxième classe, s’il vous plaît.",
+          "Un retour pour Lille en seconde, s’il vous plaît."
+        ],
+        "answer": "Un aller-retour pour Lille en deuxième classe, s’il vous plaît.",
+        "explanation": "Hin und zurück = aller-retour.",
+        "tag": "Anwenden",
+        "family": "billet",
+        "checkKey": "A2L14-context-billet",
+        "audio": "Un aller-retour pour Lille en deuxième classe, s’il vous plaît."
+      },
+      {
+        "type": "choice",
+        "q": "« Le train pour Strasbourg partira voie 9 et non voie 4. » Wohin gehst du?",
+        "o": [
+          "zu Gleis 9",
+          "zu Gleis 4",
+          "zu Gleis 19"
+        ],
+        "answer": "zu Gleis 9",
+        "explanation": "Et non voie 4 = und nicht Gleis 4.",
+        "tag": "Anwenden",
+        "family": "voie",
+        "checkKey": "A2L14-context-voie"
+      },
+      {
+        "type": "choice",
+        "q": "« Votre correspondance pour Avignon attendra votre train. » Was heißt das?",
+        "o": [
+          "Der Anschlusszug wartet.",
+          "Der Anschlusszug fällt aus.",
+          "Du musst einen anderen Zug nehmen."
+        ],
+        "answer": "Der Anschlusszug wartet.",
+        "explanation": "La correspondance attendra = der Anschluss wird warten.",
+        "tag": "Anwenden",
+        "family": "correspondance",
+        "checkKey": "A2L14-context-correspondance"
+      },
+      {
+        "type": "choice",
+        "q": "Du fragst, von welchem Gleis dein Zug fährt.",
+        "o": [
+          "Le train part de quelle voie ?",
+          "Le train part de quelle voiture ?",
+          "Le train part de quelle route ?"
+        ],
+        "answer": "Le train part de quelle voie ?",
+        "explanation": "La voie = das Gleis.",
+        "tag": "Anwenden",
+        "family": "question",
+        "checkKey": "A2L14-context-question",
+        "audio": "Le train part de quelle voie ?"
+      },
+      {
+        "type": "choice",
+        "q": "« Le train arrivera avec un retard d’environ quarante minutes. » Wie groß ist die Verspätung?",
+        "o": [
+          "etwa 40 Minuten",
+          "genau 14 Minuten",
+          "etwa 4 Minuten"
+        ],
+        "answer": "etwa 40 Minuten",
+        "explanation": "Environ = ungefähr.",
+        "tag": "Anwenden",
+        "family": "retard",
+        "checkKey": "A2L14-context-retard"
+      },
+      {
+        "type": "choice",
+        "q": "Durchsage: « N’oubliez pas de composter votre billet avant de monter dans le train. » Wann entwertest du die Fahrkarte?",
+        "o": [
+          "vor dem Einsteigen",
+          "im Zug",
+          "nach der Ankunft"
+        ],
+        "answer": "vor dem Einsteigen",
+        "explanation": "Avant de monter = bevor man einsteigt.",
+        "tag": "Anwenden",
+        "family": "composter",
+        "checkKey": "A2L14-context-composter"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Le train pour Nice ___ voie 2. (partir, Futur)",
+        "answer": "partira",
+        "accept": [],
+        "context": "Der Zug nach Nizza fährt von Gleis 2 ab.",
+        "explanation": "Le train pour Nice partira voie 2.",
+        "audio": "Le train pour Nice partira voie 2.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:futur",
+        "checkKey": "A2L14-transfer-futur-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le TGV ___ à 18 heures. (arriver, Futur)",
+        "answer": "arrivera",
+        "accept": [],
+        "context": "Der TGV kommt um 18 Uhr an.",
+        "explanation": "Le TGV arrivera à 18 heures.",
+        "audio": "Le TGV arrivera à 18 heures.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:futur",
+        "checkKey": "A2L14-transfer-futur-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le train a quinze minutes de ___ .",
+        "answer": "retard",
+        "accept": [],
+        "context": "Der Zug hat fünfzehn Minuten Verspätung.",
+        "explanation": "Le train a quinze minutes de retard .",
+        "audio": "Le train a quinze minutes de retard .",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:retard",
+        "checkKey": "A2L14-transfer-retard-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le dernier train est ___ . (fällt aus)",
+        "answer": "supprimé",
+        "accept": [],
+        "context": "Der letzte Zug fällt aus.",
+        "explanation": "Le dernier train est supprimé .",
+        "audio": "Le dernier train est supprimé .",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:supprime",
+        "checkKey": "A2L14-transfer-supprime-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Un aller ___ pour Tours, s’il vous plaît. (einfach)",
+        "answer": "simple",
+        "accept": [],
+        "context": "Du kaufst eine einfache Fahrt nach Tours.",
+        "explanation": "Un aller simple pour Tours, s’il vous plaît.",
+        "audio": "Un aller simple pour Tours, s’il vous plaît.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:billet",
+        "checkKey": "A2L14-transfer-billet-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le train arrive ___ 6. (Gleis)",
+        "answer": "voie",
+        "accept": [],
+        "context": "Der Zug fährt auf Gleis 6 ein.",
+        "explanation": "Le train arrive voie 6.",
+        "audio": "Le train arrive voie 6.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:voie",
+        "checkKey": "A2L14-transfer-voie-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le trafic est perturbé en ___ d’une grève.",
+        "answer": "raison",
+        "accept": [],
+        "context": "Der Verkehr ist wegen eines Streiks gestört.",
+        "explanation": "Le trafic est perturbé en raison d’une grève.",
+        "audio": "Le trafic est perturbé en raison d’une grève.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:raison",
+        "checkKey": "A2L14-transfer-raison-6"
+      }
+    ]
+  },
+  "15": {
+    "goals": [
+      "Verkehrsmeldungen im Radio verstehen und die richtige Handlung ableiten.",
+      "Durchsagen auf dem Parkplatz verstehen (Fahrer wird gebeten …).",
+      "être prié(e) de + Infinitiv und en raison de verwenden."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Vous êtes ___ de quitter l’autoroute.",
+        "answer": "priés",
+        "o": [
+          "priés",
+          "prié",
+          "priées"
+        ],
+        "context": "Sie werden gebeten, die Autobahn zu verlassen.",
+        "tag": "être prié de",
+        "explanation": "Vous an mehrere Autofahrer → priés."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le conducteur est prié ___ déplacer sa voiture.",
+        "answer": "de",
+        "o": [
+          "de",
+          "à",
+          "pour"
+        ],
+        "context": "Der Fahrer wird gebeten, sein Auto wegzufahren.",
+        "tag": "être prié de",
+        "explanation": "Le conducteur est prié de déplacer sa voiture. = Der Fahrer wird gebeten, sein Auto wegzufahren."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "La propriétaire est ___ de venir à l’accueil.",
+        "answer": "priée",
+        "o": [
+          "priée",
+          "prié",
+          "priés"
+        ],
+        "context": "Die Besitzerin wird gebeten, zum Empfang zu kommen.",
+        "tag": "être prié de",
+        "explanation": "La propriétaire est priée de venir à l’accueil. = Die Besitzerin wird gebeten, zum Empfang zu kommen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Merci ___ ralentir.",
+        "answer": "de",
+        "o": [
+          "de",
+          "à",
+          "pour"
+        ],
+        "context": "Bitte langsamer fahren.",
+        "tag": "Bitte",
+        "explanation": "Merci de ralentir. = Bitte langsamer fahren."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "___ suivre la déviation. (bitte, formell)",
+        "answer": "Veuillez",
+        "o": [
+          "Veuillez",
+          "Voulez",
+          "Veuille"
+        ],
+        "context": "Bitte folgen Sie der Umleitung.",
+        "tag": "Bitte",
+        "explanation": "Veuillez suivre la déviation. = Bitte folgen Sie der Umleitung."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "L’A1 est ___ à la hauteur de Lille. (gesperrt)",
+        "answer": "coupée",
+        "o": [
+          "coupée",
+          "coupé",
+          "coupés"
+        ],
+        "context": "Die A1 ist auf Höhe von Lille gesperrt.",
+        "tag": "Verkehr",
+        "explanation": "L’autoroute ist weiblich → coupée."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Il y a un ___ en direction de Paris. (Stau)",
+        "answer": "bouchon",
+        "o": [
+          "bouchon",
+          "bouton",
+          "camion"
+        ],
+        "context": "Es gibt einen Stau Richtung Paris.",
+        "tag": "Verkehr",
+        "explanation": "Il y a un bouchon en direction de Paris. = Es gibt einen Stau Richtung Paris."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Prenez la ___ 22. (Ausfahrt)",
+        "answer": "sortie",
+        "o": [
+          "sortie",
+          "entrée",
+          "route"
+        ],
+        "context": "Nehmen Sie die Ausfahrt 22.",
+        "tag": "Verkehr",
+        "explanation": "Prenez la sortie 22. = Nehmen Sie die Ausfahrt 22."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Suivez l’itinéraire ___ . (Umleitung)",
+        "answer": "bis",
+        "o": [
+          "bis",
+          "bas",
+          "biais"
+        ],
+        "context": "Folgen Sie der Umleitung.",
+        "tag": "Verkehr",
+        "explanation": "Suivez l’itinéraire bis . = Folgen Sie der Umleitung."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "La route est fermée en ___ de travaux.",
+        "answer": "raison",
+        "o": [
+          "raison",
+          "cas",
+          "direction"
+        ],
+        "context": "Die Straße ist wegen Bauarbeiten gesperrt.",
+        "tag": "en raison de",
+        "explanation": "La route est fermée en raison de travaux. = Die Straße ist wegen Bauarbeiten gesperrt."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Du fährst auf der A4 Richtung Strasbourg. Radio: « En raison de la neige, l’A4 est coupée à la hauteur de Saverne. Vous êtes priés de sortir à Phalsbourg. » Kannst du auf der A4 bis Strasbourg weiterfahren?",
+        "o": [
+          "Nein, ich muss bei Phalsbourg abfahren.",
+          "Ja, ohne Problem.",
+          "Ja, aber langsamer."
+        ],
+        "answer": "Nein, ich muss bei Phalsbourg abfahren.",
+        "explanation": "Coupée = gesperrt; vous êtes priés de quitter = Sie sollen verlassen.",
+        "tag": "Anwenden",
+        "family": "coupee",
+        "checkKey": "A2L15-context-coupee"
+      },
+      {
+        "type": "choice",
+        "q": "Supermarkt-Parkplatz: « Le conducteur de la Peugeot grise immatriculée 4521 KB est prié de venir à l’accueil. » Dein Auto ist ein grauer Peugeot mit 4521 KB. Was tust du?",
+        "o": [
+          "zum Empfang gehen",
+          "das Auto wegfahren",
+          "nichts, es betrifft mich nicht"
+        ],
+        "answer": "zum Empfang gehen",
+        "explanation": "Est prié de venir à l’accueil = soll zum Empfang kommen.",
+        "tag": "Anwenden",
+        "family": "parking",
+        "checkKey": "A2L15-context-parking"
+      },
+      {
+        "type": "choice",
+        "q": "« Il y a un bouchon de quinze kilomètres en direction de Lyon. » Was bedeutet das?",
+        "o": [
+          "15 km Stau Richtung Lyon",
+          "15 km bis Lyon",
+          "eine Baustelle 15 km vor Lyon"
+        ],
+        "answer": "15 km Stau Richtung Lyon",
+        "explanation": "Un bouchon = ein Stau.",
+        "tag": "Anwenden",
+        "family": "bouchon",
+        "checkKey": "A2L15-context-bouchon"
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst deinem Beifahrer, dass ihr der Umleitung folgen müsst.",
+        "o": [
+          "On doit suivre la déviation.",
+          "On doit suivre la sortie.",
+          "On doit suivre le bouchon."
+        ],
+        "answer": "On doit suivre la déviation.",
+        "explanation": "La déviation = die Umleitung.",
+        "tag": "Anwenden",
+        "family": "deviation",
+        "checkKey": "A2L15-context-deviation",
+        "audio": "On doit suivre la déviation."
+      },
+      {
+        "type": "choice",
+        "q": "« Le parking du centre est complet. Utilisez le parking de la gare. » Wo parkst du?",
+        "o": [
+          "am Bahnhof",
+          "im Zentrum",
+          "vor dem Rathaus"
+        ],
+        "answer": "am Bahnhof",
+        "explanation": "Complet = voll.",
+        "tag": "Anwenden",
+        "family": "complet",
+        "checkKey": "A2L15-context-complet"
+      },
+      {
+        "type": "choice",
+        "q": "Welche Form ist richtig? « Les automobilistes sont ___ de rouler prudemment. »",
+        "o": [
+          "priés",
+          "prié",
+          "priée"
+        ],
+        "answer": "priés",
+        "explanation": "Mehrere Autofahrer → priés.",
+        "tag": "Anwenden",
+        "family": "prie",
+        "checkKey": "A2L15-context-prie",
+        "audio": "Les automobilistes sont priés de rouler prudemment."
+      },
+      {
+        "type": "choice",
+        "q": "« En raison du verglas, la route est glissante. » Warum ist die Straße glatt?",
+        "o": [
+          "wegen Glatteis",
+          "wegen Regen",
+          "wegen Öl auf der Straße"
+        ],
+        "answer": "wegen Glatteis",
+        "explanation": "Le verglas = das Glatteis.",
+        "tag": "Anwenden",
+        "family": "raison",
+        "checkKey": "A2L15-context-raison"
+      },
+      {
+        "type": "choice",
+        "q": "Du musst tanken.",
+        "o": [
+          "Je dois faire le plein.",
+          "Je dois faire le péage.",
+          "Je dois faire la sortie."
+        ],
+        "answer": "Je dois faire le plein.",
+        "explanation": "Faire le plein = volltanken.",
+        "tag": "Anwenden",
+        "family": "plein",
+        "checkKey": "A2L15-context-plein",
+        "audio": "Je dois faire le plein."
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Vous êtes ___ de ralentir. (mehrere Personen)",
+        "answer": "priés",
+        "accept": [],
+        "context": "Sie werden gebeten, langsamer zu fahren.",
+        "explanation": "Vous êtes priés de ralentir.",
+        "audio": "Vous êtes priés de ralentir.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:prie",
+        "checkKey": "A2L15-transfer-prie-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "La conductrice est ___ de venir à la caisse.",
+        "answer": "priée",
+        "accept": [],
+        "context": "Die Fahrerin wird gebeten, zur Kasse zu kommen.",
+        "explanation": "La conductrice est priée de venir à la caisse.",
+        "audio": "La conductrice est priée de venir à la caisse.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:prie",
+        "checkKey": "A2L15-transfer-prie-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le propriétaire est prié ___ déplacer son véhicule.",
+        "answer": "de",
+        "accept": [],
+        "context": "Der Besitzer soll sein Fahrzeug wegfahren.",
+        "explanation": "Le propriétaire est prié de déplacer son véhicule.",
+        "audio": "Le propriétaire est prié de déplacer son véhicule.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:de",
+        "checkKey": "A2L15-transfer-de-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "L’autoroute est ___ après Lyon. (gesperrt)",
+        "answer": "coupée",
+        "accept": [],
+        "context": "Die Autobahn ist nach Lyon gesperrt.",
+        "explanation": "L’autoroute est coupée après Lyon.",
+        "audio": "L’autoroute est coupée après Lyon.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:coupee",
+        "checkKey": "A2L15-transfer-coupee-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Quittez l’autoroute à la ___ 12.",
+        "answer": "sortie",
+        "accept": [],
+        "context": "Verlassen Sie die Autobahn an der Ausfahrt 12.",
+        "explanation": "Quittez l’autoroute à la sortie 12.",
+        "audio": "Quittez l’autoroute à la sortie 12.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:sortie",
+        "checkKey": "A2L15-transfer-sortie-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il y a un ___ de cinq kilomètres. (Stau)",
+        "answer": "bouchon",
+        "accept": [],
+        "context": "Es gibt fünf Kilometer Stau.",
+        "explanation": "Il y a un bouchon de cinq kilomètres.",
+        "audio": "Il y a un bouchon de cinq kilomètres.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:bouchon",
+        "checkKey": "A2L15-transfer-bouchon-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "La route est fermée en ___ d’un accident.",
+        "answer": "raison",
+        "accept": [],
+        "context": "Die Straße ist wegen eines Unfalls gesperrt.",
+        "explanation": "La route est fermée en raison d’un accident.",
+        "audio": "La route est fermée en raison d’un accident.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:raison",
+        "checkKey": "A2L15-transfer-raison-6"
+      }
+    ]
+  },
+  "16": {
+    "goals": [
+      "Einen Wetterbericht verstehen (Region, Zeit, Entwicklung).",
+      "Wetter in Vergangenheit, Gegenwart und Zukunft beschreiben.",
+      "Tageszeitangaben wie en fin de matinée, en début d’après-midi verwenden."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Hier, il a ___ . (pleuvoir)",
+        "answer": "plu",
+        "o": [
+          "plu",
+          "plut",
+          "pleuvu"
+        ],
+        "context": "Gestern hat es geregnet.",
+        "tag": "passé composé",
+        "explanation": "Pleuvoir → plu."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Aujourd’hui, il ___ . (pleuvoir)",
+        "answer": "pleut",
+        "o": [
+          "pleut",
+          "pleuve",
+          "plu"
+        ],
+        "context": "Heute regnet es.",
+        "tag": "Präsens",
+        "explanation": "Aujourd’hui, il pleut . = Heute regnet es."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Demain, il ___ . (pleuvoir)",
+        "answer": "pleuvra",
+        "o": [
+          "pleuvra",
+          "pleuvera",
+          "pleuvait"
+        ],
+        "context": "Morgen wird es regnen.",
+        "tag": "Futur",
+        "explanation": "Demain, il pleuvra . = Morgen wird es regnen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Demain, il ___ beau. (faire)",
+        "answer": "fera",
+        "o": [
+          "fera",
+          "faira",
+          "fait"
+        ],
+        "context": "Morgen wird es schön.",
+        "tag": "Futur",
+        "explanation": "Demain, il fera beau. = Morgen wird es schön."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Il y ___ du vent demain. (avoir)",
+        "answer": "aura",
+        "o": [
+          "aura",
+          "avra",
+          "a"
+        ],
+        "context": "Morgen wird es Wind geben.",
+        "tag": "Futur",
+        "explanation": "Il y aura du vent demain. = Morgen wird es Wind geben."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Hier, il ___ froid. (faire)",
+        "answer": "a fait",
+        "o": [
+          "a fait",
+          "faisait",
+          "fera"
+        ],
+        "context": "Gestern war es kalt.",
+        "tag": "passé composé",
+        "explanation": "Hier, il a fait froid. = Gestern war es kalt."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Le ciel se ___ en fin de matinée. (se dégager)",
+        "answer": "dégagera",
+        "o": [
+          "dégagera",
+          "dégageait",
+          "dégage"
+        ],
+        "context": "Der Himmel klart am späten Vormittag auf.",
+        "tag": "Futur",
+        "explanation": "Le ciel se dégagera en fin de matinée. = Der Himmel klart am späten Vormittag auf."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "En ___ d’après-midi, le soleil reviendra. (früh)",
+        "answer": "début",
+        "o": [
+          "début",
+          "fin",
+          "milieu"
+        ],
+        "context": "Am frühen Nachmittag kommt die Sonne zurück.",
+        "tag": "Tageszeit",
+        "explanation": "En début d’après-midi, le soleil reviendra. = Am frühen Nachmittag kommt die Sonne zurück."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "En montagne, il ___ . (neiger, Futur)",
+        "answer": "neigera",
+        "o": [
+          "neigera",
+          "neigait",
+          "neige"
+        ],
+        "context": "In den Bergen wird es schneien.",
+        "tag": "Futur",
+        "explanation": "En montagne, il neigera . = In den Bergen wird es schneien."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Les températures ___ . (baisser, Futur)",
+        "answer": "baisseront",
+        "o": [
+          "baisseront",
+          "baissent",
+          "baissaient"
+        ],
+        "context": "Die Temperaturen werden sinken.",
+        "tag": "Futur",
+        "explanation": "Les températures baisseront . = Die Temperaturen werden sinken."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Du machst Urlaub in den Vogesen. Radio: « Ce matin, il neige sur les Vosges. Les nuages partiront vers midi et il fera beau tout l’après-midi. » Wird es heute Nachmittag schön?",
+        "o": [
+          "Ja, am Nachmittag ist es schön.",
+          "Nein, es schneit den ganzen Tag.",
+          "Erst am Abend wird es schön."
+        ],
+        "answer": "Ja, am Nachmittag ist es schön.",
+        "explanation": "Il fera beau tout l’après-midi = den ganzen Nachmittag schön.",
+        "tag": "Anwenden",
+        "family": "apresmidi",
+        "checkKey": "A2L16-context-apresmidi"
+      },
+      {
+        "type": "choice",
+        "q": "« Demain, des orages éclateront dans les Alpes en soirée. » Wann gibt es Gewitter?",
+        "o": [
+          "morgen am Abend",
+          "morgen früh",
+          "heute Abend"
+        ],
+        "answer": "morgen am Abend",
+        "explanation": "En soirée = am Abend.",
+        "tag": "Anwenden",
+        "family": "orage",
+        "checkKey": "A2L16-context-orage"
+      },
+      {
+        "type": "choice",
+        "q": "Du beschreibst das Wetter von gestern: Es hat den ganzen Tag geschneit.",
+        "o": [
+          "Hier, il a neigé toute la journée.",
+          "Hier, il neigera toute la journée.",
+          "Hier, il neige toute la journée."
+        ],
+        "answer": "Hier, il a neigé toute la journée.",
+        "explanation": "Gestern → passé composé.",
+        "tag": "Anwenden",
+        "family": "passe",
+        "checkKey": "A2L16-context-passe",
+        "audio": "Hier, il a neigé toute la journée."
+      },
+      {
+        "type": "choice",
+        "q": "« Sur la côte, le vent soufflera fort. » Was erwartet dich am Meer?",
+        "o": [
+          "starker Wind",
+          "starker Regen",
+          "große Hitze"
+        ],
+        "answer": "starker Wind",
+        "explanation": "Le vent soufflera fort = starker Wind.",
+        "tag": "Anwenden",
+        "family": "vent",
+        "checkKey": "A2L16-context-vent"
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst, dass es morgen 25 Grad wird.",
+        "o": [
+          "Demain, il fera vingt-cinq degrés.",
+          "Demain, il fait vingt-cinq degrés.",
+          "Demain, il a fait vingt-cinq degrés."
+        ],
+        "answer": "Demain, il fera vingt-cinq degrés.",
+        "explanation": "Morgen → futur simple: il fera.",
+        "tag": "Anwenden",
+        "family": "futur",
+        "checkKey": "A2L16-context-futur",
+        "audio": "Demain, il fera vingt-cinq degrés."
+      },
+      {
+        "type": "choice",
+        "q": "« Les températures baisseront de cinq degrés. » Was passiert?",
+        "o": [
+          "Es wird um fünf Grad kälter.",
+          "Es wird um fünf Grad wärmer.",
+          "Es bleibt bei fünf Grad."
+        ],
+        "answer": "Es wird um fünf Grad kälter.",
+        "explanation": "Baisser = sinken.",
+        "tag": "Anwenden",
+        "family": "baisser",
+        "checkKey": "A2L16-context-baisser"
+      },
+      {
+        "type": "choice",
+        "q": "Es ist grau und kühl. Was sagst du?",
+        "o": [
+          "Il fait gris et frais.",
+          "Il est gris et frais.",
+          "Il a gris et frais."
+        ],
+        "answer": "Il fait gris et frais.",
+        "explanation": "Wetter mit il fait + Adjektiv.",
+        "tag": "Anwenden",
+        "family": "faire",
+        "checkKey": "A2L16-context-faire",
+        "audio": "Il fait gris et frais."
+      },
+      {
+        "type": "choice",
+        "q": "« Prenez un parapluie si vous sortez ce soir. » Wie wird das Wetter heute Abend?",
+        "o": [
+          "Es kann regnen.",
+          "Es wird sehr heiß.",
+          "Es wird schneien."
+        ],
+        "answer": "Es kann regnen.",
+        "explanation": "Un parapluie = ein Regenschirm.",
+        "tag": "Anwenden",
+        "family": "parapluie",
+        "checkKey": "A2L16-context-parapluie"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Hier, il a ___ toute la journée. (pleuvoir)",
+        "answer": "plu",
+        "accept": [],
+        "context": "Gestern hat es den ganzen Tag geregnet.",
+        "explanation": "Hier, il a plu toute la journée.",
+        "audio": "Hier, il a plu toute la journée.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:passe",
+        "checkKey": "A2L16-transfer-passe-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Regarde, il ___ ! (neiger, jetzt)",
+        "answer": "neige",
+        "accept": [],
+        "context": "Schau, es schneit!",
+        "explanation": "Regarde, il neige !",
+        "audio": "Regarde, il neige !",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:present",
+        "checkKey": "A2L16-transfer-present-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Ce week-end, il ___ chaud. (faire, Futur)",
+        "answer": "fera",
+        "accept": [],
+        "context": "Dieses Wochenende wird es warm.",
+        "explanation": "Ce week-end, il fera chaud.",
+        "audio": "Ce week-end, il fera chaud.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:futur",
+        "checkKey": "A2L16-transfer-futur-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Il ___ du soleil demain. (y avoir, Futur)",
+        "answer": "y aura",
+        "accept": [],
+        "context": "Morgen wird es Sonne geben.",
+        "explanation": "Il y aura du soleil demain.",
+        "audio": "Il y aura du soleil demain.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:futur",
+        "checkKey": "A2L16-transfer-futur-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le ciel se ___ cet après-midi. (se dégager, Futur)",
+        "answer": "dégagera",
+        "accept": [],
+        "context": "Der Himmel klart heute Nachmittag auf.",
+        "explanation": "Le ciel se dégagera cet après-midi.",
+        "audio": "Le ciel se dégagera cet après-midi.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:degager",
+        "checkKey": "A2L16-transfer-degager-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "En ___ de matinée, il pleuvra. (am späten Vormittag)",
+        "answer": "fin",
+        "accept": [],
+        "context": "Am späten Vormittag wird es regnen.",
+        "explanation": "En fin de matinée, il pleuvra.",
+        "audio": "En fin de matinée, il pleuvra.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:moment",
+        "checkKey": "A2L16-transfer-moment-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le soleil ___ demain. (revenir, Futur)",
+        "answer": "reviendra",
+        "accept": [],
+        "context": "Die Sonne kommt morgen zurück.",
+        "explanation": "Le soleil reviendra demain.",
+        "audio": "Le soleil reviendra demain.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:revenir",
+        "checkKey": "A2L16-transfer-revenir-6"
+      }
+    ]
+  },
+  "17": {
+    "goals": [
+      "Kurze Meinungen zu einem Alltagsthema verstehen.",
+      "Die eigene Meinung äußern, zustimmen und widersprechen.",
+      "Mit ne … plus, avoir envie de und ça me gêne arbeiten."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ___ que c’est pratique. (finden)",
+        "answer": "trouve",
+        "o": [
+          "trouve",
+          "cherche",
+          "pense de"
+        ],
+        "context": "Ich finde das praktisch.",
+        "tag": "Meinung",
+        "explanation": "Je trouve que c’est pratique. = Ich finde das praktisch."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "À mon ___, c’est trop cher.",
+        "answer": "avis",
+        "o": [
+          "avis",
+          "idée",
+          "opinion de"
+        ],
+        "context": "Meiner Meinung nach ist das zu teuer.",
+        "tag": "Meinung",
+        "explanation": "À mon avis, c’est trop cher. = Meiner Meinung nach ist das zu teuer."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je suis d’accord ___ toi.",
+        "answer": "avec",
+        "o": [
+          "avec",
+          "à",
+          "de"
+        ],
+        "context": "Ich bin deiner Meinung.",
+        "tag": "Zustimmung",
+        "explanation": "Je suis d’accord avec toi. = Ich bin deiner Meinung."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Ça me ___ au cinéma. (stören)",
+        "answer": "gêne",
+        "o": [
+          "gêne",
+          "gêné",
+          "gênes"
+        ],
+        "context": "Im Kino stört mich das.",
+        "tag": "Meinung",
+        "explanation": "Ça me gêne au cinéma. = Im Kino stört mich das."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Je ne suis pas du ___ d’accord.",
+        "answer": "tout",
+        "o": [
+          "tout",
+          "tous",
+          "toute"
+        ],
+        "context": "Ich bin überhaupt nicht einverstanden.",
+        "tag": "Widerspruch",
+        "explanation": "Je ne suis pas du tout d’accord. = Ich bin überhaupt nicht einverstanden."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Je ne téléphone ___ au volant. (nicht mehr)",
+        "answer": "plus",
+        "o": [
+          "plus",
+          "pas plus",
+          "jamais pas"
+        ],
+        "context": "Ich telefoniere nicht mehr am Steuer.",
+        "tag": "ne … plus",
+        "explanation": "Je ne téléphone plus au volant. = Ich telefoniere nicht mehr am Steuer."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Il n’a plus ___ portable.",
+        "answer": "de",
+        "o": [
+          "de",
+          "un",
+          "le"
+        ],
+        "context": "Er hat kein Handy mehr.",
+        "tag": "ne … plus",
+        "explanation": "Nach ne … plus wird un zu de."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Nous ne ___ plus la télé. (regarder)",
+        "answer": "regardons",
+        "o": [
+          "regardons",
+          "regardez",
+          "regarde"
+        ],
+        "context": "Wir schauen nicht mehr fern.",
+        "tag": "ne … plus",
+        "explanation": "Nous ne regardons plus la télé. = Wir schauen nicht mehr fern."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "J’ai ___ de lire dans le train.",
+        "answer": "envie",
+        "o": [
+          "envie",
+          "besoin à",
+          "plaisir"
+        ],
+        "context": "Ich habe Lust, im Zug zu lesen.",
+        "tag": "avoir envie de",
+        "explanation": "J’ai envie de lire dans le train. = Ich habe Lust, im Zug zu lesen."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Elle n’a pas envie ___ smartphone.",
+        "answer": "d’un",
+        "o": [
+          "d’un",
+          "un",
+          "de le"
+        ],
+        "context": "Sie hat keine Lust auf ein Smartphone.",
+        "tag": "avoir envie de",
+        "explanation": "Elle n’a pas envie d’un smartphone. = Sie hat keine Lust auf ein Smartphone."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "« Une montre connectée ? Non merci, je n’en ai pas besoin. Ma vieille montre suffit. » Will die Person eine Smartwatch?",
+        "o": [
+          "Nein, sie braucht keine.",
+          "Ja, eine einfache.",
+          "Ja, eine neue."
+        ],
+        "answer": "Nein, sie braucht keine.",
+        "explanation": "Je n’en ai pas besoin = ich brauche keine.",
+        "tag": "Anwenden",
+        "family": "besoin",
+        "checkKey": "A2L17-context-besoin"
+      },
+      {
+        "type": "choice",
+        "q": "« À la piscine, nous avons interdit les photos avec les portables. » Was wurde verboten?",
+        "o": [
+          "mit dem Handy fotografieren",
+          "mit dem Handy telefonieren",
+          "das Handy aufladen"
+        ],
+        "answer": "mit dem Handy fotografieren",
+        "explanation": "Interdire = verbieten.",
+        "tag": "Anwenden",
+        "family": "interdire",
+        "checkKey": "A2L17-context-interdire"
+      },
+      {
+        "type": "choice",
+        "q": "Du findest Handys im Zug störend.",
+        "o": [
+          "Ça me gêne quand on téléphone dans le train.",
+          "Ça me plaît quand on téléphone dans le train.",
+          "Ça me gêne de pas téléphoner dans le train."
+        ],
+        "answer": "Ça me gêne quand on téléphone dans le train.",
+        "explanation": "Ça me gêne = es stört mich.",
+        "tag": "Anwenden",
+        "family": "gener",
+        "checkKey": "A2L17-context-gener",
+        "audio": "Ça me gêne quand on téléphone dans le train."
+      },
+      {
+        "type": "choice",
+        "q": "« Ma fille prend le bus seule. Avec son portable, elle m’envoie un message quand elle arrive. » Wie findet die Mutter das?",
+        "o": [
+          "Es beruhigt sie.",
+          "Es stört sie.",
+          "Es ist ihr zu teuer."
+        ],
+        "answer": "Es beruhigt sie.",
+        "explanation": "Sie sieht einen Vorteil: Sie weiß, dass die Tochter angekommen ist.",
+        "tag": "Anwenden",
+        "family": "rassurant",
+        "checkKey": "A2L17-context-rassurant"
+      },
+      {
+        "type": "choice",
+        "q": "Dein Partner sagt: « Le portable, c’est indispensable. » Du siehst das ganz anders.",
+        "o": [
+          "Je ne suis pas du tout d’accord.",
+          "Je suis tout à fait d’accord.",
+          "C’est vrai, tu as raison."
+        ],
+        "answer": "Je ne suis pas du tout d’accord.",
+        "explanation": "Pas du tout d’accord = überhaupt nicht einverstanden.",
+        "tag": "Anwenden",
+        "family": "desaccord",
+        "checkKey": "A2L17-context-desaccord",
+        "audio": "Je ne suis pas du tout d’accord."
+      },
+      {
+        "type": "choice",
+        "q": "« Je ne regarde plus mes e-mails le soir. » Was stimmt?",
+        "o": [
+          "Früher hat die Person abends E-Mails gelesen.",
+          "Die Person liest abends immer E-Mails.",
+          "Die Person hat kein E-Mail-Konto."
+        ],
+        "answer": "Früher hat die Person abends E-Mails gelesen.",
+        "explanation": "Ne … plus = nicht mehr (früher schon).",
+        "tag": "Anwenden",
+        "family": "neplus",
+        "checkKey": "A2L17-context-neplus"
+      },
+      {
+        "type": "choice",
+        "q": "Du sagst deine Meinung.",
+        "o": [
+          "À mon avis, le portable est utile.",
+          "À mon avis que le portable est utile.",
+          "Je trouve le portable que est utile."
+        ],
+        "answer": "À mon avis, le portable est utile.",
+        "explanation": "À mon avis + Satz ohne que.",
+        "tag": "Anwenden",
+        "family": "avis",
+        "checkKey": "A2L17-context-avis",
+        "audio": "À mon avis, le portable est utile."
+      },
+      {
+        "type": "choice",
+        "q": "« Je n’ai pas envie d’être joignable tout le temps. » Was möchte die Person nicht?",
+        "o": [
+          "immer erreichbar sein",
+          "immer telefonieren müssen",
+          "immer Nachrichten lesen"
+        ],
+        "answer": "immer erreichbar sein",
+        "explanation": "Joignable = erreichbar.",
+        "tag": "Anwenden",
+        "family": "envie",
+        "checkKey": "A2L17-context-envie"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Je ___ que c’est utile. (finden)",
+        "answer": "trouve",
+        "accept": [],
+        "context": "Du findest das nützlich.",
+        "explanation": "Je trouve que c’est utile.",
+        "audio": "Je trouve que c’est utile.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:trouve",
+        "checkKey": "A2L17-transfer-trouve-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "À mon ___, c’est dangereux.",
+        "answer": "avis",
+        "accept": [],
+        "context": "Meiner Meinung nach ist das gefährlich.",
+        "explanation": "À mon avis, c’est dangereux.",
+        "audio": "À mon avis, c’est dangereux.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:avis",
+        "checkKey": "A2L17-transfer-avis-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je suis d’___ avec vous.",
+        "answer": "accord",
+        "accept": [],
+        "context": "Du bist ihrer Meinung.",
+        "explanation": "Je suis d’accord avec vous.",
+        "audio": "Je suis d’accord avec vous.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:accord",
+        "checkKey": "A2L17-transfer-accord-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le bruit me ___ . (stören)",
+        "answer": "gêne",
+        "accept": [],
+        "context": "Der Lärm stört dich.",
+        "explanation": "Le bruit me gêne .",
+        "audio": "Le bruit me gêne .",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:gener",
+        "checkKey": "A2L17-transfer-gener-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je n’utilise ___ mon ancien portable. (nicht mehr)",
+        "answer": "plus",
+        "accept": [],
+        "context": "Du benutzt dein altes Handy nicht mehr.",
+        "explanation": "Je n’utilise plus mon ancien portable.",
+        "audio": "Je n’utilise plus mon ancien portable.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:neplus",
+        "checkKey": "A2L17-transfer-neplus-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je n’ai plus ___ batterie.",
+        "answer": "de",
+        "accept": [],
+        "context": "Du hast keinen Akku mehr.",
+        "explanation": "Je n’ai plus de batterie.",
+        "audio": "Je n’ai plus de batterie.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:de",
+        "checkKey": "A2L17-transfer-de-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "Je n’ai pas ___ de sortir ce soir.",
+        "answer": "envie",
+        "accept": [],
+        "context": "Du hast keine Lust, heute Abend auszugehen.",
+        "explanation": "Je n’ai pas envie de sortir ce soir.",
+        "audio": "Je n’ai pas envie de sortir ce soir.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:envie",
+        "checkKey": "A2L17-transfer-envie-6"
+      }
+    ]
+  },
+  "18": {
+    "goals": [
+      "Kurze Zeitungsmeldungen mit Zahlen und Prozenten verstehen.",
+      "Einer Meldung die passende Überschrift zuordnen.",
+      "Anteile und Entwicklungen ausdrücken: … sur …, pour cent, de plus en plus, augmenter, baisser."
+    ],
+    "tasks": [
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Deux Français ___ trois partent en vacances.",
+        "answer": "sur",
+        "o": [
+          "sur",
+          "de",
+          "pour"
+        ],
+        "context": "Zwei von drei Franzosen verreisen.",
+        "tag": "Anteil",
+        "explanation": "Deux Français sur trois partent en vacances. = Zwei von drei Franzosen verreisen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "La ___ des habitants a moins de trente ans.",
+        "answer": "moitié",
+        "o": [
+          "moitié",
+          "demi",
+          "milieu"
+        ],
+        "context": "Die Hälfte der Einwohner ist unter dreißig.",
+        "tag": "Anteil",
+        "explanation": "La moitié des habitants a moins de trente ans. = Die Hälfte der Einwohner ist unter dreißig."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Les prix ont augmenté ___ trois pour cent.",
+        "answer": "de",
+        "o": [
+          "de",
+          "à",
+          "par"
+        ],
+        "context": "Die Preise sind um drei Prozent gestiegen.",
+        "tag": "Entwicklung",
+        "explanation": "Les prix ont augmenté de trois pour cent. = Die Preise sind um drei Prozent gestiegen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "De moins en ___ de jeunes fument.",
+        "answer": "moins",
+        "o": [
+          "moins",
+          "plus",
+          "peu"
+        ],
+        "context": "Immer weniger junge Leute rauchen.",
+        "tag": "Entwicklung",
+        "explanation": "De moins en moins de jeunes fument. = Immer weniger junge Leute rauchen."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Vingt pour cent d’___ elles travaillent à temps partiel.",
+        "answer": "entre",
+        "o": [
+          "entre",
+          "eux",
+          "parmi"
+        ],
+        "context": "Zwanzig Prozent von ihnen arbeiten Teilzeit.",
+        "tag": "Anteil",
+        "explanation": "Vingt pour cent d’entre elles travaillent à temps partiel. = Zwanzig Prozent von ihnen arbeiten Teilzeit."
+      },
+      {
+        "type": "gap",
+        "unit": "u0",
+        "prompt": "Le nombre de touristes a ___ . (sinken)",
+        "answer": "baissé",
+        "o": [
+          "baissé",
+          "augmenté",
+          "monté"
+        ],
+        "context": "Die Zahl der Touristen ist gesunken.",
+        "tag": "Entwicklung",
+        "explanation": "Le nombre de touristes a baissé . = Die Zahl der Touristen ist gesunken."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "___ un sondage, les Français dorment moins. (laut)",
+        "answer": "Selon",
+        "o": [
+          "Selon",
+          "Pendant",
+          "Contre"
+        ],
+        "context": "Laut einer Umfrage schlafen die Franzosen weniger.",
+        "tag": "Meldung",
+        "explanation": "Selon un sondage, les Français dorment moins. = Laut einer Umfrage schlafen die Franzosen weniger."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Une loi ___ les magasins à ouvrir le dimanche. (erlauben)",
+        "answer": "autorise",
+        "o": [
+          "autorise",
+          "interdit",
+          "oblige de"
+        ],
+        "context": "Ein Gesetz erlaubt Geschäften, sonntags zu öffnen.",
+        "tag": "Meldung",
+        "explanation": "Une loi autorise les magasins à ouvrir le dimanche. = Ein Gesetz erlaubt Geschäften, sonntags zu öffnen."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "La ville ne compte ___ dix mille habitants.",
+        "answer": "que",
+        "o": [
+          "que",
+          "pas",
+          "plus"
+        ],
+        "context": "Die Stadt hat nur zehntausend Einwohner.",
+        "tag": "ne … que",
+        "explanation": "La ville ne compte que dix mille habitants. = Die Stadt hat nur zehntausend Einwohner."
+      },
+      {
+        "type": "gap",
+        "unit": "u1",
+        "prompt": "Les travaux coûtent ___ à la commune.",
+        "answer": "cher",
+        "o": [
+          "cher",
+          "chers",
+          "chère"
+        ],
+        "context": "Die Bauarbeiten kosten die Gemeinde viel.",
+        "tag": "Meldung",
+        "explanation": "Coûter cher: cher bleibt unverändert (Adverb)."
+      }
+    ],
+    "checkTasks": [
+      {
+        "type": "choice",
+        "q": "Meldung: « Le vélo a la cote : selon une étude, de plus en plus de salariés vont au travail à vélo. » Welche Überschrift passt?",
+        "o": [
+          "Toujours plus de cyclistes au travail",
+          "Moins de vélos dans les villes",
+          "Les vélos électriques trop chers"
+        ],
+        "answer": "Toujours plus de cyclistes au travail",
+        "explanation": "De plus en plus de salariés à vélo = immer mehr Radfahrer.",
+        "tag": "Anwenden",
+        "family": "titre",
+        "checkKey": "A2L18-context-titre"
+      },
+      {
+        "type": "choice",
+        "q": "« Seulement un salarié sur dix déjeune à la cantine. » Was stimmt?",
+        "o": [
+          "10 % essen in der Kantine.",
+          "90 % essen in der Kantine.",
+          "Die Hälfte isst in der Kantine."
+        ],
+        "answer": "10 % essen in der Kantine.",
+        "explanation": "Un sur dix = 10 %.",
+        "tag": "Anwenden",
+        "family": "pourcentage",
+        "checkKey": "A2L18-context-pourcentage"
+      },
+      {
+        "type": "choice",
+        "q": "« Le village ne compte que huit cents habitants. » Was bedeutet das?",
+        "o": [
+          "Das Dorf hat nur 800 Einwohner.",
+          "Das Dorf hat mehr als 800 Einwohner.",
+          "Das Dorf hat 800 Einwohner verloren."
+        ],
+        "answer": "Das Dorf hat nur 800 Einwohner.",
+        "explanation": "Ne … que = nur.",
+        "tag": "Anwenden",
+        "family": "neque",
+        "checkKey": "A2L18-context-neque"
+      },
+      {
+        "type": "choice",
+        "q": "Du gibst eine Zahl wieder: Die Mieten sind um 4 % gestiegen.",
+        "o": [
+          "Les loyers ont augmenté de quatre pour cent.",
+          "Les loyers ont baissé de quatre pour cent.",
+          "Les loyers ont augmenté à quatre pour cent."
+        ],
+        "answer": "Les loyers ont augmenté de quatre pour cent.",
+        "explanation": "Augmenter de = steigen um.",
+        "tag": "Anwenden",
+        "family": "augmenter",
+        "checkKey": "A2L18-context-augmenter",
+        "audio": "Les loyers ont augmenté de quatre pour cent."
+      },
+      {
+        "type": "choice",
+        "q": "« Une nouvelle loi autorise les villes à faire payer les parkings le dimanche. » Welche Überschrift passt?",
+        "o": [
+          "Parkings payants aussi le dimanche",
+          "Parkings gratuits toute la semaine",
+          "Moins de voitures en ville"
+        ],
+        "answer": "Parkings payants aussi le dimanche",
+        "explanation": "Autoriser à faire payer = erlauben, Gebühren zu verlangen.",
+        "tag": "Anwenden",
+        "family": "loi",
+        "checkKey": "A2L18-context-loi"
+      },
+      {
+        "type": "choice",
+        "q": "« Trente pour cent d’entre eux lisent en ligne. » Was bedeutet d’entre eux?",
+        "o": [
+          "von ihnen",
+          "zwischen ihnen",
+          "für sie"
+        ],
+        "answer": "von ihnen",
+        "explanation": "D’entre eux = von ihnen.",
+        "tag": "Anwenden",
+        "family": "entre",
+        "checkKey": "A2L18-context-entre"
+      },
+      {
+        "type": "choice",
+        "q": "« Le nombre d’accidents a diminué de moitié. » Was ist passiert?",
+        "o": [
+          "Die Unfälle haben sich halbiert.",
+          "Die Unfälle haben sich verdoppelt.",
+          "Die Hälfte der Straßen ist gesperrt."
+        ],
+        "answer": "Die Unfälle haben sich halbiert.",
+        "explanation": "Diminuer de moitié = sich halbieren.",
+        "tag": "Anwenden",
+        "family": "diminuer",
+        "checkKey": "A2L18-context-diminuer"
+      },
+      {
+        "type": "choice",
+        "q": "Du liest: « Selon un sondage… » Was folgt?",
+        "o": [
+          "das Ergebnis einer Umfrage",
+          "eine Werbung",
+          "ein Wetterbericht"
+        ],
+        "answer": "das Ergebnis einer Umfrage",
+        "explanation": "Un sondage = eine Umfrage.",
+        "tag": "Anwenden",
+        "family": "selon",
+        "checkKey": "A2L18-context-selon"
+      }
+    ],
+    "checkTransfers": [
+      {
+        "type": "gap",
+        "prompt": "Un enfant ___ quatre a un téléphone. (von)",
+        "answer": "sur",
+        "accept": [],
+        "context": "Eines von vier Kindern hat ein Telefon.",
+        "explanation": "Un enfant sur quatre a un téléphone.",
+        "audio": "Un enfant sur quatre a un téléphone.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:sur",
+        "checkKey": "A2L18-transfer-sur-0"
+      },
+      {
+        "type": "gap",
+        "prompt": "Trente ___ cent des habitants ont un jardin.",
+        "answer": "pour",
+        "accept": [],
+        "context": "Dreißig Prozent der Einwohner haben einen Garten.",
+        "explanation": "Trente pour cent des habitants ont un jardin.",
+        "audio": "Trente pour cent des habitants ont un jardin.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:pourcent",
+        "checkKey": "A2L18-transfer-pourcent-1"
+      },
+      {
+        "type": "gap",
+        "prompt": "La moitié d’___ eux habite en ville.",
+        "answer": "entre",
+        "accept": [],
+        "context": "Die Hälfte von ihnen wohnt in der Stadt.",
+        "explanation": "La moitié d’entre eux habite en ville.",
+        "audio": "La moitié d’entre eux habite en ville.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:entre",
+        "checkKey": "A2L18-transfer-entre-2"
+      },
+      {
+        "type": "gap",
+        "prompt": "De plus en ___ de gens travaillent à la maison.",
+        "answer": "plus",
+        "accept": [],
+        "context": "Immer mehr Leute arbeiten zu Hause.",
+        "explanation": "De plus en plus de gens travaillent à la maison.",
+        "audio": "De plus en plus de gens travaillent à la maison.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:plusenplus",
+        "checkKey": "A2L18-transfer-plusenplus-3"
+      },
+      {
+        "type": "gap",
+        "prompt": "Les prix ont ___ de deux pour cent. (steigen)",
+        "answer": "augmenté",
+        "accept": [],
+        "context": "Die Preise sind um zwei Prozent gestiegen.",
+        "explanation": "Les prix ont augmenté de deux pour cent.",
+        "audio": "Les prix ont augmenté de deux pour cent.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:augmenter",
+        "checkKey": "A2L18-transfer-augmenter-4"
+      },
+      {
+        "type": "gap",
+        "prompt": "Le village ne compte ___ trois cents habitants.",
+        "answer": "que",
+        "accept": [],
+        "context": "Das Dorf hat nur dreihundert Einwohner.",
+        "explanation": "Le village ne compte que trois cents habitants.",
+        "audio": "Le village ne compte que trois cents habitants.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:neque",
+        "checkKey": "A2L18-transfer-neque-5"
+      },
+      {
+        "type": "gap",
+        "prompt": "___ une étude, nous mangeons trop de sucre. (laut)",
+        "answer": "Selon",
+        "accept": [],
+        "context": "Laut einer Studie essen wir zu viel Zucker.",
+        "explanation": "Selon une étude, nous mangeons trop de sucre.",
+        "audio": "Selon une étude, nous mangeons trop de sucre.",
+        "marking": {
+          "strictAccents": true,
+          "format": null,
+          "numberWords": false
+        },
+        "family": "transfer:selon",
+        "checkKey": "A2L18-transfer-selon-6"
+      }
+    ]
   }
 };

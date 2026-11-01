@@ -2339,15 +2339,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 13,
-      "status": "planned",
       "title": "Beim Arzt",
       "topic": "Santé et rendez-vous",
       "skills": [
         "Hören",
         "Sprechen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Je voudrais prendre rendez-vous avec le docteur Blanc.",
+          "Ich möchte einen Termin bei Doktor Blanc vereinbaren."
+        ],
+        [
+          "Vous êtes libre jeudi à quinze heures ?",
+          "Haben Sie Donnerstag um fünfzehn Uhr Zeit?"
+        ],
+        [
+          "Qu’est-ce qui ne va pas ?",
+          "Was fehlt Ihnen?"
+        ],
+        [
+          "J’ai mal au ventre depuis hier.",
+          "Ich habe seit gestern Bauchschmerzen."
+        ],
+        [
+          "J’ai de la fièvre et je tousse.",
+          "Ich habe Fieber und huste."
+        ],
+        [
+          "Le cabinet est fermé en raison de travaux.",
+          "Die Praxis ist wegen Bauarbeiten geschlossen."
+        ],
+        [
+          "En cas d’urgence, adressez-vous au docteur Morin.",
+          "Im Notfall wenden Sie sich an Doktor Morin."
+        ],
+        [
+          "Prenez ce médicament trois fois par jour.",
+          "Nehmen Sie dieses Medikament dreimal täglich."
+        ],
+        [
+          "Vous avez votre carte Vitale ?",
+          "Haben Sie Ihre Versichertenkarte?"
+        ],
+        [
+          "Restez au lit deux jours.",
+          "Bleiben Sie zwei Tage im Bett."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Wie vereinbarst du einen Termin?",
+          "o": [
+            "Je voudrais prendre rendez-vous.",
+            "Je voudrais donner rendez-vous.",
+            "Je voudrais faire un rendez-vous."
+          ],
+          "a": 0,
+          "audio": "Je voudrais prendre rendez-vous avec le docteur Blanc.",
+          "explanation": "Einen Termin vereinbaren = prendre rendez-vous."
+        },
+        {
+          "q": "Was fragt der Arzt mit „Qu’est-ce qui ne va pas ?“",
+          "o": [
+            "Was fehlt Ihnen?",
+            "Was machen Sie nicht?",
+            "Wohin gehen Sie?"
+          ],
+          "a": 0,
+          "audio": "Qu’est-ce qui ne va pas ?",
+          "explanation": "Wörtlich: Was geht nicht? – die typische Frage nach Beschwerden."
+        },
+        {
+          "q": "J’ai mal ___ ventre.",
+          "o": [
+            "aux",
+            "à la",
+            "au"
+          ],
+          "a": 2,
+          "audio": "J’ai mal au ventre depuis hier.",
+          "explanation": "Le ventre → à + le = au: j’ai mal au ventre."
+        },
+        {
+          "q": "J’ai mal ___ tête.",
+          "o": [
+            "à la",
+            "au",
+            "aux"
+          ],
+          "a": 0,
+          "audio": "J’ai mal à la tête.",
+          "explanation": "La tête → à la tête."
+        },
+        {
+          "q": "Was bedeutet „en raison de travaux“?",
+          "o": [
+            "wegen Bauarbeiten",
+            "trotz Bauarbeiten",
+            "nach Bauarbeiten"
+          ],
+          "a": 0,
+          "audio": "Le cabinet est fermé en raison de travaux.",
+          "explanation": "En raison de + Nomen = wegen (in Ansagen und Schreiben)."
+        },
+        {
+          "q": "Was bedeutet „En cas d’urgence“?",
+          "o": [
+            "im Notfall",
+            "im Krankenhaus",
+            "in der Sprechstunde"
+          ],
+          "a": 0,
+          "audio": "En cas d’urgence, adressez-vous au docteur Morin.",
+          "explanation": "Une urgence = ein Notfall; en cas de = im Fall von."
+        },
+        {
+          "q": "Adressez-vous ___ docteur Morin.",
+          "o": [
+            "chez le",
+            "à le",
+            "au"
+          ],
+          "a": 2,
+          "audio": "En cas d’urgence, adressez-vous au docteur Morin.",
+          "explanation": "S’adresser à quelqu’un = sich an jemanden wenden; à + le = au."
+        },
+        {
+          "q": "Prenez ce médicament trois fois ___ jour.",
+          "o": [
+            "le",
+            "pour",
+            "par"
+          ],
+          "a": 2,
+          "audio": "Prenez ce médicament trois fois par jour.",
+          "explanation": "Trois fois par jour = dreimal täglich."
+        },
+        {
+          "q": "Was bedeutet „je tousse“?",
+          "o": [
+            "ich huste",
+            "ich niese",
+            "ich schwitze"
+          ],
+          "a": 0,
+          "audio": "J’ai de la fièvre et je tousse.",
+          "explanation": "Tousser = husten."
+        },
+        {
+          "q": "Restez ___ lit deux jours.",
+          "o": [
+            "à le",
+            "au",
+            "dans"
+          ],
+          "a": 1,
+          "audio": "Restez au lit deux jours.",
+          "explanation": "Rester au lit = im Bett bleiben."
+        }
+      ],
       "canDo": [
         "Ich kann einen Arzttermin vereinbaren, eine Bandansage der Praxis verstehen und sagen, was mir fehlt."
       ],
@@ -2356,15 +2507,26 @@ window.FR_A1_DATA = {
         "explanation": "en cas d’urgence, adressez-vous à … ; en raison de + Nomen; j’ai attrapé un rhume."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "j’ai mal au ventre",
+        "explanation": "Au [o] und eau [o] klingen gleich. In ventre ist en ein Nasal [ɑ̃]. Bei urgence [yʁʒɑ̃s] liegt die Betonung auf der letzten Silbe."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Cabinet du docteur Blanc, bonjour.",
+        "Bonjour, je voudrais prendre rendez-vous, s’il vous plaît.",
+        "Qu’est-ce qui ne va pas ?",
+        "J’ai mal à la gorge et de la fièvre depuis hier.",
+        "Le docteur peut vous recevoir aujourd’hui à dix-sept heures.",
+        "Parfait, merci. Je viendrai avec ma carte Vitale."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Rufe in einer Arztpraxis an: vereinbare einen Termin und beschreibe deine Beschwerden seit wann.",
+        "writing": "Schreibe eine kurze Nachricht an deinen Chef: Du bist krank, warst beim Arzt und bleibst zwei Tage zu Hause."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Interaktion",
+        "Mündliche Rezeption",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 3 : cabinet médical",
         "Compréhension orale, Partie 2 : message"
@@ -2372,15 +2534,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 14,
-      "status": "planned",
       "title": "Am Bahnhof",
       "topic": "À la gare",
       "skills": [
         "Hören",
         "Lesen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Votre attention, s’il vous plaît.",
+          "Ihre Aufmerksamkeit, bitte."
+        ],
+        [
+          "Le TGV pour Marseille partira voie 7.",
+          "Der TGV nach Marseille fährt von Gleis 7 ab."
+        ],
+        [
+          "Le train arrivera avec vingt minutes de retard.",
+          "Der Zug wird mit zwanzig Minuten Verspätung ankommen."
+        ],
+        [
+          "Nous informons les voyageurs que le train est supprimé.",
+          "Wir informieren die Reisenden, dass der Zug ausfällt."
+        ],
+        [
+          "En raison d’une grève, le trafic est perturbé.",
+          "Wegen eines Streiks ist der Verkehr gestört."
+        ],
+        [
+          "Vous avez une correspondance à Lyon.",
+          "Sie haben einen Anschluss in Lyon."
+        ],
+        [
+          "Un aller simple pour Bordeaux, s’il vous plaît.",
+          "Eine einfache Fahrt nach Bordeaux, bitte."
+        ],
+        [
+          "Je voudrais un aller-retour en deuxième classe.",
+          "Ich möchte eine Hin- und Rückfahrt in der zweiten Klasse."
+        ],
+        [
+          "N’oubliez pas de composter votre billet.",
+          "Vergessen Sie nicht, Ihre Fahrkarte zu entwerten."
+        ],
+        [
+          "Cette annonce est importante pour moi.",
+          "Diese Durchsage ist wichtig für mich."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Was bedeutet „la voie 7“ am Bahnhof?",
+          "o": [
+            "Wagen 7",
+            "Gleis 7",
+            "Ausgang 7"
+          ],
+          "a": 1,
+          "audio": "Le TGV pour Marseille partira voie 7.",
+          "explanation": "La voie = das Gleis; la voiture = der Wagen."
+        },
+        {
+          "q": "Le train ___ avec vingt minutes de retard. (arriver, Futur)",
+          "o": [
+            "arrivait",
+            "arrivera",
+            "arrive"
+          ],
+          "a": 1,
+          "audio": "Le train arrivera avec vingt minutes de retard.",
+          "explanation": "Durchsagen kündigen mit dem futur simple an: arrivera, partira."
+        },
+        {
+          "q": "Was bedeutet „le train est supprimé“?",
+          "o": [
+            "Der Zug fällt aus.",
+            "Der Zug ist voll.",
+            "Der Zug ist pünktlich."
+          ],
+          "a": 0,
+          "audio": "Nous informons les voyageurs que le train est supprimé.",
+          "explanation": "Supprimé = gestrichen, fällt aus."
+        },
+        {
+          "q": "Was ist „une grève“?",
+          "o": [
+            "ein Unfall",
+            "eine Baustelle",
+            "ein Streik"
+          ],
+          "a": 2,
+          "audio": "En raison d’une grève, le trafic est perturbé.",
+          "explanation": "La grève = der Streik."
+        },
+        {
+          "q": "Was bedeutet „une correspondance“?",
+          "o": [
+            "ein Sitzplatz",
+            "ein Anschlusszug",
+            "ein Briefwechsel"
+          ],
+          "a": 1,
+          "audio": "Vous avez une correspondance à Lyon.",
+          "explanation": "Am Bahnhof ist la correspondance der Anschluss."
+        },
+        {
+          "q": "Du willst nur hin, nicht zurück.",
+          "o": [
+            "un aller simple",
+            "un aller-retour",
+            "un retour simple"
+          ],
+          "a": 0,
+          "audio": "Un aller simple pour Bordeaux, s’il vous plaît.",
+          "explanation": "Aller simple = einfache Fahrt; aller-retour = hin und zurück."
+        },
+        {
+          "q": "Was bedeutet „le trafic est perturbé“?",
+          "o": [
+            "Der Verkehr ist normal.",
+            "Der Verkehr ist gestört.",
+            "Der Verkehr ist eingestellt."
+          ],
+          "a": 1,
+          "audio": "En raison d’une grève, le trafic est perturbé.",
+          "explanation": "Perturbé = gestört, unregelmäßig."
+        },
+        {
+          "q": "Le train pour Lyon ___ voie 3. (partir, Futur)",
+          "o": [
+            "partirait",
+            "partait",
+            "partira"
+          ],
+          "a": 2,
+          "audio": "Le train pour Lyon partira voie 3.",
+          "explanation": "Partir → partira (Futur)."
+        },
+        {
+          "q": "Was musst du mit dem Ticket tun? « N’oubliez pas de composter votre billet. »",
+          "o": [
+            "kaufen",
+            "zeigen",
+            "entwerten"
+          ],
+          "a": 2,
+          "audio": "N’oubliez pas de composter votre billet.",
+          "explanation": "Composter = (am Automaten) entwerten."
+        },
+        {
+          "q": "Nous informons les voyageurs ___ le train est en retard.",
+          "o": [
+            "que",
+            "qui",
+            "de"
+          ],
+          "a": 0,
+          "audio": "Nous informons les voyageurs que le train est en retard.",
+          "explanation": "Informer quelqu’un que … = jemanden informieren, dass …"
+        }
+      ],
       "canDo": [
         "Ich kann Durchsagen am Bahnhof verstehen und erkennen, ob eine Information meinen Zug betrifft."
       ],
@@ -2389,15 +2702,26 @@ window.FR_A1_DATA = {
         "explanation": "Le train arrivera avec 40 minutes de retard. Nous informons les voyageurs que …"
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "voie / voiture",
+        "explanation": "Voie [vwa] ist eine Silbe; voiture [vwatyʁ] hat zwei. In Durchsagen achte auf Zahlen und das Wort retard [ʁətaʁ]. Nach avec folgt oft die Zahl der Minuten."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Bonjour, un aller-retour pour Lyon, s’il vous plaît.",
+        "En première ou en deuxième classe ?",
+        "En deuxième. Le train part de quelle voie ?",
+        "Voie 5, mais attention, il a quinze minutes de retard.",
+        "J’ai une correspondance à Lyon. C’est grave ?",
+        "Non, votre correspondance attendra."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Kaufe am Schalter eine Fahrkarte (Ziel, hin/zurück, Klasse) und frage nach Gleis und Verspätung.",
+        "writing": "Schreibe einem Freund eine SMS: Dein Zug hat Verspätung, wann du ankommst und wo er dich abholen soll."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Rezeption",
+        "Schriftliche Rezeption",
+        "Mündliche Interaktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 3 : annonce à la gare",
         "Compréhension écrite, Partie 1 : la SNCF"
@@ -2405,15 +2729,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 15,
-      "status": "planned",
       "title": "Unterwegs mit dem Auto",
       "topic": "Sur la route",
       "skills": [
         "Hören",
         "Lesen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Information pour les automobilistes sur l’autoroute A7.",
+          "Information für Autofahrer auf der Autobahn A7."
+        ],
+        [
+          "En raison d’un accident, l’autoroute est coupée.",
+          "Wegen eines Unfalls ist die Autobahn gesperrt."
+        ],
+        [
+          "Vous êtes priés de quitter l’autoroute à la sortie 15.",
+          "Sie werden gebeten, die Autobahn an der Ausfahrt 15 zu verlassen."
+        ],
+        [
+          "Suivez l’itinéraire de déviation.",
+          "Folgen Sie der Umleitung."
+        ],
+        [
+          "Il y a un bouchon de dix kilomètres.",
+          "Es gibt einen Stau von zehn Kilometern."
+        ],
+        [
+          "Faites le plein à la prochaine station-service.",
+          "Tanken Sie an der nächsten Tankstelle voll."
+        ],
+        [
+          "Le conducteur de la voiture bleue est prié de venir à l’accueil.",
+          "Der Fahrer des blauen Autos wird gebeten, zum Empfang zu kommen."
+        ],
+        [
+          "Le parking est complet.",
+          "Der Parkplatz ist voll."
+        ],
+        [
+          "Roulez prudemment, la route est glissante.",
+          "Fahren Sie vorsichtig, die Straße ist glatt."
+        ],
+        [
+          "Vous pouvez continuer jusqu’à Valence.",
+          "Sie können bis Valence weiterfahren."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Was bedeutet „l’autoroute est coupée“?",
+          "o": [
+            "Die Autobahn ist neu.",
+            "Die Autobahn ist gesperrt.",
+            "Die Autobahn ist kostenlos."
+          ],
+          "a": 1,
+          "audio": "En raison d’un accident, l’autoroute est coupée.",
+          "explanation": "Coupé(e) = gesperrt, unterbrochen."
+        },
+        {
+          "q": "Vous êtes priés ___ quitter l’autoroute.",
+          "o": [
+            "à",
+            "de",
+            "pour"
+          ],
+          "a": 1,
+          "audio": "Vous êtes priés de quitter l’autoroute à la sortie 15.",
+          "explanation": "Être prié(e) de + Infinitiv = gebeten werden, etwas zu tun."
+        },
+        {
+          "q": "Was ist „la sortie“ auf der Autobahn?",
+          "o": [
+            "die Raststätte",
+            "die Auffahrt",
+            "die Ausfahrt"
+          ],
+          "a": 2,
+          "audio": "…à la sortie 15.",
+          "explanation": "La sortie = die Ausfahrt; l’entrée = die Auffahrt."
+        },
+        {
+          "q": "Was ist „un bouchon“?",
+          "o": [
+            "eine Ampel",
+            "ein Stau",
+            "eine Baustelle"
+          ],
+          "a": 1,
+          "audio": "Il y a un bouchon de dix kilomètres.",
+          "explanation": "Un bouchon = ein Stau (auch: ein Korken)."
+        },
+        {
+          "q": "Was bedeutet „Suivez l’itinéraire de déviation“?",
+          "o": [
+            "Folgen Sie dem Polizeiwagen.",
+            "Folgen Sie der Autobahn.",
+            "Folgen Sie der Umleitung."
+          ],
+          "a": 2,
+          "audio": "Suivez l’itinéraire de déviation.",
+          "explanation": "La déviation = die Umleitung."
+        },
+        {
+          "q": "Le conducteur est ___ de venir à l’accueil.",
+          "o": [
+            "prie",
+            "prié",
+            "priés"
+          ],
+          "a": 1,
+          "audio": "Le conducteur de la voiture bleue est prié de venir à l’accueil.",
+          "explanation": "Ein Fahrer → prié (Singular, männlich)."
+        },
+        {
+          "q": "Was bedeutet „Le parking est complet“?",
+          "o": [
+            "Der Parkplatz ist geschlossen.",
+            "Der Parkplatz ist kostenlos.",
+            "Der Parkplatz ist voll."
+          ],
+          "a": 2,
+          "audio": "Le parking est complet.",
+          "explanation": "Complet = voll belegt."
+        },
+        {
+          "q": "Was bedeutet „la route est glissante“?",
+          "o": [
+            "Die Straße ist glatt.",
+            "Die Straße ist frei.",
+            "Die Straße ist gesperrt."
+          ],
+          "a": 0,
+          "audio": "Roulez prudemment, la route est glissante.",
+          "explanation": "Glissant(e) = rutschig, glatt."
+        },
+        {
+          "q": "Wo tankst du?",
+          "o": [
+            "au péage",
+            "à la station-service",
+            "à l’aire de pique-nique"
+          ],
+          "a": 1,
+          "audio": "Faites le plein à la prochaine station-service.",
+          "explanation": "Faire le plein = volltanken; le péage = die Mautstelle."
+        },
+        {
+          "q": "Vous pouvez continuer ___ Valence.",
+          "o": [
+            "depuis",
+            "dans",
+            "jusqu’à"
+          ],
+          "a": 2,
+          "audio": "Vous pouvez continuer jusqu’à Valence.",
+          "explanation": "Jusqu’à = bis."
+        }
+      ],
       "canDo": [
         "Ich kann Verkehrsmeldungen im Radio und Durchsagen auf dem Parkplatz verstehen und daraus die richtige Handlung ableiten."
       ],
@@ -2422,30 +2897,192 @@ window.FR_A1_DATA = {
         "explanation": "être prié(e) de + Infinitiv: Vous êtes priés de quitter l’autoroute; en raison de."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "autoroute / sortie",
+        "explanation": "Au in autoroute spricht man [o]: [otoʁut]. In sortie ist das r hinten im Rachen. Zahlen von Ausfahrten und Kilometern kommen oft am Ende der Meldung."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu as entendu la radio ? L’A4 est coupée.",
+        "Pourquoi ?",
+        "En raison d’un camion en panne près de Metz.",
+        "Alors on fait comment ?",
+        "On doit quitter l’autoroute à la prochaine sortie et suivre la déviation.",
+        "D’accord. Et on fera le plein à la station-service."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Erkläre deinem Beifahrer eine Verkehrsmeldung: Was ist passiert, wo sollt ihr abfahren, wie geht es weiter?",
+        "writing": "Schreibe eine Nachricht: Ihr steht im Stau, warum, und wann ihr ungefähr ankommt."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Rezeption",
+        "Mündliche Interaktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 3 : radio et parking"
       ]
     },
     {
       "id": 16,
-      "status": "planned",
       "title": "Der Wetterbericht",
       "topic": "La météo",
       "skills": [
         "Hören",
         "Sprechen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Et maintenant, la météo.",
+          "Und jetzt das Wetter."
+        ],
+        [
+          "Il pleut actuellement en Bretagne.",
+          "Zurzeit regnet es in der Bretagne."
+        ],
+        [
+          "Le ciel se dégagera vers midi.",
+          "Der Himmel klart gegen Mittag auf."
+        ],
+        [
+          "Le soleil brillera en début de soirée.",
+          "Am frühen Abend scheint die Sonne."
+        ],
+        [
+          "Demain, il fera vingt-deux degrés à Paris.",
+          "Morgen wird es in Paris zweiundzwanzig Grad."
+        ],
+        [
+          "Il y aura des orages dans les Alpes.",
+          "In den Alpen wird es Gewitter geben."
+        ],
+        [
+          "Hier, il a neigé en montagne.",
+          "Gestern hat es in den Bergen geschneit."
+        ],
+        [
+          "Il fait un temps gris et frais.",
+          "Es ist grau und kühl."
+        ],
+        [
+          "Le vent soufflera fort sur la côte.",
+          "An der Küste wird starker Wind wehen."
+        ],
+        [
+          "Prenez un parapluie !",
+          "Nehmen Sie einen Regenschirm mit!"
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Was bedeutet „Le ciel se dégagera“?",
+          "o": [
+            "Der Himmel wird aufklaren.",
+            "Es wird dunkel.",
+            "Der Himmel wird sich bewölken."
+          ],
+          "a": 0,
+          "audio": "Le ciel se dégagera vers midi.",
+          "explanation": "Se dégager = aufklaren, frei werden."
+        },
+        {
+          "q": "Was bedeutet „en fin de matinée“?",
+          "o": [
+            "am Abend",
+            "am späten Vormittag",
+            "am frühen Morgen"
+          ],
+          "a": 1,
+          "audio": "Les nuages partiront en fin de matinée.",
+          "explanation": "La matinée = der Vormittag; en fin de = am Ende von."
+        },
+        {
+          "q": "Le soleil ___ jeudi. (revenir, Futur)",
+          "o": [
+            "reviendra",
+            "revenira",
+            "revient"
+          ],
+          "a": 0,
+          "audio": "Le soleil reviendra jeudi.",
+          "explanation": "Revenir → reviendr- (wie venir)."
+        },
+        {
+          "q": "Demain, il ___ vingt-deux degrés. (faire, Futur)",
+          "o": [
+            "faisait",
+            "fait",
+            "fera"
+          ],
+          "a": 2,
+          "audio": "Demain, il fera vingt-deux degrés à Paris.",
+          "explanation": "Faire → fera im Futur."
+        },
+        {
+          "q": "Hier, il ___ en montagne. (neiger)",
+          "o": [
+            "a neigé",
+            "neigera",
+            "neige"
+          ],
+          "a": 0,
+          "audio": "Hier, il a neigé en montagne.",
+          "explanation": "Hier → passé composé: il a neigé."
+        },
+        {
+          "q": "Il ___ actuellement en Bretagne. (pleuvoir, jetzt)",
+          "o": [
+            "pleut",
+            "pleuvra",
+            "a plu"
+          ],
+          "a": 0,
+          "audio": "Il pleut actuellement en Bretagne.",
+          "explanation": "Actuellement = zurzeit → Präsens: il pleut."
+        },
+        {
+          "q": "Was ist „un orage“?",
+          "o": [
+            "ein Nebel",
+            "ein Schauer ohne Donner",
+            "ein Gewitter"
+          ],
+          "a": 2,
+          "audio": "Il y aura des orages dans les Alpes.",
+          "explanation": "Un orage = ein Gewitter."
+        },
+        {
+          "q": "Il y ___ des orages. (avoir, Futur)",
+          "o": [
+            "avait",
+            "a eu",
+            "aura"
+          ],
+          "a": 2,
+          "audio": "Il y aura des orages dans les Alpes.",
+          "explanation": "Il y a → il y aura (Futur)."
+        },
+        {
+          "q": "Was bedeutet „Il fait frais“?",
+          "o": [
+            "Es ist kühl.",
+            "Es ist frisch gestrichen.",
+            "Es ist heiß."
+          ],
+          "a": 0,
+          "audio": "Il fait un temps gris et frais.",
+          "explanation": "Frais = kühl; chaud = warm; froid = kalt."
+        },
+        {
+          "q": "Le vent ___ fort sur la côte. (souffler, Futur)",
+          "o": [
+            "soufflait",
+            "soufflera",
+            "souffle"
+          ],
+          "a": 1,
+          "audio": "Le vent soufflera fort sur la côte.",
+          "explanation": "Souffler (wehen) → soufflera."
+        }
+      ],
       "canDo": [
         "Ich kann einen Wetterbericht verstehen und sagen, wie das Wetter wird und wie es war."
       ],
@@ -2454,15 +3091,26 @@ window.FR_A1_DATA = {
         "explanation": "il pleut / il a plu / il fera beau; Zeitangaben: en fin de matinée, en début d’après-midi."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "il pleut / il pleuvra",
+        "explanation": "Pleut [plø] hat einen gerundeten Vokal wie „ö“. Il pleuvra [pløvʁa] (Futur) und il pleuvait [pløvɛ] (Imperfekt) unterscheiden sich am Ende. Degrés [dəɡʁe]: das s ist stumm."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu as écouté la météo ?",
+        "Oui, ce matin il pleut, mais le ciel se dégagera vers midi.",
+        "Et cet après-midi ?",
+        "Le soleil reviendra et il fera vingt degrés.",
+        "Alors on pourra faire du vélo !",
+        "Oui, mais prends quand même un parapluie."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Erkläre einem Freund den Wetterbericht für morgen und schlage passend dazu eine Aktivität vor.",
+        "writing": "Schreibe drei Sätze über das Wetter von gestern, heute und morgen."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Rezeption",
+        "Mündliche Produktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 3 : météo",
         "Éléments langagiers, Partie 1 : il n’a pas arrêté de pleuvoir"
@@ -2470,15 +3118,166 @@ window.FR_A1_DATA = {
     },
     {
       "id": 17,
-      "status": "planned",
       "title": "Das Handy – Meinungen",
       "topic": "Le téléphone portable",
       "skills": [
         "Hören",
         "Sprechen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Je trouve que le portable est très pratique.",
+          "Ich finde, dass das Handy sehr praktisch ist."
+        ],
+        [
+          "Ça me gêne quand les gens téléphonent dans le train.",
+          "Es stört mich, wenn die Leute im Zug telefonieren."
+        ],
+        [
+          "À mon avis, les enfants n’ont pas besoin de portable.",
+          "Meiner Meinung nach brauchen Kinder kein Handy."
+        ],
+        [
+          "Je ne peux plus vivre sans mon smartphone.",
+          "Ich kann nicht mehr ohne mein Smartphone leben."
+        ],
+        [
+          "Moi, je n’ai pas envie d’avoir un portable.",
+          "Ich habe keine Lust, ein Handy zu haben."
+        ],
+        [
+          "C’est rassurant pour les parents.",
+          "Das ist beruhigend für die Eltern."
+        ],
+        [
+          "Je suis d’accord avec toi.",
+          "Ich bin deiner Meinung."
+        ],
+        [
+          "Je ne suis pas du tout d’accord.",
+          "Ich bin überhaupt nicht einverstanden."
+        ],
+        [
+          "Les portables sont interdits pendant le cours.",
+          "Handys sind während des Unterrichts verboten."
+        ],
+        [
+          "C’est trop compliqué pour moi.",
+          "Das ist zu kompliziert für mich."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Wie leitest du deine Meinung ein?",
+          "o": [
+            "Je pense de…",
+            "Je trouve que…",
+            "Je cherche que…"
+          ],
+          "a": 1,
+          "audio": "Je trouve que le portable est très pratique.",
+          "explanation": "Je trouve que / je pense que + Satz = ich finde / denke, dass …"
+        },
+        {
+          "q": "Was bedeutet „Ça me gêne“?",
+          "o": [
+            "Das ist mir egal.",
+            "Das stört mich.",
+            "Das gefällt mir."
+          ],
+          "a": 1,
+          "audio": "Ça me gêne quand les gens téléphonent dans le train.",
+          "explanation": "Gêner = stören."
+        },
+        {
+          "q": "Was bedeutet „À mon avis“?",
+          "o": [
+            "nach meiner Erfahrung",
+            "zu meinem Glück",
+            "meiner Meinung nach"
+          ],
+          "a": 2,
+          "audio": "À mon avis, les enfants n’ont pas besoin de portable.",
+          "explanation": "L’avis = die Meinung."
+        },
+        {
+          "q": "Je ne peux ___ vivre sans mon smartphone. (nicht mehr)",
+          "o": [
+            "jamais",
+            "pas",
+            "plus"
+          ],
+          "a": 2,
+          "audio": "Je ne peux plus vivre sans mon smartphone.",
+          "explanation": "Ne … plus = nicht mehr."
+        },
+        {
+          "q": "Was bedeutet „Je n’ai pas envie d’avoir un portable“?",
+          "o": [
+            "Ich darf kein Handy haben.",
+            "Ich habe kein Geld für ein Handy.",
+            "Ich habe keine Lust, ein Handy zu haben."
+          ],
+          "a": 2,
+          "audio": "Moi, je n’ai pas envie d’avoir un portable.",
+          "explanation": "Avoir envie de = Lust haben auf / zu."
+        },
+        {
+          "q": "Was bedeutet „rassurant“?",
+          "o": [
+            "teuer",
+            "beunruhigend",
+            "beruhigend"
+          ],
+          "a": 2,
+          "audio": "C’est rassurant pour les parents.",
+          "explanation": "Rassurer = beruhigen."
+        },
+        {
+          "q": "Du teilst die Meinung deines Partners.",
+          "o": [
+            "Je suis d’accord à toi.",
+            "Je suis d’accord avec toi.",
+            "J’ai d’accord avec toi."
+          ],
+          "a": 1,
+          "audio": "Je suis d’accord avec toi.",
+          "explanation": "Être d’accord avec quelqu’un."
+        },
+        {
+          "q": "Was bedeutet „Je ne suis pas du tout d’accord“?",
+          "o": [
+            "Ich bin ganz deiner Meinung.",
+            "Ich bin nicht ganz sicher.",
+            "Ich bin überhaupt nicht einverstanden."
+          ],
+          "a": 2,
+          "audio": "Je ne suis pas du tout d’accord.",
+          "explanation": "Pas du tout = überhaupt nicht."
+        },
+        {
+          "q": "Les portables sont ___ pendant le cours.",
+          "o": [
+            "interdits",
+            "interdites",
+            "interdit"
+          ],
+          "a": 0,
+          "audio": "Les portables sont interdits pendant le cours.",
+          "explanation": "Les portables (m. Pl.) → interdits."
+        },
+        {
+          "q": "Il n’a ___ de portable. (nicht mehr)",
+          "o": [
+            "plus",
+            "pas plus",
+            "jamais pas"
+          ],
+          "a": 0,
+          "audio": "Il n’a plus de portable.",
+          "explanation": "Nach ne … plus wird un zu de."
+        }
+      ],
       "canDo": [
         "Ich kann kurze Meinungen zu einem Alltagsthema verstehen und selbst sagen, was ich gut oder störend finde."
       ],
@@ -2487,29 +3286,191 @@ window.FR_A1_DATA = {
         "explanation": "je trouve que …, ça me gêne, c’est pratique; ne … plus: je ne pourrais plus m’en passer."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "à mon avis",
+        "explanation": "Bei mon‿avis wird gebunden: [mɔ̃navi]. Gêne [ʒɛn] hat ein offenes e. Bei Meinungen betonst du das wichtigste Wort: Je trouve que c’est TRÈS pratique."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu as un portable depuis longtemps ?",
+        "Oui, je ne peux plus vivre sans ! C’est très pratique.",
+        "Moi, je trouve que ça gêne souvent.",
+        "Pourquoi ?",
+        "Dans le train, les gens téléphonent tout le temps. On ne peut même pas lire.",
+        "C’est vrai, je suis d’accord avec toi."
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Sage deine Meinung zu Handys im Alltag (pro und contra) und reagiere auf die Meinung deines Partners.",
+        "writing": "Schreibe vier Sätze mit deiner Meinung zum Handy: was praktisch ist, was dich stört, und ein Satz mit ne … plus."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Mündliche Rezeption",
+        "Mündliche Interaktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension orale, Partie 1 : cinq personnes parlent du portable"
       ]
     },
     {
       "id": 18,
-      "status": "planned",
       "title": "Kurze Zeitungsmeldungen",
       "topic": "Lire la presse",
       "skills": [
         "Lesen"
       ],
-      "phrases": [],
-      "quiz": [],
+      "phrases": [
+        [
+          "Trois Français sur quatre lisent un journal.",
+          "Drei von vier Franzosen lesen eine Zeitung."
+        ],
+        [
+          "Trente pour cent d’entre eux le lisent en ligne.",
+          "Dreißig Prozent von ihnen lesen sie online."
+        ],
+        [
+          "Seulement cinq pour cent achètent un magazine étranger.",
+          "Nur fünf Prozent kaufen eine ausländische Zeitschrift."
+        ],
+        [
+          "De plus en plus de personnes font du sport.",
+          "Immer mehr Menschen treiben Sport."
+        ],
+        [
+          "La région ne compte que deux millions d’habitants.",
+          "Die Region hat nur zwei Millionen Einwohner."
+        ],
+        [
+          "Le nombre de touristes a augmenté.",
+          "Die Zahl der Touristen ist gestiegen."
+        ],
+        [
+          "Les prix ont baissé de cinq pour cent.",
+          "Die Preise sind um fünf Prozent gesunken."
+        ],
+        [
+          "Selon une étude, les jeunes lisent moins.",
+          "Laut einer Studie lesen junge Leute weniger."
+        ],
+        [
+          "Les nouveaux bus coûtent cher à la ville.",
+          "Die neuen Busse kosten die Stadt viel."
+        ],
+        [
+          "Une nouvelle loi autorise les magasins à ouvrir le dimanche.",
+          "Ein neues Gesetz erlaubt den Geschäften, sonntags zu öffnen."
+        ]
+      ],
+      "quiz": [
+        {
+          "q": "Was bedeutet „trois Français sur quatre“?",
+          "o": [
+            "drei von vier Franzosen",
+            "drei oder vier Franzosen",
+            "vierunddreißig Franzosen"
+          ],
+          "a": 0,
+          "audio": "Trois Français sur quatre lisent un journal.",
+          "explanation": "… sur … = … von …"
+        },
+        {
+          "q": "Was bedeutet „trente pour cent d’entre eux“?",
+          "o": [
+            "dreißig Prozent von ihnen",
+            "dreißig von hundert Ländern",
+            "dreißig Prozent zwischen ihnen"
+          ],
+          "a": 0,
+          "audio": "Trente pour cent d’entre eux le lisent en ligne.",
+          "explanation": "D’entre eux = von ihnen."
+        },
+        {
+          "q": "Was bedeutet „à l’étranger“?",
+          "o": [
+            "im / ins Ausland",
+            "an der Grenze",
+            "in der Nachbarstadt"
+          ],
+          "a": 0,
+          "audio": "Ma sœur travaille à l’étranger.",
+          "explanation": "L’étranger = das Ausland; un étranger = ein Ausländer."
+        },
+        {
+          "q": "___ de plus en plus de personnes font du sport.",
+          "o": [
+            "Encore plus des",
+            "De plus en plus de",
+            "Plus et plus de"
+          ],
+          "a": 1,
+          "audio": "De plus en plus de personnes font du sport.",
+          "explanation": "De plus en plus de + Nomen = immer mehr …"
+        },
+        {
+          "q": "La région ne compte ___ deux millions d’habitants.",
+          "o": [
+            "que",
+            "pas",
+            "plus"
+          ],
+          "a": 0,
+          "audio": "La région ne compte que deux millions d’habitants.",
+          "explanation": "Ne … que = nur."
+        },
+        {
+          "q": "Le nombre de touristes a ___ . (gestiegen)",
+          "o": [
+            "baissé",
+            "diminué",
+            "augmenté"
+          ],
+          "a": 2,
+          "audio": "Le nombre de touristes a augmenté.",
+          "explanation": "Augmenter = steigen; baisser / diminuer = sinken."
+        },
+        {
+          "q": "Was bedeutet „Les prix ont baissé de cinq pour cent“?",
+          "o": [
+            "Die Preise sind um 5 % gesunken.",
+            "Die Preise liegen bei 5 %.",
+            "Die Preise sind um 5 % gestiegen."
+          ],
+          "a": 0,
+          "audio": "Les prix ont baissé de cinq pour cent.",
+          "explanation": "Baisser de = sinken um."
+        },
+        {
+          "q": "Was bedeutet „Selon une étude“?",
+          "o": [
+            "nach einem Studium",
+            "laut einer Studie",
+            "gegen eine Studie"
+          ],
+          "a": 1,
+          "audio": "Selon une étude, les jeunes lisent moins.",
+          "explanation": "Selon = laut, gemäß."
+        },
+        {
+          "q": "Was bedeutet „Une nouvelle loi autorise …“?",
+          "o": [
+            "Eine neue Regel empfiehlt …",
+            "Ein neues Gesetz erlaubt …",
+            "Ein neues Gesetz verbietet …"
+          ],
+          "a": 1,
+          "audio": "Une nouvelle loi autorise les magasins à ouvrir le dimanche.",
+          "explanation": "Autoriser = erlauben; la loi = das Gesetz."
+        },
+        {
+          "q": "Wie liest du „15 %“?",
+          "o": [
+            "quinze pour cent",
+            "quinze cents",
+            "quinze par cent"
+          ],
+          "a": 0,
+          "audio": "Quinze pour cent.",
+          "explanation": "% = pour cent."
+        }
+      ],
       "canDo": [
         "Ich kann kurze Zeitungsmeldungen mit Zahlen und Prozenten verstehen und ihnen eine passende Überschrift zuordnen."
       ],
@@ -2518,15 +3479,26 @@ window.FR_A1_DATA = {
         "explanation": "40 % d’entre eux, deux Français sur trois, seulement / ne … que, de plus en plus."
       },
       "pronunciation": {
-        "focus": "",
-        "explanation": ""
+        "focus": "pour cent / sur trois",
+        "explanation": "Pour cent spricht man [puʁsɑ̃]; das t von cent ist stumm. Bei vingt pour cent spricht man [vɛ̃puʁsɑ̃]. Millions [miljɔ̃] wird mit j gesprochen."
       },
-      "dialogue": [],
+      "dialogue": [
+        "Tu as lu l’article sur le sommeil ?",
+        "Oui. Un Français sur trois dort moins de six heures.",
+        "Et les jeunes ?",
+        "Quarante pour cent d’entre eux regardent leur portable au lit.",
+        "Moi, je dors huit heures par nuit.",
+        "Tu fais partie des chanceux, alors !"
+      ],
       "transfer": {
-        "speaking": "",
-        "writing": ""
+        "speaking": "Erzähle die wichtigsten Zahlen aus einer kurzen Meldung nach und sage, was dich überrascht.",
+        "writing": "Schreibe eine kurze Meldung (3–4 Sätze) mit Zahlen, Prozenten und de plus en plus."
       },
-      "cefrDomains": [],
+      "cefrDomains": [
+        "Schriftliche Rezeption",
+        "Mündliche Produktion",
+        "Schriftliche Produktion"
+      ],
       "telc": [
         "Compréhension écrite, Partie 1 : textes et titres"
       ]
@@ -2966,6 +3938,126 @@ window.FR_A1_DATA = {
           "Können wir auf … verschieben?"
         ]
       ]
+    },
+    "13": {
+      "speakModel": "Bonjour, je voudrais prendre rendez-vous avec le docteur Blanc, s’il vous plaît. J’ai mal à la gorge et de la fièvre depuis deux jours. Je tousse beaucoup. Est-ce que je peux venir aujourd’hui ou demain matin ?",
+      "writeModel": "Bonjour Monsieur Garnier,\nJe suis malade : j’ai de la fièvre depuis hier.\nJe suis allé chez le médecin ce matin.\nJe dois rester au lit deux jours.\nCordialement,\nPaul Weber",
+      "placeholder": "Schreibe eine Krankmeldung …",
+      "writingHelpText": "Nenne Beschwerden, seit wann und was der Arzt gesagt hat.",
+      "writingHints": [
+        [
+          "J’ai mal à la / au …",
+          "Mir tut … weh."
+        ],
+        [
+          "… depuis hier / deux jours",
+          "… seit gestern / zwei Tagen"
+        ],
+        [
+          "Je dois rester au lit …",
+          "Ich muss … im Bett bleiben."
+        ]
+      ]
+    },
+    "14": {
+      "speakModel": "Bonjour, je voudrais un aller-retour pour Bordeaux en deuxième classe, s’il vous plaît. Le train part de quelle voie ? Il a du retard ? J’ai une correspondance à Bordeaux pour Arcachon.",
+      "writeModel": "Salut Pierre,\nMon train a trente minutes de retard.\nJ’arriverai à la gare à 18 h 40.\nTu peux venir me chercher voie 2 ?\nMerci !\nAnna",
+      "placeholder": "Schreibe eine SMS über deine Verspätung …",
+      "writingHelpText": "Nenne Verspätung, neue Ankunftszeit und Treffpunkt.",
+      "writingHints": [
+        [
+          "Mon train a … minutes de retard.",
+          "Mein Zug hat … Minuten Verspätung."
+        ],
+        [
+          "J’arriverai à …",
+          "Ich komme um … an."
+        ],
+        [
+          "Tu peux venir me chercher … ?",
+          "Kannst du mich … abholen?"
+        ]
+      ]
+    },
+    "15": {
+      "speakModel": "La radio dit qu’il y a un accident sur l’autoroute A7. L’autoroute est coupée après Orange. Nous sommes priés de quitter l’autoroute à la sortie 15 et de suivre la déviation. Il y a aussi un bouchon de dix kilomètres. Nous arriverons avec une heure de retard.",
+      "writeModel": "Salut Julien,\nNous sommes dans un bouchon sur l’A7.\nIl y a eu un accident près d’Orange.\nNous devons suivre la déviation.\nNous arriverons vers vingt heures.",
+      "placeholder": "Schreibe eine Nachricht aus dem Stau …",
+      "writingHelpText": "Sage, wo ihr seid, warum es dauert und wann ihr ankommt.",
+      "writingHints": [
+        [
+          "Nous sommes dans un bouchon …",
+          "Wir stehen im Stau …"
+        ],
+        [
+          "En raison de …",
+          "Wegen …"
+        ],
+        [
+          "Nous arriverons vers …",
+          "Wir kommen gegen … an."
+        ]
+      ]
+    },
+    "16": {
+      "speakModel": "Ce matin, il y a du brouillard en Alsace, mais le ciel se dégagera vers onze heures. Cet après-midi, il fera beau et vingt-trois degrés. Hier, il a fait froid et il a plu toute la journée. Demain, il y aura du vent sur la côte.",
+      "writeModel": "Hier, il a plu toute la journée.\nAujourd’hui, il fait gris et frais.\nDemain, il fera beau et chaud.",
+      "placeholder": "Schreibe über das Wetter …",
+      "writingHelpText": "Gestern: passé composé, heute: Präsens, morgen: futur simple.",
+      "writingHints": [
+        [
+          "Hier, il a plu / il a fait …",
+          "Gestern hat es geregnet / war es …"
+        ],
+        [
+          "Aujourd’hui, il fait …",
+          "Heute ist es …"
+        ],
+        [
+          "Demain, il fera …",
+          "Morgen wird es …"
+        ]
+      ]
+    },
+    "17": {
+      "speakModel": "À mon avis, le portable est très pratique. Je l’utilise pour le travail et pour parler avec ma famille. Mais ça me gêne quand les gens téléphonent fort dans le bus. Je trouve que les enfants de huit ans n’ont pas besoin de portable. Et vous, vous êtes d’accord ?",
+      "writeModel": "Je trouve que le portable est pratique.\nMais ça me gêne au restaurant.\nÀ mon avis, il faut l’éteindre au cinéma.\nMon grand-père n’a plus de portable.",
+      "placeholder": "Schreibe deine Meinung …",
+      "writingHelpText": "Benutze je trouve que, à mon avis, ça me gêne und ne … plus.",
+      "writingHints": [
+        [
+          "Je trouve que …",
+          "Ich finde, dass …"
+        ],
+        [
+          "Ça me gêne quand …",
+          "Es stört mich, wenn …"
+        ],
+        [
+          "À mon avis, …",
+          "Meiner Meinung nach …"
+        ]
+      ]
+    },
+    "18": {
+      "speakModel": "J’ai lu un article intéressant. Selon une étude, un Français sur trois dort moins de six heures par nuit. Quarante pour cent des jeunes regardent leur portable au lit. Seulement dix pour cent font une sieste. Ça me surprend un peu : je pensais que c’était plus.",
+      "writeModel": "Selon une étude, de plus en plus de jeunes font du vélo.\nTrente pour cent d’entre eux vont à l’école à vélo.\nLe nombre de pistes cyclables a augmenté.\nMais les villages n’ont que peu de pistes.",
+      "placeholder": "Schreibe eine kurze Meldung …",
+      "writingHelpText": "Nutze Prozentangaben, … sur …, de plus en plus und ne … que.",
+      "writingHints": [
+        [
+          "Selon une étude, …",
+          "Laut einer Studie …"
+        ],
+        [
+          "… pour cent d’entre eux …",
+          "… Prozent von ihnen …"
+        ],
+        [
+          "De plus en plus de …",
+          "Immer mehr …"
+        ]
+      ]
     }
   },
   "listening": {
@@ -3332,6 +4424,240 @@ window.FR_A1_DATA = {
           "a": 0,
           "audio": "Quelle bonne nouvelle !",
           "explanation": "Quelle bonne nouvelle ! = Was für eine gute Nachricht!"
+        }
+      ]
+    },
+    {
+      "id": "a2g4",
+      "title": "Lektionen 13–16",
+      "subtitle": "Ansagen verstehen · Futur in Durchsagen · Höfliche Aufforderungen · Wetter in drei Zeiten",
+      "questions": [
+        {
+          "q": "Ergänze: J’ai mal ___ dos.",
+          "o": [
+            "à la",
+            "au",
+            "aux"
+          ],
+          "a": 1,
+          "audio": "J’ai mal au dos.",
+          "explanation": "J’ai mal au dos. = Ich habe Rückenschmerzen."
+        },
+        {
+          "q": "Ergänze: Le train pour Lyon ___ voie 3. (partir)",
+          "o": [
+            "partirait",
+            "part",
+            "partira"
+          ],
+          "a": 2,
+          "audio": "Le train pour Lyon partira voie 3.",
+          "explanation": "Le train pour Lyon partira voie 3. = Der Zug nach Lyon wird von Gleis 3 abfahren."
+        },
+        {
+          "q": "Ergänze: Vous êtes ___ de quitter l’autoroute.",
+          "o": [
+            "prié",
+            "priées",
+            "priés"
+          ],
+          "a": 2,
+          "audio": "Vous êtes priés de quitter l’autoroute.",
+          "explanation": "Vous an mehrere Autofahrer → priés."
+        },
+        {
+          "q": "Ergänze: Hier, il a ___ . (pleuvoir)",
+          "o": [
+            "plut",
+            "pleuvu",
+            "plu"
+          ],
+          "a": 2,
+          "audio": "Hier, il a plu .",
+          "explanation": "Pleuvoir → plu."
+        },
+        {
+          "q": "Ergänze: J’ai mal ___ gorge.",
+          "o": [
+            "aux",
+            "à la",
+            "au"
+          ],
+          "a": 1,
+          "audio": "J’ai mal à la gorge.",
+          "explanation": "J’ai mal à la gorge. = Ich habe Halsschmerzen."
+        },
+        {
+          "q": "Ergänze: Le TGV ___ avec dix minutes de retard. (arriver)",
+          "o": [
+            "arriverait",
+            "arrivait",
+            "arrivera"
+          ],
+          "a": 2,
+          "audio": "Le TGV arrivera avec dix minutes de retard.",
+          "explanation": "Le TGV arrivera avec dix minutes de retard. = Der TGV wird mit zehn Minuten Verspätung ankommen."
+        },
+        {
+          "q": "Ergänze: Le conducteur est prié ___ déplacer sa voiture.",
+          "o": [
+            "à",
+            "pour",
+            "de"
+          ],
+          "a": 2,
+          "audio": "Le conducteur est prié de déplacer sa voiture.",
+          "explanation": "Le conducteur est prié de déplacer sa voiture. = Der Fahrer wird gebeten, sein Auto wegzufahren."
+        },
+        {
+          "q": "Ergänze: Aujourd’hui, il ___ . (pleuvoir)",
+          "o": [
+            "pleuve",
+            "plu",
+            "pleut"
+          ],
+          "a": 2,
+          "audio": "Aujourd’hui, il pleut .",
+          "explanation": "Aujourd’hui, il pleut . = Heute regnet es."
+        },
+        {
+          "q": "Ergänze: J’ai mal ___ dents.",
+          "o": [
+            "au",
+            "aux",
+            "à la"
+          ],
+          "a": 1,
+          "audio": "J’ai mal aux dents.",
+          "explanation": "Les dents → à + les = aux."
+        },
+        {
+          "q": "Ergänze: Le train de 14 h 10 est ___ . (fällt aus)",
+          "o": [
+            "composté",
+            "retardé",
+            "supprimé"
+          ],
+          "a": 2,
+          "audio": "Le train de 14 h 10 est supprimé .",
+          "explanation": "Le train de 14 h 10 est supprimé . = Der Zug um 14.10 Uhr fällt aus."
+        }
+      ]
+    },
+    {
+      "id": "a2g5",
+      "title": "Lektionen 17–18",
+      "subtitle": "Meinung äußern · Zahlen und Anteile",
+      "questions": [
+        {
+          "q": "Ergänze: Je ___ que c’est pratique. (finden)",
+          "o": [
+            "pense de",
+            "trouve",
+            "cherche"
+          ],
+          "a": 1,
+          "audio": "Je trouve que c’est pratique.",
+          "explanation": "Je trouve que c’est pratique. = Ich finde das praktisch."
+        },
+        {
+          "q": "Ergänze: Deux Français ___ trois partent en vacances.",
+          "o": [
+            "sur",
+            "pour",
+            "de"
+          ],
+          "a": 0,
+          "audio": "Deux Français sur trois partent en vacances.",
+          "explanation": "Deux Français sur trois partent en vacances. = Zwei von drei Franzosen verreisen."
+        },
+        {
+          "q": "Ergänze: À mon ___, c’est trop cher.",
+          "o": [
+            "avis",
+            "idée",
+            "opinion de"
+          ],
+          "a": 0,
+          "audio": "À mon avis, c’est trop cher.",
+          "explanation": "À mon avis, c’est trop cher. = Meiner Meinung nach ist das zu teuer."
+        },
+        {
+          "q": "Ergänze: La ___ des habitants a moins de trente ans.",
+          "o": [
+            "milieu",
+            "demi",
+            "moitié"
+          ],
+          "a": 2,
+          "audio": "La moitié des habitants a moins de trente ans.",
+          "explanation": "La moitié des habitants a moins de trente ans. = Die Hälfte der Einwohner ist unter dreißig."
+        },
+        {
+          "q": "Ergänze: Je suis d’accord ___ toi.",
+          "o": [
+            "à",
+            "de",
+            "avec"
+          ],
+          "a": 2,
+          "audio": "Je suis d’accord avec toi.",
+          "explanation": "Je suis d’accord avec toi. = Ich bin deiner Meinung."
+        },
+        {
+          "q": "Ergänze: Les prix ont augmenté ___ trois pour cent.",
+          "o": [
+            "par",
+            "à",
+            "de"
+          ],
+          "a": 2,
+          "audio": "Les prix ont augmenté de trois pour cent.",
+          "explanation": "Les prix ont augmenté de trois pour cent. = Die Preise sind um drei Prozent gestiegen."
+        },
+        {
+          "q": "Ergänze: Ça me ___ au cinéma. (stören)",
+          "o": [
+            "gêne",
+            "gêné",
+            "gênes"
+          ],
+          "a": 0,
+          "audio": "Ça me gêne au cinéma.",
+          "explanation": "Ça me gêne au cinéma. = Im Kino stört mich das."
+        },
+        {
+          "q": "Ergänze: De moins en ___ de jeunes fument.",
+          "o": [
+            "peu",
+            "moins",
+            "plus"
+          ],
+          "a": 1,
+          "audio": "De moins en moins de jeunes fument.",
+          "explanation": "De moins en moins de jeunes fument. = Immer weniger junge Leute rauchen."
+        },
+        {
+          "q": "Ergänze: Je ne suis pas du ___ d’accord.",
+          "o": [
+            "toute",
+            "tout",
+            "tous"
+          ],
+          "a": 1,
+          "audio": "Je ne suis pas du tout d’accord.",
+          "explanation": "Je ne suis pas du tout d’accord. = Ich bin überhaupt nicht einverstanden."
+        },
+        {
+          "q": "Ergänze: Vingt pour cent d’___ elles travaillent à temps partiel.",
+          "o": [
+            "parmi",
+            "entre",
+            "eux"
+          ],
+          "a": 1,
+          "audio": "Vingt pour cent d’entre elles travaillent à temps partiel.",
+          "explanation": "Vingt pour cent d’entre elles travaillent à temps partiel. = Zwanzig Prozent von ihnen arbeiten Teilzeit."
         }
       ]
     }

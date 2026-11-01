@@ -827,5 +827,423 @@ window.FR_A1_DEEPENING_CONTENT = {
         "soigne-toi bien"
       ]
     }
+  ],
+  "13": [
+    {
+      "title": "Beschwerden beschreiben",
+      "rule": "Schmerzen beschreibst du mit avoir mal à + Körperteil. Achte auf die Verschmelzung: au ventre, au dos, à la tête, à la gorge, aux dents, aux oreilles. Weitere Symptome: avoir de la fièvre, tousser, être fatigué(e). Seit wann: depuis + Zeit.",
+      "pairs": [
+        [
+          "J’ai mal au dos.",
+          "Ich habe Rückenschmerzen."
+        ],
+        [
+          "J’ai mal à la gorge.",
+          "Ich habe Halsschmerzen."
+        ],
+        [
+          "J’ai mal aux dents.",
+          "Ich habe Zahnschmerzen."
+        ],
+        [
+          "J’ai de la fièvre depuis hier.",
+          "Ich habe seit gestern Fieber."
+        ],
+        [
+          "Je tousse beaucoup.",
+          "Ich huste viel."
+        ]
+      ],
+      "emphasis": [
+        "avoir mal à",
+        "au",
+        "à la",
+        "aux",
+        "de la fièvre",
+        "depuis"
+      ]
+    },
+    {
+      "title": "Ansagen in der Praxis verstehen",
+      "rule": "Bandansagen sind oft formell. En raison de + Nomen bedeutet „wegen“: en raison de travaux. En cas de + Nomen heißt „im Fall von“: en cas d’urgence. Mit s’adresser à (sich wenden an) und dem Imperativ der vous-Form: adressez-vous à, rappelez, laissez un message.",
+      "pairs": [
+        [
+          "Le cabinet est fermé en raison de travaux.",
+          "Die Praxis ist wegen Bauarbeiten geschlossen."
+        ],
+        [
+          "En cas d’urgence, appelez le 15.",
+          "Im Notfall rufen Sie die 15 an."
+        ],
+        [
+          "Adressez-vous à la pharmacie de garde.",
+          "Wenden Sie sich an die Notdienstapotheke."
+        ],
+        [
+          "Rappelez demain à partir de huit heures.",
+          "Rufen Sie morgen ab acht Uhr wieder an."
+        ],
+        [
+          "Le cabinet reste fermé toute la journée.",
+          "Die Praxis bleibt den ganzen Tag geschlossen."
+        ]
+      ],
+      "emphasis": [
+        "en raison de",
+        "en cas de",
+        "s’adresser à",
+        "adressez-vous",
+        "rappelez"
+      ]
+    }
+  ],
+  "14": [
+    {
+      "title": "Durchsagen verstehen",
+      "rule": "Bahnhofsdurchsagen beginnen oft mit Votre attention, s’il vous plaît. Sie benutzen das futur simple: le train partira, arrivera. Wichtig sind Ziel (pour Lyon / en direction de Lyon), Gleis (voie), Verspätung (avec … minutes de retard) und Ausfall (supprimé). Gründe: en raison de + Nomen.",
+      "pairs": [
+        [
+          "Le train pour Lyon partira voie 3.",
+          "Der Zug nach Lyon fährt von Gleis 3 ab."
+        ],
+        [
+          "Le TGV arrivera avec dix minutes de retard.",
+          "Der TGV kommt mit zehn Minuten Verspätung an."
+        ],
+        [
+          "Le train de 14 h 10 est supprimé.",
+          "Der Zug um 14.10 Uhr fällt aus."
+        ],
+        [
+          "En raison d’un incident, le trafic est interrompu.",
+          "Wegen eines Zwischenfalls ist der Verkehr unterbrochen."
+        ],
+        [
+          "Les voyageurs en direction de Paris sont priés de changer de quai.",
+          "Reisende Richtung Paris werden gebeten, den Bahnsteig zu wechseln."
+        ]
+      ],
+      "emphasis": [
+        "Votre attention",
+        "partira",
+        "arrivera",
+        "voie",
+        "retard",
+        "supprimé",
+        "en raison de"
+      ]
+    },
+    {
+      "title": "Fahrkarten und Anschluss",
+      "rule": "Am Schalter: un aller simple (einfach), un aller-retour (hin und zurück), en première / deuxième classe. Le billet ist die Fahrkarte; composter = entwerten. La correspondance ist der Anschluss: J’ai une correspondance à Lyon. Abfahrt: Le train part à quelle heure ? De quelle voie ?",
+      "pairs": [
+        [
+          "Un aller simple pour Nice, s’il vous plaît.",
+          "Eine einfache Fahrt nach Nizza, bitte."
+        ],
+        [
+          "Un aller-retour en deuxième classe.",
+          "Hin und zurück, zweite Klasse."
+        ],
+        [
+          "Le train part de quelle voie ?",
+          "Von welchem Gleis fährt der Zug?"
+        ],
+        [
+          "J’ai une correspondance à Dijon.",
+          "Ich habe einen Anschluss in Dijon."
+        ],
+        [
+          "Il faut composter le billet.",
+          "Man muss die Fahrkarte entwerten."
+        ]
+      ],
+      "emphasis": [
+        "un aller simple",
+        "un aller-retour",
+        "la correspondance",
+        "composter",
+        "De quelle voie"
+      ]
+    }
+  ],
+  "15": [
+    {
+      "title": "être prié de + Infinitiv",
+      "rule": "In offiziellen Durchsagen bittet man mit être prié(e)(s) de + Infinitiv: Vous êtes priés de quitter l’autoroute. Le conducteur est prié de venir à l’accueil. Das Partizip prié richtet sich nach der Person: priée (eine Frau), priés (mehrere). Im Alltag sagt man eher: Merci de … / Veuillez …",
+      "pairs": [
+        [
+          "Vous êtes priés de quitter l’autoroute.",
+          "Sie werden gebeten, die Autobahn zu verlassen."
+        ],
+        [
+          "Le conducteur est prié de déplacer sa voiture.",
+          "Der Fahrer wird gebeten, sein Auto wegzufahren."
+        ],
+        [
+          "La propriétaire est priée de venir à l’accueil.",
+          "Die Besitzerin wird gebeten, zum Empfang zu kommen."
+        ],
+        [
+          "Merci de ralentir.",
+          "Bitte langsamer fahren."
+        ],
+        [
+          "Veuillez suivre la déviation.",
+          "Bitte folgen Sie der Umleitung."
+        ]
+      ],
+      "emphasis": [
+        "être prié(e)(s) de",
+        "priée",
+        "priés",
+        "Merci de",
+        "Veuillez"
+      ]
+    },
+    {
+      "title": "Verkehrsmeldungen",
+      "rule": "Typische Wörter: l’autoroute (Autobahn), la sortie (Ausfahrt), coupé(e) (gesperrt), un accident, un bouchon (Stau), la déviation / l’itinéraire bis (Umleitung), à la hauteur de (auf Höhe von). Der Grund steht mit en raison de, die Richtung mit en direction de.",
+      "pairs": [
+        [
+          "L’A1 est coupée à la hauteur de Lille.",
+          "Die A1 ist auf Höhe von Lille gesperrt."
+        ],
+        [
+          "Il y a un bouchon en direction de Paris.",
+          "Es gibt einen Stau Richtung Paris."
+        ],
+        [
+          "Prenez la sortie 22.",
+          "Nehmen Sie die Ausfahrt 22."
+        ],
+        [
+          "Suivez l’itinéraire bis.",
+          "Folgen Sie der Umleitung."
+        ],
+        [
+          "La circulation est difficile.",
+          "Der Verkehr ist dicht."
+        ]
+      ],
+      "emphasis": [
+        "coupé(e)",
+        "un bouchon",
+        "la sortie",
+        "la déviation",
+        "l’itinéraire bis",
+        "à la hauteur de",
+        "en direction de"
+      ]
+    }
+  ],
+  "16": [
+    {
+      "title": "Wetter in drei Zeiten",
+      "rule": "Wetterverben stehen immer mit il: il pleut, il neige, il fait beau. Gestern: passé composé – il a plu, il a neigé, il a fait froid. Heute: Präsens – il pleut, il fait chaud. Morgen: futur simple – il pleuvra, il neigera, il fera beau, il y aura du vent. Beschreibung früher: il faisait beau.",
+      "pairs": [
+        [
+          "Hier, il a plu.",
+          "Gestern hat es geregnet."
+        ],
+        [
+          "Aujourd’hui, il pleut.",
+          "Heute regnet es."
+        ],
+        [
+          "Demain, il pleuvra.",
+          "Morgen wird es regnen."
+        ],
+        [
+          "Il a fait froid ce matin.",
+          "Heute Morgen war es kalt."
+        ],
+        [
+          "Il y aura du vent.",
+          "Es wird Wind geben."
+        ]
+      ],
+      "emphasis": [
+        "il a plu",
+        "il pleut",
+        "il pleuvra",
+        "il fera",
+        "il y aura"
+      ]
+    },
+    {
+      "title": "Wetterbericht: Zeit und Ort",
+      "rule": "Ein Wetterbericht nennt Regionen (le nord, le sud, l’est, l’ouest, sur la côte, en montagne) und Tageszeiten: en début de matinée (früh am Vormittag), en fin de matinée, en début d’après-midi, en soirée. Entwicklungen: le ciel se dégagera, les nuages arriveront, les températures baisseront.",
+      "pairs": [
+        [
+          "Dans le sud, il fera très chaud.",
+          "Im Süden wird es sehr heiß."
+        ],
+        [
+          "En montagne, il neigera.",
+          "In den Bergen wird es schneien."
+        ],
+        [
+          "En début d’après-midi, le soleil reviendra.",
+          "Am frühen Nachmittag kommt die Sonne zurück."
+        ],
+        [
+          "Les nuages arriveront en soirée.",
+          "Die Wolken kommen am Abend."
+        ],
+        [
+          "Les températures baisseront.",
+          "Die Temperaturen werden sinken."
+        ]
+      ],
+      "emphasis": [
+        "le nord",
+        "le sud",
+        "sur la côte",
+        "en montagne",
+        "en début de",
+        "en fin de",
+        "en soirée"
+      ]
+    }
+  ],
+  "17": [
+    {
+      "title": "Meinung äußern",
+      "rule": "Deine Meinung leitest du ein mit je trouve que …, je pense que …, à mon avis, … oder pour moi, … Zustimmen: je suis d’accord (avec toi), c’est vrai. Widersprechen: je ne suis pas d’accord, je ne suis pas du tout d’accord. Gefühle: ça me gêne (es stört mich), c’est pratique, c’est rassurant.",
+      "pairs": [
+        [
+          "Je trouve que c’est pratique.",
+          "Ich finde das praktisch."
+        ],
+        [
+          "À mon avis, c’est trop cher.",
+          "Meiner Meinung nach ist das zu teuer."
+        ],
+        [
+          "Je pense que tu as raison.",
+          "Ich denke, du hast recht."
+        ],
+        [
+          "Je ne suis pas d’accord avec lui.",
+          "Ich bin nicht seiner Meinung."
+        ],
+        [
+          "Ça me gêne au cinéma.",
+          "Im Kino stört mich das."
+        ]
+      ],
+      "emphasis": [
+        "je trouve que",
+        "je pense que",
+        "à mon avis",
+        "je suis d’accord",
+        "ça me gêne"
+      ]
+    },
+    {
+      "title": "ne … plus und avoir envie de",
+      "rule": "Ne … plus bedeutet „nicht mehr“: Je ne téléphone plus. Wie bei ne … pas wird un / une / des danach zu de: Il n’a plus de portable. Avoir envie de + Infinitiv oder Nomen heißt „Lust haben“: J’ai envie de lire. Je n’ai pas envie d’un nouveau portable.",
+      "pairs": [
+        [
+          "Je ne peux plus vivre sans mon portable.",
+          "Ich kann nicht mehr ohne mein Handy leben."
+        ],
+        [
+          "Il n’a plus de portable.",
+          "Er hat kein Handy mehr."
+        ],
+        [
+          "Nous ne regardons plus la télé.",
+          "Wir schauen nicht mehr fern."
+        ],
+        [
+          "J’ai envie de lire dans le train.",
+          "Ich habe Lust, im Zug zu lesen."
+        ],
+        [
+          "Elle n’a pas envie d’un smartphone.",
+          "Sie hat keine Lust auf ein Smartphone."
+        ]
+      ],
+      "emphasis": [
+        "ne … plus",
+        "de",
+        "avoir envie de"
+      ]
+    }
+  ],
+  "18": [
+    {
+      "title": "Zahlen, Anteile, Entwicklungen",
+      "rule": "Anteile: … pour cent (%), deux sur trois (zwei von drei), la moitié (die Hälfte), un quart (ein Viertel). D’entre eux / elles = von ihnen. Entwicklungen: augmenter (steigen), baisser / diminuer (sinken), de plus en plus (immer mehr), de moins en moins (immer weniger). Um wie viel: augmenter de 5 %.",
+      "pairs": [
+        [
+          "Deux Français sur trois partent en vacances.",
+          "Zwei von drei Franzosen verreisen."
+        ],
+        [
+          "La moitié des habitants a moins de trente ans.",
+          "Die Hälfte der Einwohner ist unter dreißig."
+        ],
+        [
+          "Les prix ont augmenté de trois pour cent.",
+          "Die Preise sind um drei Prozent gestiegen."
+        ],
+        [
+          "De moins en moins de jeunes fument.",
+          "Immer weniger junge Leute rauchen."
+        ],
+        [
+          "Vingt pour cent d’entre elles travaillent à temps partiel.",
+          "Zwanzig Prozent von ihnen arbeiten Teilzeit."
+        ]
+      ],
+      "emphasis": [
+        "pour cent",
+        "sur",
+        "la moitié",
+        "d’entre eux",
+        "augmenter",
+        "baisser",
+        "de plus en plus",
+        "de moins en moins"
+      ]
+    },
+    {
+      "title": "Meldungen lesen und Überschriften finden",
+      "rule": "Für Teil 1 des Leseverstehens suchst du das Hauptthema: Wer? Was? Welche Zahl? Achte auf Signalwörter: selon (laut), une étude (eine Studie), une loi (ein Gesetz), autoriser (erlauben), coûter cher à (teuer sein für). Seulement und ne … que bedeuten „nur“ – oft der Schlüssel für die richtige Überschrift.",
+      "pairs": [
+        [
+          "Selon un sondage, les Français dorment moins.",
+          "Laut einer Umfrage schlafen die Franzosen weniger."
+        ],
+        [
+          "Une loi autorise les magasins à ouvrir le dimanche.",
+          "Ein Gesetz erlaubt Geschäften, sonntags zu öffnen."
+        ],
+        [
+          "Les travaux coûtent cher à la commune.",
+          "Die Bauarbeiten kosten die Gemeinde viel."
+        ],
+        [
+          "La ville ne compte que dix mille habitants.",
+          "Die Stadt hat nur zehntausend Einwohner."
+        ],
+        [
+          "Seulement un tiers des employés prend le train.",
+          "Nur ein Drittel der Angestellten nimmt den Zug."
+        ]
+      ],
+      "emphasis": [
+        "selon",
+        "une étude",
+        "une loi",
+        "autoriser",
+        "coûter cher à",
+        "seulement",
+        "ne … que"
+      ]
+    }
   ]
 };

@@ -1199,5 +1199,605 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "Besserung für den Sohn"
       }
     ]
+  },
+  "13": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Cabinet médical, bonjour.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Bonjour madame, je voudrais un rendez-vous avec le docteur Leclerc.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "C’est urgent ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, j’ai mal à l’oreille depuis trois jours et j’ai un peu de fièvre.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Le docteur est absent aujourd’hui, mais il peut vous voir demain à neuf heures.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Demain matin, c’est parfait.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Vous êtes déjà venu chez nous ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Non, c’est la première fois. J’apporte ma carte Vitale.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Arzt",
+        "options": [
+          "Doktor Blanc",
+          "Doktor Leclerc",
+          "Doktor Morin"
+        ],
+        "answer": "Doktor Leclerc"
+      },
+      {
+        "label": "Beschwerde",
+        "options": [
+          "Halsschmerzen",
+          "Rückenschmerzen",
+          "Ohrenschmerzen"
+        ],
+        "answer": "Ohrenschmerzen"
+      },
+      {
+        "label": "Seit",
+        "options": [
+          "gestern",
+          "einer Woche",
+          "drei Tagen"
+        ],
+        "answer": "drei Tagen"
+      },
+      {
+        "label": "Zusätzlich",
+        "options": [
+          "Schnupfen",
+          "Husten",
+          "etwas Fieber"
+        ],
+        "answer": "etwas Fieber"
+      },
+      {
+        "label": "Termin",
+        "options": [
+          "morgen 19 Uhr",
+          "morgen 9 Uhr",
+          "heute 9 Uhr"
+        ],
+        "answer": "morgen 9 Uhr"
+      },
+      {
+        "label": "Patient war schon da",
+        "options": [
+          "ja, letzte Woche",
+          "nein, zum ersten Mal",
+          "ja, oft"
+        ],
+        "answer": "nein, zum ersten Mal"
+      }
+    ]
+  },
+  "14": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Votre attention, s’il vous plaît. Le TGV 6107 en direction de Montpellier partira voie 11.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Ce train a un retard d’environ vingt-cinq minutes.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Excusez-moi, monsieur, j’ai une correspondance à Nîmes à quinze heures.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Avec le retard, vous arriverez à Nîmes à quinze heures dix.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Alors je vais rater ma correspondance ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Non, le train pour Arles partira à quinze heures trente.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Ouf ! Et où je peux acheter un café ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Il y a un bar en face de la voie 3.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Ziel des TGV",
+        "options": [
+          "Marseille",
+          "Montpellier",
+          "Nîmes"
+        ],
+        "answer": "Montpellier"
+      },
+      {
+        "label": "Gleis",
+        "options": [
+          "7",
+          "3",
+          "11"
+        ],
+        "answer": "11"
+      },
+      {
+        "label": "Verspätung",
+        "options": [
+          "eine Stunde",
+          "etwa 15 Minuten",
+          "etwa 25 Minuten"
+        ],
+        "answer": "etwa 25 Minuten"
+      },
+      {
+        "label": "Ankunft in Nîmes",
+        "options": [
+          "15:10 Uhr",
+          "15:30 Uhr",
+          "15:00 Uhr"
+        ],
+        "answer": "15:10 Uhr"
+      },
+      {
+        "label": "Anschluss fährt nach",
+        "options": [
+          "Avignon",
+          "Arles",
+          "Lyon"
+        ],
+        "answer": "Arles"
+      },
+      {
+        "label": "Café",
+        "options": [
+          "gegenüber Gleis 3",
+          "im Zug",
+          "am Ausgang"
+        ],
+        "answer": "gegenüber Gleis 3"
+      }
+    ]
+  },
+  "15": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Bonjour à tous, voici les informations routières de dix-sept heures.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Sur l’autoroute A10, un camion est en panne à la hauteur d’Orléans, en direction de Paris.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Il y a un bouchon de huit kilomètres.",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Les automobilistes sont priés de quitter l’autoroute à la sortie 14 et de suivre l’itinéraire bis.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Huit kilomètres ! On sort à la sortie 14 ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Dans l’autre direction, vers Bordeaux, la circulation est normale.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Bon, on va prendre la sortie et faire le plein.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Prochain point info à dix-huit heures.",
+        "gender": "female"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Autobahn",
+        "options": [
+          "A10",
+          "A7",
+          "A1"
+        ],
+        "answer": "A10"
+      },
+      {
+        "label": "Ursache",
+        "options": [
+          "ein Unfall",
+          "ein Lkw mit Panne",
+          "Bauarbeiten"
+        ],
+        "answer": "ein Lkw mit Panne"
+      },
+      {
+        "label": "Ort",
+        "options": [
+          "auf Höhe von Orléans",
+          "bei Bordeaux",
+          "in Paris"
+        ],
+        "answer": "auf Höhe von Orléans"
+      },
+      {
+        "label": "Stau",
+        "options": [
+          "80 km",
+          "18 km",
+          "8 km"
+        ],
+        "answer": "8 km"
+      },
+      {
+        "label": "Empfohlene Ausfahrt",
+        "options": [
+          "4",
+          "40",
+          "14"
+        ],
+        "answer": "14"
+      },
+      {
+        "label": "Richtung Bordeaux",
+        "options": [
+          "gesperrt",
+          "auch Stau",
+          "normaler Verkehr"
+        ],
+        "answer": "normaler Verkehr"
+      }
+    ]
+  },
+  "16": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Bonsoir, voici la météo pour demain, samedi.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Dans l’ouest, il pleuvra le matin, mais le ciel se dégagera en début d’après-midi.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Dans le sud, il fera très chaud : trente-deux degrés à Marseille.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "En montagne, attention aux orages en soirée.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Trente-deux degrés ! On va à la plage demain ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "À Paris, temps gris et frais, avec seulement dix-huit degrés.",
+        "gender": "male"
+      },
+      {
+        "speaker": "B",
+        "text": "Et dimanche ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "A",
+        "text": "Dimanche, le soleil reviendra sur toute la France.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Westen vormittags",
+        "options": [
+          "Schnee",
+          "Regen",
+          "Sonne"
+        ],
+        "answer": "Regen"
+      },
+      {
+        "label": "Westen Aufklaren",
+        "options": [
+          "am Abend",
+          "am Vormittag",
+          "am frühen Nachmittag"
+        ],
+        "answer": "am frühen Nachmittag"
+      },
+      {
+        "label": "Marseille",
+        "options": [
+          "22 Grad",
+          "32 Grad",
+          "23 Grad"
+        ],
+        "answer": "32 Grad"
+      },
+      {
+        "label": "Berge",
+        "options": [
+          "Gewitter am Abend",
+          "Schnee am Morgen",
+          "starker Wind"
+        ],
+        "answer": "Gewitter am Abend"
+      },
+      {
+        "label": "Paris",
+        "options": [
+          "Regen, 8 Grad",
+          "sonnig, 28 Grad",
+          "grau und kühl, 18 Grad"
+        ],
+        "answer": "grau und kühl, 18 Grad"
+      },
+      {
+        "label": "Sonntag",
+        "options": [
+          "Gewitter im Süden",
+          "überall Regen",
+          "überall Sonne"
+        ],
+        "answer": "überall Sonne"
+      }
+    ]
+  },
+  "17": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Monsieur, qu’est-ce que vous pensez des portables à l’école ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Je trouve que c’est une mauvaise idée. Les élèves ne travaillent plus.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Vous êtes professeur ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Oui, de mathématiques. Dans ma classe, les portables sont interdits.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et vos enfants, ils ont un portable ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Ma fille de quinze ans, oui. C’est rassurant pour nous.",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Et vous, vous l’utilisez beaucoup ?",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Pour le travail, oui. Mais le dimanche, je l’éteins.",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Meinung zu Handys in der Schule",
+        "options": [
+          "egal",
+          "schlechte Idee",
+          "gute Idee"
+        ],
+        "answer": "schlechte Idee"
+      },
+      {
+        "label": "Beruf",
+        "options": [
+          "Elektriker",
+          "Mathelehrer",
+          "Schulleiter"
+        ],
+        "answer": "Mathelehrer"
+      },
+      {
+        "label": "In seiner Klasse",
+        "options": [
+          "Handys verboten",
+          "nur in der Pause",
+          "Handys erlaubt"
+        ],
+        "answer": "Handys verboten"
+      },
+      {
+        "label": "Tochter",
+        "options": [
+          "15 Jahre, kein Handy",
+          "15 Jahre, hat ein Handy",
+          "12 Jahre, kein Handy"
+        ],
+        "answer": "15 Jahre, hat ein Handy"
+      },
+      {
+        "label": "Für die Eltern ist das",
+        "options": [
+          "teuer",
+          "stressig",
+          "beruhigend"
+        ],
+        "answer": "beruhigend"
+      },
+      {
+        "label": "Sonntags",
+        "options": [
+          "arbeitet er damit",
+          "lädt er es auf",
+          "schaltet er es aus"
+        ],
+        "answer": "schaltet er es aus"
+      }
+    ]
+  },
+  "18": {
+    "turns": [
+      {
+        "speaker": "A",
+        "text": "Écoute ça : selon un sondage, les Français lisent de moins en moins.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Ah bon ? Combien de livres par an ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "En moyenne, cinq livres. Il y a dix ans, c’était huit.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Et les jeunes ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Seulement un jeune sur trois lit un livre par mois.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Mais ils lisent beaucoup sur leur portable, non ?",
+        "gender": "male"
+      },
+      {
+        "speaker": "A",
+        "text": "Oui, soixante pour cent d’entre eux lisent des articles en ligne.",
+        "gender": "female"
+      },
+      {
+        "speaker": "B",
+        "text": "Alors ils ne lisent pas moins, ils lisent autrement !",
+        "gender": "male"
+      }
+    ],
+    "fields": [
+      {
+        "label": "Thema der Umfrage",
+        "options": [
+          "Sport",
+          "Lesen",
+          "Reisen"
+        ],
+        "answer": "Lesen"
+      },
+      {
+        "label": "Bücher pro Jahr heute",
+        "options": [
+          "5",
+          "15",
+          "8"
+        ],
+        "answer": "5"
+      },
+      {
+        "label": "Vor zehn Jahren",
+        "options": [
+          "8",
+          "10",
+          "5"
+        ],
+        "answer": "8"
+      },
+      {
+        "label": "Junge Leute mit einem Buch pro Monat",
+        "options": [
+          "einer von drei",
+          "einer von zehn",
+          "zwei von drei"
+        ],
+        "answer": "einer von drei"
+      },
+      {
+        "label": "Lesen online",
+        "options": [
+          "60 %",
+          "40 %",
+          "16 %"
+        ],
+        "answer": "60 %"
+      },
+      {
+        "label": "Fazit des Mannes",
+        "options": [
+          "sie lesen mehr Bücher",
+          "sie lesen anders",
+          "sie lesen gar nicht"
+        ],
+        "answer": "sie lesen anders"
+      }
+    ]
   }
 };

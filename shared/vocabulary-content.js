@@ -1091,7 +1091,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       4
     ],
-    "dePlural": "die Termine"
+    "dePlural": "die Termine",
+    "frA2Lessons": [
+      13
+    ]
   },
   {
     "fr": "à quelle heure ?",
@@ -2425,7 +2428,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       9
     ],
-    "dePlural": "die Bahnhöfe"
+    "dePlural": "die Bahnhöfe",
+    "frA2Lessons": [
+      14
+    ]
   },
   {
     "fr": "l’arrêt (m.)",
@@ -2512,7 +2518,10 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       9
     ],
-    "dePlural": "die Fahrkarten"
+    "dePlural": "die Fahrkarten",
+    "frA2Lessons": [
+      14
+    ]
   },
   {
     "fr": "le quai",
@@ -3265,7 +3274,10 @@ window.A1_VOCABULARY_CONTENT = [
       14,
       19
     ],
-    "dePlural": "die Bäuche"
+    "dePlural": "die Bäuche",
+    "frA2Lessons": [
+      13
+    ]
   },
   {
     "fr": "le dos",
@@ -3277,7 +3289,10 @@ window.A1_VOCABULARY_CONTENT = [
       14,
       19
     ],
-    "dePlural": "die Rücken"
+    "dePlural": "die Rücken",
+    "frA2Lessons": [
+      13
+    ]
   },
   {
     "fr": "le bras",
@@ -3384,6 +3399,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       14,
       19
+    ],
+    "frA2Lessons": [
+      13
     ]
   },
   {
@@ -3436,7 +3454,10 @@ window.A1_VOCABULARY_CONTENT = [
       14,
       19
     ],
-    "dePlural": "die Medikamente"
+    "dePlural": "die Medikamente",
+    "frA2Lessons": [
+      13
+    ]
   },
   {
     "fr": "l’hôpital (m.)",
@@ -3531,6 +3552,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       20
+    ],
+    "frA2Lessons": [
+      16
     ]
   },
   {
@@ -4665,7 +4689,10 @@ window.A1_VOCABULARY_CONTENT = [
       22,
       23
     ],
-    "dePlural": "die Schalter"
+    "dePlural": "die Schalter",
+    "frA2Lessons": [
+      14
+    ]
   },
   {
     "fr": "le document",
@@ -4796,7 +4823,10 @@ window.A1_VOCABULARY_CONTENT = [
       18,
       24
     ],
-    "dePlural": "die Ausgänge"
+    "dePlural": "die Ausgänge",
+    "frA2Lessons": [
+      15
+    ]
   },
   {
     "fr": "interdit / interdite",
@@ -4838,6 +4868,9 @@ window.A1_VOCABULARY_CONTENT = [
       17,
       18,
       24
+    ],
+    "frA2Lessons": [
+      13
     ]
   },
   {
@@ -5288,6 +5321,9 @@ window.A1_VOCABULARY_CONTENT = [
       1,
       10,
       24
+    ],
+    "frA2Lessons": [
+      17
     ]
   },
   {
@@ -6623,6 +6659,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       7
+    ],
+    "frA2Lessons": [
+      18
     ]
   },
   {
@@ -7167,6 +7206,9 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [
       14,
       19
+    ],
+    "frA2Lessons": [
+      13
     ]
   },
   {
@@ -7213,7 +7255,10 @@ window.A1_VOCABULARY_CONTENT = [
       14,
       19
     ],
-    "dePlural": "die Notfälle"
+    "dePlural": "die Notfälle",
+    "frA2Lessons": [
+      13
+    ]
   },
   {
     "fr": "respirer",
@@ -7367,6 +7412,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       13
+    ],
+    "frA2Lessons": [
+      14
     ]
   },
   {
@@ -7387,6 +7435,9 @@ window.A1_VOCABULARY_CONTENT = [
     ],
     "deLessons": [
       13
+    ],
+    "frA2Lessons": [
+      18
     ]
   },
   {
@@ -8353,6 +8404,501 @@ window.A1_VOCABULARY_CONTENT = [
     "deLessons": [],
     "frA2Lessons": [
       12
+    ]
+  },
+  {
+    "fr": "tousser",
+    "de": "husten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      13
+    ]
+  },
+  {
+    "fr": "en raison de",
+    "de": "wegen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      13
+    ]
+  },
+  {
+    "fr": "s’adresser à",
+    "de": "sich wenden an",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      13
+    ]
+  },
+  {
+    "fr": "les travaux (m.)",
+    "de": "die Bauarbeiten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      13
+    ]
+  },
+  {
+    "fr": "la voie",
+    "de": "das Gleis",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "supprimé / supprimée",
+    "de": "gestrichen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "la grève",
+    "de": "der Streik",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "la correspondance",
+    "de": "der Anschluss",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "composter",
+    "de": "entwerten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "l’aller simple (m.)",
+    "de": "die einfache Fahrt",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "l’aller-retour (m.)",
+    "de": "die Hin- und Rückfahrt",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "perturbé / perturbée",
+    "de": "gestört",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      14
+    ]
+  },
+  {
+    "fr": "l’autoroute (f.)",
+    "de": "die Autobahn",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "l’automobiliste (m./f.)",
+    "de": "der Autofahrer / die Autofahrerin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "coupé / coupée",
+    "de": "gesperrt",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "l’accident (m.)",
+    "de": "der Unfall",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "le bouchon",
+    "de": "der Stau",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "la déviation",
+    "de": "die Umleitung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "être prié de",
+    "de": "gebeten werden zu",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "le conducteur / la conductrice",
+    "de": "der Fahrer / die Fahrerin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "la station-service",
+    "de": "die Tankstelle",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "glissant / glissante",
+    "de": "glatt",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "prudemment",
+    "de": "vorsichtig",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      15
+    ]
+  },
+  {
+    "fr": "la météo",
+    "de": "der Wetterbericht",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "le ciel",
+    "de": "der Himmel",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "se dégager",
+    "de": "aufklaren",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "le nuage",
+    "de": "die Wolke",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "l’orage (m.)",
+    "de": "das Gewitter",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "neiger",
+    "de": "schneien",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "souffler",
+    "de": "wehen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "le degré",
+    "de": "das Grad",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "la matinée",
+    "de": "der Vormittag",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "actuellement",
+    "de": "zurzeit",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "le parapluie",
+    "de": "der Regenschirm",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      16
+    ]
+  },
+  {
+    "fr": "l’avis (m.)",
+    "de": "die Meinung",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "trouver que",
+    "de": "finden, dass",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "gêner",
+    "de": "stören",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "d’accord",
+    "de": "einverstanden",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "l’envie (f.)",
+    "de": "die Lust",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "rassurant / rassurante",
+    "de": "beruhigend",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "pratique",
+    "de": "praktisch",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "compliqué / compliquée",
+    "de": "kompliziert",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "interdire",
+    "de": "verbieten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "éteindre",
+    "de": "ausschalten",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "le smartphone",
+    "de": "das Smartphone",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      17
+    ]
+  },
+  {
+    "fr": "pour cent",
+    "de": "Prozent",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "l’habitant / l’habitante",
+    "de": "der Einwohner / die Einwohnerin",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "augmenter",
+    "de": "steigen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "baisser",
+    "de": "sinken",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "diminuer",
+    "de": "abnehmen",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "selon",
+    "de": "laut",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "l’étude (f.)",
+    "de": "die Studie",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "le sondage",
+    "de": "die Umfrage",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "la loi",
+    "de": "das Gesetz",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
+    ]
+  },
+  {
+    "fr": "autoriser",
+    "de": "erlauben",
+    "frLessons": [],
+    "deLessons": [],
+    "frA2Lessons": [
+      18
     ]
   }
 ];

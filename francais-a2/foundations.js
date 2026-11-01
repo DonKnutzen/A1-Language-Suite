@@ -551,5 +551,281 @@ window.FR_A2_FOUNDATIONS = {
         "what a pity"
       ]
     ]
+  },
+  "13": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "prendre rendez-vous",
+        "einen Termin vereinbaren",
+        "to make an appointment"
+      ],
+      [
+        "avoir mal à",
+        "Schmerzen haben in",
+        "to have a pain in"
+      ],
+      [
+        "la fièvre",
+        "das Fieber",
+        "fever"
+      ],
+      [
+        "tousser",
+        "husten",
+        "to cough"
+      ],
+      [
+        "en raison de",
+        "wegen",
+        "due to"
+      ],
+      [
+        "en cas d’urgence",
+        "im Notfall",
+        "in an emergency"
+      ],
+      [
+        "s’adresser à",
+        "sich wenden an",
+        "to contact"
+      ],
+      [
+        "le cabinet (médical)",
+        "die Arztpraxis",
+        "doctor’s surgery"
+      ]
+    ]
+  },
+  "14": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "la voie",
+        "das Gleis",
+        "platform, track"
+      ],
+      [
+        "le retard",
+        "die Verspätung",
+        "delay"
+      ],
+      [
+        "supprimé / supprimée",
+        "gestrichen, fällt aus",
+        "cancelled"
+      ],
+      [
+        "la grève",
+        "der Streik",
+        "strike"
+      ],
+      [
+        "la correspondance",
+        "der Anschluss",
+        "connection"
+      ],
+      [
+        "un aller simple",
+        "eine einfache Fahrt",
+        "a single ticket"
+      ],
+      [
+        "un aller-retour",
+        "eine Hin- und Rückfahrt",
+        "a return ticket"
+      ],
+      [
+        "composter",
+        "entwerten",
+        "to validate"
+      ]
+    ]
+  },
+  "15": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "l’autoroute (f.)",
+        "die Autobahn",
+        "motorway"
+      ],
+      [
+        "la sortie",
+        "die Ausfahrt",
+        "exit"
+      ],
+      [
+        "coupé / coupée",
+        "gesperrt",
+        "closed"
+      ],
+      [
+        "le bouchon",
+        "der Stau",
+        "traffic jam"
+      ],
+      [
+        "la déviation",
+        "die Umleitung",
+        "diversion"
+      ],
+      [
+        "être prié de",
+        "gebeten werden zu",
+        "to be requested to"
+      ],
+      [
+        "faire le plein",
+        "volltanken",
+        "to fill up"
+      ],
+      [
+        "complet / complète",
+        "voll belegt",
+        "full"
+      ]
+    ]
+  },
+  "16": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "la météo",
+        "der Wetterbericht",
+        "weather forecast"
+      ],
+      [
+        "il pleut / il a plu / il pleuvra",
+        "es regnet / hat geregnet / wird regnen",
+        "it rains / rained / will rain"
+      ],
+      [
+        "le ciel se dégage",
+        "der Himmel klart auf",
+        "the sky clears"
+      ],
+      [
+        "en fin de matinée",
+        "am späten Vormittag",
+        "late in the morning"
+      ],
+      [
+        "en début d’après-midi",
+        "am frühen Nachmittag",
+        "early in the afternoon"
+      ],
+      [
+        "l’orage (m.)",
+        "das Gewitter",
+        "thunderstorm"
+      ],
+      [
+        "le degré",
+        "das Grad",
+        "degree"
+      ],
+      [
+        "frais / fraîche",
+        "kühl",
+        "cool"
+      ]
+    ]
+  },
+  "17": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "je trouve que",
+        "ich finde, dass",
+        "I think that"
+      ],
+      [
+        "à mon avis",
+        "meiner Meinung nach",
+        "in my opinion"
+      ],
+      [
+        "ça me gêne",
+        "das stört mich",
+        "it bothers me"
+      ],
+      [
+        "être d’accord",
+        "einverstanden sein",
+        "to agree"
+      ],
+      [
+        "ne … plus",
+        "nicht mehr",
+        "no longer"
+      ],
+      [
+        "avoir envie de",
+        "Lust haben auf",
+        "to feel like"
+      ],
+      [
+        "rassurant / rassurante",
+        "beruhigend",
+        "reassuring"
+      ],
+      [
+        "le portable",
+        "das Handy",
+        "mobile phone"
+      ]
+    ]
+  },
+  "18": {
+    "intro": [],
+    "topics": {},
+    "words": [
+      [
+        "pour cent",
+        "Prozent",
+        "per cent"
+      ],
+      [
+        "… sur …",
+        "… von …",
+        "… out of …"
+      ],
+      [
+        "d’entre eux",
+        "von ihnen",
+        "of them"
+      ],
+      [
+        "la moitié",
+        "die Hälfte",
+        "half"
+      ],
+      [
+        "de plus en plus",
+        "immer mehr",
+        "more and more"
+      ],
+      [
+        "augmenter / baisser",
+        "steigen / sinken",
+        "to rise / to fall"
+      ],
+      [
+        "selon",
+        "laut",
+        "according to"
+      ],
+      [
+        "la loi",
+        "das Gesetz",
+        "law"
+      ]
+    ]
   }
 };

@@ -95,5 +95,53 @@ window.FR_A1_INTRO_LISTENING = {
       "Je suis désolé, mais je ne pourrai pas venir demain.",
       "Je suis désolé, mais je ne pourrai pas venir ce soir."
     ]
+  },
+  "13": {
+    "audio": "En cas d’urgence, adressez-vous au docteur Morin.",
+    "o": [
+      "En cas d’urgence, adressez-vous au docteur Moreau.",
+      "En cas d’urgence, adressez-vous au docteur Morin.",
+      "En raison d’urgence, adressez-vous au docteur Morin."
+    ]
+  },
+  "14": {
+    "audio": "Le train arrivera avec vingt minutes de retard.",
+    "o": [
+      "Le train arrivera avec dix minutes de retard.",
+      "Le train partira avec vingt minutes de retard.",
+      "Le train arrivera avec vingt minutes de retard."
+    ]
+  },
+  "15": {
+    "audio": "Vous êtes priés de quitter l’autoroute à la sortie 15.",
+    "o": [
+      "Vous êtes priés de prendre l’autoroute à la sortie 15.",
+      "Vous êtes priés de quitter l’autoroute à la sortie 16.",
+      "Vous êtes priés de quitter l’autoroute à la sortie 15."
+    ]
+  },
+  "16": {
+    "audio": "Le soleil brillera en début de soirée.",
+    "o": [
+      "Le soleil brillera en début de soirée.",
+      "Le soleil brillera en fin de soirée.",
+      "Le soleil brillera en début de matinée."
+    ]
+  },
+  "17": {
+    "audio": "Ça me gêne quand les gens téléphonent dans le train.",
+    "o": [
+      "Ça me gêne quand les gens téléphonent dans le bus.",
+      "Ça me gêne quand les gens téléphonent dans le train.",
+      "Ça me plaît quand les gens téléphonent dans le train."
+    ]
+  },
+  "18": {
+    "audio": "Trente pour cent d’entre eux le lisent en ligne.",
+    "o": [
+      "Trente pour cent d’entre eux le lisent au café.",
+      "Trente pour cent d’entre eux le lisent en ligne.",
+      "Treize pour cent d’entre eux le lisent en ligne."
+    ]
   }
 };
