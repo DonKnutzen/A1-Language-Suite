@@ -90,7 +90,7 @@
   const TWO_WAY=new Set(['in','an','auf','über','unter','vor','hinter','neben','zwischen','im','am','ins','ans']);
   const DAT_VERBS=/^(helfe|hilfst|hilft|helfen|helft|gefällt|gefallen|gefalle|gehört|gehören|danke|dankt|danken|antworte|antwortet|antworten|schmeckt|schmecken|passt|passen|gratuliere|gratulieren|tut)$/;
   const MOTION=/^(gehe|gehst|geht|gehen|fahre|fährst|fährt|fahren|fahrt|komme|kommst|kommt|kommen|laufe|läufst|läuft|laufen|fliege|fliegst|fliegt|fliegen|lege|legst|legt|legen|stelle|stellst|stellt|stellen|bringe|bringst|bringt|bringen|setze|setzt|setzen|hänge|hängt|reise|reist|reisen|ziehe|zieht|ziehen)$/;
-  const SUFFIX=[[/(ung|heit|keit|schaft|ion|tät|ei|ie|ik|ur)$/,'féminin','die','les mots en -ung, -heit, -keit, -schaft, -ion, -tät, -ei, -ie, -ik sont toujours féminins (die Wohnung, die Freiheit, die Information)'],[/(chen|lein)$/,'neutre','das','les diminutifs en -chen et -lein sont toujours neutres (das Mädchen, das Brötchen)'],[/(ment|um)$/,'neutre','das','les mots en -ment et -um sont généralement neutres (das Dokument, das Museum)'],[/(ling|ismus|or)$/,'masculin','der','les mots en -ling, -ismus, -or sont masculins'],[/^(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember|frühling|sommer|herbst|winter|morgen|vormittag|mittag|nachmittag|abend)$/,'masculin','der','les jours, les mois, les saisons et les moments de la journée sont masculins (der Montag, der Mai, der Sommer, der Abend) – sauf die Nacht']];
+  const SUFFIX=[[/(ung|heit|keit|schaft|ion|tät|ei|ie|ik|ur)$/,'féminin','die','les suffixes -ung, -heit, -keit, -schaft, -tät, -ei, -ie et -ik indiquent généralement le féminin ; -ion est souvent féminin, notamment -tion (die Information), mais das Stadion fait exception'],[/(chen|lein)$/,'neutre','das','les diminutifs en -chen et -lein sont toujours neutres (das Mädchen, das Brötchen)'],[/(ment|um)$/,'neutre','das','les mots en -ment et -um sont généralement neutres (das Dokument, das Museum)'],[/(ling|ismus|or)$/,'masculin','der','les noms en -ling et -ismus sont généralement masculins ; beaucoup de noms en -or le sont également, mais il existe des exceptions (das Labor)'],[/^(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember|frühling|sommer|herbst|winter|morgen|vormittag|mittag|nachmittag|abend)$/,'masculin','der','les jours, les mois, les saisons et les moments de la journée sont masculins (der Montag, der Mai, der Sommer, der Abend) – sauf die Nacht']];
   function genderRule(noun){
     const n=String(noun||'').toLowerCase();if(!n)return '';
     const hit=SUFFIX.find(([re])=>re.test(n));
@@ -102,12 +102,13 @@
     if(AKK_PREP.has(low))return {c:1,why:`Après <b>${prev}</b>, on met toujours l’<b>accusatif</b> (für, ohne, durch, gegen, um).`};
     if(TWO_WAY.has(low))return null;// decided in articleCard from the form (Wo? / Wohin?)
     const verb=W.slice(0,i).reverse().find(w=>INDEX[w.toLowerCase()]||INDEX[w]);
-    const datVerb=W.find(w=>DAT_VERBS.test(w.toLowerCase()));
-    if(datVerb)return {c:2,why:`Le verbe <b>${datVerb}</b> se construit avec le <b>datif</b> (comme helfen, gefallen, gehören, danken, antworten, schmecken).`};
     if(verb&&DAT_VERBS.test(verb.toLowerCase()))return {c:2,why:`Le verbe <b>${verb}</b> se construit avec le <b>datif</b> (comme helfen, gefallen, gehören, danken, antworten, schmecken).`};
     if(i===0||(verb&&/^(ist|sind|bin|bist|seid|heißt|heiße|heißen|wird|werden)$/.test(verb.toLowerCase())&&W.slice(0,i).length<=3))return {c:0,why:'C’est le <b>sujet</b> (ou un attribut après <i>sein / heißen / werden</i>) → <b>nominatif</b>.'};
     if(W.slice(Math.max(0,i-2),i).join(' ').toLowerCase()==='es gibt')return {c:1,why:'Après <b>es gibt</b>, on met toujours l’<b>accusatif</b> : es gibt <b>einen</b> Park.'};
-    if(verb)return {c:1,why:`C’est le <b>complément d’objet direct</b> du verbe <b>${verb}</b> → <b>accusatif</b>. (Qui / quoi ? → wen / was?)`};
+    // Without syntactic dependency information we cannot safely label every noun after a verb
+    // as an accusative direct object; e.g. Ich gebe dem Mann ein Buch.
+    // An unambiguous article form can still be explained via CASE_HINT.
+    if(verb)return null;
     return null;
   }
   // Never show a reason that contradicts the (correct) form: fall back to the general meaning of the case.
