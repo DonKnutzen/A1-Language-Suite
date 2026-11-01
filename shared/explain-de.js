@@ -124,15 +124,14 @@
     let twoWay='';
     if(TWO_WAY.has(prev)){
       const datForm=hits.some(([r])=>r===2),akkForm=hits.some(([r])=>r===1);
-      twoWay=`<p><b>${W[i-1]}</b> est une préposition mixte : <b>Wo?</b> (où, sans mouvement) → <b>datif</b> · <b>Wohin?</b> (vers où, avec mouvement) → <b>accusatif</b>.</p>`;
-      reason={c:datForm&&!akkForm?2:akkForm&&!datForm?1:(W.some(w=>MOTION.test(w.toLowerCase()))?1:2),why:''};
-      reason.why=reason.c===2?'Ici on répond à <b>Wo?</b> → datif.':'Ici on répond à <b>Wohin?</b> → accusatif.';
+      twoWay=`<p><b>${W[i-1]}</b> est une préposition mixte : <b>Wo?</b> (lieu où se déroule l’action, même avec mouvement) → <b>datif</b> · <b>Wohin?</b> (destination ou changement de lieu) → <b>accusatif</b>.</p>`;
+      reason=datForm&&!akkForm?{c:2,why:'Cette forme indique ici le datif (Wo?).'}:akkForm&&!datForm?{c:1,why:'Cette forme indique ici l’accusatif (Wohin?).'}:null;
     }
     let cells=hits;
     if(reason)cells=hits.filter(([r])=>r===reason.c);
     if(!cells.length)cells=hits;
     // "die" can be feminine or plural: prefer singular unless the sentence is clearly plural
-    if(cells.some(([,c])=>c===3)&&cells.some(([,c])=>c!==3)&&!/(sind|haben|gibt es viele)/i.test(W.join(' ')))cells=cells.filter(([,c])=>c!==3);
+    if(cells.some(([,c])=>c===3)&&cells.some(([,c])=>c!==3)&&!/\b(sind|haben|gibt es viele)\b/i.test(W.join(' ')))cells=cells.filter(([,c])=>c!==3);
     const g=[...new Set(cells.map(([,c])=>GENDERS[c]))];
     let body=`<p><b>${H.esc(word)}</b>${noun?` ${H.esc(noun)}`:''} : ${cells.map(([r,c])=>`${CASES[r].toLowerCase()} ${GENDERS[c]}`).join(' ou ')}.${noun&&g.length===1&&g[0]!=='pluriel'?` <b>${H.esc(noun)}</b> est ${g[0]}.`:''}</p>`;
     if(reason?.why)body+=`<p>${reason.why}</p>`;
@@ -152,7 +151,7 @@
     const owner=word[0]==='I'&&stem==='ihr'?'Sie (politesse)':POSS_STEMS[stem];
     let body=`<p><b>${H.esc(word)}</b> = possessif de <b>${owner}</b> (${{mein:'mon/ma',dein:'ton/ta',sein:'son/sa (à lui)',ihr:word[0]==='I'?'votre':'son/sa (à elle) ou leur',unser:'notre',euer:'votre (ihr)'}[stem]}). La terminaison suit l’<b>article indéfini</b> (ein / eine / einen …).</p>`;
     if(reason?.why)body+=`<p>${reason.why}</p>`;
-    body+=H.grid(['',...GENDERS],ends.map((row,r)=>[CASES[r],...row.map(e=>stem+(e==='–'?'':'<span class="gx-end">'+(stem==='euer'&&e?e:e)+'</span>'))]),cells.map(([r,c])=>[r,c+1]));
+    body+=H.grid(['',...GENDERS],ends.map((row,r)=>[CASES[r],...row.map(e=>(stem==='euer'&&e!=='–'?'eur':stem)+(e==='–'?'':'<span class="gx-end">'+e+'</span>'))]),cells.map(([r,c])=>[r,c+1]));
     if(stem==='euer')body+='<p><small>euer + terminaison perd le e : eu<b>re</b> Wohnung.</small></p>';
     return H.card('Possessif',body);
   }
@@ -183,7 +182,7 @@
   }
   function separableCard(pre,base,W){
     const inf=pre+base;
-    return H.card(`Verbe séparable : ${inf}`,`<p><b>${inf}</b>${SEP_FR[inf]?` (${SEP_FR[inf]})`:''} est un verbe <b>séparable</b>. Au présent, le verbe conjugué est en <b>position 2</b> et le préfixe <b>${pre}</b> va tout à la <b>fin</b> :</p>${H.table(['Position 1','Verbe (2)','…','Fin'],[['Ich',base==='stehen'?'stehe':conjugate(base,0),'um 7 Uhr',`<b>${pre}</b>`],['Wann',conjugate(base,2),'der Zug',`<b>${pre}</b>?`]],[])}<p><small>Avec un verbe de modalité, le verbe reste entier à la fin : Ich muss früh <b>${inf}</b>. Au parfait : ${pre}<b>ge</b>…</small></p>`);
+    return H.card(`Verbe séparable : ${inf}`,`<p><b>${inf}</b>${SEP_FR[inf]?` (${SEP_FR[inf]})`:''} est un verbe <b>séparable</b>. Dans une proposition principale, le verbe conjugué se place en position 2 et le préfixe se détache à la fin.</p>${H.table(['Position 1','Verbe (2)','…','Fin'],[['Ich','stehe','um 7 Uhr','<b>auf</b>'],['Wann','stehst','du','<b>auf</b>?']],[])}<p><small>Ces exemples illustrent <b>aufstehen</b>. Dans la réponse étudiée, le préfixe est <b>${H.esc(pre)}</b>. Avec un verbe de modalité : Ich muss früh <b>aufstehen</b>. Au parfait : Ich bin früh <b>aufgestanden</b>.</small></p>`);
   }
   const conjugate=(base,p)=>VERBS[base]?.forms[p]||base;
   function perfektCard(aux,pp,info,W){
@@ -365,7 +364,7 @@
       const before=W[offset-1].toLowerCase();
       const g={der:'masculin (der) ou datif féminin',die:'féminin (die) ou pluriel',das:'neutre (das)',den:'masculin à l’accusatif (der → den)',dem:'masculin ou neutre au datif',im:'masculin ou neutre (im = in dem)',am:'masculin ou neutre (am = an dem)',zum:'masculin ou neutre (zum = zu dem)',zur:'féminin (zur = zu der)',ins:'neutre (ins = in das)',ein:'masculin ou neutre',eine:'féminin',einen:'masculin (accusatif)',einem:'masculin ou neutre (datif)',einer:'féminin (datif)'}[before];
       const meaning=vocabCard(answer);
-      if(g)add('noun',H.card(`Nom : ${answer}`,`<p>Le mot avant (<b>${H.esc(W[offset-1])}</b>) montre le genre : <b>${H.esc(answer)}</b> est ${g}.${meaning?' '+meaning.body.replace(/<\/?p>/g,''):''}</p><p><small>En allemand, les noms s’écrivent toujours avec une <b>majuscule</b>. Apprends chaque nom avec son article.</small></p>${genderRule(answer)}`));
+      if(g)add('noun',H.card(`Nom : ${answer}`,`<p>L’article précédent (<b>${H.esc(W[offset-1])}</b>) peut correspondre à ${g}. Il faut tenir compte du cas et du nombre avant de conclure au genre de <b>${H.esc(answer)}</b>.${meaning?' '+meaning.body.replace(/<\/?p>/g,''):''}</p><p><small>En allemand, les noms s’écrivent toujours avec une <b>majuscule</b>. Apprends chaque nom avec son article.</small></p>${genderRule(answer)}`));
     }
     if(!cards.length)add('vocab',vocabCard(answer));
     if(full&&answer&&full!==answer&&full.toLowerCase().includes(answer.toLowerCase())){
