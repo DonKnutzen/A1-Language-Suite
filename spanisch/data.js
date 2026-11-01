@@ -6099,7 +6099,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 1,
-          "audio": "Madrid está en España."
+          "audio": "Madrid está en España.",
+          "explanation": "Ortsangaben mit einer konkreten Stadt stehen mit estar: Madrid está en España. Es beschreibt hier nicht die Position, hay bedeutet „es gibt“."
         },
         {
           "q": "Yo ___ estudiante.",
@@ -6109,7 +6110,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 0,
-          "audio": "Yo soy estudiante."
+          "audio": "Yo soy estudiante.",
+          "explanation": "Soy ist die Ich-Form von ser: Mit ser bezeichnet man die Identität oder den Beruf, hier estudiante."
         },
         {
           "q": "___ un supermercado cerca.",
@@ -6119,7 +6121,8 @@ window.ES_A1_DATA = {
             "Hay"
           ],
           "a": 2,
-          "audio": "Hay un supermercado cerca."
+          "audio": "Hay un supermercado cerca.",
+          "explanation": "Hay bedeutet „es gibt“. Ein Supermarkt ist in der Nähe vorhanden; está würde den Standort eines bestimmten Supermarkts beschreiben."
         },
         {
           "q": "La puerta ___ abierta.",
@@ -6129,7 +6132,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 1,
-          "audio": "La puerta está abierta."
+          "audio": "La puerta está abierta.",
+          "explanation": "Está abierta beschreibt den aktuellen Zustand der Tür. Mit estar stehen häufig Zustände wie abierto oder cerrado."
         },
         {
           "q": "Mi casa ___ pequeña.",
@@ -6139,7 +6143,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 0,
-          "audio": "Mi casa es pequeña."
+          "audio": "Mi casa es pequeña.",
+          "explanation": "Es ist die dritte Person Singular von ser. Mit ser beschreibt man hier eine Eigenschaft der Wohnung: pequeña."
         },
         {
           "q": "¿Dónde ___ el baño?",
@@ -6149,7 +6154,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 1,
-          "audio": "¿Dónde está el baño?"
+          "audio": "¿Dónde está el baño?",
+          "explanation": "¿Dónde está ...? fragt nach dem Standort eines bestimmten Ortes. Für den Standort steht estar."
         },
         {
           "q": "No ___ bancos aquí.",
@@ -6159,7 +6165,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 2,
-          "audio": "No hay bancos aquí."
+          "audio": "No hay bancos aquí.",
+          "explanation": "No hay bedeutet „es gibt keine“. Hay verändert sich nicht bei Singular oder Plural: hay un banco, hay bancos."
         },
         {
           "q": "Nosotros ___ de Alemania.",
@@ -6169,7 +6176,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 0,
-          "audio": "Nosotros somos de Alemania."
+          "audio": "Nosotros somos de Alemania.",
+          "explanation": "Somos ist die Wir-Form von ser. Mit ser de beschreibt man die Herkunft: somos de Alemania."
         },
         {
           "q": "Hoy ___ cansada.",
@@ -6179,7 +6187,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 1,
-          "audio": "Hoy estoy cansada."
+          "audio": "Hoy estoy cansada.",
+          "explanation": "Estoy ist die Ich-Form von estar und beschreibt hier das aktuelle Befinden: cansada = müde (weibliche Form)."
         },
         {
           "q": "Barcelona ___ una ciudad grande.",
@@ -6189,7 +6198,8 @@ window.ES_A1_DATA = {
             "hay"
           ],
           "a": 0,
-          "audio": "Barcelona es una ciudad grande."
+          "audio": "Barcelona es una ciudad grande.",
+          "explanation": "Es una ciudad grande klassifiziert Barcelona als große Stadt. Für die Einordnung mit einem Nomen steht ser."
         }
       ]
     },
@@ -6206,7 +6216,8 @@ window.ES_A1_DATA = {
             "los"
           ],
           "a": 1,
-          "audio": "la casa blanca"
+          "audio": "la casa blanca",
+          "explanation": "Casa ist feminin Singular: la casa. Blanca stimmt als Adjektiv mit dem femininen Nomen überein."
         },
         {
           "q": "___ problema",
@@ -6216,7 +6227,8 @@ window.ES_A1_DATA = {
             "las"
           ],
           "a": 0,
-          "audio": "el problema"
+          "audio": "el problema",
+          "explanation": "Problema ist trotz der Endung -a maskulin: el problema. Die Wortendung allein bestimmt das Genus nicht immer."
         },
         {
           "q": "Plural von „la ciudad“?",
@@ -6226,7 +6238,8 @@ window.ES_A1_DATA = {
             "las ciudads"
           ],
           "a": 1,
-          "audio": "las ciudades"
+          "audio": "las ciudades",
+          "explanation": "Ciudad wird im Plural ciudades: Konsonant + -es. Der bestimmte Artikel im femininen Plural lautet las."
         },
         {
           "q": "___ mano derecha",
@@ -6236,7 +6249,8 @@ window.ES_A1_DATA = {
             "un"
           ],
           "a": 1,
-          "audio": "la mano derecha"
+          "audio": "la mano derecha",
+          "explanation": "Mano ist trotz der Endung -o feminin: la mano. Auch hier ist das Genus eine Ausnahme von der häufigen Endungsregel."
         },
         {
           "q": "„ein Buch“ =",
@@ -6246,7 +6260,8 @@ window.ES_A1_DATA = {
             "uno libro"
           ],
           "a": 1,
-          "audio": "un libro"
+          "audio": "un libro",
+          "explanation": "Libro ist maskulin Singular: un libro. Una wäre feminin; uno steht nicht unmittelbar als unbestimmter Artikel vor libro."
         },
         {
           "q": "„die Hotels“ =",
@@ -6256,7 +6271,8 @@ window.ES_A1_DATA = {
             "los hotel"
           ],
           "a": 0,
-          "audio": "los hoteles"
+          "audio": "los hoteles",
+          "explanation": "Hotel ist maskulin. Der Plural lautet hoteles und der bestimmte Pluralartikel los: los hoteles."
         },
         {
           "q": "„einige Freunde“ =",
@@ -6266,7 +6282,8 @@ window.ES_A1_DATA = {
             "un amigos"
           ],
           "a": 0,
-          "audio": "unos amigos"
+          "audio": "unos amigos",
+          "explanation": "Amigos ist maskulin Plural. Der unbestimmte Pluralartikel heißt unos: unos amigos."
         },
         {
           "q": "„eine Adresse“ =",
@@ -6276,7 +6293,8 @@ window.ES_A1_DATA = {
             "la direcciónes"
           ],
           "a": 1,
-          "audio": "una dirección"
+          "audio": "una dirección",
+          "explanation": "Dirección ist feminin Singular. Vor dem Nomen steht una: una dirección."
         },
         {
           "q": "Adjektiv passend: „dos casas ___“",
@@ -6286,7 +6304,8 @@ window.ES_A1_DATA = {
             "pequeños"
           ],
           "a": 1,
-          "audio": "dos casas pequeñas"
+          "audio": "dos casas pequeñas",
+          "explanation": "Casas ist feminin Plural. Das Adjektiv erhält entsprechend -as: dos casas pequeñas."
         },
         {
           "q": "„rote Autos“ =",
@@ -6296,7 +6315,8 @@ window.ES_A1_DATA = {
             "coche rojo"
           ],
           "a": 1,
-          "audio": "coches rojos"
+          "audio": "coches rojos",
+          "explanation": "Coches ist maskulin Plural. Das Adjektiv muss ebenfalls maskulin Plural sein: rojos."
         }
       ]
     },
@@ -6313,7 +6333,8 @@ window.ES_A1_DATA = {
             "habla"
           ],
           "a": 0,
-          "audio": "Yo hablo español."
+          "audio": "Yo hablo español.",
+          "explanation": "Hablar ist regelmäßig auf -ar. Für yo endet das Präsens auf -o: hablo."
         },
         {
           "q": "Nosotros ___ en casa. (comer)",
@@ -6323,7 +6344,8 @@ window.ES_A1_DATA = {
             "como"
           ],
           "a": 1,
-          "audio": "Nosotros comemos en casa."
+          "audio": "Nosotros comemos en casa.",
+          "explanation": "Comer ist regelmäßig auf -er. Mit nosotros wird daraus comemos."
         },
         {
           "q": "Ellos ___ en Madrid. (vivir)",
@@ -6333,7 +6355,8 @@ window.ES_A1_DATA = {
             "vive"
           ],
           "a": 0,
-          "audio": "Ellos viven en Madrid."
+          "audio": "Ellos viven en Madrid.",
+          "explanation": "Vivir ist regelmäßig auf -ir. Ellos verlangt die Endung -en: viven."
         },
         {
           "q": "Tú ___ mucho. (trabajar)",
@@ -6343,7 +6366,8 @@ window.ES_A1_DATA = {
             "trabaja"
           ],
           "a": 0,
-          "audio": "Tú trabajas mucho."
+          "audio": "Tú trabajas mucho.",
+          "explanation": "Trabajar ist ein regelmäßiges -ar-Verb. Tú erhält die Endung -as: trabajas."
         },
         {
           "q": "Ella ___ agua. (beber)",
@@ -6353,7 +6377,8 @@ window.ES_A1_DATA = {
             "bebes"
           ],
           "a": 1,
-          "audio": "Ella bebe agua."
+          "audio": "Ella bebe agua.",
+          "explanation": "Beber ist regelmäßig auf -er. Ella verlangt die dritte Person Singular: bebe."
         },
         {
           "q": "Vosotros ___ un correo. (escribir)",
@@ -6363,7 +6388,8 @@ window.ES_A1_DATA = {
             "escribimos"
           ],
           "a": 0,
-          "audio": "Vosotros escribís un correo."
+          "audio": "Vosotros escribís un correo.",
+          "explanation": "Escribir ist regelmäßig auf -ir. Die Form für vosotros lautet escribís, mit Akzent auf í."
         },
         {
           "q": "Yo ___ francés. (estudiar)",
@@ -6373,7 +6399,8 @@ window.ES_A1_DATA = {
             "estudia"
           ],
           "a": 0,
-          "audio": "Yo estudio francés."
+          "audio": "Yo estudio francés.",
+          "explanation": "Estudiar ist ein -ar-Verb. Yo estudio ist die erste Person Singular."
         },
         {
           "q": "Usted ___ aquí. (vivir)",
@@ -6383,7 +6410,8 @@ window.ES_A1_DATA = {
             "vivo"
           ],
           "a": 1,
-          "audio": "Usted vive aquí."
+          "audio": "Usted vive aquí.",
+          "explanation": "Usted wird höflich angesprochen, nimmt aber die Verbform der dritten Person Singular: vive."
         },
         {
           "q": "Nosotras ___ café. (tomar)",
@@ -6393,7 +6421,8 @@ window.ES_A1_DATA = {
             "tomo"
           ],
           "a": 0,
-          "audio": "Nosotras tomamos café."
+          "audio": "Nosotras tomamos café.",
+          "explanation": "Tomar ist ein -ar-Verb. Nosotras verlangt die Form tomamos."
         },
         {
           "q": "Ellas ___ a las nueve. (abrir)",
@@ -6403,7 +6432,8 @@ window.ES_A1_DATA = {
             "abre"
           ],
           "a": 0,
-          "audio": "Ellas abren a las nueve."
+          "audio": "Ellas abren a las nueve.",
+          "explanation": "Abrir ist ein -ir-Verb. Ellas verlangt die dritte Person Plural: abren."
         }
       ]
     },
@@ -6420,7 +6450,8 @@ window.ES_A1_DATA = {
             "tienes"
           ],
           "a": 0,
-          "audio": "Yo tengo treinta años."
+          "audio": "Yo tengo treinta años.",
+          "explanation": "Tener ist unregelmäßig. In der Ich-Form heißt es tengo; Alter drückt man auf Spanisch mit tener aus."
         },
         {
           "q": "Nosotros ___ al centro.",
@@ -6430,7 +6461,8 @@ window.ES_A1_DATA = {
             "voy"
           ],
           "a": 0,
-          "audio": "Nosotros vamos al centro."
+          "audio": "Nosotros vamos al centro.",
+          "explanation": "Ir ist unregelmäßig. Nosotros vamos ist die Form für „wir gehen/fahren“."
         },
         {
           "q": "Ella ___ deporte.",
@@ -6440,7 +6472,8 @@ window.ES_A1_DATA = {
             "haces"
           ],
           "a": 1,
-          "audio": "Ella hace deporte."
+          "audio": "Ella hace deporte.",
+          "explanation": "Hacer ist unregelmäßig. Ella hace ist die dritte Person Singular."
         },
         {
           "q": "¿___ pagar con tarjeta?",
@@ -6450,7 +6483,8 @@ window.ES_A1_DATA = {
             "Soy"
           ],
           "a": 0,
-          "audio": "¿Puedo pagar con tarjeta?"
+          "audio": "¿Puedo pagar con tarjeta?",
+          "explanation": "Puedo ist die Ich-Form von poder und bedeutet „ich kann“. Nach puedo steht der Infinitiv pagar."
         },
         {
           "q": "Tú ___ dos hermanos.",
@@ -6460,7 +6494,8 @@ window.ES_A1_DATA = {
             "tiene"
           ],
           "a": 1,
-          "audio": "Tú tienes dos hermanos."
+          "audio": "Tú tienes dos hermanos.",
+          "explanation": "Mit tú steht tienes, die zweite Person Singular von tener."
         },
         {
           "q": "Yo ___ al trabajo en autobús.",
@@ -6470,7 +6505,8 @@ window.ES_A1_DATA = {
             "vamos"
           ],
           "a": 0,
-          "audio": "Yo voy al trabajo en autobús."
+          "audio": "Yo voy al trabajo en autobús.",
+          "explanation": "Voy ist die Ich-Form von ir. Voy al trabajo = ich gehe/fahre zur Arbeit."
         },
         {
           "q": "¿Qué ___ los domingos?",
@@ -6480,7 +6516,8 @@ window.ES_A1_DATA = {
             "hago"
           ],
           "a": 0,
-          "audio": "¿Qué haces los domingos?"
+          "audio": "¿Qué haces los domingos?",
+          "explanation": "Die Frage richtet sich an tú. Daher steht haces, die zweite Person Singular von hacer."
         },
         {
           "q": "No ___ venir hoy.",
@@ -6490,7 +6527,8 @@ window.ES_A1_DATA = {
             "puede"
           ],
           "a": 0,
-          "audio": "No puedo venir hoy."
+          "audio": "No puedo venir hoy.",
+          "explanation": "Nach dem Subjekt yo steht puedo. No puedo venir = ich kann nicht kommen; das zweite Verb bleibt im Infinitiv."
         },
         {
           "q": "Ellos ___ mucha suerte.",
@@ -6500,7 +6538,8 @@ window.ES_A1_DATA = {
             "tiene"
           ],
           "a": 0,
-          "audio": "Ellos tienen mucha suerte."
+          "audio": "Ellos tienen mucha suerte.",
+          "explanation": "Ellos verlangt tienen, die dritte Person Plural von tener."
         },
         {
           "q": "Marta y yo ___ la compra.",
@@ -6510,7 +6549,8 @@ window.ES_A1_DATA = {
             "hago"
           ],
           "a": 0,
-          "audio": "Marta y yo hacemos la compra."
+          "audio": "Marta y yo hacemos la compra.",
+          "explanation": "Marta y yo entspricht nosotros. Von hacer lautet die passende Form hacemos."
         }
       ]
     },
@@ -6527,7 +6567,8 @@ window.ES_A1_DATA = {
             "gusto"
           ],
           "a": 0,
-          "audio": "Me gusta el café."
+          "audio": "Me gusta el café.",
+          "explanation": "Gustar richtet sich hier nach el café (Singular): me gusta el café = ich mag Kaffee."
         },
         {
           "q": "Me ___ las películas españolas.",
@@ -6537,7 +6578,8 @@ window.ES_A1_DATA = {
             "gusto"
           ],
           "a": 1,
-          "audio": "Me gustan las películas españolas."
+          "audio": "Me gustan las películas españolas.",
+          "explanation": "Las películas steht im Plural. Deshalb heißt es me gustan las películas."
         },
         {
           "q": "A Ana ___ gusta bailar.",
@@ -6547,7 +6589,8 @@ window.ES_A1_DATA = {
             "la"
           ],
           "a": 0,
-          "audio": "A Ana le gusta bailar."
+          "audio": "A Ana le gusta bailar.",
+          "explanation": "A Ana braucht das indirekte Objektpronomen le: A Ana le gusta bailar."
         },
         {
           "q": "„Ich mag Fleisch nicht.“",
@@ -6557,7 +6600,8 @@ window.ES_A1_DATA = {
             "Me no gusta carne."
           ],
           "a": 0,
-          "audio": "No me gusta la carne."
+          "audio": "No me gusta la carne.",
+          "explanation": "Bei gustar steht die Verneinung vor dem Objektpronomen: No me gusta la carne."
         },
         {
           "q": "„Wir bevorzugen den Zug.“",
@@ -6567,7 +6611,8 @@ window.ES_A1_DATA = {
             "Preferemos tren."
           ],
           "a": 0,
-          "audio": "Preferimos el tren."
+          "audio": "Preferimos el tren.",
+          "explanation": "„Wir bevorzugen“ lautet preferimos. Das Subjekt wir entspricht nosotros; vor el tren steht der bestimmte Artikel."
         },
         {
           "q": "¿Te ___ los deportes?",
@@ -6577,7 +6622,8 @@ window.ES_A1_DATA = {
             "gustas"
           ],
           "a": 1,
-          "audio": "¿Te gustan los deportes?"
+          "audio": "¿Te gustan los deportes?",
+          "explanation": "Los deportes ist Plural; die richtige Form ist te gustan, nicht te gusta."
         },
         {
           "q": "A nosotros nos ___ viajar.",
@@ -6587,7 +6633,8 @@ window.ES_A1_DATA = {
             "gustamos"
           ],
           "a": 0,
-          "audio": "A nosotros nos gusta viajar."
+          "audio": "A nosotros nos gusta viajar.",
+          "explanation": "Viajar ist ein Infinitiv und wird bei gustar als Singular aufgefasst: nos gusta viajar."
         },
         {
           "q": "„Was isst du gern?“",
@@ -6597,7 +6644,8 @@ window.ES_A1_DATA = {
             "¿Dónde gusta comer?"
           ],
           "a": 0,
-          "audio": "¿Qué te gusta comer?"
+          "audio": "¿Qué te gusta comer?",
+          "explanation": "¿Qué te gusta comer? bedeutet „Was isst du gern?“; te bezeichnet die angesprochene Person."
         },
         {
           "q": "Me gusta más el té ___ el café.",
@@ -6607,7 +6655,8 @@ window.ES_A1_DATA = {
             "a"
           ],
           "a": 0,
-          "audio": "Me gusta más el té que el café."
+          "audio": "Me gusta más el té que el café.",
+          "explanation": "Bei einem Vergleich mit gustar más steht que: Me gusta más el té que el café."
         },
         {
           "q": "„Mir auch.“ nach „Me gusta.“",
@@ -6617,7 +6666,8 @@ window.ES_A1_DATA = {
             "Yo no."
           ],
           "a": 0,
-          "audio": "A mí también."
+          "audio": "A mí también.",
+          "explanation": "A mí también bedeutet „Mir auch“ bei einer bejahenden Aussage. A mí tampoco heißt „Mir auch nicht“."
         }
       ]
     },
@@ -6634,7 +6684,8 @@ window.ES_A1_DATA = {
             "Quién"
           ],
           "a": 0,
-          "audio": "¿Dónde vives?"
+          "audio": "¿Dónde vives?",
+          "explanation": "En Halifax ist eine Ortsangabe. Dafür fragt man mit ¿Dónde ...? = Wo ...?"
         },
         {
           "q": "___ te llamas? — Laura.",
@@ -6644,7 +6695,8 @@ window.ES_A1_DATA = {
             "Por qué"
           ],
           "a": 0,
-          "audio": "¿Cómo te llamas?"
+          "audio": "¿Cómo te llamas?",
+          "explanation": "Bei einem Namen fragt man mit ¿Cómo te llamas? = Wie heißt du?"
         },
         {
           "q": "___ cuesta? — Veinte euros.",
@@ -6654,7 +6706,8 @@ window.ES_A1_DATA = {
             "Quién"
           ],
           "a": 0,
-          "audio": "¿Cuánto cuesta?"
+          "audio": "¿Cuánto cuesta?",
+          "explanation": "Eine Preisangabe wie veinte euros beantwortet ¿Cuánto cuesta? = Wie viel kostet es?"
         },
         {
           "q": "___ empieza la clase? — A las nueve.",
@@ -6664,7 +6717,8 @@ window.ES_A1_DATA = {
             "Qué"
           ],
           "a": 0,
-          "audio": "¿Cuándo empieza la clase?"
+          "audio": "¿Cuándo empieza la clase?",
+          "explanation": "A las nueve nennt einen Zeitpunkt. Dafür fragt man mit ¿Cuándo ...? = Wann ...?"
         },
         {
           "q": "___ es tu profesor? — El señor Ruiz.",
@@ -6674,7 +6728,8 @@ window.ES_A1_DATA = {
             "Cuánto"
           ],
           "a": 0,
-          "audio": "¿Quién es tu profesor?"
+          "audio": "¿Quién es tu profesor?",
+          "explanation": "El señor Ruiz nennt eine Person. Dafür verwendet man ¿Quién ...? = Wer ...?"
         },
         {
           "q": "___ estudias español? — Porque viajo a España.",
@@ -6684,7 +6739,8 @@ window.ES_A1_DATA = {
             "Cuál"
           ],
           "a": 0,
-          "audio": "¿Por qué estudias español?"
+          "audio": "¿Por qué estudias español?",
+          "explanation": "Porque nennt einen Grund. Die passende Frage lautet ¿Por qué ...? = Warum ...?"
         },
         {
           "q": "___ haces el sábado?",
@@ -6694,7 +6750,8 @@ window.ES_A1_DATA = {
             "Dónde"
           ],
           "a": 0,
-          "audio": "¿Qué haces el sábado?"
+          "audio": "¿Qué haces el sábado?",
+          "explanation": "Nach einer Tätigkeit fragt man mit ¿Qué haces ...? = Was machst du ...?"
         },
         {
           "q": "___ años tienes?",
@@ -6704,7 +6761,8 @@ window.ES_A1_DATA = {
             "Cómo"
           ],
           "a": 0,
-          "audio": "¿Cuántos años tienes?"
+          "audio": "¿Cuántos años tienes?",
+          "explanation": "Edad (Alter) fragt man mit ¿Cuántos años tienes? Das Fragewort cuántos steht im maskulinen Plural zu años."
         },
         {
           "q": "___ prefieres, té o café?",
@@ -6714,7 +6772,8 @@ window.ES_A1_DATA = {
             "Dónde"
           ],
           "a": 0,
-          "audio": "¿Cuál prefieres, té o café?"
+          "audio": "¿Cuál prefieres, té o café?",
+          "explanation": "Bei einer Wahl zwischen zwei bereits genannten Dingen ist ¿Cuál prefieres? = Welches bevorzugst du? passend."
         },
         {
           "q": "¿___ vas al cine? — Con Marta.",
@@ -6724,7 +6783,8 @@ window.ES_A1_DATA = {
             "De dónde"
           ],
           "a": 0,
-          "audio": "¿Con quién vas al cine?"
+          "audio": "¿Con quién vas al cine?",
+          "explanation": "Con Marta beantwortet die Frage „Mit wem?“: ¿Con quién ...?"
         }
       ]
     },
@@ -6741,7 +6801,8 @@ window.ES_A1_DATA = {
             "en"
           ],
           "a": 0,
-          "audio": "Voy a Madrid."
+          "audio": "Voy a Madrid.",
+          "explanation": "Bei einer Bewegungsrichtung zu einer Stadt verwendet man a: voy a Madrid."
         },
         {
           "q": "Vengo ___ Alemania.",
@@ -6751,7 +6812,8 @@ window.ES_A1_DATA = {
             "por"
           ],
           "a": 0,
-          "audio": "Vengo de Alemania."
+          "audio": "Vengo de Alemania.",
+          "explanation": "Für die Herkunft steht venir de + Ort: vengo de Alemania."
         },
         {
           "q": "Trabajo ___ una oficina.",
@@ -6761,7 +6823,8 @@ window.ES_A1_DATA = {
             "de"
           ],
           "a": 0,
-          "audio": "Trabajo en una oficina."
+          "audio": "Trabajo en una oficina.",
+          "explanation": "Für den Arbeitsort verwendet man en: trabajo en una oficina."
         },
         {
           "q": "El banco está ___ lado del hotel.",
@@ -6771,7 +6834,8 @@ window.ES_A1_DATA = {
             "en el"
           ],
           "a": 0,
-          "audio": "El banco está al lado del hotel."
+          "audio": "El banco está al lado del hotel.",
+          "explanation": "Al ist die Zusammenziehung von a + el. Al lado de bedeutet „neben“."
         },
         {
           "q": "La farmacia está ___ la estación.",
@@ -6781,7 +6845,8 @@ window.ES_A1_DATA = {
             "de"
           ],
           "a": 0,
-          "audio": "La farmacia está delante de la estación."
+          "audio": "La farmacia está delante de la estación.",
+          "explanation": "Delante de ist eine zweiteilige Ortsangabe und bedeutet „vor“ (räumlich)."
         },
         {
           "q": "Voy ___ autobús.",
@@ -6791,7 +6856,8 @@ window.ES_A1_DATA = {
             "de"
           ],
           "a": 0,
-          "audio": "Voy en autobús."
+          "audio": "Voy en autobús.",
+          "explanation": "Ein Verkehrsmittel wird im Spanischen häufig mit en angegeben: voy en autobús."
         },
         {
           "q": "Salgo ___ casa a las ocho.",
@@ -6801,7 +6867,8 @@ window.ES_A1_DATA = {
             "en"
           ],
           "a": 0,
-          "audio": "Salgo de casa a las ocho."
+          "audio": "Salgo de casa a las ocho.",
+          "explanation": "Salir de bedeutet einen Ort verlassen: salgo de casa."
         },
         {
           "q": "El libro está ___ la mesa.",
@@ -6811,7 +6878,8 @@ window.ES_A1_DATA = {
             "de"
           ],
           "a": 0,
-          "audio": "El libro está sobre la mesa."
+          "audio": "El libro está sobre la mesa.",
+          "explanation": "Sobre la mesa bedeutet „auf dem Tisch“. Sobre bezeichnet hier die Lage über/auf etwas."
         },
         {
           "q": "La parada está ___ el supermercado.",
@@ -6821,7 +6889,8 @@ window.ES_A1_DATA = {
             "por"
           ],
           "a": 0,
-          "audio": "La parada está cerca del supermercado."
+          "audio": "La parada está cerca del supermercado.",
+          "explanation": "Cerca de bedeutet „in der Nähe von“. Die Präposition de gehört zu dieser Wendung."
         },
         {
           "q": "Vamos ___ cine.",
@@ -6831,7 +6900,8 @@ window.ES_A1_DATA = {
             "del"
           ],
           "a": 0,
-          "audio": "Vamos al cine."
+          "audio": "Vamos al cine.",
+          "explanation": "Zum maskulinen Ort mit Artikel verwendet man a + el = al: vamos al cine."
         }
       ]
     },
@@ -6848,37 +6918,41 @@ window.ES_A1_DATA = {
             "La estación, por favor."
           ],
           "a": 0,
-          "audio": "La cuenta, por favor."
+          "audio": "La cuenta, por favor.",
+          "explanation": "Im Restaurant bittet man mit la cuenta, por favor um die Rechnung. Cuenta ist die Rechnung; puerta ist Tür."
         },
         {
           "q": "Du hast nicht verstanden:",
           "o": [
             "¿Puede repetirlo?",
-            "¿Puede pagarlo?",
-            "¿Puede cerrarlo?"
+            "¿Puede explicarlo?",
+            "¿Puede escribirlo?"
           ],
           "a": 0,
-          "audio": "¿Puede repetirlo?"
+          "audio": "¿Puede repetirlo?",
+          "explanation": "Mit ¿Puede repetirlo? bittet man höflich darum, etwas zu wiederholen. Puede ist die Höflichkeitsform."
         },
         {
           "q": "Du fragst nach dem Weg:",
           "o": [
             "¿Cómo llego a la estación?",
-            "¿Cuánto es la estación?",
-            "¿Quién estación?"
+            "¿Cuándo sale el tren?",
+            "¿Cuánto cuesta el billete?"
           ],
           "a": 0,
-          "audio": "¿Cómo llego a la estación?"
+          "audio": "¿Cómo llego a la estación?",
+          "explanation": "¿Cómo llego a la estación? fragt nach dem Weg zum Bahnhof. Llego bedeutet „ich komme an“."
         },
         {
           "q": "Du möchtest etwas kaufen:",
           "o": [
             "Quiero comprar esto.",
-            "Quiero dormir esto.",
-            "Quiero llamar esto."
+            "Quiero vender esto.",
+            "Quiero mirar esto."
           ],
           "a": 0,
-          "audio": "Quiero comprar esto."
+          "audio": "Quiero comprar esto.",
+          "explanation": "Quiero + Infinitiv drückt einen Wunsch aus: Quiero comprar esto = Ich möchte das kaufen."
         },
         {
           "q": "Du brauchst einen Termin:",
@@ -6888,27 +6962,30 @@ window.ES_A1_DATA = {
             "Necesito una cuenta."
           ],
           "a": 0,
-          "audio": "Necesito una cita."
+          "audio": "Necesito una cita.",
+          "explanation": "Necesito una cita = Ich brauche einen Termin. Cita ist Termin, talla ist Kleidergröße, cuenta ist Rechnung."
         },
         {
           "q": "Du kommst später:",
           "o": [
             "Llego un poco tarde.",
-            "Llego ayer.",
-            "Llego barato."
+            "Llego muy temprano.",
+            "Llego a tiempo."
           ],
           "a": 0,
-          "audio": "Llego un poco tarde."
+          "audio": "Llego un poco tarde.",
+          "explanation": "Llego un poco tarde bedeutet „Ich komme etwas später/verspätet“. Tarde bezeichnet den späten Zeitpunkt."
         },
         {
-          "q": "Höfliche Bitte:",
+          "q": "Ergänze die höfliche Bitte: « Un café, ___ »",
           "o": [
             "Por favor.",
-            "Nunca.",
-            "Entonces."
+            "Gracias.",
+            "Perdón."
           ],
           "a": 0,
-          "audio": "Por favor."
+          "audio": "Por favor.",
+          "explanation": "Por favor bedeutet „bitte“ und macht eine Aufforderung oder Bitte höflicher."
         },
         {
           "q": "„Entschuldigung“ =",
@@ -6918,7 +6995,8 @@ window.ES_A1_DATA = {
             "De nada."
           ],
           "a": 0,
-          "audio": "Perdón."
+          "audio": "Perdón.",
+          "explanation": "Perdón bedeutet „Entschuldigung“. Gracias heißt „Danke“, de nada „gern geschehen“."
         },
         {
           "q": "„Gern geschehen“ =",
@@ -6928,7 +7006,8 @@ window.ES_A1_DATA = {
             "Lo siento."
           ],
           "a": 0,
-          "audio": "De nada."
+          "audio": "De nada.",
+          "explanation": "De nada ist die übliche Antwort auf gracias und bedeutet „gern geschehen“."
         },
         {
           "q": "Bei der Prüfung: „Markieren Sie die richtige Antwort.“",
@@ -6938,7 +7017,8 @@ window.ES_A1_DATA = {
             "Pague la cuenta."
           ],
           "a": 0,
-          "audio": "Marque la opción correcta."
+          "audio": "Marque la opción correcta.",
+          "explanation": "Marque ist eine höfliche Befehlsform von marcar („markieren/ankreuzen“). La opción correcta = die richtige Antwortoption."
         }
       ]
     }
