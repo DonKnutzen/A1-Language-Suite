@@ -196,10 +196,10 @@
   function possessiveCard(word,noun){
     const r=POSS.findIndex(row=>row.slice(1).includes(word));
     const c=POSS[r].indexOf(word);
-    const gender=c===1?'maskulin (oder feminin mit Vokal am Anfang)':c===2?'feminin':'Plural';
+    const gender=['notre','votre','leur'].includes(word)?'Singular: maskulin oder feminin':c===1?'maskulin (oder feminin mit Vokal am Anfang)':c===2?'feminin':'Plural';
     let why=`<b>${word}</b> gehört zu <b>${POSS[r][0]}</b> und richtet sich nach dem <b>Nomen</b>${noun?` („${H.esc(noun)}“)`:''}: ${gender}.`;
     if(['mon','ton','son'].includes(word)&&noun&&vowel(noun))why+=` Vor Vokal steht immer <b>${word}</b>, auch bei femininen Wörtern: ${word} amie.`;
-    return H.card('Possessivbegleiter',`<p>${why}</p>${H.grid(['Besitzer','mask.','fem.','Plural'],POSS,[[r,c]])}<p><small>Wichtig: <b>son / sa</b> richtet sich nach dem Besitz, nicht nach dem Besitzer – sa mère = seine <i>oder</i> ihre Mutter.</small></p>`);
+    return H.card('Possessivbegleiter',`<p>${why}</p>${H.grid(['Besitzer','mask.','fem.','Plural'],POSS,POSS[r].flatMap((form,i)=>i>0&&form===word?[[r,i]]:[]))}<p><small>Wichtig: <b>son / sa</b> richtet sich nach dem Besitz, nicht nach dem Besitzer – sa mère = seine <i>oder</i> ihre Mutter.</small></p>`);
   }
   function demonstrativeCard(word,noun){
     const rows=[['ce','maskulin','ce livre'],['cet','maskulin vor Vokal / h','cet hôtel, cet ami'],['cette','feminin','cette maison'],['ces','Plural','ces enfants']];
@@ -225,7 +225,7 @@
     const s=toks.join(' ');
     const types=[['ne … pas','nicht'],['ne … plus','nicht mehr'],['ne … jamais','nie'],['ne … rien','nichts'],['ne … personne','niemand']];
     const hl=types.map(([t],i)=>s.includes(t.split(' … ')[1])?i:-1).filter(i=>i>=0);
-    return H.card('Verneinung',`<p>Die Verneinung umschließt das konjugierte Verb: <b>ne</b> + Verb + <b>pas</b>. Vor Vokal wird <b>ne → n’</b> (je <b>n’</b>aime <b>pas</b>).</p>${H.table(['Form','Bedeutung'],types,hl)}<p>Nach der Verneinung werden <b>un, une, du, de la, des → de / d’</b>: J’ai un chien → Je n’ai pas <b>de</b> chien.</p><p><small>Beim passé composé umschließt die Verneinung das Hilfsverb: je <b>n’</b>ai <b>pas</b> mangé.</small></p>`);
+    return H.card('Verneinung',`<p>Die Verneinung umschließt das konjugierte Verb: <b>ne</b> + Verb + <b>pas</b>. Vor Vokal wird <b>ne → n’</b> (je <b>n’</b>aime <b>pas</b>).</p>${H.table(['Form','Bedeutung'],types,hl)}<p>Bei einer verneinten Mengen- oder Existenzangabe werden <b>un, une, du, de la, des</b> meist zu <b>de / d’</b>: J’ai un chien → Je n’ai pas <b>de</b> chien. Ausnahme mit <b>être</b>: Ce n’est pas <b>un</b> chien. Bestimmte Artikel bleiben: Je n’aime pas <b>le</b> café.</p><p><small>Beim passé composé umschließt die Verneinung das Hilfsverb: je <b>n’</b>ai <b>pas</b> mangé.</small></p>`);
   }
   function passeCard(auxForm,pp,v,toks){
     const isEtre=INDEX[auxForm]?.some(x=>x.v.inf==='être');
@@ -234,7 +234,7 @@
     let body=`<p>Passé composé (Vergangenheit) = <b>${isEtre?'être':'avoir'}</b> im Präsens + <b>Partizip</b> (${H.esc(pp)}${v?` von ${v.inf}`:''}).</p>`;
     body+=H.table(['Person','Hilfsverb + Partizip'],auxV.forms.map((f,i)=>[P[i],(i===0&&vowel(f)?'j’':'')+f+' '+(isEtre?(v?.pp||pp)+(i>=3?'(e)s':'(e)'):pp)]),p===undefined?[]:[p]);
     body+='<p>Partizip: -er → <b>-é</b> (parlé) · -ir → <b>-i</b> (fini) · -re → <b>-u</b> (attendu) · unregelmäßig: été, eu, fait, pris, mis, dit, vu, lu, écrit, bu, pu, voulu, dû, su, connu, venu, reçu, ouvert.</p>';
-    body+=isEtre?'<p>Mit <b>être</b> bilden das passé composé die Verben der Bewegung bzw. Zustandsänderung – <i>aller, venir, arriver, partir, entrer, sortir, rester, tomber, monter, descendre, naître, mourir, rentrer, retourner, passer</i> – und alle reflexiven Verben. Das Partizip <b>passt sich an</b>: elle est allé<b>e</b>, ils sont allé<b>s</b>, elles sont allé<b>es</b>.</p>':'<p>Die meisten Verben bilden das passé composé mit <b>avoir</b>; das Partizip bleibt dann unverändert: elle a mangé.</p>';
+    body+=isEtre?'<p>Mit <b>être</b> bilden bestimmte Verben das passé composé, z. B. <i>aller, venir, arriver, partir, rester, tomber, naître, mourir</i>, sowie reflexive Verben. Bei <i>sortir, monter, descendre, rentrer, retourner, passer</i> kann das Hilfsverb je nach Bedeutung und Satzbau wechseln: <i>Elle est sortie</i>, aber <i>Elle a sorti la poubelle</i>. Das Partizip <b>passt sich an</b>: elle est allé<b>e</b>, ils sont allé<b>s</b>, elles sont allé<b>es</b>.</p>':'<p>Die meisten Verben bilden das passé composé mit <b>avoir</b>; das Partizip bleibt dann unverändert: elle a mangé.</p>';
     return H.card('Passé composé',body);
   }
   function futurCard(form,inf){
@@ -286,7 +286,7 @@
   }
   const NUM='zéro un une deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize vingt trente quarante cinquante soixante cent mille'.split(' ');
   function numberCard(){
-    return H.card('Zahlen',`${H.table(['Zahl','Französisch','Merkhilfe'],[['17–19','dix-sept, dix-huit, dix-neuf','10 + 7 …'],['21, 31 …','vingt <b>et</b> un, trente <b>et</b> un','mit „et“, ohne Bindestrich'],['22','vingt-deux','Bindestrich'],['70','<b>soixante-dix</b>','60 + 10'],['71','soixante <b>et</b> onze','60 + 11'],['80','<b>quatre-vingts</b>','4 × 20'],['81','quatre-vingt-un','ohne -s, ohne et'],['90','<b>quatre-vingt-dix</b>','4 × 20 + 10'],['100 / 200','cent / deux cents','']],[])}<p><small>In Belgien und der Schweiz: septante (70), nonante (90), in der Schweiz auch huitante (80).</small></p>`);
+    return H.card('Zahlen',`${H.table(['Zahl','Französisch','Merkhilfe'],[['17–19','dix-sept, dix-huit, dix-neuf','10 + 7 …'],['21, 31 …','vingt <b>et</b> un, trente <b>et</b> un','traditionell mit „et“ ohne Bindestriche; auch vingt-et-un ist korrekt'],['22','vingt-deux','Bindestrich'],['70','<b>soixante-dix</b>','60 + 10'],['71','soixante <b>et</b> onze','60 + 11'],['80','<b>quatre-vingts</b>','4 × 20'],['81','quatre-vingt-un','ohne -s, ohne et'],['90','<b>quatre-vingt-dix</b>','4 × 20 + 10'],['100 / 200','cent / deux cents','']],[])}<p><small>In Belgien und der Schweiz: septante (70), nonante (90), in der Schweiz auch huitante (80).</small></p>`);
   }
   function timeCard(){
     return H.card('Uhrzeit',`<p>Frage: <b>Quelle heure est-il ?</b> – Antwort: <b>Il est</b> … heure(s). Im Singular nur bei <b>une heure</b>.</p>${H.table(['Uhr','Alltag','offiziell'],[['8:00','huit heures','huit heures'],['8:15','huit heures <b>et quart</b>','huit heures quinze'],['8:30','huit heures <b>et demie</b>','huit heures trente'],['8:45','neuf heures <b>moins le quart</b>','huit heures quarante-cinq'],['8:50','neuf heures <b>moins dix</b>','huit heures cinquante'],['12:00 / 0:00','<b>midi</b> / <b>minuit</b>','douze heures / zéro heure']],[])}<p><small>„um“ acht Uhr = <b>à</b> huit heures. Geschrieben: 8h15.</small></p>`);
