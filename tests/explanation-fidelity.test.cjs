@@ -68,3 +68,57 @@ test('Spanish grammar bank explains each graded answer and UI renders the reason
   assert(ui.includes('grammar-answer-explanation'));
   assert(ui.includes('esc(q.explanation)'));
 });
+
+test('Every German A1 grammar drill receives at least one meaningful rule card',()=>{
+  const window={};vm.runInNewContext(read('deutsch/grammar-drills.js'),{window});
+  let total=0;
+  for(const topic of Object.values(window.DE_A1_GRAMMAR_DRILLS.topics))for(const q of topic.tasks){
+    const body=explain('shared/explain-de.js','de',{answer:q.o[q.a],sentence:q.audio,question:q.q});
+    assert(body.trim(),'No explanation for '+q.q);
+    total++;
+  }
+  assert(total>=270);
+});
+test('German check has authored reasoning for flagged comprehension items',()=>{
+  const window={};
+  vm.runInNewContext(read('deutsch/deepening-content.js'),{window});
+  vm.runInNewContext(read('deutsch/question-content.js'),{window});
+  const examples=[[1,'Elle parle deux langues.'],[8,'Disponible.'],[9,'Le train est en retard.']];
+  for(const [id,answer] of examples){
+    const q=window.DE_A1_QUESTIONS.checkTasks(id).find(q=>q.answer===answer);
+    assert(q&&q.explanation&&q.explanation!==q.answer,'No rationale for '+answer);
+  }
+});
+test('French quiz has explanations for contextual listening questions and accurate station vocabulary',()=>{
+  const window={};vm.runInNewContext(read('francais/data.js'),{window});
+  const lessons=window.FR_A1_DATA.lessons;
+  assert(lessons.flatMap(l=>l.quiz).filter(q=>q.explanation).length>=33);
+  const railway=lessons[8].quiz.find(q=>q.q.includes('quai'));
+  assert.equal(railway.o[railway.a],'Bahnsteig');
+  const context=lessons[22].quiz.find(q=>q.q.startsWith('Lies den Dialog:'));
+  assert(context?.explanation);
+});
+test('French translation explanation analyses the French sentence, not the German answer',()=>{
+  const body=explain('shared/explain-fr.js','fr',{
+    question:'Was bedeutet „Je viens d’Allemagne“?',
+    sentence:'Je viens d’Allemagne.',
+    answer:'Ich komme aus Deutschland.'
+  });
+  assert(body.includes('venir'),'Should teach the French verb venir');
+  assert(body.includes('Ich komme aus Deutschland.'),'Should retain correct German meaning');
+});
+test('Spanish answer randomization preserves the correct answer and task identity',()=>{
+  const source=read('spanisch/app.js');
+  assert(source.includes('.map(randomizedChoices)'));
+  assert(source.includes('randomizedChoices(forced||rand(D.listening'));
+  assert(source.includes('randomizedChoices(forced||rand(D.reading'));
+  const fnSource=source.match(/function randomizedChoices\(task\)\{([\s\S]*?)\n\}/);
+  assert(fnSource,'Missing option shuffler');
+  const randomize=new Function('shuffle','return function randomizedChoices(task){'+fnSource[1]+'\n}')(a=>a.reverse());
+  const task={id:'test',o:['Richtig','Falsch 1','Falsch 2'],a:0,explanation:'Regel'};
+  const shuffled=randomize(task);
+  assert.equal(shuffled.o[shuffled.a],'Richtig');
+  assert.equal(shuffled.a,2);
+  assert.equal(shuffled.id,task.id);
+  assert.equal(shuffled.explanation,task.explanation);
+});
