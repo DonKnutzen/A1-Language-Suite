@@ -1343,7 +1343,7 @@ window.DE_A1_APPLICATIONS = {
           "q": "Was nimmt die Person zusätzlich zum Mantel mit?",
           "o": [
             "einen Regenschirm",
-            "einen Mantel",
+            "eine Jacke",
             "ein Hemd"
           ],
           "answer": "einen Regenschirm"

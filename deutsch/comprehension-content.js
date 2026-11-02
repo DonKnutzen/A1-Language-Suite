@@ -983,7 +983,7 @@ window.A1_COMPREHENSION_CONTENT = {
         "options": [
           "ein Hemd",
           "einen Regenschirm",
-          "einen Hut"
+          "einen Pullover"
         ],
         "answer": "einen Regenschirm"
       }

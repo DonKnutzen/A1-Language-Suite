@@ -2384,14 +2384,14 @@ window.DE_A1_HARD_CONTENT = {
             "objective": "listening"
           },
           {
-            "q": "Quel jour arrive-t-elle en retard ?",
+            "q": "Quel jour arrive-t-il en retard ?",
             "answers": [
               "morgen"
             ],
             "objective": "listening"
           },
           {
-            "q": "À quelle heure commence-t-elle lundi ?",
+            "q": "À quelle heure commence-t-il lundi ?",
             "answers": [
               "08:00"
             ],
@@ -5659,7 +5659,7 @@ window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turn
     ],
     2:[
       [['Miller','Möller'],['Paula','Peter'],['Sie möchte den Familiennamen noch einmal hören.','Sie möchte den Vornamen buchstabieren.']],
-      [['Anne-Lena','Anna-Lina'],['Punkt','Umlaut'],['Wagner','Werner']]
+      [['Anne-Lena','Anna-Lina'],['Doppel-n','Umlaut'],['Wagner','Werner']]
     ],
     3:[
       [['13','33'],['10151','11015'],['030 21 43 56','030 21 34 65'],['Berlin','Bremen']],
@@ -5718,7 +5718,7 @@ window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turn
       [['Ja, heute ist es geöffnet.','Heute öffnet es erst um neun Uhr.'],['08:00','18:00'],['hinter dem Haus','auf dem Parkplatz']]
     ],
     17:[
-      [['das Buch','das Glas'],['den Stift','das Glas'],['Der Mann braucht es noch.','Die Frau hat schon ein Glas.']],
+      [['das Buch','das Glas'],['den Stift','das Glas'],['Ich brauche es noch.','Das Glas ist zu klein.']],
       [['die Tasche','der Stift'],['ein Buch','eine Tasche'],['das Buch','den Stift']]
     ],
     18:[
@@ -5726,7 +5726,7 @@ window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turn
       [['die Antworten','die Nachricht'],['einen langen Text','eine Frage'],['die Antwort ankreuzen','den Text prüfen']]
     ],
     19:[
-      [['Kopfschmerzen','die Beine'],['Bauch','die Beine'],['14:00','17:00']],
+      [['Kopf','Beine'],['Bauch','Beine'],['14:00','17:00']],
       [['Kopf','Bauch'],['die Arztpraxis','das Krankenhaus'],['Tee','Saft']]
     ],
     20:[
@@ -5743,7 +5743,7 @@ window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turn
     ],
     23:[
       [['Deutschland','Frankreich'],['3','5'],['eine Fahrkarte','eine Briefmarke']],
-      [['der Familienname','die Adresse'],['Dienstag','Donnerstag'],['10:00','11:30']]
+      [['Familienname','Adresse'],['Dienstag','Donnerstag'],['10:00','11:30']]
     ],
     24:[
       [['Frankreich','Deutschland'],['Berlin','Bremen'],['18:00','19:30'],['im Bahnhof','vor dem Kino']],
@@ -5755,13 +5755,21 @@ window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turn
     (versions[data.version]||={})[id]||=JSON.parse(JSON.stringify(data));
     data.version=4;data.compatibleVersions=[];
     data.listening.forEach((block,b)=>block.questions.forEach((q,i)=>{
-      q.options=[q.answers[0],...alternatives[id][b][i]];
+      // When every distractor carries an article or preposition, the shown answer does too.
+      const alts=alternatives[id][b][i],framed=/^(im|in|am|um|vor|der|die|das|den|dem|ein|eine|einen|Sie|Er)\s/;
+      const k=q.answers.findIndex(a=>framed.test(a));
+      if(k>0&&alts.every(a=>framed.test(a))&&!framed.test(q.answers[0]))q.answers.unshift(...q.answers.splice(k,1));
+      q.options=[q.answers[0],...alts];
     }));
   }
   const photoRule=content[16].listening[0].questions[0];
   photoRule.q='Quelle règle concernant les photos est annoncée ?';
   photoRule.answers=['Fotografieren ist verboten.'];
   photoRule.options[0]=photoRule.answers[0];
+  // The reason is what the helper says, not who is speaking (the voice alone would decide).
+  const glass=content[17].listening[0].questions[2];
+  glass.answers=['Das ist mein Glas.'];
+  glass.options[0]=glass.answers[0];
   // The answer is a count of siblings, not an amount of money.
   content[5].listening[0].questions[2].format='number';
   // The recording describes today, without specifying the morning.

@@ -128,8 +128,8 @@
   ]);
   rows('Verbes séparables','g6',[
     ['Ich stehe um sieben Uhr ___.','auf',['an','ein']],['Du stehst früh ___.','auf',['mit','ein']],['Wir stehen um acht Uhr ___.','auf',['an','mit']],
-    ['Ich kaufe heute ___.','ein',['auf','an'],'Je fais les courses aujourd’hui (einkaufen).'],['Du kaufst am Samstag ___.','ein',['mit','auf'],'Tu fais les courses samedi.'],['Wir kaufen morgen ___.','ein',['an','mit'],'Nous faisons les courses demain.'],
-    ['Der Zug kommt um zehn Uhr ___.','an',['auf','ein'],'Le train arrive à dix heures (ankommen).'],['Wann kommt der Bus ___?','an',['ein','auf'],'Quand le bus arrive-t-il (ankommen) ?'],['Wir kommen morgen ___.','an',['mit','auf'],'Nous arrivons demain.'],
+    ['Ich kaufe heute ___.','ein',['auf','an'],'Je fais les courses aujourd’hui.'],['Du kaufst am Samstag ___.','ein',['mit','auf'],'Tu fais les courses samedi.'],['Wir kaufen morgen ___.','ein',['an','mit'],'Nous faisons les courses demain.'],
+    ['Der Zug kommt um zehn Uhr ___.','an',['auf','ein'],'Le train arrive à dix heures.'],['Wann kommt der Bus ___?','an',['ein','auf'],'Quand le bus arrive-t-il ?'],['Wir kommen morgen ___.','an',['ein','auf'],'Nous arrivons demain.'],
     ['Ich bringe Wasser ___.','mit',['auf','an']],['Bringst du Brot ___?','mit',['an','auf']],['Bitte bringen Sie ein Buch ___.','mit',['ein','auf']]
   ]);
   rows('kein – nominatif et accusatif','g7',[
@@ -184,8 +184,8 @@
     if(exposed)Object.assign(exposed,{q:'Quel article défini : ___ Straße ?',o:['der','die','das'],a:1,audio:'die Straße'});
     const questions=sets.find(s=>s.id==='g4');
     const replacements={
-      'Comment demandes-tu le prix ?':{q:'Tu demandes combien coûte cet article.',o:['Wie viel kostet das?','Wie viel kostet der Mantel?','Wie viel kosten die Schuhe?'],a:0,audio:'Wie viel kostet das?'},
-      'Comment demandes-tu le lieu ?':{q:'Tu demandes où se trouve la gare.',o:['Wo ist der Bahnhof?','Wie komme ich zum Bahnhof?','Wann fährt der Zug am Bahnhof ab?'],a:0,audio:'Wo ist der Bahnhof?'},
+      'Comment demandes-tu le prix ?':{q:'Tu demandes combien coûte cet article.',o:['Wie viel kostet das?','Wo ist das?','Was ist das?'],a:0,audio:'Wie viel kostet das?',explanation:'Le prix se demande avec Wie viel kostet …? Wo ist das? demande le lieu, Was ist das? ce que c’est.'},
+      'Comment demandes-tu le lieu ?':{q:'Tu demandes où se trouve la gare.',o:['Wo ist der Bahnhof?','Wer ist am Bahnhof?','Wann fährt der Zug am Bahnhof ab?'],a:0,audio:'Wo ist der Bahnhof?',explanation:'Wo demande le lieu : Wo ist der Bahnhof? Wer demande une personne, Wann une heure.'},
       'Complète : ___ beginnt der Kurs?':{q:'« Quand commence le cours ? » — Complète : ___ beginnt der Kurs?',o:['Wann','Wo','Wie'],a:0,audio:'Wann beginnt der Kurs?'},
       'Complète : ___ heißen Sie?':{q:'« Comment vous appelez-vous ? » — Complète : ___ heißen Sie?',o:['Wie','Wo','Warum'],a:0,audio:'Wie heißen Sie?'},
       'Complète : ___ fahren Sie in Urlaub?':{q:'« Où allez-vous en vacances ? » — Complète : ___ fahren Sie in Urlaub?',o:['Wohin','Wann','Wie'],a:0,audio:'Wohin fahren Sie in Urlaub?'},

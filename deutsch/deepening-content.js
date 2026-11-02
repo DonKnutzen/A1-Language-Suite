@@ -65,12 +65,12 @@ window.DE_A1_STUDY_CONTENT = {
       "contrasts": {
         "Ich heiße Claire.": [
           [
-            "Ich heiße Paul.",
-            "Je m’appelle Paul."
+            "Sie heißt Claire.",
+            "Elle s’appelle Claire."
           ],
           [
-            "Ich heiße Anne.",
-            "Je m’appelle Anne."
+            "Heißen Sie Claire?",
+            "Vous vous appelez Claire ?"
           ]
         ],
         "Ich komme aus Kanada.": [
@@ -85,12 +85,12 @@ window.DE_A1_STUDY_CONTENT = {
         ],
         "Ich wohne in Halifax.": [
           [
-            "Ich wohne in Berlin.",
-            "J’habite à Berlin."
+            "Sie wohnt in Halifax.",
+            "Elle habite à Halifax."
           ],
           [
-            "Ich wohne in Paris.",
-            "J’habite à Paris."
+            "Wohnen Sie in Halifax?",
+            "Vous habitez à Halifax ?"
           ]
         ],
         "Ich spreche Französisch.": [
@@ -532,6 +532,16 @@ window.DE_A1_STUDY_CONTENT = {
         }
       ],
       "contrasts": {
+        "zweiunddreißig": [
+          [
+            "dreiundzwanzig",
+            "vingt-trois"
+          ],
+          [
+            "dreiunddreißig",
+            "trente-trois"
+          ]
+        ],
         "achtundzwanzig": [
           [
             "zweiundachtzig",
@@ -1118,8 +1128,8 @@ window.DE_A1_STUDY_CONTENT = {
       ],
       "extra": [
         [
-          "ledig / verheiratet / geschieden",
-          "célibataire / marié(e) / divorcé(e)"
+          "Ich bin ledig.",
+          "Je suis célibataire."
         ],
         [
           "Wir haben zwei Kinder.",
@@ -1157,14 +1167,14 @@ window.DE_A1_STUDY_CONTENT = {
         }
       ],
       "contrasts": {
-        "ledig / verheiratet / geschieden": [
+        "Ich bin ledig.": [
           [
-            "verheiratet / ledig / geschieden",
-            "marié(e) / célibataire / divorcé(e)"
+            "Ich bin verheiratet.",
+            "Je suis marié."
           ],
           [
-            "geschieden / verheiratet / ledig",
-            "divorcé(e) / marié(e) / célibataire"
+            "Ich bin geschieden.",
+            "Je suis divorcé."
           ]
         ]
       },
@@ -1885,15 +1895,15 @@ window.DE_A1_STUDY_CONTENT = {
         {
           "focus": "dreizehn",
           "wrong": [
-            "acht",
+            "dreißig",
             "drei"
           ]
         },
         {
           "focus": "achtzehn",
           "wrong": [
-            "acht",
-            "drei"
+            "achtzig",
+            "acht"
           ]
         }
       ],
@@ -1965,14 +1975,14 @@ window.DE_A1_STUDY_CONTENT = {
           "focus": "Büro",
           "wrong": [
             "Krankenhaus",
-            "Schule"
+            "Supermarkt"
           ]
         },
         {
           "focus": "Krankenhaus",
           "wrong": [
             "Büro",
-            "Schule"
+            "Supermarkt"
           ]
         },
         {
@@ -2713,14 +2723,14 @@ window.DE_A1_STUDY_CONTENT = {
         {
           "focus": "Kopfschmerzen",
           "wrong": [
-            "Fieber",
-            "Husten"
+            "Halsschmerzen",
+            "Fieber"
           ]
         },
         {
           "focus": "Halsschmerzen",
           "wrong": [
-            "Fieber",
+            "Kopfschmerzen",
             "Husten"
           ]
         }
@@ -2814,7 +2824,7 @@ window.DE_A1_STUDY_CONTENT = {
         {
           "focus": "am Dienstag",
           "wrong": [
-            "heute",
+            "am Montag",
             "morgen"
           ]
         }
@@ -3072,7 +3082,7 @@ window.DE_A1_STUDY_CONTENT = {
           "focus": "Fotografieren",
           "wrong": [
             "Rauchen",
-            "Parken"
+            "Schwimmen"
           ]
         },
         {
@@ -3253,7 +3263,7 @@ window.DE_A1_STUDY_CONTENT = {
           ],
           [
             "Können Sie ihm bitte helfen?",
-            "Pouvez-vous l’aider, s’il vous plaît (lui) ?"
+            "Pouvez-vous l’aider, lui, s’il vous plaît ?"
           ]
         ],
         "Kann ich das Fenster öffnen?": [
@@ -3866,7 +3876,7 @@ window.DE_A1_STUDY_CONTENT = {
         ],
         [
           "Heute ist es |sonnig|.",
-          "Aujourd’hui, il fait soleil."
+          "Aujourd’hui, il y a du soleil."
         ],
         [
           "Heute ist es |windig|.",
@@ -4503,8 +4513,8 @@ window.DE_A1_STUDY_CONTENT = {
           "prénom"
         ],
         [
-          "|Adresse|",
-          "adresse"
+          "|Unterschrift|",
+          "signature"
         ],
         [
           "|Geburtsdatum|",
@@ -4526,18 +4536,18 @@ window.DE_A1_STUDY_CONTENT = {
           "focus": "Familienname",
           "wrong": [
             "Vorname",
-            "Adresse"
+            "Unterschrift"
           ]
         },
         {
           "focus": "Vorname",
           "wrong": [
             "Familienname",
-            "Adresse"
+            "Unterschrift"
           ]
         },
         {
-          "focus": "Adresse",
+          "focus": "Unterschrift",
           "wrong": [
             "Familienname",
             "Vorname"

@@ -102,7 +102,7 @@ Sie ist nicht mehr verheiratet. Sie ist ___.|geschieden|ledig|verheiratet|Elle e
 Wir ___ zwei Kinder.|haben|habt|hat|Nous avons deux enfants.
 Paul Klein: Klein ist der ___.|Familienname|Vorname|Geburtsort|Indique le champ du nom Klein.
 Anna Klein: Anna ist der ___.|Vorname|Familienname|Familienstand|Indique le champ du prénom Anna.
-Der Geburtsort ist ___.|Berlin|17.04.2000|ledig|Le lieu de naissance est Berlin.
+Der Geburtsort ist ___.|Berlin|17.04.2000|ledig|Remplis le champ du lieu de naissance.
 #6.0
 Wir ___ gern zwei Suppen.|hätten|hätte|hättest|Nous voudrions deux soupes.
 Du ___ einen Tee.|möchtest|möchte|möchten|Tu voudrais un thé.
@@ -142,7 +142,7 @@ Die Wohnung ist im ___ Stock.|ersten|eins|erste|L’appartement est au premier �
 Wir suchen ___ Zimmer.|ein|eine|einen|Nous cherchons une chambre.
 Wir suchen ___ Wohnung.|eine|ein|einen|Nous cherchons un appartement.
 Wann ___ ich die Wohnung sehen?|kann|können|kannst|Quand puis-je visiter l’appartement ?
-Wie ___ ist die Miete?|hoch|viel|viele|Quel est le loyer ?
+Wie ___ ist die Miete?|hoch|viele|groß|Quel est le loyer ?
 Nebenkosten ___.|inklusive|frei|geschlossen|Les charges sont comprises.
 ___|Kann ich am Dienstag kommen?|Kann ich komme am Dienstag?|Kann am Dienstag ich kommen?|Pose une question neutre : Puis-je venir mardi ?
 #9.0
@@ -157,8 +157,8 @@ Ich fahre mit ___ Bus.|dem|der|den|Je prends le bus.
 Ich fahre mit ___ Bahn.|der|dem|den|Je prends le train.
 Der Zug hat ___.|Verspätung|Umstieg|Abfahrt|Le train a du retard.
 Sie müssen ___.|umsteigen|umsteigt|umsteigst|Vous devez changer de transport.
-Welches ___?|Gleis|Linie|Bahn|Demande sur quelle voie.
-Welche ___ fährt zum Bahnhof?|Linie|Gleis|Zug|Demande quelle ligne va à la gare.
+Welches ___?|Gleis|Auto|Zimmer|Demande sur quelle voie.
+Welche ___ fährt zum Bahnhof?|Linie|Haltestelle|Fahrkarte|Demande quelle ligne va à la gare.
 #10.0
 Ich arbeite ___ Verkäuferin.|als|im|um|Je travaille comme vendeuse.
 Er ___ Lehrer.|ist|hat|sind|Il est enseignant.
@@ -174,7 +174,7 @@ Ich komme ___ neun Uhr.|um|am|im|J’arrive à neuf heures.
 ___|Morgen komme ich später.|Morgen ich komme später.|Morgen kommen ich später.|Demain, j’arrive plus tard.
 Entschuldigung, ich ___ später.|komme|kommen|kommst|Excusez-moi, j’arrive plus tard.
 #11.0
-Ich lerne ___ sechs Monaten Deutsch.|seit|um|am|J’apprends l’allemand depuis six mois.
+Ich lerne ___ sechs Monaten Deutsch.|seit|vor|bis|J’apprends l’allemand depuis six mois.
 Der Kurs ist ___ Abend.|am|im|um|Le cours est le soir.
 Der Kurs ist ___ Wochenende.|am|im|um|Le cours est le week-end.
 ___ lange lernen Sie Deutsch?|Wie|Wo|Wer|Depuis combien de temps apprenez-vous l’allemand ?
@@ -218,9 +218,9 @@ ___|Um zehn Uhr fährt der Zug ab.|Um zehn Uhr der Zug fährt ab.|Um zehn Uhr f�
 #14.0
 Ich ___ krank.|bin|habe|ist|Je suis malade.
 Ich ___ Fieber.|habe|bin|ist|J’ai de la fièvre.
-Ich habe ___ gestern Husten.|seit|am|um|Je tousse depuis hier.
+Ich habe ___ gestern Husten.|seit|vor|bis|Je tousse depuis hier.
 Seit ___ Tagen bin ich krank.|zwei|zweite|zweiten|Je suis malade depuis deux jours.
-___ wann haben Sie Fieber?|Seit|Am|Um|Depuis quand avez-vous de la fièvre ?
+___ wann haben Sie Fieber?|Seit|Vor|Um|Depuis quand avez-vous de la fièvre ?
 Meine Schwester ___ müde.|ist|hat|bin|Ma sœur est fatiguée.
 #14.1
 Ich kann heute nicht ___.|kommen|komme|kommt|Je ne peux pas venir aujourd’hui.
@@ -265,7 +265,7 @@ Können Sie mir bitte ___ Buch geben?|das|den|die|Pouvez-vous me donner le livre
 Können Sie mir bitte ___ Tasche geben?|die|den|das|Pouvez-vous me donner le sac ?
 ___|Können Sie mir helfen?|Können Sie helfen mir?|Könnt Sie mir helfen?|Pose une question neutre : Pouvez-vous m’aider ?
 #17.1
-___.|Tut mir leid, das geht nicht|Tut mir leid, das geht gern|Tut mir leid, das geht natürlich|Choisis le refus poli.
+___.|Tut mir leid, das geht nicht|Ja, natürlich, das geht|Gern, hier bitte|Choisis le refus poli.
 Ja, ___.|natürlich|vielleicht|später|Choisis une acceptation nette.
 ___ einmal, bitte.|Noch|Nur|Nicht|Demande de répéter.
 Leider ___.|nicht|gern|natürlich|Refuse la demande.
@@ -296,7 +296,7 @@ Meine Beine ___ seit gestern weh.|tun|tut|tust|J’ai mal aux jambes depuis hier
 Ich brauche ___ Termin beim Arzt.|einen|ein|eine|J’ai besoin d’un rendez-vous chez le médecin.
 Wir brauchen ___ Apotheke.|eine|ein|einen|Nous avons besoin d’une pharmacie.
 Wo ist die ___ Apotheke?|nächste|nächsten|nächstes|Où est la pharmacie la plus proche ?
-Ich habe ___ gestern Kopfschmerzen.|seit|am|um|J’ai mal à la tête depuis hier.
+Ich habe ___ gestern Kopfschmerzen.|seit|vor|bis|J’ai mal à la tête depuis hier.
 ___ Sie diese Tabletten.|Nehmen|Nimmt|Nehmt|Prenez ces comprimés.
 ___|Seit gestern habe ich Kopfschmerzen.|Seit gestern ich habe Kopfschmerzen.|Seit gestern haben ich Kopfschmerzen.|Depuis hier, j’ai mal à la tête.
 #20.0
@@ -328,7 +328,7 @@ Wir treffen ___ vor dem Museum.|uns|mir|dir|Nous nous retrouvons devant le musé
 Treffen wir uns ___ neunzehn Uhr?|um|am|im|On se retrouve à dix-neuf heures ?
 ___|Wollen wir ins Kino gehen?|Wollen wir gehen ins Kino?|Wollt wir ins Kino gehen?|Pose une question neutre : On va au cinéma ?
 #22.0
-Ich rufe Sie morgen ___.|zurück|an|mit|Je vous rappelle demain : zurückrufen.
+Ich rufe Sie morgen ___.|zurück|ab|später|Je vous rappelle demain.
 Können Sie mich ___?|zurückrufen|rufen zurück|zurückruft|Pouvez-vous me rappeler ?
 Bitte rufen Sie ___ zurück.|mich|mir|mein|Rappelez-moi, s’il vous plaît.
 Mein Handy ___ kaputt.|ist|hat|sind|Mon téléphone est cassé.
@@ -504,7 +504,7 @@ G|Gehen ___ bitte nach rechts.|Sie|Adresse-toi poliment à une personne.|impéra
 G|Wie komme ich ___ Bahnhof?|zum|Demande comment aller à la gare.|destination-masculin
 G|Wir fahren mit ___ Bahn.|der|Nous prenons le train.|datif-féminin
 G|Anna fährt mit ___ Bus.|dem|Anna prend le bus.|datif-masculin
-G|Nehmen Sie die Linie ___.|achtzehn|Indique la ligne 18 en lettres.|nombre
+G|Zum Krankenhaus fährt die Linie ___.|achtzehn|Indique la ligne 18 en lettres.|nombre
 G|Sie müssen am Bahnhof ___.|umsteigen|Vous devez changer à la gare.|modal-infinitif
 G|Gehen Sie zuerst geradeaus und ___ nach links.|dann|Allez d’abord tout droit, ensuite à gauche.|enchaînement
 G|Welches ___ hat der Zug?|Gleis|Demande sur quelle voie est le train.|question-voie
@@ -594,7 +594,7 @@ G|Die Party ist morgen ___ mir.|bei|La fête est chez moi demain.|lieu
 G|Ich feiere ___ Donnerstag Geburtstag.|am|Je fête mon anniversaire jeudi.|jour
 G|Die Party beginnt ___ neunzehn Uhr.|um|La fête commence à dix-neuf heures.|heure
 G|Danke ___ deine Einladung.|für|Merci pour ton invitation.|remerciement
-G|Ich bringe Brot ___.|mit|J’apporte du pain : mitbringen.|séparable
+G|Bringst du bitte Brot ___?|mit|Demande à un ami d’apporter du pain : mitbringen.|séparable
 G|Ich ___ leider arbeiten.|muss|Je dois malheureusement travailler.|müssen
 G|___ du einen Salat mitbringen?|Kannst|Peux-tu apporter une salade ?|können
 G|Lieber Paul, viele ___!|Grüße|Cher Paul, amitiés !|formule-finale
@@ -646,7 +646,7 @@ G|Bitte ___ Sie die Aufgabe.|lesen|Lisez la consigne, s’il vous plaît.|consig
 #19
 C|« Meine Arme tun weh, mein Rücken tut nicht weh. » Où la personne a-t-elle mal ?|Die Arme.|Der Rücken.|Der Bauch.|douleur-lecture
 C|Choisis la phrase correcte pour plusieurs jambes.|Meine Beine tun weh.|Meine Beine tut weh.|Meine Beine tust weh.|pluriel-tun
-C|« Seit gestern habe ich Kopfschmerzen. » Depuis quand a-t-elle mal ?|Seit gestern.|Seit heute.|Seit morgen.|durée
+C|« Seit gestern habe ich Kopfschmerzen. » Depuis quand a-t-elle mal ?|Seit gestern.|Seit heute.|Seit drei Tagen.|durée
 C|Tu cherches la pharmacie la plus proche.|Wo ist die nächste Apotheke?|Wann ist die nächste Apotheke?|Woher ist die nächste Apotheke?|localiser
 C|Une personne dit « Nehmen Sie diese Tabletten. » Que demande-t-elle ?|De prendre ces comprimés.|De chercher un rendez-vous.|De décrire la durée.|consigne
 C|Demande un rendez-vous chez le médecin.|Ich brauche einen Termin beim Arzt.|Ich brauche ein Termin beim Arzt.|Ich brauche einen Termin zum Arzt.|demande
@@ -850,62 +850,153 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     '24:opposition':'Ich komme gern, aber erst um acht.'
   };
   const CHECK_RATIONALES=  {
+    "1:0": "Ich komme aus Kanada répond à la question d’origine Woher kommen Sie? Wo wohnen Sie? demande le domicile, Welche Sprachen sprechen Sie? les langues.",
+    "1:1": "Ich wohne in Berlin donne le domicile ; aus Kanada donne seulement l’origine. Halifax n’apparaît pas dans la phrase.",
+    "1:2": "Avec Sie de politesse, le verbe prend -en : Wie heißen Sie? Wie heißt Sie? mélange la forme de er/sie et Sie ; Wie heißen du? met du avec la forme de Sie.",
     "1:3": "Im Text steht « Ich spreche Deutsch und Französisch » : Anna parle allemand et français, donc deux langues. Rien ne dit qu’elle habite en France.",
     "1:4": "Guten Morgen est la salutation du matin. Guten Abend s’utilise le soir ; Auf Wiedersehen sert à dire au revoir.",
+    "1:5": "Avec wir, le verbe prend -en : wir kommen. kommt va avec er/sie/es ou ihr, kommst avec du.",
+    "1:12": "Anna et Paul = sie (pluriel) avec sind. Sie ist parle d’une seule personne ; ihr seid s’adresse directement à plusieurs proches.",
+    "2:0": "buchstabieren = épeler lettre par lettre. wiederholen veut dire répéter, schreiben écrire : ni l’un ni l’autre ne demande les lettres.",
     "2:1": "Müller contient un u avec tréma, écrit ü. Muller n’a pas d’Umlaut ; Mülller contient un l en trop.",
+    "2:2": "Eszett est la lettre ß : Weiß. Weiss remplace ß par ss, ce qui n’est pas l’orthographe annoncée ; Weis n’a qu’un s.",
     "2:3": "Bitte noch einmal signifie « Encore une fois, s’il vous plaît ». C’est la formule utilisée pour demander une répétition.",
+    "2:4": "Avec ihr, können devient könnt et le deuxième verbe reste à l’infinitif à la fin : schreiben. Ihr können prend la forme de wir ; schreibt n’est pas un infinitif.",
+    "2:5": "Elle = sie, donc la même forme que pour Anna : sie kann. können va avec wir, sie (pluriel) ou Sie de politesse ; könnt avec ihr.",
+    "3:0": "dreißig = 30 avec -ßig ; dreizehn = 13 avec -zehn. La phrase corrige justement 13 en 30. 33 serait dreiunddreißig.",
+    "3:1": "En allemand, l’unité vient avant la dizaine : zwei-und-achtzig = deux et quatre-vingts = 82. 28 serait achtundzwanzig, 22 zweiundzwanzig.",
     "3:2": "Geburtsort signifie lieu de naissance : on attend une ville, ici Halifax, et non une date ou un code postal.",
+    "3:3": "Geburtsdatum = date de naissance : il faut une date, 17.04.2000. Berlin irait dans Geburtsort, 030 555 1840 dans Telefonnummer.",
     "3:4": "Les chiffres sont null (0), drei (3), null (0), eins (1), acht (8). Dans cet ordre, on obtient 03018.",
+    "3:5": "Dans une adresse allemande, les cinq chiffres avant la ville sont la Postleitzahl, le code postal. La Hausnummer suit le nom de la rue ; une Telefonnummer n’est pas devant la ville.",
+    "4:0": "halb neun = la demie avant neuf heures, donc 8 h 30. 09:30 serait halb zehn, 08:15 Viertel nach acht.",
+    "4:1": "Viertel vor elf = un quart d’heure avant onze heures, donc 10 h 45. 11:15 serait Viertel nach elf ; 11:45 Viertel vor zwölf.",
+    "4:2": "La confirmation reprend le jour et l’heure : am Dienstag um zehn Uhr. elf Uhr change l’heure, Donnerstag change le jour.",
     "4:3": "Samstag = samedi et Sonntag = dimanche. Ce sont les deux jours du week-end.",
     "4:4": "On emploie am devant une date précise, puis le jour sous sa forme ordinale : am siebzehnten April.",
     "4:5": "Vom ersten bis zum dritten August signifie du 1er au 3 août. Le mois et les deux bornes doivent correspondre.",
+    "4:6": "Heute ist Mittwoch, donc morgen (demain) est jeudi : am Donnerstag. Dienstag était hier ; Mittwoch est aujourd’hui.",
     "4:7": "Le septième mois est Juli (juillet). Juni est le sixième mois, Januar le premier.",
+    "5:0": "Le texte dit Anna ist meine Schwester : Anna est la sœur. Mutter (mère) et Tochter (fille) ne sont pas mentionnées ; Paul est le père.",
     "5:1": "Ein Sohn = un fils, eine Tochter = une fille. Cela fait zwei Kinder, deux enfants.",
+    "5:2": "Mutter est féminin : au nominatif, le possessif prend -e, meine Mutter. mein va avec un nom masculin ou neutre ; meinen est l’accusatif masculin.",
+    "5:3": "Après haben, le complément est à l’accusatif. Bruder est masculin : mein devient meinen. mein Bruder est le nominatif ; meine Bruder ne correspond pas au masculin.",
     "5:4": "Familienname signifie nom de famille. Dans Anna Klein, Anna est le prénom et Klein le nom de famille.",
     "5:5": "Familienstand est l’état civil ; verheiratet signifie marié(e), et non célibataire ou divorcé(e).",
+    "5:14": "Votre mère à toi et à ton frère = notre mère : unser. Mutter est féminin, donc unsere au nominatif. unser va avec un nom masculin ou neutre ; unseren est l’accusatif masculin.",
+    "6:0": "Suppe est féminin : eine Suppe ; Wasser est neutre : ein Wasser. Ein Suppe et eine Wasser inversent les genres ; einen n’existe qu’au masculin accusatif.",
+    "6:1": "ohne Fleisch = sans viande. mit Fleisch dit le contraire ; Eine Suppe commande une soupe au lieu d’une salade.",
+    "6:2": "Die Speisekarte est le menu, la carte. Die Rechnung est l’addition à la fin ; Noch ein Wasser commande une autre eau.",
+    "6:3": "bezahlen = payer. bestellen veut dire commander, frühstücken prendre le petit-déjeuner.",
     "6:4": "Mit Zucker signifie avec sucre et ohne Milch sans lait. La commande est donc un thé sucré sans lait.",
+    "6:5": "Avec wir, la forme est hätten ; gern suit directement le verbe : Wir hätten gern zwei Kaffees. hätte va avec ich ou er/sie ; zwei gern Kaffees sépare le nombre de son nom.",
     "7:0": "Ein Brot kostet drei Euro : le pain coûte à lui seul trois euros. Le prix des pommes n’est pas à ajouter.",
+    "7:1": "Die Schuhe est un pluriel : le verbe prend la forme plurielle kosten. kostet va avec un seul objet ; wie viele s’emploie devant un nom au pluriel, pas pour un prix.",
+    "7:2": "Pour un prix, on lit les euros puis les centimes : 19,95 = neunzehn Euro fünfundneunzig. neunundfünfzig serait 59 centimes ; Neunzig Euro fünfzehn inverse les chiffres.",
     "7:3": "Größe vierzig ist zu klein et la demande porte ensuite sur zweiundvierzig (42) : la personne veut une taille plus grande.",
+    "7:4": "Die Kasse (la caisse) est im ersten Stock. Le deuxième étage concerne les chaussures ; le troisième n’est pas mentionné.",
+    "7:5": "Ich nehme das = je le prends : on décide d’acheter. Ich suche das signifie je le cherche ; Ich habe das nicht dit qu’on ne l’a pas.",
     "8:0": "Drei Zimmer indique trois pièces ; kein Balkon signifie qu’il n’y a pas de balcon. Küche et Bad sont mentionnés séparément.",
     "8:1": "Pour une annonce de logement, Wohnung frei signifie qu’un appartement est disponible. Frei n’indique pas ici un prix nul.",
     "8:2": "Miete 600 Euro indique le loyer. Nebenkosten inklusive signifie que les charges sont comprises.",
+    "8:3": "Dans une question avec Wann, le verbe conjugué kann vient en deuxième position et sehen reste à l’infinitif à la fin. sieht n’est pas un infinitif ; Wann ich kann place le sujet avant le verbe.",
+    "8:4": "Haus est neutre : à l’accusatif après suchen, l’article reste ein, ein Haus. einen ne s’emploie qu’au masculin ; eine au féminin.",
+    "8:5": "Le rendez-vous est am Dienstag um elf Uhr : mardi, 11 heures. 10 Uhr change l’heure ; Donnerstag (jeudi) change le jour.",
     "9:0": "Zuerst = d’abord, geradeaus = tout droit, dann = ensuite, rechts = à droite. L’ordre des étapes est essentiel.",
+    "9:1": "Post est féminin : zu + der = zur Post. zum s’emploie devant un nom masculin ou neutre ; sans zu, die Post ne dit pas où l’on va.",
+    "9:2": "La phrase associe Linie 13 au Bahnhof (la gare) et Linie 18 à la Post. Linie drei (3) n’est pas mentionnée.",
     "9:3": "Gleis signifie voie ou quai ferroviaire ; Gleis drei indique la voie 3, et non une heure.",
     "9:4": "Umsteigen signifie changer de train ou de correspondance. Am Bahnhof précise que cela se fait à la gare.",
     "9:5": "Verspätung signifie retard. Dix minutes sont annoncées ; le train n’est pas déclaré annulé.",
     "10:0": "Lehrer signifie professeur/enseignant, et Schule signifie école. Verkäufer et Arzt désignent d’autres métiers.",
+    "10:1": "von neun bis siebzehn Uhr : le travail commence à 9 h et finit à 17 h, um siebzehn Uhr. neun Uhr est le début ; acht Uhr n’est pas mentionné.",
+    "10:2": "Après Morgen en première position, le verbe conjugué reste en deuxième position et le sujet le suit : Morgen komme ich. Morgen ich komme place le verbe en troisième position ; kommen ne va pas avec ich.",
     "10:3": "Heute habe ich frei indique que la personne ne travaille pas aujourd’hui ; morgen arbeite ich dit qu’elle travaille demain.",
+    "10:4": "Pour un métier, on dit arbeiten als + métier sans article : als Verkäuferin. im et am indiquent un lieu ou un moment, pas une profession.",
+    "10:5": "um neun, nicht um acht : l’heure confirmée est 9 h, 09:00. 08:00 est justement corrigé ; 19:00 serait neunzehn Uhr.",
     "11:0": "Vormittag est la matinée, tandis que Nachmittag est l’après-midi. Le cours a lieu am Vormittag.",
     "11:1": "Seit + durée indique une situation commencée dans le passé qui se poursuit : l’apprentissage dure depuis six mois.",
+    "11:2": "Was bedeutet dieses Wort? demande le sens d’un mot. buchstabieren (épeler) et wiederholen (répéter) ne donnent pas la signification.",
+    "11:3": "Après le modal können, le deuxième verbe est à l’infinitif à la fin : wiederholen. wiederholt et wiederholst sont des formes conjuguées.",
     "11:4": "Ich lese ein Buch vient avant und mache dann die Hausaufgaben. Dann marque l’action suivante : les devoirs.",
+    "11:5": "Heute occupe la première position : le verbe conjugué mache suit directement, puis le sujet ich. Heute ich mache met le verbe en troisième position ; machen ne va pas avec ich.",
+    "12:0": "nicht gern Tennis : la personne n’aime pas le tennis ; aber ich schwimme gern : elle aime nager, Schwimmen. Fußball n’est pas mentionné.",
     "12:1": "Lieber marque une préférence : Ich gehe lieber ins Kino = je préfère aller au cinéma.",
+    "12:2": "Samstag kann ich nicht : pas samedi. Sonntag habe ich Zeit : elle est libre dimanche, am Sonntag. Montag n’est pas mentionné.",
+    "12:3": "Wollen wir + infinitif à la fin propose une activité : Wollen wir Tennis spielen? Dans Wollen wir spielen Tennis, l’infinitif n’est pas à la fin ; wollt va avec ihr.",
+    "12:4": "Am Freitag occupe la première position, donc le verbe spiele vient en deuxième position avant ich. Am Freitag ich spiele met le verbe en troisième position ; spielen ne va pas avec ich.",
+    "12:5": "Le rendez-vous est Sonntag um zehn Uhr im Kino : dimanche, 10 h, cinéma. Samstag change le jour, 11 Uhr change l’heure.",
     "13:0": "Doppelzimmer = chambre double, für zwei Personen = pour deux personnes, drei Nächte = trois nuits : une seule réservation comporte ces trois détails.",
     "13:1": "Du 2 au 4 août, les nuits passées sur place sont celles du 2 et du 3 : zwei Nächte.",
+    "13:2": "Abfahrt = départ, Ankunft = arrivée. Le départ est donc 08:00 ; 10:00 est l’arrivée, et 02:00 correspond à la durée du trajet, pas à une heure.",
     "13:3": "Ankommen est arriver ; kommt ... an est le verbe séparable conjugué. Um elf Uhr indique 11 heures.",
+    "13:4": "inklusive = compris : Ist das Frühstück inklusive? Wie viel kostet das Frühstück? demande le prix ; Wann beginnt das Frühstück? demande l’heure.",
+    "13:5": "Avec un verbe séparable, la partie conjuguée fährt est en deuxième position et la particule ab va à la fin : Um acht Uhr fährt der Zug ab. Les autres phrases déplacent le verbe ou ne séparent pas abfahren.",
+    "14:0": "seit Montag = depuis lundi ; Heute ist Dienstag sert seulement de repère. Seit Dienstag commencerait aujourd’hui ; Mittwoch n’est pas encore arrivé.",
     "14:1": "Müde = fatigué(e) et Husten = toux. Il n’est question ni de fièvre ni de mal de tête.",
+    "14:2": "Pour un état, on emploie sein : Ich bin krank. haben s’emploie avec un nom comme Fieber ; sind va avec wir, sie ou Sie.",
+    "14:3": "Après kann, le deuxième verbe kommen est à l’infinitif à la fin. komme est une forme conjuguée ; dans Ich heute kann, le verbe conjugué n’est plus en deuxième position.",
     "14:4": "Brauche = avoir besoin de ; Termin beim Arzt = rendez-vous chez le médecin ; morgen = demain.",
     "14:5": "Gute Besserung ! est une formule pour souhaiter un bon rétablissement, pas un bon repas ou un bon voyage.",
     "15:0": "Am Freitag = vendredi ; um neunzehn Uhr = 19 h ; bei mir = chez moi. Les trois informations doivent être conservées.",
+    "15:1": "ich komme gern = je viens volontiers : c’est une acceptation claire. ich kann nicht kommen refuse ; vielleicht später (peut-être plus tard) ne répond pas clairement.",
+    "15:2": "Leider kann ich nicht kommen refuse poliment, Ich muss arbeiten donne la raison. La deuxième phrase dit le contraire ; dans la troisième, arbeite n’est pas un infinitif et les verbes sont inversés.",
+    "15:3": "Après kann, le verbe séparable reste entier à l’infinitif à la fin : mitbringen. bringe mit et mitbringt sont des formes conjuguées.",
+    "15:4": "Anna bringt einen Kuchen mit : Anna apporte un gâteau. Wasser est ce qu’apporte ich ; une salade n’est pas mentionnée.",
+    "15:5": "À un ami, on dit du ; avec du, können devient kannst : Kannst du am Freitag kommen? Können du mélange la forme de wir/Sie avec du ; Kannst Sie mélange du et Sie.",
     "16:0": "Nur für Kunden signifie « réservé aux clients ». Nur exprime ici la restriction : seules ces personnes peuvent stationner.",
+    "16:1": "verboten = interdit, erlaubt = autorisé : Essen erlaubt, donc manger est permis. Fotografieren est verboten ; Rauchen n’est pas mentionné.",
+    "16:2": "Lundi c’est geschlossen (fermé). Mardi, c’est ouvert ab 10 Uhr, à partir de 10 h : 11 h convient. 9 h est trop tôt ; lundi est fermé.",
+    "16:3": "von 9 bis 18 Uhr : ouverture à 9 h, fermeture à 18 h. 9 Uhr est l’ouverture ; 19 Uhr n’est pas indiqué.",
     "16:4": "Der Zug fällt aus veut dire que le train est supprimé/annulé. Verspätung désigne seulement un retard.",
+    "16:5": "Devant un nom avec article indéfini, on nie avec kein. Eingang est masculin : kein Eingang. nicht ne remplace pas l’article ; keine est la forme féminine ou plurielle.",
+    "17:0": "Pour demander la permission : Kann ich … + infinitif à la fin. Können ne va pas avec ich ; öffne n’est pas un infinitif.",
+    "17:1": "geben demande un datif pour la personne : mir (à moi), puis geben à l’infinitif à la fin. mich est l’accusatif ; gibt est une forme conjuguée.",
     "17:2": "Tut mir leid signale un regret, et das geht nicht signifie « ce n’est pas possible » : c’est un refus.",
     "17:3": "Einen Moment, bitte signifie « Un instant, s’il vous plaît » : on demande de patienter.",
     "17:4": "Noch einmal, bitte signifie « Encore une fois, s’il vous plaît ». C’est une demande de répétition.",
     "17:5": "Ja, natürlich signifie « Oui, bien sûr » ; Hier, bitte accompagne la remise d’un objet. Les autres options expriment une hésitation ou un refus.",
     "18:0": "Kreuzen ... an est un verbe séparable signifiant cocher ; die richtige Antwort est la bonne réponse.",
     "18:1": "Zweimal signifie deux fois. Le dialogue sera donc diffusé à deux reprises.",
+    "18:2": "zum Schluss = pour finir : la dernière action est Schreiben. Lesen vient zuerst (d’abord), Hören dann (ensuite).",
+    "18:3": "La consigne polie se forme avec l’infinitif suivi de Sie : Schreiben Sie bitte … Schreibt Sie mélange la forme de ihr et Sie ; dans la troisième phrase, Sie est rejeté à la fin.",
+    "18:4": "Danach occupe la première position, donc le verbe prüfe vient juste après, puis ich. Danach ich prüfe met le verbe en troisième position ; prüfen ne va pas avec ich.",
     "18:5": "Un message complet comporte une formule d’appel, une réponse à chacun des trois points demandés et une formule de fin.",
+    "19:0": "Meine Arme tun weh : les bras font mal. mein Rücken tut nicht weh : le dos ne fait pas mal. Der Bauch n’est pas mentionné.",
+    "19:1": "Beine est un pluriel : tun weh. tut va avec un seul élément (mein Kopf tut weh) ; tust va avec du.",
+    "19:2": "Seit gestern = depuis hier, et la douleur continue. Seit heute dirait depuis aujourd’hui ; drei Tage ne sont pas mentionnés.",
+    "19:3": "Wo demande le lieu : Wo ist die nächste Apotheke? Wann demande le moment, Woher l’origine.",
     "19:4": "Nehmen Sie diese Tabletten est une consigne polie : « Prenez ces comprimés ». Nehmen est l’impératif de politesse.",
+    "19:5": "Termin est masculin : après brauchen, einen Termin (accusatif). Chez le médecin = beim Arzt ; zum Arzt indique la direction (aller chez le médecin).",
     "20:0": "Heute regnet es décrit aujourd’hui ; Morgen ist es sonnig décrit demain. La prévision est donc ensoleillée.",
     "20:1": "Kalt signifie froid et windig signifie venteux. Les deux adjectifs décrivent le temps.",
+    "20:2": "mitnehmen est séparable : nehme en deuxième position, mit à la fin. Ich mitnehme ne sépare pas le verbe ; annehmen (an) veut dire accepter.",
     "20:3": "Dans une phrase déclarative allemande, le verbe conjugué est en deuxième position : Heute schneit es.",
+    "20:4": "Jacke est féminin : à l’accusatif, l’article reste eine. einen est masculin ; ein va avec un nom neutre.",
+    "20:5": "Im Winter = en hiver. Sommer est l’été, Frühling le printemps : ils ne sont pas dans la phrase.",
+    "21:0": "lieber = plutôt, de préférence : la personne lit volontiers, mais préfère écouter de la musique, Musik hören. Le tennis n’est pas mentionné.",
+    "21:1": "Treffen wir uns um 18 Uhr? fixe le rendez-vous à 18 h. 19 Uhr est le début du concert ; 20 Uhr n’est pas mentionné.",
+    "21:2": "Eintritt = l’entrée : 13 Euro, dreizehn Euro. 20 est l’heure du début (Beginn) ; dreißig serait 30.",
+    "21:3": "Avec gehen, la direction se dit ins Museum (in + das, accusatif) et l’infinitif gehen va à la fin. im Museum indique où l’on est ; geht n’est pas un infinitif.",
+    "21:4": "lesen change de voyelle avec du : du liest. lest va avec ihr ; lese avec ich.",
+    "21:5": "vor dem Kino, nicht vor dem Museum : le rendez-vous est devant le cinéma. Le musée est justement exclu ; im Museum serait à l’intérieur.",
     "22:0": "Hallo, hier ist Paul permet d’identifier la personne au téléphone : c’est Paul qui demande à être rappelé.",
     "22:1": "Heute kann ich nicht s’oppose à Ich rufe Sie morgen zurück : le rappel se fera demain.",
+    "22:2": "zurückrufen est séparable : rufe en deuxième position, zurück à la fin. Ich zurückrufe ne sépare pas le verbe ; dans la troisième phrase, zurück n’est pas à la fin.",
+    "22:3": "À Madame Klein, on dit Sie ; après schicken, la personne est au datif : Ihnen. dir est le datif de du, trop familier ici ; du n’est pas un datif.",
+    "22:4": "La confirmation reprend les trois informations : morgen, um elf, vor der Bibliothek. heute change le jour, zehn change l’heure.",
+    "22:5": "Pour un état, on emploie sein : Mein Handy ist kaputt. haben ne s’emploie pas avec kaputt ; sind est un pluriel.",
+    "23:0": "Wo demande le lieu : Wo bekomme ich eine Briefmarke? Wann demande le moment ; Woher komme ich mit einer Briefmarke? n’a pas de sens.",
     "23:1": "Unterschreiben signifie signer ; hier précise l’endroit où apposer sa signature.",
     "23:2": "Geboren in Bonn donne le lieu de naissance ; wohnt in Berlin donne le domicile. Geburtsort demande Bonn.",
     "23:3": "Familienname est le nom de famille : Paul est le prénom, Weber le nom. Hauptstraße est la rue.",
+    "23:4": "Après möchte, le verbe séparable reste entier à l’infinitif à la fin : anmelden. melde an et anmeldet sont des formes conjuguées.",
+    "23:5": "von 9 bis 17 Uhr : ouvert de 9 h à 17 h, donc 16 h convient. À 8 h, ce n’est pas encore ouvert ; à 18 h, c’est déjà fermé.",
     "24:0": "Ich komme aus Kanada donne le pays d’origine ; wohne jetzt in Bonn donne le domicile actuel.",
     "24:1": "Ich komme gern exprime l’acceptation ; aber erst um acht précise que la personne arrivera seulement à huit heures.",
+    "24:2": "Après können, sagen est à l’infinitif à la fin de la question. sagt et sagst sont des formes conjuguées.",
+    "24:3": "Le premier texte remercie, confirme vendredi à 19 h et demande pour le pain. Le deuxième oublie la question ; le troisième indique Samstag au lieu de vendredi.",
+    "24:4": "und relie deux informations sans opposition. aber marque une opposition ; oder propose un choix.",
     "24:5": "Viele Grüße est une formule de fin amicale. Sehr geehrte Frau Klein et Liebe Anna servent plutôt à commencer un message."
   };
   function checkTasks(id){
