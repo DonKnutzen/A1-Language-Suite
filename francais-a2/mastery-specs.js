@@ -1494,12 +1494,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Je ne ___ réponds pas. (à Marc)",
+        "prompt": "Je ne ___ ai pas encore répondu. (à Marc)",
         "answer": "lui",
         "accept": [],
-        "context": "Ich antworte Marc nicht. Setze das Pronomen ein.",
-        "explanation": "Je ne lui réponds pas.",
-        "audio": "Je ne lui réponds pas.",
+        "context": "Du hast Marc noch nicht geantwortet. Setze das Pronomen ein.",
+        "explanation": "Je ne lui ai pas encore répondu.",
+        "audio": "Je ne lui ai pas encore répondu.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -5004,12 +5004,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Je voudrais ___ rendez-vous. (vereinbaren)",
+        "prompt": "Je dois ___ rendez-vous chez le dentiste. (vereinbaren)",
         "answer": "prendre",
         "accept": [],
-        "context": "Du möchtest einen Termin vereinbaren.",
-        "explanation": "Je voudrais prendre rendez-vous.",
-        "audio": "Je voudrais prendre rendez-vous.",
+        "context": "Du musst einen Termin beim Zahnarzt vereinbaren.",
+        "explanation": "Je dois prendre rendez-vous chez le dentiste.",
+        "audio": "Je dois prendre rendez-vous chez le dentiste.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -6955,16 +6955,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Ce sont ___ plages les plus belles.",
+        "prompt": "Ce sont des plages magnifiques : ___ plus belles de Bretagne.",
         "answer": "les",
         "o": [
           "les",
           "la",
           "des"
         ],
-        "context": "Das sind die schönsten Strände.",
+        "context": "Das sind herrliche Strände: die schönsten der Bretagne.",
         "tag": "Superlativ",
-        "explanation": "Ce sont les plages les plus belles. = Das sind die schönsten Strände."
+        "explanation": "Superlativ im Plural: les plus belles. Des ist kein bestimmter Artikel, la ist Singular."
       },
       {
         "type": "gap",
@@ -6987,12 +6987,12 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "de",
         "o": [
           "de",
-          "en",
+          "dans",
           "à"
         ],
         "context": "Das ist der höchste Gipfel Frankreichs.",
         "tag": "Superlativ",
-        "explanation": "C’est le plus haut sommet de France. = Das ist der höchste Gipfel Frankreichs."
+        "explanation": "Nach dem Superlativ steht de für den Bereich: le plus haut sommet de France."
       },
       {
         "type": "gap",
@@ -7129,10 +7129,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "« Le site est parfait pour l’escalade. »",
           "« Le site est parfait pour la baignade. »",
-          "« Le site est parfait pour les enfants qui dorment. »"
+          "« Le site est parfait pour la randonnée. »"
         ],
         "answer": "« Le site est parfait pour l’escalade. »",
-        "explanation": "L’escalade = das Klettern.",
+        "explanation": "L’escalade = das Klettern; la baignade = das Baden, la randonnée = das Wandern.",
         "tag": "Anwenden",
         "family": "sport",
         "checkKey": "A2L19-context-sport"
@@ -7362,7 +7362,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Bof, je n’ai pas très ___ .",
+        "prompt": "Bof, je n’ai pas très ___.",
         "answer": "envie",
         "o": [
           "envie",
@@ -7371,7 +7371,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Na ja, ich habe nicht so große Lust.",
         "tag": "Ablehnung",
-        "explanation": "Bof, je n’ai pas très envie . = Na ja, ich habe nicht so große Lust."
+        "explanation": "Bof, je n’ai pas très envie. = Na ja, ich habe nicht so große Lust."
       },
       {
         "type": "gap",
@@ -7432,7 +7432,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "D’accord, on fait comme ___ .",
+        "prompt": "D’accord, on fait comme ___.",
         "answer": "ça",
         "o": [
           "ça",
@@ -7441,7 +7441,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Einverstanden, so machen wir es.",
         "tag": "Einigung",
-        "explanation": "D’accord, on fait comme ça . = Einverstanden, so machen wir es."
+        "explanation": "D’accord, on fait comme ça. = Einverstanden, so machen wir es."
       }
     ],
     "checkTasks": [
@@ -7451,10 +7451,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Je préfère faire une sortie à la campagne, parce qu’il fera beau.",
           "Je préfère faire les magasins, parce qu’il fera beau.",
-          "Je ne préfère pas, parce que."
+          "Je préfère faire une sortie à la campagne, donc il fera beau."
         ],
         "answer": "Je préfère faire une sortie à la campagne, parce qu’il fera beau.",
-        "explanation": "Du nennst eine Alternative und begründest sie.",
+        "explanation": "Du nennst eine Alternative und begründest sie mit parce que. Donc leitet eine Folge ein, keinen Grund.",
         "tag": "Anwenden",
         "family": "alternative",
         "checkKey": "A2L20-context-alternative",
@@ -7662,12 +7662,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Bof, ça ne me dit ___ .",
+        "prompt": "Bof, ça ne me dit ___.",
         "answer": "rien",
         "accept": [],
         "context": "Du hast keine Lust.",
-        "explanation": "Bof, ça ne me dit rien .",
-        "audio": "Bof, ça ne me dit rien .",
+        "explanation": "Bof, ça ne me dit rien.",
+        "audio": "Bof, ça ne me dit rien.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -7735,11 +7735,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Ayez",
           "Avez",
-          "Aie"
+          "Avoir"
         ],
         "context": "Haben Sie immer ein Notizbuch dabei.",
         "tag": "Imperativ",
-        "explanation": "Avoir → ayez."
+        "explanation": "Imperativ von avoir mit vous: ayez. Avez ist Präsens."
       },
       {
         "type": "gap",
@@ -7800,7 +7800,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "On peut habiter dans une famille d’___ .",
+        "prompt": "On peut habiter dans une famille d’___.",
         "answer": "accueil",
         "o": [
           "accueil",
@@ -7809,7 +7809,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Man kann bei einer Gastfamilie wohnen.",
         "tag": "Kurs",
-        "explanation": "On peut habiter dans une famille d’accueil . = Man kann bei einer Gastfamilie wohnen."
+        "explanation": "On peut habiter dans une famille d’accueil. = Man kann bei einer Gastfamilie wohnen."
       },
       {
         "type": "gap",
@@ -8170,12 +8170,12 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "parce que",
         "o": [
           "parce que",
-          "pour",
+          "pourtant",
           "donc"
         ],
         "context": "Ich schreibe dir, weil ich eine Frage habe.",
         "tag": "Grund",
-        "explanation": "Je t’écris parce que j’ai une question. = Ich schreibe dir, weil ich eine Frage habe."
+        "explanation": "Parce que nennt den Grund; donc nennt eine Folge, pourtant einen Gegensatz."
       },
       {
         "type": "gap",
@@ -8194,7 +8194,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Je t’___ , Laura",
+        "prompt": "Je t’___, Laura",
         "answer": "embrasse",
         "o": [
           "embrasse",
@@ -8203,7 +8203,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Liebe Grüße, Laura",
         "tag": "Gruß",
-        "explanation": "Je t’embrasse , Laura = Liebe Grüße, Laura"
+        "explanation": "Je t’embrasse, Laura = Liebe Grüße, Laura"
       }
     ],
     "checkTasks": [
@@ -8257,10 +8257,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Est-ce que je pourrais habiter dans une famille ?",
           "Est-ce que je pourrai habité dans une famille ?",
-          "Je pourrais habiter une famille dans ?"
+          "Est-ce que je pourrais habiter dans un famille ?"
         ],
         "answer": "Est-ce que je pourrais habiter dans une famille ?",
-        "explanation": "Je pourrais + Infinitiv.",
+        "explanation": "Je pourrais + Infinitiv; la famille ist weiblich.",
         "tag": "Anwenden",
         "family": "famille",
         "checkKey": "A2L22-context-famille",
@@ -8272,10 +8272,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Merci d’avance ! Je vous embrasse, Laura",
           "Veuillez agréer mes salutations distinguées.",
-          "Fin de la lettre."
+          "Cordialement, Laura Weber"
         ],
         "answer": "Merci d’avance ! Je vous embrasse, Laura",
-        "explanation": "Je vous embrasse = herzliche Grüße an Freunde.",
+        "explanation": "Je vous embrasse = herzliche Grüße an Freunde. Veuillez agréer … und Cordialement sind für formelle Briefe.",
         "tag": "Anwenden",
         "family": "salutation",
         "checkKey": "A2L22-context-salutation"
@@ -8286,10 +8286,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Le cours serait du 3 au 28 juillet.",
           "Le cours serait de 3 à 28 juillet.",
-          "Le cours serait le 3 jusqu’au 28 juillet de."
+          "Le cours serait depuis le 3 jusqu’au 28 juillet."
         ],
         "answer": "Le cours serait du 3 au 28 juillet.",
-        "explanation": "Du … au … = vom … bis zum …",
+        "explanation": "Du … au … = vom … bis zum … Depuis heißt seit und passt nicht zu einem Zeitraum in der Zukunft.",
         "tag": "Anwenden",
         "family": "dates",
         "checkKey": "A2L22-context-dates",
@@ -8301,10 +8301,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Est-ce que vous savez combien coûte un cours ?",
           "Est-ce que vous savez combien un cours coûtes ?",
-          "Combien vous coûte savoir un cours ?"
+          "Est-ce que vous savez combien coûte-t-il un cours ?"
         ],
         "answer": "Est-ce que vous savez combien coûte un cours ?",
-        "explanation": "Combien coûte + Nomen.",
+        "explanation": "Combien coûte + Nomen. Nach est-ce que vous savez steht keine Inversion; coûtes ist die du-Form.",
         "tag": "Anwenden",
         "family": "prix",
         "checkKey": "A2L22-context-prix",
@@ -8316,10 +8316,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "J’aimerais habiter dans une famille, mais pas trop loin du centre.",
           "J’aimerais habiter dans une famille, parce que pas trop loin du centre.",
-          "J’aimerais habiter dans une famille, donc pas loin trop du centre."
+          "J’aimerais habiter dans une famille, donc pas trop loin du centre."
         ],
         "answer": "J’aimerais habiter dans une famille, mais pas trop loin du centre.",
-        "explanation": "Mais = aber, für eine Einschränkung.",
+        "explanation": "Mais = aber, für eine Einschränkung. Parce que nennt einen Grund, donc eine Folge.",
         "tag": "Anwenden",
         "family": "mais",
         "checkKey": "A2L22-context-mais",
@@ -8425,12 +8425,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Je t’___ , Marc (Grußformel)",
+        "prompt": "Je t’___, Marc (Grußformel)",
         "answer": "embrasse",
         "accept": [],
         "context": "Beende den Brief an eine Freundin.",
-        "explanation": "Je t’embrasse , Marc",
-        "audio": "Je t’embrasse , Marc",
+        "explanation": "Je t’embrasse, Marc",
+        "audio": "Je t’embrasse, Marc",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -8465,16 +8465,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Ma mère ? Je ___ écris.",
-        "answer": "lui",
+        "prompt": "Ma mère ? ___ écris.",
+        "answer": "Je lui",
         "o": [
-          "lui",
-          "la",
-          "en"
+          "Je lui",
+          "Je l’",
+          "J’en"
         ],
         "context": "Meine Mutter? Ich schreibe ihr.",
         "tag": "Pronomen",
-        "explanation": "Ma mère ? Je lui écris. = Meine Mutter? Ich schreibe ihr."
+        "explanation": "Écrire à quelqu’un → lui. Je l’écris hieße „ich schreibe es“."
       },
       {
         "type": "gap",
@@ -8484,39 +8484,39 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "y",
           "en",
-          "la"
+          "lui"
         ],
         "context": "Lyon? Wir wohnen dort.",
         "tag": "Pronomen",
-        "explanation": "Lyon ? Nous y habitons. = Lyon? Wir wohnen dort."
+        "explanation": "Y ersetzt einen Ort: nous y habitons."
       },
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Des pommes ? J’___ achète trois.",
-        "answer": "en",
+        "prompt": "Des pommes ? ___ achète trois.",
+        "answer": "J’en",
         "o": [
-          "en",
-          "les",
-          "y"
+          "J’en",
+          "Je les",
+          "J’y"
         ],
         "context": "Äpfel? Ich kaufe drei.",
         "tag": "Pronomen",
-        "explanation": "Des pommes ? J’en achète trois. = Äpfel? Ich kaufe drei."
+        "explanation": "Mit einer Menge (trois) steht en: j’en achète trois."
       },
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Les clés ? Je ___ ai oubliées.",
-        "answer": "les",
+        "prompt": "Les clés ? ___ ai oubliées.",
+        "answer": "Je les",
         "o": [
-          "les",
-          "leur",
-          "en"
+          "Je les",
+          "Je leur",
+          "J’en"
         ],
         "context": "Die Schlüssel? Ich habe sie vergessen.",
         "tag": "Pronomen",
-        "explanation": "Les clés ? Je les ai oubliées. = Die Schlüssel? Ich habe sie vergessen."
+        "explanation": "Direktes Objekt im Plural → les; deshalb auch oubliées mit -es."
       },
       {
         "type": "gap",
@@ -8577,7 +8577,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Je ne fume ___ . (nie)",
+        "prompt": "Je ne fume ___. (nie)",
         "answer": "jamais",
         "o": [
           "jamais",
@@ -8586,7 +8586,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Ich rauche nie.",
         "tag": "Adverb",
-        "explanation": "Je ne fume jamais . = Ich rauche nie."
+        "explanation": "Je ne fume jamais. = Ich rauche nie."
       }
     ],
     "checkTasks": [
@@ -8607,7 +8607,7 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "choice",
-        "q": "Lückentext: « Il faut absolument qu’on fête ça ___ . »",
+        "q": "Lückentext: « Il faut absolument qu’on fête ça ___. »",
         "o": [
           "ensemble",
           "chacune",
@@ -8655,7 +8655,7 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Antwort auf « Tu bois du café ? »",
         "o": [
           "Oui, j’en bois le matin.",
-          "Oui, je le bois le matin du.",
+          "Oui, je bois en le matin.",
           "Oui, j’y bois le matin."
         ],
         "answer": "Oui, j’en bois le matin.",
@@ -8699,7 +8699,7 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Du sagst, dass du nie allein reist.",
         "o": [
           "Je ne voyage jamais seul.",
-          "Je voyage jamais seul ne.",
+          "Je voyage ne jamais seul.",
           "Je ne voyage pas jamais seul."
         ],
         "answer": "Je ne voyage jamais seul.",
@@ -8835,7 +8835,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Vous entendrez chaque texte deux ___ .",
+        "prompt": "Vous entendrez chaque texte deux ___.",
         "answer": "fois",
         "o": [
           "fois",
@@ -8844,7 +8844,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Sie hören jeden Text zweimal.",
         "tag": "Anweisung",
-        "explanation": "Vous entendrez chaque texte deux fois . = Sie hören jeden Text zweimal."
+        "explanation": "Vous entendrez chaque texte deux fois. = Sie hören jeden Text zweimal."
       },
       {
         "type": "gap",
@@ -8863,7 +8863,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Décidez si les phrases sont vraies ou ___ .",
+        "prompt": "Décidez si les phrases sont vraies ou ___.",
         "answer": "fausses",
         "o": [
           "fausses",
@@ -9091,12 +9091,12 @@ window.FR_A1_MASTERY_SPECS = {
     "checkTransfers": [
       {
         "type": "gap",
-        "prompt": "Vous entendrez chaque texte deux ___ .",
+        "prompt": "Vous entendrez les annonces deux ___.",
         "answer": "fois",
         "accept": [],
         "context": "Anweisung im Hörverstehen.",
-        "explanation": "Vous entendrez chaque texte deux fois .",
-        "audio": "Vous entendrez chaque texte deux fois .",
+        "explanation": "Vous entendrez les annonces deux fois.",
+        "audio": "Vous entendrez les annonces deux fois.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -9107,12 +9107,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Marquez vos réponses sur la ___ de réponse.",
+        "prompt": "Écrivez vos réponses sur la ___ de réponse, pas dans le cahier.",
         "answer": "feuille",
         "accept": [],
-        "context": "Wo markierst du die Antworten?",
-        "explanation": "Marquez vos réponses sur la feuille de réponse.",
-        "audio": "Marquez vos réponses sur la feuille de réponse.",
+        "context": "Wo schreibst du die Antworten hin?",
+        "explanation": "Écrivez vos réponses sur la feuille de réponse, pas dans le cahier.",
+        "audio": "Écrivez vos réponses sur la feuille de réponse, pas dans le cahier.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -9123,12 +9123,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Décidez si les phrases sont ___ ou fausses. (richtig)",
+        "prompt": "Les phrases 1 et 3 sont ___, la phrase 2 est fausse. (richtig)",
         "answer": "vraies",
         "accept": [],
-        "context": "Ergänze die Anweisung.",
-        "explanation": "Décidez si les phrases sont vraies ou fausses.",
-        "audio": "Décidez si les phrases sont vraies ou fausses.",
+        "context": "Ergänze die Lösung.",
+        "explanation": "Les phrases 1 et 3 sont vraies, la phrase 2 est fausse.",
+        "audio": "Les phrases 1 et 3 sont vraies, la phrase 2 est fausse.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -9139,12 +9139,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Choisissez trois des six ___ .",
+        "prompt": "Traitez trois des six ___ dans votre lettre.",
         "answer": "points",
         "accept": [],
         "context": "Anweisung im Brief.",
-        "explanation": "Choisissez trois des six points .",
-        "audio": "Choisissez trois des six points .",
+        "explanation": "Traitez trois des six points dans votre lettre.",
+        "audio": "Traitez trois des six points dans votre lettre.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -9155,12 +9155,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Mettez-vous d’___ sur deux activités.",
+        "prompt": "Discutez et mettez-vous d’___ sur un cadeau.",
         "answer": "accord",
         "accept": [],
         "context": "Anweisung im mündlichen Teil 3.",
-        "explanation": "Mettez-vous d’accord sur deux activités.",
-        "audio": "Mettez-vous d’accord sur deux activités.",
+        "explanation": "Discutez et mettez-vous d’accord sur un cadeau.",
+        "audio": "Discutez et mettez-vous d’accord sur un cadeau.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -9171,12 +9171,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "___ des questions à votre partenaire ! (poser)",
+        "prompt": "___ trois questions à l’examinatrice ! (poser)",
         "answer": "Posez",
         "accept": [],
         "context": "Anweisung im mündlichen Teil 2.",
-        "explanation": "Posez des questions à votre partenaire !",
-        "audio": "Posez des questions à votre partenaire !",
+        "explanation": "Posez trois questions à l’examinatrice !",
+        "audio": "Posez trois questions à l’examinatrice !",
         "marking": {
           "strictAccents": true,
           "format": null,

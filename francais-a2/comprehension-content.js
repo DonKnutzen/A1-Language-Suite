@@ -1857,16 +1857,16 @@ window.A1_COMPREHENSION_CONTENT = {
         "label": "Empfehlung für Sonnenuntergang",
         "options": [
           "die Klippen von Étretat",
-          "der Hafen",
-          "der Park"
+          "der Hafen von Honfleur",
+          "der Park am Schloss"
         ],
         "answer": "die Klippen von Étretat"
       },
       {
         "label": "Sport",
         "options": [
-          "Radfahren",
-          "Klettern",
+          "Radfahren am Fluss",
+          "Klettern an den Felsen",
           "Kajak auf der Seine"
         ],
         "answer": "Kajak auf der Seine"
@@ -2265,7 +2265,7 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "label": "Wie oft geht er hin",
         "options": [
-          "nie",
+          "jeden Sonntag",
           "jeden Tag",
           "manchmal samstags"
         ],

@@ -11,7 +11,7 @@ Gute Aufgaben sind nicht aufgeführt.
 
 Automatische Prüfungen: `tests/francais-a2-quality.test.cjs` (Dubletten in Optionen, fehlende oder mit der Lösung
 identische Erklärung, Lösung wörtlich in der Frage, Längenausreißer > 1,8 × längster Distraktor, Elision nach „je ___“,
-Anteil „richtig“ in den telc-Blöcken 35–65 %). Die strengeren Prüfungen gelten bis `REVIEWED` (jetzt 18) und
+Anteil „richtig“ in den telc-Blöcken 35–65 %, Transfer wiederholt keinen Vertiefungs-Drill). Die strengeren Prüfungen gelten bis `REVIEWED` (jetzt 24, also alle Lektionen) und
 wachsen pro Etappe mit.
 
 ## Etappe 1 – Lektionen 1–6 (alle Funde behoben)
@@ -169,6 +169,67 @@ KRITISCH 9 · MITTEL 6 · GERING 2 – alle behoben.
 - L13 task 6, L14 task 4, L15 task 10: „en cas de“ statt „en raison de“ wäre grammatisch möglich; der deutsche Kontext („wegen“) entscheidet. Die Aufgaben landen nicht in den Grammatik-Sets.
 - L15 check 4: „On doit suivre le bouchon.“ ist schwach, aber eindeutig falsch.
 
+## Etappe 4 – Lektionen 19–24 und Modelltests (alle Funde behoben)
+
+| ID | Krit. | Problem | Fix |
+|---|---|---|---|
+| FR-A2 L19–24 Lücken | B7 | Lückensätze „___ .“ / „___ ,“ mit Leerzeichen vor dem Satzzeichen. | Leerzeichen entfernt. |
+| FR-A2 L19 quiz 2 | B6 | „la plus jolie dans la région“ ist gesprochen üblich. | dans → à. |
+| FR-A2 L19 task 5 | B6 | „le plus haut sommet en France“ ist korrekt und häufig. | en → dans; Erklärung. |
+| FR-A2 L19 task 3 | A2 | „Ce sont ___ plages les plus belles“ – die Lösung les steht schon im Satz. | → „Ce sont des plages magnifiques : ___ plus belles de Bretagne.“; Erklärung. |
+| FR-A2 L19 check 5 | A3 | „parfait pour les enfants qui dorment“ ist absurd. | → „parfait pour la randonnée“; Erklärung. |
+| FR-A2 L19 comp 2, comp 3 | A2 | „die Klippen von Étretat“ / „Kajak auf der Seine“ sind viel länger als die Distraktoren. | Distraktoren verlängert (der Hafen von Honfleur, Klettern an den Felsen …). |
+| FR-A2 L19 hard listen 2.3 | C11 | „Qui pose les questions ?“ hängt an der Stimme. | → „Pourquoi faut-il aller dans le Vieux-Lyon ?“ (Superlativ). |
+| FR-A2 L20 quiz 9 | A2 | „parce qu’“ gegen „mais“ / „donc“ ist ein Längenausreißer. | donc → pourtant. |
+| FR-A2 L20 check 1 | A3 | „Je ne préfère pas, parce que.“ ist Wortsalat. | → „…, donc il fera beau.“ (falscher Konnektor); Erklärung. |
+| FR-A2 L20 hard listen 1.2 | A2 | „dans le restaurant du village“ ist doppelt so lang wie die Distraktoren. | → au restaurant de la gare / chez des amis au village. |
+| FR-A2 L21 quiz 6 | B6 | „Ne traduis pas chaque mot.“ ist korrekt (du-Form), der Hinweis nannte keine Person. | Hinweis „(traduire, vous, Imperativ)“; Erklärung. |
+| FR-A2 L21 task 4 | B6 | „Aie toujours un carnet.“ ist als du-Form korrekt. | Aie → Avoir; Erklärung. |
+| FR-A2 L22 quiz 5, task 8 | A2 | „parce que“ gegen „pour“ / „donc“ ist ein Längenausreißer. | pour → pourtant; Erklärung. |
+| FR-A2 L22 check 4–8 | A3 | Wortsalat-Distraktoren („une famille dans ?“, „Fin de la lettre.“, „juillet de.“, „Combien vous coûte savoir …“, „pas loin trop“). | Je ein typischer Fehler: Genus, formeller Gruß, depuis … jusqu’au, falsche Inversion, falscher Konnektor; Erklärungen. |
+| FR-A2 L22 hard listen 2.3 | A2 | „« Je vous embrasse » et son prénom“ gegen „son adresse“ / „une photo“. | → « Cordialement » et son nom / « Salut » et son adresse. |
+| FR-A2 L23 quiz 1, 7, 8, task 2, 4, 5 | A1 | „J’___“ / „Je ___ ai“ schließen Optionen durch die Elision aus (je en, j’le, je la écris). | Lücke umfasst Subjekt + Pronomen: Je l’ / Je lui / J’en, J’y / J’en / Je la usw.; Erklärungen. |
+| FR-A2 L23 task 3 | A1 | „Nous la habitons“ ist durch die Elision ausgeschlossen. | la → lui; Erklärung. |
+| FR-A2 L23 check 5, check 8 | A3 | „je le bois le matin du“, „jamais seul ne“ sind Wortsalat. | → „je bois en le matin“ / „Je voyage ne jamais seul.“ (Stellungsfehler). |
+| FR-A2 L23 comp 3 | A2 | „manchmal samstags“ gegen „nie“. | nie → jeden Sonntag. |
+| FR-A2 L23 hard listen 2.1 | A2 | „sur la table, à côté du téléphone“ gegen „sous la table“ / „près de la porte“. | → sous la table, à côté du téléphone / sur la table, à côté de la porte. |
+| FR-A2 L24 quiz 9 | A2 | Lösung viel länger als „einen Vortrag halten“ / „einen Text vorlesen“. | Distraktoren verlängert. |
+| FR-A2 L24 transfer 1–6 | C13 | Die Transfer-Sätze wiederholten die Vertiefungs-Drills wörtlich oder fast wörtlich. | Sechs neue Sätze (les annonces, pas dans le cahier, Lösung 1 et 3 vraies, Traitez …, un cadeau, l’examinatrice). |
+| FR-A2 L4 transfer 4, L13 transfer 7 | C13 | Transfer = Vertiefungs-Drill (in Etappe 1/3 übersehen, jetzt per Test gefunden). | → „Je ne ___ ai pas encore répondu.“ / „Je dois ___ rendez-vous chez le dentiste.“ |
+| FR-A2 t1 el1-3 | B6 | „tes vacances s’étaient bien passées“ ist grammatisch korrekt. | étaient → est; Erklärung. |
+| FR-A2 t1 el1-5 | B6 | „Ta sœur est venue avec moi samedi“ ist korrekt. | avec → à côté; Erklärung. |
+| FR-A2 t1 el1-9 | B6 | „Écris-moi quand tu es libre“ ist korrekt. | quand → ce que; Erklärung. |
+| FR-A2 t1 co3-4 | B10 | Telefonnummer mit 8 Ziffern; „cette semaine“ ist ohne Datum nicht entscheidbar. | Nummer 02 41 56 32 18; Aussage → „Le cabinet Arnaud est ouvert en ce moment.“ |
+| FR-A2 t2 el1-2 | B6 | „Le voyage était long“ ist korrekt. | était → est; Erklärung. |
+| FR-A2 t2 el1-5 | B6 | „hier, il neigeait toute la journée“ ist korrekt. | neigeait → neige; Erklärung. |
+| FR-A2 t2 el1-6 | B6 | „Je ne rencontre pas encore beaucoup de monde“ ist korrekt. | rencontre → connaît; Erklärung. |
+| FR-A2 t2 el2-13 | B6 | „De sept à dix heures. Bienvenue !“ passt auch. | Zeile → „{13} et à demain !“ – nur noch BONNE NUIT passt. |
+| FR-A2 t3 el1-8 | B6 | „je te montrerais la ville“ ist vertretbar; die Erklärung sprach von einem si-Satz, der nicht dazugehört. | montrerais → montrerons; Erklärung neu. |
+
+### Zählung Etappe 4
+
+| Kriterium | L4/L13 | L19 | L20 | L21 | L22 | L23 | L24 | Tests | Σ |
+|---|---|---|---|---|---|---|---|---|---|
+| A1 Grammatik verrät Lösung | – | – | – | – | – | 7 | – | – | 7 |
+| A2 Lösung fällt äußerlich auf | – | 3 | 2 | – | 3 | 2 | 1 | – | 11 |
+| A3 absurde Distraktoren | – | 1 | 1 | – | 5 | 2 | – | – | 9 |
+| B6 mehrere Optionen vertretbar | – | 2 | – | 2 | – | – | – | 8 | 12 |
+| B7 Typografie (L19–24 gesamt) | – | 1 | | | | | | – | 1 |
+| B10 Faktenfehler | – | – | – | – | – | – | – | 2 | 2 |
+| C11 ohne Lernwert | – | 1 | – | – | – | – | – | – | 1 |
+| C13 Dublette | 2 | – | – | – | – | – | 1 | – | 3 |
+
+KRITISCH 15 · MITTEL 27 · GERING 4 – alle behoben. Der telc-Richtig-Anteil (co1, co3, ce2, co gesamt) liegt in allen drei
+Modelltests zwischen 40 und 60 %.
+
+### Offen (GERING)
+
+- L19 task 8, L21 task 6: „Il doit …“ wäre als „Er muss …“ korrekt; der Kontext „Man muss“ entscheidet für il faut.
+- L22 hard listen 1.1: Frage nach dem Ort der Schule (Bastille / tour Eiffel / gare du Nord) – Ortsangabe wie im telc-Format, belassen.
+- t1 el2-17/18: „Oui, pas de problème !“ und „Ça me fait plaisir, il y a de la place.“ sind zur Not auch vertauscht denkbar;
+  die natürliche Lesart ist eindeutig.
+- L24 ist Prüfungswissen (Punkte, Zeiten, Teile); das ist das Lernziel der Lektion, aber kein Sprachkönnen (C12).
+
 ## Funde in `shared/` (für die letzte Etappe gesammelt, nicht geändert)
 
 | ID | Krit. | Problem | Vorschlag |
@@ -184,5 +245,5 @@ Generator bewusst als Scherzstufen angelegt.
 
 - ~~Lektionen 7–12~~ erledigt (Etappe 2).
 - ~~Lektionen 13–18~~ erledigt (Etappe 3).
-- Lektionen 19–24 mit `src/exam.cjs` (3 Modelltests; telc-Richtig-Anteil ist bereits im Rahmen).
+- ~~Lektionen 19–24 und Modelltests~~ erledigt (Etappe 4).
 - Danach die gesammelten `shared/`-Funde und alle drei Kurse testen.

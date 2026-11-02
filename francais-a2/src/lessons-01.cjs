@@ -360,7 +360,7 @@ module.exports=[
   ['lui','Je téléphone à ma sœur. → Je ___ téléphone.','lui','Ersetze „à ma sœur“ durch ein Pronomen.'],
   ['lui','Tu écris à ton professeur ? → Tu ___ écris ?','lui','Ersetze „à ton professeur“ durch ein Pronomen.'],
   ['leur','Nous parlons aux voisins. → Nous ___ parlons.','leur','Ersetze „aux voisins“ durch ein Pronomen.'],
-  ['negation','Je ne ___ réponds pas. (à Marc)','lui','Ich antworte Marc nicht. Setze das Pronomen ein.'],
+  ['negation','Je ne ___ ai pas encore répondu. (à Marc)','lui','Du hast Marc noch nicht geantwortet. Setze das Pronomen ein.'],
   ['infinitif','Je vais ___ dire la nouvelle. (à mes amis)','leur','Ich werde meinen Freunden die Neuigkeit sagen.'],
   ['telephone','Vous voulez laisser un ___ ?','message','Möchten Sie eine Nachricht hinterlassen?'],
   ['rappeler','Elle peut me ___ ce soir ? (zurückrufen)','rappeler','Kann sie mich heute Abend zurückrufen?']

@@ -3571,7 +3571,7 @@ window.FR_A1_DATA = {
         {
           "q": "C’est la ville la plus jolie ___ la région.",
           "o": [
-            "dans",
+            "à",
             "de",
             "que"
           ],
@@ -3842,7 +3842,7 @@ window.FR_A1_DATA = {
           "q": "Welche Begründung passt? « On va au parc ___ il fera beau. »",
           "o": [
             "parce qu’",
-            "donc",
+            "pourtant",
             "mais"
           ],
           "a": 0,
@@ -4000,7 +4000,7 @@ window.FR_A1_DATA = {
           "explanation": "Avoir hat einen unregelmäßigen Imperativ: aie, ayons, ayez."
         },
         {
-          "q": "Ne ___ pas chaque mot. (traduire, Imperativ)",
+          "q": "Ne ___ pas chaque mot. (traduire, vous, Imperativ)",
           "o": [
             "traduisez",
             "traduis",
@@ -4008,10 +4008,10 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Ne traduisez pas chaque mot.",
-          "explanation": "Verneinter Imperativ: Ne + Verb + pas."
+          "explanation": "Verneinter Imperativ mit vous: ne traduisez pas. Traduis ist die du-Form."
         },
         {
-          "q": "Il faut parler le plus souvent ___ .",
+          "q": "Il faut parler le plus souvent ___.",
           "o": [
             "possible",
             "possibles",
@@ -4186,7 +4186,7 @@ window.FR_A1_DATA = {
           "q": "Je vous écris ___ j’ai besoin de votre aide.",
           "o": [
             "parce que",
-            "pour",
+            "pourtant",
             "donc"
           ],
           "a": 0,
@@ -4332,15 +4332,15 @@ window.FR_A1_DATA = {
       ],
       "quiz": [
         {
-          "q": "Mon portable ? Je ___ ai toujours sur moi.",
+          "q": "Mon portable ? ___ ai toujours sur moi.",
           "o": [
-            "lui",
-            "en",
-            "l’"
+            "Je lui",
+            "J’en",
+            "Je l’"
           ],
           "a": 2,
           "audio": "Je l’ai toujours sur moi.",
-          "explanation": "Direktes Objekt (le portable) → le, vor Vokal l’."
+          "explanation": "Direktes Objekt (le portable) → le, vor Vokal l’. Lui ersetzt à + Person, en eine Menge."
         },
         {
           "q": "Je ne vais ___ au cinéma seul. (nie)",
@@ -4398,26 +4398,26 @@ window.FR_A1_DATA = {
           "explanation": "Contre = gegen, an (berührend)."
         },
         {
-          "q": "Paris ? J’___ vais demain.",
+          "q": "Paris ? ___ vais demain.",
           "o": [
-            "le",
-            "y",
-            "en"
+            "Je la",
+            "J’y",
+            "J’en"
           ],
           "a": 1,
           "audio": "Paris ? J’y vais demain.",
           "explanation": "Y ersetzt einen Ort mit à / en / dans: J’y vais."
         },
         {
-          "q": "Du thé ? J’___ bois souvent.",
+          "q": "Du thé ? ___ bois souvent.",
           "o": [
-            "en",
-            "y",
-            "le"
+            "J’en",
+            "J’y",
+            "Je lui"
           ],
           "a": 0,
           "audio": "Du thé ? J’en bois souvent.",
-          "explanation": "En ersetzt du / de la / des + Nomen."
+          "explanation": "En ersetzt du / de la / des + Nomen. Y steht für Orte, lui für Personen."
         },
         {
           "q": "Mes parents ? Je ___ téléphone chaque dimanche.",
@@ -4618,8 +4618,8 @@ window.FR_A1_DATA = {
         {
           "q": "Was zählt im mündlichen Teil 2?",
           "o": [
-            "einen Vortrag halten",
-            "einen Text vorlesen",
+            "einen kurzen Vortrag über sich halten",
+            "einen Text vorlesen und zusammenfassen",
             "Informationen austauschen und Fragen stellen"
           ],
           "a": 2,
@@ -5794,15 +5794,15 @@ window.FR_A1_DATA = {
           "explanation": "Le train ? Je le prends à huit heures. = Den Zug? Ich nehme ihn um acht."
         },
         {
-          "q": "Ergänze: Vous entendrez chaque texte deux ___ .",
+          "q": "Ergänze: Vous entendrez chaque texte deux ___.",
           "o": [
+            "temps",
             "fois",
-            "heures",
-            "temps"
+            "heures"
           ],
-          "a": 0,
-          "audio": "Vous entendrez chaque texte deux fois .",
-          "explanation": "Vous entendrez chaque texte deux fois . = Sie hören jeden Text zweimal."
+          "a": 1,
+          "audio": "Vous entendrez chaque texte deux fois.",
+          "explanation": "Vous entendrez chaque texte deux fois. = Sie hören jeden Text zweimal."
         },
         {
           "q": "Ergänze: Ne ___ pas chaque mot. (traduire)",
@@ -5827,15 +5827,15 @@ window.FR_A1_DATA = {
           "explanation": "Vous pourriez chercher une école ? = Könntet ihr eine Schule suchen?"
         },
         {
-          "q": "Ergänze: Ma mère ? Je ___ écris.",
+          "q": "Ergänze: Ma mère ? ___ écris.",
           "o": [
-            "en",
-            "la",
-            "lui"
+            "J’en",
+            "Je l’",
+            "Je lui"
           ],
           "a": 2,
           "audio": "Ma mère ? Je lui écris.",
-          "explanation": "Ma mère ? Je lui écris. = Meine Mutter? Ich schreibe ihr."
+          "explanation": "Écrire à quelqu’un → lui. Je l’écris hieße „ich schreibe es“."
         },
         {
           "q": "Ergänze: Marquez vos réponses sur la ___ de réponse.",
@@ -5900,9 +5900,9 @@ window.FR_A1_DATA = {
             [
               "sont",
               "ont",
-              "étaient"
+              "est"
             ],
-            "Reflexive Verben bilden das passé composé mit être: elles se sont bien passées."
+            "Reflexive Verben bilden das passé composé mit être; les vacances ist Plural: elles se sont bien passées."
           ],
           [
             [
@@ -5916,9 +5916,9 @@ window.FR_A1_DATA = {
             [
               "chez",
               "à",
-              "avec"
+              "à côté"
             ],
-            "Zu jemandem nach Hause: venir chez quelqu’un."
+            "Zu jemandem nach Hause: venir chez quelqu’un. À côté bräuchte de."
           ],
           [
             [
@@ -5948,9 +5948,9 @@ window.FR_A1_DATA = {
             [
               "si",
               "que",
-              "quand"
+              "ce que"
             ],
-            "Indirekte Frage ob: si."
+            "Indirekte Frage ob: si. Que und ce que leiten keine Ja-nein-Frage ein."
           ],
           [
             [
@@ -6135,8 +6135,8 @@ window.FR_A1_DATA = {
         },
         {
           "situation": "Vous téléphonez à votre dentiste pour un rendez-vous.",
-          "text": "Bonjour, vous êtes au cabinet du docteur Arnaud. Nous sommes en vacances jusqu’au vingt août. En cas d’urgence, appelez le cabinet du docteur Faure au 02 41 56 32.",
-          "statement": "Vous pouvez avoir un rendez-vous cette semaine au cabinet Arnaud.",
+          "text": "Bonjour, vous êtes au cabinet du docteur Arnaud. Nous sommes en vacances jusqu’au vingt août. En cas d’urgence, appelez le cabinet du docteur Faure au 02 41 56 32 18.",
+          "statement": "Le cabinet Arnaud est ouvert en ce moment.",
           "a": false,
           "explanation": "Die Praxis ist bis zum 20. August im Urlaub."
         },
@@ -6344,10 +6344,10 @@ window.FR_A1_DATA = {
           [
             [
               "a été",
-              "était",
+              "est",
               "sera"
             ],
-            "Die Reise als Ganzes, abgeschlossen: a été."
+            "Die Reise ist vorbei: Vergangenheit, le voyage a été long. Est ist Präsens, sera Futur."
           ],
           [
             [
@@ -6368,18 +6368,18 @@ window.FR_A1_DATA = {
           [
             [
               "a neigé",
-              "neigeait",
+              "neige",
               "neigera"
             ],
-            "Hier toute la journée = abgeschlossenes Ereignis: il a neigé."
+            "Hier toute la journée = Vergangenheit: il a neigé. Neige ist Präsens, neigera Futur."
           ],
           [
             [
               "connais",
               "sais",
-              "rencontre"
+              "connaît"
             ],
-            "Personen kennen: connaître → je ne connais pas."
+            "Personen kennen: connaître → je ne connais pas. Savoir steht für Wissen, connaît ist die il-Form."
           ],
           [
             [
@@ -6449,7 +6449,7 @@ window.FR_A1_DATA = {
             ],
             [
               "B",
-              "De sept à dix heures. {13} !"
+              "De sept à dix heures. {13} et à demain !"
             ]
           ],
           "answers": [
@@ -6850,9 +6850,9 @@ window.FR_A1_DATA = {
             [
               "montrerai",
               "montrais",
-              "montrerais"
+              "montrerons"
             ],
-            "Si + Präsens im Nebensatz → Futur im Hauptsatz: je te montrerai."
+            "Ein Versprechen für Mai: futur simple, je te montrerai. Montrais ist imparfait, montrerons gehört zu nous."
           ],
           [
             [

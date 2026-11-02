@@ -8,13 +8,13 @@ module.exports={telc:[
   items:[
    [['étais','suis','serai'],'Hintergrund in der Vergangenheit: imparfait – j’étais en voyage.'],
    [['devions','devons','devrons'],'Ein Plan in der Vergangenheit, der nicht geklappt hat: imparfait – nous devions.'],
-   [['sont','ont','étaient'],'Reflexive Verben bilden das passé composé mit être: elles se sont bien passées.'],
+   [['sont','ont','est'],'Reflexive Verben bilden das passé composé mit être; les vacances ist Plural: elles se sont bien passées.'],
    [['depuis','pendant','il y a'],'Es ist seit Montag kalt und noch heute: depuis.'],
-   [['chez','à','avec'],'Zu jemandem nach Hause: venir chez quelqu’un.'],
+   [['chez','à','à côté'],'Zu jemandem nach Hause: venir chez quelqu’un. À côté bräuchte de.'],
    [['ensemble','chacune','toujours'],'Gemeinsam: ensemble.'],
    [['passerai','passais','passé'],'Le mois prochain → Zukunft: je passerai.'],
    [['Quelle','Quel','Quels'],'Idée ist weiblich: Quelle idée !'],
-   [['si','que','quand'],'Indirekte Frage ob: si.'],
+   [['si','que','ce que'],'Indirekte Frage ob: si. Que und ce que leiten keine Ja-nein-Frage ein.'],
    [['verra','voyait','verrait'],'Quand + Zukunft → futur simple: quand on se verra.']
   ]},
  el2:[
@@ -42,7 +42,7 @@ module.exports={telc:[
   {situation:'Vous êtes à la gare et vous attendez le train pour Bordeaux.',text:'Votre attention, s’il vous plaît : le TER en direction de Poitiers partira avec quinze minutes de retard, voie 2.',statement:'Cette annonce est importante pour vous.',a:false,explanation:'Die Verspätung betrifft den Zug nach Poitiers, nicht nach Bordeaux.'},
   {situation:'Vous êtes sur l’autoroute A4 en direction de Paris.',text:'Information trafic : sur l’A4 vers Paris, un accident à la hauteur de Reims. La circulation est arrêtée. Quittez l’autoroute à la sortie 23.',statement:'Vous pouvez continuer normalement vers Paris.',a:false,explanation:'Der Verkehr steht; man soll an Ausfahrt 23 abfahren.'},
   {situation:'Vous êtes en vacances en Bretagne. Vous écoutez la radio le matin.',text:'Ce matin, du brouillard sur la Bretagne, mais il disparaîtra vers dix heures. Ensuite, grand soleil et vingt-quatre degrés.',statement:'Il fera beau à partir de la fin de matinée.',a:true,explanation:'Der Nebel verschwindet gegen zehn; danach Sonne.'},
-  {situation:'Vous téléphonez à votre dentiste pour un rendez-vous.',text:'Bonjour, vous êtes au cabinet du docteur Arnaud. Nous sommes en vacances jusqu’au vingt août. En cas d’urgence, appelez le cabinet du docteur Faure au 02 41 56 32.',statement:'Vous pouvez avoir un rendez-vous cette semaine au cabinet Arnaud.',a:false,explanation:'Die Praxis ist bis zum 20. August im Urlaub.'},
+  {situation:'Vous téléphonez à votre dentiste pour un rendez-vous.',text:'Bonjour, vous êtes au cabinet du docteur Arnaud. Nous sommes en vacances jusqu’au vingt août. En cas d’urgence, appelez le cabinet du docteur Faure au 02 41 56 32 18.',statement:'Le cabinet Arnaud est ouvert en ce moment.',a:false,explanation:'Die Praxis ist bis zum 20. August im Urlaub.'},
   {situation:'Vous êtes au supermarché. Votre voiture est une Peugeot grise.',text:'Le propriétaire de la Peugeot grise garée devant l’entrée est prié de venir à l’accueil. Merci.',statement:'Vous devez aller à l’accueil.',a:true,explanation:'Die Durchsage betrifft den grauen Peugeot – dein Auto.'}
  ],
  ce1:{titles:['Le train de nuit revient','Moins de voitures en centre-ville','Les jeunes lisent sur écran','Un village sans commerces','Les Français et le pain','Des musées gratuits le dimanche','Plus de touristes à la montagne','Grève des bus annulée'],
@@ -80,11 +80,11 @@ module.exports={telc:[
  el1:{text:'Cher Hugo,\nje t’écris de Montréal ! Je suis arrivée {1} une semaine. Le voyage {2} long, mais tout s’est bien passé. Mon appartement est petit, mais il est {3} de l’université. Les gens sont très sympas : ma voisine m’a {4} un café dès le premier jour. Il fait déjà froid : hier, il {5} toute la journée. Je ne {6} pas encore beaucoup de monde, mais ça va venir. Les cours commencent lundi, je suis un peu {7}. Et toi, tu as trouvé {8} stage ? Viens me voir en décembre ! On {9} faire du ski. Réponds-moi {10} !\nBisous,\nChloé',
   items:[
    [['il y a','depuis','pendant'],'Ich bin vor einer Woche angekommen (abgeschlossen): il y a.'],
-   [['a été','était','sera'],'Die Reise als Ganzes, abgeschlossen: a été.'],
+   [['a été','est','sera'],'Die Reise ist vorbei: Vergangenheit, le voyage a été long. Est ist Präsens, sera Futur.'],
    [['près','contre','chez'],'Près de = in der Nähe von. Contre und chez stehen nicht mit de.'],
    [['offert','offerte','offrir'],'Avoir + Partizip; das Objekt un café steht dahinter, deshalb keine Angleichung: offert.'],
-   [['a neigé','neigeait','neigera'],'Hier toute la journée = abgeschlossenes Ereignis: il a neigé.'],
-   [['connais','sais','rencontre'],'Personen kennen: connaître → je ne connais pas.'],
+   [['a neigé','neige','neigera'],'Hier toute la journée = Vergangenheit: il a neigé. Neige ist Präsens, neigera Futur.'],
+   [['connais','sais','connaît'],'Personen kennen: connaître → je ne connais pas. Savoir steht für Wissen, connaît ist die il-Form.'],
    [['stressée','stressé','stressées'],'Chloé ist eine Frau: stressée.'],
    [['ton','ta','tes'],'Le stage ist männlich: ton stage.'],
    [['pourra','pouvait','peut-être'],'Zukunft in Dezember: on pourra.'],
@@ -92,7 +92,7 @@ module.exports={telc:[
   ]},
  el2:[
   {title:'À la réception d’un hôtel',box:['AVEC PLAISIR','BIENVENUE','BONNE NUIT','D’ACCORD','JE VOUDRAIS','VOICI'],
-   lines:[['A','Bonsoir. {11} une chambre pour deux nuits.'],['B','Vous avez réservé ?'],['A','Oui, au nom de Weber.'],['B','{12} votre clé, chambre 12.'],['A','Le petit-déjeuner est à quelle heure ?'],['B','De sept à dix heures. {13} !']],
+   lines:[['A','Bonsoir. {11} une chambre pour deux nuits.'],['B','Vous avez réservé ?'],['A','Oui, au nom de Weber.'],['B','{12} votre clé, chambre 12.'],['A','Le petit-déjeuner est à quelle heure ?'],['B','De sept à dix heures. {13} et à demain !']],
    answers:['JE VOUDRAIS','VOICI','BONNE NUIT'],
    explanations:['Höflicher Wunsch: Je voudrais.','Etwas überreichen: Voici.','Abends verabschieden: Bonne nuit.']},
   {title:'Au travail',box:['À TOUT À L’HEURE','BRAVO','ÇA VA','COMMENT','NON MERCI','PARDON'],
@@ -159,7 +159,7 @@ module.exports={telc:[
    [['à','en','dans'],'Ans Meer fahren: aller à la mer.'],
    [['avons','sommes','étions'],'Rire bildet das passé composé mit avoir: nous avons ri.'],
    [['à','de','pour'],'An etwas denken: penser à quelque chose.'],
-   [['montrerai','montrais','montrerais'],'Si + Präsens im Nebensatz → Futur im Hauptsatz: je te montrerai.'],
+   [['montrerai','montrais','montrerons'],'Ein Versprechen für Mai: futur simple, je te montrerai. Montrais ist imparfait, montrerons gehört zu nous.'],
    [['comment','combien','quel'],'Auf welche Weise – mit dem Zug oder dem Flugzeug: comment.'],
    [['combien','comment','quand'],'Wie lange: combien de temps.']
   ]},

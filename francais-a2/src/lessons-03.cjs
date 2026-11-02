@@ -72,7 +72,7 @@ module.exports=[
   ['raison','Le cours est annulé en ___ de la grève.','raison','Der Kurs fällt wegen des Streiks aus.'],
   ['cas','En ___ de problème, appelez-moi.','cas','Im Fall eines Problems rufen Sie mich an.'],
   ['adresser','___-vous à l’accueil. (s’adresser)','Adressez','Wenden Sie sich an den Empfang.'],
-  ['rdv','Je voudrais ___ rendez-vous. (vereinbaren)','prendre','Du möchtest einen Termin vereinbaren.']
+  ['rdv','Je dois ___ rendez-vous chez le dentiste. (vereinbaren)','prendre','Du musst einen Termin beim Zahnarzt vereinbaren.']
  ],
  comp:{voices:{A:'female',B:'male'},turns:[
   ['A','Cabinet médical, bonjour.'],['B','Bonjour madame, je voudrais un rendez-vous avec le docteur Leclerc.'],

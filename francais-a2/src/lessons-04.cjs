@@ -16,7 +16,7 @@ module.exports=[
  ],
  quiz:[
   ['Colmar est la ville la ___ jolie d’Alsace.',['plus','très','mieux'],'Colmar est la ville la plus jolie d’Alsace.','Superlativ: le / la / les plus + Adjektiv.'],
-  ['C’est la ville la plus jolie ___ la région.',['de','dans','que'],'Colmar est la ville la plus jolie d’Alsace.','Nach dem Superlativ steht de für den Bereich: de la région, d’Alsace.'],
+  ['C’est la ville la plus jolie ___ la région.',['de','à','que'],'Colmar est la ville la plus jolie d’Alsace.','Nach dem Superlativ steht de für den Bereich: de la région, d’Alsace.'],
   ['Was bedeutet „l’un des plus vieux villages“?',['eines der ältesten Dörfer','ein sehr altes Dorf','das älteste Dorf'],'C’est l’un des plus vieux villages de la région.','L’un des + Superlativ = einer / eines der …'],
   ['C’est le ___ restaurant du quartier. (gut, Superlativ)',['meilleur','plus bon','mieux'],'C’est le meilleur restaurant du quartier.','Bon → le meilleur.'],
   ['On peut ___ du canoë.',['faire','jouer','aller'],'On peut faire du canoë sur la rivière.','Sport treiben: faire du canoë, faire de la randonnée.'],
@@ -46,9 +46,9 @@ module.exports=[
  tasks:[
   [0,'C’est la ville la ___ jolie de la région.','plus',['plus de','très'],'Das ist die hübscheste Stadt der Region.','Superlativ'],
   [0,'C’est le musée le ___ cher. (billigste)','moins',['plus','mieux'],'Das ist das billigste Museum.','Superlativ'],
-  [0,'Ce sont ___ plages les plus belles.','les',['la','des'],'Das sind die schönsten Strände.','Superlativ'],
+  [0,'Ce sont des plages magnifiques : ___ plus belles de Bretagne.','les',['la','des'],'Das sind herrliche Strände: die schönsten der Bretagne.','Superlativ','Superlativ im Plural: les plus belles. Des ist kein bestimmter Artikel, la ist Singular.'],
   [0,'C’est la ___ crêperie de Rennes. (beste)','meilleure',['meilleur','plus bonne'],'Das ist die beste Crêperie in Rennes.','meilleur','La crêperie ist weiblich → la meilleure.'],
-  [0,'C’est le plus haut sommet ___ France.','de',['en','à'],'Das ist der höchste Gipfel Frankreichs.','Superlativ'],
+  [0,'C’est le plus haut sommet ___ France.','de',['dans','à'],'Das ist der höchste Gipfel Frankreichs.','Superlativ','Nach dem Superlativ steht de für den Bereich: le plus haut sommet de France.'],
   [0,'C’est l’une ___ plus vieilles églises.','des',['de','les'],'Das ist eine der ältesten Kirchen.','Superlativ'],
   [1,'On ___ se baigner dans la rivière.','peut',['peux','faut'],'Man kann im Fluss baden.','on peut'],
   [1,'Il ___ visiter le château.','faut',['peut','doit'],'Man muss das Schloss besichtigen.','il faut'],
@@ -60,7 +60,7 @@ module.exports=[
   ['Du möchtest picknicken. Welcher Satz hilft dir?',['« On peut manger à l’ombre des arbres, au bord du lac. »','« Le musée est fermé le mardi. »','« La route est étroite et dangereuse. »'],'Manger à l’ombre au bord du lac = picknicken möglich.','piquenique'],
   ['Du sagst, dass Colmar die schönste Stadt im Elsass ist.',['Colmar est la plus belle ville d’Alsace.','Colmar est la plus beau ville d’Alsace.','Colmar est la ville plus belle en Alsace.'],'La ville ist weiblich → la plus belle; Bereich mit de.','superlatif','Colmar est la plus belle ville d’Alsace.'],
   ['« C’est l’un des villages les plus visités de France. » Was stimmt?',['Viele Touristen besuchen das Dorf.','Das Dorf ist unbekannt.','Das Dorf ist das einzige in Frankreich.'],'L’un des plus visités = eines der meistbesuchten.','visite'],
-  ['Du willst klettern gehen. Welcher Hinweis passt?',['« Le site est parfait pour l’escalade. »','« Le site est parfait pour la baignade. »','« Le site est parfait pour les enfants qui dorment. »'],'L’escalade = das Klettern.','sport'],
+  ['Du willst klettern gehen. Welcher Hinweis passt?',['« Le site est parfait pour l’escalade. »','« Le site est parfait pour la baignade. »','« Le site est parfait pour la randonnée. »'],'L’escalade = das Klettern; la baignade = das Baden, la randonnée = das Wandern.','sport'],
   ['Du empfiehlst das beste Restaurant.',['C’est le meilleur restaurant de la ville.','C’est le plus bon restaurant de la ville.','C’est le mieux restaurant de la ville.'],'Bon → le meilleur.','meilleur','C’est le meilleur restaurant de la ville.'],
   ['« Attention : en été, le village est plein de touristes. » Wann ist es ruhiger?',['außerhalb des Sommers','nur im August','am Wochenende im Sommer'],'En été = im Sommer viele Touristen.','saison'],
   ['Du interessierst dich für alte Kirchen. Welcher Abschnitt passt?',['« On y trouve de belles églises baroques. »','« On y trouve de belles plages de sable. »','« On y trouve de grands centres commerciaux. »'],'Églises baroques = Barockkirchen.','eglise']
@@ -79,7 +79,7 @@ module.exports=[
   ['A','Plutôt la nature. Et j’adore les couchers de soleil.'],['B','Alors allez aux falaises d’Étretat. Le coucher de soleil y est le plus beau de la côte.'],
   ['A','Et pour faire du sport ?'],['B','On peut faire du kayak sur la Seine, à vingt kilomètres d’ici.'],
   ['A','Il y a un endroit pour pique-niquer ?'],['B','Oui, le parc du château. C’est le plus calme de la ville.']],
-  fields:[['Die Touristin mag',['Natur','Städte','Museen']],['Empfehlung für Sonnenuntergang',['die Klippen von Étretat','der Hafen','der Park']],['Sport',['Kajak auf der Seine','Klettern','Radfahren']],['Entfernung',['20 km','2 km','12 km']],['Picknick',['im Schlosspark','am Strand','im Wald']],['Der Park ist',['der ruhigste der Stadt','der größte der Stadt','der älteste der Stadt']]]},
+  fields:[['Die Touristin mag',['Natur','Städte','Museen']],['Empfehlung für Sonnenuntergang',['die Klippen von Étretat','der Hafen von Honfleur','der Park am Schloss']],['Sport',['Kajak auf der Seine','Klettern an den Felsen','Radfahren am Fluss']],['Entfernung',['20 km','2 km','12 km']],['Picknick',['im Schlosspark','am Strand','im Wald']],['Der Park ist',['der ruhigste der Stadt','der größte der Stadt','der älteste der Stadt']]]},
  intro:['Colmar est la ville la plus jolie d’Alsace.',['Colmar est la ville la plus jolie de France.','Colmar est la ville la moins jolie d’Alsace.']],
  hard:{
   obj:[['superlatif','Den Superlativ bilden'],['conseil','Empfehlungen im Reisetext'],['lecture','Gezielt Informationen finden'],['comprendre','Tipps hörend verstehen']],
@@ -88,7 +88,7 @@ module.exports=[
    {text:'Bienvenue à Annecy ! Le lac d’Annecy est l’un des lacs les plus propres d’Europe. On peut s’y baigner de juin à septembre. Pour la meilleure vue, montez au château.',voice:'female',
     q:[['Comment est le lac d’Annecy ?','l’un des plus propres d’Europe',['l’un des plus propres d’Europe','le plus grand de France','le plus froid des Alpes'],'superlatif'],['Quand peut-on se baigner ?','de juin à septembre',['de juin à septembre','de mai à octobre','toute l’année'],'conseil'],['Où trouve-t-on la meilleure vue ?','au château',['au château','au port','à la gare'],'lecture']]},
    {turns:[['A','Tu me conseilles quoi à Lyon ?'],['B','Il faut aller dans le Vieux-Lyon, c’est le quartier le plus ancien.'],['A','Et pour manger ?'],['B','Les bouchons ! Ce sont les restaurants les plus typiques.']],voices:{A:'male',B:'female'},
-    q:[['Quel est le quartier le plus ancien ?','le Vieux-Lyon',['le Vieux-Lyon','la Croix-Rousse','le centre commercial'],'superlatif'],['Qu’est-ce qu’un bouchon ici ?','un restaurant typique',['un restaurant typique','un embouteillage','un musée'],'lecture'],['Qui pose les questions ?','l’homme',['l’homme','la femme','un guide'],'comprendre']]}
+    q:[['Quel est le quartier le plus ancien ?','le Vieux-Lyon',['le Vieux-Lyon','la Croix-Rousse','le centre commercial'],'superlatif'],['Qu’est-ce qu’un bouchon ici ?','un restaurant typique',['un restaurant typique','un embouteillage','un musée'],'lecture'],['Pourquoi faut-il aller dans le Vieux-Lyon ?','C’est le quartier le plus ancien.',['C’est le quartier le plus ancien.','C’est le quartier le plus moderne.','C’est le quartier le plus calme.'],'superlatif']]}
   ],
   writing:{situation:'Un ami français veut visiter ta région. Écris-lui un e-mail avec des conseils.',points:['Présente le lieu le plus intéressant de ta région (avec un superlatif).','Dis ce qu’on peut y faire.','Donne un conseil pratique (saison, transport, restaurant).'],
    model:'Cher Théo,\nSi tu viens en Saxe, il faut absolument visiter Dresde. C’est la ville la plus belle de la région, avec ses vieilles églises et son grand fleuve. On peut faire une promenade en bateau sur l’Elbe ou du vélo dans la Suisse saxonne. Le meilleur moment, c’est en mai : il fait beau et il n’y a pas trop de touristes.\nÀ bientôt,\nFelix'}
@@ -119,7 +119,7 @@ module.exports=[
   ['Was bedeutet „faire une sortie à la campagne“?',['einen Ausflug aufs Land machen','vom Land wegziehen','eine Kampagne starten'],'On pourrait faire une sortie à la campagne.','Une sortie = ein Ausflug; la campagne = das Land.'],
   ['On ___ retrouve à quelle heure ?',['se','nous','on'],'On se retrouve à quelle heure ?','Se retrouver = sich treffen; mit on: on se retrouve.'],
   ['Was bedeutet „faire les magasins“?',['einen Einkaufsbummel machen','Geschäfte bauen','im Laden arbeiten'],'…plutôt que faire les magasins.','Faire les magasins = shoppen gehen.'],
-  ['Welche Begründung passt? « On va au parc ___ il fera beau. »',['parce qu’','mais','donc'],'On va au parc parce qu’il fera beau.','Parce que + Grund; vor il wird es zu parce qu’.'],
+  ['Welche Begründung passt? « On va au parc ___ il fera beau. »',['parce qu’','mais','pourtant'],'On va au parc parce qu’il fera beau.','Parce que + Grund; vor il wird es zu parce qu’.'],
   ['Was bedeutet „On fait comme ça“?',['So machen wir es.','Wir machen es anders.','Wie machen wir das?'],'D’accord, on fait comme ça !','Comme ça = so.']
  ],
  dialogue:['Qu’est-ce qu’on fait samedi ?','On pourrait aller au zoo ?','Bof, je préfère faire du vélo plutôt qu’aller au zoo. Il fera beau.','D’accord. Et le soir, on va au concert ?','Pourquoi pas ! On se retrouve à quelle heure ?','À dix heures devant chez moi. On fait comme ça !'],
@@ -144,15 +144,15 @@ module.exports=[
   [0,'Ça te ___ de faire du vélo ?','dit',['fait','va'],'Hast du Lust, Rad zu fahren?','Vorschlag'],
   [0,'J’___ bien voir ce film. (aimer, würde)','aimerais',['aimerai','aimais'],'Ich würde diesen Film gern sehen.','Wunsch'],
   [0,'Bonne ___ !','idée',['envie','chance'],'Gute Idee!','Zustimmung'],
-  [0,'Bof, je n’ai pas très ___ .','envie',['idée','besoin'],'Na ja, ich habe nicht so große Lust.','Ablehnung'],
+  [0,'Bof, je n’ai pas très ___.','envie',['idée','besoin'],'Na ja, ich habe nicht so große Lust.','Ablehnung'],
   [1,'Je préfère courir ___ aller à la piscine.','plutôt qu’',['plus qu’','que plutôt'],'Ich gehe lieber laufen als ins Schwimmbad.','Vorliebe'],
   [1,'Je préfère le zoo ___ j’adore les animaux.','parce que',['pour que','alors'],'Ich mag den Zoo lieber, weil ich Tiere liebe.','Begründung'],
   [1,'On se ___ à dix heures devant la gare.','retrouve',['retrouvons','retrouvent'],'Wir treffen uns um zehn vor dem Bahnhof.','Treffpunkt'],
   [1,'On se retrouve ___ la gare. (vor)','devant',['derrière','dans'],'Wir treffen uns vor dem Bahnhof.','Treffpunkt'],
-  [1,'D’accord, on fait comme ___ .','ça',['ce','cela que'],'Einverstanden, so machen wir es.','Einigung']
+  [1,'D’accord, on fait comme ___.','ça',['ce','cela que'],'Einverstanden, so machen wir es.','Einigung']
  ],
  check:[
-  ['Prüfung Teil 3: Dein Partner schlägt vor: « On pourrait faire les magasins samedi ? » Du möchtest lieber draußen sein.',['Je préfère faire une sortie à la campagne, parce qu’il fera beau.','Je préfère faire les magasins, parce qu’il fera beau.','Je ne préfère pas, parce que.'],'Du nennst eine Alternative und begründest sie.','alternative','Je préfère faire une sortie à la campagne, parce qu’il fera beau.'],
+  ['Prüfung Teil 3: Dein Partner schlägt vor: « On pourrait faire les magasins samedi ? » Du möchtest lieber draußen sein.',['Je préfère faire une sortie à la campagne, parce qu’il fera beau.','Je préfère faire les magasins, parce qu’il fera beau.','Je préfère faire une sortie à la campagne, donc il fera beau.'],'Du nennst eine Alternative und begründest sie mit parce que. Donc leitet eine Folge ein, keinen Grund.','alternative','Je préfère faire une sortie à la campagne, parce qu’il fera beau.'],
   ['« Le zoo ? Bof, ça ne me dit rien. » Wie reagiert die Person?',['Sie hat keine Lust auf den Zoo.','Sie kennt den Zoo nicht.','Sie findet den Zoo super.'],'Ça ne me dit rien = keine Lust.','refus'],
   ['Du schlägst höflich vor, ins Konzert zu gehen.',['On pourrait aller au concert ?','On a pu aller au concert ?','On pourra allé au concert ?'],'On pourrait + Infinitiv.','proposer','On pourrait aller au concert ?'],
   ['« Le matin, on court au parc, et le soir, on va au restaurant. » Wann geht ihr laufen?',['morgens','abends','mittags'],'Le matin = morgens.','moment'],
@@ -168,7 +168,7 @@ module.exports=[
   ['parceque','On va à la piscine ___ il fait chaud. (weil)','parce qu’','Ihr geht ins Schwimmbad, weil es heiß ist.'],
   ['retrouver','On se ___ devant le cinéma. (treffen)','retrouve','Ihr trefft euch vor dem Kino.'],
   ['dit','Ça te ___ d’aller au zoo ?','dit','Hast du Lust, in den Zoo zu gehen?'],
-  ['refus','Bof, ça ne me dit ___ .','rien','Du hast keine Lust.']
+  ['refus','Bof, ça ne me dit ___.','rien','Du hast keine Lust.']
  ],
  comp:{voices:{A:'male',B:'female'},turns:[
   ['A','Alors, samedi prochain, qu’est-ce qu’on fait ensemble ?'],['B','On pourrait aller courir au parc le matin ?'],
@@ -182,7 +182,7 @@ module.exports=[
   text:'— Samedi prochain, qu’est-ce qu’on fait ? — On {pourrait|könnten (pouvoir)|proposer} aller au zoo ? — Bof, ça ne me {dit|sagen (ça ne me … rien)|proposer} rien. Je {préfère|lieber mögen, je|preferer} faire du vélo {plutôt|lieber (… que)|preferer} que voir des animaux. — D’accord, mais pourquoi ? — {Parce qu’|weil (vor il)|preferer}il fera beau et je veux être dehors. — Bonne {idée|Idee|accord} ! On pourrait aller à la campagne. Et l’après-midi, j’{aimerais|gern mögen, Conditionnel|proposer} bien faire les magasins. — Ah non ! Ça te {dit|Lust haben (ça te …)|proposer} plutôt d’aller courir au bord du lac ? — {Pourquoi|warum (… pas)|accord} pas. Et le soir, on va au concert ? — D’{accord|einverstanden|accord} ! On se {retrouve|treffen, on|accord} à quelle heure ? — À neuf heures {devant|vor (Ort)|accord} la gare. — Parfait, on fait comme {ça|so|accord} !',
   listen:[
    {text:'Salut Max ! J’ai une idée pour dimanche : on pourrait faire une randonnée en forêt. Après, on pourrait manger dans le petit restaurant du village. Je préfère partir tôt, vers huit heures, parce qu’il fera chaud l’après-midi.',voice:'female',
-    q:[['Qu’est-ce qu’elle propose pour dimanche ?','une randonnée en forêt',['une randonnée en forêt','une promenade en ville','une sortie au zoo'],'proposer'],['Où veut-elle manger ?','dans le restaurant du village',['dans le restaurant du village','au bord du lac','à la maison'],'comprendre'],['Pourquoi veut-elle partir tôt ?','Parce qu’il fera chaud l’après-midi.',['Parce qu’il fera chaud l’après-midi.','Parce qu’il pleuvra le soir.','Parce que le restaurant ferme tôt.'],'preferer']]},
+    q:[['Qu’est-ce qu’elle propose pour dimanche ?','une randonnée en forêt',['une randonnée en forêt','une promenade en ville','une sortie au zoo'],'proposer'],['Où veut-elle manger ?','dans le restaurant du village',['dans le restaurant du village','au restaurant de la gare','chez des amis au village'],'comprendre'],['Pourquoi veut-elle partir tôt ?','Parce qu’il fera chaud l’après-midi.',['Parce qu’il fera chaud l’après-midi.','Parce qu’il pleuvra le soir.','Parce que le restaurant ferme tôt.'],'preferer']]},
    {turns:[['A','Ça te dit d’aller au cinéma ce soir ?'],['B','Non, je préfère rester à la maison. Je suis fatiguée.'],['A','Alors demain soir ?'],['B','Demain, oui ! À vingt heures trente, d’accord ?']],voices:{A:'male',B:'female'},
     q:[['Est-ce qu’elle veut aller au cinéma ce soir ?','Non.',['Non.','Oui.','Peut-être.'],'accord'],['Pourquoi pas ce soir ?','Elle est fatiguée.',['Elle est fatiguée.','Elle travaille.','Elle n’aime pas le film.'],'preferer'],['À quelle heure demain ?','20 h 30',['20 h 30','20 h','21 h 30'],'accord']]}
   ],
@@ -212,8 +212,8 @@ module.exports=[
   ['On vous recommande ___ regarder des films.',['de','à','pour'],'On vous recommande de regarder des films en version originale.','Recommander de + Infinitiv.'],
   ['Was bedeutet „en version originale“?',['in Originalfassung','in einer neuen Version','mit Untertiteln auf Deutsch'],'…des films en version originale.','La version originale (VO) = Originalfassung.'],
   ['N’___ pas peur de faire des fautes. (avoir, Imperativ)',['ayez','avez','ayons'],'N’ayez pas peur de faire des fautes.','Avoir hat einen unregelmäßigen Imperativ: aie, ayons, ayez.'],
-  ['Ne ___ pas chaque mot. (traduire, Imperativ)',['traduisez','traduire','traduis'],'Ne traduisez pas chaque mot.','Verneinter Imperativ: Ne + Verb + pas.'],
-  ['Il faut parler le plus souvent ___ .',['possible','possibles','pouvoir'],'Il faut parler le plus souvent possible.','Le plus souvent possible = so oft wie möglich.'],
+  ['Ne ___ pas chaque mot. (traduire, vous, Imperativ)',['traduisez','traduire','traduis'],'Ne traduisez pas chaque mot.','Verneinter Imperativ mit vous: ne traduisez pas. Traduis ist die du-Form.'],
+  ['Il faut parler le plus souvent ___.',['possible','possibles','pouvoir'],'Il faut parler le plus souvent possible.','Le plus souvent possible = so oft wie möglich.'],
   ['Was ist „une famille d’accueil“?',['eine Gastfamilie','eine große Familie','ein Familienhotel'],'On peut habiter dans une famille d’accueil.','Accueillir = empfangen, aufnehmen.'],
   ['Le cours ___ quatre semaines.',['dure','fait durer','est durée'],'Le cours dure quatre semaines.','Durer = dauern.'],
   ['Je voudrais ___ un cours intensif.',['suivre','prendre part','faire partie'],'Je voudrais suivre un cours intensif à Montpellier.','Suivre un cours = einen Kurs besuchen.']
@@ -239,12 +239,12 @@ module.exports=[
   [0,'___ les mots nouveaux. (noter)','Notez',['Notes','Notent'],'Notieren Sie die neuen Wörter.','Imperativ'],
   [0,'Ne ___ pas chaque mot. (traduire)','traduisez',['traduisez-pas','traduire'],'Übersetzen Sie nicht jedes Wort.','Imperativ'],
   [0,'___ patient ! (être)','Soyez',['Êtes','Soyons'],'Seien Sie geduldig!','Imperativ','Être → soyez.'],
-  [0,'___ toujours un carnet. (avoir)','Ayez',['Avez','Aie'],'Haben Sie immer ein Notizbuch dabei.','Imperativ','Avoir → ayez.'],
+  [0,'___ toujours un carnet. (avoir)','Ayez',['Avez','Avoir'],'Haben Sie immer ein Notizbuch dabei.','Imperativ','Imperativ von avoir mit vous: ayez. Avez ist Präsens.'],
   [0,'On vous conseille ___ lire des BD.','de',['à','pour'],'Man rät Ihnen, Comics zu lesen.','conseiller de'],
   [0,'Il ___ parler tous les jours.','faut',['doit','peut'],'Man muss jeden Tag sprechen.','il faut'],
   [1,'Je voudrais m’___ à un cours intensif.','inscrire',['écrire','inscris'],'Ich möchte mich für einen Intensivkurs anmelden.','Kurs'],
   [1,'Le cours ___ trois semaines.','dure',['dur','durée'],'Der Kurs dauert drei Wochen.','Kurs'],
-  [1,'On peut habiter dans une famille d’___ .','accueil',['accueillir','acceuil'],'Man kann bei einer Gastfamilie wohnen.','Kurs'],
+  [1,'On peut habiter dans une famille d’___.','accueil',['accueillir','acceuil'],'Man kann bei einer Gastfamilie wohnen.','Kurs'],
   [1,'Le prix ___ les repas.','comprend',['comprends','comprennent'],'Im Preis sind die Mahlzeiten enthalten.','Kurs']
  ],
  check:[
@@ -307,7 +307,7 @@ module.exports=[
   ['Est-ce que vous ___ chercher une école ? (könntet)',['pourriez','pouvez','pourrez'],'Est-ce que vous pourriez chercher une école de langues ?','Conditionnel von pouvoir = höfliche Bitte: vous pourriez.'],
   ['Was bedeutet „Merci d’avance“?',['Danke im Voraus','Danke für früher','Danke vielmals'],'Merci d’avance pour votre réponse.','D’avance = im Voraus.'],
   ['Welche Grußformel passt an Freunde?',['Je vous embrasse,','Veuillez agréer mes salutations distinguées.','Salutations commerciales,'],'Je vous embrasse,','Je t’embrasse / je vous embrasse, bises = herzliche Grüße an Freunde.'],
-  ['Je vous écris ___ j’ai besoin de votre aide.',['parce que','pour','donc'],'Je vous écris parce que j’ai besoin de votre aide.','Parce que nennt den Grund des Schreibens.'],
+  ['Je vous écris ___ j’ai besoin de votre aide.',['parce que','pourtant','donc'],'Je vous écris parce que j’ai besoin de votre aide.','Parce que nennt den Grund des Schreibens.'],
   ['Was bedeutet „J’ai hâte de vous revoir“?',['Ich freue mich darauf, euch wiederzusehen.','Ich habe keine Zeit, euch zu sehen.','Ich habe euch eilig gesehen.'],'J’ai hâte de vous revoir.','Avoir hâte de = es kaum erwarten können.'],
   ['Le cours ___ du 3 au 28 juillet. (wäre)',['serait','sera','était'],'Le cours serait du 3 au 28 juillet.','Conditionnel von être: serait.'],
   ['Vous connaissez une famille ___ je pourrais habiter ?',['où','que','qui'],'Vous connaissez une famille où je pourrais habiter ?','Où als Relativpronomen für einen Ort.'],
@@ -339,19 +339,19 @@ module.exports=[
   [0,'Ce ___ super ! (être, wäre)','serait',['sera','était'],'Das wäre super!','Conditionnel'],
   [1,'___ Anne, (Anrede)','Chère',['Cher','Chers'],'Liebe Anne,','Anrede','Anne ist eine Frau → Chère.'],
   [1,'J’espère que tu ___ bien.','vas',['es','fais'],'Ich hoffe, es geht dir gut.','Einstieg'],
-  [1,'Je t’écris ___ j’ai une question.','parce que',['pour','donc'],'Ich schreibe dir, weil ich eine Frage habe.','Grund'],
+  [1,'Je t’écris ___ j’ai une question.','parce que',['pourtant','donc'],'Ich schreibe dir, weil ich eine Frage habe.','Grund','Parce que nennt den Grund; donc nennt eine Folge, pourtant einen Gegensatz.'],
   [1,'Merci d’___ pour ton aide.','avance',['avant','abord'],'Danke im Voraus für deine Hilfe.','Schluss'],
-  [1,'Je t’___ , Laura','embrasse',['embrassé','embrasses'],'Liebe Grüße, Laura','Gruß']
+  [1,'Je t’___, Laura','embrasse',['embrassé','embrasses'],'Liebe Grüße, Laura','Gruß']
  ],
  check:[
   ['Schreibauftrag telc: drei von sechs Punkten. Du hast Anrede, Schule und Termine geschrieben, aber keinen Gruß. Was fehlt laut Bewertung?',['die passende Grußformel am Ende','ein vierter Punkt','eine Unterschrift mit Adresse'],'Die Briefform (Anrede und Grußformel) wird eigens bewertet.','forme'],
   ['Du bittest deine Freunde höflich, eine Schule zu suchen.',['Est-ce que vous pourriez chercher une école pour moi ?','Est-ce que vous pouvez chercher moi une école ?','Cherchez une école, vite !'],'Vous pourriez + Infinitiv = höfliche Bitte.','demande','Est-ce que vous pourriez chercher une école pour moi ?'],
   ['Welche Anrede passt für deinen Freund Luc?',['Cher Luc,','Chère Luc,','Chers Luc,'],'Ein Mann → Cher.','cher','Cher Luc,'],
-  ['Du möchtest wissen, ob man in einer Familie wohnen kann.',['Est-ce que je pourrais habiter dans une famille ?','Est-ce que je pourrai habité dans une famille ?','Je pourrais habiter une famille dans ?'],'Je pourrais + Infinitiv.','famille','Est-ce que je pourrais habiter dans une famille ?'],
-  ['Welcher Schluss passt zu einem Brief an Freunde?',['Merci d’avance ! Je vous embrasse, Laura','Veuillez agréer mes salutations distinguées.','Fin de la lettre.'],'Je vous embrasse = herzliche Grüße an Freunde.','salutation'],
-  ['Du nennst den Zeitraum deines Kurses.',['Le cours serait du 3 au 28 juillet.','Le cours serait de 3 à 28 juillet.','Le cours serait le 3 jusqu’au 28 juillet de.'],'Du … au … = vom … bis zum …','dates','Le cours serait du 3 au 28 juillet.'],
-  ['Du fragst nach dem Preis.',['Est-ce que vous savez combien coûte un cours ?','Est-ce que vous savez combien un cours coûtes ?','Combien vous coûte savoir un cours ?'],'Combien coûte + Nomen.','prix','Est-ce que vous savez combien coûte un cours ?'],
-  ['Du verbindest zwei Gedanken: Ich möchte bei einer Familie wohnen, aber nicht zu weit vom Zentrum.',['J’aimerais habiter dans une famille, mais pas trop loin du centre.','J’aimerais habiter dans une famille, parce que pas trop loin du centre.','J’aimerais habiter dans une famille, donc pas loin trop du centre.'],'Mais = aber, für eine Einschränkung.','mais','J’aimerais habiter dans une famille, mais pas trop loin du centre.']
+  ['Du möchtest wissen, ob man in einer Familie wohnen kann.',['Est-ce que je pourrais habiter dans une famille ?','Est-ce que je pourrai habité dans une famille ?','Est-ce que je pourrais habiter dans un famille ?'],'Je pourrais + Infinitiv; la famille ist weiblich.','famille','Est-ce que je pourrais habiter dans une famille ?'],
+  ['Welcher Schluss passt zu einem Brief an Freunde?',['Merci d’avance ! Je vous embrasse, Laura','Veuillez agréer mes salutations distinguées.','Cordialement, Laura Weber'],'Je vous embrasse = herzliche Grüße an Freunde. Veuillez agréer … und Cordialement sind für formelle Briefe.','salutation'],
+  ['Du nennst den Zeitraum deines Kurses.',['Le cours serait du 3 au 28 juillet.','Le cours serait de 3 à 28 juillet.','Le cours serait depuis le 3 jusqu’au 28 juillet.'],'Du … au … = vom … bis zum … Depuis heißt seit und passt nicht zu einem Zeitraum in der Zukunft.','dates','Le cours serait du 3 au 28 juillet.'],
+  ['Du fragst nach dem Preis.',['Est-ce que vous savez combien coûte un cours ?','Est-ce que vous savez combien un cours coûtes ?','Est-ce que vous savez combien coûte-t-il un cours ?'],'Combien coûte + Nomen. Nach est-ce que vous savez steht keine Inversion; coûtes ist die du-Form.','prix','Est-ce que vous savez combien coûte un cours ?'],
+  ['Du verbindest zwei Gedanken: Ich möchte bei einer Familie wohnen, aber nicht zu weit vom Zentrum.',['J’aimerais habiter dans une famille, mais pas trop loin du centre.','J’aimerais habiter dans une famille, parce que pas trop loin du centre.','J’aimerais habiter dans une famille, donc pas trop loin du centre.'],'Mais = aber, für eine Einschränkung. Parce que nennt einen Grund, donc eine Folge.','mais','J’aimerais habiter dans une famille, mais pas trop loin du centre.']
  ],
  transfers:[
   ['pourrais','Tu ___ venir me chercher à la gare ? (pouvoir, Conditionnel)','pourrais','Bitte einen Freund höflich, dich abzuholen.'],
@@ -360,7 +360,7 @@ module.exports=[
   ['chere','___ Julie, (Anrede)','Chère','Begrüße deine Freundin Julie im Brief.'],
   ['ecrire','Je vous ___ parce que j’ai une question. (écrire)','écris','Du schreibst, weil du eine Frage hast.'],
   ['avance','Merci d’___ ! (im Voraus)','avance','Danke im Voraus!'],
-  ['embrasse','Je t’___ , Marc (Grußformel)','embrasse','Beende den Brief an eine Freundin.']
+  ['embrasse','Je t’___, Marc (Grußformel)','embrasse','Beende den Brief an eine Freundin.']
  ],
  comp:{voices:{A:'female',B:'male'},turns:[
   ['A','Tu as reçu la lettre de Laura ?'],['B','Oui, elle veut suivre un cours de français à Paris en juillet.'],
@@ -376,7 +376,7 @@ module.exports=[
    {text:'Chère Laura, merci pour ta lettre ! Nous avons trouvé une école près de la Bastille : le cours intensif coûte six cents euros pour quatre semaines. Nos voisins peuvent te loger. À bientôt ! Sophie',voice:'female',
     q:[['Où se trouve l’école ?','près de la Bastille',['près de la Bastille','près de la tour Eiffel','à la gare du Nord'],'contenu'],['Combien coûte le cours ? Réponds en chiffres.','600',null,'contenu'],['Qui peut loger Laura ?','les voisins',['les voisins','Sophie','l’école'],'comprendre']]},
    {turns:[['A','Tu pourrais relire ma lettre pour l’examen ?'],['B','Bien sûr. Tu as mis une formule au début ?'],['A','Oui, « Chers amis ». Mais j’ai oublié la fin.'],['B','Alors ajoute « Je vous embrasse » et ton prénom.']],voices:{A:'male',B:'female'},
-    q:[['Qu’est-ce que l’homme demande ?','de relire sa lettre',['de relire sa lettre','d’écrire sa lettre','de poster sa lettre'],'politesse'],['Qu’est-ce qu’il a oublié ?','la formule de fin',['la formule de fin','la formule du début','la date'],'lettre'],['Que doit-il ajouter ?','« Je vous embrasse » et son prénom',['« Je vous embrasse » et son prénom','son adresse','une photo'],'lettre']]}
+    q:[['Qu’est-ce que l’homme demande ?','de relire sa lettre',['de relire sa lettre','d’écrire sa lettre','de poster sa lettre'],'politesse'],['Qu’est-ce qu’il a oublié ?','la formule de fin',['la formule de fin','la formule du début','la date'],'lettre'],['Que doit-il ajouter ?','« Je vous embrasse » et son prénom',['« Je vous embrasse » et son prénom','« Cordialement » et son nom','« Salut » et son adresse'],'lettre']]}
   ],
   writing:{situation:'Tu aimerais faire un cours de français en France. Écris une courte lettre à des amis qui habitent à Paris et demande-leur de l’aide. Traite trois points au choix : école, dates, prix, logement dans une famille, repas, découverte de la ville.',points:['Commence par une formule adéquate et dis pourquoi tu écris.','Traite trois des six points avec des questions polies.','Termine par un remerciement et une formule adéquate.'],
    model:'Chers Paul et Anne,\nJ’espère que vous allez bien. Je vous écris parce que je voudrais suivre un cours de français à Paris du 4 au 29 août. Est-ce que vous pourriez chercher une école de langues pour moi ? J’aimerais aussi habiter dans une famille française, parce que je veux parler beaucoup. Et le premier week-end, est-ce qu’on pourrait visiter la ville ensemble ?\nMerci d’avance ! Je vous embrasse,\nNora',minWords:40,targetWords:60}
@@ -399,14 +399,14 @@ module.exports=[
   ['Mes parents ? Je leur téléphone chaque dimanche.','Meine Eltern? Ich rufe sie jeden Sonntag an.']
  ],
  quiz:[
-  ['Mon portable ? Je ___ ai toujours sur moi.',['l’','lui','en'],'Je l’ai toujours sur moi.','Direktes Objekt (le portable) → le, vor Vokal l’.'],
+  ['Mon portable ? ___ ai toujours sur moi.',['Je l’','Je lui','J’en'],'Je l’ai toujours sur moi.','Direktes Objekt (le portable) → le, vor Vokal l’. Lui ersetzt à + Person, en eine Menge.'],
   ['Je ne vais ___ au cinéma seul. (nie)',['jamais','toujours','quelquefois'],'Je ne vais jamais au cinéma seul.','Ne … jamais = nie.'],
   ['On fête ça ___ ? (zusammen)',['ensemble','chacune','quelquefois'],'On fête ça ensemble ?','Ensemble = zusammen.'],
   ['La boulangerie est ___ la gare. (in der Nähe)',['près de','contre','à côté'],'La boulangerie est près de la gare.','Près de = in der Nähe von. À côté braucht auch de.'],
   ['Le café est à côté ___ la poste.',['de','à','par'],'Le café est à côté de la poste.','À côté de = neben.'],
   ['Le vélo est ___ le mur. (an, angelehnt)',['contre','près','chez'],'Le vélo est contre le mur.','Contre = gegen, an (berührend).'],
-  ['Paris ? J’___ vais demain.',['y','en','le'],'Paris ? J’y vais demain.','Y ersetzt einen Ort mit à / en / dans: J’y vais.'],
-  ['Du thé ? J’___ bois souvent.',['en','y','le'],'Du thé ? J’en bois souvent.','En ersetzt du / de la / des + Nomen.'],
+  ['Paris ? ___ vais demain.',['J’y','J’en','Je la'],'Paris ? J’y vais demain.','Y ersetzt einen Ort mit à / en / dans: J’y vais.'],
+  ['Du thé ? ___ bois souvent.',['J’en','J’y','Je lui'],'Du thé ? J’en bois souvent.','En ersetzt du / de la / des + Nomen. Y steht für Orte, lui für Personen.'],
   ['Mes parents ? Je ___ téléphone chaque dimanche.',['leur','les','lui'],'Je leur téléphone chaque dimanche.','Téléphoner à + Personen → leur.'],
   ['___, je travaille le samedi. (manchmal)',['Quelquefois','Toujours','Jamais'],'Quelquefois, je travaille le samedi.','Quelquefois = manchmal.']
  ],
@@ -429,25 +429,25 @@ module.exports=[
  ],
  tasks:[
   [0,'Le train ? Je ___ prends à huit heures.','le',['lui','y'],'Den Zug? Ich nehme ihn um acht.','Pronomen'],
-  [0,'Ma mère ? Je ___ écris.','lui',['la','en'],'Meine Mutter? Ich schreibe ihr.','Pronomen'],
-  [0,'Lyon ? Nous ___ habitons.','y',['en','la'],'Lyon? Wir wohnen dort.','Pronomen'],
-  [0,'Des pommes ? J’___ achète trois.','en',['les','y'],'Äpfel? Ich kaufe drei.','Pronomen'],
-  [0,'Les clés ? Je ___ ai oubliées.','les',['leur','en'],'Die Schlüssel? Ich habe sie vergessen.','Pronomen'],
+  [0,'Ma mère ? ___ écris.','Je lui',['Je l’','J’en'],'Meine Mutter? Ich schreibe ihr.','Pronomen','Écrire à quelqu’un → lui. Je l’écris hieße „ich schreibe es“.'],
+  [0,'Lyon ? Nous ___ habitons.','y',['en','lui'],'Lyon? Wir wohnen dort.','Pronomen','Y ersetzt einen Ort: nous y habitons.'],
+  [0,'Des pommes ? ___ achète trois.','J’en',['Je les','J’y'],'Äpfel? Ich kaufe drei.','Pronomen','Mit einer Menge (trois) steht en: j’en achète trois.'],
+  [0,'Les clés ? ___ ai oubliées.','Je les',['Je leur','J’en'],'Die Schlüssel? Ich habe sie vergessen.','Pronomen','Direktes Objekt im Plural → les; deshalb auch oubliées mit -es.'],
   [0,'Mes amis ? Je ___ envoie une carte.','leur',['les','lui'],'Meinen Freunden? Ich schicke ihnen eine Karte.','Pronomen'],
   [1,'J’habite près ___ parc.','du',['de le','au'],'Ich wohne in der Nähe des Parks.','Präposition','De + le = du.'],
   [1,'La pharmacie est en face ___ l’église.','de',['à','du'],'Die Apotheke ist gegenüber der Kirche.','Präposition'],
   [1,'Je suis ___ à l’heure. (immer)','toujours',['jamais','quelquefois'],'Ich bin immer pünktlich.','Adverb'],
-  [1,'Je ne fume ___ . (nie)','jamais',['toujours','souvent'],'Ich rauche nie.','Adverb']
+  [1,'Je ne fume ___. (nie)','jamais',['toujours','souvent'],'Ich rauche nie.','Adverb']
  ],
  check:[
   ['Lückentext: « Appelle-moi sur mon portable, je l’ai ___ sur moi. » Welches Wort passt?',['toujours','jamais','pendant'],'Wer das Handy dabeihat, hat es immer bei sich.','toujours','Je l’ai toujours sur moi.'],
-  ['Lückentext: « Il faut absolument qu’on fête ça ___ . »',['ensemble','chacune','quelquefois'],'Zusammen feiern = fêter ensemble.','ensemble','Il faut absolument qu’on fête ça ensemble.'],
+  ['Lückentext: « Il faut absolument qu’on fête ça ___. »',['ensemble','chacune','quelquefois'],'Zusammen feiern = fêter ensemble.','ensemble','Il faut absolument qu’on fête ça ensemble.'],
   ['« Tu as trouvé un travail, et ___ chez toi en plus ! » (in der Nähe)',['près de','contre','à côté'],'Près de chez toi = in deiner Nähe. À côté fehlt hier de.','pres','Tu as trouvé un travail, et près de chez toi en plus !'],
   ['Antwort auf « Tu vas souvent à la piscine ? »',['Oui, j’y vais le mardi.','Oui, j’en vais le mardi.','Oui, je la vais le mardi.'],'Ort → y.','y','Oui, j’y vais le mardi.'],
-  ['Antwort auf « Tu bois du café ? »',['Oui, j’en bois le matin.','Oui, je le bois le matin du.','Oui, j’y bois le matin.'],'Du café → en.','en','Oui, j’en bois le matin.'],
+  ['Antwort auf « Tu bois du café ? »',['Oui, j’en bois le matin.','Oui, je bois en le matin.','Oui, j’y bois le matin.'],'Du café → en.','en','Oui, j’en bois le matin.'],
   ['Antwort auf « Tu parles à ton voisin ? »',['Oui, je lui parle souvent.','Oui, je le parle souvent.','Oui, je leur parle souvent.'],'Parler à + eine Person → lui.','lui','Oui, je lui parle souvent.'],
   ['« La banque est à côté de la mairie. » Wo ist die Bank?',['neben dem Rathaus','gegenüber dem Rathaus','im Rathaus'],'À côté de = neben.','acote'],
-  ['Du sagst, dass du nie allein reist.',['Je ne voyage jamais seul.','Je voyage jamais seul ne.','Je ne voyage pas jamais seul.'],'Ne … jamais umschließt das Verb.','jamais','Je ne voyage jamais seul.']
+  ['Du sagst, dass du nie allein reist.',['Je ne voyage jamais seul.','Je voyage ne jamais seul.','Je ne voyage pas jamais seul.'],'Ne … jamais umschließt das Verb.','jamais','Je ne voyage jamais seul.']
  ],
  transfers:[
   ['le','Ce film ? Je ___ ai vu hier.','l’','Den Film hast du gestern gesehen.'],
@@ -463,7 +463,7 @@ module.exports=[
   ['A','Tu y vas souvent ?'],['B','Quelquefois, le samedi. J’y achète des BD pour mon fils.'],
   ['A','Il en lit beaucoup ?'],['B','Oh oui, il en lit trois par semaine ! Il ne regarde jamais la télé.'],
   ['A','Et tes parents, ils lisent ?'],['B','Mon père, toujours. Je lui offre un livre à chaque anniversaire.']],
-  fields:[['Lage der Buchhandlung',['neben der Bäckerei','neben der Post','neben dem Rathaus']],['Gegenüber',['dem Rathaus','der Bäckerei','der Kirche']],['Wie oft geht er hin',['manchmal samstags','jeden Tag','nie']],['Comics pro Woche',['drei','zwei','dreizehn']],['Fernsehen beim Sohn',['nie','oft','manchmal']],['Geschenk für den Vater',['ein Buch','eine Uhr','eine DVD']]]},
+  fields:[['Lage der Buchhandlung',['neben der Bäckerei','neben der Post','neben dem Rathaus']],['Gegenüber',['dem Rathaus','der Bäckerei','der Kirche']],['Wie oft geht er hin',['manchmal samstags','jeden Tag','jeden Sonntag']],['Comics pro Woche',['drei','zwei','dreizehn']],['Fernsehen beim Sohn',['nie','oft','manchmal']],['Geschenk für den Vater',['ein Buch','eine Uhr','eine DVD']]]},
  intro:['Paris ? J’y vais demain.',['Paris ? J’y vais dimanche.','Paris ? J’en viens demain.']],
  hard:{
   obj:[['pronom','Pronomen le / lui / y / en'],['prep','Präpositionen des Ortes'],['adverbe','Adverbien der Häufigkeit'],['comprendre','Einen Text mit Pronomen verstehen']],
@@ -472,7 +472,7 @@ module.exports=[
    {text:'Mon quartier est très pratique. La boulangerie est en face de chez moi et le supermarché est à côté de l’école. Le parc ? J’y cours tous les matins. Je ne prends jamais la voiture.',voice:'male',
     q:[['Où est la boulangerie ?','en face de chez lui',['en face de chez lui','à côté de l’école','loin de chez lui'],'prep'],['Que fait-il au parc ?','Il y court.',['Il y court.','Il y lit.','Il y travaille.'],'pronom'],['Est-ce qu’il prend souvent la voiture ?','Non, jamais.',['Non, jamais.','Oui, toujours.','Quelquefois.'],'adverbe']]},
    {turns:[['A','Tu as vu mes lunettes ?'],['B','Oui, je les ai vues sur la table, à côté du téléphone.'],['A','Et ma veste ?'],['B','Elle est contre la porte. Tu la mets toujours là !']],voices:{A:'female',B:'male'},
-    q:[['Où sont les lunettes ?','sur la table, à côté du téléphone',['sur la table, à côté du téléphone','sous la table','près de la porte'],'prep'],['Où est la veste ?','contre la porte',['contre la porte','sur la chaise','dans l’armoire'],'prep'],['Que dit l’homme ?','Elle la met toujours là.',['Elle la met toujours là.','Elle ne la met jamais là.','Il l’a cachée.'],'adverbe']]}
+    q:[['Où sont les lunettes ?','sur la table, à côté du téléphone',['sur la table, à côté du téléphone','sous la table, à côté du téléphone','sur la table, à côté de la porte'],'prep'],['Où est la veste ?','contre la porte',['contre la porte','sur la chaise','dans l’armoire'],'prep'],['Que dit l’homme ?','Elle la met toujours là.',['Elle la met toujours là.','Elle ne la met jamais là.','Il l’a cachée.'],'adverbe']]}
   ],
   writing:{situation:'Un ami français va habiter dans ton quartier. Écris-lui un e-mail pour le présenter.',points:['Décris où sont trois endroits utiles (près de, à côté de, en face de).','Dis ce que tu y fais et combien de fois (avec y et un adverbe).','Propose de faire quelque chose ensemble.'],
    model:'Salut Hugo,\nBienvenue dans le quartier ! La boulangerie est juste en face de ton immeuble. Le marché est à côté de la mairie : j’y vais toujours le samedi matin. Il y a aussi une piscine près de la gare ; j’y nage quelquefois le soir. Le petit café du coin ? J’y bois souvent un café. On pourrait y aller ensemble dimanche !\nÀ bientôt,\nMax'}
@@ -503,7 +503,7 @@ module.exports=[
   ['Wie lange dauert das Leseverstehen?',['30 Minuten','15 Minuten','20 Minuten'],'Compréhension de textes écrits : 30 minutes.','Éléments langagiers 15, Hören ca. 20, Lesen 30, Schreiben 15 Minuten.'],
   ['Was bedeutet „vrai ou faux“?',['richtig oder falsch','wahr oder gelogen','leicht oder schwer'],'Décidez si les phrases sont vraies ou fausses.','Auf dem Bogen: + für vrai, − für faux.'],
   ['Wie markierst du „richtig“ auf dem Antwortbogen?',['mit +','mit −','mit x'],'Marquez PLUS pour vrai.','+ = vrai, − = faux.'],
-  ['Was zählt im mündlichen Teil 2?',['Informationen austauschen und Fragen stellen','einen Vortrag halten','einen Text vorlesen'],'À l’oral, posez des questions à votre partenaire.','Teil 2: Échanger des informations.'],
+  ['Was zählt im mündlichen Teil 2?',['Informationen austauschen und Fragen stellen','einen kurzen Vortrag über sich halten','einen Text vorlesen und zusammenfassen'],'À l’oral, posez des questions à votre partenaire.','Teil 2: Échanger des informations.'],
   ['Wie lange dauert die Vorbereitung auf die mündliche Prüfung?',['15 Minuten','5 Minuten','30 Minuten'],'Vous avez quinze minutes pour vous préparer.','15 Minuten Vorbereitung, ca. 10 Minuten Prüfung.']
  ],
  dialogue:['Tu passes l’examen telc A2 samedi ?','Oui ! D’abord les éléments langagiers, puis l’écoute et la lecture.','Et l’expression écrite ?','Une lettre : trois points sur six, avec les formules.','Et l’oral ?','À deux : on se présente, on échange des informations et on se met d’accord.'],
@@ -524,9 +524,9 @@ module.exports=[
    emphasis:['Faire connaissance','Échanger des informations','Se mettre d’accord','Schlüsselwörter','Verneinungen','Zahlen']}
  ],
  tasks:[
-  [0,'Vous entendrez chaque texte deux ___ .','fois',['temps','heures'],'Sie hören jeden Text zweimal.','Anweisung'],
+  [0,'Vous entendrez chaque texte deux ___.','fois',['temps','heures'],'Sie hören jeden Text zweimal.','Anweisung'],
   [0,'Marquez vos réponses sur la ___ de réponse.','feuille',['page','fiche'],'Markieren Sie Ihre Antworten auf dem Antwortbogen.','Anweisung'],
-  [0,'Décidez si les phrases sont vraies ou ___ .','fausses',['faux','fautes'],'Entscheiden Sie, ob die Sätze richtig oder falsch sind.','Anweisung','Les phrases ist weiblich Plural → fausses.'],
+  [0,'Décidez si les phrases sont vraies ou ___.','fausses',['faux','fautes'],'Entscheiden Sie, ob die Sätze richtig oder falsch sind.','Anweisung','Les phrases ist weiblich Plural → fausses.'],
   [0,'Vous n’utiliserez un mot qu’une ___ fois.','seule',['seul','même'],'Sie verwenden jedes Wort nur einmal.','Anweisung'],
   [0,'Choisissez trois ___ six points.','des',['de','sur'],'Wählen Sie drei der sechs Punkte.','Anweisung'],
   [1,'Pouvez-vous nous parler ___ vous ?','de',['à','sur'],'Können Sie uns etwas über sich erzählen?','mündlich'],
@@ -546,12 +546,12 @@ module.exports=[
   ['Du hast 72 Punkte. Welches Ergebnis ist das?',['assez bien (bestanden)','bien','nicht bestanden'],'70–79,5 Punkte = assez bien.','note']
  ],
  transfers:[
-  ['fois','Vous entendrez chaque texte deux ___ .','fois','Anweisung im Hörverstehen.'],
-  ['feuille','Marquez vos réponses sur la ___ de réponse.','feuille','Wo markierst du die Antworten?'],
-  ['vrai','Décidez si les phrases sont ___ ou fausses. (richtig)','vraies','Ergänze die Anweisung.'],
-  ['points','Choisissez trois des six ___ .','points','Anweisung im Brief.'],
-  ['accord','Mettez-vous d’___ sur deux activités.','accord','Anweisung im mündlichen Teil 3.'],
-  ['poser','___ des questions à votre partenaire ! (poser)','Posez','Anweisung im mündlichen Teil 2.'],
+  ['fois','Vous entendrez les annonces deux ___.','fois','Anweisung im Hörverstehen.'],
+  ['feuille','Écrivez vos réponses sur la ___ de réponse, pas dans le cahier.','feuille','Wo schreibst du die Antworten hin?'],
+  ['vrai','Les phrases 1 et 3 sont ___, la phrase 2 est fausse. (richtig)','vraies','Ergänze die Lösung.'],
+  ['points','Traitez trois des six ___ dans votre lettre.','points','Anweisung im Brief.'],
+  ['accord','Discutez et mettez-vous d’___ sur un cadeau.','accord','Anweisung im mündlichen Teil 3.'],
+  ['poser','___ trois questions à l’examinatrice ! (poser)','Posez','Anweisung im mündlichen Teil 2.'],
   ['soixante','Il faut au moins ___ points pour réussir. (Zahl in Worten)','soixante','Wie viele Punkte braucht man zum Bestehen?']
  ],
  comp:{voices:{A:'female',B:'male'},turns:[
