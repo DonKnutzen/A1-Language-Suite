@@ -4,7 +4,7 @@ const root=path.join(__dirname,'..'),load=file=>{const w={};new Function('window
 const D=load('data.js').FR_A1_DATA,S=load('mastery-specs.js').FR_A1_MASTERY_SPECS,C=load('comprehension-content.js').A1_COMPREHENSION_CONTENT;
 const I=load('intro-listening.js').FR_A1_INTRO_LISTENING,H=load('hard-mode-content.js').FR_A1_HARD_CONTENT;
 // The review goes stage by stage; the give-away checks cover the lessons reviewed so far, the basic checks all lessons.
-const REVIEWED=12;
+const REVIEWED=18;
 const norm=s=>String(s).normalize('NFC').toLowerCase().replace(/[’']/g,'’').replace(/[.!?,;:«»„“"…]/g,' ').replace(/\s+/g,' ').trim();
 // Every multiple-choice task with its source, options, answer and explanation.
 function choiceTasks(){

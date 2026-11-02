@@ -3396,7 +3396,7 @@ window.FR_A1_DATA = {
           "explanation": "L’étranger = das Ausland; un étranger = ein Ausländer."
         },
         {
-          "q": "___ de plus en plus de personnes font du sport.",
+          "q": "___ personnes font du sport.",
           "o": [
             "Encore plus des",
             "De plus en plus de",
@@ -3410,15 +3410,16 @@ window.FR_A1_DATA = {
           "q": "La région ne compte ___ deux millions d’habitants.",
           "o": [
             "que",
-            "pas",
+            "seulement",
             "plus"
           ],
           "a": 0,
           "audio": "La région ne compte que deux millions d’habitants.",
-          "explanation": "Ne … que = nur."
+          "explanation": "Ne … que = nur. Ne … plus hieße „nicht mehr“; seulement steht ohne ne.",
+          "context": "Die Region hat nur zwei Millionen Einwohner."
         },
         {
-          "q": "Le nombre de touristes a ___ . (gestiegen)",
+          "q": "Le nombre de touristes a ___. (gestiegen)",
           "o": [
             "baissé",
             "diminué",
@@ -5540,12 +5541,12 @@ window.FR_A1_DATA = {
           "q": "Ergänze: Le train pour Lyon ___ voie 3. (partir)",
           "o": [
             "partirait",
-            "part",
+            "partiront",
             "partira"
           ],
           "a": 2,
           "audio": "Le train pour Lyon partira voie 3.",
-          "explanation": "Le train pour Lyon partira voie 3. = Der Zug nach Lyon wird von Gleis 3 abfahren."
+          "explanation": "Ankündigung im futur simple: le train partira. Partirait ist conditionnel, partiront gehört zu ils."
         },
         {
           "q": "Ergänze: Vous êtes ___ de quitter l’autoroute.",
@@ -5559,14 +5560,14 @@ window.FR_A1_DATA = {
           "explanation": "Vous an mehrere Autofahrer → priés."
         },
         {
-          "q": "Ergänze: Hier, il a ___ . (pleuvoir)",
+          "q": "Ergänze: Hier, il a ___. (pleuvoir)",
           "o": [
-            "plut",
             "pleuvu",
-            "plu"
+            "plu",
+            "plut"
           ],
-          "a": 2,
-          "audio": "Hier, il a plu .",
+          "a": 1,
+          "audio": "Hier, il a plu.",
           "explanation": "Pleuvoir → plu."
         },
         {
@@ -5603,15 +5604,15 @@ window.FR_A1_DATA = {
           "explanation": "Le conducteur est prié de déplacer sa voiture. = Der Fahrer wird gebeten, sein Auto wegzufahren."
         },
         {
-          "q": "Ergänze: Aujourd’hui, il ___ . (pleuvoir)",
+          "q": "Ergänze: Aujourd’hui, il ___. (pleuvoir)",
           "o": [
             "pleuve",
             "plu",
             "pleut"
           ],
           "a": 2,
-          "audio": "Aujourd’hui, il pleut .",
-          "explanation": "Aujourd’hui, il pleut . = Heute regnet es."
+          "audio": "Aujourd’hui, il pleut.",
+          "explanation": "Aujourd’hui, il pleut. = Heute regnet es."
         },
         {
           "q": "Ergänze: J’ai mal ___ dents.",
@@ -5625,15 +5626,15 @@ window.FR_A1_DATA = {
           "explanation": "Les dents → à + les = aux."
         },
         {
-          "q": "Ergänze: Le train de 14 h 10 est ___ . (fällt aus)",
+          "q": "Ergänze: Le train de 14 h 10 est ___. (fällt aus)",
           "o": [
-            "composté",
             "retardé",
+            "composté",
             "supprimé"
           ],
           "a": 2,
-          "audio": "Le train de 14 h 10 est supprimé .",
-          "explanation": "Le train de 14 h 10 est supprimé . = Der Zug um 14.10 Uhr fällt aus."
+          "audio": "Le train de 14 h 10 est supprimé.",
+          "explanation": "Le train de 14 h 10 est supprimé. = Der Zug um 14.10 Uhr fällt aus."
         }
       ]
     },
@@ -5734,23 +5735,23 @@ window.FR_A1_DATA = {
           "q": "Ergänze: Je suis d’accord ___ toi.",
           "o": [
             "de",
-            "à",
+            "pour",
             "avec"
           ],
           "a": 2,
           "audio": "Je suis d’accord avec toi.",
-          "explanation": "Je suis d’accord avec toi. = Ich bin deiner Meinung."
+          "explanation": "Être d’accord avec quelqu’un = mit jemandem einer Meinung sein."
         },
         {
           "q": "Ergänze: Les prix ont augmenté ___ trois pour cent.",
           "o": [
             "de",
-            "à",
+            "pour",
             "par"
           ],
           "a": 0,
           "audio": "Les prix ont augmenté de trois pour cent.",
-          "explanation": "Les prix ont augmenté de trois pour cent. = Die Preise sind um drei Prozent gestiegen."
+          "explanation": "Augmenter de + Zahl = um … steigen."
         }
       ]
     },

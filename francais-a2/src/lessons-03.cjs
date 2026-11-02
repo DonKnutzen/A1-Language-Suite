@@ -140,11 +140,11 @@ module.exports=[
    emphasis:['un aller simple','un aller-retour','la correspondance','composter','De quelle voie']}
  ],
  tasks:[
-  [0,'Le train pour Lyon ___ voie 3. (partir)','partira',['partirait','part'],'Der Zug nach Lyon wird von Gleis 3 abfahren.','Futur'],
+  [0,'Le train pour Lyon ___ voie 3. (partir)','partira',['partirait','partiront'],'Der Zug nach Lyon wird von Gleis 3 abfahren.','Futur','Ankündigung im futur simple: le train partira. Partirait ist conditionnel, partiront gehört zu ils.'],
   [0,'Le TGV ___ avec dix minutes de retard. (arriver)','arrivera',['arrivait','arriverait'],'Der TGV wird mit zehn Minuten Verspätung ankommen.','Futur'],
-  [0,'Le train de 14 h 10 est ___ . (fällt aus)','supprimé',['retardé','composté'],'Der Zug um 14.10 Uhr fällt aus.','Durchsage'],
+  [0,'Le train de 14 h 10 est ___. (fällt aus)','supprimé',['retardé','composté'],'Der Zug um 14.10 Uhr fällt aus.','Durchsage'],
   [0,'En ___ d’un incident, le trafic est interrompu.','raison',['cas','retard'],'Wegen eines Zwischenfalls ist der Verkehr unterbrochen.','Durchsage'],
-  [0,'Le train a vingt minutes de ___ .','retard',['avance','voie'],'Der Zug hat zwanzig Minuten Verspätung.','Durchsage'],
+  [0,'Le train a vingt minutes de ___.','retard',['avance','voie'],'Der Zug hat zwanzig Minuten Verspätung.','Durchsage'],
   [1,'Un aller ___ pour Nice, s’il vous plaît.','simple',['retour','seul'],'Eine einfache Fahrt nach Nizza, bitte.','Fahrkarte'],
   [1,'Un ___ en deuxième classe. (hin und zurück)','aller-retour',['aller simple','retour simple'],'Hin und zurück, zweite Klasse.','Fahrkarte'],
   [1,'Le train part de quelle ___ ?','voie',['voiture','route'],'Von welchem Gleis fährt der Zug?','Gleis'],
@@ -164,8 +164,8 @@ module.exports=[
  transfers:[
   ['futur','Le train pour Nice ___ voie 2. (partir, Futur)','partira','Der Zug nach Nizza fährt von Gleis 2 ab.'],
   ['futur','Le TGV ___ à 18 heures. (arriver, Futur)','arrivera','Der TGV kommt um 18 Uhr an.'],
-  ['retard','Le train a quinze minutes de ___ .','retard','Der Zug hat fünfzehn Minuten Verspätung.'],
-  ['supprime','Le dernier train est ___ . (fällt aus)','supprimé','Der letzte Zug fällt aus.'],
+  ['retard','Le train a quinze minutes de ___.','retard','Der Zug hat fünfzehn Minuten Verspätung.'],
+  ['supprime','Le dernier train est ___. (fällt aus)','supprimé','Der letzte Zug fällt aus.'],
   ['billet','Un aller ___ pour Tours, s’il vous plaît. (einfach)','simple','Du kaufst eine einfache Fahrt nach Tours.'],
   ['voie','Le train arrive ___ 6. (Gleis)','voie','Der Zug fährt auf Gleis 6 ein.'],
   ['raison','Le trafic est perturbé en ___ d’une grève.','raison','Der Verkehr ist wegen eines Streiks gestört.']
@@ -175,14 +175,14 @@ module.exports=[
   ['B','Excusez-moi, monsieur, j’ai une correspondance à Nîmes à quinze heures.'],['A','Avec le retard, vous arriverez à Nîmes à quinze heures dix.'],
   ['B','Alors je vais rater ma correspondance ?'],['A','Non, le train pour Arles partira à quinze heures trente.'],
   ['B','Ouf ! Et où je peux acheter un café ?'],['A','Il y a un bar en face de la voie 3.']],
-  fields:[['Ziel des TGV',['Montpellier','Marseille','Nîmes']],['Gleis',['11','7','3']],['Verspätung',['etwa 25 Minuten','etwa 15 Minuten','eine Stunde']],['Ankunft in Nîmes',['15:10 Uhr','15:00 Uhr','15:30 Uhr']],['Anschluss fährt nach',['Arles','Avignon','Lyon']],['Café',['gegenüber Gleis 3','im Zug','am Ausgang']]]},
+  fields:[['Ziel des TGV',['Montpellier','Marseille','Nîmes']],['Gleis',['11','7','13']],['Verspätung',['etwa 25 Minuten','etwa 15 Minuten','eine Stunde']],['Ankunft in Nîmes',['15:10 Uhr','15:00 Uhr','15:30 Uhr']],['Anschluss fährt nach',['Arles','Avignon','Lyon']],['Café',['gegenüber Gleis 3','im Zug','am Ausgang']]]},
  intro:['Le train arrivera avec vingt minutes de retard.',['Le train arrivera avec dix minutes de retard.','Le train partira avec vingt minutes de retard.']],
  hard:{
   obj:[['annonce','Bahnhofsdurchsagen verstehen'],['billet','Fahrkarten und Gleise'],['futur','Futur in Ankündigungen'],['comprendre','Entscheiden, ob eine Information wichtig ist']],
   text:'Votre {attention|Aufmerksamkeit|annonce}, s’il vous plaît. Le TGV numéro 5210 en direction de Bordeaux {partira|abfahren, Futur|futur} {voie|Gleis|billet} 4. Ce train {arrivera|ankommen, Futur|futur} à Bordeaux avec vingt minutes de {retard|Verspätung|annonce}. Nous {informons|informieren, nous|annonce} les voyageurs que le train de 16 h 05 pour Poitiers est {supprimé|fällt aus|annonce} en {raison|wegen (en … de)|annonce} d’une grève. Les voyageurs pour Poitiers {prendront|nehmen, Futur, ils|futur} le car de remplacement. — Au guichet : « Bonjour, un aller {simple|einfach|billet} pour La Rochelle, s’il vous plaît. » — « En deuxième {classe|Klasse|billet} ? » — « Oui. J’ai une {correspondance|Anschluss|billet} à Bordeaux. » — « Votre train pour La Rochelle {attendra|warten, Futur|futur}. N’oubliez pas de {composter|entwerten|billet} votre billet. »',
   listen:[
    {text:'Votre attention, s’il vous plaît. Le train Intercités pour Clermont-Ferrand, départ prévu à 11 h 20, partira voie 2 au lieu de voie 6. Nous vous remercions de votre compréhension.',voice:'female',
-    q:[['Quelle est la destination du train ?','Clermont-Ferrand',['Clermont-Ferrand','Clermont-l’Hérault','Clamart'],'annonce'],['De quelle voie part le train ? Réponds en chiffres.','2',null,'billet'],['Qu’est-ce qui change ?','la voie',['la voie','l’heure de départ','la destination'],'comprendre']]},
+    q:[['À quelle heure le départ était-il prévu ?','11 h 20',['11 h 20','11 h 02','12 h 20'],'annonce'],['De quelle voie part le train ? Réponds en chiffres.','2',null,'billet'],['Qu’est-ce qui change ?','la voie',['la voie','l’heure de départ','la destination'],'comprendre']]},
    {turns:[['A','Pardon, le train pour Lille est à l’heure ?'],['B','Non, il a dix minutes de retard. Il partira à 9 h 25.'],['A','Et il part de quelle voie ?'],['B','Voie 8. Vous avez votre billet ?']],voices:{A:'male',B:'female'},
     q:[['Combien de minutes de retard a le train ? Réponds en chiffres.','10',null,'annonce'],['À quelle heure partira-t-il ?','9 h 25',['9 h 25','9 h 15','9 h 35'],'futur'],['De quelle voie ?','voie 8',['voie 8','voie 18','voie 6'],'billet']]}
   ],
@@ -244,11 +244,11 @@ module.exports=[
   [1,'L’A1 est ___ à la hauteur de Lille. (gesperrt)','coupée',['coupé','coupés'],'Die A1 ist auf Höhe von Lille gesperrt.','Verkehr','L’autoroute ist weiblich → coupée.'],
   [1,'Il y a un ___ en direction de Paris. (Stau)','bouchon',['bouton','camion'],'Es gibt einen Stau Richtung Paris.','Verkehr'],
   [1,'Prenez la ___ 22. (Ausfahrt)','sortie',['entrée','route'],'Nehmen Sie die Ausfahrt 22.','Verkehr'],
-  [1,'Suivez l’itinéraire ___ . (Umleitung)','bis',['bas','biais'],'Folgen Sie der Umleitung.','Verkehr'],
+  [1,'Suivez l’itinéraire ___. (Umleitung)','de déviation',['de sortie','de péage'],'Folgen Sie der Umleitung.','Verkehr','L’itinéraire de déviation (auf Schildern auch itinéraire bis) = die Umleitung. La sortie ist die Ausfahrt, le péage die Mautstelle.'],
   [1,'La route est fermée en ___ de travaux.','raison',['cas','direction'],'Die Straße ist wegen Bauarbeiten gesperrt.','en raison de']
  ],
  check:[
-  ['Du fährst auf der A4 Richtung Strasbourg. Radio: « En raison de la neige, l’A4 est coupée à la hauteur de Saverne. Vous êtes priés de sortir à Phalsbourg. » Kannst du auf der A4 bis Strasbourg weiterfahren?',['Nein, ich muss bei Phalsbourg abfahren.','Ja, ohne Problem.','Ja, aber langsamer.'],'Coupée = gesperrt; vous êtes priés de quitter = Sie sollen verlassen.','coupee'],
+  ['Du fährst auf der A4 Richtung Strasbourg. Radio: « En raison de la neige, l’A4 est coupée à la hauteur de Saverne. Vous êtes priés de sortir à Phalsbourg. » Kannst du auf der A4 bis Strasbourg weiterfahren?',['Nein, ich muss bei Phalsbourg abfahren.','Ja, nur bei Saverne gibt es Stau.','Ja, aber nur mit Winterreifen.'],'Coupée = gesperrt: Die A4 ist bei Saverne zu, deshalb sollst du bei Phalsbourg abfahren (vous êtes priés de sortir).','coupee'],
   ['Supermarkt-Parkplatz: « Le conducteur de la Peugeot grise immatriculée 4521 KB est prié de venir à l’accueil. » Dein Auto ist ein grauer Peugeot mit 4521 KB. Was tust du?',['zum Empfang gehen','das Auto wegfahren','nichts, es betrifft mich nicht'],'Est prié de venir à l’accueil = soll zum Empfang kommen.','parking'],
   ['« Il y a un bouchon de quinze kilomètres en direction de Lyon. » Was bedeutet das?',['15 km Stau Richtung Lyon','15 km bis Lyon','eine Baustelle 15 km vor Lyon'],'Un bouchon = ein Stau.','bouchon'],
   ['Du sagst deinem Beifahrer, dass ihr der Umleitung folgen müsst.',['On doit suivre la déviation.','On doit suivre la sortie.','On doit suivre le bouchon.'],'La déviation = die Umleitung.','deviation','On doit suivre la déviation.'],
@@ -280,7 +280,7 @@ module.exports=[
    {text:'Information trafic : sur la nationale 7, la route est fermée entre Valence et Montélimar en raison de travaux, jusqu’à vendredi. Une déviation est en place par Crest.',voice:'male',
     q:[['Pourquoi la route est-elle fermée ?','en raison de travaux',['en raison de travaux','en raison d’un accident','en raison de la neige'],'raison'],['Jusqu’à quel jour ?','jusqu’à vendredi',['jusqu’à vendredi','jusqu’à lundi','jusqu’à demain'],'comprendre'],['Par où passe la déviation ?','par Crest',['par Crest','par Valence','par l’autoroute'],'route']]},
    {turns:[['A','Mesdames et messieurs, le propriétaire de la voiture noire garée devant la sortie de secours est prié de la déplacer.'],['B','C’est notre voiture ?'],['A','Il s’agit d’une Citroën noire, immatriculée 72 BL 16.'],['B','Non, la nôtre est une Renault. Ce n’est pas pour nous.']],voices:{A:'female',B:'male'},
-    q:[['Où est garée la voiture ?','devant la sortie de secours',['devant la sortie de secours','devant l’entrée','au parking souterrain'],'comprendre'],['Qu’est-ce que le propriétaire doit faire ?','déplacer la voiture',['déplacer la voiture','venir à la caisse','payer une amende'],'prie'],['Est-ce que l’annonce est pour l’homme ?','Non.',['Non.','Oui.','On ne sait pas.'],'comprendre']]}
+    q:[['Où est garée la voiture ?','devant la sortie de secours',['devant la sortie de secours','devant l’entrée','au parking souterrain'],'comprendre'],['Qu’est-ce que le propriétaire doit faire ?','déplacer la voiture',['déplacer la voiture','venir à la caisse','payer une amende'],'prie'],['La Citroën noire est-elle la voiture de la personne qui demande ?','Non.',['Non.','Oui.','On ne sait pas.'],'comprendre']]}
   ],
   writing:{situation:'Tu es en route pour un mariage en France, mais il y a un problème sur l’autoroute. Écris un SMS long à la mariée.',points:['Explique ce qui se passe sur l’autoroute et pourquoi.','Dis ce que la radio vous demande de faire.','Dis quand vous arriverez et excuse-toi.'],
    model:'Chère Pauline,\nNous sommes sur l’A7, mais l’autoroute est coupée en raison d’un incendie. La radio dit que nous sommes priés de quitter l’autoroute à la sortie Orange et de suivre la déviation. Il y a un bouchon de dix kilomètres. Nous arriverons vers seize heures, peut-être après la cérémonie. Nous sommes vraiment désolés !\nGros bisous,\nMax et Ina'}
@@ -332,16 +332,16 @@ module.exports=[
    emphasis:['le nord','le sud','sur la côte','en montagne','en début de','en fin de','en soirée']}
  ],
  tasks:[
-  [0,'Hier, il a ___ . (pleuvoir)','plu',['plut','pleuvu'],'Gestern hat es geregnet.','passé composé','Pleuvoir → plu.'],
-  [0,'Aujourd’hui, il ___ . (pleuvoir)','pleut',['pleuve','plu'],'Heute regnet es.','Präsens'],
-  [0,'Demain, il ___ . (pleuvoir)','pleuvra',['pleuvera','pleuvait'],'Morgen wird es regnen.','Futur'],
-  [0,'Demain, il ___ beau. (faire)','fera',['faira','fait'],'Morgen wird es schön.','Futur'],
-  [0,'Il y ___ du vent demain. (avoir)','aura',['avra','a'],'Morgen wird es Wind geben.','Futur'],
-  [0,'Hier, il ___ froid. (faire)','a fait',['faisait','fera'],'Gestern war es kalt.','passé composé'],
-  [1,'Le ciel se ___ en fin de matinée. (se dégager)','dégagera',['dégageait','dégage'],'Der Himmel klart am späten Vormittag auf.','Futur'],
+  [0,'Hier, il a ___. (pleuvoir)','plu',['plut','pleuvu'],'Gestern hat es geregnet.','passé composé','Pleuvoir → plu.'],
+  [0,'Aujourd’hui, il ___. (pleuvoir)','pleut',['pleuve','plu'],'Heute regnet es.','Präsens'],
+  [0,'Demain, il ___. (pleuvoir)','pleuvra',['pleuvera','pleuvait'],'Morgen wird es regnen.','Futur'],
+  [0,'Demain, il ___ beau. (faire)','fera',['faira','ferait'],'Morgen wird es schön.','Futur','Faire hat den Futurstamm fer-: il fera. Ferait ist conditionnel.'],
+  [0,'Il y ___ du vent demain. (avoir)','aura',['avra','aurait'],'Morgen wird es Wind geben.','Futur','Il y a im futur simple: il y aura. Aurait ist conditionnel.'],
+  [0,'Hier, il ___ froid. (faire)','a fait',['fait','fera'],'Gestern war es kalt.','passé composé','Für gestern steht die Vergangenheit: il a fait froid (als Beschreibung auch il faisait froid). Fait ist Präsens, fera Futur.'],
+  [1,'Le ciel se ___ en fin de matinée. (se dégager)','dégagera',['dégageait','dégageront'],'Der Himmel wird am späten Vormittag aufklaren.','Futur','Vorhersage im futur simple: le ciel se dégagera. Dégageront gehört zu ils.'],
   [1,'En ___ d’après-midi, le soleil reviendra. (früh)','début',['fin','milieu'],'Am frühen Nachmittag kommt die Sonne zurück.','Tageszeit'],
-  [1,'En montagne, il ___ . (neiger, Futur)','neigera',['neigait','neige'],'In den Bergen wird es schneien.','Futur'],
-  [1,'Les températures ___ . (baisser, Futur)','baisseront',['baissent','baissaient'],'Die Temperaturen werden sinken.','Futur']
+  [1,'En montagne, il ___. (neiger, Futur)','neigera',['neigait','neige'],'In den Bergen wird es schneien.','Futur'],
+  [1,'Les températures ___. (baisser, Futur)','baisseront',['baissent','baissaient'],'Die Temperaturen werden sinken.','Futur']
  ],
  check:[
   ['Du machst Urlaub in den Vogesen. Radio: « Ce matin, il neige sur les Vosges. Les nuages partiront vers midi et il fera beau tout l’après-midi. » Wird es heute Nachmittag schön?',['Ja, am Nachmittag ist es schön.','Nein, es schneit den ganzen Tag.','Erst am Abend wird es schön.'],'Il fera beau tout l’après-midi = den ganzen Nachmittag schön.','apresmidi'],
@@ -430,7 +430,7 @@ module.exports=[
  tasks:[
   [0,'Je ___ que c’est pratique. (finden)','trouve',['cherche','pense de'],'Ich finde das praktisch.','Meinung'],
   [0,'À mon ___, c’est trop cher.','avis',['idée','opinion de'],'Meiner Meinung nach ist das zu teuer.','Meinung'],
-  [0,'Je suis d’accord ___ toi.','avec',['à','de'],'Ich bin deiner Meinung.','Zustimmung'],
+  [0,'Je suis d’accord ___ toi.','avec',['pour','de'],'Ich bin deiner Meinung.','Zustimmung','Être d’accord avec quelqu’un = mit jemandem einer Meinung sein.'],
   [0,'Ça me ___ au cinéma. (stören)','gêne',['gêné','gênes'],'Im Kino stört mich das.','Meinung'],
   [0,'Je ne suis pas du ___ d’accord.','tout',['tous','toute'],'Ich bin überhaupt nicht einverstanden.','Widerspruch'],
   [1,'Je ne téléphone ___ au volant. (nicht mehr)','plus',['pas plus','jamais pas'],'Ich telefoniere nicht mehr am Steuer.','ne … plus'],
@@ -453,7 +453,7 @@ module.exports=[
   ['trouve','Je ___ que c’est utile. (finden)','trouve','Du findest das nützlich.'],
   ['avis','À mon ___, c’est dangereux.','avis','Meiner Meinung nach ist das gefährlich.'],
   ['accord','Je suis d’___ avec vous.','accord','Du bist ihrer Meinung.'],
-  ['gener','Le bruit me ___ . (stören)','gêne','Der Lärm stört dich.'],
+  ['gener','Le bruit me ___. (stören)','gêne','Der Lärm stört dich.'],
   ['neplus','Je n’utilise ___ mon ancien portable. (nicht mehr)','plus','Du benutzt dein altes Handy nicht mehr.'],
   ['de','Je n’ai plus ___ batterie.','de','Du hast keinen Akku mehr.'],
   ['envie','Je n’ai pas ___ de sortir ce soir.','envie','Du hast keine Lust, heute Abend auszugehen.']
@@ -498,9 +498,9 @@ module.exports=[
   ['Was bedeutet „trois Français sur quatre“?',['drei von vier Franzosen','drei oder vier Franzosen','vierunddreißig Franzosen'],'Trois Français sur quatre lisent un journal.','… sur … = … von …'],
   ['Was bedeutet „trente pour cent d’entre eux“?',['dreißig Prozent von ihnen','dreißig Prozent zwischen ihnen','dreißig von hundert Ländern'],'Trente pour cent d’entre eux le lisent en ligne.','D’entre eux = von ihnen.'],
   ['Was bedeutet „à l’étranger“?',['im / ins Ausland','in der Nachbarstadt','an der Grenze'],'Ma sœur travaille à l’étranger.','L’étranger = das Ausland; un étranger = ein Ausländer.'],
-  ['___ de plus en plus de personnes font du sport.',['De plus en plus de','Plus et plus de','Encore plus des'],'De plus en plus de personnes font du sport.','De plus en plus de + Nomen = immer mehr …'],
-  ['La région ne compte ___ deux millions d’habitants.',['que','pas','plus'],'La région ne compte que deux millions d’habitants.','Ne … que = nur.'],
-  ['Le nombre de touristes a ___ . (gestiegen)',['augmenté','baissé','diminué'],'Le nombre de touristes a augmenté.','Augmenter = steigen; baisser / diminuer = sinken.'],
+  ['___ personnes font du sport.',['De plus en plus de','Plus et plus de','Encore plus des'],'De plus en plus de personnes font du sport.','De plus en plus de + Nomen = immer mehr …'],
+  ['La région ne compte ___ deux millions d’habitants.',['que','seulement','plus'],'La région ne compte que deux millions d’habitants.','Ne … que = nur. Ne … plus hieße „nicht mehr“; seulement steht ohne ne.','Die Region hat nur zwei Millionen Einwohner.'],
+  ['Le nombre de touristes a ___. (gestiegen)',['augmenté','baissé','diminué'],'Le nombre de touristes a augmenté.','Augmenter = steigen; baisser / diminuer = sinken.'],
   ['Was bedeutet „Les prix ont baissé de cinq pour cent“?',['Die Preise sind um 5 % gesunken.','Die Preise sind um 5 % gestiegen.','Die Preise liegen bei 5 %.'],'Les prix ont baissé de cinq pour cent.','Baisser de = sinken um.'],
   ['Was bedeutet „Selon une étude“?',['laut einer Studie','gegen eine Studie','nach einem Studium'],'Selon une étude, les jeunes lisent moins.','Selon = laut, gemäß.'],
   ['Was bedeutet „Une nouvelle loi autorise …“?',['Ein neues Gesetz erlaubt …','Ein neues Gesetz verbietet …','Eine neue Regel empfiehlt …'],'Une nouvelle loi autorise les magasins à ouvrir le dimanche.','Autoriser = erlauben; la loi = das Gesetz.'],
@@ -526,10 +526,10 @@ module.exports=[
  tasks:[
   [0,'Deux Français ___ trois partent en vacances.','sur',['de','pour'],'Zwei von drei Franzosen verreisen.','Anteil'],
   [0,'La ___ des habitants a moins de trente ans.','moitié',['demi','milieu'],'Die Hälfte der Einwohner ist unter dreißig.','Anteil'],
-  [0,'Les prix ont augmenté ___ trois pour cent.','de',['à','par'],'Die Preise sind um drei Prozent gestiegen.','Entwicklung'],
-  [0,'De moins en ___ de jeunes fument.','moins',['plus','peu'],'Immer weniger junge Leute rauchen.','Entwicklung'],
-  [0,'Vingt pour cent d’___ elles travaillent à temps partiel.','entre',['eux','parmi'],'Zwanzig Prozent von ihnen arbeiten Teilzeit.','Anteil'],
-  [0,'Le nombre de touristes a ___ . (sinken)','baissé',['augmenté','monté'],'Die Zahl der Touristen ist gesunken.','Entwicklung'],
+  [0,'Les prix ont augmenté ___ trois pour cent.','de',['pour','par'],'Die Preise sind um drei Prozent gestiegen.','Entwicklung','Augmenter de + Zahl = um … steigen.'],
+  [0,'___ de jeunes fument.','De moins en moins',['De plus en moins','Moins et moins'],'Immer weniger junge Leute rauchen.','Entwicklung','Immer weniger = de moins en moins de + Nomen.'],
+  [0,'Vingt pour cent ___ elles travaillent à temps partiel.','d’entre',['entre','d’eux'],'Zwanzig Prozent von ihnen arbeiten Teilzeit.','Anteil','Ein Anteil von einer Gruppe: … pour cent d’entre elles.'],
+  [0,'Le nombre de touristes a ___. (sinken)','baissé',['augmenté','monté'],'Die Zahl der Touristen ist gesunken.','Entwicklung'],
   [1,'___ un sondage, les Français dorment moins. (laut)','Selon',['Pendant','Contre'],'Laut einer Umfrage schlafen die Franzosen weniger.','Meldung'],
   [1,'Une loi ___ les magasins à ouvrir le dimanche. (erlauben)','autorise',['interdit','oblige de'],'Ein Gesetz erlaubt Geschäften, sonntags zu öffnen.','Meldung'],
   [1,'La ville ne compte ___ dix mille habitants.','que',['pas','plus'],'Die Stadt hat nur zehntausend Einwohner.','ne … que'],

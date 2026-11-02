@@ -5035,11 +5035,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "partira",
           "partirait",
-          "part"
+          "partiront"
         ],
         "context": "Der Zug nach Lyon wird von Gleis 3 abfahren.",
         "tag": "Futur",
-        "explanation": "Le train pour Lyon partira voie 3. = Der Zug nach Lyon wird von Gleis 3 abfahren."
+        "explanation": "Ankündigung im futur simple: le train partira. Partirait ist conditionnel, partiront gehört zu ils."
       },
       {
         "type": "gap",
@@ -5058,7 +5058,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Le train de 14 h 10 est ___ . (fällt aus)",
+        "prompt": "Le train de 14 h 10 est ___. (fällt aus)",
         "answer": "supprimé",
         "o": [
           "supprimé",
@@ -5067,7 +5067,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Der Zug um 14.10 Uhr fällt aus.",
         "tag": "Durchsage",
-        "explanation": "Le train de 14 h 10 est supprimé . = Der Zug um 14.10 Uhr fällt aus."
+        "explanation": "Le train de 14 h 10 est supprimé. = Der Zug um 14.10 Uhr fällt aus."
       },
       {
         "type": "gap",
@@ -5086,7 +5086,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Le train a vingt minutes de ___ .",
+        "prompt": "Le train a vingt minutes de ___.",
         "answer": "retard",
         "o": [
           "retard",
@@ -5095,7 +5095,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Der Zug hat zwanzig Minuten Verspätung.",
         "tag": "Durchsage",
-        "explanation": "Le train a vingt minutes de retard . = Der Zug hat zwanzig Minuten Verspätung."
+        "explanation": "Le train a vingt minutes de retard. = Der Zug hat zwanzig Minuten Verspätung."
       },
       {
         "type": "gap",
@@ -5319,12 +5319,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Le train a quinze minutes de ___ .",
+        "prompt": "Le train a quinze minutes de ___.",
         "answer": "retard",
         "accept": [],
         "context": "Der Zug hat fünfzehn Minuten Verspätung.",
-        "explanation": "Le train a quinze minutes de retard .",
-        "audio": "Le train a quinze minutes de retard .",
+        "explanation": "Le train a quinze minutes de retard.",
+        "audio": "Le train a quinze minutes de retard.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -5335,12 +5335,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Le dernier train est ___ . (fällt aus)",
+        "prompt": "Le dernier train est ___. (fällt aus)",
         "answer": "supprimé",
         "accept": [],
         "context": "Der letzte Zug fällt aus.",
-        "explanation": "Le dernier train est supprimé .",
-        "audio": "Le dernier train est supprimé .",
+        "explanation": "Le dernier train est supprimé.",
+        "audio": "Le dernier train est supprimé.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -5521,16 +5521,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Suivez l’itinéraire ___ . (Umleitung)",
-        "answer": "bis",
+        "prompt": "Suivez l’itinéraire ___. (Umleitung)",
+        "answer": "de déviation",
         "o": [
-          "bis",
-          "bas",
-          "biais"
+          "de déviation",
+          "de sortie",
+          "de péage"
         ],
         "context": "Folgen Sie der Umleitung.",
         "tag": "Verkehr",
-        "explanation": "Suivez l’itinéraire bis . = Folgen Sie der Umleitung."
+        "explanation": "L’itinéraire de déviation (auf Schildern auch itinéraire bis) = die Umleitung. La sortie ist die Ausfahrt, le péage die Mautstelle."
       },
       {
         "type": "gap",
@@ -5553,11 +5553,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Du fährst auf der A4 Richtung Strasbourg. Radio: « En raison de la neige, l’A4 est coupée à la hauteur de Saverne. Vous êtes priés de sortir à Phalsbourg. » Kannst du auf der A4 bis Strasbourg weiterfahren?",
         "o": [
           "Nein, ich muss bei Phalsbourg abfahren.",
-          "Ja, ohne Problem.",
-          "Ja, aber langsamer."
+          "Ja, nur bei Saverne gibt es Stau.",
+          "Ja, aber nur mit Winterreifen."
         ],
         "answer": "Nein, ich muss bei Phalsbourg abfahren.",
-        "explanation": "Coupée = gesperrt; vous êtes priés de quitter = Sie sollen verlassen.",
+        "explanation": "Coupée = gesperrt: Die A4 ist bei Saverne zu, deshalb sollst du bei Phalsbourg abfahren (vous êtes priés de sortir).",
         "tag": "Anwenden",
         "family": "coupee",
         "checkKey": "A2L15-context-coupee"
@@ -5789,7 +5789,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Hier, il a ___ . (pleuvoir)",
+        "prompt": "Hier, il a ___. (pleuvoir)",
         "answer": "plu",
         "o": [
           "plu",
@@ -5803,7 +5803,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Aujourd’hui, il ___ . (pleuvoir)",
+        "prompt": "Aujourd’hui, il ___. (pleuvoir)",
         "answer": "pleut",
         "o": [
           "pleut",
@@ -5812,12 +5812,12 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Heute regnet es.",
         "tag": "Präsens",
-        "explanation": "Aujourd’hui, il pleut . = Heute regnet es."
+        "explanation": "Aujourd’hui, il pleut. = Heute regnet es."
       },
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Demain, il ___ . (pleuvoir)",
+        "prompt": "Demain, il ___. (pleuvoir)",
         "answer": "pleuvra",
         "o": [
           "pleuvra",
@@ -5826,7 +5826,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Morgen wird es regnen.",
         "tag": "Futur",
-        "explanation": "Demain, il pleuvra . = Morgen wird es regnen."
+        "explanation": "Demain, il pleuvra. = Morgen wird es regnen."
       },
       {
         "type": "gap",
@@ -5836,11 +5836,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "fera",
           "faira",
-          "fait"
+          "ferait"
         ],
         "context": "Morgen wird es schön.",
         "tag": "Futur",
-        "explanation": "Demain, il fera beau. = Morgen wird es schön."
+        "explanation": "Faire hat den Futurstamm fer-: il fera. Ferait ist conditionnel."
       },
       {
         "type": "gap",
@@ -5850,11 +5850,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "aura",
           "avra",
-          "a"
+          "aurait"
         ],
         "context": "Morgen wird es Wind geben.",
         "tag": "Futur",
-        "explanation": "Il y aura du vent demain. = Morgen wird es Wind geben."
+        "explanation": "Il y a im futur simple: il y aura. Aurait ist conditionnel."
       },
       {
         "type": "gap",
@@ -5863,12 +5863,12 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "a fait",
         "o": [
           "a fait",
-          "faisait",
+          "fait",
           "fera"
         ],
         "context": "Gestern war es kalt.",
         "tag": "passé composé",
-        "explanation": "Hier, il a fait froid. = Gestern war es kalt."
+        "explanation": "Für gestern steht die Vergangenheit: il a fait froid (als Beschreibung auch il faisait froid). Fait ist Präsens, fera Futur."
       },
       {
         "type": "gap",
@@ -5878,11 +5878,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "dégagera",
           "dégageait",
-          "dégage"
+          "dégageront"
         ],
-        "context": "Der Himmel klart am späten Vormittag auf.",
+        "context": "Der Himmel wird am späten Vormittag aufklaren.",
         "tag": "Futur",
-        "explanation": "Le ciel se dégagera en fin de matinée. = Der Himmel klart am späten Vormittag auf."
+        "explanation": "Vorhersage im futur simple: le ciel se dégagera. Dégageront gehört zu ils."
       },
       {
         "type": "gap",
@@ -5901,7 +5901,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "En montagne, il ___ . (neiger, Futur)",
+        "prompt": "En montagne, il ___. (neiger, Futur)",
         "answer": "neigera",
         "o": [
           "neigera",
@@ -5910,12 +5910,12 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "In den Bergen wird es schneien.",
         "tag": "Futur",
-        "explanation": "En montagne, il neigera . = In den Bergen wird es schneien."
+        "explanation": "En montagne, il neigera. = In den Bergen wird es schneien."
       },
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Les températures ___ . (baisser, Futur)",
+        "prompt": "Les températures ___. (baisser, Futur)",
         "answer": "baisseront",
         "o": [
           "baisseront",
@@ -5924,7 +5924,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Die Temperaturen werden sinken.",
         "tag": "Futur",
-        "explanation": "Les températures baisseront . = Die Temperaturen werden sinken."
+        "explanation": "Les températures baisseront. = Die Temperaturen werden sinken."
       }
     ],
     "checkTasks": [
@@ -6201,12 +6201,12 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "avec",
         "o": [
           "avec",
-          "à",
+          "pour",
           "de"
         ],
         "context": "Ich bin deiner Meinung.",
         "tag": "Zustimmung",
-        "explanation": "Je suis d’accord avec toi. = Ich bin deiner Meinung."
+        "explanation": "Être d’accord avec quelqu’un = mit jemandem einer Meinung sein."
       },
       {
         "type": "gap",
@@ -6475,12 +6475,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Le bruit me ___ . (stören)",
+        "prompt": "Le bruit me ___. (stören)",
         "answer": "gêne",
         "accept": [],
         "context": "Der Lärm stört dich.",
-        "explanation": "Le bruit me gêne .",
-        "audio": "Le bruit me gêne .",
+        "explanation": "Le bruit me gêne.",
+        "audio": "Le bruit me gêne.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -6581,45 +6581,45 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "de",
         "o": [
           "de",
-          "à",
+          "pour",
           "par"
         ],
         "context": "Die Preise sind um drei Prozent gestiegen.",
         "tag": "Entwicklung",
-        "explanation": "Les prix ont augmenté de trois pour cent. = Die Preise sind um drei Prozent gestiegen."
+        "explanation": "Augmenter de + Zahl = um … steigen."
       },
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "De moins en ___ de jeunes fument.",
-        "answer": "moins",
+        "prompt": "___ de jeunes fument.",
+        "answer": "De moins en moins",
         "o": [
-          "moins",
-          "plus",
-          "peu"
+          "De moins en moins",
+          "De plus en moins",
+          "Moins et moins"
         ],
         "context": "Immer weniger junge Leute rauchen.",
         "tag": "Entwicklung",
-        "explanation": "De moins en moins de jeunes fument. = Immer weniger junge Leute rauchen."
+        "explanation": "Immer weniger = de moins en moins de + Nomen."
       },
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Vingt pour cent d’___ elles travaillent à temps partiel.",
-        "answer": "entre",
+        "prompt": "Vingt pour cent ___ elles travaillent à temps partiel.",
+        "answer": "d’entre",
         "o": [
+          "d’entre",
           "entre",
-          "eux",
-          "parmi"
+          "d’eux"
         ],
         "context": "Zwanzig Prozent von ihnen arbeiten Teilzeit.",
         "tag": "Anteil",
-        "explanation": "Vingt pour cent d’entre elles travaillent à temps partiel. = Zwanzig Prozent von ihnen arbeiten Teilzeit."
+        "explanation": "Ein Anteil von einer Gruppe: … pour cent d’entre elles."
       },
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Le nombre de touristes a ___ . (sinken)",
+        "prompt": "Le nombre de touristes a ___. (sinken)",
         "answer": "baissé",
         "o": [
           "baissé",
@@ -6628,7 +6628,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Die Zahl der Touristen ist gesunken.",
         "tag": "Entwicklung",
-        "explanation": "Le nombre de touristes a baissé . = Die Zahl der Touristen ist gesunken."
+        "explanation": "Le nombre de touristes a baissé. = Die Zahl der Touristen ist gesunken."
       },
       {
         "type": "gap",

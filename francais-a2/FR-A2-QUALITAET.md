@@ -11,7 +11,7 @@ Gute Aufgaben sind nicht aufgeführt.
 
 Automatische Prüfungen: `tests/francais-a2-quality.test.cjs` (Dubletten in Optionen, fehlende oder mit der Lösung
 identische Erklärung, Lösung wörtlich in der Frage, Längenausreißer > 1,8 × längster Distraktor, Elision nach „je ___“,
-Anteil „richtig“ in den telc-Blöcken 35–65 %). Die strengeren Prüfungen gelten bis `REVIEWED` (jetzt 12) und
+Anteil „richtig“ in den telc-Blöcken 35–65 %). Die strengeren Prüfungen gelten bis `REVIEWED` (jetzt 18) und
 wachsen pro Etappe mit.
 
 ## Etappe 1 – Lektionen 1–6 (alle Funde behoben)
@@ -127,6 +127,48 @@ KRITISCH 14 · MITTEL 16 · GERING 2 – alle behoben.
 - L9 check 4: „Wie viele Karotten?“ – trois = drei ist A1-Stoff (C12).
 - L11 task 8: „Je ne bois que le thé“ ist ungewöhnlich, aber nicht ganz unmöglich; du bleibt die klare Lösung.
 
+## Etappe 3 – Lektionen 13–18 (alle Funde behoben)
+
+| ID | Krit. | Problem | Fix |
+|---|---|---|---|
+| FR-A2 L13–18 Lücken | B7 | 13 Lückensätze „___ .“ / „___ ,“ erzeugen Erklärungen und Audio mit Leerzeichen vor dem Satzzeichen. | Leerzeichen entfernt. |
+| FR-A2 L14 task 1 | B6 | „Le train pour Lyon part voie 3“ ist als Ansage korrekt (Grammatik-Set ohne Kontext). | part → partiront; Erklärung. |
+| FR-A2 L14 comp 2 | A2 | „11“ ist die einzige zweistellige Gleisnummer. | 3 → 13. |
+| FR-A2 L14 hard listen 1.1 | C11 | Frage nach dem Ortsnamen (Clermont-Ferrand / Clermont-l’Hérault / Clamart) ist Eigennamen-Trivia. | → „À quelle heure le départ était-il prévu ?“ 11 h 20 / 11 h 02 / 12 h 20. |
+| FR-A2 L15 check 1 | A2 | Lösung „Nein, ich muss bei Phalsbourg abfahren.“ ist viel länger als „Ja, ohne Problem.“ | Distraktoren „Ja, nur bei Saverne gibt es Stau.“ / „Ja, aber nur mit Winterreifen.“; Erklärung. |
+| FR-A2 L15 task 9 | A3 | „bis / bas / biais“: Distraktoren sind Unsinn, „itinéraire bis“ ist Spezialwortschatz statt des gelernten „de déviation“. | → de déviation / de sortie / de péage; Erklärung nennt itinéraire bis. |
+| FR-A2 L15 hard listen 2.3 | C11 | „Est-ce que l’annonce est pour l’homme ?“ hängt an der Stimme. | → „La Citroën noire est-elle la voiture de la personne qui demande ?“ |
+| FR-A2 L16 task 4 | B6 | „Demain, il fait beau“ ist umgangssprachlich korrekt. | fait → ferait; Erklärung. |
+| FR-A2 L16 task 5 | B6 | „Il y a du vent demain“ ist korrekt. | a → aurait; Erklärung. |
+| FR-A2 L16 task 6 | B6 | „Hier, il faisait froid“ ist korrekt. | faisait → fait; Erklärung nennt faisait als Beschreibung. |
+| FR-A2 L16 task 7 | B6 | Kontext „Der Himmel klart … auf“ passt zu „se dégage“. | dégage → dégageront; Kontext „wird … aufklaren“; Erklärung. |
+| FR-A2 L17 task 3 | A2 | „avec“ gegen „à“ / „de“ ist ein Längenausreißer (auch Grammatik-Set a2g5). | à → pour; Erklärung. |
+| FR-A2 L18 quiz 4 | B10 | Die Lücke stand vor „de plus en plus de“ – mit der Lösung hieß der Satz „De plus en plus de de plus en plus de personnes …“. | Prompt → „___ personnes font du sport.“ |
+| FR-A2 L18 quiz 5 | B6 | Ohne Kontext sind „ne compte pas / plus deux millions“ korrekt. | Kontext „Die Region hat nur zwei Millionen Einwohner.“; pas → seulement; Erklärung. |
+| FR-A2 L18 task 3 | B6 | „augmenté à trois pour cent“ ist korrekt (auf 3 %); im Grammatik-Set ohne Kontext. | à → pour; Erklärung. |
+| FR-A2 L18 task 4 | A2 | „De moins en ___“ – die Lösung moins steht schon im Satz. | Lücke umfasst den ganzen Ausdruck: De moins en moins / De plus en moins / Moins et moins. |
+| FR-A2 L18 task 5 | A1 | „d’___ parmi“ ist durch die Elision ausgeschlossen. | Lücke → „___ elles“: d’entre / entre / d’eux; Erklärung. |
+
+### Zählung Etappe 3
+
+| Kriterium | L13 | L14 | L15 | L16 | L17 | L18 | Σ |
+|---|---|---|---|---|---|---|---|
+| A1 Grammatik verrät Lösung | – | – | – | – | – | 1 | 1 |
+| A2 Lösung fällt äußerlich auf | – | 1 | 1 | – | 1 | 1 | 4 |
+| A3 absurde Distraktoren | – | – | 1 | – | – | – | 1 |
+| B6 mehrere Optionen vertretbar | – | 1 | – | 4 | – | 2 | 7 |
+| B7 Typografie (L13–18 gesamt) | 1 | | | | | | 1 |
+| B10 kaputter Aufgabentext | – | – | – | – | – | 1 | 1 |
+| C11 ohne Lernwert | – | 1 | 1 | – | – | – | 2 |
+
+KRITISCH 9 · MITTEL 6 · GERING 2 – alle behoben.
+
+### Offen (GERING)
+
+- L13: mal au / à la / aux kommt in quiz 3, quiz 4, task 1–3 und transfer 1–3 vor (C13, gewollte Drillmenge).
+- L13 task 6, L14 task 4, L15 task 10: „en cas de“ statt „en raison de“ wäre grammatisch möglich; der deutsche Kontext („wegen“) entscheidet. Die Aufgaben landen nicht in den Grammatik-Sets.
+- L15 check 4: „On doit suivre le bouchon.“ ist schwach, aber eindeutig falsch.
+
 ## Funde in `shared/` (für die letzte Etappe gesammelt, nicht geändert)
 
 | ID | Krit. | Problem | Vorschlag |
@@ -141,5 +183,6 @@ Generator bewusst als Scherzstufen angelegt.
 ## Nächste Etappen
 
 - ~~Lektionen 7–12~~ erledigt (Etappe 2).
-- Lektionen 13–18, 19–24 mit `src/exam.cjs` (3 Modelltests; telc-Richtig-Anteil ist bereits im Rahmen).
+- ~~Lektionen 13–18~~ erledigt (Etappe 3).
+- Lektionen 19–24 mit `src/exam.cjs` (3 Modelltests; telc-Richtig-Anteil ist bereits im Rahmen).
 - Danach die gesammelten `shared/`-Funde und alle drei Kurse testen.
