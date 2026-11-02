@@ -39,7 +39,7 @@ test('all lessons render separate learning steps with practice after each prepar
  for(let id=1;id<=24;id++){
   render(env,id,state());assert(!view.querySelector('.pronunciation-panel'),'pronunciation belongs in deepening');assert.equal(view.querySelectorAll('[data-core-row]:not([hidden])').length,Math.ceil(w.testData.lessons[id-1].phrases.length/Math.ceil(w.testData.lessons[id-1].phrases.length/6)));
   view.querySelector('[data-lesson-step="grammar"]').click();const count=view.querySelectorAll('[data-grammar-progress]').length;assert(count>=2);
-  for(let page=0;page<count;page++){if(page)view.querySelector(`[data-grammar-progress="${page}"]`).click();assert(view.querySelector('#lessonGrammarPage').textContent.trim().length>50);assert(!view.querySelector('#lessonGrammarPage details:not(.lesson-extra-vocabulary):not(.deepening-reference)'));if(page<2)assert(view.querySelector('#topicPracticeStart'));}
+  for(let page=0;page<count;page++){if(page)view.querySelector(`[data-grammar-progress="${page}"]`).click();assert(view.querySelector('#lessonGrammarPage').textContent.trim().length>50);assert(!view.querySelector('#lessonGrammarPage details:not(.lesson-extra-vocabulary):not(.deepening-reference):not(.deepening-more)'));if(page<2)assert(view.querySelector('#topicPracticeStart'));}
   openExtra(view,'speak');assert(view.querySelector('#speechHelp').hidden);
   openExtra(view,'write');assert(view.querySelector('#writingHelp').hidden);
  }

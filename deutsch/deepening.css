@@ -85,6 +85,17 @@
 #lessonGrammarPage.deepening-tidy details.lesson-vocabulary-preparation>summary,
 #lessonGrammarPage.deepening-tidy .deepening-reference>summary{display:flex;align-items:center;min-height:48px;padding:0;font-size:.95rem;font-weight:700;color:var(--ink);cursor:pointer}
 #lessonGrammarPage.deepening-tidy .deepening-reference .deepening-background{margin:0 0 14px}
+/* Folded extras before practice: one titled line each, opened on demand. */
+#lessonGrammarPage.deepening-tidy details.deepening-more{margin:0;padding:0 14px;border:1px solid var(--line);border-radius:14px;background:none}
+#lessonGrammarPage.deepening-tidy details.deepening-more>summary{display:flex;align-items:center;min-height:48px;padding:0;font-size:.95rem;font-weight:700;color:var(--ink);cursor:pointer}
+#lessonGrammarPage.deepening-tidy details.deepening-more>summary strong{font-weight:inherit}
+#lessonGrammarPage.deepening-tidy details.deepening-more>summary{list-style:none;gap:12px}
+#lessonGrammarPage.deepening-tidy details.deepening-more>summary::-webkit-details-marker{display:none}
+#lessonGrammarPage.deepening-tidy details.deepening-more>summary::after{content:"+";margin-left:auto;font-size:1.2rem;font-weight:400;color:var(--muted)}
+#lessonGrammarPage.deepening-tidy details.deepening-more[open]>summary::after{content:"−"}
+#lessonGrammarPage.deepening-tidy details.deepening-more[open]{padding-bottom:12px}
+#lessonGrammarPage.deepening-tidy details.deepening-more .lesson-foundation-rule,#lessonGrammarPage.deepening-tidy details.deepening-more .pronoun-guide{margin:0;padding:0;border:0;background:none}
+#lessonGrammarPage.deepening-tidy details.deepening-more+details.deepening-more{margin-top:8px}
 
 @media(max-width:560px){
   #lessonGrammarPage.deepening-tidy{--tidy-gap:18px}

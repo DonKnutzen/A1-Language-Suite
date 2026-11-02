@@ -40,7 +40,7 @@
       'Modalverben – formes utiles':'Le modal se conjugue selon la personne ; le verbe principal reste à l’infinitif.',
       'kein – nominatif et accusatif':'kein nie un nom pour exprimer « aucun / pas de » ; sa terminaison dépend du genre et du cas.',
       'Possessifs utiles':'Le possessif s’adapte au nom qui suit et au cas utilisé.',
-      'heißen et sprechen – conjugaison':'Sprechen est irrégulier : e devient i avec du et er/sie/es (du sprichst, er spricht), mais ihr sprecht. Heißen est un verbe fort, sans changement de voyelle au présent. Après ß, du prend -t : du heißt, sans s supplémentaire.',
+      'heißen et sprechen – conjugaison':'Sprechen est irrégulier : e devient i avec du et er/sie/es, pas avec ihr. Heißen est un verbe fort, sans changement de voyelle au présent. Après ß, du prend seulement -t : du heißt.',
       'Ordre des mots':'Le type de phrase détermine la position du verbe conjugué.',
       'Verbes séparables':'Dans une proposition principale, le préfixe séparé se place à la fin.'
     },

@@ -134,7 +134,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Poser les premières questions",
-      "rule": "Avec un mot interrogatif : **Wie / Woher / Wo + verbe + Sie**. **Sie** avec majuscule est le vous de politesse ; le verbe a généralement la forme en -en (heißen, kommen), mais Sie sind est une exception. Une question attend une réponse sur le nom, l’origine, la ville ou la langue.",
+      "rule": "Avec un mot interrogatif : **Wie / Woher / Wo + verbe + Sie**. Avec **Sie**, le verbe a généralement la forme en -en (heißen, kommen) ; **Sie sind** est une exception.",
       "rows": [
         [
           "Wie |heißen| Sie?",
@@ -339,7 +339,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Faire épeler et répéter",
-      "rule": "**können** est irrégulier. **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez (politesse, une ou plusieurs personnes). **ihr könnt** est le vous familier pour plusieurs personnes.\n\nDans **Können Sie … ?**, Sie est la forme de politesse. Le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
+      "rule": "**können** est irrégulier : **sie kann** = elle peut ; **sie können** = ils/elles peuvent ; **Sie können** = vous pouvez, forme de politesse. Dans **Können Sie … ?**, le deuxième verbe reste à l’infinitif à la fin : buchstabieren, wiederholen, sprechen ou schreiben.",
       "rows": [
         [
           "Können Sie das bitte |buchstabieren|?",
@@ -458,7 +458,7 @@ window.DE_A1_STUDY_CONTENT = {
   "3": [
     {
       "title": "Construire les nombres",
-      "rule": "De 13 à 19 : unité + **zehn**, avec sechzehn et siebzehn. À partir de 21 : **unité + und + dizaine**, en un seul mot. 21 = einundzwanzig, 31 = einunddreißig. Compare treize/dreizehn et trente/dreißig. Pour un téléphone, annonce les chiffres un par un.",
+      "rule": "De 13 à 19 : unité + **zehn**, avec sechzehn et siebzehn. À partir de 21 : **unité + und + dizaine**, en un seul mot : 31 = einunddreißig. Pour un téléphone, annonce les chiffres un par un.",
       "rows": [
         [
           "|dreizehn|",
@@ -575,7 +575,7 @@ window.DE_A1_STUDY_CONTENT = {
     },
     {
       "title": "Dates et coordonnées",
-      "rule": "**Geburtsdatum** est la date de naissance ; **Geburtsort** est le lieu. Une date peut s’écrire 17.04.2000 ; **zweitausend** signifie 2000. À l’oral : **am siebzehnten April**. Telefonnummer désigne le numéro de téléphone, Postleitzahl le code postal. Dans un formulaire, écris seulement la valeur demandée.",
+      "rule": "Une date peut s’écrire **17.04.2000** ; **zweitausend** signifie 2000. À l’oral : **am siebzehnten April**. Dans un formulaire, écris seulement la valeur demandée.",
       "rows": [
         [
           "|Geburtsdatum|",

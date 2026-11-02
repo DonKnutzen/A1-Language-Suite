@@ -38,7 +38,7 @@
       }
     }
   }
-  function compactPage(root){
+  function compactPage(root,lessonId=0){
     // Supplementary exercise words remain available before practice, without a
     // second always-open glossary dominating the grammar explanation.
     for(const section of root.querySelectorAll('section.lesson-vocabulary-preparation')){
@@ -58,9 +58,31 @@
       const title=section.querySelector('h4'),summary=document.createElement('summary');
       summary.textContent='Mots pour les exercices';title?.remove();detail.append(summary,...section.childNodes);section.replaceWith(detail);
     }
+    foldPage(root,lessonId);
     // References follow the practice entry; the explanation and its application
     // stay adjacent. Each reference is still searchable and keyboard accessible.
     root.querySelectorAll('.deepening-reference').forEach(detail=>root.append(detail));
+  }
+  // Short reading before practice: the rule, one table and the first examples stay open;
+  // further examples, notes, the pronoun guide and pronunciation fold into titled details.
+  function foldPage(root,lessonId){
+    const body=root.querySelector('.grammar-detail-body')||root;
+    const more=(kind,title,nodes)=>{const detail=document.createElement('details');detail.className='deepening-more deepening-more-'+kind;const summary=document.createElement('summary');summary.textContent=title;detail.append(summary,...nodes);return detail;};
+    const wrap=(node,kind,title)=>{const anchor=document.createComment('');node.before(anchor);anchor.replaceWith(more(kind,title,[node]));};
+    const open=lessonId<=3?3:4;
+    const rows=[...body.querySelectorAll(':scope>.phrase-row,:scope>.deepening-examples>.phrase-row')];
+    if(rows.length>open+1){
+      const rest=rows.slice(open),last=rows.at(-1),after=last.parentElement===body?last:last.parentElement;
+      const list=document.createElement('div');list.className='deepening-examples';list.append(...rest);
+      after.after(more('examples',`Plus d’exemples (${rest.length})`,[list]));
+    }
+    for(const note of body.querySelectorAll('.lesson-foundations.is-topic .lesson-foundation-rule')){
+      const title=note.querySelector(':scope>h4');wrap(note,'note',title?.textContent.trim()||'À savoir');title?.remove();
+    }
+    for(const guide of body.querySelectorAll('.pronoun-guide')){
+      const title=guide.querySelector(':scope>strong');wrap(guide,'note',title?.textContent.trim()||'sie ou Sie ?');title?.remove();
+    }
+    root.querySelectorAll('.lesson-pronunciation-bonus details.pronunciation-panel').forEach(detail=>detail.classList.add('deepening-more','deepening-more-pronunciation'));
   }
   // Alternatives change one taught detail, not the entire topic of the sentence.
   const contrastGroups=[
