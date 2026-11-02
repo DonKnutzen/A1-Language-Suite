@@ -9,7 +9,7 @@ function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.Math.random=()=>.99;
  w.A1Learning={shuffle:a=>[...a],countWords:s=>s.trim().split(/\s+/).filter(Boolean).length,wireRecorder:()=>{}};
- for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/lesson-topic-info.js','shared/grammar-ui.js','shared/pronunciation.js','shared/exercise-review.js','deutsch/pronouns.js','deutsch/answer-audio.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/deepening-tidy.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','shared/lesson-vocabulary-plan.js','shared/lesson-foundations.js','deutsch/lesson-flow.js','shared/lesson-lexicon.js','shared/vocabulary-content.js','shared/vocabulary-trainer.js'])w.eval(read(f));
+ for(const f of ['deutsch/lesson-content.js','shared/lesson-guide.js','shared/lesson-topic-info.js','shared/grammar-ui.js','shared/pronunciation.js','shared/exercise-review.js','deutsch/pronouns.js','deutsch/answer-audio.js','shared/exercise-engine.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/deepening-tidy.js','deutsch/page-checks.js','deutsch/assessments.js','deutsch/pronunciation.js','deutsch/comprehension-content.js','shared/comprehension.js','shared/lesson-vocabulary-plan.js','shared/lesson-foundations.js','deutsch/lesson-flow.js','shared/lesson-lexicon.js','shared/vocabulary-content.js','shared/vocabulary-trainer.js'])w.eval(read(f));
  const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+';window.testData={lessons,grammarSets,formTasks};');
  w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.testRefs=lessonGrammarReferenceHtml;');
  w.DE_A1_ASSESSMENTS.configure({...w.testData,practiceProgress:{recordGrammar:()=>{}}});
@@ -29,7 +29,7 @@ function visible(node,page){
  return true;
 }
 function measure(page,w){
- const start=page.querySelector('#topicPracticeStart'),before=el=>!!(el.compareDocumentPosition(start)&w.Node.DOCUMENT_POSITION_FOLLOWING);
+ const start=page.querySelector('.page-check button,#topicPracticeStart'),before=el=>!!(el.compareDocumentPosition(start)&w.Node.DOCUMENT_POSITION_FOLLOWING);
  const walker=w.document.createTreeWalker(page,w.NodeFilter.SHOW_TEXT);let words=0,n;
  while((n=walker.nextNode())){if(!before(n))break;if(visible(n,page)&&!n.parentElement.closest('button'))words+=countWords(n.textContent);}
  const open=sel=>[...page.querySelectorAll(sel)].filter(el=>visible(el,page)&&before(el));

@@ -11,7 +11,7 @@ function fixture(course){
   const app=read('francais/app.js');w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.refs=lessonGrammarHtml;');
   lessons=w.FR_A1_DATA.lessons;html=l=>w.FR_A1_DEEPENING.enrich(l,w.refs(l));original=l=>l;
  }else{
-  for(const f of ['deutsch/lesson-content.js','deutsch/pronouns.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/comprehension-content.js','shared/comprehension.js'])w.eval(read(f));
+  for(const f of ['deutsch/lesson-content.js','deutsch/pronouns.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/page-checks.js','deutsch/assessments.js','deutsch/comprehension-content.js','shared/comprehension.js'])w.eval(read(f));
   const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+'window.testData={lessons,grammarSets,formTasks};');
   w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.refs=lessonGrammarReferenceHtml;');
   w.DE_A1_ASSESSMENTS.configure({...w.testData,practiceProgress:{recordGrammar(){}}});

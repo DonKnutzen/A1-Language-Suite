@@ -3,7 +3,7 @@ const read=p=>fs.readFileSync(path.join(__dirname,'../..',p),'utf8');
 function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only'}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.A1Profile={getUiLang:()=> 'fr'};
- for(const f of ['shared/learning.js','shared/exercise-review.js','shared/exercise-engine.js','deutsch/answer-audio.js','deutsch/pronouns.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/hard-mode-content.js','deutsch/hard-mode.js','deutsch/review-practice.js'])w.eval(read(f));
+ for(const f of ['shared/learning.js','shared/exercise-review.js','shared/exercise-engine.js','deutsch/answer-audio.js','deutsch/pronouns.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/page-checks.js','deutsch/assessments.js','deutsch/hard-mode-content.js','deutsch/hard-mode.js','deutsch/review-practice.js'])w.eval(read(f));
  const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+'window.data={lessons,grammarSets};');w.DE_A1_ASSESSMENTS.configure(w.data);
  const view=w.document.querySelector('main'),state={doneLessons:[],lessonMasteryBest:{},lessonMasteryLast:{}};
  const open=id=>{w.DE_A1_ASSESSMENTS.renderLessonTest({lesson:w.data.lessons[id-1],view,state,save(){},speak(){},onBack(){}});view.querySelector('#masteryStart').click();};

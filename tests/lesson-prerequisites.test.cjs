@@ -11,7 +11,7 @@ function fixture(course){
   const app=read('francais/app.js');w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.refs=lessonGrammarHtml;');
   lessons=w.FR_A1_DATA.lessons;html=l=>w.FR_A1_DEEPENING.enrich(l,w.refs(l));original=l=>l;
  }else{
-  for(const f of ['deutsch/lesson-content.js','deutsch/pronouns.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/assessments.js','deutsch/comprehension-content.js','shared/comprehension.js'])w.eval(read(f));
+  for(const f of ['deutsch/lesson-content.js','deutsch/pronouns.js','deutsch/grammar-drills.js','deutsch/deepening-content.js','deutsch/question-content.js','deutsch/applications.js','deutsch/study.js','deutsch/page-checks.js','deutsch/assessments.js','deutsch/comprehension-content.js','shared/comprehension.js'])w.eval(read(f));
   const app=read('deutsch/app.js');w.eval(app.slice(0,app.indexOf('const stateKey'))+'window.testData={lessons,grammarSets,formTasks};');
   w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.refs=lessonGrammarReferenceHtml;');
   w.DE_A1_ASSESSMENTS.configure({...w.testData,practiceProgress:{recordGrammar(){}}});
@@ -60,7 +60,7 @@ for(const course of ['francais','deutsch']){
     view.querySelector(`[data-grammar-progress="${i}"]`).click();assert(!view.querySelector('details.lesson-foundations'));assert(!view.querySelector('.lesson-foundations.is-intro'));
     const extra=view.querySelector('[data-foundation-topic]');if(!extra)continue;const title=extra.dataset.foundationTopic;assert(!seen.has(title));seen.add(title);additions++;
     assert.equal(extra.querySelectorAll('.lesson-foundation-rule').length,definition.topics[title].length);
-    assert(!extra.querySelector('dl'));const practice=view.querySelector('#lessonGrammarPage .deepening-practice,#lessonGrammarPage .lesson1-grammar-practice');if(practice)assert(extra.compareDocumentPosition(practice)&w.Node.DOCUMENT_POSITION_FOLLOWING,'explain before practising');
+    assert(!extra.querySelector('dl'));const practice=view.querySelector('#lessonGrammarPage .deepening-practice:not(.page-check),#lessonGrammarPage .lesson1-grammar-practice');if(practice)assert(extra.compareDocumentPosition(practice)&w.Node.DOCUMENT_POSITION_FOLLOWING,'explain before practising');
     for(const row of extra.querySelectorAll('.lesson-foundation-example'))assert(row.querySelector('strong[lang]')&&row.querySelector('span'));
    }
    assert.deepEqual([...seen].sort(),Object.keys(definition.topics).sort(),`L${l.id}: every supplement has exactly one real destination`);
