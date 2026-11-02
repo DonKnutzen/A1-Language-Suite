@@ -230,20 +230,30 @@ Modelltests zwischen 40 und 60 %.
   die natürliche Lesart ist eindeutig.
 - L24 ist Prüfungswissen (Punkte, Zeiten, Teile); das ist das Lernziel der Lektion, aber kein Sprachkönnen (C12).
 
-## Funde in `shared/` (für die letzte Etappe gesammelt, nicht geändert)
+## Etappe 5 – Quiz-Turm in `shared/quiz-show.js` (betrifft FR-A1, FR-A2 und DE-A1, behoben)
 
-| ID | Krit. | Problem | Vorschlag |
+Geprüft mit einem Dump aller Lückenfragen der Stufen 7–12 für alle 24 Lektionen der drei Kurse (vorher 3288 Fragen).
+
+| ID | Krit. | Problem | Fix |
 |---|---|---|---|
-| shared/quiz-show.js Stufen 7–12 (z. B. FR-A2 L4) | A3 | Lückensätze bekommen Distraktoren anderer Wortart: „Je ___ téléphone demain. (ihnen)“ → leur / tes / ses / mes. | Für Objektpronomen-Lücken Pronomen-Distraktoren (lui, les, la) statt Possessiva. |
-| shared/quiz-show.js Stufen 7–12 (FR-A2 L5, L6) | A3 | Partizip- und Verblücken bekommen Wörter mit ähnlichem Anfang: venue / vendre / ventre / vendeuse; était / est / étage / étapes. | Distraktoren aus demselben Lemma bzw. derselben Wortart ziehen (venu, venus, venir). |
-| shared/quiz-show.js Hinweise | GERING | Verschachtelte Klammern im Hinweis: „(als (Beruf))“, „(Hilfsverb (acheter))“. | Innere Klammern beim Anzeigen glätten. |
+| Quiz-Turm „ähnlich aussehende Wörter“ | A3 | Fehlte die dritte Option, kamen beliebige ähnlich geschriebene Kurswörter: venez / vent, viens / vieux, plaît / plat / plan / plage, moins / mois / matins / magasins, Quand / Quai / Quart, Bauch / Brauche / Brauchen, mache / mädchen / mischen, sehen / sehr, Frage / Frau, wohnen / Wohnung. | Wortarten aus dem Kurswortschatz (Nomen: Artikel bzw. Großschreibung; Verben: beide Seiten Infinitiv, Lückenformen mit Verb-Hinweis). Ähnliche Wörter nur noch aus derselben Wortart, bei Verben nur Formen desselben Verbs (prends ~ prendre, venez ~ venir). |
+| Objektpronomen | A3 | „Je ___ téléphone demain. (ihnen)“ → leur / tes / ses / mes (Possessiva). | Eigene Pronomen-Reihe (lui, leur, le, la, les), wenn der Hinweis ein Objektpronomen nennt. |
+| Partizipien | A3 | „Ma sœur est ___ (venir, Partizip, weiblich)“ → venue / vendre / ventre / vendeuse. | Partizipien bekommen ihre Angleichungsformen: venu / venue / venus / venues. |
+| Futur, conditionnel, imparfait | A3 | Generierte Endungen ergaben Kunstwörter: arriveraes, aimeraies, jouaie, mangeaiez, espérai (für espérais). | Eigene Formenreihen je Zeit: arriverai / arriverais / arrivera, jouais / jouaient, mangiez. |
+| Personalendungen | A3 | Endungen wurden an jeden Stamm gehängt: apprendx, travaillt, m’appellt, vienés, prendons, macher, machet, arbeitt, kanne. | Nur noch für regelmäßige Verben, aus dem Infinitiv im Hinweis (-er bzw. -en/-ern/-eln); unregelmäßige Stämme nehmen nur echte Kursformen. |
+| Elision | A1 | Optionen wie „m’couche“ oder Sätze wie „Le cours commence à l’neuf heures.“ | Elidierte Formen nie vor Konsonant. |
+| Fragewörter | A3 | „___ vous appelez-vous ?“ → Comment / Commence / Comme. | Fragewörter als eigene Reihe: Comment / Où / Quand / Combien / Pourquoi. |
+| Hinweise | GERING | Verschachtelte Klammern: „(als (Beruf))“, „(Hilfsverb (acheter))“. | Innere Klammer wird zu Komma: „(als, Beruf)“. Außerdem zehnfach wiederholte Kommentarzeile entfernt. |
 
-Nicht gemeldet: Die Reim-Distraktoren der Stufen 1–5 im Quiz-Turm („der Sohn / der Balkon / der Kassenbon“) sind laut
-Generator bewusst als Scherzstufen angelegt.
+Ergebnis: 3318 statt 3288 Fragen der Stufen 7–12; jede Lektion behält in jeder Stufe mindestens zwei Fragen. Wo keine
+Option derselben Wortart existiert, fällt die Frage weg statt Unsinn zu zeigen (z. B. plaît, moins, grave, Bauch).
+Neuer Test `tests/quiz-show-distractors.test.cjs`. Versionen: `quiz-show.js?v=quiz-classes-221`, Caches
+`francais-a1-live-hard-v221`, `deutsch-a1-hard-v221`, `francais-a2-v14` (Assets a2-16).
 
-## Nächste Etappen
+Offen (GERING): „comme / comment / commence“ (FR-A2 L1) – comme hat im Wortschatz keine Wortart, deshalb bleibt eine
+Verbform als Distraktor. Rechtschreib-Fallen wie „sprechst“, „könnst“, „m’appeles“ sind gewollt (typische
+Regularisierungsfehler). Die Reim-Distraktoren der Stufen 1–5 sind laut Generator bewusst als Scherzstufen angelegt.
 
-- ~~Lektionen 7–12~~ erledigt (Etappe 2).
-- ~~Lektionen 13–18~~ erledigt (Etappe 3).
-- ~~Lektionen 19–24 und Modelltests~~ erledigt (Etappe 4).
-- Danach die gesammelten `shared/`-Funde und alle drei Kurse testen.
+## Stand
+
+Alle Etappen für FR-A2 sind erledigt (Lektionen 1–24, Modelltests, Quiz-Turm in `shared/`).

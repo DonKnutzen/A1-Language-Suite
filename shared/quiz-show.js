@@ -97,38 +97,45 @@ const COURSES={
  de:{target:'de',meaning:'fr',lessons:'deLessons',hard:()=>window.DE_A1_HARD_CONTENT,lang:['Deutsch','German','allemand']}
 };
 // Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
-// Sentences of the Hard Mode cloze text; every gap keeps its sentence template so whole-sentence options can be built.
 function gapSentences(data){if(!data?.text)return [];const out=[];const parts=String(data.text).split(/\n+|(?<=[.!?])\s+/);
  parts.forEach((part,p)=>{const ids=[...part.matchAll(/\{\{(\d+)\}\}/g)].map(m=>Number(m[1])).filter(i=>data.gaps[i]?.answers?.length);
   const fill=(over={})=>part.replace(/\{\{(\d+)\}\}(?=(.?))/g,(_,n,next)=>{const v=over[n]??data.gaps[Number(n)]?.answers?.[0]??'…';return v+(/\p{L}/u.test(next)&&!/[’']$/.test(v)?' ':'');}).replace(/([’'])\s+/g,'$1').trim();
   for(const i of ids){const gap=data.gaps[i];out.push({key:p+':'+i,id:i,sentence:part.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':(data.gaps[Number(n)]?.answers?.[0]??'…')).trim(),answers:gap.answers,hint:gap.hint||'',fill,ids,before:part.split('{{'+i+'}}')[0].trim()});}});
  return out;}
-function hintText(hint){const parts=String(hint).split(' / ');return parts.length===2?(en()?parts[1]:parts[0]):String(hint);}
+// Hints are shown in brackets, so a bracket inside a hint is flattened: "als (Beruf)" → "als, Beruf".
+function hintText(hint){const parts=String(hint).split(' / ');return (parts.length===2?(en()?parts[1]:parts[0]):String(hint)).replace(/\s*\(([^()]*)\)/g,', $1');}
 
 /* Close wrong answers: other forms of the same word – the kind of choice an A1 exam actually tests. */
 const WORD_SETS={
  de:[['der','die','das','den','dem','des'],['ein','eine','einen','einem','einer','eines'],['kein','keine','keinen','keinem','keiner'],['mein','meine','meinen','meinem','meiner'],['dein','deine','deinen','deinem','deiner'],['sein','seine','seinen','seinem','seiner'],['ihr','ihre','ihren','ihrem','ihrer'],['unser','unsere','unseren','unserem'],['euer','eure','euren','eurem'],['mich','mir','dich','dir'],['in','im','ins'],['an','am','ans'],['zu','zum','zur'],['von','vom'],['bin','bist','ist','sind','seid'],['habe','hast','hat','haben','habt'],['wo','woher','wohin','wie','wann','was','wer'],['am','um','im','an'],['heute','morgen','übermorgen','gestern']],
- fr:[['le','la','les','l’'],['un','une','des'],['du','de la','des','de','d’'],['au','aux','à la','à l’','à'],['mon','ma','mes','ton','ta','tes','son','sa','ses','notre','nos','votre','vos','leur','leurs'],['ce','cet','cette','ces'],['je','j’'],['de','d’'],['me','m’'],['te','t’'],['se','s’'],['ne','n’'],['que','qu’'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['fais','fait','faisons','faites','font'],['où','ou'],['à','a'],['aujourd’hui','demain','hier','après-demain'],['le','à','en','au']]
+ fr:[['le','la','les','l’'],['un','une','des'],['du','de la','des','de','d’'],['au','aux','à la','à l’','à'],['mon','ma','mes','ton','ta','tes','son','sa','ses','notre','nos','votre','vos','leur','leurs'],['ce','cet','cette','ces'],['je','j’'],['de','d’'],['me','m’'],['te','t’'],['se','s’'],['ne','n’'],['que','qu’'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['fais','fait','faisons','faites','font'],['où','ou'],['quand','où','comment','pourquoi','combien'],['à','a'],['aujourd’hui','demain','hier','après-demain'],['le','à','en','au']]
 };
-const ENDINGS={de:['est','et','en','st','er','es','e','n','t','s'],fr:['ons','ent','ez','ées','ée','és','es','e','s','x','t']};
+// Object pronouns. "leur" is also a possessive, so the hint decides which set it belongs to.
+const OBJECT_PRONOUNS={fr:['lui','leur','le','la','les']},PRONOUN_HINT=/\b(ihm|ihn|ihnen|à \+|Pronomen|Objekt)\b/i;
+// Other persons of a regular verb, built from the infinitive in the hint: parle → parles, parlez, parlent; mache → machst, macht.
+// Irregular stems (peux, kann, prends) get none: their wrong answers come from the forms the course really uses.
+function personForms(tail,course,hint){const inf=norm(String(hint).split(/[,:(/]/)[0]).trim().replace(/^(s’|se |sich )/,'');
+ if(course==='fr'){if(!/er$/.test(inf))return [];const st=inf.slice(0,-2);if(!tail.startsWith(st))return [];
+  return [st+'e',st+'es',st+'ent',/g$/.test(st)?st+'eons':/c$/.test(st)?st.slice(0,-1)+'çons':st+'ons',st+'ez'];}
+ const m=inf.match(/^(.+?)(en|ern|eln)$/);if(!m)return [];const st=m[2]==='en'?m[1]:inf.slice(0,-1);if(!tail.startsWith(st))return [];
+ if(m[2]!=='en')return [st+'e',st+'st',st+'t',st+'n'];
+ return [st+'e',/[td]$/.test(st)?st+'est':/[sßzx]$/.test(st)?st+'t':st+'st',/[td]$/.test(st)?st+'et':st+'t',st+'en'];}
 // Real learner slips only: dropping a mark (é→e, ü→u, ß→ss) or mixing up look-alikes (é/è/ê, ie/ei) – never marks on random letters.
 const MARKS={de:[['ä','a'],['ö','o'],['ü','u'],['ß','ss'],['ie','ei'],['ei','ie']],fr:[['é','e'],['è','e'],['ê','e'],['é','è'],['è','é'],['ê','é'],['é','ê'],['à','a'],['ù','u'],['î','i'],['ô','o'],['ç','c']]};
 const INFINITIVE={fr:/^(s’|se )?[a-zàâçéèêëîïôûü]+(er|ir|re|oir)$/,de:/^[a-zäöüß]+(en|ern|eln)$/};
-function variants(word,course,verb){const w=String(word),out=new Set(),m=w.match(/^(.*?)([^\s’']+)$/),head=m?m[1]:'',tail=m?m[2]:w;
+function variants(word,course,verb,hint=''){const w=String(word),out=new Set(),m=w.match(/^(.*?)([^\s’']+)$/),head=m?m[1]:'',tail=m?m[2]:w;
  const lead=w.match(/^(\S+)(\s.+)$/),keepCase=(orig,x)=>/^\p{Lu}/u.test(orig)?x.charAt(0).toUpperCase()+x.slice(1):x;
- for(const set of WORD_SETS[course]){if(set.includes(w))set.forEach(x=>out.add(x));else if(head&&set.includes(tail))set.forEach(x=>out.add(head+x));
+ const pronoun=PRONOUN_HINT.test(hint),sets=WORD_SETS[course].filter(set=>!(pronoun&&set.includes('leurs'))).concat(pronoun&&OBJECT_PRONOUNS[course]?[OBJECT_PRONOUNS[course]]:[]);
+ for(const set of sets){if(set.includes(w))set.forEach(x=>out.add(x));else if(!head&&!lead&&set.includes(w.toLowerCase()))set.forEach(x=>out.add(keepCase(w,x)));else if(head&&set.includes(tail))set.forEach(x=>out.add(head+x));
   if(lead&&set.includes(lead[1].toLowerCase()))set.forEach(x=>out.add(keepCase(lead[1],x)+lead[2]));}
- if(verb&&tail.length>=4)for(const e of ENDINGS[course])if(tail.endsWith(e)&&tail.length-e.length>=2){const stem=tail.slice(0,-e.length);for(const f of ['',...ENDINGS[course]])out.add(head+stem+f);break;}
+ const participle=course==='fr'&&verb&&/Partizip|participe/i.test(hint);
+ const fc=course==='fr'&&verb&&!participle&&!/imparfait/i.test(hint)&&(/futur|conditionnel|Konditional|würde|wäre|Vorschlag/i.test(hint)||(/(rai|rais|rait|raient|ras|ra|rons|rez|ront)$/.test(tail)&&!/(ouvr|offr|souffr)/.test(tail)))?tail.match(/^(.+r)(ai|as|a|ons|ez|ont|ais|ait|ions|iez|aient)$/):null;
+ if(fc){for(const f of ['ai','as','a','ons','ez','ont','ais','ait','ions','iez','aient'])out.add(head+fc[1]+f);}
+ else if(course==='fr'&&verb&&/imparfait/i.test(hint)&&/(ais|ait|ions|iez|aient)$/.test(tail)){const st=tail.replace(/(ais|ait|ions|iez|aient)$/,'');for(const f of ['ais','ait','ions','iez','aient'])out.add(head+(f[0]==='i'?st.replace(/ge$/,'g').replace(/ç$/,'c'):st)+f);}
+ else if(participle){const m=tail.match(/^(.+?)(es|e|s)?$/),stem=m[1]&&/(é|u|.{4,}i)$/.test(m[1])?m[1]:tail;for(const f of ['','e','s','es'])if(!(f==='s'&&/s$/.test(stem)))out.add(head+stem+f);}
+ else if(verb)for(const x of personForms(tail,course,hint))out.add(head+x);
  for(const [from,to] of MARKS[course]){let i=tail.indexOf(from);while(i>=0){out.add(head+tail.slice(0,i)+to+tail.slice(i+from.length));i=tail.indexOf(from,i+1);}}
- out.delete(w);return [...out].map(v=>v.replace(/([’'])\s+/g,'$1')).filter(v=>v.trim().length>0&&v!==w);}
+ out.delete(w);return [...out].map(v=>v.replace(/([’'])\s+/g,'$1')).filter(v=>v.trim().length>0&&v!==w&&!(course==='fr'&&/(^|\s)\p{L}’[^aeiouyhàâéèêëîïôûü\s]/iu.test(v)));}
 // A German verb right after a sentence-initial "Sie/sie" could be "she" (-t) or "they/you" (-en): never offer the other reading.
 function ambiguous(s,answer,cand,course){if(course!=='de'||!/^(Sie|sie)$/.test(s.before))return false;const plural=a=>/en$|^sind$|^haben$/.test(a),single=a=>/t$|^ist$|^hat$/.test(a);return (plural(answer)&&single(cand))||(single(answer)&&plural(cand));}
 // French gender/number endings after je/tu/vous are open (speaker unknown), so they are only used for verbs.
@@ -136,18 +143,22 @@ function genderOnly(answer,cand){const a=norm(answer),c=norm(cand);return [a+'e'
 function common(a,b){let best=0;for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++){let k=0;while(a[i+k]&&a[i+k]===b[j+k])k++;if(k>best)best=k;}return best;}
 // Wrong answers from the word's own family: other forms of the same verb in the course, article/possessive/pronoun sets,
 // and (from level 7) realistic spelling slips. "formable" means the family alone gives three close options.
-function closeOptions(s,course,{lemma,lexicon,synthetic}){const answer=s.answers[0],banned=new Set(s.answers.map(norm)),family=[],spelling=[],look=[];
+function closeOptions(s,course,{lemma,lexicon,cls=new Map(),synthetic}){const answer=s.answers[0],banned=new Set(s.answers.map(norm)),family=[],spelling=[],look=[];
  const base=norm(String(s.hint).split(' / ')[0].split(',')[0]),forms=lemma.get(base)||new Set();
- const verb=INFINITIVE[course].test(base)&&(forms.size>=2||course==='de');
+ // A hint that names a tense marks a verb form even when the course has only one form of that verb.
+ const verbBase=base.split(/\s*[:(]/)[0].trim();
+ const verb=INFINITIVE[course].test(verbBase)&&(forms.size>=2||course==='de'||cls.get(verbBase)==='v'||/Partizip|participe|imparfait|futur|présent|Präsens|passé|conditionnel/i.test(s.hint));
  // After an elided word (C’, j’, l’) only a vowel or h can follow.
- const elided=/[’']$/.test(s.before);
- const ok=c=>c&&!banned.has(norm(c))&&!ambiguous(s,answer,c,course)&&!(course==='fr'&&!verb&&genderOnly(answer,c))&&!(elided&&!/^[aeiouyhàâéèêîïôûü]/i.test(c));
+ const elided=/[’']$/.test(s.before),next=String(s.sentence).split('___')[1]||'',beforeConsonant=/^\s*[^aeiouyhàâéèêëîïôûü\s]/i.test(next);
+ const ok=c=>c&&!banned.has(norm(c))&&!(verb&&cls.get(norm(c))==='n')&&!ambiguous(s,answer,c,course)&&!(course==='fr'&&!verb&&genderOnly(answer,c))&&!(elided&&!/^[aeiouyhàâéèêîïôûü]/i.test(c))&&!(course==='fr'&&beforeConsonant&&/[’']$/.test(c));
  for(const c of forms)if(ok(c))family.push(c);
- for(const c of variants(answer,course,verb)){if(!ok(c))continue;const last=norm(c).split(/[\s’']/).pop();(lexicon.has(last)||lexicon.has(norm(c))?family:spelling).push(c);}
- // Last resort only: course words sharing most of the answer (einundzwanzig ~ einunddreißig).
+ for(const c of variants(answer,course,verb,s.hint)){if(!ok(c))continue;const last=norm(c).split(/[\s’']/).pop();(lexicon.has(last)||lexicon.has(norm(c))?family:spelling).push(c);}
+ // Last resort only: course words of the same word class sharing most of the answer (einundzwanzig ~ einunddreißig, Bauch ~ Buch).
+ // For verbs only course verbs with the same beginning (venez ~ venir, prends ~ prendre), never look-alike nouns (venez ~ vent).
  const a=norm(answer),cap=w=>/^\p{Lu}/u.test(answer)?w.charAt(0).toUpperCase()+w.slice(1):w;
  const ownFirst=take0();
- if(ownFirst.length<3&&a.length>=5&&!/\s/.test(a))for(const w of lexicon){if(w.length<4||Math.abs(w.length-a.length)>3||w[0]!==a[0]||!ok(cap(w)))continue;if(common(w,a)>=Math.ceil(a.length*.6))look.push(cap(w));}
+ const sameVerb=w=>w===verbBase||cls.get(w)==='v'&&w.length>=4&&w.slice(0,4)===a.slice(0,4),sameClass=w=>verb||cls.get(a)==='v'?sameVerb(w):cls.get(w)===cls.get(a);
+ if(ownFirst.length<3&&a.length>=(verb?4:5)&&!/\s/.test(a))for(const w of lexicon){if(w.length<4||Math.abs(w.length-a.length)>3||w[0]!==a[0]||!sameClass(w)||!ok(cap(w)))continue;if(common(w,a)>=Math.ceil(a.length*.6))look.push(cap(w));}
  function take0(){const seen=[];for(const c of [...family,...(synthetic?spelling:[])]){if(!seen.some(p=>norm(p)===norm(c)))seen.push(c);if(seen.length===3)break;}return seen;}
  const rank=list=>[...new Set(list)].map(c=>[c,distance(c,answer)/Math.max(c.length,answer.length)+Math.random()*.02]).sort((x,y)=>x[1]-y[1]).map(x=>x[0]);
  const take=lists=>{const picks=[];for(const c of lists.flat()){if(picks.length===3)break;if(!picks.some(p=>norm(p)===norm(c)))picks.push(c);}return picks;};
@@ -181,14 +192,23 @@ function generate(course,lessonId){
   String(data.text||'').replace(/\{\{(\d+)\}\}/g,(_,n)=>' '+(data.gaps?.[n]?.answers?.[0]||'')+' ').toLowerCase().split(/[\s.,!?;:«»„“"()…—–-]+/).forEach(t=>t&&lexicon.add(t));}
  for(const v of V){String(v[C.target]||'').toLowerCase().split(/[\s,/()?!.;:«»„“"…]+/).forEach(t=>t&&lexicon.add(t));}
  for(const set of WORD_SETS[course])set.forEach(w=>lexicon.add(norm(w)));
+ // Word classes from the course vocabulary: nouns (German capitals, French article + word) and verbs (infinitives, gap forms of verbs).
+ const cls=new Map(),other=course==='de'?'fr':'de',first=t=>norm(String(t||'').split(/\s*[\/,]\s*/)[0]).replace(/^(s’|se |sich )/,'');
+ for(const v of V)for(const part of String(v[C.target]||'').split(/\s*[\/,]\s*/)){const p=part.trim();
+  if(course==='de'){for(const w of p.split(/\s+/))if(/^\p{Lu}\p{Ll}/u.test(w)&&!cls.has(norm(w)))cls.set(norm(w),'n');}
+  else{const m=p.match(/^(?:le|la|les|un|une|des)\s+([^\s(]+)|^l[’']([^\s(]+)/i);if(m){const n=norm(m[1]||m[2]);cls.set(n,'n');if(/s$/.test(n))cls.set(n.slice(0,-1),'n');}}
+  // A verb only when both sides are infinitives: noir = schwarz is an adjective.
+  if(INFINITIVE[course].test(norm(p))&&INFINITIVE[other].test(first(v[C.meaning])))cls.set(norm(p),'v');}
+ // Gap answers are verb forms when their hint names a verb of the course or of the hint language (prendre, nehmen : je, voir).
+ for(const [base,forms] of lemma){const inf=base.split(/\s*[,:(]/)[0].trim().replace(/^(s’|se |sich )/,'');if(cls.get(inf)==='v'||INFINITIVE[other].test(inf))for(const x of forms)if(!cls.has(norm(x)))cls.set(norm(x),'v');}
  const sentences=gapSentences(H[id]),hintOf=s=>s.hint?` (${hintText(s.hint)})`:'';
  // Grammar-rule hints ("à + le : dos", "arbeiten : je") would give the answer away when whole sentences are compared.
  const ruleHint=s=>/[+:]/.test(s.hint)||INFINITIVE[course].test(norm(String(s.hint).split(',')[0]));
  const sentenceHint=s=>ruleHint(s)?'':hintOf(s);
- const formed=sentences.map(s=>({s,real:closeOptions(s,course,{lemma,lexicon,synthetic:false}),close:closeOptions(s,course,{lemma,lexicon,synthetic:true})})).filter(x=>x.close);
+ const formed=sentences.map(s=>({s,real:closeOptions(s,course,{lemma,lexicon,cls,synthetic:false}),close:closeOptions(s,course,{lemma,lexicon,cls,synthetic:true})})).filter(x=>x.close);
  let strong=formed.filter(x=>x.close.formable);
  // Like the real exam, the top levels may revisit the hardest sentences of earlier lessons when this lesson has few.
- for(let back=id-1;back>=1&&strong.length<14;back--)strong=strong.concat(gapSentences(H[back]).map(s=>({s:{...s,key:back+'/'+s.key},close:closeOptions(s,course,{lemma,lexicon,synthetic:true})})).filter(x=>x.close?.formable).sort((x,y)=>x.close.score-y.close.score).slice(0,14-strong.length));
+ for(let back=id-1;back>=1&&strong.length<14;back--)strong=strong.concat(gapSentences(H[back]).map(s=>({s:{...s,key:back+'/'+s.key},close:closeOptions(s,course,{lemma,lexicon,cls,synthetic:true})})).filter(x=>x.close?.formable).sort((x,y)=>x.close.score-y.close.score).slice(0,14-strong.length));
  const hardPool=strong.length>=3?strong:formed;
  const byScore=[...hardPool].sort((x,y)=>x.close.score-y.close.score),n=byScore.length;
  const slice=(from,to,min=3)=>{const a=Math.floor(n*from),b=Math.max(Math.ceil(n*to),a+min);return b>n?byScore.slice(Math.max(0,n-min)):byScore.slice(a,b);};
@@ -197,7 +217,8 @@ function generate(course,lessonId){
  const easier=[...formed].sort((x,y)=>y.close.score-x.close.score);
  for(const x of [...easier,...strong.filter(y=>!formed.includes(y))])qs.push(gapQ(x,7,'gap-form',(x.real||x.close).picks));
  // Lessons with few word families: level 7 uses the lesson's own sentences with the most similar answers of the lesson.
- if(qs.filter(q=>q.kind==='gap-form').length<6)for(const s of sentences){if(qs.filter(q=>q.kind==='gap-form').length>=8)break;if(formed.some(x=>x.s.key===s.key))continue;const wrong=distractors(s.answers[0],[...sentences.map(x=>x.answers[0]),...lesson.map(p=>p.t)],{near:true,exclude:s.answers});if(wrong.length===3)qs.push(gapQ({s},7,'gap-form',wrong));}
+ if(qs.filter(q=>q.kind==='gap-form').length<6)for(const s of sentences){if(qs.filter(q=>q.kind==='gap-form').length>=8)break;if(formed.some(x=>x.s.key===s.key))continue;const art=w=>/^(le|la|les|l’|un|une|der|die|das|ein|eine) /i.test(w),same=w=>cls.get(norm(w))===cls.get(norm(s.answers[0]))&&art(w)===art(s.answers[0]);
+  const wrong=distractors(s.answers[0],[...sentences.map(x=>x.answers[0]),...lesson.map(p=>p.t)].filter(same),{near:true,exclude:s.answers});if(wrong.length===3)qs.push(gapQ({s},7,'gap-form',wrong));}
  for(const x of slice(.25,.85))qs.push(gapQ(x,8,'gap-close',x.close.picks));
  for(const x of slice(.6,1))qs.push(gapQ(x,9,'gap-hard',x.close.picks));
  // 10 / 11: which whole sentence is right (11: the closest half)? · 11 / 12: two gaps in one sentence, errors in either or both
