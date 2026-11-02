@@ -245,7 +245,7 @@ Geprüft mit einem Dump aller Lückenfragen der Stufen 7–12 für alle 24 Lekti
 | Fragewörter | A3 | „___ vous appelez-vous ?“ → Comment / Commence / Comme. | Fragewörter als eigene Reihe: Comment / Où / Quand / Combien / Pourquoi. |
 | Hinweise | GERING | Verschachtelte Klammern: „(als (Beruf))“, „(Hilfsverb (acheter))“. | Innere Klammer wird zu Komma: „(als, Beruf)“. Außerdem zehnfach wiederholte Kommentarzeile entfernt. |
 
-Ergebnis: 3318 statt 3288 Fragen der Stufen 7–12; jede Lektion behält in jeder Stufe mindestens zwei Fragen. Wo keine
+Ergebnis: 3311 statt 3288 Fragen der Stufen 7–12; jede Lektion behält in jeder Stufe mindestens zwei Fragen. Wo keine
 Option derselben Wortart existiert, fällt die Frage weg statt Unsinn zu zeigen (z. B. plaît, moins, grave, Bauch).
 Neuer Test `tests/quiz-show-distractors.test.cjs`. Versionen: `quiz-show.js?v=quiz-classes-221`, Caches
 `francais-a1-live-hard-v221`, `deutsch-a1-hard-v221`, `francais-a2-v14` (Assets a2-16).
