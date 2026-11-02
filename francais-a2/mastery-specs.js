@@ -2367,11 +2367,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "prendrons",
           "prenderons",
-          "prenons"
+          "prendront"
         ],
         "context": "Wir werden den Zug nehmen.",
         "tag": "futur",
-        "explanation": "Bei -re fällt das e weg: prendr- + ons."
+        "explanation": "Bei -re fällt das e weg: prendr- + ons. Prendront gehört zu ils."
       },
       {
         "type": "gap",
@@ -2381,11 +2381,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "sera",
           "serait",
-          "est"
+          "seras"
         ],
         "context": "Sie wird zufrieden sein.",
         "tag": "futur",
-        "explanation": "Elle sera contente. = Sie wird zufrieden sein."
+        "explanation": "Être → ser-; zu elle gehört -a: elle sera. Serait ist conditionnel."
       },
       {
         "type": "gap",
@@ -2395,11 +2395,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "viendront",
           "venront",
-          "viennent"
+          "viendrons"
         ],
         "context": "Sie werden um acht kommen.",
         "tag": "futur",
-        "explanation": "Venir → viendr-."
+        "explanation": "Venir → viendr-; zu ils gehört -ont."
       },
       {
         "type": "gap",
@@ -2409,11 +2409,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "pourras",
           "pouvras",
-          "peux"
+          "pourra"
         ],
         "context": "Wirst du mir helfen können?",
         "tag": "futur",
-        "explanation": "Pouvoir → pourr-."
+        "explanation": "Pouvoir → pourr-; zu tu gehört -as."
       },
       {
         "type": "gap",
@@ -2423,11 +2423,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "verra",
           "voira",
-          "voit"
+          "verrait"
         ],
-        "context": "Wir sehen uns morgen.",
+        "context": "Wir werden uns morgen sehen.",
         "tag": "futur",
-        "explanation": "Voir → verr-."
+        "explanation": "Voir → verr-: on se verra. Verrait ist conditionnel."
       },
       {
         "type": "gap",
@@ -2464,7 +2464,7 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "vais",
         "o": [
           "vais",
-          "irai",
+          "vas",
           "suis"
         ],
         "context": "Ich fahre heute Abend weg.",
@@ -2814,7 +2814,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Ma chatte est ___ . (noir)",
+        "prompt": "Ma chatte est ___. (noir)",
         "answer": "noire",
         "o": [
           "noire",
@@ -2823,7 +2823,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Meine Katze ist schwarz.",
         "tag": "Adjektiv",
-        "explanation": "Ma chatte est noire . = Meine Katze ist schwarz."
+        "explanation": "Ma chatte est noire. = Meine Katze ist schwarz."
       },
       {
         "type": "gap",
@@ -2931,11 +2931,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Du fragst deinen Partner in der Prüfung nach Haustieren.",
         "o": [
           "Tu as un animal de compagnie ?",
-          "Tu es un animal de compagnie ?",
-          "Tu fais un animal de compagnie ?"
+          "Tu as un animal de compagnon ?",
+          "Tu as une animale de compagnie ?"
         ],
         "answer": "Tu as un animal de compagnie ?",
-        "explanation": "Avoir un animal = ein Tier haben.",
+        "explanation": "Un animal de compagnie = ein Haustier; animal ist männlich, le compagnon ist der Begleiter.",
         "tag": "Anwenden",
         "family": "question",
         "checkKey": "A2L8-context-question",
@@ -3067,12 +3067,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Ma chatte est très ___ . (gentil)",
+        "prompt": "Ma chatte est très ___. (gentil)",
         "answer": "gentille",
         "accept": [],
         "context": "Deine Katze ist sehr lieb.",
-        "explanation": "Ma chatte est très gentille .",
-        "audio": "Ma chatte est très gentille .",
+        "explanation": "Ma chatte est très gentille.",
+        "audio": "Ma chatte est très gentille.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -3139,7 +3139,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Des tomates ? J’en prends un ___ .",
+        "prompt": "Des tomates ? J’en prends un ___.",
         "answer": "kilo",
         "o": [
           "kilo",
@@ -3148,7 +3148,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Tomaten? Ich nehme ein Kilo.",
         "tag": "Menge",
-        "explanation": "Des tomates ? J’en prends un kilo . = Tomaten? Ich nehme ein Kilo."
+        "explanation": "Des tomates ? J’en prends un kilo. = Tomaten? Ich nehme ein Kilo."
       },
       {
         "type": "gap",
@@ -3181,7 +3181,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Du sucre ? Il en met ___ .",
+        "prompt": "Du sucre ? Il en met ___.",
         "answer": "beaucoup",
         "o": [
           "beaucoup",
@@ -3357,7 +3357,7 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Je ne mange pas de fromage.",
           "Je ne mange pas du fromage.",
-          "Je mange pas le fromage de."
+          "Je ne mange pas des fromage."
         ],
         "answer": "Je ne mange pas de fromage.",
         "explanation": "Nach der Verneinung wird du zu de.",
@@ -3609,11 +3609,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "à",
           "au",
-          "pour"
+          "chez"
         ],
         "context": "Ich lade euch zu meinem Geburtstag ein.",
         "tag": "à",
-        "explanation": "Je vous invite à mon anniversaire. = Ich lade euch zu meinem Geburtstag ein."
+        "explanation": "Inviter à + Possessiv: à mon anniversaire. Au enthält schon le, chez steht nur vor Personen."
       },
       {
         "type": "gap",
@@ -3623,11 +3623,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Félicitations",
           "Désolé",
-          "Dommage"
+          "Bon courage"
         ],
         "context": "Glückwunsch zur Prüfung!",
         "tag": "gratulieren",
-        "explanation": "Félicitations pour ton examen ! = Glückwunsch zur Prüfung!"
+        "explanation": "Félicitations gratuliert. Bon courage wünscht Kraft vor der Prüfung, désolé bedauert."
       },
       {
         "type": "gap",
@@ -3680,7 +3680,7 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Je t’invite à mon anniversaire.",
           "Je t’invite au mon anniversaire.",
-          "Je t’invite pour mon anniversaire à."
+          "Je t’invite chez mon anniversaire."
         ],
         "answer": "Je t’invite à mon anniversaire.",
         "explanation": "Inviter à + Possessiv: à mon anniversaire.",
@@ -3753,10 +3753,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Félicitations pour ton examen !",
           "Désolé pour ton examen !",
-          "Bon appétit pour ton examen !"
+          "Bon courage pour ton examen !"
         ],
         "answer": "Félicitations pour ton examen !",
-        "explanation": "Félicitations = herzlichen Glückwunsch.",
+        "explanation": "Félicitations = herzlichen Glückwunsch. Bon courage sagt man vor der Prüfung.",
         "tag": "Anwenden",
         "family": "feliciter",
         "checkKey": "A2L10-context-feliciter",
@@ -3948,12 +3948,12 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "le",
         "o": [
           "le",
-          "au",
+          "du",
           "un"
         ],
         "context": "Der Schinken kostet fünfzehn Euro das Kilo.",
         "tag": "Preis",
-        "explanation": "Le jambon est à quinze euros le kilo. = Der Schinken kostet fünfzehn Euro das Kilo."
+        "explanation": "Preis pro Einheit mit bestimmtem Artikel: quinze euros le kilo (auch: au kilo)."
       },
       {
         "type": "gap",
@@ -4000,16 +4000,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "C’est à cinq euros ___ .",
+        "prompt": "C’est à cinq euros ___.",
         "answer": "seulement",
         "o": [
           "seulement",
           "que",
-          "pas"
+          "environ"
         ],
         "context": "Es kostet nur fünf Euro.",
         "tag": "seulement",
-        "explanation": "C’est à cinq euros seulement . = Es kostet nur fünf Euro."
+        "explanation": "Am Satzende steht für „nur“ seulement; que braucht ne davor, environ heißt ungefähr."
       },
       {
         "type": "gap",
@@ -4061,7 +4061,7 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Je ne prends qu’une baguette.",
           "Je ne prends pas une baguette.",
-          "Je prends que pas une baguette."
+          "Je ne prends qu’un baguette."
         ],
         "answer": "Je ne prends qu’une baguette.",
         "explanation": "Ne … que = nur.",
@@ -4226,12 +4226,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Le pain est à un euro ___ . (nur)",
+        "prompt": "Le pain est à un euro ___. (nur)",
         "answer": "seulement",
         "accept": [],
         "context": "Das Brot kostet nur einen Euro.",
-        "explanation": "Le pain est à un euro seulement .",
-        "audio": "Le pain est à un euro seulement .",
+        "explanation": "Le pain est à un euro seulement.",
+        "audio": "Le pain est à un euro seulement.",
         "marking": {
           "strictAccents": true,
           "format": null,
@@ -4300,7 +4300,7 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "parce que",
         "o": [
           "parce que",
-          "pour",
+          "pourtant",
           "mais"
         ],
         "context": "Ich bleibe zu Hause, weil ich krank bin.",
@@ -4366,7 +4366,7 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Ce n’est pas ___ . (nicht schlimm)",
+        "prompt": "Ce n’est pas ___. (nicht schlimm)",
         "answer": "grave",
         "o": [
           "grave",
@@ -4375,7 +4375,7 @@ window.FR_A1_MASTERY_SPECS = {
         ],
         "context": "Das ist nicht schlimm.",
         "tag": "reagieren",
-        "explanation": "Ce n’est pas grave . = Das ist nicht schlimm."
+        "explanation": "Ce n’est pas grave. = Das ist nicht schlimm."
       },
       {
         "type": "gap",
@@ -4499,11 +4499,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Deine Freundin ist krank. Was wünschst du ihr?",
         "o": [
           "Soigne-toi bien !",
-          "Bon appétit !",
-          "Bonne route !"
+          "Bonne fête !",
+          "Bon voyage !"
         ],
         "answer": "Soigne-toi bien !",
-        "explanation": "Soigne-toi bien = gute Besserung.",
+        "explanation": "Soigne-toi bien = gute Besserung. Bonne fête wünscht man zum Fest, bon voyage vor einer Reise.",
         "tag": "Anwenden",
         "family": "souhait",
         "checkKey": "A2L12-context-souhait",
@@ -4624,12 +4624,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Je suis ___ , je suis en retard. (Frau)",
+        "prompt": "Je suis ___, je suis en retard. (Frau)",
         "answer": "désolée",
         "accept": [],
         "context": "Eine Frau entschuldigt sich für die Verspätung.",
-        "explanation": "Je suis désolée , je suis en retard.",
-        "audio": "Je suis désolée , je suis en retard.",
+        "explanation": "Je suis désolée, je suis en retard.",
+        "audio": "Je suis désolée, je suis en retard.",
         "marking": {
           "strictAccents": true,
           "format": null,

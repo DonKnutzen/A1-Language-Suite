@@ -1466,7 +1466,7 @@ window.FR_A1_DATA = {
           "q": "Was bedeutet „Mon voisin garde mon chat“?",
           "o": [
             "Mein Nachbar sucht meine Katze.",
-            "Mein Nachbar behält meine Katze.",
+            "Mein Nachbar mag meine Katze.",
             "Mein Nachbar passt auf meine Katze auf."
           ],
           "a": 2,
@@ -1654,14 +1654,15 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Il faut des tomates, des courgettes et des oignons.",
-          "explanation": "Für eine unbestimmte Menge steht der Teilungsartikel des."
+          "explanation": "Für eine unbestimmte Menge steht der Teilungsartikel des. Les stünde für bestimmte Tomaten.",
+          "context": "Im Rezept: Man braucht Tomaten."
         },
         {
           "q": "Was bedeutet „épicé“?",
           "o": [
             "scharf gewürzt",
-            "salzig",
-            "süß"
+            "leicht gesalzen",
+            "stark gesüßt"
           ],
           "a": 0,
           "audio": "C’est délicieux, mais un peu épicé.",
@@ -1690,7 +1691,7 @@ window.FR_A1_DATA = {
           "explanation": "Cuire = kochen, garen; pendant = während, lang."
         },
         {
-          "q": "On coupe les légumes en petits ___ .",
+          "q": "On coupe les légumes en petits ___.",
           "o": [
             "morceaux",
             "morcels",
@@ -1712,7 +1713,7 @@ window.FR_A1_DATA = {
           "explanation": "Une fois par semaine = einmal pro Woche."
         },
         {
-          "q": "Des œufs ? J’en voudrais ___ .",
+          "q": "Des œufs ? J’en voudrais ___.",
           "o": [
             "les six",
             "six",
@@ -1865,12 +1866,12 @@ window.FR_A1_DATA = {
           "q": "Wie gratulierst du zur neuen Arbeit?",
           "o": [
             "Félicitations pour ton nouveau travail !",
-            "Bon appétit pour ton nouveau travail !",
-            "Bonne route pour ton nouveau travail !"
+            "Bon courage pour ton nouveau travail !",
+            "Désolé pour ton nouveau travail !"
           ],
           "a": 0,
           "audio": "Félicitations pour ton nouveau travail !",
-          "explanation": "Félicitations = herzlichen Glückwunsch."
+          "explanation": "Félicitations = herzlichen Glückwunsch. Bon courage wünscht Kraft für etwas Schweres, désolé bedauert etwas."
         },
         {
           "q": "Écris-moi de préférence ___ SMS.",
@@ -2014,13 +2015,13 @@ window.FR_A1_DATA = {
         {
           "q": "Le fromage est à dix-huit euros ___ kilo.",
           "o": [
-            "au",
+            "un",
             "le",
             "par le"
           ],
           "a": 1,
           "audio": "Le fromage est à dix-huit euros le kilo.",
-          "explanation": "Preis pro Einheit: … euros le kilo, … euros la pièce."
+          "explanation": "Preis pro Einheit: … euros le kilo (auch: au kilo), … euros la pièce."
         },
         {
           "q": "Was ist „le rayon“ im Supermarkt?",
@@ -2196,15 +2197,15 @@ window.FR_A1_DATA = {
       ],
       "quiz": [
         {
-          "q": "Je ne ___ pas venir ce soir. (pouvoir, Futur)",
+          "q": "Nous ne ___ pas venir samedi. (pouvoir, Futur)",
           "o": [
-            "pouvrai",
-            "peux",
-            "pourrai"
+            "pouvrons",
+            "pouvons",
+            "pourrons"
           ],
           "a": 2,
-          "audio": "Je suis désolée, mais je ne pourrai pas venir ce soir.",
-          "explanation": "Pouvoir hat den Futurstamm pourr-: je pourrai."
+          "audio": "Nous ne pourrons pas venir samedi.",
+          "explanation": "Pouvoir hat den Futurstamm pourr-: nous pourrons. Pouvons ist Präsens."
         },
         {
           "q": "Was bedeutet „J’ai mal à la gorge“?",
@@ -2220,13 +2221,13 @@ window.FR_A1_DATA = {
         {
           "q": "Wie entschuldigst du dich höflich?",
           "o": [
-            "Je suis dommage.",
+            "Je suis excusé.",
             "Je suis désolé.",
-            "Je suis pardon."
+            "C’est dommage."
           ],
           "a": 1,
           "audio": "Je suis désolé, mais…",
-          "explanation": "Je suis désolé(e) = es tut mir leid."
+          "explanation": "Je suis désolé(e) = es tut mir leid. Je suis excusé heißt „ich bin entschuldigt“, c’est dommage „schade“."
         },
         {
           "q": "Was bedeutet „annuler“?",
@@ -2266,7 +2267,7 @@ window.FR_A1_DATA = {
           "o": [
             "donc",
             "parce que",
-            "pour"
+            "pourtant"
           ],
           "a": 1,
           "audio": "Je ne viens pas parce que je suis malade.",
@@ -2288,11 +2289,11 @@ window.FR_A1_DATA = {
           "o": [
             "de",
             "pour",
-            "à"
+            "avec"
           ],
           "a": 1,
           "audio": "Excuse-moi pour le retard.",
-          "explanation": "S’excuser / excuser pour + Nomen."
+          "explanation": "Excuser pour + Nomen: pour le retard. De steht nur vor einem Infinitiv: excuse-moi d’être en retard."
         },
         {
           "q": "Was bedeutet „Dis bonjour à tout le monde !“ am Ende einer Nachricht?",
@@ -5361,11 +5362,11 @@ window.FR_A1_DATA = {
           "o": [
             "prenderons",
             "prendrons",
-            "prenons"
+            "prendront"
           ],
           "a": 1,
           "audio": "Nous prendrons le train.",
-          "explanation": "Bei -re fällt das e weg: prendr- + ons."
+          "explanation": "Bei -re fällt das e weg: prendr- + ons. Prendront gehört zu ils."
         },
         {
           "q": "Ergänze: C’est le chien ___ j’ai trouvé.",
@@ -5452,15 +5453,15 @@ window.FR_A1_DATA = {
           "explanation": "Je ne pourrai pas venir ce soir. = Ich kann heute Abend nicht kommen."
         },
         {
-          "q": "Ergänze: Des tomates ? J’en prends un ___ .",
+          "q": "Ergänze: Des tomates ? J’en prends un ___.",
           "o": [
             "morceau",
-            "litre",
-            "kilo"
+            "kilo",
+            "litre"
           ],
-          "a": 2,
-          "audio": "Des tomates ? J’en prends un kilo .",
-          "explanation": "Des tomates ? J’en prends un kilo . = Tomaten? Ich nehme ein Kilo."
+          "a": 1,
+          "audio": "Des tomates ? J’en prends un kilo.",
+          "explanation": "Des tomates ? J’en prends un kilo. = Tomaten? Ich nehme ein Kilo."
         },
         {
           "q": "Ergänze: ___ beau cadeau !",

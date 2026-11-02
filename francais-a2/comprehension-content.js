@@ -984,7 +984,7 @@ window.A1_COMPREHENSION_CONTENT = {
         "label": "Inès bringt",
         "options": [
           "einen Nachtisch",
-          "Brot",
+          "einen Salat",
           "Getränke"
         ],
         "answer": "einen Nachtisch"

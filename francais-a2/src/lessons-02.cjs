@@ -45,14 +45,14 @@ module.exports=[
  ],
  tasks:[
   [0,'Je ___ à Paul demain. (parler)','parlerai',['parlerais','parlais'],'Ich werde morgen mit Paul sprechen.','futur'],
-  [0,'Nous ___ le train. (prendre)','prendrons',['prenderons','prenons'],'Wir werden den Zug nehmen.','futur','Bei -re fällt das e weg: prendr- + ons.'],
-  [0,'Elle ___ contente. (être)','sera',['serait','est'],'Sie wird zufrieden sein.','futur'],
-  [0,'Ils ___ à huit heures. (venir)','viendront',['venront','viennent'],'Sie werden um acht kommen.','futur','Venir → viendr-.'],
-  [0,'Tu ___ m’aider ? (pouvoir)','pourras',['pouvras','peux'],'Wirst du mir helfen können?','futur','Pouvoir → pourr-.'],
-  [0,'On se ___ demain. (voir)','verra',['voira','voit'],'Wir sehen uns morgen.','futur','Voir → verr-.'],
+  [0,'Nous ___ le train. (prendre)','prendrons',['prenderons','prendront'],'Wir werden den Zug nehmen.','futur','Bei -re fällt das e weg: prendr- + ons. Prendront gehört zu ils.'],
+  [0,'Elle ___ contente. (être)','sera',['serait','seras'],'Sie wird zufrieden sein.','futur','Être → ser-; zu elle gehört -a: elle sera. Serait ist conditionnel.'],
+  [0,'Ils ___ à huit heures. (venir)','viendront',['venront','viendrons'],'Sie werden um acht kommen.','futur','Venir → viendr-; zu ils gehört -ont.'],
+  [0,'Tu ___ m’aider ? (pouvoir)','pourras',['pouvras','pourra'],'Wirst du mir helfen können?','futur','Pouvoir → pourr-; zu tu gehört -as.'],
+  [0,'On se ___ demain. (voir)','verra',['voira','verrait'],'Wir werden uns morgen sehen.','futur','Voir → verr-: on se verra. Verrait ist conditionnel.'],
   [1,'Quand tu ___, je t’appellerai. (arriver)','arriveras',['arrives','arriverais'],'Wenn du ankommst, rufe ich dich an.','quand'],
   [1,'Quand il ___ beau, nous sortirons. (faire)','fera',['fait','faisait'],'Wenn es schön ist, gehen wir raus.','quand'],
-  [1,'Je ___ partir ce soir. (futur proche)','vais',['irai','suis'],'Ich fahre heute Abend weg.','futur proche'],
+  [1,'Je ___ partir ce soir. (futur proche)','vais',['vas','suis'],'Ich fahre heute Abend weg.','futur proche'],
   [1,'Quand je ___ à Paris, je t’écrirai. (être)','serai',['suis','serais'],'Wenn ich in Paris bin, schreibe ich dir.','quand']
  ],
  check:[
@@ -89,7 +89,7 @@ module.exports=[
    {text:'Ce week-end, il fera beau sur toute la France. Samedi, il fera vingt-cinq degrés à Paris. Dimanche, il y aura des nuages dans le Nord, mais il ne pleuvra pas.',voice:'male',
     q:[['Quel temps fera-t-il ce week-end ?','Il fera beau.',['Il fera beau.','Il pleuvra.','Il neigera.'],'futur'],['Combien de degrés fera-t-il samedi à Paris ? Réponds en chiffres.','25',null,'comprendre'],['Qu’est-ce qu’il y aura dimanche dans le Nord ?','des nuages',['des nuages','de la pluie','du vent'],'irreg']]},
    {turns:[['A','Tu viendras à ma fête samedi ?'],['B','Oui, mais j’arriverai tard. Je travaille jusqu’à huit heures.'],['A','Pas de problème. Quand tu seras là, on mangera.'],['B','Super, j’apporterai le dessert !']],voices:{A:'female',B:'female'},
-    q:[['Est-ce qu’elle viendra à la fête ?','Oui, mais tard.',['Oui, mais tard.','Non, elle travaille.','Oui, très tôt.'],'futur'],['Jusqu’à quelle heure travaille-t-elle ? Réponds en chiffres.','8',null,'comprendre'],['Qu’est-ce qu’elle apportera ?','le dessert',['le dessert','les boissons','le pain'],'quand']]}
+    q:[['Est-ce qu’elle viendra à la fête ?','Oui, mais tard.',['Oui, mais tard.','Non, elle travaille.','Oui, très tôt.'],'futur'],['Jusqu’à quelle heure travaille-t-elle ? Réponds en chiffres.',['8','20'],null,'comprendre'],['Qu’est-ce qu’elle apportera ?','le dessert',['le dessert','les boissons','le pain'],'quand']]}
   ],
   writing:{situation:'Une amie française veut savoir ce que tu feras pendant tes prochaines vacances. Réponds-lui.',points:['Dis où tu iras, quand et avec qui.','Explique ce que vous ferez sur place.','Propose de vous voir à ton retour avec quand + futur.'],
    model:'Chère Élise,\nEn juillet, j’irai deux semaines en Italie avec mon copain. Nous prendrons le train jusqu’à Milan. Ensuite, nous visiterons Venise et nous ferons du vélo au bord d’un lac. Il fera chaud, j’espère ! Quand je rentrerai, je t’appellerai et on se verra pour un café. Je te raconterai tout.\nBises,\nNina'}
@@ -116,7 +116,7 @@ module.exports=[
   ['C’est le chat ___ ma sœur a adopté.',['que','qui','dont'],'C’est le chat que ma sœur a adopté.','Que ersetzt das Objekt: ma sœur a adopté le chat.'],
   ['Was ist „un animal de compagnie“?',['ein Haustier','ein Zootier','ein Tierarzt'],'Vous avez un animal de compagnie ?','Animal de compagnie = Haustier. Der Tierarzt heißt le vétérinaire.'],
   ['Je ___ promène deux fois par jour. (den Hund)',['le','lui','la'],'Je le promène deux fois par jour.','Promener quelqu’un ohne à → direktes Objekt le.'],
-  ['Was bedeutet „Mon voisin garde mon chat“?',['Mein Nachbar passt auf meine Katze auf.','Mein Nachbar behält meine Katze.','Mein Nachbar sucht meine Katze.'],'Mon voisin garde mon chat pendant les vacances.','Garder un animal = auf ein Tier aufpassen.'],
+  ['Was bedeutet „Mon voisin garde mon chat“?',['Mein Nachbar passt auf meine Katze auf.','Mein Nachbar mag meine Katze.','Mein Nachbar sucht meine Katze.'],'Mon voisin garde mon chat pendant les vacances.','Garder un animal = auf ein Tier aufpassen.'],
   ['Was bedeutet „interdit“?',['verboten','erlaubt','selten'],'Les animaux sont interdits dans l’immeuble.','Interdit = verboten; autorisé = erlaubt.'],
   ['Mon chien adore ___ dans le parc.',['courir','court','couru'],'Mon chien adore courir dans le parc.','Nach adorer / aimer steht der Infinitiv.'],
   ['Wie sagst du „Ich bin allergisch gegen Katzen“?',['Je suis allergique aux chats.','J’ai allergique les chats.','Je suis allergique de chats.'],'Je suis allergique aux chats.','Allergique à; à + les = aux.'],
@@ -146,7 +146,7 @@ module.exports=[
   [0,'La dame ___ promène le chien est ma voisine.','qui',['que','qu’'],'Die Frau, die den Hund ausführt, ist meine Nachbarin.','qui'],
   [0,'Le lapin ___ il a acheté est blanc.','qu’',['qui','que'],'Das Kaninchen, das er gekauft hat, ist weiß.','que','Vor Vokal wird que zu qu’: qu’il.'],
   [0,'C’est un animal ___ aime l’eau.','qui',['que','qu’'],'Das ist ein Tier, das Wasser liebt.','qui'],
-  [1,'Ma chatte est ___ . (noir)','noire',['noir','noirs'],'Meine Katze ist schwarz.','Adjektiv'],
+  [1,'Ma chatte est ___. (noir)','noire',['noir','noirs'],'Meine Katze ist schwarz.','Adjektiv'],
   [1,'Je ___ promène tous les soirs. (den Hund)','le',['lui','la'],'Ich gehe jeden Abend mit ihm raus.','Pronomen'],
   [1,'Je ___ donne à manger. (dem Hund)','lui',['le','leur'],'Ich gebe ihm zu fressen.','Pronomen','Donner à quelqu’un → lui.'],
   [1,'Les chiens sont ___ dans le magasin.','interdits',['interdit','autorisé'],'Hunde sind im Geschäft verboten.','Adjektiv'],
@@ -156,7 +156,7 @@ module.exports=[
   ['« Mon fils a un hamster qui dort le jour et qui joue la nuit. » Wann spielt der Hamster?',['nachts','tagsüber','morgens'],'Qui joue la nuit = der nachts spielt.','qui'],
   ['Welcher Satz ist richtig?',['Le chat que nous avons adopté est très calme.','Le chat qui nous avons adopté est très calme.','Le chat que a adopté est très calme.'],'Nous avons adopté le chat → Objekt → que.','que','Le chat que nous avons adopté est très calme.'],
   ['« Les animaux sont interdits dans l’hôtel. » Darfst du deinen Hund mitnehmen?',['Nein, Tiere sind verboten.','Ja, aber nur kleine Hunde.','Ja, gegen Aufpreis.'],'Interdit = verboten.','interdit'],
-  ['Du fragst deinen Partner in der Prüfung nach Haustieren.',['Tu as un animal de compagnie ?','Tu es un animal de compagnie ?','Tu fais un animal de compagnie ?'],'Avoir un animal = ein Tier haben.','question','Tu as un animal de compagnie ?'],
+  ['Du fragst deinen Partner in der Prüfung nach Haustieren.',['Tu as un animal de compagnie ?','Tu as un animal de compagnon ?','Tu as une animale de compagnie ?'],'Un animal de compagnie = ein Haustier; animal ist männlich, le compagnon ist der Begleiter.','question','Tu as un animal de compagnie ?'],
   ['Du sagst, dass deine Nachbarin auf deine Katze aufpasst.',['Ma voisine garde mon chat.','Ma voisine regarde mon chat.','Ma voisine promène mon chat.'],'Garder = aufpassen auf.','garder','Ma voisine garde mon chat.'],
   ['« Je promène mon chien trois fois par jour. » Wie oft geht die Person mit dem Hund raus?',['dreimal täglich','dreimal pro Woche','jeden dritten Tag'],'Trois fois par jour = dreimal am Tag.','frequence'],
   ['Du beschreibst deine Hündin.',['Ma chienne est petite et blanche.','Ma chienne est petit et blanc.','Ma chienne est petits et blancs.'],'La chienne ist weiblich: petite, blanche.','accord','Ma chienne est petite et blanche.'],
@@ -167,7 +167,7 @@ module.exports=[
   ['qui','C’est la dame ___ habite en face.','qui','Das ist die Frau, die gegenüber wohnt.'],
   ['que','Voici le chat ___ j’ai adopté.','que','Hier ist die Katze, die ich adoptiert habe.'],
   ['quelide','Le chien ___ il promène est énorme.','qu’','Der Hund, mit dem er spazieren geht, ist riesig.'],
-  ['accord','Ma chatte est très ___ . (gentil)','gentille','Deine Katze ist sehr lieb.'],
+  ['accord','Ma chatte est très ___. (gentil)','gentille','Deine Katze ist sehr lieb.'],
   ['pronom','Mon chien ? Je ___ promène le soir.','le','Deinen Hund führst du abends aus.'],
   ['lui','Je ___ donne à manger à sept heures. (à mon chat)','lui','Du fütterst deine Katze um sieben.']
  ],
@@ -211,13 +211,13 @@ module.exports=[
   ['Des tomates ? J’___ prends un kilo.',['en','les','y'],'Des tomates ? J’en prends un kilo.','En ersetzt eine Mengenangabe mit de: des tomates → en.'],
   ['Du fromage ? Je n’___ mange pas.',['en','le','y'],'Du fromage ? Non merci, je n’en mange pas.','Du / de la / des + Nomen → en, auch in der Verneinung: je n’en mange pas.'],
   ['Was bedeutet „Mon plat préféré“?',['mein Lieblingsgericht','mein Lieblingsteller','meine Lieblingsspeisekarte'],'Mon plat préféré, c’est la ratatouille.','Le plat = das Gericht; l’assiette = der Teller.'],
-  ['Il faut ___ tomates.',['des','les','de les'],'Il faut des tomates, des courgettes et des oignons.','Für eine unbestimmte Menge steht der Teilungsartikel des.'],
-  ['Was bedeutet „épicé“?',['scharf gewürzt','süß','salzig'],'C’est délicieux, mais un peu épicé.','Épicé = scharf / stark gewürzt; sucré = süß; salé = salzig.'],
+  ['Il faut ___ tomates.',['des','les','de les'],'Il faut des tomates, des courgettes et des oignons.','Für eine unbestimmte Menge steht der Teilungsartikel des. Les stünde für bestimmte Tomaten.','Im Rezept: Man braucht Tomaten.'],
+  ['Was bedeutet „épicé“?',['scharf gewürzt','stark gesüßt','leicht gesalzen'],'C’est délicieux, mais un peu épicé.','Épicé = scharf / stark gewürzt; sucré = süß; salé = salzig.'],
   ['Tu veux de la salade ? — Oui, j’___ veux bien.',['en','la','lui'],'Oui, j’en veux bien.','De la salade → en.'],
   ['Was bedeutet „Ça cuit pendant quarante minutes“?',['Das kocht vierzig Minuten lang.','Das kostet vierzig Euro.','Das ist in vierzig Minuten fertig gegessen.'],'Ça cuit pendant quarante minutes.','Cuire = kochen, garen; pendant = während, lang.'],
-  ['On coupe les légumes en petits ___ .',['morceaux','morceau','morcels'],'On coupe les légumes en petits morceaux.','Le morceau → les morceaux (Plural auf -x).'],
+  ['On coupe les légumes en petits ___.',['morceaux','morceau','morcels'],'On coupe les légumes en petits morceaux.','Le morceau → les morceaux (Plural auf -x).'],
   ['Wie oft? « une fois par semaine »',['einmal pro Woche','einmal am Tag','jede zweite Woche'],'Je mange de la viande une fois par semaine.','Une fois par semaine = einmal pro Woche.'],
-  ['Des œufs ? J’en voudrais ___ .',['six','les six','de six'],'Des œufs ? J’en voudrais six.','Mit en steht die Zahl allein am Ende: j’en voudrais six.']
+  ['Des œufs ? J’en voudrais ___.',['six','les six','de six'],'Des œufs ? J’en voudrais six.','Mit en steht die Zahl allein am Ende: j’en voudrais six.']
  ],
  dialogue:['Quel est ton plat préféré ?','La ratatouille, c’est un plat de ma région.','Qu’est-ce qu’il faut ?','Des tomates, des courgettes, des aubergines et des oignons.','Tu mets de l’ail ?','Oui, j’en mets beaucoup. C’est délicieux !'],
  pron:['en / un','En [ɑ̃] und un [œ̃] / [ɛ̃] sind verschiedene Nasale. Bei j’en‿ai, n’en‿ai wird gebunden: [ʒɑ̃ne]. Sprich je n’en mange pas zusammenhängend: [ʒənɑ̃mɑ̃ʒpa].'],
@@ -238,10 +238,10 @@ module.exports=[
  ],
  tasks:[
   [0,'Du pain ? J’___ achète tous les jours.','en',['le','y'],'Brot? Ich kaufe jeden Tag welches.','en'],
-  [0,'Des tomates ? J’en prends un ___ .','kilo',['litre','morceau'],'Tomaten? Ich nehme ein Kilo.','Menge'],
+  [0,'Des tomates ? J’en prends un ___.','kilo',['litre','morceau'],'Tomaten? Ich nehme ein Kilo.','Menge'],
   [0,'De la viande ? Je n’___ mange pas.','en',['la','y'],'Fleisch? Ich esse keines.','en'],
   [0,'Des enfants ? Elle ___ a trois.','en',['les','y'],'Kinder? Sie hat drei.','en'],
-  [0,'Du sucre ? Il en met ___ .','beaucoup',['beaucoup de','très'],'Zucker? Er nimmt viel davon.','Menge','Mit en steht beaucoup allein.'],
+  [0,'Du sucre ? Il en met ___.','beaucoup',['beaucoup de','très'],'Zucker? Er nimmt viel davon.','Menge','Mit en steht beaucoup allein.'],
   [1,'Il faut ___ farine.','de la',['du','des'],'Man braucht Mehl.','Teilungsartikel','La farine ist weiblich: de la farine.'],
   [1,'Il faut ___ lait.','du',['de la','des'],'Man braucht Milch.','Teilungsartikel'],
   [1,'On ___ les oignons. (couper)','coupe',['coupes','coupent'],'Man schneidet die Zwiebeln.','on'],
@@ -255,7 +255,7 @@ module.exports=[
   ['« Pour la soupe, il faut trois carottes et un oignon. » Wie viele Karotten braucht man?',['drei','eine','zwei'],'Trois carottes = drei Karotten.','quantite'],
   ['Du sagst, dass du einmal pro Woche Fleisch isst.',['Je mange de la viande une fois par semaine.','Je mange la viande une fois la semaine.','Je mange de viande une semaine par fois.'],'Teilungsartikel de la + une fois par semaine.','frequence','Je mange de la viande une fois par semaine.'],
   ['« Ça cuit pendant une heure à feu doux. » Wie lange kocht das Gericht?',['eine Stunde','eine halbe Stunde','zehn Minuten'],'Pendant une heure = eine Stunde lang.','cuire'],
-  ['Du isst keinen Käse.',['Je ne mange pas de fromage.','Je ne mange pas du fromage.','Je mange pas le fromage de.'],'Nach der Verneinung wird du zu de.','negation','Je ne mange pas de fromage.'],
+  ['Du isst keinen Käse.',['Je ne mange pas de fromage.','Je ne mange pas du fromage.','Je ne mange pas des fromage.'],'Nach der Verneinung wird du zu de.','negation','Je ne mange pas de fromage.'],
   ['« C’est délicieux, mais trop épicé pour moi. » Was stört die Person?',['Es ist zu scharf.','Es ist zu salzig.','Es ist zu süß.'],'Épicé = scharf gewürzt.','gout']
  ],
  transfers:[
@@ -281,7 +281,7 @@ module.exports=[
    {text:'Pour la crêpe, il faut deux cent cinquante grammes de farine, quatre œufs, un demi-litre de lait et une pincée de sel. On mélange tout et on laisse reposer une heure.',voice:'female',
     q:[['Combien d’œufs faut-il ? Réponds en chiffres.','4',null,'quantite'],['Combien de lait faut-il ?','un demi-litre',['un demi-litre','un litre','deux litres'],'quantite'],['Combien de temps laisse-t-on reposer la pâte ?','une heure',['une heure','une demi-heure','dix minutes'],'recette']]},
    {turns:[['A','Tu manges souvent du poisson ?'],['B','Oui, j’en mange deux fois par semaine.'],['A','Et de la viande ?'],['B','Non, je n’en mange presque jamais.']],voices:{A:'male',B:'female'},
-    q:[['Combien de fois par semaine mange-t-elle du poisson ? Réponds en chiffres.','2',null,'en'],['Est-ce qu’elle mange souvent de la viande ?','Non, presque jamais.',['Non, presque jamais.','Oui, tous les jours.','Oui, une fois par semaine.'],'en'],['Qui pose les questions ?','l’homme',['l’homme','la femme','personne'],'comprendre']]}
+    q:[['Combien de fois par semaine mange-t-elle du poisson ? Réponds en chiffres.','2',null,'en'],['Est-ce qu’elle mange souvent de la viande ?','Non, presque jamais.',['Non, presque jamais.','Oui, tous les jours.','Oui, une fois par semaine.'],'en'],['Qu’est-ce qu’elle ne mange presque jamais ?','de la viande',['de la viande','du poisson','des légumes'],'en']]}
   ],
   writing:{situation:'Un ami français veut cuisiner un plat de ton pays. Écris-lui la recette.',points:['Dis quel plat c’est et pourquoi tu l’aimes.','Donne les ingrédients avec les quantités (utilise en au moins une fois).','Explique la préparation en trois étapes.'],
    model:'Salut Lucas,\nVoici la recette de ma soupe préférée, la soupe de pommes de terre ! Il faut un kilo de pommes de terre, deux oignons, du lard et un litre d’eau. Des oignons ? Prends-en des gros. D’abord, tu coupes les légumes. Ensuite, tu mets tout dans l’eau. Enfin, ça cuit pendant trente minutes. C’est simple et délicieux !\nBon appétit,\nJonas'}
@@ -309,7 +309,7 @@ module.exports=[
   ['Je t’invite ___ restaurant.',['au','à le','à la'],'Je t’invite au restaurant samedi soir.','À + le wird zu au.'],
   ['Was bedeutet „Il faut fêter ça ensemble“?',['Das müssen wir zusammen feiern.','Wir haben das schon gefeiert.','Das feiert man allein.'],'Il faut fêter ça ensemble.','Fêter = feiern; ensemble = zusammen.'],
   ['Was bedeutet „Dis-moi si ça te va“?',['Sag mir, ob dir das passt.','Sag mir, wie es dir geht.','Sag mir, wohin du gehst.'],'Dis-moi si ça te va.','Ça te va ? = Passt dir das? Ça va ? allein fragt nach dem Befinden.'],
-  ['Wie gratulierst du zur neuen Arbeit?',['Félicitations pour ton nouveau travail !','Bon appétit pour ton nouveau travail !','Bonne route pour ton nouveau travail !'],'Félicitations pour ton nouveau travail !','Félicitations = herzlichen Glückwunsch.'],
+  ['Wie gratulierst du zur neuen Arbeit?',['Félicitations pour ton nouveau travail !','Bon courage pour ton nouveau travail !','Désolé pour ton nouveau travail !'],'Félicitations pour ton nouveau travail !','Félicitations = herzlichen Glückwunsch. Bon courage wünscht Kraft für etwas Schweres, désolé bedauert etwas.'],
   ['Écris-moi de préférence ___ SMS.',['par','avec','en'],'Écris-moi de préférence par SMS.','Par SMS, par e-mail = per SMS, per E-Mail. De préférence = am besten.'],
   ['Was bedeutet „J’ai quelque chose à te raconter“?',['Ich habe dir etwas zu erzählen.','Ich muss dir etwas zeigen.','Ich habe etwas für dich gekauft.'],'Moi aussi, j’ai quelque chose à te raconter.','Raconter = erzählen; quelque chose = etwas.'],
   ['Du nimmst eine Einladung an. Was sagst du?',['Merci, je viens avec plaisir.','Merci, je suis désolé.','Merci, ce n’est pas possible.'],'Merci pour l’invitation, je viens avec plaisir.','Avec plaisir = gern.'],
@@ -340,19 +340,19 @@ module.exports=[
   [0,'___ beaux enfants !','Quels',['Quelles','Quel'],'Was für schöne Kinder!','quel'],
   [1,'Je t’invite ___ restaurant.','au',['à la','aux'],'Ich lade dich ins Restaurant ein.','à + Artikel'],
   [1,'On va ___ piscine ?','à la',['au','aux'],'Gehen wir ins Schwimmbad?','à + Artikel'],
-  [1,'Je vous invite ___ mon anniversaire.','à',['au','pour'],'Ich lade euch zu meinem Geburtstag ein.','à'],
-  [1,'___ pour ton examen !','Félicitations',['Désolé','Dommage'],'Glückwunsch zur Prüfung!','gratulieren'],
+  [1,'Je vous invite ___ mon anniversaire.','à',['au','chez'],'Ich lade euch zu meinem Geburtstag ein.','à','Inviter à + Possessiv: à mon anniversaire. Au enthält schon le, chez steht nur vor Personen.'],
+  [1,'___ pour ton examen !','Félicitations',['Désolé','Bon courage'],'Glückwunsch zur Prüfung!','gratulieren','Félicitations gratuliert. Bon courage wünscht Kraft vor der Prüfung, désolé bedauert.'],
   [1,'Merci, je viens avec ___ !','plaisir',['chance','surprise'],'Danke, ich komme gern!','annehmen']
  ],
  check:[
   ['Deine Freundin schreibt: « J’ai trouvé un appartement près du parc ! » Wie reagierst du?',['Quelle chance !','Quel dommage !','Bon courage !'],'Quelle chance = Was für ein Glück – passt zu einer guten Nachricht.','reaction','Quelle chance !'],
   ['« Je t’invite à la crêperie jeudi soir. Dis-moi si ça te va. » Was sollst du tun?',['antworten, ob dir der Termin passt','die Crêperie reservieren','am Donnerstag anrufen'],'Dis-moi si ça te va = sag mir, ob es dir passt.','repondre'],
-  ['Du lädst einen Kollegen zu deinem Geburtstag ein.',['Je t’invite à mon anniversaire.','Je t’invite au mon anniversaire.','Je t’invite pour mon anniversaire à.'],'Inviter à + Possessiv: à mon anniversaire.','inviter','Je t’invite à mon anniversaire.'],
+  ['Du lädst einen Kollegen zu deinem Geburtstag ein.',['Je t’invite à mon anniversaire.','Je t’invite au mon anniversaire.','Je t’invite chez mon anniversaire.'],'Inviter à + Possessiv: à mon anniversaire.','inviter','Je t’invite à mon anniversaire.'],
   ['Welcher Ausruf ist richtig?',['Quelle belle surprise !','Quel belle surprise !','Quels belle surprise !'],'La surprise ist weiblich: Quelle belle surprise.','quel','Quelle belle surprise !'],
   ['« Écris-moi de préférence par SMS, je ne lis pas souvent mes e-mails. » Warum soll man eine SMS schicken?',['Die Person liest selten E-Mails.','Ihr Handy ist kaputt.','Eine SMS ist billiger.'],'Ne … pas souvent = nicht oft.','sms'],
   ['Du nimmst eine Einladung gern an.',['Merci, avec plaisir !','Merci, quel dommage !','Merci, ce n’est pas grave !'],'Avec plaisir = gern.','accepter','Merci, avec plaisir !'],
   ['« J’ai aussi quelque chose à te raconter, mais je te le dirai au restaurant. » Wann erfährst du es?',['im Restaurant','in der nächsten E-Mail','gleich am Telefon'],'Je te le dirai au restaurant = ich sage es dir im Restaurant.','surprise'],
-  ['Du gratulierst zur bestandenen Prüfung.',['Félicitations pour ton examen !','Désolé pour ton examen !','Bon appétit pour ton examen !'],'Félicitations = herzlichen Glückwunsch.','feliciter','Félicitations pour ton examen !']
+  ['Du gratulierst zur bestandenen Prüfung.',['Félicitations pour ton examen !','Désolé pour ton examen !','Bon courage pour ton examen !'],'Félicitations = herzlichen Glückwunsch. Bon courage sagt man vor der Prüfung.','feliciter','Félicitations pour ton examen !']
  ],
  transfers:[
   ['quelle','___ bonne idée ! (Ausruf)','Quelle','Was für eine gute Idee!'],
@@ -368,7 +368,7 @@ module.exports=[
   ['A','Merci ! Je fais une petite fête samedi. Tu viens ?'],['B','Avec plaisir ! C’est où ?'],
   ['A','Chez moi, à partir de dix-neuf heures.'],['B','Je peux apporter quelque chose ?'],
   ['A','Un dessert, si tu veux. Paul apporte les boissons.'],['B','D’accord, je ferai une tarte aux pommes.']],
-  fields:[['Gute Nachricht',['bestandene Prüfung','neue Wohnung','neuer Job']],['Fest am',['Samstag','Sonntag','Freitag']],['Ort',['bei Clara','im Restaurant','bei Inès']],['Beginn',['ab 19 Uhr','ab 17 Uhr','ab 20 Uhr']],['Inès bringt',['einen Nachtisch','Getränke','Brot']],['Kuchen',['Apfelkuchen','Schokoladenkuchen','Erdbeertorte']]]},
+  fields:[['Gute Nachricht',['bestandene Prüfung','neue Wohnung','neuer Job']],['Fest am',['Samstag','Sonntag','Freitag']],['Ort',['bei Clara','im Restaurant','bei Inès']],['Beginn',['ab 19 Uhr','ab 17 Uhr','ab 20 Uhr']],['Inès bringt',['einen Nachtisch','Getränke','einen Salat']],['Kuchen',['Apfelkuchen','Schokoladenkuchen','Erdbeertorte']]]},
  intro:['Je t’invite au restaurant samedi soir.',['Je t’invite au cinéma samedi soir.','Je t’invite au restaurant dimanche soir.']],
  hard:{
   obj:[['exclam','Ausrufe mit quel / quelle'],['inviter','Einladen und annehmen'],['lettre','Persönlicher Brief: Formeln'],['comprendre','Eine Einladung hörend verstehen']],
@@ -401,7 +401,7 @@ module.exports=[
  ],
  quiz:[
   ['Was bedeutet „le kilo de pommes est à deux euros“?',['Ein Kilo Äpfel kostet zwei Euro.','Zwei Kilo Äpfel kosten einen Euro.','Die Äpfel wiegen zwei Kilo.'],'Le kilo de pommes est à deux euros seulement.','Être à + Preis: etwas kostet …'],
-  ['Le fromage est à dix-huit euros ___ kilo.',['le','au','par le'],'Le fromage est à dix-huit euros le kilo.','Preis pro Einheit: … euros le kilo, … euros la pièce.'],
+  ['Le fromage est à dix-huit euros ___ kilo.',['le','un','par le'],'Le fromage est à dix-huit euros le kilo.','Preis pro Einheit: … euros le kilo (auch: au kilo), … euros la pièce.'],
   ['Was ist „le rayon“ im Supermarkt?',['die Abteilung','die Kasse','der Einkaufswagen'],'Au rayon fruits et légumes…','Le rayon = die Abteilung, das Regal; la caisse = die Kasse.'],
   ['Was bedeutet „en promotion“?',['im Angebot','ausverkauft','neu im Sortiment'],'Les fraises sont en promotion.','En promotion / en promo = im Sonderangebot.'],
   ['Je ___ prends qu’une bouteille.',['ne','n’','pas'],'Je ne prends qu’une bouteille d’eau.','Ne … que = nur: Je ne prends qu’une bouteille.'],
@@ -433,17 +433,17 @@ module.exports=[
   [0,'Le melon est à deux euros ___ pièce.','la',['le','une'],'Die Melone kostet zwei Euro das Stück.','Preis'],
   [0,'Un litre ___ lait, s’il vous plaît.','de',['du','de la'],'Einen Liter Milch, bitte.','Menge','Nach einer Mengenangabe steht nur de.'],
   [0,'Un paquet ___ café coûte quatre euros.','de',['du','des'],'Eine Packung Kaffee kostet vier Euro.','Menge'],
-  [0,'Le jambon est à quinze euros ___ kilo.','le',['au','un'],'Der Schinken kostet fünfzehn Euro das Kilo.','Preis'],
+  [0,'Le jambon est à quinze euros ___ kilo.','le',['du','un'],'Der Schinken kostet fünfzehn Euro das Kilo.','Preis','Preis pro Einheit mit bestimmtem Artikel: quinze euros le kilo (auch: au kilo).'],
   [1,'Je ___ prends qu’un kilo.','ne',['n’','pas'],'Ich nehme nur ein Kilo.','ne … que'],
   [1,'Il n’y a ___ deux caisses ouvertes.','que',['pas','plus'],'Es sind nur zwei Kassen offen.','ne … que'],
   [1,'Je ne bois que ___ thé.','du',['de','le'],'Ich trinke nur Tee.','ne … que','Ne … que ist keine Verneinung: du bleibt.'],
-  [1,'C’est à cinq euros ___ .','seulement',['que','pas'],'Es kostet nur fünf Euro.','seulement'],
+  [1,'C’est à cinq euros ___.','seulement',['que','environ'],'Es kostet nur fünf Euro.','seulement','Am Satzende steht für „nur“ seulement; que braucht ne davor, environ heißt ungefähr.'],
   [1,'Nous n’avons ___ dix minutes.','que',['pas','jamais'],'Wir haben nur zehn Minuten.','ne … que']
  ],
  check:[
   ['Durchsage: « Les poires à trois euros le kilo seulement ; le saumon à dix-huit euros le kilo. » Was kostet ein Kilo Birnen?',['3 €','18 €','13 €'],'Die 18 € gehören zum Lachs.','prix'],
   ['« Profitez de nos offres spéciales jusqu’à demain ! » Wie lange gelten die Angebote?',['bis morgen','ab morgen','eine Woche lang'],'Jusqu’à demain = bis morgen.','jusqua'],
-  ['Du willst nur ein Baguette.',['Je ne prends qu’une baguette.','Je ne prends pas une baguette.','Je prends que pas une baguette.'],'Ne … que = nur.','neque','Je ne prends qu’une baguette.'],
+  ['Du willst nur ein Baguette.',['Je ne prends qu’une baguette.','Je ne prends pas une baguette.','Je ne prends qu’un baguette.'],'Ne … que = nur.','neque','Je ne prends qu’une baguette.'],
   ['« Les yaourts : deux paquets pour le prix d’un ! » Wie viele Packungen bezahlst du, wenn du zwei nimmst?',['eine','zwei','keine'],'Pour le prix d’un = zum Preis von einer.','offre'],
   ['Du suchst Käse im Supermarkt.',['Excusez-moi, où est le rayon fromages ?','Excusez-moi, où est la caisse fromages ?','Excusez-moi, combien est le rayon fromages ?'],'Le rayon = die Abteilung.','rayon','Excusez-moi, où est le rayon fromages ?'],
   ['« Il n’y a que deux caisses ouvertes. » Was bedeutet das?',['Es sind nur zwei Kassen offen.','Zwei Kassen sind geschlossen.','Es gibt keine offene Kasse.'],'Ne … que = nur, keine Verneinung.','sens'],
@@ -456,7 +456,7 @@ module.exports=[
   ['quantite','Je voudrais une bouteille ___ jus d’orange.','de','Du möchtest eine Flasche Orangensaft.'],
   ['neque','Je n’ai ___ dix euros sur moi.','que','Du hast nur zehn Euro dabei.'],
   ['neque','Elle ___ mange que des légumes.','ne','Sie isst nur Gemüse.'],
-  ['seulement','Le pain est à un euro ___ . (nur)','seulement','Das Brot kostet nur einen Euro.'],
+  ['seulement','Le pain est à un euro ___. (nur)','seulement','Das Brot kostet nur einen Euro.'],
   ['jusqua','L’offre est valable ___ samedi.','jusqu’à','Das Angebot gilt bis Samstag.']
  ],
  comp:{voices:{A:'male',B:'female'},turns:[
@@ -496,15 +496,15 @@ module.exports=[
   ['Ce n’est pas grave.','Das ist nicht schlimm.']
  ],
  quiz:[
-  ['Je ne ___ pas venir ce soir. (pouvoir, Futur)',['pourrai','pouvrai','peux'],'Je suis désolée, mais je ne pourrai pas venir ce soir.','Pouvoir hat den Futurstamm pourr-: je pourrai.'],
+  ['Nous ne ___ pas venir samedi. (pouvoir, Futur)',['pourrons','pouvrons','pouvons'],'Nous ne pourrons pas venir samedi.','Pouvoir hat den Futurstamm pourr-: nous pourrons. Pouvons ist Präsens.'],
   ['Was bedeutet „J’ai mal à la gorge“?',['Ich habe Halsschmerzen.','Ich habe Kopfschmerzen.','Ich habe Bauchschmerzen.'],'J’ai mal à la gorge et de la fièvre.','La gorge = der Hals; la tête = der Kopf; le ventre = der Bauch.'],
-  ['Wie entschuldigst du dich höflich?',['Je suis désolé.','Je suis dommage.','Je suis pardon.'],'Je suis désolé, mais…','Je suis désolé(e) = es tut mir leid.'],
+  ['Wie entschuldigst du dich höflich?',['Je suis désolé.','Je suis excusé.','C’est dommage.'],'Je suis désolé, mais…','Je suis désolé(e) = es tut mir leid. Je suis excusé heißt „ich bin entschuldigt“, c’est dommage „schade“.'],
   ['Was bedeutet „annuler“?',['absagen','verschieben','bestätigen'],'Je dois annuler notre rendez-vous.','Annuler = absagen; reporter = verschieben.'],
   ['On peut le ___ à jeudi ? (verschieben)',['reporter','annuler','rappeler'],'On peut le reporter à jeudi ?','Reporter à = verschieben auf.'],
   ['Was antwortest du auf eine Entschuldigung, wenn es kein Problem ist?',['Ce n’est pas grave.','Ce n’est pas possible.','Ce n’est pas vrai.'],'Ce n’est pas grave.','Ce n’est pas grave = das ist nicht schlimm.'],
-  ['Je ne viens pas ___ je suis malade.',['parce que','pour','donc'],'Je ne viens pas parce que je suis malade.','Parce que leitet einen Grund ein.'],
+  ['Je ne viens pas ___ je suis malade.',['parce que','pourtant','donc'],'Je ne viens pas parce que je suis malade.','Parce que leitet einen Grund ein.'],
   ['Was bedeutet „Je ne me sens pas bien“?',['Ich fühle mich nicht gut.','Ich höre nicht gut.','Ich rieche nichts.'],'Je ne me sens pas bien.','Se sentir bien / mal = sich gut / schlecht fühlen.'],
-  ['Excuse-moi ___ le retard.',['pour','de','à'],'Excuse-moi pour le retard.','S’excuser / excuser pour + Nomen.'],
+  ['Excuse-moi ___ le retard.',['pour','de','avec'],'Excuse-moi pour le retard.','Excuser pour + Nomen: pour le retard. De steht nur vor einem Infinitiv: excuse-moi d’être en retard.'],
   ['Was bedeutet „Dis bonjour à tout le monde !“ am Ende einer Nachricht?',['Grüß alle von mir!','Sag allen guten Tag, wenn du kommst!','Alle grüßen dich.'],'Dis bonjour à tout le monde !','Dire bonjour à quelqu’un = jemanden grüßen.']
  ],
  dialogue:['Allô Camille ? C’est Romain.','Salut Romain ! Tu viens demain ?','Je suis désolé, je ne pourrai pas venir. J’ai de la fièvre.','Oh, dommage ! Ce n’est pas grave. Soigne-toi bien.','Merci. On peut reporter à la semaine prochaine ?','Bien sûr. Je t’appelle lundi.'],
@@ -527,12 +527,12 @@ module.exports=[
  tasks:[
   [0,'Je ne ___ pas venir ce soir. (pouvoir, Futur)','pourrai',['pouvrai','pourrais'],'Ich kann heute Abend nicht kommen.','futur'],
   [0,'Je ne ___ pas là samedi. (être, Futur)','serai',['suis','serais'],'Ich bin am Samstag nicht da.','futur'],
-  [0,'Je reste à la maison ___ je suis malade.','parce que',['pour','mais'],'Ich bleibe zu Hause, weil ich krank bin.','Grund'],
+  [0,'Je reste à la maison ___ je suis malade.','parce que',['pourtant','mais'],'Ich bleibe zu Hause, weil ich krank bin.','Grund'],
   [0,'Je ne viens pas, ___ mon fils est malade. (denn)','car',['donc','mais'],'Ich komme nicht, denn mein Sohn ist krank.','Grund'],
   [0,'Je suis ___, j’ai trop de travail.','désolé',['dommage','grave'],'Tut mir leid, ich habe zu viel Arbeit.','Entschuldigung'],
   [1,'Je dois ___ le rendez-vous. (absagen)','annuler',['reporter','rappeler'],'Ich muss den Termin absagen.','Termin'],
   [1,'On peut ___ à demain ? (verschieben)','reporter',['annuler','arriver'],'Können wir auf morgen verschieben?','Termin'],
-  [1,'Ce n’est pas ___ . (nicht schlimm)','grave',['dommage','désolé'],'Das ist nicht schlimm.','reagieren'],
+  [1,'Ce n’est pas ___. (nicht schlimm)','grave',['dommage','désolé'],'Das ist nicht schlimm.','reagieren'],
   [1,'___ ! Je voulais te voir. (schade)','Dommage',['Bravo','Volontiers'],'Schade! Ich wollte dich sehen.','reagieren'],
   [1,'Soigne-___ bien !','toi',['te','moi'],'Gute Besserung!','reagieren','Imperativ mit reflexivem Verb: soigne-toi.']
  ],
@@ -543,7 +543,7 @@ module.exports=[
   ['Ein Freund entschuldigt sich, dass er fünf Minuten zu spät ist. Du reagierst freundlich.',['Ce n’est pas grave.','C’est très grave.','Ce n’est pas possible.'],'Ce n’est pas grave = nicht schlimm.','reagir','Ce n’est pas grave.'],
   ['Du sagst ab, weil du arbeiten musst.',['Je ne pourrai pas venir parce que je dois travailler.','Je ne pourrai pas venir pour je dois travailler.','Je ne pourrai pas venir donc je dois travailler.'],'Parce que leitet den Grund ein.','parceque','Je ne pourrai pas venir parce que je dois travailler.'],
   ['« Je te rappelle la semaine prochaine. » Wann ruft die Person an?',['nächste Woche','heute Abend','letzte Woche'],'La semaine prochaine = nächste Woche.','rappeler'],
-  ['Deine Freundin ist krank. Was wünschst du ihr?',['Soigne-toi bien !','Bon appétit !','Bonne route !'],'Soigne-toi bien = gute Besserung.','souhait','Soigne-toi bien !'],
+  ['Deine Freundin ist krank. Was wünschst du ihr?',['Soigne-toi bien !','Bonne fête !','Bon voyage !'],'Soigne-toi bien = gute Besserung. Bonne fête wünscht man zum Fest, bon voyage vor einer Reise.','souhait','Soigne-toi bien !'],
   ['Welche Form ist richtig? « Nous ne ___ pas là dimanche. »',['serons','sommes été','serions'],'Être im futur simple: nous serons.','futur','Nous ne serons pas là dimanche.']
  ],
  transfers:[
@@ -553,7 +553,7 @@ module.exports=[
   ['car','Il n’est pas venu, ___ il était malade. (denn)','car','Er ist nicht gekommen, denn er war krank.'],
   ['reporter','On peut ___ le cours à mardi ? (verschieben)','reporter','Kann man den Kurs auf Dienstag verschieben?'],
   ['annuler','Je dois ___ ma réservation. (absagen)','annuler','Du musst deine Reservierung stornieren.'],
-  ['desole','Je suis ___ , je suis en retard. (Frau)','désolée','Eine Frau entschuldigt sich für die Verspätung.']
+  ['desole','Je suis ___, je suis en retard. (Frau)','désolée','Eine Frau entschuldigt sich für die Verspätung.']
  ],
  comp:{voices:{A:'male',B:'female'},turns:[
   ['A','Bonjour, ici Marc Lambert. Je vous appelle pour notre rendez-vous de demain à dix heures.'],['A','Je suis désolé, mais je ne pourrai pas venir : mon fils est malade.'],
@@ -567,7 +567,7 @@ module.exports=[
   text:'Bonjour Madame Morel, c’est Élodie Petit. Je suis {désolée|Entschuldigung, weiblich|excuse}, mais je ne {pourrai|pouvoir, Futur, je|futur} pas venir au cours de piano mercredi. J’ai {attrapé|sich holen, Partizip|raison} la grippe et j’ai mal à la {gorge|Hals|raison}. Je ne me sens pas bien du {tout|überhaupt (pas du …)|raison}. Le médecin m’a dit de me {reposer|sich ausruhen|raison}. Je ne {serai|être, Futur, je|futur} pas au bureau demain non plus, {car|denn|raison} j’ai de la fièvre. Est-ce qu’on peut {reporter|verschieben|excuse} le cours à la semaine prochaine ? Je vous {rappelle|zurückrufen, je|excuse} lundi. Ma fille non plus ne {pourra|pouvoir, Futur, elle|futur} pas venir. Ce n’est pas {grave|schlimm|excuse}, j’espère ! Merci et bonne journée. Je dis bonjour {aux|an die (à + les)|excuse} autres élèves. Je reste à la maison {parce que|weil|raison} je dois guérir.',
   listen:[
    {text:'Bonjour, c’est Nicolas. Je suis désolé, je serai en retard ce soir. Mon train a une heure de retard. Commencez à manger sans moi. J’arriverai vers neuf heures.',voice:'male',
-    q:[['Pourquoi Nicolas sera-t-il en retard ?','Son train a du retard.',['Son train a du retard.','Il est malade.','Il travaille tard.'],'raison'],['Combien de retard a le train ?','une heure',['une heure','une demi-heure','deux heures'],'comprendre'],['Vers quelle heure arrivera-t-il ? Réponds en chiffres.','9',null,'futur']]},
+    q:[['Pourquoi Nicolas sera-t-il en retard ?','Son train a du retard.',['Son train a du retard.','Il est malade.','Il travaille tard.'],'raison'],['Combien de retard a le train ?','une heure',['une heure','une demi-heure','deux heures'],'comprendre'],['Vers quelle heure arrivera-t-il ? Réponds en chiffres.',['9','21'],null,'futur']]},
    {turns:[['A','Excuse-moi, je ne pourrai pas venir au match samedi.'],['B','Ah, dommage ! Pourquoi ?'],['A','Parce que ma grand-mère fête ses quatre-vingts ans.'],['B','Ce n’est pas grave. On ira au prochain match ensemble.']],voices:{A:'female',B:'male'},
     q:[['Qu’est-ce qu’elle annule ?','le match de samedi',['le match de samedi','le cinéma de samedi','le dîner de dimanche'],'excuse'],['Pourquoi ne peut-elle pas venir ?','Sa grand-mère a son anniversaire.',['Sa grand-mère a son anniversaire.','Sa grand-mère est malade.','Elle doit travailler.'],'raison'],['Comment réagit l’homme ?','Ce n’est pas grave.',['Ce n’est pas grave.','Il est fâché.','Il annule aussi.'],'excuse']]}
   ],

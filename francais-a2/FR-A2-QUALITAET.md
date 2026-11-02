@@ -11,7 +11,7 @@ Gute Aufgaben sind nicht aufgeführt.
 
 Automatische Prüfungen: `tests/francais-a2-quality.test.cjs` (Dubletten in Optionen, fehlende oder mit der Lösung
 identische Erklärung, Lösung wörtlich in der Frage, Längenausreißer > 1,8 × längster Distraktor, Elision nach „je ___“,
-Anteil „richtig“ in den telc-Blöcken 35–65 %). Die strengeren Prüfungen gelten bis `REVIEWED` (jetzt 6) und
+Anteil „richtig“ in den telc-Blöcken 35–65 %). Die strengeren Prüfungen gelten bis `REVIEWED` (jetzt 12) und
 wachsen pro Etappe mit.
 
 ## Etappe 1 – Lektionen 1–6 (alle Funde behoben)
@@ -73,6 +73,60 @@ KRITISCH 13 · MITTEL 15 · GERING 2 – alle behoben.
 - Grammatik-Sets zeigen nur „Ergänze: …“ ohne deutschen Kontext (`tools/build-francais-a2.cjs`). Aufgaben, die dort
   landen, müssen ohne Kontext eindeutig sein; L2 task 5 wurde deshalb geändert.
 
+## Etappe 2 – Lektionen 7–12 (alle Funde behoben)
+
+| ID | Krit. | Problem | Fix |
+|---|---|---|---|
+| FR-A2 L7 task 2 | B6 | „Nous prenons le train“ ist korrekt (Präsens für Geplantes), im Grammatik-Set ohne Kontext erst recht. | prenons → prendront; Erklärung. |
+| FR-A2 L7 task 3 | B6 | „Elle est contente“ ist korrekt. | est → seras; Erklärung ser- / conditionnel. |
+| FR-A2 L7 task 4 | B6 | „Ils viennent à huit heures“ ist korrekt. | viennent → viendrons; Erklärung. |
+| FR-A2 L7 task 5 | B6 | „Tu peux m’aider ?“ ist korrekt und natürlich. | peux → pourra; Erklärung. |
+| FR-A2 L7 task 6 | B6 | Kontext „Wir sehen uns morgen.“ passt genau zu „On se voit demain.“ | voit → verrait; Kontext „Wir werden uns morgen sehen.“; Erklärung. |
+| FR-A2 L7 task 9 | A1 | „je irai“ verletzt die Elision. | irai → vas. |
+| FR-A2 L7 hard listen 2.2 | B6 | „jusqu’à huit heures“ (abends) – 20 wurde nicht akzeptiert. | 20 zusätzlich akzeptiert. |
+| FR-A2 L8 quiz 5 | B6 | „Mein Nachbar behält meine Katze“ ist eine wörtlich vertretbare Übersetzung von garder. | → „Mein Nachbar mag meine Katze.“ |
+| FR-A2 L8 check 4 | A3 | „Tu es / Tu fais un animal de compagnie ?“ sind absurd. | → „un animal de compagnon“ / „une animale de compagnie“; Erklärung. |
+| FR-A2 L8 transfer 5, task 6 | B7 | „Ma chatte est très gentille .“ – Leerzeichen vor dem Punkt in Prompt, Erklärung und Audio. | Lücken „___ .“ / „___ ,“ in L7–12 ohne Leerzeichen (10 Stellen). |
+| FR-A2 L9 quiz 4 | B6 | „Il faut les tomates“ ist ohne Situation grammatisch korrekt. | Kontext „Im Rezept: Man braucht Tomaten.“; Erklärung zu les. |
+| FR-A2 L9 quiz 5 | A2 | „scharf gewürzt“ gegen „süß“ / „salzig“ ist ein Längenausreißer. | → „stark gesüßt“ / „leicht gesalzen“. |
+| FR-A2 L9 check 7 | A3 | „Je mange pas le fromage de.“ ist Wortsalat. | → „Je ne mange pas des fromage.“ |
+| FR-A2 L9 hard listen 2.3 | C11 | „Qui pose les questions ?“ nur über die Stimme lösbar. | → „Qu’est-ce qu’elle ne mange presque jamais ?“ de la viande / du poisson / des légumes. |
+| FR-A2 L10 quiz 6, check 8 | A3 | „Bon appétit / Bonne route pour ton nouveau travail / examen“ sind absurd. | Bon courage (Kraft vor etwas Schwerem) und Désolé als Distraktoren; Erklärungen. |
+| FR-A2 L10 task 8 | B6 | „Je vous invite pour mon anniversaire“ ist korrekt. | pour → chez; Erklärung. |
+| FR-A2 L10 check 3 | A3 | „Je t’invite pour mon anniversaire à.“ ist Wortsalat. | → „Je t’invite chez mon anniversaire.“ |
+| FR-A2 L10 task 9 | A2 | „Félicitations“ fast doppelt so lang wie „Désolé“ / „Dommage“. | Dommage → Bon courage; Erklärung. |
+| FR-A2 L10 comp 5 | A2 | „einen Nachtisch“ gegen „Brot“ ist ein Längenausreißer. | Brot → einen Salat. |
+| FR-A2 L11 quiz 2 | B6 | „dix-huit euros au kilo“ ist korrekt und gebräuchlich. | au → un; Erklärung nennt au kilo als Variante. |
+| FR-A2 L11 task 5 | B6 | „quinze euros au kilo“ ist korrekt. | au → du; Erklärung. |
+| FR-A2 L11 task 9 | A2 | „seulement“ gegen „que“ / „pas“ ist ein Längenausreißer. | pas → environ; Erklärung. |
+| FR-A2 L11 check 3 | A3 | „Je prends que pas une baguette.“ ist Wortsalat. | → „Je ne prends qu’un baguette.“ (Genus). |
+| FR-A2 L12 quiz 1 | C13 | Identisch mit task 1 („Je ne ___ pas venir ce soir“). | → „Nous ne ___ pas venir samedi.“ pourrons / pouvrons / pouvons. |
+| FR-A2 L12 quiz 3 | A3 | „Je suis dommage.“ / „Je suis pardon.“ sind absurd. | → „Je suis excusé.“ / „C’est dommage.“; Erklärung. |
+| FR-A2 L12 quiz 7, task 3 | A2 | „parce que“ gegen „pour“ / „donc“ ist ein Längenausreißer. | pour → pourtant. |
+| FR-A2 L12 quiz 9 | A2 | „pour“ gegen „de“ / „à“ ist ein Längenausreißer. | à → avec; Erklärung zu excuse-moi de + Infinitiv. |
+| FR-A2 L12 check 7 | A3 | „Bon appétit !“ / „Bonne route !“ für eine Kranke sind absurd. | → „Bonne fête !“ / „Bon voyage !“; Erklärung. (Bon courage bewusst nicht, das passt auch.) |
+| FR-A2 L12 hard listen 1.3 | B6 | „vers neuf heures“ am Abend – 21 wurde nicht akzeptiert. | 21 zusätzlich akzeptiert. |
+
+### Zählung Etappe 2
+
+| Kriterium | L7 | L8 | L9 | L10 | L11 | L12 | Σ |
+|---|---|---|---|---|---|---|---|
+| A1 Grammatik verrät Lösung | 1 | – | – | – | – | – | 1 |
+| A2 Lösung fällt äußerlich auf | – | – | 1 | 2 | 1 | 3 | 7 |
+| A3 absurde Distraktoren | – | 1 | 1 | 3 | 1 | 2 | 8 |
+| B6 mehrere Optionen vertretbar | 6 | 1 | 1 | 1 | 2 | 1 | 12 |
+| B7 Typografie / Sprache | – | 2 | – | – | – | – | 2 |
+| C11 ohne Lernwert | – | – | 1 | – | – | – | 1 |
+| C13 Dublette | – | – | – | – | – | 1 | 1 |
+
+KRITISCH 14 · MITTEL 16 · GERING 2 – alle behoben.
+
+### Offen (GERING)
+
+- L7 check 5: „Qu’est-ce que tu as fait le week-end prochain ?“ – der Distraktor scheitert schon an der Logik, nicht nur an der Zeitform (A4, bewusst belassen: die Zeitangabe ist hier der Lernpunkt).
+- L9 check 4: „Wie viele Karotten?“ – trois = drei ist A1-Stoff (C12).
+- L11 task 8: „Je ne bois que le thé“ ist ungewöhnlich, aber nicht ganz unmöglich; du bleibt die klare Lösung.
+
 ## Funde in `shared/` (für die letzte Etappe gesammelt, nicht geändert)
 
 | ID | Krit. | Problem | Vorschlag |
@@ -86,7 +140,6 @@ Generator bewusst als Scherzstufen angelegt.
 
 ## Nächste Etappen
 
-- Lektionen 7–12 (bekannt aus dem Test-Scan: L7 task 9 „je irai“, Längenausreißer L9 quiz 5, L10 task 9 / comp 5,
-  L11 task 9, L12 quiz 7, quiz 9, task 3).
+- ~~Lektionen 7–12~~ erledigt (Etappe 2).
 - Lektionen 13–18, 19–24 mit `src/exam.cjs` (3 Modelltests; telc-Richtig-Anteil ist bereits im Rahmen).
 - Danach die gesammelten `shared/`-Funde und alle drei Kurse testen.
