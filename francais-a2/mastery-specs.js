@@ -127,11 +127,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "parle",
           "suis",
-          "habite"
+          "dis"
         ],
         "context": "Ich spreche Deutsch und Englisch.",
         "tag": "Sprachen",
-        "explanation": "Je parle allemand et anglais. = Ich spreche Deutsch und Englisch."
+        "explanation": "Sprachen sprechen: parler + Sprache. Je suis allemand hieße „Ich bin Deutscher“; dire heißt sagen."
       },
       {
         "type": "gap",
@@ -468,11 +468,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "meilleur",
           "plus bon",
-          "bien"
+          "meilleure"
         ],
         "context": "Dieses Viertel ist besser für Kinder.",
         "tag": "meilleur",
-        "explanation": "Bon → meilleur: Plus bon gibt es nicht."
+        "explanation": "Bon → meilleur: Plus bon gibt es nicht. Le quartier ist männlich, deshalb meilleur ohne -e."
       },
       {
         "type": "gap",
@@ -638,11 +638,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Dein Partner fragt in der Prüfung nach deiner Wohnung. Welche Frage stellt er?",
         "o": [
           "Votre appartement a combien de pièces ?",
-          "Votre appartement coûte combien de pièces ?",
-          "Vous avez combien d’étages dans la pièce ?"
+          "Votre appartement a combien pièces ?",
+          "Votre appartement a combien des pièces ?"
         ],
         "answer": "Votre appartement a combien de pièces ?",
-        "explanation": "Nach der Zahl der Zimmer fragt combien de pièces.",
+        "explanation": "Nach einer Anzahl fragt combien de + Nomen ohne Artikel: combien de pièces. Ohne de oder mit des ist die Frage falsch.",
         "tag": "Anwenden",
         "family": "question",
         "checkKey": "A2L2-context-question"
@@ -891,11 +891,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "mets",
           "prends",
-          "fais"
+          "dure"
         ],
         "context": "Ich brauche zwanzig Minuten.",
         "tag": "mettre",
-        "explanation": "Mettre + Dauer: Je mets vingt minutes."
+        "explanation": "Mettre + Dauer: Je mets vingt minutes. Durer sagt man von Sachen (le trajet dure …), prendre von Verkehrsmitteln."
       },
       {
         "type": "gap",
@@ -990,10 +990,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Je vais au travail à vélo.",
           "Je vais au travail en pied.",
-          "Je prends le travail à vélo."
+          "Je vais au travail par vélo."
         ],
         "answer": "Je vais au travail à vélo.",
-        "explanation": "À vélo = mit dem Fahrrad.",
+        "explanation": "À vélo = mit dem Fahrrad, wie à pied. En pied und par vélo gibt es nicht.",
         "tag": "Anwenden",
         "family": "transport",
         "checkKey": "A2L3-context-transport",
@@ -1249,9 +1249,9 @@ window.FR_A1_MASTERY_SPECS = {
           "les",
           "lui"
         ],
-        "context": "Ich werde es ihnen morgen sagen.",
+        "context": "Ich werde ihnen morgen Bescheid sagen.",
         "tag": "leur",
-        "explanation": "Je vais leur dire demain. = Ich werde es ihnen morgen sagen."
+        "explanation": "Je vais leur dire demain. = Ich werde ihnen morgen Bescheid sagen."
       },
       {
         "type": "gap",
@@ -1275,11 +1275,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Allô",
           "Salut",
-          "Bravo"
+          "Pardon"
         ],
         "context": "Hallo, guten Tag! Hier ist Julie.",
         "tag": "Telefon",
-        "explanation": "Allô, bonjour ! C’est Julie. = Hallo, guten Tag! Hier ist Julie."
+        "explanation": "Am Telefon meldet man sich mit Allô. Salut grüßt Freunde, Pardon ist eine Entschuldigung."
       },
       {
         "type": "gap",
@@ -1568,16 +1568,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u0",
-        "prompt": "Hier, j’___ acheté des fruits.",
-        "answer": "ai",
+        "prompt": "Hier, Léa ___ acheté des fruits.",
+        "answer": "a",
         "o": [
-          "ai",
-          "suis",
+          "a",
+          "est",
           "as"
         ],
-        "context": "Gestern habe ich Obst gekauft.",
+        "context": "Gestern hat Léa Obst gekauft.",
         "tag": "avoir",
-        "explanation": "Hier, j’ai acheté des fruits. = Gestern habe ich Obst gekauft."
+        "explanation": "Acheter bildet das passé composé mit avoir; zu elle gehört a."
       },
       {
         "type": "gap",
@@ -1628,8 +1628,8 @@ window.FR_A1_MASTERY_SPECS = {
         "answer": "vu",
         "o": [
           "vu",
-          "vé",
-          "voi"
+          "voyé",
+          "vois"
         ],
         "context": "Ich habe deine Nachricht nicht gesehen.",
         "tag": "Partizip",
@@ -1638,16 +1638,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "Je ___ allé au cinéma.",
-        "answer": "suis",
+        "prompt": "Il ___ allé au cinéma.",
+        "answer": "est",
         "o": [
-          "suis",
-          "ai",
-          "vais"
+          "est",
+          "a",
+          "sont"
         ],
-        "context": "Ich bin ins Kino gegangen.",
+        "context": "Er ist ins Kino gegangen.",
         "tag": "être",
-        "explanation": "Je suis allé au cinéma. = Ich bin ins Kino gegangen."
+        "explanation": "Aller bildet das passé composé mit être; zu il gehört est."
       },
       {
         "type": "gap",
@@ -1767,7 +1767,7 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "choice",
-        "q": "Du hast gestern keinen Fernseher geschaut.",
+        "q": "Du hast gestern nicht ferngesehen.",
         "o": [
           "Je n’ai pas regardé la télé.",
           "Je n’ai regardé pas la télé.",
@@ -1985,11 +1985,11 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "faisait",
           "faisais",
-          "a fait"
+          "fait"
         ],
         "context": "Es war sehr heiß.",
         "tag": "imparfait",
-        "explanation": "Il faisait très chaud. = Es war sehr heiß."
+        "explanation": "Wetter in der Vergangenheit: imparfait, il faisait. Fait ist Präsens, faisais gehört zu je oder tu."
       },
       {
         "type": "gap",
@@ -1999,7 +1999,7 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "avais",
           "avait",
-          "ai eu"
+          "avions"
         ],
         "context": "Ich hatte ein kleines Zimmer.",
         "tag": "imparfait",
@@ -2092,16 +2092,16 @@ window.FR_A1_MASTERY_SPECS = {
       {
         "type": "gap",
         "unit": "u1",
-        "prompt": "J’étais fatigué, alors je ___ rentré.",
-        "answer": "suis",
+        "prompt": "Il était fatigué, alors il ___ rentré.",
+        "answer": "est",
         "o": [
-          "suis",
-          "étais",
-          "ai"
+          "est",
+          "a",
+          "avait"
         ],
-        "context": "Ich war müde, also bin ich zurückgegangen.",
+        "context": "Er war müde, also ist er nach Hause gegangen.",
         "tag": "Ereignis",
-        "explanation": "J’étais fatigué, alors je suis rentré. = Ich war müde, also bin ich zurückgegangen."
+        "explanation": "Rentrer bildet das passé composé mit être: il est rentré."
       }
     ],
     "checkTasks": [
@@ -2197,11 +2197,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Wie sagst du: „Es hat mir gut gefallen“?",
         "o": [
           "Ça m’a bien plu.",
-          "Il m’a bien plu de pleuvoir.",
+          "Ça m’est bien plu.",
           "Ça m’a bien plaisé."
         ],
         "answer": "Ça m’a bien plu.",
-        "explanation": "Plaire → plu.",
+        "explanation": "Plaire bildet das passé composé mit avoir und dem Partizip plu.",
         "tag": "Anwenden",
         "family": "plaire",
         "checkKey": "A2L6-context-plaire",
@@ -2274,12 +2274,12 @@ window.FR_A1_MASTERY_SPECS = {
       },
       {
         "type": "gap",
-        "prompt": "Chaque jour, je ___ à la plage. (aller, imparfait)",
+        "prompt": "Chaque jour, j’___ à la plage. (aller, imparfait)",
         "answer": "allais",
         "accept": [],
         "context": "Jeden Tag gingst du an den Strand.",
-        "explanation": "Chaque jour, je allais à la plage.",
-        "audio": "Chaque jour, je allais à la plage.",
+        "explanation": "Chaque jour, j’allais à la plage.",
+        "audio": "Chaque jour, j’allais à la plage.",
         "marking": {
           "strictAccents": true,
           "format": null,

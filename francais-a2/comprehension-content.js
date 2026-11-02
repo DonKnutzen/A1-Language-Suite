@@ -357,7 +357,7 @@ window.A1_COMPREHENSION_CONTENT = {
         "label": "Gesuchte Person ist",
         "options": [
           "in einer Besprechung",
-          "krank",
+          "auf einer Dienstreise",
           "im Urlaub"
         ],
         "answer": "in einer Besprechung"
@@ -447,7 +447,7 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "label": "Samstagmorgen",
         "options": [
-          "Markt",
+          "Supermarkt",
           "Schwimmbad",
           "Kino"
         ],

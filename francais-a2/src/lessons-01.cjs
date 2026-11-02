@@ -53,7 +53,7 @@ module.exports=[
   [1,'Sophie : « Je suis ___. »','mariée',['marié','mariés'],'Sophie: „Ich bin verheiratet.“','Familienstand','Sophie ist eine Frau, deshalb mariée.'],
   [1,'Je travaille ___ cuisinier.','comme',['pour','en'],'Ich arbeite als Koch.','Beruf'],
   [1,'Il est ___ : il n’est pas marié.','célibataire',['divorcé','veuf'],'Er ist ledig: er ist nicht verheiratet.','Familienstand','Célibataire = noch nie verheiratet. Divorcé = geschieden.'],
-  [1,'Je ___ allemand et anglais.','parle',['suis','habite'],'Ich spreche Deutsch und Englisch.','Sprachen'],
+  [1,'Je ___ allemand et anglais.','parle',['suis','dis'],'Ich spreche Deutsch und Englisch.','Sprachen','Sprachen sprechen: parler + Sprache. Je suis allemand hieße „Ich bin Deutscher“; dire heißt sagen.'],
   [1,'Marc est ___ : il travaille à l’hôpital.','infirmier',['infirmière','un infirmier'],'Marc ist Krankenpfleger: er arbeitet im Krankenhaus.','Beruf','Nach être steht der Beruf ohne Artikel; für einen Mann infirmier.']
  ],
  check:[
@@ -146,7 +146,7 @@ module.exports=[
   [0,'Le loyer est ___ cher qu’avant. (−)','moins',['plus','aussi'],'Die Miete ist billiger als vorher.','Komparativ'],
   [0,'La chambre est ___ calme que le salon. (=)','aussi',['plus','moins'],'Das Schlafzimmer ist genauso ruhig wie das Wohnzimmer.','Komparativ'],
   [0,'La cuisine est plus grande ___ la salle de bains.','que',['comme','de'],'Die Küche ist größer als das Bad.','Komparativ'],
-  [0,'Ce quartier est ___ pour les enfants.','meilleur',['plus bon','bien'],'Dieses Viertel ist besser für Kinder.','meilleur','Bon → meilleur: Plus bon gibt es nicht.'],
+  [0,'Ce quartier est ___ pour les enfants.','meilleur',['plus bon','meilleure'],'Dieses Viertel ist besser für Kinder.','meilleur','Bon → meilleur: Plus bon gibt es nicht. Le quartier ist männlich, deshalb meilleur ohne -e.'],
   [0,'La terrasse est plus ___ que le balcon.','grande',['grand','grands'],'Die Terrasse ist größer als der Balkon.','Angleichung','La terrasse ist weiblich: grande.'],
   [1,'J’habite ___ troisième étage.','au',['à la','dans le'],'Ich wohne im dritten Stock.','Stockwerk'],
   [1,'Il n’y a pas ___ ascenseur.','d’',['un','l’'],'Es gibt keinen Aufzug.','Verneinung'],
@@ -160,7 +160,7 @@ module.exports=[
   ['« Nous habitons au rez-de-chaussée. » Wo wohnt die Familie?',['im Erdgeschoss','im ersten Stock','im Dachgeschoss'],'Le rez-de-chaussée ist das Erdgeschoss.','etage'],
   ['Deine Wohnung hat keinen Balkon.',['Il n’y a pas de balcon.','Il n’y a pas un balcon.','Il y a pas balcon.'],'Nach pas wird un zu de.','negation','Il n’y a pas de balcon.'],
   ['« L’appartement a trois pièces : un salon et deux chambres. » Wie viele Schlafzimmer gibt es?',['zwei','drei','eins'],'Trois pièces = drei Zimmer insgesamt; davon sind deux chambres Schlafzimmer.','pieces'],
-  ['Dein Partner fragt in der Prüfung nach deiner Wohnung. Welche Frage stellt er?',['Votre appartement a combien de pièces ?','Votre appartement coûte combien de pièces ?','Vous avez combien d’étages dans la pièce ?'],'Nach der Zahl der Zimmer fragt combien de pièces.','question'],
+  ['Dein Partner fragt in der Prüfung nach deiner Wohnung. Welche Frage stellt er?',['Votre appartement a combien de pièces ?','Votre appartement a combien pièces ?','Votre appartement a combien des pièces ?'],'Nach einer Anzahl fragt combien de + Nomen ohne Artikel: combien de pièces. Ohne de oder mit des ist die Frage falsch.','question'],
   ['Die Küche ist kleiner als das Wohnzimmer.',['La cuisine est plus petite que le salon.','La cuisine est plus petit que le salon.','La cuisine est moins petite que le salon.'],'La cuisine ist weiblich: petite; kleiner = plus petite.','accord','La cuisine est plus petite que le salon.']
  ],
  transfers:[
@@ -186,7 +186,7 @@ module.exports=[
    {text:'Nous cherchons un appartement de trois pièces près de l’école. Notre appartement actuel est trop petit : il a seulement deux pièces. Nous voulons un loyer de 900 euros maximum.',voice:'female',
     q:[['Combien de pièces cherche la famille ? Réponds en chiffres.','3',null,'decrire'],['Pourquoi la famille cherche un appartement ?','L’appartement actuel est trop petit.',['L’appartement actuel est trop petit.','L’appartement actuel est trop cher.','L’appartement actuel est trop loin.'],'comprendre'],['Quel est le loyer maximum ?','900 euros',['900 euros','800 euros','1 900 euros'],'comprendre']]},
    {turns:[['A','Ta nouvelle chambre est grande ?'],['B','Elle est aussi grande que l’ancienne, mais elle est plus claire.'],['A','Et le quartier ?'],['B','Il est moins animé, mais plus calme.']],voices:{A:'male',B:'female'},
-    q:[['Comment est la nouvelle chambre ?','aussi grande et plus claire',['aussi grande et plus claire','plus grande et plus claire','moins grande et plus sombre'],'comparer'],['Comment est le nouveau quartier ?','plus calme',['plus calme','plus animé','aussi animé'],'comparer'],['Qui parle de sa chambre ?','la femme',['la femme','l’homme','les deux'],'comprendre']]}
+    q:[['Comment est la nouvelle chambre ?','aussi grande et plus claire',['aussi grande et plus claire','plus grande et plus claire','moins grande et plus sombre'],'comparer'],['Comment est le nouveau quartier ?','plus calme',['plus calme','plus animé','aussi animé'],'comparer'],['Quelle chambre est plus claire ?','la nouvelle',['la nouvelle','l’ancienne','les deux'],'comparer']]}
   ],
   writing:{situation:'Tu as déménagé. Écris un e-mail à une amie française pour décrire ton nouvel appartement.',points:['Décris les pièces et l’étage.','Compare le nouvel appartement avec l’ancien.','Dis ce qu’il y a et ce qu’il n’y a pas dans le quartier.'],
    model:'Chère Julie,\nDepuis deux semaines, j’habite dans un nouvel appartement ! Il a trois pièces et il est au premier étage. Il est plus grand que l’ancien et le loyer est moins cher. La cuisine est aussi grande que le salon. Il y a un petit parc près de chez moi, mais il n’y a pas de supermarché. Viens me voir bientôt !\nBises,\nLena'}
@@ -213,11 +213,11 @@ module.exports=[
   ['Welches Wort ordnet den ersten Schritt einer Wegbeschreibung?',['d’abord','ensuite','enfin'],'D’abord, vous allez tout droit.','D’abord = zuerst; ensuite = dann; enfin = schließlich.'],
   ['___, vous tournez à gauche. (zweiter Schritt)',['Ensuite','D’abord','Enfin'],'Ensuite, vous tournez à gauche.','Ensuite oder puis verbindet den zweiten Schritt.'],
   ['Was bedeutet „la première à droite“?',['die erste Straße rechts','das erste Haus rechts','zuerst rechts'],'Prenez la première à droite.','La première steht für la première rue.'],
-  ['Wie sagst du „Ich brauche zwanzig Minuten mit dem Fahrrad“?',['Je mets vingt minutes à vélo.','Je prends vingt minutes à vélo.','Je fais vingt minutes en vélo.'],'Je mets vingt minutes à vélo.','Mettre + Zeit = für einen Weg brauchen.'],
+  ['Wie sagst du „Ich brauche zwanzig Minuten mit dem Fahrrad“?',['Je mets vingt minutes à vélo.','Je prends vingt minutes à vélo.','Je dure vingt minutes à vélo.'],'Je mets vingt minutes à vélo.','Mettre + Zeit = für einen Weg brauchen. Prendre steht für Verkehrsmittel, durer nur für Sachen: le trajet dure vingt minutes.'],
   ['C’est en face ___ la poste.',['de','à','par'],'C’est en face de la poste.','En face de = gegenüber von.'],
   ['Was bedeutet „Vous traversez la place“?',['Sie überqueren den Platz.','Sie suchen einen Parkplatz.','Sie bleiben auf dem Platz.'],'Vous traversez la place.','Traverser = überqueren; une place ist ein Platz in der Stadt.'],
   ['Je descends ___ l’arrêt Mairie.',['à','de','sur'],'Je descends à l’arrêt Mairie.','Descendre à + Haltestelle: an der Haltestelle aussteigen.'],
-  ['Welche Bitte ist höflich, wenn du den Weg suchst?',['Excusez-moi, je cherche la gare.','Donnez-moi la gare.','Où la gare ?'],'Excusez-moi, je cherche la gare.','Mit Excusez-moi beginnt eine höfliche Frage an Fremde.'],
+  ['Welche Bitte ist höflich, wenn du den Weg suchst?',['Excusez-moi, je cherche la gare.','Hé, la gare, c’est où ?','Tu sais où est la gare ?'],'Excusez-moi, je cherche la gare.','Fremde spricht man mit Excusez-moi an und siezt sie. Tu sais … duzt, Hé, … c’est où ? ist salopp.'],
   ['Pour aller au travail, je ___ le bus.',['prends','vais','monte'],'Pour aller au travail, je prends le bus.','Verkehrsmittel benutzen: prendre le bus, le train, le tram.']
  ],
  dialogue:['Excusez-moi, je cherche la gare.','D’abord, allez tout droit jusqu’au feu.','Et ensuite ?','Ensuite, tournez à droite et traversez le pont.','C’est loin ?','Non, c’est à dix minutes. La gare est en face du cinéma.'],
@@ -245,7 +245,7 @@ module.exports=[
   [0,'Vous ___ la place. (traverser)','traversez',['traverses','traversent'],'Sie überqueren den Platz.','vous-Form'],
   [0,'C’est en face ___ la mairie.','de',['à','du'],'Es ist gegenüber dem Rathaus.','Ort'],
   [1,'Je ___ le tram pour aller au travail.','prends',['mets','vais'],'Ich nehme die Straßenbahn zur Arbeit.','prendre'],
-  [1,'Je ___ vingt minutes.','mets',['prends','fais'],'Ich brauche zwanzig Minuten.','mettre','Mettre + Dauer: Je mets vingt minutes.'],
+  [1,'Je ___ vingt minutes.','mets',['prends','dure'],'Ich brauche zwanzig Minuten.','mettre','Mettre + Dauer: Je mets vingt minutes. Durer sagt man von Sachen (le trajet dure …), prendre von Verkehrsmitteln.'],
   [1,'Je vais au bureau ___ pied.','à',['en','par'],'Ich gehe zu Fuß ins Büro.','Verkehrsmittel'],
   [1,'Il vient ___ voiture.','en',['à','par'],'Er kommt mit dem Auto.','Verkehrsmittel','En voiture, en bus, en train; aber à pied und à vélo.']
  ],
@@ -254,7 +254,7 @@ module.exports=[
   ['« Après le pont, prenez la deuxième à gauche. » Wo biegst du ab?',['in die zweite Straße links nach der Brücke','in die zweite Straße links vor der Brücke','an der zweiten Brücke links'],'Après le pont = nach der Brücke; la deuxième = die zweite Straße.','apres'],
   ['Ein Tourist fragt nach dem Bahnhof. Er steht genau davor. Was sagst du?',['C’est juste en face de vous.','C’est loin d’ici.','Prenez la première à droite.'],'En face de vous = direkt gegenüber.','enface','C’est juste en face de vous.'],
   ['« Je prends le bus et je mets une demi-heure. » Wie lange dauert der Weg?',['30 Minuten','15 Minuten','eine Stunde'],'Une demi-heure ist eine halbe Stunde.','duree'],
-  ['Du sagst, dass du mit dem Fahrrad zur Arbeit fährst.',['Je vais au travail à vélo.','Je vais au travail en pied.','Je prends le travail à vélo.'],'À vélo = mit dem Fahrrad.','transport','Je vais au travail à vélo.'],
+  ['Du sagst, dass du mit dem Fahrrad zur Arbeit fährst.',['Je vais au travail à vélo.','Je vais au travail en pied.','Je vais au travail par vélo.'],'À vélo = mit dem Fahrrad, wie à pied. En pied und par vélo gibt es nicht.','transport','Je vais au travail à vélo.'],
   ['« Vous descendez à l’arrêt Gambetta. » Was machst du an der Haltestelle Gambetta?',['aussteigen','einsteigen','umsteigen'],'Descendre = aussteigen; monter = einsteigen; changer = umsteigen.','descendre'],
   ['Du möchtest höflich fragen, wie man zum Museum kommt.',['Excusez-moi, pour aller au musée, s’il vous plaît ?','Excusez-moi, le musée, il coûte combien ?','Excusez-moi, vous allez au musée ?'],'Pour aller à … ? ist die übliche Frage nach dem Weg.','demander','Excusez-moi, pour aller au musée, s’il vous plaît ?'],
   ['« Allez tout droit jusqu’au feu, puis tournez à gauche. » Was bedeutet puis?',['dann','bis','zuerst'],'Puis hat dieselbe Bedeutung wie ensuite.','puis']
@@ -306,14 +306,14 @@ module.exports=[
   ['Vous pouvez répéter le numéro ?','Können Sie die Nummer wiederholen?']
  ],
  quiz:[
-  ['Womit meldest du dich am Telefon?',['Allô ?','Salut ?','Bravo ?'],'Allô ?','Allô benutzt man nur am Telefon.'],
+  ['Womit meldest du dich am Telefon?',['Allô ?','Salut ?','Pardon ?'],'Allô ?','Allô benutzt man nur am Telefon. Salut grüßt Freunde, Pardon ist eine Entschuldigung.'],
   ['Was fragt „C’est de la part de qui ?“?',['Wer ist am Apparat?','Für wen ist das?','Wann rufen Sie an?'],'C’est de la part de qui ?','So fragt man höflich nach dem Namen des Anrufers.'],
   ['Je ___ dirai que vous avez appelé. (ihr)',['lui','la','leur'],'Je lui dirai que vous avez appelé.','Dire à quelqu’un → lui (ihm / ihr). La wäre ein direktes Objekt.'],
-  ['Was bedeutet „Ne quittez pas“?',['Bleiben Sie dran.','Legen Sie nicht auf, ich rufe zurück.','Gehen Sie nicht weg.'],'Ne quittez pas, je vous la passe.','Am Telefon: Ne quittez pas = Bitte bleiben Sie in der Leitung.'],
+  ['Was bedeutet „Ne quittez pas“?',['Bleiben Sie dran.','Rufen Sie später an.','Legen Sie bitte auf.'],'Ne quittez pas, je vous la passe.','Am Telefon: Ne quittez pas = Bleiben Sie in der Leitung, legen Sie nicht auf.'],
   ['Je ___ téléphone ce soir. (ihnen, mehrere Personen)',['leur','lui','les'],'Je leur téléphone ce soir.','Téléphoner à des personnes → leur. Leur bekommt hier kein -s.'],
   ['Was bedeutet „rappeler“?',['zurückrufen','sich erinnern','noch einmal schreiben'],'Elle peut me rappeler avant six heures ?','Rappeler quelqu’un = jemanden zurückrufen.'],
   ['Welche Antwort passt zu „Je peux parler à Hélène ?“, wenn sie nicht da ist?',['Désolé, elle n’est pas là.','Désolé, c’est un faux numéro.','Oui, c’est moi.'],'Désolé, elle n’est pas là.','Elle n’est pas là = Sie ist nicht da.'],
-  ['Vous voulez ___ un message ?',['laisser','prendre','quitter'],'Vous voulez laisser un message ?','Der Anrufer laisse un message (hinterlässt); wer abnimmt, prend un message (nimmt sie auf).'],
+  ['Vous voulez ___ un message ?',['laisser','prendre','quitter'],'Vous voulez laisser un message ?','Der Anrufer laisse un message (hinterlässt); wer abnimmt, prend un message (nimmt sie auf).','Du nimmst für eine Kollegin ab und fragst den Anrufer.'],
   ['Was bedeutet „Vous pouvez répéter le numéro ?“',['Können Sie die Nummer wiederholen?','Können Sie die Nummer aufschreiben?','Können Sie die Nummer ändern?'],'Vous pouvez répéter le numéro ?','Répéter = wiederholen.'],
   ['Pierre möchte seine Schwester sprechen. Du sagst: « Ne quitte pas, je ___ passe. » (sie dir)',['te la','te lui','lui la'],'Ne quitte pas, je te la passe.','Je te la passe = Ich gebe sie dir (ans Telefon). Te steht vor la.']
  ],
@@ -339,9 +339,9 @@ module.exports=[
   [0,'J’écris à mes parents. → Je ___ écris.','leur',['les','lui'],'Ich schreibe ihnen.','leur','Mehrere Personen mit à → leur.'],
   [0,'Tu parles à Marie ? → Tu ___ parles ?','lui',['la','elle'],'Sprichst du mit ihr?','lui','Parler à quelqu’un → lui, auch für eine Frau.'],
   [0,'Je ne ___ réponds pas. (ihm)','lui',['le','il'],'Ich antworte ihm nicht.','lui'],
-  [0,'Je vais ___ dire demain. (ihnen)','leur',['les','lui'],'Ich werde es ihnen morgen sagen.','leur'],
+  [0,'Je vais ___ dire demain. (ihnen)','leur',['les','lui'],'Ich werde ihnen morgen Bescheid sagen.','leur'],
   [0,'Vous ___ donnez le numéro ? (ihr)','lui',['la','leur'],'Geben Sie ihr die Nummer?','lui'],
-  [1,'___, bonjour ! C’est Julie.','Allô',['Salut','Bravo'],'Hallo, guten Tag! Hier ist Julie.','Telefon'],
+  [1,'___, bonjour ! C’est Julie.','Allô',['Salut','Pardon'],'Hallo, guten Tag! Hier ist Julie.','Telefon','Am Telefon meldet man sich mit Allô. Salut grüßt Freunde, Pardon ist eine Entschuldigung.'],
   [1,'C’est de la ___ de qui ?','part',['place','fois'],'Wer ist am Apparat?','Telefon'],
   [1,'Vous voulez ___ un message ?','laisser',['quitter','donner'],'Möchten Sie eine Nachricht hinterlassen?','Telefon'],
   [1,'Elle peut vous ___ demain.','rappeler',['répéter','répondre'],'Sie kann Sie morgen zurückrufen.','Telefon']
@@ -370,11 +370,11 @@ module.exports=[
   ['A','Claire Dubois, de l’école de langues.'],['B','Je suis désolé, Madame Roux est en réunion jusqu’à quinze heures.'],
   ['A','Ah, dommage. Vous pouvez lui dire que le cours de jeudi commence à dix-huit heures ?'],['B','Oui, bien sûr. Elle peut vous rappeler ?'],
   ['A','Oui, au zéro six, quarante-cinq, vingt-deux, dix-huit, trente.'],['B','D’accord, je lui dirai. Au revoir, madame.']],
-  fields:[['Anruferin',['Claire Dubois','Madame Roux','Claire Roux']],['Gesuchte Person ist',['in einer Besprechung','krank','im Urlaub']],['Bis wann',['15 Uhr','13 Uhr','18 Uhr']],['Kurs am',['Donnerstag','Dienstag','Samstag']],['Kursbeginn',['18 Uhr','16 Uhr','19 Uhr']],['Telefonnummer endet auf',['… 18 30','… 30 18','… 13 30']]]},
+  fields:[['Anruferin',['Claire Dubois','Madame Roux','Claire Roux']],['Gesuchte Person ist',['in einer Besprechung','auf einer Dienstreise','im Urlaub']],['Bis wann',['15 Uhr','13 Uhr','18 Uhr']],['Kurs am',['Donnerstag','Dienstag','Samstag']],['Kursbeginn',['18 Uhr','16 Uhr','19 Uhr']],['Telefonnummer endet auf',['… 18 30','… 30 18','… 13 30']]]},
  intro:['Je lui dirai que vous avez appelé.',['Je leur dirai que vous avez appelé.','Je lui dirai que vous allez appeler.']],
  hard:{
   obj:[['telephone','Am Telefon die passenden Wendungen benutzen'],['pronom','lui / leur korrekt einsetzen'],['message','Eine Nachricht hinterlassen und weitergeben'],['comprendre','Ein Telefongespräch hörend verstehen']],
-  text:'— {Allô|Telefongruß|telephone}, bonjour. Est-ce que je peux {parler|sprechen|telephone} à Lucie, s’il vous plaît ? — C’est de la {part|von wem? (de la … de qui)|telephone} de qui ? — C’est Paul, un ami. — Désolée, elle n’est pas {là|da|telephone}. Vous voulez {laisser|hinterlassen|message} un message ? — Oui. Vous pouvez {lui|ihr|pronom} dire que la fête commence à huit heures ? — Bien sûr, je {lui|ihr|pronom} dirai. Elle peut vous {rappeler|zurückrufen|message} ? — Oui, ce soir. Et ses parents ? Je {leur|ihnen|pronom} téléphone demain. — D’accord. Vous pouvez aussi {leur|ihnen|pronom} écrire un e-mail. — Merci ! Vous pouvez {répéter|wiederholen|telephone} votre nom ? — Lucie Garnier. — Merci, au {revoir|Abschied|telephone} !',
+  text:'— {Allô|Telefongruß|telephone}, bonjour. Est-ce que je peux {parler|sprechen|telephone} à Lucie, s’il vous plaît ? — C’est de la {part|von wem? (de la … de qui)|telephone} de qui ? — C’est Paul, un ami. — Désolée, elle n’est pas {là|da|telephone}. Vous voulez {laisser|hinterlassen|message} un message ? — Oui. Vous pouvez {lui|ihr|pronom} dire que la fête commence à huit heures ? — Bien sûr, je {lui|ihr|pronom} dirai. Elle peut vous {rappeler|zurückrufen|message} ? — Oui, ce soir. Et ses parents ? Je {leur|ihnen|pronom} téléphone demain. — D’accord. Vous pouvez aussi {leur|ihnen|pronom} écrire un SMS au 06 12 34 56 78. — Merci ! Vous pouvez {répéter|wiederholen|telephone} le numéro ? — Oui : zéro six, douze, trente-quatre, cinquante-six, soixante-dix-huit. — Merci, au {revoir|Abschied|telephone} !',
   listen:[
    {text:'Bonjour, ici le cabinet du docteur Martin. Votre rendez-vous de mardi est déplacé à jeudi, à dix heures. Si ce n’est pas possible, rappelez-nous avant mercredi midi. Merci.',voice:'female',
     q:[['Le rendez-vous est déplacé à quel jour ?','jeudi',['jeudi','mardi','mercredi'],'comprendre'],['À quelle heure ? Réponds en chiffres.','10',null,'message'],['Qu’est-ce qu’il faut faire si ce n’est pas possible ?','Rappeler avant mercredi midi.',['Rappeler avant mercredi midi.','Venir mardi à dix heures.','Écrire un e-mail jeudi.'],'message']]},
@@ -402,8 +402,8 @@ module.exports=[
   ['Qu’est-ce que tu as fait hier soir ?','Was hast du gestern Abend gemacht?']
  ],
  quiz:[
-  ['Hier, je ___ allé au marché.',['suis','ai','étais'],'Hier, je suis allé au marché.','Aller bildet das passé composé mit être.'],
-  ['Hier, j’___ acheté du fromage.',['ai','suis','avais'],'Hier, j’ai acheté du fromage.','Die meisten Verben bilden das passé composé mit avoir.'],
+  ['Hier, Paul ___ allé au marché.',['est','a','avait'],'Hier, Paul est allé au marché.','Aller bildet das passé composé mit être: il est allé. A und avait sind Formen von avoir.'],
+  ['Hier, nous ___ acheté du fromage.',['avons','sommes','avez'],'Hier, nous avons acheté du fromage.','Die meisten Verben bilden das passé composé mit avoir; zu nous gehört avons.'],
   ['Ma sœur est ___ à huit heures.',['partie','parti','partis'],'Ma sœur est partie à huit heures.','Mit être richtet sich das Partizip nach dem Subjekt: ma sœur → partie.'],
   ['Mes amis sont ___ en retard.',['arrivés','arrivé','arrivée'],'Mes amis sont arrivés en retard.','Mehrere Personen, männlich oder gemischt → arrivés.'],
   ['Was bedeutet „Il n’a pas arrêté de pleuvoir“?',['Es hat nicht aufgehört zu regnen.','Es hat nicht geregnet.','Es hat kurz geregnet.'],'Il n’a pas arrêté de pleuvoir.','Arrêter de + Infinitiv = aufhören zu …'],
@@ -411,7 +411,7 @@ module.exports=[
   ['Elle s’est ___ à minuit.',['couchée','couché','couchés'],'Elle s’est couchée à minuit.','Reflexive Verben bilden das passé composé mit être; das Partizip passt sich an: couchée.'],
   ['Wie fragst du „Was hast du gestern Abend gemacht?“',['Qu’est-ce que tu as fait hier soir ?','Qu’est-ce que tu fais hier soir ?','Qu’est-ce que tu es fait hier soir ?'],'Qu’est-ce que tu as fait hier soir ?','Faire bildet das passé composé mit avoir: tu as fait.'],
   ['Welche Zeitangabe passt zum passé composé?',['le week-end dernier','le week-end prochain','demain'],'Le week-end dernier, j’ai fait du sport.','Dernier = letzter; prochain = nächster.'],
-  ['Nous ___ regardé un film.',['avons','sommes','avez'],'Nous avons regardé un film.','Regarder bildet das passé composé mit avoir: nous avons regardé.']
+  ['Vous ___ regardé le match ?',['avez','êtes','avons'],'Vous avez regardé le match ?','Regarder bildet das passé composé mit avoir: vous avez regardé.']
  ],
  dialogue:['Qu’est-ce que tu as fait hier ?','Le matin, je suis allée au marché et j’ai acheté des légumes.','Et l’après-midi ?','Mes parents sont arrivés et nous avons fait une promenade.','Il a fait beau ?','Non, il n’a pas arrêté de pleuvoir !'],
  pron:['j’ai / je suis','J’ai [ʒe] und je suis [ʒəsɥi] klingen deutlich verschieden. Bei nous avons und ils ont bindet man: nous‿avons [nuzavɔ̃], ils‿ont [ilzɔ̃]. Ils sont hat dagegen ein scharfes s: [ilsɔ̃].'],
@@ -431,12 +431,12 @@ module.exports=[
    emphasis:['être','Bewegung','reflexiven Verben','partie','partis','parties']}
  ],
  tasks:[
-  [0,'Hier, j’___ acheté des fruits.','ai',['suis','as'],'Gestern habe ich Obst gekauft.','avoir'],
+  [0,'Hier, Léa ___ acheté des fruits.','a',['est','as'],'Gestern hat Léa Obst gekauft.','avoir','Acheter bildet das passé composé mit avoir; zu elle gehört a.'],
   [0,'Nous ___ regardé un film.','avons',['sommes','ont'],'Wir haben einen Film angeschaut.','avoir'],
   [0,'Tu as ___ du sport ? (faire)','fait',['faisé','fais'],'Hast du Sport gemacht?','Partizip','Faire → fait.'],
   [0,'Ils ont ___ le bus. (prendre)','pris',['prendu','prend'],'Sie haben den Bus genommen.','Partizip','Prendre → pris.'],
-  [0,'Je n’ai pas ___ ton message. (voir)','vu',['vé','voi'],'Ich habe deine Nachricht nicht gesehen.','Partizip','Voir → vu.'],
-  [1,'Je ___ allé au cinéma.','suis',['ai','vais'],'Ich bin ins Kino gegangen.','être'],
+  [0,'Je n’ai pas ___ ton message. (voir)','vu',['voyé','vois'],'Ich habe deine Nachricht nicht gesehen.','Partizip','Voir → vu.'],
+  [1,'Il ___ allé au cinéma.','est',['a','sont'],'Er ist ins Kino gegangen.','être','Aller bildet das passé composé mit être; zu il gehört est.'],
   [1,'Ma sœur est ___ hier. (partir)','partie',['parti','partis'],'Meine Schwester ist gestern abgereist.','Angleichung'],
   [1,'Mes parents sont ___ à midi. (arriver)','arrivés',['arrivé','arrivée'],'Meine Eltern sind mittags angekommen.','Angleichung'],
   [1,'Nous ___ restés à la maison.','sommes',['avons','êtes'],'Wir sind zu Hause geblieben.','être'],
@@ -447,7 +447,7 @@ module.exports=[
   ['« Ma mère est partie à six heures et mon père est parti à huit heures. » Wer ist zuerst gefahren?',['die Mutter','der Vater','beide zusammen'],'Six heures ist früher als huit heures.','comprendre'],
   ['Welcher Satz ist richtig?',['Mes amies sont venues samedi.','Mes amies sont venu samedi.','Mes amies ont venues samedi.'],'Venir → être; mehrere Frauen → venues.','accord','Mes amies sont venues samedi.'],
   ['« Le week-end dernier, il n’a pas arrêté de pleuvoir. » Wie war das Wetter?',['Es hat die ganze Zeit geregnet.','Es hat nur kurz geregnet.','Es hat nicht geregnet.'],'Ne pas arrêter de = nicht aufhören zu.','arreter'],
-  ['Du hast gestern keinen Fernseher geschaut.',['Je n’ai pas regardé la télé.','Je n’ai regardé pas la télé.','Je ne suis pas regardé la télé.'],'Ne … pas umschließt avoir.','negation','Je n’ai pas regardé la télé.'],
+  ['Du hast gestern nicht ferngesehen.',['Je n’ai pas regardé la télé.','Je n’ai regardé pas la télé.','Je ne suis pas regardé la télé.'],'Ne … pas umschließt avoir.','negation','Je n’ai pas regardé la télé.'],
   ['Dein Partner fragt dich in der Prüfung nach gestern. Welche Frage stellt er?',['Qu’est-ce que tu as fait hier ?','Qu’est-ce que tu vas faire hier ?','Qu’est-ce que tu fais demain ?'],'Für gestern braucht man das passé composé.','question'],
   ['Eine Frau sagt: Ich bin um 23 Uhr ins Bett gegangen.',['Je me suis couchée à vingt-trois heures.','Je me suis couché à vingt-trois heures.','J’ai couchée à vingt-trois heures.'],'Reflexiv → être; eine Frau → couchée.','reflexif','Je me suis couchée à vingt-trois heures.'],
   ['Welches Partizip ist richtig? « Nous avons ___ une pizza. » (prendre)',['pris','prendu','prit'],'Prendre → pris.','participe','Nous avons pris une pizza.']
@@ -467,7 +467,7 @@ module.exports=[
   ['A','Et l’après-midi ?'],['B','Nous avons fait des courses en ville. J’ai acheté une veste.'],
   ['A','Et dimanche ?'],['B','Mes grands-parents sont venus déjeuner. Ils sont partis à cinq heures.'],
   ['A','Vous êtes sortis le soir ?'],['B','Non, nous sommes restés à la maison et nous avons regardé un film.']],
-  fields:[['Samstagmorgen',['Schwimmbad','Markt','Kino']],['Mit wem',['mit ihrer Schwester','mit ihrer Mutter','allein']],['Gekauft',['eine Jacke','Schuhe','ein Buch']],['Sonntagsgäste',['die Großeltern','die Eltern','Freunde']],['Gäste sind gegangen um',['17 Uhr','15 Uhr','19 Uhr']],['Sonntagabend',['zu Hause einen Film geschaut','im Restaurant gegessen','ins Kino gegangen']]]},
+  fields:[['Samstagmorgen',['Schwimmbad','Supermarkt','Kino']],['Mit wem',['mit ihrer Schwester','mit ihrer Mutter','allein']],['Gekauft',['eine Jacke','Schuhe','ein Buch']],['Sonntagsgäste',['die Großeltern','die Eltern','Freunde']],['Gäste sind gegangen um',['17 Uhr','15 Uhr','19 Uhr']],['Sonntagabend',['zu Hause einen Film geschaut','im Restaurant gegessen','ins Kino gegangen']]]},
  intro:['Ma sœur est partie à huit heures.',['Ma sœur est partie à dix heures.','Ma sœur est arrivée à huit heures.']],
  hard:{
   obj:[['avoir','passé composé mit avoir'],['etre','passé composé mit être'],['accord','Angleichung des Partizips'],['comprendre','Eine Erzählung über gestern hörend verstehen']],
@@ -476,7 +476,7 @@ module.exports=[
    {text:'Hier, Paul a eu une journée difficile. Il s’est levé en retard et il a raté son bus. Il est arrivé au bureau à dix heures. Le soir, il est allé au sport et il s’est couché tôt.',voice:'male',
     q:[['À quelle heure Paul est-il arrivé au bureau ? Réponds en chiffres.','10',null,'comprendre'],['Pourquoi est-il arrivé en retard ?','Il a raté son bus.',['Il a raté son bus.','Il a pris sa voiture.','Il est allé au sport.'],'avoir'],['Qu’est-ce qu’il a fait le soir ?','Il est allé au sport.',['Il est allé au sport.','Il est allé au cinéma.','Il est resté au bureau.'],'etre']]},
    {turns:[['A','Tes amis sont venus samedi ?'],['B','Oui, ils sont arrivés à midi et nous avons fait un barbecue.'],['A','Ils sont restés longtemps ?'],['B','Non, ils sont partis à quatre heures.']],voices:{A:'female',B:'male'},
-    q:[['Quand les amis sont-ils arrivés ?','à midi',['à midi','à minuit','à quatre heures'],'comprendre'],['Qu’est-ce qu’ils ont fait ?','un barbecue',['un barbecue','une promenade','un film'],'avoir'],['À quelle heure sont-ils partis ? Réponds en chiffres.','4',null,'etre']]}
+    q:[['Quand les amis sont-ils arrivés ?','à midi',['à midi','à minuit','à quatre heures'],'comprendre'],['Qu’est-ce qu’ils ont fait ?','un barbecue',['un barbecue','une promenade','un film'],'avoir'],['À quelle heure sont-ils partis ? Réponds en chiffres.',['4','16'],null,'etre']]}
   ],
   writing:{situation:'Ton ami français te demande ce que tu as fait le week-end dernier. Réponds-lui par e-mail.',points:['Raconte ta journée de samedi (matin, après-midi, soir).','Dis qui est venu ou avec qui tu es sorti(e).','Dis ce que tu n’as pas fait et pourquoi.'],
    model:'Salut Hugo,\nSamedi, je me suis levée tard. L’après-midi, je suis allée en ville avec ma cousine et nous avons acheté des cadeaux. Le soir, des amis sont venus chez moi et nous avons fait une pizza. Dimanche, je ne suis pas sortie parce qu’il a plu toute la journée. J’ai lu un bon livre.\nEt toi ?\nMira'}
@@ -505,7 +505,7 @@ module.exports=[
   ['Was bedeutet „J’espérais avoir beau temps“?',['Ich hatte auf schönes Wetter gehofft.','Ich hoffe auf schönes Wetter.','Ich hatte schönes Wetter.'],'J’espérais avoir beau temps.','Espérer im imparfait: eine Erwartung in der Vergangenheit.'],
   ['Welche Endung hat das imparfait bei nous?',['-ions','-ons','-iez'],'Nous étions dans un petit hôtel.','Imparfait-Endungen: -ais, -ais, -ait, -ions, -iez, -aient.'],
   ['Le soir, on ___ au restaurant. (Gewohnheit)',['mangeait','a mangé','mange'],'Le soir, on mangeait au restaurant.','Wiederholte Gewohnheit in der Vergangenheit: imparfait. Bei manger bleibt das e: mangeait.'],
-  ['Wie sagst du „Es war super“?',['C’était super.','C’est été super.','Ça a super.'],'Les vacances étaient super. C’était super.','C’était = es war (imparfait von c’est).'],
+  ['Wie sagst du „Es war super“?',['C’était super.','C’est été super.','C’étais super.'],'Les vacances étaient super. C’était super.','C’était = es war (imparfait von c’est). Zu ce gehört die Endung -ait.'],
   ['Was bedeutet „ça m’a beaucoup plu“?',['es hat mir sehr gefallen','es hat sehr geregnet','es hat mir sehr gefehlt'],'Ça m’a beaucoup plu.','Plaire → plu: ça m’a plu = es hat mir gefallen. Achtung: il a plu (pleuvoir) = es hat geregnet.'],
   ['Wohin? Nous sommes partis ___ Bretagne.',['en','à','dans'],'Nous sommes partis en Bretagne.','Vor weiblichen Ländern und Regionen steht en.'],
   ['Welcher Satz beschreibt einen Hintergrund?',['Il faisait chaud.','Nous avons visité le musée.','Nous sommes arrivés à midi.'],'Il faisait chaud.','Wetter und Beschreibungen stehen im imparfait, Handlungen im passé composé.']
@@ -529,15 +529,15 @@ module.exports=[
  ],
  tasks:[
   [0,'Nous ___ dans un camping. (être)','étions',['étaient','sommes'],'Wir waren auf einem Campingplatz.','imparfait'],
-  [0,'Il ___ très chaud. (faire)','faisait',['faisais','a fait'],'Es war sehr heiß.','imparfait'],
-  [0,'J’___ une petite chambre. (avoir)','avais',['avait','ai eu'],'Ich hatte ein kleines Zimmer.','imparfait','Je → -ais: j’avais.'],
+  [0,'Il ___ très chaud. (faire)','faisait',['faisais','fait'],'Es war sehr heiß.','imparfait','Wetter in der Vergangenheit: imparfait, il faisait. Fait ist Präsens, faisais gehört zu je oder tu.'],
+  [0,'J’___ une petite chambre. (avoir)','avais',['avait','avions'],'Ich hatte ein kleines Zimmer.','imparfait','Je → -ais: j’avais.'],
   [0,'Les enfants ___ sur la plage. (jouer)','jouaient',['jouait','jouions'],'Die Kinder spielten am Strand.','imparfait'],
   [0,'Vous ___ à l’hôtel ? (être)','étiez',['étais','étions'],'Wart ihr im Hotel?','imparfait'],
   [1,'Un jour, nous ___ un château. (visiter)','avons visité',['visitions','visitons'],'Eines Tages haben wir ein Schloss besichtigt.','passé composé','Un jour = ein einzelnes Ereignis → passé composé.'],
   [1,'Tous les soirs, on ___ au restaurant. (manger)','mangeait',['a mangé','mange'],'Jeden Abend aßen wir im Restaurant.','Gewohnheit','Tous les soirs = Gewohnheit → imparfait.'],
   [1,'Il ___ beau quand nous sommes arrivés. (faire)','faisait',['a fait','fait'],'Es war schön, als wir angekommen sind.','Hintergrund'],
   [1,'Soudain, il ___ à pleuvoir. (commencer)','a commencé',['commençait','commence'],'Plötzlich hat es angefangen zu regnen.','Ereignis'],
-  [1,'J’étais fatigué, alors je ___ rentré.','suis',['étais','ai'],'Ich war müde, also bin ich zurückgegangen.','Ereignis']
+  [1,'Il était fatigué, alors il ___ rentré.','est',['a','avait'],'Er war müde, also ist er nach Hause gegangen.','Ereignis','Rentrer bildet das passé composé mit être: il est rentré.']
  ],
  check:[
   ['« Il faisait beau tous les jours, mais le dernier jour, il a plu. » Was stimmt?',['Nur am letzten Tag hat es geregnet.','Es hat jeden Tag geregnet.','Am letzten Tag war schönes Wetter.'],'Il faisait beau = Hintergrund; il a plu = einzelnes Ereignis am letzten Tag.','temps'],
@@ -546,14 +546,14 @@ module.exports=[
   ['« Le matin, je nageais et l’après-midi, je lisais. » Was beschreibt die Person?',['ihre Gewohnheiten im Urlaub','einen einzigen Tag','ihre Pläne'],'Imparfait mit le matin / l’après-midi: Gewohnheit.','habitude'],
   ['« J’espérais avoir beau temps, mais il n’a pas arrêté de pleuvoir. » Wie war das Wetter?',['schlecht, es hat ständig geregnet','schön, wie erhofft','wechselhaft mit Sonne'],'J’espérais = Erwartung; il n’a pas arrêté de pleuvoir = es hörte nicht auf zu regnen.','esperer'],
   ['Dein Partner fragt nach deinem Urlaub. Welche Frage passt zu „wo?“',['Où es-tu parti en vacances ?','Quand es-tu parti en vacances ?','Avec qui es-tu parti en vacances ?'],'Où = wo / wohin.','question','Où es-tu parti en vacances ?'],
-  ['Wie sagst du: „Es hat mir gut gefallen“?',['Ça m’a bien plu.','Il m’a bien plu de pleuvoir.','Ça m’a bien plaisé.'],'Plaire → plu.','plaire','Ça m’a bien plu.'],
+  ['Wie sagst du: „Es hat mir gut gefallen“?',['Ça m’a bien plu.','Ça m’est bien plu.','Ça m’a bien plaisé.'],'Plaire bildet das passé composé mit avoir und dem Partizip plu.','plaire','Ça m’a bien plu.'],
   ['Welche Form ist richtig? « Nous ___ fatigués après le voyage. »',['étions','étaient','étiez'],'Nous → -ions: nous étions.','forme','Nous étions fatigués après le voyage.']
  ],
  transfers:[
   ['etre','Nous ___ à la montagne. (être, imparfait)','étions','Ihr wart in den Bergen.'],
   ['faire','Il ___ froid le matin. (faire, imparfait)','faisait','Es war morgens kalt.'],
   ['avoir','Les enfants ___ une grande chambre. (avoir, imparfait)','avaient','Die Kinder hatten ein großes Zimmer.'],
-  ['habitude','Chaque jour, je ___ à la plage. (aller, imparfait)','allais','Jeden Tag gingst du an den Strand.'],
+  ['habitude','Chaque jour, j’___ à la plage. (aller, imparfait)','allais','Jeden Tag gingst du an den Strand.'],
   ['evenement','Un soir, nous ___ un concert. (voir, passé composé)','avons vu','An einem Abend habt ihr ein Konzert gesehen.'],
   ['evenement','Samedi, elle ___ à Nice. (arriver, passé composé)','est arrivée','Am Samstag ist sie in Nizza angekommen.'],
   ['cetait','___ super ! (es war)','C’était','Du sagst, dass es super war.']

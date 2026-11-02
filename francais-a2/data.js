@@ -489,12 +489,12 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Ich brauche zwanzig Minuten mit dem Fahrrad“?",
           "o": [
             "Je prends vingt minutes à vélo.",
-            "Je fais vingt minutes en vélo.",
+            "Je dure vingt minutes à vélo.",
             "Je mets vingt minutes à vélo."
           ],
           "a": 2,
           "audio": "Je mets vingt minutes à vélo.",
-          "explanation": "Mettre + Zeit = für einen Weg brauchen."
+          "explanation": "Mettre + Zeit = für einen Weg brauchen. Prendre steht für Verkehrsmittel, durer nur für Sachen: le trajet dure vingt minutes."
         },
         {
           "q": "C’est en face ___ la poste.",
@@ -532,13 +532,13 @@ window.FR_A1_DATA = {
         {
           "q": "Welche Bitte ist höflich, wenn du den Weg suchst?",
           "o": [
-            "Donnez-moi la gare.",
-            "Où la gare ?",
+            "Hé, la gare, c’est où ?",
+            "Tu sais où est la gare ?",
             "Excusez-moi, je cherche la gare."
           ],
           "a": 2,
           "audio": "Excusez-moi, je cherche la gare.",
-          "explanation": "Mit Excusez-moi beginnt eine höfliche Frage an Fremde."
+          "explanation": "Fremde spricht man mit Excusez-moi an und siezt sie. Tu sais … duzt, Hé, … c’est où ? ist salopp."
         },
         {
           "q": "Pour aller au travail, je ___ le bus.",
@@ -640,12 +640,12 @@ window.FR_A1_DATA = {
           "q": "Womit meldest du dich am Telefon?",
           "o": [
             "Salut ?",
-            "Bravo ?",
+            "Pardon ?",
             "Allô ?"
           ],
           "a": 2,
           "audio": "Allô ?",
-          "explanation": "Allô benutzt man nur am Telefon."
+          "explanation": "Allô benutzt man nur am Telefon. Salut grüßt Freunde, Pardon ist eine Entschuldigung."
         },
         {
           "q": "Was fragt „C’est de la part de qui ?“?",
@@ -672,13 +672,13 @@ window.FR_A1_DATA = {
         {
           "q": "Was bedeutet „Ne quittez pas“?",
           "o": [
-            "Gehen Sie nicht weg.",
+            "Legen Sie bitte auf.",
             "Bleiben Sie dran.",
-            "Legen Sie nicht auf, ich rufe zurück."
+            "Rufen Sie später an."
           ],
           "a": 1,
           "audio": "Ne quittez pas, je vous la passe.",
-          "explanation": "Am Telefon: Ne quittez pas = Bitte bleiben Sie in der Leitung."
+          "explanation": "Am Telefon: Ne quittez pas = Bleiben Sie in der Leitung, legen Sie nicht auf."
         },
         {
           "q": "Je ___ téléphone ce soir. (ihnen, mehrere Personen)",
@@ -722,7 +722,8 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Vous voulez laisser un message ?",
-          "explanation": "Der Anrufer laisse un message (hinterlässt); wer abnimmt, prend un message (nimmt sie auf)."
+          "explanation": "Der Anrufer laisse un message (hinterlässt); wer abnimmt, prend un message (nimmt sie auf).",
+          "context": "Du nimmst für eine Kollegin ab und fragst den Anrufer."
         },
         {
           "q": "Was bedeutet „Vous pouvez répéter le numéro ?“",
@@ -833,26 +834,26 @@ window.FR_A1_DATA = {
       ],
       "quiz": [
         {
-          "q": "Hier, je ___ allé au marché.",
+          "q": "Hier, Paul ___ allé au marché.",
           "o": [
-            "suis",
-            "étais",
-            "ai"
+            "est",
+            "avait",
+            "a"
           ],
           "a": 0,
-          "audio": "Hier, je suis allé au marché.",
-          "explanation": "Aller bildet das passé composé mit être."
+          "audio": "Hier, Paul est allé au marché.",
+          "explanation": "Aller bildet das passé composé mit être: il est allé. A und avait sind Formen von avoir."
         },
         {
-          "q": "Hier, j’___ acheté du fromage.",
+          "q": "Hier, nous ___ acheté du fromage.",
           "o": [
-            "avais",
-            "suis",
-            "ai"
+            "avez",
+            "sommes",
+            "avons"
           ],
           "a": 2,
-          "audio": "Hier, j’ai acheté du fromage.",
-          "explanation": "Die meisten Verben bilden das passé composé mit avoir."
+          "audio": "Hier, nous avons acheté du fromage.",
+          "explanation": "Die meisten Verben bilden das passé composé mit avoir; zu nous gehört avons."
         },
         {
           "q": "Ma sœur est ___ à huit heures.",
@@ -932,15 +933,15 @@ window.FR_A1_DATA = {
           "explanation": "Dernier = letzter; prochain = nächster."
         },
         {
-          "q": "Nous ___ regardé un film.",
+          "q": "Vous ___ regardé le match ?",
           "o": [
-            "avons",
             "avez",
-            "sommes"
+            "avons",
+            "êtes"
           ],
           "a": 0,
-          "audio": "Nous avons regardé un film.",
-          "explanation": "Regarder bildet das passé composé mit avoir: nous avons regardé."
+          "audio": "Vous avez regardé le match ?",
+          "explanation": "Regarder bildet das passé composé mit avoir: vous avez regardé."
         }
       ],
       "canDo": [
@@ -1097,12 +1098,12 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Es war super“?",
           "o": [
             "C’est été super.",
-            "Ça a super.",
+            "C’étais super.",
             "C’était super."
           ],
           "a": 2,
           "audio": "Les vacances étaient super. C’était super.",
-          "explanation": "C’était = es war (imparfait von c’est)."
+          "explanation": "C’était = es war (imparfait von c’est). Zu ce gehört die Endung -ait."
         },
         {
           "q": "Was bedeutet „ça m’a beaucoup plu“?",
@@ -5290,15 +5291,15 @@ window.FR_A1_DATA = {
       "subtitle": "Passé composé · Imparfait und passé composé · Futur simple · Relativpronomen qui / que",
       "questions": [
         {
-          "q": "Ergänze: Hier, j’___ acheté des fruits.",
+          "q": "Ergänze: Hier, Léa ___ acheté des fruits.",
           "o": [
             "as",
-            "suis",
-            "ai"
+            "est",
+            "a"
           ],
           "a": 2,
-          "audio": "Hier, j’ai acheté des fruits.",
-          "explanation": "Hier, j’ai acheté des fruits. = Gestern habe ich Obst gekauft."
+          "audio": "Hier, Léa a acheté des fruits.",
+          "explanation": "Acheter bildet das passé composé mit avoir; zu elle gehört a."
         },
         {
           "q": "Ergänze: Nous ___ dans un camping. (être)",
@@ -5348,12 +5349,12 @@ window.FR_A1_DATA = {
           "q": "Ergänze: Il ___ très chaud. (faire)",
           "o": [
             "faisais",
-            "a fait",
+            "fait",
             "faisait"
           ],
           "a": 2,
           "audio": "Il faisait très chaud.",
-          "explanation": "Il faisait très chaud. = Es war sehr heiß."
+          "explanation": "Wetter in der Vergangenheit: imparfait, il faisait. Fait ist Präsens, faisais gehört zu je oder tu."
         },
         {
           "q": "Ergänze: Nous ___ le train. (prendre)",
@@ -5391,7 +5392,7 @@ window.FR_A1_DATA = {
         {
           "q": "Ergänze: J’___ une petite chambre. (avoir)",
           "o": [
-            "ai eu",
+            "avions",
             "avait",
             "avais"
           ],
