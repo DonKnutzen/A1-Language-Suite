@@ -54,6 +54,14 @@ function sentencesOf(text){const safe=String(text).replace(/(\d)\.(\s)/g,'$1․$
 const fill=(sentence,data,keep=-1)=>sentence.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===keep?'___':data.gaps[Number(n)]?.answers?.[0]??'');
 const gapIds=s=>[...String(s).matchAll(/\{\{(\d+)\}\}/g)].map(m=>Number(m[1]));
 function distance(a,b){a=norm(a);b=norm(b);const d=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let p=d[0];d[0]=i;for(let j=1;j<=b.length;j++){const t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]===b[j-1]?0:1));p=t;}}return d[b.length];}
+const NUM_HINT=/^(\d+(?:er)?) en lettres/;
+const isNumGap=(data,n)=>NUM_HINT.test(String(data.gaps[n]?.hint||''));
+// String-game clue: the digit for a number word, otherwise the gap in a readable piece of its sentence.
+function clueFor(data,n,numbers){const hint=String(data.gaps[n].hint||''),num=hint.match(NUM_HINT);if(numbers&&num)return num[1];
+ const s=sentencesOf(data.text).find(x=>gapIds(x).includes(n));if(!s)return num?num[1]:hint;
+ const [before,after='']=fill(s,data,n).split('___'),bw=before.trim().split(/\s+/).filter(Boolean),aw=after.trim().split(/\s+/).filter(Boolean);
+ const b=(bw.length>4?'… ':'')+bw.slice(-4).join(' '),f=aw.slice(0,4).join(' ')+(aw.length>4?' …':'');
+ return b+(!bw.length||/['’]$/.test(b)?'':' ')+'___'+(f?(/^[,.]/.test(f)?'':' ')+f:'')+' · '+(num?num[1]:hint);}
 const concept=h=>norm(String(h||'').split(/[:,(]/)[0]);
 function vocabulary(courseKey,id){const cfg=COURSES[courseKey],V=window.A1_VOCABULARY_CONTENT||[],seenT=new Set(),seenM=new Set(),out=[];
  for(const v of V){if(!(v[cfg.lessons]||[]).includes(Number(id)))continue;const t=String(v[cfg.target]||'').trim(),m=String(v[cfg.meaning]||'').trim();if(!t||!m||t.length>26||m.length>30||/[()…]/.test(t+m)||seenT.has(norm(t))||seenM.has(norm(m)))continue;seenT.add(norm(t));seenM.add(norm(m));out.push([t,m]);}
@@ -72,10 +80,10 @@ function build(courseKey,id){course=courseKey;const data=COURSES[courseKey].cont
  const orderIds=[];for(const s of trains){const n=gapIds(s)[0],right=answersOf(n),tokens=fill(s,data).split(/\s+/).reduce((out,w)=>{if(/^[?!:;»]$/.test(w)&&out.length)out[out.length-1]+=' '+w;else out.push(w);return out;},[]);
   const others=[...new Set(data.gaps.map(g=>g.answers[0]).filter(x=>norm(x)!==norm(right)&&!/\s/.test(x)&&!tokens.map(norm).includes(norm(x))))].sort((x,y)=>(concept(data.gaps.find(g=>g.answers[0]===y).hint)===concept(data.gaps[n].hint))-(concept(data.gaps.find(g=>g.answers[0]===x).hint)===concept(data.gaps[n].hint))||distance(x,right)-distance(y,right));
   const extras=others.slice(0,2);if(extras.length<1)continue;used.add(n);orderIds.push(tasks.length);tasks.push({type:'order',tokens:[...tokens,...extras],required:tokens.length,answer:tokens.join(' '),gaps:[n],title:['Satz bauen','Build the sentence','Construis la phrase'],skills:[data.gaps[n].hint].filter(Boolean)});}
- // String game: five clues with different answers; each clue shows the gap in a short piece of its sentence.
- const clue=n=>{const s=sentences.find(x=>gapIds(x).includes(n)),hint=data.gaps[n].hint;if(!s)return hint;const [before,after='']=fill(s,data,n).split('___'),b=before.trim().split(/\s+/).filter(Boolean).slice(-3).join(' '),f=after.trim().split(/\s+/).filter(Boolean).slice(0,2).join(' ');return (b+(!b||/['’]$/.test(b)?'':' ')+'___'+(f?(/^[,.]/.test(f)?'':' ')+f:''))+' · '+hint;};
- const matchGaps=[],seenA=new Set(),seenH=new Set();for(const n of shuffle(data.gaps.map((_,i)=>i))){if(used.has(n))continue;const g=data.gaps[n],a=norm(g.answers[0]),h=norm(g.hint);if(!h||seenA.has(a)||seenH.has(h))continue;seenA.add(a);seenH.add(h);matchGaps.push(n);if(matchGaps.length===5)break;}
- let matchId=null;if(matchGaps.length>=3){matchGaps.sort((x,y)=>x-y);matchGaps.forEach(n=>used.add(n));matchId=tasks.length;tasks.push({type:'match',labels:matchGaps.map(clue),answers:matchGaps.map(n=>data.gaps[n].answers[0]),gaps:matchGaps,policy:matchGaps.map(n=>({strictAccents:!!data.gaps[n].strictAccents})),title:['Hinweis und Form verbinden','Connect clue and form','Relie indice et forme'],skills:[]});}
+ // String game: five clues with different answers. Number words pair with their digits; other clues show the gap in its sentence.
+ const numGaps=[],seenN=new Set();for(const n of shuffle(data.gaps.map((_,i)=>i))){if(used.has(n)||!isNumGap(data,n)||seenN.has(norm(answersOf(n))))continue;seenN.add(norm(answersOf(n)));numGaps.push(n);if(numGaps.length===5)break;}
+ const numbers=numGaps.length>=3,matchGaps=numbers?numGaps:[],seenA=new Set(),seenH=new Set();if(!numbers)for(const n of shuffle(data.gaps.map((_,i)=>i))){if(used.has(n))continue;const g=data.gaps[n],a=norm(g.answers[0]),h=norm(g.hint);if(!h||seenA.has(a)||seenH.has(h))continue;seenA.add(a);seenH.add(h);matchGaps.push(n);if(matchGaps.length===5)break;}
+ let matchId=null;if(matchGaps.length>=3){matchGaps.sort((x,y)=>x-y);matchGaps.forEach(n=>used.add(n));matchId=tasks.length;tasks.push({type:'match',labels:matchGaps.map(n=>clueFor(data,n,numbers)),answers:matchGaps.map(n=>data.gaps[n].answers[0]),gaps:matchGaps,policy:matchGaps.map(n=>({strictAccents:!!data.gaps[n].strictAccents})),title:numbers?['Zahl und Wort verbinden','Connect number and word','Relie le nombre et le mot']:['Hinweis und Form verbinden','Connect clue and form','Relie indice et forme'],skills:[]});}
  if(matchId!==null)pages.push({key:'match',ids:[matchId]});
  if(orderIds.length)pages.push({key:'order',ids:orderIds});
  // Magic gaps: every remaining gap of the test, in its own sentence.
@@ -100,6 +108,8 @@ function render({course:courseKey,lesson,view,state,save,onBack,onLegacy}){
  course=courseKey;const cfg=C(),id=Number(lesson.id),mode=cfg.mode();
  const hard=((state.lessonWork||={})[id]||={}).hardMode||={},p=hard.games||={history:[]};p.history||=[];p.arcade||={best:{},stars:{}};
  let a=p.attempt,root=null,playing=null,run=0,timer=null,error='',notice='',storageError='',arcadeView=null,stopGame=null,memoryDismiss=null,resize=null;
+ // Saved attempts keep their answers; string-game clues follow the current wording.
+ const data=cfg.content()?.[id];if(data?.gaps)for(const q of a?.content?.tasks||[])if(q.type==='match'&&Array.isArray(q.gaps)&&q.gaps.every((n,k)=>data.gaps[n]&&norm(data.gaps[n].answers[0])===norm(q.answers[k])))q.labels=q.gaps.map(n=>clueFor(data,n,q.gaps.every(g=>isNumGap(data,g))));
  const tasks=()=>a.content.tasks,pages=()=>a.content.pages;
  const persist=(complete=false)=>{try{save(complete);storageError='';}catch{storageError=T('Speichern fehlgeschlagen. Lass diese Seite offen.','Saving failed. Keep this page open.','Échec de l’enregistrement. Garde cette page ouverte.');}const el=root?.querySelector('[data-games-save]');if(el)el.textContent=storageError||T('Zwischenstand gespeichert','Progress saved','Progression enregistrée');};
  const matches=(v,answers,policy={})=>mode?.matches?mode.matches(v,answers,policy):answers.some(x=>norm(x)===norm(v));
