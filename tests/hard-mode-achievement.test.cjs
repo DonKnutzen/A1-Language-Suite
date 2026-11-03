@@ -9,12 +9,12 @@ for(const [folder,prefix,lang] of [['francais','FR','de'],['deutsch','DE','fr']]
  const attempt=(correct=17,total=20,passed=true)=>({phase:'reviewed',completedAt:123,result:{correct,total,passed,pct:Math.round(correct/total*100)}});
  test(folder+': two award tiers require completion, a pass and exact raw thresholds',()=>{
   const e=environment(),gold=e.api.achievedResult;
-  assert(gold(attempt()));assert(!e.api.goldResult(attempt()));assert(e.api.goldResult(attempt(20)));assert(!e.api.goldResult(attempt(1999,2000)));assert(gold(attempt(20)));assert(!gold(attempt(16)));assert(!gold(attempt(1699,2000)));assert(!gold(attempt(20,20,false)));
+  assert(gold(attempt()));assert(!e.api.goldResult(attempt()));assert(e.api.goldResult(attempt(20)));assert(e.api.goldResult(attempt(19)));assert(e.api.goldResult(attempt(1999,2000)));assert(!e.api.goldResult(attempt(1998,2000)));assert(gold(attempt(20)));assert(gold(attempt(16)));assert(!gold(attempt(15)));assert(!gold(attempt(1599,2000)));assert(!gold(attempt(20,20,false)));
   for(const patch of [{phase:'submitted'},{completedAt:null},{result:{correct:18,total:0,passed:true}},{result:{correct:21,total:20,passed:true}},{result:{correct:17,total:20,passed:'true'}}])assert(!gold({...attempt(),...patch}));
   e.dom.window.close();
  });
  test(folder+': no combining best score with another passed attempt; archive, reload and reset remain correct',()=>{
-  const e=environment(),p={attempt:attempt(16),history:[attempt(20,20,false)],bestObjective:100,passedAt:123},state={lessonWork:{1:{hardMode:p}}};
+  const e=environment(),p={attempt:attempt(15),history:[attempt(20,20,false)],bestObjective:100,passedAt:123},state={lessonWork:{1:{hardMode:p}}};
   assert.equal(e.api.achievement(state,1),null);p.history.push(attempt());assert(e.api.achievement(state,1));p.history.push(attempt(20));assert(e.api.goldResult(e.api.achievement(state,1)));
   p.attempt={phase:'running'};assert(e.api.achievement(JSON.parse(JSON.stringify(state)),1));assert.equal(e.api.achievement(state,2),null);assert.equal(e.api.achievement({lessonWork:{}},1),null);e.dom.window.close();
  });

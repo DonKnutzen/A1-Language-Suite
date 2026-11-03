@@ -67,23 +67,23 @@
   }
   function passed(data,attempt){
     const score=objective(data,attempt);
-    const objectivePassed=data.version===1?score.pct>=80&&score.gap/data.gaps.length>=.5&&score.listening/questions(data).length>=.5:score.gap*5>=data.gaps.length*4&&score.listening*5>=questions(data).length*4;
+    const objectivePassed=data.version===1?score.pct>=70&&score.gap/data.gaps.length>=.5&&score.listening/questions(data).length>=.5:score.gap*10>=data.gaps.length*7&&score.listening*10>=questions(data).length*7;
     return objectivePassed&&words(attempt.text)>=data.writing.minWords&&writingPassed(attempt);
   }
   // Award a completed, passed attempt using raw counts, never a rounded display score.
   function achievedResult(attempt){
     const r=attempt?.result;
-    return attempt?.phase==='reviewed'&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*85;
+    return attempt?.phase==='reviewed'&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*80;
   }
   function achievement(state,id){
     const progress=state.lessonWork?.[id]?.hardMode;
     return [progress?.attempt,...(progress?.history||[])].filter(achievedResult).sort((a,b)=>b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct*100>=attempt.result.total*95;
+  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct>=attempt.result.total-1;
   const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
   const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
   function badgeMarkup(gold){
-    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Gold erreicht · 95–100 % · Schreiben selbst geprüft','Gold earned · 95–100% · writing self-assessed'):t('Auszeichnung ab 85 % · Schreiben selbst geprüft','Award earned · at least 85% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · 95–100 %':'85 % +'}</span>`;
+    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Gold erreicht · höchstens 1 Fehler · Schreiben selbst geprüft','Gold earned · at most 1 mistake · writing self-assessed'):t('Auszeichnung ab 80 % · Schreiben selbst geprüft','Award earned · at least 80% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · ≤ 1 ✗':'80 % +'}</span>`;
   }
   let redraw=null,redrawEntry=null,checkDetached=null;
   window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
@@ -213,7 +213,7 @@
       root.querySelector('#hardDraftBack').onclick=draw;
     }
     function isSubmitted(){return a.phase!=='running';}
-    function rules(){return data.version===1?t('Trainingsziel (Version 1): 80 % insgesamt, mindestens 50 % je automatisch korrigiertem Teil. Schreiben: Mindestwortzahl, 6/8 selbst bewertete Punkte, kein Kriterium mit 0.','Practice target (version 1): 80% overall, at least 50% in each automatically marked section. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.'):t('Trainingsziel: mindestens 80 % im Lückentext und mindestens 80 % im Hörverstehen, ohne Aufrunden. Schreiben: Mindestwortzahl, 6/8 selbst bewertete Punkte, kein Kriterium mit 0.','Practice target: at least 80% in cloze and at least 80% in listening, without rounding up. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.');}
+    function rules(){return data.version===1?t('Trainingsziel (Version 1): 70 % insgesamt, mindestens 50 % je automatisch korrigiertem Teil. Schreiben: Mindestwortzahl, 6/8 selbst bewertete Punkte, kein Kriterium mit 0.','Practice target (version 1): 70% overall, at least 50% in each automatically marked section. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.'):t('Trainingsziel: mindestens 70 % im Lückentext und mindestens 70 % im Hörverstehen, ohne Aufrunden. Schreiben: Mindestwortzahl, 6/8 selbst bewertete Punkte, kein Kriterium mit 0.','Practice target: at least 70% in cloze and at least 70% in listening, without rounding up. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.');}
     function counts(){return [a.gaps.filter(s=>s.trim()).length+'/'+data.gaps.length,a.listening.filter(s=>s.trim()).length+'/'+allQuestions.length,words(a.text)+' '+t('Wörter','words')];}
     function nav(){
       const labels=[t('Lückentext','Cloze text'),t('Hörverstehen','Listening'),t('Schreiben','Writing')];

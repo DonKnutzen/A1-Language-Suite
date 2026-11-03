@@ -118,7 +118,7 @@ test('vocabulary directions, lesson decks and course progress stay English-speci
 test('gold requires a passed, self-assessed result and at least 95 percent using exact counts',()=>{
   const f=fixture(),api=f.w.EN_A1_HARD_MODE;
   const result=(correct,total,passed=true)=>({phase:'reviewed',completedAt:1,result:{correct,total,passed}});
-  assert(api.goldResult(result(19,20)));assert(api.goldResult(result(20,20)));assert(!api.goldResult(result(18,20)));assert(!api.goldResult(result(19,20,false)));assert(!api.goldResult(result(94,99)));
+  assert(api.goldResult(result(19,20)));assert(api.goldResult(result(20,20)));assert(!api.goldResult(result(18,20)));assert(!api.goldResult(result(19,20,false)));assert(!api.goldResult(result(94,99)));assert(api.goldResult(result(15,16)));assert(!api.goldResult(result(14,16)));
   f.close();
 });
 test('offline cache contains every local entry-point asset and never purges another course',()=>{

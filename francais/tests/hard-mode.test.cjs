@@ -60,7 +60,12 @@ test('policies distinguish spelling from listening and reject semantically diffe
 test('raw section thresholds prevent compensation and rounded passing',()=>{
   const {mode,data}=environment(),d=data[1],qs=d.listening.flatMap(b=>b.questions);
   const a={gaps:d.gaps.map(q=>q.answers[0]),listening:qs.map(q=>q.answers[0]),text:d.writing.model,ratings:[2,2,2,2]};
-  a.listening[0]='faux';assert(mode.passed(d,a));a.listening[1]='faux';assert(!mode.passed(d,a));
+  const miss=qs.length-Math.ceil(qs.length*.7);for(let i=0;i<miss;i++)a.listening[i]='faux';assert(mode.passed(d,a));a.listening[miss]='faux';assert(!mode.passed(d,a));
   const custom={...d,gaps:Array.from({length:200},()=>({answers:['oui']})),listening:[{questions:[{answers:['oui']}]}]};
-  const b={...a,gaps:Array(159).fill('oui').concat(Array(41).fill('non')),listening:['oui']};assert(!mode.passed(custom,b));
+  const b={...a,gaps:Array(139).fill('oui').concat(Array(61).fill('non')),listening:['oui']};assert(!mode.passed(custom,b));
+});
+test('gold allows exactly one mistake',()=>{
+  const {mode}=environment(),r=(correct,total,extra={})=>({phase:'reviewed',completedAt:1,...extra,result:{correct,total,passed:true}});
+  assert(mode.goldResult(r(15,16)));assert(mode.goldResult(r(16,16)));assert(!mode.goldResult(r(14,16)));
+  assert(mode.goldResult(r(6,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:0})));assert(!mode.goldResult(r(7,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:1})));
 });

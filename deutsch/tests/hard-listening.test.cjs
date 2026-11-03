@@ -35,7 +35,7 @@ test('new option vocabulary has French meanings before Hard Mode, and offline as
     const html=f.w.A1LessonFoundations.preparationHtml('de',id,'hard');assert(html.includes(target),`${id}: ${target}`);assert(html.includes(meaning),`${id}: ${meaning}`);
   }
   const page=fs.readFileSync('deutsch/index.html','utf8'),worker=fs.readFileSync('deutsch/service-worker.js','utf8');
-  for(const asset of ['voice-selection.js?v=spell-225','dialogue-voices.js?v=dialogue-168','hard-mode-content.js?v=quality-222','hard-mode.js?v=listening-choices-168'])assert(page.includes(asset)&&worker.includes(asset),asset);
+  for(const asset of ['voice-selection.js?v=spell-225','dialogue-voices.js?v=dialogue-168','hard-mode-content.js?v=quality-222','hard-mode.js?v=gold-230'])assert(page.includes(asset)&&worker.includes(asset),asset);
   assert(worker.includes('deutsch-a1-live-listening-v168'));f.dom.window.close();
 });
 
@@ -103,4 +103,8 @@ test('submitted v2/v3 attempts retain their original questions, marking and resu
     assert(!r.view.querySelector('[data-hard-listen]'));assert.equal(r.view.querySelectorAll('.hard-answer.is-correct').length,attempt.listening.length);r.dom.window.close();
   }
   e.dom.window.close();
+});
+test('gold allows exactly one mistake',()=>{
+  const {w}=environment(),r=(correct,total)=>({phase:'reviewed',completedAt:1,result:{correct,total,passed:true}});
+  assert(w.DE_A1_HARD_MODE.goldResult(r(15,16)));assert(w.DE_A1_HARD_MODE.goldResult(r(16,16)));assert(!w.DE_A1_HARD_MODE.goldResult(r(14,16)));
 });
