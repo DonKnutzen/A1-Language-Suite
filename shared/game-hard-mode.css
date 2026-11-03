@@ -34,3 +34,5 @@
 .hard-pilot .games-clock-option.is-wrong{opacity:.4;text-decoration:line-through}
 @keyframes games-shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 @media(prefers-reduced-motion:reduce){.games-safe.is-shaking{animation:none}}
+/* String game (.pilot-connect, all courses): compact on phones so every box fits without scrolling */
+@media(max-width:600px){.pilot-connect-instructions{margin:4px 0}.pilot-connect{grid-template-columns:minmax(0,.9fr) 26px minmax(0,1.35fr);margin:8px 0 6px}.pilot-connect .pilot-connect-left,.pilot-connect .pilot-connect-right{grid-template-rows:repeat(var(--match-count),minmax(40px,auto));gap:8px}.pilot-connect .pilot-connect-left button,.pilot-connect .pilot-connect-right button{min-height:40px;padding:5px 6px;font-size:.92rem;line-height:1.25;border-radius:12px}.pilot-connect-status{min-height:0}}
