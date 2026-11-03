@@ -41,9 +41,14 @@
   }
   function select(lang){const list=matching(lang),p=pref(lang);return list.find(v=>v.voiceURI===p.uri&&v.name===p.name)||automatic(lang,list);}
   function cancel(){token++;current=null;synth?.cancel();}
+  // Spelled names such as M-A-R-T-I-N are read as letter names: voices otherwise say the hyphens.
+  function spelled(text,lang){
+    const base=norm(lang).split('-')[0];
+    return String(text||'').replace(/(?<![\p{L}\-–—])\p{Lu}(?:\s?[-–—]\s?\p{Lu})+(?![\p{L}\-–—])/gu,run=>{const letters=run.replace(/[\s\-–—]/g,'');return (window.A1Pronunciation?.spellParts(letters,base)||[...letters]).join(', ');});
+  }
   function speakSequence(texts,options={}){
     if(!synth||!texts?.length)return;
-    cancel();const runToken=token,parts=texts.map(t=>String(t||'').trim()).filter(Boolean),lang=options.lang||'fr-FR';
+    cancel();const runToken=token,parts=texts.map(t=>spelled(String(t||'').trim(),options.lang||'fr-FR')).filter(Boolean),lang=options.lang||'fr-FR';
     const p=pref(lang),voice=select(lang),savedRate=Number(p.rate);
     if(norm(lang).split('-')[0]==='en'&&!voice){showError();return;}
     const rate=Number.isFinite(savedRate)&&savedRate>=.65&&savedRate<=1.2?savedRate:isApple?1:(options.rate??.82);
@@ -63,7 +68,7 @@
     if(!text)return;
     const lang=norm(options.lang).split('-')[0];
     const parts=/^[\p{L}](?:\s*[–—-]\s*[\p{L}])+$/u.test(String(text).trim())?window.A1Pronunciation?.spellParts(text,lang):null;
-    speakSequence(parts||[text],options);
+    speakSequence(parts?[parts.join(', ')]:[text],options);
   }
   // Voice metadata has no standard gender field. Use known device names when available.
   function dialogueVoices(lang){
@@ -86,7 +91,7 @@
       if(i>=parts.length){current=null;options.onEnd?.();return;}
       const turn=parts[i++],voice=pair[turn.speaker]||select(lang);
       if(norm(lang).split('-')[0]==='en'&&!voice){fail();return;}
-      const u=new SpeechSynthesisUtterance(turn.text);current=u;
+      const u=new SpeechSynthesisUtterance(spelled(turn.text,lang));current=u;
       u.lang=voice?.lang||lang;if(voice)u.voice=voice;
       // Dialogues deliberately use the exercise tempo, independently of voice-preview preferences.
       u.rate=options.rate??.75;u.pitch=1;u.volume=1;

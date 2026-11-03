@@ -35,7 +35,7 @@ test('new option vocabulary has French meanings before Hard Mode, and offline as
     const html=f.w.A1LessonFoundations.preparationHtml('de',id,'hard');assert(html.includes(target),`${id}: ${target}`);assert(html.includes(meaning),`${id}: ${meaning}`);
   }
   const page=fs.readFileSync('deutsch/index.html','utf8'),worker=fs.readFileSync('deutsch/service-worker.js','utf8');
-  for(const asset of ['voice-selection.js?v=dialogue-168','dialogue-voices.js?v=dialogue-168','hard-mode-content.js?v=quality-222','hard-mode.js?v=listening-choices-168'])assert(page.includes(asset)&&worker.includes(asset),asset);
+  for(const asset of ['voice-selection.js?v=spell-225','dialogue-voices.js?v=dialogue-168','hard-mode-content.js?v=quality-222','hard-mode.js?v=listening-choices-168'])assert(page.includes(asset)&&worker.includes(asset),asset);
   assert(worker.includes('deutsch-a1-live-listening-v168'));f.dom.window.close();
 });
 

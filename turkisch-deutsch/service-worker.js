@@ -1,4 +1,4 @@
-const CACHE='deutsch-c1-tr-answer-autoplay-v179';
+const CACHE='deutsch-c1-tr-answer-autoplay-v180';
 const LEGACY_PREFIXES=['deutsch-a1-tr','deutsch-c1-tr'];
 const ASSETS=["../shared/answer-feedback.js?v=answer-autoplay-179",
   './','./index.html','./styles.css','./app.js?v=answer-autoplay-179','./lesson-content.js','./manifest.json',

@@ -7,18 +7,20 @@
     ['A','a','a'],['B','bé','bé'],['C','cé','cé'],['D','dé','dé'],['E','e','La lettre E.'],['F','effe','effe'],['G','gé','gé'],['H','hache','hache'],['I','i','i'],['J','ji','ji'],['K','ka','ka'],['L','elle','elle'],['M','emme','emme'],['N','enne','enne'],['O','o','o'],['P','pé','pé'],['Q','qu','La lettre Q.'],['R','erre','erre'],['S','esse','esse'],['T','té','té'],['U','u','La lettre U.'],['V','vé','vé'],['W','double vé','double vé'],['X','ix','ix'],['Y','i grec','i grec'],['Z','zède','zède']
   ];
   const ACCENTS=[['é','e accent aigu'],['è','e accent grave'],['ê','e accent circonflexe'],['ë','e tréma'],['à','a accent grave'],['ç','c cédille'],['ô','o accent circonflexe'],['ù','u accent grave']];
+  const FR_SPELL={E:'e',Q:'cu',U:'u'};
+  const DE_LETTERS={A:'ah',B:'beh',C:'zeh',D:'deh',E:'eh',F:'eff',G:'geh',H:'hah',I:'ih',K:'kah',L:'ell',M:'emm',N:'enn',O:'oh',P:'peh',Q:'kuh',R:'err',S:'ess',T:'teh',U:'uh',X:'ix',Y:'ypsilon',Z:'zett'};
   const DE_NAMES={'Ä':'A Umlaut','Ö':'O Umlaut','Ü':'U Umlaut','ß':'Eszett','J':'Jot','V':'Vau','W':'We'};
   const UI={de:{title:'Aussprache',repeat:'Höre die Beispiele einzeln an und sprich sie nach.',letters:'Alphabet & Buchstabieren',difference:'Buchstabennamen unterscheiden sich vom Laut im Wort. Achte besonders auf G/J und U.',accents:'Akzente mitnennen',test:'Eigenen Namen buchstabiert anhören',name:'Name zum Buchstabieren',play:'Buchstabieren anhören',unsupported:'Verwende Buchstaben, Leerzeichen und Bindestriche. Sonderzeichen wie é und ç werden mit ihrem Namen gesprochen.',word:'Laut im Wort anhören',special:'Besondere Buchstabennamen'},fr:{title:'Prononciation',repeat:'Écoute chaque exemple, puis répète à voix haute.',special:'Noms de lettres particuliers'},tr:{title:'Telaffuz',repeat:'Örnekleri tek tek dinle ve tekrar et.',special:'Özel harf adları'}};
   const speechLang=lang=>({fr:'fr-FR',de:'de-DE',es:'es-ES'})[lang]||lang;
   function spellParts(text,lang){
-    const map=new Map(FR_LETTERS.map(([letter,label,audio])=>[letter,audio]));
+    const map=new Map(FR_LETTERS.map(([letter,label,audio])=>[letter,FR_SPELL[letter]||audio]));
     for(const [letter,audio] of ACCENTS)map.set(letter,audio);
     const chunks=[];
     for(const char of String(text||'').normalize('NFC')){
       if(/[\s\-–—.'’]/.test(char))continue;
       let audio;
       if(lang==='fr')audio=map.get(char)||map.get(char.toUpperCase())||map.get(char.toLowerCase());
-      else if(lang==='de')audio=DE_NAMES[char]||DE_NAMES[char.toUpperCase()]||(/^[A-Za-z]$/.test(char)?'Der Buchstabe '+char.toUpperCase()+'.':null);
+      else if(lang==='de')audio=DE_NAMES[char]||DE_NAMES[char.toUpperCase()]||DE_LETTERS[char.toUpperCase()]||null;
       if(!audio)return null;
       chunks.push(audio);
     }
