@@ -54,14 +54,95 @@ function sentencesOf(text){const safe=String(text).replace(/(\d)\.(\s)/g,'$1․$
 const fill=(sentence,data,keep=-1)=>sentence.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===keep?'___':data.gaps[Number(n)]?.answers?.[0]??'');
 const gapIds=s=>[...String(s).matchAll(/\{\{(\d+)\}\}/g)].map(m=>Number(m[1]));
 function distance(a,b){a=norm(a);b=norm(b);const d=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let p=d[0];d[0]=i;for(let j=1;j<=b.length;j++){const t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]===b[j-1]?0:1));p=t;}}return d[b.length];}
-const NUM_HINT=/^(\d+(?:er)?) en lettres/;
-const isNumGap=(data,n)=>NUM_HINT.test(String(data.gaps[n]?.hint||''));
-// String-game clue: the digit for a number word, otherwise the gap in a readable piece of its sentence.
-function clueFor(data,n,numbers){const hint=String(data.gaps[n].hint||''),num=hint.match(NUM_HINT);if(numbers&&num)return num[1];
- const s=sentencesOf(data.text).find(x=>gapIds(x).includes(n));if(!s)return num?num[1]:hint;
- const [before,after='']=fill(s,data,n).split('___'),bw=before.trim().split(/\s+/).filter(Boolean),aw=after.trim().split(/\s+/).filter(Boolean);
- const b=(bw.length>4?'… ':'')+bw.slice(-4).join(' '),f=aw.slice(0,4).join(' ')+(aw.length>4?' …':'');
- return b+(!bw.length||/['’]$/.test(b)?'':' ')+'___'+(f?(/^[,.]/.test(f)?'':' ')+f:'')+' · '+(num?num[1]:hint);}
+/* ---------- String game: one fitting category per lesson ----------
+   Each group links things that belong together and are easy to mix up (40 ↔ quarante, halb acht ↔ 7:30, à la tête ↔ au ventre).
+   A group is [kind, 'clue|form', …]; every attempt takes six pairs of one group. Clues are digits, symbols or the course language. */
+const STRING_KINDS={n:['Zahl und Wort verbinden','Connect number and word','Relie le nombre et le mot'],t:['Uhrzeit und Ausdruck verbinden','Connect time and phrase','Relie l’heure et l’expression'],
+ s:['Bild und Ausdruck verbinden','Connect picture and phrase','Relie l’image et l’expression'],p:['Paare verbinden','Connect the pairs','Relie les paires'],
+ q:['Frage und Antwort verbinden','Connect question and answer','Relie la question et la réponse'],f:['Grundform und Form verbinden','Connect base and form','Relie la base et la forme']};
+const STRINGS={
+ fr:{
+  2:[['p','G|gé','J|ji','H|ache','W|double vé','Y|i grec','Z|zède'],['p','é|e accent aigu','è|e accent grave','ê|e accent circonflexe','ç|c cédille','ë|e tréma','ll|deux l']],
+  3:[['n','40|quarante','50|cinquante','60|soixante','70|soixante-dix','80|quatre-vingts','90|quatre-vingt-dix'],['n','11|onze','12|douze','13|treize','14|quatorze','15|quinze','16|seize'],['n','70|soixante-dix','71|soixante et onze','77|soixante-dix-sept','90|quatre-vingt-dix','91|quatre-vingt-onze','97|quatre-vingt-dix-sept']],
+  4:[['t','8:00|huit heures','8:15|huit heures et quart','8:30|huit heures et demie','7:45|huit heures moins le quart','12:00|midi','0:00|minuit'],['t','14:00|quatorze heures','16:30|seize heures trente','20:15|vingt heures quinze','13:45|treize heures quarante-cinq','18:00|dix-huit heures','22:10|vingt-deux heures dix']],
+  5:[['p','le père|la mère','le frère|la sœur','le fils|la fille','l’oncle|la tante','le grand-père|la grand-mère','le cousin|la cousine','le mari|la femme','le neveu|la nièce']],
+  6:[['q','Vous désirez ?|Un café, s’il vous plaît.','Et comme boisson ?|Une carafe d’eau.','Et comme dessert ?|Une mousse au chocolat.','Sur place ou à emporter ?|À emporter.','C’est tout ?|Oui, l’addition, s’il vous plaît.','Vous avez choisi ?|Oui, je prends le menu du jour.'],['p','le citron|acide','le gâteau|sucré','les chips|salé','le piment|piquant','la glace|froide','la soupe|chaude']],
+  7:[['n','2,50 €|deux euros cinquante','1,20 €|un euro vingt','0,80 €|quatre-vingts centimes','15 €|quinze euros','9,90 €|neuf euros quatre-vingt-dix','70 €|soixante-dix euros'],['n','1 kg|un kilo','500 g|une livre','250 g|deux cent cinquante grammes','1 l|un litre','0,5 l|un demi-litre','6 œufs|une demi-douzaine d’œufs']],
+  8:[['n','RDC|le rez-de-chaussée','1er|le premier étage','2e|le deuxième étage','3e|le troisième étage','4e|le quatrième étage','5e|le cinquième étage'],['p','on dort|la chambre','on cuisine|la cuisine','on se douche|la salle de bains','on regarde la télé|le salon','on mange en famille|la salle à manger','on gare la voiture|le garage']],
+  9:[['s','🚶|à pied','🚲|à vélo','🚌|en bus','🚇|en métro','🚗|en voiture','🚆|en train'],['s','⬅️|tournez à gauche','➡️|tournez à droite','⬆️|continuez tout droit','🔄|faites demi-tour','1re ➡️|la première rue à droite','2e ⬅️|la deuxième rue à gauche']],
+  10:[['p','le médecin|à l’hôpital','le professeur|à l’école','le serveur|au restaurant','le vendeur|au magasin','le boulanger|à la boulangerie','le pilote|à l’aéroport'],['p','le vendeur|la vendeuse','l’acteur|l’actrice','le boulanger|la boulangère','le coiffeur|la coiffeuse','l’infirmier|l’infirmière','le serveur|la serveuse']],
+  11:[['f','je|me lève','tu|te lèves','il|se lève','nous|nous levons','vous|vous levez','ils|se lèvent'],['n','100 %|toujours','75 %|souvent','50 %|parfois','10 %|rarement','0 %|ne … jamais']],
+  12:[['f','la tête|j’ai mal à la tête','le ventre|j’ai mal au ventre','les dents|j’ai mal aux dents','l’oreille|j’ai mal à l’oreille','le dos|j’ai mal au dos','les yeux|j’ai mal aux yeux']],
+  13:[['s','☀️|Il fait beau.','🌧️|Il pleut.','❄️|Il neige.','💨|Il y a du vent.','🥵|Il fait chaud.','🥶|Il fait froid.'],['s','🧣|une écharpe','🧤|des gants','👕|un tee-shirt','🧥|un manteau','👖|un pantalon','👟|des baskets']],
+  14:[['s','😍|J’adore.','🙂|J’aime bien.','😐|Bof, ça va.','🙁|Je n’aime pas.','😖|Je déteste.'],['f','le foot|jouer au foot','la guitare|jouer de la guitare','les cartes|jouer aux cartes','le piano|jouer du piano','la natation|faire de la natation','le vélo|faire du vélo']],
+  15:[['q','Vous avez une réservation ?|Oui, au nom de Martin.','Vous restez combien de nuits ?|Trois nuits.','Le petit-déjeuner est à quelle heure ?|De 7 h à 10 h.','C’est quelle chambre ?|La 12, au premier étage.','Je peux payer par carte ?|Oui, la carte bancaire est acceptée.','Il y a le wifi ?|Oui, le code est sur la clé.']],
+  16:[['q','Tu viens à ma fête samedi ?|Oui, samedi je suis libre !','On va au cinéma ?|Bonne idée ! Quel film ?','On se retrouve où ?|Devant le cinéma.','On se voit à quelle heure ?|À huit heures.','Pourquoi tu ne viens pas ?|Parce que je travaille.','J’apporte quelque chose ?|Oui, une salade.']],
+  17:[['p','Nom|Dupont','Prénom|Léa','Date de naissance|12/03/1998','Code postal|75011','Nationalité|française','Adresse e-mail|lea.dupont@mail.fr']],
+  18:[['p','Salut !|Bonjour, madame.','Tu peux répéter ?|Pouvez-vous répéter, s’il vous plaît ?','Je veux un café.|Je voudrais un café.','Quoi ?|Pardon ?','Tu comprends ?|Vous comprenez ?','Ciao !|Au revoir, monsieur.']],
+  19:[['f','le livre|les livres','l’animal|les animaux','le journal|les journaux','l’œil|les yeux','le gâteau|les gâteaux','le nez|les nez','le cheval|les chevaux','le bus|les bus']],
+  20:[['f','je|vais','tu|vas','il|va','nous|allons','vous|allez','ils|vont'],['f','je|suis','tu|es','il|est','nous|sommes','vous|êtes','ils|sont'],['f','J’ai un chat.|Je n’ai pas de chat.','Je mange de la viande.|Je ne mange pas de viande.','Il est français.|Il n’est pas français.','Nous avons une voiture.|Nous n’avons pas de voiture.','Elle aime le café.|Elle n’aime pas le café.','Tu fumes.|Tu ne fumes pas.']],
+  21:[['f','moi + livre|mon livre','moi + maison|ma maison','moi + amie|mon amie','toi + clés|tes clés','lui + voiture|sa voiture','nous + enfants|nos enfants'],['q','Où ?|À Paris.','Quand ?|Demain.','Combien ?|Dix euros.','Qui ?|Mon frère.','Pourquoi ?|Parce que je suis malade.','Comment ?|En bus.']],
+  22:[['f','manger|j’ai mangé','aller|je suis allé','faire|j’ai fait','venir|je suis venu','prendre|j’ai pris','voir|j’ai vu','boire|j’ai bu','être|j’ai été']],
+  23:[['f','le pain|du pain','la confiture|de la confiture','l’eau|de l’eau','les pâtes|des pâtes','le fromage|du fromage','la salade|de la salade','l’huile|de l’huile','les œufs|des œufs']],
+  24:[['f','la France|en France','le Canada|au Canada','les États-Unis|aux États-Unis','Paris|à Paris','l’Italie|en Italie','le Japon|au Japon','le Portugal|au Portugal','l’Allemagne|en Allemagne']]
+ },
+ 'fr-a2':{
+  1:[['q','Tu habites où ?|À Lyon, depuis trois ans.','Tu fais quoi dans la vie ?|Je suis infirmière.','Tu as quel âge ?|J’ai trente-deux ans.','Tu parles quelles langues ?|L’allemand et l’anglais.','Tu as des frères et sœurs ?|Oui, une sœur.','Qu’est-ce que tu aimes faire ?|Je fais du vélo.']],
+  2:[['p','le lit|la chambre','le canapé|le salon','le frigo|la cuisine','la douche|la salle de bains','la voiture|le garage','les plantes|le balcon']],
+  3:[['s','⬅️|à gauche','➡️|à droite','⬆️|tout droit','🔄|demi-tour','1re ➡️|la première à droite','2e ⬅️|la deuxième à gauche']],
+  4:[['q','Allô, c’est qui ?|C’est Paul, un collègue de Marie.','Je peux parler à Marie ?|Ne quittez pas, je vous la passe.','Je peux laisser un message ?|Bien sûr, je note.','C’est quel numéro ?|C’est le 06 45 12 78 90.','Vous pouvez épeler ?|M-A-R-T-I-N.','Je vous entends mal.|Je vous rappelle tout de suite.']],
+  5:[['f','partir|je suis parti','rentrer|je suis rentré','sortir|je suis sorti','lire|j’ai lu','écrire|j’ai écrit','dormir|j’ai dormi','mettre|j’ai mis','boire|j’ai bu']],
+  6:[['f','être|j’étais','avoir|j’avais','faire|je faisais','aller|j’allais','manger|je mangeais','dormir|je dormais']],
+  7:[['f','je|vais sortir','tu|vas venir','elle|va dormir','nous|allons partir','vous|allez rester','ils|vont jouer']],
+  8:[['p','le chien|la chienne','le chat|la chatte','le lapin|la lapine','le cheval|la jument','le coq|la poule','le taureau|la vache']],
+  9:[['n','1|D’abord','2|Ensuite','3|Puis','4|Après','5|Enfin'],['p','le citron|acide','le gâteau|sucré','les chips|salé','le piment|piquant','la glace|froide','la soupe|chaude']],
+  10:[['p','un anniversaire|Joyeux anniversaire !','Noël|Joyeux Noël !','le Nouvel An|Bonne année !','un mariage|Vive les mariés !','un examen réussi|Bravo, félicitations !','un voyage|Bon voyage !']],
+  11:[['p','une boîte de|thon','un paquet de|pâtes','un pot de|confiture','une tablette de|chocolat','une douzaine d’|œufs','un pack d’|eau']],
+  12:[['q','Tu viens ce soir ?|Désolé, je dois travailler.','Pourquoi tu es en retard ?|Mon bus n’est pas venu.','Tu peux m’aider demain ?|Demain non, mais jeudi oui.','Excuse-moi pour hier.|Ce n’est pas grave.','On déplace le rendez-vous ?|D’accord, quel jour ?','Tu as oublié mon anniversaire !|Oh pardon, je suis vraiment désolé !']],
+  13:[['s','🤧|J’éternue.','🤒|J’ai de la fièvre.','😷|Je tousse.','🤢|J’ai mal au cœur.','🤕|J’ai mal à la tête.','🥱|Je suis fatigué.']],
+  14:[['q','Le train part à quelle heure ?|À 14 h 32.','De quel quai ?|Du quai 3.','Un aller simple ?|Non, un aller-retour, s’il vous plaît.','En quelle classe ?|En deuxième.','Le train a du retard ?|Oui, vingt minutes.','Il faut changer ?|Oui, à Lyon.']],
+  15:[['s','⛽|la station-service','🅿️|le parking','🚦|le feu rouge','🛑|le stop','🚧|les travaux','💥|l’accident']],
+  16:[['s','☀️|le soleil','🌧️|la pluie','❄️|la neige','🌫️|le brouillard','⛈️|l’orage','💨|le vent']],
+  17:[['s','👍|Je suis pour.','👎|Je suis contre.','🤔|Ça dépend.','✅|Je suis d’accord.','❌|Je ne suis pas d’accord.','💯|Absolument !']],
+  18:[['f','arriver|l’arrivée','partir|le départ','vendre|la vente','ouvrir|l’ouverture','fermer|la fermeture','découvrir|la découverte']],
+  19:[['s','🏔️|à la montagne','🏖️|au bord de la mer','🏙️|en ville','🌳|à la campagne','🏝️|sur une île','🏕️|au camping']],
+  20:[['f','le vélo|faire du vélo','la randonnée|faire de la randonnée','le ski|faire du ski','la natation|faire de la natation','les courses|faire les courses','une promenade|faire une promenade']],
+  21:[['f','+ grand|plus grand que','− grand|moins grand que','= grand|aussi grand que','+ bon|meilleur que','+ bien|mieux que','+++ grand|le plus grand']],
+  22:[['p','Salut !|Bonjour, madame,','Bises|Cordialement','Tu vas bien ?|Vous allez bien ?','Écris-moi vite !|Dans l’attente de votre réponse','Merci pour ton message.|Je vous remercie de votre message.','À bientôt !|Bien à vous']],
+  23:[['f','le livre|je le lis','la lettre|je la lis','les journaux|je les lis','à Marie|je lui écris','à mes parents|je leur écris','à Paris|j’y vais','du pain|j’en achète']],
+  24:[['s','📖|Lisez le texte.','🎧|Écoutez le dialogue.','✍️|Écrivez un message.','☑️|Cochez la bonne réponse.','🔗|Reliez.','🗣️|Parlez avec votre partenaire.']]
+ },
+ de:{
+  1:[['q','Wie heißt du?|Ich heiße Lena.','Woher kommst du?|Aus Frankreich.','Wo wohnst du?|In Köln.','Wie alt bist du?|Ich bin 25.','Was bist du von Beruf?|Ich bin Lehrerin.','Welche Sprachen sprichst du?|Deutsch und Französisch.'],['p','Wie heißt du?|Wie heißen Sie?','Woher kommst du?|Woher kommen Sie?','Hallo!|Guten Tag!','Tschüss!|Auf Wiedersehen!','Wo wohnst du?|Wo wohnen Sie?','Wie geht’s dir?|Wie geht es Ihnen?']],
+  2:[['p','J|Jot','V|Vau','W|We','Y|Ypsilon','Z|Zett','ß|Eszett','H|Ha','G|Ge']],
+  3:[['n','40|vierzig','50|fünfzig','60|sechzig','70|siebzig','80|achtzig','90|neunzig'],['n','13|dreizehn','30|dreißig','16|sechzehn','60|sechzig','17|siebzehn','70|siebzig'],['n','25|fünfundzwanzig','52|zweiundfünfzig','38|achtunddreißig','83|dreiundachtzig','67|siebenundsechzig','76|sechsundsiebzig']],
+  4:[['t','8:15|Viertel nach acht','7:45|Viertel vor acht','7:30|halb acht','8:30|halb neun','8:00|acht Uhr','8:20|zwanzig nach acht'],['p','Mo|Montag','Di|Dienstag','Mi|Mittwoch','Do|Donnerstag','Fr|Freitag','Sa|Samstag']],
+  5:[['p','der Vater|die Mutter','der Bruder|die Schwester','der Sohn|die Tochter','der Onkel|die Tante','der Opa|die Oma','der Cousin|die Cousine','der Neffe|die Nichte']],
+  6:[['q','Was möchten Sie trinken?|Einen Kaffee, bitte.','Was nehmen Sie?|Ich nehme die Suppe.','Zusammen oder getrennt?|Getrennt, bitte.','Sonst noch etwas?|Nein, danke, das ist alles.','Schmeckt es Ihnen?|Ja, sehr gut!','Was macht das?|Das macht 12 Euro.']],
+  7:[['n','2,50 €|zwei Euro fünfzig','1,20 €|ein Euro zwanzig','0,99 €|neunundneunzig Cent','15 €|fünfzehn Euro','19,90 €|neunzehn Euro neunzig','50 €|fünfzig Euro']],
+  8:[['p','das Bett|das Schlafzimmer','das Sofa|das Wohnzimmer','der Herd|die Küche','die Dusche|das Bad','der Schreibtisch|das Arbeitszimmer','das Auto|die Garage'],['n','EG|das Erdgeschoss','1. OG|der erste Stock','2. OG|der zweite Stock','3. OG|der dritte Stock','DG|das Dachgeschoss','UG|der Keller']],
+  9:[['s','🚶|zu Fuß','🚲|mit dem Fahrrad','🚌|mit dem Bus','🚇|mit der U-Bahn','🚗|mit dem Auto','🚆|mit dem Zug'],['s','⬅️|links','➡️|rechts','⬆️|geradeaus','🔄|zurück','1. ➡️|die erste Straße rechts','2. ⬅️|die zweite Straße links']],
+  10:[['p','der Arzt|im Krankenhaus','der Lehrer|in der Schule','der Kellner|im Restaurant','der Verkäufer|im Geschäft','der Bäcker|in der Bäckerei','der Pilot|am Flughafen'],['p','der Lehrer|die Lehrerin','der Arzt|die Ärztin','der Koch|die Köchin','der Verkäufer|die Verkäuferin','der Kellner|die Kellnerin','der Friseur|die Friseurin']],
+  11:[['q','Wie lange dauert der Kurs?|Drei Monate.','Wann beginnt der Kurs?|Am Montag um neun.','Wie oft ist der Kurs?|Zweimal pro Woche.','Wie viel kostet der Kurs?|200 Euro.','Wo ist der Kurs?|Im Raum 12.','Können Sie langsamer sprechen?|Ja, gern, ich spreche langsamer.'],['n','100 %|immer','75 %|oft','50 %|manchmal','10 %|selten','0 %|nie']],
+  12:[['s','😍|Das liebe ich!','🙂|Das mag ich.','😐|Das ist okay.','🙁|Das mag ich nicht.','😖|Das hasse ich.'],['p','Fußball|spielen','Rad|fahren','ins Kino|gehen','Musik|hören','ein Buch|lesen','im See|schwimmen']],
+  13:[['q','Haben Sie ein Zimmer frei?|Ja, ein Doppelzimmer.','Wie viele Nächte?|Zwei Nächte.','Ist das Frühstück inklusive?|Ja, von 7 bis 10 Uhr.','Wann muss ich auschecken?|Bis 11 Uhr.','Wo ist der Aufzug?|Dort links.','Kann ich mit Karte zahlen?|Ja, mit EC-Karte oder Kreditkarte.']],
+  14:[['f','der Kopf|Kopfschmerzen','der Bauch|Bauchschmerzen','der Hals|Halsschmerzen','der Rücken|Rückenschmerzen','die Zähne|Zahnschmerzen','die Ohren|Ohrenschmerzen']],
+  15:[['q','Kommst du zu meiner Party?|Ja, gern! Wann fängt sie an?','Gehen wir ins Kino?|Gute Idee! Welcher Film?','Wann treffen wir uns?|Um acht Uhr.','Wo treffen wir uns?|Vor dem Kino.','Warum kommst du nicht?|Weil ich arbeiten muss.','Soll ich etwas mitbringen?|Ja, vielleicht einen Salat.']],
+  16:[['s','🚭|Rauchen verboten','🚻|Toiletten','🅿️|Parkplatz','🔒|Geschlossen','🔓|Geöffnet','🚫📷|Fotografieren verboten']],
+  17:[['p','Gib mir das Salz!|Könnten Sie mir bitte das Salz geben?','Ich will einen Tee.|Ich hätte gern einen Tee.','Mach das Fenster zu!|Würden Sie bitte das Fenster schließen?','Wiederhol das!|Können Sie das bitte wiederholen?','Wo ist die Toilette?|Entschuldigung, wo ist bitte die Toilette?','Hilf mir!|Können Sie mir bitte helfen?']],
+  18:[['s','📖|Lesen Sie den Text.','🎧|Hören Sie zu.','✍️|Schreiben Sie.','☑️|Kreuzen Sie an.','🔗|Ordnen Sie zu.','🗣️|Sprechen Sie mit Ihrem Partner.']],
+  19:[['f','der Kopf|Mein Kopf tut weh.','die Füße|Meine Füße tun weh.','der Bauch|Mein Bauch tut weh.','die Augen|Meine Augen tun weh.','das Knie|Mein Knie tut weh.','die Hand|Meine Hand tut weh.']],
+  20:[['s','☀️|Die Sonne scheint.','🌧️|Es regnet.','❄️|Es schneit.','💨|Es ist windig.','🥵|Es ist heiß.','🥶|Es ist kalt.'],['s','🧣|der Schal','🧤|die Handschuhe','👕|das T-Shirt','🧥|die Jacke','👖|die Hose','👟|die Turnschuhe']],
+  21:[['s','😂|eine Komödie','😱|ein Horrorfilm','💕|ein Liebesfilm','🚀|ein Science-Fiction-Film','🔍|ein Krimi','🎵|ein Musical']],
+  22:[['q','Kann ich mit Frau Meier sprechen?|Einen Moment, ich verbinde.','Wer ist am Apparat?|Hier ist Paul Schulz.','Kann ich eine Nachricht hinterlassen?|Ja, natürlich, ich schreibe mit.','Wie ist Ihre Nummer?|0176 23 45 67 89.','Können Sie das buchstabieren?|S-C-H-U-L-Z.','Ich verstehe Sie schlecht.|Ich rufe Sie gleich zurück.']],
+  23:[['p','Nachname|Meier','Vorname|Anna','Geburtsdatum|12.03.1998','PLZ|50667','Staatsangehörigkeit|deutsch','Unterschrift|A. Meier']],
+  24:[['q','Wer?|Meine Schwester.','Wo?|In Berlin.','Woher?|Aus Spanien.','Wohin?|Nach Hamburg.','Wann?|Morgen.','Wie viel?|Zehn Euro.','Warum?|Weil ich krank bin.','Wie?|Mit dem Bus.']]
+ }
+};
+const stringsKey=courseKey=>courseKey==='fr'&&window.A1_APP_META?.course==='francais-a2'?'fr-a2':courseKey;
+function stringGame(courseKey,id){const groups=STRINGS[stringsKey(courseKey)]?.[Number(id)];if(!groups)return null;
+ const [kind,...pairs]=groups[Math.floor(Math.random()*groups.length)],pick=shuffle(pairs).slice(0,6).map(x=>x.split('|'));
+ return {type:'match',labels:pick.map(x=>x[0]),answers:pick.map(x=>x[1]),gaps:[],policy:pick.map(()=>({strictAccents:true})),title:STRING_KINDS[kind],skills:[]};}
 const concept=h=>norm(String(h||'').split(/[:,(]/)[0]);
 function vocabulary(courseKey,id){const cfg=COURSES[courseKey],V=window.A1_VOCABULARY_CONTENT||[],seenT=new Set(),seenM=new Set(),out=[];
  for(const v of V){if(!(v[cfg.lessons]||[]).includes(Number(id)))continue;const t=String(v[cfg.target]||'').trim(),m=String(v[cfg.meaning]||'').trim();if(!t||!m||t.length>26||m.length>30||/[()…]/.test(t+m)||seenT.has(norm(t))||seenM.has(norm(m)))continue;seenT.add(norm(t));seenM.add(norm(m));out.push([t,m]);}
@@ -80,11 +161,8 @@ function build(courseKey,id){course=courseKey;const data=COURSES[courseKey].cont
  const orderIds=[];for(const s of trains){const n=gapIds(s)[0],right=answersOf(n),tokens=fill(s,data).split(/\s+/).reduce((out,w)=>{if(/^[?!:;»]$/.test(w)&&out.length)out[out.length-1]+=' '+w;else out.push(w);return out;},[]);
   const others=[...new Set(data.gaps.map(g=>g.answers[0]).filter(x=>norm(x)!==norm(right)&&!/\s/.test(x)&&!tokens.map(norm).includes(norm(x))))].sort((x,y)=>(concept(data.gaps.find(g=>g.answers[0]===y).hint)===concept(data.gaps[n].hint))-(concept(data.gaps.find(g=>g.answers[0]===x).hint)===concept(data.gaps[n].hint))||distance(x,right)-distance(y,right));
   const extras=others.slice(0,2);if(extras.length<1)continue;used.add(n);orderIds.push(tasks.length);tasks.push({type:'order',tokens:[...tokens,...extras],required:tokens.length,answer:tokens.join(' '),gaps:[n],title:['Satz bauen','Build the sentence','Construis la phrase'],skills:[data.gaps[n].hint].filter(Boolean)});}
- // String game: five clues with different answers. Number words pair with their digits; other clues show the gap in its sentence.
- const numGaps=[],seenN=new Set();for(const n of shuffle(data.gaps.map((_,i)=>i))){if(used.has(n)||!isNumGap(data,n)||seenN.has(norm(answersOf(n))))continue;seenN.add(norm(answersOf(n)));numGaps.push(n);if(numGaps.length===5)break;}
- const numbers=numGaps.length>=3,matchGaps=numbers?numGaps:[],seenA=new Set(),seenH=new Set();if(!numbers)for(const n of shuffle(data.gaps.map((_,i)=>i))){if(used.has(n))continue;const g=data.gaps[n],a=norm(g.answers[0]),h=norm(g.hint);if(!h||seenA.has(a)||seenH.has(h))continue;seenA.add(a);seenH.add(h);matchGaps.push(n);if(matchGaps.length===5)break;}
- let matchId=null;if(matchGaps.length>=3){matchGaps.sort((x,y)=>x-y);matchGaps.forEach(n=>used.add(n));matchId=tasks.length;tasks.push({type:'match',labels:matchGaps.map(n=>clueFor(data,n,numbers)),answers:matchGaps.map(n=>data.gaps[n].answers[0]),gaps:matchGaps,policy:matchGaps.map(n=>({strictAccents:!!data.gaps[n].strictAccents})),title:numbers?['Zahl und Wort verbinden','Connect number and word','Relie le nombre et le mot']:['Hinweis und Form verbinden','Connect clue and form','Relie indice et forme'],skills:[]});}
- if(matchId!==null)pages.push({key:'match',ids:[matchId]});
+ // String game: six pairs from the lesson's own category (see STRINGS); the test's gaps all stay in the other games.
+ const strings=stringGame(courseKey,id);if(strings){pages.push({key:'match',ids:[tasks.length]});tasks.push(strings);}
  if(orderIds.length)pages.push({key:'order',ids:orderIds});
  // Magic gaps: every remaining gap of the test, in its own sentence.
  const textIds=[];data.gaps.forEach((g,n)=>{if(used.has(n))return;const s=sentences.find(x=>gapIds(x).includes(n));if(!s)return;textIds.push(tasks.length);tasks.push({type:'text',sentence:fill(s,data,n),hint:g.hint||'',answers:g.answers,policy:{strictAccents:!!g.strictAccents},gaps:[n],title:['Lücke füllen','Fill the gap','Complète le trou'],skills:[g.hint].filter(Boolean)});});
@@ -108,8 +186,8 @@ function render({course:courseKey,lesson,view,state,save,onBack,onLegacy}){
  course=courseKey;const cfg=C(),id=Number(lesson.id),mode=cfg.mode();
  const hard=((state.lessonWork||={})[id]||={}).hardMode||={},p=hard.games||={history:[]};p.history||=[];p.arcade||={best:{},stars:{}};
  let a=p.attempt,root=null,playing=null,run=0,timer=null,error='',notice='',storageError='',arcadeView=null,stopGame=null,memoryDismiss=null,resize=null;
- // Saved attempts keep their answers; string-game clues follow the current wording.
- const data=cfg.content()?.[id];if(data?.gaps)for(const q of a?.content?.tasks||[])if(q.type==='match'&&Array.isArray(q.gaps)&&q.gaps.every((n,k)=>data.gaps[n]&&norm(data.gaps[n].answers[0])===norm(q.answers[k])))q.labels=q.gaps.map(n=>clueFor(data,n,q.gaps.every(g=>isNumGap(data,g))));
+ // Saved attempts: a string game not yet checked that still pairs pieces of the cloze text gets the lesson's own pairs.
+ (a?.content?.tasks||[]).forEach((q,i)=>{if(q.type!=='match'||!q.gaps?.length||a.checked?.[i])return;const fresh=stringGame(courseKey,id);if(!fresh)return;Object.assign(q,fresh);a.answers[i]=fresh.labels.map(()=>'');a.orders[i]=shuffle(fresh.answers);});
  const tasks=()=>a.content.tasks,pages=()=>a.content.pages;
  const persist=(complete=false)=>{try{save(complete);storageError='';}catch{storageError=T('Speichern fehlgeschlagen. Lass diese Seite offen.','Saving failed. Keep this page open.','Échec de l’enregistrement. Garde cette page ouverte.');}const el=root?.querySelector('[data-games-save]');if(el)el.textContent=storageError||T('Zwischenstand gespeichert','Progress saved','Progression enregistrée');};
  const matches=(v,answers,policy={})=>mode?.matches?mode.matches(v,answers,policy):answers.some(x=>norm(x)===norm(v));
@@ -243,5 +321,5 @@ function render({course:courseKey,lesson,view,state,save,onBack,onLegacy}){
  function draw(){if(arcadeView&&arcadeOpen())return arcade();if(!a)return intro();if(a.phase==='running')return scene();return summary();}
  redraw=()=>{if(root?.isConnected&&!stopGame)draw();};
  draw();}
-window.A1_GAME_HARD={supports,build,entryHtml,render,numberFr,numberDe,timeFr,timeDe,sentencesOf};
+window.A1_GAME_HARD={supports,build,entryHtml,render,numberFr,numberDe,timeFr,timeDe,sentencesOf,STRINGS};
 })();

@@ -62,9 +62,13 @@ test('the arcade uses each lesson’s own words and forms, with a French interfa
  const games=A.lessonGames('de',9);assert.equal(games[0].title,'L’arène de tir');const host=e.w.document.createElement('div');e.w.document.body.append(host);A.mount(host,'throw',{course:'de',lesson:9,onExit(){}});assert(host.textContent.includes('Ce jeu a besoin'));e.dom.window.close();});
 test('both course pages load and precache the game Hard Mode before the router',()=>{for(const course of ['francais','deutsch']){const html=read(course+'/index.html'),sw=read(course+'/service-worker.js');for(const asset of ['../shared/game-hard-mode.js','../shared/game-hard-mode.css']){const url=html.match(new RegExp('(?:src|href)="('+asset.replace(/[.]/g,'\\.')+'\\?[^"]+)"'))?.[1];assert(url,course+' '+asset);assert(sw.includes(JSON.stringify(url)),course+' cache '+url);}
  assert(html.indexOf('game-hard-mode.js')<html.indexOf('src="hard-mode.js'));assert(html.indexOf('hard-mode-arcade.js')<html.indexOf('src="hard-mode.js'));}});
-test('string game: number lessons connect digit and word, other clues are readable, saved attempts get the current clues',()=>{
- for(const course of ['fr','de']){const e=env(course,3);for(let k=0;k<6;k++){const q=e.w.A1_GAME_HARD.build(course,3).tasks.find(t=>t.type==='match');assert(q.labels.every(l=>/^\d+(er)?$/.test(l)),q.labels.join(' | '));assert(q.answers.every(x=>!/^\d/.test(x)));}e.dom.window.close();}
- const e=env('fr',8);for(let k=0;k<6;k++){const q=e.w.A1_GAME_HARD.build('fr',8).tasks.find(t=>t.type==='match');for(const l of q.labels){const piece=l.split(' · ')[0];assert.match(piece,/___/);assert.match(piece,/^(\p{Lu}|…|___)/u,l);assert.match(piece,/([.?!…]|___)$/u,l);}}
- e.render();e.click('[data-games-begin]');const i=e.a.content.tasks.findIndex(t=>t.type==='match');e.a.content.tasks[i].labels=e.a.content.tasks[i].labels.map(()=>'alt');
- const r=env('fr',8,{state:JSON.parse(JSON.stringify(e.state))});r.render();assert(r.a.content.tasks[i].labels.every(l=>l.includes('___')));e.dom.window.close();r.dom.window.close();
+test('string game: every lesson links six pairs of one category, numbers link digit and word, old attempts get the new pairs',()=>{
+ const e=env('fr',3),S=e.w.A1_GAME_HARD.STRINGS;
+ for(const [key,first] of [['fr',2],['fr-a2',1],['de',1]])for(let id=first;id<=24;id++){const groups=S[key][id];assert(groups?.length,key+id);
+  for(const [kind,...pairs] of groups){assert(pairs.length>=5,key+id);const split=pairs.map(x=>x.split('|'));assert(split.every(x=>x.length===2&&x[0]&&x[1]),key+id);
+   assert.equal(new Set(split.map(x=>x[0])).size,split.length,key+id+' clues');assert.equal(new Set(split.map(x=>x[1])).size,split.length,key+id+' forms');}}
+ e.dom.window.close();
+ for(const course of ['fr','de']){const e=env(course,3);for(let k=0;k<6;k++){const q=e.w.A1_GAME_HARD.build(course,3).tasks.find(t=>t.type==='match');assert.equal(q.labels.length,6);assert(q.labels.every(l=>/^\d+$/.test(l)),q.labels.join(' | '));assert(q.answers.every(x=>!/\d/.test(x)));assert.deepEqual(Array.from(q.gaps),[]);}e.dom.window.close();}
+ const e8=env('fr',8);e8.render();e8.click('[data-games-begin]');const i=e8.a.content.tasks.findIndex(t=>t.type==='match');Object.assign(e8.a.content.tasks[i],{labels:['alt ___ · x','b ___ · y','c ___ · z'],answers:['x','y','z'],gaps:[0,1,2]});
+ const r=env('fr',8,{state:JSON.parse(JSON.stringify(e8.state))});r.render();const q=r.a.content.tasks[i];assert.deepEqual(Array.from(q.gaps),[]);assert(q.labels.every(l=>!l.includes('___')));assert.equal(r.a.orders[i].length,q.answers.length);e8.dom.window.close();r.dom.window.close();
 });
