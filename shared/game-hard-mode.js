@@ -166,7 +166,7 @@ function build(courseKey,id){course=courseKey;const data=COURSES[courseKey].cont
  if(orderIds.length)pages.push({key:'order',ids:orderIds});
  // Magic gaps: every remaining gap of the test, in its own sentence.
  const textIds=[];data.gaps.forEach((g,n)=>{if(used.has(n))return;const s=sentences.find(x=>gapIds(x).includes(n));if(!s)return;textIds.push(tasks.length);tasks.push({type:'text',sentence:fill(s,data,n),hint:g.hint||'',answers:g.answers,policy:{strictAccents:!!g.strictAccents},gaps:[n],title:['Lücke füllen','Fill the gap','Complète le trou'],skills:[g.hint].filter(Boolean)});});
- for(let k=0;k<textIds.length;k+=5)pages.push({key:'text',ids:textIds.slice(k,k+5)});
+ for(let k=0;k<textIds.length;){const size=textIds.length-k===3?3:2;pages.push({key:'text',ids:textIds.slice(k,k+size)});k+=size;}
  // Radio quiz: all recordings on one page.
  const listenIds=[];(data.listening||[]).forEach((block,b)=>block.questions.forEach(q=>{listenIds.push(tasks.length);tasks.push(q.options?{type:'choice',block:b,q:q.q,options:q.options,answers:q.answers,title:[q.q],skills:q.skills||[]}:{type:'listen-text',block:b,q:q.q,answers:q.answers,policy:{format:q.format,strictAccents:!!q.strictAccents},title:[q.q],skills:q.skills||[]});}));
  if(listenIds.length)pages.push({key:'listening',ids:listenIds,blocks:(data.listening||[]).map((_,b)=>b)});

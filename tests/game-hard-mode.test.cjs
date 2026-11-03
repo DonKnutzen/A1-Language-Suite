@@ -28,6 +28,7 @@ function playAll(e,wrong=[]){for(let guard=0;guard<20&&e.a.phase==='running';gua
 test('every lesson after French lesson 1 turns its whole Hard Mode test into games',()=>{for(const course of ['fr','de']){const e=env(course,5),G=e.w.A1_GAME_HARD,H=course==='de'?e.w.DE_A1_HARD_CONTENT:e.w.FR_A1_HARD_CONTENT;
  assert.equal(G.supports('fr',1),false);
  for(let id=course==='fr'?2:1;id<=24;id++){assert(G.supports(course,id),course+id);const b=G.build(course,id),data=H[id];
+  const text=b.pages.filter(p=>p.key==='text'),textTotal=text.reduce((s,p)=>s+p.ids.length,0);for(const p of text)assert(textTotal<2||[2,3].includes(p.ids.length),`${course} ${id} magic gaps 2–3 per page`);assert(text.filter(p=>p.ids.length===3).length<=1,`${course} ${id} at most one page of three`);
   const covered=new Set(b.tasks.flatMap(t=>t.gaps||[]));assert.deepEqual([...covered].sort((x,y)=>x-y),Array.from(data.gaps,(_,n)=>n),`${course} ${id} gaps`);
   const listen=b.pages.filter(p=>p.key==='listening');assert.equal(listen.length,1,`${course} ${id} one listening page`);assert.equal(listen[0].ids.length,data.listening.flatMap(x=>x.questions).length);assert.deepEqual(Array.from(listen[0].blocks),Array.from(data.listening,(_,n)=>n));
   const warm=b.tasks[b.pages[0].ids[0]];assert.equal(warm.type,{2:'spell',3:'numbers',4:'clock'}[id]||'memory',`${course} ${id}`);if(warm.type==='memory')assert.equal(warm.pairs.length*2,12);
