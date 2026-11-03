@@ -1,10 +1,10 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-// Page load of the German deepening as learners see it: a short read, then the first exercise.
-// Targets (deutsch/VERTIEFUNG-SEITENLAST.md): before "Commencer le mini-test" at most ~80 words
-// in lessons 1–3 (limit 90) and 120 words later, one open table and six open example rows;
-// word series such as weekdays or months are one grid and are not counted as example rows.
-const LIMITS={early:90,later:120,tables:1,examples:6};
+// Page load of the German deepening as learners see it (deutsch/VERTIEFUNG-SEITENLAST.md): each topic
+// is shown in short parts (explanation + its check, each note + its check, then the mini-test) and
+// nothing is folded. Before the check of a part: at most 100 words in lessons 1–3 and 120 later, one
+// table and six example rows; word series such as weekdays or months are one grid, not example rows.
+const LIMITS={early:100,later:120,tables:1,examples:6};
 function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.Math.random=()=>.99;
@@ -28,35 +28,73 @@ function visible(node,page){
  }
  return true;
 }
+// Words a learner reads in the shown part before its check (or the mini-test) starts.
 function measure(page,w){
- const start=page.querySelector('.page-check button,#topicPracticeStart'),before=el=>!!(el.compareDocumentPosition(start)&w.Node.DOCUMENT_POSITION_FOLLOWING);
+ const start=[...page.querySelectorAll('.page-check button,#topicPracticeStart')].find(b=>visible(b,page));
+ const before=el=>!start||!!(el.compareDocumentPosition(start)&w.Node.DOCUMENT_POSITION_FOLLOWING);
  const walker=w.document.createTreeWalker(page,w.NodeFilter.SHOW_TEXT);let words=0,n;
  while((n=walker.nextNode())){if(!before(n))break;if(visible(n,page)&&!n.parentElement.closest('button'))words+=countWords(n.textContent);}
  const open=sel=>[...page.querySelectorAll(sel)].filter(el=>visible(el,page)&&before(el));
  return {words,tables:open('table').length,examples:open('.phrase-row,.lesson-foundation-example,.pronoun-example').filter(el=>!el.closest('.deepening-vocabulary')).length};
 }
-test('every German deepening page reaches its first exercise after a short read',()=>{
- const env=environment(),{w,view}=env,problems=[],lessons=new Set();let pages=0;
+test('every German deepening topic is split into short, open parts that end in a check',()=>{
+ const env=environment(),{w,view}=env,problems=[],lessons=new Set();let pages=0,parts=0;
  for(let id=1;id<=24;id++){
   render(env,id);view.querySelector('[data-lesson-step="grammar"]').click();
   for(let topic=1;;topic++){
    const page=view.querySelector('#lessonGrammarPage');w.DE_A1_DEEPENING_TIDY.tidy(page);
-   const where=`L${id} T${topic}`;
+   const where=`L${id} T${topic}`,count=Number(page.dataset.deepeningParts);pages++;lessons.add(id);
+   if(page.querySelector('details'))problems.push(`${where}: folded block`);
    if(!page.querySelector('#topicPracticeStart'))problems.push(`${where}: no practice button`);
-   else{
-    const m=measure(page,w),limit=id<=3?LIMITS.early:LIMITS.later;pages++;lessons.add(id);
-    if(m.words>limit)problems.push(`${where}: ${m.words} words before practice (max ${limit})`);
-    if(m.tables>LIMITS.tables)problems.push(`${where}: ${m.tables} open tables before practice`);
-    if(m.examples>LIMITS.examples)problems.push(`${where}: ${m.examples} open example rows before practice`);
-   }
-   for(const detail of page.querySelectorAll('details.deepening-more')){
-    const summary=detail.querySelector(':scope>summary');
-    if(detail.open||!summary?.textContent.trim()||!countWords([...detail.childNodes].filter(c=>c!==summary).map(c=>c.textContent).join(' ')))problems.push(`${where}: empty or open folded block "${summary?.textContent.trim()}"`);
-   }
    if(page.innerHTML.includes('**'))problems.push(`${where}: unrendered ** in HTML`);
+   for(let part=0;part<count;part++){
+    if(part)view.querySelector('#nextGrammarPart').click();parts++;
+    const m=measure(page,w),limit=id<=3?LIMITS.early:LIMITS.later,at=`${where} P${part+1}`;
+    const shown=[...page.querySelectorAll('[data-deepening-part]')].filter(b=>!b.hidden);
+    if(!shown.length)problems.push(`${at}: empty part`);
+    if(shown.some(b=>Number(b.dataset.deepeningPart)!==part))problems.push(`${at}: blocks of another part are visible`);
+    // The word list is its own part: a list to look up, not reading before an exercise.
+    const wordList=shown.every(b=>b.matches('.lesson-vocabulary-preparation')||b.querySelector('.lesson-vocabulary-preparation'));
+    if(wordList){if(part)problems.push(`${at}: word list after the explanation`);continue;}
+    // Listen-and-repeat pronunciation may stand without a check; every explanation has one.
+    if(part<count-1&&!shown.some(b=>b.matches('.page-check,.lesson-pronunciation-bonus')||b.querySelector('.page-check')))problems.push(`${at}: part without its check`);
+    if(m.words>limit)problems.push(`${at}: ${m.words} words before its check (max ${limit})`);
+    if(m.tables>LIMITS.tables)problems.push(`${at}: ${m.tables} tables before its check`);
+    if(m.examples>LIMITS.examples)problems.push(`${at}: ${m.examples} example rows before its check`);
+   }
+   if(view.querySelector('#nextGrammarPart'))problems.push(`${where}: continue button on the last part`);
+   if(count>1&&!page.querySelector('#topicPracticeStart')?.closest('[data-deepening-part]:not([hidden])'))problems.push(`${where}: mini-test not in the last part`);
    const next=view.querySelector('#nextGrammarTopic');if(!next)break;next.click();
   }
  }
- assert.equal(lessons.size,24,'all 24 lessons measured');assert(pages>=48,`only ${pages} pages measured`);
+ assert.equal(lessons.size,24,'all 24 lessons measured');assert(pages>=48,`only ${pages} pages measured`);assert(parts>pages);
  assert.deepEqual(problems,[]);
+});
+test('back and continue move between the parts of a topic, then to the neighbouring topic',()=>{
+ const env=environment(),{view}=env;render(env,1);view.querySelector('[data-lesson-step="grammar"]').click();
+ view.querySelector('[data-grammar-progress="1"]').click();
+ const page=()=>view.querySelector('#lessonGrammarPage'),count=Number(page().dataset.deepeningParts);
+ assert(count>=3);assert.equal(page().querySelector('.deepening-part-label').textContent,`Partie 1 sur ${count}`);
+ view.querySelector('#nextGrammarPart').click();assert.equal(page().dataset.deepeningPart,'1');
+ view.querySelector('#previousGrammarPart').click();assert.equal(page().dataset.deepeningPart,'0');
+ view.querySelector('#previousGrammarTopic').click();
+ assert.equal(view.querySelector('[data-grammar-progress="0"]').getAttribute('aria-current'),'step');
+ assert.equal(page().dataset.deepeningPart,String(Number(page().dataset.deepeningParts)-1),'back from a topic opens the last part of the previous one');
+});
+test('deepening examples do not repeat the sentences of the listening step',()=>{
+ const env=environment(),{view,w}=env;let repeats=0,rows=0;
+ for(let id=1;id<=24;id++){
+  const heard=new Set(w.testData.lessons[id-1].phrases.map(p=>p[0]));render(env,id);view.querySelector('[data-lesson-step="grammar"]').click();
+  const count=view.querySelectorAll('[data-grammar-progress]').length;
+  for(let topic=0;topic<count;topic++){
+   if(topic)view.querySelector(`[data-grammar-progress="${topic}"]`).click();
+   for(const list of view.querySelectorAll('#lessonGrammarPage .deepening-examples,#lessonGrammarPage .deepening-background,#lessonGrammarPage .lesson-foundation-examples')){
+    const texts=[...list.querySelectorAll('.phrase-row strong,.lesson-foundation-example strong')].map(e=>e.textContent.trim()),again=texts.filter(t=>heard.has(t));
+    rows+=texts.length;repeats+=again.length;
+    // A list keeps a heard sentence only so that a rule is not left without any example.
+    if(again.length)assert(texts.length<=2&&!list.matches('.deepening-background'),`L${id}: repeated ${again.join(' / ')}`);
+   }
+  }
+ }
+ assert(repeats<rows/3,`${repeats} of ${rows} examples repeat listening`);
 });

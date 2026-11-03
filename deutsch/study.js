@@ -38,10 +38,9 @@
       }
     }
   }
-  function compactPage(root,lessonId=0){
-    // Supplementary exercise words remain available before practice, without a
-    // second always-open glossary dominating the grammar explanation.
-    for(const section of root.querySelectorAll('section.lesson-vocabulary-preparation')){
+  function compactPage(root,lessonId=0,listening=[]){
+    // Supplementary exercise words stay open as a titled list before the first check.
+    for(const section of root.querySelectorAll('section.lesson-vocabulary-preparation,details.lesson-vocabulary-preparation')){
       const words=new Map();
       for(const row of section.querySelectorAll('dl>div')){
         const target=row.querySelector('dt')?.textContent.normalize('NFC').trim(),meaning=row.querySelector('dd');
@@ -53,36 +52,94 @@
           row.remove();
         }else words.set(target,meaning);
       }
-      const detail=document.createElement('details');detail.className=section.className;
-      for(const {name,value} of section.attributes)if(name!=='class')detail.setAttribute(name,value);
-      const title=section.querySelector('h4'),summary=document.createElement('summary');
-      summary.textContent='Mots pour les exercices';title?.remove();detail.append(summary,...section.childNodes);section.replaceWith(detail);
+      section.querySelector(':scope>summary,:scope>h4')?.remove();
+      const block=openBlock(section,'Mots pour les exercices');
+      block.querySelector(':scope>h4').insertAdjacentHTML('afterend','<p>Ces mots reviennent dans les exercices de ce thème.</p>');
     }
-    foldPage(root,lessonId);
-    // References follow the practice entry; the explanation and its application
-    // stay adjacent. Each reference is still searchable and keyboard accessible.
-    root.querySelectorAll('.deepening-reference').forEach(detail=>root.append(detail));
+    withoutListeningRepeats(root,listening);
+    // The reference list stays open, after the closing practice.
+    for(const detail of root.querySelectorAll('details.deepening-reference')){
+      const title=detail.querySelector(':scope>summary');title?.remove();
+      const open=openBlock(detail,'Autres expressions');
+      if(!open.querySelector('.phrase-row'))open.remove();else root.append(open);
+    }
   }
-  // Short reading before practice: the rule, one table and the first examples stay open;
-  // further examples, notes, the pronoun guide and pronunciation fold into titled details.
-  function foldPage(root,lessonId){
-    const body=root.querySelector('.grammar-detail-body')||root;
-    const more=(kind,title,nodes)=>{const detail=document.createElement('details');detail.className='deepening-more deepening-more-'+kind;const summary=document.createElement('summary');summary.textContent=title;detail.append(summary,...nodes);return detail;};
-    const wrap=(node,kind,title)=>{const anchor=document.createComment('');node.before(anchor);anchor.replaceWith(more(kind,title,[node]));};
-    const open=lessonId<=3?3:4;
-    const rows=[...body.querySelectorAll(':scope>.phrase-row,:scope>.deepening-examples>.phrase-row')];
-    if(rows.length>open+1){
-      const rest=rows.slice(open),last=rows.at(-1),after=last.parentElement===body?last:last.parentElement;
-      const list=document.createElement('div');list.className='deepening-examples';list.append(...rest);
-      after.after(more('examples',`Plus d’exemples (${rest.length})`,[list]));
+  // A titled, always open block in place of a fold-out (same classes and attributes).
+  function openBlock(node,title){
+    const section=document.createElement('section');
+    for(const {name,value} of node.attributes)section.setAttribute(name,value);
+    section.classList.add('deepening-block');
+    const heading=document.createElement('h4');heading.textContent=title;
+    section.append(heading,...node.childNodes);node.replaceWith(section);return section;
+  }
+  // "Écouter & comprendre" already plays these sentences with their translation. The deepening
+  // shows new examples; a rule without table keeps two of them so it is never left without any.
+  function withoutListeningRepeats(root,listening){
+    const heard=new Set(listening.map(p=>norm(Array.isArray(p)?p[0]:p)));if(!heard.size)return;
+    const text=row=>norm(row.querySelector('strong')?.textContent||'');
+    for(const list of root.querySelectorAll('.deepening-examples,.deepening-background,.lesson-foundation-examples')){
+      const rows=[...list.querySelectorAll(':scope>.phrase-row,:scope>.lesson-foundation-example')];if(!rows.length)continue;
+      const repeats=rows.filter(row=>heard.has(text(row)));if(!repeats.length)continue;
+      const reference=list.matches('.deepening-background');
+      const body=list.closest('.grammar-detail-body,.lesson-foundation-rule');
+      const support=body&&!reference?body.querySelectorAll('.grammar-table,.deepening-vocabulary').length:0;
+      const keep=reference||support?0:Math.max(0,Math.min(2,rows.length)-(rows.length-repeats.length));
+      repeats.slice(keep).forEach(row=>row.remove());
+      if(!list.children.length&&!reference)list.remove();
     }
-    for(const note of body.querySelectorAll('.lesson-foundations.is-topic .lesson-foundation-rule')){
-      const title=note.querySelector(':scope>h4');wrap(note,'note',title?.textContent.trim()||'À savoir');title?.remove();
+  }
+  const norm=s=>String(s||'').normalize('NFC').replace(/\s+/g,' ').trim();
+  // One deepening topic in short parts: explanation + its check, each note + its check, pronunciation,
+  // then the mini-test. Parts are shown one at a time; nothing is folded.
+  // pronunciationFirst: the explanation refers to the pronunciation block (alphabet in L2 T1), so it comes first.
+  function splitPage(root,{pronunciationFirst=false}={}){
+    const blocks=[];
+    for(const child of [...root.children]){
+      const body=child.matches('.grammar-detail')?child.querySelector(':scope>.grammar-detail-body'):null;
+      if(!body){blocks.push(child);continue;}
+      for(const item of [...body.children]){
+        if(item.matches('.lesson-foundations'))blocks.push(...item.children);else blocks.push(item);
+      }
     }
-    for(const guide of body.querySelectorAll('.pronoun-guide')){
-      const title=guide.querySelector(':scope>strong');wrap(guide,'note',title?.textContent.trim()||'sie ou Sie ?');title?.remove();
+    const take=test=>{const found=blocks.filter(test);for(const block of found)blocks.splice(blocks.indexOf(block),1);return found;};
+    const parts=[];let current=null,closed=true;
+    // A longer list of exercise words comes first, as its own part; two or three words stay with the explanation.
+    const wordList=blocks.filter(b=>b.matches('.lesson-vocabulary-preparation')||b.querySelector('.lesson-vocabulary-preparation'));
+    if(wordList.reduce((n,b)=>n+b.querySelectorAll('dl>div').length,0)>3)parts.push({blocks:take(b=>wordList.includes(b)),final:false});
+    if(pronunciationFirst){const pron=take(b=>b.matches('.lesson-pronunciation-bonus'));if(pron.length)parts.push({blocks:pron,final:false});}
+    const starts=b=>b.matches('.lesson-foundation-rule,.lesson-pronunciation-bonus,.lesson-grammar-practice:not(.page-check)');
+    for(const block of blocks){
+      if(block.matches('.deepening-part-label'))continue;
+      if(!current||closed||(starts(block)&&current.blocks.length&&!current.final)){current={blocks:[],final:false};parts.push(current);closed=false;}
+      if(block.matches('.lesson-grammar-practice:not(.page-check)'))current.final=true;
+      current.blocks.push(block);
+      if(!current.final&&(block.matches('.page-check')||block.querySelector('.page-check')))closed=true;
     }
-    root.querySelectorAll('.lesson-pronunciation-bonus details.pronunciation-panel').forEach(detail=>detail.classList.add('deepening-more','deepening-more-pronunciation'));
+    const last=parts.at(-1);
+    if(parts.length>1&&last?.final&&!root.querySelector('.deepening-final-intro')){
+      const intro=document.createElement('p');intro.className='deepening-final-intro';
+      intro.textContent='Tu as vu toutes les parties de ce thème. Le mini-test reprend tout le thème.';
+      last.blocks[0].before(intro);last.blocks.unshift(intro);
+    }
+    parts.forEach((part,i)=>part.blocks.forEach(block=>{block.dataset.deepeningPart=i;if(block.hidden&&!('partHidden' in block.dataset))block.dataset.partHidden='';}));
+    const heading=root.querySelector('.lesson-content-heading');
+    if(parts.length>1&&heading&&!root.querySelector('.deepening-part-label')){
+      const label=document.createElement('p');label.className='deepening-part-label';heading.after(label);
+    }
+    root.dataset.deepeningParts=parts.length;
+    return parts.map(part=>({check:part.blocks.some(b=>b.matches('.page-check')||b.querySelector('.page-check')),final:part.final}));
+  }
+  function showPart(root,index){
+    const count=Number(root.dataset.deepeningParts||1);
+    root.querySelectorAll('[data-deepening-part]').forEach(block=>{block.hidden=Number(block.dataset.deepeningPart)!==index||'partHidden' in block.dataset;});
+    // Containers whose blocks are all hidden leave no empty gap.
+    root.querySelectorAll('.lesson-foundations,.grammar-detail-body').forEach(box=>{box.hidden=![...box.querySelectorAll('[data-deepening-part]')].some(b=>!b.hidden);});
+    const label=root.querySelector('.deepening-part-label');if(label)label.textContent=`Partie ${index+1} sur ${count}`;
+    root.dataset.deepeningPart=index;
+  }
+  function partReady(root,index){
+    const checks=[...root.querySelectorAll(`[data-deepening-part="${index}"]`)].flatMap(b=>b.matches('.page-check')?[b]:[...b.querySelectorAll('.page-check')]);
+    return checks.every(box=>box.querySelector('.exercise-start-btn.is-completed'));
   }
   // Alternatives change one taught detail, not the entire topic of the sentence.
   const contrastGroups=[
@@ -229,5 +286,5 @@
     const result=document.createElement('div');result.innerHTML=holder.innerHTML+root.innerHTML;responsiveTables(result);
     return `<div class="lesson-deepening">${result.innerHTML}</div>`;
   }
-  window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml,studyExamples,compactPage};
+  window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml,studyExamples,compactPage,splitPage,showPart,partReady};
 })();

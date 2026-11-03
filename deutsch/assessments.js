@@ -27,7 +27,7 @@
     A1ExerciseEngine.run({answerAudioAfterResponse:true,matchesAnswer:(value,q)=>q.qualityRevision===149?window.DE_A1_QUESTIONS.matchesAnswer(value,q):undefined,lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+(topicKey||title):step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
   // Short checks right after the rule, each note and the pronunciation box; optional, the closing practice still completes the page.
-  function pageChecks({root,practice,lesson,state,save,speak}){
+  function pageChecks({root,practice,lesson,state,save,speak,onUpdate}){
     const groups=window.DE_A1_PAGE_CHECKS?.inline(lesson.id,practice.key);if(!groups)return;
     const page=root.querySelector('#lessonGrammarPage'),body=page.querySelector('.grammar-detail-body')||page,notes=[...page.querySelectorAll('.lesson-foundation-rule')];
     const pron=page.querySelector('.lesson-pronunciation-bonus details')||page.querySelector('.lesson-pronunciation-bonus');
@@ -46,7 +46,7 @@
         const start=box.querySelector('button');
         start.onclick=()=>{
           if(saved.done)delete saved.session;start.hidden=true;
-          runTasks({state,tasks,view:box.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:saved,save,lessonId:lesson.id,step:'grammar',compact:true,topicKey:key,onFinish:(score,total)=>{saved.done=true;saved.last=score;saved.total=total;save(true);intro();}});
+          runTasks({state,tasks,view:box.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:saved,save,lessonId:lesson.id,step:'grammar',compact:true,topicKey:key,onFinish:(score,total)=>{saved.done=true;saved.last=score;saved.total=total;save(true);intro();onUpdate?.();}});
         };
       };
       intro();
@@ -60,7 +60,7 @@
     practice.drillTasks||=practice.tasks;
     const closingTasks=()=>{const unit=unitOf();return checks?checks.closing(lesson.id,practice.key,unit?window.DE_A1_STUDY.unitTasks(unit):practice.drillTasks):practice.tasks;};
     practice.tasks=closingTasks();
-    pageChecks({root,practice,lesson,state,save,speak});
+    pageChecks({root,practice,lesson,state,save,speak,onUpdate});
     function intro(){
       panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':(current.session?.ex?.length||practice.tasks.length)+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
       panel.querySelector('#topicPracticeStart').onclick=event=>{

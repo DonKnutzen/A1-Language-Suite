@@ -27,7 +27,7 @@ test('all authored reductions leave the identical phrase in listening and every 
   }
   assert(reduced>50);f.dom.window.close();
 });
-test('all 60 pages keep their keys, exercise words, open explanations and usable reference disclosures',()=>{
+test('all 60 pages keep their keys, exercise words, open explanations and an open reference after the practice',()=>{
   const f=setup();let total=0;
   for(const lesson of f.lessons){
     f.render(lesson);f.view.querySelector('[data-lesson-step="grammar"]').click();
@@ -35,10 +35,10 @@ test('all 60 pages keep their keys, exercise words, open explanations and usable
     assert.equal(count,Object.keys(f.w.A1LessonVocabularyPlan.de[lesson.id].titles).length);
     for(let i=0;i<count;i++){
       f.view.querySelector(`[data-grammar-progress="${i}"]`).click();const root=f.view.querySelector('#lessonGrammarPage');
-      assert(root.querySelector('h3'));assert(!root.querySelector('details.grammar-detail'));
-      for(const list of root.querySelectorAll('[data-vocabulary-stage]')){assert.equal(list.tagName,'DETAILS');assert(!list.open);assert(list.querySelector('summary'));assert(list.querySelector('dt'));}
+      assert(root.querySelector('h3'));assert(!root.querySelector('details'),'nothing on a deepening page is folded');
+      for(const list of root.querySelectorAll('[data-vocabulary-stage]')){assert.equal(list.tagName,'SECTION');assert.equal(list.querySelector(':scope>h4')?.textContent,'Mots pour les exercices');assert(list.querySelector('dt'));}
       const ref=root.querySelector('.deepening-reference');
-      if(ref){assert(!ref.open);ref.open=true;assert(ref.querySelector('[data-speak],button'));assert(!ref.textContent.includes('undefined'));const practice=root.querySelector('.deepening-practice');if(practice)assert(practice.compareDocumentPosition(ref)&f.w.Node.DOCUMENT_POSITION_FOLLOWING);}
+      if(ref){assert.equal(ref.tagName,'SECTION');assert(ref.querySelector(':scope>h4'));assert(ref.querySelector('[data-speak],button'));assert(!ref.textContent.includes('undefined'));const practice=root.querySelector('.deepening-practice');if(practice)assert(practice.compareDocumentPosition(ref)&f.w.Node.DOCUMENT_POSITION_FOLLOWING);}
       if(i<2)assert(root.querySelector('#topicPracticeStart'));
     }
   }
