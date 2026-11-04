@@ -183,10 +183,9 @@
       return `<button class="soft-btn lesson-help-toggle" id="speechHelpBtn" aria-expanded="false" aria-controls="speechHelp">💡 ${esc(L.dialogueHelp)}</button><div class="lesson-writing-help lesson-help-content" id="speechHelp" hidden>${body}</div>`;
     }
     function renderExtras(){
-      if(!window.DE_A1_HARD_MODE){
-        if(view.querySelector('.lesson-optional'))return;
-        view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${esc(L.write)}</button></div></section>`);return;
-      }
+      // Speaking and writing stay reachable next to the Hard Mode entry (curriculum steps 3 and 4).
+      if(!view.querySelector('.lesson-optional'))view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${esc(L.write)}</button></div></section>`);
+      if(!window.DE_A1_HARD_MODE)return;
       if(view.querySelector('.hard-entry'))return;
       const host=document.createElement('div');view.append(host);
       window.DE_A1_HARD_MODE.renderEntry({lesson:l,view:host,state,onStart:()=>{remember();window.A1Voice?.cancel();window.DE_A1_HARD_MODE.render({lesson:l,view,state,save,onBack:()=>goStep('check')});},onQuiz:()=>{remember();window.DE_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
@@ -216,7 +215,7 @@
       window.A1Voice?.cancel();
       if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
       const heardSet=new Set(p.heardPhrases);
-      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} écoutés</small></div><div class="lesson-audio-rows" id="lessonAudioRows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="primary-btn lesson-audio-switch" id="switchAudioPage" aria-controls="lessonAudioRows"></button></div>`:''}</section>`;
+      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} écoutés</small></div><button type="button" class="soft-btn lesson-audio-all" id="playAllPhrases">▶ Tout écouter</button><div class="lesson-audio-rows" id="lessonAudioRows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="primary-btn lesson-audio-switch" id="switchAudioPage" aria-controls="lessonAudioRows"></button></div>`:''}</section>`;
       let body='';
       if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('de',l.id)||''}${window.A1LessonFoundations?.preparationHtml('de',l.id,'listen')||''}<div class="lesson-listening-practice">${p.quizDone?`<p class="muted">Meilleur résultat : ${best()} %</p>`:''}${!p.quizDone?'<small class="exercise-entry-hint">10 questions rapides</small>':''}<button class="primary-btn exercise-start-btn ${p.quizDone?'is-completed':''}" id="startQuiz">${p.quizDone?`<span class="exercise-completed-mark" aria-hidden="true">✓</span><span class="exercise-entry-copy"><span>10 questions terminées</span><small>Refaire les exercices ↻</small></span>`:p.session?'Continuer le quiz':'Commencer le quiz'}</button></div>${window.A1LessonFoundations?.vocabularyHtml('de',l.id,l.phrases)||''}</section>`;
       if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Progression en grammaire">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · terminé':''}${i===grammarIndex?' · actuel':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thème ${grammarIndex+1} / ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${window.A1LessonFoundations?.enhance('de',l.id,grammarPages[grammarIndex].title,grammarPages[grammarIndex].html,grammarIndex)||grammarPages[grammarIndex].html}</div></section>`;
@@ -238,6 +237,14 @@
             button.textContent=returning?`← ${label}`:`${label} →`;
           }
         };
+        // One tap plays the visible page in order and counts its sentences as heard.
+        document.getElementById('playAllPhrases')?.addEventListener('click',()=>{
+          const indices=l.phrases.map((_,i)=>i).filter(i=>audioPageFor(i)===audioPage);
+          window.A1Voice?.speakSequence(indices.map(i=>window.DE_A1_ANSWER_AUDIO?.forSpeech(l.phrases[i][0])||l.phrases[i][0]),{lang:'de-DE',rate:.82});
+          let changed=false;
+          for(const i of indices){const key=l.phrases[i][0];if(!p.heardPhrases.includes(key)){p.heardPhrases.push(key);changed=true;}view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');}
+          if(changed){save();refreshSteps();const counter=view.querySelector('.lesson-audio-page');if(counter)counter.textContent=`${heardCount()} / ${l.phrases.length} écoutés`;}
+        });
         document.getElementById('switchAudioPage')?.addEventListener('click',()=>{
           window.A1Voice?.cancel();
           audioPage=audioPage===audioPageCount-1?0:audioPage+1;

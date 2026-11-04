@@ -24,7 +24,7 @@
     // A started check keeps its original questions and scoring rules until completion.
     if(step==='grammar'){const revision=162;window.DE_A1_STUDY.refreshSession(session,exercises,revision);}
     else if(!session.session)session.contentRevision=149;
-    A1ExerciseEngine.run({answerAudioAfterResponse:true,matchesAnswer:(value,q)=>q.qualityRevision===149?window.DE_A1_QUESTIONS.matchesAnswer(value,q):undefined,lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+(topicKey||title):step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
+    A1ExerciseEngine.run({finishLabel:'Voir le résultat',answerAudioAfterResponse:true,matchesAnswer:(value,q)=>q.qualityRevision===149?window.DE_A1_QUESTIONS.matchesAnswer(value,q):undefined,lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+(topicKey||title):step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
   // One practice per topic page (like the French course): the former short checks after each block
   // are part of it, so the page reads as one explanation followed by one exercise block.
@@ -34,7 +34,7 @@
     const current=bucket(state,lesson.id,practice.key),checks=window.DE_A1_PAGE_CHECKS;
     const unitOf=()=>Object.values(window.DE_A1_STUDY.content).flat().find(u=>u.key===practice.key);
     practice.drillTasks||=practice.tasks;
-    const closingTasks=()=>{const unit=unitOf();return checks?[...Object.values(checks.inline(lesson.id,practice.key)||{}).flat(),...checks.closing(lesson.id,practice.key,unit?window.DE_A1_STUDY.unitTasks(unit):practice.drillTasks)]:practice.tasks;};
+    const closingTasks=()=>{const unit=unitOf();return withoutDuplicates(checks?[...Object.values(checks.inline(lesson.id,practice.key)||{}).flat(),...checks.closing(lesson.id,practice.key,unit?window.DE_A1_STUDY.unitTasks(unit):practice.drillTasks)]:practice.tasks);};
     practice.tasks=closingTasks();
     function intro(){
       panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':(current.session?.ex?.length||practice.tasks.length)+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer les exercices'}</button><div class="grammar-drill-stage"></div>`;
@@ -51,6 +51,14 @@
       };
     }
     intro();
+  }
+  // The former short checks and the topic pool sometimes hold the very same task (same sentence,
+  // same answer); one practice asks it only once.
+  function withoutDuplicates(tasks){
+    const norm=s=>String(s??'').normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}_]+/gu,' ').trim();
+    const key=q=>norm(String(q.prompt||q.q||'').replace(/^«[^»]*»\s*—\s*(?:complète|choisis)[^:]*:\s*/i,''))+'|'+norm(q.answer??q.o?.[q.a]);
+    const seen=new Set();
+    return tasks.filter(q=>{const k=key(q);if(seen.has(k))return false;seen.add(k);return true;});
   }
   function spreadAnswers(tasks){
     const pending=shuffle(tasks),out=[];
@@ -123,5 +131,5 @@
     }
     menu();
   }
-  window.DE_A1_ASSESSMENTS={spreadAnswers,configure,topicPractice,decorate,practiceState,makeLessonTest,testCount,best,attempted,passedCount,completePassedLessons,introHtml,renderLessonTest,grammarCheckTasks,grammarCheckTried,grammarCheckBest,renderGrammarCheck,courseModuleTasks,renderCourseMenu};
+  window.DE_A1_ASSESSMENTS={spreadAnswers,withoutDuplicates,configure,topicPractice,decorate,practiceState,makeLessonTest,testCount,best,attempted,passedCount,completePassedLessons,introHtml,renderLessonTest,grammarCheckTasks,grammarCheckTried,grammarCheckBest,renderGrammarCheck,courseModuleTasks,renderCourseMenu};
 })();

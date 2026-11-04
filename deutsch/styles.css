@@ -875,6 +875,8 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 
 
 .lesson-core-phrase[hidden]{display:none}
+.lesson-core-phrases .lesson-audio-all{display:flex;align-items:center;justify-content:center;gap:6px;margin:2px 0 10px;padding:8px 14px;min-height:40px;font-weight:650}
+.comprehension-transcript-note{margin:12px 0 0;font-size:.85rem}
 .lesson-audio-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
 .lesson-audio-pager .tiny-btn{min-width:44px;min-height:36px;font-size:20px}
 .lesson-audio-pager small{font-size:13px;color:var(--muted)}

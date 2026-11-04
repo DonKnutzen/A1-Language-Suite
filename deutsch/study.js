@@ -158,7 +158,7 @@
     return result;
   }
   function lessonExercises(lesson){
-    const units=content[lesson.id],pool=balanced(units,u=>shuffle([...u.rows.map(([de,fr])=>[plain(de),fr]),...u.extra.slice(0,2)]),10);
+    const units=content[lesson.id],skipped=lesson.seriesRepeats||new Set(),pool=balanced(units,u=>shuffle([...u.rows.map(([de,fr])=>[plain(de),fr]),...u.extra.slice(0,2)].filter(p=>!skipped.has(plain(p[0])))),10);
     return shuffle(pool.map((pair,i)=>recognition(units.find(u=>[...u.rows,...u.extra].some(p=>plain(p[0])===pair[0])),pair,{listening:i>=8}))).map(indexAnswer);
   }
   function refreshSession(progress,tasks,revision=118){
@@ -194,9 +194,24 @@
         const numbers=lesson.id===3&&u===content[3][0]?(u.table||[]).map(([range,text])=>[text,range]):[];
         return [...numbers,...(series?[series]:[]),...u.rows.filter(p=>!vocabulary.has(plain(p[0]))),...u.extra.slice(0,2).filter(p=>!vocabulary.has(plain(p[0])))].map(([de,fr])=>[plain(de),fr]);
       });
-      lesson.phrases=phrases.filter((p,i)=>phrases.findIndex(q=>q[0]===p[0])===i);
+      lesson.phrases=withoutSeriesRepeats(lesson,phrases.filter((p,i)=>phrases.findIndex(q=>q[0]===p[0])===i));
       lesson.quiz=lessonExercises(lesson).map(t=>({...t,q:t.q||t.prompt}));
     }
+  }
+  // From lesson 5 on, weekdays and numbers are known. A listening series that changes only that
+  // slot (Am Samstag / Sonntag / Montag / Freitag spiele ich Fußball) keeps two examples; the
+  // exercises still use every row.
+  const knownSlot=/^(?:(?:am|um|im)\s+)?(?:montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|heute|morgen|übermorgen|null|eins?|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|[a-zäöüß]*zehn|[a-zäöüß]*zig|[a-zäöüß]*ßig)$/i;
+  function withoutSeriesRepeats(lesson,phrases){
+    if(lesson.id<5)return phrases;
+    const counts={},drop=new Set();
+    for(const unit of content[lesson.id])for(const [marked] of [...unit.rows,...unit.extra.slice(0,2)]){
+      const slot=marked.match(/\|([^|]+)\|/)?.[1];if(!slot||!knownSlot.test(slot.trim()))continue;
+      const template=marked.replace(/\|[^|]+\|/,'_');counts[template]=(counts[template]||0)+1;
+      if(counts[template]>2)drop.add(plain(marked));
+    }
+    lesson.seriesRepeats=drop;
+    return phrases.filter(p=>!drop.has(p[0]));
   }
   function grammarHtml(lesson,references,speakBtn){
     const root=document.createElement('div');root.innerHTML=references;
