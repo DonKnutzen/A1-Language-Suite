@@ -86,7 +86,7 @@
     return p>=r.total*90?'A+':p>=r.total*80?'A':p>=r.total*70?'B':p>=r.total*60?'C':'D';
   }
   const goldResult=attempt=>grade(attempt)==='A+';
-  const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-tricolour'):'';
+  const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-flag-uk'):'';
   const achievementBadge=attempt=>badgeMarkup(grade(attempt));
   function badgeMarkup(mark){
     const names={'A+':t('Gold · ab 90 %','Gold · 90% or more'),A:t('Hervorragend · ab 80 %','Excellent · 80% or more'),B:t('Gut · 70–79 %','Good · 70–79%'),C:t('Befriedigend · 60–69 %','Satisfactory · 60–69%'),D:t('Ausreichend · 50–59 %','Pass · 50–59%')};

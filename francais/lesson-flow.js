@@ -22,8 +22,15 @@
     const complete=state.doneLessons?.includes(lesson.id)||Number(state.lessonMasteryBest?.[lesson.id]||0)>=80;
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
-    const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    const deepeningDone=Object.values(p.deepening&&typeof p.deepening==='object'?p.deepening:{}).some(v=>v?.done===true);
+    // Final = Finale & Arcade: best reviewed attempt in percent, done once an attempt passed (from 50 %).
+    const hard=p.hardMode&&typeof p.hardMode==='object'?p.hardMode:{},list=x=>Array.isArray(x)?x:[];
+    const finals=[hard.attempt,...list(hard.history),hard.games?.attempt,...list(hard.games?.history)].filter(a=>a?.phase==='reviewed'&&a.completedAt&&Number.isInteger(a.result?.correct)&&Number(a.result?.total)>0);
+    const finalBest=finals.length?Math.max(...finals.map(a=>Math.round(a.result.correct*100/a.result.total))):null;
+    const finalDone=finals.some(a=>a.result.passed===true&&a.result.correct*100>=a.result.total*50);
+    const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small>${value?`<strong>${esc(value)}</strong>`:''}</span>`;
+    const mark=(label,done)=>step(label,done?'✓':'',done);
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${mark(L.listenStep,audioDone)}${mark(({fr:'Approfondissement',tr:'Pekiştirme'})[uiLang]||'Vertiefung',deepeningDone)}${mark(({fr:'Bilan',tr:'Ders kontrolü'})[uiLang]||'Lektionscheck',masteryDone)}${step(({fr:'Finale',tr:'Final'})[uiLang]||'Finaler Abschluss',finalBest===null?'—':finalBest+' %',finalDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;

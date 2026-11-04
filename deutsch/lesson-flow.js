@@ -17,8 +17,15 @@
     const complete=state.doneLessons?.includes(lesson.id)||Number(state.lessonMasteryBest?.[lesson.id]||0)>=80;
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
-    const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Compréhension',comprehension?'✓':'—',comprehension)}${step('Bilan',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Bilan effectué">✓</span>':''}</div>`;
+    const deepeningDone=Object.values(p.deepening&&typeof p.deepening==='object'?p.deepening:{}).some(v=>v?.done===true);
+    // Final = Finale & Arcade: best reviewed attempt in percent, done once an attempt passed (from 50 %).
+    const hard=p.hardMode&&typeof p.hardMode==='object'?p.hardMode:{},list=x=>Array.isArray(x)?x:[];
+    const finals=[hard.attempt,...list(hard.history),hard.games?.attempt,...list(hard.games?.history)].filter(a=>a?.phase==='reviewed'&&a.completedAt&&Number.isInteger(a.result?.correct)&&Number(a.result?.total)>0);
+    const finalBest=finals.length?Math.max(...finals.map(a=>Math.round(a.result.correct*100/a.result.total))):null;
+    const finalDone=finals.some(a=>a.result.passed===true&&a.result.correct*100>=a.result.total*50);
+    const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small>${value?`<strong>${esc(value)}</strong>`:''}</span>`;
+    const mark=(label,done)=>step(label,done?'✓':'',done);
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${mark(L.listenStep,audioDone)}${mark('Approfondir',deepeningDone)}${mark('Bilan',masteryDone)}${step('Finale',finalBest===null?'—':finalBest+' %',finalDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Bilan effectué">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
@@ -184,12 +191,15 @@
       return `<button class="soft-btn lesson-help-toggle" id="speechHelpBtn" aria-expanded="false" aria-controls="speechHelp">💡 ${esc(L.dialogueHelp)}</button><div class="lesson-writing-help lesson-help-content" id="speechHelp" hidden>${body}</div>`;
     }
     function renderExtras(){
-      // Speaking and writing stay reachable next to the Hard Mode entry (curriculum steps 3 and 4).
-      if(!view.querySelector('.lesson-optional'))view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${esc(L.write)}</button></div></section>`);
-      if(!window.DE_A1_HARD_MODE||view.querySelector('.hard-entry'))return;
-      // Order below the lesson check: Hard Mode, tower, back button, then the optional exam preparation.
+      // Like FR-A1 and FR-A2: with Hard Mode (always loaded in the app) the Bilan page has no
+      // "À l'oral / À l'écrit" card; only a build without Hard Mode keeps it as the way there.
+      if(!window.DE_A1_HARD_MODE){
+        if(!view.querySelector('.lesson-optional'))view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${esc(L.write)}</button></div></section>`);
+        return;
+      }
+      if(view.querySelector('.hard-entry'))return;
+      // Order below the lesson check: Hard Mode, tower, then the back button.
       const host=document.createElement('div'),footer=view.querySelector(':scope > .lesson-step-footer');if(footer)footer.before(host);else view.append(host);
-      const optional=view.querySelector('.lesson-optional');if(optional)view.append(optional);
       window.DE_A1_HARD_MODE.renderEntry({lesson:l,view:host,state,onStart:()=>{remember();window.A1Voice?.cancel();window.DE_A1_HARD_MODE.render({lesson:l,view,state,save,onBack:()=>goStep('check')});},onQuiz:()=>{remember();window.DE_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
     }
     function drawMastery(){

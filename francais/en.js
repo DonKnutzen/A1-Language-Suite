@@ -1766,6 +1766,7 @@ window.FR_A1_EN = Object.freeze({
   "Grammatikfortschritt": "Grammar progress",
   "Grundlagen": "Basics",
   "Abschluss": "Completion",
+  "Finaler Abschluss": "Final test",
   "Finale & Arcade": "Finale & Arcade",
   "Finale · Lückentext": "Finale · cloze text",
   "Finale · Hörverstehen": "Finale · listening",

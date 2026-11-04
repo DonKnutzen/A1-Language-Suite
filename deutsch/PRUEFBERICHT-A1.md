@@ -6,7 +6,7 @@ Noten 1–5 wie Schulnoten (1 = sehr gut, 5 = mangelhaft).
 
 **Umsetzungsstand (2026-11-03):** Maßnahmen 1–6 der Top 10 sind umgesetzt (Branch `deutsch-a1-pruefbericht-massnahmen`).
 - **Abschlussknopf**: heißt jetzt „Voir le résultat“ (`deutsch/assessments.js`).
-- **Oral/Écrit**: die Karte steht wieder auf der Bilan-Seite (`deutsch/lesson-flow.js`).
+- **Oral/Écrit**: am 2026-11-04 wieder zurückgenommen. Die Karte bleibt ausgeblendet wie in FR-A1 und FR-A2 (`deutsch/lesson-flow.js`).
 - **Transkript**: erscheint erst nach „Vérifier“ oder wenn kein Audio verfügbar ist (`deutsch/listening-player.js`).
 - **Écouter**: neuer Knopf „▶ Tout écouter“ pro Seite. Reihen, in denen nur Wochentag oder Zahl wechselt, sind ab L5 auf 2 Beispiele gekürzt, das sind 18 Sätze weniger. Das Quiz fragt nur noch gehörte Sätze ab (`deutsch/study.js`, `deutsch/lesson-flow.js`, `deutsch/styles.css`).
 - **Dubletten**: 13 wörtlich gleiche Aufgaben sind aus den Themenübungen entfernt (`withoutDuplicates` in `deutsch/assessments.js`).
