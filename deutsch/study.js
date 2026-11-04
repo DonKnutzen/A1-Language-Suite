@@ -38,8 +38,10 @@
       }
     }
   }
+  // One topic = one calm page, like the French course: rule, table, examples, a short "Bon à savoir"
+  // with the notes, the exercise words, then one practice block. Nothing is folded or boxed twice.
   function compactPage(root,lessonId=0,listening=[]){
-    // Supplementary exercise words stay open as a titled list before the first check.
+    const practice=root.querySelector(':scope>.lesson-grammar-practice');
     for(const section of root.querySelectorAll('section.lesson-vocabulary-preparation,details.lesson-vocabulary-preparation')){
       const words=new Map();
       for(const row of section.querySelectorAll('dl>div')){
@@ -53,15 +55,18 @@
         }else words.set(target,meaning);
       }
       section.querySelector(':scope>summary,:scope>h4')?.remove();
-      const block=openBlock(section,'Mots pour les exercices');
-      block.querySelector(':scope>h4').insertAdjacentHTML('afterend','<p>Ces mots reviennent dans les exercices de ce thème.</p>');
+      section.querySelectorAll(':scope>p').forEach(p=>p.remove());
+      const block=openBlock(section,'Mots utiles');
+      // The words stay right above the exercises that use them.
+      if(practice)practice.before(block);
     }
     withoutListeningRepeats(root,listening);
-    // The reference list stays open, after the closing practice.
-    for(const detail of root.querySelectorAll('details.deepening-reference')){
-      const title=detail.querySelector(':scope>summary');title?.remove();
-      const open=openBlock(detail,'Autres expressions');
-      if(!open.querySelector('.phrase-row'))open.remove();else root.append(open);
+    // The leftover reference list repeats writing hints; the page ends with its practice.
+    root.querySelectorAll('.deepening-reference').forEach(el=>el.remove());
+    for(const notes of root.querySelectorAll('.lesson-foundations')){
+      if(!notes.querySelector('.lesson-foundation-rule')||notes.querySelector(':scope>.deepening-notes-title'))continue;
+      notes.classList.add('deepening-notes');
+      notes.insertAdjacentHTML('afterbegin','<h4 class="deepening-notes-title">Bon à savoir</h4>');
     }
   }
   // A titled, always open block in place of a fold-out (same classes and attributes).
@@ -89,58 +94,6 @@
     }
   }
   const norm=s=>String(s||'').normalize('NFC').replace(/\s+/g,' ').trim();
-  // One deepening topic in short parts: explanation + its check, each note + its check, pronunciation,
-  // then the mini-test. Parts are shown one at a time; nothing is folded.
-  // pronunciationFirst: the explanation refers to the pronunciation block (alphabet in L2 T1), so it comes first.
-  function splitPage(root,{pronunciationFirst=false}={}){
-    const blocks=[];
-    for(const child of [...root.children]){
-      const body=child.matches('.grammar-detail')?child.querySelector(':scope>.grammar-detail-body'):null;
-      if(!body){blocks.push(child);continue;}
-      for(const item of [...body.children]){
-        if(item.matches('.lesson-foundations'))blocks.push(...item.children);else blocks.push(item);
-      }
-    }
-    const take=test=>{const found=blocks.filter(test);for(const block of found)blocks.splice(blocks.indexOf(block),1);return found;};
-    const parts=[];let current=null,closed=true;
-    // A longer list of exercise words comes first, as its own part; two or three words stay with the explanation.
-    const wordList=blocks.filter(b=>b.matches('.lesson-vocabulary-preparation')||b.querySelector('.lesson-vocabulary-preparation'));
-    if(wordList.reduce((n,b)=>n+b.querySelectorAll('dl>div').length,0)>3)parts.push({blocks:take(b=>wordList.includes(b)),final:false});
-    if(pronunciationFirst){const pron=take(b=>b.matches('.lesson-pronunciation-bonus'));if(pron.length)parts.push({blocks:pron,final:false});}
-    const starts=b=>b.matches('.lesson-foundation-rule,.lesson-pronunciation-bonus,.lesson-grammar-practice:not(.page-check)');
-    for(const block of blocks){
-      if(block.matches('.deepening-part-label'))continue;
-      if(!current||closed||(starts(block)&&current.blocks.length&&!current.final)){current={blocks:[],final:false};parts.push(current);closed=false;}
-      if(block.matches('.lesson-grammar-practice:not(.page-check)'))current.final=true;
-      current.blocks.push(block);
-      if(!current.final&&(block.matches('.page-check')||block.querySelector('.page-check')))closed=true;
-    }
-    const last=parts.at(-1);
-    if(parts.length>1&&last?.final&&!root.querySelector('.deepening-final-intro')){
-      const intro=document.createElement('p');intro.className='deepening-final-intro';
-      intro.textContent='Tu as vu toutes les parties de ce thème. Le mini-test reprend tout le thème.';
-      last.blocks[0].before(intro);last.blocks.unshift(intro);
-    }
-    parts.forEach((part,i)=>part.blocks.forEach(block=>{block.dataset.deepeningPart=i;if(block.hidden&&!('partHidden' in block.dataset))block.dataset.partHidden='';}));
-    const heading=root.querySelector('.lesson-content-heading');
-    if(parts.length>1&&heading&&!root.querySelector('.deepening-part-label')){
-      const label=document.createElement('p');label.className='deepening-part-label';heading.after(label);
-    }
-    root.dataset.deepeningParts=parts.length;
-    return parts.map(part=>({check:part.blocks.some(b=>b.matches('.page-check')||b.querySelector('.page-check')),final:part.final}));
-  }
-  function showPart(root,index){
-    const count=Number(root.dataset.deepeningParts||1);
-    root.querySelectorAll('[data-deepening-part]').forEach(block=>{block.hidden=Number(block.dataset.deepeningPart)!==index||'partHidden' in block.dataset;});
-    // Containers whose blocks are all hidden leave no empty gap.
-    root.querySelectorAll('.lesson-foundations,.grammar-detail-body').forEach(box=>{box.hidden=![...box.querySelectorAll('[data-deepening-part]')].some(b=>!b.hidden);});
-    const label=root.querySelector('.deepening-part-label');if(label)label.textContent=`Partie ${index+1} sur ${count}`;
-    root.dataset.deepeningPart=index;
-  }
-  function partReady(root,index){
-    const checks=[...root.querySelectorAll(`[data-deepening-part="${index}"]`)].flatMap(b=>b.matches('.page-check')?[b]:[...b.querySelectorAll('.page-check')]);
-    return checks.every(box=>box.querySelector('.exercise-start-btn.is-completed'));
-  }
   // Alternatives change one taught detail, not the entire topic of the sentence.
   const contrastGroups=[
     [['heute','aujourd’hui'],['morgen','demain'],['übermorgen','après-demain']],
@@ -286,5 +239,5 @@
     const result=document.createElement('div');result.innerHTML=holder.innerHTML+root.innerHTML;responsiveTables(result);
     return `<div class="lesson-deepening">${result.innerHTML}</div>`;
   }
-  window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml,studyExamples,compactPage,splitPage,showPart,partReady};
+  window.DE_A1_STUDY={configure,content,unitTasks,lessonExercises,assessmentTasks,refreshSession,grammarHtml,ruleHtml,studyExamples,compactPage};
 })();

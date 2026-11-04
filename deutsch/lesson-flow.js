@@ -59,7 +59,7 @@
     const checkReady=()=>complete()||masteryAttempted()||(passed()&&p.comprehension?.done===true);
     const optionalTitle='Préparation facultative à l’examen';
     const steps=[['listen','Écouter & comprendre'],['grammar','Approfondir'],...(hasGrammarCheck?[['grammar-check','Test final']]:[]),['comprehension','Compréhension orale'],...(hasMastery?[['check','Bilan de la leçon']]:[])];
-    let activeStep='listen',grammarIndex=0,grammarPart=0,grammarParts=[],audioPage=0,audioLayoutObserver=null;
+    let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
     const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
     const audioPageFor=index=>Math.floor(index*audioPageCount/Math.max(1,l.phrases.length));
     const grammarSource=document.createElement('div');
@@ -82,7 +82,7 @@
     }
     const grammarPractices=grammarPages.map(page=>DE_A1_ASSESSMENTS.topicPractice(page));
     function remember(mode='overview'){
-      p.resume={step:activeStep,grammarIndex,grammarPart:activeStep==='grammar'?Math.max(0,grammarPart):0,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?grammarPracticeKey(grammarIndex)||null:null};
+      p.resume={step:activeStep,grammarIndex,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?grammarPracticeKey(grammarIndex)||null:null};
       state.lastLessonId=l.id;save();
     }
     function drawGrammarCheck(){remember('exercise');opts.renderGrammarCheck({onBack:()=>goStep('grammar-check')});}
@@ -96,20 +96,12 @@
       if(!Array.isArray(p.grammarReadPages))p.grammarReadPages=[];
       p.grammarReadPages.push(grammarIndex);save();
     }
-    function goGrammarTopic(index,focus=false,part=0){
+    function goGrammarTopic(index,focus=false){
       if(!Number.isInteger(index)||index<0||index>=grammarPages.length||index===grammarIndex)return;
       if(index>grammarIndex)markGrammarRead();
-      grammarIndex=index;grammarPart=part;drawOverview();
+      grammarIndex=index;drawOverview();
       if(focus)view.querySelector(`[data-grammar-progress="${index}"]`)?.focus({preventScroll:true});
     }
-    // One part of the current topic at a time; the footer leads through the parts, then to the next topic.
-    function goGrammarPart(index){
-      const page=view.querySelector('#lessonGrammarPage');
-      if(!page||index<0||index>=grammarParts.length)return;
-      grammarPart=index;window.DE_A1_STUDY.showPart(page,index);remember();
-      redrawFooter();window.A1Voice?.cancel();window.scrollTo({top:0,behavior:'instant'});
-    }
-    function redrawFooter(){const footer=view.querySelector('.lesson-step-footer');if(footer){footer.outerHTML=stepFooter();wireStepFooter();}}
     function stepDone(key){
       return {listen:audioTargets().length>0&&heardCount()===audioTargets().length&&passed(),grammar:grammarPages.every((_,i)=>grammarTopicDone(i)),'grammar-check':hasGrammarCheck&&DE_A1_ASSESSMENTS.grammarCheckTried(state),comprehension:p.comprehension?.done===true,speak:p.speakingDone===true,write:p.writingDone===true,check:masteryPassed()}[key];
     }
@@ -120,9 +112,8 @@
       return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
     }
     function refreshNextAction(){
-      const page=view.querySelector('#lessonGrammarPage'),inPart=activeStep==='grammar'&&page&&grammarPart<grammarParts.length-1;
-      const ready=inPart?window.DE_A1_STUDY.partReady(page,grammarPart):activeStep==='grammar'?grammarTopicDone(grammarIndex):activeStep==='listen'?p.quizDone===true:stepDone(activeStep);
-      view.querySelectorAll('#nextGrammarPart,#nextGrammarTopic,#nextLessonStep').forEach(button=>button.classList.toggle('lesson-next-ready',ready));
+      const ready=activeStep==='grammar'?grammarTopicDone(grammarIndex):activeStep==='listen'?p.quizDone===true:stepDone(activeStep);
+      view.querySelectorAll('#nextGrammarTopic,#nextLessonStep').forEach(button=>button.classList.toggle('lesson-next-ready',ready));
     }
     function refreshSteps(){
       refreshNextAction();
@@ -138,15 +129,13 @@
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1];
       if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Bilan de la leçon</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;
       if(activeStep==='comprehension')return '<div class="lesson-step-footer"><button class="secondary-btn" id="previousLessonStep">← Retour</button></div>';
-      if(activeStep==='grammar')return `<div class="lesson-step-footer">${grammarPart>0?'<button class="secondary-btn" id="previousGrammarPart">← Retour</button>':grammarIndex?`<button class="secondary-btn" id="previousGrammarTopic">← Retour</button>`:'<button class="secondary-btn" id="previousLessonStep">← Retour</button>'}${grammarPart<grammarParts.length-1?'<button class="primary-btn" id="nextGrammarPart">Continuer →</button>':grammarIndex<grammarPages.length-1?`<button class="primary-btn" id="nextGrammarTopic">Suivant : ${esc(grammarPages[grammarIndex+1].title)} →</button>`:next?`<button class="primary-btn" id="nextLessonStep">Suivant : ${esc(next[1])} →</button>`:''}</div>`;
+      if(activeStep==='grammar')return `<div class="lesson-step-footer">${grammarIndex?`<button class="secondary-btn" id="previousGrammarTopic">← Retour</button>`:'<button class="secondary-btn" id="previousLessonStep">← Retour</button>'}${grammarIndex<grammarPages.length-1?`<button class="primary-btn" id="nextGrammarTopic">Suivant : ${esc(grammarPages[grammarIndex+1].title)} →</button>`:next?`<button class="primary-btn" id="nextLessonStep">Suivant : ${esc(next[1])} →</button>`:''}</div>`;
       return `<div class="lesson-step-footer">${i?'<button class="secondary-btn" id="previousLessonStep">← Retour</button>':''}${next?`<button class="primary-btn" id="nextLessonStep">Suivant : ${esc(next[1])} →</button>`:''}</div>`;
     }
     function wireStepFooter(){
       document.getElementById('backLearn').onclick=opts.renderLearn;wireStepNav();refreshNextAction();
       const i=steps.findIndex(([key])=>key===activeStep);
-      document.getElementById('previousGrammarPart')?.addEventListener('click',()=>goGrammarPart(grammarPart-1));
-      document.getElementById('nextGrammarPart')?.addEventListener('click',()=>goGrammarPart(grammarPart+1));
-      document.getElementById('previousGrammarTopic')?.addEventListener('click',()=>goGrammarTopic(grammarIndex-1,false,-1));
+      document.getElementById('previousGrammarTopic')?.addEventListener('click',()=>goGrammarTopic(grammarIndex-1));
       document.getElementById('nextGrammarTopic')?.addEventListener('click',()=>goGrammarTopic(grammarIndex+1));
       view.querySelectorAll('[data-grammar-progress]').forEach(btn=>btn.onclick=()=>goGrammarTopic(Number(btn.dataset.grammarProgress),true));
       document.getElementById('previousLessonStep')?.addEventListener('click',()=>goStep(steps[i-1][0]));
@@ -279,12 +268,6 @@
       if(activeStep==='grammar')DE_A1_ASSESSMENTS.decorate({root:view,practice:grammarPractices[grammarIndex],lesson:l,state,save,speak:opts.speak,onUpdate:refreshSteps,onStart:()=>remember('exercise')});
       if(activeStep==='grammar')window.DE_A1_STUDY?.compactPage(view.querySelector('#lessonGrammarPage'),l.id,l.phrases);
       expandContent(view);
-      grammarParts=[];
-      if(activeStep==='grammar'&&window.DE_A1_STUDY?.splitPage){
-        const page=view.querySelector('#lessonGrammarPage');grammarParts=window.DE_A1_STUDY.splitPage(page,{pronunciationFirst:l.id===2&&grammarIndex===0});
-        if(grammarPart<0||grammarPart>=grammarParts.length)grammarPart=grammarParts.length-1;
-        window.DE_A1_STUDY.showPart(page,grammarPart);redrawFooter();remember();
-      }
       if(activeStep==='comprehension')window.A1Comprehension.render({root:view.querySelector('#lessonComprehension'),data:window.A1_COMPREHENSION_CONTENT[l.id],work:p,lessonId:l.id,targetLang:opts.targetLang,uiLang:opts.uiLang,save:completed=>{if(!p.comprehension?.graded&&p.comprehension)delete p.comprehension.reviewRecorded;window.DE_A1_REVIEW?.captureListening(state,l.id,window.A1_COMPREHENSION_CONTENT[l.id],p.comprehension);save(completed);},onUpdate:refreshSteps,onContinue:()=>goStep('check')});
       opts.wireSpeakButtons();opts.wirePronunciation?.(view);
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -362,11 +345,10 @@
     const position=opts.resume?resumePosition(l,state):{step:'listen'};
     activeStep=steps.some(([id])=>id===position.step)||['speak','write'].includes(position.step)?position.step:'listen';
     grammarIndex=Number.isInteger(position.grammarIndex)?Math.max(0,Math.min(grammarPages.length-1,position.grammarIndex)):0;
-    grammarPart=Number.isInteger(position.grammarPart)?Math.max(0,position.grammarPart):0;
     audioPage=Number.isInteger(position.audioPage)?Math.max(0,Math.min(audioPageCount-1,position.audioPage)):0;
     if(position.nextIncomplete&&activeStep==='grammar'){
       const first=grammarPages.findIndex((_,i)=>!grammarTopicDone(i));
-      if(first>=0){grammarIndex=first;grammarPart=0;}
+      if(first>=0)grammarIndex=first;
       else activeStep=hasGrammarCheck&&!DE_A1_ASSESSMENTS.grammarCheckTried(state)?'grammar-check':'comprehension';
     }
     if(activeStep==='listen'&&position.mode==='exercise')drawQuiz();
@@ -378,7 +360,7 @@
       drawOverview();
       if(opts.resume&&activeStep==='grammar'){
         const key=grammarPracticeKey(grammarIndex);
-        if(key&&state.lessonGrammarPractice?.[l.id]?.[key]?.session){goGrammarPart(grammarParts.length-1);view.querySelector('#topicPracticeStart')?.onclick?.({resume:true});}
+        if(key&&state.lessonGrammarPractice?.[l.id]?.[key]?.session)view.querySelector('#topicPracticeStart')?.onclick?.({resume:true});
       }
     }
   }

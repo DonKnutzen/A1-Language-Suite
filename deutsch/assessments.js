@@ -26,43 +26,18 @@
     else if(!session.session)session.contentRevision=149;
     A1ExerciseEngine.run({answerAudioAfterResponse:true,matchesAnswer:(value,q)=>q.qualityRevision===149?window.DE_A1_QUESTIONS.matchesAnswer(value,q):undefined,lesson:{id:lessonId||0,title},view,targetLang:'de',uiLang:'fr',review:true,compact,bugStep:step,exercises,progress:session,exerciseVersion:102,saveProgress:()=>{window.DE_A1_REVIEW?.captureSession(state,lessonId,session.session,step==='grammar'?'grammar:'+(topicKey||title):step,title);save();},playAudio:t=>speak(t,true,.8),playFeedbackAudio:t=>speak(t,true,.8),onBack,onFinish});
   }
-  // Short checks right after the rule, each note and the pronunciation box; optional, the closing practice still completes the page.
-  function pageChecks({root,practice,lesson,state,save,speak,onUpdate}){
-    const groups=window.DE_A1_PAGE_CHECKS?.inline(lesson.id,practice.key);if(!groups)return;
-    const page=root.querySelector('#lessonGrammarPage'),body=page.querySelector('.grammar-detail-body')||page,notes=[...page.querySelectorAll('.lesson-foundation-rule')];
-    const pron=page.querySelector('.lesson-pronunciation-bonus details')||page.querySelector('.lesson-pronunciation-bonus');
-    for(const [anchor,tasks] of Object.entries(groups)){
-      const box=document.createElement('div');box.className='lesson-grammar-practice deepening-practice page-check';box.dataset.pageCheck=anchor;
-      if(anchor==='R'){
-        const first=body.querySelector(':scope > .lesson-foundations');if(first)first.before(box);else body.append(box);
-        // The page's words stay ahead of its first exercise.
-        const words=[...body.children].find(c=>c.querySelector('[data-vocabulary-stage]'));if(words&&(box.compareDocumentPosition(words)&Node.DOCUMENT_POSITION_FOLLOWING))box.before(words);
-      }
-      else if(anchor[0]==='H'){const note=notes[Number(anchor.slice(1))];if(!note)continue;note.after(box);}
-      else if(pron)pron.append(box);else continue;
-      const key=practice.key+'#'+anchor,saved=bucket(state,lesson.id,key);
-      const intro=()=>{
-        box.innerHTML=`<div class="between"><strong>Vérifie</strong><small>${saved.done?`✓ ${saved.last} / ${saved.total}`:tasks.length+(tasks.length>1?' questions':' question')}</small></div><button class="soft-btn exercise-start-btn ${saved.done?'is-completed':''}">${saved.done?'Refaire':saved.session?'Continuer':'Vérifier'}</button><div class="grammar-drill-stage"></div>`;
-        const start=box.querySelector('button');
-        start.onclick=()=>{
-          if(saved.done)delete saved.session;start.hidden=true;
-          runTasks({state,tasks,view:box.querySelector('.grammar-drill-stage'),title:practice.title,onBack:intro,speak,session:saved,save,lessonId:lesson.id,step:'grammar',compact:true,topicKey:key,onFinish:(score,total)=>{saved.done=true;saved.last=score;saved.total=total;save(true);intro();onUpdate?.();}});
-        };
-      };
-      intro();
-    }
-  }
+  // One practice per topic page (like the French course): the former short checks after each block
+  // are part of it, so the page reads as one explanation followed by one exercise block.
   function decorate({root,practice,lesson,state,save,speak,onUpdate,onStart}){
     if(!practice)return;
     const panel=document.createElement('div');panel.className='lesson-grammar-practice deepening-practice';root.querySelector('#lessonGrammarPage').append(panel);
     const current=bucket(state,lesson.id,practice.key),checks=window.DE_A1_PAGE_CHECKS;
     const unitOf=()=>Object.values(window.DE_A1_STUDY.content).flat().find(u=>u.key===practice.key);
     practice.drillTasks||=practice.tasks;
-    const closingTasks=()=>{const unit=unitOf();return checks?checks.closing(lesson.id,practice.key,unit?window.DE_A1_STUDY.unitTasks(unit):practice.drillTasks):practice.tasks;};
+    const closingTasks=()=>{const unit=unitOf();return checks?[...Object.values(checks.inline(lesson.id,practice.key)||{}).flat(),...checks.closing(lesson.id,practice.key,unit?window.DE_A1_STUDY.unitTasks(unit):practice.drillTasks)]:practice.tasks;};
     practice.tasks=closingTasks();
-    pageChecks({root,practice,lesson,state,save,speak,onUpdate});
     function intro(){
-      panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':(current.session?.ex?.length||practice.tasks.length)+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer le mini-test'}</button><div class="grammar-drill-stage"></div>`;
+      panel.innerHTML=`<div class="between"><strong>À toi de pratiquer</strong><small>${current.done?'✓ Terminé':(current.session?.ex?.length||practice.tasks.length)+' exercices'}</small></div><button class="soft-btn exercise-start-btn ${current.done?'is-completed':''}" id="topicPracticeStart">${current.done?'Refaire les exercices':current.session?'Continuer les exercices':'Commencer les exercices'}</button><div class="grammar-drill-stage"></div>`;
       panel.querySelector('#topicPracticeStart').onclick=event=>{
         if(current.done&&!event?.resume)delete current.session;
         if(unitOf())practice.tasks=closingTasks();

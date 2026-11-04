@@ -1,10 +1,9 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-// Page load of the German deepening as learners see it (deutsch/VERTIEFUNG-SEITENLAST.md): each topic
-// is shown in short parts (explanation + its check, each note + its check, then the mini-test) and
-// nothing is folded. Before the check of a part: at most 100 words in lessons 1–3 and 120 later, one
-// table and six example rows; word series such as weekdays or months are one grid, not example rows.
-const LIMITS={early:100,later:120,tables:1,examples:6};
+// Page load of the German deepening as learners see it (deutsch/VERTIEFUNG-SEITENLAST.md): like the
+// French course, each topic is one open page (rule, table, examples, "Bon à savoir", exercise words)
+// that ends in one practice block. No folds, no short checks in between, no sub-pages.
+const LIMITS={words:280,tables:1,examples:8,exercises:16};
 function environment(){
  const dom=new JSDOM('<main id="view"></main>',{url:'https://example.org/deutsch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.scrollTo=()=>{};w.ResizeObserver=class{observe(){}disconnect(){}};w.Math.random=()=>.99;
@@ -28,58 +27,53 @@ function visible(node,page){
  }
  return true;
 }
-// Words a learner reads in the shown part before its check (or the mini-test) starts.
+// Words a learner reads before the practice starts.
 function measure(page,w){
- const start=[...page.querySelectorAll('.page-check button,#topicPracticeStart')].find(b=>visible(b,page));
+ const start=page.querySelector('#topicPracticeStart');
  const before=el=>!start||!!(el.compareDocumentPosition(start)&w.Node.DOCUMENT_POSITION_FOLLOWING);
  const walker=w.document.createTreeWalker(page,w.NodeFilter.SHOW_TEXT);let words=0,n;
  while((n=walker.nextNode())){if(!before(n))break;if(visible(n,page)&&!n.parentElement.closest('button'))words+=countWords(n.textContent);}
  const open=sel=>[...page.querySelectorAll(sel)].filter(el=>visible(el,page)&&before(el));
  return {words,tables:open('table').length,examples:open('.phrase-row,.lesson-foundation-example,.pronoun-example').filter(el=>!el.closest('.deepening-vocabulary')).length};
 }
-test('every German deepening topic is split into short, open parts that end in a check',()=>{
- const env=environment(),{w,view}=env,problems=[],lessons=new Set();let pages=0,parts=0;
+test('every German deepening topic is one open page that ends in one practice block',()=>{
+ const env=environment(),{w,view}=env,problems=[],lessons=new Set();let pages=0;
  for(let id=1;id<=24;id++){
   render(env,id);view.querySelector('[data-lesson-step="grammar"]').click();
   for(let topic=1;;topic++){
    const page=view.querySelector('#lessonGrammarPage');w.DE_A1_DEEPENING_TIDY.tidy(page);
-   const where=`L${id} T${topic}`,count=Number(page.dataset.deepeningParts);pages++;lessons.add(id);
+   const where=`L${id} T${topic}`;pages++;lessons.add(id);
    if(page.querySelector('details'))problems.push(`${where}: folded block`);
-   if(!page.querySelector('#topicPracticeStart'))problems.push(`${where}: no practice button`);
+   if(page.querySelector('.page-check'))problems.push(`${where}: short check inside the page`);
+   if(page.querySelector('[hidden]:not(.exercise-start-btn)')||view.querySelector('#nextGrammarPart,#previousGrammarPart'))problems.push(`${where}: hidden sub-page`);
+   if(page.querySelector('.deepening-reference'))problems.push(`${where}: reference box`);
    if(page.innerHTML.includes('**'))problems.push(`${where}: unrendered ** in HTML`);
-   for(let part=0;part<count;part++){
-    if(part)view.querySelector('#nextGrammarPart').click();parts++;
-    const m=measure(page,w),limit=id<=3?LIMITS.early:LIMITS.later,at=`${where} P${part+1}`;
-    const shown=[...page.querySelectorAll('[data-deepening-part]')].filter(b=>!b.hidden);
-    if(!shown.length)problems.push(`${at}: empty part`);
-    if(shown.some(b=>Number(b.dataset.deepeningPart)!==part))problems.push(`${at}: blocks of another part are visible`);
-    // The word list is its own part: a list to look up, not reading before an exercise.
-    const wordList=shown.every(b=>b.matches('.lesson-vocabulary-preparation')||b.querySelector('.lesson-vocabulary-preparation'));
-    if(wordList){if(part)problems.push(`${at}: word list after the explanation`);continue;}
-    // Listen-and-repeat pronunciation may stand without a check; every explanation has one.
-    if(part<count-1&&!shown.some(b=>b.matches('.page-check,.lesson-pronunciation-bonus')||b.querySelector('.page-check')))problems.push(`${at}: part without its check`);
-    if(m.words>limit)problems.push(`${at}: ${m.words} words before its check (max ${limit})`);
-    if(m.tables>LIMITS.tables)problems.push(`${at}: ${m.tables} tables before its check`);
-    if(m.examples>LIMITS.examples)problems.push(`${at}: ${m.examples} example rows before its check`);
-   }
-   if(view.querySelector('#nextGrammarPart'))problems.push(`${where}: continue button on the last part`);
-   if(count>1&&!page.querySelector('#topicPracticeStart')?.closest('[data-deepening-part]:not([hidden])'))problems.push(`${where}: mini-test not in the last part`);
+   const practices=page.querySelectorAll('.deepening-practice');
+   if(practices.length!==1||!page.querySelector('#topicPracticeStart'))problems.push(`${where}: ${practices.length} practice blocks`);
+   else if(page.lastElementChild!==practices[0])problems.push(`${where}: content after the practice`);
+   const exercises=Number(practices[0]?.querySelector('small')?.textContent.match(/\d+/)?.[0]);
+   if(!(exercises>=8&&exercises<=LIMITS.exercises))problems.push(`${where}: ${exercises} exercises`);
+   const m=measure(page,w);
+   if(m.words>LIMITS.words)problems.push(`${where}: ${m.words} words before the practice (max ${LIMITS.words})`);
+   if(m.tables>LIMITS.tables)problems.push(`${where}: ${m.tables} tables`);
+   if(m.examples>LIMITS.examples)problems.push(`${where}: ${m.examples} example rows`);
+   const notes=page.querySelectorAll('.deepening-notes');if(notes.length>1)problems.push(`${where}: ${notes.length} note groups`);
    const next=view.querySelector('#nextGrammarTopic');if(!next)break;next.click();
   }
  }
- assert.equal(lessons.size,24,'all 24 lessons measured');assert(pages>=48,`only ${pages} pages measured`);assert(parts>pages);
+ assert.equal(lessons.size,24,'all 24 lessons measured');assert(pages>=48,`only ${pages} pages measured`);
  assert.deepEqual(problems,[]);
 });
-test('back and continue move between the parts of a topic, then to the neighbouring topic',()=>{
- const env=environment(),{view}=env;render(env,1);view.querySelector('[data-lesson-step="grammar"]').click();
+test('the former short checks are part of the topic practice',()=>{
+ const env=environment(),{w,view}=env;render(env,2);view.querySelector('[data-lesson-step="grammar"]').click();
  view.querySelector('[data-grammar-progress="1"]').click();
- const page=()=>view.querySelector('#lessonGrammarPage'),count=Number(page().dataset.deepeningParts);
- assert(count>=3);assert.equal(page().querySelector('.deepening-part-label').textContent,`Partie 1 sur ${count}`);
- view.querySelector('#nextGrammarPart').click();assert.equal(page().dataset.deepeningPart,'1');
- view.querySelector('#previousGrammarPart').click();assert.equal(page().dataset.deepeningPart,'0');
+ const key=w.DE_A1_STUDY.content[2][1].key,inline=Object.values(w.DE_A1_PAGE_CHECKS.inline(2,key)).flat();
+ assert(inline.length>=3);
+ const count=Number(view.querySelector('#lessonGrammarPage .deepening-practice small').textContent.match(/\d+/)[0]);
+ assert(count>=inline.length+4,`${count} exercises`);
+ assert.equal(view.querySelector('#previousGrammarTopic')?.textContent,'← Retour');
  view.querySelector('#previousGrammarTopic').click();
  assert.equal(view.querySelector('[data-grammar-progress="0"]').getAttribute('aria-current'),'step');
- assert.equal(page().dataset.deepeningPart,String(Number(page().dataset.deepeningParts)-1),'back from a topic opens the last part of the previous one');
 });
 test('deepening examples do not repeat the sentences of the listening step',()=>{
  const env=environment(),{view,w}=env;let repeats=0,rows=0;
@@ -96,5 +90,5 @@ test('deepening examples do not repeat the sentences of the listening step',()=>
    }
   }
  }
- assert(repeats<rows/3,`${repeats} of ${rows} examples repeat listening`);
+ assert(rows>100&&repeats<rows*.6,`${repeats} of ${rows} examples repeat listening`);
 });

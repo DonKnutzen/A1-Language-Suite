@@ -85,11 +85,7 @@
 #lessonGrammarPage.deepening-tidy .deepening-block>h4{display:flex;align-items:center;gap:10px;margin:0;font-size:1.05rem;line-height:1.35;font-weight:800;color:var(--ink)}
 #lessonGrammarPage.deepening-tidy .deepening-block>h4::before{content:'';flex:none;width:4px;height:18px;border-radius:4px;background:var(--accent)}
 #lessonGrammarPage.deepening-tidy .deepening-block>p{margin:0;font-size:.95rem;line-height:1.6;color:var(--muted)}
-#lessonGrammarPage.deepening-tidy .deepening-reference .deepening-background{margin:0}
-#lessonGrammarPage.deepening-tidy>.deepening-reference{margin-top:var(--tidy-gap)}
 
-/* Parts of one topic: a quiet counter under the title */
-#lessonGrammarPage.deepening-tidy .deepening-part-label{margin:-8px 0 16px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 
 @media(max-width:560px){
   #lessonGrammarPage.deepening-tidy{--tidy-gap:18px}
@@ -130,6 +126,34 @@
 #lessonGrammarPage.deepening-tidy .tidy-speaker{flex:none}
 #lessonGrammarPage.deepening-tidy .study-number-table .say-word{width:100%;justify-content:space-between}
 
-/* Parts not shown right now (display rules above must not reveal them) */
 #lessonGrammarPage [hidden]{display:none!important}
-#lessonGrammarPage.deepening-tidy .deepening-final-intro{margin:0 0 14px;font-size:1rem;line-height:1.6;color:var(--muted)}
+/* One page per topic, laid out like the French course (VERTIEFUNG-SEITENLAST.md) */
+/* Examples: plain rows with thin dividers, no box; two columns where there is room */
+#lessonGrammarPage.deepening-tidy .deepening-examples,
+#lessonGrammarPage.deepening-tidy .lesson-foundation-examples{padding:0;border:0;border-radius:0;background:none}
+#lessonGrammarPage.deepening-tidy .deepening-examples .phrase-row,
+#lessonGrammarPage.deepening-tidy .lesson-foundation-example{padding:10px 0}
+@media(min-width:640px){
+  #lessonGrammarPage.deepening-tidy .deepening-examples,
+  #lessonGrammarPage.deepening-tidy .lesson-foundation-examples,
+  #lessonGrammarPage.deepening-tidy .deepening-block dl{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+  #lessonGrammarPage.deepening-tidy .deepening-examples .phrase-row:nth-child(2),
+  #lessonGrammarPage.deepening-tidy .lesson-foundation-example:nth-child(2),
+  #lessonGrammarPage.deepening-tidy .deepening-block dl>div:nth-child(2){border-top:0}
+}
+/* "Bon à savoir": every note of the topic in one quiet strip with an accent edge */
+#lessonGrammarPage.deepening-tidy .deepening-notes{gap:16px;padding:14px 16px;border-left:3px solid var(--accent);border-radius:0 12px 12px 0;background:var(--tidy-soft)}
+#lessonGrammarPage.deepening-tidy .deepening-notes-title{margin:0;font-size:.75rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+#lessonGrammarPage.deepening-tidy .deepening-notes-title::before{display:none}
+#lessonGrammarPage.deepening-tidy .deepening-notes .lesson-foundation-rule{gap:4px}
+#lessonGrammarPage.deepening-tidy .deepening-notes .lesson-foundation-rule h4{font-size:.98rem;font-weight:700}
+#lessonGrammarPage.deepening-tidy .deepening-notes .lesson-foundation-rule h4::before{display:none}
+#lessonGrammarPage.deepening-tidy .deepening-notes .lesson-foundation-rule p{font-size:.95rem;line-height:1.55}
+/* Exercise words: a small label and the same rows as the examples */
+#lessonGrammarPage.deepening-tidy .deepening-block>h4{font-size:.75rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#lessonGrammarPage.deepening-tidy .deepening-block>h4::before{display:none}
+#lessonGrammarPage.deepening-tidy .deepening-block{gap:4px;margin-top:var(--tidy-gap)}
+#lessonGrammarPage.deepening-tidy .lesson-extra-vocabulary dl,
+#lessonGrammarPage.deepening-tidy .deepening-block dl{padding:0;border:0;border-radius:0;background:none}
+/* The one practice block closes the page */
+#lessonGrammarPage.deepening-tidy>.deepening-practice{margin-top:var(--tidy-gap);padding-top:18px;border-top:1px solid var(--line)}
