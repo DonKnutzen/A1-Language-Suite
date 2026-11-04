@@ -11,7 +11,7 @@ test('every French grammar topic uses complete solutions and targeted contrasts,
  for(const l of e.w.FR_A1_DATA.lessons.filter(l=>l.id>1))for(const p of e.pools(l)){
   topics++;assert(p.tasks.length>=3,`L${l.id} ${p.key}: empty coverage`);
   for(const q of p.tasks){assert.equal(q.kind,'form');assert(q.o.includes(q.answer));assert.equal(new Set(q.o).size,q.o.length);if(q.coverage?.startsWith('phrase:'))assert(!/^Wie sagst du „|^Was bedeutet „/.test(q.q));
-   if(q.coverage?.startsWith('phrase:')){generated++;if(q.q.includes('___'))assert.equal(q.q.replace('___',q.answer),q.audio,`L${l.id}: ${q.q}`);assert(q.meaning);}
+   if(q.coverage?.startsWith('phrase:')){generated++;if(q.q.includes('___'))assert.equal(q.q.replace('___',q.answer).replace(/([’'])\s+/g,'$1'),q.audio,`L${l.id}: ${q.q}`);assert(q.meaning);}
   }
  }
  assert(topics>=70);assert(generated>=150);e.dom.window.close();

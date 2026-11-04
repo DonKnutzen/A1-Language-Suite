@@ -22,9 +22,8 @@
     const complete=state.doneLessons?.includes(lesson.id)||Number(state.lessonMasteryBest?.[lesson.id]||0)>=80;
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
-    const hardContent=window.EN_A1_HARD_CONTENT?.[lesson.id],hardDone=!!p.hardMode?.passedAt&&(p.hardMode.passedVersion===hardContent?.version||hardContent?.compatibleVersions?.includes(p.hardMode.passedVersion));
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${step('Hard Mode',hardDone?'✓':masteryDone?'—':'🔒',hardDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
@@ -64,7 +63,7 @@
     const minWords=explicit?Number(explicit[1]):false?1:3;
     let comparedText=null;
     const checkReady=()=>complete()||masteryAttempted()||(passed()&&p.comprehension?.done===true);
-    const optionalTitle='Hard Mode';
+    const optionalTitle='Finale & Arcade';
     const steps=[['listen','Hören & Verstehen'],['grammar','Vertiefung'],...(lesson1?[['grammar-check','Abschluss-Test']]:[]),['comprehension','Hörverstehen'],...(hasMastery?[['check','Lektions-Check']]:[])];
     let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
     const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
@@ -238,7 +237,7 @@
       if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryPassed()?'is-completed':checkReady()?'en-action-current':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryPassed()?'Lektions-Check bestanden · wiederholen':masteryAttempted()?'Lektions-Check erneut üben':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="primary-btn lesson-next-ready" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)} →</button>`:''}</section>`;
       if(activeStep==='comprehension')body=`${window.A1LessonFoundations?.preparationHtml('en',l.id,'comprehension')||''}<div id="lessonComprehension"></div>`;
       view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
-      if(activeStep==='check'){const panel=document.createElement('div');panel.className='en-practice-links';panel.innerHTML='<button class="secondary-btn" data-lesson-step="speak">Sprechen üben</button><button class="secondary-btn" data-lesson-step="write">Schreiben üben</button>';view.append(panel);renderExtras();}
+      if(activeStep==='check'){const panel=document.createElement('div');panel.className='en-practice-links';panel.innerHTML='<button class="secondary-btn" data-lesson-step="speak">Sprechen üben</button><button class="secondary-btn" data-lesson-step="write">Schreiben üben</button>';renderExtras();const footer=view.querySelector(':scope > .lesson-step-footer');if(footer)view.append(footer);view.append(panel);}
       wireStepFooter();
       if(activeStep==='listen'){
         const updateAudioPage=()=>{

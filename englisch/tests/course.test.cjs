@@ -115,10 +115,11 @@ test('vocabulary directions, lesson decks and course progress stay English-speci
   assert(!w.localStorage.getItem('francaisA1DelfState_v1::profile:test'));
   f.close();
 });
-test('gold requires a passed, self-assessed result and at least 95 percent using exact counts',()=>{
+test('gold (A+) requires a passed, self-assessed result and at least 90 percent using exact counts',()=>{
   const f=fixture(),api=f.w.EN_A1_HARD_MODE;
   const result=(correct,total,passed=true)=>({phase:'reviewed',completedAt:1,result:{correct,total,passed}});
-  assert(api.goldResult(result(19,20)));assert(api.goldResult(result(20,20)));assert(!api.goldResult(result(18,20)));assert(!api.goldResult(result(19,20,false)));assert(!api.goldResult(result(94,99)));assert(api.goldResult(result(15,16)));assert(!api.goldResult(result(14,16)));
+  assert(api.goldResult(result(18,20)));assert(api.goldResult(result(20,20)));assert(!api.goldResult(result(17,20)));assert(!api.goldResult(result(19,20,false)));assert(!api.goldResult(result(89,99)));assert(api.goldResult(result(15,16)));assert(!api.goldResult(result(14,16)));
+  assert.deepEqual([17,14,12,10,9].map(n=>api.grade(result(n,20))),['A','B','C','D',null]);
   f.close();
 });
 test('offline cache contains every local entry-point asset and never purges another course',()=>{

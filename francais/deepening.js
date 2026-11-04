@@ -21,6 +21,18 @@
   const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
   const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
   const families=[['trente','treize','quarante'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
+  // A distractor must not be ruled out by elision alone (je ___ + vowel, j’___ + consonant, l’/d’ before a consonant).
+  const fitsElision=(q,v)=>{const s=String(q||''),x=String(v||''),next=/___\s+(\p{L})/u.exec(s)?.[1];
+    if(/(?:^|[\s«])je ___/i.test(s)&&/^[aeiouéèêâîôh]/i.test(x))return false;
+    if(/\bj[’']___/i.test(s)&&!/^[aeiouéèêâîôh]/i.test(x))return false;
+    return !(next&&/[bcdfgjklmnpqrstvwxz]/i.test(next)&&/[’']$/.test(x));};
+  function elisionSafe(t){
+    if(!t?.o||!/___/.test(t.q||''))return t;
+    const bad=t.o.filter(o=>o!==t.answer&&!fitsElision(t.q,o));if(!bad.length)return t;
+    const spare=nearest(t.answer,(families.find(a=>a.includes(t.answer))||[]).filter(v=>!t.o.includes(v)&&fitsElision(t.q,v)));
+    const o=t.o.map(x=>bad.includes(x)?spare.shift():x);
+    return o.every(Boolean)?{...t,o}:t;
+  }
   function specTask(t,rule){
     const answer=t.answer;
     const alternatives=(families.find(a=>a.includes(answer))||[]).filter(a=>a!==answer);
@@ -30,7 +42,7 @@
     if(answer==='Pourriez-vous répéter ?')return {kind:'form',legacyTask:{q:t.q||t.prompt,answer},q:'Welche Bitte verwendet die besonders höfliche Form „könnten Sie“?',answer,o:[answer,'Pouvez-vous répéter ?','Vous répétez ?'],audio:answer,explanation:'Pourriez-vous entspricht „könnten Sie“. Pouvez-vous bedeutet „können Sie“.'};
     o=[...new Set(o)];
     if(o.length<3)return null;
-    return {kind:'form',...(answer==='nom de famille'?{legacyTask:{q:t.q||t.prompt,answer}}:{}),q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1')}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
+    return {kind:'form',...(answer==='nom de famille'?{legacyTask:{q:t.q||t.prompt,answer}}:{}),q:t.prompt||t.q,answer,o,meaning:t.context||'',audio:t.audio||(t.prompt?t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,''):({'halb':'Il est quatre heures et demie.','Viertel vor':'Il est neuf heures moins le quart.','é':'e accent aigu','ç':'c cédille'}[answer]||answer)),explanation:t.explanation||(t.prompt?`${t.prompt.replace('___',answer).replace(/([’'])\s+/g,'$1').replace(/\s*\([^)]*\)/g,'')}${t.context?' = '+t.context:''}`:`Die richtige Antwort ist „${answer}“.`)};
   }
   // Only known grammatical table shapes become exercises. Copying arbitrary
   // neighbouring cells exposes pronouns/articles and tests visual matching.
@@ -44,7 +56,9 @@
     const verbs=['s’appeler','se lever','habiter','parler','venir','pouvoir','devoir','aller','avoir','être'];
     const verbFrom=head=>verbs.find(v=>head===v)||verbs.find(v=>title.includes(v));
     function add(q,answer,values,legacyQ,legacyAnswer,coverage){
-      const wrong=nearest(answer,values).slice(0,2);if(wrong.length<2)return;
+      // Verb forms: prefer near forms that are not much shorter than the answer (avez: avons/ont, not ai/as).
+      // Article and preposition tables keep their closest contrast (cette: cet/ce).
+      const near=nearest(answer,values),long=/^table:(?:partitive|demonstrative|destination|origin):/.test(coverage)?[]:near.filter(v=>answer.length<=1.8*v.length),wrong=(long.length>=2?long:near).slice(0,2);if(wrong.length<2)return;
       const audio=complete(q,answer);
       tasks.push({kind:'form',q,answer,o:[answer,...wrong],audio,explanation:audio,coverage,qualityVersion:161,legacyTask:{q:legacyQ,answer:legacyAnswer}});
     }
@@ -171,7 +185,7 @@
         tasks=forms.map(([q,answer,meaning])=>({kind:'form',q,answer,meaning,o:[answer,...shuffle(['ai','as','a','avons','avez','ont'].filter(a=>a!==answer)).slice(0,2)],audio:q.replace('___',answer),explanation:q.replace('___',answer)+' = '+meaning}));
         tasks.push(...(specs[3].tasks||[]).filter((t,i)=>routes[3][i]==='r0'&&!tasks.some(q=>q.q===(t.prompt||t.q))).map(t=>specTask(t,unit.rule)));
       }
-      tasks=window.FR_A1_GRAMMAR_PRACTICE?.improve(lesson,unit,tasks)||tasks;
+      tasks=(window.FR_A1_GRAMMAR_PRACTICE?.improve(lesson,unit,tasks)||tasks).map(elisionSafe);
       const authoredKeys=new Set(tasks.filter(t=>!t.coverage?.startsWith('phrase:')).map(t=>JSON.stringify([t.q,t.answer])));
       tasks=tasks.filter(t=>!t.coverage?.startsWith('phrase:')||!authoredKeys.has(JSON.stringify([t.q,t.answer])));
       return {key:unit.key,title:unit.preparedTitle||unit.title,rule:unit.rule,tasks};

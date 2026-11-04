@@ -22,9 +22,8 @@
     const complete=state.doneLessons?.includes(lesson.id)||Number(state.lessonMasteryBest?.[lesson.id]||0)>=80;
     const masteryBest=Number(state.lessonMasteryBest?.[lesson.id]||0);
     const masteryDone=masteryBest>=80;
-    const hardContent=window.FR_A1_HARD_CONTENT?.[lesson.id],hardDone=!!p.hardMode?.passedAt&&(p.hardMode.passedVersion===hardContent?.version||hardContent?.compatibleVersions?.includes(p.hardMode.passedVersion));
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small><strong>${esc(value)}</strong></span>`;
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${step('Hard Mode',hardDone?'✓':masteryDone?'—':'🔒',hardDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${step(L.listenStep,audioDone?'✓':`${heard}/${total}`,audioDone)}${step(L.quizStep,p.quizDone===true?`${quizScore}/10`:'—',quizDone)}${step('Hörverstehen',comprehension?'✓':'—',comprehension)}${step('Abschluss',masteryBest?masteryBest+' %':'—',masteryDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
@@ -64,7 +63,7 @@
     const minWords=explicit?Number(explicit[1]):opts.targetLang==='fr'&&false?1:3;
     let comparedText=null;
     const checkReady=()=>complete()||masteryAttempted()||(passed()&&p.comprehension?.done===true);
-    const optionalTitle='Hard Mode';
+    const optionalTitle='Finale & Arcade';
     const steps=[['listen','Hören & Verstehen'],['grammar','Vertiefung'],...(lesson1?[['grammar-check','Abschluss-Test']]:[]),['comprehension','Hörverstehen'],...(hasMastery?[['check','Lektions-Check']]:[])];
     let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
     const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
@@ -203,6 +202,8 @@
     function renderExtras(){
       if(view.querySelector('.hard-entry')||!window.FR_A1_HARD_MODE)return;
       FR_A1_HARD_MODE.renderEntry({lesson:l,view,state,onStart:()=>goStep('hard'),onQuiz:()=>{remember('exercise');FR_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
+      // Order below the lesson check: Hard Mode, tower, then the back button.
+      const footer=view.querySelector(':scope > .lesson-step-footer');if(footer)view.append(footer);
     }
     function drawHardMode(){
       if(!opts.renderHardMode)return goStep('check');

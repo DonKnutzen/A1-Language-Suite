@@ -2858,7 +2858,7 @@
     'Hier stehen nur Wörter, die in dieser Lektion neu hinzukommen. Den gesamten Wortschatz findest du im Vokabeltrainer.':'Only words introduced in this lesson are shown here. Find all words in the vocabulary trainer.',
     'Für den ersten Check':'For the first check',
     'Weitere Wörter':'More words',
-    'Zum Nachschlagen – auch für Hörtexte und Hard Mode. Diese Wörter kannst du im Vokabeltrainer der Lektion üben.':'For reference, including listening tasks and Hard Mode. Practise these words in the lesson vocabulary trainer.'
+    'Zum Nachschlagen – auch für Hörtexte und das Finale. Diese Wörter kannst du im Vokabeltrainer der Lektion üben.':'For reference, including listening tasks and the finale. Practise these words in the lesson vocabulary trainer.'
   };
   for(const lesson of Object.values(content.fr)){
     for(const rule of [...lesson.intro,...Object.values(lesson.topics).flat()]){
@@ -2938,7 +2938,7 @@
     const plan=window.A1LessonVocabularyPlan?.[course]?.[id];
     const targets=stage==='hard'?plan?.hard:plan?.stages[stage];if(!targets?.length)return '';
     const bank=vocabularyBank(course),en=course==='fr'&&window.A1Profile?.getUiLang()==='en';
-    const title=en?(stage==='hard'?'Additional words for Hard Mode':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für den Hard Mode':'Weitere Vokabeln für die Übung'):(stage==='hard'?'Mots supplémentaires pour le Hard Mode':'Mots supplémentaires de cette leçon');
+    const title=en?(stage==='hard'?'Additional words for the finale':'Words for this activity'):course==='fr'?(stage==='hard'?'Zusätzliche Wörter für das Finale':'Weitere Vokabeln für die Übung'):(stage==='hard'?'Mots supplémentaires pour la finale':'Mots supplémentaires de cette leçon');
     return `<section class="lesson-extra-vocabulary lesson-vocabulary-preparation" data-vocabulary-stage="${esc(stage)}" data-i18n-ignore><h4>${title}</h4>${vocabularyRows(course,bank,targets)}</section>`;
   }
   function hardInstructionsHtml(course,data){

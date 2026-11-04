@@ -52,12 +52,12 @@
     if(!data||data.version<2||!attempt?.submittedAt||attempt.reviewRecorded)return;
     data.gaps.forEach((g,i)=>{
       const prompt=data.text.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':data.gaps[Number(n)].answers[0]);
-      const q=task(lessonId,'hard-gap','Hard Mode · Lückentext',{q:prompt,context:g.hint,answer:g.answers[0],accept:g.answers.slice(1),marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}});
+      const q=task(lessonId,'hard-gap','Finale · Lückentext',{q:prompt,context:g.hint,answer:g.answers[0],accept:g.answers.slice(1),marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}});
       record(state,q,window.FR_A1_HARD_MODE.matches(attempt.gaps[i],g.answers,g));
     });
     let index=0;
     data.listening.forEach((block,b)=>block.questions.forEach(q=>{
-      record(state,task(lessonId,'hard-listening','Hard Mode · Hörverstehen',{q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:window.FR_A1_HARD_AUDIO.turns(lessonId,data,b),marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}}),window.FR_A1_HARD_MODE.matches(attempt.listening[index++],q.answers,q));
+      record(state,task(lessonId,'hard-listening','Finale · Hörverstehen',{q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:window.FR_A1_HARD_AUDIO.turns(lessonId,data,b),marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}}),window.FR_A1_HARD_MODE.matches(attempt.listening[index++],q.answers,q));
     }));
     attempt.reviewRecorded=true;
   }
@@ -121,7 +121,7 @@
     const oldIntro=q=>q.lessonId===7&&lessons.find(l=>l.id===7)?.quiz?.some(source=>(source.q===q.q||source.legacyQuestion===q.q)&&JSON.stringify([...source.o].sort())!==JSON.stringify([...(q.o||[])].sort()));
     const oldOrdering=q=>q.lessonId===6&&q.topic==='grammar:u0'&&!currentIds.has(q.id);
     const oldTable=q=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(q.q);
-    const weak=q=>q&&(changedCheck(q)||oldPrice(q)||oldGenerated(q)||oldIntro(q)||oldOrdering(q)||(q.lessonId===6&&correctedChecks[q.q])||(q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)));
+    const weak=q=>q&&(changedCheck(q)||oldPrice(q)||oldGenerated(q)||oldIntro(q)||oldOrdering(q)||(q.lessonId===6&&correctedChecks[q.q])||(q.q==='Wie bestellst du höflich Kaffee?'&&q.o?.includes('Je suis un café.'))||(q.q==='Vous pouvez ___, s’il vous plaît ?'&&q.o?.includes('répéter'))||oldTable(q)||(q.q==='Mon ___ est Dupont.'&&q.o?.includes('nom'))||q.q==='Welche Form ist besonders höflich?'||(/^___ (?:mon frère|ma sœur|mes parents|mes enfants|mon père|mes sœurs)\.$/.test(q.q)&&['C’est','Ce sont'].includes(q.answer)&&q.o?.some(o=>['Ce sommes','Ces sont'].includes(o))));
     const recognition=q=>/^grammar:/.test(q.topic)&&/^(?:Wie sagst du „.+“ auf Französisch\?|Was bedeutet „.+“\?)$/.test(q.q)&&!currentIds.has(q.id);
     if(!Object.values(p.items||{}).some(item=>!item.retired&&weak(item.task))&&!s?.tasks.some((q,i)=>!s.answers[i]&&(weak(q)||(s.mode!=='mistakes'&&recognition(q)))))return;
     const revised=buildBank(lessons,{...state,doneLessons:lessons.map(l=>l.id)},grammarHtml,true),lookup=new Map();

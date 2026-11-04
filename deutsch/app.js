@@ -1829,6 +1829,7 @@ function renderHome(){
       <button class="primary-btn home-continue-btn" id="continueLesson"><span>${allDone?'Continuer à pratiquer':'Continuer'}</span><span class="home-continue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
     </section>
     ${A1DailyReview.html(state,{lang:A1Profile.getUiLang()==='en'?'en':'fr',available:completed.length>0||DE_A1_REVIEW.pending(state).length>0,mistakes:DE_A1_REVIEW.pending(state).length})}
+    ${A1WritingExam.homeHtml(state,{course:'deutsch-a1',lessons,lang:A1Profile.getUiLang()==='en'?'en':'fr'})}
     <section class="card course-progress-card" data-streak-anchor>
       <h2>Ton arbre</h2>
       <p class="course-progress-caption oak-explanation">Grandit à chaque leçon terminée.</p>
@@ -1842,6 +1843,7 @@ function renderHome(){
   document.getElementById('homeMistakes')?.addEventListener('click',()=>openReview('mistakes'));
   homeOakCleanup=A1LearningOak.mount(view.querySelector('[data-learning-oak]'));
   homeDailyCleanup=A1DailyReview.mount(view.querySelector('[data-daily-review]'),{onDayChange:renderHome});
+  A1WritingExam.wireHome(view,{course:'deutsch-a1',state,save,lessons,lang:()=>A1Profile.getUiLang()==='en'?'en':'fr',onBack:renderHome,beforeOpen:stopHomeMotion});
 }
 
 function renderLearn(){

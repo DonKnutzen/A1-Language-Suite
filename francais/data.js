@@ -338,12 +338,12 @@ window.FR_A1_DATA = {
           "q": "Was bedeutet „Quelle est votre adresse ?“?",
           "o": [
             "Wie lautet Ihre Adresse?",
-            "Wie lautet Ihre Telefonnummer?",
-            "Wie lautet Ihr Nachname?"
+            "Wie lautet seine Adresse?",
+            "Ist das Ihre Adresse?"
           ],
           "a": 0,
           "audio": "Quelle est votre adresse ?",
-          "explanation": "Adresse ist die Anschrift; numéro de téléphone die Telefonnummer."
+          "explanation": "Quelle est … ? fragt nach einer Angabe: „Wie lautet …?“. Votre heißt Ihre; „seine Adresse“ wäre son adresse, „Ist das Ihre Adresse?“ wäre C’est votre adresse ?"
         },
         {
           "q": "Welches Zeichen trägt einen accent aigu?",
@@ -478,12 +478,13 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du „Ich bin am 5. Mai geboren“?",
           "o": [
-            "Je viens 5 mai.",
+            "J’ai né le 5 mai.",
             "Je suis né le 5 mai.",
-            "J’ai 5 mai."
+            "Je suis né le 15 mai."
           ],
           "a": 1,
-          "audio": "Je suis né le 5 mai."
+          "audio": "Je suis né le 5 mai.",
+          "explanation": "Geboren sein heißt être né, nicht avoir: Je suis né. Vor dem Datum steht le; 5 ist cinq, 15 wäre quinze."
         },
         {
           "q": "Tu ___ vingt ans.",
@@ -1212,7 +1213,7 @@ window.FR_A1_DATA = {
         },
         {
           "legacyQuestion": "Un kilo ___ pommes, s’il vous plaît.",
-          "q": "Deux bouteilles ___eau, s’il vous plaît.",
+          "q": "Deux bouteilles ___ eau, s’il vous plaît.",
           "o": [
             "de",
             "du",
@@ -1398,13 +1399,13 @@ window.FR_A1_DATA = {
         {
           "q": "Dans ma chambre, ___ un lit.",
           "o": [
-            "je suis",
+            "il a",
             "il y a",
-            "c’est de"
+            "il est"
           ],
           "a": 1,
           "audio": "Dans ma chambre, il y a un lit.",
-          "explanation": "„Es gibt“ heißt il y a: Dans ma chambre, il y a un lit."
+          "explanation": "„Es gibt“ heißt il y a: Dans ma chambre, il y a un lit. Il a bedeutet „er hat“, il est „er ist“."
         },
         {
           "q": "Lies den Dialog: Tu habites dans une maison ? / Non, dans un appartement. / Il y a combien de pièces ? / Trois : deux chambres et un salon.\nDie Wohnung hat …",
@@ -2269,10 +2270,11 @@ window.FR_A1_DATA = {
           "o": [
             "Schuh",
             "Regenschirm",
-            "Jacke"
+            "Regenjacke"
           ],
           "a": 1,
-          "audio": "J’ai besoin d’un parapluie."
+          "audio": "J’ai besoin d’un parapluie.",
+          "explanation": "Le parapluie ist der Regenschirm (pluie = Regen). Eine Regenjacke ist une veste de pluie, ein Schuh une chaussure."
         },
         {
           "q": "„Il fait froid“ =",
@@ -2635,11 +2637,11 @@ window.FR_A1_DATA = {
           "o": [
             "vais",
             "va",
-            "aller"
+            "vas"
           ],
           "a": 0,
           "audio": "Demain, je vais visiter Paris.",
-          "explanation": "Für den nahen Plan steht aller + Infinitiv: je vais visiter."
+          "explanation": "Für den nahen Plan steht aller + Infinitiv: je vais visiter. Va gehört zu il/elle, vas zu tu."
         },
         {
           "q": "Lies den Dialog: Bonjour, une chambre pour deux nuits, s’il vous plaît. / Pour une personne ? / Oui. Le petit déjeuner est compris ? / Oui, à partir de sept heures.\nDas Zimmer wird gebraucht für …",
@@ -2814,12 +2816,13 @@ window.FR_A1_DATA = {
         {
           "q": "Wie sagst du ab?",
           "o": [
-            "Il fait beau.",
+            "Oui, avec plaisir, à samedi !",
             "Je suis désolé, je ne peux pas venir.",
-            "Je voudrais une chambre."
+            "D’accord, je peux venir samedi."
           ],
           "a": 1,
-          "audio": "Je suis désolé, je ne peux pas venir."
+          "audio": "Je suis désolé, je ne peux pas venir.",
+          "explanation": "Absagen: Je suis désolé (es tut mir leid), je ne peux pas venir. Oui, avec plaisir und d’accord, je peux venir sind Zusagen."
         },
         {
           "q": "„À bientôt“ =",
@@ -2997,12 +3000,13 @@ window.FR_A1_DATA = {
         {
           "q": "Welche Formulierung bittet um Antwort?",
           "o": [
-            "Bon appétit.",
-            "Bonne nuit.",
+            "Merci pour votre réponse.",
+            "Je vous réponds demain.",
             "Merci de me répondre."
           ],
           "a": 2,
-          "audio": "Merci de me répondre."
+          "audio": "Merci de me répondre.",
+          "explanation": "Merci de me répondre bittet um eine Antwort. Merci pour votre réponse dankt für eine schon erhaltene Antwort; je vous réponds demain kündigt die eigene Antwort an."
         },
         {
           "q": "___ est votre adresse ?",
@@ -3257,11 +3261,12 @@ window.FR_A1_DATA = {
           "q": "Welche Form ist eine besonders höfliche Bitte?",
           "o": [
             "Pourriez-vous répéter, s’il vous plaît ?",
-            "Tu répètes maintenant.",
-            "Répète !"
+            "Pouvez-vous répéter, s’il vous plaît ?",
+            "Tu peux répéter, s’il te plaît ?"
           ],
           "a": 0,
-          "audio": "Pourriez-vous répéter, s’il vous plaît ?"
+          "audio": "Pourriez-vous répéter, s’il vous plaît ?",
+          "explanation": "Pourriez-vous (könnten Sie) ist die besonders höfliche Form. Pouvez-vous heißt „können Sie“, tu peux duzt."
         },
         {
           "q": "Wie sagst du höflich „Ich hätte gern Informationen“?",
@@ -3385,15 +3390,15 @@ window.FR_A1_DATA = {
           "explanation": "La gare ist der Bahnhof. Le quai ist der Bahnsteig; une gare kann mehrere quais haben."
         },
         {
-          "q": "Ce ___ des livres.",
+          "q": "Das sind Bücher (geschriebener Standard): ___ des livres.",
           "o": [
-            "est",
-            "a",
-            "sont"
+            "C’est",
+            "Ils sont",
+            "Ce sont"
           ],
           "a": 2,
           "audio": "Ce sont des livres.",
-          "explanation": "Im Plural heißt es ce sont: Ce sont des livres."
+          "explanation": "Im Plural heißt es im geschriebenen Standard ce sont: Ce sont des livres. C’est des livres ist umgangssprachlich; ils sont steht nicht vor des + Nomen."
         },
         {
           "q": "Lies den Dialog: C’est un livre ? / Oui, c’est mon livre. / Et ce sont tes clés ? / Oui, merci !\nDie Schlüssel gehören …",
@@ -3409,12 +3414,13 @@ window.FR_A1_DATA = {
         {
           "q": "Welche Form ist korrekt?",
           "o": [
-            "C’est des amis.",
+            "Ce sont des ami.",
             "Ce sont des amis.",
             "Il sont des amis."
           ],
           "a": 1,
-          "audio": "Ce sont des amis."
+          "audio": "Ce sont des amis.",
+          "explanation": "Ce sont + Plural: Ce sont des amis. Ami braucht im Plural ein -s; „il sont“ gibt es nicht (ils sont), und vor des + Nomen steht ce sont."
         },
         {
           "q": "Welcher bestimmte Artikel passt zu „musée“?",
@@ -3759,12 +3765,12 @@ window.FR_A1_DATA = {
           "q": "___ coûte ce billet ?",
           "o": [
             "Combien",
-            "Où",
-            "Qui"
+            "Comment",
+            "Quand"
           ],
           "a": 0,
           "audio": "Combien coûte ce billet ?",
-          "explanation": "Combien bedeutet „wie viel“: Combien coûte ce billet ?"
+          "explanation": "Combien bedeutet „wie viel“: Combien coûte ce billet ? Comment fragt nach dem Wie, quand nach der Zeit."
         },
         {
           "q": "Lies den Dialog: Où est votre voiture ? / Devant la maison. / Et vos vélos ? / Dans le garage.\nDie Fahrräder stehen …",
@@ -7435,8 +7441,8 @@ window.FR_A1_DATA = {
           "q": "Ergänze: Je ___ allemand.",
           "o": [
             "suis",
-            "es",
-            "est"
+            "sont",
+            "sommes"
           ],
           "a": 0,
           "audio": "Je suis allemand.",
@@ -7495,7 +7501,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Vous êtes d’où ?",
-          "explanation": "Beispiel: Vous êtes d’où ?"
+          "explanation": "Être de / d’où fragt nach der Herkunft: Woher kommen Sie? „Wie alt sind Sie?“ wäre Quel âge avez-vous ?, „Wo wohnen Sie?“ Vous habitez où ?"
         },
         {
           "q": "Welche Antwort passt zu „Comment vous vous appelez ?“?",
@@ -7756,21 +7762,23 @@ window.FR_A1_DATA = {
           "q": "Wie fragst du „Was ist das?“?",
           "o": [
             "Qu’est-ce que c’est ?",
-            "Qui habitez-vous ?",
-            "Quand c’est de ?"
+            "Qui est-ce ?",
+            "Où est-ce ?"
           ],
           "a": 0,
-          "audio": "Qu’est-ce que c’est ?"
+          "audio": "Qu’est-ce que c’est ?",
+          "explanation": "Qu’est-ce que c’est ? fragt nach einer Sache. Qui est-ce ? fragt nach einer Person, où nach einem Ort."
         },
         {
           "q": "Verneine mit „nie“: Je regarde la télévision.",
           "o": [
             "Je ne regarde jamais la télévision.",
-            "Je regarde ne pas jamais la télévision.",
-            "Je n’ai télévision jamais."
+            "Je ne regarde pas la télévision.",
+            "Je ne jamais regarde la télévision."
           ],
           "a": 0,
-          "audio": "Je ne regarde jamais la télévision."
+          "audio": "Je ne regarde jamais la télévision.",
+          "explanation": "Nie heißt ne … jamais, und beide Teile umschließen das Verb: je ne regarde jamais. Ne … pas heißt nur „nicht“."
         }
       ]
     },
@@ -7821,7 +7829,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "son frère",
-          "explanation": "Beispiel: son frère"
+          "explanation": "Son frère heißt sein oder ihr Bruder: son richtet sich nach frère, nicht nach dem Besitzer. Père wäre Vater, „meine Schwester“ ma sœur."
         },
         {
           "q": "___ sœur s’appelle Léa.",
@@ -7887,7 +7895,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "leurs enfants",
-          "explanation": "Beispiel: leurs enfants"
+          "explanation": "Leurs heißt ihre bei mehreren Besitzern und mehreren Dingen: leurs enfants. Unsere Kinder wären nos enfants, seine Kinder ses enfants."
         }
       ]
     },
@@ -7955,12 +7963,12 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du „Die Rechnung, bitte“?",
           "o": [
             "L’addition, s’il vous plaît.",
-            "La carte, merci.",
-            "Le prix, bonjour."
+            "La carte, s’il vous plaît.",
+            "Le menu, s’il vous plaît."
           ],
           "a": 0,
           "audio": "L’addition, s’il vous plaît.",
-          "explanation": "Beispiel: L’addition, s’il vous plaît."
+          "explanation": "L’addition ist die Rechnung. La carte ist die Speisekarte, le menu das Menü."
         },
         {
           "q": "„2,50 € le kilo“ bedeutet …",
@@ -8017,12 +8025,12 @@ window.FR_A1_DATA = {
           "q": "Hier, j’___ mangé.",
           "o": [
             "ai",
-            "suis",
+            "est",
             "as"
           ],
           "a": 0,
           "audio": "Hier, j’ai mangé.",
-          "explanation": "Beispiel: Hier, j’ai mangé."
+          "explanation": "Manger bildet das passé composé mit avoir: j’ai mangé. Est ist eine Form von être, as gehört zu tu."
         },
         {
           "q": "Nous ___ travaillé.",
@@ -8049,12 +8057,12 @@ window.FR_A1_DATA = {
           "q": "Demain, je ___ visiter Lyon.",
           "o": [
             "vais",
-            "ai",
+            "vas",
             "suis"
           ],
           "a": 0,
           "audio": "Demain, je vais visiter Lyon.",
-          "explanation": "Beispiel: Demain, je vais visiter Lyon."
+          "explanation": "Futur proche: aller im Präsens + Infinitiv, mit je: je vais visiter. Vas gehört zu tu, suis ist être."
         },
         {
           "q": "Wie sagst du „Ich habe gerade gegessen“?",
@@ -8075,7 +8083,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "aujourd’hui",
-          "explanation": "Beispiel: aujourd’hui"
+          "explanation": "Aujourd’hui heißt heute. Gestern heißt hier, morgen demain."
         },
         {
           "q": "Hier veut dire …",
@@ -8086,7 +8094,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "hier",
-          "explanation": "Beispiel: hier"
+          "explanation": "Das französische hier heißt gestern (das deutsche „hier“ ist ici). Morgen heißt demain, heute aujourd’hui."
         },
         {
           "q": "„il y a trois jours“ bedeutet …",
@@ -8096,7 +8104,8 @@ window.FR_A1_DATA = {
             "vor drei Tagen"
           ],
           "a": 2,
-          "audio": "il y a trois jours"
+          "audio": "il y a trois jours",
+          "explanation": "Il y a + Zeitraum heißt „vor“: il y a trois jours. „In drei Tagen“ wäre dans trois jours, „seit drei Tagen“ depuis trois jours."
         },
         {
           "q": "Je vais ___ demain.",
@@ -8117,7 +8126,8 @@ window.FR_A1_DATA = {
             "il y a deux jours"
           ],
           "a": 1,
-          "audio": "dans deux jours"
+          "audio": "dans deux jours",
+          "explanation": "Dans + Zeitraum heißt „in“ (Zukunft): dans deux jours. Depuis heißt seit, il y a vor."
         }
       ]
     },
@@ -8162,13 +8172,13 @@ window.FR_A1_DATA = {
         {
           "q": "Je vais au travail ___ vélo.",
           "o": [
-            "en",
+            "par",
             "à",
             "au"
           ],
           "a": 1,
           "audio": "Je vais au travail à vélo.",
-          "explanation": "Beispiel: Je vais au travail à vélo."
+          "explanation": "Mit dem Fahrrad heißt à vélo, wie à pied. Par und au passen hier nicht."
         },
         {
           "q": "Nous voyageons ___ train.",
@@ -8190,7 +8200,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Allez tout droit.",
-          "explanation": "Beispiel: Allez tout droit."
+          "explanation": "Tout droit heißt geradeaus. Links abbiegen wäre Tournez à gauche."
         },
         {
           "q": "„Tournez à droite“ bedeutet …",
@@ -8201,7 +8211,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Tournez à droite.",
-          "explanation": "Beispiel: Tournez à droite."
+          "explanation": "À droite heißt rechts, à gauche links. Den Bus nehmen wäre Prenez le bus."
         },
         {
           "q": "Welche Frage sucht einen Ort?",
@@ -8223,7 +8233,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "arrêt de bus",
-          "explanation": "Beispiel: arrêt de bus"
+          "explanation": "Un arrêt de bus ist die Bushaltestelle. Der Bahnhof heißt la gare."
         },
         {
           "q": "Wie sagst du „Nehmen Sie Linie 4“?",
@@ -8280,12 +8290,12 @@ window.FR_A1_DATA = {
           "q": "Ich habe keine Zeit.",
           "o": [
             "Je n’ai pas le temps.",
-            "Je suis pas temps.",
-            "Je temps non."
+            "Je n’ai pas temps.",
+            "Je n’ai le temps pas."
           ],
           "a": 0,
           "audio": "Je n’ai pas le temps.",
-          "explanation": "Beispiel: Je n’ai pas le temps."
+          "explanation": "Keine Zeit haben: Je n’ai pas le temps. Ne … pas umschließt das Verb, danach folgt le temps mit Artikel."
         },
         {
           "q": "___, où est la gare ?",
@@ -8345,11 +8355,12 @@ window.FR_A1_DATA = {
           "q": "Wie sagst du höflich „Ich hätte gern Informationen“?",
           "o": [
             "J’aimerais des informations.",
-            "Je suis informations.",
-            "J’ai jamais information."
+            "Je veux des informations.",
+            "Donne-moi des informations."
           ],
           "a": 0,
-          "audio": "J’aimerais des informations."
+          "audio": "J’aimerais des informations.",
+          "explanation": "J’aimerais (ich hätte gern) ist höflich. Je veux klingt fordernd, donne-moi ist eine Aufforderung unter Duzenden."
         }
       ]
     },
@@ -8684,11 +8695,12 @@ window.FR_A1_DATA = {
           "q": "Welche Form ist eine höfliche Bitte?",
           "o": [
             "Pourriez-vous répéter ?",
-            "Répète !",
-            "Tu répéter."
+            "Tu peux répéter ?",
+            "Vous répétez ?"
           ],
           "a": 0,
-          "audio": "Pourriez-vous répéter ?"
+          "audio": "Pourriez-vous répéter ?",
+          "explanation": "Pourriez-vous (könnten Sie) ist die höfliche Bitte. Tu peux répéter ? duzt, Vous répétez ? ist eine bloße Frage."
         }
       ]
     },
@@ -8753,15 +8765,15 @@ window.FR_A1_DATA = {
           "explanation": "ce/cette, mon/ma/mes, Mengen und Kongruenz"
         },
         {
-          "q": "Ce ___ mes parents.",
+          "q": "Das sind meine Eltern (geschriebener Standard): ___ mes parents.",
           "o": [
-            "a",
-            "sont",
-            "est"
+            "C’est",
+            "Ce sont",
+            "Ils sont"
           ],
           "a": 1,
           "audio": "Ce sont mes parents.",
-          "explanation": "ce/cette, mon/ma/mes, Mengen und Kongruenz"
+          "explanation": "Vor mes + Plural steht im geschriebenen Standard ce sont. C’est mes parents ist umgangssprachlich; ils sont steht nicht vor einem Begleiter wie mes."
         },
         {
           "q": "Welche Wortstellung ist korrekt?",

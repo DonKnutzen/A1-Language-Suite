@@ -908,8 +908,8 @@ window.A1_COMPREHENSION_CONTENT = {
         "label": "Was macht Person B gerade?",
         "options": [
           "prendre le petit-déjeuner",
-          "se doucher",
-          "travailler"
+          "aller au travail",
+          "regarder la télé"
         ],
         "answer": "prendre le petit-déjeuner"
       },
@@ -1336,9 +1336,9 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "label": "Warum kann Person B am Samstag nicht?",
         "options": [
-          "un voyage",
+          "un voyage en train",
           "un autre rendez-vous",
-          "un cours"
+          "un cours de français"
         ],
         "answer": "un autre rendez-vous"
       }

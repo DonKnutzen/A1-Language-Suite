@@ -49,9 +49,9 @@ test('all contextual table tasks have three stable nearby choices and no literal
 });
 test('prepositions and determiners keep the same noun in the prompt; ambiguous name synonyms are absent',()=>{
  const e=environment();const tasks=id=>{const l=e.w.FR_A1_DATA.lessons[id-1];return e.w.FR_A1_DEEPENING.pools(l,e.w.grammarHtml(l)).flatMap(p=>p.tasks);};
- for(const [id,prompt,answer,options]of [[8,'Je suis ___ musée.','au',['au','aux','à la']],[13,'Je voudrais ___ robe.','cette',['cette','cet','ce']],[24,'Je viens ___ Canada.','du',['du','de','d’']]]){const t=tasks(id).find(t=>t.q===prompt);assert(t);assert.equal(t.answer,answer);assert.deepEqual([...t.o],options);}
+ for(const [id,prompt,answer,options]of [[8,'Je suis ___ musée.','au',['au','aux','à la']],[13,'Je voudrais ___ robe.','cette',['cette','cet','ce']],[24,'Je viens ___ Canada.','du',['du','de','des']]]){const t=tasks(id).find(t=>t.q===prompt);assert(t);assert.equal(t.answer,answer);assert.deepEqual([...t.o],options);}
  const name=tasks(2).find(t=>t.answer==='nom de famille');assert(!name.o.includes('nom'));assert(name.o.includes('prénom'));
- const family=tasks(5).find(t=>t.q==='Ce ___ mes parents.');assert.equal(family.answer,'sont');assert.deepEqual([...family.o],['sont','est','sommes']);
+ const family=tasks(5).find(t=>t.q==='___ mes parents.');assert.equal(family.answer,'Ce sont');assert.deepEqual([...family.o],['Ce sont','C’est','Ils sont']);
  const polite=tasks(18).find(t=>t.answer==='Pourriez-vous répéter ?');assert(polite.q.includes('könnten Sie'));assert(polite.o.every(o=>/vous|Vous/.test(o)));e.dom.window.close();
 });
 test('resuming an inline grammar drill upgrades only the open table question and keeps graded work',()=>{

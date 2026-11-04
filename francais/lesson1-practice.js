@@ -9,7 +9,7 @@
       subtitle:'sein',
       match:['être – Konjugation anzeigen','être – Konjugation'],
       tasks:[
-        {q:'Je ___ allemand.',a:'suis',o:['suis','es','sommes'],audio:'Je suis allemand.'},
+        {q:'Je ___ allemand.',a:'suis',o:['suis','sont','sommes'],audio:'Je suis allemand.'},
         {q:'Tu ___ français.',a:'es',o:['est','es','êtes'],audio:'Tu es français.'},
         {q:'Elle ___ étudiante.',a:'est',o:['suis','est','sont'],audio:'Elle est étudiante.'},
         {q:'Nous ___ à Halifax.',a:'sommes',o:['sommes','êtes','sont'],audio:'Nous sommes à Halifax.'},
@@ -17,7 +17,7 @@
         {q:'Ils ___ étudiants.',a:'sont',o:['sont','est','sommes'],audio:'Ils sont étudiants.'},
         {q:'Welche Person passt zu « suis »?',a:'je',o:['je','tu','nous'],audio:'Je suis allemand.'},
         {q:'Welche Person passt zu « es »?',a:'tu',o:['tu','vous','ils / elles'],audio:'Tu es français.'},
-        {q:'Welche Personengruppe passt zu « est »?',a:'il / elle / on',o:['il / elle / on','nous','vous'],audio:'Elle est étudiante.'},
+        {q:'Welche Personengruppe passt zu « est »?',a:'il / elle / on',o:['il / elle / on','nous','ils / elles'],audio:'Elle est étudiante.'},
         {q:'Welche Person passt zu « sommes »?',a:'nous',o:['nous','vous','ils / elles'],audio:'Nous sommes à Halifax.'},
         {q:'Welche Person passt zu « êtes »?',a:'vous',o:['tu','vous','nous'],audio:'Vous êtes canadien ?'},
         {q:'Welche Personengruppe passt zu « sont »?',a:'ils / elles',o:['il / elle / on','vous','ils / elles'],audio:'Ils sont étudiants.'}
@@ -55,7 +55,7 @@
         {q:'Ils ___ d’Italie.',a:'viennent',o:['viennent','vient','venez'],audio:'Ils viennent d’Italie.'},
         {q:'Welche Person passt zu « viens » in « ___ viens d’Allemagne »?',a:'je',o:['je','nous','vous'],audio:'Je viens d’Allemagne.'},
         {q:'Welche Person passt ebenfalls zu « viens »?',a:'tu',o:['tu','elle','ils'],audio:'Tu viens du Canada.'},
-        {q:'Welche Person passt zu « vient »?',a:'il / elle',o:['il / elle','nous','vous'],audio:'Elle vient de Belgique.'},
+        {q:'Welche Person passt zu « vient »?',a:'il / elle',o:['il / elle','nous','ils / elles'],audio:'Elle vient de Belgique.'},
         {q:'Welche Person passt zu « venons »?',a:'nous',o:['nous','vous','ils / elles'],audio:'Nous venons de France.'},
         {q:'Welche Person passt zu « venez »?',a:'vous',o:['tu','vous','nous'],audio:'Vous venez d’où ?'},
         {q:'Welche Personengruppe passt zu « viennent »?',a:'ils / elles',o:['il / elle','vous','ils / elles'],audio:'Ils viennent d’Italie.'}
@@ -74,7 +74,7 @@
         {q:'Ils s’___ Marc et Paul.',a:'appellent',o:['appellent','appelez','appelle'],audio:'Ils s’appellent Marc et Paul.'},
         {q:'Welche Person passt zu « m’appelle »?',a:'je',o:['je','tu','vous'],audio:'Je m’appelle Léa.'},
         {q:'Welche Person passt zu « t’appelles »?',a:'tu',o:['tu','elle','nous'],audio:'Tu t’appelles Paul.'},
-        {q:'Welche Person passt zu « s’appelle »?',a:'il / elle',o:['il / elle','nous','vous'],audio:'Elle s’appelle Emma.'},
+        {q:'Welche Person passt zu « s’appelle »?',a:'il / elle',o:['il / elle','nous','ils / elles'],audio:'Elle s’appelle Emma.'},
         {q:'Welche Person passt zu « nous appelons »?',a:'nous',o:['nous','vous','ils / elles'],audio:'Nous nous appelons Léa et Marc.'},
         {q:'Welche Person passt zu « vous appelez »?',a:'vous',o:['tu','vous','nous'],audio:'Vous vous appelez comment ?'},
         {q:'Welche Personengruppe passt zu « s’appellent »?',a:'ils / elles',o:['il / elle','vous','ils / elles'],audio:'Ils s’appellent Marc et Paul.'}

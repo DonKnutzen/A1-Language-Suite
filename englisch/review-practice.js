@@ -57,12 +57,12 @@
     if(!data||data.version<2||!attempt?.submittedAt||attempt.reviewRecorded)return;
     data.gaps.forEach((g,i)=>{
       const prompt=data.text.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':data.gaps[Number(n)].answers[0]);
-      const q=task(lessonId,'hard-gap','Hard Mode · Lückentext',{q:prompt,context:g.hint,answer:g.answers[0],accept:g.answers.slice(1),marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}});
+      const q=task(lessonId,'hard-gap','Finale · Lückentext',{q:prompt,context:g.hint,answer:g.answers[0],accept:g.answers.slice(1),marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}});
       record(state,q,window.EN_A1_HARD_MODE.matches(attempt.gaps[i],g.answers,g));
     });
     let index=0;
     data.listening.forEach((block,b)=>block.questions.forEach(q=>{
-      record(state,task(lessonId,'hard-listening','Hard Mode · Hörverstehen',{q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:window.EN_A1_HARD_AUDIO.turns(lessonId,data,b),marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}}),window.EN_A1_HARD_MODE.matches(attempt.listening[index++],q.answers,q));
+      record(state,task(lessonId,'hard-listening','Finale · Hörverstehen',{q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:window.EN_A1_HARD_AUDIO.turns(lessonId,data,b),marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}}),window.EN_A1_HARD_MODE.matches(attempt.listening[index++],q.answers,q));
     }));
     attempt.reviewRecorded=true;
   }
@@ -122,8 +122,8 @@
       const normal=window.A1_COMPREHENSION_CONTENT[l.id];
       add(l.id,'listening','Hörverstehen',normal.fields.map(f=>({q:f.label,answer:f.answer,o:f.options,turns:normal.turns})));
       const hard=window.EN_A1_HARD_CONTENT[l.id];
-      add(l.id,'hard-gap','Hard Mode · Lückentext',hard.gaps.map((g,i)=>({q:hard.text.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':hard.gaps[Number(n)].answers[0]),answer:g.answers[0],accept:g.answers.slice(1),context:g.hint,marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}})));
-      for(const block of hard.listening)add(l.id,'hard-listening','Hard Mode · Hörverstehen',block.questions.map(q=>({q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:block.turns,marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}})));
+      add(l.id,'hard-gap','Finale · Lückentext',hard.gaps.map((g,i)=>({q:hard.text.replace(/\{\{(\d+)\}\}/g,(_,n)=>Number(n)===i?'___':hard.gaps[Number(n)].answers[0]),answer:g.answers[0],accept:g.answers.slice(1),context:g.hint,marking:{format:g.format,strictAccents:g.strictAccents,numberWords:g.numberWords}})));
+      for(const block of hard.listening)add(l.id,'hard-listening','Finale · Hörverstehen',block.questions.map(q=>({q:q.q,answer:q.answers[0],accept:q.answers.slice(1),o:q.options,turns:block.turns,marking:{format:q.format,strictAccents:q.strictAccents,numberWords:q.numberWords}})));
     }
     const exact=new Map(catalogue.map(q=>[q.id,q])),key=q=>JSON.stringify([q.lessonId,q.topic,q.q,q.answer]),groups=new Map();
     for(const q of catalogue){const k=key(q);if(!groups.has(k))groups.set(k,[]);groups.get(k).push(q);}

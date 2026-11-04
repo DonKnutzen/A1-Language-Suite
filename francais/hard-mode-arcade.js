@@ -10,7 +10,10 @@ const pick=xs=>xs[Math.floor(Math.random()*xs.length)];
 const shuffle=xs=>{const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 const calm=()=>!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const store={get(k,d){try{return localStorage.getItem(k)??d;}catch{return d;}},set(k,v){try{localStorage.setItem(k,v);}catch{}}};
-const soundOn=()=>store.get('a1-arcade-sound','on')!=='off',voiceOn=()=>store.get('a1-arcade-voice','on')!=='off';
+// "Töne" off silences everything, the voice included; "Stimme" switches off only the voice.
+const soundOn=()=>store.get('a1-arcade-sound','on')!=='off',voicePref=()=>store.get('a1-arcade-voice','on')!=='off',voiceOn=()=>soundOn()&&voicePref();
+const hush=()=>{try{window.A1Voice?.cancel?.();}catch{}};
+const speaking=()=>{try{return !!window.speechSynthesis?.speaking;}catch{return false;}};
 const COLORS=['#ff5d8f','#ffd166','#06d6a0','#4cc9f0','#b388ff','#ff9f1c'];
 
 /* ---------- Lesson 1 content ---------- */
@@ -48,12 +51,27 @@ const SORTS=[
 const FR_UI={'Ball zurückziehen & loslassen – oder Ziel antippen':'Tire la balle et lâche – ou touche une cible','Dieses Spiel braucht einen Browser mit Grafikunterstützung (Canvas).':'Ce jeu a besoin d’un navigateur avec le canvas.','Entwischt! ':'Envolé ! ','Los geht’s!':'C’est parti !','Neuer Rekord!':'Nouveau record !','Nochmal':'Rejouer','Oben antippen = nochmal hören':'Touche en haut pour réécouter','Pause':'Pause','Punkte':'points','Rekord':'Record','Spiel vorbei!':'Partie terminée !','Spielhalle':'Salle de jeux','Stimme':'Voix','Töne':'Sons','Was hörst du? Platz den richtigen Ballon!':'Qu’entends-tu ? Éclate le bon ballon !','Weiter':'Reprendre','Wischen oder Seite antippen':'Glisse ou touche un côté','Zeit um!':'Temps écoulé !','Ziehen oder ← → zum Fangen':'Glisse ou ← → pour attraper','Zu langsam!':'Trop lent !',
  'Wurf-Arena':'L’arène de tir','Ballon-Jagd':'La chasse aux ballons','Wort-Fänger':'L’attrape-mots','Blitz-Sortierer':'Le tri éclair',
  'Zieh den Ball wie eine Schleuder zurück und triff die richtige Verbform. Antippen eines Ziels wirft auch. Falsche Treffer kosten 3 Sekunden – du hast 45 Sekunden!':'Tire la balle comme une fronde et touche la bonne forme. Toucher une cible lance aussi. Une erreur coûte 3 secondes – tu as 45 secondes !',
- 'Hör genau hin und platz den Ballon mit dem Satz, den du hörst – bevor er wegfliegt! 3 Leben.':'Écoute bien et éclate le ballon avec ce que tu entends – avant qu’il s’envole ! 3 vies.',
- 'Fang mit dem Korb nur das Wort, das in die Lücke passt. Falsche Wörter kosten ein Leben. 3 Leben.':'Attrape seulement le mot qui va dans le trou. Un mauvais mot coûte une vie. 3 vies.',
- 'Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben.':'Glisse chaque carte du bon côté – vite. Le temps raccourcit ! 3 vies.'};
+ 'Hör genau hin und platz den Ballon mit dem, was du hörst – richtig geschrieben und bevor er wegfliegt! Vorsicht: Manche Ballons sind falsch geschrieben. 3 Leben.':'Écoute bien et éclate le ballon avec ce que tu entends – bien écrit et avant qu’il s’envole ! Attention : certains ballons sont mal écrits. 3 vies.',
+ 'Fang mit dem Korb nur das Wort, das in die Lücke passt. Ein falsches Wort im Korb oder ein verpasstes richtiges kostet ein Leben. 3 Leben.':'Attrape seulement le mot qui va dans le trou. Un mauvais mot dans le panier ou un bon mot raté coûte une vie. 3 vies.',
+ 'Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben. Am Ende siehst du, was falsch war.':'Glisse chaque carte du bon côté – vite. Le temps raccourcit ! 3 vies. À la fin, tu vois ce qui était faux.',
+ 'Rückblick':'Bilan','Deine Wahl':'Ton choix','richtig':'juste','Richtig':'Correct','Anhören':'Écouter','Falsch geschrieben':'Mal écrit','Falsch geschrieben!':'Mal écrit !','Anderes Wort':'Un autre mot','Nicht erwischt':'Pas attrapé','Falsches Wort gefangen':'Mauvais mot attrapé','Richtiges Wort verpasst':'Bon mot raté','Verpasst: ':'Raté : ','Zu langsam':'Trop lent','Der Satz ist korrekt.':'La phrase est correcte.','Richtig heißt es:':'Correct :'};
 let L=null;
 function cur(){return L||{course:'fr',voice:'fr-FR',formRound,PHRASES,SORTS};}
 const lnorm=s=>String(s??'').normalize('NFC').trim().toLowerCase();
+// Look-alike misspellings for the balloon hunt: one typical spelling slip (accent, double letter, silent ending, ie/ei …).
+const END="(?=$|[\\s.,!?;:…’'\\-])",V='[aeiouyéèêàâîôû]';
+const SPELL={
+ fr:[['é','è'],['é','e'],['è','é'],['ê','è'],['ê','e'],['à','a'],['â','a'],['ç','c'],['ô','o'],['î','i'],['û','u'],['eau','au'],['au','o'],['ai','é'],['qu','k'],['ph','f'],['gn','ni'],
+  ['([lnmtsrpf])\\1','$1'],['('+V+')([lnmtpf])('+V+')','$1$2$2$3'],['er'+END,'é'],['er'+END,'ez'],['é'+END,'er'],['ée'+END,'é'],['ez'+END,'er'],['ent'+END,'e'],['ait'+END,'ais'],['ais'+END,'ait'],
+  ['([a-zé]{2})s'+END,'$1'],['([a-z]{2}[aeiouré])'+END,'$1s'],['([a-z]{2}[^\\Wesxz])e'+END,'$1'],['([a-z]{3}[tdpn])'+END,'$1e'],['ill','il'],['an','en'],['en','an']],
+ de:[['ie','ei'],['ei','ie'],['ß','ss'],['ss','ß'],['ä','e'],['ä','a'],['ö','o'],['ü','u'],['äu','eu'],['eu','äu'],['([lnmtsrpf])\\1','$1'],['([aeiou])([lnmtpf])([aeiou])','$1$2$2$3'],
+  ['ah','a'],['eh','e'],['oh','o'],['uh','u'],['ie','i'],['d'+END,'t'],['t'+END,'d'],['g'+END,'k'],['v','f'],['tz','z'],['ck','k'],['chs','x'],['th','t']]
+};
+function misspell(text,course){const s=String(text),out=new Set();
+ for(const [p,r] of SPELL[course]||SPELL.fr){const re=new RegExp(p,'g');for(const m of s.matchAll(re)){const v=s.slice(0,m.index)+m[0].replace(new RegExp('^(?:'+p+')'),r)+s.slice(m.index+m[0].length);if(v!==s)out.add(v);}}
+ // German nouns are written with a capital letter – a lower-case noun is a classic slip.
+ if(course==='de')for(const m of s.matchAll(/(^|\s)(\p{Lu})(\p{Ll}{2,})/gu))if(m.index>0)out.add(s.slice(0,m.index)+m[1]+m[2].toLowerCase()+m[3]+s.slice(m.index+m[0].length));
+ return [...out];}
 // Throw and catch use the lesson's cloze sentences with the quiz show's look-alike options; balloons the lesson's words;
 // the sorter asks for the article and for right or wrong forms.
 function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR'},de:{H:window.DE_A1_HARD_CONTENT,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE'}}[course],data=cfg?.H?.[id];if(!data)return null;
@@ -66,10 +84,13 @@ function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,tar
  let own=words(ls=>ls.includes(Number(id)));if(own.length<8)own=[...own,...shuffle(words(ls=>ls.some(n=>n<Number(id)))).slice(0,8-own.length)];
  const PHRASESL=own.map(v=>[v[cfg.target],[v[cfg.meaning],v[cfg.meaning],v[cfg.meaning]]]);
  const nouns=words(ls=>ls.some(n=>n<=Number(id))),SORTSL=[];
- if(course==='fr'){const g=nouns.filter(v=>/^(le|la) /.test(v.fr)).map(v=>[v.fr.slice(3),v.fr.startsWith('le ')?0:1]);if(g.length>=10)SORTSL.push({title:['le oder la?','le or la?'],sides:[['♂ le','♂ le'],['♀ la','♀ la']],cards:shuffle(g).slice(0,24)});}
- else{const g=nouns.filter(v=>/^(der|die) /.test(v.de)&&!/\//.test(v.de)).map(v=>[v.de.replace(/^(der|die) /,''),v.de.startsWith('der ')?0:1]);if(g.length>=10)SORTSL.push({title:['der oder die?','der or die?','der ou die ?'],sides:[['der','der','der'],['die','die','die']],cards:shuffle(g).slice(0,24)});}
- const forms=shuffle(rounds).slice(0,12).flatMap(r=>[[r.sentence,0],[(r.before+r.others[0]+r.after).replace(/([’'])\s+/g,'$1'),1]]);
- if(forms.length>=10)SORTSL.push({title:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✓ richtig','✓ right','✓ juste'],['✗ falsch','✗ wrong','✗ faux']],cards:forms});
+ // Each card: [text, side, the full form shown in the review afterwards].
+ if(course==='fr'){const g=nouns.filter(v=>/^(le|la) /.test(v.fr)).map(v=>[v.fr.slice(3),v.fr.startsWith('le ')?0:1,v.fr+' – '+v.de]);if(g.length>=10)SORTSL.push({title:['le oder la?','le or la?'],sides:[['♂ le','♂ le'],['♀ la','♀ la']],cards:shuffle(g).slice(0,24)});}
+ else{const g=nouns.filter(v=>/^(der|die) /.test(v.de)&&!/\//.test(v.de)).map(v=>[v.de.replace(/^(der|die) /,''),v.de.startsWith('der ')?0:1,v.de+' – '+v.fr]);if(g.length>=10)SORTSL.push({title:['der oder die?','der or die?','der ou die ?'],sides:[['der','der','der'],['die','die','die']],cards:shuffle(g).slice(0,24)});}
+ // Wrong is on the left (red), right on the right (green) – like swiping yes to the right.
+ const hint=r=>r.verb&&r.verb!=='…'?' ('+r.verb+')':'';
+ const forms=shuffle(rounds).slice(0,12).flatMap(r=>[[r.sentence,1,r.sentence+hint(r)],[(r.before+r.others[0]+r.after).replace(/([’'])\s+/g,'$1'),0,r.sentence+hint(r)]]);
+ if(forms.length>=10)SORTSL.push({kind:'forms',title:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✗ falsch','✗ wrong','✗ faux'],['✓ richtig','✓ right','✓ juste']],colors:['#ff5d8f','#06d6a0'],cards:forms});
  if(!SORTSL.length)SORTSL.push(...SORTS);
  return {course,voice:cfg.voice,formRound:rounds.length?formRoundL:formRound,PHRASES:PHRASESL.length>=4?PHRASESL:PHRASES,SORTS:SORTSL,tags:{throw:ui('Formen aus dem Lückentext','Forms from the cloze text','Les formes du texte à trous'),balloons:ui('Wörter der Lektion hören','Hear the lesson’s words','Écouter les mots de la leçon'),catch:ui('Das Wort für die Lücke','The word for the gap','Le mot pour le trou'),sort:ui(SORTSL.map(x=>x.title[0]).join(' · '),SORTSL.map(x=>x.title[1]).join(' · '),SORTSL.map(x=>x.title[2]??x.title[0]).join(' · '))}};}
 function lessonGames(course,id){L=lessonContent(course,id);const tags=L?.tags;const list=GAMES.map(g=>({id:g.id,icon:g.icon,theme:g.theme,title:tx(g.name),tagline:tags?tx(tags[g.id]):tx(g.tag)}));L=null;return list;}
@@ -114,7 +135,7 @@ function createThrow(api){
  const S={score:0,combo:0,time:45,round:null,targets:[],ball:null,drag:null,roundT:0,lock:0,hits:0};
  const home=()=>({x:api.w/2,y:api.h-70}),bob=t=>t.y+Math.sin(t.phase)*8;
  function resetBall(){const p=home();S.ball={x:p.x,y:p.y,vx:0,vy:0,fly:false,grav:true};}
- function next(){S.round=cur().formRound(4);S.roundT=0;const n=4,top=150,speed=45+Math.min(130,S.hits*9),r=Math.min(46,api.w/9+8);S.targets=S.round.options.map((word,i)=>({word,r,x:api.w/n*(i+.5),y:top+(i%2?Math.min(110,api.h*.2):0),vx:(Math.random()<.5?-1:1)*speed*(.6+Math.random()*.6),phase:Math.random()*6,color:COLORS[(i+S.hits)%COLORS.length],gone:false}));resetBall();}
+ function next(){hush();S.held=0;S.round=cur().formRound(4);S.roundT=0;const n=4,top=150,speed=45+Math.min(130,S.hits*9),r=Math.min(46,api.w/9+8);S.targets=S.round.options.map((word,i)=>({word,r,x:api.w/n*(i+.5),y:top+(i%2?Math.min(110,api.h*.2):0),vx:(Math.random()<.5?-1:1)*speed*(.6+Math.random()*.6),phase:Math.random()*6,color:COLORS[(i+S.hits)%COLORS.length],gone:false}));resetBall();}
  function launch(vx,vy,grav){Object.assign(S.ball,{vx,vy,grav,fly:true});api.sfx.throw();}
  // A tapped target is homed in on, so the ball never hits another target on the way.
  function aimAt(tg){S.ball.aim=tg;launch(0,0,false);}
@@ -123,7 +144,7 @@ function createThrow(api){
   get over(){return S.time<=0;},
   hud:()=>({score:S.score,combo:S.combo,time:S.time}),
   get score(){return S.score;},get state(){return S;},
-  update(dt){S.time=Math.max(0,S.time-dt);S.roundT+=dt;if(S.lock>0){S.lock-=dt;if(S.lock<=0)next();}
+  update(dt){if(S.lock>0){S.lock-=dt;S.held+=dt;if(S.lock<=0&&speaking()&&S.held<3)S.lock=.05;if(S.lock<=0)next();}else S.time=Math.max(0,S.time-dt);S.roundT+=dt;
    for(const tg of S.targets){if(tg.gone)continue;tg.phase+=dt*2.2;tg.x+=tg.vx*dt;if(tg.x<tg.r+6){tg.x=tg.r+6;tg.vx=Math.abs(tg.vx);}if(tg.x>api.w-tg.r-6){tg.x=api.w-tg.r-6;tg.vx=-Math.abs(tg.vx);}}
    for(const p of S.targets)for(const q of S.targets){if(p===q||p.gone||q.gone||p.y!==q.y||q.x<p.x)continue;const gap=p.r+q.r+6-(q.x-p.x);if(gap>0){p.x-=gap/2;q.x+=gap/2;p.vx=-Math.abs(p.vx);q.vx=Math.abs(q.vx);}}
    const b=S.ball;if(!b.fly)return;if(b.aim&&!b.aim.gone){const dx=b.aim.x-b.x,dy=bob(b.aim)-b.y,d=Math.hypot(dx,dy)||1;b.vx=dx/d*950;b.vy=dy/d*950;}if(b.grav)b.vy+=520*dt;b.x+=b.vx*dt;b.y+=b.vy*dt;
@@ -152,20 +173,23 @@ function createThrow(api){
 
 /* ---------- Game 2: balloon hunt (listening) ---------- */
 function createBalloons(api){
- const S={score:0,combo:0,lives:3,wave:0,balloons:[],target:null,t:0,lock:0};
+ const S={score:0,combo:0,lives:3,wave:0,balloons:[],target:null,t:0,lock:0,log:[]};
  const canSpeak=()=>voiceOn()&&!!window.A1Voice?.speak&&!!window.speechSynthesis;
  function size(n){const rx=Math.min(78,api.w/(n*2)-6);return {rx,ry:rx*1.18};}
- function next(){S.wave++;S.t=0;S.target=pick(cur().PHRASES);const items=shuffle([S.target,...shuffle(cur().PHRASES.filter(p=>p!==S.target)).slice(0,api.w<420?2:3)]);const speed=46+Math.min(75,S.wave*4.5),{rx,ry}=size(items.length);S.balloons=items.map((p,i)=>({p,rx,ry,x:api.w/items.length*(i+.5),y:api.h-ry*.3+Math.random()*70,vy:speed*(.85+Math.random()*.35),wob:Math.random()*6,color:COLORS[(i+S.wave)%COLORS.length],popped:false}));if(canSpeak())setTimeout(()=>api.say(S.target[0]),250);}
+ // Besides other words of the lesson, one (later two) balloons carry the heard word in a wrong spelling.
+ function next(){S.wave++;S.t=0;hush();const all=cur().PHRASES;S.target=pick(all);const n=api.w<420?3:4,real=new Set(all.map(p=>p[0]));
+  const fakes=shuffle(misspell(S.target[0],cur().course).filter(v=>!real.has(v))).slice(0,S.wave<3?1:2).map(v=>[v,S.target[1],true]);
+  const items=shuffle([S.target,...fakes,...shuffle(all.filter(p=>p!==S.target)).slice(0,n-1-fakes.length)]);const speed=46+Math.min(75,S.wave*4.5),{rx,ry}=size(items.length);S.balloons=items.map((p,i)=>({p,rx,ry,x:api.w/items.length*(i+.5),y:api.h-ry*.3+Math.random()*70,vy:speed*(.85+Math.random()*.35),wob:Math.random()*6,color:COLORS[(i+S.wave)%COLORS.length],popped:false}));if(canSpeak())setTimeout(()=>api.say(S.target[0]),250);}
  next();
  const hinted=()=>!canSpeak()||S.t>3.5;
  return {
-  get over(){return S.lives<=0&&S.lock<=0;},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},
+  get over(){return S.lives<=0&&S.lock<=0;},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},get log(){return S.log;},
   update(dt){S.t+=dt;if(S.lock>0){S.lock-=dt;for(const b of S.balloons)b.y-=b.vy*dt*3;if(S.lock<=0&&S.lives>0)next();return;}
-   for(const b of S.balloons){if(b.popped)continue;b.wob+=dt*2;b.y-=b.vy*dt;b.x=Math.max(b.rx+4,Math.min(api.w-b.rx-4,b.x+Math.sin(b.wob)*.35));if(b.p===S.target&&b.y+b.ry<0){S.lives--;S.combo=0;api.sfx.miss();api.float(api.w/2,140,t('Entwischt! ','Escaped! ')+S.target[0],'#ff8fa3');S.lock=.9;return;}}},
+   for(const b of S.balloons){if(b.popped)continue;b.wob+=dt*2;b.y-=b.vy*dt;b.x=Math.max(b.rx+4,Math.min(api.w-b.rx-4,b.x+Math.sin(b.wob)*.35));if(b.p===S.target&&b.y+b.ry<0){S.lives--;S.combo=0;api.sfx.miss();S.log.push({ok:false,text:S.target[0],fix:S.target[0],why:t('Nicht erwischt','Not caught')});api.float(api.w/2,140,t('Entwischt! ','Escaped! ')+S.target[0],'#ff8fa3');S.lock=.9;return;}}},
   pointer(type,x,y){if(type!=='down'||S.lock>0)return;if(y<122){if(canSpeak())api.say(S.target[0]);return;}
    const b=S.balloons.find(b=>!b.popped&&((x-b.x)/b.rx)**2+((y-b.y)/b.ry)**2<=1.15);if(!b)return;b.popped=true;
-   if(b.p===S.target){S.combo++;const pts=10+Math.min(20,S.combo*2)+(hinted()?0:6);S.score+=pts;api.burst(b.x,b.y,b.color,28);api.sfx.pop();api.sfx.hit();api.float(b.x,b.y-b.ry,'+'+pts+' · '+tx(b.p[1]));S.lock=.8;}
-   else{S.lives--;S.combo=0;api.burst(b.x,b.y,'#ff4d6d',12);api.sfx.pop();api.sfx.miss();api.shake(9);api.float(b.x,b.y,'✗ '+b.p[0],'#ff8fa3');if(S.lives<=0)S.lock=.6;}},
+   if(b.p===S.target){S.combo++;const pts=10+Math.min(20,S.combo*2)+(hinted()?0:6);S.score+=pts;api.burst(b.x,b.y,b.color,28);api.sfx.pop();api.sfx.hit();api.float(b.x,b.y-b.ry,'+'+pts+' · '+tx(b.p[1]));S.log.push({ok:true,text:b.p[0]});S.lock=.8;}
+   else{S.lives--;S.combo=0;api.burst(b.x,b.y,'#ff4d6d',12);api.sfx.pop();api.sfx.miss();api.shake(9);api.float(b.x,b.y,b.p[2]?'✗ '+t('Falsch geschrieben!','Wrong spelling!'):'✗ '+b.p[0],'#ff8fa3');S.log.push({ok:false,text:b.p[0],fix:S.target[0],why:b.p[2]?t('Falsch geschrieben','Wrong spelling'):t('Anderes Wort','A different word')});if(S.lives<=0)S.lock=.6;}},
   key(type,key){if(type==='down'&&(key===' '||key==='Enter')){if(canSpeak())api.say(S.target[0]);return true;}return false;},
   draw(c,w,h){sky(c,w,h,'#7ec8f5','#ffc2e2');c.fillStyle='#ffffffaa';for(const [cx,cy,s] of [[.2,.32,1],[.78,.5,1.3],[.45,.75,.9]]){c.beginPath();c.arc(cx*w,cy*h,22*s,0,7);c.arc(cx*w+24*s,cy*h+6,18*s,0,7);c.arc(cx*w-24*s,cy*h+8,16*s,0,7);c.fill();}
    rr(c,12,52,w-24,62,16);c.fillStyle='#fbf7ff';c.fill();
@@ -180,24 +204,28 @@ function createBalloons(api){
 
 /* ---------- Game 3: word catcher ---------- */
 function createCatch(api){
- const S={score:0,combo:0,lives:3,round:null,words:[],spawn:.4,since:2,caught:0,keys:{},basket:{x:api.w/2},done:'',doneT:0};
+ const S={score:0,combo:0,lives:3,round:null,words:[],spawn:.4,since:2,caught:0,keys:{},basket:{x:api.w/2},done:'',doneT:0,pending:false,hold:0,log:[]};
  const bw=()=>Math.min(130,api.w*.32),by=()=>api.h-46;
- function next(){S.round=cur().formRound(3);for(const wd of S.words)wd.fade=true;S.spawn=.5;S.since=2;}
+ function next(){hush();S.pending=false;S.round=cur().formRound(3);for(const wd of S.words)wd.fade=true;S.spawn=.5;S.since=2;}
+ const fadeOut=dt=>{for(const wd of S.words)if(wd.fade)wd.alpha-=dt*4;S.words=S.words.filter(wd=>wd.alpha>0);};
+ const lose=(text,why)=>{S.lives--;S.combo=0;S.log.push({ok:false,text,fix:S.round.sentence,why});api.sfx.miss();api.shake(9);};
  next();
  return {
-  get over(){return S.lives<=0;},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},
+  get over(){return S.lives<=0;},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},get log(){return S.log;},
   update(dt){S.doneT=Math.max(0,S.doneT-dt);const dir=(S.keys.ArrowRight?1:0)-(S.keys.ArrowLeft?1:0);S.basket.x=Math.max(bw()/2,Math.min(api.w-bw()/2,S.basket.x+dir*480*dt));
+   // After a catch the round pauses until the model sentence has been read out, so the voice never runs into the next gap.
+   if(S.pending){S.hold+=dt;fadeOut(dt);if(S.doneT>0||speaking()&&S.hold<3.5)return;next();}
    S.spawn-=dt;if(S.spawn<=0){const correct=S.since>=2||Math.random()<.35,word=correct?S.round.answer:pick(S.round.options.filter(o=>o!==S.round.answer));S.since=correct?0:S.since+1;const tw=Math.min(api.w*.42,word.length*11+30);S.words.push({word,tw,x:tw/2+8+Math.random()*(api.w-tw-16),y:120,vy:85+Math.min(150,S.caught*7),color:pick(COLORS),fade:false,alpha:1});S.spawn=Math.max(.55,1.1-S.caught*.03);}
    for(const wd of S.words){if(wd.fade){wd.alpha-=dt*4;continue;}wd.y+=wd.vy*dt;
     if(wd.y+16>=by()-12&&wd.y<by()+14&&Math.abs(wd.x-S.basket.x)<bw()/2+wd.tw*.25){wd.alpha=0;
-     if(wd.word===S.round.answer){S.caught++;S.combo++;const pts=10+Math.min(20,S.combo*2);S.score+=pts;api.burst(S.basket.x,by(),pick(COLORS),22);api.float(S.basket.x,by()-30,'+'+pts);api.sfx.hit();api.say(S.round.sentence);S.done=S.round.sentence;S.doneT=1.1;next();return;}
-     S.lives--;S.combo=0;api.burst(S.basket.x,by(),'#ff4d6d',12);api.float(S.basket.x,by()-30,'✗ '+wd.word,'#ff8fa3');api.sfx.miss();api.shake(9);}
-    else if(wd.y>api.h+20){wd.alpha=0;if(wd.word===S.round.answer)S.combo=0;}}
+     if(wd.word===S.round.answer){S.caught++;S.combo++;const pts=10+Math.min(20,S.combo*2);S.score+=pts;api.burst(S.basket.x,by(),pick(COLORS),22);api.float(S.basket.x,by()-30,'+'+pts);api.sfx.hit();api.say(S.round.sentence);S.log.push({ok:true,text:S.round.sentence});S.done=S.round.sentence;S.doneT=1.1;S.hold=0;S.pending=true;for(const o of S.words)o.fade=true;return;}
+     api.burst(S.basket.x,by(),'#ff4d6d',12);api.float(S.basket.x,by()-30,'✗ '+wd.word,'#ff8fa3');lose(wd.word,t('Falsches Wort gefangen','Caught the wrong word'));if(S.lives<=0)return;}
+    else if(wd.y>api.h+20){wd.alpha=0;if(wd.word===S.round.answer){api.float(api.w/2,by()-40,t('Verpasst: ','Missed: ')+wd.word,'#ff8fa3');lose(wd.word,t('Richtiges Wort verpasst','Missed the right word'));if(S.lives<=0)return;}}}
    S.words=S.words.filter(wd=>wd.alpha>0);},
   pointer(type,x){if(type==='down'||type==='move')S.basket.x=Math.max(bw()/2,Math.min(api.w-bw()/2,x));},
   key(type,key){if(key!=='ArrowLeft'&&key!=='ArrowRight')return false;S.keys[key]=type==='down';return true;},
   draw(c,w,h){sky(c,w,h,'#1b1446','#3d1f5c');c.fillStyle='#ffffff10';for(let i=0;i<8;i++){const bx=(i*w/8),bh=40+(i*37)%70;c.fillRect(bx,h-bh,w/8-4,bh);}
-   if(S.doneT>0){rr(c,12,52,w-24,58,16);c.fillStyle='#06d6a0';c.fill();label(c,'✓ '+S.done,w/2,81,{size:22,color:'#0b2b20',maxW:w-48});}else promptCard(c,w,S.round.before,S.round.after,'('+S.round.verb+')');
+   if(S.pending){rr(c,12,52,w-24,58,16);c.fillStyle='#06d6a0';c.fill();label(c,'✓ '+S.done,w/2,81,{size:22,color:'#0b2b20',maxW:w-48});}else promptCard(c,w,S.round.before,S.round.after,'('+S.round.verb+')');
    for(const wd of S.words){c.globalAlpha=Math.max(0,wd.alpha);rr(c,wd.x-wd.tw/2,wd.y-17,wd.tw,34,12);c.fillStyle=wd.color;c.fill();c.strokeStyle='#ffffffbb';c.lineWidth=2;c.stroke();label(c,wd.word,wd.x,wd.y,{size:18,color:'#1a1030',maxW:wd.tw-10});c.globalAlpha=1;}
    const x=S.basket.x,y=by(),half=bw()/2;c.beginPath();c.moveTo(x-half,y-12);c.lineTo(x+half,y-12);c.lineTo(x+half*.78,y+24);c.lineTo(x-half*.78,y+24);c.closePath();c.fillStyle='#c98a4b';c.fill();c.strokeStyle='#8b5a2b';c.lineWidth=3;c.stroke();c.strokeStyle='#8b5a2b88';c.lineWidth=2;for(let k=1;k<5;k++){c.beginPath();c.moveTo(x-half+k*half*.4,y-12);c.lineTo(x-half*.78+k*half*.31,y+24);c.stroke();}
    label(c,t('Ziehen oder ← → zum Fangen','Drag or ← → to catch'),w/2,h-8,{size:11,color:'#ffffffaa',weight:700,maxW:w-20});}
@@ -206,23 +234,27 @@ function createCatch(api){
 
 /* ---------- Game 4: lightning sort ---------- */
 function createSort(api){
- const S={score:0,combo:0,lives:3,n:0,set:0,queue:[],card:null,drag:0,start:null};
- function deal(){const SORTS=cur().SORTS;if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side]=S.queue.pop(),limit=Math.max(2,5-S.n*.09);S.card={text,side,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
- function choose(side){const cd=S.card;if(!cd||cd.state!=='live')return;cd.dir=side?1:-1;
-  if(side===cd.side){S.combo++;const pts=10+Math.min(20,S.combo*2)+Math.round(cd.t/cd.limit*8);S.score+=pts;cd.state='out';api.burst(side?api.w*.8:api.w*.2,api.h*.45,pick(COLORS),20);api.float(api.w/2,api.h*.3,'+'+pts);api.sfx.hit();if(cd.text.includes(' '))api.say(cd.text);}
+ const S={score:0,combo:0,lives:3,n:0,set:0,queue:[],card:null,drag:0,start:null,log:[]};
+ function deal(){const SORTS=cur().SORTS;if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side,full]=S.queue.pop(),limit=Math.max(2,5-S.n*.09);S.card={text,side,full,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
+ // Every decision goes into the review shown at the end: what you chose, what was right and the correct form.
+ function note(cd,chosen){const set=cur().SORTS[S.set],side=s=>tx(set.sides[s]),ok=chosen===cd.side;
+  const why=set.kind==='forms'?(cd.side===1?t('Der Satz ist korrekt.','The sentence is correct.'):t('Richtig heißt es:','Correct:')+' '+cd.full):cd.full||'';
+  S.log.push({ok,text:cd.text,said:chosen==null?t('Zu langsam','Too slow'):side(chosen),right:side(cd.side),why,fix:set.kind==='forms'?cd.full.replace(/ \([^)]*\)$/,''):cd.full?.split(' – ')[0]});}
+ function choose(side){const cd=S.card;if(!cd||cd.state!=='live')return;cd.dir=side?1:-1;note(cd,side);
+  if(side===cd.side){S.combo++;const pts=10+Math.min(20,S.combo*2)+Math.round(cd.t/cd.limit*8);S.score+=pts;cd.state='out';api.burst(side?api.w*.8:api.w*.2,api.h*.45,pick(COLORS),20);api.float(api.w/2,api.h*.3,'+'+pts);api.sfx.hit();}
   else{S.lives--;S.combo=0;cd.state='wrong';cd.flash=.45;api.sfx.miss();api.shake(10);api.float(api.w/2,api.h*.3,'✗ '+tx(cur().SORTS[S.set].sides[cd.side]),'#ff8fa3');}}
  deal();
  return {
-  get over(){return S.lives<=0&&(!S.card||S.card.state==='gone');},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},
+  get over(){return S.lives<=0&&(!S.card||S.card.state==='gone');},hud:()=>({score:S.score,combo:S.combo,lives:S.lives}),get score(){return S.score;},get state(){return S;},get log(){return S.log;},
   update(dt){const cd=S.card;if(!cd)return;cd.enter=Math.min(1,cd.enter+dt*6);
-   if(cd.state==='live'){cd.t-=dt;if(cd.t<=0){cd.t=0;S.lives--;S.combo=0;cd.state='wrong';cd.flash=.45;cd.dir=cd.side?-1:1;api.sfx.miss();api.float(api.w/2,api.h*.3,t('Zu langsam!','Too slow!'),'#ff8fa3');}}
+   if(cd.state==='live'){cd.t-=dt;if(cd.t<=0){cd.t=0;note(cd,null);S.lives--;S.combo=0;cd.state='wrong';cd.flash=.45;cd.dir=cd.side?-1:1;api.sfx.miss();api.float(api.w/2,api.h*.3,t('Zu langsam!','Too slow!'),'#ff8fa3');}}
    else if(cd.state==='wrong'){cd.flash-=dt;if(cd.flash<=0)cd.state='out';}
    else if(cd.state==='out'){cd.x+=cd.dir*1700*dt;if(Math.abs(cd.x)>api.w){cd.state='gone';if(S.lives>0)deal();}}},
   pointer(type,x){if(type==='down'){S.start=x;S.drag=0;}else if(type==='move'&&S.start!==null){S.drag=x-S.start;}else if(type==='up'&&S.start!==null){const d=S.drag;S.start=null;S.drag=0;if(Math.abs(d)>60)choose(d>0?1:0);else if(Math.abs(d)<10)choose(x>api.w/2?1:0);}},
   key(type,key){if(type!=='down')return false;if(key==='ArrowLeft'){choose(0);return true;}if(key==='ArrowRight'){choose(1);return true;}return false;},
   draw(c,w,h){const set=cur().SORTS[S.set];c.fillStyle='#3b1f6e';c.fillRect(0,0,w/2,h);c.fillStyle='#0f4c5c';c.fillRect(w/2,0,w/2,h);
    label(c,tx(set.title),w/2,66,{size:18,color:'#ffd166',maxW:w-24});
-   for(const s of [0,1]){const cx=s?w*.75:w*.25;rr(c,cx-w*.22,h-74,w*.44,52,26);c.fillStyle=s?'#06d6a0':'#ff5d8f';c.fill();label(c,(s?'':'← ')+tx(set.sides[s])+(s?' →':''),cx,h-48,{size:17,color:'#1a1030',maxW:w*.4});}
+   for(const s of [0,1]){const cx=s?w*.75:w*.25;rr(c,cx-w*.22,h-74,w*.44,52,26);c.fillStyle=(set.colors||['#4cc9f0','#ffd166'])[s];c.fill();label(c,(s?'':'← ')+tx(set.sides[s])+(s?' →':''),cx,h-48,{size:17,color:'#1a1030',maxW:w*.4});}
    const cd=S.card;if(!cd||cd.state==='gone')return;const cw=Math.min(w-48,330),ch=150,cx=w/2+cd.x+(cd.state==='live'?S.drag:0),cy=h*.47,sc=.85+cd.enter*.15;
    c.save();c.translate(cx,cy);c.rotate((cx-w/2)*.0015);c.scale(sc,sc);rr(c,-cw/2,-ch/2,cw,ch,22);c.fillStyle=cd.state==='wrong'?'#ff4d6d':'#fbf7ff';c.fill();c.lineWidth=4;c.strokeStyle='#ffffffcc';c.stroke();
    const lines=wrap(c,cd.text,cw-36,28);lines.slice(0,3).forEach((ln,i)=>label(c,ln,0,(i-(Math.min(3,lines.length)-1)/2)*32-8,{size:26,color:'#1a1030',maxW:cw-30}));
@@ -234,13 +266,18 @@ function createSort(api){
 /* ---------- Runner for canvas games ---------- */
 const GAMES=[
  {id:'throw',icon:'🎯',theme:'order',name:['Wurf-Arena','Target throw'],tag:['être · venir · habiter · parler','être · venir · habiter · parler'],rule:['Zieh den Ball wie eine Schleuder zurück und triff die richtige Verbform. Antippen eines Ziels wirft auch. Falsche Treffer kosten 3 Sekunden – du hast 45 Sekunden!','Pull the ball back like a slingshot and hit the right verb form. Tapping a target throws too. Wrong hits cost 3 seconds – you have 45 seconds!'],stars:[50,130,220],create:createThrow},
- {id:'balloons',icon:'🎈',theme:'listening',name:['Ballon-Jagd','Balloon hunt'],tag:['Hören · Begrüßen · Vorstellen','Listening · greetings · introductions'],rule:['Hör genau hin und platz den Ballon mit dem Satz, den du hörst – bevor er wegfliegt! 3 Leben.','Listen closely and pop the balloon with the sentence you hear – before it floats away! 3 lives.'],stars:[50,130,220],create:createBalloons},
- {id:'catch',icon:'🧺',theme:'match',name:['Wort-Fänger','Word catcher'],tag:['Verbformen im Satz','Verb forms in sentences'],rule:['Fang mit dem Korb nur das Wort, das in die Lücke passt. Falsche Wörter kosten ein Leben. 3 Leben.','Catch only the word that fits the gap. Wrong words cost a life. 3 lives.'],stars:[50,130,220],create:createCatch},
- {id:'sort',icon:'⚡',theme:'text',name:['Blitz-Sortierer','Lightning sort'],tag:['Herkunft/Wohnort · tu/vous · être/venir','Origin/home · tu/vous · être/venir'],rule:['Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben.','Swipe each card to the right side – fast. Time gets shorter and shorter! 3 lives.'],stars:[60,150,260],create:createSort}
+ {id:'balloons',icon:'🎈',theme:'listening',name:['Ballon-Jagd','Balloon hunt'],tag:['Hören · Begrüßen · Vorstellen','Listening · greetings · introductions'],rule:['Hör genau hin und platz den Ballon mit dem, was du hörst – richtig geschrieben und bevor er wegfliegt! Vorsicht: Manche Ballons sind falsch geschrieben. 3 Leben.','Listen closely and pop the balloon with what you hear – spelled correctly and before it floats away! Careful: some balloons are spelled wrong. 3 lives.'],stars:[50,130,220],create:createBalloons},
+ {id:'catch',icon:'🧺',theme:'match',name:['Wort-Fänger','Word catcher'],tag:['Verbformen im Satz','Verb forms in sentences'],rule:['Fang mit dem Korb nur das Wort, das in die Lücke passt. Ein falsches Wort im Korb oder ein verpasstes richtiges kostet ein Leben. 3 Leben.','Catch only the word that fits the gap. A wrong word in the basket or a missed right one costs a life. 3 lives.'],stars:[50,130,220],create:createCatch},
+ {id:'sort',icon:'⚡',theme:'text',name:['Blitz-Sortierer','Lightning sort'],tag:['Herkunft/Wohnort · tu/vous · être/venir','Origin/home · tu/vous · être/venir'],rule:['Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben. Am Ende siehst du, was falsch war.','Swipe each card to the right side – fast. Time gets shorter and shorter! 3 lives. At the end you see what went wrong.'],stars:[60,150,260],create:createSort}
 ];
 const QUIZ={id:'quiz',icon:'💎',theme:'memory',name:['Millionen-Turm','Million tower'],tag:['12 Fragen · 4 Antworten · 2 Joker','12 questions · 4 answers · 2 jokers'],stars:[1000,100000,1000000]};
 const starsFor=(def,score)=>def.stars.filter(s=>score>=s).length;
 
+// End-of-game review: mistakes first (what you did, what was right and why), then what you got right.
+function review(log){if(!log?.length)return '';const bad=log.filter(x=>!x.ok),good=log.filter(x=>x.ok),lang=cur().voice.slice(0,2);
+ const row=x=>{const lines=[];if(x.said&&!x.ok)lines.push(t('Deine Wahl','You chose')+': '+x.said+' → '+t('richtig','right')+': '+x.right);if(!x.ok&&x.why)lines.push(x.why);if(!x.ok&&!x.said&&x.fix&&x.fix!==x.text)lines.push(t('Richtig','Correct')+': '+x.fix);
+  return `<li class="${x.ok?'is-ok':'is-bad'}"><span><b lang="${lang}">${x.ok?'✓':'✗'} ${E(x.text)}</b>${lines.map(l=>`<small>${E(l)}</small>`).join('')}</span>${x.fix&&voiceOn()?`<button type="button" class="tiny-btn" data-arcade-say="${E(x.fix)}" aria-label="${E(t('Anhören','Listen'))}: ${E(x.fix)}">🔊</button>`:''}</li>`;};
+ return `<details class="arcade-review" ${bad.length?'open':''}><summary>📋 ${t('Rückblick','Review')}: ${bad.length} ✗ · ${good.length} ✓</summary><ol>${[...bad,...good].map(row).join('')}</ol></details>`;}
 function run(host,def,{best=0,onEnd,onExit}={}){
  host.innerHTML=`<div class="arcade-stage game-${def.theme}"><div class="arcade-frame"><canvas class="arcade-canvas" tabindex="0" aria-label="${E(tx(def.name))}"></canvas><div class="arcade-overlay" data-arcade-overlay></div></div>${controls()}</div>`;
  const canvas=host.querySelector('canvas'),overlay=host.querySelector('[data-arcade-overlay]');let c=null;try{c=canvas.getContext('2d');}catch{}
@@ -259,8 +296,8 @@ function run(host,def,{best=0,onEnd,onExit}={}){
  function intro(){show(`<div class="arcade-card-panel"><span class="arcade-big-icon" aria-hidden="true">${def.icon}</span><h3>${E(tx(def.name))}</h3><p>${E(tx(def.rule))}</p>${best0?`<p class="arcade-best">🏆 ${t('Rekord','Best')}: ${best0}</p>`:''}<p class="arcade-stars-goal">${def.stars.map((s,i)=>'★'.repeat(i+1)+' '+s).join(' · ')}</p><button type="button" class="hard-start" data-arcade-start>▶ ${t('Los geht’s!','Let’s go!')}</button></div>`);overlay.querySelector('[data-arcade-start]').onclick=begin;}
  function begin(){ac();game=def.create(api);parts.length=0;floats.length=0;state='play';show('');canvas.focus({preventScroll:true});last=performance.now();window.cancelAnimationFrame?.(raf);raf=requestAnimationFrame(frame);}
  function finish(){state='over';const score=game.score,stars=starsFor(def,score),record=score>best0;if(record)best0=score;stars?sfx.fanfare():sfx.sad();onEnd?.({score,stars});
-  show(`<div class="arcade-card-panel"><span class="arcade-big-icon" aria-hidden="true">${stars?'🏆':'💥'}</span><h3>${game.hud().time!==undefined?t('Zeit um!','Time’s up!'):t('Spiel vorbei!','Game over!')}</h3><p class="arcade-score">${score} ${t('Punkte','points')}</p><p class="arcade-result-stars" aria-label="${stars}/3">${[1,2,3].map(k=>`<i class="${k<=stars?'is-lit':''}">★</i>`).join('')}</p>${record?`<p class="arcade-record">🎉 ${t('Neuer Rekord!','New record!')}</p>`:''}<div class="arcade-actions"><button type="button" class="hard-start" data-arcade-again>↻ ${t('Nochmal','Play again')}</button><button type="button" class="secondary-btn" data-arcade-back>← ${t('Spielhalle','Arcade')}</button></div></div>`);
-  overlay.querySelector('[data-arcade-again]').onclick=begin;overlay.querySelector('[data-arcade-back]').onclick=exit;}
+  show(`<div class="arcade-card-panel"><span class="arcade-big-icon" aria-hidden="true">${stars?'🏆':'💥'}</span><h3>${game.hud().time!==undefined?t('Zeit um!','Time’s up!'):t('Spiel vorbei!','Game over!')}</h3><p class="arcade-score">${score} ${t('Punkte','points')}</p><p class="arcade-result-stars" aria-label="${stars}/3">${[1,2,3].map(k=>`<i class="${k<=stars?'is-lit':''}">★</i>`).join('')}</p>${record?`<p class="arcade-record">🎉 ${t('Neuer Rekord!','New record!')}</p>`:''}${review(game.log)}<div class="arcade-actions"><button type="button" class="hard-start" data-arcade-again>↻ ${t('Nochmal','Play again')}</button><button type="button" class="secondary-btn" data-arcade-back>← ${t('Spielhalle','Arcade')}</button></div></div>`);
+  overlay.querySelector('[data-arcade-again]').onclick=begin;overlay.querySelector('[data-arcade-back]').onclick=exit;overlay.querySelectorAll('[data-arcade-say]').forEach(b=>b.onclick=()=>say(b.dataset.arcadeSay));}
  function pause(on){if(state==='play'&&on){state='paused';show(`<div class="arcade-card-panel"><h3>⏸ ${t('Pause','Paused')}</h3><button type="button" class="hard-start" data-arcade-resume>▶ ${t('Weiter','Resume')}</button></div>`);overlay.querySelector('[data-arcade-resume]').onclick=()=>pause(false);}else if(state==='paused'&&!on){state='play';show('');last=performance.now();}}
  const pos=e=>{const r=canvas.getBoundingClientRect();return [(e.clientX-r.left)*(w/(r.width||w)),(e.clientY-r.top)*(h/(r.height||h))];};
  const ptr=type=>e=>{if(state!=='play')return;if(type==='down'){try{canvas.setPointerCapture(e.pointerId);}catch{}}e.preventDefault();game.pointer?.(type,...pos(e));};
@@ -275,10 +312,10 @@ function run(host,def,{best=0,onEnd,onExit}={}){
  if(!c){show(`<div class="arcade-card-panel"><p>${t('Dieses Spiel braucht einen Browser mit Grafikunterstützung (Canvas).','This game needs a browser with canvas support.')}</p><button type="button" class="secondary-btn" data-arcade-back>← ${t('Spielhalle','Arcade')}</button></div>`);overlay.querySelector('[data-arcade-back]').onclick=exit;return stop;}
  size();redrawStatic();intro();return stop;
 }
-function controls(extra=''){return `<div class="arcade-controls">${extra}<button type="button" class="tiny-btn" data-arcade-pause>⏸ ${t('Pause','Pause')}</button><button type="button" class="tiny-btn" data-arcade-sound aria-pressed="${soundOn()}">${soundOn()?'🔔':'🔕'} ${t('Töne','Sound')}</button><button type="button" class="tiny-btn" data-arcade-voice aria-pressed="${voiceOn()}">${voiceOn()?'🗣️':'🤐'} ${t('Stimme','Voice')}</button><button type="button" class="tiny-btn" data-arcade-exit>← ${t('Spielhalle','Arcade')}</button></div>`;}
+function controls(extra=''){return `<div class="arcade-controls">${extra}<button type="button" class="tiny-btn" data-arcade-pause>⏸ ${t('Pause','Pause')}</button><button type="button" class="tiny-btn" data-arcade-sound aria-pressed="${soundOn()}">${soundOn()?'🔔':'🔕'} ${t('Töne','Sound')}</button><button type="button" class="tiny-btn" data-arcade-voice aria-pressed="${voicePref()}" ${soundOn()?'':'disabled'}>${voicePref()?'🗣️':'🤐'} ${t('Stimme','Voice')}</button><button type="button" class="tiny-btn" data-arcade-exit>← ${t('Spielhalle','Arcade')}</button></div>`;}
 function bindControls(host,{pause,exit,sound}){const q=s=>host.querySelector(s);q('[data-arcade-pause]')&&(q('[data-arcade-pause]').onclick=pause);q('[data-arcade-exit]').onclick=exit;
- q('[data-arcade-sound]').onclick=e=>{const on=!soundOn();store.set('a1-arcade-sound',on?'on':'off');e.currentTarget.textContent=(on?'🔔 ':'🔕 ')+t('Töne','Sound');e.currentTarget.setAttribute('aria-pressed',String(on));sound?.(on);};
- q('[data-arcade-voice]').onclick=e=>{const on=!voiceOn();store.set('a1-arcade-voice',on?'on':'off');e.currentTarget.textContent=(on?'🗣️ ':'🤐 ')+t('Stimme','Voice');e.currentTarget.setAttribute('aria-pressed',String(on));if(!on)try{window.A1Voice?.cancel?.();}catch{}};}
+ q('[data-arcade-sound]').onclick=e=>{const on=!soundOn();store.set('a1-arcade-sound',on?'on':'off');e.currentTarget.textContent=(on?'🔔 ':'🔕 ')+t('Töne','Sound');e.currentTarget.setAttribute('aria-pressed',String(on));q('[data-arcade-voice]').disabled=!on;if(!on)hush();sound?.(on);};
+ q('[data-arcade-voice]').onclick=e=>{const on=!voicePref();store.set('a1-arcade-voice',on?'on':'off');e.currentTarget.textContent=(on?'🗣️ ':'🤐 ')+t('Stimme','Voice');e.currentTarget.setAttribute('aria-pressed',String(on));if(!on)hush();};}
 
 /* ---------- Game 5: quiz show "Millionen-Turm" ---------- */
 const LADDER=[10,50,100,200,500,1000,5000,25000,100000,250000,500000,1000000],SAFE=5;
@@ -332,5 +369,5 @@ function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()
 function mount(host,id,opts={}){L=opts.course&&opts.lesson?lessonContent(opts.course,opts.lesson):null;if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};
 const meta=g=>({id:g.id,icon:g.icon,theme:g.theme,name:g.name,tag:g.tag,stars:g.stars});
-window.FR_A1_ARCADE={games:GAMES.map(meta),mount,lessonGames,lessonContent,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
+window.FR_A1_ARCADE={games:GAMES.map(meta),mount,lessonGames,lessonContent,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,misspell,review,soundOn,voiceOn,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
 })();

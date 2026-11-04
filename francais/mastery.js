@@ -11,6 +11,16 @@
   const byId=id=>lessons.find(l=>Number(l.id)===Number(id));
   const spec=id=>specs[String(id)]||{goals:[],tasks:[]};
 
+  // Lesson 1 meanings: distractors of the same kind (statement, question, other verb), never a bare greeting.
+  const L1_WRONG={
+    'Wie geht es Ihnen?':['Wie heißen Sie?','Wo wohnen Sie?','Comment allez-vous ? fragt nach dem Befinden. „Wie heißen Sie?“ wäre Comment vous vous appelez ?, „Wo wohnen Sie?“ wäre Vous habitez où ?'],
+    'Mir geht es gut, danke.':['Mir geht es nicht gut.','Wie geht es Ihnen?','Bien bedeutet gut, merci danke. „Mir geht es nicht gut“ wäre Ça ne va pas ; „Wie geht es Ihnen?“ ist die Frage Comment allez-vous ?'],
+    'Ich heiße Léa.':['Sie heißt Léa.','Heißen Sie Léa?','Je m’appelle bedeutet „ich heiße“. „Sie heißt Léa“ wäre Elle s’appelle Léa, die Frage „Heißen Sie Léa?“ Vous vous appelez Léa ?'],
+    'Ich komme aus Deutschland.':['Ich wohne in Deutschland.','Ich spreche Deutsch.','Venir de nennt die Herkunft. Wohnen heißt habiter, sprechen parler.'],
+    'Ich wohne in Halifax.':['Ich komme aus Halifax.','Ich fahre nach Halifax.','Habiter à nennt den Wohnort. „Ich komme aus Halifax“ wäre Je viens de Halifax.'],
+    'Ich bin Deutscher.':['Ich spreche Deutsch.','Ich wohne in Deutschland.','Je suis allemand nennt die Nationalität mit être. Sprechen wäre Je parle allemand, wohnen J’habite en Allemagne.'],
+    'Ich spreche Deutsch und ein bisschen Französisch.':['Ich spreche Französisch und ein bisschen Deutsch.','Ich lerne Deutsch und Französisch.','Un peu (ein bisschen) steht vor français: Deutsch spricht die Person, Französisch nur ein bisschen. Parler heißt sprechen, nicht lernen.']
+  };
   function phraseTasks(lesson){
     if(Number(lesson.id)!==1)return (lesson.quiz||[]).map(q=>{
       if(q.context&&q.q.includes('___'))return {type:'gap',prompt:q.q,answer:q.o[q.a],context:q.context,audio:q.audio,explanation:q.explanation,tag:'Lektionsinhalt'};
@@ -19,6 +29,8 @@
     const pairs=(lesson?.phrases||[]).filter(p=>p?.[0]&&p?.[1]);
     const words=s=>new Set(norm(s).split(' ').filter(w=>w.length>2&&!['ich','und','ein','eine','das','der','die','mir','mich'].includes(w)));
     return pairs.map(([target,native])=>{
+      const curated=L1_WRONG[native];
+      if(curated)return {type:'choice',q:`Was bedeutet „${target}“?`,o:shuffled([native,curated[0],curated[1]]),answer:native,audio:target,explanation:curated[2],tag:'Lektionsinhalt'};
       const key=words(native);
       const wrong=pairs.map(p=>p[1]).filter(candidate=>norm(candidate)!==norm(native))
         .filter((candidate,i,all)=>all.findIndex(x=>norm(x)===norm(candidate))===i)

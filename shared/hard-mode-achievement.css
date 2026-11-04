@@ -1,4 +1,4 @@
-/* Earned by a completed, passed attempt: 85% first tier, 100% Gold.
+/* Earned by a completed, passed attempt (from 50 %): grades D–A show the course flag, A+ (from 90 %) is Gold.
    Variables keep both course palettes legible in light and dark themes. */
 .is-hard-achieved{
   --award-border:#258057;
@@ -7,12 +7,21 @@
   --award-bg:linear-gradient(125deg,#f5fff9,#e6f8ee);
   --award-shadow:0 0 0 3px rgb(37 128 87 / 9%),0 5px 20px rgb(37 128 87 / 10%);
 }
+/* French flag: three soft vertical bands, light enough to keep the card text readable. */
 .is-hard-tricolour{
   --award-border:#5575ae;
   --award-ink:#244b86;
   --award-chip:#edf3ff;
-  --award-bg:linear-gradient(115deg,#edf3ff,#fff 52%,#fff0f1);
+  --award-bg:linear-gradient(90deg,#d9e4f7 0 33.34%,#fff 33.34% 66.67%,#fadcdf 66.67%);
   --award-shadow:-3px 0 12px rgb(42 93 183 / 15%),3px 0 12px rgb(200 57 75 / 12%);
+}
+/* German flag: three soft horizontal bands. */
+.is-hard-flag-de{
+  --award-border:#8a6d1c;
+  --award-ink:#4a3b0c;
+  --award-chip:#fff4cc;
+  --award-bg:linear-gradient(180deg,#e4e4e4 0 33.34%,#fadada 33.34% 66.67%,#fff1bd 66.67%);
+  --award-shadow:0 0 0 3px rgb(138 109 28 / 9%),0 5px 20px rgb(120 30 30 / 10%);
 }
 .is-hard-gold{
   --award-border:#b88218;
@@ -27,7 +36,11 @@ html.dark-mode .is-hard-achieved{
 }
 html.dark-mode .is-hard-tricolour{
   --award-border:#8099c4;--award-ink:#c9dcff;--award-chip:#263e63;
-  --award-bg:linear-gradient(115deg,#1d2d48,#282d37 52%,#40262f);
+  --award-bg:linear-gradient(90deg,#1c3157 0 33.34%,#2b2f38 33.34% 66.67%,#4d2430 66.67%);
+}
+html.dark-mode .is-hard-flag-de{
+  --award-border:#c9a640;--award-ink:#ffe8a3;--award-chip:#3f3518;
+  --award-bg:linear-gradient(180deg,#17181b 0 33.34%,#46201f 33.34% 66.67%,#45391a 66.67%);
 }
 html.dark-mode .is-hard-gold{
   --award-border:#d8ae54;--award-ink:#ffe6a1;--award-chip:#41351d;
@@ -35,19 +48,18 @@ html.dark-mode .is-hard-gold{
   --award-shadow:0 0 0 3px rgb(230 181 70 / 9%),0 5px 24px rgb(230 181 70 / 10%);
 }
 .lesson.is-hard-achieved,
+.lesson-card.is-hard-achieved,
 .hard-result.is-hard-achieved,
 html.dark-mode .lesson.is-hard-achieved,
+html.dark-mode .lesson-card.is-hard-achieved,
 html.dark-mode .hard-result.is-hard-achieved{
   position:relative;isolation:isolate;overflow:hidden;
   border:2px solid var(--award-border);
   background:var(--award-bg);
   box-shadow:var(--award-shadow);
 }
-.is-hard-tricolour::before{
-  content:"";position:absolute;inset:0 0 auto;height:4px;pointer-events:none;
-  background:linear-gradient(to right,#376bb7 0 33.33%,#fff 33.33% 66.67%,#d64e60 66.67%);
-}
 .lesson.is-hard-gold::after,
+.lesson-card.is-hard-gold::after,
 .hard-result.is-hard-achieved::after{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(110deg,transparent 30%,rgb(255 255 255 / 50%) 48%,transparent 65%);
@@ -64,11 +76,13 @@ html.dark-mode .is-hard-achieved::after{opacity:.14}
   font-size:.76rem;font-weight:800;line-height:1.4;letter-spacing:.015em;
 }
 .hard-achievement-badge svg{width:17px;height:17px;flex:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hard-achievement-badge .hard-grade{font-size:1.05em;font-weight:900;letter-spacing:0}
 .hard-result.is-hard-achieved .hard-achievement-badge{margin:0 0 18px;padding:7px 12px;font-size:.9rem}
 .hard-result.is-hard-achieved .hard-eyebrow,
 .hard-result.is-hard-achieved .score{color:var(--award-ink)}
-.lesson.is-hard-achieved:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.lesson.is-hard-achieved:focus-visible,
+.lesson-card.is-hard-achieved:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 @keyframes hard-achievement-sheen{0%,65%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 @media(prefers-reduced-motion:reduce){
-  .lesson.is-hard-gold::after,.hard-result.is-hard-achieved::after{animation:none;display:none}
+  .lesson.is-hard-gold::after,.lesson-card.is-hard-gold::after,.hard-result.is-hard-achieved::after{animation:none;display:none}
 }

@@ -72,26 +72,33 @@
   }
   function passed(data,attempt){
     const score=objective(data,attempt);
-    const objectivePassed=data.version===1?score.pct>=70&&score.gap/data.gaps.length>=.5&&score.listening/questions(data).length>=.5:score.gap*10>=data.gaps.length*7&&score.listening*10>=questions(data).length*7;
+    const objectivePassed=data.version===1?score.pct>=70&&score.gap/data.gaps.length>=.5&&score.listening/questions(data).length>=.5:score.gap*2>=data.gaps.length&&score.listening*2>=questions(data).length;
     return objectivePassed&&words(attempt.text)>=data.writing.minWords&&writingPassed(attempt);
   }
   // Award a completed, passed attempt using raw counts, never a rounded display score.
   function achievedResult(attempt){
     const r=attempt?.result;
-    return attempt?.phase==='reviewed'&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*80;
+    return attempt?.phase==='reviewed'&&!!attempt.completedAt&&r?.passed===true&&Number.isInteger(r.correct)&&Number.isInteger(r.total)&&r.total>0&&r.correct>=0&&r.correct<=r.total&&r.correct*100>=r.total*50;
   }
   function achievement(state,id){
     const progress=state.lessonWork?.[id]?.hardMode;
     return [progress?.attempt,...(progress?.history||[]),progress?.games?.attempt,...(progress?.games?.history||[])].filter(achievedResult).sort((a,b)=>Number(goldResult(b))-Number(goldResult(a))||b.result.correct/b.result.total-a.result.correct/a.result.total)[0]||null;
   }
-  const goldResult=attempt=>achievedResult(attempt)&&attempt.result.correct>=attempt.result.total-1&&(attempt.kind!=='hard-games'||attempt.hintsUsed===0);
-  const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-green'):'';
-  const achievementBadge=attempt=>badgeMarkup(goldResult(attempt));
-  function badgeMarkup(gold){
-    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-gold="${gold}" data-i18n-ignore title="${esc(gold?t('Or obtenu · 1 erreur au plus · écrit autoévalué','Gold earned · at most 1 mistake · writing self-assessed'):t('Distinction dès 80 % · écrit autoévalué','Award earned · at least 80% · writing self-assessed'))}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>Hard Mode · ${gold?'Gold · ≤ 1 ✗':'80 % +'}</span>`;
+  // School grade of a completed, passed attempt from raw counts: A+ (gold) from 90 % without hints, A 80, B 70, C 60, D 50.
+  function grade(attempt){
+    if(!achievedResult(attempt))return null;
+    const r=attempt.result,p=r.correct*100;
+    return p>=r.total*90&&(attempt.kind!=='hard-games'||attempt.hintsUsed===0)?'A+':p>=r.total*80?'A':p>=r.total*70?'B':p>=r.total*60?'C':'D';
+  }
+  const goldResult=attempt=>grade(attempt)==='A+';
+  const achievementClass=attempt=>achievedResult(attempt)?'is-hard-achieved '+(goldResult(attempt)?'is-hard-gold':'is-hard-flag-de'):'';
+  const achievementBadge=attempt=>badgeMarkup(grade(attempt));
+  function badgeMarkup(mark){
+    const names={'A+':t("Or · dès 90 %, sans aide",'Gold · 90% or more, no hints'),A:t("Excellent · dès 80 %",'Excellent · 80% or more'),B:t("Bien · 70–79 %",'Good · 70–79%'),C:t("Satisfaisant · 60–69 %",'Satisfactory · 60–69%'),D:t("Passable · 50–59 %",'Pass · 50–59%')};
+    return `<span class="hard-achievement-badge" data-hard-achievement-badge data-grade="${esc(mark)}" data-i18n-ignore title="${esc(names[mark]||'')}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-7-3h6v3H9z"/></svg>${t("Finale & arcade",'Finale & Arcade')} · <b class="hard-grade">${esc(mark)}</b></span>`;
   }
   let redraw=null,redrawEntry=null,checkDetached=null;
-  window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.gold==='true');});});
+  window.addEventListener('a1suite:languagechange',()=>{redraw?.();redrawEntry?.();document.querySelectorAll('[data-hard-achievement-badge]').forEach(el=>{el.outerHTML=badgeMarkup(el.dataset.grade);});});
   function entryHtml(lesson,state){
     // The Hard Mode test as mini-games (shared/game-hard-mode.js).
     if(window.A1_GAME_HARD?.supports('de',lesson.id))return window.A1_GAME_HARD.entryHtml({course:'de',lesson,state,unlocked:unlocked(state,lesson.id)});
@@ -99,8 +106,8 @@
     const done=!!p?.passedAt&&(p.passedVersion===data.version||data.compatibleVersions?.includes(p.passedVersion));
     const lock=`<svg class="hard-lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0${open?'':'v3'}"/><path d="M12 14v3"/></svg>`;
     const label=open?(p?.attempt?(p.attempt.phase==='reviewed'?t("Voir",'Review'):t("Continuer",'Resume')):t("Commencer","Accueil")):t("Verrouillé",'Locked');
-    return `<section class="hard-entry ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="Hard Mode">
-      <button type="button" class="hard-entry-button" data-hard-start ${open?'':'disabled'} aria-describedby="hardEntryHint-${lesson.id}">${lock}<strong>Hard Mode</strong><span>${label}${open?' →':''}</span></button>
+    return `<section class="hard-entry ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="${t("Finale & arcade",'Finale & Arcade')}">
+      <button type="button" class="hard-entry-button" data-hard-start ${open?'':'disabled'} aria-describedby="hardEntryHint-${lesson.id}">${lock}<strong>${t("Finale & arcade",'Finale & Arcade')}</strong><span>${label}${open?' →':''}</span></button>
       ${open?`<div class="hard-entry-info"><div class="hard-entry-meta"><span>3 ${t("parties",'parts')}</span><span>${data.taskCount||data.gaps.length+questions(data).length+1} ${t("exercices",'tasks')}</span><span>≈ ${(data.minutes||[25,35]).join('–')} Min.</span></div><p id="hardEntryHint-${lesson.id}">${t("Texte à trous · Compréhension orale · Message personnel",'Cloze text · Listening · Your own message')}</p><small>${done?t("✓ Objectif atteint · écrit auto-évalué",'✓ Practice target met · writing self-assessed'):p?.passedAt?t("Nouveaux exercices disponibles · résultats précédents conservés",'Updated tasks available · previous results are saved'):t("Déverrouillé · progression enregistrée.",'Unlocked · Progress is saved.')}</small></div>`:`<small id="hardEntryHint-${lesson.id}" class="hard-entry-hint">${t("Dès 80 % au bilan de la leçon",'Unlocks at 80% in the lesson check')}</small>`}
     </section>`;
   }
@@ -114,7 +121,7 @@
     const label=!open?t("Verrouillé",'Locked'):Q.game?`${t("Continuer · question",'Continue at question')} ${Number(Q.game.level)+1} →`:Q.best?`🏆 ${window.A1_QUIZ_SHOW.money(Q.best,'de')}<i>${'★'.repeat(Q.stars)}${'☆'.repeat(3-Q.stars)}</i>`:t("Jouer",'Play')+' →';
     return `<section class="quiz-entry-card ${open?'is-unlocked':'is-locked'}" data-i18n-ignore aria-label="${t("La tour du million",'Million tower')}">
       <button type="button" class="quiz-entry-button" data-quiz-entry ${open?'':'disabled'}>${lock}<strong>${t("La tour du million",'Million tower')}<small>${t("12 questions · de plus en plus dures",'12 questions · ever harder')}</small></strong><span>${label}</span></button>
-      ${open?'':`<small class="quiz-entry-hint">${t("Se débloque avec le Hard Mode",'Unlocks together with Hard Mode')}</small>`}
+      ${open?'':`<small class="quiz-entry-hint">${t("Se débloque avec Finale & arcade",'Unlocks together with Finale & Arcade')}</small>`}
     </section>`;
   }
   function openQuiz({lesson,view,state,save,onBack}){
@@ -134,7 +141,7 @@
     const latestData=window.DE_A1_HARD_CONTENT[lesson.id];
     if(!latestData)return onBack();
     if(!unlocked(state,lesson.id)){
-      view.innerHTML=`<section class="card" data-i18n-ignore><h2>🔒 Hard Mode</h2><p>${t("Obtiens d’abord au moins 80 % au bilan de la leçon.",'Pass the lesson check with at least 80% first.')}</p><button class="secondary-btn" id="hardLockedBack">${t("Retour à la leçon",'Back to lesson')}</button></section>`;
+      view.innerHTML=`<section class="card" data-i18n-ignore><h2>🔒 ${t("Finale & arcade",'Finale & Arcade')}</h2><p>${t("Obtiens d’abord au moins 80 % au bilan de la leçon.",'Pass the lesson check with at least 80% first.')}</p><button class="secondary-btn" id="hardLockedBack">${t("Retour à la leçon",'Back to lesson')}</button></section>`;
       view.querySelector('button').onclick=onBack;return;
     }
     if(!legacy&&window.A1_GAME_HARD?.supports('de',lesson.id)){
@@ -220,7 +227,7 @@
       if(focusHeading){root.querySelector('#hardHeading')?.focus({preventScroll:true});focusHeading=false;}
     }
     function heading(){
-      return `<div class="between"><button class="tiny-btn" id="hardBack">← ${t("Retour à la leçon",'Back to lesson')}</button><span class="hard-eyebrow">HARD MODE</span></div><h2 id="hardHeading" tabindex="-1">${lesson.id}. ${esc(en()?window.DE_A1_I18N?.translate(lesson.title)||lesson.title:lesson.title)}</h2>${a?`<p class="hard-save-status" id="hardSaveStatus" role="status">${esc(storageError)||t("Progression enregistrée",'Progress saved')}</p>`:''}${a?.updatedFromVersion?`<p class="hard-version-note">${t("Questions actualisées. Réponses compatibles conservées ; ancien brouillon dans l’historique.",'Listening questions updated. Matching responses retained; the previous draft is in history.')} <button class="tiny-btn" id="hardPreviousDraft">${t("Ancien brouillon",'Previous draft')}</button></p>`:''}${a&&data&&data.version!==latestData.version?`<p class="hard-version-note">${t(`Tentative enregistrée · version ${data.version}. Version actuelle : ${latestData.version}. Cette tentative conserve ses questions. Commence une nouvelle tentative pour obtenir les questions actualisées ; ce brouillon restera dans l’historique.`,`Saved attempt · version ${data.version}. Current version: ${latestData.version}. This attempt keeps its original questions. Start a new attempt for the revised questions; this draft will be saved in your history.`)} <button class="tiny-btn" id="hardCurrentVersion">${t("Commencer les exercices actuels",'Start current tasks')}</button></p>`:''}`;
+      return `<div class="between"><button class="tiny-btn" id="hardBack">← ${t("Retour à la leçon",'Back to lesson')}</button><span class="hard-eyebrow">${t("FINALE & ARCADE",'FINALE & ARCADE')}</span></div><h2 id="hardHeading" tabindex="-1">${lesson.id}. ${esc(en()?window.DE_A1_I18N?.translate(lesson.title)||lesson.title:lesson.title)}</h2>${a?`<p class="hard-save-status" id="hardSaveStatus" role="status">${esc(storageError)||t("Progression enregistrée",'Progress saved')}</p>`:''}${a?.updatedFromVersion?`<p class="hard-version-note">${t("Questions actualisées. Réponses compatibles conservées ; ancien brouillon dans l’historique.",'Listening questions updated. Matching responses retained; the previous draft is in history.')} <button class="tiny-btn" id="hardPreviousDraft">${t("Ancien brouillon",'Previous draft')}</button></p>`:''}${a&&data&&data.version!==latestData.version?`<p class="hard-version-note">${t(`Tentative enregistrée · version ${data.version}. Version actuelle : ${latestData.version}. Cette tentative conserve ses questions. Commence une nouvelle tentative pour obtenir les questions actualisées ; ce brouillon restera dans l’historique.`,`Saved attempt · version ${data.version}. Current version: ${latestData.version}. This attempt keeps its original questions. Start a new attempt for the revised questions; this draft will be saved in your history.`)} <button class="tiny-btn" id="hardCurrentVersion">${t("Commencer les exercices actuels",'Start current tasks')}</button></p>`:''}`;
     }
     function intro(){
       mount(`${heading()}<section class="card hard-intro"><span class="hard-eyebrow">${t("TA LEÇON EN MODE EXAMEN",'YOUR LESSON IN EXAM MODE')}</span><h3>${t("Trois parties pour consolider tes acquis.",'Three parts. Your knowledge.')}</h3><ol><li><strong>${t("Texte à trous",'Cloze text')}</strong> · ${data.gaps.length} ${t("mots ou groupes de mots à saisir",'words or phrases to type')}</li><li><strong>${t("Compréhension orale",'Listening')}</strong> · ${allQuestions.length} ${t("questions · trois écoutes par texte · vitesse 75 %",'questions, three plays per recording · 75% speed')}</li><li><strong>${t("Message personnel",'Free writing')}</strong> · ${t(`trois points, environ ${data.writing.targetWords||'30'} mots`,`three content points, about ${data.writing.targetWords||'30'} words`)}</li></ol><p>${t(`Durée indicative : ${(data.minutes||[25,35]).join('–')} minutes, sans limite. Tu peux faire une pause et modifier tes réponses. Les solutions et transcriptions apparaissent après la remise.`,`Indicative time: about ${(data.minutes||[25,35]).join('–')} minutes, with no time limit. You can pause and edit answers. Answers and transcripts appear only after submission.`)}</p><p>${rules()}</p><p class="muted">${t("Exercices originaux de niveau A1, sans équivalence officielle à un examen. Audio avec la voix allemande du navigateur. Tu évalues ton texte à l’aide d’un exemple et d’une grille.",'Original A1 practice, not an official exam. Audio uses the German browser voice. Free writing is self-assessed against an example.')}</p>${window.A1LessonFoundations?.preparationHtml('de',lesson.id,'hard')||''}${window.A1LessonFoundations?.hardInstructionsHtml('de',data)||''}<button class="hard-start" id="hardBegin">${t("Commencer le test",'Start the test')} →</button></section>`);
@@ -248,7 +255,7 @@
       root.querySelector('#hardDraftBack').onclick=draw;
     }
     function isSubmitted(){return a.phase!=='running';}
-    function rules(){return data.version===1?t("Ancienne règle : 70 % au total, au moins 50 % par partie automatique. Écrit : longueur minimale, auto-évaluation 6/8, aucun critère à 0.",'Practice target (version 1): 70% overall, at least 50% in each automatically marked section. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.'):t("Objectif : au moins 70 % au texte à trous et 70 % à l’écoute, sans arrondi favorable. Écrit : longueur minimale, auto-évaluation 6/8, aucun critère à 0.",'Practice target: at least 70% in cloze and at least 70% in listening, without rounding up. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.');}
+    function rules(){return data.version===1?t("Ancienne règle : 70 % au total, au moins 50 % par partie automatique. Écrit : longueur minimale, auto-évaluation 6/8, aucun critère à 0.",'Practice target (version 1): 70% overall, at least 50% in each automatically marked section. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.'):t("Objectif : au moins 50 % au texte à trous et 50 % à l’écoute, sans arrondi favorable. Écrit : longueur minimale, auto-évaluation 6/8, aucun critère à 0.",'Practice target: at least 50% in cloze and at least 50% in listening, without rounding up. Writing: minimum word count, 6/8 self-assessed points, no criterion scored 0.');}
     function counts(){return [a.gaps.filter(s=>s.trim()).length+'/'+data.gaps.length,a.listening.filter(s=>s.trim()).length+'/'+allQuestions.length,words(a.text)+' '+t("mots",'words')];}
     function nav(){
       const labels=[t("Texte à trous",'Cloze text'),t("Compréhension orale",'Listening'),t("Écrit",'Writing')];
@@ -356,7 +363,7 @@
     function result(){
       const score=a.result||objective(data,a),success=a.result?.passed??passed(data,a),writingPoints=a.ratings.reduce((sum,n)=>sum+(n||0),0);
       const missed=new Set([...data.gaps,...allQuestions].flatMap((q,i)=>answerMatches(data,q,i<data.gaps.length?a.gaps[i]:a.listening[i-data.gaps.length])?[]:q.skills||[]));
-      mount(`${heading()}<section class="card hard-result ${achievementClass(a)}">${achievedResult(a)?achievementBadge(a):''}<span class="hard-eyebrow">${success?t("✓ OBJECTIF D’ENTRAÎNEMENT ATTEINT",'✓ PRACTICE TARGET MET'):t("HARD MODE ÉVALUÉ",'HARD MODE REVIEWED')}</span><div class="score">${score.pct} %</div><h3>${t("Exercices corrigés automatiquement",'Automatically marked tasks')}</h3><div class="hard-result-grid"><div><strong>${score.gap}/${data.gaps.length}</strong><span>${t("Texte à trous",'Cloze text')} · ${Math.round(score.gap/data.gaps.length*1000)/10} %</span></div><div><strong>${score.listening}/${allQuestions.length}</strong><span>${t("Compréhension orale",'Listening')} · ${Math.round(score.listening/allQuestions.length*1000)/10} %</span></div><div><strong>${writingPoints}/8</strong><span>${t("Écrit · auto-évaluation",'Writing · self-assessment')}</span></div></div><p>${rules()}</p><p class="muted">${t("Le pourcentage porte uniquement sur le texte à trous et l’écoute. Tu as évalué ton écrit toi-même. Ce résultat ne certifie pas automatiquement ton niveau de langue.",'The percentage covers only cloze and listening. You assessed your writing yourself. This is not automatically certified language proficiency.')}</p>${missed.size?`<p>${t("À revoir",'Review these topics')}: ${[...missed].map(key=>esc(data.objectives?.[key]?.label||key)).join(' · ')}</p>`:''}<div class="button-row"><button class="secondary-btn" id="hardReview">${t("Voir toutes les réponses",'Review all answers')}</button><button class="hard-start" id="hardRetry">${t("Nouvelle tentative",'New attempt')}</button></div>${progress.history.length?`<button class="tiny-btn" id="hardHistory">${t("Anciennes tentatives",'Previous attempts')} (${progress.history.length})</button>`:''}</section>`);
+      mount(`${heading()}<section class="card hard-result ${achievementClass(a)}">${achievedResult(a)?achievementBadge(a):''}<span class="hard-eyebrow">${success?t("✓ OBJECTIF D’ENTRAÎNEMENT ATTEINT",'✓ PRACTICE TARGET MET'):t("FINALE ÉVALUÉE",'FINALE REVIEWED')}</span><div class="score">${score.pct} %</div><h3>${t("Exercices corrigés automatiquement",'Automatically marked tasks')}</h3><div class="hard-result-grid"><div><strong>${score.gap}/${data.gaps.length}</strong><span>${t("Texte à trous",'Cloze text')} · ${Math.round(score.gap/data.gaps.length*1000)/10} %</span></div><div><strong>${score.listening}/${allQuestions.length}</strong><span>${t("Compréhension orale",'Listening')} · ${Math.round(score.listening/allQuestions.length*1000)/10} %</span></div><div><strong>${writingPoints}/8</strong><span>${t("Écrit · auto-évaluation",'Writing · self-assessment')}</span></div></div><p>${rules()}</p><p class="muted">${t("Le pourcentage porte uniquement sur le texte à trous et l’écoute. Tu as évalué ton écrit toi-même. Ce résultat ne certifie pas automatiquement ton niveau de langue.",'The percentage covers only cloze and listening. You assessed your writing yourself. This is not automatically certified language proficiency.')}</p>${missed.size?`<p>${t("À revoir",'Review these topics')}: ${[...missed].map(key=>esc(data.objectives?.[key]?.label||key)).join(' · ')}</p>`:''}<div class="button-row"><button class="secondary-btn" id="hardReview">${t("Voir toutes les réponses",'Review all answers')}</button><button class="hard-start" id="hardRetry">${t("Nouvelle tentative",'New attempt')}</button></div>${progress.history.length?`<button class="tiny-btn" id="hardHistory">${t("Anciennes tentatives",'Previous attempts')} (${progress.history.length})</button>`:''}</section>`);
       root.querySelector('#hardHistory')?.addEventListener('click',showHistory);
       root.querySelector('#hardPreviousDraft')?.addEventListener('click',showHistory);
       root.querySelector('#hardReview').onclick=()=>{a.page=0;persist();focusHeading=true;draw();};
@@ -369,5 +376,5 @@
   }
   // Cancel speech if navigation removes the test without calling its back button.
   new MutationObserver(()=>checkDetached?.()).observe(document.getElementById('view')||document.body,{childList:true});
-  window.DE_A1_HARD_MODE={unlocked,entryHtml,renderEntry,render,quizEntryHtml,openQuiz,normalize,matches,words,objective,passed,achievedResult,goldResult,achievement,achievementClass,achievementBadge};
+  window.DE_A1_HARD_MODE={unlocked,entryHtml,renderEntry,render,quizEntryHtml,openQuiz,normalize,matches,words,objective,passed,achievedResult,goldResult,grade,achievement,achievementClass,achievementBadge};
 })();

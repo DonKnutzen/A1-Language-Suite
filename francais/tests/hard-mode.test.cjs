@@ -60,12 +60,13 @@ test('policies distinguish spelling from listening and reject semantically diffe
 test('raw section thresholds prevent compensation and rounded passing',()=>{
   const {mode,data}=environment(),d=data[1],qs=d.listening.flatMap(b=>b.questions);
   const a={gaps:d.gaps.map(q=>q.answers[0]),listening:qs.map(q=>q.answers[0]),text:d.writing.model,ratings:[2,2,2,2]};
-  const miss=qs.length-Math.ceil(qs.length*.7);for(let i=0;i<miss;i++)a.listening[i]='faux';assert(mode.passed(d,a));a.listening[miss]='faux';assert(!mode.passed(d,a));
+  const miss=qs.length-Math.ceil(qs.length*.5);for(let i=0;i<miss;i++)a.listening[i]='faux';assert(mode.passed(d,a));a.listening[miss]='faux';assert(!mode.passed(d,a));
   const custom={...d,gaps:Array.from({length:200},()=>({answers:['oui']})),listening:[{questions:[{answers:['oui']}]}]};
-  const b={...a,gaps:Array(139).fill('oui').concat(Array(61).fill('non')),listening:['oui']};assert(!mode.passed(custom,b));
+  const b={...a,gaps:Array(99).fill('oui').concat(Array(101).fill('non')),listening:['oui']};assert(!mode.passed(custom,b));
 });
-test('gold allows exactly one mistake',()=>{
+test('gold (A+) needs 90 % by exact counts; lower passes get school grades',()=>{
   const {mode}=environment(),r=(correct,total,extra={})=>({phase:'reviewed',completedAt:1,...extra,result:{correct,total,passed:true}});
-  assert(mode.goldResult(r(15,16)));assert(mode.goldResult(r(16,16)));assert(!mode.goldResult(r(14,16)));
-  assert(mode.goldResult(r(6,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:0})));assert(!mode.goldResult(r(7,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:1})));
+  assert(mode.goldResult(r(15,16)));assert(mode.goldResult(r(16,16)));assert(!mode.goldResult(r(14,16)));assert(mode.goldResult(r(18,20)));assert(!mode.goldResult(r(1799,2000)));
+  assert.deepEqual([20,18,17,16,15,14,12,10,9].map(n=>mode.grade(r(n,20))),['A+','A+','A','A','B','B','C','D',null]);
+  assert(mode.goldResult(r(7,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:0})));assert(!mode.goldResult(r(6,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:0})));assert.equal(mode.grade(r(10,10,{kind:'hard-games',hintsUsed:2})),'A');assert(!mode.goldResult(r(7,7,{kind:'lesson-challenge',phase:'completed',hintsUsed:1})));
 });

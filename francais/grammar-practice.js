@@ -2,7 +2,7 @@
 (() => {
   const unique=values=>[...new Set(values)];
   function form(q,answer,o,meaning,meaningEn,rule='',ruleEn='',coverage=''){
-    return {kind:'form',q,answer,o:unique([answer,...o]).slice(0,3),meaning,meaningEn,audio:q.replace('___',answer).replace(/([’'])\s+/g,'$1'),explanation:q.replace('___',answer)+(rule?' — '+rule:''),explanationEn:q.replace('___',answer)+(ruleEn?' — '+ruleEn:''),coverage};
+    return {kind:'form',q,answer,o:unique([answer,...o]).slice(0,3),meaning,meaningEn,audio:q.replace('___',answer).replace(/([’'])\s+/g,'$1'),explanation:q.replace('___',answer).replace(/([’'])\s+/g,'$1')+(rule?' — '+rule:''),explanationEn:q.replace('___',answer).replace(/([’'])\s+/g,'$1')+(ruleEn?' — '+ruleEn:''),coverage};
   }
   function possessives(){
     const rows=[['je',['mon','ma','mes'],['mein Vater','meine Mutter','meine Eltern'],'my'],['tu',['ton','ta','tes'],['dein Vater','deine Mutter','deine Eltern'],'your (tu)'],['il/elle',['son','sa','ses'],['sein/ihr Vater (Besitzer: eine Person)','seine/ihre Mutter (Besitzer: eine Person)','seine/ihre Eltern (Besitzer: eine Person)'],'his/her'],['nous',['notre','notre','nos'],['unser Vater','unsere Mutter','unsere Eltern'],'our'],['vous',['votre','votre','vos'],['Ihr/euer Vater (vous)','Ihre/eure Mutter (vous)','Ihre/eure Eltern (vous)'],'your (vous)'],['ils/elles',['leur','leur','leurs'],['ihr Vater (Besitzer: mehrere Personen)','ihre Mutter (Besitzer: mehrere Personen)','ihre Eltern (Besitzer: mehrere Personen)'],'their']];
@@ -20,7 +20,7 @@
   }
   function family(){
     const out=[];
-    for(const [noun,plural,de,en]of [['mon frère',false,'mein Bruder','my brother'],['ma sœur',false,'meine Schwester','my sister'],['mes parents',true,'meine Eltern','my parents'],['mes enfants',true,'meine Kinder','my children'],['mon père',false,'mein Vater','my father'],['mes sœurs',true,'meine Schwestern','my sisters']])out.push(form((plural?'Ce ___ ':'C’___ ')+noun+'.',plural?'sont':'est',plural?['est','sommes']:['sont','es'],(plural?'Das sind ':'Das ist ')+de+' · schriftlicher Standard',(plural?'These are ':'This is ')+en+' · standard written French','C’est steht im Singular, ce sont im Plural.','Use c’est for singular and ce sont for plural.'));
+    for(const [noun,plural,de,en]of [['mon frère',false,'mein Bruder','my brother'],['ma sœur',false,'meine Schwester','my sister'],['mes parents',true,'meine Eltern','my parents'],['mes enfants',true,'meine Kinder','my children'],['mon père',false,'mein Vater','my father'],['mes sœurs',true,'meine Schwestern','my sisters']])out.push(form('___ '+noun+'.',plural?'Ce sont':'C’est',plural?['C’est',noun==='mes sœurs'?'Elles sont':'Ils sont']:['Ce sont',noun==='ma sœur'?'Elle est':'Il est'],(plural?'Das sind ':'Das ist ')+de+' · schriftlicher Standard',(plural?'These are ':'This is ')+en+' · standard written French','C’est steht im Singular, ce sont im Plural. Vor mon/ma/mes stellt man mit c’est/ce sont vor, nicht mit il/elle est.','Use c’est for singular and ce sont for plural. Before mon/ma/mes, introduce people with c’est/ce sont, not il/elle est.'));
     for(const [q,answer,o,de,en]of [['Ma sœur est ___.','petite',['petit','petits'],'Meine Schwester ist klein.','My sister is small.'],['Mon frère est ___.','petit',['petite','petits'],'Mein Bruder ist klein.','My brother is small.'],['Ma mère est ___.','mariée',['marié','mariés'],'Meine Mutter ist verheiratet.','My mother is married.'],['Mon père est ___.','marié',['mariée','mariés'],'Mein Vater ist verheiratet.','My father is married.'],['Ma sœur est ___.','calme',['sympa','petite'],'Meine Schwester ist ruhig.','My sister is calm.'],['Mon frère est ___.','sympa',['calme','petit'],'Mein Bruder ist nett.','My brother is nice.']])out.push(form(q,answer,o,de,en));
     return out;
   }
@@ -43,7 +43,7 @@
   // Generic translation cards used unrelated phrases as distractors. Grammar drills
   // now hide one taught form; every option belongs to the same authored contrast.
   function fromPairs(unit,lessonId){
-    const result=[],seen=new Set();
+    const result=[],seen=new Set(),meaningOf=new Map((unit.pairs||[]).map(([fr,de])=>[String(fr).trim(),de]));
     const verbGroups=[
       ['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],
       ['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],
@@ -63,8 +63,10 @@
     function add(fr,de,start,length,answer,options,rule='',ruleEn=''){
       if(start===0&&/^[A-ZÀÂÉÈÊÎÔÙÜ]/u.test(answer))options=options.map(x=>x[0].toUpperCase()+x.slice(1));
       const o=[answer,...options.filter(x=>x!==answer)].slice(0,3);if(new Set(o).size!==3)return;
-      const q=start===0&&length===fr.length?'Welche französische Angabe passt?':fr.slice(0,start)+'___'+fr.slice(start+length);const identity=JSON.stringify([q,answer,de]);if(seen.has(identity))return;seen.add(identity);
-      result.push({kind:'form',q,answer,o,audio:fr,meaning:de,meaningEn:window.A1FrenchI18n?.translate(de)||de,explanation:fr+(rule?' — '+rule:''),explanationEn:fr+(ruleEn?' — '+ruleEn:''),coverage:'phrase:'+JSON.stringify([q,answer,de])});
+      const q=start===0&&length===fr.length?'Welche französische Angabe passt?':fr.slice(0,start)+'___'+(/[’']$/.test(answer)&&/^\S/.test(fr.slice(start+length))?' ':'')+fr.slice(start+length);const identity=JSON.stringify([q,answer,de]);if(seen.has(identity))return;seen.add(identity);
+      // A whole-phrase choice explains every option by its meaning, not only by repeating the answer.
+      const whole=start===0&&length===fr.length&&!rule,en=d=>window.A1FrenchI18n?.translate(d)||d,gloss=x=>meaningOf.has(x)?[x,meaningOf.get(x)]:x===fr?[fr,de]:null,glosses=whole?o.map(gloss).filter(Boolean):[];
+      result.push({kind:'form',q,answer,o,audio:fr,meaning:de,meaningEn:en(de),explanation:whole?glosses.map(([x,d])=>x+' = '+d).join(' · '):fr+(rule?' — '+rule:''),explanationEn:whole?glosses.map(([x,d])=>x+' = '+en(d)).join(' · '):fr+(ruleEn?' — '+ruleEn:''),coverage:'phrase:'+JSON.stringify([q,answer,de])});
     }
     for(const [raw,de]of unit.pairs||[]){
       const fr=String(raw).trim();if(!fr||/[/→…]| :$/.test(fr)||(lessonId===9&&unit.key==='r0')||(lessonId===24&&['r0','r1'].includes(unit.key)))continue;
@@ -79,7 +81,7 @@
         [/\b(médecin|développeur|étudiant)\b/u,['médecin','développeur','étudiant']],
         [/\b(mal au dos|mal à la tête|de la fièvre)\b/u,['mal au dos','mal à la tête','de la fièvre']],
         [/\b(au total)\b/u,['par kilo','par personne']],
-        [/\b(inclus)\b/u,['gratuit','complet']]
+        [/\b(inclus)\b/u,['cher','complet']]
       ];
       let targeted=false;
       for(const [pattern,alternatives]of semantic){if((match=fr.match(pattern))){add(fr,de,match.index,match[0].length,match[0],alternatives);targeted=true;break;}}
@@ -165,7 +167,7 @@
     if(lessonId===11&&unit.key==='r1')return [
       f('Je suis en train de ___.','travailler',['travaille','travaillé'],'Ich arbeite gerade.','I am working right now.'),
       f('Léa est en train ___ manger.','de',['à','pour'],'Léa isst gerade.','Léa is eating right now.'),
-      f('Nous sommes en train ___écrire.','d’',['de','à'],'Wir schreiben gerade.','We are writing right now.'),
+      f('Nous sommes en train ___ écrire.','d’',['de','à'],'Wir schreiben gerade.','We are writing right now.'),
       f('Paul et Léa ___ en train de lire.','sont',['est','sommes'],'Paul und Léa lesen gerade.','Paul and Léa are reading right now.'),
       f('Welche Form passt?','Je suis en train de manger.',['Je suis en train manger.','Je suis en train de mange.'],'Ich esse gerade. Achte auf den vollständigen Baustein und die Grundform.','I am eating right now. Check the complete expression and the infinitive.')
     ];
@@ -198,8 +200,8 @@
       f('Welche Form passt?','Pouvez-vous parler plus lentement ?',['Pouvez-vous parler plus fort ?','Pouvez-vous répéter votre nom ?'],'Die Person spricht zu schnell. Bitte sie, das Tempo zu verringern.','The person is speaking too fast. Ask them to reduce their speed.')
     ];
     if(lessonId===19&&unit.key==='r3')return [
-      f('C’___ une clé.','est',['sont','es'],'Das ist ein Schlüssel.','This is a key.'),
-      f('Ce ___ des livres.','sont',['est','sommes'],'Das sind Bücher.','These are books.'),
+      f('___ une clé.','C’est',['Ce sont','Elle est'],'Das ist ein Schlüssel.','This is a key.','Vor un/une + Nomen im Singular steht c’est, nicht il/elle est.','Before un/une + a singular noun, use c’est, not il/elle est.'),
+      f('___ des livres.','Ce sont',['C’est','Ils sont'],'Das sind Bücher · schriftlicher Standard','These are books · standard written French','Vor des + Plural steht im geschriebenen Standard ce sont; c’est des … ist umgangssprachlich.','Before des + a plural noun, written standard French uses ce sont; c’est des … is colloquial.'),
       f('Welche Form passt?','Voici mon passeport.',['Voici est mon passeport.','Voici sont mon passeport.'],'Du reichst deinen Pass: Hier ist mein Pass.','Hand over your passport: Here is my passport.','Nach voici steht direkt die Nominalgruppe.','Voici is followed directly by the noun phrase.'),
       f('Welche Form passt?','Voilà le musée.',['Voilà est le musée.','Voilà sont le musée.'],'Dort ist das Museum.','There is the museum.','Nach voilà steht direkt die Nominalgruppe.','Voilà is followed directly by the noun phrase.'),
       f('Welche Form passt?','Ce sont mes clés.',['C’est mes clés.','Ce sont ma clé.'],'Das sind meine Schlüssel · schriftlicher Standard','These are my keys · standard written French')
@@ -213,9 +215,9 @@
     ];
     if(lessonId===21&&unit.key==='r2')return [
       f('___ ? — C’est Marie.','Qui est-ce',['Qu’est-ce que c’est','Où est-ce'],'Du fragst nach einer Person.','Ask who a person is.'),
-      f('___ ? — C’est un livre.','Qu’est-ce que c’est',['Qui est-ce','Où est-ce'],'Du fragst nach einer Sache.','Ask what a thing is.'),
+      f('___ ? — C’est un livre.','Qu’est-ce que c’est',['Qui est-ce','Qu’est-ce que tu fais'],'Du fragst nach einer Sache.','Ask what a thing is.','Qu’est-ce que c’est fragt nach einer Sache, qui est-ce nach einer Person, qu’est-ce que tu fais nach einer Tätigkeit.','Qu’est-ce que c’est asks about a thing, qui est-ce about a person, qu’est-ce que tu fais about an activity.'),
       f('___ ? — C’est mon frère.','Qui est-ce',['Qu’est-ce que c’est','Quand est-ce'],'Du fragst nach der Identität einer Person.','Ask for a person’s identity.'),
-      f('___ ? — C’est une clé.','Qu’est-ce que c’est',['Qui est-ce','Où est-ce'],'Du fragst, was ein Gegenstand ist.','Ask what an object is.')
+      f('___ ? — C’est une clé.','Qu’est-ce que c’est',['Qui est-ce','Qu’est-ce que tu fais'],'Du fragst, was ein Gegenstand ist.','Ask what an object is.','Qu’est-ce que c’est fragt nach einer Sache, qui est-ce nach einer Person, qu’est-ce que tu fais nach einer Tätigkeit.','Qu’est-ce que c’est asks about a thing, qui est-ce about a person, qu’est-ce que tu fais about an activity.')
     ];
     if(lessonId===22&&unit.key==='r2')return [
       f('Léa est ___ à huit heures.','arrivée',['arrivé','arriver'],'Léa ist um acht Uhr angekommen.','Léa arrived at eight.'),
@@ -226,7 +228,7 @@
     ];
     if(lessonId===22&&unit.key==='r3')return [
       f('Je viens ___ manger.','de',['à','pour'],'Ich habe gerade gegessen.','I have just eaten.'),
-      f('Elle vient ___arriver.','d’',['de','à'],'Sie ist gerade angekommen.','She has just arrived.'),
+      f('Elle vient ___ arriver.','d’',['de','à'],'Sie ist gerade angekommen.','She has just arrived.'),
       f('Nous ___ de rentrer.','venons',['venez','viennent'],'Wir sind gerade zurückgekommen.','We have just returned.'),
       f('Vous venez de ___.','manger',['mangez','mangé'],'Sie haben gerade gegessen.','You have just eaten.'),
       f('Paul ___ de visiter un musée.','vient',['viens','venons'],'Paul hat gerade ein Museum besucht.','Paul has just visited a museum.')
@@ -234,7 +236,7 @@
     if(lessonId===23&&unit.key==='r2')return [
       f('Je n’ai pas ___ farine.','de',['de la','du'],'Ich habe kein Mehl.','I have no flour.'),
       f('Je ne mets pas ___ sel.','de',['du','des'],'Ich gebe kein Salz dazu.','I am not adding salt.'),
-      f('Je n’ai pas ___eau.','d’',['de','de l’'],'Ich habe kein Wasser.','I have no water.'),
+      f('Je n’ai pas ___ eau.','d’',['de','de l’'],'Ich habe kein Wasser.','I have no water.'),
       f('Nous n’avons pas ___ légumes.','de',['des','du'],'Wir haben kein Gemüse.','We have no vegetables.')
     ];
     if(lessonId===23&&unit.key==='r4')return [
@@ -246,7 +248,7 @@
     ];
     if(lessonId===7&&unit.key==='r0')return [
       f('Un kilo ___ pommes, s’il vous plaît.','de',['du','des'],'Ein Kilo Äpfel, bitte.','A kilo of apples, please.','Nach einer konkreten Menge steht de.','Use de after a specified quantity.'),
-      f('Deux bouteilles ___eau.','d’',['de','du'],'Zwei Flaschen Wasser.','Two bottles of water.','Vor dem Vokal in eau steht d’.','Before the vowel in eau, use d’.'),
+      f('Deux bouteilles ___ eau.','d’',['de','du'],'Zwei Flaschen Wasser.','Two bottles of water.','Vor dem Vokal in eau steht d’.','Before the vowel in eau, use d’.'),
       f('Cinq cents grammes ___ tomates.','de',['des','de la'],'Fünfhundert Gramm Tomaten.','Five hundred grams of tomatoes.'),
       f('Un litre ___ lait.','de',['du','de la'],'Ein Liter Milch.','A litre of milk.'),
       {...f('Welche Mengenangabe ist grammatisch korrekt?','deux kilos de pommes',['deux kilo de pommes','deux kilos des pommes'],'Zwei Kilo Äpfel.','Two kilos of apples.'),audio:'deux kilos de pommes'},
@@ -287,7 +289,7 @@
     const authored=focusedTopics(lesson.id,unit);if(authored)return authored;
     if(lesson.id===6&&unit.title==='Höflich bestellen')return ordering();
     if(/Possessivbegleiter/i.test(unit.title))return possessives();
-    if(lesson.id===5&&unit.key==='r1')return family().map(t=>{const m=t.q.match(/^(?:C’|Ce )___ (.+)$/);return m?{...t,legacyTask:{q:'___ '+m[1],answer:t.answer==='est'?'C’est':'Ce sont'}}:t;});
+    if(lesson.id===5&&unit.key==='r1')return family().map(t=>{const m=t.q.match(/^___ (.+)$/);return m?{...t,legacyTask:{q:(t.answer==='C’est'?'C’___ ':'Ce ___ ')+m[1],answer:t.answer==='C’est'?'est':'sont'}}:t;});
     if(lesson.id===13&&unit.key==='r1')return adjectiveAgreement();
     tasks=tasks.map(task=>task.q==='Vous pouvez ___, s’il vous plaît ?'&&task.answer==='épeler'?{...task,o:['épeler','épelez','épelle'],legacyTask:{q:task.q,answer:task.answer}}:task);
     const replacements={

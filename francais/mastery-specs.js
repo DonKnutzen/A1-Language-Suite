@@ -342,10 +342,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Welche Form ist die höfliche Bestellung?",
         "o": [
           "Je voudrais un café.",
-          "Je veux café.",
-          "J’ai café."
+          "Je veux un café.",
+          "J’ai un café."
         ],
         "answer": "Je voudrais un café.",
+        "explanation": "Je voudrais (ich hätte gern) ist die höfliche Bestellform. Je veux (ich will) klingt fordernd; j’ai un café heißt „ich habe einen Kaffee“.",
         "tag": "Höflichkeit"
       }
     ]
@@ -391,6 +392,7 @@ window.FR_A1_MASTERY_SPECS = {
           "à carte"
         ],
         "answer": "par carte",
+        "explanation": "Mit Karte bezahlen heißt payer par carte. De carte und à carte sind hier falsch; bar zahlen wäre en espèces.",
         "tag": "Bezahlen"
       }
     ]
@@ -418,6 +420,7 @@ window.FR_A1_MASTERY_SPECS = {
           "derrière"
         ],
         "answer": "sur",
+        "explanation": "Sur heißt auf: La tasse est sur la table. Sous heißt unter, derrière hinter.",
         "tag": "Ort"
       },
       {
@@ -429,6 +432,7 @@ window.FR_A1_MASTERY_SPECS = {
           "devant"
         ],
         "answer": "sous",
+        "explanation": "Sous heißt unter: Le sac est sous la table. Sur heißt auf, devant vor.",
         "tag": "Ort"
       },
       {
@@ -440,6 +444,7 @@ window.FR_A1_MASTERY_SPECS = {
           "dans"
         ],
         "answer": "devant",
+        "explanation": "Devant heißt vor: La chaise est devant la table. Derrière heißt hinter, dans in.",
         "tag": "Ort"
       },
       {
@@ -527,9 +532,10 @@ window.FR_A1_MASTERY_SPECS = {
         "o": [
           "Je suis de médecin.",
           "Je suis médecin.",
-          "Je suis de médecin."
+          "J’ai médecin."
         ],
         "answer": "Je suis médecin.",
+        "explanation": "Den Beruf nennt man mit être ohne Artikel: Je suis médecin. Nach être steht kein de; avoir (j’ai) passt nicht zum Beruf.",
         "tag": "Beruf"
       },
       {
@@ -628,6 +634,7 @@ window.FR_A1_MASTERY_SPECS = {
           "puis"
         ],
         "answer": "d’abord",
+        "explanation": "D’abord heißt zuerst. Puis heißt dann, enfin schließlich.",
         "tag": "Reihenfolge"
       },
       {
@@ -639,6 +646,7 @@ window.FR_A1_MASTERY_SPECS = {
           "d’abord"
         ],
         "answer": "enfin",
+        "explanation": "Enfin heißt schließlich, zum Schluss. Ensuite heißt danach, d’abord zuerst.",
         "tag": "Reihenfolge"
       }
     ]
@@ -669,10 +677,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Welche Bitte ist in der Apotheke passend?",
         "o": [
           "Je voudrais un médicament contre le rhume.",
-          "Je prends la gare.",
-          "Je suis un médicament."
+          "Je voudrais un kilo de pommes, s’il vous plaît.",
+          "Je voudrais un rendez-vous chez le médecin."
         ],
         "answer": "Je voudrais un médicament contre le rhume.",
+        "explanation": "In der Apotheke verlangt man ein Medikament: un médicament contre le rhume. Äpfel kauft man auf dem Markt, einen Termin bekommt man beim Arzt.",
         "tag": "Apotheke"
       }
     ]
@@ -890,10 +899,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Welche Form verschiebt einen Termin?",
         "o": [
           "On peut reporter le rendez-vous à demain ?",
-          "Bon anniversaire !",
-          "Je prends le train."
+          "On peut annuler le rendez-vous ?",
+          "Je ne peux pas venir au rendez-vous."
         ],
         "answer": "On peut reporter le rendez-vous à demain ?",
+        "explanation": "Reporter à demain heißt auf morgen verschieben. Annuler heißt absagen; je ne peux pas venir sagt nur, dass man nicht kommen kann.",
         "tag": "Termin"
       }
     ]
@@ -932,10 +942,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Welche Form leitet eine einfache Informationsanfrage ein?",
         "o": [
           "Je vous écris pour demander des informations.",
-          "Je suis une information.",
-          "Je prends informations."
+          "Je vous écris pour réserver une chambre.",
+          "Je vous écris pour annuler mon inscription."
         ],
         "answer": "Je vous écris pour demander des informations.",
+        "explanation": "Demander des informations heißt um Informationen bitten. Réserver une chambre ist eine Buchung, annuler mon inscription eine Abmeldung.",
         "tag": "Schreiben"
       }
     ]
@@ -966,10 +977,11 @@ window.FR_A1_MASTERY_SPECS = {
         "q": "Welche Form ist besonders höflich?",
         "o": [
           "Pourriez-vous répéter ?",
-          "Répète !",
-          "Tu répètes."
+          "Tu peux répéter ?",
+          "Vous répétez ?"
         ],
         "answer": "Pourriez-vous répéter ?",
+        "explanation": "Pourriez-vous (könnten Sie) ist besonders höflich. Tu peux répéter ? duzt, Vous répétez ? ist eine bloße Frage ohne Bitte.",
         "tag": "Höflichkeit"
       },
       {
@@ -1354,6 +1366,7 @@ window.FR_A1_MASTERY_SPECS = {
           "depuis trois jours"
         ],
         "answer": "il y a trois jours",
+        "explanation": "Il y a + Zeitraum heißt „vor“ (Vergangenheit): il y a trois jours. Dans heißt „in“ (Zukunft), depuis „seit“ (dauert noch an).",
         "tag": "Zeit"
       },
       {
@@ -1365,6 +1378,7 @@ window.FR_A1_MASTERY_SPECS = {
           "depuis deux jours"
         ],
         "answer": "dans deux jours",
+        "explanation": "Dans + Zeitraum heißt „in“ (Zukunft): dans deux jours. Il y a heißt „vor“, depuis „seit“.",
         "tag": "Zeit"
       },
       {
@@ -1376,6 +1390,7 @@ window.FR_A1_MASTERY_SPECS = {
           "il y a deux ans"
         ],
         "answer": "depuis deux ans",
+        "explanation": "Depuis heißt „seit“: Es begann vor zwei Jahren und dauert noch an. Dans heißt „in“ (Zukunft), il y a „vor“ (abgeschlossen).",
         "tag": "Zeit"
       }
     ]
@@ -2073,11 +2088,16 @@ window.FR_A1_MASTERY_SPECS = {
       ['transport','Nous partons ___ voiture.','en','Wir fahren mit dem Auto.','We are travelling by car.']
     ]
   };
+  // Transfers whose solved prompt is only the answer itself get a reason.
+  const WHY={
+    '3:telephone':'0670148091: zéro six = 06, soixante-dix = 70 (60 + 10), quatorze = 14, quatre-vingts = 80 (4 × 20), quatre-vingt-onze = 91 (80 + 11).',
+    '3:postal':'B2C 3D4: Gefragt ist nur der Code postal. 06 20 30 40 50 ist die Telefonnummer.'
+  };
   for(const [id,rows]of Object.entries(bank)){
     const s=window.FR_A1_MASTERY_SPECS[id];
     s.checkTransfers=rows.map(([focus,prompt,answer,context,contextEn,accept=[]],index)=>{
       const strictAccents=true,accentHint=/[àâçéèêëîïôùûü]/i.test(answer),format=id==='3'&&['telephone','postal'].includes(focus)?focus==='telephone'?'phone':'postal':null,numberWords=id==='3'&&focus==='nombre';
-      const explanation=prompt.replace('___',answer).replace(/\s*\([^)]*\)/g,'').replace(/([’'])\s+/g,'$1');
+      const explanation=WHY[id+':'+focus]||prompt.replace('___',answer).replace(/\s*\([^)]*\)/g,'').replace(/([’'])\s+/g,'$1');
       return {type:'gap',prompt,answer,accept,context:context+(accentHint?' Achte auch auf die Akzente.':''),contextEn:contextEn+(accentHint?' Check the accents too.':''),explanation,audio:format?'':explanation,marking:{strictAccents,format,numberWords},family:'transfer:'+focus,checkKey:`L${id}-transfer-${focus}-${index}`};
     });
   }

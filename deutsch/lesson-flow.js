@@ -186,9 +186,10 @@
     function renderExtras(){
       // Speaking and writing stay reachable next to the Hard Mode entry (curriculum steps 3 and 4).
       if(!view.querySelector('.lesson-optional'))view.insertAdjacentHTML('beforeend',`<section class="card lesson-optional"><h3>${esc(optionalTitle)}</h3><p class="muted">En complément : entraîne-toi à parler et à écrire.</p><div class="button-row"><button class="secondary-btn" data-lesson-step="speak">${esc(L.speak)}</button><button class="secondary-btn" data-lesson-step="write">${esc(L.write)}</button></div></section>`);
-      if(!window.DE_A1_HARD_MODE)return;
-      if(view.querySelector('.hard-entry'))return;
-      const host=document.createElement('div');view.append(host);
+      if(!window.DE_A1_HARD_MODE||view.querySelector('.hard-entry'))return;
+      // Order below the lesson check: Hard Mode, tower, back button, then the optional exam preparation.
+      const host=document.createElement('div'),footer=view.querySelector(':scope > .lesson-step-footer');if(footer)footer.before(host);else view.append(host);
+      const optional=view.querySelector('.lesson-optional');if(optional)view.append(optional);
       window.DE_A1_HARD_MODE.renderEntry({lesson:l,view:host,state,onStart:()=>{remember();window.A1Voice?.cancel();window.DE_A1_HARD_MODE.render({lesson:l,view,state,save,onBack:()=>goStep('check')});},onQuiz:()=>{remember();window.DE_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
     }
     function drawMastery(){

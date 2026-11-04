@@ -200,3 +200,13 @@
 
 
 
+/* End-of-game review in the arcade */
+.arcade-overlay{overflow:auto;place-items:safe center}
+.arcade-review{width:100%;text-align:left;font-size:.9rem}
+.arcade-review summary{cursor:pointer;font-weight:800;color:var(--g1,#ffd166);text-align:center}
+.arcade-review ol{list-style:none;margin:8px 0 0;padding:0;max-height:150px;overflow:auto;display:grid;gap:6px}
+.arcade-review li{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:6px 8px;border-radius:10px;background:#ffffff10}
+.arcade-review li.is-bad{background:#ff4d6d26;border-left:4px solid #ff5d8f}
+.arcade-review li.is-ok{border-left:4px solid #06d6a0}
+.arcade-review li>span{display:grid;gap:2px;min-width:0;overflow-wrap:anywhere}
+.arcade-review small{color:#d9cfe6;line-height:1.35}

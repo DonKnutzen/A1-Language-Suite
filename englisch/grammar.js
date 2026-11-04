@@ -10,7 +10,7 @@
   function stageHtml(id,stage){
     const words=stage==='hard'?lexicon.plan[id].hard:lexicon.plan[id].stages[stage]||[];
     if(!words.length)return '';
-    return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Hard Mode':'Zusätzliche Wörter in dieser Lektion'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words))}</div></aside>`;
+    return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Finale':'Zusätzliche Wörter in dieser Lektion'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words))}</div></aside>`;
   }
   function pools(lesson){return lesson.topics.map(t=>({key:t.key,title:t.title,tasks:t.practice}));}
   function ruleHtml(topic){
@@ -62,11 +62,11 @@
   }
   const vocabularyHtml=(_course,id)=>{
     const plan=lexicon.plan[id],hard=plan.hardOnly.filter(word=>!plan.regular.includes(word)),words=[...plan.regular,...hard];
-    return `<details class="lesson-vocabulary-list en-glossary"><summary>Wortschatz dieser Lektion · ${words.length} Einträge</summary><p class="muted">Diese Liste dient zur Orientierung und zum Nachschlagen. Neue Wörter lernst du im Verlauf der Lektion Schritt für Schritt anhand von Beispielen und Übungen. Du musst sie nicht vorab auswendig lernen.</p>${pairs(wordPairs(plan.regular))}${hard.length?`<h4>Zusätzlich im Hard Mode</h4><p class="muted">Diese Wörter brauchst du nur für die freiwillige Zusatzübung. Du lernst sie vor dem Start kennen.</p>${pairs(wordPairs(hard))}`:''}</details>`;
+    return `<details class="lesson-vocabulary-list en-glossary"><summary>Wortschatz dieser Lektion · ${words.length} Einträge</summary><p class="muted">Diese Liste dient zur Orientierung und zum Nachschlagen. Neue Wörter lernst du im Verlauf der Lektion Schritt für Schritt anhand von Beispielen und Übungen. Du musst sie nicht vorab auswendig lernen.</p>${pairs(wordPairs(plan.regular))}${hard.length?`<h4>Zusätzlich im Finale</h4><p class="muted">Diese Wörter brauchst du nur für die freiwillige Zusatzübung. Du lernst sie vor dem Start kennen.</p>${pairs(wordPairs(hard))}`:''}</details>`;
   };
   const preparationHtml=(_course,id,step)=>{
     if(step!=='hard')return '';
-    return `${stageHtml(id,'hard')}<p class="muted">Im Hard Mode schreibst du die englischen Angaben selbst. Bei Zahlen, Uhrzeiten und Codes steht das gewünschte Format in der Frage.</p>${Number(id)===24?'<p>Postleitzahlen im englischsprachigen Raum können aus Buchstaben und Ziffern bestehen. Höre die Zeichen einzeln ab; ein Leerzeichen ist optional.</p>':''}`;
+    return `${stageHtml(id,'hard')}<p class="muted">Im Finale & Arcade schreibst du die englischen Angaben selbst. Bei Zahlen, Uhrzeiten und Codes steht das gewünschte Format in der Frage.</p>${Number(id)===24?'<p>Postleitzahlen im englischsprachigen Raum können aus Buchstaben und Ziffern bestehen. Höre die Zeichen einzeln ab; ein Leerzeichen ist optional.</p>':''}`;
   };
   window.EN_A1_DEEPENING={pools,grammarHtml,enrich:grammarHtml,topicDone,decorate,refreshPractice};
   window.A1LessonFoundations={content:window.EN_A1_FOUNDATIONS,render:(_course,id)=>stageHtml(id,'listen'),enhance:(_course,_id,_title,html)=>html,vocabularyHtml,preparationHtml,hardInstructionsHtml:()=>''};
