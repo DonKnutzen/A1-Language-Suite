@@ -109,7 +109,7 @@ Du ___ einen Tee.|möchtest|möchte|möchten|Tu voudrais un thé.
 Ich nehme ___ Suppe.|die|der|das|Je prends la soupe.
 Ich möchte ___ Tee.|einen|ein|eine|Je voudrais un thé.
 ___|Ich hätte gern ein Wasser.|Ich hätten gern ein Wasser.|Ich hätte ein gern Wasser.|Je voudrais une eau.
-Möchten ___ einen Kaffee?|Sie|du|ihr|Demande poliment à un client s’il veut un café.
+___ Sie einen Kaffee?|Möchten|Möchtest|Möchte|Demande poliment à un client s’il veut un café.
 #6.1
 Einen Kaffee ___ Milch, bitte.|mit|ohne|für|Un café avec du lait, s’il vous plaît.
 Die ___, bitte.|Rechnung|Speisekarte|Suppe|Tu as fini de manger et tu demandes l’addition.
@@ -189,7 +189,7 @@ Wir ___ ein Wörterbuch.|brauchen|braucht|brauchst|Nous avons besoin d’un dict
 ___|Heute lerne ich Deutsch.|Heute ich lerne Deutsch.|Heute lernen ich Deutsch.|Aujourd’hui, j’apprends l’allemand.
 #12.0
 Ich spiele ___ gern Tennis.|nicht|kein|keine|Je n’aime pas jouer au tennis.
-Ich gehe ___ ins Kino.|lieber|liebe|lieben|Je préfère aller au cinéma.
+Ich gehe ___ ins Kino.|lieber|gern|nicht gern|Je préfère aller au cinéma.
 Wir ___ gern.|schwimmen|schwimmt|schwimmst|Nous aimons nager.
 Du ___ gern Fußball.|spielst|spiele|spielen|Tu aimes jouer au football.
 Ich ___ gern Bücher.|lese|liest|lesen|J’aime lire des livres.
@@ -206,7 +206,7 @@ Ich möchte zwei Zimmer ___.|reservieren|reserviert|reserviere|Je voudrais rése
 Für zwei ___.|Nächte|Nacht|Nachts|Pour deux nuits.
 Vom ersten bis ___ dritten August.|zum|am|im|Du premier au trois août.
 ___ zwei Personen, bitte.|Für|Von|Um|Pour deux personnes, s’il vous plaît.
-Ist das Frühstück ___?|inklusive|reservieren|geschlossen|Le petit-déjeuner est-il compris ?
+Ist das Frühstück ___?|inklusive|reserviert|teuer|Le petit-déjeuner est-il compris ?
 Ich ___ gern ein Einzelzimmer.|hätte|hätten|hättest|Je voudrais une chambre individuelle.
 #13.1
 Der Zug fährt um neun Uhr ___.|ab|an|mit|Le train part à neuf heures : abfahren.
@@ -290,7 +290,7 @@ Mein Rücken ___ weh.|tut|tun|tust|J’ai mal au dos.
 Meine Arme ___ weh.|tun|tut|tust|J’ai mal aux bras.
 ___ Hand tut weh.|Meine|Mein|Meinen|J’ai mal à la main.
 ___ Kopf tut weh.|Mein|Meine|Meinen|J’ai mal à la tête.
-Ich ___ Kopfschmerzen.|habe|bin|ist|J’ai mal à la tête.
+___|Ich habe Kopfschmerzen.|Ich bin Kopfschmerzen.|Mein Kopf tun weh.|J’ai mal à la tête.
 Meine Beine ___ seit gestern weh.|tun|tut|tust|J’ai mal aux jambes depuis hier.
 #19.1
 Ich brauche ___ Termin beim Arzt.|einen|ein|eine|J’ai besoin d’un rendez-vous chez le médecin.
@@ -353,7 +353,7 @@ Bitte füllen Sie das Formular ___.|aus|an|ab|Veuillez remplir le formulaire : a
 Bitte ___ Sie hier.|unterschreiben|unterschreibt|unterschreibst|Veuillez signer ici.
 Berlin ist der ___.|Geburtsort|Geburtsdatum|Familienstand|Le formulaire demande la ville où la personne est née.
 030 123456 gehört zur ___.|Telefonnummer|Postleitzahl|Hausnummer|Dans quel champ faut-il reporter ce numéro de téléphone ?
-Musterstraße 8 gehört zur ___.|Adresse|Geburtsort|Familienstand|Dans quel champ faut-il reporter la rue et le numéro ?
+Musterstraße 8 gehört zur ___.|Adresse|Postleitzahl|Telefonnummer|Reporte la valeur dans le bon champ.
 ___|Wo muss ich unterschreiben?|Wo ich muss unterschreiben?|Wo muss ich unterschreibt?|Pose une question neutre : Où dois-je signer ?
 #24.0
 Ich komme gern, ___ ich komme später.|aber|oder|denn|Je viens avec plaisir, mais j’arrive plus tard.
@@ -390,7 +390,7 @@ G|Ihr ___ in Berlin.|wohnt|Vous habitez à Berlin, vous deux mes amis.|wohnen-ih
 G|Anna und ich ___ Deutsch.|sprechen|Anna et moi parlons allemand.|sprechen-wir
 #2
 C|Tu ne comprends pas un nom prononcé rapidement. Demande de l’épeler.|Können Sie den Namen buchstabieren?|Können Sie den Namen wiederholen?|Können Sie den Namen schreiben?|épeler
-C|« Müller, mit Umlaut. » Quelle écriture correspond ?|Müller|Muller|Mülller|umlaut
+C|« On épelle : M, Ü, L, L, E, R. » Quelle écriture correspond ?|Müller|Muller|Möller|umlaut
 C|« Weiß, mit Eszett. » Quelle écriture correspond ?|Weiß|Weiss|Weis|eszett
 C|Tu as besoin d’entendre la phrase encore une fois.|Bitte noch einmal.|Bitte ohne Umlaut.|Bitte mit Bindestrich.|répéter
 C|Choisis la phrase correcte pour « Vous pouvez écrire le nom » (plusieurs proches).|Ihr könnt den Namen schreiben.|Ihr können den Namen schreiben.|Ihr könnt den Namen schreibt.|modal-ihr
@@ -513,7 +513,7 @@ C|« Ich bin Lehrer und arbeite in der Schule. » Quel métier est indiqué ?|Le
 C|« Ich arbeite von neun bis siebzehn Uhr. » Quand finit la journée de travail ?|Um siebzehn Uhr.|Um neun Uhr.|Um acht Uhr.|fin-horaire
 C|Tu annonces que tu arriveras plus tard demain.|Morgen komme ich später.|Morgen ich komme später.|Morgen kommen ich später.|v2
 C|« Heute habe ich frei. Morgen arbeite ich. » Quand la personne ne travaille-t-elle pas ?|Heute.|Morgen.|Übermorgen.|congé
-C|Une vendeuse indique son métier. Choisis la formulation correcte.|Ich arbeite als Verkäuferin.|Ich arbeite im Verkäuferin.|Ich arbeite am Verkäuferin.|als
+C|Une vendeuse indique son métier. Choisis la formulation correcte.|Ich arbeite als Verkäuferin.|Ich arbeite als eine Verkäuferin.|Ich arbeite wie Verkäuferin.|als
 C|« Ich komme um neun, nicht um acht. » Quel horaire est confirmé ?|09:00|08:00|19:00|arrivée
 G|Ich arbeite ___ Büro.|im|Je travaille au bureau.|lieu
 G|Anna arbeitet in ___ Schule.|der|Anna travaille à l’école.|lieu-féminin
@@ -525,7 +525,7 @@ G|___, ich komme später.|Entschuldigung|Excusez-moi, j’arrive plus tard.|excu
 G|Ich ___ morgen frei.|habe|Demain, je suis en congé.|haben-frei
 #11
 C|« Mein Kurs ist am Vormittag. Am Nachmittag arbeite ich. » Quand a lieu le cours ?|Le matin.|L’après-midi.|Le soir.|moment-journée
-C|« Ich lerne seit sechs Monaten Deutsch. » Que signifie seit ?|L’apprentissage a commencé il y a six mois et continue.|Le cours commencera dans six mois.|Le cours dure six minutes.|depuis-présent
+C|« Ich lerne seit sechs Monaten Deutsch. » Que signifie seit ?|La personne apprend depuis six mois et continue.|La personne a appris il y a six mois, puis elle a arrêté.|La personne va apprendre pendant six mois.|depuis-présent
 C|Tu ne comprends pas un mot. Quelle question convient ?|Was bedeutet dieses Wort?|Können Sie dieses Wort buchstabieren?|Können Sie dieses Wort wiederholen?|sens
 C|Choisis une demande polie de répétition.|Können Sie den Satz wiederholen?|Können Sie den Satz wiederholt?|Können Sie den Satz wiederholst?|répétition
 C|« Ich lese ein Buch und mache dann die Hausaufgaben. » Quelle action vient en premier ?|Lire un livre.|Faire les devoirs.|Chercher un dictionnaire.|ordre-lecture
@@ -586,7 +586,7 @@ G|Ich wünsche Ihnen gute ___!|Besserung|Je vous souhaite un bon rétablissement
 #15
 C|« Ich feiere am Freitag um neunzehn Uhr bei mir. » Quelle invitation reprend tous les détails ?|Vendredi, 19 h, chez la personne.|Samedi, 19 h, chez la personne.|Vendredi, 18 h, au café.|invitation
 C|Tu acceptes une invitation. Quelle réponse est claire ?|Vielen Dank, ich komme gern.|Vielen Dank, ich kann nicht kommen.|Vielen Dank, vielleicht später.|acceptation
-C|Tu dois travailler et refuses poliment.|Leider kann ich nicht kommen. Ich muss arbeiten.|Leider kann ich kommen. Ich muss nicht arbeiten.|Leider kann ich nicht arbeite. Ich muss kommen.|refus-raison
+C|Tu dois travailler et refuses poliment.|Leider kann ich nicht kommen. Ich muss arbeiten.|Leider muss ich nicht kommen. Ich kann arbeiten.|Leider kann ich nicht kommen. Ich muss arbeite.|refus-raison
 C|Tu proposes d’apporter du pain.|Kann ich Brot mitbringen?|Kann ich Brot bringe mit?|Kann ich mitbringt Brot?|modal-séparable
 C|« Ich bringe Wasser mit. Anna bringt einen Kuchen mit. » Qu’apporte Anna ?|Einen Kuchen.|Wasser.|Einen Salat.|contribution
 C|Choisis une question adressée à un ami.|Kannst du am Freitag kommen?|Können du am Freitag kommen?|Kannst Sie am Freitag kommen?|du
@@ -632,7 +632,7 @@ G|___ Sie mir bitte helfen?|Können|Pouvez-vous m’aider ? Adresse-toi poliment
 C|« Kreuzen Sie die richtige Antwort an. » Que dois-tu faire ?|Cocher la bonne réponse.|Écrire un texte libre.|Écouter une seconde fois.|consigne
 C|« Sie hören den Dialog zweimal. » Combien d’écoutes sont prévues ?|Deux.|Une.|Trois.|quantité
 C|« Zuerst lesen, dann hören, zum Schluss schreiben. » Quelle action vient en dernier ?|Schreiben.|Lesen.|Hören.|séquence
-C|Choisis une consigne polie.|Schreiben Sie bitte Ihren Namen.|Schreibt Sie bitte Ihren Namen.|Schreiben Ihren Namen Sie bitte.|impératif
+C|Choisis une consigne polie.|Schreiben Sie bitte Ihren Namen.|Sie schreiben bitte Ihren Namen.|Schreiben Sie bitte Ihr Namen.|impératif
 C|Après Danach, choisis l’ordre neutre.|Danach prüfe ich den Text.|Danach ich prüfe den Text.|Danach prüfen ich den Text.|v2
 C|Un message doit répondre à trois points. Quel plan est complet ?|Salutation, trois points, formule de fin.|Salutation, un point, formule de fin.|Trois points sans salutation ni formule de fin.|plan
 G|Bitte ___ Sie den Dialog.|hören|Écoutez le dialogue, s’il vous plaît.|consigne-écouter
@@ -719,7 +719,7 @@ G|Straße und Hausnummer gehören zur ___.|Adresse|La rue et le numéro font par
 G|Das Datum der Geburt heißt ___.|Geburtsdatum|Écris le nom du champ de la date de naissance.|champ-date
 G|Wo ___ ich ein Formular?|bekomme|Où est-ce que je peux avoir un formulaire ?|bekommen
 #24
-C|« Ich komme aus Kanada und wohne jetzt in Bonn. » Quelle information concerne l’origine ?|Kanada.|Bonn.|Berlin.|présentation
+C|« Ich komme aus Kanada und wohne jetzt in Bonn. Meine Schwester wohnt in Berlin. » Quelle information concerne l’origine ?|Kanada.|Bonn.|Berlin.|présentation
 C|« Ich komme gern, aber erst um acht. » Que signifie la réponse ?|La personne accepte et arrivera à huit heures.|La personne refuse de venir.|La personne demande de venir à sept heures.|opposition
 C|Tu ne comprends pas et demandes de répéter poliment.|Können Sie das noch einmal sagen?|Können Sie das noch einmal sagt?|Können Sie das noch einmal sagst?|clarification
 C|Un message doit remercier, confirmer vendredi à 19 h et demander si l’on peut apporter du pain. Quel texte remplit les trois points ?|Danke! Ich komme Freitag um 19 Uhr. Kann ich Brot mitbringen?|Danke! Ich komme Freitag um 19 Uhr. Viele Grüße!|Danke! Ich komme Samstag um 19 Uhr. Kann ich Brot mitbringen?|message-complet
@@ -849,6 +849,8 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     '23:consigne-signer':'Bitte hier unterschreiben.',
     '24:opposition':'Ich komme gern, aber erst um acht.'
   };
+  // Typed gaps where a second word is just as correct in the given context.
+  const CHECK_ACCEPT={'8:Ich möchte das Haus ___.':['besichtigen']};
   const CHECK_RATIONALES=  {
     "1:0": "Ich komme aus Kanada répond à la question d’origine Woher kommen Sie? Wo wohnen Sie? demande le domicile, Welche Sprachen sprechen Sie? les langues.",
     "1:1": "Ich wohne in Berlin donne le domicile ; aus Kanada donne seulement l’origine. Halifax n’apparaît pas dans la phrase.",
@@ -858,7 +860,7 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     "1:5": "Avec wir, le verbe prend -en : wir kommen. kommt va avec er/sie/es ou ihr, kommst avec du.",
     "1:12": "Anna et Paul = sie (pluriel) avec sind. Sie ist parle d’une seule personne ; ihr seid s’adresse directement à plusieurs proches.",
     "2:0": "buchstabieren = épeler lettre par lettre. wiederholen veut dire répéter, schreiben écrire : ni l’un ni l’autre ne demande les lettres.",
-    "2:1": "Müller contient un u avec tréma, écrit ü. Muller n’a pas d’Umlaut ; Mülller contient un l en trop.",
+    "2:1": "Ü est un u avec Umlaut : M, Ü, L, L, E, R donne Müller. Muller n’a pas de tréma ; Möller s’écrit avec ö.",
     "2:2": "Eszett est la lettre ß : Weiß. Weiss remplace ß par ss, ce qui n’est pas l’orthographe annoncée ; Weis n’a qu’un s.",
     "2:3": "Bitte noch einmal signifie « Encore une fois, s’il vous plaît ». C’est la formule utilisée pour demander une répétition.",
     "2:4": "Avec ihr, können devient könnt et le deuxième verbe reste à l’infinitif à la fin : schreiben. Ihr können prend la forme de wir ; schreibt n’est pas un infinitif.",
@@ -912,10 +914,10 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     "10:1": "von neun bis siebzehn Uhr : le travail commence à 9 h et finit à 17 h, um siebzehn Uhr. neun Uhr est le début ; acht Uhr n’est pas mentionné.",
     "10:2": "Après Morgen en première position, le verbe conjugué reste en deuxième position et le sujet le suit : Morgen komme ich. Morgen ich komme place le verbe en troisième position ; kommen ne va pas avec ich.",
     "10:3": "Heute habe ich frei indique que la personne ne travaille pas aujourd’hui ; morgen arbeite ich dit qu’elle travaille demain.",
-    "10:4": "Pour un métier, on dit arbeiten als + métier sans article : als Verkäuferin. im et am indiquent un lieu ou un moment, pas une profession.",
+    "10:4": "Après als, le métier n’a pas d’article : Ich arbeite als Verkäuferin. als eine Verkäuferin suit le français « comme une vendeuse » ; wie compare (« comme ») et ne donne pas le métier.",
     "10:5": "um neun, nicht um acht : l’heure confirmée est 9 h, 09:00. 08:00 est justement corrigé ; 19:00 serait neunzehn Uhr.",
     "11:0": "Vormittag est la matinée, tandis que Nachmittag est l’après-midi. Le cours a lieu am Vormittag.",
-    "11:1": "Seit + durée indique une situation commencée dans le passé qui se poursuit : l’apprentissage dure depuis six mois.",
+    "11:1": "seit + durée : l’action a commencé avant et continue, au présent en allemand comme en français. « Il y a six mois » se dit vor sechs Monaten ; une durée à venir se dit sechs Monate lang.",
     "11:2": "Was bedeutet dieses Wort? demande le sens d’un mot. buchstabieren (épeler) et wiederholen (répéter) ne donnent pas la signification.",
     "11:3": "Après le modal können, le deuxième verbe est à l’infinitif à la fin : wiederholen. wiederholt et wiederholst sont des formes conjuguées.",
     "11:4": "Ich lese ein Buch vient avant und mache dann die Hausaufgaben. Dann marque l’action suivante : les devoirs.",
@@ -940,7 +942,7 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     "14:5": "Gute Besserung ! est une formule pour souhaiter un bon rétablissement, pas un bon repas ou un bon voyage.",
     "15:0": "Am Freitag = vendredi ; um neunzehn Uhr = 19 h ; bei mir = chez moi. Les trois informations doivent être conservées.",
     "15:1": "ich komme gern = je viens volontiers : c’est une acceptation claire. ich kann nicht kommen refuse ; vielleicht später (peut-être plus tard) ne répond pas clairement.",
-    "15:2": "Leider kann ich nicht kommen refuse poliment, Ich muss arbeiten donne la raison. La deuxième phrase dit le contraire ; dans la troisième, arbeite n’est pas un infinitif et les verbes sont inversés.",
+    "15:2": "kann nicht kommen = je ne peux pas venir ; muss arbeiten donne la raison. « muss nicht kommen » signifie « je ne suis pas obligé de venir ». Après muss, l’infinitif arbeiten reste entier.",
     "15:3": "Après kann, le verbe séparable reste entier à l’infinitif à la fin : mitbringen. bringe mit et mitbringt sont des formes conjuguées.",
     "15:4": "Anna bringt einen Kuchen mit : Anna apporte un gâteau. Wasser est ce qu’apporte ich ; une salade n’est pas mentionnée.",
     "15:5": "À un ami, on dit du ; avec du, können devient kannst : Kannst du am Freitag kommen? Können du mélange la forme de wir/Sie avec du ; Kannst Sie mélange du et Sie.",
@@ -959,7 +961,7 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     "18:0": "Kreuzen ... an est un verbe séparable signifiant cocher ; die richtige Antwort est la bonne réponse.",
     "18:1": "Zweimal signifie deux fois. Le dialogue sera donc diffusé à deux reprises.",
     "18:2": "zum Schluss = pour finir : la dernière action est Schreiben. Lesen vient zuerst (d’abord), Hören dann (ensuite).",
-    "18:3": "La consigne polie se forme avec l’infinitif suivi de Sie : Schreiben Sie bitte … Schreibt Sie mélange la forme de ihr et Sie ; dans la troisième phrase, Sie est rejeté à la fin.",
+    "18:3": "La consigne polie commence par le verbe, puis Sie : Schreiben Sie bitte … « Sie schreiben … » est une affirmation. Name est l’objet : Ihr Name devient Ihren Namen.",
     "18:4": "Danach occupe la première position, donc le verbe prüfe vient juste après, puis ich. Danach ich prüfe met le verbe en troisième position ; prüfen ne va pas avec ich.",
     "18:5": "Un message complet comporte une formule d’appel, une réponse à chacun des trois points demandés et une formule de fin.",
     "19:0": "Meine Arme tun weh : les bras font mal. mein Rücken tut nicht weh : le dos ne fait pas mal. Der Bauch n’est pas mentionné.",
@@ -992,7 +994,7 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     "23:3": "Familienname est le nom de famille : Paul est le prénom, Weber le nom. Hauptstraße est la rue.",
     "23:4": "Après möchte, le verbe séparable reste entier à l’infinitif à la fin : anmelden. melde an et anmeldet sont des formes conjuguées.",
     "23:5": "von 9 bis 17 Uhr : ouvert de 9 h à 17 h, donc 16 h convient. À 8 h, ce n’est pas encore ouvert ; à 18 h, c’est déjà fermé.",
-    "24:0": "Ich komme aus Kanada donne le pays d’origine ; wohne jetzt in Bonn donne le domicile actuel.",
+    "24:0": "Ich komme aus Kanada donne le pays d’origine ; wohne jetzt in Bonn donne le domicile actuel ; Berlin est la ville de la sœur.",
     "24:1": "Ich komme gern exprime l’acceptation ; aber erst um acht précise que la personne arrivera seulement à huit heures.",
     "24:2": "Après können, sagen est à l’infinitif à la fin de la question. sagt et sagst sont des formes conjuguées.",
     "24:3": "Le premier texte remercie, confirme vendredi à 19 h et demande pour le pain. Le deuxième oublie la question ; le troisième indique Samstag au lieu de vendredi.",
@@ -1003,7 +1005,7 @@ G|Vielen Dank und viele ___!|Grüße|Merci beaucoup et amitiés !|salutation-fin
     return checks[id].map((row,rowIndex)=>{
       const [type,prompt,answer,x,y,focus]=row;
       if(type==='C')return {type:'choice',q:prompt,o:[answer,x,y],a:0,answer,audio:checkAudio[id+':'+focus]||answer,answerLang:checkAudio[id+':'+focus]?'fr':'de',context:'',explanation:CHECK_RATIONALES[id+':'+rowIndex]||checkAudio[id+':'+focus]||answer,skill:'transfer',focus,qualityRevision:revision};
-      return {type:'gap',q:`« ${x} » — Complète : ${prompt}`,prompt,context:x,answer,accept:[],audio:prompt.replace('___',answer),explanation:prompt.replace('___',answer)+' = '+x,skill:'transfer',focus:y,marking:{strictAccents:true},qualityRevision:revision};
+      return {type:'gap',q:`« ${x} » — Complète : ${prompt}`,prompt,context:x,answer,accept:CHECK_ACCEPT[id+':'+prompt]||[],audio:prompt.replace('___',answer),explanation:prompt.replace('___',answer)+' = '+x,skill:'transfer',focus:y,marking:{strictAccents:true},qualityRevision:revision};
     });
   }
   window.DE_A1_QUESTIONS={revision,practiceTasks,checkTasks,matchesAnswer,practice,checks};

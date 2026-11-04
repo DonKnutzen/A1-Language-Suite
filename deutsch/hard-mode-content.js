@@ -5775,3 +5775,56 @@ window.DE_A1_HARD_AUDIO={turns:(lessonId,data,index)=>data.listening[index].turn
   // The recording describes today, without specifying the morning.
   content[20].listening[0].questions[0].q='Quel temps fait-il aujourd’hui avant la pluie de l’après-midi ?';
 })();
+
+// Prüfbericht A1 (deutsch/PRUEFBERICHT-A1.md, 7.2/7.3): questions answerable without the voice, distractors that
+// occur in the recording, and shorter recordings where one text carried five or more data points.
+// Changed lessons move to version 5; version 4 stays archived for saved attempts and still counts as passed.
+(() => {
+  const content=window.DE_A1_HARD_CONTENT,versions=window.DE_A1_HARD_VERSIONS;
+  const turn=(speaker,gender,text)=>({speaker,gender,text});
+  const recording=(block,turns)=>{block.turns=turns;block.text=turns.map(t=>t.speaker+': '+t.text).join('\n');};
+  const ask=(q,text,answers,options,extra={})=>{q.q=text;q.answers=answers;q.options=options;for(const key of ['format'])delete q[key];Object.assign(q,extra);};
+  const changes={
+    1:data=>{data.listening[0].questions.splice(3,1);},
+    2:data=>{ask(data.listening[0].questions[2],'À la fin, quelle information faut-il répéter ?',['den Vornamen','Vorname','Vornamen'],['den Vornamen','den Familiennamen','die Telefonnummer']);},
+    3:data=>{
+      const [dialogue,message]=data.listening;
+      recording(dialogue,[turn('A','female','Guten Tag! Wie heißen Sie?'),turn('B','male','Ich heiße Paul Weber.'),turn('A','female','Wo wohnen Sie?'),turn('B','male','In Berlin. Meine Postleitzahl ist 10115.'),turn('A','female','Wie ist Ihre Telefonnummer?'),turn('B','male','030 21 34 56.')]);
+      dialogue.questions=[...dialogue.questions.slice(1,3),{q:'Dans quelle ville habite l’homme ?',answers:['Berlin','in Berlin'],objective:'listening',options:['Berlin','Bonn','Bremen']}];
+      recording(message,[turn('A','female','Hallo, hier ist Lea. Ich bin einundzwanzig Jahre alt und wohne in Bonn. Meine Telefonnummer ist 0228 45 67 89.')]);
+      message.questions.splice(1,1,{q:'Dans quelle ville habite Lea ?',answers:['Bonn','in Bonn'],objective:'listening',options:['Bonn','Berlin','Bremen']});
+    },
+    5:data=>{ask(data.listening[0].questions[2],'Comment s’appelle le frère ?',['Paul'],['Paul','Thomas','Tobias']);},
+    6:data=>{ask(data.listening[0].questions[0],'Que commande le client pour lui ?',['eine Suppe','Suppe'],['eine Suppe','einen Salat','ein Wasser']);},
+    8:data=>{
+      const dialogue=data.listening[0];
+      recording(dialogue,[turn('A','female','Guten Tag! Ich suche eine Wohnung.'),turn('B','male','Wir haben eine Wohnung mit zwei Zimmern.'),turn('A','female','Hat sie einen Balkon?'),turn('B','male','Ja. Die Miete ist sechshundert Euro.'),turn('A','female','Kann ich die Wohnung am Montag sehen?'),turn('B','male','Am Montag geht es nicht. Am Dienstag um zehn Uhr?'),turn('A','female','Ja, gern. Vielen Dank!')]);
+      dialogue.questions.splice(3,1);
+    },
+    12:data=>{ask(data.listening[1].questions[2],'À quelle heure se retrouve-t-on dimanche ?',['15:00','15.00','15 Uhr'],['15:00','13:00','16:00'],{format:'time'});},
+    15:data=>{ask(data.listening[1].questions[2],'Que propose Marc d’apporter ?',['einen Salat und Wasser','Salat und Wasser'],['einen Salat und Wasser','einen Kuchen und Wasser','nur einen Salat']);},
+    18:data=>{
+      ask(data.listening[0].questions[1],'Qu’écrit-on après avoir coché la réponse ?',['eine kurze Nachricht','Nachricht'],['eine kurze Nachricht','einen langen Text','die Aufgabe']);
+      ask(data.listening[1].questions[2],'Que faut-il faire à la fin ?',['den Text prüfen','prüfen'],['den Text prüfen','die Fragen lesen','den Dialog hören']);
+    },
+    19:data=>{
+      const message=data.listening[1];
+      recording(message,[turn('A','female','Hallo Nora! Mein Hals tut weh. Tee habe ich zu Hause. Ich gehe heute zur Apotheke und kaufe Tabletten. Einen Arzt brauche ich im Moment nicht. Kannst du mich um vier Uhr an der Apotheke treffen?')]);
+      ask(message.questions[2],'Que la personne va-t-elle acheter à la pharmacie ?',['Tabletten','die Tabletten'],['Tabletten','Tee','Wasser']);
+    },
+    20:data=>{data.listening[0].questions[0].q='Quel temps fait-il aujourd’hui ?';},
+    24:data=>{
+      const dialogue=data.listening[0];
+      recording(dialogue,[turn('A','female','Guten Tag! Wie heißen Sie?'),turn('B','male','Ich heiße Paul Weber. Ich komme aus Kanada und wohne in Bonn. Wann ist unser Treffen?'),turn('A','female','Am Samstag um achtzehn Uhr.'),turn('B','male','Am Samstag kann ich erst um neunzehn Uhr.'),turn('A','female','Gut, dann treffen wir uns um neunzehn Uhr vor dem Bahnhof.')]);
+      dialogue.questions.splice(1,1);
+    }
+  };
+  for(const [id,change] of Object.entries(changes)){
+    const data=content[id];
+    (versions[data.version]||={})[id]=JSON.parse(JSON.stringify(data));
+    const before=data.listening.reduce((n,block)=>n+block.questions.length,0);
+    change(data);
+    data.taskCount-=before-data.listening.reduce((n,block)=>n+block.questions.length,0);
+    data.compatibleVersions=[data.version];data.version=5;
+  }
+})();

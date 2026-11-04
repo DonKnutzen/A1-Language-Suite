@@ -50,11 +50,11 @@ Mein Name ___ Claire Martin.|ist|heißt|bin|Mon nom est Claire Martin.|Avec Mein
 Paul ___ Englisch und Deutsch.|spricht|sprecht|sprechst|Paul parle anglais et allemand.|Sprechen change e en i avec du et er/sie : spricht. Sprecht va avec ihr ; sprechst n’existe pas.
 >Wie ___ du?|heißt|heißst|heiße|Comment t’appelles-tu ?|Le radical finit en ß : avec du, on ajoute seulement -t. Heiße va avec ich.
 @P
-?Dans quel mot entends-tu « aï » ?|heißen|Sie|sieben||ei se prononce « aï ». Dans Sie et sieben, ie est un i long.
+!Quelle écriture donne le son « aï » dans « h_ßen » ?|ei|ie|ai||Le son « aï » s’écrit ei : heißen. ie se prononce comme un i long (Sie, sieben) ; ai n’est pas l’orthographe de ce mot.
 #2 study-2-0
 @R
 !Comment se nomme la lettre ß ?|Eszett|Umlaut|Bindestrich||ß se nomme Eszett. Umlaut désigne les points sur ä, ö, ü, Bindestrich le trait d’union.
-=Mon prénom est Lena.|Mein Vorname ist Lena.|Mein Familienname ist Lena.|Mein Name ist Lena Vorname.||Vorname = prénom. Familienname désigne le nom de famille, et la dernière phrase mélange les deux mots.
+=Mon prénom est Lena.|Mein Vorname ist Lena.|Mein Familienname ist Lena.|Meine Vorname ist Lena.||Vorname = prénom ; der Vorname est masculin : mein Vorname. Familienname désigne le nom de famille.
 >?Un nom s’écrit Schröder. Comment préciser le ö ?|mit Umlaut|ohne Umlaut|mit Eszett||ö porte un Umlaut : on dit mit Umlaut. Ohne Umlaut dirait le contraire, et Eszett désigne ß.
 @H0
 Anna schreibt ___ mit Doppel-n.|man|Mann|mein|Anna s’écrit avec deux n.|Man signifie on. Mann veut dire homme, et mein est un possessif.
@@ -293,7 +293,7 @@ Anna ___ die Zeitung.|liest|lest|lesen|Anna lit le journal.|Avec er/sie, e devie
 Ich bringe mein Buch ___.|mit|zu|an|J’apporte mon livre.|mitbringen se sépare : mit à la fin.
 >=Peux-tu apporter un stylo ?|Kannst du einen Stift mitbringen?|Kannst du einen Stift bringen mit?|Kannst du mitbringen einen Stift?||Après können, mitbringen reste entier à la fin.
 @P
-?Quel mot contient eu, prononcé « oï » ?|Deutsch|Datum|Dank||Deutsch : eu se prononce « oï », puis tsch.
+?Quel mot se prononce avec « oï » ?|heute|Haus|heiß||eu se prononce « oï » (heute). au se prononce « ao » (Haus), ei « aï » (heiß).
 #12 study-12-0
 @R
 =Je n’aime pas nager.|Ich schwimme nicht gern.|Ich nicht gern schwimme.|Ich schwimme gern nicht.||nicht gern se place après le verbe, dans cet ordre.
@@ -406,7 +406,7 @@ Können Sie mir bitte ___ Schlüssel geben?|den|der|dem|Pouvez-vous me donner la
 >!« Einen Moment, bitte » signifie :|un instant, s’il vous plaît|encore une fois, s’il vous plaît|oui, bien sûr||Moment = instant.
 @P
 !Dans « Können Sie mir bitte helfen? », quel mot accentuer ?|helfen|bitte|Sie||Accentue l’action demandée, helfen ; bitte reste léger.
->?Tu n’as pas compris. Que dis-tu ?|Noch einmal, bitte.|Ja, natürlich.|Gern, hier bitte.||Noch einmal, bitte demande de répéter. Les autres réponses acceptent une demande.
+>?Tu n’as pas compris. Que dis-tu ?|Noch einmal, bitte.|Einen Moment, bitte.|Tut mir leid, das geht nicht.||Noch einmal, bitte demande de répéter. Einen Moment, bitte demande d’attendre ; Tut mir leid, das geht nicht refuse une demande.
 #18 study-18-0
 @R
 =Écoutez le dialogue.|Hören Sie den Dialog.|Sie hören den Dialog.|Hört Sie den Dialog.||Une consigne commence par le verbe : Hören Sie.
@@ -419,7 +419,7 @@ Schreiben Sie bitte Ihren ___.|Vornamen|Vorname|Vornamens|Écrivez votre prénom
 @R
 Zuerst ___ ich den Text.|lese|lesen|liest|D’abord, je lis le texte.|Après Zuerst, le verbe vient avant ich.
 =Ensuite, je note les mots.|Dann schreibe ich die Wörter.|Dann ich schreibe die Wörter.|Dann schreibe die Wörter ich.||Après Dann, le verbe vient en deuxième position, puis ich.
->!Un message court contient environ :|trente mots|trois mots|trois cents mots||Le format demande environ trente mots.
+>!Que faut-il ajouter aux trois points du message ?|une salutation et une formule de fin|un titre et une date|ton adresse complète||Le message A1 commence par une salutation (Liebe Anna,) et finit par une formule (Viele Grüße). Un titre ou une adresse ne sont pas demandés.
 @P
 !Dans « Lesen Sie die Aufgabe », quel mot donne l’action ?|Lesen|Sie|die||Repère d’abord l’action : lesen.
 >Zum Schluss ___ ich die Antworten.|prüfe|prüfen|prüft|Pour finir, je vérifie les réponses.|Après Zum Schluss, le verbe vient avant ich : prüfe.
@@ -535,7 +535,7 @@ Ich lerne Deutsch, ___ ich spreche noch nicht gut.|aber|und|oder|J’apprends l�
 @R
 =Demain, je travaille.|Morgen arbeite ich.|Morgen ich arbeite.|Arbeite morgen ich.||Après Morgen, le verbe vient en deuxième position.
 =Quand le film commence-t-il ?|Wann beginnt der Film?|Wann der Film beginnt?|Beginnt wann der Film?||Question W : mot interrogatif, verbe, sujet.
->=Habites-tu à Berlin ?|Wohnst du in Berlin?|In Berlin du wohnst?|Wohnst in Berlin du?||Question oui/non : le verbe en premier.
+>=Habites-tu à Berlin ?|Wohnst du in Berlin?|Wohnt du in Berlin?|Wo wohnst du in Berlin?||Question oui/non : le verbe en premier, puis du ; avec du, le verbe prend -st. Wo pose une autre question (où exactement).
 @P
 !Où faire une courte pause dans « Ich heiße Claire und komme aus Lyon » ?|avant und|après Ich|entre komme et aus||Une pause sépare deux informations, ici avant und.
 `;
@@ -567,7 +567,8 @@ Ich lerne Deutsch, ___ ich spreche noch nicht gut.|aber|und|oder|J’apprends l�
   }
   const inline=(lessonId,key)=>pages[lessonId+':'+key]?.inline||null;
   function closing(lessonId,key,tasks){
-    return [...varied(tasks.filter(q=>q.type!=='gap')),...(pages[lessonId+':'+key]?.closing||[])];
+    // Lesson 1 has six topic pages: a shorter selection keeps the first lesson within one session.
+    return [...varied(tasks.filter(q=>q.type!=='gap'),Number(lessonId)===1?5:8),...(pages[lessonId+':'+key]?.closing||[])];
   }
   window.DE_A1_PAGE_CHECKS={pages,inline,closing,varied};
 })();

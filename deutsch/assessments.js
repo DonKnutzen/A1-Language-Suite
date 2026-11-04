@@ -86,9 +86,9 @@
     return changed;
   }
   function introHtml(lesson,state){return `<div class="lesson-mastery-intro compact"><div class="between"><div><div class="eyebrow">BILAN DE LA LEÇON</div><strong>Pour finir : tout revoir ensemble</strong></div><span class="pill ${attempted(state,lesson.id)?'green':'gray'}">${attempted(state,lesson.id)?best(state,lesson.id)+' %':'À faire'}</span></div><p class="muted">${testCount(lesson.id)} nouvelles questions : situations, structures et réponses à saisir.</p></div>`;}
-  function result({view,score,total,onAgain,onBack}){
+  function result({view,score,total,onAgain,onBack,label='BILAN',retry='ce bilan'}){
     const pct=total?Math.round(score/total*100):0;
-    view.innerHTML=`<section class="card center"><span class="pill">BILAN</span><div class="score">${pct}%</div><h2>${score} / ${total} réponses correctes</h2><p class="muted">Tu peux revenir aux explications avant de refaire ce bilan.</p><div class="button-row"><button class="secondary-btn" id="checkAgain">Réessayer</button><button class="primary-btn" id="checkReturn">Retour</button></div></section>`;
+    view.innerHTML=`<section class="card center"><span class="pill">${esc(label)}</span><div class="score">${pct}%</div><h2>${score} / ${total} réponses correctes</h2><p class="muted">Tu peux revenir aux explications avant de refaire ${esc(retry)}.</p><div class="button-row"><button class="secondary-btn" id="checkAgain">Réessayer</button><button class="primary-btn" id="checkReturn">Retour</button></div></section>`;
     view.querySelector('#checkAgain').onclick=onAgain;view.querySelector('#checkReturn').onclick=onBack;
   }
   function renderLessonTest({lesson,view,state,save,onBack,speak,onResult}){
@@ -100,7 +100,7 @@
       view.querySelector('#masteryStart').onclick=()=>runTasks({state,tasks:makeLessonTest(lesson),view,title:lesson.title,onBack:intro,speak,session,save,lessonId:lesson.id,onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonMasteryLast||={};state.lessonMasteryBest||={};state.lessonMasteryLast[lesson.id]=pct;state.lessonMasteryBest[lesson.id]=Math.max(best(state,lesson.id),pct);save(true);
-        result({view,score,total,onAgain:intro,onBack});onResult?.();
+        result({view,score,total,onAgain:intro,onBack,label:'BILAN DE LA LEÇON'});onResult?.();
       }});
     }
     intro();
@@ -112,7 +112,7 @@
     state.grammarCheckProgress||={};const session=state.grammarCheckProgress[1]||={};
     function start(){runTasks({state,tasks:grammarCheckTasks(),view,title:'Test final',onBack,speak,session,save,lessonId:1,step:'grammar-check',onFinish:(score,total)=>{
       const pct=total?Math.round(score/total*100):0;state.lessonGrammarCheckLast||={};state.lessonGrammarCheckBest||={};state.lessonGrammarCheckLast[1]=pct;state.lessonGrammarCheckBest[1]=Math.max(grammarCheckBest(state),pct);save(true);
-      result({view,score,total,onAgain:start,onBack});
+      result({view,score,total,onAgain:start,onBack,label:'TEST FINAL',retry:'ce test'});
     }});}
     start();
   }

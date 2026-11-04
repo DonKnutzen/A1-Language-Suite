@@ -35,7 +35,7 @@ window.DE_A1_APPLICATIONS = {
       "type": "choice"
     },
     "review": {
-      "text": "Guten Tag! Wie heißen Sie? / Ich heiße Léa. Ich komme aus Frankreich und wohne in Bonn.",
+      "text": "Guten Tag! Wie heißen Sie? / Ich heiße Léa. Ich komme aus Frankreich und wohne in Bonn. Meine Freundin Lena kommt aus Kanada und wohnt in Berlin.",
       "fields": [
         {
           "q": "Wie heißt die Person?",
@@ -47,7 +47,7 @@ window.DE_A1_APPLICATIONS = {
           "answer": "Léa"
         },
         {
-          "q": "Wo wohnt sie?",
+          "q": "Wo wohnt Léa?",
           "o": [
             "Bonn",
             "Berlin",
@@ -56,7 +56,7 @@ window.DE_A1_APPLICATIONS = {
           "answer": "Bonn"
         },
         {
-          "q": "Woher kommt sie?",
+          "q": "Woher kommt Léa?",
           "o": [
             "Frankreich",
             "Kanada",
@@ -172,7 +172,7 @@ window.DE_A1_APPLICATIONS = {
       "type": "choice"
     },
     "review": {
-      "text": "Wie alt sind Sie? / Ich bin dreiundzwanzig. Meine Hausnummer ist zweiunddreißig, meine Postleitzahl ist 10405.",
+      "text": "Wie alt sind Sie? / Ich bin dreiundzwanzig. Meine Hausnummer ist zweiunddreißig, meine Postleitzahl ist eins, null, vier, null, fünf.",
       "fields": [
         {
           "q": "Wie alt ist die Person?",

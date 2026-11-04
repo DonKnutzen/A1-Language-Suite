@@ -77,7 +77,8 @@ test('Every German A1 grammar drill receives at least one meaningful rule card',
     assert(body.trim(),'No explanation for '+q.q);
     total++;
   }
-  assert(total>=270);
+  // 264 since lesson 5 no longer drills unser, euer and ihr = leur (deutsch/PRUEFBERICHT-A1.md 3.4).
+  assert(total>=260);
 });
 test('German check has authored reasoning for flagged comprehension items',()=>{
   const window={};

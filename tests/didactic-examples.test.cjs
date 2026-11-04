@@ -31,10 +31,10 @@ test('beginner German grammar has meaningful instructions, close sein contrasts 
  assert(w.DE_A1_GRAMMAR_DRILLS.topics['Pronoms personnels'].tasks.every(q=>!q.q.includes('correspond à Vous')));
  f.render(f.lessons[0]);f.view.querySelector('[data-lesson-step="grammar"]').click();assert(!f.view.querySelector('#lessonGrammarPage').textContent.includes('radical arbeit-'));f.view.querySelector('[data-grammar-progress="4"]').click();assert(f.view.querySelector('#lessonGrammarPage').textContent.includes('radical arbeit-'));f.dom.window.close();
 });
-test('German possessives cover plural possessions and distinguish plural owners using meaningful contexts',()=>{
+test('German possessives cover plural possessions and distinguish his and her using meaningful contexts',()=>{
  const f=fixture('deutsch'),tasks=f.w.DE_A1_GRAMMAR_DRILLS.topics['Possessifs utiles'].tasks;
- for(const word of ['meine','deine','seine','ihre','unsere','eure','Ihre'])assert(tasks.some(q=>q.audio==='Das sind '+word+' Bücher.'));
- assert(tasks.some(q=>q.q.includes('Ce sont leurs livres')&&q.o[q.a]==='ihre'));assert(tasks.some(q=>q.q.includes('C’est leur père')&&q.o[q.a]==='ihr'));assert(tasks.some(q=>q.q.includes('C’est son père (à elle)')&&q.o[q.a]==='ihr'));f.dom.window.close();
+ for(const word of ['meine','deine','seine','ihre','Ihre'])assert(tasks.some(q=>q.audio==='Das sind '+word+' Bücher.'));
+ assert(tasks.some(q=>q.q.includes('C’est son père (à lui)')&&q.o[q.a]==='sein'));assert(tasks.some(q=>q.q.includes('C’est son père (à elle)')&&q.o[q.a]==='ihr'));f.dom.window.close();
 });
 test('German dialogues place clarification before the answer and specify a working callback location',()=>{
  const f=fixture('deutsch'),d=f.w.A1_COMPREHENSION_CONTENT;const t=d[2].turns.map(t=>t.text);assert(t.indexOf('Können Sie bitte langsamer sprechen?')<t.indexOf('Weber. W, E, B, E, R.'));assert.equal(d[2].fields.find(f=>f.label==='Demande').answer,'langsamer sprechen');assert(d[22].turns[2].text.includes('im Büro'));assert(d[22].turns[2].text.includes('030 555 1840'));f.dom.window.close();

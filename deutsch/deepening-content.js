@@ -4800,3 +4800,21 @@ window.DE_A1_STUDY_CONTENT = {
     }
   ]
 };
+
+// Prüfbericht A1 (5.3): meaning questions whose wrong options only swapped a French look-alike
+// (Kanada/Canada, Basketball, Fotografieren …) now contrast what the lesson teaches.
+(() => {
+  const content=window.DE_A1_STUDY_CONTENT,plain=s=>String(s).replace(/\|/g,'');
+  const contrasts={
+    1:{'Ich komme aus Kanada.':[['Ich wohne in Kanada.','J’habite au Canada.'],['Ich fahre nach Kanada.','Je vais au Canada.']]},
+    9:{'Nehmen Sie die Linie drei.':[['Nehmen Sie die Linie dreizehn.','Prenez la ligne treize.'],['Der Zug fährt von Gleis drei ab.','Le train part de la voie trois.']]},
+    12:{'Ich spiele gern Basketball.':[['Ich spiele nicht gern Basketball.','Je n’aime pas jouer au basketball.'],['Ich spiele lieber Basketball.','Je préfère jouer au basketball.']]},
+    13:{'Der Zug fährt um elf Uhr ab.':[['Der Zug kommt um elf Uhr an.','Le train arrive à onze heures.'],['Der Zug fährt in elf Minuten ab.','Le train part dans onze minutes.']]},
+    16:{'Fotografieren ist verboten.':[['Fotografieren ist erlaubt.','Il est permis de photographier.'],['Bitte fotografieren Sie hier.','Photographiez ici, s’il vous plaît.']]},
+    20:{'Heute ist es warm.':[['Morgen ist es warm.','Demain, il fera chaud.'],['Heute ist es kalt.','Aujourd’hui, il fait froid.']]}
+  };
+  for(const [id,rows] of Object.entries(contrasts))for(const [de,pairs] of Object.entries(rows)){
+    const unit=content[id].find(u=>[...u.rows,...(u.extra||[])].some(p=>plain(p[0])===de));
+    if(unit)(unit.contrasts||={})[de]=pairs;
+  }
+})();

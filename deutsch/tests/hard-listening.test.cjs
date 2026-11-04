@@ -13,10 +13,12 @@ function environment(id=1,saved){
   return {dom,w,state,view,render,click,data:w.DE_A1_HARD_CONTENT[id]};
 }
 
-test('all 148 German hard listening questions have three unique options and exactly one accepted answer',()=>{
+// Lessons revised after the A1 review (deutsch/PRUEFBERICHT-A1.md 7.2/7.3) are version 5; version 4 still counts as passed.
+const REVISED=[1,2,3,5,6,8,12,15,18,19,20,24];
+test('all 144 German hard listening questions have three unique options and exactly one accepted answer',()=>{
   const e=environment();let count=0;
   for(const [id,data]of Object.entries(e.w.DE_A1_HARD_CONTENT)){
-    assert.equal(data.version,4);
+    assert.equal(data.version,REVISED.includes(+id)?5:4);if(REVISED.includes(+id))assert.deepEqual([...data.compatibleVersions],[4]);
     for(const block of data.listening)for(const q of block.questions){
       const label=`L${id}: ${q.q}`;
       assert.equal(q.options.length,3,label);assert.equal(new Set(q.options).size,3,label);
@@ -25,7 +27,7 @@ test('all 148 German hard listening questions have three unique options and exac
       count++;
     }
   }
-  assert.equal(count,148);e.dom.window.close();
+  assert.equal(count,144);e.dom.window.close();
 });
 
 test('new option vocabulary has French meanings before Hard Mode, and offline assets match the page',()=>{
@@ -73,7 +75,7 @@ test('old running v2/v3 drafts migrate once to choices and retain cloze, writing
     const attempt={version:previous.version,phase:'running',page:1,gaps:previous.gaps.map(q=>q.answers[0]),listening:previous.listening.flatMap(b=>b.questions).map(q=>q.answers[0]),plays:[1,2],text:previous.writing.model,ratings:[null,null,null,null],startedAt:1};
     const original=JSON.stringify(attempt),state={lessonMasteryBest:{[id]:80},lessonWork:{[id]:{hardMode:{attempt,bestObjective:97,passedAt:2,passedVersion:previous.version}}}};
     const r=environment(+id,state);r.render();const p=state.lessonWork[id].hardMode;
-    assert.equal(p.attempt.version,4);assert.equal(JSON.stringify(p.history[0]),original);
+    assert.equal(p.attempt.version,data.version);assert.equal(JSON.stringify(p.history[0]),original);
     assert.equal(p.attempt.text,previous.writing.model);assert.deepEqual([...p.attempt.gaps],[...attempt.gaps]);
     assert.equal(p.contentVersions[previous.version].version,previous.version);assert.equal(p.bestObjective,97);
     assert(!r.view.querySelector('input[type="text"],textarea'));assert.equal(r.view.querySelectorAll('input[type="radio"]').length,data.listening.flatMap(b=>b.questions).length*3);

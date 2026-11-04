@@ -10,9 +10,9 @@ Chaque leçon suit le même parcours que Français A1 :
 2. **Approfondir** : plusieurs préparations propres à la situation, les tableaux existants, les explications en français, des exemples allemands avec audio et dix exercices par thème d’entraînement.
 3. **Oral** : consigne précise, enregistrement facultatif, aide repliée avec audio et comparaison avec un modèle adapté.
 4. **Écriture** : aide repliée, brouillon conservé et comparaison. Les tâches de formulaire disposent de vrais champs et de données fictives dans un texte allemand.
-5. **Bilan de la leçon** : douze questions sur les éléments déjà expliqués et exercés. Une réussite à partir de 80 % termine aussi la leçon et actualise le cours.
+5. **Bilan de la leçon** : douze à seize questions sur les éléments déjà expliqués et exercés. Une réussite à partir de 80 % termine aussi la leçon et actualise le cours.
 
-La première leçon conserve son test final sur les formes du présent. Les tests, mini-tests et exercices de leçon enregistrent la question, le brouillon et le résultat courant. Les progrès et leçons déjà terminées sont conservés.
+La première leçon n’a plus de test final séparé : il reprenait mot pour mot les exercices de conjugaison des pages d’approfondissement. Les tests, mini-tests et exercices de leçon enregistrent la question, le brouillon et le résultat courant. Les progrès et leçons déjà terminées sont conservés.
 
 ## Préparation des compétences du PDF
 

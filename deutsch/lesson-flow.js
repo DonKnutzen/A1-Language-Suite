@@ -37,7 +37,8 @@
   }
   function render(opts){
     const {lesson:l,content:c,view,state}=opts,L=UI.fr;
-    const hasGrammarCheck=Number(l.id)===1;
+    // Lesson 1 no longer adds its own final test: it repeated the conjugation drills of the topic pages word for word.
+    const hasGrammarCheck=false;
     if(!state.lessonWork||typeof state.lessonWork!=='object'||Array.isArray(state.lessonWork))state.lessonWork={};
     const valid=state.lessonWork[l.id];
     const p=state.lessonWork[l.id]=valid&&typeof valid==='object'&&!Array.isArray(valid)?valid:{};
@@ -195,6 +196,9 @@
       if(!hasMastery)return;
       activeStep='check';window.A1Voice?.cancel();remember('exercise');
       opts.renderMastery({onBack:()=>goStep('check'),onResult:()=>{renderExtras();wireStepNav();}});
+      // "Commencer le bilan" was already the decision: skip the second start screen, unless it offers
+      // the choice between an older unfinished check and the new one.
+      if(!view.querySelector('#masteryRestart'))view.querySelector('#masteryStart')?.click();
     }
     function refresh(){
       document.getElementById('lessonPartStatus').innerHTML=statuses();
@@ -350,7 +354,7 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     const position=opts.resume?resumePosition(l,state):{step:'listen'};
-    activeStep=steps.some(([id])=>id===position.step)||['speak','write'].includes(position.step)?position.step:'listen';
+    activeStep=steps.some(([id])=>id===position.step)||['speak','write'].includes(position.step)?position.step:position.step==='grammar-check'?'comprehension':'listen';
     grammarIndex=Number.isInteger(position.grammarIndex)?Math.max(0,Math.min(grammarPages.length-1,position.grammarIndex)):0;
     audioPage=Number.isInteger(position.audioPage)?Math.max(0,Math.min(audioPageCount-1,position.audioPage)):0;
     if(position.nextIncomplete&&activeStep==='grammar'){

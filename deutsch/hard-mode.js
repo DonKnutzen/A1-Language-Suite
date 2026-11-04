@@ -8,7 +8,8 @@
   const words=text=>(String(text).match(/[\p{L}\p{N}]+(?:[’'’-][\p{L}\p{N}]+)*/gu)||[]).length;
   function normalize(value,strictAccents=true){
     let text=String(value??'').normalize('NFC').trim().toLocaleLowerCase('de').replace(/[’‘]/g,"'").replace(/\s+([.,;:!?])/g,'$1').replace(/[.,;!?]+$/g,'').replace(/\s+/g,' ').trim().replace(/\s*'\s*/g,"'").replace(/[‐‑–]/g,'-');
-    return strictAccents?text:text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss');
+    // Umlauts stay strict (schon/schön); ß and ss count as the same spelling on any keyboard.
+    return strictAccents?text.replace(/ß/g,'ss'):text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss');
   }
   // Preserve the original scoring of saved v1 attempts, including its formatting rules.
   function legacyMatches(value,answers){

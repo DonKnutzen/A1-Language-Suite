@@ -156,13 +156,16 @@
   // Retain the accusative applications; do not replace one owner with another randomly.
   const owners=[['mein','meine','mon','ma'],['dein','deine','ton','ta'],['sein','seine','son (à lui)','sa (à lui)'],['ihr','ihre','son (à elle)','sa (à elle)'],['unser','unsere','notre','notre'],['euer','eure','votre (plusieurs proches)','votre (plusieurs proches)'],['Ihr','Ihre','votre (politesse)','votre (politesse)'],['ihr','ihre','leur','leur']];
   const meaning=(owner,noun)=>{const hint=owner.match(/ \(.*\)$/)?.[0]||'';return 'C’est '+owner.replace(/ \(.*\)$/,'')+' '+noun+hint+'.';};
-  const possessives=owners.flatMap(([stem,feminine,mascFr,femFr])=>[
+  // Lesson 5 practises the possessives learners need first (mein, dein, Ihr, sein, ihr); unser, euer and
+  // ihr = leur stay in the table as reference (Prüfbericht A1, 3.4).
+  const practised=owners.filter(([stem,,mascFr])=>!['unser','euer'].includes(stem)&&mascFr!=='leur');
+  const possessives=practised.flatMap(([stem,feminine,mascFr,femFr])=>[
     gap('Das ist ___ Vater.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'père')),
     gap('Das ist ___ Mutter.',feminine,[stem,stem==='euer'?'euren':stem+'en'],meaning(femFr,'mère')),
     gap('Das ist ___ Kind.',stem,[feminine,stem==='euer'?'euren':stem+'en'],meaning(mascFr,'enfant')),
     gap('Das sind ___ Bücher.',feminine,[stem,stem==='euer'?'euren':stem+'en'],`Ce sont ${{mein:'mes',dein:'tes',sein:'ses',ihr:mascFr==='leur'?'leurs':'ses',unser:'nos',euer:'vos',Ihr:'vos'}[stem]} livres${mascFr.includes('(')?' '+mascFr.match(/\(.*\)/)[0]:stem==='sein'?' (à lui)':stem==='ihr'&&mascFr!=='leur'?' (à elle)':''}.`)
   ]);
-  const accusative=topics['Possessifs utiles'].tasks.slice(6);
+  const accusative=topics['Possessifs utiles'].tasks.slice(6).filter(q=>!['unseren','eure'].includes(q.answer??q.o?.[q.a]));
   add('Possessifs utiles','g7',[...possessives,...accusative]);
   const plural=topics['Possessif au pluriel'].tasks;
   add('Possessif au pluriel','g2',[...plural,

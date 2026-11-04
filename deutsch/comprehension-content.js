@@ -932,11 +932,11 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "label": "Depuis quand",
         "options": [
-          "gestern",
-          "heute",
-          "drei Tagen"
+          "seit gestern",
+          "seit heute",
+          "seit drei Tagen"
         ],
-        "answer": "gestern"
+        "answer": "seit gestern"
       }
     ]
   },
@@ -1148,7 +1148,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "A",
-        "text": "Ja, gern. Feiern wir bei dir?"
+        "text": "Ja, gern. Feiern wir bei dir, Paul?"
       },
       {
         "speaker": "B",
@@ -1175,13 +1175,13 @@ window.A1_COMPREHENSION_CONTENT = {
         "answer": "einen Salat"
       },
       {
-        "label": "Lieu",
+        "label": "Lieu de la fête",
         "options": [
-          "bei Person A",
+          "bei Paul zu Hause",
           "im Restaurant",
-          "bei Person B"
+          "im Park"
         ],
-        "answer": "bei Person B"
+        "answer": "bei Paul zu Hause"
       }
     ]
   }

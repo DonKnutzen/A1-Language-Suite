@@ -13,6 +13,24 @@ Noten 1–5 wie Schulnoten (1 = sehr gut, 5 = mangelhaft).
 - **Meldeknopf**: ist bei ≤ 400 px ein 36-px-Icon in der Kopfzeile, in allen Kursen (`shared/bug-reports.js`).
 - **Versionen und Tests**: Die Versionen der geänderten Dateien und die Offline-Caches aller betroffenen Kurse sind angehoben (DE-Cache v239, `bug-reports.js?v=reports-239`). Die Testsuite hat dieselben 22 Fehler wie vor der Änderung.
 
+**Umsetzungsstand (2026-11-04):** Maßnahmen 7–10 sind umgesetzt, noch nicht committet.
+- **7 Hörfragen**:
+  - Die Hörfragen H1–H9 sind ersetzt (`deutsch/hard-mode-content.js`, letzter Abschnitt).
+  - Gekürzt sind L3 (beide Texte), L8 T1 und L24 T1; L1 T1 hat eine Frage weniger.
+  - Geänderte Lektionen haben Hard-Mode-Version 5. Version 4 bleibt archiviert und zählt weiter als bestanden.
+  - L3 behält 3 Fragen pro Text, weil der Kurs mindestens 3 vorsieht. Die dritte fragt nach dem Wohnort, der im Text steht.
+  - H10 und #28 betreffen die Compréhension (`deutsch/comprehension-content.js`).
+- **8 Aufgaben**: 28 der 30 Ersatzvorschläge sind übernommen, verteilt auf `question-content.js` (inkl. Begründungen und `accept:['besichtigen']`), `page-checks.js`, Quiz-Kontraste am Ende von `deepening-content.js` und `applications.js`. Außerdem werden ß und ss im Hard Mode gleich gewertet, Umlaute bleiben streng (`deutsch/hard-mode.js`).
+  - Nicht übernommen ist #16 „Oktober“: Im Format „Que signifie …“ ist jeder Monat ein Kognat.
+  - #24 ist durch Maßnahme 9 erledigt.
+- **9 Entlastung**:
+  - L1 hat keinen Test final mehr. Die L1-Themenübungen haben je 3 Drill-Aufgaben weniger. Zusammen sind das 87 statt 108 Aufgaben.
+  - Der Satz „Heißen est un verbe fort“ ist gestrichen.
+  - L5 übt nur noch mein/dein/sein/ihr/Ihr; der Pool hat 24 statt 38 Aufgaben, die Tabelle bleibt vollständig.
+  - Abweichung vom Vorschlag 3.4: Die Konjugationsseiten bleiben in L1. Der L1-Bilan, der L1-Hard-Mode und L2–L4 setzen die du/wir/ihr-Formen voraus; ein Verschieben hätte neue Progressionsbrüche erzeugt.
+- **10 Bilan**: „Commencer le bilan“ startet die Fragen direkt; nur ein alter, unfertiger Bilan zeigt noch die Auswahl. Die Ergebnisse heißen jetzt „BILAN DE LA LEÇON“ bzw. „TEST FINAL“.
+- **Tests**: Sechs Tests, die die alten Entscheidungen festschrieben, sind angepasst: Hard-Mode-Version 4, 148 Hörfragen, volles Possessiv-Paradigma, mindestens 270 Drills. Die Suite hat dieselben 22 Fehler wie vorher. Die Versionen sind auf `pruefung-240` angehoben, der DE-Cache auf v240.
+
 ---
 
 ## 1. Kurzfazit
