@@ -5,6 +5,7 @@ const root=path.join(__dirname,'..'),dir=path.join(root,'francais-a2'),src=path.
 const plan=require(path.join(src,'plan.cjs'));
 const sources=fs.readdirSync(src).filter(f=>/^lessons-.*\.cjs$/.test(f)).sort().flatMap(f=>require(path.join(src,f)));
 const exam=fs.existsSync(path.join(src,'exam.cjs'))?require(path.join(src,'exam.cjs')):{};
+const sentences=require(path.join(src,'sentences.cjs'));
 const byId=new Map(sources.map(l=>[l.id,l]));
 // Deterministic shuffle so the right option is not always first.
 function hash(s){let h=2166136261;for(const c of String(s)){h^=c.codePointAt(0);h=Math.imul(h,16777619);}return h>>>0;}
@@ -60,6 +61,8 @@ write('deepening-content.js','/* Français A2 lesson-specific deepening (generat
 write('comprehension-content.js','/* Français A2 listening comprehension per lesson (generated). */','A1_COMPREHENSION_CONTENT',out.comprehension);
 write('intro-listening.js','/* Français A2 audio recognition per lesson (generated). */','FR_A1_INTRO_LISTENING',out.intro);
 write('foundations.js','/* Français A2 lesson word lists (generated). course-scope.js installs them for the shared lesson UI. */','FR_A2_FOUNDATIONS',out.foundations);
+const sentenceContent=Object.fromEntries(Object.entries(sentences).map(([id,tasks])=>[id,tasks.map((t,i)=>({id:`A2L${id}-s${i+1}`,goal:byId.get(Number(id))?.goals?.[t.g]||'',de:t.de,model:t.m,need:t.need,avoid:t.avoid||[],...(t.min?{min:t.min}:{})}))]));
+write('sentence-writing-content.js','/* Français A2 self-written sentences per lesson (generated from src/sentences.cjs). */','FR_A2_SENTENCE_CONTENT',sentenceContent);
 fs.writeFileSync(path.join(dir,'hard-mode-content.js'),`/* Original lesson-specific A2 Hard Mode content (generated from francais-a2/src/). The telc Français A2
    sample informs task types and topics; no official exam items or recordings are reproduced. */
 (() => {

@@ -209,6 +209,7 @@
     function renderExtras(){
       if(view.querySelector('.hard-entry')||!window.FR_A1_HARD_MODE)return;
       FR_A1_HARD_MODE.renderEntry({lesson:l,view,state,onStart:()=>goStep('hard'),onQuiz:()=>{remember('exercise');FR_A1_HARD_MODE.openQuiz({lesson:l,view,state,save,onBack:()=>goStep('check')});}});
+      window.FR_A2_SENTENCES?.renderEntry({lesson:l,view,state,save,onOpen:()=>remember('exercise'),onBack:()=>goStep('check')});
       // Order below the lesson check: Hard Mode, tower, then the back button.
       const footer=view.querySelector(':scope > .lesson-step-footer');if(footer)view.append(footer);
     }

@@ -1,0 +1,45 @@
+/* Selbst schreiben: Extra nach Finale & Arcade. */
+.sw-entry-card{margin:-10px 0 22px;padding:10px;border:1px solid #0f766e38;border-radius:20px;background:#0f766e0a}
+.sw-entry-button{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:14px 17px;border:1px solid #ffffff55;border-radius:13px;background:linear-gradient(115deg,#0f766e,#1d4ed8);color:#fff;font:inherit;text-align:left;cursor:pointer;transition:transform .15s ease}
+.sw-entry-button:not(:disabled):hover{transform:translateY(-2px)}
+.sw-entry-button:focus-visible{outline:3px solid #ffd166;outline-offset:3px}
+.sw-entry-button:disabled{background:#94a3b8;cursor:not-allowed}
+.sw-entry-button strong{display:flex;flex-direction:column;font-size:1.1rem;font-weight:800;letter-spacing:-.015em}
+.sw-entry-button strong small{font-size:.74rem;font-weight:650;opacity:.92}
+.sw-entry-button>span{margin-left:auto;padding:6px 8px;border:1px solid #ffffff40;border-radius:9px;background:#00000026;font-size:.8rem;font-weight:700;line-height:1.35;text-align:right;max-width:15ch}
+.sw-entry-hint{display:block;margin:7px 4px 0;color:var(--muted);font-size:.78rem;text-align:center}
+.sw-page{display:flex;flex-direction:column;gap:14px}
+.sw-page [hidden]{display:none!important}
+.sw-page .lesson-back-link{align-self:flex-start}
+.sw-head{margin:0}
+.sw-head h2{margin:4px 0 8px}
+.sw-head p{margin:0;color:var(--muted)}
+.sw-eyebrow{color:#0f766e;font-size:.76rem;font-weight:800;letter-spacing:.06em}
+.sw-task{margin:0}
+.sw-task.is-right{border-color:var(--success);background:var(--success-soft)}
+.sw-task-head{display:flex;gap:10px;margin-bottom:10px}
+.sw-task-head strong{display:block;line-height:1.35}
+.sw-task-head small{display:block;margin-top:4px;color:var(--muted);line-height:1.3}
+.sw-number{flex:0 0 28px;height:28px;border-radius:50%;background:#0f766e;color:#fff;font-weight:800;line-height:28px;text-align:center}
+.sw-task.is-right .sw-number{background:var(--success)}
+.sw-input{display:block;width:100%;min-height:68px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-size:1rem;line-height:1.4;resize:vertical}
+.sw-input[readonly]{background:transparent;border-color:transparent;padding-left:0;min-height:0}
+.sw-feedback:empty{display:none}
+.sw-feedback{margin-top:9px}
+.sw-good{margin:0;color:var(--success);font-weight:800}
+.sw-issues{margin:0;padding:9px 12px 9px 26px;border-radius:9px;background:var(--danger-soft);color:var(--danger);line-height:1.35}
+.sw-issues li+li{margin-top:4px}
+.sw-model{margin-top:8px}
+.sw-model summary{color:var(--accent-ink);font-weight:700;cursor:pointer}
+.sw-model p{margin:6px 0 0}
+.sw-status{margin:0;color:var(--muted);font-weight:700;text-align:center}
+.sw-check{width:100%}
+.sw-result{margin:0}
+.sw-result h3{margin:0 0 6px}
+.sw-result p{margin:0 0 8px}
+.sw-models{margin:10px 0 14px;padding:10px 12px;border-radius:10px;background:var(--success-soft)}
+.sw-models strong{display:block;margin-bottom:6px}
+.sw-models p{margin:0 0 4px}
+.sw-actions{display:flex;flex-wrap:wrap;gap:10px}
+.sw-actions button{flex:1 1 150px}
+@media(prefers-reduced-motion:reduce){.sw-entry-button{transition:none}}
