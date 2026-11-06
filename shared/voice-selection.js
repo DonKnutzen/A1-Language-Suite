@@ -46,8 +46,36 @@
     const base=norm(lang).split('-')[0];
     return String(text||'').replace(/(?<![\p{L}\-–—])\p{Lu}(?:\s?[-–—]\s?\p{Lu})+(?![\p{L}\-–—])/gu,run=>{const letters=run.replace(/[\s\-–—]/g,'');return (window.A1Pronunciation?.spellParts(letters,base)||[...letters]).join(', ');});
   }
+  // A listed device voice can still fail to synthesize. Retry French once using
+  // the engine's language default, without replaying speech that already started.
+  const useLanguageDefault=new Set();
+  function playUtterance(utterance,lang){
+    const run=token,onEnd=utterance.onend,onError=utterance.onerror;
+    const base=norm(lang).split('-')[0];
+    function attempt(u,retried=false){
+      if(run!==token)return;
+      let started=false,handled=false;current=u;
+      if(useLanguageDefault.has(base))u.voice=null;
+      u.onstart=()=>{started=true;};
+      u.onend=e=>{if(handled||run!==token)return;handled=true;current=null;onEnd?.(e);};
+      u.onerror=e=>{
+        if(handled||run!==token)return;handled=true;
+        const code=e?.error||'synthesis-failed';
+        if(base==='fr'&&!retried&&!started&&u.voice&&['voice-unavailable','language-unavailable','synthesis-failed','synthesis-unavailable','invalid-argument'].includes(code)){
+          const fallback=new SpeechSynthesisUtterance(u.text);
+          fallback.lang=lang;fallback.rate=u.rate;fallback.pitch=u.pitch;fallback.volume=u.volume;
+          useLanguageDefault.add(base);attempt(fallback,true);return;
+        }
+        current=null;onError?.(e);
+      };
+      if(synth.paused&&typeof synth.resume==='function')synth.resume();
+      try{synth.speak(u);}catch{u.onerror({error:'synthesis-failed'});}
+    }
+    attempt(utterance);
+  }
   function speakSequence(texts,options={}){
-    if(!synth||!texts?.length)return;
+    if(!synth||typeof SpeechSynthesisUtterance==='undefined'){showError({error:'synthesis-unavailable'});return;}
+    if(!texts?.length)return;
     cancel();const runToken=token,parts=texts.map(t=>spelled(String(t||'').trim(),options.lang||'fr-FR')).filter(Boolean),lang=options.lang||'fr-FR';
     const p=pref(lang),voice=select(lang),savedRate=Number(p.rate);
     if(norm(lang).split('-')[0]==='en'&&!voice){showError();return;}
@@ -57,9 +85,9 @@
       if(runToken!==token||i>=parts.length){if(runToken===token)current=null;return;}
       const u=new SpeechSynthesisUtterance(parts[i++]);current=u;
       u.lang=voice?.lang||lang;u.rate=rate;u.pitch=options.pitch??1;u.volume=options.volume??1;if(voice)u.voice=voice;
-      u.onend=next;u.onerror=e=>{if(runToken===token){current=null;if(e.error!=='canceled'&&e.error!=='interrupted')showError();}};
+      u.onend=next;u.onerror=e=>{if(runToken===token){current=null;if(e?.error!=='canceled'&&e?.error!=='interrupted')showError(e);}};
       if(synth.paused&&typeof synth.resume==='function')synth.resume();
-      try{synth.speak(u);}catch{current=null;showError();}
+      playUtterance(u,lang);
     }
     // The first utterance starts directly in the click handler, preserving iOS user activation.
     next();
@@ -102,7 +130,27 @@
     }
     next();return true;
   }
-  function showError(){const status=dialog?.querySelector('#voiceStatus');if(status&&mountOptions)status.textContent=(UI[mountOptions.uiLang]||UI.de).error;}
+  function showError(error){
+    const code=String(error?.error||'synthesis-failed'),L=UI[mountOptions?.uiLang]||UI.de;
+    const hints={
+      'language-unavailable':'Französische Sprachdaten fehlen. Prüfe auf Android unter Einstellungen → Sprachausgabe die installierten Stimmen.',
+      'voice-unavailable':'Die angebotene Stimme ist nicht nutzbar. Lade die französischen Sprachdaten in der Android-Sprachausgabe neu.',
+      'synthesis-unavailable':'Die Sprachausgabe des Geräts ist nicht verfügbar. Prüfe die Text-in-Sprache-Engine in den Android-Einstellungen.',
+      'synthesis-failed':'Die Sprach-Engine konnte den Text nicht erzeugen. Teste Französisch direkt in der Android-Sprachausgabe.',
+      'network':'Die Sprach-Engine benötigt eine Netzwerkverbindung oder heruntergeladene französische Sprachdaten.',
+      'not-allowed':'Der Browser blockiert die Sprachausgabe. Starte die Hörprobe erneut durch Antippen.',
+      'audio-busy':'Die Audioausgabe wird von einer anderen Anwendung belegt.',
+      'audio-hardware':'Die Audioausgabe des Geräts ist nicht verfügbar.'
+    };
+    const message=L.error+' ('+code+')'+((mountOptions?.uiLang||'de')==='de'&&hints[code]?' '+hints[code]:'');
+    const status=dialog?.querySelector('#voiceStatus');
+    if(status&&dialog?.open)status.textContent=message;
+    else{
+      let notice=document.getElementById('voicePlaybackError');
+      if(!notice){notice=document.createElement('p');notice.id='voicePlaybackError';notice.setAttribute('role','alert');document.querySelector('#view')?.prepend(notice);}
+      notice.textContent=message;
+    }
+  }
   function renderDialog(){
     if(!dialog||!mountOptions)return;
     const {lang,uiLang}=mountOptions,L=UI[uiLang]||UI.de,list=matching(lang),p=pref(lang),chosen=select(lang),exists=list.some(v=>v.voiceURI===p.uri&&v.name===p.name);
@@ -127,6 +175,6 @@
     dialog.addEventListener('cancel',()=>cancel());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();}});
   }
   if(synth){refresh();const changed=()=>{refresh();if(dialog?.open)renderDialog();};if(synth.addEventListener)synth.addEventListener('voiceschanged',changed);else synth.onvoiceschanged=changed;setTimeout(refresh,100);setTimeout(refresh,500);setTimeout(refresh,1500);}
-  window.A1Voice={speak,speakSequence,speakDialogue,dialogueVoices,cancel,select,automatic,matching,refresh,isApple,mount};
+  window.A1Voice={playUtterance,showError,speak,speakSequence,speakDialogue,dialogueVoices,cancel,select,automatic,matching,refresh,isApple,mount};
 })();
 

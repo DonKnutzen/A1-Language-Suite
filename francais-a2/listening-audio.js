@@ -51,9 +51,10 @@
       if(lastTurn!==part.turn){lastTurn=part.turn;options.onTurn?.(part.speaker,part.turn);}
       let handled=false;
       u.onend=()=>{if(handled||run!==generation||finished)return;handled=true;currentUtterance=null;if(index>=parts.length)finish(false);else timer=window.setTimeout(()=>{timer=null;next();},part.pause);};
-      u.onerror=()=>{if(handled)return;handled=true;finish(true);};
+      u.onerror=e=>{if(handled)return;handled=true;if(e?.error!=='canceled'&&e?.error!=='interrupted')voice.showError?.(e);finish(true);};
       if(synth.paused)synth.resume?.();
-      try{synth.speak(u);}catch{finish(true);}
+      if(voice.playUtterance)voice.playUtterance(u,'fr-FR');
+      else try{synth.speak(u);}catch{finish(true);}
     }
     next();return true;
   };
