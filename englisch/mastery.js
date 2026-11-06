@@ -110,7 +110,7 @@
       });
       if(changed&&progress){progress.previousDrafts||=[];progress.previousDrafts.push(before);}
     }
-    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):4,review=window.A1ExerciseReview?.create();
+    const ex=resume?session.ex:tasks,contentVersion=resume?(session.contentVersion||1):5,review=window.A1ExerciseReview?.create();
     let i=resume?session.i:0,score=resume?session.score:0,draft=resume?session.draft||'':'',response=resume?session.response:null;
     function persist(){if(progress){progress.session={version:101,contentVersion,ex,i,score,draft,response};saveProgress();}}
     function finish(){if(progress){delete progress.session;saveProgress();}onFinish(score,ex.length,ex);review?.attach(view);}
@@ -161,7 +161,7 @@
     state.lessonCheckProgress=state.lessonCheckProgress||{};
     const progress=state.lessonCheckProgress[lesson.id]||=( {} );
     function intro(){
-      const older=progress.session&&(progress.session.contentVersion||1)<4;
+      const older=progress.session&&(progress.session.contentVersion||1)<5;
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="masteryBackIntro">← Lektion</button><span class="pill">🏁 LEKTIONS-CHECK</span></div><section class="card" style="margin-top:12px"><h2>${lesson.id}. ${esc(lesson.title)}</h2>${introHtml(lesson,state)}${older?'<p class="muted">Dein laufender Versuch bleibt erhalten. Die überarbeiteten Fragen erscheinen beim nächsten neuen Versuch.</p>':''}<button class="primary-btn lesson-finale-btn ${b>=PASS?'is-completed':'en-action-current'}" id="masteryStart">${progress.session?'Test fortsetzen':b?`Noch einmal · Bestwert ${b} %`:`${tasks.length} Fragen starten`}</button>${older?'<button class="secondary-btn" id="masteryNewCheck">Überarbeiteten Check neu starten</button><p class="muted">Der bisherige Entwurf wird aufbewahrt.</p>':''}</section>`;
       document.getElementById('masteryBackIntro').onclick=onBack;
       document.getElementById('masteryStart').onclick=()=>runTasks({reviewState:state,progress,saveProgress:()=>save(),lessonId:lesson.id,title:`${lesson.id}. ${lesson.title}`,subtitle:`${progress.session?.ex?.length||tasks.length} gemischte Fragen`,tasks,view,onBack:intro,speak,onFinish:(score,total)=>{

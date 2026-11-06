@@ -63,3 +63,7 @@ html.dark-mode .primary-btn.lesson-next-ready{
 .en-rule-table tbody tr:last-child>*{border-bottom:0}
 .en-rule-table tbody tr:nth-child(even){background:var(--bg)}
 @media(max-width:400px){.en-rule-table{font-size:.85rem}.en-rule-table th,.en-rule-table td{padding:9px 7px}}
+
+.en-vocabulary-grid .phrase-row>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:8px;align-items:baseline}.en-vocabulary-grid .phrase-row small{font-size:.86rem}
+
+@media(max-width:540px){.en-rule-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.en-rule-table tbody tr{display:block;padding:10px 12px}.en-rule-table tbody th,.en-rule-table tbody td{display:block;padding:3px 0;border:0;white-space:normal;overflow-wrap:normal}.en-rule-table tbody th{font-weight:700}.en-rule-table tbody td:last-child{font-weight:400}}

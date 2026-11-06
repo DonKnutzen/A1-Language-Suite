@@ -35,7 +35,7 @@ What is its main material?|Metal|Stone|Wood
 What was replaced?|The switch|The base|The shade
 Why does it matter most?|Its personal connection|Its high selling price|Its modern design`,
 `f:I bought a second-hand table from a woman whose parents had owned a café. The table was scratched, but it was made of solid wood. I sanded it and painted the legs blue. It now stands in my kitchen, where friends gather when I cook. The seller asked for a photo after the work was finished. She was pleased that it would still be used for sharing meals.`,
-`Where had the table been used?|a café~in a café|a library|an office
+`What had the seller's parents owned?|a café~a cafe~a coffee shop|a library|an office
 What was its condition when bought?|scratched~it was scratched|broken in half|newly painted
 What colour are the legs now?|blue|green|white
 What did the seller request?|a photo~a photograph|an extra payment|the table back`,

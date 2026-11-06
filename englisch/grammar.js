@@ -6,11 +6,11 @@
   const audio=text=>`<button type="button" class="speak-btn" data-speak="${encodeURIComponent(text)}" aria-label="Englische Aussprache anhören">🔊</button>`;
   const pairs=rows=>rows.map(([target,meaning])=>`<div class="phrase-row"><div><strong lang="en">${esc(target)}</strong><small>${esc(meaning)}</small></div>${audio(target)}</div>`).join('');
   const lexicon=window.EN_A1_VOCABULARY;
-  const wordPairs=words=>words.map(word=>[word,lexicon.meanings[word]]);
+  const wordPairs=(words,id)=>words.map(word=>[word,lessons.find(l=>l.id===id)?.vocabulary.find(([en])=>en===word)?.[1]||lexicon.meanings[word]]);
   function stageHtml(id,stage){
     const words=stage==='hard'?lexicon.plan[id].hard:lexicon.plan[id].stages[stage]||[];
     if(!words.length)return '';
-    return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Finale':'Zusätzliche Wörter in dieser Lektion'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words))}</div></aside>`;
+    return `<aside class="en-stage-vocabulary" data-vocabulary-stage="${esc(stage)}"><h3>${stage==='hard'?'Zusätzliche Wörter im Finale':'Zusätzliche Wörter in dieser Lektion'}</h3><p class="muted">Höre die Aussprache an und lerne die Bedeutung kennen. In den Beispielen und Übungen wendest du die Wörter an.</p><div class="en-vocabulary-grid">${pairs(wordPairs(words,id))}</div></aside>`;
   }
   function pools(lesson){return lesson.topics.map(t=>({key:t.key,title:t.title,tasks:t.practice}));}
   function ruleHtml(topic){
@@ -62,7 +62,7 @@
   }
   const vocabularyHtml=(_course,id)=>{
     const plan=lexicon.plan[id],hard=plan.hardOnly.filter(word=>!plan.regular.includes(word)),words=[...plan.regular,...hard];
-    return `<details class="lesson-vocabulary-list en-glossary"><summary>Wortschatz dieser Lektion · ${words.length} Einträge</summary><p class="muted">Diese Liste dient zur Orientierung und zum Nachschlagen. Neue Wörter lernst du im Verlauf der Lektion Schritt für Schritt anhand von Beispielen und Übungen. Du musst sie nicht vorab auswendig lernen.</p>${pairs(wordPairs(plan.regular))}${hard.length?`<h4>Zusätzlich im Finale</h4><p class="muted">Diese Wörter brauchst du nur für die freiwillige Zusatzübung. Du lernst sie vor dem Start kennen.</p>${pairs(wordPairs(hard))}`:''}</details>`;
+    return `<details class="lesson-vocabulary-list en-glossary"><summary>Wortschatz dieser Lektion · ${words.length} Einträge</summary><p class="muted">Diese Liste dient zur Orientierung und zum Nachschlagen. Neue Wörter lernst du im Verlauf der Lektion Schritt für Schritt anhand von Beispielen und Übungen. Du musst sie nicht vorab auswendig lernen.</p><div class="en-vocabulary-grid">${pairs(wordPairs(plan.regular,id))}</div>${hard.length?`<h4>Zusätzlich im Finale</h4><p class="muted">Diese Wörter brauchst du nur für die freiwillige Zusatzübung. Du lernst sie vor dem Start kennen.</p>${pairs(wordPairs(hard,id))}`:''}</details>`;
   };
   const preparationHtml=(_course,id,step)=>{
     if(step!=='hard')return '';

@@ -3,13 +3,13 @@
 const packs=[];
 const choice=(q,answer,wrong,why)=>({q,answer,options:[answer,...wrong],why});
 const gap=(q,answer,why,accept=[])=>({q,answer,accept,why});
-const add=(id,title,instructions,text,questions,audio=[])=>packs.push({id,title,instructions,text,questions,audio});
+const add=(id,title,instructions,text,questions,audio=[])=>packs.push({id,version:['r1','r4','l2','l3'].includes(id)?2:1,title,instructions,text,questions,audio});
 add('r1','Reading 1 · Kurze Mitteilungen','Lies jede Mitteilung und wähle ihre Hauptaussage.','',[
 choice('Library notice: Return books through the side entrance while repairs continue. The main doors are closed.','Use a different entrance to return books.',['Keep all books until repairs end.','The entire library service has stopped.'],'Der Aushang nennt einen alternativen Eingang, kein Ende der Rückgabe.'),
 choice('Hi Jo, I can collect you from the station if your train arrives before six. Otherwise, please take a taxi.','Jo needs another way to travel if the train arrives late.',['Jo must take a taxi at any arrival time.','The sender cannot collect Jo before six.'],'Die Abholung hängt ausdrücklich von der Ankunftszeit ab.'),
 choice('Workshop: Materials provided. Bring clothes you do not mind getting dirty.','Participants should wear suitable clothes.',['Participants must buy their own materials.','Only dirty clothes will be accepted.'],'Material ist vorhanden; die Bitte betrifft Kleidung für die Arbeit.'),
 choice('Tickets bought online include entry to the garden, but guided tours must be booked separately.','A guided tour requires an additional booking.',['Online tickets exclude the garden.','Every ticket includes a guided tour.'],'Separat buchen bedeutet nicht automatisch einen bestimmten Zusatzpreis.'),
-choice('Sam, I have left your parcel with Noor next door. Please collect it before she leaves on Friday.','Sam should get the parcel from a neighbour before Friday.',['The parcel will arrive after Friday.','Noor needs Sam to post the parcel.'],'Das Paket wurde bereits bei der Nachbarin hinterlegt.')]);
+choice('Sam, I have left your parcel with Noor next door. Please collect it before she leaves on Friday.','Sam should get the parcel before the neighbour leaves on Friday.',['The parcel will arrive after Friday.','Noor needs Sam to post the parcel.'],'Das Paket wurde bereits bei der Nachbarin hinterlegt.')]);
 const offers=`A · Riverside Art: Saturday mornings, painting outdoors, all materials supplied. Beginners welcome. £12 per meeting. No indoor alternative in rain.
 B · Library Conversation: Tuesday evenings, free English speaking practice for intermediate adults. Step-free access. No written homework.
 C · Fast Fitness: Daily lunchtime running group for experienced runners. Free. Routes include steep hills.
@@ -52,7 +52,7 @@ const sentences=[
 ];
 add('r4','Reading 4 · Fehlende Sätze','Wähle für jede Lücke einen Satz aus A–H. Drei Sätze bleiben übrig.',
 `Our photography club originally met at two on Wednesday afternoons. [1] We therefore moved the meetings to the evening. [2] The room was now too crowded for the tutor to help everyone individually. [3] Experienced photographers could then explain simple techniques while the tutor discussed harder questions.
-We also put a selection of early attempts beside finished pictures. [4] They could see that progress usually involved mistakes. Not every change worked immediately, and members sometimes had different needs. [5] We have learned that a useful club keeps listening rather than assume one arrangement will suit everyone forever.
+We also put a selection of early attempts beside finished pictures. [4] They could see that progress usually involved mistakes. Not every change worked immediately, and members sometimes had different needs. [5] We have learned that a useful club keeps listening rather than assuming one arrangement will suit everyone forever.
 
 ${sentences.join('\n')}`,
 ['A','B','C','D','E'].map((a,i)=>choice('Lücke '+(i+1),a,['A','B','C','D','E','F','G','H'].filter(x=>x!==a),[
@@ -94,7 +94,7 @@ add('l3','Listening 3 · Notizen ergänzen','Höre die Ansage zweimal. Ergänze 
 gap('Day of the event','Saturday','Der aktuelle Veranstaltungstag ist Samstag.'),
 gap('Place: community ...','hall','Es findet in der community hall statt.'),
 gap('Starting time','10:30','Der Beginn wurde von zehn auf halb elf verschoben.',['10.30','half past ten','ten thirty']),
-gap('Bring proof of ... for electrical items','purchase','Kaufbeleg: proof of purchase.'),
+gap('If available, bring proof of ... for electrical items','purchase','Kaufbeleg: proof of purchase.'),
 gap('Maximum number of items per person','two','Pro Person zwei Gegenstände.',['2']),
 gap('Register by','Thursday','Die Anmeldung endet Donnerstag.')],
 ['f:Here is the final information for our repair afternoon. It will take place on Saturday, not Sunday as first advertised. We are using the community hall because the library is being painted. Doors will open at half past ten; the earlier announcement said ten, but volunteers need more preparation time. If you bring an electrical item, please bring proof of purchase if you still have it. We cannot promise a repair, but we can often explain the problem. Each person may bring a maximum of two items so everyone has a fair chance. There is no entry charge, although donations are welcome. Please register by Thursday. That gives us Friday to arrange the right tools and volunteers. You can register by phone or through the community centre website.']);

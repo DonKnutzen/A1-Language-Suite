@@ -1,7 +1,7 @@
 /* Same four game engines as Français A1; pools are restricted to this lesson. */
 (() => {
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  window.A1_QUIZ_SHOW={...window.A1_QUIZ_SHOW,generate:(_course,id)=>window.EN_A1_DATA.lessons.find(l=>l.id===Number(id)).topics.flatMap(t=>[...t.practice,...t.transfer]).map((q,i)=>({kind:'gap',q:[q.prompt,q.prompt],o:[q.answer,...q.o.filter(x=>x!==q.answer)],id:'b1-'+id+'-'+i,src:'b1-'+id+'-'+i,l:i%10<6?Math.min(6,1+i%6):Math.min(12,7+i%6),h:[q.explanation,q.explanation]}))};
+  window.A1_QUIZ_SHOW={...window.A1_QUIZ_SHOW,generate:(_course,id)=>window.EN_A1_DATA.lessons.find(l=>l.id===Number(id)).topics.flatMap(t=>[...t.practice,...t.transfer]).map((q,i)=>({kind:'gap',q:[q.prompt,q.prompt],o:[q.answer,...q.o.filter(x=>x!==q.answer)],context:q.context,id:'b1-'+id+'-'+i,src:'b1-'+id+'-'+i,l:i%10<6?Math.min(6,1+i%6):Math.min(12,7+i%6),h:[q.hint,q.hint]}))};
   const original=window.EN_A1_HARD_MODE.renderEntry;
   function menu({lesson,view,state,save,onBack}){
     window.A1Voice.cancel();

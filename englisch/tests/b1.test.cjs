@@ -1,3 +1,4 @@
+require('./b1-content-regressions.test.cjs');
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),path=require('path');
 const {fixture,root}=require('./b1-fixture.cjs');
 const fixtures=[];const open=s=>{const f=fixture(s);fixtures.push(f);return f;};
@@ -78,8 +79,58 @@ test('writing stays self-assessed, draft edits persist and recording unavailabil
  const {w,view}=open();w.EN_A1_APP.renderExam();view.querySelector('#b1ExamFormats').click();view.querySelector('[data-writing="email"]').click();assert(!view.querySelector('details'));const box=view.querySelector('#b1Draft');box.value='My own message.';box.dispatchEvent(new w.Event('input'));view.querySelector('#writingSubmit').click();assert(view.querySelector('details'));assert(view.querySelector('#b1Draft').readOnly);view.querySelector('#writingRevise').click();assert.equal(view.querySelector('#b1Draft').value,'My own message.');assert.equal(w.EN_A1_APP.state.b1Formats.writing.email.history.length,1);
  view.querySelector('#writeBack').click();view.querySelector('#formatSpeaking').click();view.querySelector('#startRecB1Format').click();assert(view.querySelector('#recStatusB1Format').textContent.length>0);
 });
+test('free answer equivalents preserve meaning and arcade templates retain their context',()=>{
+ const {w}=open(),find=(id,part)=>w.EN_A1_MASTERY_SPECS[id].checkTasks.find(q=>q.prompt?.includes(part));
+ for(const [id,part,answer]of [[5,'borrow my pen','may'],[11,'if it ___ quieter','was'],[15,"unwell since yesterday",'been'],[16,'museum is open today','if'],[19,'neighbours often help','one another'],[21,'time for the start','on']])assert(w.EN_A1_MASTERY.accepted(find(id,part),answer),part);
+ assert(!w.EN_A1_MASTERY.accepted(find(19,'neighbours often help'),'themselves'));
+ for(const l of w.EN_A1_DATA.lessons){
+  const generated=w.A1_QUIZ_SHOW.generate('en',l.id);assert.equal(generated.length,20);
+  for(const q of generated){assert(q.context);assert.equal(new Set(q.o).size,3);assert(!q.h[0].startsWith(q.q[0].replace('___',q.o[0])));}
+  const c=w.EN_B1_ARCADE_ENGINE.lessonContent('en',l.id);assert(c.formRound().context);
+  for(const set of c.SORTS)for(const card of set.cards)assert(card[3]);
+ }
+});
+test('format attempts retain the source text and audio when current content changes',()=>{
+ const {w,view}=open();w.EN_A1_APP.renderExam();view.querySelector('#b1ExamFormats').click();view.querySelector('[data-pack="r3"]').click();
+ const a=w.EN_A1_APP.state.b1Formats.attempts.r3,pack=w.EN_B1_EXAM.packs.find(p=>p.id==='r3'),original=a.text;
+ pack.text='New text for new attempts.';view.querySelector('#packBack').click();view.querySelector('[data-pack="r3"]').click();
+ assert.equal(view.querySelector('.b1-reading').textContent,original);assert.equal(a.audio.length,0);
+ a.questions.forEach((q,i)=>a.answers[i]=q.answer);view.querySelector('#packSubmit').click();view.querySelector('#packConfirmSubmit').click();view.querySelector('#packNew').click();assert.equal(view.querySelector('.b1-reading').textContent,'New text for new attempts.');
+});
 test('entry assets exist, new offline cache is complete and B1 cloud mapping is separate',()=>{
  const html=fs.readFileSync(path.join(root,'englisch/index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'englisch/service-worker.js'),'utf8');
  for(const [,asset]of html.matchAll(/(?:src|href)="([^"#]+\.(?:css|js)(?:\?[^"]*)?)"/g)){assert(fs.existsSync(path.resolve(root,'englisch',asset.split('?')[0])),asset);assert(sw.includes(asset),asset+' not cached');}
  assert(sw.includes('images/speaking-garden.png'));assert(sw.includes("const PREFIX='englisch-'"));const profile=fs.readFileSync(path.join(root,'shared/profile.js'),'utf8');assert(profile.includes("course === 'englisch-b1') return 'en-b1'"));
+});
+test('listening shuffles fresh choices and keeps their order across reloads',()=>{
+ const f=open(),{w,view}=f;w.A1Learning.shuffle=xs=>[...xs].reverse();
+ w.EN_A1_APP.renderLesson(7,{step:'comprehension'});
+ const p=w.EN_A1_APP.state.lessonWork[7].comprehension;
+ assert.equal(p.contentSnapshot.version,2);
+ assert(p.contentSnapshot.fields.every(q=>q.options[2]===q.answer));
+ assert(view.textContent.includes('What might happen after lunch?'));
+ const snapshot=JSON.stringify(p.contentSnapshot),reloaded=open(f.snapshot());
+ reloaded.w.EN_A1_APP.renderLesson(7,{step:'comprehension'});
+ assert.equal(JSON.stringify(reloaded.w.EN_A1_APP.state.lessonWork[7].comprehension.contentSnapshot),snapshot);
+});
+test('legacy listening selections and scores survive distractor changes; retry uses the new tasks',()=>{
+ const {w,view}=open(),s=w.EN_A1_APP.state,legacy=w.A1_COMPREHENSION_CONTENT[7].legacyContent;
+ s.lessonWork[7]={comprehension:{answers:legacy.fields.map((f,i)=>i===1?f.options[1]:f.answer),graded:true,score:3,best:4,done:true}};
+ w.EN_A1_APP.renderLesson(7,{step:'comprehension'});
+ const p=s.lessonWork[7].comprehension;
+ assert.equal(p.contentSnapshot.version,1);assert.equal(p.answers[1],"The river's location");
+ assert.equal(p.score,3);assert(p.graded);assert(p.done);assert(view.textContent.includes('What is uncertain?'));
+ view.querySelector('#dialogueRetry').click();
+ assert.equal(p.contentSnapshot.version,2);assert.equal(p.history.length,1);assert.equal(p.history[0].answers[1],"The river's location");
+ assert.equal(p.best,4);assert(p.done);assert(!p.graded);assert(view.textContent.includes('What might happen after lunch?'));
+});
+test('English balloon spelling uses reviewed errors rather than valid inflections or French endings',()=>{
+ const {w}=open(),spell=w.EN_B1_ARCADE_ENGINE.content.misspell;
+ assert.deepEqual([...spell('challenge','en')],[]);
+ assert.deepEqual([...spell('career','en')],[]);
+ assert.deepEqual([...spell('experience','en')],['experiance']);
+ assert.deepEqual([...spell('accommodation','en')],['accomodation']);
+ assert.deepEqual([...spell('be interested in','en')],['be intrested in']);
+ const all=new Set(w.A1_VOCABULARY_CONTENT.map(v=>v.en.toLowerCase()));
+ for(const word of all)for(const wrong of spell(word,'en'))assert(!all.has(wrong.toLowerCase()),wrong);
 });

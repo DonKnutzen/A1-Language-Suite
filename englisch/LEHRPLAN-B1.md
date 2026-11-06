@@ -1,6 +1,6 @@
 # Englisch B1 – Lehrplan und Abdeckungsprüfung
 
-Stand: 5. November 2026. Einstieg mit A2-Grundlagen. Eigenständiges Lernangebot, keine Cambridge-Zertifizierung.
+Stand: 6. November 2026. Einstieg mit A2-Grundlagen. Eigenständiges Lernangebot, keine Cambridge-Zertifizierung.
 
 ## Grundlage
 
@@ -94,4 +94,9 @@ Die Formatsets sind kürzer als vollständige Prüfungsunterlagen, laufen ohne P
 
 `npm run test:english` führt die B1-spezifischen Integrationsprüfungen aus. Sie bearbeiten alle Lektionschecks und Hard Modes vollständig, prüfen Aufgabenverträge, Antwortvarianten, unabhängige Hörtexte, Abschnittsgrenzen, Verlauf, Schreibentwürfe, Kurskennung, alle Formatsets und die vier Arcade-Inhaltspools. Die älteren A1-Tests bleiben als historische Referenz im Ordner erhalten und gehören nicht zum neuen B1-Testlauf.
 
-Reale Browserdarstellung, echte Geräteausgabe und Mikrofonaufnahme sind zusätzlich auf dem Zielgerät zu prüfen. Die hier verfügbare Browsersteuerung konnte die lokale Vorschau nicht öffnen und wurde anschließend durch ihre eigene Sicherheitsprüfung blockiert. Automatische DOM- und Vertragsprüfungen ersetzen diese visuelle und akustische Prüfung nicht.
+Stand der Qualitätsprüfung vom 6. November 2026: Die 24 Lektionen mit ihren Grammatikvorlagen, Hör-/Lesetexten und freien Aufgaben sowie die zusätzlichen Formatsets und erzeugten Arcade-Aufgaben wurden inhaltlich durchgesehen. Korrigiert wurden unter anderem unbelegte Schlüsse, fehlender Kontext in Spielen, eingeschränkte Antwortvarianten und schriftliche Anweisungen im Sprechtraining. Regelvergleiche und lektionsbezogene Wortbedeutungen erleichtern die Orientierung. Lektionschecks verwenden Inhaltsstand 5; Hard Modes 8, 19 und 23 verwenden Version 2 und halten Version 1 verfügbar. Neue Formatversuche speichern auch Quelltext, Audio und Anweisungen.
+
+Die Browserprüfung nutzt ein isoliertes lokales Testprofil. Die 24 ersten Grammatikansichten wurden bei 1280 und 375 Pixeln auf horizontales Überlaufen geprüft; ausgewählte Regel-, Sprech- und Arcade-Ansichten wurden zusätzlich visuell kontrolliert. Das ist keine vollständige Prüfung aller Ansichten, Gerätegrößen und Zufallskombinationen. Echte Stimmenausgabe und Mikrofonaufnahme bleiben auf dem Zielgerät zu prüfen. Automatische Tests belegen keine individuelle B1-Kompetenz.
+
+
+Weitere Befunde derselben Qualitätsprüfung: In 48 regulären Hörfragen wurden Ablenker durch naheliegende Alternativen aus derselben Situation ersetzt. Neue Hörversuche speichern ihren Aufgabenstand und die gemischte Antwortreihenfolge; ältere Auswahlen und Ergebnisse bleiben mit den ursprünglichen Optionen verfügbar. Beim Wiederholen wird der alte Versuch aufbewahrt und der aktuelle Aufgabenstand gestartet. Die englische Ballon-Jagd nutzt kuratierte englische Schreibfehler statt französischer Wortbildungsregeln. Die 24 Höransichten wurden zusätzlich bei 1280 und 375 Pixeln auf Überlaufen geprüft; ausgewählte Ansichten wurden visuell kontrolliert.

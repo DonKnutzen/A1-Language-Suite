@@ -1,5 +1,28 @@
 (() => {
   'use strict';
+  // B1-only adapter: keep the shared player, but snapshot tasks and randomise new choices.
+  const comprehensionRender=A1Comprehension.render;
+  A1Comprehension.render=options=>{
+    const latest=options.data;
+    if(!latest)return comprehensionRender(options);
+    const work=options.work,previous=work.comprehension;
+    const p=work.comprehension=previous&&typeof previous==='object'&&!Array.isArray(previous)?previous:{};
+    if(!p.contentSnapshot){
+      const existing=p.graded||p.answers?.some(Boolean);
+      const source=existing?(latest.legacyContent||latest):latest;
+      const snapshot={version:source.version||1,title:source.title,turns:source.turns,
+        fields:source.fields.map(f=>({...f,options:existing?[...f.options]:A1Learning.shuffle(f.options)}))};
+      p.contentSnapshot=JSON.parse(JSON.stringify(snapshot));options.save();
+    }
+    comprehensionRender({...options,data:p.contentSnapshot});
+    const retry=options.root.querySelector('#dialogueRetry');
+    if(retry)retry.onclick=()=>{
+      A1Voice.cancel();
+      (p.history||=[]).push(JSON.parse(JSON.stringify({content:p.contentSnapshot,answers:p.answers,graded:p.graded,score:p.score})));
+      p.answers=[];p.graded=false;delete p.contentSnapshot;
+      A1Comprehension.render(options);options.save();
+    };
+  };
   const lessons=EN_A1_DATA.lessons,view=document.getElementById('view');
   const baseKey='englischB1State_v1',stateKey=A1Profile.namespacedKey(baseKey);
   const defaults={lastLessonId:0,doneLessons:[],lessonWork:{},lessonQuizBest:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},lessonCheckProgress:{},courseCheckProgress:{},grammarBest:{},reviewPractice:{},vocabularyTrainer:{version:2,items:{},settings:{},session:null},training:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],bestMock:0,examScores:{}};
@@ -45,7 +68,7 @@
       renderVocabulary:()=>renderVocab(l.id,()=>renderLesson(l.id)),vocabularyLabel:'Wortschatz dieser Lektion',
       renderMastery:({onBack,onResult})=>EN_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak,onResult}),
       renderHardMode:({onBack})=>EN_A1_HARD_MODE.render({lesson:l,view,state,save,onBack}),
-      model:l.model,writingModel:l.model,writingHints:l.topics.flatMap(t=>t.examples).slice(0,4),fullModel:true,
+      model:l.speakingModel,writingModel:l.model,writingHints:l.topics.flatMap(t=>t.examples).slice(0,4),fullModel:true,
       dialogueHtml:`<details><summary>Sprachliche Hilfe</summary>${l.phrases.slice(0,4).map(([t,m])=>`<div class="phrase-row"><div><strong>${esc(t)}</strong><small>${esc(m)}</small></div>${speakBtn(t)}</div>`).join('')}</details>`,
       recorderHtml:recording,speak,speakBtn,wireSpeakButtons,playFeedbackAudio:t=>speak(t,true),renderLesson,renderLearn,
       pronunciationHtml:pronunciation(l.id)

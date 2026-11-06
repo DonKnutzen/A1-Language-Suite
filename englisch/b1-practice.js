@@ -21,16 +21,16 @@
     }
     function fresh(p){
       const old=store.attempts[p.id];
-      const a={version:1,questions:p.questions.map(q=>({...q,options:q.options?shuffle(q.options):undefined})),answers:{},plays:p.audio.map(()=>0),history:[...(old?.history||[]),...(old?[{...old,history:undefined}]:[])]};
+      const a={version:p.version||1,text:p.text,audio:JSON.parse(JSON.stringify(p.audio)),instructions:p.instructions,questions:p.questions.map(q=>({...q,options:q.options?shuffle(q.options):undefined})),answers:{},plays:p.audio.map(()=>0),history:[...(old?.history||[]),...(old?[{...old,history:undefined}]:[])]};
       store.attempts[p.id]=a;save();return a;
     }
     function pack(p){
-      stop();const a=store.attempts[p.id]||fresh(p),submitted=!!a.result;
+      stop();const latest=EN_B1_EXAM.packs.find(item=>item.id===p.id)||p;const a=store.attempts[p.id]||fresh(latest),submitted=!!a.result;p={...p,text:a.text??p.text,audio:a.audio??p.audio,instructions:a.instructions??p.instructions};
       view.innerHTML=`<div class="between"><h2>${E(p.title)}</h2><button class="tiny-btn" id="packBack">← Formate</button></div><p>${E(p.instructions)}</p><p class="muted" role="status" id="packStatus">${submitted?'Abgegeben · Lösungen sichtbar':'Entwurf wird gespeichert · Lösungen erst nach Abgabe'}</p>${p.text?`<section class="card b1-reading" lang="en">${E(p.text)}</section>`:''}<section class="card">${p.audio.map((_,i)=>`<div class="b1-toolbar"><strong>Aufnahme ${i+1}</strong><button class="secondary-btn" data-exam-audio="${i}" ${!submitted&&a.plays[i]>=2?'disabled':''}>▶ Anhören ${submitted?'':`(${a.plays[i]}/2)`}</button></div>`).join('')}<p id="packAudioError" role="status"></p>${a.questions.map((q,i)=>`<fieldset class="b1-question"><legend>${i+1}. ${E(q.q)}</legend>${q.options?q.options.map((o,j)=>`<label class="b1-choice"><input type="radio" name="q${i}" data-answer="${i}" value="${j}" ${a.answers[i]===o?'checked':''} ${submitted?'disabled':''}> ${E(o)}</label>`).join(''):`<input type="text" data-answer="${i}" value="${E(a.answers[i]||'')}" aria-label="Antwort ${i+1}" autocomplete="off" ${submitted?'readonly':''}>`}${submitted?`<p class="${a.result.marks[i]?'b1-correct':'b1-incorrect'}">${a.result.marks[i]?'✓ Richtig':'✗ Noch üben'} · Lösung: ${E(q.answer)}</p><p>${E(q.why)}</p>`:''}</fieldset>`).join('')}${submitted?`<h3>${a.result.correct}/${a.result.total} richtig · ${a.result.percent} %</h3><p>Dieser Wert betrifft dieses Trainingsset, keine Cambridge-Note.</p><button class="secondary-btn" id="packNew">Neuer Versuch</button>`:`<button class="primary-btn" id="packSubmit">Zur Abgabe</button><div id="packConfirm"></div>`}</section>${submitted&&p.audio.length?`<details class="card"><summary>Transkripte nach der Abgabe</summary>${p.audio.map(s=>`<p lang="en">${E(typeof s==='string'?s.replace(/^[fm]:/gm,''):s.map(t=>t.text).join(' '))}</p>`).join('')}</details>`:''}`;
       view.querySelector('#packBack').onclick=home;
       view.querySelectorAll('[data-answer]').forEach(input=>input.oninput=()=>{const i=Number(input.dataset.answer),q=a.questions[i];a.answers[i]=q.options?q.options[Number(input.value)]:input.value;save();});
       view.querySelectorAll('[data-exam-audio]').forEach(b=>b.onclick=()=>play(p,a,Number(b.dataset.examAudio)));
-      view.querySelector('#packNew')?.addEventListener('click',()=>{fresh(p);pack(p);});
+      view.querySelector('#packNew')?.addEventListener('click',()=>{fresh(latest);pack(latest);});
       view.querySelector('#packSubmit')?.addEventListener('click',()=>{
         const missing=a.questions.filter((_,i)=>!a.answers[i]?.trim()).length;
         view.querySelector('#packConfirm').innerHTML=`<p>${missing?`${missing} unbeantwortete Aufgaben zählen als falsch. `:''}Nach der Abgabe werden Antworten gesperrt und Lösungen sichtbar.</p><button class="primary-btn" id="packConfirmSubmit">Jetzt abgeben</button>`;

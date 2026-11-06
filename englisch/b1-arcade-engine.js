@@ -60,6 +60,20 @@ function cur(){return L||{course:'fr',voice:'fr-FR',formRound,PHRASES,SORTS};}
 const lnorm=s=>String(s??'').normalize('NFC').trim().toLowerCase();
 // Look-alike misspellings for the balloon hunt: one typical spelling slip (accent, double letter, silent ending, ie/ei …).
 const END="(?=$|[\\s.,!?;:…’'\\-])",V='[aeiouyéèêàâîôû]';
+const EN_SPELLING=[
+ ['accommodation','accomodation'],['achievement','acheivement'],['available','avaliable'],
+ ['colleague','collegue'],['occasionally','ocassionally'],['usually','usualy'],
+ ['neighbourhood','neigbourhood'],['interested','intrested'],['environment','enviroment'],
+ ['environmental','enviromental'],['immediately','immediatly'],['necessary','neccessary'],
+ ['recommend','reccomend'],['recommendation','recomendation'],['receive','recieve'],
+ ['receipt','reciept'],['separate','seperate'],['definitely','definately'],
+ ['reliable','relyable'],['responsibility','responsibilty'],['successful','succesful'],
+ ['opportunity','oppertunity'],['experience','experiance'],['surprised','suprised'],
+ ['embarrassed','embarassed'],['disappointed','dissappointed'],['beginning','begining'],
+ ['tomorrow','tommorrow'],['comfortable','confortable'],['vegetarian','vegeterian'],
+ ['ingredient','ingrediant'],['permission','permision'],['compulsory','compulsary'],
+ ['convenient','convinient'],['exhausted','exausted'],['foreign','foriegn']
+];
 const SPELL={
  fr:[['é','è'],['é','e'],['è','é'],['ê','è'],['ê','e'],['à','a'],['â','a'],['ç','c'],['ô','o'],['î','i'],['û','u'],['eau','au'],['au','o'],['ai','é'],['qu','k'],['ph','f'],['gn','ni'],
   ['([lnmtsrpf])\\1','$1'],['('+V+')([lnmtpf])('+V+')','$1$2$2$3'],['er'+END,'é'],['er'+END,'ez'],['é'+END,'er'],['ée'+END,'é'],['ez'+END,'er'],['ent'+END,'e'],['ait'+END,'ais'],['ais'+END,'ait'],
@@ -68,6 +82,11 @@ const SPELL={
   ['ah','a'],['eh','e'],['oh','o'],['uh','u'],['ie','i'],['d'+END,'t'],['t'+END,'d'],['g'+END,'k'],['v','f'],['tz','z'],['ck','k'],['chs','x'],['th','t']]
 };
 function misspell(text,course){const s=String(text),out=new Set();
+ // English words must not inherit French endings: e.g. "challenge" -> "challenges"
+ // is a valid inflection, not a spelling error. Use reviewed English non-words only.
+ if(course==='en')return EN_SPELLING.flatMap(([word,wrong])=>{
+   const re=new RegExp('\\b'+word+'\\b','i');return re.test(s)?[s.replace(re,wrong)]:[];
+ });
  for(const [p,r] of SPELL[course]||SPELL.fr){const re=new RegExp(p,'g');for(const m of s.matchAll(re)){const v=s.slice(0,m.index)+m[0].replace(new RegExp('^(?:'+p+')'),r)+s.slice(m.index+m[0].length);if(v!==s)out.add(v);}}
  // German nouns are written with a capital letter – a lower-case noun is a classic slip.
  if(course==='de')for(const m of s.matchAll(/(^|\s)(\p{Lu})(\p{Ll}{2,})/gu))if(m.index>0)out.add(s.slice(0,m.index)+m[1]+m[2].toLowerCase()+m[3]+s.slice(m.index+m[0].length));
@@ -76,7 +95,7 @@ function misspell(text,course){const s=String(text),out=new Set();
 // the sorter asks for the article and for right or wrong forms.
 function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR'},en:{H:window.EN_A1_HARD_CONTENT,target:'en',meaning:'de',lessons:'enLessons',voice:'en-GB'},de:{H:window.DE_A1_HARD_CONTENT,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE'}}[course],data=cfg?.H?.[id];if(!data)return null;
  const ui=(de,english,f)=>course==='de'?[de,english,f]:[de,english];
- const rounds=[];for(const q of window.A1_QUIZ_SHOW?.generate(course,id)||[]){if(!String(q.kind).startsWith('gap')||!String(q.q[0]).includes('___'))continue;const m=String(q.q[0]).match(/^(.*?)(?: \(([^)]*)\))?$/),[before,after]=m[1].split('___');if(rounds.some(r=>r.before===before&&r.after===after))continue;rounds.push({before,after,verb:m[2]||'…',answer:q.o[0],others:q.o.slice(1),own:!String(q.src||'').includes('/'),sentence:(before+q.o[0]+after).replace(/([’'])\s+/g,'$1')});}
+ const rounds=[];for(const q of window.A1_QUIZ_SHOW?.generate(course,id)||[]){if(!String(q.kind).startsWith('gap')||!String(q.q[0]).includes('___'))continue;const m=String(q.q[0]).match(/^(.*?)(?: \(([^)]*)\))?$/),[before,after]=m[1].split('___');if(rounds.some(r=>r.before===before&&r.after===after))continue;rounds.push({before,after,context:q.context,verb:m[2]||'…',answer:q.o[0],others:q.o.slice(1),own:!String(q.src||'').includes('/'),sentence:(before+q.o[0]+after).replace(/([’'])\s+/g,'$1')});}
  if(rounds.filter(r=>r.own).length>=4)rounds.splice(0,rounds.length,...rounds.filter(r=>r.own));
  if(!rounds.length)data.gaps.forEach((g,n)=>{const text=String(data.text);const s=(text.match(/[^.!?\n]*\{\{\d+\}\}[^.!?\n]*[.!?]?/g)||[]).find(x=>x.includes('{{'+n+'}}'));if(!s)return;const filled=s.replace(/\{\{(\d+)\}\}/g,(_,k)=>Number(k)===n?'___':data.gaps[Number(k)].answers[0]).trim(),[before,after]=filled.split('___');rounds.push({before,after,verb:g.hint||'…',answer:g.answers[0],others:shuffle(data.gaps.map(x=>x.answers[0]).filter(x=>lnorm(x)!==lnorm(g.answers[0]))).slice(0,3),sentence:before+g.answers[0]+after});});
  const formRoundL=(count=4)=>{const r=pick(rounds);return {...r,options:shuffle([r.answer,...shuffle(r.others).slice(0,count-1)])};};
@@ -89,8 +108,8 @@ function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,tar
  else{const g=nouns.filter(v=>/^(der|die) /.test(v.de)&&!/\//.test(v.de)).map(v=>[v.de.replace(/^(der|die) /,''),v.de.startsWith('der ')?0:1,v.de+' – '+v.fr]);if(g.length>=10)SORTSL.push({title:['der oder die?','der or die?','der ou die ?'],sides:[['der','der','der'],['die','die','die']],cards:shuffle(g).slice(0,24)});}
  // Wrong is on the left (red), right on the right (green) – like swiping yes to the right.
  const hint=r=>r.verb&&r.verb!=='…'?' ('+r.verb+')':'';
- const forms=shuffle(rounds).slice(0,12).flatMap(r=>[[r.sentence,1,r.sentence+hint(r)],[(r.before+r.others[0]+r.after).replace(/([’'])\s+/g,'$1'),0,r.sentence+hint(r)]]);
- if(forms.length>=10)SORTSL.push({kind:'forms',title:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✗ falsch','✗ wrong','✗ faux'],['✓ richtig','✓ right','✓ juste']],colors:['#ff5d8f','#06d6a0'],cards:forms});
+ const forms=shuffle(rounds).slice(0,12).flatMap(r=>[[r.sentence,1,r.sentence+hint(r),r.context],[(r.before+r.others[0]+r.after).replace(/([’'])\s+/g,'$1'),0,r.sentence+hint(r),r.context]]);
+ if(forms.length>=10)SORTSL.push({kind:course==='en'?'meaning':'forms',title:course==='en'?['Passt zur deutschen Bedeutung?','Matches the German meaning?']:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✗ falsch','✗ wrong','✗ faux'],['✓ richtig','✓ right','✓ juste']],colors:['#ff5d8f','#06d6a0'],cards:forms});
  if(!SORTSL.length)SORTSL.push(...SORTS);
  return {course,voice:cfg.voice,formRound:rounds.length?formRoundL:formRound,PHRASES:PHRASESL.length>=4?PHRASESL:PHRASES,SORTS:SORTSL,tags:{throw:ui('Formen aus dem Lückentext','Forms from the cloze text','Les formes du texte à trous'),balloons:ui('Wörter der Lektion hören','Hear the lesson’s words','Écouter les mots de la leçon'),catch:ui('Das Wort für die Lücke','The word for the gap','Le mot pour le trou'),sort:ui(SORTSL.map(x=>x.title[0]).join(' · '),SORTSL.map(x=>x.title[1]).join(' · '),SORTSL.map(x=>x.title[2]??x.title[0]).join(' · '))}};}
 function lessonGames(course,id){L=lessonContent(course,id);const tags=L?.tags;const list=GAMES.map(g=>({id:g.id,icon:g.icon,theme:g.theme,title:tx(g.name),tagline:tags?tx(tags[g.id]):tx(g.tag)}));L=null;return list;}
@@ -135,7 +154,7 @@ function createThrow(api){
  const S={score:0,combo:0,time:45,round:null,targets:[],ball:null,drag:null,roundT:0,lock:0,hits:0};
  const home=()=>({x:api.w/2,y:api.h-70}),bob=t=>t.y+Math.sin(t.phase)*8;
  function resetBall(){const p=home();S.ball={x:p.x,y:p.y,vx:0,vy:0,fly:false,grav:true};}
- function next(){hush();S.held=0;S.round=cur().formRound(4);S.roundT=0;const n=4,top=150,speed=45+Math.min(130,S.hits*9),r=Math.min(46,api.w/9+8);S.targets=S.round.options.map((word,i)=>({word,r,x:api.w/n*(i+.5),y:top+(i%2?Math.min(110,api.h*.2):0),vx:(Math.random()<.5?-1:1)*speed*(.6+Math.random()*.6),phase:Math.random()*6,color:COLORS[(i+S.hits)%COLORS.length],gone:false}));resetBall();}
+ function next(){hush();S.held=0;S.round=cur().formRound(4);api.prompt?.(S.round.before+'___'+S.round.after,S.round.context);S.roundT=0;const n=4,top=150,speed=45+Math.min(130,S.hits*9),r=Math.min(46,api.w/9+8);S.targets=S.round.options.map((word,i)=>({word,r,x:api.w/n*(i+.5),y:top+(i%2?Math.min(110,api.h*.2):0),vx:(Math.random()<.5?-1:1)*speed*(.6+Math.random()*.6),phase:Math.random()*6,color:COLORS[(i+S.hits)%COLORS.length],gone:false}));resetBall();}
  function launch(vx,vy,grav){Object.assign(S.ball,{vx,vy,grav,fly:true});api.sfx.throw();}
  // A tapped target is homed in on, so the ball never hits another target on the way.
  function aimAt(tg){S.ball.aim=tg;launch(0,0,false);}
@@ -206,7 +225,7 @@ function createBalloons(api){
 function createCatch(api){
  const S={score:0,combo:0,lives:3,round:null,words:[],spawn:.4,since:2,caught:0,keys:{},basket:{x:api.w/2},done:'',doneT:0,pending:false,hold:0,log:[]};
  const bw=()=>Math.min(130,api.w*.32),by=()=>api.h-46;
- function next(){hush();S.pending=false;S.round=cur().formRound(3);for(const wd of S.words)wd.fade=true;S.spawn=.5;S.since=2;}
+ function next(){hush();S.pending=false;S.round=cur().formRound(3);api.prompt?.(S.round.before+'___'+S.round.after,S.round.context);for(const wd of S.words)wd.fade=true;S.spawn=.5;S.since=2;}
  const fadeOut=dt=>{for(const wd of S.words)if(wd.fade)wd.alpha-=dt*4;S.words=S.words.filter(wd=>wd.alpha>0);};
  const lose=(text,why)=>{S.lives--;S.combo=0;S.log.push({ok:false,text,fix:S.round.sentence,why});api.sfx.miss();api.shake(9);};
  next();
@@ -235,11 +254,11 @@ function createCatch(api){
 /* ---------- Game 4: lightning sort ---------- */
 function createSort(api){
  const S={score:0,combo:0,lives:3,n:0,set:0,queue:[],card:null,drag:0,start:null,log:[]};
- function deal(){const SORTS=cur().SORTS;if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side,full]=S.queue.pop(),limit=Math.max(2,5-S.n*.09);S.card={text,side,full,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
+ function deal(){const SORTS=cur().SORTS;if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side,full,context]=S.queue.pop(),limit=cur().course==='en'?Math.max(6,10-S.n*.09):Math.max(2,5-S.n*.09);api.prompt?.(text,context);S.card={text,side,full,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
  // Every decision goes into the review shown at the end: what you chose, what was right and the correct form.
  function note(cd,chosen){const set=cur().SORTS[S.set],side=s=>tx(set.sides[s]),ok=chosen===cd.side;
-  const why=set.kind==='forms'?(cd.side===1?t('Der Satz ist korrekt.','The sentence is correct.'):t('Richtig heißt es:','Correct:')+' '+cd.full):cd.full||'';
-  S.log.push({ok,text:cd.text,said:chosen==null?t('Zu langsam','Too slow'):side(chosen),right:side(cd.side),why,fix:set.kind==='forms'?cd.full.replace(/ \([^)]*\)$/,''):cd.full?.split(' – ')[0]});}
+  const why=set.kind==='meaning'?(cd.side===1?'Der Satz passt zur deutschen Bedeutung.':'Zur deutschen Bedeutung passt: '+cd.full):set.kind==='forms'?(cd.side===1?t('Der Satz ist korrekt.','The sentence is correct.'):t('Richtig heißt es:','Correct:')+' '+cd.full):cd.full||'';
+  S.log.push({ok,text:cd.text,said:chosen==null?t('Zu langsam','Too slow'):side(chosen),right:side(cd.side),why,fix:['forms','meaning'].includes(set.kind)?cd.full.replace(/ \([^)]*\)$/,''):cd.full?.split(' – ')[0]});}
  function choose(side){const cd=S.card;if(!cd||cd.state!=='live')return;cd.dir=side?1:-1;note(cd,side);
   if(side===cd.side){S.combo++;const pts=10+Math.min(20,S.combo*2)+Math.round(cd.t/cd.limit*8);S.score+=pts;cd.state='out';api.burst(side?api.w*.8:api.w*.2,api.h*.45,pick(COLORS),20);api.float(api.w/2,api.h*.3,'+'+pts);api.sfx.hit();}
   else{S.lives--;S.combo=0;cd.state='wrong';cd.flash=.45;api.sfx.miss();api.shake(10);api.float(api.w/2,api.h*.3,'✗ '+tx(cur().SORTS[S.set].sides[cd.side]),'#ff8fa3');}}
@@ -279,10 +298,10 @@ function review(log){if(!log?.length)return '';const bad=log.filter(x=>!x.ok),go
   return `<li class="${x.ok?'is-ok':'is-bad'}"><span><b lang="${lang}">${x.ok?'✓':'✗'} ${E(x.text)}</b>${lines.map(l=>`<small>${E(l)}</small>`).join('')}</span>${x.fix&&voiceOn()?`<button type="button" class="tiny-btn" data-arcade-say="${E(x.fix)}" aria-label="${E(t('Anhören','Listen'))}: ${E(x.fix)}">🔊</button>`:''}</li>`;};
  return `<details class="arcade-review" ${bad.length?'open':''}><summary>📋 ${t('Rückblick','Review')}: ${bad.length} ✗ · ${good.length} ✓</summary><ol>${[...bad,...good].map(row).join('')}</ol></details>`;}
 function run(host,def,{best=0,onEnd,onExit}={}){
- host.innerHTML=`<div class="arcade-stage game-${def.theme}"><div class="arcade-frame"><canvas class="arcade-canvas" tabindex="0" aria-label="${E(tx(def.name))}"></canvas><div class="arcade-overlay" data-arcade-overlay></div></div>${controls()}</div>`;
+ host.innerHTML=`<div class="arcade-stage game-${def.theme}"><div class="b1-game-prompt" data-game-prompt hidden></div><div class="arcade-frame"><canvas class="arcade-canvas" tabindex="0" aria-label="${E(tx(def.name))}"></canvas><div class="arcade-overlay" data-arcade-overlay></div></div>${controls()}</div>`;
  const canvas=host.querySelector('canvas'),overlay=host.querySelector('[data-arcade-overlay]');let c=null;try{c=canvas.getContext('2d');}catch{}
  let w=320,h=440,game=null,raf=0,last=0,state='ready',dead=false,shake=0,best0=best;const parts=[],floats=[];
- const api={get w(){return w;},get h(){return h;},sfx,say,
+ const api={prompt(text,context){const box=host.querySelector('[data-game-prompt]');box.hidden=!context;box.innerHTML=context?`<p lang="en">${E(text)}</p><p lang="de">${E(context)}</p>`:'';},get w(){return w;},get h(){return h;},sfx,say,
   burst(x,y,color,n=16){if(calm())n=Math.min(n,6);for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=60+Math.random()*240;parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-80,life:.6+Math.random()*.5,color:color&&Math.random()<.6?color:pick(COLORS),size:3+Math.random()*4});}},
   float(x,y,text,color='#ffd166'){floats.push({x,y,text,color,life:1.1});},shake(v=8){if(!calm())shake=Math.max(shake,v);}};
  function size(){const width=host.getBoundingClientRect().width||320;w=Math.round(Math.max(280,Math.min(720,width)));h=Math.round(Math.min(580,Math.max(420,w<520?w*1.38:w*.78)));const dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.height=h+'px';c?.setTransform(dpr,0,0,dpr,0,0);}

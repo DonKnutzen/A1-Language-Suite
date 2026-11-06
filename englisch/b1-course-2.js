@@ -86,7 +86,7 @@
   She has just ___ the exam.|passed|pass|passing|Sie hat gerade die Prüfung bestanden.
   The news ___ really encouraging.|is|are|were|Die Nachricht ist wirklich ermutigend.
   When ___ you hear about it yesterday?|did|have|has|Wann hast du gestern davon erfahren?
-  He hasn't replied ___.|yet|already yesterday|since|Er hat noch nicht geantwortet.
+  He hasn't replied ___.|yet|ever|since|Er hat noch nicht geantwortet.
   I've ___ told her, so you needn't call.|already|yet|ever|Ich habe es ihr bereits gesagt, also brauchst du nicht anzurufen.
   We have just ___ out the result.|found|find|finding|Wir haben gerade das Ergebnis erfahren.
   They ___ the match last Saturday.|won|have won|has won|Sie gewannen das Spiel letzten Samstag.
@@ -101,7 +101,7 @@
   The lecture was so ___ that I nearly fell asleep.|boring|bored|bore|Der Vortrag war so langweilig, dass ich fast einschlief.
   She felt ___ after the long shift.|exhausted|exhausting|exhaust|Nach der langen Schicht fühlte sie sich erschöpft.
   Are you interested ___ joining us?|in|on|for|Bist du daran interessiert, mitzumachen?
-  We're pleased ___ the result.|with|at to|for to|Wir sind mit dem Ergebnis zufrieden.
+  We're pleased ___ the result.|with|on|to|Wir sind mit dem Ergebnis zufrieden.
   Thank you for ___ me when I was worried.|supporting|support|to support|Danke, dass du mich unterstützt hast, als ich besorgt war.`)],
   `Jemand hat eine schlechte Nachricht. Wie reagierst du angemessen?|I'm sorry to hear that.|Congratulations on that!|That must be wonderful!
   Du beschreibst dein eigenes Gefühl.|I was disappointed with the result.|I was disappointing with the result.|The result was disappointed with me.
@@ -168,13 +168,13 @@
   `The house is on the ___ of town.|outskirts|centre|suburbing|Das Haus liegt am Stadtrand.
   We live next ___ a bakery.|to|at|of|Wir wohnen neben einer Bäckerei.
   The flat is ___ the station, just across the road.|opposite|under|inside|Die Wohnung liegt gegenüber dem Bahnhof auf der anderen Straßenseite.
-  One advantage ___ living here is the transport.|of|with to|for to|Ein Vorteil hier zu wohnen ist die Verkehrsanbindung.
+  One advantage ___ living here is the transport.|of|with|to|Ein Vorteil hier zu wohnen ist die Verkehrsanbindung.
   Despite ___ small, the flat is comfortable.|being|it is|be|Trotz ihrer geringen Größe ist die Wohnung bequem.
   Although the rent ___ high, I like the area.|is|being|be|Obwohl die Miete hoch ist, mag ich die Gegend.
   On the other ___, the journey is long.|hand|side of|arm|Andererseits dauert die Fahrt lange.
-  We live ___ the suburbs.|in|on|at to|Wir wohnen in den Vororten.
-  The problem ___ this room is the noise.|with|of to|for to|Das Problem bei diesem Zimmer ist der Lärm.
-  The park is ___ our flat, a two-minute walk.|near|near to of|next|Der Park liegt nahe unserer Wohnung, zwei Gehminuten entfernt.`)],
+  We live ___ the suburbs.|in|on|to|Wir wohnen in den Vororten.
+  The problem ___ this room is the noise.|with|of|for|Das Problem bei diesem Zimmer ist der Lärm.
+  The park is ___ our flat, a two-minute walk.|near|nearly|next|Der Park liegt nahe unserer Wohnung, zwei Gehminuten entfernt.`)],
   `Du gibst einen hypothetischen Ratschlag.|If I were you, I'd ask for repairs.|If I will be you, I ask repairs.|If I am you, I asked.
   Du nennst einen Nachteil nach einem Vorteil.|On the other hand, the rent is high.|Because of it's cheap.|At first hand, high rent.
   Du beschreibst eine Wunschwohnung.|If I had more money, I'd choose a balcony.|If I would have money, I choose.|If I have yesterday, I chose.`,

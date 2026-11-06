@@ -21,10 +21,10 @@
   We didn't use to ___ online.|shop|shopping|shopped|Früher kauften wir nicht online ein.
   I'm not used to ___ so early.|getting up|get up|got up|Ich bin nicht daran gewöhnt, so früh aufzustehen.`),
   topic('Reported speech: Aussagen',`Nach said/told in der Vergangenheit verschiebt sich die Zeitform häufig zurück: am/is → was, are → were, present simple → past simple, will → would, can → could. Pronomen und Zeitangaben ändern sich passend zum Kontext.\n\nSay braucht kein Personenobjekt: she said that … . Tell braucht eins: she told me that … . That kann entfallen. Wenn etwas weiterhin gilt, ist nicht immer eine Zeitverschiebung nötig; hier übst du ausdrücklich Berichte aus einem späteren Zeitpunkt.`,
-  `Yesterday she said, "I am busy." → She said she ___ busy.|was|is|has|Gestern sagte sie, sie sei beschäftigt.
+  `Yesterday she said, "I am busy." → She said she ___ busy. (mit Zeitverschiebung)|was|is|has|Gestern sagte sie, sie sei beschäftigt.
   He ___ me that the connection was weak.|told|said|spoke|Er sagte mir, die Verbindung sei schwach.
-  She said, "I can help." → She said she ___ help.|could|can|may to|Sie sagte, sie könne helfen.
-  "I'll call." → He said he ___ call.|would|will|did|Er sagte, er werde anrufen.
+  She said, "I can help." → She said she ___ help. (mit Zeitverschiebung)|could|can|may|Sie sagte, sie könne helfen.
+  "I'll call." → He said he ___ call. (mit Zeitverschiebung)|would|will|did|Er sagte, er werde anrufen.
   He ___ that he needed a new password.|said|told|asked to|Er sagte, er brauche ein neues Passwort.
   She told ___ that the app was free.|me|to me|say me|Sie sagte mir, die App sei kostenlos.
   "I work at home." → She said she ___ at home.|worked|working|work|Sie sagte, sie arbeite zu Hause.
@@ -45,7 +45,7 @@
   On the one hand, it saves money.|Einerseits spart es Geld.
   We should take the cost into account.|Wir sollten die Kosten berücksichtigen.
   Could we find a compromise?|Könnten wir einen Kompromiss finden?`,
-  [topic('Reale und hypothetische Bedingungen',`First conditional stellt eine als realistisch behandelte Zukunft dar: if + present, will + Infinitiv. Second conditional nimmt eine hypothetische Gegenwart/Zukunft an: if + past, would + Infinitiv. Der Sprecher wählt damit seine Perspektive.\n\nNicht jede Bedingung hat nur eine mögliche Form. Die deutschen Bedeutungen hier machen klar, ob wenn … wird oder wenn … hätte/würde gemeint ist. Unless entspricht if not; never verdoppelt die Verneinung nicht.`,
+  [topic('Reale und hypothetische Bedingungen',`First conditional stellt eine als realistisch behandelte Zukunft dar: if + present, will + Infinitiv. Second conditional nimmt eine hypothetische Gegenwart/Zukunft an: if + past, would + Infinitiv. Der Sprecher wählt damit seine Perspektive.\n\nNicht jede Bedingung hat nur eine mögliche Form. Die deutschen Bedeutungen hier machen klar, ob wenn … wird oder wenn … hätte/würde gemeint ist. Unless entspricht if not. Füge normalerweise kein zusätzliches not hinzu: unless you act = if you do not act.`,
   `If we recycle more, we ___ reduce waste. (reale Prognose)|will|would have|had|Wenn wir mehr recyceln, verringern wir Abfall.
   If I owned a car, I ___ drive less. (hypothetisch)|would|will|have|Wenn ich ein Auto besäße, würde ich weniger fahren.
   Unless we act, the problem ___ get worse. (reale Warnung)|will|would have|had|Wenn wir nicht handeln, wird das Problem schlimmer.
@@ -79,7 +79,7 @@
   You ought to get some rest.|Du solltest dich ausruhen.
   You'd better call the clinic.|Du solltest besser in der Praxis anrufen.
   She might be at the doctor's.|Sie könnte beim Arzt sein.
-  He can't be at home; his car is here.|Er kann nicht zu Hause sein; sein Auto ist hier.
+  He can't be at home; I can see him here at work.|Er kann nicht zu Hause sein; ich sehe ihn hier bei der Arbeit.
   Could I make an appointment?|Könnte ich einen Termin vereinbaren?`,
   [topic('Rat, Dauer und vorsichtige Vorschläge',`Should/ought to geben Rat, could nennt eine mögliche Option. Had better bezieht sich auf eine konkrete Situation und eine drohende Folge: You'd better leave now or you'll miss it.\n\nFür Beschwerden, die bis jetzt dauern, passt present perfect mit for/since: I've had a headache for two days. Die App übt Sprache, keine medizinische Diagnose. Beschreibe klar Dauer und Auswirkung und frage bei Bedarf nach professioneller Hilfe.`,
   `You ought ___ rest after the journey.|to|for|at|Du solltest dich nach der Reise ausruhen.

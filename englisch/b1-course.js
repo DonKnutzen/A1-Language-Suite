@@ -30,9 +30,9 @@
   I ___ what you mean.|understand|am understanding|understands|Ich verstehe, was du meinst.
   At the moment we ___ for a concert.|are practising|practises|practised|Im Moment proben wir für ein Konzert.
   Rosa ___ the bus every morning.|takes|is take|take|Rosa nimmt jeden Morgen den Bus.
-  ___ he studying tonight?|Is|Does|Do|Lernt er heute Abend gerade?
+  ___ he studying right now?|Is|Does|Do|Lernt er gerade?
   We ___ any help right now.|do not need|are not needing|does not need|Wir brauchen gerade keine Hilfe.`),
-  topic('Gründe, Gegensatz und Folge',`Because leitet einen Grund ein; so eine Folge. Although verbindet einen Gegensatz mit einem vollständigen Nebensatz. However ist ein Satzadverb: zwei selbstständige Sätze werden mit Punkt oder Semikolon getrennt.\n\nAfter because folgt Subjekt + Verb, after because of eine Nomengruppe. Vermeide although … but im selben Satz. Damit verknüpfst du Aussagen klar, statt nur einzelne Sätze aufzuzählen.`,
+  topic('Gründe, Gegensatz und Folge',`Because leitet einen Grund ein; so eine Folge. Although verbindet einen Gegensatz mit einem vollständigen Nebensatz. However ist ein Satzadverb: zwei selbstständige Sätze werden mit Punkt oder Semikolon getrennt.\n\nNach because folgt Subjekt + Verb, nach because of eine Nomengruppe. Vermeide although … but im selben Satz. Damit verknüpfst du Aussagen klar, statt nur einzelne Sätze aufzuzählen.`,
   `I practise ___ I want to improve.|because|although|so|Ich übe, weil ich besser werden möchte.
   ___ it was raining, we went out.|Although|Because of|Despite of|Obwohl es regnete, gingen wir hinaus.
   The club was full, ___ we tried another one.|so|because|although|Der Verein war voll, deshalb versuchten wir einen anderen.
@@ -57,8 +57,8 @@
   Have you finished yet?|Bist du schon fertig?
   I've just sent my application.|Ich habe gerade meine Bewerbung abgeschickt.
   I'm responsible for customer service.|Ich bin für den Kundenservice verantwortlich.`,
-  [topic('Present perfect oder past simple?',`Present perfect: have/has + past participle; die Erfahrung oder das Ergebnis ist jetzt wichtig, ohne abgeschlossenen Vergangenheitszeitpunkt. Past simple steht bei einem abgeschlossenen Zeitpunkt wie yesterday, last year oder in 2020.\n\nHave you ever worked abroad? I worked in Dublin in 2022. Unregelmäßig: go–went–gone, write–wrote–written, see–saw–seen. Been bedeutet hier besucht und zurück; gone bedeutet hingegangen und noch dort.`,
-  `I ___ three jobs so far.|have had|had yesterday|has had|Ich hatte bisher drei Arbeitsstellen.
+  [topic('Present perfect oder past simple?',`Present perfect: have/has + past participle; die Erfahrung oder das Ergebnis ist jetzt wichtig, ohne abgeschlossenen Vergangenheitszeitpunkt. Past simple steht bei einem abgeschlossenen Zeitpunkt wie yesterday, last year oder in 2020.\n\nHave you ever worked abroad? I worked in Dublin in 2022. Unregelmäßig: go–went–gone, write–wrote–written, see–saw–seen, lead–led–led, have–had–had. Been bedeutet hier besucht und zurück; gone bedeutet hingegangen und noch dort.`,
+  `I ___ three jobs so far.|have had|have have|has had|Ich hatte bisher drei Arbeitsstellen.
   She ___ in Rome in 2021.|worked|has worked|work|Sie arbeitete 2021 in Rom.
   Have you ever ___ a team?|led|lead|leading|Hast du jemals ein Team geleitet?
   We ___ the course last Friday.|finished|have finished|has finished|Wir beendeten den Kurs letzten Freitag.
@@ -74,9 +74,9 @@
   I've ___ finished; I clicked send a moment ago.|just|yet|ever|Ich bin gerade fertig geworden.
   Has the course started ___?|yet|since|never|Hat der Kurs schon angefangen?
   She has ___ passed; she needs no retake.|already|yet|ever|Sie hat bereits bestanden und braucht keine Wiederholung.
-  How ___ have you worked here?|long|often ago|many|Wie lange arbeitest du hier schon?
-  I haven't met the manager ___.|yet|already yesterday|since|Ich habe die Leitung noch nicht getroffen.
-  Have you ___ applied for a job abroad?|ever|never not|yet since|Hast du dich jemals im Ausland beworben?
+  How ___ have you worked here?|long|much|many|Wie lange arbeitest du hier schon?
+  I haven't met the manager ___.|yet|ever|since|Ich habe die Leitung noch nicht getroffen.
+  Have you ___ applied for a job abroad?|ever|yet|since|Hast du dich jemals im Ausland beworben?
   He has lived here ___ he left school.|since|for|during|Er lebt hier, seit er die Schule verlassen hat.
   We have ___ had a company car: not once.|never|ever|yet|Wir hatten noch nie einen Firmenwagen.`)],
   `Du berichtest über Erfahrung ohne Zeitpunkt.|I've organised events before.|I organise one yesterday.|I have organise before.
@@ -86,7 +86,7 @@
 
   add(3,'Essen planen und Wünsche äußern',
   'Mengen und fehlende Zutaten beschreiben|Höflich bestellen und Vorschläge aushandeln|Eine gemeinsame Mahlzeit organisieren',
-  'ingredient=Zutat;portion=Portion;recipe=Rezept;vegetarian=vegetarisch;allergy=Allergie;available=verfügbar;book a table=einen Tisch reservieren;instead=stattdessen;avoid=vermeiden;recommend=empfehlen;bill=Rechnung;tip=Trinkgeld;a few=ein paar;a little=ein wenig;plenty of=reichlich;run out of=aufbrauchen;grilled=gegrillt;spicy=scharf;starter=Vorspeise;main course=Hauptgericht',
+  'ingredient=Zutat;portion=Portion;recipe=Rezept;vegetarian=vegetarisch;allergy=Allergie;available=verfügbar;book a table=einen Tisch reservieren;instead=stattdessen;avoid=vermeiden;recommend=empfehlen;bill=Rechnung;tip=Trinkgeld;a few=ein paar;a little=ein wenig;plenty of=reichlich;run out of=keinen Vorrat mehr haben an;grilled=gegrillt;spicy=scharf;starter=Vorspeise;main course=Hauptgericht',
   `Could we have the bill, please?|Könnten wir bitte die Rechnung bekommen?
   How about making soup?|Wie wäre es mit Suppe kochen?
   Shall we book a table?|Sollen wir einen Tisch reservieren?
