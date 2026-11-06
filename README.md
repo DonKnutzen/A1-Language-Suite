@@ -1,6 +1,6 @@
 # Language Suite
 
-Browserbasierte Sprachlern-App mit vier A1-Kursen und einem eigenständigen Deutsch-C1-Kurs samt gemeinsamen Profilfunktionen.
+Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen samt gemeinsamen Profilfunktionen.
 
 ## Kurse
 
@@ -8,7 +8,7 @@ Browserbasierte Sprachlern-App mit vier A1-Kursen und einem eigenständigen Deut
 |---|---:|---|
 | Französisch → Deutsch | A1 | `deutsch/` |
 | Deutsch → Französisch | A1 | `francais/` |
-| Deutsch → Englisch | A1 | `englisch/` |
+| Deutsch → Englisch | **B1** | `englisch/` |
 | Deutsch → Spanisch | A1 | `spanisch/` |
 | Türkisch → Deutsch | **C1** | `turkisch-deutsch/` |
 
@@ -30,7 +30,7 @@ Browserbasierte Sprachlern-App mit vier A1-Kursen und einem eigenständigen Deut
 - `shared/` – gemeinsame Funktionen und UI-Bausteine
 - `deutsch/` – Französisch → Deutsch A1
 - `francais/` – Deutsch → Französisch A1
-- `englisch/` – Deutsch → Englisch A1 für Erwachsene
+- `englisch/` – Deutsch → Englisch B1 für Erwachsene (A2 vorausgesetzt)
 - `spanisch/` – Deutsch → Spanisch A1
 - `turkisch-deutsch/` – Türkisch → Deutsch **C1**
 
@@ -45,3 +45,7 @@ Die App benötigt für die vorhandenen Lernfunktionen keine kostenpflichtige API
 ## Daten und Fortschritt
 
 Fortschritt wird pro Profil und Kurs getrennt gespeichert. Der neue Türkisch→Deutsch-C1-Kurs verwendet einen eigenen Kurscode und einen eigenen lokalen Speicherstand; dadurch wird alter A1-Fortschritt nicht fälschlich als C1-Fortschritt übernommen. Wenn eine Cloud-Konfiguration vorhanden ist, kann der bestehende Sync weiterhin verwendet werden. Die Datenbanktabellen speichern Kurscodes als Text, daher ist keine Schema-Migration erforderlich.
+
+## Englisch B1
+
+Der bisherige Englisch-Platz enthält den neuen B1-Kurs mit 24 Lektionen, 72 Hörtexten, 480 Grammatikaufgaben, lektionsbezogenen Hard Modes und vier Arcade-Spielarten. Lehrplan, Quellen, Cambridge-Abgleich und Grenzen sind in [englisch/LEHRPLAN-B1.md](englisch/LEHRPLAN-B1.md) dokumentiert. Der B1-Kurs nutzt eine eigene lokale und Cloud-Kennung. A1-Fortschritt bleibt erhalten und wird nicht übernommen. Mit `npm run test:english` werden die B1-Integrationstests ausgeführt.

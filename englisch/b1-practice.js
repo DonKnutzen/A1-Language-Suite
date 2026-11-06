@@ -1,0 +1,72 @@
+(() => {
+  'use strict';
+  const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const shuffle=xs=>window.A1Learning.shuffle(xs),count=t=>window.A1Learning.countWords(t);
+  const rubrics=[['Inhalt','Sind alle verlangten Punkte beantwortet?'],['Kommunikative Wirkung','Passen Ton, Textsorte und Aussagen zur Leserschaft?'],['Organisation','Sind Absätze, Reihenfolge und Verknüpfungen klar?'],['Sprache','Sind Wortschatz und Strukturen angemessen und verständlich?']];
+  const writing=[
+    {id:'email',title:'E-Mail',lesson:22,prompt:'Alex schreibt: "Would you like to join our language weekend? We can either do a cooking workshop or go on a long walk. Which would you prefer? What else do you need to know?" Reagiere auf die Einladung, wähle mit Begründung eine Aktivität und frage nach der Unterkunft.'},
+    {id:'article',title:'Artikel',lesson:6,prompt:'Ein Freizeitblog fragt: "What is a good way to become more active? Compare two activities and explain which you recommend." Schreibe einen Artikel mit passendem Titel, Vergleich und persönlichem Beispiel.'},
+    {id:'story',title:'Geschichte',lesson:4,prompt:'Deine Geschichte beginnt: "I was waiting for the bus when I heard my name." Entwickle die Begegnung und erzähle ein verständliches Ende.'}
+  ];
+  function render({view,state,save,onBack,speak}){
+    const store=state.b1Formats||={version:1,attempts:{},writing:{},speaking:{}};
+    let playback=0,active=false;
+    function stop(){playback++;active=false;window.A1Voice.cancel();}
+    function home(){
+      stop();view.innerHTML=`<div class="between"><h2>B1 · Prüfungstraining</h2><button class="tiny-btn" id="formatBack">← Abschluss</button></div><p>Eigene Übungen nach den Aufgabenformaten von Cambridge B1 Preliminary. Lesen: sechs Teile mit zusammen 32 Aufgaben. Hören: vier Teile mit 25 Aufgaben. Die Trainingssets sind kürzer und keine vollständige Prüfungssimulation.</p><p class="muted">Cambridge gewichtet Lesen, Schreiben, Hören und Sprechen jeweils mit 25 %. Hier werden objektive Aufgaben automatisch korrigiert; freie Sprache prüfst du selbst. Audio nutzt Browserstimmen. Symbolbilder und Textlängen sind Anpassungen für das App-Training.</p><div class="b1-formats">${EN_B1_EXAM.packs.map(p=>{const a=store.attempts[p.id];return `<button class="card" data-pack="${p.id}"><strong>${E(p.title)}</strong><p>${p.questions.length} Aufgaben · ${a?.result?`${a.result.correct}/${a.result.total} richtig`:a?'Entwurf gespeichert':'Noch offen'}</p></button>`;}).join('')}${writing.map(w=>`<button class="card" data-writing="${w.id}"><strong>Writing · ${w.title}</strong><p>Ungefähr 100 Wörter · ${store.writing[w.id]?.text?'Entwurf vorhanden':'eigener Text'} · Selbstbewertung</p></button>`).join('')}<button class="card" id="formatSpeaking"><strong>Speaking · Vier Teile</strong><p>Persönliches Gespräch · Foto beschreiben · gemeinsam entscheiden · vertiefendes Gespräch</p></button></div>`;
+      view.querySelector('#formatBack').onclick=onBack;
+      view.querySelectorAll('[data-pack]').forEach(b=>b.onclick=()=>pack(EN_B1_EXAM.packs.find(p=>p.id===b.dataset.pack)));
+      view.querySelectorAll('[data-writing]').forEach(b=>b.onclick=()=>write(writing.find(w=>w.id===b.dataset.writing)));
+      view.querySelector('#formatSpeaking').onclick=speaking;
+    }
+    function fresh(p){
+      const old=store.attempts[p.id];
+      const a={version:1,questions:p.questions.map(q=>({...q,options:q.options?shuffle(q.options):undefined})),answers:{},plays:p.audio.map(()=>0),history:[...(old?.history||[]),...(old?[{...old,history:undefined}]:[])]};
+      store.attempts[p.id]=a;save();return a;
+    }
+    function pack(p){
+      stop();const a=store.attempts[p.id]||fresh(p),submitted=!!a.result;
+      view.innerHTML=`<div class="between"><h2>${E(p.title)}</h2><button class="tiny-btn" id="packBack">← Formate</button></div><p>${E(p.instructions)}</p><p class="muted" role="status" id="packStatus">${submitted?'Abgegeben · Lösungen sichtbar':'Entwurf wird gespeichert · Lösungen erst nach Abgabe'}</p>${p.text?`<section class="card b1-reading" lang="en">${E(p.text)}</section>`:''}<section class="card">${p.audio.map((_,i)=>`<div class="b1-toolbar"><strong>Aufnahme ${i+1}</strong><button class="secondary-btn" data-exam-audio="${i}" ${!submitted&&a.plays[i]>=2?'disabled':''}>▶ Anhören ${submitted?'':`(${a.plays[i]}/2)`}</button></div>`).join('')}<p id="packAudioError" role="status"></p>${a.questions.map((q,i)=>`<fieldset class="b1-question"><legend>${i+1}. ${E(q.q)}</legend>${q.options?q.options.map((o,j)=>`<label class="b1-choice"><input type="radio" name="q${i}" data-answer="${i}" value="${j}" ${a.answers[i]===o?'checked':''} ${submitted?'disabled':''}> ${E(o)}</label>`).join(''):`<input type="text" data-answer="${i}" value="${E(a.answers[i]||'')}" aria-label="Antwort ${i+1}" autocomplete="off" ${submitted?'readonly':''}>`}${submitted?`<p class="${a.result.marks[i]?'b1-correct':'b1-incorrect'}">${a.result.marks[i]?'✓ Richtig':'✗ Noch üben'} · Lösung: ${E(q.answer)}</p><p>${E(q.why)}</p>`:''}</fieldset>`).join('')}${submitted?`<h3>${a.result.correct}/${a.result.total} richtig · ${a.result.percent} %</h3><p>Dieser Wert betrifft dieses Trainingsset, keine Cambridge-Note.</p><button class="secondary-btn" id="packNew">Neuer Versuch</button>`:`<button class="primary-btn" id="packSubmit">Zur Abgabe</button><div id="packConfirm"></div>`}</section>${submitted&&p.audio.length?`<details class="card"><summary>Transkripte nach der Abgabe</summary>${p.audio.map(s=>`<p lang="en">${E(typeof s==='string'?s.replace(/^[fm]:/gm,''):s.map(t=>t.text).join(' '))}</p>`).join('')}</details>`:''}`;
+      view.querySelector('#packBack').onclick=home;
+      view.querySelectorAll('[data-answer]').forEach(input=>input.oninput=()=>{const i=Number(input.dataset.answer),q=a.questions[i];a.answers[i]=q.options?q.options[Number(input.value)]:input.value;save();});
+      view.querySelectorAll('[data-exam-audio]').forEach(b=>b.onclick=()=>play(p,a,Number(b.dataset.examAudio)));
+      view.querySelector('#packNew')?.addEventListener('click',()=>{fresh(p);pack(p);});
+      view.querySelector('#packSubmit')?.addEventListener('click',()=>{
+        const missing=a.questions.filter((_,i)=>!a.answers[i]?.trim()).length;
+        view.querySelector('#packConfirm').innerHTML=`<p>${missing?`${missing} unbeantwortete Aufgaben zählen als falsch. `:''}Nach der Abgabe werden Antworten gesperrt und Lösungen sichtbar.</p><button class="primary-btn" id="packConfirmSubmit">Jetzt abgeben</button>`;
+        view.querySelector('#packConfirmSubmit').onclick=()=>{
+          stop();const marks=a.questions.map((q,i)=>EN_A1_HARD_MODE.matches(a.answers[i],[q.answer,...(q.accept||[])],{strictAccents:true}));
+          const correct=marks.filter(Boolean).length;a.result={correct,total:marks.length,percent:Math.round(correct*100/marks.length),marks,submittedAt:Date.now()};save(true);pack(p);
+        };
+      });
+    }
+    function play(p,a,index){
+      if(active){stop();view.querySelectorAll('[data-exam-audio]').forEach(b=>{const i=Number(b.dataset.examAudio);b.disabled=!a.result&&a.plays[i]>=2;b.textContent=`▶ Anhören ${a.result?'':`(${a.plays[i]}/2)`}`;});return;}
+      if(!a.result&&a.plays[index]>=2)return;
+      const s=p.audio[index],turns=typeof s==='string'?s.split('\n').map(x=>({speaker:x[0],gender:x[0]==='f'?'female':'male',text:x.slice(2)})):s;
+      if(!a.result){a.plays[index]++;save();}active=true;const run=++playback;updateAudio();let finished=false;
+      const done=failed=>{if(finished||run!==playback)return;finished=true;active=false;if(failed&&!a.result){a.plays[index]=Math.max(0,a.plays[index]-1);save();}const error=view.querySelector('#packAudioError');if(error)error.textContent=failed?'Audio nicht verfügbar. Der Start wurde zurückerstattet. Prüfe die Stimmen in den Einstellungen.':'';updateAudio();};
+      const started=A1Voice.speakDialogue(turns,{lang:'en-GB',rate:.95,onEnd:()=>done(false),onError:()=>done(true)});if(started===false)done(true);
+      function updateAudio(){view.querySelectorAll('[data-exam-audio]').forEach(b=>{const i=Number(b.dataset.examAudio);b.disabled=active?i!==index:!a.result&&a.plays[i]>=2;b.textContent=active&&i===index?'■ Stoppen · zählt als Start':`▶ Anhören ${a.result?'':`(${a.plays[i]}/2)`}`;});}
+    }
+    function write(w){
+      stop();const a=store.writing[w.id]||={text:'',ratings:[null,null,null,null]},submitted=!!a.submittedAt;
+      view.innerHTML=`<div class="between"><h2>Writing · ${E(w.title)}</h2><button class="tiny-btn" id="writeBack">← Formate</button></div><section class="card"><p>${E(w.prompt)}</p><p>Ziel: ungefähr 100 Wörter. Prüfe alle Inhaltspunkte, Ton und Zusammenhang.</p><label for="b1Draft">Dein Text</label><textarea id="b1Draft" class="b1-writing" ${submitted?'readonly':''}>${E(a.text)}</textarea><p id="b1WordCount" role="status">${count(a.text)} Wörter · Entwurf gespeichert</p>${submitted?`<details><summary>Eine mögliche Antwort</summary><p lang="en">${E(EN_A1_DATA.lessons[w.lesson-1].model)}</p></details><p>Andere passende Antworten sind richtig. Das Raster orientiert sich an Cambridge-Kategorien; die Punkte vergibst du selbst. Es erfolgt keine automatische Sprachbewertung.</p><div class="b1-rubric">${rubrics.map(([name,help],i)=>`<label>${E(name)}: ${E(help)}<br><select data-writing-rating="${i}" aria-label="${E(name)}"><option value="">Bitte selbst bewerten</option>${[0,1,2,3,4,5].map(n=>`<option value="${n}" ${a.ratings[i]===n?'selected':''}>${n} / 5</option>`).join('')}</select></label>`).join('')}</div><p id="writingSelfScore">${a.ratings.every(x=>x!==null)?`Selbstbewertung: ${a.ratings.reduce((s,n)=>s+n,0)}/20`:'Bewerte alle vier Kategorien. 0 = noch nicht erfüllt, 3 = überwiegend gelungen, 5 = sicher gelungen.'}</p><button class="secondary-btn" id="writingRevise">Neue Überarbeitung · bisherigen Text aufbewahren</button>`:`<button class="primary-btn" id="writingSubmit">Zum Vergleich und zur Selbstbewertung</button>`}</section>`;
+      view.querySelector('#writeBack').onclick=home;
+      view.querySelector('#b1Draft').oninput=e=>{a.text=e.target.value;save();view.querySelector('#b1WordCount').textContent=count(a.text)+' Wörter · Entwurf gespeichert';};
+      view.querySelector('#writingSubmit')?.addEventListener('click',()=>{if(!a.text.trim()){view.querySelector('#b1WordCount').textContent='Schreibe zuerst deinen eigenen Text.';return;}a.submittedAt=Date.now();save();write(w);});
+      view.querySelectorAll('[data-writing-rating]').forEach(s=>s.onchange=()=>{a.ratings[Number(s.dataset.writingRating)]=s.value===''?null:Number(s.value);save();view.querySelector('#writingSelfScore').textContent=a.ratings.every(x=>x!==null)?`Selbstbewertung: ${a.ratings.reduce((sum,n)=>sum+n,0)}/20 · keine automatische Note`:'Bitte alle vier Kategorien bewerten.';});
+      view.querySelector('#writingRevise')?.addEventListener('click',()=>{(a.history||=[]).push({text:a.text,ratings:[...a.ratings],submittedAt:a.submittedAt});delete a.submittedAt;a.ratings=[null,null,null,null];save();write(w);});
+    }
+    function speaking(){
+      stop();const a=store.speaking;
+      view.innerHTML=`<div class="between"><h2>Speaking · Vier Teile</h2><button class="tiny-btn" id="speakBack">← Formate</button></div><section class="card"><h3>1 · Persönliches Gespräch</h3><p lang="en">What do you enjoy doing in your free time? Tell me about something you have learned recently. Would you like to work abroad? Why or why not?</p><p>Antworte jeweils mit Grund und einem Beispiel, statt eine auswendig gelernte Rede zu halten.</p></section><section class="card"><h3>2 · Ein Foto beschreiben</h3><img class="b1-photo" src="images/speaking-garden.png" alt="Übungsfoto: Menschen bei einer gemeinsamen Aktivität im Freien"><p>Sprich ungefähr eine Minute. Beschreibe Ort, Personen, sichtbare Tätigkeiten und Umgebung. Kennzeichne Vermutungen ausdrücklich.</p></section><section class="card"><h3>3 · Gemeinsam entscheiden</h3><p lang="en">Your friend wants to celebrate finishing a course. Discuss these ideas: a picnic in a park, a cooking workshop, a museum visit, an outdoor concert, a meal at home. Compare cost, weather and chances to talk. Decide together which would be best.</p><p>Übe mit einer anderen Person. Allein kannst du beide Positionen aufnehmen; echte Interaktion erfordert eine Gesprächspartnerin oder einen Gesprächspartner.</p></section><section class="card"><h3>4 · Vertiefendes Gespräch</h3><p lang="en">Do you prefer celebrating in a small or a large group? How have your interests changed since childhood? Is trying a new activity a good way to meet people?</p></section><section class="card"><h3>Aufnehmen und selbst prüfen</h3><div class="recorder"><button class="secondary-btn" id="startRecB1Format">● Aufnehmen</button><button class="soft-btn" id="stopRecB1Format" disabled>■ Stopp</button></div><div id="recStatusB1Format" role="status"></div><div id="playbackB1Format"></div><p class="muted">Die Aufnahme ist nur in dieser geöffneten Ansicht verfügbar. Notizen und Selbsteinschätzung bleiben gespeichert. Die App bewertet Aussprache und Interaktion nicht automatisch.</p><label for="speakingNotes">Notizen für den nächsten Versuch</label><textarea id="speakingNotes" class="b1-writing">${E(a.notes||'')}</textarea>${['Ich habe zusammenhängend und verständlich gesprochen.','Ich habe passende Wörter und verschiedene Strukturen versucht.','Ich habe Vermutungen von Beobachtungen unterschieden.','Ich habe auf die andere Person reagiert und sie einbezogen.'].map((s,i)=>`<label style="display:block;margin:12px 0"><input type="checkbox" data-speaking-check="${i}" ${a.checks?.[i]?'checked':''}> ${E(s)}</label>`).join('')}</section>`;
+      view.querySelector('#speakBack').onclick=home;
+      view.querySelector('#speakingNotes').oninput=e=>{a.notes=e.target.value;save();};
+      view.querySelectorAll('[data-speaking-check]').forEach(c=>c.onchange=()=>{(a.checks||={})[c.dataset.speakingCheck]=c.checked;save();});
+      A1Learning.wireRecorder('B1Format',()=>save(true),{unavailable:'Aufnahme ist in diesem Browser nicht verfügbar. Du kannst die Aufgabe laut und mit einer anderen Person üben.',denied:'Mikrofonzugriff wurde nicht erlaubt.',recording:'Aufnahme läuft …',done:'Aufnahme bereit. Höre sie an und prüfe die Verständlichkeit.',empty:'Keine Aufnahme erkannt.'});
+    }
+    home();
+  }
+  window.EN_B1_PRACTICE={render,rubrics,writing};
+})();

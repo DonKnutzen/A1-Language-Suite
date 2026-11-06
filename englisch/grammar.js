@@ -18,7 +18,7 @@
     return `<div class="en-rule">${topic.rule.split('\n\n').map(p=>`<p>${esc(p)}</p>`).join('')}${table?`<div class="en-rule-table-wrap"><table class="en-rule-table"><caption>${esc(table.caption)}</caption><thead><tr>${table.headings.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${table.rows.map(row=>`<tr><th scope="row">${esc(row[0])}</th>${row.slice(1).map(cell=>`<td lang="en">${esc(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:''}</div>`;
   }
   function grammarHtml(lesson){
-    return `<div class="lesson-deepening">${lesson.topics.map((t,index)=>`<details class="grammar-detail" data-deepening-key="${t.key}"><summary>${esc(t.title)}</summary><div class="grammar-detail-body">${ruleHtml(t)}${pairs(t.examples)}<details class="en-more-examples"><summary>Weitere Beispiele mit Übersetzung</summary>${pairs(t.rows.slice(0,10).map(([s,a,,,m])=>[s.replace('___',a),m]))}</details>${stageHtml(lesson.id,'grammar:'+index)}<div data-english-practice="${t.key}"></div></div></details>`).join('')}</div>`;
+    return `<div class="lesson-deepening">${lesson.topics.map((t,index)=>`<details class="grammar-detail" data-deepening-key="${t.key}"><summary>${esc(t.title)}</summary><div class="grammar-detail-body">${ruleHtml(t)}${pairs(t.examples)}<details class="en-more-examples"><summary>Weitere Beispiele mit Übersetzung</summary>${pairs(t.rows.slice(0,6).map(([s,a,,,m])=>[s.replace('___',a),m]))}</details>${stageHtml(lesson.id,'grammar:'+index)}<div data-english-practice="${t.key}"></div></div></details>`).join('')}</div>`;
   }
   function topicDone(state,id,key){const p=state.lessonWork?.[id]?.deepening?.[key];return p?.done===true||Number(p?.best||0)>=80;}
   function refreshPractice(progress,tasks){
@@ -38,14 +38,14 @@
       const t=lesson.topics.find(t=>t.key===host.dataset.englishPractice);if(!t)return;
       const work=(state.lessonWork||={})[lesson.id]||={};const progress=(work.deepening||={})[t.key]||={};
       if(Number(progress.best||0)>=80)progress.done=true;
-      host.innerHTML=`<div class="deepening-practice"><p class="muted">10 Aufgaben zu diesem Thema${progress.best!=null?' · Bestwert '+progress.best+' %':''}</p><button class="primary-btn exercise-start-btn ${progress.done?'is-completed':'en-action-current'}" data-grammar-start>${progress.session?'Übung fortsetzen':progress.done?'Thema bestanden · wiederholen':'Dieses Thema üben'}</button></div>`;
+      host.innerHTML=`<div class="deepening-practice"><p class="muted">${t.practice.length} Aufgaben zu diesem Thema${progress.best!=null?' · Bestwert '+progress.best+' %':''}</p><button class="primary-btn exercise-start-btn ${progress.done?'is-completed':'en-action-current'}" data-grammar-start>${progress.session?'Übung fortsetzen':progress.done?'Thema bestanden · wiederholen':'Dieses Thema üben'}</button></div>`;
       host.querySelector('button').onclick=()=>{
         const view=document.getElementById('view');
         const returnTo=()=>window.EN_A1_OPEN_LESSON?.(lesson.id,{step:'grammar',grammarIndex:lesson.topics.indexOf(t)});
         const exercises=A1Learning.shuffle(t.practice).map(q=>{const o=A1Learning.shuffle(q.o);return {...q,o,a:o.indexOf(q.answer)};});
         refreshPractice(progress,t.practice);
         A1Voice.cancel();
-        A1ExerciseEngine.run({lesson,view,exercises,progress,exerciseVersion:162,review:true,selectionOnly:true,answerAudioAfterResponse:true,targetLang:'en',uiLang:'de',
+        A1ExerciseEngine.run({lesson,view,exercises,progress,exerciseVersion:1001,review:true,selectionOnly:true,answerAudioAfterResponse:true,targetLang:'en',uiLang:'de',
           playAudio:s=>speak(s,true),playFeedbackAudio:s=>speak(s,false),onBack:returnTo,
           saveProgress:()=>{window.EN_A1_REVIEW?.captureGrammar(state,lesson.id,t.key,t.title,progress.session);save();},
           onFinish:(score,total)=>{
@@ -66,7 +66,7 @@
   };
   const preparationHtml=(_course,id,step)=>{
     if(step!=='hard')return '';
-    return `${stageHtml(id,'hard')}<p class="muted">Im Finale & Arcade schreibst du die englischen Angaben selbst. Bei Zahlen, Uhrzeiten und Codes steht das gewünschte Format in der Frage.</p>${Number(id)===24?'<p>Postleitzahlen im englischsprachigen Raum können aus Buchstaben und Ziffern bestehen. Höre die Zeichen einzeln ab; ein Leerzeichen ist optional.</p>':''}`;
+    return `${stageHtml(id,'hard')}<p class="muted">Im Finale & Arcade schreibst du die englischen Angaben selbst. Bei Zahlen, Uhrzeiten und Codes steht das gewünschte Format in der Frage.</p>`;
   };
   window.EN_A1_DEEPENING={pools,grammarHtml,enrich:grammarHtml,topicDone,decorate,refreshPractice};
   window.A1LessonFoundations={content:window.EN_A1_FOUNDATIONS,render:(_course,id)=>stageHtml(id,'listen'),enhance:(_course,_id,_title,html)=>html,vocabularyHtml,preparationHtml,hardInstructionsHtml:()=>''};
