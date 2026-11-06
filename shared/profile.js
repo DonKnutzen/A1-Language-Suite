@@ -1101,6 +1101,43 @@ function injectChip(){
   target.appendChild(b);
 }
 
+// Remember the actual remote snapshot, rather than disabling reads for the whole tab.
+let courseRefreshRunning=false;
+async function refreshCourseFromCloud(){
+  const p=getCurrent();
+  if(!cloudConfigured||p?.mode!=='cloud'||!META.course||!META.stateBaseKey||courseRefreshRunning)return;
+  // Do not replace work which is still waiting to be uploaded.
+  if(SYNC_PENDING.has(META.course)||SYNC_REQUESTS.has(META.course))return;
+  courseRefreshRunning=true;
+  const version=resetVersion,key=namespacedKey(META.stateBaseKey);
+  const before=localStorage.getItem(key);
+  const flag=`a1suite.hydrated:${p.profileKey}:${META.course}`;
+  try{
+    const remote=await cloudGet(META.course);
+    if(version!==resetVersion||getCurrent()?.profileKey!==p.profileKey||getCurrent()?.userId!==p.userId||
+       localStorage.getItem(key)!==before||SYNC_PENDING.has(META.course)||SYNC_REQUESTS.has(META.course))return;
+    if(remote?.progress_data){
+      const json=JSON.stringify(remote.progress_data);
+      if(json!==before&&sessionStorage.getItem(flag)!==json){
+        localStorage.setItem(key,json);
+        sessionStorage.setItem(flag,json);
+        location.reload();
+        return;
+      }
+      sessionStorage.setItem(flag,json);
+    }else if(before){
+      await cloudPut(META.course,JSON.parse(before),pagePercent());
+    }
+  }catch{} // A later focus/online event retries a failed read.
+  finally{courseRefreshRunning=false;}
+}
+window.addEventListener('focus',()=>refreshCourseFromCloud());
+window.addEventListener('online',()=>refreshCourseFromCloud());
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible')refreshCourseFromCloud();
+  else for(const [course,flush] of SYNC_PENDING){clearTimeout(SYNC_TIMERS.get(course));flush();}
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
   injectStyles();
   injectThemeButton();
@@ -1115,33 +1152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   injectChip();
 
   if(cloudConfigured && p.mode === 'cloud' && META.course && META.stateBaseKey){
-    const flag = `a1suite.hydrated:${p.profileKey}:${META.course}`;
-
-    if(!sessionStorage.getItem(flag)){
-      sessionStorage.setItem(flag,'1');
-
-      try{
-        const version=resetVersion;
-        const remote = await cloudGet(META.course);
-        if(version!==resetVersion)return;
-        const key = namespacedKey(META.stateBaseKey);
-        const local = localStorage.getItem(key);
-
-        if(remote?.progress_data){
-          const remoteJson = JSON.stringify(remote.progress_data);
-
-          if(remoteJson !== local){
-            localStorage.setItem(key, remoteJson);
-            location.reload();
-            return;
-          }
-        }else if(local){
-          await cloudPut(META.course, JSON.parse(local), pagePercent());
-        }else{
-          await cloudPut(META.course, {}, 0);
-        }
-      }catch{}
-    }
+    await refreshCourseFromCloud();
 
     // Backfill/refresh the leaderboard from the progress already loaded by app.js.
     // This also repairs profiles that had course progress before leaderboard_entries existed.

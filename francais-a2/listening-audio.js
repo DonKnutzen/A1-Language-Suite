@@ -4,10 +4,11 @@
   const voice=window.A1Voice;if(!voice)return;
   const original={cancel:voice.cancel,speak:voice.speak,speakSequence:voice.speakSequence,speakDialogue:voice.speakDialogue};
   const digits=['zéro','un','deux','trois','quatre','cinq','six','sept','huit','neuf'];
-  let generation=0,timer=null,onCancel=null;
-  function cancel(){const stopped=onCancel;onCancel=null;generation++;if(timer!==null)window.clearTimeout(timer);timer=null;original.cancel();stopped?.();}
+  let generation=0,timer=null,onCancel=null,currentUtterance=null;
+  function stopPacing(){const stopped=onCancel;onCancel=null;generation++;if(timer!==null)window.clearTimeout(timer);timer=null;currentUtterance=null;stopped?.();}
+  function cancel(){stopPacing();original.cancel();}
   voice.cancel=cancel;
-  for(const method of ['speak','speakSequence'])voice[method]=function(...args){cancel();return original[method](...args);};
+  for(const method of ['speak','speakSequence'])voice[method]=function(...args){stopPacing();return original[method](...args);};
   const letter=text=>window.A1Pronunciation?.spellParts(text,'fr')?.join(' ')||text;
   function dictations(text){
     const found=[];
@@ -40,16 +41,16 @@
     const synth=window.speechSynthesis;if(!synth||typeof window.SpeechSynthesisUtterance==='undefined')return false;
     const rate=Number(options.rate??.75),parts=plan(turns,rate);if(!parts.length)return false;
     cancel();const run=generation,pair=voice.dialogueVoices('fr-FR');const roles=window.A1DialogueVoices?.plan('fr-FR',turns);window.A1DialogueVoices?.announce(roles?.notice||'');let index=0,lastTurn=-1,finished=false;
-    function finish(failed){if(finished||run!==generation)return;finished=true;onCancel=null;if(timer!==null)window.clearTimeout(timer);timer=null;(failed?options.onError:options.onEnd)?.();}
+    function finish(failed){if(finished||run!==generation)return;finished=true;onCancel=null;currentUtterance=null;if(timer!==null)window.clearTimeout(timer);timer=null;(failed?options.onError:options.onEnd)?.();}
     onCancel=()=>{if(finished)return;finished=true;options.onEnd?.();};
     function next(){
       if(run!==generation||finished)return;
       if(index>=parts.length){finish(false);return;}
       const part=parts[index++],selected=roles?.bySpeaker[part.speaker]||pair[part.gender==='male'?'B':part.gender==='female'?'A':part.speaker]||voice.select('fr-FR');
-      const u=new window.SpeechSynthesisUtterance(part.text);u.lang=selected?.lang||'fr-FR';if(selected)u.voice=selected;u.rate=part.rate;u.pitch=1;u.volume=1;
+      const u=new window.SpeechSynthesisUtterance(part.text);currentUtterance=u;u.lang=selected?.lang||'fr-FR';if(selected)u.voice=selected;u.rate=part.rate;u.pitch=1;u.volume=1;
       if(lastTurn!==part.turn){lastTurn=part.turn;options.onTurn?.(part.speaker,part.turn);}
       let handled=false;
-      u.onend=()=>{if(handled||run!==generation||finished)return;handled=true;if(index>=parts.length)finish(false);else timer=window.setTimeout(()=>{timer=null;next();},part.pause);};
+      u.onend=()=>{if(handled||run!==generation||finished)return;handled=true;currentUtterance=null;if(index>=parts.length)finish(false);else timer=window.setTimeout(()=>{timer=null;next();},part.pause);};
       u.onerror=()=>{if(handled)return;handled=true;finish(true);};
       if(synth.paused)synth.resume?.();
       try{synth.speak(u);}catch{finish(true);}
