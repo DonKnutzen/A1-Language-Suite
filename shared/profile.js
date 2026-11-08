@@ -9,6 +9,90 @@ const SYNC_TIMERS = new Map();
 const SYNC_REQUESTS = new Map();
 let resetVersion=0;
 const SYNC_PENDING=new Map();
+const SYNC_PREFIX='a1suite.syncQueue:';
+const SYNC_SNAPSHOTS=new Map();
+let tokenRefresh=null;
+let syncStatus='checking';
+let courseRefreshRunning=false;
+let retryTimer=null;
+const clone=value=>value===undefined?undefined:JSON.parse(JSON.stringify(value));
+const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
+const sameProfile=p=>{const current=getCurrent();return !!p&&current?.profileKey===p.profileKey&&current?.userId===p.userId&&current?.mode===p.mode;};
+const parse=value=>{try{return JSON.parse(value||'null');}catch{return null;}};
+
+// Completion and personal bests are facts. Device-local navigation, answers and
+// settings are snapshots: keep the newer snapshot without combining answer arrays.
+function mergeProgress(left={},right={}){
+  if(!object(left))left={};if(!object(right))right={};
+  const le=String(left._sync?.epoch||''),re=String(right._sync?.epoch||'');
+  if(le!==re)return clone(le>re?left:right);
+  const preferRight=String(right._sync?.modified||'')>=String(left._sync?.modified||'');
+  const sets=new Set(['doneLessons','masteredListening','masteredReading','writingDone','speakingDone','heardPhrases','days','vocabKnown']);
+  function merge(a,b,path=[]){
+    if(a===undefined)return clone(b);if(b===undefined)return clone(a);
+    const name=path[path.length-1]||'';
+    if(Array.isArray(a)&&Array.isArray(b)){
+      if(sets.has(name)||path[0]==='practiceDone')return [...new Set([...a,...b])].sort((x,y)=>typeof x==='number'&&typeof y==='number'?x-y:String(x).localeCompare(String(y)));
+      // Histories are immutable completed attempts, not live answer sequences.
+      if(name==='history')return [...new Map([...a,...b].map(v=>[JSON.stringify(v),v])).values()].map(clone);
+      return clone(preferRight?b:a);
+    }
+    if(object(a)&&object(b)){
+      if(['session','attempt','lastResult','comprehension','settings','dtbComponents'].includes(name))return clone(preferRight?b:a);
+      if(a.lastAt!==undefined&&b.lastAt!==undefined)return clone(Number(a.lastAt)>Number(b.lastAt)?a:b);
+      const result={};
+      for(const key of new Set([...Object.keys(a),...Object.keys(b)])){
+        if(['__proto__','constructor','prototype'].includes(key))continue;
+        result[key]=merge(a[key],b[key],[...path,key]);
+      }
+      return result;
+    }
+    if(typeof a==='number'&&typeof b==='number'&&
+       (path.some(k=>/best|examScores|examAttempts/i.test(k))||name==='lastLessonId'))return Math.max(a,b);
+    if(typeof a==='boolean'&&typeof b==='boolean'&&/^(done|.*Done|completed|passed)$/.test(name))return a||b;
+    if(b===null&&object(a)&&!preferRight)return clone(a);
+    return clone(preferRight?b:a);
+  }
+  return merge(left,right);
+}
+
+function queueKey(p,course){return `${SYNC_PREFIX}${p.userId}:${courseCode(course)||course}`;}
+function queuedItems(p=getCurrent()){
+  if(!p?.userId)return [];
+  const result=[];
+  for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i);
+    if(key?.startsWith(`${SYNC_PREFIX}${p.userId}:`)){
+      const item=parse(localStorage.getItem(key));if(item&&item.userId===p.userId)result.push(item);
+    }
+  }
+  return result;
+}
+function setSyncStatus(status){
+  syncStatus=status;
+  const label={de:{checking:'Cloud wird geprüft…',saving:'Fortschritt wird gesichert…',synced:'Cloud synchronisiert',pending:'Offline / Speichern ausstehend',error:'Cloud nicht erreichbar – Fortschritt lokal gesichert'},
+    en:{checking:'Checking cloud…',saving:'Saving progress…',synced:'Cloud synchronized',pending:'Offline / waiting to save',error:'Cloud unavailable – progress saved on this device'},
+    fr:{checking:'Vérification du cloud…',saving:'Enregistrement…',synced:'Cloud synchronisé',pending:'Hors ligne / en attente',error:'Cloud indisponible – progression enregistrée sur cet appareil'},
+    tr:{checking:'Bulut denetleniyor…',saving:'İlerleme kaydediliyor…',synced:'Bulut eşitlendi',pending:'Çevrimdışı / kayıt bekliyor',error:'Buluta ulaşılamıyor – ilerleme bu cihazda kayıtlı'}};
+  const connected={de:'Cloud-Konto verbunden',en:'Cloud account connected',fr:'Compte cloud connecté',tr:'Bulut hesabı bağlı'};
+  for(const [lang,text] of Object.entries(connected))label[lang].connected=text;
+  document.querySelectorAll('[data-cloud-status]').forEach(el=>{el.textContent=(label[getUiLang()]||label.de)[status];el.dataset.cloudStatus=status;});
+  window.dispatchEvent(new CustomEvent('a1suite:syncstatus',{detail:{status}}));
+}
+function scheduleRetry(){
+  if(retryTimer)return;
+  retryTimer=setTimeout(()=>{retryTimer=null;flushProgress().catch(()=>{});},15000);
+}
+function rememberProgress(course,payload,percent){
+  const p=getCurrent();if(p?.mode!=='cloud')return null;
+  const key=queueKey(p,course),previous=parse(localStorage.getItem(key));
+  const item={id:crypto.randomUUID(),userId:p.userId,profileKey:p.profileKey,course,
+    payload:mergeProgress(previous?.payload,payload),percent:clampPercent(percent),
+    stateBaseKey:course===META.course?META.stateBaseKey:previous?.stateBaseKey};
+  localStorage.setItem(key,JSON.stringify(item));
+  setSyncStatus(navigator.onLine===false?'pending':'saving');
+  return item;
+}
 
 function applyTheme(){
   const theme = localStorage.getItem(THEME_KEY) || 'dark';
@@ -188,7 +272,7 @@ applyTheme();
   function cleanLang(v){ return v === 'tr' ? 'tr' : v === 'fr' ? 'fr' : v === 'en' ? 'en' : 'de'; }
   function getCurrent(){ try{return JSON.parse(localStorage.getItem(CURRENT_KEY) || 'null');}catch{return null;} }
   function setCurrent(p){ localStorage.setItem(CURRENT_KEY, JSON.stringify(p)); }
-  function clearCurrent(){ for(const timer of SYNC_TIMERS.values()) clearTimeout(timer); SYNC_TIMERS.clear(); localStorage.removeItem(CURRENT_KEY); }
+  function clearCurrent(){ for(const timer of SYNC_TIMERS.values()) clearTimeout(timer); SYNC_TIMERS.clear(); SYNC_PENDING.clear(); localStorage.removeItem(CURRENT_KEY); }
   function registry(){ try{return JSON.parse(localStorage.getItem(REGISTRY_KEY) || '{}');}catch{return {};} }
   function saveRegistry(r){ localStorage.setItem(REGISTRY_KEY, JSON.stringify(r)); }
   function getUiLang(){
@@ -264,7 +348,7 @@ applyTheme();
   }
 
   async function authPost(path, body){
-    const r = await fetch(`${cfg.supabaseUrl}/auth/v1/${path}`, {
+    const r = await fetchWithTimeout(`${cfg.supabaseUrl}/auth/v1/${path}`, {
       method:'POST',
       headers:authHeaders(),
       body:JSON.stringify(body)
@@ -276,20 +360,29 @@ applyTheme();
   async function ensureToken(){
     const p = getCurrent();
     if(!p || p.mode !== 'cloud') return null;
-
-    const now = Math.floor(Date.now()/1000);
-    if(p.access_token && (!p.expires_at || p.expires_at - now > 60)) return p.access_token;
-    if(!p.refresh_token) return null;
-
-    const j = await authPost('token?grant_type=refresh_token', {refresh_token:p.refresh_token});
-    const next = {
-      ...p,
-      access_token:j.access_token,
-      refresh_token:j.refresh_token || p.refresh_token,
-      expires_at:now + (j.expires_in || 3600)
+    const fresh=profile=>profile?.access_token&&(!profile.expires_at||profile.expires_at-Date.now()/1000>60);
+    if(fresh(p))return p.access_token;
+    if(tokenRefresh){await tokenRefresh;if(!sameProfile(p))throw new Error('Profile changed');return getCurrent()?.access_token;}
+    const refresh=async()=>{
+      if(!sameProfile(p))throw new Error('Profile changed');
+      const current=getCurrent();
+      if(fresh(current))return current.access_token;
+      if(!current.refresh_token)throw new Error('No active cloud session');
+      const j=await authPost('token?grant_type=refresh_token',{refresh_token:current.refresh_token});
+      if(!sameProfile(p))throw new Error('Profile changed');
+      setCurrent({...getCurrent(),access_token:j.access_token,refresh_token:j.refresh_token||current.refresh_token,
+        expires_at:Math.floor(Date.now()/1000)+(j.expires_in||3600)});
+      return j.access_token;
     };
-    setCurrent(next);
-    return next.access_token;
+    // Refresh tokens rotate. Serialize refreshes across course tabs where supported.
+    tokenRefresh=(navigator.locks?navigator.locks.request(`a1suite.token:${p.userId}`,refresh):refresh());
+    try{return await tokenRefresh;}finally{tokenRefresh=null;}
+  }
+
+  async function fetchWithTimeout(url,options={}){
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+    try{return await fetch(url,{...options,signal:controller.signal,cache:'no-store'});}
+    finally{clearTimeout(timer);}
   }
 
   async function cloudUpdateUserMeta(data){
@@ -304,9 +397,11 @@ applyTheme();
   }
 
   async function restGet(path){
+    const p=getCurrent();
     const token = await ensureToken();
     if(!token) throw new Error('No active cloud session');
-    const r = await fetch(`${cfg.supabaseUrl}/rest/v1/${path}`, {
+    if(!sameProfile(p))throw new Error('Profile changed');
+    const r = await fetchWithTimeout(`${cfg.supabaseUrl}/rest/v1/${path}`, {
       headers:authHeaders(token)
     });
     if(!r.ok) throw await responseError(r);
@@ -314,10 +409,12 @@ applyTheme();
   }
 
   async function restUpsert(table, conflict, row){
+    const p=getCurrent();
     const token = await ensureToken();
     if(!token) throw new Error('No active cloud session');
+    if(!sameProfile(p)||row.user_id&&row.user_id!==p.userId)throw new Error('Profile changed');
 
-    const r = await fetch(
+    const r = await fetchWithTimeout(
       `${cfg.supabaseUrl}/rest/v1/${table}?on_conflict=${encodeURIComponent(conflict)}`,
       {
         method:'POST',
@@ -355,7 +452,7 @@ applyTheme();
 
   async function cloudGet(course){
     const p = getCurrent();
-    const code = courseCode(course);
+    const code = courseCode(course)||(course==='a1-daily-streak'?course:null);
     if(!p || p.mode !== 'cloud' || !code) return null;
 
     const rows = await restGet(
@@ -368,27 +465,43 @@ applyTheme();
 
   async function writeCloudProgress(course, payload, percent=0){
     const p = getCurrent();
-    const code = courseCode(course);
-    if(!p || p.mode !== 'cloud' || !code) return;
-
-    const pct = clampPercent(percent);
-    const now = new Date().toISOString();
-
-    await Promise.all([
-      restUpsert('course_progress', 'user_id,course', {
-        user_id:p.userId,
-        course:code,
-        progress_data:payload || {},
-        percent:pct,
-        updated_at:now
-      }),
-      restUpsert('leaderboard_entries', 'user_id,course', {
-        user_id:p.userId,
-        course:code,
-        percent:pct,
-        updated_at:now
-      })
-    ]);
+    const code = courseCode(course)||(course==='a1-daily-streak'?course:null);
+    if(!p || p.mode !== 'cloud' || !code)throw new Error('No active cloud session');
+    for(let attempt=0;attempt<8;attempt++){
+      const remote=await cloudGet(course);
+      if(!sameProfile(p))throw new Error('Profile changed');
+      const merged=mergeProgress(remote?.progress_data,payload);
+      const remoteEpoch=String(remote?.progress_data?._sync?.epoch||''),localEpoch=String(payload?._sync?.epoch||'');
+      let pct=code==='a1-daily-streak'?0:clampPercent(remoteEpoch>localEpoch?remote.percent:
+        localEpoch>remoteEpoch?percent:Math.max(remote?.percent||0,percent));
+      // Current course identities have fixed curricula; derive the union's true
+      // percentage rather than keeping the larger of two partial percentages.
+      const total={'de':24,'fr':24,'fr-a2':24,'en-b1':24,'es':24,'de-c1-tr':40}[code];
+      if(total&&Array.isArray(merged.doneLessons))pct=clampPercent(new Set(merged.doneLessons.filter(id=>Number.isInteger(id)&&id>0&&id<=total)).size/total*100);
+      const now=new Date(Math.max(Date.now(),Date.parse(remote?.updated_at||'')+1||0)).toISOString();
+      const row={user_id:p.userId,course:code,progress_data:merged,percent:pct,updated_at:now};
+      const token=await ensureToken();
+      if(!sameProfile(p)||!token)throw new Error('Profile changed');
+      const filter=`user_id=eq.${encodeURIComponent(p.userId)}&course=eq.${encodeURIComponent(code)}`;
+      // Conditional PATCH is an atomic compare-and-swap on the database row.
+      // A competing device gets zero rows, reads again, and merges both results.
+      const path=remote?`course_progress?${filter}&updated_at=eq.${encodeURIComponent(remote.updated_at)}`:
+        'course_progress?on_conflict=user_id,course';
+      const response=await fetchWithTimeout(`${cfg.supabaseUrl}/rest/v1/${path}`,{
+        method:remote?'PATCH':'POST',headers:{...authHeaders(token),
+          Prefer:remote?'return=representation':'resolution=ignore-duplicates,return=representation'},body:JSON.stringify(row)
+      });
+      if(!response.ok)throw await responseError(response);
+      const rows=await response.json();
+      if(!sameProfile(p))throw new Error('Profile changed');
+      if(!rows.length)continue;
+      // The leaderboard is derived data; failure must not discard saved progress.
+      if(code!=='a1-daily-streak')await restUpsert('leaderboard_entries','user_id,course',{
+        user_id:p.userId,course:code,percent:pct,updated_at:now
+      }).catch(()=>{});
+      return rows[0];
+    }
+    throw new Error('Cloud busy; progress will be retried');
   }
 
   function queueCourseWrite(course,write){
@@ -408,20 +521,60 @@ applyTheme();
     return queueCourseWrite(course,()=>writeCloudProgress(course,payload,percent));
   }
 
+  async function uploadItem(item){
+    const p=getCurrent();if(!p||p.userId!==item.userId)return;
+    try{
+      const row=await cloudPut(item.course,item.payload,item.percent);
+      if(!row||!sameProfile(p))return;
+      const qkey=queueKey(p,item.course),latest=parse(localStorage.getItem(qkey));
+      if(item.stateBaseKey){
+        const key=`${item.stateBaseKey}::profile:${p.profileKey}`;
+        const before=localStorage.getItem(key),merged=mergeProgress(row.progress_data,parse(before)||{}),json=JSON.stringify(merged);
+        localStorage.setItem(key,json);SYNC_SNAPSHOTS.set(qkey,merged);
+        if(item.course===META.course&&before!==json&&typeof window.A1ApplyCloudProgress==='function')window.A1ApplyCloudProgress(merged);
+      }
+      if(latest?.id===item.id)localStorage.removeItem(qkey);
+      setSyncStatus(queuedItems(p).length?'saving':'synced');
+    }catch(error){
+      if(sameProfile(p)){setSyncStatus(navigator.onLine===false?'pending':'error');scheduleRetry();}
+      throw error;
+    }
+  }
+
+  async function flushProgress(){
+    const p=getCurrent();if(!cloudConfigured||p?.mode!=='cloud')return;
+    for(const timer of SYNC_TIMERS.values())clearTimeout(timer);
+    SYNC_TIMERS.clear();SYNC_PENDING.clear();
+    for(const item of queuedItems(p)){
+      if(!sameProfile(p))return;
+      await uploadItem(item);
+    }
+    await Promise.all([...SYNC_REQUESTS.values()].flatMap(x=>[...x]));
+  }
+
   function saveProgress(course, payload, percent){
     const p = getCurrent();
     if(!cloudConfigured || !p || p.mode !== 'cloud') return;
 
+    const qkey=queueKey(p,course),snapshot=clone(payload);
+    const previous=SYNC_SNAPSHOTS.get(qkey);
+    const modified=Math.max(Date.now(),Number(String(previous?._sync?.modified||'').split('-')[0])+1||0,
+      Number(String(snapshot._sync?.modified||'').split('-')[0])+1||0);
+    snapshot._sync={...snapshot._sync,modified:`${modified}-${crypto.randomUUID()}`};
+    const merged=mergeProgress(previous,snapshot);
+    if(String(merged._sync?.epoch||'')!==String(snapshot._sync?.epoch||'')){
+      // A reset on another device invalidated this running exercise.
+      if(course===META.course&&META.stateBaseKey)localStorage.setItem(namespacedKey(META.stateBaseKey),JSON.stringify(merged));
+      location.reload();return;
+    }
+    // Exercise handlers retain references into state. Do not replace their work
+    // objects while they are answering; the course adapter applies changes safely.
+    payload._sync=clone(merged._sync);
+    if(course===META.course&&META.stateBaseKey)localStorage.setItem(namespacedKey(META.stateBaseKey),JSON.stringify(merged));
+    SYNC_SNAPSHOTS.set(qkey,merged);
+    const item=rememberProgress(course,merged,Number.isFinite(Number(percent))?percent:pagePercent());
     clearTimeout(SYNC_TIMERS.get(course));
-    const snapshot=JSON.parse(JSON.stringify(payload));
-    const flush=() => {
-        SYNC_TIMERS.delete(course);
-        SYNC_PENDING.delete(course);
-        const current = getCurrent();
-        if(!current || current.profileKey !== p.profileKey || current.userId !== p.userId) return;
-        const pct = Number.isFinite(Number(percent)) ? Number(percent) : pagePercent();
-        cloudPut(course,snapshot,pct).catch(()=>{});
-    };
+    const flush=()=>{SYNC_TIMERS.delete(course);SYNC_PENDING.delete(course);if(sameProfile(p))uploadItem(item).catch(()=>{});};
     SYNC_PENDING.set(course,flush);
     SYNC_TIMERS.set(course,setTimeout(flush,650));
   }
@@ -436,7 +589,15 @@ applyTheme();
     if(getCurrent()?.profileKey!==profile?.profileKey)throw new Error('Profile changed');
     if(cloudConfigured&&profile?.mode==='cloud'){
       if(!await ensureToken())throw new Error('No active cloud session');
-      await cloudPut(course,payload,0);
+      const remote=await cloudGet(course);
+      if(!sameProfile(profile))throw new Error('Profile changed');
+      const time=Math.max(Date.now(),Number(String(remote?.progress_data?._sync?.epoch||'').split('-')[0])+1||0);
+      payload._sync={epoch:`${time}-${crypto.randomUUID()}`,modified:`${time}-${crypto.randomUUID()}`};
+      localStorage.removeItem(queueKey(profile,course));
+      const item=rememberProgress(course,payload,0);
+      SYNC_SNAPSHOTS.set(queueKey(profile,course),clone(payload));
+      localStorage.setItem(key,JSON.stringify(payload));
+      await uploadItem(item);
     }
     if(getCurrent()?.profileKey!==profile?.profileKey)throw new Error('Profile changed');
     localStorage.setItem(key,JSON.stringify(payload));
@@ -458,9 +619,8 @@ applyTheme();
   async function saveDailyActivity(payload,expected){
     const p=dailyActivityProfile(expected);
     if(!p)return;
-    await restUpsert('course_progress','user_id,course',{
-      user_id:p.userId,course:'a1-daily-streak',progress_data:payload,percent:0,updated_at:new Date().toISOString()
-    });
+    const item=rememberProgress('a1-daily-streak',payload,0);
+    await uploadItem(item);
   }
 
   async function createProfile(username, pin, uiLang=getUiLang()){
@@ -633,18 +793,17 @@ applyTheme();
     try{
       const version=resetVersion;
       const remote = await cloudGet(META.course);
-      if(version!==resetVersion)return;
+      if(version!==resetVersion||!sameProfile(p))return;
       const key = namespacedKey(META.stateBaseKey);
       const local = localStorage.getItem(key);
 
-      if(remote?.progress_data){
-        localStorage.setItem(key, JSON.stringify(remote.progress_data));
-      }else if(local){
-        await cloudPut(META.course, JSON.parse(local), pagePercent());
-      }else{
-        await cloudPut(META.course, {}, 0);
-      }
-    }catch{}
+      const merged=mergeProgress(remote?.progress_data,parse(local)||{});
+      localStorage.setItem(key,JSON.stringify(merged));SYNC_SNAPSHOTS.set(queueKey(p,META.course),merged);
+      if(JSON.stringify(remote?.progress_data)!==JSON.stringify(merged)){
+        const item=rememberProgress(META.course,merged,Math.max(remote?.percent||0,pagePercent()));
+        await uploadItem(item);
+      }else setSyncStatus('synced');
+    }catch{setSyncStatus('error');scheduleRetry();}
   }
 
   async function syncLeaderboard(course, percent){
@@ -652,13 +811,13 @@ applyTheme();
     const code = courseCode(course);
     if(!cloudConfigured || !p || p.mode !== 'cloud' || !code) return;
 
-    const pct = clampPercent(percent);
-    await queueCourseWrite(course,()=>restUpsert('leaderboard_entries', 'user_id,course', {
-      user_id:p.userId,
-      course:code,
-      percent:pct,
-      updated_at:new Date().toISOString()
-    }));
+    await queueCourseWrite(course,async()=>{
+      const remote=await cloudGet(course);
+      if(!sameProfile(p))return;
+      await restUpsert('leaderboard_entries', 'user_id,course', {
+        user_id:p.userId,course:code,percent:clampPercent(remote?remote.percent:percent),updated_at:new Date().toISOString()
+      });
+    });
   }
 
   async function getLeaderboard(){
@@ -692,6 +851,9 @@ applyTheme();
   }
 
   async function logout(){
+    // Queue entries are already durable. A failed final upload remains associated
+    // with this account and resumes only when this account signs in again.
+    await flushProgress().catch(()=>{});
     clearCurrent();
     location.reload();
   }
@@ -899,7 +1061,7 @@ applyTheme();
 
           <h2>${tr('profile',lang)}</h2>
           <p>${tr('signedInAs',lang)} <strong>${escapeHtml(current.username)}</strong>.</p>
-          <div class="profile-note">${cloudMode ? tr('cloudActive',lang) : tr('localActive',lang)}</div>
+          <div class="profile-note" ${cloudMode?'data-cloud-status="" role="status"':''}>${cloudMode ? tr('cloudActive',lang) : tr('localActive',lang)}</div>
 
           <div class="leaderboard-wrap">
             <div class="leaderboard-title">${tr('leaderboard',lang)}</div>
@@ -914,6 +1076,7 @@ applyTheme();
         </div>`;
 
         wireLang();
+        if(cloudMode)setSyncStatus(syncStatus);
         document.getElementById('pmClose').onclick = () => ov.remove();
         document.getElementById('pmLogout').onclick = logout;
 
@@ -1099,44 +1262,64 @@ function injectChip(){
   b.onclick = () => profileModal(false);
 
   target.appendChild(b);
+  if(p.mode==='cloud'){
+    const status=document.createElement('small');status.setAttribute('data-cloud-status','');status.setAttribute('role','status');
+    target.appendChild(status);setSyncStatus(syncStatus);
+  }
 }
 
-// Remember the actual remote snapshot, rather than disabling reads for the whole tab.
-let courseRefreshRunning=false;
+// Read on every resume and periodically while visible. Never replace a device's
+// unacknowledged work with a remote snapshot, including during the initial login.
 async function refreshCourseFromCloud(){
   const p=getCurrent();
   if(!cloudConfigured||p?.mode!=='cloud'||!META.course||!META.stateBaseKey||courseRefreshRunning)return;
-  // Do not replace work which is still waiting to be uploaded.
-  if(SYNC_PENDING.has(META.course)||SYNC_REQUESTS.has(META.course))return;
   courseRefreshRunning=true;
   const version=resetVersion,key=namespacedKey(META.stateBaseKey);
-  const before=localStorage.getItem(key);
-  const flag=`a1suite.hydrated:${p.profileKey}:${META.course}`;
   try{
+    await flushProgress();
+    if(!sameProfile(p)||version!==resetVersion)return;
+    const before=localStorage.getItem(key);
     const remote=await cloudGet(META.course);
-    if(version!==resetVersion||getCurrent()?.profileKey!==p.profileKey||getCurrent()?.userId!==p.userId||
+    if(version!==resetVersion||!sameProfile(p)||
        localStorage.getItem(key)!==before||SYNC_PENDING.has(META.course)||SYNC_REQUESTS.has(META.course))return;
-    if(remote?.progress_data){
-      const json=JSON.stringify(remote.progress_data);
-      if(json!==before&&sessionStorage.getItem(flag)!==json){
-        localStorage.setItem(key,json);
-        sessionStorage.setItem(flag,json);
-        location.reload();
-        return;
-      }
-      sessionStorage.setItem(flag,json);
-    }else if(before){
-      await cloudPut(META.course,JSON.parse(before),pagePercent());
+    const merged=mergeProgress(remote?.progress_data,parse(before)||{}),json=JSON.stringify(merged);
+    SYNC_SNAPSHOTS.set(queueKey(p,META.course),merged);
+    localStorage.setItem(key,json);
+    if(JSON.stringify(remote?.progress_data)!==json){
+      const item=rememberProgress(META.course,merged,pagePercent());
+      await uploadItem(item);
+    }else setSyncStatus(queuedItems(p).length?'saving':'synced');
+    if(json!==before){
+      if(typeof window.A1ApplyCloudProgress==='function')window.A1ApplyCloudProgress(merged);
+      else location.reload();
     }
-  }catch{} // A later focus/online event retries a failed read.
+  }catch{if(sameProfile(p)){setSyncStatus(navigator.onLine===false?'pending':'error');scheduleRetry();}}
   finally{courseRefreshRunning=false;}
 }
-window.addEventListener('focus',()=>refreshCourseFromCloud());
-window.addEventListener('online',()=>refreshCourseFromCloud());
-document.addEventListener('visibilitychange',()=>{
-  if(document.visibilityState==='visible')refreshCourseFromCloud();
-  else for(const [course,flush] of SYNC_PENDING){clearTimeout(SYNC_TIMERS.get(course));flush();}
+async function resumeSync(){
+  if(!cloudConfigured||getCurrent()?.mode!=='cloud')return;
+  if(META.course)await refreshCourseFromCloud();
+  else try{await ensureToken();await flushProgress();if(!queuedItems().length)setSyncStatus('connected');}
+    catch{setSyncStatus('error');scheduleRetry();}
+}
+window.addEventListener('focus',()=>resumeSync());
+window.addEventListener('online',()=>resumeSync());
+window.addEventListener('pagehide',()=>{flushProgress().catch(()=>{});});
+window.addEventListener('storage',event=>{
+  if(event.key===CURRENT_KEY){
+    const before=parse(event.oldValue),after=parse(event.newValue);
+    if(before?.profileKey!==after?.profileKey||before?.userId!==after?.userId)location.reload();
+  }
 });
+if(cloudConfigured&&getCurrent()?.mode==='cloud')setInterval(()=>{if(document.visibilityState==='visible')resumeSync();},30000);
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible')resumeSync();
+  else flushProgress().catch(()=>{});
+});
+
+if(META.course&&META.stateBaseKey){
+  const p=getCurrent();if(p)SYNC_SNAPSHOTS.set(queueKey(p,META.course),parse(localStorage.getItem(namespacedKey(META.stateBaseKey)))||{});
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
   injectStyles();
@@ -1151,8 +1334,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   injectChip();
 
-  if(cloudConfigured && p.mode === 'cloud' && META.course && META.stateBaseKey){
-    await refreshCourseFromCloud();
+  if(cloudConfigured && p.mode === 'cloud'){
+    await resumeSync();
 
     // Backfill/refresh the leaderboard from the progress already loaded by app.js.
     // This also repairs profiles that had course progress before leaderboard_entries existed.
@@ -1227,6 +1410,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setUiLang,
     namespacedKey,
     saveProgress,
+    flushProgress,
+    getSyncStatus:()=>syncStatus,
     resetProgress,
     getDailyActivity,
     saveDailyActivity,

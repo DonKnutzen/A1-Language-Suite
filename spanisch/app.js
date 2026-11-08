@@ -29,6 +29,8 @@ function save(completed=false){if(completed)A1Streak.completeExercise();
 
 let audioEnabled=localStorage.getItem('esA1AudioEnabled')!=='false';
 let currentRoute='home';
+let cloudStatePending=false;
+window.A1ApplyCloudProgress=()=>{cloudStatePending=true;if(currentRoute==='home'){state=loadState();cloudStatePending=false;renderHome();}};
 const view=document.getElementById('view');
 const audioToggle=document.getElementById('audioToggle');
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
@@ -70,6 +72,7 @@ function skillBar(name){
 }
 
 function setRoute(route){
+  if(cloudStatePending){state=loadState();cloudStatePending=false;}
   currentRoute=route;
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
   ({home:renderHome,learn:renderLearn,practice:renderPractice,exam:renderExam}[route]||renderHome)();

@@ -25,6 +25,8 @@
     lastRoute: 'home'
   };
   let state = window.A1Learning.loadState(stateKey, defaults);
+  let cloudStatePending=false;
+  window.A1ApplyCloudProgress=()=>{cloudStatePending=true;if(state.lastRoute==='home'){state=window.A1Learning.loadState(stateKey,defaults);cloudStatePending=false;renderHome();}};
   // v10 changes the meaning/order of lessons 15–40. Keep genuine foundation progress,
   // but do not let old v1–v9 completion flags falsely complete the rebuilt DTB course.
   if (Number(state.curriculumVersion || 0) < 10) {
@@ -91,6 +93,7 @@
   }
 
   function setRoute(route) {
+    if(cloudStatePending){state=window.A1Learning.loadState(stateKey,defaults);cloudStatePending=false;}
     state.lastRoute = route;
     save();
     nav.forEach(b => b.classList.toggle('active', b.dataset.route === route));
