@@ -1,8 +1,8 @@
-const CACHE='deutsch-c1-tr-answer-autoplay-v181';
+const CACHE='deutsch-c1-tr-answer-autoplay-v182';
 const LEGACY_PREFIXES=['deutsch-a1-tr','deutsch-c1-tr'];
 const ASSETS=["../shared/answer-feedback.js?v=answer-autoplay-179",
   './','./index.html','./styles.css','./app.js?v=cloud-sync-249','./lesson-content.js','./manifest.json',
-  '../shared/config.js','../shared/profile.js?v=cloud-sync-249','../shared/streak.js','../shared/learning.js','../shared/voice-selection.js'
+  '../shared/config.js','../shared/profile.js?v=cloud-sync-250','../shared/streak.js','../shared/learning.js','../shared/voice-selection.js'
 ];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));self.skipWaiting();});
 self.addEventListener('activate',event=>{

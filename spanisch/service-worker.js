@@ -1,6 +1,6 @@
-const CACHE="spanisch-a1-dialog-answer-autoplay-v181";
+const CACHE="spanisch-a1-dialog-answer-autoplay-v182";
 const PREFIX="spanisch-a1-";
-const ASSETS=["../shared/answer-feedback.js?v=answer-autoplay-179","../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-45","./app.js?v=cloud-sync-249","./manifest.json","../shared/config.js","../shared/profile.js?v=cloud-sync-249","../shared/learning.js","../shared/voice-selection.js?v=spell-225","../shared/lesson-flow.js?v=dialog-45","../shared/pronunciation.js?v=spell-225","../shared/lesson-ui.css?v=dialog-45","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-45","../shared/exercise-engine.js?v=answer-autoplay-179","./data.js"];
+const ASSETS=["../shared/answer-feedback.js?v=answer-autoplay-179","../shared/streak.js","./lesson-content.js","../shared/lesson-guide.js","./","./index.html","./styles.css?v=dialog-45","./app.js?v=cloud-sync-249","./manifest.json","../shared/config.js","../shared/profile.js?v=cloud-sync-250","../shared/learning.js","../shared/voice-selection.js?v=spell-225","../shared/lesson-flow.js?v=dialog-45","../shared/pronunciation.js?v=spell-225","../shared/lesson-ui.css?v=dialog-45","../shared/lesson-topic-info.js","../shared/grammar-ui.js?v=dialog-45","../shared/exercise-engine.js?v=answer-autoplay-179","./data.js"];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
