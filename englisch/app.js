@@ -27,6 +27,8 @@
   const baseKey='englischB1State_v1',stateKey=A1Profile.namespacedKey(baseKey);
   const defaults={lastLessonId:0,doneLessons:[],lessonWork:{},lessonQuizBest:{},lessonMasteryBest:{},lessonMasteryLast:{},courseMasteryBest:{},lessonCheckProgress:{},courseCheckProgress:{},grammarBest:{},reviewPractice:{},vocabularyTrainer:{version:2,items:{},settings:{},session:null},training:{},masteredListening:[],masteredReading:[],writingDone:[],speakingDone:[],bestMock:0,examScores:{}};
   let state=A1Learning.loadState(stateKey,defaults),route='home',homeCleanup=[],audioEnabled=localStorage.getItem('enB1AudioEnabled')==='true';
+  let cloudStatePending=false;
+  window.A1ApplyCloudProgress=()=>{cloudStatePending=true;if(route==='home'){cleanup();state=A1Learning.loadState(stateKey,defaults);cloudStatePending=false;renderHome();}};
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const percent=()=>Math.round(state.doneLessons.length/lessons.length*100);
   function save(completed=false){
@@ -40,6 +42,7 @@
   function wireSpeakButtons(){view.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(decodeURIComponent(b.dataset.speak),true));}
   function cleanup(){homeCleanup.forEach(f=>f?.());homeCleanup=[];A1Voice.cancel();}
   function setRoute(next){
+    if(cloudStatePending){state=A1Learning.loadState(stateKey,defaults);cloudStatePending=false;}
     cleanup();route=next;document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===next));
     ({home:renderHome,learn:renderLearn,practice:renderVocab,exam:renderExam}[next]||renderHome)();
     window.scrollTo({top:0,behavior:'instant'});

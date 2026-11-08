@@ -1743,6 +1743,8 @@ function save(completed=false){if(completed)A1Streak.completeExercise();DE_A1_AS
 
 let audioEnabled=localStorage.getItem('deA1AudioEnabled')!=='false';
 let currentRoute='home';
+let cloudStatePending=false;
+window.A1ApplyCloudProgress=()=>{cloudStatePending=true;if(currentRoute==='home'){state=loadState();cloudStatePending=false;renderHome();}};
 let activeRecorder=null;
 const view=document.getElementById('view');
 const navButtons=[...document.querySelectorAll('.nav-item')];
@@ -1798,7 +1800,7 @@ function speak(text,force=false,rate=.82){if((!audioEnabled&&!force)||!text)retu
 function playCorrectAudio(text,force=false){if((!audioEnabled&&!force)||!text)return;speak(text,true,.80);}
 function speakBtn(text,label='Écouter la prononciation'){return `<button class="speak-btn" data-speak="${esc(text)}" aria-label="${esc(label)}">🔊</button>`;}
 function wireSpeakButtons(){document.querySelectorAll('[data-speak]').forEach(b=>b.onclick=()=>speak(b.dataset.speak,true));}
-function setRoute(route){stopHomeMotion();currentRoute=route;navButtons.forEach(b=>b.classList.toggle('active',b.dataset.route===route)); if(route==='home')renderHome(); if(route==='learn')renderLearn(); if(route==='practice')renderVocab(); if(route==='exam')renderExam(); window.scrollTo({top:0,behavior:'smooth'});}
+function setRoute(route){if(cloudStatePending){state=loadState();cloudStatePending=false;}stopHomeMotion();currentRoute=route;navButtons.forEach(b=>b.classList.toggle('active',b.dataset.route===route)); if(route==='home')renderHome(); if(route==='learn')renderLearn(); if(route==='practice')renderVocab(); if(route==='exam')renderExam(); window.scrollTo({top:0,behavior:'smooth'});}
 
 function skillBar(name,emoji){const p=skillPct(name);const labels={
   Hören:'Écoute',
