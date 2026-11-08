@@ -36,3 +36,9 @@
 @media(prefers-reduced-motion:reduce){.games-safe.is-shaking{animation:none}}
 /* String game (.pilot-connect, all courses): compact on phones so every box fits without scrolling */
 @media(max-width:600px){.pilot-connect-instructions{margin:4px 0}.pilot-connect{grid-template-columns:minmax(0,.9fr) 26px minmax(0,1.35fr);margin:8px 0 6px}.pilot-connect .pilot-connect-left,.pilot-connect .pilot-connect-right{grid-template-rows:repeat(var(--match-count),minmax(40px,auto));gap:8px}.pilot-connect .pilot-connect-left button,.pilot-connect .pilot-connect-right button{min-height:40px;padding:5px 6px;font-size:.92rem;line-height:1.25;border-radius:12px}.pilot-connect-status{min-height:0}}
+
+/* Keep the gap-sheet controls compact on phones, including larger text settings. */
+.hard-pilot .game-gap-pages{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;margin:16px 0}
+.hard-pilot .game-gap-pages>*{min-width:0;width:auto;min-height:44px}
+.hard-pilot .game-gap-pages>span{display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.hard-pilot .game-gap-pages>button{padding:8px;font-size:inherit}
