@@ -76,8 +76,13 @@ function setSyncStatus(status){
     tr:{checking:'Bulut denetleniyor…',saving:'İlerleme kaydediliyor…',synced:'Bulut eşitlendi',pending:'Çevrimdışı / kayıt bekliyor',error:'Buluta ulaşılamıyor – ilerleme bu cihazda kayıtlı'}};
   const connected={de:'Cloud-Konto verbunden',en:'Cloud account connected',fr:'Compte cloud connecté',tr:'Bulut hesabı bağlı'};
   for(const [lang,text] of Object.entries(connected))label[lang].connected=text;
+  const reauth={de:'Cloud-Anmeldung abgelaufen – bitte mit demselben Profil neu anmelden',en:'Cloud sign-in expired – sign in again with the same profile',fr:'Connexion expirée – reconnecte-toi avec le même profil',tr:'Bulut oturumu sona erdi – aynı profille tekrar giriş yap'};
+  for(const [lang,text] of Object.entries(reauth))label[lang].reauth=text;
   document.querySelectorAll('[data-cloud-status]').forEach(el=>{el.textContent=(label[getUiLang()]||label.de)[status];el.dataset.cloudStatus=status;});
   window.dispatchEvent(new CustomEvent('a1suite:syncstatus',{detail:{status}}));
+}
+function syncFailure(error){
+  setSyncStatus(navigator.onLine===false?'pending':error?.status===401||/refresh_token|invalid.*token/i.test(String(error?.code||error?.message))?'reauth':'error');
 }
 function scheduleRetry(){
   if(retryTimer)return;
@@ -344,7 +349,8 @@ applyTheme();
 
   async function responseError(r){
     const j = await r.json().catch(() => ({}));
-    return new Error(j.msg || j.message || j.error_description || j.error || `HTTP ${r.status}`);
+    const error=new Error(j.msg || j.message || j.error_description || j.error || `HTTP ${r.status}`);
+    error.status=r.status;error.code=j.code||j.error_code;return error;
   }
 
   async function authPost(path, body){
@@ -450,9 +456,8 @@ applyTheme();
     return lang;
   }
 
-  async function cloudGet(course){
+  async function rawCloudGet(code){
     const p = getCurrent();
-    const code = courseCode(course)||(course==='a1-daily-streak'?course:null);
     if(!p || p.mode !== 'cloud' || !code) return null;
 
     const rows = await restGet(
@@ -461,6 +466,34 @@ applyTheme();
       `&select=progress_data,percent,updated_at&limit=1`
     );
     return rows[0] || null;
+  }
+
+  // Production still restricts course_progress.course to its original de/fr
+  // values. Store additional courses in separate JSON slots in the owner's fr
+  // row. The existing French A1 payload and percentage remain at the top level.
+  // Read native rows too, so accounts on newer schemas retain existing progress.
+  async function cloudGet(course){
+    const code=courseCode(course)||(course==='a1-daily-streak'?course:null);
+    if(!code)return null;
+    if(code==='de')return rawCloudGet(code);
+    const p=getCurrent();
+    const [host,native]=await Promise.all([rawCloudGet('fr'),code==='fr'?Promise.resolve(null):rawCloudGet(code)]);
+    if(!sameProfile(p))throw new Error('Profile changed');
+    const slots=host?.progress_data?._suiteCourses||{};
+    let progress,percent;
+    if(code==='fr'){
+      progress=host?clone(host.progress_data):null;
+      if(progress)delete progress._suiteCourses;
+      percent=host?.percent||0;
+    }else{
+      const slot=slots[code];
+      progress=native||slot?mergeProgress(native?.progress_data,slot?.progress_data):null;
+      const ne=String(native?.progress_data?._sync?.epoch||''),se=String(slot?.progress_data?._sync?.epoch||'');
+      percent=ne>se?native.percent:se>ne?slot.percent:Math.max(native?.percent||0,slot?.percent||0);
+    }
+    if(!host&&!native)return null;
+    return {progress_data:progress,percent,updated_at:host?.updated_at,
+      _storage:{code:'fr',row:host}};
   }
 
   async function writeCloudProgress(course, payload, percent=0){
@@ -478,18 +511,30 @@ applyTheme();
       // percentage rather than keeping the larger of two partial percentages.
       const total={'de':24,'fr':24,'fr-a2':24,'en-b1':24,'es':24,'de-c1-tr':40}[code];
       if(total&&Array.isArray(merged.doneLessons))pct=clampPercent(new Set(merged.doneLessons.filter(id=>Number.isInteger(id)&&id>0&&id<=total)).size/total*100);
-      const now=new Date(Math.max(Date.now(),Date.parse(remote?.updated_at||'')+1||0)).toISOString();
-      const row={user_id:p.userId,course:code,progress_data:merged,percent:pct,updated_at:now};
+      const storageCode=code==='de'?'de':'fr',storageRow=remote?._storage?.row||(code==='de'?remote:null);
+      const now=new Date(Math.max(Date.now(),Date.parse(storageRow?.updated_at||'')+1||0)).toISOString();
+      let storedProgress=merged,storedPercent=pct;
+      if(storageCode==='fr'){
+        const slots=clone(storageRow?.progress_data?._suiteCourses||{});
+        if(code==='fr'){
+          storedProgress={...merged};delete storedProgress._suiteCourses;
+        }else{
+          slots[code]={progress_data:merged,percent:pct};
+          storedProgress=clone(storageRow?.progress_data||{});storedPercent=storageRow?.percent||0;
+        }
+        if(Object.keys(slots).length)storedProgress._suiteCourses=slots;
+      }
+      const row={user_id:p.userId,course:storageCode,progress_data:storedProgress,percent:storedPercent,updated_at:now};
       const token=await ensureToken();
       if(!sameProfile(p)||!token)throw new Error('Profile changed');
-      const filter=`user_id=eq.${encodeURIComponent(p.userId)}&course=eq.${encodeURIComponent(code)}`;
+      const filter=`user_id=eq.${encodeURIComponent(p.userId)}&course=eq.${encodeURIComponent(storageCode)}`;
       // Conditional PATCH is an atomic compare-and-swap on the database row.
       // A competing device gets zero rows, reads again, and merges both results.
-      const path=remote?`course_progress?${filter}&updated_at=eq.${encodeURIComponent(remote.updated_at)}`:
+      const path=storageRow?`course_progress?${filter}&updated_at=eq.${encodeURIComponent(storageRow.updated_at)}`:
         'course_progress?on_conflict=user_id,course';
       const response=await fetchWithTimeout(`${cfg.supabaseUrl}/rest/v1/${path}`,{
-        method:remote?'PATCH':'POST',headers:{...authHeaders(token),
-          Prefer:remote?'return=representation':'resolution=ignore-duplicates,return=representation'},body:JSON.stringify(row)
+        method:storageRow?'PATCH':'POST',headers:{...authHeaders(token),
+          Prefer:storageRow?'return=representation':'resolution=ignore-duplicates,return=representation'},body:JSON.stringify(row)
       });
       if(!response.ok)throw await responseError(response);
       const rows=await response.json();
@@ -499,7 +544,7 @@ applyTheme();
       if(code!=='a1-daily-streak')await restUpsert('leaderboard_entries','user_id,course',{
         user_id:p.userId,course:code,percent:pct,updated_at:now
       }).catch(()=>{});
-      return rows[0];
+      return {...rows[0],course:code,progress_data:merged,percent:pct};
     }
     throw new Error('Cloud busy; progress will be retried');
   }
@@ -536,7 +581,7 @@ applyTheme();
       if(latest?.id===item.id)localStorage.removeItem(qkey);
       setSyncStatus(queuedItems(p).length?'saving':'synced');
     }catch(error){
-      if(sameProfile(p)){setSyncStatus(navigator.onLine===false?'pending':'error');scheduleRetry();}
+      if(sameProfile(p)){syncFailure(error);scheduleRetry();}
       throw error;
     }
   }
@@ -613,8 +658,8 @@ applyTheme();
   async function getDailyActivity(expected){
     const p=dailyActivityProfile(expected);
     if(!p)return null;
-    const rows=await restGet(`course_progress?user_id=eq.${encodeURIComponent(p.userId)}&course=eq.a1-daily-streak&select=progress_data&limit=1`);
-    return rows[0]?.progress_data||null;
+    const row=await cloudGet('a1-daily-streak');
+    return row?.progress_data||null;
   }
   async function saveDailyActivity(payload,expected){
     const p=dailyActivityProfile(expected);
@@ -803,7 +848,7 @@ applyTheme();
         const item=rememberProgress(META.course,merged,Math.max(remote?.percent||0,pagePercent()));
         await uploadItem(item);
       }else setSyncStatus('synced');
-    }catch{setSyncStatus('error');scheduleRetry();}
+    }catch(error){syncFailure(error);scheduleRetry();}
   }
 
   async function syncLeaderboard(course, percent){
@@ -816,7 +861,7 @@ applyTheme();
       if(!sameProfile(p))return;
       await restUpsert('leaderboard_entries', 'user_id,course', {
         user_id:p.userId,course:code,percent:clampPercent(remote?remote.percent:percent),updated_at:new Date().toISOString()
-      });
+      }).catch(error=>{if(error.code!=='23514')throw error;});
     });
   }
 
@@ -1069,6 +1114,7 @@ applyTheme();
           </div>
 
           <div class="profile-menu-actions">
+            ${cloudMode&&syncStatus==='reauth'?`<button id="pmReconnect">${escapeHtml(({de:'Neu anmelden',en:'Sign in again',fr:'Se reconnecter',tr:'Tekrar giriş yap'})[lang]||'Sign in again')}</button>`:''}
             ${cloudConfigured && current.mode === 'local' ? `<button class="cloud-btn" id="pmCloud">${tr('cloudConnect',lang)}</button>` : ''}
             <button id="pmClose">${tr('back',lang)}</button>
             <button id="pmLogout">${tr('switchProfile',lang)}</button>
@@ -1079,6 +1125,8 @@ applyTheme();
         if(cloudMode)setSyncStatus(syncStatus);
         document.getElementById('pmClose').onclick = () => ov.remove();
         document.getElementById('pmLogout').onclick = logout;
+        const reconnect=document.getElementById('pmReconnect');
+        if(reconnect)reconnect.onclick=()=>{ov.remove();profileModal(true,current.username);};
 
         const cloudBtn = document.getElementById('pmCloud');
         if(cloudBtn){
@@ -1293,14 +1341,14 @@ async function refreshCourseFromCloud(){
       if(typeof window.A1ApplyCloudProgress==='function')window.A1ApplyCloudProgress(merged);
       else location.reload();
     }
-  }catch{if(sameProfile(p)){setSyncStatus(navigator.onLine===false?'pending':'error');scheduleRetry();}}
+  }catch(error){if(sameProfile(p)){syncFailure(error);scheduleRetry();}}
   finally{courseRefreshRunning=false;}
 }
 async function resumeSync(){
   if(!cloudConfigured||getCurrent()?.mode!=='cloud')return;
   if(META.course)await refreshCourseFromCloud();
   else try{await ensureToken();await flushProgress();if(!queuedItems().length)setSyncStatus('connected');}
-    catch{setSyncStatus('error');scheduleRetry();}
+    catch(error){syncFailure(error);scheduleRetry();}
 }
 window.addEventListener('focus',()=>resumeSync());
 window.addEventListener('online',()=>resumeSync());
