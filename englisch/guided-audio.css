@@ -1,0 +1,4 @@
+.guided-audio{margin-block:14px;border:1px solid var(--accent,#7b8cff)}
+.guided-audio p{font-size:.9rem;line-height:1.5}
+.guided-audio .button-row{display:flex;flex-wrap:wrap;gap:8px}
+.guided-audio [data-guided-status]{max-height:6em;overflow:auto;overflow-wrap:anywhere;margin-bottom:0}
