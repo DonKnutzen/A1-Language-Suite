@@ -297,6 +297,12 @@
         if(!p.heardPhrases.includes(phraseKey)){p.heardPhrases.push(phraseKey);save();refreshSteps();const counter=view.querySelector('.lesson-audio-page');if(counter)counter.textContent=`${heardCount()} / ${l.phrases.length} écoutés`;}
         view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');
       }));
+      if(opts.targetLang==='de')window.DE_A1_GUIDED_AUDIO?.mount({
+        view,lesson:l,step:activeStep,title:activeStep==='grammar'?`Approfondir. ${grammarPages[grammarIndex].title}`:steps.find(([key])=>key===activeStep)?.[1],
+        root:view.querySelector(activeStep==='grammar'?'#lessonGrammarPage':'.lesson-step-content'),goals:view.querySelector('.lesson-goals'),masteryCount:opts.masteryCount,
+        onPhraseStart:index=>{const page=audioPageFor(index);if(page!==audioPage){audioPage=page;view.querySelectorAll('[data-core-row]').forEach(row=>row.hidden=audioPageFor(Number(row.dataset.coreRow))!==page);const button=document.getElementById('switchAudioPage');if(button)button.textContent=page===audioPageCount-1?'← Exemples audio · page 1':`Exemples audio · page ${page+2} →`; }},
+        onPhraseEnd:index=>{const phrase=l.phrases[index][0];if(!p.heardPhrases.includes(phrase)){p.heardPhrases.push(phrase);save();refreshSteps();}view.querySelector(`[data-core-row="${index}"]`)?.classList.add('is-heard');const counter=view.querySelector('.lesson-audio-page');if(counter)counter.textContent=`${heardCount()} / ${l.phrases.length} écoutés`;}
+      });
       window.scrollTo({top:0,behavior:'instant'});
     }
     function drawQuiz(){
