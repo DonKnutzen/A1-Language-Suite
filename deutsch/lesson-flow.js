@@ -299,7 +299,7 @@
       }));
       if(opts.targetLang==='de')window.DE_A1_GUIDED_AUDIO?.mount({
         view,lesson:l,content:c,goalsHtml:opts.goalsHtml,dialogueHtml:opts.dialogueHtml,
-        introHtml:(window.A1LessonFoundations?.render('de',l.id)||'')+(window.A1LessonFoundations?.preparationHtml('de',l.id,'listen')||'')+(window.A1LessonFoundations?.vocabularyHtml('de',l.id)||''),
+        introHtml:(window.A1LessonFoundations?.render('de',l.id)||'')+(window.A1LessonFoundations?.preparationHtml('de',l.id,'listen')||''),
         finaleHtml:(window.A1LessonFoundations?.preparationHtml('de',l.id,'hard')||'')+(window.A1LessonFoundations?.hardInstructionsHtml('de',window.FR_A1_HARD_CONTENT?.[l.id]||{listening:[]})||''),
         grammarPages:grammarPages.map((page,i)=>({title:page.title,html:window.A1LessonFoundations?.enhance('de',l.id,page.title,page.html,i)||page.html})),
         step:activeStep,title:activeStep==='grammar'?`Approfondir. ${grammarPages[grammarIndex].title}`:steps.find(([key])=>key===activeStep)?.[1],

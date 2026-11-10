@@ -3,15 +3,15 @@
 (() => {
   'use strict';
   const doc=document,clean=s=>window.A1GuideLanguage.clean(s);
-  const excluded='button,svg,script,style,input,textarea,select,[hidden],[aria-hidden="true"],.deepening-practice,.deepening-form-examples,.lesson1-grammar-practice,.lesson-grammar-practice,.quiz-q,.options,.feedback,.lesson-grammar-position,.lesson-audio-page,.lesson-audio-pager,.lesson-listening-practice,.pronunciation-name,label,#spellFeedback,details.grammar-detail>summary,.lesson-step-footer';
+  const excluded='[data-foundation-words],button,svg,script,style,input,textarea,select,[hidden],[aria-hidden="true"],.deepening-practice,.deepening-form-examples,.lesson1-grammar-practice,.lesson-grammar-practice,.quiz-q,.options,.feedback,.lesson-grammar-position,.lesson-audio-page,.lesson-audio-pager,.lesson-listening-practice,.pronunciation-name,label,#spellFeedback,details.grammar-detail>summary,.lesson-step-footer';
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const UI={
-    de:{name:'Audio-Guide für die ganze Lektion',help:'Einmal starten: Hörbeispiele, Wortschatz, alle Erklärungen und der Hörtext. Danach bearbeitest du die Aufgaben selbst. Längere Einstiegsbeispiele hörst du zweimal.',play:'▶ Ganze Lektion anhören',pause:'Ⅱ Pause',resume:'▶ Fortsetzen',stop:'■ Stopp',ready:'Bereit',paused:'Pausiert. Mit Fortsetzen hörst du hier weiter.',done:'Fertig. Jetzt kannst du die Lektion selbst durcharbeiten.',error:'Wiedergabe unterbrochen. Mit Fortsetzen kannst du an dieser Stelle weiterhören.',unavailable:'Vorlesen ist in diesem Browser nicht verfügbar.',chapter:'Abschnitt',speed:'Tempo',normal:'Ruhig',slow:'Sehr ruhig',intro:'Einstieg',words:'Hörbeispiele & Wortschatz',grammar:'Grammatik & Satzmuster',dialogue:'Alltagsdialog',listen:'Hörtext',practice:'Selbst anwenden',finale:'Vorbereitung aufs optionale Finale',end:'Dein nächster Schritt'},
-    fr:{name:'Guide audio de toute la leçon',help:'Une seule lecture : exemples, vocabulaire, toutes les explications et le texte audio. Ensuite, fais les exercices toi-même. Les exemples longs du début sont répétés deux fois.',play:'▶ Écouter toute la leçon',pause:'Ⅱ Pause',resume:'▶ Reprendre',stop:'■ Arrêter',ready:'Prêt',paused:'En pause. Reprendre continue à cet endroit.',done:'Terminé. Tu peux maintenant travailler la leçon toi-même.',error:'Lecture interrompue. Appuie sur Reprendre pour continuer ici.',unavailable:'La lecture audio n’est pas disponible dans ce navigateur.',chapter:'Partie',speed:'Vitesse',normal:'Calme',slow:'Très calme',intro:'Introduction',words:'Exemples & vocabulaire',grammar:'Grammaire & structures',dialogue:'Dialogue',listen:'Compréhension orale',practice:'À toi de pratiquer',finale:'Préparation à la finale facultative',end:'La suite'}
+    de:{name:'Audio-Guide für die ganze Lektion',help:'Einmal starten: Hörbeispiele, Wortschatz, alle Erklärungen und der Hörtext. Danach bearbeitest du die Aufgaben selbst. Längere Einstiegsbeispiele hörst du zweimal.',play:'▶ Ganze Lektion anhören',pause:'Ⅱ Pause',resume:'▶ Fortsetzen',stop:'■ Stopp',ready:'Bereit',paused:'Pausiert. Mit Fortsetzen hörst du hier weiter.',done:'Fertig. Jetzt kannst du die Lektion selbst durcharbeiten.',error:'Wiedergabe unterbrochen. Mit Fortsetzen kannst du an dieser Stelle weiterhören.',unavailable:'Vorlesen ist in diesem Browser nicht verfügbar.',timeline:'Position im Audio-Guide',estimated:'Zeit geschätzt',timeHelp:'Zeiten sind geschätzt. Springen und Tempowechsel setzen am Satzanfang ein.',chapter:'Abschnitt',speed:'Tempo',normal:'Ruhig',slow:'Sehr ruhig',intro:'Einstieg',words:'Hörbeispiele & Wortschatz',grammar:'Grammatik & Satzmuster',dialogue:'Alltagsdialog',listen:'Hörtext',practice:'Selbst anwenden',finale:'Vorbereitung aufs optionale Finale',end:'Dein nächster Schritt'},
+    fr:{name:'Guide audio de toute la leçon',help:'Une seule lecture : exemples, vocabulaire, toutes les explications et le texte audio. Ensuite, fais les exercices toi-même. Les exemples longs du début sont répétés deux fois.',play:'▶ Écouter toute la leçon',pause:'Ⅱ Pause',resume:'▶ Reprendre',stop:'■ Arrêter',ready:'Prêt',paused:'En pause. Reprendre continue à cet endroit.',done:'Terminé. Tu peux maintenant travailler la leçon toi-même.',error:'Lecture interrompue. Appuie sur Reprendre pour continuer ici.',unavailable:'La lecture audio n’est pas disponible dans ce navigateur.',timeline:'Position dans le guide audio',estimated:'Durée estimée',timeHelp:'Durées estimées. Un déplacement ou un changement de vitesse reprend au début de la phrase.',chapter:'Partie',speed:'Vitesse',normal:'Calme',slow:'Très calme',intro:'Introduction',words:'Exemples & vocabulaire',grammar:'Grammaire & structures',dialogue:'Dialogue',listen:'Compréhension orale',practice:'À toi de pratiquer',finale:'Préparation à la finale facultative',end:'La suite'}
   };
   function create({targetLang,nativeLang}){
     const base=targetLang.split('-')[0],L=UI[nativeLang.startsWith('fr')?'fr':'de'],german=nativeLang.startsWith('de');
-    let disposeCurrent=()=>{};
+    let disposeCurrent=()=>{},instance=0;
     const element=html=>{const root=doc.createElement('div');root.innerHTML=html||'';return root;};
     function language(options,roots=[]){return window.A1GuideLanguage.create({targetLang,nativeLang,lesson:options.lesson,roots});}
     function speechText(text,lang){
@@ -109,52 +109,100 @@
       say(german?`Der Audio-Guide ist zu Ende. Jetzt bist du dran. Gehe die Lektion in deinem Tempo durch. Bearbeite den Vokabel-Check mit zehn Fragen, die Übungen zu den Erklärungen und die Hörfragen. Anschließend kannst du den Lektionscheck${masteryCount?' mit '+masteryCount+' Fragen':''} und die weiteren Aufgaben bearbeiten. Die Wiedergabe hat keine deiner Antworten bewertet.`:`Le guide audio est terminé. À toi de jouer. Parcours la leçon à ton rythme. Fais le quiz de vocabulaire de dix questions, les exercices des explications et les questions de compréhension orale. Ensuite, tu peux faire le bilan${masteryCount?' de '+masteryCount+' questions':''} et les autres activités. Aucune réponse n’a été évaluée pendant le guide.`);
       return parts;
     }
-    function mount(options){
-      disposeCurrent();const {view}=options,voice=window.A1Voice;
-      const host=doc.createElement('section');host.className='guided-audio card';host.dataset.i18nIgnore='';host.setAttribute('aria-label',L.name);
-      host.innerHTML=`<strong>${esc(L.name)}</strong><p>${esc(L.help)}</p><div class="button-row"><button type="button" class="primary-btn" data-guided-play>${esc(L.play)}</button><button type="button" class="secondary-btn" data-guided-stop disabled>${esc(L.stop)}</button></div><div class="guide-controls"><label>${esc(L.chapter)}<select data-guide-chapter disabled><option>${esc(L.ready)}</option></select></label><label>${esc(L.speed)}<select data-guide-speed><option value="1">${esc(L.normal)}</option><option value="0.88">${esc(L.slow)}</option></select></label></div><progress data-guide-progress value="0" max="1" aria-label="${esc(L.name)}"></progress><p data-guided-status role="status" aria-live="polite">${esc(L.ready)}</p><p data-guide-caption aria-live="off"></p>`;
-      view.querySelector('.lesson-step-header')?.after(host);if(!host.isConnected)return;
-      const play=host.querySelector('[data-guided-play]'),stop=host.querySelector('[data-guided-stop]'),status=host.querySelector('[data-guided-status]'),caption=host.querySelector('[data-guide-caption]'),progress=host.querySelector('progress'),chapterSelect=host.querySelector('[data-guide-chapter]'),speed=host.querySelector('[data-guide-speed]');
-      let parts=null,index=0,run=0,playing=false,paused=false,timer=null,current=null,disposed=false,lastChapter=null;
-      function clear(){if(timer!==null)window.clearTimeout(timer);timer=null;}
-      function cancel(){run++;clear();current=null;voice?.cancel();}
-      function prepare(){if(parts)return;parts=plan(options);chapterSelect.innerHTML=parts.map((p,i)=>p.chapterTitle?`<option value="${i}">${esc(p.chapterTitle)}</option>`:'').join('');chapterSelect.disabled=false;progress.max=parts.length;}
-      function update(){
-        const part=parts?.[index];progress.value=index;
-        if(part){caption.textContent=part.text;if(lastChapter!==part.chapter){lastChapter=part.chapter;status.textContent=parts.find(p=>p.chapter===part.chapter&&p.chapterTitle)?.chapterTitle||L.name;chapterSelect.value=String(parts.findIndex(p=>p.chapter===part.chapter&&p.chapterTitle));}}
+    function timing(parts,multiplier=1,measured=new Map()){
+      const starts=[],durations=[],pauses=[];let total=0;
+      for(const [i,part] of parts.entries()){
+        const words=(part.text.match(/[\p{L}\p{N}]+/gu)||[]).length;
+        const units=Math.max(words,part.text.replace(/\s/g,'').length/6);
+        const baseline=Math.max(.4,(units*60/175+(part.text.match(/[,;:.!?]/g)||[]).length*.1)/(part.lang===targetLang?.74:.86));
+        starts.push(total);durations.push((measured.get(i)||baseline)/multiplier);
+        pauses.push(i===parts.length-1?0:(part.pauseAfter??280)/1000);total+=durations[i]+pauses[i];
       }
-      function stopped(message=L.ready){cancel();playing=false;paused=false;index=0;lastChapter=null;play.textContent=L.play;stop.disabled=true;status.textContent=message;caption.textContent='';progress.value=0;if(parts)chapterSelect.value='0';}
+      return {starts,durations,pauses,total};
+    }
+    function formatTime(seconds){const s=Math.max(0,Math.floor(seconds));return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
+    function mount(options){
+      disposeCurrent();const {view}=options,voice=window.A1Voice,id=`lesson-guide-${++instance}`;
+      const host=doc.createElement('section');host.className='guided-audio card';host.dataset.i18nIgnore='';host.setAttribute('aria-label',L.name);
+      host.innerHTML=`<strong>${esc(L.name)}</strong><p>${esc(L.help)}</p><div class="button-row"><button type="button" class="primary-btn" data-guided-play>${esc(L.play)}</button><button type="button" class="secondary-btn" data-guided-stop disabled>${esc(L.stop)}</button></div><div class="guide-controls"><div class="guide-control"><label for="${id}-chapter">${esc(L.chapter)}</label><select id="${id}-chapter" data-guide-chapter></select></div><div class="guide-control"><label for="${id}-speed">${esc(L.speed)} <output data-guide-speed-value aria-hidden="true">1,00×</output></label><input id="${id}-speed" type="range" data-guide-speed min="0.6" max="1.6" step="0.05" value="1"></div></div><div class="guide-timeline"><label for="${id}-time">${esc(L.timeline)}</label><input id="${id}-time" type="range" data-guide-timeline min="0" max="1" step="1" value="0"><div class="guide-time-readout"><output data-guide-current aria-live="off">0:00</output><span>/</span><span>≈ <output data-guide-total aria-live="off">0:00</output></span></div><small>${esc(L.timeHelp)}</small></div><p data-guided-status role="status" aria-live="polite">${esc(L.ready)}</p><p data-guide-caption aria-live="off"></p>`;
+      view.querySelector('.lesson-step-header')?.after(host);if(!host.isConnected)return;
+      const play=host.querySelector('[data-guided-play]'),stop=host.querySelector('[data-guided-stop]'),status=host.querySelector('[data-guided-status]'),caption=host.querySelector('[data-guide-caption]'),timeline=host.querySelector('[data-guide-timeline]'),chapterSelect=host.querySelector('[data-guide-chapter]'),speed=host.querySelector('[data-guide-speed]'),speedValue=host.querySelector('[data-guide-speed-value]'),currentTime=host.querySelector('[data-guide-current]'),totalTime=host.querySelector('[data-guide-total]');
+      const speedKey=`a1suite.lessonGuideSpeed.${base}.${nativeLang}`,measured=new Map();
+      try{const saved=Number(window.localStorage.getItem(speedKey));if(saved>=.6&&saved<=1.6)speed.value=String(saved);}catch{}
+      const parts=plan(options),now=()=>window.performance.now(),factor=()=>Math.min(1.6,Math.max(.6,Number(speed.value)||1));
+      let model=timing(parts,factor(),measured),index=0,run=0,playing=false,paused=false,timer=null,ticker=null,current=null,disposed=false,lastChapter=null,phase='idle',phaseStarted=0,frozen=0,gapIndex=0,finished=false,scrubbing=false,preview=0;
+      chapterSelect.innerHTML=parts.map((p,i)=>p.chapterTitle?`<option value="${i}">${esc(p.chapterTitle)}</option>`:'').join('');
+      function position(){
+        if(finished)return model.total;
+        if(phase==='speech')return model.starts[index]+Math.min(model.durations[index],Math.max(0,(now()-phaseStarted)/1000));
+        if(phase==='gap')return model.starts[gapIndex]+model.durations[gapIndex]+Math.min(model.pauses[gapIndex],Math.max(0,(now()-phaseStarted)/1000));
+        return frozen;
+      }
+      function renderTime(){
+        const value=Math.min(model.total,scrubbing?preview:position()),maximum=Math.ceil(model.total);
+        timeline.max=String(maximum);if(!scrubbing)timeline.value=String(finished?maximum:Math.floor(value));
+        currentTime.textContent=formatTime(finished?maximum:value);totalTime.textContent=formatTime(maximum);
+        timeline.setAttribute('aria-valuetext',`${formatTime(finished?maximum:value)} / ${formatTime(maximum)} · ${L.estimated}`);
+        speedValue.textContent=factor().toFixed(2).replace('.',',')+'×';speed.setAttribute('aria-valuetext',speedValue.textContent);
+      }
+      function clear(){if(timer!==null)window.clearTimeout(timer);if(ticker!==null)window.clearInterval(ticker);timer=null;ticker=null;}
+      function cancel(){run++;clear();current=null;phase='idle';voice?.cancel();}
+      function startTicker(){if(ticker!==null)window.clearInterval(ticker);ticker=window.setInterval(renderTime,200);}
+      function update(){
+        const part=parts[index];
+        if(part){caption.textContent=part.text;if(lastChapter!==part.chapter){lastChapter=part.chapter;status.textContent=parts.find(p=>p.chapter===part.chapter&&p.chapterTitle)?.chapterTitle||L.name;chapterSelect.value=String(parts.findIndex(p=>p.chapter===part.chapter&&p.chapterTitle));}}
+        renderTime();
+      }
+      function stopped(message=L.ready){cancel();playing=false;paused=false;finished=false;scrubbing=false;frozen=0;index=0;lastChapter=null;play.textContent=L.play;stop.disabled=true;status.textContent=message;caption.textContent='';chapterSelect.value='0';renderTime();}
+      function complete(){cancel();playing=false;paused=false;finished=true;scrubbing=false;play.textContent=L.play;stop.disabled=true;status.textContent=L.done;caption.textContent='';index=0;lastChapter=null;renderTime();}
       function next(token){
         if(disposed||token!==run||!playing)return;
-        if(index>=parts.length){cancel();playing=false;paused=false;play.textContent=L.play;stop.disabled=true;progress.value=parts.length;status.textContent=L.done;caption.textContent='';index=0;lastChapter=null;return;}
-        const part=parts[index];update();if(part.phrase!==undefined)options.onPhraseStart?.(part.phrase);
+        if(index>=parts.length){complete();return;}
+        const part=parts[index],speechIndex=index,multiplier=factor();phase='speech';phaseStarted=now();frozen=model.starts[index];update();if(part.phrase!==undefined)options.onPhraseStart?.(part.phrase);
         const u=current=new window.SpeechSynthesisUtterance(speechText(part.text,part.lang)),selected=voice.select(part.lang);
-        u.lang=part.lang;if(selected)u.voice=selected;u.rate=(part.lang===targetLang?.74:.86)*Number(speed.value);u.pitch=1;u.volume=1;
+        u.lang=part.lang;if(selected)u.voice=selected;u.rate=(part.lang===targetLang?.74:.86)*multiplier;u.pitch=1;u.volume=1;
         let handled=false;
         u.onend=()=>{
           if(handled||token!==run||disposed)return;handled=true;current=null;
+          const duration=(now()-phaseStarted)/1000;if(duration>=.2){measured.set(speechIndex,duration*multiplier);model=timing(parts,factor(),measured);}
           if(part.phraseEnd)options.onPhraseEnd?.(part.phrase);
-          index++;progress.value=index;
+          index++;gapIndex=speechIndex;phase='gap';phaseStarted=now();renderTime();
           if(index>=parts.length){next(token);return;}
           timer=window.setTimeout(()=>{timer=null;next(token);},part.pauseAfter??280);
         };
-        u.onerror=()=>{if(handled||token!==run||disposed)return;handled=true;cancel();playing=false;paused=true;play.textContent=L.resume;stop.disabled=false;status.textContent=L.error;};
-        try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
+        u.onerror=()=>{if(handled||token!==run||disposed)return;handled=true;frozen=position();cancel();playing=false;paused=true;play.textContent=L.resume;stop.disabled=false;status.textContent=L.error;renderTime();};
+        startTicker();try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
+      }
+      function seekIndex(destination,wasPlaying=playing){
+        cancel();index=Math.max(0,Math.min(parts.length-1,destination));lastChapter=null;finished=false;scrubbing=false;frozen=model.starts[index];paused=true;stop.disabled=false;playing=wasPlaying;update();
+        if(wasPlaying){play.textContent=L.pause;next(run);}else play.textContent=L.resume;
       }
       play.onclick=()=>{
-        if(playing){cancel();playing=false;paused=true;play.textContent=L.resume;status.textContent=L.paused;return;}
-        prepare();cancel();playing=true;paused=false;stop.disabled=false;play.textContent=L.pause;next(run);
+        if(playing){frozen=position();cancel();playing=false;paused=true;play.textContent=L.resume;status.textContent=L.paused;renderTime();return;}
+        cancel();finished=false;playing=true;paused=false;stop.disabled=false;play.textContent=L.pause;next(run);
       };
       stop.onclick=()=>stopped();
-      chapterSelect.onchange=()=>{const wasPlaying=playing;cancel();index=Number(chapterSelect.value);lastChapter=null;update();paused=true;stop.disabled=false;if(wasPlaying){playing=true;next(run);}else{playing=false;play.textContent=L.resume;}};
+      chapterSelect.onchange=()=>seekIndex(Number(chapterSelect.value));
+      timeline.oninput=()=>{scrubbing=true;preview=Number(timeline.value);renderTime();};
+      timeline.onchange=()=>{
+        const value=Math.min(model.total,Number(timeline.value));if(value>=model.total){complete();return;}let destination=parts.length-1;
+        for(let i=0;i<parts.length-1;i++)if(value<model.starts[i+1]){destination=i;break;}
+        seekIndex(destination);
+      };
+      speed.oninput=()=>{speedValue.textContent=factor().toFixed(2).replace('.',',')+'×';speed.setAttribute('aria-valuetext',speedValue.textContent);};
+      speed.onchange=()=>{
+        try{window.localStorage.setItem(speedKey,String(factor()));}catch{}
+        const wasPlaying=playing,wasFinished=finished;cancel();model=timing(parts,factor(),measured);frozen=wasFinished?model.total:model.starts[index];finished=wasFinished;renderTime();
+        if(wasPlaying){playing=true;next(run);}else if(paused){play.textContent=L.resume;}
+      };
       const external=e=>{if(!host.contains(e.target)&&e.target.closest?.('button,a'))stopped();};
       const leave=()=>stopped();doc.addEventListener('click',external,true);window.addEventListener('pagehide',leave);
       const observer=new MutationObserver(()=>{if(!host.isConnected)dispose();});observer.observe(view,{childList:true,subtree:true});
       function dispose(){if(disposed)return;disposed=true;cancel();observer.disconnect();doc.removeEventListener('click',external,true);window.removeEventListener('pagehide',leave);host.remove();}
-      disposeCurrent=dispose;
+      disposeCurrent=dispose;renderTime();
       if(!window.speechSynthesis||!window.SpeechSynthesisUtterance||!voice?.playUtterance){play.disabled=true;status.textContent=L.unavailable;}
     }
-    return {plan,mount,readContent,speechText};
+    return {plan,mount,readContent,speechText,timing,formatTime};
   }
   window.A1LessonAudioGuide={create};
 })();

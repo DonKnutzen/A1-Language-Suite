@@ -2,9 +2,13 @@
 .guided-audio p{font-size:.9rem;line-height:1.5}
 .guided-audio .button-row{display:flex;flex-wrap:wrap;gap:8px}
 .guide-controls{display:flex;flex-wrap:wrap;gap:12px;margin-block:12px}
-.guide-controls label{display:grid;gap:5px;flex:1;min-width:130px;font-size:.85rem}
-.guide-controls select{width:100%;max-width:100%;font:inherit;padding:9px;border-radius:8px;color:inherit;background:var(--card,#20283b);border:1px solid var(--line,#59647c)}
-.guided-audio progress{display:block;width:100%;height:8px;accent-color:var(--accent,#7b8cff)}
+.guide-control{display:grid;align-content:start;gap:6px;flex:1;min-width:130px;font-size:.85rem}
+.guide-control label{display:flex;justify-content:space-between;gap:8px}
+.guide-control select{width:100%;max-width:100%;font:inherit;padding:9px;border-radius:8px;color:inherit;background:var(--card,#20283b);border:1px solid var(--line,#59647c)}
+.guided-audio input[type=range]{display:block;width:100%;min-width:0;min-height:32px;margin:0;accent-color:var(--accent,#7b8cff);cursor:pointer}
+.guide-timeline{font-size:.85rem;margin-block:12px}
+.guide-time-readout{display:flex;gap:7px;align-items:center;justify-content:flex-end;font-variant-numeric:tabular-nums}
+.guide-timeline small{display:block;margin-top:4px;line-height:1.4;opacity:.8}
 .guided-audio [data-guided-status]{font-weight:600;margin-bottom:4px}
 .guided-audio [data-guide-caption]{max-height:7.5em;overflow:auto;overflow-wrap:anywhere;margin-top:0}
-@media(max-width:400px){.guide-controls label{flex-basis:100%}.guided-audio .button-row button{flex:1}}
+@media(max-width:400px){.guide-control{flex-basis:100%}.guided-audio .button-row button{flex:1}}
