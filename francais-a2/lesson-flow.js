@@ -303,7 +303,11 @@
         view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');
       }));
       if(opts.targetLang==='fr')window.FR_A1_GUIDED_AUDIO?.mount({
-        view,lesson:l,step:activeStep,title:activeStep==='grammar'?`Vertiefung. ${grammarPages[grammarIndex].title}`:steps.find(([key])=>key===activeStep)?.[1],
+        view,lesson:l,content:c,goalsHtml:opts.goalsHtml,dialogueHtml:opts.dialogueHtml,
+        introHtml:(window.A1LessonFoundations?.render('fr',l.id)||'')+(window.A1LessonFoundations?.preparationHtml('fr',l.id,'listen')||'')+(window.A1LessonFoundations?.vocabularyHtml('fr',l.id)||''),
+        finaleHtml:(window.A1LessonFoundations?.preparationHtml('fr',l.id,'hard')||'')+(window.A1LessonFoundations?.hardInstructionsHtml('fr',window.FR_A1_HARD_CONTENT?.[l.id]||{listening:[]})||''),
+        grammarPages:grammarPages.map((page,i)=>({title:page.title,html:window.A1LessonFoundations?.enhance('fr',l.id,page.title,page.html,i)||page.html})),
+        step:activeStep,title:activeStep==='grammar'?`Vertiefung. ${grammarPages[grammarIndex].title}`:steps.find(([key])=>key===activeStep)?.[1],
         root:view.querySelector(activeStep==='grammar'?'#lessonGrammarPage':'.lesson-step-content'),goals:view.querySelector('.lesson-goals'),masteryCount:opts.masteryCount,
         onPhraseStart:index=>{const page=audioPageFor(index);if(page!==audioPage){audioPage=page;view.querySelectorAll('[data-core-row]').forEach(row=>row.hidden=audioPageFor(Number(row.dataset.coreRow))!==page);const button=document.getElementById('switchAudioPage');if(button)button.textContent=page===audioPageCount-1?'← Hörbeispiele · Seite 1':`Hörbeispiele · Seite ${page+2} →`; }},
         onPhraseEnd:index=>{const phrase=l.phrases[index][0];if(!p.heardPhrases.includes(phrase)){p.heardPhrases.push(phrase);save();refreshSteps();}view.querySelector(`[data-core-row="${index}"]`)?.classList.add('is-heard');const counter=view.querySelector('.lesson-audio-page');if(counter)counter.textContent=`${heardCount()} / ${l.phrases.length} gehört`;}
