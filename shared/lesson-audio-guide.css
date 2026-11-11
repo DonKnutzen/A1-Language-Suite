@@ -12,3 +12,17 @@
 .guided-audio [data-guided-status]{font-weight:600;margin-bottom:4px}
 .guided-audio [data-guide-caption]{max-height:7.5em;overflow:auto;overflow-wrap:anywhere;margin-top:0}
 @media(max-width:400px){.guide-control{flex-basis:100%}.guided-audio .button-row button{flex:1}}
+.guide-voices{margin-block:14px;padding-block:10px;border-block:1px solid var(--line,#59647c)}
+.guide-voice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-block:10px}
+.guide-voices small,.guide-background-note{display:block;font-size:.8rem;line-height:1.45;opacity:.85}
+.guide-current-line.is-current{padding:10px 12px;border-left:4px solid var(--accent,#7b8cff);background:rgba(123,140,255,.15);border-radius:6px}
+.guide-read-toggle{display:flex;align-items:center;gap:8px;font-size:.9rem;margin-block:10px}
+.guide-read-toggle input{width:auto;min-height:auto}
+.guide-reading{position:relative;max-height:20rem;overflow-y:auto;overscroll-behavior:contain;padding:10px 12px;border:1px solid var(--line,#59647c);border-radius:10px;margin-bottom:10px}
+.guide-reading[hidden]{display:none}
+.guide-reading h3{font-size:1rem;margin:0 0 8px}
+.guide-reading p{margin:4px 0;padding:7px 9px;border-left:3px solid transparent;opacity:.8}
+.guide-reading p.is-current{opacity:1;border-left-color:var(--accent,#7b8cff);background:rgba(123,140,255,.2);border-radius:5px;font-weight:600}
+.guide-reading mark{background:#ffe08a;color:#162033;border-radius:3px;padding:1px}
+.guide-source-current{outline:2px solid var(--accent,#7b8cff);outline-offset:3px;border-radius:3px;background:rgba(123,140,255,.16)}
+@media(max-width:400px){.guide-voice-grid{grid-template-columns:1fr}}

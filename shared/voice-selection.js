@@ -49,21 +49,29 @@
   // A listed device voice can still fail to synthesize. Retry French once using
   // the engine's language default, without replaying speech that already started.
   const useLanguageDefault=new Set();
+  function getVoicePreference(lang){const p=pref(lang);return {uri:p.uri||'',name:p.name||''};}
+  function setVoice(lang,selection){
+    const selected=selection?matching(lang).find(v=>v.voiceURI===selection.uri&&v.name===selection.name):null;
+    if(selection&&!selected)return false;
+    persist(lang,{uri:selected?.voiceURI||'',name:selected?.name||''});useLanguageDefault.delete(norm(lang).split('-')[0]);
+    window.dispatchEvent(new CustomEvent('a1voicechange',{detail:{lang}}));if(dialog?.open)renderDialog();return true;
+  }
+
   function playUtterance(utterance,lang){
-    const run=token,onEnd=utterance.onend,onError=utterance.onerror;
+    const run=token,onEnd=utterance.onend,onError=utterance.onerror,onStart=utterance.onstart;
     const base=norm(lang).split('-')[0];
     function attempt(u,retried=false){
       if(run!==token)return;
       let started=false,handled=false;current=u;
       if(useLanguageDefault.has(base))u.voice=null;
-      u.onstart=()=>{started=true;};
+      u.onstart=e=>{if(run!==token)return;started=true;onStart?.(e);};
       u.onend=e=>{if(handled||run!==token)return;handled=true;current=null;onEnd?.(e);};
       u.onerror=e=>{
         if(handled||run!==token)return;handled=true;
         const code=e?.error||'synthesis-failed';
         if(base==='fr'&&!retried&&!started&&u.voice&&['voice-unavailable','language-unavailable','synthesis-failed','synthesis-unavailable','invalid-argument'].includes(code)){
           const fallback=new SpeechSynthesisUtterance(u.text);
-          fallback.lang=lang;fallback.rate=u.rate;fallback.pitch=u.pitch;fallback.volume=u.volume;
+          fallback.lang=lang;fallback.rate=u.rate;fallback.pitch=u.pitch;fallback.volume=u.volume;fallback.onboundary=utterance.onboundary;
           useLanguageDefault.add(base);attempt(fallback,true);return;
         }
         current=null;onError?.(e);
@@ -157,7 +165,7 @@
     const options=list.map((v,i)=>`<option value="${i}" ${exists&&v.voiceURI===p.uri&&v.name===p.name?'selected':''}>${esc(v.name)} · ${esc(v.lang)}${quality(v)===3?' · Premium / Natural':quality(v)===2?' · Enhanced':''}</option>`).join('');
     dialog.innerHTML=`<div class="between"><h2>${esc(L.title)}</h2><button class="tiny-btn" id="voiceClose" aria-label="${esc(L.close)}">✕</button></div><label for="voiceSelect">${esc(L.voice)}</label><select id="voiceSelect"><option value="auto" ${!exists?'selected':''}>${esc(L.auto)}${automatic(lang,list)?' · '+esc(automatic(lang,list).name):''}</option>${options}</select><p class="voice-status" id="voiceStatus" role="status">${esc(chosen?L.used+': '+chosen.name:L.none)}${p.uri&&!exists?' '+esc(L.missing):''}</p><label for="voiceRate">${esc(L.speed)} · <output id="voiceRateValue">${Number(p.rate)||(isApple?1:.82)}</output>×</label><input type="range" id="voiceRate" min="0.65" max="1.2" step="0.01" value="${Number(p.rate)||(isApple?1:.82)}"><div class="button-row"><button class="primary-btn" id="voicePreview">🔊 ${esc(L.test)}</button><button class="secondary-btn" id="voiceRefresh">${esc(L.reload)}</button></div><p class="muted">${esc(L.quality)}</p>${isApple?`<p>${esc(L.apple)}</p><details><summary>${esc(L.help.split(':')[0])}</summary><p class="muted">${esc(L.help)}</p></details>`:''}`;
     dialog.querySelector('#voiceClose').onclick=close;
-    dialog.querySelector('#voiceSelect').onchange=e=>{cancel();const v=e.target.value==='auto'?null:list[+e.target.value];persist(lang,{uri:v?.voiceURI||'',name:v?.name||''});renderDialog();};
+    dialog.querySelector('#voiceSelect').onchange=e=>{cancel();const v=e.target.value==='auto'?null:list[+e.target.value];setVoice(lang,v?{uri:v.voiceURI,name:v.name}:null);};
     dialog.querySelector('#voiceRate').oninput=e=>{persist(lang,{rate:Number(e.target.value)});dialog.querySelector('#voiceRateValue').textContent=e.target.value;};
     dialog.querySelector('#voicePreview').onclick=()=>speak(({en:'Hello! My name is Anna. I would like a coffee, please.',fr:'Bonjour ! Je m’appelle Léa. Je voudrais un café, s’il vous plaît.',de:'Guten Tag! Ich heiße Anna. Ich möchte bitte einen Kaffee.',es:'¡Hola! Me llamo Ana. Quisiera un café, por favor.'})[norm(lang).split('-')[0]],{lang});
     dialog.querySelector('#voiceRefresh').onclick=()=>{refresh();renderDialog();};
@@ -175,6 +183,6 @@
     dialog.addEventListener('cancel',()=>cancel());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();}});
   }
   if(synth){refresh();const changed=()=>{refresh();if(dialog?.open)renderDialog();};if(synth.addEventListener)synth.addEventListener('voiceschanged',changed);else synth.onvoiceschanged=changed;setTimeout(refresh,100);setTimeout(refresh,500);setTimeout(refresh,1500);}
-  window.A1Voice={playUtterance,showError,speak,speakSequence,speakDialogue,dialogueVoices,cancel,select,automatic,matching,refresh,isApple,mount};
+  window.A1Voice={getVoicePreference,setVoice,playUtterance,showError,speak,speakSequence,speakDialogue,dialogueVoices,cancel,select,automatic,matching,refresh,isApple,mount};
 })();
 
