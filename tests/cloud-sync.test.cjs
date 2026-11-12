@@ -181,7 +181,7 @@ test('existing native progress migrates into compatible storage and cannot undo 
 });
 test('all current course identities save through a database that only permits de and fr',async t=>{
  const b=backend(),d=await device(b);t.after(d.close);
- for(const [course,code] of [['deutsch-a1','de'],['francais-a1','fr'],['francais-a2','fr-a2'],['englisch-b1','en-b1'],['spanisch-a1','es'],['deutsch-c1-tr','de-c1-tr']]){
+ for(const [course,code] of [['deutsch-a1','de'],['francais-a1','fr'],['francais-a2','fr-a2'],['griechisch-a1','el'],['englisch-b1','en-b1'],['spanisch-a1','es'],['deutsch-c1-tr','de-c1-tr']]){
   d.api.saveProgress(course,{doneLessons:[1]},4);await d.api.flushProgress();assert.deepEqual(b.progress('u',code).progress_data.doneLessons,[1],course);
  }
  assert.deepEqual([...b.rows.keys()].sort(),['u:de','u:fr']);
@@ -193,6 +193,19 @@ test('expired cloud sessions request a new sign-in while preserving the account 
  assert.equal(d.api.getCurrent().userId,'u');assert.match(d.w.document.querySelector('[data-cloud-status]').textContent,/same profile|demselben Profil/);
  d.api.open();assert(d.w.document.getElementById('pmReconnect'));d.w.document.getElementById('pmReconnect').click();
  assert.equal(d.w.document.getElementById('profileName').value,'p');assert.equal(d.api.getCurrent().userId,'u');
+});
+
+test('Greek progress merges between devices in its own slot and cannot replace French progress',async t=>{
+ const b=backend();b.seed('u','fr',{doneLessons:[5],bestMock:85},4);
+ const a=await device(b,{course:'griechisch-a1',base:'griechischA1State_v1'}),d=await device(b,{course:'griechisch-a1',base:'griechischA1State_v1'});
+ t.after(a.close);t.after(d.close);
+ a.api.saveProgress('griechisch-a1',{doneLessons:[1],lessonMasteryBest:{1:90},lessonWork:{1:{writing:true,speaking:true}}},4);
+ d.api.saveProgress('griechisch-a1',{doneLessons:[2],lessonMasteryBest:{2:95},lessonWork:{2:{writing:true,speaking:true}}},4);
+ await Promise.all([a.api.flushProgress(),d.api.flushProgress()]);
+ assert.deepEqual(b.progress('u','el').progress_data.doneLessons,[1,2]);assert.equal(b.progress('u','el').percent,8);
+ assert.deepEqual(b.progress('u','fr').progress_data.doneLessons,[5]);assert.equal(b.progress('u','fr').progress_data.bestMock,85);
+ await a.api.resetProgress('griechisch-a1',{doneLessons:[],lessonMasteryBest:{},lessonWork:{}});
+ assert.deepEqual(b.progress('u','el').progress_data.doneLessons,[]);assert.deepEqual(b.progress('u','fr').progress_data.doneLessons,[5]);
 });
 
 test('routine cloud updates stay out of the header layout while failures remain visible',async t=>{

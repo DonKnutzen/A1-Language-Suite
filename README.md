@@ -8,6 +8,7 @@ Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen 
 |---|---:|---|
 | Französisch → Deutsch | A1 | `deutsch/` |
 | Deutsch → Französisch | A1 | `francais/` |
+| Deutsch → Griechisch | A1 ab Schrift-Einstieg | `griechisch/` |
 | Deutsch → Englisch | **B1** | `englisch/` |
 | Deutsch → Spanisch | A1 | `spanisch/` |
 | Türkisch → Deutsch | **C1** | `turkisch-deutsch/` |
@@ -30,6 +31,7 @@ Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen 
 - `shared/` – gemeinsame Funktionen und UI-Bausteine
 - `deutsch/` – Französisch → Deutsch A1
 - `francais/` – Deutsch → Französisch A1
+- `griechisch/` – Deutsch → Neugriechisch A1, 24 Lektionen, Schrifttrainer, Eingabehilfe und eigene A1-Lernstandskontrollen; siehe [Lehrplan](griechisch/LEHRPLAN-A1.md)
 - `englisch/` – Deutsch → Englisch B1 für Erwachsene (A2 vorausgesetzt)
 - `spanisch/` – Deutsch → Spanisch A1
 - `turkisch-deutsch/` – Türkisch → Deutsch **C1**
