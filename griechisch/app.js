@@ -56,9 +56,8 @@
   function lesson(id,step=0){
     reloadCloud();session=null;route='lesson';activeLesson=id;activeStep=step;state.lastLessonId=id;(state.lessonWork[id]||={}).step=step;save();
     const l=D.lessons.find(x=>x.id===id);
-    shell(`<div class="lesson-back-row"><button type="button" class="tiny-btn lesson-back-link" id="allLessons">← Lektionen</button></div><header class="lesson-step-header"><span class="eyebrow">LEKTION ${id} VON 24</span><h2>${id}. ${esc(l.title)}</h2><div class="el-position"><strong>${esc(steps[step])}</strong><small>Schritt ${step+1} von 8</small></div><progress class="el-meter" max="8" value="${step+1}" aria-label="Position in der Lektion">${step+1} / 8</progress></header><section class="lesson-goals"><strong>Dein Lernziel</strong><p>${esc(l.goal)}</p></section><details class="el-contents"><summary>Lektionsinhalt anzeigen</summary><ol>${steps.map((s,i)=>`<li><button type="button" data-step="${i}" ${i===step?'aria-current="step"':''}>${i+1}. ${esc(s)}</button></li>`).join('')}</ol></details><div id="lessonContent" class="lesson-step-content"></div><footer class="lesson-step-footer">${step>0?button('← Zurück','id="prevStep"'):''}${step<7?primary(`Weiter: ${esc(steps[step+1])} →`,'id="nextStep"'):''}</footer>`);
+    shell(`<div class="lesson-back-row"><button type="button" class="tiny-btn lesson-back-link" id="allLessons">← Lektionen</button></div><header class="lesson-step-header"><span class="eyebrow">LEKTION ${id} VON 24</span><h2>${id}. ${esc(l.title)}</h2><div class="el-position"><strong>${esc(steps[step])}</strong><small>Schritt ${step+1} von 8</small></div><progress class="el-meter" max="8" value="${step+1}" aria-label="Position in der Lektion">${step+1} / 8</progress></header><div id="lessonContent" class="lesson-step-content"></div><footer class="lesson-step-footer">${step>0?button('← Zurück','id="prevStep"'):''}${step<7?primary(`Weiter: ${esc(steps[step+1])} →`,'id="nextStep"'):''}</footer>`);
     document.getElementById('allLessons').onclick=()=>navigate('learn');
-    view.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>lesson(id,Number(b.dataset.step)));
     document.getElementById('prevStep')?.addEventListener('click',()=>lesson(id,step-1));
     document.getElementById('nextStep')?.addEventListener('click',()=>lesson(id,step+1));
     const area=document.getElementById('lessonContent');
@@ -202,3 +201,4 @@
   if('serviceWorker' in navigator)navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
   navigate('home');
 })();
+

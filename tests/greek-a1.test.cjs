@@ -14,7 +14,18 @@ function env({voice=true,storage={}}={}){
   w.A1Streak={completeExercise(){}};
   for(const [k,v] of Object.entries(storage))w.localStorage.setItem(k,v);
   for(const f of ['shared/learning.js','shared/voice-selection.js','griechisch/data.js','griechisch/transfer.js','griechisch/course.js','griechisch/app.js'])w.eval(read(f));
-  const click=s=>{const el=w.document.querySelector(s);assert(el,`missing ${s}`);el.click();};
+  const click=s=>{
+    const destination=/^\[data-step="(\d+)"\]$/.exec(s);
+    if(destination){
+      const target=Number(destination[1]);let count=0;
+      while(Number(w.document.querySelector('.el-meter')?.value)-1!==target){
+        assert(++count<=8,'reachable lesson step');const current=Number(w.document.querySelector('.el-meter')?.value)-1;
+        const next=w.document.getElementById(current<target?'nextStep':'prevStep');assert(next,`missing footer navigation to ${target}`);next.click();
+      }
+      return;
+    }
+    const el=w.document.querySelector(s);assert(el,`missing ${s}`);el.click();
+  };
   const saved=()=>JSON.parse(w.localStorage.getItem(`griechischA1State_v1::profile:${profile}`)||'{}');
   return {w,dom,click,saved,saves,close:()=>w.close(),profile:p=>profile=p};
 }
@@ -192,8 +203,8 @@ test('French visual components are shared and the lesson opens without a row of 
   for(const file of ['../francais/styles.css','../shared/course-home.css','../shared/lesson-ui.css'])assert([...doc.querySelectorAll('link[rel=stylesheet]')].some(l=>l.getAttribute('href').startsWith(file)));
   assert(doc.querySelector('.home-continue-card #continue'));assert(!doc.querySelector('.el-hero'));
   e.click('#continue');assert(doc.querySelector('.lesson-step-header'));assert(doc.querySelector('.lesson-step-footer'));
-  assert(!doc.querySelector('.el-steps'));const contents=doc.querySelector('details.el-contents');assert(contents&&!contents.open);
-  assert.equal(contents.querySelectorAll('[data-step]').length,8);assert.match(doc.querySelector('.el-position').textContent,/Schritt 1 von 8/);
+  assert(!doc.querySelector('.el-steps'));assert.equal(doc.querySelector('details.el-contents'),null);
+  assert.equal(doc.querySelectorAll('[data-step]').length,0);assert.equal(doc.querySelector('.lesson-goals'),null);assert.match(doc.getElementById('lessonContent').textContent,/Heute kannst du/);assert.match(doc.querySelector('.el-position').textContent,/Schritt 1 von 8/);
   assert.match(doc.querySelector('#nextStep').textContent,/Weiter: Wendungen/);e.click('#nextStep');assert.match(doc.querySelector('.el-position').textContent,/Schritt 2 von 8/);
 });
 
@@ -220,3 +231,4 @@ test('Greek input assistance is collapsed initially and Shift changes letter cas
   const key=value=>[...help.querySelectorAll('button')].find(b=>b.textContent===value);
   assert(key('Ά').hidden);e.click('.mixed-shift');assert(!key('Ά').hidden);assert(key('α').hidden);key('Ά').click();assert.equal(input.value,'αΆ');assert.equal(input.selectionStart,2);
 });
+
