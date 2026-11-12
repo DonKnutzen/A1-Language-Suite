@@ -302,7 +302,7 @@
         view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');
       }));
       if(opts.targetLang==='fr')window.FR_A1_GUIDED_AUDIO?.mount({
-        view,lesson:l,content:c,goalsHtml:opts.goalsHtml,dialogueHtml:opts.dialogueHtml,
+        view,lesson:l,content:c,grammarIndex,showPage:page=>{activeStep=page.step;if(page.index!==undefined)grammarIndex=page.index;drawOverview();},goalsHtml:opts.goalsHtml,dialogueHtml:opts.dialogueHtml,
         introHtml:(window.A1LessonFoundations?.render('fr',l.id)||'')+(window.A1LessonFoundations?.preparationHtml('fr',l.id,'listen')||''),
         finaleHtml:(window.A1LessonFoundations?.preparationHtml('fr',l.id,'hard')||'')+(window.A1LessonFoundations?.hardInstructionsHtml('fr',window.FR_A1_HARD_CONTENT?.[l.id]||{listening:[]})||''),
         grammarPages:grammarPages.map((page,i)=>({title:page.title,html:window.A1LessonFoundations?.enhance('fr',l.id,page.title,page.html,i)||page.html})),
@@ -406,5 +406,6 @@
   }
   window.A1LessonFlow={render,listProgress,resumePosition,continuation};
 })();
+
 
 

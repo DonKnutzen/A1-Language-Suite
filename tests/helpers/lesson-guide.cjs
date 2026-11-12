@@ -1,6 +1,6 @@
 const fs=require('fs'),path=require('path'),{JSDOM}=require('jsdom');
 const root=path.resolve(__dirname,'../..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-function load(w,course){for(const f of ['shared/guide-language.js','shared/lesson-audio-guide.js',course+'/guided-audio.js'])w.eval(read(f));return course==='deutsch'?w.DE_A1_GUIDED_AUDIO:w.FR_A1_GUIDED_AUDIO;}
+function load(w,course){for(const f of ['shared/guide-follow.js','shared/guide-language.js','shared/lesson-audio-guide.js',course+'/guided-audio.js'])w.eval(read(f));return course==='deutsch'?w.DE_A1_GUIDED_AUDIO:w.FR_A1_GUIDED_AUDIO;}
 function clock(w){let id=0;const tasks=new Map();w.setTimeout=(fn,ms)=>{tasks.set(++id,{fn,ms});return id;};w.clearTimeout=i=>tasks.delete(i);return {tasks,next(){const first=tasks.entries().next().value;if(!first)return false;tasks.delete(first[0]);first[1].fn();return true;}};}
 function environment(course){
  const dom=new JSDOM('<main><header class="lesson-step-header"></header></main><button id="away">Weiter</button>',{url:'https://example.org/'+course+'/',runScripts:'outside-only'}),w=dom.window,spoken=[];
@@ -12,3 +12,4 @@ function environment(course){
  return {dom,w,view,spoken,api,time,options,target,native,mount(){api.mount(options);},play(){view.querySelector('[data-guided-play]').click();},advance(){spoken.at(-1).onend();time.next();},drain(){let n=0;while(view.querySelector('[data-guided-play]').textContent==='Ⅱ Pause'){if(++n>4000)throw Error('guide did not finish');spoken.at(-1).onend();time.next();}return n;}};
 }
 module.exports={root,read,load,clock,environment};
+

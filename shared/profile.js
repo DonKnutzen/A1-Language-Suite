@@ -78,7 +78,7 @@ function setSyncStatus(status){
   for(const [lang,text] of Object.entries(connected))label[lang].connected=text;
   const reauth={de:'Cloud-Anmeldung abgelaufen – bitte mit demselben Profil neu anmelden',en:'Cloud sign-in expired – sign in again with the same profile',fr:'Connexion expirée – reconnecte-toi avec le même profil',tr:'Bulut oturumu sona erdi – aynı profille tekrar giriş yap'};
   for(const [lang,text] of Object.entries(reauth))label[lang].reauth=text;
-  document.querySelectorAll('[data-cloud-status]').forEach(el=>{el.textContent=(label[getUiLang()]||label.de)[status];el.dataset.cloudStatus=status;});
+  document.querySelectorAll('[data-cloud-status]').forEach(el=>{el.textContent=(label[getUiLang()]||label.de)[status];el.dataset.cloudStatus=status;if(el.hasAttribute('data-cloud-notice'))el.hidden=!['pending','error','reauth'].includes(status);});
   window.dispatchEvent(new CustomEvent('a1suite:syncstatus',{detail:{status}}));
 }
 function syncFailure(error){
@@ -1311,7 +1311,8 @@ function injectChip(){
 
   target.appendChild(b);
   if(p.mode==='cloud'){
-    const status=document.createElement('small');status.setAttribute('data-cloud-status','');status.setAttribute('role','status');
+    const status=document.createElement('small');status.setAttribute('data-cloud-status','');status.setAttribute('role','status');status.setAttribute('data-cloud-notice','');status.hidden=true;
+    Object.assign(status.style,{position:'fixed',inset:'auto 12px calc(12px + env(safe-area-inset-bottom)) auto',zIndex:'120',maxWidth:'min(360px, calc(100vw - 24px))',boxSizing:'border-box',padding:'10px 12px',borderRadius:'10px',background:'var(--panel, #fff)',color:'var(--ink, #0f172a)',border:'1px solid var(--line, #cbd5e1)',boxShadow:'0 4px 18px #0003',lineHeight:'1.4',whiteSpace:'normal'});
     target.appendChild(status);setSyncStatus(syncStatus);
   }
 }
@@ -1471,4 +1472,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.A1SetDisplayLanguage = lang => setUiLang(lang);
 })();
+
 

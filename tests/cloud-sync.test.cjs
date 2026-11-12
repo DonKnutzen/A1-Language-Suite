@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {webcrypto}=require('node:crypto'),{TextEncoder}=require('node:util'),{JSDOM}=require('jsdom');
 const source=fs.readFileSync(path.join(__dirname,'../shared/profile.js'),'utf8').replace(
- 'window.A1Profile = {','window.A1Profile = {mergeProgress,refreshCourseFromCloud,ensureToken,clearCurrent,');
+ 'window.A1Profile = {','window.A1Profile = {injectChip,mergeProgress,refreshCourseFromCloud,ensureToken,clearCurrent,');
 const plain=v=>JSON.parse(JSON.stringify(v));
 const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};};
 const response=(data,status=200)=>({ok:status<400,status,json:async()=>plain(data)});
@@ -193,4 +193,14 @@ test('expired cloud sessions request a new sign-in while preserving the account 
  assert.equal(d.api.getCurrent().userId,'u');assert.match(d.w.document.querySelector('[data-cloud-status]').textContent,/same profile|demselben Profil/);
  d.api.open();assert(d.w.document.getElementById('pmReconnect'));d.w.document.getElementById('pmReconnect').click();
  assert.equal(d.w.document.getElementById('profileName').value,'p');assert.equal(d.api.getCurrent().userId,'u');
+});
+
+test('routine cloud updates stay out of the header layout while failures remain visible',async t=>{
+ const b=backend(),d=await device(b);t.after(d.close);
+ d.api.injectChip();await d.api.hydrateCourse();
+ const notice=d.w.document.querySelector('[data-cloud-notice]');assert(notice);assert.equal(notice.hidden,true);assert.equal(notice.style.position,'fixed');
+ d.api.saveProgress('francais-a2',{doneLessons:[1]},1);assert.equal(notice.hidden,true);
+ await d.api.flushProgress();assert.equal(notice.hidden,true);
+ b.offline=true;Object.defineProperty(d.w.navigator,'onLine',{value:false,configurable:true});
+ d.api.saveProgress('francais-a2',{doneLessons:[1,2]},2);await assert.rejects(d.api.flushProgress());assert.equal(notice.hidden,false);assert.equal(notice.dataset.cloudStatus,'pending');assert.equal(notice.style.position,'fixed');
 });

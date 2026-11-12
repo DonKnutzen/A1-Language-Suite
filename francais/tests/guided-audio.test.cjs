@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),{environment}=require('../../tests/helpers/lesson-guide.cjs');
 test('French full-lesson guide covers every topic, repeats long phrases and keeps translations in German',()=>{
  const e=environment('francais');try{
- for(const lesson of e.w.FR_A1_DATA.lessons){const parts=e.api.plan({...e.options,lesson});for(let i=0;i<lesson.phrases.length;i++){const reps=parts.filter(p=>p.phrase===i);const long=true;assert.equal(reps.length,long?2:1);assert.equal(reps.at(-1).phraseEnd,true);assert(reps.every(p=>p.lang==='fr-FR'));assert.equal(parts[parts.indexOf(reps[0])+1].lang,'de-DE');assert((long?reps.at(-1):parts[parts.indexOf(reps[0])+1]).pauseAfter>=500);}assert(parts.some(p=>p.chapterTitle?.includes('Zweites Thema')));assert.equal(parts.filter(p=>p.listening).length,1);assert(!JSON.stringify(parts).match(/Geheime Testlösung|Nicht vorlesen/));assert.match(parts.at(-1).text,/bewertet/);}
+ for(const lesson of e.w.FR_A1_DATA.lessons){const parts=e.api.plan({...e.options,lesson});for(let i=0;i<lesson.phrases.length;i++){const reps=parts.filter(p=>p.phrase===i);const long=true;assert.equal(reps.length,long?2:1);assert.equal(reps.at(-1).phraseEnd,true);assert(reps.every(p=>p.lang==='fr-FR'));assert.equal(parts[parts.indexOf(reps[0])+1].lang,'de-DE');assert((long?reps.at(-1):parts[parts.indexOf(reps[0])+1]).pauseAfter>=500);}assert(parts.some(p=>p.chapterTitle?.includes('Zweites Thema')));assert.equal(parts.filter(p=>p.listening).length,0);assert(!JSON.stringify(parts).match(/Geheime Testlösung|Nicht vorlesen/));assert.match(parts.at(-1).text,/bewertet/);}
  }finally{e.dom.window.close();}
 });
 test('French inline examples and endings switch voices while German connective text stays German',()=>{
@@ -25,3 +25,4 @@ test('French exam labels switch voices without switching German plus or je in a 
 test('spoken endings, embedded spelled names and IPA notes do not fall back to German pronunciation',()=>{
  const e=environment('francais');try{const root=e.w.document.createElement('div');root.innerHTML='<p>Die Endungen <strong>-e, -es, -ons, -ent</strong> sind wichtig. On pourrait [puʁɛ] ist eine Form.</p>';const parts=e.api.readContent(root),target=parts.filter(p=>p.lang==='fr-FR').map(p=>p.text).join(' ');assert(!target.includes('-ent'));assert.match(target,/enne/);assert(!JSON.stringify(parts).includes('puʁɛ'));assert(!e.api.speechText('Ça s’écrit M-A-R-T-I-N.','fr-FR').includes('M-A-R'));}finally{e.dom.window.close();}
 });
+

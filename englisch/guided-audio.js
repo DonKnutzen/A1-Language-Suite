@@ -42,7 +42,7 @@
     const parts=[de(`Lektion ${lesson.id}. ${lesson.title}. ${title}.`)];
     if(step==='listen'){
       parts.push(de('Höre zuerst die englischen Wörter und Sätze mit ihrer deutschen Übersetzung.'));
-      lesson.phrases.forEach(([fr,native],index)=>parts.push({text:fr,lang:'en-GB',phrase:index},de(native)));
+      lesson.phrases.forEach(([fr,native],index)=>parts.push({text:fr,lang:'en-GB',phrase:index},{...de(native),sourcePhrase:index}));
       parts.push(...readContent(goals));
       if(root){const copy=root.cloneNode(true);copy.querySelectorAll('.lesson-core-phrases').forEach(el=>el.remove());parts.push(...readContent(copy));}
       parts.push(de('Jetzt bist du dran. Zehn Fragen zum Wortschatz dieser Lektion. Drücke auf Vokabel-Check starten, wenn du bereit bist.'));
@@ -60,31 +60,35 @@
   }
   function mount(options){
     disposeCurrent();
+    if(!['listen','grammar'].includes(options.step))return;
     const {view}=options,voice=window.A1Voice,synth=window.speechSynthesis;
     const host=document.createElement('section');host.className='guided-audio card';host.setAttribute('aria-label','Geführter Audiomodus');
-    host.innerHTML='<strong>Geführter Audiomodus · Test</strong><p>Englisch hören, deutsche Übersetzungen und Erklärungen anhören. Bei den Aufgaben bist du dran.</p><div class="button-row"><button type="button" class="primary-btn" data-guided-play>▶ Seite vorlesen</button><button type="button" class="secondary-btn" data-guided-stop disabled>■ Stopp</button></div><p data-guided-status role="status" aria-live="polite">Bereit</p>';
+    host.innerHTML='<div class="guide-toolbar"><strong>Audio-Guide</strong><div class="button-row"><button type="button" class="primary-btn" data-guided-play>▶ Seite vorlesen</button><button type="button" class="secondary-btn" data-guided-stop disabled>■</button></div></div><p data-guided-status role="status" aria-live="polite" hidden>Bereit</p>';
     view.querySelector('.lesson-step-header')?.after(host);
     if(!host.isConnected)return;
     const play=host.querySelector('[data-guided-play]'),stop=host.querySelector('[data-guided-stop]'),status=host.querySelector('[data-guided-status]');
+    const reader=window.A1GuideFollow?.create(view,{targetLang:'en-GB'});
     let parts=[],index=0,run=0,playing=false,paused=false,utterance=null,disposed=false;
     function reset(message='Bereit'){
-      run++;playing=false;paused=false;utterance=null;voice?.cancel();index=0;
-      play.textContent='▶ Seite vorlesen';stop.disabled=true;status.textContent=message;
+      reader?.clear();run++;playing=false;paused=false;utterance=null;voice?.cancel();index=0;
+      play.textContent='▶ Seite vorlesen';stop.disabled=true;status.textContent=message;status.hidden=message==='Bereit';
     }
     function next(token){
       if(disposed||token!==run||!playing)return;
       if(index>=parts.length){reset('Fertig. Jetzt bist du dran.');return;}
-      const part=parts[index];status.textContent=`${index+1} / ${parts.length} · ${part.text}`;
+      const part=parts[index];status.hidden=true;
       if(part.phrase!==undefined)options.onPhraseStart?.(part.phrase);
+      reader?.follow(part);
       const u=utterance=new window.SpeechSynthesisUtterance(part.text),selected=voice.select(part.lang);
       u.lang=part.lang;if(selected)u.voice=selected;u.rate=part.lang==='en-GB'?.82:1;
       let handled=false;
-      u.onend=()=>{if(handled||token!==run||disposed)return;handled=true;if(part.phrase!==undefined)options.onPhraseEnd?.(part.phrase);index++;next(token);};
+      u.onboundary=e=>{if(token===run&&!disposed&&playing&&(!e.name||e.name==='word'))reader?.word(u.text,e.charIndex,e.charLength);};
+      u.onend=()=>{if(handled||token!==run||disposed)return;handled=true;reader?.clearWord();if(part.phrase!==undefined)options.onPhraseEnd?.(part.phrase);index++;next(token);};
       u.onerror=()=>{if(handled||token!==run||disposed)return;handled=true;reset('Vorlesen unterbrochen. Bitte erneut auf Play drücken.');};
       try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
     }
     play.onclick=()=>{
-      if(playing){run++;playing=false;paused=true;voice.cancel();utterance=null;play.textContent='▶ Fortsetzen';status.textContent='Pausiert. Fortsetzen wiederholt den aktuellen Satz.';return;}
+      if(playing){reader?.clearWord();run++;playing=false;paused=true;voice.cancel();utterance=null;play.textContent='▶ Fortsetzen';status.textContent='Pausiert. Fortsetzen wiederholt den aktuellen Satz.';return;}
       if(!paused){parts=plan(options);index=0;}
       voice.cancel();playing=true;paused=false;stop.disabled=false;play.textContent='Ⅱ Pause';next(++run);
     };
@@ -100,3 +104,4 @@
   }
   window.EN_B1_GUIDED_AUDIO={mount,plan,readContent};
 })();
+
