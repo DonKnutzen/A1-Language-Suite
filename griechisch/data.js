@@ -21,10 +21,10 @@
     'Καλημέρα! Με λένε Άννα. Πώς σε λένε;|Με λένε Νίκο. Χάρηκα!|Χάρηκα! Γεια σου!',
     [q('Du begrüßt eine fremde Person höflich.', 'Γεια σας!','Γεια σου!','Αντίο!','σας ist die höfliche Anrede und zugleich die Mehrzahl.'),q('Με ___ Άννα.','λένε','λέω','λες','Die feste Vorstellung lautet Με λένε + Name.'),q('Welches Zeichen beendet eine griechische Frage?',';','?','!','Das griechische Fragezeichen wird als ; geschrieben.')],
     text('Καλημέρα! Με λένε Ελένη. Πώς σε λένε;', [q('Was möchte Eleni erfahren?','Deinen Namen','Dein Alter','Deine Adresse','Πώς σε λένε; fragt nach dem Namen.'),q('Welche Tageszeit passt zum Gruß?','Morgen','Abend','Nacht','Καλημέρα wird morgens und tagsüber als Begrüßung verwendet.')]),
-    text('Γεια σας! Με λένε Μαρία. Χάρηκα!',[q('Wie heißt die Sprecherin?','Μαρία','Άννα','Ελένη','Nach Με λένε folgt der Name Μαρία.'),q('Wie spricht sie ihr Gegenüber an?','Höflich oder im Plural','Nur mit du','Gar nicht','Γεια σας verwendet σας für Sie oder mehrere Personen.')]),
+    text('Γεια σας! Με λένε Μαρία. Χάρηκα!',[q('Wie heißt die Sprecherin?','Μαρία','Άννα','Ελένη','Nach Με λένε folgt der Name Μαρία.'),q('Wie spricht sie ihr Gegenüber an?','Höflich oder an mehrere','Vertraulich an nur eine','Ohne jede Begrüßung','Γεια σας verwendet σας für Sie oder mehrere Personen.')]),
     'Schreibe einen Gruß, deinen Namen und eine Frage nach dem Namen. Verwende die griechische Tastatur unten.',
     'Begrüße eine fremde Person höflich. Stelle dich vor. Frage anschließend eine gleichaltrige Person nach ihrem Namen.',
-    'Γεια σας! Με λένε Άννα. Πώς σε λένε;');
+    'Γεια σου! Με λένε Άννα. Πώς σε λένε;');
   add('Schrift lesen: erste Buchstaben','Ich erkenne alle 24 Buchstaben und lese erste kurze Wörter.',
     'Lerne im Schrifttrainer die vier Gruppen nacheinander. Groß- und Kleinbuchstaben gehören zusammen. Ρ/ρ klingt wie r, nicht p; Β/β wie w in Wasser, nicht b; Η/η wie i. σ steht im Wort, ς am Wortende. Buchstabenname und Laut sind verschieden: β heißt βήτα, klingt aber /v/.',
     `το όνομα|der Name|to ónoma
@@ -40,7 +40,7 @@
     text('Άννα: το όνομα. Νερό: το νερό.',[q('Welches Wort bezeichnet Wasser?','νερό','όνομα','μαμά','νερό bedeutet Wasser; das ο ist betont.'),q('Was bezeichnet όνομα;','Name','Tag','Haus','όνομα ist das Wort für Name.')]),
     text('νερό, μαμά, βιβλίο',[q('Welches Wort hörst du zuerst?','νερό','βιβλίο','μαμά','Die Reihe beginnt mit νερό.'),q('Welches Wort endet auf den Laut o?','βιβλίο','μαμά','μέρα','βιβλίο endet auf ο; der Akzent steht auf ί.')]),
     'Schreibe deinen Namen, wenn möglich in griechischen Buchstaben, sowie νερό und βιβλίο ab. Vergleiche jeden Buchstaben.',
-    'Sprich νερό, μαμά und βιβλίο. Zeige jeweils auf die betonte Silbe.', 'το νερό, η μαμά, το βιβλίο');
+    'Sprich νερό, μαμά und βιβλίο. Zeige jeweils auf die betonte Silbe.', 'Άννα. νερό. βιβλίο.');
   add('Laute, Betonung & Nachfragen','Ich lese häufige Buchstabenkombinationen und bitte um Wiederholung.',
     'αι klingt wie e, ει/οι/υι wie i und ου wie u. αυ wird /av/ oder vor stimmlosen Lauten /af/, ευ entsprechend /ev/ oder /ef/. μπ, ντ, γκ ergeben häufig b, d, g (im Wort teils mit Nasal). γ ist vor e/i weich, sonst ein stimmhafter Reibelaut; χ vor e/i wie in „ich“, sonst wie in „Bach“. δ = stimmhaftes englisches th, θ = stimmloses th. Das Trema trennt Vokale: μαϊμού. Hilfsumschrift ist nur eine Annäherung.',
     `Ναι.|Ja.|ne
@@ -71,7 +71,7 @@
     [q('Εσύ ___ από την Ελλάδα;','είσαι','είμαι','είμαστε','εσύ (du) verlangt είσαι.'),q('Εμείς ___ από τη Γερμανία.','είμαστε','είστε','είναι','εμείς bedeutet wir; dazu gehört είμαστε.'),q('Μένω ___ Αθήνα.','στην','στο','στον','σε + την verschmilzt zu στην vor dem weiblichen Ortsnamen.')],
     text('Με λένε Πέτρο. Είμαι από την Ελλάδα. Μένω στο Βερολίνο. Μιλάω ελληνικά και γερμανικά.',[q('Wo wohnt Petros?','Berlin','Athen','Patras','Μένω στο Βερολίνο nennt Berlin als Wohnort.'),q('Woher kommt er?','Griechenland','Deutschland','Österreich','Είμαι από την Ελλάδα nennt die Herkunft.')]),
     text('Είμαι η Σοφία. Είμαι από τη Γερμανία. Μένω στην Πάτρα.',[q('Wo wohnt Sofia?','Patras','Berlin','Athen','στην Πάτρα nennt den Wohnort.'),q('Woher kommt sie?','Deutschland','Griechenland','Zypern','από τη Γερμανία bezeichnet die Herkunft.')]),
-    'Schreibe Name, Herkunft, Wohnort und die Sprachen, die du sprichst.', 'Frage nach Herkunft und Wohnort. Beantworte dieselben Fragen selbst.', 'Με λένε Άννα. Είμαι από τη Γερμανία. Μένω στην Αθήνα.');
+    'Schreibe Name, Herkunft, Wohnort und die Sprachen, die du sprichst.', 'Frage nach Herkunft und Wohnort. Beantworte dieselben Fragen selbst.', 'Με λένε Άννα. Είμαι από τη Γερμανία. Μένω στην Αθήνα. Μιλάω γερμανικά και μαθαίνω ελληνικά.');
   add('Zahlen & persönliche Daten','Ich nenne Alter und Telefonnummer und verstehe Zahlen bis 100.',
     '0–10: μηδέν, ένα, δύο, τρία, τέσσερα, πέντε, έξι, επτά, οκτώ, εννέα, δέκα. 11 έντεκα, 12 δώδεκα; 13 δεκατρία bis 19 δεκαεννέα. Zehner: είκοσι, τριάντα, σαράντα, πενήντα, εξήντα, εβδομήντα, ογδόντα, ενενήντα, εκατό. 21 = είκοσι ένα. Alter mit είμαι: Είμαι είκοσι χρονών. Telefonnummern können ziffernweise gesprochen werden.',
     `Πόσων χρονών είσαι;|Wie alt bist du?
@@ -83,7 +83,7 @@
 Το όνομά μου είναι Άννα.|Mein Name ist Anna.
 Το επώνυμό μου είναι Μίλερ.|Mein Nachname ist Müller.`,
     'Πόσων χρονών είσαι;|Είμαι είκοσι πέντε χρονών.|Ποιο είναι το τηλέφωνό σου;|Είναι 210 345 6789.',
-    [q('Welche Zahl ist δεκατρία;','13','30','3','δεκα- steht hier für zehn plus τρία (drei).'),q('Wie sagt man 42?','σαράντα δύο','είκοσι τέσσερα','δεκατέσσερα','σαράντα = vierzig; danach steht δύο.'),q('Είμαι είκοσι ___.','χρονών','χρόνος','χρόνιας','Beim Alter steht die feste Form χρονών nach der Zahl.')],
+    [q('Welche Zahl ist δεκατρία;','13','30','3','δεκα- steht hier für zehn plus τρία (drei).'),q('Wie sagt man 42?','σαράντα δύο','είκοσι τέσσερα','δεκατέσσερα','σαράντα = vierzig; danach steht δύο.'),q('Είμαι είκοσι ___.','χρονών','χρόνος','χρόνια','Beim Alter steht die feste Form χρονών nach der Zahl.')],
     text('Όνομα: Λένα. Επώνυμο: Παπά. Ηλικία: 28. Τηλέφωνο: 210 765 4321.',[q('Wie alt ist Lena?','28','18','82','Ηλικία ist das Formularfeld für Alter.'),q('Was ist Παπά;','Nachname','Vorname','Wohnort','Επώνυμο kennzeichnet den Nachnamen.')]),
     text('Με λένε Μάριο. Είμαι τριάντα δύο χρονών. Το τηλέφωνό μου είναι δύο, ένα, μηδέν, πέντε, έξι.',[q('Wie alt ist Mario?','32','23','13','τριάντα δύο setzt sich aus dreißig und zwei zusammen.'),q('Wie beginnt die Nummer?','210','201','120','δύο, ένα, μηδέν entspricht zwei, eins, null.')]),
     'Fülle mit erfundenen Daten aus: Όνομα, Επώνυμο, Ηλικία, Τηλέφωνο.', 'Sage dein Alter und eine erfundene Telefonnummer langsam Ziffer für Ziffer.', 'Όνομα: Άννα. Επώνυμο: Μίλερ. Ηλικία: 25. Τηλέφωνο: 210 123 4567.');
@@ -116,7 +116,7 @@
     [q('η μητέρα ___ = unsere Mutter','μας','σας','τους','μας bedeutet unser; es steht nach dem Nomen.'),q('Εσείς ___ παιδιά;','έχετε','έχουμε','έχουν','εσείς verlangt die Form έχετε.'),q('Welcher Artikel passt zu παιδιά;','τα','οι','το','παιδιά ist sächlicher Plural; dafür steht τα.')],
     text('Ο Νίκος έχει δύο παιδιά. Η κόρη του είναι δέκα χρονών. Ο γιος του είναι έξι.',[q('Wie viele Kinder hat Nikos?','Zwei','Drei','Eins','δύο παιδιά nennt zwei Kinder.'),q('Wie alt ist die Tochter?','10','6','12','Η κόρη του ist seine Tochter; sie ist δέκα.')]),
     text('Αυτή είναι η αδερφή μου. Τη λένε Μαρία. Έχει ένα παιδί.',[q('Wer wird vorgestellt?','Schwester','Mutter','Tochter','η αδερφή μου ist meine Schwester.'),q('Wie viele Kinder hat sie?','Eins','Zwei','Keine','ένα παιδί bezeichnet ein Kind.')]),
-    'Stelle eine echte oder erfundene Familie in vier Sätzen vor.', 'Beschreibe drei Familienmitglieder und frage nach Geschwistern.', 'Έχω μία αδερφή. Τη λένε Λένα. Η αδερφή μου έχει δύο παιδιά.');
+    'Stelle eine echte oder erfundene Familie in vier Sätzen vor.', 'Beschreibe drei Familienmitglieder und frage nach Geschwistern.', 'Έχω μία αδερφή. Τη λένε Λένα. Η αδερφή μου έχει δύο παιδιά. Μένει στην Αθήνα.');
   add('Personen & Eigenschaften','Ich beschreibe Menschen mit passenden Adjektivformen.',
     'Adjektive passen zu Geschlecht und Zahl: καλός φίλος, καλή φίλη, καλό παιδί; καλοί φίλοι, καλές φίλες, καλά παιδιά. Der Artikel hilft beim Erkennen. Die häufige Reihe -ος/-η/-ο ist ein Muster, keine Regel für jedes Adjektiv. Nach είμαι bleibt die beschriebene Person die Bezugsform.',
     `Είναι καλός φίλος.|Er ist ein guter Freund.
@@ -131,7 +131,7 @@
     [q('Η Μαρία είναι ___.','ψηλή','ψηλός','ψηλό','Μαρία ist weiblich, daher ψηλή.'),q('Το παιδί είναι ___.','μικρό','μικρή','μικρός','παιδί ist sächlich; das Adjektiv endet hier auf -ό.'),q('οι ___ φίλοι','καλοί','καλές','καλά','φίλοι ist männlicher Plural, dazu gehört καλοί.')],
     text('Η Ελένη είναι ψηλή. Έχει καστανά μάτια και μαύρα μαλλιά. Είναι πολύ ευγενική.',[q('Welche Augenfarbe hat Eleni?','Braun','Blau','Grün','καστανά μάτια bezeichnet braune Augen.'),q('Wie wird sie beschrieben?','Freundlich','Unhöflich','Müde','ευγενική bedeutet freundlich/höflich.')]),
     text('Ο φίλος μου είναι ψηλός. Έχει μαύρα μαλλιά. Τον λένε Πέτρο.',[q('Wie heißt der Freund?','Petros','Nikos','Mario','Τον λένε Πέτρο nennt den Namen.'),q('Welche Haarfarbe hat er?','Schwarz','Blond','Braun','μαύρα μαλλιά bedeutet schwarze Haare.')]),
-    'Beschreibe zwei Personen in je zwei Sätzen. Achte auf männliche und weibliche Adjektivformen.', 'Beschreibe eine Person, damit dein Gegenüber sie erkennen kann.', 'Η φίλη μου είναι ψηλή. Έχει καστανά μάτια. Είναι πολύ ευγενική.');
+    'Beschreibe zwei Personen in je zwei Sätzen. Achte auf männliche und weibliche Adjektivformen.', 'Beschreibe eine Person, damit dein Gegenüber sie erkennen kann.', 'Η φίλη μου είναι ψηλή. Έχει καστανά μάτια. Ο φίλος μου είναι ψηλός. Έχει μαύρα μαλλιά.');
   add('Café & höflich bestellen','Ich bestelle ein Getränk und bitte um die Rechnung.',
     'Θα ήθελα … ist eine höfliche feste Wendung: Ich hätte gern. Nach θέλω/θα ήθελα steht das Objekt im Akkusativ: ο καφές → έναν καφέ, η σαλάτα → μία σαλάτα, το νερό → ένα νερό. Maskuline Formen verändern sich oft; sächliche bleiben im Akkusativ gleich. με = mit, χωρίς = ohne.',
     `Θα ήθελα έναν καφέ.|Ich hätte gern einen Kaffee.
@@ -176,7 +176,7 @@
     [q('το μήλο → τα ___','μήλα','μήλοι','μήλες','Das sächliche Muster -ο bildet den Plural auf -α.'),q('___ κιλό τυρί = ein halbes Kilo Käse','Μισό','Μισή','Μισός','κιλό ist sächlich; die Mengenform ist μισό.'),q('Wie fragt man nach mehreren Preisen zusammen?','Πόσο κάνουν;','Πού μένουν;','Πότε φεύγουν;','κάνουν steht hier für den Gesamtpreis mehrerer Waren.')],
     text('Μήλα: 2 € το κιλό. Τυρί: 10 € το κιλό. Ψωμί: 1 €. Πληρωμή με κάρτα: ναι.',[q('Was kostet ein halbes Kilo Käse?','5 €','10 €','2 €','Die Hälfte von 10 € pro Kilo sind 5 €.'),q('Ist Kartenzahlung möglich?','Ja','Nein','Nur morgens','Πληρωμή με κάρτα: ναι bestätigt Kartenzahlung.')]),
     text('Θα ήθελα δύο κιλά μήλα και ένα ψωμί. Πόσο κάνουν; Πέντε ευρώ.',[q('Wie viele Kilo Äpfel?','Zwei','Eins','Drei','δύο κιλά bezeichnet zwei Kilo.'),q('Wie hoch ist der Gesamtpreis?','5 €','2 €','10 €','Πέντε ευρώ nennt den Preis fünf Euro.')]),
-    'Schreibe eine Einkaufsliste mit vier Mengenangaben.', 'Kaufe auf einem Markt ein und frage nach Preis und Kartenzahlung.', 'Ένα κιλό μήλα, μισό κιλό τυρί και δύο μπουκάλια νερό, παρακαλώ.');
+    'Schreibe eine Einkaufsliste mit vier Mengenangaben.', 'Kaufe auf einem Markt ein und frage nach Preis und Kartenzahlung.', 'Ένα κιλό μήλα, μισό κιλό τυρί, δύο μπουκάλια νερό και ένα ψωμί.');
   add('Wohnen & Ortsangaben','Ich beschreibe eine Wohnung und sage, wo Dinge stehen.',
     'υπάρχει + Einzahl, υπάρχουν + Mehrzahl = es gibt. πάνω στο = auf dem, κάτω από το = unter dem, δίπλα στο = neben dem. Nach diesen Ortsausdrücken steht der Akkusativ. η πόρτα → την πόρτα; ο καναπές → τον καναπέ. στον/στην/στο sind σε + bestimmten Artikel.',
     `Μένω σε ένα διαμέρισμα.|Ich wohne in einer Wohnung.
@@ -191,9 +191,9 @@
     [q('___ δύο καρέκλες.','Υπάρχουν','Υπάρχει','Είμαι','Zwei Stühle sind Mehrzahl; dafür steht υπάρχουν.'),q('πάνω ___ τραπέζι','στο','στην','στον','τραπέζι ist sächlich; σε + το = στο.'),q('Η κουζίνα είναι ___.','μικρή','μικρός','μικρό','κουζίνα ist weiblich, daher μικρή.')],
     text('Μικρό διαμέρισμα: δύο δωμάτια, κουζίνα και μπάνιο. Το μπάνιο είναι δίπλα στην κουζίνα. Ενοίκιο: 450 ευρώ.',[q('Wie viele Zimmer sind angegeben?','Zwei','Drei','Vier','δύο δωμάτια nennt zwei Zimmer.'),q('Was liegt neben der Küche?','Bad','Balkon','Treppe','Το μπάνιο ist das Bad.')]),
     text('Το βιβλίο είναι πάνω στο τραπέζι. Η τσάντα είναι κάτω από την καρέκλα.',[q('Wo liegt das Buch?','Auf dem Tisch','Unter dem Stuhl','Neben der Tür','πάνω στο τραπέζι bedeutet auf dem Tisch.'),q('Wo ist die Tasche?','Unter dem Stuhl','Auf dem Tisch','Neben dem Bett','κάτω από την καρέκλα bedeutet unter dem Stuhl.')]),
-    'Beschreibe deine Wohnung und den Standort von zwei Dingen.', 'Führe jemanden mit einfachen Sätzen durch eine Wohnung.', 'Μένω σε ένα διαμέρισμα. Έχει δύο δωμάτια. Το βιβλίο είναι πάνω στο τραπέζι.');
+    'Beschreibe deine Wohnung und den Standort von zwei Dingen.', 'Führe jemanden mit einfachen Sätzen durch eine Wohnung.', 'Μένω σε ένα διαμέρισμα. Έχει δύο δωμάτια. Το βιβλίο είναι πάνω στο τραπέζι. Η τσάντα είναι κάτω από την καρέκλα.');
   add('Stadt & Wegbeschreibung','Ich frage nach dem Weg und verstehe einfache Anweisungen.',
-    'πού = wo, πώς = wie. Für Wege lerne feste Aufforderungen: πηγαίνετε ευθεία (gehen Sie geradeaus), στρίψτε δεξιά/αριστερά. απέναντι από = gegenüber von. κοντά/μακριά = nah/weit. Das Fragewort bleibt auch in kurzen Fragen am Anfang; das Verb kann fehlen: Πού είναι η στάση;',
+    'πού = wo, πώς = wie. Für Wege lerne feste Aufforderungen: πηγαίνετε ευθεία (gehen Sie geradeaus), στρίψτε δεξιά/αριστερά. απέναντι από = gegenüber von. κοντά/μακριά = nah/weit. Πού είναι η στάση; heißt Wo ist die Haltestelle? In einer kurzen Nachfrage kann das Verb fehlen: Πού; = Wo?',
     `Πού είναι η στάση;|Wo ist die Haltestelle?
 Πού είναι το φαρμακείο;|Wo ist die Apotheke?
 Πηγαίνετε ευθεία.|Gehen Sie geradeaus.
@@ -221,9 +221,9 @@
     [q('Εμείς ___ με το τρένο.','πάμε','πάτε','πάνε','εμείς ist wir; dazu gehört πάμε.'),q('εισιτήριο ___ την Αθήνα','για','χωρίς','πάνω','για leitet das Ziel der Fahrkarte ein.'),q('Was bedeutet φτάνει;','Kommt an','Fährt ab','Steigt um','φτάνω bedeutet ankommen; φεύγω bedeutet abfahren/weggehen.')],
     text('Αθήνα → Πάτρα. Αναχώρηση: 08:00. Άφιξη: 11:00. Τιμή: 20 €. Στάση: 4.',[q('Wann kommt der Bus an?','11:00','08:00','04:00','Άφιξη bezeichnet die Ankunft.'),q('Wie teuer ist die Fahrt?','20 €','4 €','8 €','Τιμή ist der Preis.')]),
     text('Το τρένο για την Αθήνα φεύγει στις επτά και φτάνει στις εννέα. Το εισιτήριο κάνει δώδεκα ευρώ.',[q('Wann fährt der Zug ab?','7:00','9:00','12:00','φεύγει στις επτά nennt sieben Uhr als Abfahrt.'),q('Was kostet die Fahrkarte?','12 €','7 €','9 €','δώδεκα bedeutet zwölf.')]),
-    'Schreibe eine Anfrage nach Fahrkarte, Abfahrtszeit und Preis.', 'Kaufe eine Fahrkarte hin und zurück und frage nach der Ankunft.', 'Θα ήθελα ένα εισιτήριο για την Πάτρα με επιστροφή. Πότε φεύγει το λεωφορείο;');
+    'Schreibe eine Anfrage nach Fahrkarte, Abfahrtszeit und Preis.', 'Kaufe eine Fahrkarte hin und zurück und frage nach der Ankunft.', 'Θα ήθελα ένα εισιτήριο για την Πάτρα με επιστροφή. Πότε φεύγει το λεωφορείο; Πόσο κάνει;');
   add('Arbeit & Lernen','Ich nenne meinen Beruf und beschreibe einen einfachen Arbeitstag.',
-    'Regelmäßiges Präsens auf -ω: δουλεύω, δουλεύεις, δουλεύει, δουλεύουμε, δουλεύετε, δουλεύουν. Gleiches Muster z. B. für γράφω und διαβάζω. Berufe stehen nach είμαι häufig ohne Artikel: Είμαι γιατρός. σε γιατρό und σε σχολείο beschreiben unterschiedliche Orte; Artikel und Bedeutung beachten.',
+    'Regelmäßiges Präsens auf -ω: δουλεύω, δουλεύεις, δουλεύει, δουλεύουμε, δουλεύετε, δουλεύουν. Gleiches Muster z. B. für γράφω und διαβάζω. Berufe stehen nach είμαι häufig ohne Artikel: Είμαι γιατρός. Beim Arbeitsort unterscheide: στο σχολείο = in der Schule, σε ένα σχολείο = in einer Schule.',
     `Τι δουλειά κάνεις;|Was arbeitest du?
 Είμαι γιατρός.|Ich bin Arzt/Ärztin.
 Είμαι δάσκαλος.|Ich bin Lehrer.
@@ -251,7 +251,7 @@
     [q('Δεν πίνω ___ τσάι. = Ich trinke nie Tee.','ποτέ','πάντα','συνήθως','ποτέ mit δεν drückt nie aus.'),q('Was verbindet eine zeitliche Reihenfolge?','μετά','χωρίς','απέναντι','μετά bedeutet danach.'),q('Εγώ ___ έναν καφέ.','πίνω','πίνει','πίνεις','Die ich-Form lautet πίνω; πίνεις gehört zu du.')],
     text('Ο Πέτρος ξυπνάει στις έξι. Τρώει πρωινό και μετά πάει στη δουλειά. Το βράδυ βλέπει τηλεόραση.',[q('Was tut Petros nach dem Frühstück?','Zur Arbeit gehen','Schlafen','Einkaufen','μετά πάει στη δουλειά beschreibt den nächsten Schritt.'),q('Wann wacht er auf?','6:00','7:00','8:00','στις έξι bedeutet um sechs.')]),
     text('Συνήθως ξυπνάω στις οκτώ. Πίνω τσάι. Δεν πίνω ποτέ καφέ.',[q('Welches Getränk trinkt die Person?','Tee','Kaffee','Milch','Πίνω τσάι ist eine positive Aussage über Tee.'),q('Wie oft trinkt sie Kaffee?','Nie','Immer','Manchmal','Δεν πίνω ποτέ καφέ bedeutet nie Kaffee trinken.')]),
-    'Beschreibe deinen Tag mit vier Uhrzeiten und zwei Häufigkeitsangaben.', 'Erzähle deinen Tagesablauf ohne Vorlage und frage nach dem deines Gegenübers.', 'Ξυπνάω στις επτά. Μετά τρώω πρωινό. Το βράδυ μένω στο σπίτι.');
+    'Beschreibe deinen Tag mit vier Uhrzeiten und zwei Häufigkeitsangaben.', 'Erzähle deinen Tagesablauf ohne Vorlage und frage nach dem deines Gegenübers.', 'Συνήθως ξυπνάω στις επτά. Στις οκτώ πίνω πάντα έναν καφέ. Στις εννέα πάω στη δουλειά. Το βράδυ κοιμάμαι στις έντεκα.');
   add('Freizeit, Vorlieben & können','Ich spreche über Hobbys und sage, was ich kann.',
     'μου αρέσει + να + Verb beschreibt eine gern ausgeübte Tätigkeit: Μου αρέσει να διαβάζω. μπορώ: μπορώ, μπορείς, μπορεί, μπορούμε, μπορείτε, μπορούν. Nach μπορώ folgt να + gebeugtes Verb, kein Infinitiv: Μπορείς να έρθεις; Die Form nach να kann sich ändern; lerne hier έρθω/έρθεις als Wendung.',
     `Τι κάνεις στον ελεύθερο χρόνο σου;|Was machst du in deiner Freizeit?
@@ -266,7 +266,7 @@
     [q('Μπορείς ___ έρθεις;','να','το','από','Auf μπορώ folgt να und ein konjugiertes Verb.'),q('Εμείς ___ να πάμε.','μπορούμε','μπορείτε','μπορεί','εμείς (wir) verlangt μπορούμε.'),q('Μου αρέσει ___ διαβάζω.','να','σε','για','Für „gern etwas tun“ steht μου αρέσει να + Verb.')],
     text('Η Λένα ακούει μουσική και διαβάζει βιβλία. Το Σάββατο παίζει ποδόσφαιρο. Δεν της αρέσει το σινεμά.',[q('Was macht Lena samstags?','Fußball spielen','Ins Kino gehen','Schwimmen','Το Σάββατο παίζει ποδόσφαιρο nennt die Samstagsaktivität.'),q('Was mag sie nicht?','Kino','Musik','Bücher','Δεν της αρέσει το σινεμά verneint ihre Vorliebe fürs Kino.')]),
     text('Σήμερα δεν μπορώ να έρθω. Αύριο μπορούμε να πάμε σινεμά στις οκτώ.',[q('Wann ist Kino möglich?','Morgen','Heute','Gestern','Αύριο bedeutet morgen.'),q('Um welche Uhrzeit?','20:00','18:00','19:00','στις οκτώ bedeutet um acht, beim Kino hier abends.')]),
-    'Schreibe drei Freizeitaktivitäten, eine Vorliebe und etwas, das du nicht kannst.', 'Frage nach Hobbys und schlage eine gemeinsame Aktivität vor.', 'Μου αρέσει να διαβάζω και να ακούω μουσική. Θέλεις να πάμε σινεμά;');
+    'Schreibe drei Freizeitaktivitäten, eine Vorliebe und etwas, das du nicht kannst.', 'Frage nach Hobbys und schlage eine gemeinsame Aktivität vor.', 'Μου αρέσει να διαβάζω. Ακούω μουσική και παίζω ποδόσφαιρο. Δεν μπορώ να κολυμπήσω.');
   add('Wetter, Monate & Kleidung','Ich verstehe eine einfache Wetterangabe und wähle Kleidung.',
     'Wetterwendungen: κάνει ζέστη/κρύο, έχει ήλιο, βρέχει. Monate: Ιανουάριος, Φεβρουάριος, Μάρτιος, Απρίλιος, Μάιος, Ιούνιος, Ιούλιος, Αύγουστος, Σεπτέμβριος, Οκτώβριος, Νοέμβριος, Δεκέμβριος. Jahreszeiten: άνοιξη, καλοκαίρι, φθινόπωρο, χειμώνας. Farben passen sich an: κόκκινος/κόκκινη/κόκκινο; μπλε bleibt unverändert.',
     `Τι καιρό κάνει;|Wie ist das Wetter?
@@ -278,10 +278,10 @@
 Θέλω μία κόκκινη μπλούζα.|Ich möchte ein rotes Oberteil.
 Τον Ιούλιο κάνει ζέστη.|Im Juli ist es heiß.`,
     'Τι καιρό κάνει σήμερα;|Βρέχει και κάνει κρύο.|Έχεις μπουφάν;|Ναι, έχω ένα μπλε μπουφάν.',
-    [q('μία ___ μπλούζα','κόκκινη','κόκκινος','κόκκινο','μπλούζα ist weiblich; dazu passt κόκκινη.'),q('Welcher Monat ist Ιούλιος;','Juli','Juni','Januar','Ιούλιος ist Juli; Ιούνιος ist Juni.'),q('Welche Form ist korrekt?','μπλε παντελόνι','μπλος παντελόνι','μπλη παντελόνι','μπλε ist eine unveränderliche Farbbezeichnung.')],
+    [q('μία ___ μπλούζα','κόκκινη','κόκκινος','κόκκινο','μπλούζα ist weiblich; dazu passt κόκκινη.'),q('Welcher Monat ist Ιούλιος;','Juli','Juni','Januar','Ιούλιος ist Juli; Ιούνιος ist Juni.'),q('Welche Wortgruppe hat die passende Adjektivform?','μπλε παντελόνι','κόκκινη παντελόνι','ψηλός παντελόνι','παντελόνι ist sächlich. μπλε bleibt unverändert; κόκκινη und ψηλός passen hier nicht zum sächlichen Nomen.')],
     text('Αθήνα, Ιούλιος: 32 βαθμοί, ήλιος. Θεσσαλονίκη: 25 βαθμοί, βροχή.',[q('Wo regnet es?','Thessaloniki','Athen','Patras','βροχή ist das Nomen Regen.'),q('Welche Temperatur hat Athen?','32 Grad','25 Grad','23 Grad','32 βαθμοί nennt die Temperatur in Athen.')]),
     text('Σήμερα κάνει κρύο και βρέχει. Φοράω ένα μπουφάν και παίρνω μία ομπρέλα.',[q('Wie ist das Wetter?','Kalt und regnerisch','Heiß und sonnig','Warm und trocken','κρύο bedeutet kalt und βρέχει es regnet.'),q('Was nimmt die Person mit?','Regenschirm','Sonnenbrille','Badehose','ομπρέλα ist der Regenschirm.')]),
-    'Schreibe eine Wettermitteilung und nenne zwei passende Kleidungsstücke.', 'Beschreibe Wetter und Kleidung heute sowie in deiner Lieblingsjahreszeit.', 'Σήμερα βρέχει και κάνει κρύο. Φοράω ένα μπλε μπουφάν.');
+    'Schreibe eine Wettermitteilung und nenne zwei passende Kleidungsstücke.', 'Beschreibe Wetter und Kleidung heute sowie in deiner Lieblingsjahreszeit.', 'Σήμερα βρέχει και κάνει κρύο. Φοράω ένα μπλε παντελόνι και ένα μπουφάν.');
   add('Gesundheit & Hilfe','Ich benenne einfache Beschwerden und bitte um Hilfe.',
     'πονάει + ein Körperteil: Πονάει το κεφάλι μου. Mehrzahl: Πονάνε τα πόδια μου. έχω πυρετό = ich habe Fieber. πρέπει να … = ich muss/soll …; πρέπει bleibt unverändert, das Verb nach να passt zur Person. In echten Notfällen Hilfe holen; die Lektion bietet Sprachübung und keine medizinische Beratung.',
     `Δεν αισθάνομαι καλά.|Ich fühle mich nicht gut.
@@ -311,7 +311,7 @@
     [q('για τρεις ___','νύχτες','νύχτα','νύχτας','Nach drei steht die Mehrzahl νύχτες.'),q('Θέλω ___ κλείσω ένα δωμάτιο.','να','το','από','θέλω να verbindet den Wunsch mit einer Handlung.'),q('Τον Ιούνιο reist du in welchem Monat?','Juni','Juli','Januar','Ιούνιος/Ιούνιο bezeichnet Juni.')],
     text('Κράτηση: Άννα Μίλερ. Δύο άτομα. 10–13 Ιουνίου. 60 € η βραδιά. Πρωινό: ναι.',[q('Wie viele Nächte sind gebucht?','Drei','Zwei','Vier','Anreise am 10., Abreise am 13. ergibt drei Nächte.'),q('Ist Frühstück enthalten?','Ja','Nein','Nur sonntags','Πρωινό: ναι bestätigt das Frühstück.')]),
     text('Έχουμε ένα δωμάτιο για δύο άτομα. Κάνει εβδομήντα ευρώ η βραδιά. Το πρωινό δεν περιλαμβάνεται.',[q('Was kostet eine Nacht?','70 €','60 €','17 €','εβδομήντα bedeutet siebzig.'),q('Ist Frühstück im Preis?','Nein','Ja','Nur heute','δεν περιλαμβάνεται bedeutet ist nicht enthalten.')]),
-    'Verfasse eine Zimmeranfrage mit Personen, Zeitraum und einer Frage zum Frühstück.', 'Spiele ein Gespräch an der Rezeption: Reservierung, Preis, Frühstück.', 'Θέλω να κλείσω ένα δωμάτιο για δύο άτομα, από τις δέκα μέχρι τις δεκατρείς Ιουνίου.');
+    'Verfasse eine Zimmeranfrage mit Personen, Zeitraum und einer Frage zum Frühstück.', 'Spiele ein Gespräch an der Rezeption: Reservierung, Preis, Frühstück.', 'Θέλω να κλείσω ένα δωμάτιο για δύο άτομα, από τις δέκα μέχρι τις δεκατρείς Ιουνίου. Το πρωινό περιλαμβάνεται;');
   add('Einladen, zusagen & absagen','Ich mache Vorschläge und begründe eine einfache Absage.',
     'θέλεις να …; lädt ein. να πάμε = lass uns gehen / dass wir gehen. γιατί = weil oder warum (je nach Satz). αλλά = aber, και = und. να + Verb wird mit μην verneint, eine normale Aussage mit δεν. Für Anfänger zuerst feste Wendungen sicher verwenden: Δεν μπορώ να έρθω.',
     `Θέλεις να έρθεις;|Möchtest du kommen?
@@ -323,7 +323,7 @@
 Στο καφέ στις έξι.|Im Café um sechs.
 Χρόνια πολλά!|Alles Gute!`,
     'Να πάμε για καφέ σήμερα;|Λυπάμαι, δεν μπορώ γιατί δουλεύω.|Μπορούμε αύριο;|Ναι, με χαρά! Στις έξι;',
-    [q('Δεν μπορώ ___ δουλεύω.','γιατί','αλλά','ή','γιατί leitet hier die Begründung ein.'),q('Να ___ για καφέ; (wir)','πάμε','πάτε','πάνε','Die Einladung umfasst uns beide; wir = πάμε.'),q('Welcher Ausdruck ist eine Zusage?','Ναι, με χαρά!','Λυπάμαι, δεν μπορώ.','Δεν μπορώ σήμερα.','με χαρά bedeutet mit Freude, also gern.')],
+    [q('Begründe die Absage mit „weil“: Δεν μπορώ ___ δουλεύω.','γιατί','αλλά','ή','γιατί leitet die verlangte Begründung ein. αλλά (aber) und ή (oder) drücken andere Beziehungen aus.'),q('Να ___ για καφέ; (wir)','πάμε','πάτε','πάνε','Die Einladung umfasst uns beide; wir = πάμε.'),q('Welcher Ausdruck ist eine Zusage?','Ναι, με χαρά!','Λυπάμαι, δεν μπορώ.','Δεν μπορώ σήμερα.','με χαρά bedeutet mit Freude, also gern.')],
     text('Γεια σου, Άννα! Έχω γενέθλια το Σάββατο. Θέλεις να έρθεις στο σπίτι μου στις επτά; Νίκος', [q('Wozu lädt Nikos ein?','Geburtstag','Arbeitstreffen','Zugfahrt','γενέθλια bedeutet Geburtstag.'),q('Wo findet die Feier statt?','Bei Nikos zu Hause','Im Café','In der Schule','στο σπίτι μου bezeichnet das Zuhause des Absenders.')]),
     text('Ευχαριστώ για την πρόσκληση. Δεν μπορώ το Σάββατο γιατί δουλεύω. Μπορούμε την Κυριακή;', [q('Warum wird abgesagt?','Arbeit','Krankheit','Reise','γιατί δουλεύω gibt die Arbeit als Grund an.'),q('Welcher andere Tag wird vorgeschlagen?','Sonntag','Montag','Freitag','Κυριακή ist Sonntag.')]),
     'Antworte auf eine Einladung: sage ab, nenne einen einfachen Grund und schlage eine Alternative vor.', 'Lade jemanden ein, vereinbare Zeit und Ort und reagiere auf eine Absage.', 'Ευχαριστώ! Δεν μπορώ το Σάββατο γιατί δουλεύω. Μπορούμε την Κυριακή;');
@@ -341,7 +341,7 @@
     [q('Χθες εγώ ___ στην Πάτρα.','πήγα','πάω','πάμε','χθες verlangt hier das abgeschlossene vergangene Ereignis: πήγα.'),q('Εσύ ___ με το τρένο; (gestern)','πήγες','πήγε','πήγατε','Die du-Form im Aorist ist πήγες.'),q('Welche Form heißt „ich habe gegessen“?','έφαγα','ήπια','είδα','έφαγα gehört zu τρώω; ήπια zu πίνω und είδα zu βλέπω.')],
     text('Χθες η Μαρία πήγε στην Πάτρα. Είδε μία φίλη και έφαγε μία σαλάτα. Γύρισε στο σπίτι στις οκτώ.',[q('Wen hat Maria getroffen?','Eine Freundin','Einen Arzt','Ihre Mutter','Είδε μία φίλη bedeutet sie sah eine Freundin.'),q('Was hat sie gegessen?','Salat','Fisch','Suppe','έφαγε μία σαλάτα nennt den Salat.')]),
     text('Χθες ήμουν στο σπίτι. Είδα έναν φίλο. Ήπιαμε καφέ και μετά φάγαμε.',[q('Wo war die Person gestern?','Zu Hause','In der Schule','Im Zug','ήμουν στο σπίτι bedeutet ich war zu Hause.'),q('Was haben beide getrunken?','Kaffee','Tee','Saft','Ήπιαμε καφέ bedeutet wir tranken Kaffee.')]),
-    'Schreibe vier Sätze über einen erfundenen gestrigen Tag mit πήγα, έφαγα, ήπια oder είδα.', 'Frage nach gestern und erzähle ein kurzes Erlebnis in zeitlicher Reihenfolge.', 'Χθες πήγα στην Αθήνα. Είδα μία φίλη. Ήπια έναν καφέ και έφαγα μία σαλάτα.');
+    'Schreibe vier Sätze über einen erfundenen gestrigen Tag mit πήγα, έφαγα, ήπια oder είδα.', 'Frage nach gestern und erzähle ein kurzes Erlebnis in zeitlicher Reihenfolge.', 'Χθες πήγα στην Αθήνα. Είδα μία φίλη. Ήπια έναν καφέ. Έφαγα μία σαλάτα.');
   add('Morgen, Pläne & Verpflichtungen','Ich nenne einfache Pläne und sage, was ich tun muss.',
     'θα + Verb bildet Zukunftsaussagen. Häufig für einzelne geplante Handlungen: θα πάω, θα φάω, θα πιω, θα δω, θα κάνω. Verneinung: δεν θα πάω. Für eine regelmäßig fortdauernde Handlung gibt es θα + Präsensform: θα δουλεύω. Hier üben wir zuerst konkrete Einzelpläne. πρέπει να bleibt unpersönlich: Πρέπει να πάμε.',
     `Αύριο θα πάω στην Πάτρα.|Morgen werde ich nach Patras fahren.
@@ -356,7 +356,7 @@
     [q('Αύριο ___ πάω στην Αθήνα.','θα','να','το','θα markiert in einer Aussage die Zukunft.'),q('Wie verneinst du θα έρθω;','Δεν θα έρθω.','Θα δεν έρθω.','Όχι θα έρθω.','δεν steht vor θα + Verb.'),q('Πρέπει να ___ μαζί. (wir gehen)','πάμε','πάτε','πάνε','Das Verb nach να passt zur handelnden Person, hier wir.')],
     text('Αύριο θα πάω στη Θεσσαλονίκη. Θα μείνω δύο μέρες. Θα δω τον αδερφό μου και θα φάμε μαζί.',[q('Wie lange bleibt die Person?','Zwei Tage','Drei Tage','Eine Woche','δύο μέρες nennt die Aufenthaltsdauer.'),q('Wen wird sie treffen?','Bruder','Freundin','Vater','τον αδερφό μου ist meinen Bruder.')]),
     text('Αύριο δεν θα πάω στη δουλειά. Θα μείνω στο σπίτι και θα δω μία φίλη.',[q('Wohin geht die Person morgen nicht?','Zur Arbeit','Nach Hause','Zur Freundin','δεν θα πάω στη δουλειά verneint den Weg zur Arbeit.'),q('Wen wird sie sehen?','Freundin','Bruder','Lehrer','μία φίλη bezeichnet eine Freundin.')]),
-    'Schreibe eine Nachricht mit drei Plänen für morgen und einer Verpflichtung.', 'Vergleiche gestern, heute und morgen mit drei passenden Verbformen.', 'Αύριο θα πάω στην Πάτρα. Θα δω μία φίλη. Πρέπει να φύγω στις οκτώ.');
+    'Schreibe eine Nachricht mit drei Plänen für morgen und einer Verpflichtung.', 'Vergleiche gestern, heute und morgen mit drei passenden Verbformen.', 'Αύριο θα πάω στην Πάτρα. Θα δω μία φίλη. Θα φάμε μαζί. Πρέπει να φύγω στις οκτώ.');
   add('Formulare, Nachrichten & A1-Transfer','Ich verbinde persönliche Daten und Alltagssätze zu einer verständlichen Nachricht.',
     'Eine kurze Nachricht braucht Anrede, Anlass, konkrete Angaben und Schluss: Γεια σου … / Ευχαριστώ / Τα λέμε! Fragewörter wiederholen: ποιος/ποια/ποιο (wer/welcher), πού (wo), πότε (wann), πόσο (wie viel), γιατί (warum). Prüfe Endungen, Tonos, δεν vor dem Verb und das griechische Fragezeichen. Eine verständliche eigene Nachricht zählt mehr als ein auswendig gelernter Text.',
     `Όνομα και επώνυμο|Vor- und Nachname
@@ -380,5 +380,12 @@
     ['Η','η','ήτα','i','η','der Artikel (weiblich)'],['Υ','υ','ύψιλον','i (allein)','τυρί','Käse'],['Ω','ω','ωμέγα','o','ώρα','Stunde'],['Γ','γ','γάμμα','weiches j vor e/i, sonst Reibelaut','γάλα','Milch'],['Ξ','ξ','ξι','ks','έξι','sechs'],['Ψ','ψ','ψι','ps','ψάρι','Fisch']
   ].map((a,i)=>({upper:a[0],lower:a[1],name:a[2],sound:a[3],word:a[4],meaning:a[5],group:Math.floor(i/6)}));
   const combinations=[['αι','e','ναι'],['ει','i','είμαι'],['οι','i','φίλοι'],['ου','u','σου'],['αυ','av / af','αύριο / αυτό'],['ευ','ev / ef','Ευρώπη / ευχαριστώ'],['μπ','b (teils mb)','μπανάνα'],['ντ','d (teils nd)','ντομάτα'],['γκ','g (teils ng)','γκολ'],['τσ','ts','τσάι'],['τζ','ds, stimmhaft','τζάμι'],['ϊ / ϋ','getrennte Vokale','μαϊμού']];
+  // Explicitly limited to initial first-person predicates. Do not strip arbitrary
+  // pronouns or accents: e.g. Μου αρέσει has a different grammatical subject.
+  const firstPerson=/^(?:Είμαι|Μένω|Μιλάω|Μαθαίνω|Έχω|Θέλω|Δουλεύω|Διαβάζω|Γράφω|Ξυπνάω|Σηκώνομαι|Τρώω|Πίνω|Ακούω|Παίζω|Πάω|Μπορώ|Φοράω|Χρειάζομαι|Θα ήθελα|Δεν (?:καταλαβαίνω|τρώω|πίνω|μπορώ|αισθάνομαι))(?=\s|[.!;]|$)/u;
+  for(const l of lessons)for(const p of l.phrases){
+    p.accepted=firstPerson.test(p.el)?[`Εγώ ${p.el}`]:[];
+  }
+  lessons[0].phrases[4].accepted=['Το όνομά μου είναι Άννα.','Ονομάζομαι Άννα.'];
   window.EL_A1_DATA={lessons,alphabet,combinations};
 })();

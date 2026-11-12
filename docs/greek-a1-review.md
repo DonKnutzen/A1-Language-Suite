@@ -2,6 +2,8 @@
 
 Stand: 12. November 2026.
 
+Dieser Bericht beschreibt die erste Veröffentlichung. Die anschließende [inhaltliche Qualitätsprüfung mit Korrekturen und offenen Lücken](greek-a1-quality-audit.md) ist der aktuelle Qualitätsstand.
+
 ## Umfang
 
 - 24 Lektionen ab der ersten Begegnung, mit acht Schritten je Lektion.

@@ -2,13 +2,15 @@
 
 Stand: 12. November 2026. Neugriechisch für deutschsprachige Jugendliche und Erwachsene ohne Vorkenntnisse. Eigener Lernkurs; keine offizielle Prüfung, Zertifizierung oder Verlagskooperation.
 
+Qualitätsstand nach dem [Audit vom 12. November 2026](../docs/greek-a1-quality-audit.md): verwendbares Einstiegsgerüst mit noch wesentlichen Lücken bei Übungstiefe, Wortschatzvorbereitung und unabhängiger Niveaukontrolle. Die Gleichwertigkeit zum Französisch-A1-Kurs ist noch nicht erreicht. Konkrete Bewertungs-, Mustertext- und Speicherfehler wurden behoben.
+
 ## Didaktik
 
 Die erste Lektion ermöglicht ein kleines Gespräch, bevor das gesamte Alphabet beherrscht werden muss. Lektionen 2 und 3 sowie das parallel zugängliche Schriftlabor vermitteln die Schrift systematisch. Vier Gruppen mit je sechs Buchstaben führen von vertrauten Formen zu ungewohnten Lauten. Groß-/Kleinschreibung, Buchstabenname und Laut werden unterschieden. Weitere Aufgaben prüfen Tonos, Endsigma, Trema, αι/ει/οι/ου, αυ/ευ und Konsonantenverbindungen. Buchstaben werden gehört, erkannt und mit einer Eingabehilfe geschrieben; Handschrift und Strichfolge werden nicht automatisch geprüft.
 
 Ungefähre Lesehilfen sind nur in den ersten drei Lektionen enthalten und lassen sich ausblenden. Ab Lektion 4 steht die griechische Schrift im Mittelpunkt. Die Lesehilfe ist keine IPA-Lautschrift und bildet insbesondere γ, δ, θ und χ nicht vollständig ab.
 
-Jede Lektion enthält ein Kann-Ziel, acht Kernwendungen, eine verständliche Grammatikregel, einen eigenen Dialog mit aufklappbaren Bedeutungen, gemischtes Training, je einen Lese- und Hörtext mit zwei Verständnisfragen, eigene Schreib- und Sprechaufgaben sowie einen vollständigen Wissenscheck. Lektion 2 enthält acht kurze Wortgruppen statt acht Gesprächswendungen.
+Jede Lektion enthält ein Kann-Ziel, acht Kernwendungen, eine Grammatikregel, einen eigenen Dialog mit aufklappbaren Bedeutungen, gemischtes Training, je einen Lese- und Hörtext mit zwei Verständnisfragen, eigene Schreib- und Sprechaufgaben sowie einen Lektionscheck. Dieser umfasst die acht Kernwendungen und eine Auswahl an Regeln und Verständnisfragen; er belegt keine vollständige Beherrschung aller erklärten Inhalte. Lektion 2 enthält acht kurze Wortgruppen statt acht Gesprächswendungen.
 
 Die Reihenfolge je Lektion: Einstieg → Wendungen → Grammatik → Dialog → Training → Lesen/Hören → selbst anwenden → Wissenscheck. Die Navigation bleibt frei; ein Lernender kann Regeln und Beispiele jederzeit erneut aufrufen.
 
@@ -44,12 +46,12 @@ Die Reihenfolge je Lektion: Einstieg → Wendungen → Grammatik → Dialog → 
 ## Prüfung und Rückmeldung
 
 - Der Trainingspool enthält pro Lektion 16 Wendungsaufgaben in beide Richtungen, drei Grammatikaufgaben und vier Verständnisfragen.
-- Der Lektionscheck prüft alle acht Kernwendungen als eigene Eingabe, drei Regelaufgaben, zwei zusätzliche Aufgaben in neuen Kontexten und vier Verständnisfragen: 17 Aufgaben. Nichts wird zufällig ausgelassen; nur die Reihenfolge variiert.
+- Der Lektionscheck prüft alle acht Kernwendungen als eigene Eingabe, drei Regelaufgaben, zwei zusätzliche Aufgaben in neuen Kontexten und vier Verständnisfragen: 17 Aufgaben. Diese feste Auswahl wird vollständig gestellt; sie ist kein vollständiges Grammatik- oder Fertigkeiteninventar.
 - Alle Auswahlfragen haben drei verschiedene Optionen und eine erklärte Lösung. Falsche Antworten gelangen in die profilbezogene Wiederholung. Richtige Wiederholungen verlängern den Abstand auf 2, 4, 8, 16 und maximal 30 Tage.
-- Eingaben werden Unicode-normalisiert; Großschreibung, übliche Satzzeichen und zusätzliche Leerzeichen verhindern keine richtige Antwort. Fehlender oder falscher Tonos gibt einen Korrekturhinweis und noch keinen Punkt. Das Trema wird nicht pauschal entfernt.
+- Eingaben werden Unicode-normalisiert; Großschreibung, übliche Satzzeichen und zusätzliche Leerzeichen verhindern keine richtige Antwort. Für 45 Kernwendungen sind begrenzte Varianten hinterlegt, insbesondere mit einem ausdrücklich genannten Ich-Subjekt. Bei freien Eingaben gibt fehlender oder falscher Tonos einen Korrekturhinweis und noch keinen Punkt. Eine falsche Auswahloption zählt dagegen sofort als Fehler. Das Trema wird nicht pauschal entfernt.
 - Ab 80 % ist der Wissenscheck bestanden. Eine Lektion ist erst mit zusätzlich gespeichertem Schreib- und Sprechselbstcheck abgeschlossen. Die Selbstchecks sind keine automatische Sprachbewertung. Ein Abschreiben des Beispieltextes lässt sich technisch nicht von freier Produktion unterscheiden.
 - Vier kumulative Blöcke enthalten je 24 Aufgaben aus je sechs Lektionen. Sie ergänzen die Detailchecks und decken aktive Wendungen, Grammatik, Lesen und Hören ab. Die freie Schreib-/Sprechaufgabe ist gesondert beschrieben. Das Ergebnis ist kein offizielles Gesamtprüfungsresultat.
-- Hörfragen geben den Text vor der Antwort nicht preis. Das Transkript wird erst nach der Antwort gezeigt. Ohne passende griechische Browserstimme lassen sich die Fragen überspringen; das zählt als falsch. Bei einem hohen übrigen Ergebnis kann die 80-%-Schwelle trotzdem erreicht werden. Daraus folgt ausdrücklich kein bestandener Hörnachweis. Separate Hörübungen speichern ihren eigenen Übungswert.
+- Hörfragen geben den Text vor der Antwort nicht preis. Antworten werden erst nach vollständig abgespieltem Text freigegeben; bei einem Audiofehler bleiben sie gesperrt. Das Transkript wird erst nach der Antwort gezeigt. Ohne passende griechische Browserstimme lassen sich die Fragen überspringen; das zählt als falsch. Bei einem hohen übrigen Ergebnis kann die 80-%-Schwelle trotzdem erreicht werden. Ergebnis und zuletzt gespeicherter Lektionscheck weisen dann ausdrücklich auf den offenen Hörteil hin. Separate Hörübungen speichern ihren eigenen Übungswert. Das Übungstempo dieser Hörfragen ist fest auf 0,8 eingestellt.
 
 ## Quellen und Verwendung
 

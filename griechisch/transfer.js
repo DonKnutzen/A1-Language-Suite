@@ -29,6 +29,13 @@
     ['Wie ist Ihr Name?|Anna Müller.|Wie ist Ihre Adresse?|Athinas-Straße 8, Athen.',q('Welche Angabe gehört in Διεύθυνση;','Οδός Ερμού 12, Αθήνα','Άννα Μίλερ','210 123 4567','Διεύθυνση verlangt eine Adresse mit Straße und Ort.'),q('Du willst wissen, wann der Termin ist.','Πότε είναι το ραντεβού;','Πού είναι το φαρμακείο;','Πόσο κάνει το εισιτήριο;','πότε fragt nach dem Zeitpunkt; πού nach dem Ort und πόσο nach dem Preis.')]
   ];
   content.forEach(([de,...transfer],i)=>{window.EL_A1_DATA.lessons[i].dialogueDe=de.split('|');window.EL_A1_DATA.lessons[i].transfer=transfer;});
+  // Similar-length, situation-related alternatives for the reviewed meaning tasks.
+  for(const [id,index,options,explanation] of [
+    [3,7,['Können Sie das noch einmal sagen?','Können Sie mir die Uhrzeit nennen?','Können Sie mir Ihren Namen sagen?'],'ξανά bedeutet noch einmal; πείτε heißt sagen. Gefragt wird um Wiederholung, nicht nach Uhrzeit oder Namen.'],
+    [5,3,['Meine Telefonnummer ist 210 345 6789.','Meine Buchungsnummer ist 210 345 6789.','Meine Hausnummer lautet 210 345 6789.'],'τηλέφωνό μου bezeichnet meine Telefonnummer. Dieselben Ziffern stehen in allen Optionen; entscheidend ist die Bedeutung des Formularwortes.'],
+    [7,7,['Ich bin verheiratet. (als Frau)','Ich bin unverheiratet. (als Frau)','Ich habe zwei Kinder. (als Frau)'],'παντρεμένη bedeutet verheiratet und ist die weibliche Form. Der Satz nennt weder Kinder noch eine Verneinung.'],
+    [21,4,['Ich kann nicht, weil ich arbeite.','Ich komme heute, obwohl ich arbeite.','Ich habe morgen Zeit und komme gern.'],'δεν μπορώ bedeutet ich kann nicht; γιατί verbindet diese Absage mit dem Grund δουλεύω (ich arbeite).']
+  ])Object.assign(window.EL_A1_DATA.lessons[id-1].phrases[index],{meaningOptions:options,meaningExplanation:explanation});
   window.EL_A1_DATA.orthography=[
     q('Welche Schreibweise bedeutet „ja“?','ναι','νει','νοι','Das Wort ja schreibt man ναι, obwohl αι wie /e/ klingt.'),
     q('Ergänze: νερ_ (Wasser, betonter letzter Vokal).','ό','ο','ώ','νερό endet auf betontes Omikron; Tonos und Buchstabenwahl sind beide nötig.'),
