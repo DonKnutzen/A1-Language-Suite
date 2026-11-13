@@ -62,16 +62,21 @@
     disposeCurrent();
     if(!['listen','grammar'].includes(options.step))return;
     const {view}=options,voice=window.A1Voice,synth=window.speechSynthesis;
-    const host=document.createElement('section');host.className='guided-audio card';host.setAttribute('aria-label','Geführter Audiomodus');
-    host.innerHTML='<div class="guide-toolbar"><strong>Audio-Guide</strong><div class="button-row"><button type="button" class="primary-btn" data-guided-play>▶ Seite vorlesen</button><button type="button" class="secondary-btn" data-guided-stop disabled>■</button></div></div><p data-guided-status role="status" aria-live="polite" hidden>Bereit</p>';
-    view.querySelector('.lesson-step-header')?.after(host);
+    const host=document.createElement('section');host.className='guided-audio guide-menu';host.setAttribute('aria-label','Geführter Audiomodus');
+    host.innerHTML='<button type="button" class="guide-icon" data-guided-play data-icon="▶" aria-label="Seite vorlesen" title="Audio-Guide">▶ Seite vorlesen</button><button type="button" class="guide-icon" data-guide-toggle aria-label="Audiosteuerung" aria-expanded="false" hidden>⋯</button><div class="guide-panel" data-guide-panel hidden><div class="guide-toolbar"><strong>Audio-Guide</strong><div class="button-row"><button type="button" class="secondary-btn" data-guided-stop disabled>■</button></div></div><p data-guided-status role="status" aria-live="polite" hidden>Bereit</p></div>';
+    const header=view.querySelector('.lesson-step-header');let menu=view.querySelector('.lesson-back-row,.guide-menu-row');if(!menu&&header){menu=document.createElement('div');menu.className='guide-menu-row';header.before(menu);}menu?.append(host);
     if(!host.isConnected)return;
     const play=host.querySelector('[data-guided-play]'),stop=host.querySelector('[data-guided-stop]'),status=host.querySelector('[data-guided-status]');
+    const panel=host.querySelector('[data-guide-panel]'),toggle=host.querySelector('[data-guide-toggle]');
+    function closePanel(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}
+    function controls(){play.dataset.icon=playing?'Ⅱ':'▶';play.setAttribute('aria-label',play.textContent);play.title=play.textContent;toggle.hidden=stop.disabled;if(toggle.hidden)closePanel();}
+    toggle.onclick=()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));};
+    host.onkeydown=e=>{if(e.key==='Escape'){closePanel();toggle.focus();}};
     const reader=window.A1GuideFollow?.create(view,{targetLang:'en-GB'});
     let parts=[],index=0,run=0,playing=false,paused=false,utterance=null,disposed=false;
     function reset(message='Bereit'){
       reader?.clear();run++;playing=false;paused=false;utterance=null;voice?.cancel();index=0;
-      play.textContent='▶ Seite vorlesen';stop.disabled=true;status.textContent=message;status.hidden=message==='Bereit';
+      play.textContent='▶ Seite vorlesen';stop.disabled=true;status.textContent=message;status.hidden=message==='Bereit';controls();
     }
     function next(token){
       if(disposed||token!==run||!playing)return;
@@ -88,13 +93,13 @@
       try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
     }
     play.onclick=()=>{
-      if(playing){reader?.clearWord();run++;playing=false;paused=true;voice.cancel();utterance=null;play.textContent='▶ Fortsetzen';status.textContent='Pausiert. Fortsetzen wiederholt den aktuellen Satz.';return;}
+      if(playing){reader?.clearWord();run++;playing=false;paused=true;voice.cancel();utterance=null;play.textContent='▶ Fortsetzen';status.textContent='Pausiert. Fortsetzen wiederholt den aktuellen Satz.';controls();return;}
       if(!paused){parts=plan(options);index=0;}
-      voice.cancel();playing=true;paused=false;stop.disabled=false;play.textContent='Ⅱ Pause';next(++run);
+      voice.cancel();playing=true;paused=false;stop.disabled=false;play.textContent='Ⅱ Pause';controls();next(++run);
     };
     stop.onclick=()=>reset();
     // Stop before any other audio, exercise, or navigation action takes ownership.
-    const externalClick=e=>{if(!host.contains(e.target)&&e.target.closest('button,a'))reset();};
+    const externalClick=e=>{if(!host.contains(e.target)){closePanel();if(e.target.closest('button,a'))reset();}};
     const leave=()=>reset();
     doc.addEventListener('click',externalClick,true);window.addEventListener('pagehide',leave);
     const observer=new MutationObserver(()=>{if(!host.isConnected)dispose();});observer.observe(view,{childList:true,subtree:true});

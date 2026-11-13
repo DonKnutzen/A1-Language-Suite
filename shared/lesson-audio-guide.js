@@ -110,17 +110,27 @@
       disposeCurrent();if(options.step&&!['listen','grammar'].includes(options.step))return;
       options={...options,scope:options.scope||(options.step==='grammar'?'part':'lesson')};
       const {view}=options,voice=window.A1Voice,id=`lesson-guide-${++instance}`;
-      const host=doc.createElement('section');host.className='guided-audio card';host.dataset.i18nIgnore='';host.setAttribute('aria-label',L.name);
-      host.innerHTML=`<div class="guide-toolbar"><strong>${esc(L.shortName)}</strong><select data-guide-scope aria-label="${german?'Umfang':'Contenu'}"><option value="lesson">${german?'Ganze Lektion':'Toute la leçon'}</option><option value="part">${german?'Diesen Teil anhören':'Écouter cette partie'}</option></select><div class="button-row"><button type="button" class="primary-btn" data-guided-play title="${esc(L.name)}">${esc(L.play)}</button><button type="button" class="secondary-btn" data-guided-stop aria-label="${esc(L.stop)}" title="${esc(L.stop)}" disabled>■</button></div></div><div class="guide-timeline"><label for="${id}-time" class="guide-sr-only">${esc(L.timeline)}</label><input id="${id}-time" type="range" data-guide-timeline min="0" max="1" step="1" value="0"><div class="guide-time-readout"><output data-guide-current aria-live="off">0:00</output><span>/</span><span>≈ <output data-guide-total aria-live="off">0:00</output></span></div></div><p data-guided-status role="status" aria-live="polite" hidden>${esc(L.ready)}</p><details class="guide-options" data-guide-options><summary>${esc(L.settings)}</summary><div class="guide-options-body"><section class="guide-voices" aria-label="${esc(L.voices)}"><div class="guide-voice-grid">${[[targetLang,L.targetVoice],[nativeLang,L.nativeVoice]].map(([lang,label],i)=>`<div class="guide-control"><label for="${id}-voice-${i}">${esc(label)}</label><select id="${id}-voice-${i}" data-guide-voice="${lang}"></select><button type="button" class="tiny-btn" data-guide-voice-preview="${lang}" aria-label="${esc(L.preview+': '+label)}">${esc(L.preview)}</button></div>`).join('')}</div><button type="button" class="tiny-btn" data-guide-voice-reload>${esc(L.voiceReload)}</button><small data-guide-voice-note role="status">${esc(L.voiceHint)}</small></section><div class="guide-controls"><div class="guide-control"><label for="${id}-chapter">${esc(L.chapter)}</label><select id="${id}-chapter" data-guide-chapter></select></div><div class="guide-control"><label for="${id}-speed">${esc(L.speed)} <output data-guide-speed-value aria-hidden="true">1,00×</output></label><input id="${id}-speed" type="range" data-guide-speed min="0.6" max="1.6" step="0.05" value="1"></div></div><small>${esc(L.timeHelp)}</small><small>${esc(L.help)}</small><small>${esc(L.background)}</small></div></details>`;
-      view.querySelector('.lesson-step-header')?.after(host);if(!host.isConnected)return;
+      const host=doc.createElement('section');host.className='guided-audio guide-menu';host.dataset.i18nIgnore='';host.setAttribute('aria-label',L.name);
+      host.innerHTML=`<button type="button" class="guide-icon" data-guided-play data-icon="▶" aria-label="${esc(L.play)}" title="${esc(L.name)}">${esc(L.play)}</button><button type="button" class="guide-icon" data-guide-toggle aria-label="${esc(L.settings)}" aria-expanded="false" aria-controls="${id}-panel" title="${esc(L.settings)}" hidden>⋯</button><div class="guide-panel" id="${id}-panel" data-guide-panel hidden><div class="guide-toolbar"><strong>${esc(L.shortName)}</strong><select data-guide-scope aria-label="${german?'Umfang':'Contenu'}"><option value="lesson">${german?'Ganze Lektion':'Toute la leçon'}</option><option value="part">${german?'Diesen Teil anhören':'Écouter cette partie'}</option></select><div class="button-row"><button type="button" class="secondary-btn" data-guided-stop aria-label="${esc(L.stop)}" title="${esc(L.stop)}" disabled>■</button></div></div><div class="guide-timeline"><label for="${id}-time" class="guide-sr-only">${esc(L.timeline)}</label><input id="${id}-time" type="range" data-guide-timeline min="0" max="1" step="1" value="0"><div class="guide-time-readout"><output data-guide-current aria-live="off">0:00</output><span>/</span><span>≈ <output data-guide-total aria-live="off">0:00</output></span></div></div><p data-guided-status role="status" aria-live="polite" hidden>${esc(L.ready)}</p><details class="guide-options" data-guide-options><summary>${esc(L.settings)}</summary><div class="guide-options-body"><section class="guide-voices" aria-label="${esc(L.voices)}"><div class="guide-voice-grid">${[[targetLang,L.targetVoice],[nativeLang,L.nativeVoice]].map(([lang,label],i)=>`<div class="guide-control"><label for="${id}-voice-${i}">${esc(label)}</label><select id="${id}-voice-${i}" data-guide-voice="${lang}"></select><button type="button" class="tiny-btn" data-guide-voice-preview="${lang}" aria-label="${esc(L.preview+': '+label)}">${esc(L.preview)}</button></div>`).join('')}</div><button type="button" class="tiny-btn" data-guide-voice-reload>${esc(L.voiceReload)}</button><small data-guide-voice-note role="status">${esc(L.voiceHint)}</small></section><div class="guide-controls"><div class="guide-control"><label for="${id}-chapter">${esc(L.chapter)}</label><select id="${id}-chapter" data-guide-chapter></select></div><div class="guide-control"><label for="${id}-speed">${esc(L.speed)} <output data-guide-speed-value aria-hidden="true">1,00×</output></label><input id="${id}-speed" type="range" data-guide-speed min="0.6" max="1.6" step="0.05" value="1"></div></div><small>${esc(L.timeHelp)}</small><small>${esc(L.help)}</small><small>${esc(L.background)}</small></div></details></div>`;
+      place(view);if(!host.isConnected)return;
       const play=host.querySelector('[data-guided-play]'),stop=host.querySelector('[data-guided-stop]'),status=host.querySelector('[data-guided-status]'),timeline=host.querySelector('[data-guide-timeline]'),chapterSelect=host.querySelector('[data-guide-chapter]'),speed=host.querySelector('[data-guide-speed]'),speedValue=host.querySelector('[data-guide-speed-value]'),currentTime=host.querySelector('[data-guide-current]'),totalTime=host.querySelector('[data-guide-total]');
+      const panel=host.querySelector('[data-guide-panel]'),toggle=host.querySelector('[data-guide-toggle]');
+      function place(container){
+        const header=container.querySelector('.lesson-step-header');if(!header)return;
+        let menu=container.querySelector('.lesson-back-row,.guide-menu-row');
+        if(!menu){menu=doc.createElement('div');menu.className='guide-menu-row';header.before(menu);}
+        menu.append(host);
+      }
+      function closePanel(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}
+      toggle.onclick=()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));};
+      host.onkeydown=e=>{if(e.key==='Escape'){closePanel();toggle.focus();}};
       const speedKey=`a1suite.lessonGuideSpeed.${base}.${nativeLang}`,measured=new Map();
       const voiceNote=host.querySelector('[data-guide-voice-note]'),voiceLists=new Map();
       const bookmarkBase=`a1suite.lessonGuidePosition.${options.scope}.${options.scope==='part'?options.title||options.step||'listen':'all'}.${window.A1_APP_META?.course||base+'-'+nativeLang}.${options.lesson.id}`,bookmarkKey=window.A1Profile?.namespacedKey?.(bookmarkBase)||bookmarkBase;
 
       try{const saved=Number(window.localStorage.getItem(speedKey));if(saved>=.6&&saved<=1.6)speed.value=String(saved);}catch{}
       host.querySelector('[data-guide-scope]').value=options.scope;
-      host.querySelector('[data-guide-scope]').onchange=e=>mount({...options,scope:e.target.value});
+      host.querySelector('[data-guide-scope]').onchange=e=>mount({...options,scope:e.target.value,expanded:true});
       const parts=plan(options),now=()=>window.performance.now(),factor=()=>Math.min(1.6,Math.max(.6,Number(speed.value)||1));
       let previewRun=0;
       let model=timing(parts,factor(),measured),index=0,run=0,playing=false,paused=false,timer=null,ticker=null,current=null,disposed=false,lastChapter=null,phase='idle',phaseStarted=0,frozen=0,gapIndex=0,finished=false,scrubbing=false,preview=0;
@@ -137,7 +147,7 @@
         }
         reader?.follow(part);
       }
-      relocate=nextOptions=>{options={...nextOptions,scope:options.scope};nextOptions.view.querySelector('.lesson-step-header')?.after(host);};
+      relocate=nextOptions=>{options={...nextOptions,scope:options.scope};place(nextOptions.view);};
       function renderVoices(){
         let missing=false;
         for(const select of host.querySelectorAll('[data-guide-voice]')){
@@ -155,6 +165,9 @@
         return frozen;
       }
       function renderTime(){
+        play.dataset.icon=playing?'Ⅱ':'▶';play.setAttribute('aria-label',play.textContent);play.title=play.textContent;
+        toggle.hidden=stop.disabled&&!options.expanded;
+        if(toggle.hidden)closePanel();
         const value=Math.min(model.total,scrubbing?preview:position()),maximum=Math.ceil(model.total);
         timeline.max=String(maximum);if(!scrubbing)timeline.value=String(finished?maximum:Math.floor(value));
         currentTime.textContent=formatTime(finished?maximum:value);totalTime.textContent=formatTime(maximum);
@@ -219,7 +232,7 @@
         hold();cancel();const token=++previewRun,lang=button.dataset.guideVoicePreview,u=new window.SpeechSynthesisUtterance(({fr:'Bonjour ! Je m’appelle Léa.',de:'Hallo! Ich heiße Anna.'})[lang.split('-')[0]]),selected=voice.select(lang);u.lang=selected?.lang||lang;if(selected)u.voice=selected;u.rate=.85;
         u.onerror=()=>{if(token===previewRun&&!disposed)voiceNote.textContent=L.voiceError;};try{voice.playUtterance(u,lang);}catch{u.onerror();}
       };
-      const external=e=>{if(!host.contains(e.target)&&e.target.closest?.('button,a'))hold();};
+      const external=e=>{if(!host.contains(e.target)){closePanel();if(e.target.closest?.('button,a'))hold();}};
       const leave=()=>{hold();checkpoint();};
       const visibility=()=>{
         checkpoint();if(doc.visibilityState==='hidden')return;
@@ -230,7 +243,7 @@
       doc.addEventListener('click',external,true);doc.addEventListener('visibilitychange',visibility);window.addEventListener('pagehide',leave);window.addEventListener('a1voicechange',renderVoices);window.speechSynthesis?.addEventListener?.('voiceschanged',renderVoices);
       const observer=new MutationObserver(()=>{if(!host.isConnected)dispose();});observer.observe(view,{childList:true,subtree:true});
       function dispose(){if(disposed)return;checkpoint();disposed=true;cancel();clearHighlight();observer.disconnect();doc.removeEventListener('click',external,true);doc.removeEventListener('visibilitychange',visibility);window.removeEventListener('pagehide',leave);window.removeEventListener('a1voicechange',renderVoices);window.speechSynthesis?.removeEventListener?.('voiceschanged',renderVoices);host.remove();}
-      disposeCurrent=dispose;renderVoices();if(paused)update();else renderTime();
+      disposeCurrent=dispose;renderVoices();if(paused)update();else renderTime();if(options.expanded){panel.hidden=false;toggle.setAttribute('aria-expanded','true');}options.expanded=false;
       if(!window.speechSynthesis||!window.SpeechSynthesisUtterance||!voice?.playUtterance){play.disabled=true;status.textContent=L.unavailable;status.hidden=false;}
     }
     return {plan,mount,readContent,speechText,timing,formatTime};

@@ -42,3 +42,14 @@ test('voice lists can be refreshed explicitly even if the browser omits its voic
  const e=voiceEnvironment();try{e.mount();e.play();const n=e.spoken.length;e.voices.push({name:'Late Voice',lang:'fr-FR',voiceURI:'late'});e.view.querySelector('[data-guide-voice-reload]').click();assert([...e.view.querySelector('[data-guide-voice="fr-FR"]').options].some(o=>o.textContent.includes('Late Voice')));assert.equal(e.spoken.length,n);}finally{e.dom.window.close();}
 });
 
+test('the idle guide occupies the lesson menu and playback reveals optional controls without expanding the page',()=>{
+ for(const course of ['francais','deutsch']){const e=environment(course);try{
+  const row=e.w.document.createElement('div');row.className='lesson-back-row';e.view.prepend(row);e.mount();
+  const host=row.querySelector('.guided-audio'),panel=host.querySelector('[data-guide-panel]'),toggle=host.querySelector('[data-guide-toggle]'),play=host.querySelector('[data-guided-play]');
+  assert(host);assert(panel.hidden);assert(toggle.hidden);assert.equal(play.dataset.icon,'▶');assert(play.getAttribute('aria-label'));assert.equal(e.spoken.length,0);
+  e.play();assert.equal(e.spoken.length,1);assert.equal(play.dataset.icon,'Ⅱ');assert(!toggle.hidden);assert(panel.hidden);
+  toggle.click();assert(!panel.hidden);assert.equal(toggle.getAttribute('aria-expanded'),'true');
+  panel.dispatchEvent(new e.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert(panel.hidden);assert.equal(e.spoken.length,1);
+  toggle.click();host.querySelector('[data-guided-stop]').click();assert(panel.hidden);assert(toggle.hidden);assert.equal(play.dataset.icon,'▶');
+ }finally{e.dom.window.close();}}
+});

@@ -24,3 +24,17 @@
 .guide-toolbar [data-guide-scope]{font:inherit;font-size:.8rem;max-width:100%;padding:5px;border:1px solid var(--line,#59647c);border-radius:6px;background:var(--card,#20283b);color:inherit}
 @media(max-width:400px){.guide-control{flex-basis:100%}.guide-voice-grid{grid-template-columns:1fr}}
 
+/* Keep the reader in the lesson menu; its optional panel overlays the content. */
+.guide-menu-row{display:flex;justify-content:flex-end;align-items:center;min-height:36px;margin-bottom:8px}
+.lesson-back-row:has(.guide-menu){display:flex;align-items:center;justify-content:space-between;gap:8px}
+.guided-audio.guide-menu{position:relative;display:flex;align-items:center;gap:3px;margin:0 0 0 auto;padding:0;border:0;background:transparent;box-shadow:none;border-radius:0;flex:none;overflow:visible}
+.guide-menu .guide-icon{display:inline-flex;align-items:center;justify-content:center;width:36px;min-width:36px;height:36px;min-height:36px;margin:0;padding:0;border:1px solid transparent;border-radius:50%;background:transparent;color:var(--text,inherit);font-size:22px;line-height:1;cursor:pointer;box-shadow:none;flex:none}
+.guide-menu .guide-icon:hover{background:var(--card,#20283b);border-color:var(--line,#59647c)}
+.guide-menu .guide-icon:focus-visible{outline:2px solid var(--accent,#7b8cff);outline-offset:2px}
+.guide-menu [data-guided-play]{font-size:0}
+.guide-menu [data-guided-play]::before{content:attr(data-icon);font-size:17px}
+.guide-menu .guide-panel{position:absolute;inset:auto 0 auto auto;top:calc(100% + 6px);z-index:60;box-sizing:border-box;width:min(360px,calc(100vw - 32px));max-height:70vh;overflow:auto;padding:12px;border:1px solid var(--line,#59647c);border-radius:12px;background:var(--card,#20283b);box-shadow:0 8px 24px #0004;color:var(--text,inherit)}
+.guide-menu [hidden]{display:none!important}
+.guide-menu .guide-toolbar{flex-wrap:wrap}
+.guide-menu .guide-toolbar>strong{font-size:.85rem}
+.guide-menu [data-guide-scope]{max-width:190px}
