@@ -15,8 +15,8 @@
     const push=(t,key)=>result.push({...t,id:`${l.id}:${key}`,lessonId:l.id});
     l.phrases.forEach((p,i)=>{
       const others=l.phrases.filter(x=>x.de!==p.de&&x.el!==p.el);
-      const choice=kind==='check'?null:[p.el,others[(i+1)%others.length].el,others[(i+3)%others.length].el];
-      push({prompt:`${kind==='check'?'Schreibe':'Wähle'} auf Griechisch: ${p.de}`,answer:p.el,accepted:p.accepted||[],options:choice,explanation:`„${p.el}“ verwendest du für „${p.de}“. ${l.rule}`,audio:p.el},`phrase-${i}`);
+      const choice=[p.el,...[...others].sort((a,b)=>Math.abs(a.el.length-p.el.length)-Math.abs(b.el.length-p.el.length)).slice(0,2).map(x=>x.el)];
+      push({prompt:`Wähle auf Griechisch: ${p.de}`,answer:p.el,accepted:p.accepted||[],options:choice,explanation:`„${p.el}“ verwendest du für „${p.de}“. ${l.rule}`,audio:p.el},`phrase-${i}`);
       if(kind==='practice')push({prompt:`Was bedeutet „${p.el}“?`,answer:p.de,options:p.meaningOptions||[p.de,others[i%others.length].de,others[(i+2)%others.length].de],explanation:p.meaningExplanation||`Die Wendung bedeutet „${p.de}“. ${l.rule}`},`meaning-${i}`);
     });
     l.grammar.forEach((t,i)=>push(t,`grammar-${i}`));
@@ -28,45 +28,29 @@
     const letters=group===undefined?D.alphabet:D.alphabet.filter(a=>a.group===group);
     return letters.flatMap(a=>[
       {id:`letter:${a.upper}`,prompt:a.upper==='Σ'?'Welche Kleinform von Σ steht am Wortende?':`Welche Kleinbuchstaben gehören zu ${a.upper}?`,answer:a.upper==='Σ'?'ς':a.lower,options:a.upper==='Σ'?['ς','σ','ζ']:[a.lower,...D.alphabet.filter(b=>b.lower!==a.lower).slice((D.alphabet.indexOf(a)+2)%20,(D.alphabet.indexOf(a)+2)%20+2).map(b=>b.lower)],explanation:`${a.upper} und ${a.lower} heißen ${a.name}; Laut: ${a.sound}. Beispiel: ${a.word} (${a.meaning}).${a.upper==='Σ'?' Am Wortende steht ς, im Wort σ.':''}`},
-      {id:`word:${a.upper}`,prompt:`Schreibe dieses Wort exakt ab: ${a.word}`,answer:a.word,explanation:`${a.word} bedeutet ${a.meaning}. Achte auf Kleinbuchstaben und Tonos; der Tonos markiert die Betonung.`}
+      {id:`word:${a.upper}`,prompt:`Welches Wort bedeutet „${a.meaning}“?`,answer:a.word,options:[a.word,...[...new Set(D.alphabet.map(b=>b.word))].filter(word=>word!==a.word).sort((x,y)=>Math.abs(x.length-a.word.length)-Math.abs(y.length-a.word.length)).slice(0,2)],explanation:`${a.word} bedeutet ${a.meaning}. Achte auf Kleinbuchstaben und Tonos; der Tonos markiert die Betonung.`}
     ]);
   }
-  // Convert only the old navigation position; retain scores, drafts and review history.
   function migrate(state){
-    state.lessonWork||={};state.lessonMasteryBest||={};state.lessonQuizBest||={};state.lessonCheckLast||={};state.qualifiedCheckBest||={};
-    if(state.flowVersion!==2){
-      for(const [id,work]of Object.entries(state.lessonWork)){
-        work.step=({0:0,1:0,2:1,3:1,4:1,5:2,6:3,7:3})[work.step]??0;
-        if(Number(state.lessonMasteryBest[id])>=80&&(!(state.lessonCheckLast[id]?.skippedAudio>0)||state.doneLessons?.includes(Number(id))))state.qualifiedCheckBest[id]=state.lessonMasteryBest[id];
-      }
-      state.flowVersion=2;
+    state.lessonWork||={};state.lessonMasteryBest||={};state.lessonQuizBest||={};
+    if(state.flowVersion===2){
+      for(const work of Object.values(state.lessonWork))work.step=work.step===1?({0:2,1:3,2:5}[work.topic]??2):({0:1,2:5,3:6}[work.step]??0);
+    }else if(state.flowVersion!==3){
+      for(const work of Object.values(state.lessonWork))work.step=Math.min(6,Math.max(0,Number(work.step)||0));
     }
-    return state;
+    state.flowVersion=3;return state;
   }
-  function passedCheck(state,id){return Number(state.qualifiedCheckBest?.[id]||0)>=80;}
   function completion(state){
-    migrate(state);state.doneLessons=D.lessons.filter(l=>passedCheck(state,l.id)).map(l=>l.id);
+    migrate(state);const already=new Set(state.doneLessons||[]);
+    state.doneLessons=D.lessons.filter(l=>already.has(l.id)||Number(state.lessonMasteryBest[l.id]||0)>=80).map(l=>l.id);
     return Math.round(state.doneLessons.length/D.lessons.length*100);
-  }
-  function vocabularyTasks(l){
-    const pool=tasks(l);return [...pool.filter(t=>t.id.includes(':phrase-')),...pool.filter(t=>t.id.includes(':meaning-')).slice(0,2)];
-  }
-  function orderTasks(l){
-    return l.phrases.filter(p=>p.el.trim().split(/\s+/).length>1).slice(0,4).map((p,i)=>{
-      const tokens=p.el.trim().split(/\s+/),extra=l.phrases.flatMap(x=>x.el.split(/\s+/)).find(t=>!tokens.includes(t));
-      return {id:`${l.id}:order-${i}`,lessonId:l.id,kind:'order',prompt:`Baue den Satz: ${p.de}`,tokens:[...tokens,...(extra?[extra]:[])],answer:p.el,explanation:l.rule,audio:p.el};
-    });
-  }
-  function checkTasks(l){
-    const pool=tasks(l),check=tasks(l,'check');
-    return [...pool.filter(t=>t.id.includes(':phrase-')).slice(0,6),...check.filter(t=>!t.id.includes(':phrase-'))];
   }
   function currentTask(task){
     if(!task?.id)return null;
     const l=D.lessons.find(l=>l.id===task.lessonId);
-    const pool=l?[...tasks(l,task.options?'practice':'check'),...orderTasks(l)]:[...alphabetTasks(),...D.orthography];
+    const pool=l?[...tasks(l),...tasks(l,'check')]:[...alphabetTasks(),...D.orthography];
     return pool.find(t=>t.id===task.id)||null;
   }
-  window.EL_A1={normalize,grade,tasks,alphabetTasks,completion,currentTask,migrate,passedCheck,vocabularyTasks,checkTasks,orderTasks};
+  window.EL_A1={normalize,grade,tasks,alphabetTasks,completion,currentTask,migrate};
 })();
 

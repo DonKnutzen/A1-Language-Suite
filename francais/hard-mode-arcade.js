@@ -67,15 +67,14 @@ const SPELL={
  de:[['ie','ei'],['ei','ie'],['ß','ss'],['ss','ß'],['ä','e'],['ä','a'],['ö','o'],['ü','u'],['äu','eu'],['eu','äu'],['([lnmtsrpf])\\1','$1'],['([aeiou])([lnmtpf])([aeiou])','$1$2$2$3'],
   ['ah','a'],['eh','e'],['oh','o'],['uh','u'],['ie','i'],['d'+END,'t'],['t'+END,'d'],['g'+END,'k'],['v','f'],['tz','z'],['ck','k'],['chs','x'],['th','t']]
 };
-function misspell(text,course){const s=String(text),out=new Set();if(course==='el'){const plain=s.normalize('NFD').replace(/\u0301/g,'').normalize('NFC');if(plain!==s)out.add(plain);return [...out];}
+function misspell(text,course){const s=String(text),out=new Set();
  for(const [p,r] of SPELL[course]||SPELL.fr){const re=new RegExp(p,'g');for(const m of s.matchAll(re)){const v=s.slice(0,m.index)+m[0].replace(new RegExp('^(?:'+p+')'),r)+s.slice(m.index+m[0].length);if(v!==s)out.add(v);}}
  // German nouns are written with a capital letter – a lower-case noun is a classic slip.
  if(course==='de')for(const m of s.matchAll(/(^|\s)(\p{Lu})(\p{Ll}{2,})/gu))if(m.index>0)out.add(s.slice(0,m.index)+m[1]+m[2].toLowerCase()+m[3]+s.slice(m.index+m[0].length));
  return [...out];}
 // Throw and catch use the lesson's cloze sentences with the quiz show's look-alike options; balloons the lesson's words;
 // the sorter asks for the article and for right or wrong forms.
-const courseFactories=new Map();
-function lessonContent(course,id){if(courseFactories.has(course))return courseFactories.get(course)(Number(id));const cfg={fr:{H:window.FR_A1_HARD_CONTENT,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR'},de:{H:window.DE_A1_HARD_CONTENT,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE'}}[course],data=cfg?.H?.[id];if(!data)return null;
+function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR'},de:{H:window.DE_A1_HARD_CONTENT,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE'}}[course],data=cfg?.H?.[id];if(!data)return null;
  const ui=(de,english,f)=>course==='de'?[de,english,f]:[de,english];
  const rounds=[];for(const q of window.A1_QUIZ_SHOW?.generate(course,id)||[]){if(!String(q.kind).startsWith('gap')||!String(q.q[0]).includes('___'))continue;const m=String(q.q[0]).match(/^(.*?)(?: \(([^)]*)\))?$/),[before,after]=m[1].split('___');if(rounds.some(r=>r.before===before&&r.after===after))continue;rounds.push({before,after,verb:m[2]||'…',answer:q.o[0],others:q.o.slice(1),own:!String(q.src||'').includes('/'),sentence:(before+q.o[0]+after).replace(/([’'])\s+/g,'$1')});}
  if(rounds.filter(r=>r.own).length>=4)rounds.splice(0,rounds.length,...rounds.filter(r=>r.own));
@@ -370,6 +369,6 @@ function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()
 function mount(host,id,opts={}){L=opts.course&&opts.lesson?lessonContent(opts.course,opts.lesson):null;if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};
 const meta=g=>({id:g.id,icon:g.icon,theme:g.theme,name:g.name,tag:g.tag,stars:g.stars});
-window.FR_A1_ARCADE={registerCourse:(key,factory)=>{if(courseFactories.has(key))throw new Error('Course already registered');courseFactories.set(key,factory);},games:GAMES.map(meta),mount,lessonGames,lessonContent,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,misspell,review,soundOn,voiceOn,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
+window.FR_A1_ARCADE={games:GAMES.map(meta),mount,lessonGames,lessonContent,format:(id,score)=>id==='quiz'?(window.A1_QUIZ_SHOW?.money(score,'fr')??score+' €'):`${score} ${t('Punkte','points')}`,stars:(id,score)=>starsFor([...GAMES,QUIZ].find(g=>g.id===id),score),content:{formRound,VERBS,PHRASES,SORTS,QUESTIONS,LADDER,SAFE,misspell,review,soundOn,voiceOn,get QUIZ_SOUNDS(){return window.A1_QUIZ_SHOW?.SOUNDS;}},engines};
 })();
 

@@ -70,14 +70,3 @@ html.dark-mode .el-feedback{background:#163125;color:#e2e8f0}
 html.dark-mode .el-feedback.wrong{background:#422d1b}
 @media(max-width:540px){.el-grid{grid-template-columns:1fr}.el-card h2,.el-prompt{font-size:19px}.el-greek{font-size:1.12rem}.el-position{gap:8px}.bottom-nav .nav-item{padding:8px 2px}.bottom-nav small{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.home-continue-card,.home-continue-btn,.home-continue-btn::after{animation:none!important}}
-
-
-/* Same compact topic and game controls as the current French course. */
-#lessonGrammarPage .deepening-practice{display:grid;gap:10px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
-.el-dialogue .phrase-row{margin:4px 0;border:0;padding:0}
-.game-train{min-height:54px;padding:10px;border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow-wrap:anywhere}
-#lessonFinale{margin-block:16px}
-#view .game-accents{flex-wrap:wrap;max-height:104px;overflow:auto}
-#view .game-accents button{min-width:36px;min-height:36px}
-#view .game-card,#view .arcade-host{min-width:0}
-@media(max-width:430px){#view .pilot-memory-grid{gap:5px}#view .memory-card{min-height:82px;font-size:.75rem}#view .pilot-connect{gap:6px}#view .pilot-connect button{font-size:.8rem;padding:8px 5px}}

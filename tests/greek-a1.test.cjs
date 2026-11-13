@@ -10,16 +10,19 @@ function env({voice=true,storage={}}={}){
   const dom=new JSDOM(html,{url:'https://example.org/griechisch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
   w.scrollTo=()=>{};w.SpeechSynthesisUtterance=function(t){this.text=t;};w.speechSynthesis={getVoices:()=>voice?[{lang:'el-GR',name:'Greek',voiceURI:'el'}]:[],cancel(){},speak(u){u.onend?.();},addEventListener(){}};
   let profile='one';const saves=[];
-  w.A1Profile={getUiLang:()=> 'de',namespacedKey:b=>`${b}::profile:${profile}`,saveProgress:(...args)=>saves.push(args)};
+  w.A1Profile={namespacedKey:b=>`${b}::profile:${profile}`,saveProgress:(...args)=>saves.push(args)};
   w.A1Streak={completeExercise(){}};
   for(const [k,v] of Object.entries(storage))w.localStorage.setItem(k,v);
-  w.matchMedia=()=>({matches:true,addEventListener(){},removeEventListener(){}});
-  for(const f of ['shared/learning.js','shared/voice-selection.js','griechisch/data.js','griechisch/transfer.js','griechisch/course.js','shared/guide-language.js','shared/guide-follow.js','shared/lesson-audio-guide.js','shared/quiz-show.js','francais/hard-mode-arcade.js','shared/game-hard-mode.js','griechisch/games.js','griechisch/lesson-flow.js','griechisch/app.js'])w.eval(read(f));
+  for(const f of ['shared/learning.js','shared/voice-selection.js','griechisch/data.js','griechisch/transfer.js','griechisch/course.js','griechisch/app.js'])w.eval(read(f));
   const click=s=>{
     const destination=/^\[data-step="(\d+)"\]$/.exec(s);
     if(destination){
-      const target=({0:0,1:0,2:1,3:1,4:1,5:2,6:3,7:3})[Number(destination[1])];
-      const el=w.document.querySelector(`[data-el-step="${target}"]`);assert(el);el.click();return;
+      const target=Math.min(6,Number(destination[1]));let count=0;
+      while(Number(w.document.querySelector('.el-meter')?.value)-1!==target){
+        assert(++count<=8,'reachable lesson step');const current=Number(w.document.querySelector('.el-meter')?.value)-1;
+        const next=w.document.getElementById(current<target?'nextStep':'prevStep');assert(next,`missing footer navigation to ${target}`);next.click();
+      }
+      return;
     }
     const el=w.document.querySelector(s);assert(el,`missing ${s}`);el.click();
   };
@@ -55,34 +58,38 @@ test('answer matching preserves accent learning and trema while accepting Unicod
   assert.equal(C.grade('μαιμού','μαϊμού'),'wrong');assert.equal(C.grade('Πώς σε λένε;','Πώς σε λένε;'),'correct');assert.equal(C.grade('κόσμοσ','κόσμος'),'wrong');
   assert.equal(C.grade('!',';'),'wrong');
 });
-test('a qualified 80% check completes a lesson without production self-checks; legacy progress migrates',()=>{
-  const state={flowVersion:2,qualifiedCheckBest:{1:80,2:79},lessonMasteryBest:{1:80,2:100},lessonWork:{},lessonCheckLast:{}};
-  assert.equal(C.completion(state),4);assert.deepEqual(plain(state.doneLessons),[1]);
-  const legacy={lessonMasteryBest:{1:100},lessonWork:{1:{writing:true,speaking:true,step:6}},writingDrafts:{1:'Γεια σου!'}};C.migrate(legacy);assert.equal(legacy.lessonWork[1].step,3);assert.equal(C.completion(legacy),4);assert.equal(legacy.writingDrafts[1],'Γεια σου!');
+test('passing a check completes a lesson without production requirements and preserves past completion',()=>{
+  const s={lessonMasteryBest:{1:100,2:79,3:80},lessonWork:{},doneLessons:[4]};
+  assert.equal(C.completion(s),13);assert.deepEqual(plain(s.doneLessons),[1,3,4]);
 });
-test('all 24 lessons use four current learning steps, paged deepening and the finale entry',t=>{
- const e=env();t.after(e.close);const doc=e.w.document;
- for(const l of D.lessons){e.click('[data-route=learn]');e.click(`[data-lesson="${l.id}"]`);
-  assert.equal(doc.querySelectorAll('[data-el-step]').length,4);assert(doc.querySelector('.lesson-goals'));assert(doc.querySelector('[data-guided-play]'));
-  e.click('[data-el-step="1"]');assert.equal(doc.querySelector('.lesson-goals'),null);assert(doc.querySelector('#startDeepening'));
-  for(let i=0;i<3;i++){e.click(`[data-grammar-progress="${i}"]`);assert(doc.querySelector('#startDeepening'));assert(!/undefined|NaN/.test(doc.getElementById('view').textContent));}
-  e.click('[data-el-step="2"]');assert.equal(doc.querySelector('[data-guided-play]'),null);assert(doc.querySelector('#listenTasks'));
-  e.click('[data-el-step="3"]');assert(doc.querySelector('[data-hard-start]'));assert(doc.querySelector('#openMillion'));assert.equal(doc.querySelector('[data-hard-start]').disabled,true);assert.equal(doc.querySelector('#writingDraft'),null);assert.equal(doc.querySelector('#saveSpeaking'),null);
- }
+test('the French-style flow migrates once while preserving scores, drafts and mistake history',()=>{
+  const s={flowVersion:2,lessonWork:{1:{step:0},2:{step:1,topic:0},3:{step:1,topic:1},4:{step:1,topic:2},5:{step:2},6:{step:3}},lessonMasteryBest:{1:90},doneLessons:[1],writingDrafts:{1:'Άννα'},reviewPractice:{old:{wrong:3}}};
+  C.migrate(s);assert.deepEqual(plain(Object.values(s.lessonWork).map(w=>w.step)),[1,2,3,5,5,6]);
+  C.migrate(s);assert.equal(s.lessonWork[2].step,2);assert.equal(s.lessonMasteryBest[1],90);assert.equal(s.writingDrafts[1],'Άννα');assert.equal(s.reviewPractice.old.wrong,3);assert.deepEqual(plain(s.doneLessons),[1]);
 });
-test('a completed 15-question lesson check unlocks finale and quiz, without free production',t=>{
- const storage={'griechischA1State_v1::profile:one':JSON.stringify({flowVersion:2,lastLessonId:1,lessonQuizBest:{1:100},lessonWork:{1:{step:3,comprehensionDone:true}}})};
- const e=env({storage});t.after(e.close);e.w.Math.random=()=>.999;e.click('#continue');e.click('#startCheck');
- const pool=C.checkTasks(D.lessons[0]);assert.equal(pool.length,15);
- for(const task of pool){if(task.kind==='listening')e.click('#playSource');const option=[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer===task.answer);assert(option,task.prompt);option.click();e.click('#nextQuestion');}
- assert.equal(e.saved().lessonMasteryBest[1],100);assert.deepEqual(e.saved().doneLessons,[1]);assert.equal(e.saved().session,null);
- e.click('#resultBack');assert.equal(e.w.document.querySelector('[data-hard-start]').disabled,false);assert.equal(e.w.document.querySelector('#openMillion').disabled,false);
- assert.equal(e.saves.at(-1)[0],'griechisch-a1');assert.equal(e.saves.at(-1)[2],4);
+test('all 24 lessons render seven independent steps without writing or production controls',t=>{
+  const e=env();t.after(e.close);
+  for(const l of D.lessons){e.click('[data-route=learn]');e.click(`[data-lesson="${l.id}"]`);for(let i=0;i<7;i++){e.click(`[data-step="${i}"]`);const doc=e.w.document;assert(!/undefined|NaN/.test(doc.getElementById('view').textContent),`L${l.id}.${i}`);assert.equal(doc.querySelector('textarea,#typedAnswer,#saveWriting,#saveSpeaking'),null);if(i===3)assert.equal(doc.querySelectorAll('.el-dialogue details').length,l.dialogue.length);}}
 });
-test('vocabulary errors remain available for spaced review and the check has no free-writing gate',t=>{
- const e=env();t.after(e.close);e.w.Math.random=()=>.999;e.click('#continue');e.click('#startVocabulary');
- const wrong=[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer!=='Γεια σου!');wrong.click();assert.equal(Object.keys(e.saved().reviewPractice).length,1);assert(e.w.document.getElementById('feedback').textContent.includes('Γεια σου!'));
- e.click('#leaveSession');e.click('[data-route=review]');assert(e.w.document.querySelector('#dueReview'));assert(!e.w.document.getElementById('view').textContent.includes('frei schreiben'));
+test('new check attempt includes every core phrase, grammar, transfer and comprehension question',t=>{
+  const e=env();t.after(e.close);e.w.Math.random=()=>.999;
+  e.click('#continue');e.click('[data-step="7"]');e.click('#startCheck');
+  let total=0;
+  for(const task of C.tasks(D.lessons[0],'check')){
+    const input=e.w.document.getElementById('typedAnswer');
+    if(task.kind==='listening'){assert(!e.w.document.getElementById('view').textContent.includes(task.source));e.click('#playSource');}
+    if(input){input.value=task.answer;e.w.document.getElementById('typedForm').dispatchEvent(new e.w.Event('submit',{bubbles:true,cancelable:true}));}
+    else {const option=[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer===task.answer);assert(option,task.prompt);option.click();}
+    assert.equal(e.w.document.getElementById('nextQuestion').hidden,false);e.click('#nextQuestion');total++;
+  }
+  assert.equal(total,17);assert.equal(e.saved().lessonMasteryBest[1],100);assert.deepEqual(e.saved().doneLessons,[1]);
+  assert.equal(e.saves.at(-1)[0],'griechisch-a1');assert.equal(e.saves.at(-1)[2],4);
+});
+test('choice mistakes show explanations and queue a task for repetition',t=>{
+  const e=env();t.after(e.close);e.w.Math.random=()=>.999;e.click('[data-route=review]');e.click('#freePractice');
+  assert.equal(e.w.document.getElementById('typedAnswer'),null);
+  const wrong=[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer!==D.lessons[0].phrases[0].el);wrong.click();
+  assert.equal(Object.keys(e.saved().reviewPractice).length,1);assert.match(e.w.document.getElementById('feedback').textContent,/Γεια σου/);assert(!e.w.document.getElementById('nextQuestion').hidden);
 });
 test('no Greek voice means no listening answer can be submitted; skipping is recorded as wrong',t=>{
   const e=env({voice:false});t.after(e.close);e.click('#continue');e.click('[data-step="5"]');e.click('#listenTasks');
@@ -92,10 +99,8 @@ test('no Greek voice means no listening answer can be submitted; skipping is rec
 test('voice picker has a working Greek preview',t=>{
   const e=env();t.after(e.close);const spoken=[];e.w.speechSynthesis.speak=u=>spoken.push(u);e.click('#voiceSettings');e.click('#voicePreview');assert.match(spoken[0].text,/Καλημέρα/);assert.equal(spoken[0].lang,'el-GR');
 });
-test('Greek keyboard remains available for the script lab, including accents, final sigma and capitals',t=>{
- const e=env();t.after(e.close);e.w.Math.random=()=>.999;e.click('[data-route=alphabet]');e.click('[data-group="0"]');
- const first=[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer==='α');assert(first);first.click();e.click('#nextQuestion');
- const input=e.w.document.getElementById('typedAnswer');input.value='αβ';input.setSelectionRange(1,2);const key=letter=>[...e.w.document.querySelectorAll('.el-keyboard button')].find(b=>b.textContent===letter);key('ς').click();assert.equal(input.value,'ας');key('ά').click();assert.equal(input.value,'αςά');key('⇧').click();key('Ω').click();assert.equal(input.value,'αςάΩ');
+test('all alphabet word and letter tasks use choices instead of copying text',()=>{
+  for(const task of C.alphabetTasks()){assert.equal(task.options.length,3);assert(task.options.includes(task.answer));assert(!/Schreibe/.test(task.prompt));}
 });
 test('corrupt storage recovers, profiles remain separate, restored cloud progress reaches home',t=>{
   const e=env({storage:{'griechischA1State_v1::profile:one':'{broken'}});t.after(e.close);assert.match(e.w.document.getElementById('view').textContent,/0 von 24/);
@@ -130,10 +135,11 @@ test('listening unlocks only after completion; engine failure and stale callback
   e.click('#playSource');assert(disabled());spoken.at(-1).onend();assert(!disabled());
 });
 
-test('word-train selections survive a reload and continue at the same exercise',t=>{
- const e=env();t.after(e.close);e.w.Math.random=()=>.999;e.click('#continue');e.click('[data-el-step="1"]');e.click('[data-grammar-progress="1"]');e.click('#startDeepening');
- e.click('[data-order-token="0"]');const stored=e.w.localStorage.getItem('griechischA1State_v1::profile:one');assert.deepEqual(e.saved().session.orderPicks,[0]);
- const resumed=env({storage:{'griechischA1State_v1::profile:one':stored}});t.after(resumed.close);resumed.click('#continue');assert(resumed.w.document.getElementById('orderAnswer').textContent.length>0);assert.equal(resumed.w.document.querySelector('[data-order-token="0"]').disabled,true);
+test('legacy saved drafts remain stored while checks and navigation require no writing',t=>{
+  const old={flowVersion:2,lessonWork:{1:{step:3}},writingDrafts:{1:'Γεια σου!'},lessonMasteryBest:{1:90}};
+  const e=env({storage:{'griechischA1State_v1::profile:one':JSON.stringify(old)}});t.after(e.close);
+  e.click('[data-route=learn]');e.click('[data-lesson="1"]');assert.equal(e.w.document.querySelector('textarea'),null);
+  e.click('[data-step="5"]');assert.equal(e.saved().writingDrafts[1],'Γεια σου!');assert.equal(e.saved().flowVersion,3);assert.deepEqual(e.saved().doneLessons,[1]);
 });
 test('authored alternatives accept optional first-person subjects without accepting wrong meanings or accents',()=>{
   const lesson=D.lessons[3],task=C.tasks(lesson,'check').find(t=>t.answer==='Μαθαίνω ελληνικά.');
@@ -167,16 +173,16 @@ test('corrected tasks replace stale review snapshots while preserving mistake hi
 });
 
 test('a high check score with skipped audio stays explicitly marked as lacking a listening result',t=>{
-  const e=env({voice:false,storage:{'griechischA1State_v1::profile:one':JSON.stringify({flowVersion:2,lastLessonId:1,lessonQuizBest:{1:100},lessonWork:{1:{step:3,comprehensionDone:true}}})}});t.after(e.close);e.w.Math.random=()=>.999;e.click('#continue');e.click('#startCheck');
-  for(const task of C.checkTasks(D.lessons[0])){
+  const e=env({voice:false});t.after(e.close);e.w.Math.random=()=>.999;e.click('#continue');e.click('[data-step="7"]');e.click('#startCheck');
+  for(const task of C.tasks(D.lessons[0],'check')){
     if(task.kind==='listening')e.click('#skipAudio');
     else if(!task.options){e.w.document.getElementById('typedAnswer').value=task.answer;e.w.document.getElementById('typedForm').dispatchEvent(new e.w.Event('submit',{cancelable:true}));}
     else [...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer===task.answer).click();
     e.click('#nextQuestion');
   }
-  assert.equal(e.saved().lessonMasteryBest[1],87);assert.equal(e.saved().lessonCheckLast[1].skippedAudio,2);
-  assert.match(e.w.document.getElementById('view').textContent,/Hörteil (?:blieb zuletzt )?offen/);assert(!e.w.document.getElementById('view').textContent.includes('Gut gefestigt.'));
-  e.click('#resultBack');assert.match(e.w.document.getElementById('view').textContent,/Hörteil (?:blieb zuletzt )?offen/);
+  assert.equal(e.saved().lessonMasteryBest[1],88);assert.equal(e.saved().lessonCheckLast[1].skippedAudio,2);
+  assert.match(e.w.document.getElementById('view').textContent,/Hörteil offen/);assert(!e.w.document.getElementById('view').textContent.includes('Gut gefestigt.'));
+  e.click('#resultBack');assert.match(e.w.document.getElementById('view').textContent,/Hörteil offen/);
 });
 
 test('reviewed choices avoid obvious length clues and the sigma answer is not the only two-symbol option',()=>{
@@ -190,16 +196,22 @@ test('reviewed choices avoid obvious length clues and the sigma answer is not th
   const phone=C.tasks(D.lessons[4]).find(t=>t.id==='5:meaning-3');assert(phone.options.every(o=>o.includes('210 345 6789')));
 });
 
-test('Greek shares the current lesson navigation and no redundant contents or repeated goal block',t=>{
- const e=env();t.after(e.close);const doc=e.w.document;e.click('#continue');assert(doc.querySelector('.lesson-step-nav'));assert.equal(doc.querySelectorAll('[data-el-step]').length,4);assert.equal(doc.querySelector('details.el-contents'),null);assert.match(doc.querySelector('.lesson-step-context').textContent,/1 \/ 4/);
- e.click('[data-el-step="1"]');assert.equal(doc.querySelector('.lesson-goals'),null);assert(doc.querySelector('[data-guide-scope]'));assert.equal(doc.querySelector('[data-guide-scope]').value,'part');
+test('French visual components are shared and the lesson opens without a row of eight tabs',t=>{
+  const e=env();t.after(e.close);const doc=e.w.document;
+  for(const file of ['../francais/styles.css','../shared/course-home.css','../shared/lesson-ui.css'])assert([...doc.querySelectorAll('link[rel=stylesheet]')].some(l=>l.getAttribute('href').startsWith(file)));
+  assert(doc.querySelector('.home-continue-card #continue'));assert(!doc.querySelector('.el-hero'));
+  e.click('#continue');assert(doc.querySelector('.lesson-step-header'));assert(doc.querySelector('.lesson-step-footer'));
+  assert(!doc.querySelector('.el-steps'));assert.equal(doc.querySelector('details.el-contents'),null);
+  assert.equal(doc.querySelectorAll('[data-step]').length,0);assert.equal(doc.querySelector('.lesson-goals'),null);assert.match(doc.getElementById('lessonContent').textContent,/Heute kannst du/);assert.match(doc.querySelector('.el-position').textContent,/Schritt 1 von 7/);
+  assert.match(doc.querySelector('#nextStep').textContent,/Weiter: Wendungen/);e.click('#nextStep');assert.match(doc.querySelector('.el-position').textContent,/Schritt 2 von 7/);
 });
+
 test('phrase pages show four examples at a time and retain both halves',t=>{
   const e=env();t.after(e.close);e.click('#continue');e.click('[data-step="1"]');const doc=e.w.document;
   const visible=()=>[...doc.querySelectorAll('[data-phrase-page]')].filter(r=>!r.hidden).map(r=>r.textContent);
   assert.equal(visible().length,4);assert(visible().some(s=>s.includes('Γεια σου')));e.click('#phrasePager');
   assert.equal(visible().length,4);assert(visible().some(s=>s.includes('Με λένε Άννα')));assert(!visible().some(s=>s.includes('Γεια σου')));
-  e.click('[data-el-step="1"]');e.click('[data-el-step="0"]');assert(visible().some(s=>s.includes('Με λένε Άννα')));
+  e.click('[data-step="2"]');e.click('[data-step="1"]');assert(visible().some(s=>s.includes('Με λένε Άννα')));
 });
 
 test('the alphabet uses one six-letter group per page and returns to the originating lesson',t=>{
@@ -211,43 +223,12 @@ test('the alphabet uses one six-letter group per page and returns to the origina
   assert.equal(new Set(seen).size,24);assert.match(doc.querySelector('.el-position').textContent,/Gruppe 4 von 4/);e.click('#alphabetBack');assert.match(doc.querySelector('.lesson-step-header h2').textContent,/2\./);
 });
 
-test('Greek input assistance is collapsed initially and Shift changes letter case without losing the cursor',t=>{
-  const e=env();t.after(e.close);e.w.Math.random=()=>.999;e.click('[data-route=alphabet]');e.click('[data-group="0"]');[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer==='α').click();e.click('#nextQuestion');const doc=e.w.document,input=doc.getElementById('typedAnswer'),help=doc.querySelector('.el-input-help');
-  assert(!help.open);help.open=true;input.value='αβ';input.setSelectionRange(1,2);
-  const key=value=>[...help.querySelectorAll('button')].find(b=>b.textContent===value);
-  assert(key('Ά').hidden);e.click('.mixed-shift');assert(!key('Ά').hidden);assert(key('α').hidden);key('Ά').click();assert.equal(input.value,'αΆ');assert.equal(input.selectionStart,2);
+test('Greek loads its own course flow without French exercises or Arcade modules',()=>{
+  const html=read('griechisch/index.html');
+  for(const asset of ['lesson-flow.js','games.js','hard-mode-arcade.js','game-hard-mode.js'])assert(!html.includes(asset));
+  for(const l of D.lessons)for(const task of C.tasks(l,'check'))assert(task.options?.length===3,task.id);
 });
-
-
-test('every Greek lesson supplies the shared finale games, two gaps per sheet, Greek arcade and a 4-option quiz',t=>{
- const e=env();t.after(e.close);const w=e.w;
- for(const l of D.lessons){
-  assert(w.A1_GAME_HARD.supports('el',l.id));const built=w.EL_A1_GAMES.build(l.id);
-  assert.deepEqual(plain([...new Set(built.pages.map(p=>p.key))]),['memory','match','order','text','listening']);assert.equal(built.tasks.length,16);
-  assert.equal(built.tasks[0].pairs.length,8);assert(built.pages.filter(p=>p.key==='text').every(p=>p.ids.length===2));
-  const arcade=w.EL_A1_GAMES.arcadeContent(l.id);assert.equal(arcade.voice,'el-GR');assert.deepEqual(plain(arcade.PHRASES.map(p=>p[0])),plain(l.phrases.map(p=>p.el)));
-  for(let i=0;i<12;i++){const r=arcade.formRound();assert.equal(r.options.length,4);assert.equal(new Set(r.options).size,4);assert(r.options.includes(r.answer));assert(/\p{Script=Greek}/u.test(r.sentence));}
-  const pool=w.EL_A1_GAMES.quizPool(l.id);assert(pool.length>=12);for(const q of pool){assert.equal(q.o.length,4);assert.equal(new Set(q.o).size,4);assert(['de','el'].includes(q.ol));}
- }
-});
-test('the shared Greek finale persists, requires actual listening, retries mistakes and unlocks all four arcade games',t=>{
- const e=env();t.after(e.close);const {w}=e,view=w.document.getElementById('view'),state={lessonWork:{}};let cleanup;
- const render=()=>{cleanup?.();cleanup=w.A1_GAME_HARD.render({course:'el',lesson:w.EL_A1_DATA.lessons[0],view,state,save(){},onBack(){}});};t.after(()=>cleanup?.());render();e.click('[data-games-begin]');
- const game=()=>state.lessonWork[1].hardMode.games,attempt=()=>game().attempt;let a=attempt();
- for(let n=0;n<8;n++){e.click(`[data-memory-card="${n*2}"]`);e.click(`[data-memory-card="${n*2+1}"]`);}assert(a.solved[0]);render();assert(attempt().solved[0]);e.click('[data-games-next]');
- const wrongId=a.content.tasks.findIndex(q=>q.type==='text');let failed=false;
- function solvePage(){
-  a=attempt();const page=a.content.pages[a.page];
-  for(const i of page.ids){if(a.round&&!a.retryIds.includes(i))continue;const q=a.content.tasks[i];
-   if(q.type==='match')q.answers.forEach((v,n)=>{e.click(`[data-games-connect="${i}"] [data-match-left="${n}"]`);e.click(`[data-games-connect="${i}"] [data-match-right="${a.orders[i].indexOf(v)}"]`);});
-   else if(q.type==='order')for(let n=0;n<q.required;n++)e.click(`[data-games-token="${i}"][data-token="${n}"]`);
-   else if(q.type==='text'){const field=view.querySelector(`[data-games-input="${i}"]`);field.value=i===wrongId&&!failed?'λάθος':q.answers[0];if(i===wrongId)failed=true;field.dispatchEvent(new w.Event('input'));}
-   else if(q.type==='choice')[...view.querySelectorAll(`[data-games-choice="${i}"]`)].find(x=>x.value===q.answers[0]).click();
-  }
-  if(page.blocks){e.click('[data-games-check]');assert.match(view.textContent,/zuerst den Text vollständig/);for(const b of page.blocks)e.click(`[data-games-listen="${b}"]`);}
-  if(view.querySelector('[data-games-check]'))e.click('[data-games-check]');e.click('[data-games-next]');
- }
- for(let guard=0;attempt().phase==='running';guard++){assert(guard<15);solvePage();}
- assert.equal(game().arcadeUnlocked,undefined);assert.equal(attempt().phase,'summary');e.click('[data-games-retry]');solvePage();assert.equal(attempt().phase,'reviewed');assert.equal(game().arcadeUnlocked,true);
- const result=JSON.stringify(attempt().result);e.click('[data-games-arcade]');assert.equal(view.querySelectorAll('[data-arcade-game]').length,4);assert.equal(JSON.stringify(attempt().result),result);
+test('saved transfer mistakes resolve to current choice tasks',()=>{
+  const t=C.tasks(D.lessons[0],'check').find(t=>t.id.includes('transfer'));
+  assert.equal(C.currentTask(t)?.answer,t.answer);
 });
