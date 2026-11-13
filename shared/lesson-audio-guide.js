@@ -9,11 +9,11 @@
     de:{shortName:'Audio-Guide',settings:'Stimmen & Tempo',name:'Audio-Guide für die ganze Lektion',help:'Einmal starten: Hörbeispiele, Wortschatz und alle Erklärungen vor dem Lektionscheck. Danach bearbeitest du die Aufgaben selbst. Die Lernsprache hörst du zweimal, die Übersetzung einmal.',play:'▶ Anhören',pause:'Ⅱ Pause',resume:'▶ Fortsetzen',stop:'■ Stopp',ready:'Bereit',paused:'Pausiert. Mit Fortsetzen hörst du hier weiter.',done:'Fertig. Jetzt kannst du die Lektion selbst durcharbeiten.',error:'Wiedergabe unterbrochen. Mit Fortsetzen kannst du an dieser Stelle weiterhören.',unavailable:'Vorlesen ist in diesem Browser nicht verfügbar.',timeline:'Position im Audio-Guide',estimated:'Zeit geschätzt',timeHelp:'Zeiten sind geschätzt. Springen und Tempowechsel setzen am Satzanfang ein.',chapter:'Abschnitt',speed:'Tempo',voices:'Stimmen',voiceReload:'Stimmen neu laden',autoVoice:'Automatisch',targetVoice:'Französisch · Lernsprache',nativeVoice:'Deutsch · Übersetzung',preview:'Hörprobe',voiceHint:'Hier wählst du die Stimmen für beide Sprachen. Die Auswahl wird auf diesem Gerät gespeichert.',noVoices:'Noch keine passende Stimme gefunden. Der Browser verwendet seine Sprachvoreinstellung.',voiceSaved:'Stimme gespeichert. Während der Wiedergabe gilt sie ab dem nächsten Sprechabschnitt.',voiceError:'Die Hörprobe konnte nicht abgespielt werden.',reading:'Mitlesen',background:'App-Wechsel kann die Browserstimme unterbrechen. Die Hörposition wird gespeichert; beim Zurückkehren kannst du hier fortsetzen.',interrupted:'Die Browserstimme wurde unterbrochen. Setze an dieser Stelle fort.',intro:'Einstieg',words:'Hörbeispiele & Wortschatz',grammar:'Grammatik & Satzmuster',dialogue:'Alltagsdialog',listen:'Hörtext',practice:'Selbst anwenden',finale:'Vorbereitung aufs optionale Finale',end:'Dein nächster Schritt'},
     fr:{shortName:'Guide audio',settings:'Voix et vitesse',name:'Guide audio de toute la leçon',help:'Une seule lecture : exemples, vocabulaire et explications avant le bilan. Ensuite, fais les exercices toi-même. Les exemples allemands sont lus deux fois, leur traduction une seule fois.',play:'▶ Écouter',pause:'Ⅱ Pause',resume:'▶ Reprendre',stop:'■ Arrêter',ready:'Prêt',paused:'En pause. Reprendre continue à cet endroit.',done:'Terminé. Tu peux maintenant travailler la leçon toi-même.',error:'Lecture interrompue. Appuie sur Reprendre pour continuer ici.',unavailable:'La lecture audio n’est pas disponible dans ce navigateur.',timeline:'Position dans le guide audio',estimated:'Durée estimée',timeHelp:'Durées estimées. Un déplacement ou un changement de vitesse reprend au début de la phrase.',chapter:'Partie',speed:'Vitesse',voices:'Voix',voiceReload:'Actualiser les voix',autoVoice:'Automatique',targetVoice:'Allemand · langue apprise',nativeVoice:'Français · traduction',preview:'Écouter',voiceHint:'Choisis les deux voix ici. Ton choix est enregistré sur cet appareil.',noVoices:'Aucune voix correspondante disponible pour le moment. Le navigateur utilise sa voix par défaut.',voiceSaved:'Voix enregistrée. Pendant la lecture, elle sera utilisée au prochain passage.',voiceError:'Impossible de lire cet exemple.',reading:'Lire en écoutant',background:'Changer d’application peut interrompre la voix du navigateur. Ta position est enregistrée et tu peux reprendre ici.',interrupted:'La voix du navigateur a été interrompue. Reprends à cet endroit.',intro:'Introduction',words:'Exemples & vocabulaire',grammar:'Grammaire & structures',dialogue:'Dialogue',listen:'Compréhension orale',practice:'À toi de pratiquer',finale:'Préparation à la finale facultative',end:'La suite'}
   };
-  function create({targetLang,nativeLang}){
-    const base=targetLang.split('-')[0],L=UI[nativeLang.startsWith('fr')?'fr':'de'],german=nativeLang.startsWith('de');
+  function create({targetLang,nativeLang,languageReader}){
+    const base=targetLang.split('-')[0],L={...UI[nativeLang.startsWith('fr')?'fr':'de'],...(targetLang.startsWith('el')?{targetVoice:'Griechisch · Lernsprache'}:{})},german=nativeLang.startsWith('de');
     let disposeCurrent=()=>{},instance=0,relocating=false,relocate=null;
     const element=html=>{const root=doc.createElement('div');root.innerHTML=html||'';return root;};
-    function language(options,roots=[]){return window.A1GuideLanguage.create({targetLang,nativeLang,lesson:options.lesson,roots});}
+    function language(options,roots=[]){if(languageReader)return languageReader({...options,roots});return window.A1GuideLanguage.create({targetLang,nativeLang,lesson:options.lesson,roots});}
     function speechText(text,lang){
       text=clean(text).replace(/→/g,lang===nativeLang?(german?' wird zu ':' devient '):', ').replace(/\s*\/\s*/g,', ').replace(/&/g,lang.startsWith('fr')?' et ':' und ');
       if(lang===targetLang)text=text.replace(/(^|[\s,;])-(\p{L}+)/gu,(_,before,ending)=>before+(window.A1Pronunciation?.spellParts(ending,base)?.join(', ')||ending.split('').join(', ')));
@@ -76,7 +76,7 @@
       native(german?`Willkommen zu Lektion ${lesson.id}: ${lesson.title}. Du hörst jetzt die Lerninhalte der ganzen Lektion. Du brauchst zwischendurch nichts anzuklicken. Danach kannst du alles selbst üben.`:`Bienvenue dans la leçon ${lesson.id} : ${lesson.title}. Tu vas écouter le contenu de toute la leçon, sans changer de page. Ensuite, tu pourras travailler les exercices toi-même.`);
       contentParts(goalRoot);
       title(L.words);
-      say(german?'Höre das französische Beispiel und danach seine deutsche Bedeutung. Das Beispiel hörst du nach der Übersetzung noch einmal. Du kannst leise mitsprechen.':'Écoute l’exemple allemand, puis sa traduction française. Après la traduction, chaque exemple allemand est répété. Tu peux répéter à voix basse.');
+      say(german?`Höre das ${base==='el'?'griechische':'französische'} Beispiel und danach seine deutsche Bedeutung. Das Beispiel hörst du nach der Übersetzung noch einmal. Du kannst leise mitsprechen.`:'Écoute l’exemple allemand, puis sa traduction française. Après la traduction, chaque exemple allemand est répété. Tu peux répéter à voix basse.');
       lesson.phrases.forEach(([target,meaning],index)=>{
         parts.push({text:speechText(target,targetLang),lang:targetLang,chapter,sourcePage,phrase:index,repeat:1,pauseAfter:280,phraseEnd:false});
         say(meaning,nativeLang,{pauseAfter:420,sourcePhrase:index});
@@ -188,7 +188,7 @@
           timer=window.setTimeout(()=>{timer=null;next(token);},part.pauseAfter??280);
         };
         u.onerror=()=>{if(handled||token!==run||disposed)return;handled=true;frozen=position();cancel();playing=false;paused=true;play.textContent=L.resume;stop.disabled=false;status.textContent=L.error;status.hidden=false;checkpoint();renderTime();};
-        startTicker();try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
+        if(base==='el'&&part.lang===targetLang&&!selected){u.onerror();return;}startTicker();try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
       }
       function seekIndex(destination,wasPlaying=playing){
         cancel();index=Math.max(0,Math.min(parts.length-1,destination));lastChapter=null;finished=false;scrubbing=false;frozen=model.starts[index];paused=true;stop.disabled=false;playing=wasPlaying;update();
@@ -216,7 +216,7 @@
       for(const select of host.querySelectorAll('[data-guide-voice]'))select.onchange=()=>{const lang=select.dataset.guideVoice,choice=select.value==='auto'?null:voiceLists.get(lang)?.get(select.value);if(voice?.setVoice?.(lang,choice))voiceNote.textContent=L.voiceSaved;else renderVoices();};
       host.querySelector('[data-guide-voice-reload]').onclick=renderVoices;
       for(const button of host.querySelectorAll('[data-guide-voice-preview]'))button.onclick=()=>{
-        hold();cancel();const token=++previewRun,lang=button.dataset.guideVoicePreview,u=new window.SpeechSynthesisUtterance(({fr:'Bonjour ! Je m’appelle Léa.',de:'Hallo! Ich heiße Anna.'})[lang.split('-')[0]]),selected=voice.select(lang);u.lang=selected?.lang||lang;if(selected)u.voice=selected;u.rate=.85;
+        hold();cancel();const token=++previewRun,lang=button.dataset.guideVoicePreview,u=new window.SpeechSynthesisUtterance(({fr:'Bonjour ! Je m’appelle Léa.',de:'Hallo! Ich heiße Anna.',el:'Γεια σου! Με λένε Άννα.'})[lang.split('-')[0]]),selected=voice.select(lang);u.lang=selected?.lang||lang;if(selected)u.voice=selected;u.rate=.85;
         u.onerror=()=>{if(token===previewRun&&!disposed)voiceNote.textContent=L.voiceError;};try{voice.playUtterance(u,lang);}catch{u.onerror();}
       };
       const external=e=>{if(!host.contains(e.target)&&e.target.closest?.('button,a'))hold();};
@@ -237,4 +237,5 @@
   }
   window.A1LessonAudioGuide={create};
 })();
+
 

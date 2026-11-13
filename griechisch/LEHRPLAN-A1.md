@@ -2,7 +2,7 @@
 
 Stand: 12. November 2026. Neugriechisch für deutschsprachige Jugendliche und Erwachsene ohne Vorkenntnisse. Eigener Lernkurs; keine offizielle Prüfung, Zertifizierung oder Verlagskooperation.
 
-Qualitätsstand nach dem [Audit vom 12. November 2026](../docs/greek-a1-quality-audit.md): verwendbares Einstiegsgerüst mit noch wesentlichen Lücken bei Übungstiefe, Wortschatzvorbereitung und unabhängiger Niveaukontrolle. Die Gleichwertigkeit zum Französisch-A1-Kurs ist noch nicht erreicht. Konkrete Bewertungs-, Mustertext- und Speicherfehler wurden behoben.
+Qualitätsstand nach dem [Audit vom 12. November 2026](../docs/greek-a1-quality-audit.md): verwendbares Einstiegsgerüst mit noch wesentlichen Lücken bei Übungstiefe, Wortschatzvorbereitung und unabhängiger Niveaukontrolle. Die pädagogische Gleichwertigkeit zum Französisch-A1-Kurs ist noch nicht unabhängig bestätigt. Der Funktionsablauf nutzt inzwischen dieselben Finale-, Arcade-, Quiz- und Audio-Guide-Komponenten. Konkrete Bewertungs-, Mustertext- und Speicherfehler wurden behoben.
 
 ## Didaktik
 
@@ -10,9 +10,9 @@ Die erste Lektion ermöglicht ein kleines Gespräch, bevor das gesamte Alphabet 
 
 Ungefähre Lesehilfen sind nur in den ersten drei Lektionen enthalten und lassen sich ausblenden. Ab Lektion 4 steht die griechische Schrift im Mittelpunkt. Die Lesehilfe ist keine IPA-Lautschrift und bildet insbesondere γ, δ, θ und χ nicht vollständig ab.
 
-Jede Lektion enthält ein Kann-Ziel, acht Kernwendungen, eine Grammatikregel, einen eigenen Dialog mit aufklappbaren Bedeutungen, gemischtes Training, je einen Lese- und Hörtext mit zwei Verständnisfragen, eigene Schreib- und Sprechaufgaben sowie einen Lektionscheck. Dieser umfasst die acht Kernwendungen und eine Auswahl an Regeln und Verständnisfragen; er belegt keine vollständige Beherrschung aller erklärten Inhalte. Lektion 2 enthält acht kurze Wortgruppen statt acht Gesprächswendungen.
+Jede Lektion enthält ein Kann-Ziel, acht Kernwendungen, eine Grammatikregel, einen eigenen Dialog mit Bedeutungen, Übungen zu den Vertiefungsseiten, je einen Lese- und Hörtext mit zwei Verständnisfragen sowie einen Lektionscheck. Die griechischen Inhalte bleiben eigenständig; freie Sprech- und Schreibselbstchecks sind keine Pflichtstufe mehr. Lektion 2 enthält acht kurze Wortgruppen statt acht Gesprächswendungen.
 
-Die Reihenfolge je Lektion: Einstieg → Wendungen → Grammatik → Dialog → Training → Lesen/Hören → selbst anwenden → Wissenscheck. Die Navigation bleibt frei; ein Lernender kann Regeln und Beispiele jederzeit erneut aufrufen.
+Die Reihenfolge je Lektion: Hören & Verstehen mit einem Vokabel-Check → Vertiefung mit blätterbaren Grammatik-, Dialog- und Leseseiten samt Übungen → Hörverstehen → Lektionscheck. Ab 80 % mit bearbeitetem Hörteil öffnen sich Finale und Millionen-Turm. Das Finale verwendet Memory (acht Paare), Verbindungen, Wörter-Zug, Zauber-Lücken (zwei je Seite) und zwei Radio-Texte aus den vorhandenen Lese-/Hörinhalten. Nach vollständiger Bearbeitung einschließlich Fehlerwiederholung öffnen sich Wurf-Arena, Ballon-Jagd, Wort-Fänger und Blitz-Sortierer. Alle Spiele verwenden die griechischen Lektionen. Die Navigation bleibt frei; Regeln und Beispiele lassen sich erneut aufrufen. Audio-Guide und Wortmarkierung sind auf die Lernseiten begrenzt; Prüfung und Finale haben ihre eigenen Audiosteuerungen.
 
 ## Lernpfad
 
@@ -46,11 +46,11 @@ Die Reihenfolge je Lektion: Einstieg → Wendungen → Grammatik → Dialog → 
 ## Prüfung und Rückmeldung
 
 - Der Trainingspool enthält pro Lektion 16 Wendungsaufgaben in beide Richtungen, drei Grammatikaufgaben und vier Verständnisfragen.
-- Der Lektionscheck prüft alle acht Kernwendungen als eigene Eingabe, drei Regelaufgaben, zwei zusätzliche Aufgaben in neuen Kontexten und vier Verständnisfragen: 17 Aufgaben. Diese feste Auswahl wird vollständig gestellt; sie ist kein vollständiges Grammatik- oder Fertigkeiteninventar.
-- Alle Auswahlfragen haben drei verschiedene Optionen und eine erklärte Lösung. Falsche Antworten gelangen in die profilbezogene Wiederholung. Richtige Wiederholungen verlängern den Abstand auf 2, 4, 8, 16 und maximal 30 Tage.
+- Der Vokabel-Check enthält zehn kurze Aufgaben und umfasst alle acht Kernwendungen. Der Lektionscheck enthält sechs Wendungsfragen, drei Regelaufgaben, zwei Transferaufgaben und vier Verständnisfragen: 15 Aufgaben. Diese feste Auswahl wird vollständig gestellt; sie ist kein vollständiges Grammatik- oder Fertigkeiteninventar.
+- Die regulären Auswahlfragen haben drei verschiedene Optionen (die Quiz-Show vier) und eine erklärte Lösung. Falsche Antworten gelangen in die profilbezogene Wiederholung. Richtige Wiederholungen verlängern den Abstand auf 2, 4, 8, 16 und maximal 30 Tage.
 - Eingaben werden Unicode-normalisiert; Großschreibung, übliche Satzzeichen und zusätzliche Leerzeichen verhindern keine richtige Antwort. Für 45 Kernwendungen sind begrenzte Varianten hinterlegt, insbesondere mit einem ausdrücklich genannten Ich-Subjekt. Bei freien Eingaben gibt fehlender oder falscher Tonos einen Korrekturhinweis und noch keinen Punkt. Eine falsche Auswahloption zählt dagegen sofort als Fehler. Das Trema wird nicht pauschal entfernt.
-- Ab 80 % ist der Wissenscheck bestanden. Eine Lektion ist erst mit zusätzlich gespeichertem Schreib- und Sprechselbstcheck abgeschlossen. Die Selbstchecks sind keine automatische Sprachbewertung. Ein Abschreiben des Beispieltextes lässt sich technisch nicht von freier Produktion unterscheiden.
-- Vier kumulative Blöcke enthalten je 24 Aufgaben aus je sechs Lektionen. Sie ergänzen die Detailchecks und decken aktive Wendungen, Grammatik, Lesen und Hören ab. Die freie Schreib-/Sprechaufgabe ist gesondert beschrieben. Das Ergebnis ist kein offizielles Gesamtprüfungsresultat.
+- Ab 80 % im Lektionscheck mit vollständig bearbeitetem Hörteil ist die Lektion abgeschlossen. Zusätzliche Sprech- oder Schreibbestätigungen sind nicht erforderlich. Bereits gespeicherte Bestwerte, Entwürfe und Fehlerhistorien bleiben erhalten; alte Lernpositionen werden einmalig dem neuen Ablauf zugeordnet.
+- Vier kumulative Blöcke enthalten je 24 Aufgaben aus je sechs Lektionen. Sie ergänzen die Detailchecks und decken aktive Wendungen, Grammatik, Lesen und Hören ab. Das Ergebnis ist kein offizielles Gesamtprüfungsresultat.
 - Hörfragen geben den Text vor der Antwort nicht preis. Antworten werden erst nach vollständig abgespieltem Text freigegeben; bei einem Audiofehler bleiben sie gesperrt. Das Transkript wird erst nach der Antwort gezeigt. Ohne passende griechische Browserstimme lassen sich die Fragen überspringen; das zählt als falsch. Bei einem hohen übrigen Ergebnis kann die 80-%-Schwelle trotzdem erreicht werden. Ergebnis und zuletzt gespeicherter Lektionscheck weisen dann ausdrücklich auf den offenen Hörteil hin. Separate Hörübungen speichern ihren eigenen Übungswert. Das Übungstempo dieser Hörfragen ist fest auf 0,8 eingestellt.
 
 ## Quellen und Verwendung
@@ -68,3 +68,4 @@ Kostenloser Zugriff wird nicht als Nutzungsfreigabe behandelt. Die App bindet ke
 Eigene Kurskennung `griechisch-a1`, eigener Zustand `griechischA1State_v1`, separater Service-Worker-Cache. Profile und Audioauswahl werden aus der Suite verwendet. Kein neuer Dienst und keine neue Datenbankschnittstelle. Die lokale Fortschrittsspeicherung funktioniert ohne Cloud. Cloud-Sync nutzt die bestehende Profilintegration und deren Kurszuordnung `el`.
 
 Automatisierte Tests prüfen Inhaltsschema, Optionen, Schriftabdeckung, alle Lektionsseiten, Eingaben, Checkabschluss, Wiederholung, Audioersatz und die Offline-Dateiliste. Eine unabhängige muttersprachliche Redaktion sowie ein Lernversuch mit echten Griechisch-Anfängern stehen noch aus. Mechanische Tests allein belegen keine Gleichwertigkeit mit einem redigierten Lehrwerk oder dem umfangreicheren Französischkurs. Für Prüfungsvorbereitung sind die offiziellen Modellaufgaben und qualifiziertes Feedback sinnvoll.
+
