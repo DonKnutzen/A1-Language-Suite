@@ -91,9 +91,9 @@ test('choice mistakes show explanations and queue a task for repetition',t=>{
   const wrong=[...e.w.document.querySelectorAll('[data-answer]')].find(b=>b.dataset.answer!==D.lessons[0].phrases[0].el);wrong.click();
   assert.equal(Object.keys(e.saved().reviewPractice).length,1);assert.match(e.w.document.getElementById('feedback').textContent,/Γεια σου/);assert(!e.w.document.getElementById('nextQuestion').hidden);
 });
-test('no Greek voice means no listening answer can be submitted; skipping is recorded as wrong',t=>{
-  const e=env({voice:false});t.after(e.close);e.click('#continue');e.click('[data-step="5"]');e.click('#listenTasks');
-  assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled));e.click('#playSource');assert(e.w.document.getElementById('audioStatus').textContent.includes('Keine griechische Stimme'));assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled));
+test('failed Greek synthesis keeps listening locked; skipping is recorded as wrong',t=>{
+  const e=env({voice:false});t.after(e.close);e.w.speechSynthesis.speak=u=>u.onerror?.({error:'language-unavailable'});e.click('#continue');e.click('[data-step="5"]');e.click('#listenTasks');
+  assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled));e.click('#playSource');assert(e.w.document.getElementById('audioStatus').textContent.includes('nicht vollständig'));assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled));
   e.click('#skipAudio');e.click('#nextQuestion');e.click('#skipAudio');e.click('#nextQuestion');assert.equal(e.saved().lessonWork[1].listening,0);assert.equal(Object.keys(e.saved().reviewPractice).length,2);
 });
 test('voice picker has a working Greek preview',t=>{
@@ -130,7 +130,7 @@ test('listening unlocks only after completion; engine failure and stale callback
   const e=env();t.after(e.close);const spoken=[];e.w.speechSynthesis.speak=u=>spoken.push(u);
   e.click('#continue');e.click('[data-step="5"]');e.click('#listenTasks');e.click('#playSource');
   const disabled=()=>[...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled);
-  assert(disabled());spoken.at(-1).onerror({error:'synthesis-failed'});assert(disabled());assert.match(e.w.document.getElementById('audioStatus').textContent,/nicht vollständig/);
+  assert(disabled());spoken.at(-1).onerror({error:'synthesis-failed'});assert.equal(spoken.length,2);spoken.at(-1).onerror({error:'synthesis-failed'});assert(disabled());assert.match(e.w.document.getElementById('audioStatus').textContent,/nicht vollständig/);
   e.click('#playSource');const stale=spoken.at(-1).onend;e.click('#skipAudio');e.click('#nextQuestion');stale();assert(disabled());
   e.click('#playSource');assert(disabled());spoken.at(-1).onend();assert(!disabled());
 });
@@ -231,4 +231,13 @@ test('Greek loads its own course flow without French exercises or Arcade modules
 test('saved transfer mistakes resolve to current choice tasks',()=>{
   const t=C.tasks(D.lessons[0],'check').find(t=>t.id.includes('transfer'));
   assert.equal(C.currentTask(t)?.answer,t.answer);
+});
+
+test('Android empty voice list still attempts Greek speech immediately and unlocks listening only on completion',t=>{
+  const e=env({voice:false});t.after(e.close);const spoken=[];e.w.speechSynthesis.speak=u=>spoken.push(u);
+  e.click('#continue');e.click('[data-audio]');assert.equal(spoken.length,1);assert.equal(spoken[0].lang,'el-GR');
+  e.click('[data-step="5"]');e.click('#listenTasks');e.click('#playSource');
+  assert.equal(spoken.length,2);assert.equal(spoken[1].lang,'el-GR');
+  assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled));
+  spoken[1].onend();assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>!b.disabled));
 });

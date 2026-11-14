@@ -46,7 +46,7 @@
     const base=norm(lang).split('-')[0];
     return String(text||'').replace(/(?<![\p{L}\-–—])\p{Lu}(?:\s?[-–—]\s?\p{Lu})+(?![\p{L}\-–—])/gu,run=>{const letters=run.replace(/[\s\-–—]/g,'');return (window.A1Pronunciation?.spellParts(letters,base)||[...letters]).join(', ');});
   }
-  // A listed device voice can still fail to synthesize. Retry French once using
+  // A listed device voice can still fail to synthesize. Retry once using
   // the engine's language default, without replaying speech that already started.
   const useLanguageDefault=new Set();
   function getVoicePreference(lang){const p=pref(lang);return {uri:p.uri||'',name:p.name||''};}
@@ -69,7 +69,7 @@
       u.onerror=e=>{
         if(handled||run!==token)return;handled=true;
         const code=e?.error||'synthesis-failed';
-        if(base==='fr'&&!retried&&!started&&u.voice&&['voice-unavailable','language-unavailable','synthesis-failed','synthesis-unavailable','invalid-argument'].includes(code)){
+        if(!retried&&!started&&u.voice&&['voice-unavailable','language-unavailable','synthesis-failed','synthesis-unavailable','invalid-argument'].includes(code)){
           const fallback=new SpeechSynthesisUtterance(u.text);
           fallback.lang=lang;fallback.rate=u.rate;fallback.pitch=u.pitch;fallback.volume=u.volume;fallback.onboundary=utterance.onboundary;
           useLanguageDefault.add(base);attempt(fallback,true);return;
@@ -121,7 +121,7 @@
     cancel();const runToken=token,lang=options.lang||'fr-FR',roles=window.A1DialogueVoices?.plan(lang,turns),pair=roles?.bySpeaker||dialogueVoices(lang);
     window.A1DialogueVoices?.announce(roles?.notice||'');
     const parts=turns.filter(t=>String(t.text||'').trim());let i=0;
-    const fail=()=>{if(runToken===token){current=null;options.onError?.();}};
+    const fail=e=>{if(runToken===token){current=null;showError(e);options.onError?.(e);}};
     function next(){
       if(runToken!==token)return;
       if(i>=parts.length){current=null;options.onEnd?.();return;}
@@ -131,21 +131,21 @@
       u.lang=voice?.lang||lang;if(voice)u.voice=voice;
       // Dialogues deliberately use the exercise tempo, independently of voice-preview preferences.
       u.rate=options.rate??.75;u.pitch=1;u.volume=1;
-      u.onend=next;u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')fail();};
+      u.onend=next;u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')fail(e);};
       options.onTurn?.(turn.speaker,i-1);
       if(synth.paused&&typeof synth.resume==='function')synth.resume();
-      try{synth.speak(u);}catch{fail();}
+      playUtterance(u,lang);
     }
     next();return true;
   }
   function showError(error){
     const code=String(error?.error||'synthesis-failed'),L=UI[mountOptions?.uiLang]||UI.de;
     const hints={
-      'language-unavailable':'Französische Sprachdaten fehlen. Prüfe auf Android unter Einstellungen → Sprachausgabe die installierten Stimmen.',
-      'voice-unavailable':'Die angebotene Stimme ist nicht nutzbar. Lade die französischen Sprachdaten in der Android-Sprachausgabe neu.',
+      'language-unavailable':'Sprachdaten für die gewählte Sprache fehlen. Prüfe auf Android unter Einstellungen → Sprachausgabe die installierten Stimmen.',
+      'voice-unavailable':'Die angebotene Stimme ist nicht nutzbar. Lade die Sprachdaten für die gewählte Sprache in der Android-Sprachausgabe neu.',
       'synthesis-unavailable':'Die Sprachausgabe des Geräts ist nicht verfügbar. Prüfe die Text-in-Sprache-Engine in den Android-Einstellungen.',
-      'synthesis-failed':'Die Sprach-Engine konnte den Text nicht erzeugen. Teste Französisch direkt in der Android-Sprachausgabe.',
-      'network':'Die Sprach-Engine benötigt eine Netzwerkverbindung oder heruntergeladene französische Sprachdaten.',
+      'synthesis-failed':'Die Sprach-Engine konnte den Text nicht erzeugen. Teste die gewählte Sprache direkt in der Android-Sprachausgabe.',
+      'network':'Die Sprach-Engine benötigt eine Netzwerkverbindung oder heruntergeladene Sprachdaten für die gewählte Sprache.',
       'not-allowed':'Der Browser blockiert die Sprachausgabe. Starte die Hörprobe erneut durch Antippen.',
       'audio-busy':'Die Audioausgabe wird von einer anderen Anwendung belegt.',
       'audio-hardware':'Die Audioausgabe des Geräts ist nicht verfügbar.'

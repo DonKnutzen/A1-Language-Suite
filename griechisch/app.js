@@ -23,9 +23,12 @@
   window.A1ApplyCloudProgress=()=>{cloudPending=true;if(!session&&route==='home'){reloadCloud();home();}};
   function reloadCloud(){if(cloudPending){state=A1Learning.loadState(key(),defaults);C.migrate(state);cloudPending=false;}}
   function status(message){let el=document.getElementById('audioStatus');if(!el){el=document.createElement('p');el.id='audioStatus';el.setAttribute('role','status');view.prepend(el);}el.textContent=message;}
-  function hasVoice(){return Boolean(window.speechSynthesis?.getVoices().some(v=>/^el(?:-|$)/i.test(v.lang)));}
   function speak(t){
-    if(!hasVoice()){status('Keine griechische Stimme verfügbar. Aktiviere in den Geräte- oder Browsereinstellungen eine griechische Stimme und lade die Stimmen neu. Hörfragen kannst du überspringen; sie werden dann nicht als richtig gewertet.');return false;}
+    // Android may not enumerate voices yet. Let the engine resolve el-GR in
+    // the tap handler instead of rejecting playback from getVoices metadata.
+    if(!window.speechSynthesis||typeof window.SpeechSynthesisUtterance!=='function'){
+      status('Die Sprachausgabe ist nicht verfügbar. Prüfe die Text-in-Sprache-Einstellungen auf deinem Gerät.');return false;
+    }
     A1Voice.speak(t,{lang:'el-GR',rate:.8});return true;
   }
   function wireAudio(){view.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>speak(b.dataset.audio));}
@@ -129,7 +132,6 @@
     const field=document.getElementById('typedAnswer');if(field){keyboard(field);document.getElementById('typedForm').onsubmit=e=>{e.preventDefault();answer(field.value);};document.getElementById('reveal').onclick=()=>answer('',true);field.focus();}
     if(isListen){
       document.getElementById('playSource').onclick=()=>{
-        if(!hasVoice()){speak(t.source);return;}
         s.played=false;view.querySelectorAll('[data-answer]').forEach(b=>b.disabled=true);
         const current=()=>session===s&&s.tasks[s.index]===t&&!s.answered;
         const failed=()=>{if(!current())return;s.played=false;view.querySelectorAll('[data-answer]').forEach(b=>b.disabled=true);status('Der griechische Hörtext konnte nicht vollständig abgespielt werden. Versuche es erneut oder überspringe die Frage ohne Punkt.');};
