@@ -35,9 +35,13 @@ function save(completed=false){if(completed)A1Streak.completeExercise();
 }
 
 let audioEnabled=localStorage.getItem('frA1AudioEnabled')!=='false';
-let currentRoute='home';
 let cloudStatePending=false;
-window.A1ApplyCloudProgress=()=>{cloudStatePending=true;if(currentRoute==='home'){state=loadState();cloudStatePending=false;renderHome();}};
+window.A1ApplyCloudProgress=()=>{
+  cloudStatePending=true;
+  // Lessons and review screens can be opened directly from Home without setRoute.
+  // Refresh only when Home is actually mounted; never replace an active exercise.
+  if(view.querySelector('.home-continue-card'))renderHome();
+};
 const view=document.getElementById('view');
 const audioToggle=document.getElementById('audioToggle');
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
@@ -109,7 +113,6 @@ function skillBar(name){
 function setRoute(route){
   if(cloudStatePending){state=loadState();cloudStatePending=false;}
   stopHomeMotion();
-  currentRoute=route;
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
   ({home:renderHome,learn:renderLearn,practice:renderVocab,exam:renderExam}[route]||renderHome)();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -123,6 +126,7 @@ function stopHomeMotion(){
   homeDailyCleanup?.();homeDailyCleanup=null;
 }
 function renderHome(){
+  if(cloudStatePending){state=loadState();cloudStatePending=false;}
   stopHomeMotion();
   if(!state.reviewPractice?.imported){FR_A1_REVIEW.seed(state);save();}
   const next=A1LessonFlow.continuation(lessons,state);
