@@ -31,6 +31,12 @@
       {id:`word:${a.upper}`,prompt:`Welches Wort bedeutet „${a.meaning}“?`,answer:a.word,options:[a.word,...[...new Set(D.alphabet.map(b=>b.word))].filter(word=>word!==a.word).sort((x,y)=>Math.abs(x.length-a.word.length)-Math.abs(y.length-a.word.length)).slice(0,2)],explanation:`${a.word} bedeutet ${a.meaning}. Achte auf Kleinbuchstaben und Tonos; der Tonos markiert die Betonung.`}
     ]);
   }
+  // B introduces herself as Anna in 2 and 24, and uses δασκάλα in 15.
+  // Other dialogues use A as the female role and B as the male role.
+  function dialogueTurns(lesson){
+    const genders=[2,15,24].includes(lesson.id)?['male','female']:['female','male'];
+    return lesson.dialogue.map((text,i)=>({speaker:i%2?'B':'A',gender:genders[i%2],text}));
+  }
   function migrate(state){
     state.lessonWork||={};state.lessonMasteryBest||={};state.lessonQuizBest||={};
     if(state.flowVersion===2){
@@ -51,6 +57,6 @@
     const pool=l?[...tasks(l),...tasks(l,'check')]:[...alphabetTasks(),...D.orthography];
     return pool.find(t=>t.id===task.id)||null;
   }
-  window.EL_A1={normalize,grade,tasks,alphabetTasks,completion,currentTask,migrate};
+  window.EL_A1={normalize,grade,tasks,alphabetTasks,completion,currentTask,migrate,dialogueTurns};
 })();
 

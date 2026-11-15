@@ -31,7 +31,14 @@
     }
     A1Voice.speak(t,{lang:'el-GR',rate:.8});return true;
   }
-  function wireAudio(){view.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>speak(b.dataset.audio));}
+  function wireAudio(){
+    view.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>speak(b.dataset.audio));
+    view.querySelectorAll('[data-dialogue-turn]').forEach(b=>b.onclick=()=>{
+      const l=D.lessons.find(l=>l.id===activeLesson),turns=C.dialogueTurns(l);
+      const chosen=b.dataset.dialogueTurn==='all'?turns:[turns[Number(b.dataset.dialogueTurn)]];
+      if(!A1Voice.speakDialogue(chosen,{lang:'el-GR',rate:.8,onError:()=>status('Das Gespräch konnte nicht vorgelesen werden. Prüfe die griechischen Stimmen in den Audioeinstellungen.')}))status('Die Sprachausgabe ist auf diesem Gerät nicht verfügbar.');
+    });
+  }
   function shell(html){homeCleanup?.();homeCleanup=null;view.innerHTML=html;wireAudio();window.scrollTo?.({top:0,behavior:'smooth'});}
   function navigate(next){
     if(next==='alphabet')alphabetReturn=route==='lesson'?{id:activeLesson,step:activeStep}:null;
@@ -77,7 +84,7 @@
     }else if(step===2){
       area.innerHTML=card('Verstehen statt raten',`<p>${esc(l.rule)}</p><h3>Im Satz beobachten</h3>${l.phrases.slice(0,3).map(p=>`<p lang="el" class="el-greek">${esc(p.el)} ${audio(p.el)}</p><p>${esc(p.de)}</p>`).join('')}<p class="el-muted">Lies die Regel erneut und suche im Beispiel die beschriebene Form. Die Übungen erklären anschließend jede Lösung.</p>`);
     }else if(step===3){
-      area.innerHTML=card('Ein Gespräch, zwei Rollen',`<p>Lies zuerst Rolle A, dann Rolle B. Verdecke anschließend einzelne Zeilen und antworte aus dem Gedächtnis.</p>${l.dialogue.map((s,i)=>`<div class="el-dialogue"><strong>Rolle ${i%2?'B':'A'}</strong><p class="el-greek" lang="el">${esc(s)}</p>${audio(s)}<details><summary>Bedeutung zeigen</summary><p>${esc(l.dialogueDe[i])}</p></details></div>`).join('')}<p>Ändere Namen, Orte oder Wünsche so, dass ein neues Gespräch entsteht.</p>`);
+      area.innerHTML=card('Ein Gespräch, zwei Rollen',`${primary('Gespräch anhören','data-dialogue-turn="all"')}<p>Lies zuerst Rolle A, dann Rolle B. Verdecke anschließend einzelne Zeilen und antworte aus dem Gedächtnis.</p>${l.dialogue.map((s,i)=>`<div class="el-dialogue"><strong>Rolle ${i%2?'B':'A'}</strong><p class="el-greek" lang="el">${esc(s)}</p><button type="button" class="speak-btn" data-dialogue-turn="${i}" aria-label="Rolle ${i%2?'B':'A'} anhören">🔊</button><details><summary>Bedeutung zeigen</summary><p>${esc(l.dialogueDe[i])}</p></details></div>`).join('')}<p>Ändere Namen, Orte oder Wünsche so, dass ein neues Gespräch entsteht.</p>`);
     }else if(step===4){
       area.innerHTML=card('Gemischtes Training',`<p>Wendungen erkennen, Regeln anwenden, Informationen verstehen. Jede Antwort erhält eine Erklärung. Auch im Wissenscheck wählst du Antworten durch Antippen aus.</p>${primary('Training starten','id="startPractice"')}`);
       document.getElementById('startPractice').onclick=()=>start(C.tasks(l),{mode:'practice',lessonId:id,title:l.title});
@@ -190,4 +197,5 @@
   if('serviceWorker' in navigator)navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
   navigate('home');
 })();
+
 

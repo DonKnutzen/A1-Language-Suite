@@ -2,6 +2,7 @@
 (() => {
   'use strict';
   const names={
+    el:{female:/\b(melina|athina|athena)\b|μελίνα|μελινα|αθηνά|αθηνα/iu,male:/\b(nikos|nestoras|stefanos|alexandros)\b|νίκος|νικος|νέστορας|νεστορας|στέφανος|στεφανος|αλέξανδρος|αλεξανδρος/iu},
     en:{female:/\b(samantha|karen|moira|tessa|serena|susan|zira|aria|jenny|sonia|libby|shelley|flo|grandma)\b/i,male:/\b(daniel|alex|fred|david|mark|george|guy|ryan|thomas|eddy|reed|grandpa)\b/i},
     fr:{female:/\b(audrey|aurélie|aurelie|amélie|amelie|marie|denise|julie|hortense|céline|celine|léa|lea|sylvie|vivienne)\b/i,male:/\b(thomas|nicolas|henri|paul|mathieu|jean|claude|martin|daniel|rémy|remy|alain)\b/i},
     de:{female:/\b(anna|petra|katja|hedda|marlene|vicki|klara|seraphina|louisa|helena|amala|elke|gisela|klarissa|tanja)\b/i,male:/\b(markus|hans|stefan|conrad|killian|christoph|florian|michael|yannick|martin|bernd|klaus|ralf|felix|jonas)\b/i}
@@ -48,7 +49,7 @@
   function announce(notice){
     const view=document.getElementById('view');if(!view)return;
     view.querySelectorAll('[data-dialogue-voice-note]').forEach(el=>el.remove());if(!notice)return;
-    const lang=window.A1Profile?.getUiLang()||'de';
+    const lang=window.A1Profile?.getUiLang?.()||'de';
     const labels={de:{single:'Auf diesem Gerät ist keine zweite passende Stimme verfügbar. Beide Rollen können gleich klingen.',gender:'Eine passende Stimme für die Rolle fehlt auf diesem Gerät. Die Ersatzstimme kann anders klingen.',unknown:'Der Browser meldet das Geschlecht dieser Stimme nicht. Die Rollenstimme kann deshalb abweichen.'},fr:{single:'Cet appareil ne propose pas de deuxième voix adaptée. Les deux rôles peuvent avoir la même voix.',gender:'Une voix adaptée à ce rôle manque sur cet appareil. Une voix de remplacement est utilisée.',unknown:'Le navigateur ne précise pas le genre de cette voix. La voix du rôle peut donc différer.'},en:{single:'This device has no second suitable voice. Both roles may sound the same.',gender:'This device has no matching voice for a role. A substitute voice is used.',unknown:'The browser does not identify this voice’s gender. Its voice may differ from the role.'}};
     const p=document.createElement('p');p.className='muted dialogue-voice-note';p.dataset.dialogueVoiceNote='';p.dataset.i18nIgnore='';p.setAttribute('role','status');p.textContent=(labels[lang]||labels.de)[notice];
     const active=document.activeElement,host=view.contains(active)?active.closest('section'):null;(host||view).append(p);

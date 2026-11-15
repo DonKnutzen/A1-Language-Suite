@@ -57,13 +57,13 @@
     window.dispatchEvent(new CustomEvent('a1voicechange',{detail:{lang}}));if(dialog?.open)renderDialog();return true;
   }
 
-  function playUtterance(utterance,lang){
+  function playUtterance(utterance,lang,options={}){
     const run=token,onEnd=utterance.onend,onError=utterance.onerror,onStart=utterance.onstart;
     const base=norm(lang).split('-')[0];
     function attempt(u,retried=false){
       if(run!==token)return;
       let started=false,handled=false;current=u;
-      if(useLanguageDefault.has(base))u.voice=null;
+      if(useLanguageDefault.has(base)&&!options.preferSelected)u.voice=null;
       u.onstart=e=>{if(run!==token)return;started=true;onStart?.(e);};
       u.onend=e=>{if(handled||run!==token)return;handled=true;current=null;onEnd?.(e);};
       u.onerror=e=>{
@@ -72,7 +72,7 @@
         if(!retried&&!started&&u.voice&&['voice-unavailable','language-unavailable','synthesis-failed','synthesis-unavailable','invalid-argument'].includes(code)){
           const fallback=new SpeechSynthesisUtterance(u.text);
           fallback.lang=lang;fallback.rate=u.rate;fallback.pitch=u.pitch;fallback.volume=u.volume;fallback.onboundary=utterance.onboundary;
-          useLanguageDefault.add(base);attempt(fallback,true);return;
+          options.onFallback?.();useLanguageDefault.add(base);attempt(fallback,true);return;
         }
         current=null;onError?.(e);
       };
@@ -134,7 +134,7 @@
       u.onend=next;u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')fail(e);};
       options.onTurn?.(turn.speaker,i-1);
       if(synth.paused&&typeof synth.resume==='function')synth.resume();
-      playUtterance(u,lang);
+      playUtterance(u,lang,norm(lang).split('-')[0]==='el'?{preferSelected:true,onFallback:()=>window.A1DialogueVoices?.announce('gender')}:{});
     }
     next();return true;
   }
@@ -185,4 +185,5 @@
   if(synth){refresh();const changed=()=>{refresh();if(dialog?.open)renderDialog();};if(synth.addEventListener)synth.addEventListener('voiceschanged',changed);else synth.onvoiceschanged=changed;setTimeout(refresh,100);setTimeout(refresh,500);setTimeout(refresh,1500);}
   window.A1Voice={getVoicePreference,setVoice,playUtterance,showError,speak,speakSequence,speakDialogue,dialogueVoices,cancel,select,automatic,matching,refresh,isApple,mount};
 })();
+
 

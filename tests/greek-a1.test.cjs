@@ -5,15 +5,16 @@ const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'
 const context={window:{}};vm.createContext(context);for(const f of ['data','transfer','course'])vm.runInContext(read(`griechisch/${f}.js`),context);
 const D=context.window.EL_A1_DATA,C=context.window.EL_A1;
 const plain=x=>JSON.parse(JSON.stringify(x));
-function env({voice=true,storage={}}={}){
+function env({voice=true,storage={},agent}={}){
   const html=read('griechisch/index.html').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'');
   const dom=new JSDOM(html,{url:'https://example.org/griechisch/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
+  if(agent)Object.defineProperty(w.navigator,'userAgent',{value:agent});
   w.scrollTo=()=>{};w.SpeechSynthesisUtterance=function(t){this.text=t;};w.speechSynthesis={getVoices:()=>voice?[{lang:'el-GR',name:'Greek',voiceURI:'el'}]:[],cancel(){},speak(u){u.onend?.();},addEventListener(){}};
   let profile='one';const saves=[];
   w.A1Profile={namespacedKey:b=>`${b}::profile:${profile}`,saveProgress:(...args)=>saves.push(args)};
   w.A1Streak={completeExercise(){}};
   for(const [k,v] of Object.entries(storage))w.localStorage.setItem(k,v);
-  for(const f of ['shared/learning.js','shared/voice-selection.js','griechisch/data.js','griechisch/transfer.js','griechisch/course.js','griechisch/app.js'])w.eval(read(f));
+  for(const f of ['shared/learning.js','shared/voice-selection.js','shared/dialogue-voices.js','griechisch/data.js','griechisch/transfer.js','griechisch/course.js','griechisch/app.js'])w.eval(read(f));
   const click=s=>{
     const destination=/^\[data-step="(\d+)"\]$/.exec(s);
     if(destination){
@@ -240,4 +241,45 @@ test('Android empty voice list still attempts Greek speech immediately and unloc
   assert.equal(spoken.length,2);assert.equal(spoken[1].lang,'el-GR');
   assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>b.disabled));
   spoken[1].onend();assert([...e.w.document.querySelectorAll('[data-answer]')].every(b=>!b.disabled));
+});
+
+
+const greekVoice=(name,uri=name)=>({name,voiceURI:uri,lang:'el-GR'});
+for(const [device,agent,female,male] of [
+ ['iPhone','Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)',greekVoice('Melina','com.apple.voice.compact.el-GR.Melina'),greekVoice('Nikos','com.apple.voice.enhanced.el-GR.Nikos')],
+ ['Android','Mozilla/5.0 (Linux; Android 16; Pixel 10) Chrome/140',greekVoice('Greek Female'),greekVoice('Greek Male')],
+ ['Web','Mozilla/5.0 (Windows NT 10.0) Chrome/140',greekVoice('Microsoft AthinaNeural'),greekVoice('Microsoft NestorasNeural')]
+])test(`${device}: conversation and individual lines choose the authored Greek genders despite a saved female default`,t=>{
+ const e=env({agent});t.after(e.close);const spoken=[];
+ e.w.speechSynthesis.getVoices=()=>[female,greekVoice('Melina Enhanced'),male];e.w.speechSynthesis.speak=u=>spoken.push(u);
+ e.w.A1Voice.setVoice('el-GR',{uri:female.voiceURI,name:female.name});
+ for(const id of [1,2,15,24]){
+  e.click('[data-route=learn]');e.click(`[data-lesson="${id}"]`);e.click('[data-step="3"]');spoken.length=0;e.click('[data-dialogue-turn="all"]');
+  const turns=C.dialogueTurns(D.lessons[id-1]);let i=0;
+  while(i<spoken.length){const u=spoken[i],turn=turns[i];assert.equal(u.text,turn.text);assert.equal(u.lang,'el-GR');assert.equal(u.voice,turn.gender==='male'?male:female);u.onend();i++;}
+  assert.equal(i,turns.length);assert.equal(e.w.document.querySelector('[data-dialogue-voice-note]'),null);
+  spoken.length=0;e.click('[data-dialogue-turn="1"]');assert.equal(spoken.length,1);assert.equal(spoken[0].voice,turns[1].gender==='male'?male:female);
+ }
+});
+test('every Greek lesson has consistent explicit speaker genders and Greek-only speech text',()=>{
+ for(const lesson of D.lessons){const turns=C.dialogueTurns(lesson);assert.equal(turns.length,lesson.dialogue.length);assert.deepEqual([...new Set(turns.map(t=>t.gender))].sort(),['female','male']);for(const turn of turns){assert.equal(turn.gender,turns.find(t=>t.speaker===turn.speaker).gender);assert(!/^Rolle|^[AB]:/.test(turn.text));}}
+});
+test('Greek voice identities recognise Apple URIs, neural names and localised Windows names',t=>{
+ const e=env();t.after(e.close);
+ for(const [v,g]of [[greekVoice('Greek','com.apple.voice.compact.el-GR.Nikos'),'male'],[greekVoice('Microsoft Stefanos'),'male'],[greekVoice('Microsoft Στέφανος'),'male'],[greekVoice('Microsoft el-GR-NestorasNeural'),'male'],[greekVoice('Melina'),'female'],[greekVoice('el-GR-AthinaNeural'),'female']])assert.equal(e.w.A1DialogueVoices.gender(v,'el-GR'),g,v.name);
+ assert.equal(e.w.A1DialogueVoices.gender(greekVoice('Google ελληνικά'),'el-GR'),null);
+});
+test('missing male voices are reported; late voices are used on the next play and navigation cancels callbacks',t=>{
+ const e=env();t.after(e.close);const female=greekVoice('Melina'),male=greekVoice('Nikos'),spoken=[];let available=[female];
+ e.w.speechSynthesis.getVoices=()=>available;e.w.speechSynthesis.speak=u=>spoken.push(u);
+ e.click('#continue');e.click('[data-step="3"]');e.click('[data-dialogue-turn="all"]');assert.match(e.w.document.querySelector('[data-dialogue-voice-note]').textContent,/keine zweite/);
+ available=[female,male];e.click('[data-dialogue-turn="1"]');assert.equal(spoken.at(-1).voice,male);assert.equal(e.w.document.querySelector('[data-dialogue-voice-note]'),null);
+ const old=spoken.at(-1),before=spoken.length;e.click('[data-route=learn]');old.onend();assert.equal(spoken.length,before);
+});
+test('Greek dialogue fallback does not stop a later male role from using its available voice',t=>{
+ const e=env();t.after(e.close);const female=greekVoice('Melina'),male=greekVoice('Nikos'),spoken=[];
+ e.w.speechSynthesis.getVoices=()=>[female,male];e.w.speechSynthesis.speak=u=>spoken.push(u);
+ e.click('#continue');e.click('[data-step="3"]');e.click('[data-dialogue-turn="all"]');
+ spoken[0].onerror({error:'voice-unavailable'});assert.equal(spoken.length,2);assert.equal(spoken[1].voice,undefined);assert.match(e.w.document.querySelector('[data-dialogue-voice-note]').textContent,/Ersatzstimme/);
+ spoken[1].onend();assert.equal(spoken[2].voice,male);spoken[2].onerror({error:'audio-hardware'});assert.match(e.w.document.getElementById('audioStatus').textContent,/nicht vorgelesen/);
 });
