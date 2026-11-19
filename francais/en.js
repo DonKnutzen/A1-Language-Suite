@@ -2081,7 +2081,7 @@ window.FR_A1_EN = Object.freeze({
       ["What symptoms does the person have?", "Je n’ai pas de fièvre excludes fever.", ["A headache without fever.", "Fever without a headache.", "A headache and fever."]],
       ["Since when has the person been ill?", "Depuis gives the start of the symptoms; jeudi is the appointment.", ["Since Monday.", "Since Thursday.", "Since Tuesday."]],
       ["You want to buy medicine for a cold.", "Contre le rhume identifies the purpose of the requested medicine."],
-      ["An exercise card says: « Deux fois par jour, le matin et le soir. » Which statement matches?", "Two times per day are specified.", ["Twice a day: morning and evening.", "Twice in the morning.", "Once a day: in the evening."]],
+      ["The medicine packet says: « Deux fois par jour, le matin et le soir. » Which statement matches?", "Two times per day are specified.", ["Twice a day: morning and evening.", "Twice in the morning.", "Once a day: in the evening."]],
       ["Which appointment fits?", "Nine is in the morning."],
       ["You need assistance. Ask politely for help.", "M’aider means to help me."],
       ["Where does the person go first?", "Ensuite places the pharmacy after the doctor’s appointment.", ["To the doctor.", "To the pharmacy.", "Home."]],
@@ -2118,7 +2118,7 @@ window.FR_A1_EN = Object.freeze({
       ["Reserve a room for two nights without specifying the number of guests.", "Nuits counts nights; personnes counts people."]
     ],
     "16":[
-      ["Accept an invitation but explain that you can arrive only an hour later.", "The answer accepts and mentions the later arrival."],
+      ["Accept an invitation but explain that you can arrive only a little later.", "The answer accepts and mentions the later arrival."],
       ["When can the person come?", "Je peux venir gives possible arrival, rather than dinner’s start.", ["19:30.", "19:00.", "18:30."]],
       ["Keep the meeting but ask to move it to tomorrow.", "Reporter à demain reschedules; annuler cancels."],
       ["Which reply expresses the reason appropriately?", "Ne peux pas describes an obstacle; ne veux pas would mean unwillingness."],
@@ -2142,13 +2142,13 @@ window.FR_A1_EN = Object.freeze({
       ["The person speaks too fast. Politely ask them to speak more slowly.", "Plus lentement changes speed; plus fort changes volume."],
       ["Which room number applies after the correction?", "Non corrects the first number."],
       ["Ask what a word means, rather than how to spell it.", "Veut dire asks about meaning."],
-      ["Ask for information particularly politely.", "J’aimerais with s’il vous plaît makes the request polite."],
+      ["Ask particularly politely for information about the course.", "J’aimerais + s’il vous plaît is especially polite; je veux sounds demanding and the imperative donnez-moi sounds like an order."],
       ["What needs explaining?", "Mais pas la dernière identifies the sentence not understood.", ["The last sentence.", "The first sentence.", "Both sentences."]],
       ["Politely suggest looking at the exercise together.", "Pourrait makes a polite suggestion; doit states an obligation."],
       ["What is the person missing?", "Je n’ai pas de stylo identifies the missing object.", ["A pen.", "A form.", "An address."]]
     ],
     "19":[
-      ["What does l’hôtel refer to?", "The definite article refers back to the hotel already introduced.", ["The previously mentioned hotel.", "The previously mentioned station hall.", "Several hotels."]],
+      ["What does l’hôtel refer to?", "The definite article refers back to the hotel already introduced.", ["The previously mentioned hotel.", "The station.", "Several hotels."]],
       ["Name several baguettes. Which form is correct in standard writing?", "Both the article and noun take the plural form."],
       ["Point to several friends. Which sentence is correct in standard written French?", "Ce sont matches des amis; c’est des… is informal speech."],
       ["What is behind the museum?", "Gare means railway station.", ["The station.", "The hotel.", "The café."]],
