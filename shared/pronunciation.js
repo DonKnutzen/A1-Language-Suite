@@ -10,6 +10,8 @@
   const FR_SPELL={E:'e',Q:'cu',U:'u'};
   const DE_LETTERS={A:'ah',B:'beh',C:'zeh',D:'deh',E:'eh',F:'eff',G:'geh',H:'hah',I:'ih',K:'kah',L:'ell',M:'emm',N:'enn',O:'oh',P:'peh',Q:'kuh',R:'err',S:'ess',T:'teh',U:'uh',X:'ix',Y:'ypsilon',Z:'zett'};
   const DE_NAMES={'Ä':'A Umlaut','Ö':'O Umlaut','Ü':'U Umlaut','ß':'Eszett','J':'Jot','V':'Vau','W':'We'};
+  // Spanish letter names, so spelled names such as M-U-L-L-E-R are read as eme, u, ele … instead of bare letters.
+  const ES_LETTERS={A:'a',B:'be',C:'ce',D:'de',E:'e',F:'efe',G:'ge',H:'hache',I:'i',J:'jota',K:'ka',L:'ele',M:'eme',N:'ene','Ñ':'eñe',O:'o',P:'pe',Q:'cu',R:'erre',S:'ese',T:'te',U:'u',V:'uve',W:'uve doble',X:'equis',Y:'i griega',Z:'zeta','Á':'a con tilde','É':'e con tilde','Í':'i con tilde','Ó':'o con tilde','Ú':'u con tilde','Ü':'u con diéresis'};
   const UI={de:{title:'Aussprache',repeat:'Höre die Beispiele einzeln an und sprich sie nach.',letters:'Alphabet & Buchstabieren',difference:'Buchstabennamen unterscheiden sich vom Laut im Wort. Achte besonders auf G/J und U.',accents:'Akzente mitnennen',test:'Eigenen Namen buchstabiert anhören',name:'Name zum Buchstabieren',play:'Buchstabieren anhören',unsupported:'Verwende Buchstaben, Leerzeichen und Bindestriche. Sonderzeichen wie é und ç werden mit ihrem Namen gesprochen.',word:'Laut im Wort anhören',special:'Besondere Buchstabennamen'},fr:{title:'Prononciation',repeat:'Écoute chaque exemple, puis répète à voix haute.',special:'Noms de lettres particuliers'},tr:{title:'Telaffuz',repeat:'Örnekleri tek tek dinle ve tekrar et.',special:'Özel harf adları'}};
   const speechLang=lang=>({fr:'fr-FR',de:'de-DE',es:'es-ES'})[lang]||lang;
   function spellParts(text,lang){
@@ -21,6 +23,7 @@
       let audio;
       if(lang==='fr')audio=map.get(char)||map.get(char.toUpperCase())||map.get(char.toLowerCase());
       else if(lang==='de')audio=DE_NAMES[char]||DE_NAMES[char.toUpperCase()]||DE_LETTERS[char.toUpperCase()]||null;
+      else if(lang==='es')audio=ES_LETTERS[char.toUpperCase()]||null;
       if(!audio)return null;
       chunks.push(audio);
     }

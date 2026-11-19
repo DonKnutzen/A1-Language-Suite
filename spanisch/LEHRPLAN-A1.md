@@ -56,28 +56,28 @@ Bei levantarse gehört das Reflexivpronomen dazu: me levanto, te levantas, se le
 - Ich kann Essen bestellen und Vorlieben ausdrücken.
 - Ich kann um die Rechnung bitten.
 
-Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form.
+Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form. Bei gustar ist das, was dir gefällt, das grammatische Subjekt: Vor einem Singular oder Infinitiv steht gusta (me gusta el café, me gusta comer), vor einem Plural gustan (me gustan las manzanas). Die Verneinung steht davor: no me gusta.
 
 ## 9. Preis, Menge und Größe
 
 - Ich kann Preise, Mengen und Größen erfragen.
 - Ich kann etwas kaufen oder höflich ablehnen.
 
-Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».
+Nach dem Preis fragst du mit « ¿Cuánto cuesta? » für eine Sache und « ¿Cuánto cuestan? » für mehrere. Zum Kaufen sagst du « Me llevo este/esta » (das nehme ich), passend zu einem maskulinen oder femininen Wort; « Me llevo esto » verwendest du, wenn du einfach auf etwas zeigst. Zum Ablehnen reicht « No, gracias ».
 
 ## 10. Wohnung: hay und estar
 
 - Ich kann eine Wohnung einfach beschreiben.
 - Ich kann nach Zimmern und Miete fragen.
 
-Für die Miete: « ¿Cuánto cuesta al mes? ».
+Mit hay nennst du, was es in der Wohnung gibt: « Hay un balcón ». Mit estar sagst du, wo sich etwas Bestimmtes befindet: « La cocina está al lado del salón » (neben dem Wohnzimmer). Für die Miete fragst du « ¿Cuánto cuesta al mes? ».
 
 ## 11. Weg und Verkehrsmittel
 
 - Ich kann nach einem Weg fragen und Richtungen verstehen.
 - Ich kann ein Verkehrsmittel nennen.
 
-
+Höfliche Wegbeschreibungen verwenden die usted-Aufforderung: siga (gehen Sie weiter), gire (biegen Sie ab), tome (nehmen Sie). Unter Freunden hörst du sigue, gira, toma. Verkehrsmittel stehen mit en: en autobús, en metro; zu Fuß heißt a pie. A + el wird zu al: voy al banco.
 
 ## 12. Beruf, Studium und Arbeitsort
 
@@ -98,14 +98,14 @@ Für den Beruf steht nach ser meist kein un/una: « Soy profesora. ». Für Stud
 - Ich kann das Wetter beschreiben.
 - Ich kann passende Kleidung nennen und auswählen.
 
-
+Viele Wetterangaben bildest du mit hace: hace sol, hace frío, hace calor, hace viento. Regen und Schnee haben eigene Verben: llueve oder está lloviendo, nieva. Bei Kleidung heißt ponerse „anziehen“ (me pongo una chaqueta) und llevar „tragen“ oder „mitnehmen“. Farb- und Kleidungsadjektive passen sich an: una chaqueta roja, unos zapatos rojos.
 
 ## 15. Hotel und Reisepläne
 
 - Ich kann ein Zimmer reservieren und nach Leistungen fragen.
 - Ich kann Reisepläne ausdrücken.
 
-Für eine Reservierung: « Quisiera reservar una habitación … ». « por dos noches » nennt die Dauer; « para dos personas » die Personenzahl. Mit « voy a + Infinitiv » kannst du einen Reiseplan ausdrücken.
+Für eine Reservierung: « Quisiera reservar una habitación … ». Die Dauer nennst du mit para oder por: para dos noches / por dos noches – beides ist bei Reservierungen üblich. Die Personenzahl steht mit para: para dos personas. Mit « voy a + Infinitiv » kannst du einen Reiseplan ausdrücken.
 
 ## 16. Beschwerden und Apotheke
 
@@ -119,7 +119,7 @@ Doler richtet sich nach der schmerzenden Körperstelle: « Me duele la cabeza »
 - Ich kann einen Anruf beginnen und eine Nachricht hinterlassen.
 - Ich kann eine einfache E-Mail schreiben.
 
-« ¿Puedes llamarme? » ist informell, « ¿Puede llamarme? » höflich. Bei einem Infinitiv kann das Pronomen angehängt werden: llamarme. In einer normalen Aussage steht es davor: « Te llamo mañana ».
+« ¿Puedes llamarme? » ist informell, « ¿Puede llamarme? » höflich. Puede kann auch „er/sie kann“ bedeuten: Im Dialog bittet Ana darum, dass Luis sie zurückruft. Bei einem Infinitiv kann das Pronomen angehängt werden: llamarme. In einer normalen Aussage steht es davor: « Te llamo mañana ».
 
 ## 18. Am Schalter: Wunsch und Öffnungszeit
 
@@ -133,7 +133,7 @@ Mit « Necesito … » brauchst du ein Nomen; mit « Quiero + Infinitiv » nenns
 - Ich kann regelmäßige Verben auf -ar, -er und -ir bilden.
 - Ich kann einfache Sätze über Alltagstätigkeiten schreiben.
 
-Übe die Formen immer in kurzen ganzen Sätzen.
+Streiche die Infinitivendung -ar, -er oder -ir und hänge die Personenendung an: habl-o, com-emos, viv-imos. Die Endung zeigt die Person, deshalb kann das Pronomen meist wegfallen. -er- und -ir-Verben unterscheiden sich nur bei nosotros und vosotros: comemos / vivimos, coméis / vivís. Übe die Formen immer in kurzen ganzen Sätzen.
 
 ## 20. Häufige unregelmäßige Verben
 
@@ -147,14 +147,14 @@ Querer und poder stehen oft vor einem Infinitiv; ir a + Infinitiv beschreibt ein
 - Ich kann Artikel und Adjektive an ein Nomen anpassen.
 - Ich kann Einzahl und Mehrzahl unterscheiden.
 
-
+Lerne jedes Nomen mit Artikel: el/un für maskulin, la/una für feminin, im Plural los/unos und las/unas. Adjektive stehen meist hinter dem Nomen und passen sich an: un libro nuevo, una casa nueva, unos libros nuevos. Den Plural bildest du nach Vokal mit -s (casa → casas), nach Konsonant mit -es (ciudad → ciudades). Achte auf Ausnahmen wie el problema und la mano.
 
 ## 22. Gezielt fragen: dónde, de dónde, a dónde
 
 - Ich kann mit Fragewörtern gezielt Informationen erfragen.
 - Ich kann Orte, Ziele und Herkunft unterscheiden.
 
-
+Dónde fragt nach dem Ort (wo), a dónde nach dem Ziel (wohin) und de dónde nach der Herkunft (woher). Fragewörter tragen einen Akzent: qué, cuándo, cuánto, quién, por qué. Bei den Präpositionen zeigt a das Ziel und de die Herkunft; a + el wird zu al, de + el zu del.
 
 ## 23. Formular und kurzer Aufgabentext
 
