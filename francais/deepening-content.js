@@ -884,7 +884,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Regelmäßige Verben anwenden",
-      "rule": "Bei travailler und commencer entfernst du -er und ergänzt -e, -es, -e, -ons, -ez oder -ent. Bei nous commençons sorgt ç dafür, dass der c-Laut weich bleibt. Vor einem Vokal wird je zu j’: j’aime. Mon cours ist Singular, also commence.",
+      "rule": "Nimm die Grundform, streiche -er und hänge die Endung an: travailler → je travaille, nous travaillons. Die Endungen -e, -es, -e, -ons, -ez und -ent sind in der Tabelle fett gedruckt. Bei commencer steht vor -ons ein ç: nous commençons. So bleibt das c weich wie ein s. Mon cours ist Singular, deshalb heißt es mon cours commence.",
       "pairs": [
         [
           "je travaille",
@@ -925,10 +925,104 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "-er",
-        "-e, -es, -e, -ons, -ez oder -ent",
+        "-e, -es, -e, -ons, -ez und -ent",
         "nous commençons",
-        "je zu j’"
-      ]
+        "mon cours commence"
+      ],
+      "blocks": [
+        [
+          "So bildest du die Formen",
+          "Nimm die Grundform, streiche -er und hänge die Endung an: travailler → je travaille, nous travaillons. Die Endungen -e, -es, -e, -ons, -ez und -ent sind in der Tabelle fett gedruckt."
+        ],
+        [
+          "Besonderheit bei commencer",
+          "Vor -ons steht ein ç: nous commençons. So bleibt das c weich wie ein s."
+        ],
+        [
+          "Singular oder Plural?",
+          "Mon cours ist Singular, deshalb heißt es mon cours commence."
+        ]
+      ],
+      "conjugationTable": {
+        "verbs": [
+          [
+            "travailler",
+            "arbeiten"
+          ],
+          [
+            "commencer",
+            "anfangen"
+          ]
+        ],
+        "rows": [
+          [
+            "je",
+            [
+              "travaill",
+              "e"
+            ],
+            [
+              "commenc",
+              "e"
+            ]
+          ],
+          [
+            "tu",
+            [
+              "travaill",
+              "es"
+            ],
+            [
+              "commenc",
+              "es"
+            ]
+          ],
+          [
+            "il / elle",
+            [
+              "travaill",
+              "e"
+            ],
+            [
+              "commenc",
+              "e"
+            ]
+          ],
+          [
+            "nous",
+            [
+              "travaill",
+              "ons"
+            ],
+            [
+              "commenç",
+              "ons"
+            ]
+          ],
+          [
+            "vous",
+            [
+              "travaill",
+              "ez"
+            ],
+            [
+              "commenc",
+              "ez"
+            ]
+          ],
+          [
+            "ils / elles",
+            [
+              "travaill",
+              "ent"
+            ],
+            [
+              "commenc",
+              "ent"
+            ]
+          ]
+        ]
+      }
     },
     {
       "title": "Drei Fragen & vier Antworten",
