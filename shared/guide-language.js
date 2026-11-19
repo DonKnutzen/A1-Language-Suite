@@ -32,12 +32,30 @@
       for(const node of root.querySelectorAll('[lang="'+base+'"],[lang="'+targetLang+'"],.phrase-row strong'))learn(node.textContent);
       for(const button of root.querySelectorAll('[data-speak],[data-vocabulary-audio]')){try{learn(decodeURIComponent(button.dataset.speak||button.dataset.vocabularyAudio));}catch{}}
     }
+    // German words from the course's own translations end a French run, so a
+    // German verb such as „sorgt“ or „kennst“ is not read with the French voice.
+    const native=new Set();
+    if(base==='fr'){
+      const add=s=>{for(const token of tokens(String(s||'')))native.add(norm(token[0]));};
+      for(const l of lessons||[])for(const pair of l?.phrases||[])if(Array.isArray(pair))add(pair[1]);
+      for(const group of Object.values(units||{}))for(const unit of group)for(const pair of unit.pairs||[])if(Array.isArray(pair))add(pair[1]);
+      add('sorgt sorgen dafür kennst kennt kennen besonders nützlich gehört gehören enthält enthalten ausdrücken hörbar hörbares stumm klingt klingen gleich enden endet beginnt hörst hört sprich achte vergleiche unterscheide verbinde Laut Endung Endungen Form Formen wichtig wichtige Wendung Wendungen Baustein Bausteine Beispiel Beispiele');
+      for(const word of [...native])if(words.has(word))native.delete(word);
+    }
+    const germanOnly=token=>!words.has(norm(token))&&(native.has(norm(token))||/[äöüß]/iu.test(token));
+    // „-ent“ after a space is a French ending. After a letter the hyphen joins a
+    // compound: „après-midi“ stays French, „c-Laut“, „-er-Verben“ or „E-Mail-Adresse“ German.
+    const joined=(text,t)=>t[0].startsWith('-')&&/[\p{L}\p{N}]/u.test(text[t.index-1]||'');
+    const ending=(text,t)=>/^-[\p{L}]+$/u.test(t[0])&&!joined(text,t);
+    // A capitalised French piece needs a French first part: États-Unis, Victor-Hugo.
+    const piece=(t,prev)=>{const v=norm(t[0]);return (base!=='fr'||/^\p{Ll}/u.test(t[0].slice(1))||(prev&&!prev[0].startsWith('-')&&words.has(norm(prev[0]))&&!ambiguous.has(norm(prev[0]))))&&(words.has(v)||words.has(v.slice(1)));};
+    const known=(text,t,prev)=>joined(text,t)?piece(t,prev):ending(text,t)||(words.has(norm(t[0]))&&!ambiguous.has(norm(t[0])));
     function split(text,{explicit=false,forceNative=false,context=null,offset=0}={}){
       text=clean(text);if(!text)return [];
       if(forceNative)return [{text,lang:nativeLang}];
       if(explicit)return [{text,lang:targetLang}];
       if(context){return split(context).flatMap(p=>{const start=Math.max(offset,p.start),end=Math.min(offset+text.length,p.end);return end>start?[{text:clean(text.slice(start-offset,end-offset)),lang:p.lang}]:[];}).filter(p=>p.text);}
-      const ts=tokens(text),flags=ts.map(t=>/^-[\p{L}]+$/u.test(t[0])||(words.has(norm(t[0]))&&!ambiguous.has(norm(t[0]))));
+      const ts=tokens(text),flags=ts.map((t,i)=>known(text,t,ts[i-1]));
       // An ambiguous short form is French/German inside a known example, rather
       // than changing every German "du" or French "du" to the other voice.
       const lower=norm(text);
@@ -52,11 +70,13 @@
           const t=ts[i],word=norm(t[0]),next=ts[i+1];
           if(!starts.test(word)||!next||/^[\s,]*\d/.test(text.slice(t.index+t[0].length,next.index)))continue;
           if(word==='je'&&/^[\s]*\d/.test(text.slice(t.index+t[0].length)))continue;
-          if(ambiguous.has(norm(next[0]))&&!flags[i+1])continue;
+          // „J’ai des enfants“: an ambiguous article may follow when a known French word comes next.
+          const after=ts[i+2]&&norm(ts[i+2][0]);
+          if(ambiguous.has(norm(next[0]))&&!flags[i+1]&&!(['du','des','de'].includes(norm(next[0]))&&after&&words.has(after)&&!ambiguous.has(after)))continue;
           let last=i;
           for(let k=i+1;k<ts.length;k++){
             const gap=text.slice(ts[k-1].index+ts[k-1][0].length,ts[k].index),v=norm(ts[k][0]);
-            if(/[.!?;:–—]/.test(gap)||(ambiguous.has(v)&&!['je','du','des','a','es','plus'].includes(v))||(/^\p{Lu}/u.test(ts[k][0])&&!words.has(v)))break;
+            if(/[.!?;:–—]/.test(gap)||(ambiguous.has(v)&&!['je','du','des','a','es','plus'].includes(v))||(/^\p{Lu}/u.test(ts[k][0])&&!words.has(v))||germanOnly(ts[k][0])||(joined(text,ts[k])&&!piece(ts[k],ts[k-1])))break;
             last=k;
           }
           if(last>i)for(let k=i;k<=last;k++)flags[k]=true;
@@ -65,8 +85,11 @@
           const v=norm(t[0]),before=text.slice(0,t.index),after=text.slice(t.index+t[0].length);
           if(/^(?:j|l|d|m|t|s|n|c|qu)[’']/i.test(t[0]))flags[i]=true;
           if(v==='je'&&/(?:bei|mit|nach|für)\s*$/i.test(before)&&!/^\s*\d/.test(after))flags[i]=true;
-          if(v==='des'&&/^(?:\s*(?:und|oder|bedeutet)|[.,;:])/i.test(after))flags[i]=true;
+          // German „je“ continues („je nach“, „je eine Frage“); the French pronoun is quoted: „wird je zu j’“.
+          if(v==='je'&&/^\s*(?:(?:zu|und|oder|steht|wird)\b|[.,;:)]|$)/i.test(after))flags[i]=true;
+          if(v==='des'&&/^(?:\s*(?:und|oder|bedeutet|wird|werden|steht|stehen|bleibt)\b|\s*[.,;:)]|\s*$)/i.test(after))flags[i]=true;
           if(v==='du'&&/(?:d[’'],?\s*|Artikel\s*)$/i.test(before))flags[i]=true;
+          if(v==='du'&&/^\s*(?:,\s*(?:de|des|du)\b|(?:oder|und)\s+(?:de|des)\b)/i.test(after))flags[i]=true;
           if(v==='plus'&&/^\s*(?:[+,]|…|que)/.test(after))flags[i]=true;
           if(/Französischen/.test(text)&&/^[EGJU]$/.test(t[0]))flags[i]=true;
         });
@@ -96,12 +119,12 @@
       for(const n of root.querySelectorAll('strong,b,em,code')){
         if(n.hasAttribute('lang')||n.closest('[lang]'))continue;
         const s=clean(n.textContent),tt=tokens(s);
-        if(tt.length&&tt.every(t=>words.has(norm(t[0]))||/^-[\p{L}]+$/u.test(t[0]))&&!/[=:]/.test(s))n.lang=base;
+        if(tt.length&&tt.every((t,i)=>joined(s,t)?piece(t,tt[i-1]):words.has(norm(t[0]))||ending(s,t))&&!/[=:]/.test(s))n.lang=base;
       }
       // Written alternatives such as marié(e) are read as both actual forms,
       // rather than switching to the teaching language for the parenthesised e.
       const walker=root.ownerDocument.createTreeWalker(root,4),nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-      for(const node of nodes)node.textContent=node.textContent.replace(/\[[a-zɑɐɛəɔœøʁʃʒɲŋɥɪʊʏʌθðɡ̃ˈˌː .-]{1,40}\]/giu,'');
+      for(const node of nodes)node.textContent=node.textContent.replace(/\[[a-zɑɐɛəɔœøʁʃʒɲŋɥɪʊʏʌθðɡ̃ˈˌː .-]{1,40}\]/giu,'').replace(/(^|[\s(])\/[a-zɑɐɛəɔœøʁʃʒɲŋɥɪʊʏʌθðɡ̃ˈˌː.]{1,12}\/(?=[\s.,;:)]|$)/giu,'$1');
       for(const node of nodes){
         const matches=[...node.textContent.matchAll(/\b(\p{L}{2,})\((e|s|es)\)/gu)].filter(m=>words.has(norm(m[1])));
         if(!matches.length)continue;
