@@ -26,3 +26,10 @@ test('spoken endings, embedded spelled names and IPA notes do not fall back to G
  const e=environment('francais');try{const root=e.w.document.createElement('div');root.innerHTML='<p>Die Endungen <strong>-e, -es, -ons, -ent</strong> sind wichtig. On pourrait [puʁɛ] ist eine Form.</p>';const parts=e.api.readContent(root),target=parts.filter(p=>p.lang==='fr-FR').map(p=>p.text).join(' ');assert(!target.includes('-ent'));assert.match(target,/enne/);assert(!JSON.stringify(parts).includes('puʁɛ'));assert(!e.api.speechText('Ça s’écrit M-A-R-T-I-N.','fr-FR').includes('M-A-R'));}finally{e.dom.window.close();}
 });
 
+test('German compounds, verbs and quoted French pronouns keep the right voice',()=>{
+ const e=environment('francais');try{const root=e.w.document.createElement('div');root.innerHTML='<p>Bei <strong>nous commençons</strong> sorgt ç dafür, dass der c-Laut weich bleibt. Vor einem Vokal wird je zu j’. Bei regelmäßigen <strong>-er-Verben</strong> fällt -er weg. Est-ce que bildet eine Ja/Nein-Frage. Je fais und vous faites kennst du schon. Trage deine E-Mail-Adresse ein.</p>';const parts=e.api.readContent(root),native=parts.filter(p=>p.lang==='de-DE').map(p=>p.text).join(' '),target=parts.filter(p=>p.lang==='fr-FR').map(p=>p.text).join(' ');
+ for(const word of ['sorgt','dafür','c-Laut','Verben','Nein-Frage','kennst du','E-Mail-Adresse'])assert(native.includes(word),word);
+ for(const word of ['sorgt','Laut','Verben','Frage','kennst','Adresse'])assert(!target.includes(word),word);
+ assert.match(target,/nous commençons/);assert(parts.some(p=>p.lang==='fr-FR'&&p.text==='je'));assert.match(target,/e erre/);
+ }finally{e.dom.window.close();}
+});

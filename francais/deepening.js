@@ -18,7 +18,7 @@
     return [...new Set(values)].filter(v=>v!==answer).sort((a,b)=>distance(answer,a)-distance(answer,b));
   }
   // r = original reference page; u = new preparation page. Keep the existing checks.
-  const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],10:['u1'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],18:['r1'],22:['r0'],23:['r4'],24:['r0']};
+  const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],22:['r0'],23:['r4']};
   const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
   const families=[['trente','treize','quarante'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
   // A distractor must not be ruled out by elision alone (je ___ + vowel, j’___ + consonant, l’/d’ before a consonant).
@@ -119,7 +119,7 @@
       const key=prepared.attach!==undefined?`r${prepared.attach}`:`u${added++}`;
       let unit=units.find(u=>u.key===key);
       if(!unit){unit={key,title:prepared.title,rule:'',pairs:[],element:null};units.push(unit);}
-      unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.emphasis=prepared.emphasis;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;
+      unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.emphasis=prepared.emphasis;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;unit.conjugationTable=prepared.conjugationTable;
     }
     [...host.querySelectorAll('.lesson-topic-detail')].forEach((note,i)=>{
       const unit=units.find(u=>u.key===noteRoutes[lesson.id]?.[i])||units[0];
@@ -128,15 +128,25 @@
     });
     return {root,host,units};
   }
+  // Person | verb | verb, endings in bold. French cells carry lang so the audio guide uses the French voice.
+  function conjugationTable(data){
+    if(!data?.rows?.length||!data.verbs?.length)return '';
+    const head=`<tr><th>Person</th>${data.verbs.map(([verb,meaning])=>`<th><span lang="fr">${esc(verb)}</span> <small>${esc(meaning)}</small></th>`).join('')}</tr>`;
+    // The visible stem + bold ending is hidden from speech; screen readers and the guide hear „je travaille, je commence“.
+    const rows=data.rows.map(([person,...forms])=>`<tr><td lang="fr"><span aria-hidden="true">${esc(person)}</span></td>${forms.map(([stem,ending])=>{const spoken=person.split(' / ')[0]+' '+stem+ending;return `<td lang="fr"><span aria-hidden="true">${esc(stem)}<strong>${esc(ending)}</strong></span><span class="guide-sr-only">${esc(spoken)},</span><button type="button" class="speak-btn" data-speak="${encodeURIComponent(spoken)}" aria-label="${esc(spoken)} anhören">🔊</button></td>`;}).join('')}</tr>`).join('');
+    return `<div class="grammar-table-wrap deepening-conjugation"><table class="grammar-table"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
+  }
   // Keep one copy of an identical translated example inside a topic. Tables remain intact.
   // This affects display only: authored pairs still supply the original question pools.
   function removeDuplicateExamples(body){
     const plain=el=>{const copy=el.cloneNode(true);copy.querySelectorAll('button').forEach(b=>b.remove());return copy.textContent.replace(/\s+/g,' ').trim();};
     const seen=new Set(),key=(a,b)=>JSON.stringify([a,b]);
     body.querySelectorAll('table tbody tr').forEach(row=>{const cells=[...row.querySelectorAll('td')];if(cells.length===2)seen.add(key(plain(cells[0]),plain(cells[1])));});
+    // A tested pattern already shown above is not repeated with a second translation.
+    const shown=new Set();
     body.querySelectorAll('.deepening-examples .phrase-row,.deepening-form-example').forEach(row=>{
       const target=row.querySelector('strong'),meaning=row.querySelector('small');if(!target||!meaning)return;
-      const id=key(plain(target),plain(meaning));if(seen.has(id))row.remove();else seen.add(id);
+      const id=key(plain(target),plain(meaning)),french=plain(target);if(seen.has(id)||(row.matches('.deepening-form-example')&&shown.has(french)))row.remove();else{seen.add(id);shown.add(french);}
     });
     body.querySelectorAll('.deepening-examples,.deepening-form-examples').forEach(el=>{if(!el.children.length)el.remove();});
   }
@@ -150,9 +160,12 @@
       const body=el.querySelector('.grammar-detail-body')||el;
       const closedSeries=lesson.id===4&&['Wochentage','Monate & Datum'].includes(unit.preparedTitle||unit.title)?unit.pairs.filter(([fr])=>/^[a-zéûôî]+$/u.test(fr)):[];
       const series=closedSeries.length?`<div class="between"><strong>Die Reihe anhören</strong><button type="button" class="speak-btn" data-speak="${encodeURIComponent(closedSeries.map(p=>p[0]).join(', '))}" aria-label="${esc((unit.preparedTitle||unit.title)+' als Reihe anhören')}">🔊</button></div>`:'';
-      const pairs=unit.pairs.map(([fr,de])=>`<div class="phrase-row ${fr.length<28?'deepening-word':''}"><div><strong>${esc(fr)}</strong><small>${esc(de)}</small></div><button type="button" class="speak-btn" data-speak="${encodeURIComponent(fr.replace(/ → /g,', '))}" aria-label="${esc(fr)} anhören">🔊</button></div>`).join('');
+      // A conjugation is shown as a table; its single forms are not repeated as a word list.
+      // The authored pairs stay unchanged because they also supply the practice tasks.
+      const table=conjugationTable(unit.conjugationTable),inTable=new Set(table?unit.conjugationTable.rows.flatMap(([person,...forms])=>forms.map(([stem,ending])=>person.split(' / ')[0]+' '+stem+ending)):[]);
+      const pairs=unit.pairs.filter(([fr])=>!inTable.has(fr)).map(([fr,de])=>`<div class="phrase-row ${fr.length<28?'deepening-word':''}"><div><strong>${esc(fr)}</strong><small>${esc(de)}</small></div><button type="button" class="speak-btn" data-speak="${encodeURIComponent(fr.replace(/ → /g,', '))}" aria-label="${esc(fr)} anhören">🔊</button></div>`).join('');
       const explanation=unit.blocks?.length?`<div class="deepening-rule-blocks">${unit.blocks.map(([title,text])=>`<div><strong>${esc(title)}</strong><p>${formatRule(text,unit.emphasis).replace(/\n/g,'<br>')}</p></div>`).join('')}</div>`:`<p>${formatRule(unit.rule,unit.emphasis)}</p>`;
-      if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}${series}<div class="deepening-examples">${pairs}</div></div>`);
+      if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}${table}${series}<div class="deepening-examples">${pairs}</div></div>`);
       if(unit.notes?.length)body.insertAdjacentHTML('beforeend',`<div class="deepening-background">${unit.notes.join('')}</div>`);
       const relevant=(specs[lesson.id]?.tasks||[]).filter((t,i)=>routes[lesson.id]?.[i]===unit.key);
       const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau')))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');

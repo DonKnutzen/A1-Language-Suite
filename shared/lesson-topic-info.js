@@ -23,9 +23,6 @@
       9:[
         ['Wegbeschreibung als Reihenfolge verstehen',`<p>Höre auf die Reihenfolge: <strong>d’abord</strong> = zuerst, <strong>puis</strong> = dann, <strong>ensuite</strong> = danach. Typische Anweisungen sind <em>allez tout droit</em>, <em>tournez à gauche / à droite</em> und <em>prenez la ligne 8</em>.</p>`]
       ],
-      10:[
-        ['travailler als regelmäßiges -er-Verb',`<p>Bei regelmäßigen <strong>-er-Verben</strong> fällt <em>-er</em> weg. Für diese Lektion reichen vor allem: <em>je travaille</em>, <em>tu travailles</em>, <em>il/elle travaille</em>, <em>nous travaillons</em>, <em>vous travaillez</em>, <em>ils/elles travaillent</em>.</p>`]
-      ],
       12:[
         ['avoir mal à: die Formen',`<p><strong>à + le → au</strong>: <em>J’ai mal au dos.</em> · <strong>à la</strong> bleibt: <em>J’ai mal à la tête.</em> · <strong>à + les → aux</strong>: <em>J’ai mal aux dents.</em></p>`]
       ],
@@ -42,18 +39,12 @@
         ['Typische Formularfelder',`<div class="grammar-table-wrap"><table class="grammar-table"><tbody><tr><td><strong>Nom</strong></td><td>Nachname</td></tr><tr><td><strong>Prénom</strong></td><td>Vorname</td></tr><tr><td><strong>Date de naissance</strong></td><td>Geburtsdatum</td></tr><tr><td><strong>Nationalité</strong></td><td>Staatsangehörigkeit</td></tr><tr><td><strong>Adresse électronique</strong></td><td>E-Mail-Adresse</td></tr><tr><td><strong>Signature</strong></td><td>Unterschrift</td></tr></tbody></table></div>`],
         ['Kurze Nachricht: was wirklich nötig ist',`<p>Für A1 reicht eine klare Struktur: <strong>Anrede → wichtige Information → ggf. Frage/Bitte → Gruß</strong>. Kurze, korrekte Sätze sind besser als komplizierte Formulierungen.</p>`]
       ],
-      18:[
-        ['Vier Sätze für Verständnisprobleme',`<p><em>Pouvez-vous répéter, s’il vous plaît ?</em> = „Können Sie bitte wiederholen?“ · <em>Plus lentement, s’il vous plaît.</em> = „Bitte langsamer.“ · <em>Qu’est-ce que ça veut dire ?</em> = „Was bedeutet das?“ · <em>Comment dit-on … en français ?</em> = „Wie sagt man … auf Französisch?“</p>`]
-      ],
       22:[
         ['Passé composé: nur das Muster dieser Lektion',`<p>Für die hier geübten abgeschlossenen Handlungen verwendest du <strong>avoir + Partizip</strong>: <em>j’ai travaillé</em>, <em>nous avons mangé</em>, <em>elle a visité</em>. Du musst in dieser Lektion noch nicht alle Vergangenheitsformen und Ausnahmen beherrschen.</p>`]
       ],
       23:[
         ['Rezeptmengen lesen',`<p><strong>Konkrete Menge + de:</strong> <em>200 grammes de farine, un litre de lait</em>. <strong>Nicht abgezählte Menge:</strong> <em>du sucre, de la farine, de l’eau</em>. In Anweisungen begegnen dir Formen wie <em>ajoutez</em> („geben Sie hinzu“) und <em>mélangez</em> („mischen Sie“).</p>`]
       ],
-      24:[
-        ['Länder: Ziel und Herkunft',`<p><strong>Ziel:</strong> <em>en France, en Allemagne, au Canada, aux États-Unis</em>. <strong>Herkunft:</strong> <em>de France, d’Allemagne, du Canada, des États-Unis</em>. Lerne Ziel und Herkunft als zwei getrennte Muster.</p>`]
-      ]
     },
     spanisch:{
       2:[['Spanisches Alphabet: Zeichen, die du erkennen solltest',`<p><strong>h</strong> wird nicht gesprochen. <strong>j</strong> hat einen kräftigen Reibelaut. <strong>ñ</strong> ist ein eigener Buchstabe. Akzente wie <strong>á, é, í, ó, ú</strong> markieren die Betonung; <strong>ü</strong> zeigt in Kombinationen wie <em>güe/güi</em>, dass das u hörbar bleibt.</p>`]],
