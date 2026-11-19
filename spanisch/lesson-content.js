@@ -207,7 +207,7 @@ window.A1_COURSE_CONTENT=[
       "Ich unterscheide es gibt von befindet sich.",
       "Ich kann einen Ort mit estar nennen."
     ],
-    "tip": ""
+    "tip": "Hay steht ohne bestimmten Artikel: hay un banco aquí. Für einen bestimmten, schon bekannten Ort nimmst du estar: el banco está aquí."
   },
   {
     "id": 5,
@@ -221,13 +221,13 @@ window.A1_COURSE_CONTENT=[
       "examples": [
         [
           "Tengo dos hermanos.",
-          "Ich habe zwei Brüder."
+          "Ich habe zwei Geschwister."
         ]
       ]
     },
     "pronunciation": {
       "focus": "r und rr",
-      "explanation": "Ein einzelnes r zwischen Vokalen wird kurz angetippt, rr länger gerollt. Höre hermano und perro. Übe langsam, ohne einen zusätzlichen Vokal einzuschieben.",
+      "explanation": "Ein einfaches r wird nur kurz angetippt, etwa in hermano oder padre. Das doppelte rr wird kräftig gerollt, wie in perro (Hund). Übe langsam, ohne einen zusätzlichen Vokal einzuschieben.",
       "samples": [
         "hermano",
         "perro"
@@ -363,7 +363,7 @@ window.A1_COURSE_CONTENT=[
       "Ich unterscheide Uhrzeit und Terminzeit.",
       "Ich verstehe y media."
     ],
-    "tip": ""
+    "tip": "Für ein Uhr steht der Singular: es la una, a la una. Ab zwei Uhr steht der Plural: son las dos, a las dos."
   },
   {
     "id": 8,
@@ -373,7 +373,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Bestellen und Vorlieben",
-      "explanation": "Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form.",
+      "explanation": "Zum Bestellen ist « Quisiera …, por favor » eine höfliche sichere Form. Bei gustar ist das, was dir gefällt, das grammatische Subjekt: Vor einem Singular oder Infinitiv steht gusta (me gusta el café, me gusta comer), vor einem Plural gustan (me gustan las manzanas). Die Verneinung steht davor: no me gusta.",
       "examples": [
         [
           "Me gustan las manzanas.",
@@ -425,7 +425,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Preis, Menge und Größe",
-      "explanation": "Zum Kaufen reicht « Me llevo esto » (das nehme ich); zum Ablehnen « No, gracias ».",
+      "explanation": "Nach dem Preis fragst du mit « ¿Cuánto cuesta? » für eine Sache und « ¿Cuánto cuestan? » für mehrere. Zum Kaufen sagst du « Me llevo este/esta » (das nehme ich), passend zu einem maskulinen oder femininen Wort; « Me llevo esto » verwendest du, wenn du einfach auf etwas zeigst. Zum Ablehnen reicht « No, gracias ».",
       "examples": [
         [
           "¿Cuánto cuestan estos zapatos?",
@@ -477,7 +477,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Wohnung: hay und estar",
-      "explanation": "Für die Miete: « ¿Cuánto cuesta al mes? ».",
+      "explanation": "Mit hay nennst du, was es in der Wohnung gibt: « Hay un balcón ». Mit estar sagst du, wo sich etwas Bestimmtes befindet: « La cocina está al lado del salón » (neben dem Wohnzimmer). Für die Miete fragst du « ¿Cuánto cuesta al mes? ».",
       "examples": [
         [
           "En mi piso hay dos habitaciones.",
@@ -487,7 +487,7 @@ window.A1_COURSE_CONTENT=[
     },
     "pronunciation": {
       "focus": "ll und einfache Vokale",
-      "explanation": "Ll in silla kann regional verschieden klingen. Spreche i und a klar, ohne sie zu deutschen Doppellauten zu verändern. Wiederhole ganze Gruppen wie una silla.",
+      "explanation": "Ll in silla kann regional verschieden klingen. Sprich i und a klar, ohne sie zu deutschen Doppellauten zu verändern. Wiederhole ganze Gruppen wie una silla.",
       "samples": [
         "silla",
         "una cocina pequeña"
@@ -519,7 +519,7 @@ window.A1_COURSE_CONTENT=[
       "Ich nutze hay für vorhanden.",
       "Ich passe pequeña und pequeñas an."
     ],
-    "tip": ""
+    "tip": "Piso ist in Spanien das übliche Wort für Wohnung; in Lateinamerika hörst du oft departamento oder apartamento."
   },
   {
     "id": 11,
@@ -529,7 +529,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Weg und Verkehrsmittel",
-      "explanation": "",
+      "explanation": "Höfliche Wegbeschreibungen verwenden die usted-Aufforderung: siga (gehen Sie weiter), gire (biegen Sie ab), tome (nehmen Sie). Unter Freunden hörst du sigue, gira, toma. Verkehrsmittel stehen mit en: en autobús, en metro; zu Fuß heißt a pie. A + el wird zu al: voy al banco.",
       "examples": [
         [
           "Voy al banco en autobús.",
@@ -685,7 +685,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Wetter und Kleidung",
-      "explanation": "",
+      "explanation": "Viele Wetterangaben bildest du mit hace: hace sol, hace frío, hace calor, hace viento. Regen und Schnee haben eigene Verben: llueve oder está lloviendo, nieva. Bei Kleidung heißt ponerse „anziehen“ (me pongo una chaqueta) und llevar „tragen“ oder „mitnehmen“. Farb- und Kleidungsadjektive passen sich an: una chaqueta roja, unos zapatos rojos.",
       "examples": [
         [
           "Hace frío y necesito una chaqueta.",
@@ -738,7 +738,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Hotel und Reisepläne",
-      "explanation": "Für eine Reservierung: « Quisiera reservar una habitación … ». « por dos noches » nennt die Dauer; « para dos personas » die Personenzahl. Mit « voy a + Infinitiv » kannst du einen Reiseplan ausdrücken.",
+      "explanation": "Für eine Reservierung: « Quisiera reservar una habitación … ». Die Dauer nennst du mit para oder por: para dos noches / por dos noches – beides ist bei Reservierungen üblich. Die Personenzahl steht mit para: para dos personas. Mit « voy a + Infinitiv » kannst du einen Reiseplan ausdrücken.",
       "examples": [
         [
           "Quiero reservar una habitación por dos noches.",
@@ -842,7 +842,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Anrufen und Nachricht hinterlassen",
-      "explanation": "« ¿Puedes llamarme? » ist informell, « ¿Puede llamarme? » höflich. Bei einem Infinitiv kann das Pronomen angehängt werden: llamarme. In einer normalen Aussage steht es davor: « Te llamo mañana ».",
+      "explanation": "« ¿Puedes llamarme? » ist informell, « ¿Puede llamarme? » höflich. Puede kann auch „er/sie kann“ bedeuten: Im Dialog bittet Ana darum, dass Luis sie zurückruft. Bei einem Infinitiv kann das Pronomen angehängt werden: llamarme. In einer normalen Aussage steht es davor: « Te llamo mañana ».",
       "examples": [
         [
           "¿Puedes llamarme mañana?",
@@ -904,7 +904,7 @@ window.A1_COURSE_CONTENT=[
     },
     "pronunciation": {
       "focus": "b und v",
-      "explanation": "B und v werden im Spanischen grundsätzlich nicht wie im Deutschen als zwei getrennte Lautarten behandelt. Höre banco und enviar und orientiere dich am Sprachbeispiel.",
+      "explanation": "B und v klingen im Spanischen gleich. Am Wortanfang und nach m oder n klingen beide wie ein deutsches b (banco, enviar), zwischen Vokalen weicher, fast ohne Lippenschluss. Deshalb fragt man beim Buchstabieren oft: ¿Con b o con v?",
       "samples": [
         "banco",
         "enviar"
@@ -946,7 +946,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Regelmäßige Verben im Präsens",
-      "explanation": "Übe die Formen immer in kurzen ganzen Sätzen.",
+      "explanation": "Streiche die Infinitivendung -ar, -er oder -ir und hänge die Personenendung an: habl-o, com-emos, viv-imos. Die Endung zeigt die Person, deshalb kann das Pronomen meist wegfallen. -er- und -ir-Verben unterscheiden sich nur bei nosotros und vosotros: comemos / vivimos, coméis / vivís. Übe die Formen immer in kurzen ganzen Sätzen.",
       "examples": [
         [
           "Hablo español, como pan y vivo en Halifax.",
@@ -988,7 +988,7 @@ window.A1_COURSE_CONTENT=[
       "Ich kenne die yo- und tú-Endungen.",
       "Ich unterscheide comemos und vivimos."
     ],
-    "tip": ""
+    "tip": "hablo = ich, hablas = du, habla = er/sie/Sie, hablamos = wir, hablan = sie/Sie (Plural)."
   },
   {
     "id": 20,
@@ -1042,7 +1042,7 @@ window.A1_COURSE_CONTENT=[
       "Ich bilde tengo und voy sicher.",
       "Ich setze nach puedo einen Infinitiv."
     ],
-    "tip": ""
+    "tip": "Tener que + Infinitiv bedeutet „müssen“: tengo que trabajar."
   },
   {
     "id": 21,
@@ -1052,7 +1052,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Artikel, Plural und Adjektiv",
-      "explanation": "",
+      "explanation": "Lerne jedes Nomen mit Artikel: el/un für maskulin, la/una für feminin, im Plural los/unos und las/unas. Adjektive stehen meist hinter dem Nomen und passen sich an: un libro nuevo, una casa nueva, unos libros nuevos. Den Plural bildest du nach Vokal mit -s (casa → casas), nach Konsonant mit -es (ciudad → ciudades). Achte auf Ausnahmen wie el problema und la mano.",
       "examples": [
         [
           "Una casa blanca y dos coches blancos.",
@@ -1095,7 +1095,7 @@ window.A1_COURSE_CONTENT=[
       "Ich stimme Artikel und Adjektiv ab.",
       "Ich kann den Plural häufiger Wörter bilden."
     ],
-    "tip": ""
+    "tip": "Adjektive auf -e oder auf Konsonant haben für beide Geschlechter dieselbe Form: un coche grande, una casa grande, una calle difícil."
   },
   {
     "id": 22,
@@ -1105,7 +1105,7 @@ window.A1_COURSE_CONTENT=[
     ],
     "grammar": {
       "title": "Gezielt fragen: dónde, de dónde, a dónde",
-      "explanation": "",
+      "explanation": "Dónde fragt nach dem Ort (wo), a dónde nach dem Ziel (wohin) und de dónde nach der Herkunft (woher). Fragewörter tragen einen Akzent: qué, cuándo, cuánto, quién, por qué. Bei den Präpositionen zeigt a das Ziel und de die Herkunft; a + el wird zu al, de + el zu del.",
       "examples": [
         [
           "¿De dónde eres y dónde vives?",
