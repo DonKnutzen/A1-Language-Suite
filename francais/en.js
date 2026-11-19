@@ -1979,7 +1979,7 @@ window.FR_A1_EN = Object.freeze({
     ],
     "2":[
       ["Which entry is the first name?", "Prénom means first name."],
-      ["You heard the surname but need to know its letters.", "Épeler asks someone to name the letters."],
+      ["You heard the surname but need to know its letters.", "Épeler asks someone to name the letters; répéter only repeats the whole name."],
       ["The first name is spelled Z-O-E; the E has an acute accent. Which spelling matches?", "Zoé has an acute accent."],
       ["The name is spelled F-R-A-N-C-O-I-S; the C has a cedilla. Which spelling matches?", "The cedilla is on c: ç. The i has no diacritic here."],
       ["« Quelle est votre adresse ? » Which answer gives the requested information?", "Adresse asks for the address, not a name."],
