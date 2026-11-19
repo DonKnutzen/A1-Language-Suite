@@ -2259,7 +2259,7 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
   'Je voudrais un kilo ___ pommes.':'Je voudrais un kilo ___ pommes.',
   'Nach bouteilles steht de; vor eau wird es zu d’ verkürzt.':'After bouteilles, use de; before eau it contracts to d’.'
 });
-window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(['un livre','une clé','une baguette','un café'].map(noun=>['Setze in den Plural: '+noun,'Put in the plural: '+noun]))});
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,...Object.fromEntries(['un livre','une clé','une baguette','un café','un gâteau','un bus','un prix'].map(noun=>['Setze in den Plural: '+noun,'Put in the plural: '+noun]))});
 
 window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
  'Trop cher heißt „zu teuer“, très cher „sehr teuer“ und peu cher „preiswert“.':'Trop cher means “too expensive”, très cher “very expensive” and peu cher “inexpensive”.',
@@ -2306,7 +2306,7 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
   "Den Beruf nennt man mit être ohne Artikel: Je suis médecin. Nach être steht kein de; avoir (j’ai) passt nicht zum Beruf.":"A job is stated with être and no article: Je suis médecin. No de follows être; avoir (j’ai) does not fit a job.",
   "D’abord heißt zuerst. Puis heißt dann, enfin schließlich.":"D’abord means first. Puis means then, enfin finally.",
   "Enfin heißt schließlich, zum Schluss. Ensuite heißt danach, d’abord zuerst.":"Enfin means finally, at the end. Ensuite means afterwards, d’abord first.",
-  "In der Apotheke verlangt man ein Medikament: un médicament contre le rhume. Äpfel kauft man auf dem Markt, einen Termin bekommt man beim Arzt.":"At the pharmacy you ask for medicine: un médicament contre le rhume. You buy apples at the market and get an appointment at the doctor’s.",
+  "In der Apotheke verlangt man ein Medikament: un médicament contre le rhume. Un kilo de pommes kauft man auf dem Markt, einen Termin (un rendez-vous) bekommt man beim Arzt.":"At the pharmacy you ask for medicine: un médicament contre le rhume. You buy apples at the market and get an appointment at the doctor’s.",
   "Regenjacke":"rain jacket",
   "Le parapluie ist der Regenschirm (pluie = Regen). Eine Regenjacke ist une veste de pluie, ein Schuh une chaussure.":"Le parapluie is the umbrella (pluie = rain). A rain jacket is une veste de pluie, a shoe une chaussure.",
   "Absagen: Je suis désolé (es tut mir leid), je ne peux pas venir. Oui, avec plaisir und d’accord, je peux venir sind Zusagen.":"Declining: Je suis désolé (I am sorry), je ne peux pas venir. Oui, avec plaisir and d’accord, je peux venir accept.",
@@ -2346,3 +2346,4 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
   "Mit Karte bezahlen heißt payer par carte. De carte und à carte sind hier falsch; bar zahlen wäre en espèces.":"Paying by card is payer par carte. De carte and à carte are wrong here; paying cash would be en espèces.",
   "Für den nahen Plan steht aller + Infinitiv: je vais visiter. Va gehört zu il/elle, vas zu tu.":"For a near plan, use aller + infinitive: je vais visiter. Va belongs to il/elle, vas to tu."
 });
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,"Welche Antwort passt?":"Which answer fits?","Welcher Satz nennt den Grund deiner Nachricht?":"Which sentence gives the reason for your message?","Du schreibst an eine Sprachschule, weil du mehr über den Kurs wissen möchtest.":"You are writing to a language school because you want to know more about the course.","Du fährst hin und wieder zurück. Welche Fahrkarte brauchst du?":"You are going there and back. Which ticket do you need?","Welche Antwort ist eine Zusage?":"Which answer accepts the invitation?","Welcher Glückwunsch passt zum Geburtstag?":"Which greeting suits a birthday?","Dein Freund hat die Prüfung bestanden. Was sagst du?":"Your friend has passed the exam. What do you say?"});

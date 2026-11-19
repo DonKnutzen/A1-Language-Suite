@@ -681,7 +681,7 @@ window.FR_A1_MASTERY_SPECS = {
           "Je voudrais un rendez-vous chez le médecin."
         ],
         "answer": "Je voudrais un médicament contre le rhume.",
-        "explanation": "In der Apotheke verlangt man ein Medikament: un médicament contre le rhume. Äpfel kauft man auf dem Markt, einen Termin bekommt man beim Arzt.",
+        "explanation": "In der Apotheke verlangt man ein Medikament: un médicament contre le rhume. Un kilo de pommes kauft man auf dem Markt, einen Termin (un rendez-vous) bekommt man beim Arzt.",
         "tag": "Apotheke"
       }
     ]

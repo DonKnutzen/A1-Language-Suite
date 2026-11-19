@@ -2026,7 +2026,7 @@ window.FR_A1_DEEPENING_CONTENT = {
       ]
     },
     {
-      "title": "Besitz in einer Frage",
+      "title": "Besitz angeben",
       "rule": "Mon, ma und mes richten sich nach dem folgenden Nomen. Votre gehört zu Sie / ihr; vos ist der Plural. Vor einem weiblichen Nomen mit Vokal steht mon statt ma.",
       "pairs": [
         [

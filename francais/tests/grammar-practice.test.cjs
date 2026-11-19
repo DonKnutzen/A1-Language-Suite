@@ -45,7 +45,8 @@ test('all contextual table tasks have three stable nearby choices and no literal
  for(const lesson of e.w.FR_A1_DATA.lessons){const first=e.w.FR_A1_DEEPENING.pools(lesson,e.w.grammarHtml(lesson)).flatMap(p=>p.tasks).filter(t=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(t.legacyTask?.q||'')),second=e.w.FR_A1_DEEPENING.pools(lesson,e.w.grammarHtml(lesson)).flatMap(p=>p.tasks).filter(t=>/^Welche (?:Form passt in der Übersicht|Verbform passt zu)/.test(t.legacyTask?.q||''));
   for(const t of first){count++;assert(t.q.includes('___')||!t.legacyTask.q.startsWith('Welche Form passt'));assert(!/^Welche (?:Form|Verbform) passt/.test(t.q));assert.equal(t.o.length,3);assert(!t.o.some(o=>/^(?:je |j’|tu |nous |vous |ils |elles )/i.test(o)));assert(!t.audio.includes(' / '));assert(!/\b(?:il il|elle elle|ils ils|elles elles)\b/.test(t.audio));const again=second.find(q=>q.q===t.q&&q.answer===t.answer);assert.deepEqual([...again.o],[...t.o]);}
  }
- assert(count>=70);e.dom.window.close();
+ // L15, L16, L22 and L24 no longer repeat a whole conjugation table next to the same example sentences.
+ assert(count>=55);e.dom.window.close();
 });
 test('prepositions and determiners keep the same noun in the prompt; ambiguous name synonyms are absent',()=>{
  const e=environment();const tasks=id=>{const l=e.w.FR_A1_DATA.lessons[id-1];return e.w.FR_A1_DEEPENING.pools(l,e.w.grammarHtml(l)).flatMap(p=>p.tasks);};
@@ -61,4 +62,23 @@ test('resuming an inline grammar drill upgrades only the open table question and
  const render=()=>{e.view.innerHTML=html;e.w.FR_A1_DEEPENING.decorate({root:e.view,lesson,grammarHtml:html,state,save:done=>{if(done)completions++;},speak(){}});e.view.querySelector('[data-deepening-practice="r1"] .deepening-start').click();};
  render();let p=state.lessonWork[8].deepening.r1;assert.equal(p.session.score,1);assert.equal(p.session.questions[0].q,graded.q);assert.equal(p.session.questions[1].q,'Je suis ___ gare.');assert.equal(p.previousQuestionSession.questions[1].q,old.q);assert.equal(p.session.questions[1].answer,'à la');
  const stage=e.view.querySelector('[data-deepening-practice="r1"]');[...stage.querySelectorAll('.option-btn')].find(b=>b.textContent==='à la').click();assert.equal(p.session.score,2);render();assert.equal(p.session.score,2);assert(e.view.querySelector('[data-deepening-practice="r1"] .deepening-next'));assert.equal(completions,0);e.dom.window.close();
+});
+test('review L10–L24: no correct-French distractors for ne … pas, key phrases added, duplicates removed',()=>{
+ const e=environment(),pools=id=>{const l=e.w.FR_A1_DATA.lessons.find(l=>l.id===id);return e.w.FR_A1_DEEPENING.pools(l,e.w.grammarHtml(l));},tasks=id=>pools(id).flatMap(p=>p.tasks);
+ for(let id=10;id<=24;id++){
+  for(const t of tasks(id)){
+   if(t.answer==='pas')assert(!t.o.includes('jamais'),`L${id}: ${t.q}`);
+   if(t.answer==='jamais')assert(!t.o.includes('pas'),`L${id}: ${t.q}`);
+   assert(!/Äpfel/.test(t.explanation||''),`L${id}: ${t.q}`);
+  }
+  for(const p of pools(id)){const seen=new Set();for(const t of p.tasks){const k=JSON.stringify([t.q,t.answer,t.meaning||'']);assert(!seen.has(k),`L${id} ${p.key}: ${t.q}`);seen.add(k);}}
+ }
+ const has=(id,q,answer)=>assert(tasks(id).some(t=>t.q===q&&t.answer===answer),`L${id}: ${q}`);
+ has(12,'J’ai mal ___ dents.','aux');has(12,'Prenez ce médicament deux ___ par jour.','fois');
+ has(16,'Welche Antwort ist eine Zusage?','Oui, avec plaisir !');has(17,'___ : 12 mars 1990','Date de naissance');
+ has(19,'Setze in den Plural: un gâteau','des gâteaux');has(24,'Je vais ___ Allemagne.','en');
+ assert.equal(tasks(15).filter(t=>/réserver une chambre\.$/.test(t.q)&&t.answer!=='voudrais').length,0);
+ assert.equal(pools(24).find(p=>p.key==='r0').tasks.filter(t=>t.q==='Je vais ___ France.').length,1);
+ const leur=pools(21).find(p=>p.key==='r3').tasks.find(t=>t.q==='C’est ___ père.'&&t.answer==='leur');assert.deepEqual([...leur.o],['leur','leurs','son']);
+ e.dom.window.close();
 });

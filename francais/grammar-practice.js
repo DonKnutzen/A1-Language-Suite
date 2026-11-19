@@ -8,7 +8,7 @@
     const rows=[['je',['mon','ma','mes'],['mein Vater','meine Mutter','meine Eltern'],'my'],['tu',['ton','ta','tes'],['dein Vater','deine Mutter','deine Eltern'],'your (tu)'],['il/elle',['son','sa','ses'],['sein/ihr Vater (Besitzer: eine Person)','seine/ihre Mutter (Besitzer: eine Person)','seine/ihre Eltern (Besitzer: eine Person)'],'his/her'],['nous',['notre','notre','nos'],['unser Vater','unsere Mutter','unsere Eltern'],'our'],['vous',['votre','votre','vos'],['Ihr/euer Vater (vous)','Ihre/eure Mutter (vous)','Ihre/eure Eltern (vous)'],'your (vous)'],['ils/elles',['leur','leur','leurs'],['ihr Vater (Besitzer: mehrere Personen)','ihre Mutter (Besitzer: mehrere Personen)','ihre Eltern (Besitzer: mehrere Personen)'],'their']];
     const nouns=['père','mère','parents'],english=['father','mother','parents'],out=[];
     rows.forEach(([owner,values,meanings,en],r)=>nouns.forEach((noun,c)=>{
-      const answer=values[c],sameOwner=unique(values).filter(v=>v!==answer),otherOwner=rows[(r+1)%rows.length][1][c];
+      const answer=values[c],sameOwner=unique(values).filter(v=>v!==answer),otherOwner=rows[r===rows.length-1?2:r+1][1][c];
       const wrong=unique([...sameOwner,otherOwner,'ses','leur']).filter(v=>v!==answer).slice(0,2);
       out.push(form((c===2?'Ce sont':'C’est')+' ___ '+noun+'.',answer,wrong,meanings[c],en+' '+english[c],owner+' · '+(c===0?'maskulin':c===1?'feminin':'Plural'),owner+' · '+(c===0?'masculine':c===1?'feminine':'plural'),owner+':'+c));
     }));
@@ -285,7 +285,138 @@
     ];
     return null;
   }
-  function improve(lesson,unit,tasks){
+  // Review L10–L24 (Prüfbericht Vertiefung): remove duplicate drills, replace
+  // distractors that are also correct French, and add untested key phrases.
+  const NEG_OPTIONS=['pas','non','sans'];
+  function reviewTopics(lessonId,key){
+    const n=(q,answer,o,de,en,rule='',ruleEn='')=>{const task={...form(q,answer,o,de,en,rule,ruleEn,'review:'+lessonId+':'+key+':'+q+':'+answer),qualityVersion:147};if(!q.includes('___')){task.audio=answer;task.explanation=answer+(rule?' — '+rule:'');task.explanationEn=answer+(ruleEn?' — '+ruleEn:'');}return task;};
+    const R={
+      '10:u0':{drop:[['Ich bin Arzt. Welche Aussage passt?','Je suis médecin.']],add:[
+        n('Je suis ___.','étudiante',['étudiant','étudiants'],'Ich bin Studentin.','I am a (female) student.','Bei einer Frau erhält der Beruf meist ein e: étudiant → étudiante.','For a woman, the job title usually adds e: étudiant → étudiante.')]},
+      '10:u1':{drop:[['Je ___ dans un bureau.','travaille']]},
+      '10:u2':{patch:[[['Welche Form passt?','Je travaille à Halifax.'],{q:'Welche Antwort passt?'}]],add:[
+        n('J’___ mon travail.','aime',['aimes','aiment'],'Ich mag meine Arbeit.','I like my job.')]},
+      '11:r0':{drop:[['Nous nous ___.','levons'],['Vous vous ___.','levez'],['Ils se ___.','lèvent']],add:[
+        n('Je me ___.','douche',['douches','douchez'],'Ich dusche.','I take a shower.'),
+        n('Je me ___ vers vingt-trois heures.','couche',['couches','couchez'],'Ich gehe gegen 23 Uhr ins Bett.','I go to bed around 11 pm.','Se coucher = ins Bett gehen; vers = gegen.','Se coucher = to go to bed; vers = around.'),
+        n('Je ___ vers midi.','déjeune',['déjeunes','déjeunez'],'Ich esse gegen Mittag zu Mittag.','I have lunch around noon.'),
+        n('Je ___ à dix-huit heures.','rentre',['rentres','rentrez'],'Ich komme um 18 Uhr nach Hause.','I get home at 6 pm.'),
+        n('Le week-end, je ___ du sport.','fais',['fait','font'],'Am Wochenende mache ich Sport.','At the weekend I do sport.','Faire: je fais, il fait, ils font.','Faire: je fais, il fait, ils font.')]},
+      '11:r2':{drop:[['Welches Wort bedeutet „zuerst“?','d’abord'],['Welches Wort bedeutet „schließlich“?','enfin']],add:[
+        n('D’abord, je me lève. ___, je prends le petit-déjeuner.','Puis',['Enfin','D’abord'],'Zuerst stehe ich auf. Dann frühstücke ich.','First I get up. Then I have breakfast.','Puis und ensuite = dann / danach; enfin = schließlich.','Puis and ensuite = then; enfin = finally.'),
+        n('Le ___, je me lève.','matin',['soir','midi'],'Morgens stehe ich auf.','In the morning I get up.','Le matin = morgens, le soir = abends.','Le matin = in the morning, le soir = in the evening.')]},
+      '12:r0':{drop:[['Depuis quand ___-vous malade ?','êtes']],add:[
+        n('Je suis ___.','désolée',['désolé','désolés'],'Anna schreibt: Es tut mir leid.','Anna writes: I am sorry.','Eine Frau schreibt désolée, ein Mann désolé.','A woman writes désolée, a man désolé.')]},
+      '12:u0':{drop:[['J’ai mal ___ la tête.','à']],patch:[[['Du möchtest ein Mittel gegen Erkältung kaufen. Welche Bitte passt?','Je voudrais un médicament contre le rhume.'],{explanation:'Je voudrais un médicament contre le rhume. — In der Apotheke verlangt man ein Medikament. Einen Termin bekommt man beim Arzt, nach der Adresse fragt man, bevor man hingeht.',explanationEn:'Je voudrais un médicament contre le rhume. — At the pharmacy you ask for medicine. You get an appointment at the doctor’s and ask for the address before you go.'}]],add:[
+        n('J’ai mal ___ dents.','aux',['au','à la'],'Ich habe Zahnschmerzen.','I have toothache.','à + les → aux: J’ai mal aux dents.','à + les → aux: J’ai mal aux dents.'),
+        n('J’ai rendez-vous ___ le médecin.','chez',['à','dans'],'Ich habe einen Termin beim Arzt.','I have an appointment at the doctor’s.','Chez + Person = bei: chez le médecin.','Chez + person = at someone’s: chez le médecin.'),
+        n('Où est la ___ ?','pharmacie',['boulangerie','gare'],'Wo ist die Apotheke?','Where is the pharmacy?'),
+        n('Prenez ce médicament deux ___ par jour.','fois',['heures','jours'],'Nehmen Sie dieses Medikament zweimal täglich.','Take this medicine twice a day.','Deux fois par jour = zweimal täglich.','Deux fois par jour = twice a day.')]},
+      '13:r1':{drop:[['des pantalons ___.','verts'],['des vestes ___.','vertes'],['des pantalons ___.','noirs'],['des vestes ___.','bleues']],add:[
+        n('une veste ___.','rouge',['rouges','rougee'],'rot · eine Jacke','red · a jacket','Endet ein Adjektiv schon auf -e, bleibt es im Femininum gleich: rouge, jaune.','If an adjective already ends in -e, the feminine stays the same: rouge, jaune.'),
+        n('des chaussures ___.','jaunes',['jaune','jaunees'],'gelb · Schuhe','yellow · shoes','Im Plural kommt s hinzu: jaune → jaunes.','In the plural, add s: jaune → jaunes.')]},
+      '13:r2':{drop:[['Une petite veste ___.','bleue']]},
+      '13:u0':{add:[
+        n('Quel temps ___-il aujourd’hui ?','fait',['fais','font'],'Wie ist das Wetter heute?','What is the weather like today?','Nach dem Wetter fragt man mit Quel temps fait-il ?','You ask about the weather with Quel temps fait-il ?'),
+        n('En ___, il fait froid.','hiver',['été','automne'],'Im Winter ist es kalt.','In winter it is cold.','en été, en automne, en hiver – aber au printemps.','en été, en automne, en hiver – but au printemps.'),
+        n('Au ___, il fait beau.','printemps',['été','hiver'],'Im Frühling ist schönes Wetter.','In spring the weather is nice.','Nur beim Frühling steht au: au printemps.','Only spring takes au: au printemps.'),
+        n('Il pleut. J’ai besoin d’un ___.','parapluie',['pantalon','billet'],'Es regnet. Ich brauche einen Regenschirm.','It is raining. I need an umbrella.','Avoir besoin de = brauchen.','Avoir besoin de = to need.')]},
+      '14:u0':{drop:[['Je me ___.','repose']],patch:[[['Welche Form ist für eine allgemeine Vorliebe korrekt?','J’aime le café.'],{explanation:'J’aime le café. — Bei Vorlieben mit aimer, adorer oder préférer steht der bestimmte Artikel. Du café bedeutet „etwas Kaffee“ (unbestimmte Menge).',explanationEn:'J’aime le café. — With likes and preferences (aimer, adorer, préférer), use the definite article. Du café means “some coffee”.'}]],add:[
+        n('J’___ voyager.','adore',['adores','adorez'],'Ich reise sehr gern.','I love travelling.','Adorer + Grundform = etwas sehr gern tun.','Adorer + infinitive = to love doing something.'),
+        n('Mon hobby, c’est ___ cuisine.','la',['le','les'],'Mein Hobby ist das Kochen.','My hobby is cooking.','La cuisine ist weiblich.','La cuisine is feminine.')]},
+      '14:u1':{drop:[['Qu’___-ce que tu fais le week-end ?','est'],['Je n’___ pas courir.','aime']],add:[
+        n('Qu’est-ce que vous ___ le week-end ?','faites',['fais','font'],'Was machen Sie am Wochenende?','What do you do at the weekend?','Faire: vous faites (unregelmäßig).','Faire: vous faites (irregular).')]},
+      '15:r0':{drop:[['Je ___ réserver une chambre.','vais'],['Tu ___ réserver une chambre.','vas'],['Il ___ réserver une chambre.','va'],['Nous ___ réserver une chambre.','allons'],['Vous ___ réserver une chambre.','allez'],['Ils ___ réserver une chambre.','vont'],['___ billet aller simple','un'],['___ billet aller-retour','un']],add:[
+        n('Du fährst hin und wieder zurück. Welche Fahrkarte brauchst du?','un billet aller-retour',['un billet aller simple','une chambre pour deux nuits'],'Hin- und Rückfahrt','Return journey','Aller-retour = hin und zurück; aller simple = nur hin.','Aller-retour = return; aller simple = one way.'),
+        n('Je voudrais un billet ___ Paris.','pour',['par','sur'],'Ich möchte eine Fahrkarte nach Paris.','I would like a ticket to Paris.','Un billet pour + Ziel.','Un billet pour + destination.')]},
+      '15:u0':{drop:[['Je ___ réserver une chambre pour deux personnes du 10 au 12 juillet.','voudrais']],add:[
+        n('Une chambre pour deux ___, s’il vous plaît.','nuits',['heures','jours'],'Ein Zimmer für zwei Nächte, bitte.','A room for two nights, please.','Pour + Zahl nennt Nächte oder Personen.','Pour + number gives nights or people.'),
+        n('J’ai une ___.','réservation',['chambre','addition'],'Ich habe eine Reservierung.','I have a reservation.'),
+        n('À quelle heure ___ le petit-déjeuner ?','est',['es','et'],'Um wie viel Uhr ist das Frühstück?','What time is breakfast?'),
+        n('Je voudrais une chambre ___ 10 au 12 juillet.','du',['de','le'],'Ich möchte ein Zimmer vom 10. bis zum 12. Juli.','I would like a room from 10 to 12 July.','du … au … = vom … bis zum …','du … au … = from … to …')]},
+      '16:r0':{drop:[['Je ___ répéter ?','peux'],['Tu ___ répéter ?','peux'],['Il ___ répéter ?','peut'],['Nous ___ répéter ?','pouvons'],['Vous ___ répéter ?','pouvez'],['Ils ___ répéter ?','peuvent']],patch:[[['Du möchtest den Termin auf morgen verschieben. Welche Frage passt?','On peut reporter le rendez-vous à demain ?'],{explanation:'On peut reporter le rendez-vous à demain ? — Reporter à demain heißt auf morgen verschieben. Annuler heißt absagen; On se retrouve aujourd’hui ? schlägt ein Treffen heute vor.',explanationEn:'On peut reporter le rendez-vous à demain ? — Reporter à demain means to postpone until tomorrow. Annuler means to cancel; On se retrouve aujourd’hui ? suggests meeting today.'}]],add:[
+        n('Welche Antwort ist eine Zusage?','Oui, avec plaisir !',['Désolé, j’ai déjà un rendez-vous.','Je ne peux pas venir.'],'Du nimmst die Einladung an.','You accept the invitation.','Oui, avec plaisir = Ja, gern. Die anderen beiden Sätze sind Absagen.','Oui, avec plaisir = Yes, with pleasure. The other two sentences decline.'),
+        n('Ça te ___ à dix-huit heures ?','va',['vas','vais'],'Passt es dir um 18 Uhr?','Does 6 pm suit you?','Ça te va ? = Passt es dir?','Ça te va ? = Does that suit you?'),
+        n('On se ___ à dix-neuf heures ?','retrouve',['retrouves','retrouvez'],'Treffen wir uns um 19 Uhr?','Shall we meet at 7 pm?','On hat dieselbe Verbform wie il/elle.','On takes the same verb form as il/elle.'),
+        n('Merci ___ ton invitation.','pour',['par','sur'],'Danke für deine Einladung.','Thank you for your invitation.'),
+        n('Désolé, j’ai ___ un rendez-vous.','déjà',['aussi','encore'],'Tut mir leid, ich habe schon einen Termin.','Sorry, I already have an appointment.','Déjà = schon.','Déjà = already.'),
+        n('Je vais arriver un peu plus ___.','tard',['tôt','vite'],'Ich komme etwas später.','I will arrive a little later.','Plus tard = später; plus tôt = früher.','Plus tard = later; plus tôt = earlier.')]},
+      '16:u0':{drop:[['Allô, c’___ Anna.','est']],add:[
+        n('Welcher Glückwunsch passt zum Geburtstag?','Bon anniversaire !',['Félicitations !','À bientôt !'],'Deine Freundin hat Geburtstag.','Your friend has a birthday.','Bon anniversaire = Alles Gute zum Geburtstag; Félicitations = Herzlichen Glückwunsch (z. B. zur Prüfung); À bientôt = Bis bald.','Bon anniversaire = Happy birthday; Félicitations = Congratulations (e.g. on an exam); À bientôt = See you soon.'),
+        n('Dein Freund hat die Prüfung bestanden. Was sagst du?','Félicitations !',['Bon anniversaire !','Je vous rappelle demain.'],'Du gratulierst zur bestandenen Prüfung.','You congratulate someone on passing an exam.','Félicitations = Herzlichen Glückwunsch.','Félicitations = Congratulations.'),
+        n('___ bientôt !','À',['Au','En'],'Bis bald!','See you soon!')]},
+      '17:u0':{add:[
+        n('___ : 12 mars 1990','Date de naissance',['Nationalité','Signature'],'Geburtsdatum: 12. März 1990','Date of birth: 12 March 1990'),
+        n('___ : lea.martin@mail.fr','Adresse électronique',['Date de naissance','Signature'],'E-Mail-Adresse','Email address'),
+        n('___ : L. Martin','Signature',['Prénom','Nationalité'],'Unterschrift','Signature'),
+        n('Prénom : Léa. ___ : Martin.','Nom',['Prénom','Signature'],'Vorname: Léa. Nachname: Martin.','First name: Léa. Surname: Martin.','Im Formular ist Nom der Nachname.','On a form, Nom means surname.')]},
+      '17:u1':{patch:[[['Welche Form passt?','Je vous écris pour demander des informations.'],{q:'Welcher Satz nennt den Grund deiner Nachricht?',meaning:'Du schreibst an eine Sprachschule, weil du mehr über den Kurs wissen möchtest.',meaningEn:'You are writing to a language school because you want to know more about the course.'}]],add:[
+        n('Je suis ___ le soir.','disponible',['disponibles','disponibilité'],'Ich habe abends Zeit.','I am available in the evening.'),
+        n('Merci beaucoup ___ votre réponse.','pour',['par','sur'],'Vielen Dank für Ihre Antwort.','Thank you very much for your reply.')]},
+      '18:r0':{drop:[['Je n’ai ___ de voiture.','pas'],['Qu’___-ce que ça veut dire ?','est']],add:[
+        n('Qu’est-ce que ça veut ___ ?','dire',['dit','dis'],'Was bedeutet das?','What does that mean?','Nach veut steht die Grundform: veut dire.','After veut comes the infinitive: veut dire.'),
+        n('Je n’ai pas ___ enfants.','d’',['de','des'],'Ich habe keine Kinder.','I do not have children.','Nach der Verneinung wird des zu de, vor Vokal zu d’.','After a negative, des becomes de, before a vowel d’.'),
+        n('Excusez-___, je ne comprends pas.','moi',['me','je'],'Entschuldigung, ich verstehe nicht.','Excuse me, I do not understand.')]},
+      '18:r1':{add:[
+        n('Comment ___-on « merci » en français ?','dit',['dis','dire'],'Wie sagt man „danke“ auf Französisch?','How do you say “thank you” in French?','On hat dieselbe Form wie il: on dit.','On takes the same form as il: on dit.')]},
+      '18:r2':{drop:[['Je ___ un café.','voudrais']],add:[
+        n('Merci d’___.','avance',['abord','accord'],'Vielen Dank im Voraus.','Thank you in advance.')]},
+      '19:r1':{add:[
+        {...n('Setze in den Plural: un gâteau','des gâteaux',['des gâteaus','des gâteau'],'ein Kuchen → mehrere Kuchen','one cake → several cakes','Wörter auf -eau bekommen im Plural -x.','Words ending in -eau take -x in the plural.'),audio:'des gâteaux'},
+        {...n('Setze in den Plural: un bus','des bus',['des buss','des buses'],'ein Bus → mehrere Busse','one bus → several buses','Wörter auf -s bleiben im Plural unverändert.','Words ending in -s stay the same in the plural.'),audio:'des bus'},
+        {...n('Setze in den Plural: un prix','des prix',['des prixs','des prixes'],'ein Preis → mehrere Preise','one price → several prices','Wörter auf -x bleiben im Plural unverändert.','Words ending in -x stay the same in the plural.'),audio:'des prix'}]},
+      '20:r0':{drop:[['Tu ___ français. (parler)','parles'],['Il ___ français. (parler)','parle'],['Ils ___ français. (parler)','parlent']],add:[
+        n('Tu ___ à Berlin.','habites',['habite','habitez'],'Du wohnst in Berlin.','You live in Berlin.','Tu: Endung -es.','Tu: ending -es.'),
+        n('Il ___ à l’hôtel.','travaille',['travailles','travaillent'],'Er arbeitet im Hotel.','He works at the hotel.'),
+        n('Nous ___ voyager.','aimons',['aimez','aiment'],'Wir reisen gern.','We like travelling.','Nous: Endung -ons.','Nous: ending -ons.'),
+        n('Vous ___ une voiture ?','avez',['avons','ont'],'Haben Sie ein Auto?','Do you have a car?'),
+        n('Ils ___ étudiants.','sont',['sommes','êtes'],'Sie sind Studenten.','They are students.')]},
+      '20:r1':{patch:[[['Welche Verneinung ist korrekt?','Je ne travaille pas aujourd’hui.'],{explanation:'Je ne travaille pas aujourd’hui. — Ne steht vor dem konjugierten Verb, pas direkt danach.',explanationEn:'Je ne travaille pas aujourd’hui. — Ne goes before the conjugated verb, pas directly after it.'}]],add:[
+        n('Je ___ habite pas à Paris.','n’',['ne','non'],'Ich wohne nicht in Paris.','I do not live in Paris.','Vor Vokal oder stummem h wird ne zu n’.','Before a vowel or silent h, ne becomes n’.'),
+        n('Elle ___ travaille pas aujourd’hui.','ne',['pas','non'],'Sie arbeitet heute nicht.','She is not working today.','Ne steht vor dem Verb, pas danach.','Ne goes before the verb, pas after it.')]},
+      '20:r2':{drop:[['Je ne travaille ___ le dimanche.','jamais']],patch:[[['Welche Form bedeutet „Ich arbeite sonntags nie“?','Je ne travaille jamais le dimanche.'],{explanation:'Je ne travaille jamais le dimanche. — Ne steht vor dem Verb, jamais direkt danach, genau wie bei ne … pas.',explanationEn:'Je ne travaille jamais le dimanche. — Ne goes before the verb and jamais directly after it, just like ne … pas.'}]],add:[
+        n('Nous ne mangeons ___ de viande.','jamais',['toujours','non'],'Wir essen nie Fleisch.','We never eat meat.','Ne … jamais = nie; danach steht wie bei pas meist de.','Ne … jamais = never; as with pas, de usually follows.')]},
+      '21:r0':{drop:[['Welches Fragewort bedeutet „wo“?','où'],['Welches Fragewort bedeutet „wann“?','quand'],['Welches Fragewort bedeutet „wie viel“?','combien']],add:[
+        n('___ est votre adresse ?','Quelle',['Quel','Quels'],'Wie lautet Ihre Adresse?','What is your address?','Adresse ist weiblich: quelle.','Adresse is feminine: quelle.')]},
+      '22:r0':{drop:[['Hier, j’___ travaillé.','ai']],patch:[[['Hier, ils ___ travaillé.','ont'],{o:['ont','a','avons']}]],add:[
+        n('Tu as ___ un film.','regardé',['regarder','regarde'],'Du hast einen Film gesehen.','You watched a film.','Partizip: regarder → regardé.','Past participle: regarder → regardé.'),
+        n('Ils ont ___ une pizza.','mangé',['manger','mange'],'Sie haben eine Pizza gegessen.','They ate a pizza.','Partizip: manger → mangé.','Past participle: manger → mangé.')]},
+      '22:r1':{add:[
+        n('D’abord, je prends le bus. ___, je déjeune.','Puis',['Hier','Demain'],'Zuerst nehme ich den Bus. Dann esse ich zu Mittag.','First I take the bus. Then I have lunch.'),
+        n('___, je travaille à la maison.','Aujourd’hui',['Hier soir','Demain matin'],'Heute arbeite ich zu Hause.','Today I am working at home.','Hier = gestern, aujourd’hui = heute, demain = morgen.','Hier = yesterday, aujourd’hui = today, demain = tomorrow.')]},
+      '23:r0':{drop:[['___ pain','du']]},
+      '23:r1':{drop:[['Un kilo ___ pommes.','de']],add:[
+        n('un litre ___ lait','de',['du','des'],'ein Liter Milch','a litre of milk','Nach einer Mengenangabe steht de.','After a quantity, use de.'),
+        n('Je voudrais ___ farine.','de la',['de','des'],'Ich möchte Mehl (ohne Mengenangabe).','I would like some flour (no quantity).','Ohne Mengenangabe steht der Teilungsartikel: de la farine. Mit Menge: 200 grammes de farine.','Without a quantity, use the partitive: de la farine. With a quantity: 200 grammes de farine.'),
+        n('Il faut trois ___.','œufs',['œuf','d’œufs'],'Man braucht drei Eier.','You need three eggs.','Nach einer Zahl steht das Nomen direkt im Plural, ohne de.','After a number, the noun follows directly in the plural, without de.')]},
+      '23:r3':{drop:[['Un peu ___ lait.','de']],add:[
+        n('Je voudrais ___ sucre.','du',['de','des'],'Ich hätte gern Zucker (ohne Mengenangabe).','I would like some sugar (no quantity).','Ohne Mengenwort steht du; nach un peu, beaucoup, trop steht de.','Without a quantity word, use du; after un peu, beaucoup, trop, use de.')]},
+      '24:r0':{drop:[['Je vais ___ France.','en',true],['Je vais ___ Canada.','au',true],['Je vais ___ États-Unis.','aux',true]],add:[
+        n('Je vais ___ Allemagne.','en',['au','à'],'Ich fahre nach Deutschland.','I am going to Germany.','Vor einem Land mit Vokal steht en: en Allemagne.','Before a country starting with a vowel, use en: en Allemagne.'),
+        n('Je vais ___ Italie.','en',['au','à'],'Ich fahre nach Italien.','I am going to Italy.','Weibliches Land: en Italie.','Feminine country: en Italie.'),
+        n('Je vais ___ Portugal.','au',['en','aux'],'Ich fahre nach Portugal.','I am going to Portugal.','Männliches Land mit Konsonant: au Portugal.','Masculine country starting with a consonant: au Portugal.')]},
+      '24:r1':{drop:[['Je viens ___ France.','de',true],['Je viens ___ Allemagne.','d’',true],['Je viens ___ Canada.','du',true],['Je viens ___ États-Unis.','des',true]],add:[
+        n('Je viens ___ Italie.','d’',['de','du'],'Ich komme aus Italien.','I come from Italy.','Vor Vokal steht d’: d’Italie.','Before a vowel, use d’: d’Italie.'),
+        n('Je viens ___ Japon.','du',['de','des'],'Ich komme aus Japan.','I come from Japan.','Männliches Land: du Japon.','Masculine country: du Japon.')]},
+      '24:r2':{drop:['Je','Tu','Il','Nous','Vous','Ils'].map((p,i)=>[p+' ___ partir à huit heures.',['dois','dois','doit','devons','devez','doivent'][i]]),add:[
+        n('Le billet ___ vingt euros.','coûte',['coûtes','coûtent'],'Die Fahrkarte kostet zwanzig Euro.','The ticket costs twenty euros.'),
+        n('Je vais ___ Lyon.','visiter',['visite','visité'],'Ich werde Lyon besichtigen.','I am going to visit Lyon.','Aller + Grundform: je vais visiter.','Aller + infinitive: je vais visiter.'),
+        n('Je vais à Lyon ___ bus.','en',['à','au'],'Ich fahre mit dem Bus nach Lyon.','I am going to Lyon by bus.','Verkehrsmittel: en bus, en train, en voiture.','Transport: en bus, en train, en voiture.')]}
+    };
+    return R[lessonId+':'+key]||null;
+  }
+  function applyReview(lessonId,unit,tasks){
+    if(lessonId<10||lessonId>24)return tasks;
+    const spec=reviewTopics(lessonId,unit.key)||{},same=(t,[q,answer,noMeaning])=>t.q===q&&t.answer===answer&&(!noMeaning||!t.meaning);
+    let out=tasks.filter(t=>!(spec.drop||[]).some(d=>same(t,d)));
+    out=out.map(t=>{const p=(spec.patch||[]).find(([m])=>same(t,m));return p?{...t,...p[1],qualityVersion:147}:t;});
+    // ne … ___ : jamais is correct French as well; use options that are really wrong.
+    out=out.map(t=>t.kind==='form'&&t.answer==='pas'&&t.o?.includes('jamais')?{...t,o:NEG_OPTIONS,qualityVersion:147,explanation:t.audio+' — Ne … pas umschließt das Verb. Non steht allein als Antwort, sans bedeutet „ohne“.',explanationEn:t.audio+' — Ne … pas goes around the verb. Non stands alone as an answer; sans means “without”.'}:t);
+    out=out.map(t=>t.kind==='form'&&t.answer==='jamais'&&t.o?.includes('pas')?{...t,o:['jamais','toujours','non'],qualityVersion:147,explanation:t.audio+' — Ne … jamais = nie. Toujours (immer) steht ohne ne.',explanationEn:t.audio+' — Ne … jamais = never. Toujours (always) is used without ne.'}:t);
+    return [...out,...(spec.add||[])];
+  }
+  function improve(lesson,unit,tasks){return applyReview(lesson.id,unit,baseImprove(lesson,unit,tasks));}
+  function baseImprove(lesson,unit,tasks){
     const authored=focusedTopics(lesson.id,unit);if(authored)return authored;
     if(lesson.id===6&&unit.title==='Höflich bestellen')return ordering();
     if(/Possessivbegleiter/i.test(unit.title))return possessives();
@@ -311,6 +442,7 @@
     return window.FR_A1_MASTERY?.spreadAnswers?window.FR_A1_MASTERY.spreadAnswers(selected):selected;
   }
   const extraTopics=[4,7,9,10,11,13,17,18,19,21,22,23,24].flatMap(id=>['r0','r1','r2','r3','r4','u0','u1','u2','u3'].flatMap(key=>focusedTopics(id,{key})||[]));
-  window.FR_A1_GRAMMAR_EN=Object.fromEntries([...possessives(),...family(),...adjectiveAgreement(),...ordering(),...extraTopics].flatMap(t=>[[t.meaning,t.meaningEn],[t.explanation,t.explanationEn]]));
+  const reviewAdded=Array.from({length:15},(_,i)=>i+10).flatMap(id=>['r0','r1','r2','r3','r4','u0','u1','u2'].flatMap(key=>reviewTopics(id,key)?.add||[]));
+  window.FR_A1_GRAMMAR_EN=Object.fromEntries([...possessives(),...family(),...adjectiveAgreement(),...ordering(),...extraTopics,...reviewAdded].flatMap(t=>[[t.meaning,t.meaningEn],[t.explanation,t.explanationEn]]));
   window.FR_A1_GRAMMAR_PRACTICE={improve,select,possessives,ordering,fromPairs,focusedTopics};
 })();
