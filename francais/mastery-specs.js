@@ -1603,7 +1603,7 @@ window.FR_A1_MASTERY_SPECS = {
     ],
     2:[
       ['formulaire','Im Formular steht « Nom de famille : Martin / Prénom : Léa ». Was ist der Vorname?','Léa','Martin','Léa Martin','Prénom bezeichnet den Vornamen.',false],
-      ['epeler','Du hast den Nachnamen gehört, weißt aber nicht, welche Buchstaben er enthält.','Vous pouvez épeler votre nom ?','Vous pouvez répéter votre nom ?','Vous pouvez écrire votre nom ?','Épeler bittet darum, die Buchstaben zu nennen.'],
+      ['epeler','Du hast den Nachnamen gehört, weißt aber nicht, welche Buchstaben er enthält.','Vous pouvez épeler votre nom ?','Vous pouvez répéter votre nom ?','Vous pouvez parler plus fort ?','Épeler bittet darum, die Buchstaben zu nennen; répéter wiederholt nur den ganzen Namen.'],
       ['signes','Der Vorname wird Z-O-E buchstabiert; das E trägt einen accent aigu. Welche Schreibweise passt?','Zoé','Zoè','Zoê','Zoé trägt einen accent aigu.'],
       ['cedille','Der Name wird F-R-A-N-C-O-I-S buchstabiert; das C trägt eine Cedille. Welche Schreibweise passt?','François','Francois','Francoïs','Die Cedille sitzt am c: ç. Das i trägt hier kein Sonderzeichen.'],
       ['adresse','« Quelle est votre adresse ? » Welche Antwort enthält die erfragte Information?','12, rue Victor-Hugo, à Paris.','Mon nom est Victor Hugo.','Mon prénom est Victor.','Adresse fragt nach der Anschrift, nicht nach einem Namen.'],
@@ -1674,7 +1674,7 @@ window.FR_A1_MASTERY_SPECS = {
     9:[
       ['trajet','« Allez tout droit, puis tournez à droite après la pharmacie. » Was machst du nach der Apotheke?','Nach rechts abbiegen.','Nach links abbiegen.','Weiter geradeaus gehen.','Après la pharmacie gehört zur Anweisung tournez à droite.',false],
       ['transport','« Pour le musée, prenez le bus sept, pas le bus quatre. » Welcher Bus fährt zum Museum?','Linie 7.','Linie 4.','Linie 17.','Die genannte falsche Linie wird ausdrücklich ausgeschlossen.',false],
-      ['quai','« Le train pour Lyon part du quai quatre. Le train pour Paris part du quai deux. » Du fährst nach Lyon.','Je vais au quai quatre.','Je vais au quai deux.','Je vais au quai trois.','Für Lyon gilt quai quatre.'],
+      ['quai','« Le train pour Lyon part du quai quatre. Le train pour Paris part du quai deux. » Du fährst nach Lyon. Welcher Satz passt?','Je vais au quai quatre.','Je vais au quai deux.','Je vais au quai trois.','Für Lyon gilt quai quatre.'],
       ['retard','« Le train part à dix heures. Il a vingt minutes de retard. » Welche Aussage stimmt?','Der Zug hat 20 Minuten Verspätung.','Der Zug fährt 20 Minuten früher ab.','Der Zug fährt von Gleis 20 ab.','Retard bezeichnet die Verspätung.',false],
       ['demander','Du möchtest den Bahnhof finden und fragst höflich nach seinem Ort.','Excusez-moi, où est la gare ?','Excusez-moi, c’est quel quai ?','Excusez-moi, à quelle heure part le train ?','Où est la gare fragt nach dem Ort des Bahnhofs.'],
       ['distance','« C’est à cinq minutes à pied et à deux minutes en bus. » Wie lange dauert der Fußweg?','5 Minuten.','2 Minuten.','7 Minuten.','À pied bezeichnet zu Fuß; en bus ist eine andere Möglichkeit.',false],
@@ -1923,7 +1923,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['existence','Dans la cuisine, il ___ une table.','y a','Ergänze „es gibt“, zwei Wörter nach il.','Complete “there is”, two words after il.'],
       ['position','Les clés sont ___ le sac.','dans','Die Schlüssel sind in der Tasche.','The keys are in the bag.'],
       ['contraction','Le rendez-vous est ___ musée.','au','Der Treffpunkt ist am Museum.','The meeting point is at the museum.'],
-      ['feminin','Je suis ___ gare pour la visite.','à la','Ich bin für die Besichtigung am Bahnhof.','I am at the station for the viewing.'],
+      ['feminin','Paul m’attend ___ gare.','à la','Paul wartet am Bahnhof auf mich.','Paul is waiting for me at the station.'],
       ['pluriel','La chambre est près des toilettes. Je vais ___ toilettes.','aux','Ergänze à mit dem passenden Artikel.','Complete with à and the correct article.'],
       ['location','Le loyer est de cinq cents euros par ___.','mois','Die Miete beträgt 500 Euro pro Monat.','The rent is 500 euros per month.']
     ],
@@ -1934,7 +1934,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['sequence','Allez tout droit, ___ tournez à droite.','puis','Erst geradeaus, dann rechts: Ergänze das Wort für „dann“.','First straight ahead, then right: insert the word for “then”.',['ensuite']],
       ['direction','Tournez à ___.','gauche','Du sagst: Biegen Sie links ab.','Say: Turn left.'],
       ['walk','L’arrêt est à six minutes à ___.','pied','Die Haltestelle ist sechs Minuten zu Fuß entfernt.','The stop is six minutes away on foot.'],
-      ['quai','Le train de Paris part du ___ six.','quai','Der Zug aus Paris fährt von Gleis 6 ab.','The train from Paris leaves from platform six.']
+      ['quai','Le train pour Paris part du ___ six.','quai','Der Zug nach Paris fährt von Gleis 6 ab.','The train to Paris leaves from platform six.']
     ],
     10:[
       ['verb','Paul et Léa ___ dans un café. (travailler)','travaillent','Paul und Léa arbeiten in einem Café.','Paul and Léa work in a café.'],

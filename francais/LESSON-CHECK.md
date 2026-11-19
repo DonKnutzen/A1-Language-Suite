@@ -103,3 +103,12 @@ Korrigiert wurden:
   Inhalt; die Lösung enthält das in der Erklärung genannte s’il vous plaît.
 - L19: Der unpassende Ablenker „Bahnhofshalle“ wurde durch „den Bahnhof“ ersetzt.
 - L23: Mehl gehört jetzt zum Kuchen statt zur Suppe.
+
+## Inhaltliche Durchsicht der Lektionen 1–9
+
+- L2: Der Ablenker „Vous pouvez écrire votre nom ?“ würde die Buchstaben
+  ebenfalls liefern; ersetzt durch „Vous pouvez parler plus fort ?“.
+- L8: Die Eintippaufgabe zu à la gare verwendet eine natürliche Situation
+  (Paul m’attend à la gare) statt „am Bahnhof für die Besichtigung“.
+- L9: Die Gleis-Frage nennt jetzt die eigentliche Aufgabe („Welcher Satz
+  passt?“); die Eintippaufgabe spricht vom Zug nach statt aus Paris.
