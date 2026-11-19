@@ -84,3 +84,22 @@ Runden. Bereits bewertete Antworten und Bestwerte bleiben erhalten; die frühere
 Fassung wird archiviert. Wird beim Austausch auch der Prüfgegenstand geändert,
 übernimmt die App keine Fehlerzahl als vermeintlich bereits gemachten Fehler der
 neuen Aufgabe. Der frühere Fehlereintrag bleibt als historischer Eintrag erhalten.
+
+## Inhaltliche Durchsicht der Lektionen 10–24
+
+Alle Situationsfragen und Eintipp-Aufgaben der Lektionen 10–24 wurden auf
+Passung zur Lektion, eindeutige Lösung und gleichartige Ablenker geprüft.
+Korrigiert wurden:
+
+- L10: „Je suis un médecin“ wird nicht mehr als richtig gewertet, weil die
+  Lektion den Beruf nach être ausdrücklich ohne Artikel lehrt.
+- L11: In der Reihenfolge-Aufgabe wird neben Enfin auch Finalement akzeptiert.
+- L12: Die Einnahmeangabe steht jetzt auf der Medikamentenpackung statt auf
+  einer „Übungskarte“; Grammatikfehler in einer Erklärung behoben.
+- L16: Die Zusage mit späterer Ankunft verlangt nicht mehr „eine Stunde“, weil
+  die Lösung nur plus tard nennt.
+- L18: Die Höflichkeitsfrage unterscheidet die Optionen jetzt tatsächlich nach
+  Höflichkeit (j’aimerais … s’il vous plaît / je veux / donnez-moi) statt nach
+  Inhalt; die Lösung enthält das in der Erklärung genannte s’il vous plaît.
+- L19: Der unpassende Ablenker „Bahnhofshalle“ wurde durch „den Bahnhof“ ersetzt.
+- L23: Mehl gehört jetzt zum Kuchen statt zur Suppe.
