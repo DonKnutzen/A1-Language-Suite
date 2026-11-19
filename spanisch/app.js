@@ -114,7 +114,7 @@ function renderLearn(){
       ${lessons.map(l=>`<button class="lesson ${state.doneLessons.includes(l.id)?'done':''}" data-lesson="${l.id}">
         <div><span class="num">${l.id}</span><strong>${esc(l.title)}</strong></div>
         <p class="lesson-goal-preview">${A1LessonGuide.goal(l.id,esc)}</p>
-        <div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'de')}</div>
+        <div class="lesson-meta lesson-progress-meta">${A1LessonFlow.listProgress(l,state,'de',window.ES_A1_PRACTICE)}</div>
       </button>`).join('')}
     </div>`;
   document.querySelectorAll('[data-lesson]').forEach(b=>b.onclick=()=>renderLesson(+b.dataset.lesson));
@@ -141,7 +141,7 @@ function renderLesson(id){
     lesson:l,content:c,view,state,save,lessonCount:lessons.length,targetLang:'es',uiLang:'de',
     goalsHtml,grammarHtml,dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'es','de'),
     model,writingModel:writingSupport.model,placeholder:writingSupport.placeholder,writingHints:writingSupport.hints,writingHelpText:writingSupport.helpText,recorderHtml:recorderHtml,
-    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
+    repeatHint:'Höre die Beispiele an und sprich sie laut nach.',practice:window.ES_A1_PRACTICE,speak,speakBtn,wireSpeakButtons,playFeedbackAudio:playCorrectAudio,renderLesson,renderLearn
   });
 }
 

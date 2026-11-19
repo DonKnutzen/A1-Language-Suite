@@ -46,10 +46,21 @@ Neue Absicherung: `tests/spanish-a1-quality.test.cjs`. Der Test prüft Erklärun
 * 234 der 240 Aufgaben zeigen nach der Antwort eine Begründung. Die übrigen sind automatisch erzeugte Lücken- oder Höraufgaben des gemeinsamen Übungsmotors. Sie zeigen die richtige Antwort und das Audio, so wie in den anderen Kursen.
 * Die Sprachausgabe bekommt nie deutschen Text. Alle Texte gehen als `es-ES` an die Stimme. Der einzige Treffer der Prüfung ist der Name „Müller“.
 
+## Nachtrag: Vertiefung und Lektionscheck wie bei Französisch
+
+Nach dieser Prüfung kamen die beiden fehlenden Bausteine hinzu. Jede Lektion läuft jetzt so ab wie bei Französisch: **Hören & Vertiefung → 10 Übungen → Lektionscheck → Sprechen & Schreiben**.
+
+* **Vertiefung** (`spanisch/deepening-content.js`): Jede Lektion hat 2 Themen, jedes mit einer Regel, drei hörbaren Beispielen und dem Mini-Test „Direkt üben“ mit 5 Aufgaben. Zu jeder Aufgabe gibt es eine Erklärung und Audio. Ein angefangener Test lässt sich fortsetzen. Insgesamt sind das 240 Aufgaben.
+* **Lektionscheck** (`spanisch/check-content.js`): 12 neue Aufgaben pro Lektion, keine Kopien aus dem Quiz. Davon sind 5 Situationsfragen, 2 Hörfragen und 5 Formen zum Eintippen. Zum Bestehen braucht man 80 %. Danach gibt es eine Fehlerliste und eine Wiederholung nur der Fehler, und ein angefangener Check lässt sich fortsetzen. Fehlende Akzente werden mit Hinweis akzeptiert. Nur wo der Akzent die Bedeutung ändert (está/esta, tú/tu, mí/mi), zählen sie als Fehler. Insgesamt sind das 288 Aufgaben.
+* **Abschluss einer Lektion:** mindestens 70 % in den 10 Übungen, mindestens 80 % im Lektionscheck, dazu Sprechen und Schreiben. Bereits abgeschlossene Lektionen bleiben abgeschlossen.
+* Technik: `spanisch/lesson-practice.js` sowie optionale Erweiterungen in `shared/lesson-flow.js`. Diese Datei nutzt nur Spanisch.
+
+Die Punkte 1 und 2 der folgenden Liste sind damit erledigt.
+
 ## Bekannte Grenzen (nicht behoben, weil Strukturänderung)
 
-1. **Lektionscheck fehlt.** Französisch prüft jede Lektion mit einem eigenen Check und wiederholt Fehler gezielt. Spanisch hat nur die 10 gemischten Übungen.
-2. **Vertiefungsmodul fehlt.** Französisch bietet pro Lektion eigene Vertiefungsthemen mit Mini-Tests. Bei Spanisch ist die Vertiefung ein Erklärungsblock ohne eigene Übungen.
+1. ~~**Lektionscheck fehlt.**~~ Erledigt, siehe Nachtrag. Französisch prüft jede Lektion mit einem eigenen Check und wiederholt Fehler gezielt. Spanisch hat nur die 10 gemischten Übungen.
+2. ~~**Vertiefungsmodul fehlt.**~~ Erledigt, siehe Nachtrag. Französisch bietet pro Lektion eigene Vertiefungsthemen mit Mini-Tests. Bei Spanisch ist die Vertiefung ein Erklärungsblock ohne eigene Übungen.
 3. **Keine vorproduzierten Aufnahmen.** Ohne spanische Stimme auf dem Gerät gibt es kein Hörtraining.
 4. **Hör- und Lesetexte haben keine eigenen Erklärungen.** Im Training erscheint das Transkript, aber keine Begründung.
 5. Die automatisch erzeugten Lückenaufgaben fragen manchmal sehr kleine Wörter ab (a, y). Das betrifft den gemeinsamen Übungsmotor aller Kurse.

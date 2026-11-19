@@ -66,3 +66,56 @@ test('Spanish reading back button navigates and open form answers are compared w
   assert.equal(people.minWords,10);
   for(const f of forms)for(const field of f.fields)assert(field.answers.length>=1,f.id+' '+field.label);
 });
+
+function practice(){
+  const window={};window.window=window;
+  for(const f of ['deepening-content.js','check-content.js','lesson-practice.js'])vm.runInNewContext(read('spanisch/'+f),window);
+  return window.ES_A1_PRACTICE;
+}
+
+test('every Spanish lesson has two deepening topics and a twelve-task lesson check like French A1',()=>{
+  const P=practice();
+  for(let id=1;id<=24;id++){
+    const topics=P.deepeningTopics(id);
+    assert.equal(topics.length,2,'topics in lesson '+id);
+    for(const t of topics){
+      assert(t.rule.length>=60&&t.pairs.length>=3,`L${id} ${t.title}: rule/examples`);
+      assert.equal(t.tasks.length,5,`L${id} ${t.title}`);
+      for(const q of t.tasks){assert.equal(new Set(q.options).size,3,q.id);assert(q.why&&q.audio,q.id);}
+    }
+    const check=P.checkTasks(id),kinds={};
+    for(const q of check){
+      kinds[q.kind]=(kinds[q.kind]||0)+1;assert(q.why,q.id);
+      if(q.kind==='type')assert(q.sentence.includes('___')&&q.answers.length,q.id);
+      else assert.equal(new Set(q.options).size,3,q.id);
+      if(q.kind==='listen')assert(q.audio,q.id);
+    }
+    assert.deepEqual(JSON.parse(JSON.stringify(kinds)),{choice:5,listen:2,type:5},'check mix in lesson '+id);
+  }
+});
+
+test('lesson check tasks are new material, not copies of quiz questions',()=>{
+  const P=practice(),quiz=new Set(data().lessons.flatMap(l=>l.quiz.map(q=>q.q)));
+  for(let id=1;id<=24;id++)for(const q of P.checkTasks(id))assert(!quiz.has(q.q),'copied quiz question '+q.q);
+});
+
+test('typed check answers tolerate case and missing accents only where the accent does not change the word',()=>{
+  const P=practice();
+  const {plain,noAccent}=P._grade;
+  assert.equal(plain('¿Dónde?'),'dónde');
+  assert.equal(noAccent('dieciséis'),'dieciseis');
+  assert.notEqual(noAccent('eñe'),noAccent('ene'),'ñ must stay distinct from n');
+  const strict=P.checkTasks(4).find(t=>t.answer==='está');
+  assert.equal(strict.strict,true,'está/esta must be graded strictly');
+});
+
+test('Spanish lessons require the lesson check before completion and offline cache covers the new files',()=>{
+  const flow=read('shared/lesson-flow.js');
+  assert(flow.includes('passed()&&checkOk()&&p.speakingDone===true'));
+  assert(read('spanisch/app.js').includes('practice:window.ES_A1_PRACTICE'));
+  const html=read('spanisch/index.html'),sw=read('spanisch/service-worker.js');
+  const assets=[...html.matchAll(/(?:src|href)="([^"]+\.(?:js|css)[^"]*)"/g)].map(m=>m[1]);
+  const cached=JSON.parse(sw.match(/const ASSETS=(\[.*?\]);/)[1]).map(a=>a.replace(/^\.\//,''));
+  for(const a of assets)assert(cached.includes(a),'not precached: '+a);
+  for(const f of ['deepening-content.js','check-content.js','lesson-practice.js'])assert(assets.some(a=>a.startsWith(f)),f);
+});
