@@ -119,3 +119,12 @@ test('Spanish lessons require the lesson check before completion and offline cac
   for(const a of assets)assert(cached.includes(a),'not precached: '+a);
   for(const f of ['deepening-content.js','check-content.js','lesson-practice.js'])assert(assets.some(a=>a.startsWith(f)),f);
 });
+
+test('Spanish lessons are split into four steps like Français A1',()=>{
+  const flow=read('shared/lesson-flow.js');
+  assert(flow.includes("const STEPS=[['listen','Hören & Verstehen'],['grammar','Vertiefung'],['check','Lektions-Check'],['apply','Sprechen & Schreiben']]"));
+  assert(flow.includes('function drawOverview(){if(practice)drawSteps();else drawClassicOverview();}'));
+  assert(flow.includes('PHRASES_PER_PAGE=5'),'audio examples are paged');
+  const css=read('spanisch/styles.css');
+  for(const c of ['.lesson-step-nav','.lesson-grammar-progress','.es-apply-tabs','.lesson-audio-pager'])assert(css.includes(c),c);
+});
