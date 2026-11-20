@@ -99,7 +99,13 @@
           if(details){details.querySelector('summary')?.remove();alphabet.html=alphabet.html.replace('<div class="grammar-detail-body">','<div class="grammar-detail-body"><div class="lesson-pronunciation-bonus"><div class="pronunciation-alphabet">'+details.innerHTML+'</div></div>');}
           grammarPages.splice(grammarPages.indexOf(alphabet),1);grammarPages.unshift(alphabet);
         }
-      }else grammarPages[grammarPages.length-1].html+=`<div class="lesson-pronunciation-bonus">${bonus}</div>`;
+      }else{
+        // The pronunciation note belongs to the topic it explains (L10: under the travailler table).
+        const target=grammarPages.find(page=>page.practiceKey&&page.practiceKey===l.pronunciation?.page)||grammarPages[grammarPages.length-1];
+        const note=`<div class="lesson-pronunciation-bonus">${bonus}</div>`,practice=target.html.lastIndexOf('<div class="deepening-practice"');
+        // Explanations first, then the exercise button of the topic.
+        target.html=practice>=0?target.html.slice(0,practice)+note+target.html.slice(practice):target.html+note;
+      }
     }
     function remember(mode='overview'){
       p.resume={step:activeStep,grammarIndex,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?(grammarPages[grammarIndex]?.practiceKey||grammarPracticeKey(grammarIndex)||null):null};

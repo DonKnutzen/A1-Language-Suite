@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-  const FR_SAMPLES={1:['bonjour','salut'],2:['tu','tout','rue','roue'],3:['vingt','trente','cent'],4:['deux heures','dix heures'],5:['petit','petite'],6:['café','eau','lait'],7:['euros','deux euros','deux euros cinquante'],8:['un appartement','une maison'],9:['rue','roue','Allez tout droit.'],10:['je travaille','ils travaillent','vous travaillez'],11:['je me lève','je m’appelle'],12:['tête','thé'],13:['beau','chaud','il fait froid'],14:['j’aime','j’ai','Tu aimes lire ?'],15:['chambre','jambes'],16:['tu peux','vous pouvez'],17:['adresse','arobase','point'],18:['s’il vous plaît','pardon'],19:['les amis','les livres'],20:['je parle','tu parles','ils parlent'],21:['Où habitez-vous ?'],22:['je vais manger','j’ai mangé'],23:['lait','les livres'],24:['France','français']};
+  const FR_SAMPLES={1:['bonjour','salut'],2:['tu','tout','rue','roue'],3:['vingt','trente','cent'],4:['deux heures','dix heures'],5:['petit','petite'],6:['café','eau','lait'],7:['euros','deux euros','deux euros cinquante'],8:['un appartement','une maison'],9:['rue','roue','Allez tout droit.'],10:['je travaille','tu travailles','ils travaillent','nous travaillons','vous travaillez'],11:['je me lève','je m’appelle'],12:['tête','thé'],13:['beau','chaud','il fait froid'],14:['j’aime','j’ai','Tu aimes lire ?'],15:['chambre','je voudrais'],16:['tu peux','vous pouvez'],17:['adresse','arobase','point'],18:['s’il vous plaît','pardon'],19:['les amis','les livres'],20:['je parle','tu parles','ils parlent'],21:['Où habitez-vous ?'],22:['je vais manger','j’ai mangé'],23:['du lait','les œufs'],24:['France','français','française']};
   const FR_LETTERS=[
     ['A','a','a'],['B','bé','bé'],['C','cé','cé'],['D','dé','dé'],['E','e','La lettre E.'],['F','effe','effe'],['G','gé','gé'],['H','hache','hache'],['I','i','i'],['J','ji','ji'],['K','ka','ka'],['L','elle','elle'],['M','emme','emme'],['N','enne','enne'],['O','o','o'],['P','pé','pé'],['Q','qu','La lettre Q.'],['R','erre','erre'],['S','esse','esse'],['T','té','té'],['U','u','La lettre U.'],['V','vé','vé'],['W','double vé','double vé'],['X','ix','ix'],['Y','i grec','i grec'],['Z','zède','zède']
   ];
@@ -10,6 +10,8 @@
   const FR_SPELL={E:'e',Q:'cu',U:'u'};
   const DE_LETTERS={A:'ah',B:'beh',C:'zeh',D:'deh',E:'eh',F:'eff',G:'geh',H:'hah',I:'ih',K:'kah',L:'ell',M:'emm',N:'enn',O:'oh',P:'peh',Q:'kuh',R:'err',S:'ess',T:'teh',U:'uh',X:'ix',Y:'ypsilon',Z:'zett'};
   const DE_NAMES={'Ä':'A Umlaut','Ö':'O Umlaut','Ü':'U Umlaut','ß':'Eszett','J':'Jot','V':'Vau','W':'We'};
+  // Spanish letter names, so spelled names such as M-U-L-L-E-R are read as eme, u, ele … instead of bare letters.
+  const ES_LETTERS={A:'a',B:'be',C:'ce',D:'de',E:'e',F:'efe',G:'ge',H:'hache',I:'i',J:'jota',K:'ka',L:'ele',M:'eme',N:'ene','Ñ':'eñe',O:'o',P:'pe',Q:'cu',R:'erre',S:'ese',T:'te',U:'u',V:'uve',W:'uve doble',X:'equis',Y:'i griega',Z:'zeta','Á':'a con tilde','É':'e con tilde','Í':'i con tilde','Ó':'o con tilde','Ú':'u con tilde','Ü':'u con diéresis'};
   const UI={de:{title:'Aussprache',repeat:'Höre die Beispiele einzeln an und sprich sie nach.',letters:'Alphabet & Buchstabieren',difference:'Buchstabennamen unterscheiden sich vom Laut im Wort. Achte besonders auf G/J und U.',accents:'Akzente mitnennen',test:'Eigenen Namen buchstabiert anhören',name:'Name zum Buchstabieren',play:'Buchstabieren anhören',unsupported:'Verwende Buchstaben, Leerzeichen und Bindestriche. Sonderzeichen wie é und ç werden mit ihrem Namen gesprochen.',word:'Laut im Wort anhören',special:'Besondere Buchstabennamen'},fr:{title:'Prononciation',repeat:'Écoute chaque exemple, puis répète à voix haute.',special:'Noms de lettres particuliers'},tr:{title:'Telaffuz',repeat:'Örnekleri tek tek dinle ve tekrar et.',special:'Özel harf adları'}};
   const speechLang=lang=>({fr:'fr-FR',de:'de-DE',es:'es-ES'})[lang]||lang;
   function spellParts(text,lang){
@@ -21,6 +23,7 @@
       let audio;
       if(lang==='fr')audio=map.get(char)||map.get(char.toUpperCase())||map.get(char.toLowerCase());
       else if(lang==='de')audio=DE_NAMES[char]||DE_NAMES[char.toUpperCase()]||DE_LETTERS[char.toUpperCase()]||null;
+      else if(lang==='es')audio=ES_LETTERS[char.toUpperCase()]||null;
       if(!audio)return null;
       chunks.push(audio);
     }

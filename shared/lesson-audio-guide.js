@@ -15,8 +15,12 @@
     const element=html=>{const root=doc.createElement('div');root.innerHTML=html||'';return root;};
     function language(options,roots=[]){return window.A1GuideLanguage.create({targetLang,nativeLang,lesson:options.lesson,roots});}
     function speechText(text,lang){
-      text=clean(text).replace(/→/g,lang===nativeLang?(german?' wird zu ':' devient '):', ').replace(/\s*\/\s*/g,', ').replace(/&/g,lang.startsWith('fr')?' et ':' und ');
-      if(lang===targetLang)text=text.replace(/(^|[\s,;])-(\p{L}+)/gu,(_,before,ending)=>before+(window.A1Pronunciation?.spellParts(ending,base)?.join(', ')||ending.split('').join(', ')));
+      text=clean(text).replace(/→/g,lang===nativeLang?(german?' wird zu ':' devient '):', ');
+      // „Student/in“ is read as two words, not as „Student, in“.
+      if(lang===nativeLang&&german)text=text.replace(/(\p{L}{3,})\/in\b/gu,'$1 oder $1in');
+      text=text.replace(/\s*\/\s*/g,', ').replace(/&/g,lang.startsWith('fr')?' et ':' und ');
+      // One spelled ending stays one group: „-es, -ons“ → „e esse, o enne esse“.
+      if(lang===targetLang)text=text.replace(/(^|[\s,;])-(\p{L}+)/gu,(_,before,ending)=>before+(window.A1Pronunciation?.spellParts(ending,base)?.join(' ')||ending.split('').join(' ')));
       if(lang===targetLang)text=text.replace(/(?<!\p{L})\p{Lu}(?:[-–—]\p{Lu})+(?!\p{L})/gu,name=>window.A1Pronunciation?.spellParts(name,base)?.join(', ')||name.replace(/[-–—]/g,', '));
       if(lang===nativeLang){
         text=german?text.replace(/\bMin\./g,'Minuten').replace(/\bP\./g,'Punkte').replace(/\bca\./g,'ungefähr').replace(/\bmax\./g,'höchstens').replace(/\bz\.\s*B\./g,'zum Beispiel').replace(/\bbzw\./g,'beziehungsweise'):text.replace(/\bmin\./gi,'minutes').replace(/\bpar ex\./gi,'par exemple');

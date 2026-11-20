@@ -21,7 +21,7 @@ test('each check has at least twelve tasks and retains every planned focus witho
 });
 test('typed checks distinguish grammar forms but accept legitimate formatting and alternatives',()=>{
  const e=fixture(),find=(id,focus)=>e.mode.spec(id).checkTransfers.find(t=>t.family==='transfer:'+focus),yes=(q,a)=>assert(e.mode.accepted(q,a),a),no=(q,a)=>assert(!e.mode.accepted(q,a),a);
- yes(find(10,'profession'),'Je suis médecin.');yes(find(10,'profession'),'Je suis un médecin.');no(find(10,'profession'),'J’ai médecin.');
+ yes(find(10,'profession'),'Je suis médecin.');no(find(10,'profession'),'Je suis un médecin.');no(find(10,'profession'),'J’ai médecin.');
  const past=find(22,'participe');yes(past,'mangé');no(past,'mange');no(past,'manger');
  const present=e.mode.spec(10).checkTransfers.find(t=>t.answer==='travaille');yes(present,'travaille');no(present,'travaillé');
  const cedilla=find(10,'cedille');yes(cedilla,'commençons');no(cedilla,'commencons');

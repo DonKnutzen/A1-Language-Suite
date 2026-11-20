@@ -763,3 +763,19 @@ html.dark-mode .select-input:focus{
 /* Early-lesson writing scaffold */
 .lesson-writing-help{margin-top:10px;margin-bottom:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
 .lesson-writing-help .phrase-row{margin-top:7px}
+
+/* Lesson deepening and lesson check (lesson-practice.js) */
+.es-deepening-topic{border-top:1px solid var(--line,rgba(127,127,127,.25));padding-top:12px;margin-top:12px}
+.es-deepening-topic h4{margin:0 0 6px}
+.es-deepening-panel{margin-top:10px}
+.es-deepening-panel .between{gap:8px;flex-wrap:wrap}
+.es-deepening-stage:not(:empty),.es-check-stage{margin-top:12px}
+.deepening-result{margin-top:10px}
+.deepening-result p{margin:4px 0}
+.es-check-stage .quiz-q .gap{font-weight:900;letter-spacing:.05em}
+.es-check-input{width:100%;margin:10px 0}
+.es-check-input.correct{border-color:#22c55e}
+.es-check-input.wrong{border-color:#ef4444}
+.es-check-submit,.es-check-play{margin-top:8px}
+.es-practice-feedback .feedback p{margin:6px 0 0}
+@media(min-width:640px){.lesson-mini-progress{grid-template-columns:repeat(5,minmax(0,1fr))}}

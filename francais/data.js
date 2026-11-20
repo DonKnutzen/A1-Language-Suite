@@ -568,7 +568,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "vingt / trente / cent",
-        "explanation": "Nasalvokale werden durch Mund und Nase gesprochen; das n ist hier kein eigener Endkonsonant. Vergleiche vingt /ɛ̃/ und cent /ɑ̃/."
+        "explanation": "Nasalvokale werden durch Mund und Nase gesprochen; das n ist hier kein eigener Endkonsonant. Vergleiche vingt /ɛ̃/ und cent /ɑ̃/.",
+        "page": "u0"
       },
       "dialogue": [
         "Quel âge avez-vous ?",
@@ -762,7 +763,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "deux heures / dix heures",
-        "explanation": "In deux heures verbindet sich das sonst stumme x als /z/ mit heures. Höre ganze Zeitangaben; sprich heures ohne h-Laut."
+        "explanation": "In deux heures verbindet sich das sonst stumme x als /z/ mit heures. Höre ganze Zeitangaben; sprich heures ohne h-Laut.",
+        "page": "u0"
       },
       "dialogue": [
         "On se voit quand ?",
@@ -1120,7 +1122,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "café / eau / lait",
-        "explanation": "é klingt wie geschlossenes e, eau wie o. Vergleiche café und lait; lerne die Schreibweise mit dem Klang zusammen."
+        "explanation": "é klingt wie geschlossenes e, eau wie o. Vergleiche café und lait; lerne die Schreibweise mit dem Klang zusammen.",
+        "page": "r0"
       },
       "dialogue": [
         "Bonjour, vous désirez ?",
@@ -1296,7 +1299,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "euros / deux euros",
-        "explanation": "In deux euros ist /z/ hörbar. Bei Eurobeträgen erst ganze Euro, dann Cent erfassen; écoute: deux euros cinquante."
+        "explanation": "In deux euros wird das sonst stumme x hörbar: Es verbindet sich als weiches s mit euros. Bei Preisen hörst du zuerst die Euro, dann die Cent: deux euros cinquante = 2,50 €."
       },
       "dialogue": [
         "Je voudrais un kilo de pommes.",
@@ -1654,7 +1657,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "rue / roue",
-        "explanation": "Unterscheide u /y/ in rue von ou /u/ in roue. Sprich kurze Weganweisungen mit Pause zwischen den Schritten."
+        "explanation": "Unterscheide u /y/ in rue von ou /u/ in roue. Sprich kurze Weganweisungen mit Pause zwischen den Schritten.",
+        "page": "r0"
       },
       "dialogue": [
         "La pharmacie, s’il vous plaît ?",
@@ -1827,7 +1831,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "travaille / travaillent / travaillez",
-        "explanation": "Die Endung -ent ist bei Verben stumm. Je travaille und ils travaillent enden gleich; vous travaillez hat hörbares /e/."
+        "explanation": "Je travaille, tu travailles, il travaille und ils travaillent klingen gleich: Die Endungen -e, -es und -ent sind stumm. Anders klingen nur nous travaillons und vous travaillez.",
+        "page": "u1"
       },
       "dialogue": [
         "Vous travaillez où ?",
@@ -2005,7 +2010,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "je me lève / je m’appelle",
-        "explanation": "Vor Vokal wird me zu m’: je m’appelle. Verbinde die Wörter einer kurzen Satzgruppe; mache nicht nach jedem Wort eine Pause."
+        "explanation": "Vor Vokal wird me zu m’: je m’appelle. Verbinde die Wörter einer kurzen Satzgruppe; mache nicht nach jedem Wort eine Pause.",
+        "page": "r0"
       },
       "dialogue": [
         "Tu te lèves à quelle heure ?",
@@ -2178,7 +2184,7 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "tête / thé",
-        "explanation": "Das französische t wird klar am vorderen Mund gebildet. Vergleiche tête mit thé; das h in thé wird nicht gesprochen."
+        "explanation": "Das h in thé ist stumm. Achte auf das e: In tête klingt ê offen wie das e in „Bett“, in thé klingt é geschlossen wie das e in „See“."
       },
       "dialogue": [
         "Bonjour, j’ai mal à la tête.",
@@ -2541,7 +2547,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "j’aime / j’ai",
-        "explanation": "Achte auf den hörbaren m-Laut am Ende von j’aime. Fragen erhalten häufig eine steigende Intonation: Tu aimes lire ?"
+        "explanation": "Achte auf den hörbaren m-Laut am Ende von j’aime. Fragen erhalten häufig eine steigende Intonation: Tu aimes lire ?",
+        "page": "u0"
       },
       "dialogue": [
         "Tu aimes le sport ?",
@@ -2713,8 +2720,8 @@ window.FR_A1_DATA = {
         "explanation": "Für Hotel und Reise sind außerdem feste Wendungen wie J’ai une réservation und Je voudrais un billet… besonders nützlich."
       },
       "pronunciation": {
-        "focus": "chambre / jambes",
-        "explanation": "ch klingt /ʃ/ wie deutsches sch, j klingt /ʒ/ stimmhaft. Vergleiche chambre und jambes."
+        "focus": "chambre / je voudrais",
+        "explanation": "ch klingt wie das deutsche sch: chambre. j klingt weich und stimmhaft wie das g in „Garage“: je voudrais."
       },
       "dialogue": [
         "Bonjour, une chambre pour deux nuits, s’il vous plaît.",
@@ -2916,7 +2923,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "tu peux / vous pouvez",
-        "explanation": "Peux endet ohne x-Laut; pouvez endet mit /e/. Verwende eine freundliche steigende Melodie bei einem Vorschlag."
+        "explanation": "Peux endet ohne x-Laut; pouvez endet mit /e/. Verwende eine freundliche steigende Melodie bei einem Vorschlag.",
+        "page": "r0"
       },
       "dialogue": [
         "Tu veux venir dîner samedi ?",
@@ -3094,7 +3102,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "adresse / e-mail",
-        "explanation": "Buchstabiere schwierige Angaben langsam. Sprich E-Mail-Zeichen getrennt: arobase (@), point (.)."
+        "explanation": "Buchstabiere schwierige Angaben langsam. Sprich E-Mail-Zeichen getrennt: arobase (@), point (.).",
+        "page": "u0"
       },
       "dialogue": [
         "Bonjour, le cours commence lundi à neuf heures.",
@@ -3288,7 +3297,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "s’il vous plaît / pardon",
-        "explanation": "Sprich Bitten als kurze freundliche Satzgruppen. Die Stimme fällt bei einer abgeschlossenen Bitte meist am Ende ab."
+        "explanation": "Sprich s’il vous plaît als eine zusammenhängende Wortgruppe; das t am Ende von plaît ist stumm. In pardon ist on ein Nasalvokal: Das n wird nicht als eigener Laut gesprochen.",
+        "page": "r1"
       },
       "dialogue": [
         "Excusez-moi, je ne comprends pas.",
@@ -3472,7 +3482,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "les amis / les livres",
-        "explanation": "Liaison vor Vokal: les amis mit /z/. Vor Konsonant keine Liaison: les livres. Keine Liaison nach et."
+        "explanation": "Liaison vor Vokal: les amis mit /z/. Vor Konsonant keine Liaison: les livres. Keine Liaison nach et.",
+        "page": "r1"
       },
       "dialogue": [
         "C’est un livre ?",
@@ -3654,7 +3665,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "parle / parles / parlent",
-        "explanation": "Die drei Formen parle, parles, parlent klingen gleich. Das Subjekt hilft beim Verstehen. Die Endung -ent nie als deutsches ent sprechen."
+        "explanation": "Die drei Formen parle, parles, parlent klingen gleich. Das Subjekt hilft beim Verstehen. Die Endung -ent nie als deutsches ent sprechen.",
+        "page": "r0"
       },
       "dialogue": [
         "Tu prends le bus ?",
@@ -3844,7 +3856,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
-        "explanation": "Das h von habiter ist stumm. Höre die Verbindung zwischen où und habitez; betone die ganze Fragegruppe statt jedes Einzelwort."
+        "explanation": "Das h von habiter ist stumm. Höre die Verbindung zwischen où und habitez; betone die ganze Fragegruppe statt jedes Einzelwort.",
+        "page": "r0"
       },
       "dialogue": [
         "Où est votre voiture ?",
@@ -4044,7 +4057,8 @@ window.FR_A1_DATA = {
       },
       "pronunciation": {
         "focus": "manger / mangé",
-        "explanation": "Infinitiv manger und Partizip mangé klingen gleich. Der Satz davor macht den Unterschied: je vais manger / j’ai mangé."
+        "explanation": "Infinitiv manger und Partizip mangé klingen gleich. Der Satz davor macht den Unterschied: je vais manger / j’ai mangé.",
+        "page": "r0"
       },
       "dialogue": [
         "Tu as fait quoi hier ?",
@@ -4237,8 +4251,9 @@ window.FR_A1_DATA = {
         "explanation": "Mengen wie beaucoup de, un peu de und pas de stehen mit de. pour + Infinitiv nennt einen Zweck: pour couper. il faut / il ne faut pas + Infinitiv drückt eine notwendige bzw. zu vermeidende Handlung aus."
       },
       "pronunciation": {
-        "focus": "lait / les",
-        "explanation": "Lait /lɛ/ und les /le/ unterscheiden sich im Vokal. Höre ein Wort zuerst allein und danach im Satz."
+        "focus": "du lait / les œufs",
+        "explanation": "In lait klingt ai offen wie das ä in „Bär“. In les klingt das e geschlossen wie das e in „See“. Achte bei du lait und les œufs auf diesen Unterschied.",
+        "page": "r0"
       },
       "dialogue": [
         "Il faut quoi pour la soupe ?",
@@ -4410,8 +4425,9 @@ window.FR_A1_DATA = {
         "explanation": ""
       },
       "pronunciation": {
-        "focus": "France / français",
-        "explanation": "Vergleiche /ɑ̃/ in France und français mit /ɛ̃/ in pain. Der letzte Konsonant von français ist stumm."
+        "focus": "France / français / française",
+        "explanation": "In France und français ist an ein Nasalvokal: Das n wird nicht als eigener Laut gesprochen. Das s am Ende von français ist stumm; in française hörst du am Ende ein weiches s.",
+        "page": "r0"
       },
       "dialogue": [
         "Tu vas où en vacances ?",

@@ -1603,7 +1603,7 @@ window.FR_A1_MASTERY_SPECS = {
     ],
     2:[
       ['formulaire','Im Formular steht « Nom de famille : Martin / Prénom : Léa ». Was ist der Vorname?','Léa','Martin','Léa Martin','Prénom bezeichnet den Vornamen.',false],
-      ['epeler','Du hast den Nachnamen gehört, weißt aber nicht, welche Buchstaben er enthält.','Vous pouvez épeler votre nom ?','Vous pouvez répéter votre nom ?','Vous pouvez écrire votre nom ?','Épeler bittet darum, die Buchstaben zu nennen.'],
+      ['epeler','Du hast den Nachnamen gehört, weißt aber nicht, welche Buchstaben er enthält.','Vous pouvez épeler votre nom ?','Vous pouvez répéter votre nom ?','Vous pouvez parler plus fort ?','Épeler bittet darum, die Buchstaben zu nennen; répéter wiederholt nur den ganzen Namen.'],
       ['signes','Der Vorname wird Z-O-E buchstabiert; das E trägt einen accent aigu. Welche Schreibweise passt?','Zoé','Zoè','Zoê','Zoé trägt einen accent aigu.'],
       ['cedille','Der Name wird F-R-A-N-C-O-I-S buchstabiert; das C trägt eine Cedille. Welche Schreibweise passt?','François','Francois','Francoïs','Die Cedille sitzt am c: ç. Das i trägt hier kein Sonderzeichen.'],
       ['adresse','« Quelle est votre adresse ? » Welche Antwort enthält die erfragte Information?','12, rue Victor-Hugo, à Paris.','Mon nom est Victor Hugo.','Mon prénom est Victor.','Adresse fragt nach der Anschrift, nicht nach einem Namen.'],
@@ -1674,7 +1674,7 @@ window.FR_A1_MASTERY_SPECS = {
     9:[
       ['trajet','« Allez tout droit, puis tournez à droite après la pharmacie. » Was machst du nach der Apotheke?','Nach rechts abbiegen.','Nach links abbiegen.','Weiter geradeaus gehen.','Après la pharmacie gehört zur Anweisung tournez à droite.',false],
       ['transport','« Pour le musée, prenez le bus sept, pas le bus quatre. » Welcher Bus fährt zum Museum?','Linie 7.','Linie 4.','Linie 17.','Die genannte falsche Linie wird ausdrücklich ausgeschlossen.',false],
-      ['quai','« Le train pour Lyon part du quai quatre. Le train pour Paris part du quai deux. » Du fährst nach Lyon.','Je vais au quai quatre.','Je vais au quai deux.','Je vais au quai trois.','Für Lyon gilt quai quatre.'],
+      ['quai','« Le train pour Lyon part du quai quatre. Le train pour Paris part du quai deux. » Du fährst nach Lyon. Welcher Satz passt?','Je vais au quai quatre.','Je vais au quai deux.','Je vais au quai trois.','Für Lyon gilt quai quatre.'],
       ['retard','« Le train part à dix heures. Il a vingt minutes de retard. » Welche Aussage stimmt?','Der Zug hat 20 Minuten Verspätung.','Der Zug fährt 20 Minuten früher ab.','Der Zug fährt von Gleis 20 ab.','Retard bezeichnet die Verspätung.',false],
       ['demander','Du möchtest den Bahnhof finden und fragst höflich nach seinem Ort.','Excusez-moi, où est la gare ?','Excusez-moi, c’est quel quai ?','Excusez-moi, à quelle heure part le train ?','Où est la gare fragt nach dem Ort des Bahnhofs.'],
       ['distance','« C’est à cinq minutes à pied et à deux minutes en bus. » Wie lange dauert der Fußweg?','5 Minuten.','2 Minuten.','7 Minuten.','À pied bezeichnet zu Fuß; en bus ist eine andere Möglichkeit.',false],
@@ -1705,10 +1705,10 @@ window.FR_A1_MASTERY_SPECS = {
       ['symptome','« J’ai mal à la tête, mais je n’ai pas de fièvre. » Was hat die Person?','Kopfschmerzen ohne Fieber.','Fieber ohne Kopfschmerzen.','Kopfschmerzen und Fieber.','Mais je n’ai pas de fièvre schließt Fieber aus.',false],
       ['depuis','« Je suis malade depuis lundi. Mon rendez-vous est jeudi. » Seit wann ist die Person krank?','Seit Montag.','Seit Donnerstag.','Seit Dienstag.','Depuis nennt den Beginn der Beschwerden, jeudi den Termin.',false],
       ['pharmacie','Du möchtest ein Mittel gegen Erkältung kaufen.','Je voudrais un médicament contre le rhume.','Je voudrais un rendez-vous chez le médecin.','Je voudrais l’adresse de la pharmacie.','Contre le rhume nennt den Zweck des gewünschten Mittels.'],
-      ['consigne','Auf einer Übungskarte steht: « Deux fois par jour, le matin et le soir. » Welche Angabe stimmt?','Zweimal täglich: morgens und abends.','Zweimal morgens.','Einmal täglich: abends.','Deux fois par jour wird durch zwei Tageszeiten präzisiert.',false],
+      ['consigne','Auf der Medikamentenpackung steht: « Deux fois par jour, le matin et le soir. » Welche Angabe stimmt?','Zweimal täglich: morgens und abends.','Zweimal morgens.','Einmal täglich: abends.','Deux fois par jour wird durch zwei Tageszeiten präzisiert.',false],
       ['disponibilite','« Je suis libre jeudi matin, mais pas jeudi après-midi. » Welcher Termin passt?','Jeudi à neuf heures.','Jeudi à quinze heures.','Jeudi à dix-sept heures.','Neun Uhr gehört zum Vormittag.'],
       ['aide','Du brauchst Unterstützung und bittest höflich darum.','Pouvez-vous m’aider, s’il vous plaît ?','Pouvez-vous m’appeler demain ?','Pouvez-vous épeler votre nom ?','M’aider bedeutet mir helfen.'],
-      ['lieu','« J’ai rendez-vous chez le médecin. Ensuite, je vais à la pharmacie. » Wohin geht die Person zuerst?','Zum Arzt.','Zur Apotheke.','Nach Hause.','Ensuite stellt den Apothekenbesuch nach den Arzttermin.',false],
+      ['lieu','« J’ai rendez-vous chez le médecin. Ensuite, je vais à la pharmacie. » Wohin geht die Person zuerst?','Zum Arzt.','Zur Apotheke.','Nach Hause.','Ensuite ordnet den Apothekenbesuch nach dem Arzttermin ein.',false],
       ['corps','Du möchtest sagen, dass du Zahnschmerzen hast.','J’ai mal aux dents.','J’ai mal au dos.','J’ai mal à la tête.','Dents bezeichnet die Zähne; dos den Rücken.']
     ],
     13:[
@@ -1742,7 +1742,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['nuits','Du möchtest ein Zimmer für zwei Nächte reservieren, ohne eine Personenzahl festzulegen.','Je voudrais une chambre pour deux nuits.','Je voudrais une chambre pour deux personnes.','Je voudrais deux chambres pour une nuit.','Nuits beschreibt Nächte; personnes beschreibt Personen.']
     ],
     16:[
-      ['reponse','Du nimmst eine Einladung an, kannst aber erst eine Stunde später kommen.','Avec plaisir, mais je vais arriver plus tard.','Je suis désolé, je ne peux pas venir.','Avec plaisir, je vais arriver plus tôt.','Die Antwort nimmt an und nennt gleichzeitig die spätere Ankunft.'],
+      ['reponse','Du nimmst eine Einladung an, kannst aber erst etwas später kommen.','Avec plaisir, mais je vais arriver plus tard.','Je suis désolé, je ne peux pas venir.','Avec plaisir, je vais arriver plus tôt.','Die Antwort nimmt an und nennt gleichzeitig die spätere Ankunft.'],
       ['heure','« Le dîner est à dix-neuf heures. Je peux venir à dix-neuf heures et demie. » Wann kann die Person kommen?','19:30 Uhr.','19 Uhr.','18:30 Uhr.','Die mögliche Ankunft steht bei je peux venir, nicht beim Beginn des Essens.',false],
       ['reporter','Du möchtest das Treffen behalten, aber auf morgen verschieben.','On peut reporter le rendez-vous à demain ?','On peut annuler le rendez-vous ?','On peut garder le rendez-vous aujourd’hui ?','Reporter à demain verschiebt, annuler sagt ab.'],
       ['refus','« Je voudrais venir, mais je travaille samedi. » Welche Antwort gibt den Grund passend wieder?','Je ne peux pas venir samedi, car je travaille.','Je ne veux pas venir samedi, car je travaille.','Je peux venir samedi, car je travaille.','Ne peux pas beschreibt das Hindernis; ne veux pas würde fehlenden Willen ausdrücken.'],
@@ -1766,13 +1766,13 @@ window.FR_A1_MASTERY_SPECS = {
       ['lentement','Die Person spricht zu schnell. Du möchtest sie höflich um langsameres Sprechen bitten.','Pourriez-vous parler plus lentement ?','Pourriez-vous parler plus fort ?','Pourriez-vous écrire votre adresse ?','Plus lentement ändert das Tempo, plus fort die Lautstärke.'],
       ['repeter','« Salle douze ? — Non, salle deux. » Welche Raumnummer gilt nach der Korrektur?','2','12','22','Non korrigiert die zuerst verstandene Nummer.',false],
       ['sens','Du möchtest wissen, was ein Wort bedeutet, nicht wie es geschrieben wird.','Qu’est-ce que ça veut dire ?','Comment ça s’écrit ?','Comment ça se prononce ?','Veut dire fragt nach der Bedeutung.'],
-      ['politesse','Du möchtest besonders höflich um Informationen bitten.','J’aimerais des informations sur le cours.','J’aimerais confirmer mon inscription au cours.','J’aimerais annuler mon inscription au cours.','J’aimerais + s’il vous plaît formuliert die Bitte höflich.'],
+      ['politesse','Du möchtest besonders höflich um Informationen zum Kurs bitten.','J’aimerais des informations sur le cours, s’il vous plaît.','Je veux des informations sur le cours.','Donnez-moi des informations sur le cours.','J’aimerais + s’il vous plaît ist besonders höflich; je veux klingt fordernd, der Imperativ donnez-moi wie eine Anweisung.'],
       ['comprendre','« Je comprends la première phrase, mais pas la dernière. » Was muss erklärt werden?','Der letzte Satz.','Der erste Satz.','Beide Sätze.','Mais pas la dernière grenzt den unverstandenen Satz ein.',false],
       ['proposer','Du schlägst höflich vor, die Aufgabe zusammen anzusehen.','On pourrait regarder l’exercice ensemble.','On doit regarder l’exercice ensemble.','On ne peut pas regarder l’exercice ensemble.','Pourrait ist ein höflicher Vorschlag; doit macht eine Verpflichtung daraus.'],
       ['objet','« Je n’ai pas de stylo. Vous pouvez m’aider ? » Was fehlt der Person?','Ein Stift.','Ein Formular.','Eine Adresse.','Je n’ai pas de stylo nennt den fehlenden Gegenstand.',false]
     ],
     19:[
-      ['reference','« Voici un hôtel. L’hôtel est près de la gare. » Worauf bezieht sich l’hôtel?','Auf das zuvor genannte Hotel.','Auf die zuvor genannte Bahnhofshalle.','Auf mehrere Hotels.','Der bestimmte Artikel greift das bereits eingeführte Hotel auf.',false],
+      ['reference','« Voici un hôtel. L’hôtel est près de la gare. » Worauf bezieht sich l’hôtel?','Auf das zuvor genannte Hotel.','Auf den Bahnhof.','Auf mehrere Hotels.','Der bestimmte Artikel greift das bereits eingeführte Hotel auf.',false],
       ['pluriel','Du möchtest mehrere Baguettes nennen. Welche Form ist im geschriebenen Standard richtig?','Des baguettes.','Des baguette.','Une baguettes.','Im Plural tragen Artikel und Nomen die passende Form.'],
       ['identifier','Du zeigst auf mehrere Freunde. Welche Form passt im geschriebenen Standard?','Ce sont des amis.','C’est des amis.','Ce sont un ami.','Ce sont passt zum Plural des amis; c’est des… ist umgangssprachlich.'],
       ['sens','« La gare est derrière le musée. » Was liegt hinter dem Museum?','Der Bahnhof.','Das Hotel.','Das Café.','Gare ist der Bahnhof.',false],
@@ -1923,7 +1923,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['existence','Dans la cuisine, il ___ une table.','y a','Ergänze „es gibt“, zwei Wörter nach il.','Complete “there is”, two words after il.'],
       ['position','Les clés sont ___ le sac.','dans','Die Schlüssel sind in der Tasche.','The keys are in the bag.'],
       ['contraction','Le rendez-vous est ___ musée.','au','Der Treffpunkt ist am Museum.','The meeting point is at the museum.'],
-      ['feminin','Je suis ___ gare pour la visite.','à la','Ich bin für die Besichtigung am Bahnhof.','I am at the station for the viewing.'],
+      ['feminin','Paul m’attend ___ gare.','à la','Paul wartet am Bahnhof auf mich.','Paul is waiting for me at the station.'],
       ['pluriel','La chambre est près des toilettes. Je vais ___ toilettes.','aux','Ergänze à mit dem passenden Artikel.','Complete with à and the correct article.'],
       ['location','Le loyer est de cinq cents euros par ___.','mois','Die Miete beträgt 500 Euro pro Monat.','The rent is 500 euros per month.']
     ],
@@ -1934,7 +1934,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['sequence','Allez tout droit, ___ tournez à droite.','puis','Erst geradeaus, dann rechts: Ergänze das Wort für „dann“.','First straight ahead, then right: insert the word for “then”.',['ensuite']],
       ['direction','Tournez à ___.','gauche','Du sagst: Biegen Sie links ab.','Say: Turn left.'],
       ['walk','L’arrêt est à six minutes à ___.','pied','Die Haltestelle ist sechs Minuten zu Fuß entfernt.','The stop is six minutes away on foot.'],
-      ['quai','Le train de Paris part du ___ six.','quai','Der Zug aus Paris fährt von Gleis 6 ab.','The train from Paris leaves from platform six.']
+      ['quai','Le train pour Paris part du ___ six.','quai','Der Zug nach Paris fährt von Gleis 6 ab.','The train to Paris leaves from platform six.']
     ],
     10:[
       ['verb','Paul et Léa ___ dans un café. (travailler)','travaillent','Paul und Léa arbeiten in einem Café.','Paul and Léa work in a café.'],
@@ -1942,7 +1942,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['cedille','Paul et moi, nous ___ à neuf heures. (commencer)','commençons','Paul und ich beginnen um neun Uhr.','Paul and I start at nine.'],
       ['cours','Le cours ___ à dix heures. (commencer)','commence','Der Kurs beginnt um zehn Uhr.','The class starts at ten.'],
       ['plural','Madame, vous ___ le samedi ? (travailler)','travaillez','Du fragst eine Person höflich, ob sie samstags arbeitet.','Politely ask one person whether she works on Saturdays.'],
-      ['profession','___','Je suis médecin','Bilde einen kurzen Satz mit être: Ich bin Arzt. (männlicher Sprecher)','Make a short sentence with être: I am a doctor. (male speaker)',['Je suis un médecin','Je suis docteur','Je suis un docteur','Moi, je suis médecin','Moi, je suis un médecin']],
+      ['profession','___','Je suis médecin','Bilde einen kurzen Satz mit être: Ich bin Arzt. (männlicher Sprecher)','Make a short sentence with être: I am a doctor. (male speaker)',['Je suis docteur','Moi, je suis médecin']],
       ['jours','Je travaille ___ lundi au mercredi.','du','Ich arbeite von Montag bis Mittwoch.','I work from Monday to Wednesday.']
     ],
     11:[
@@ -1954,7 +1954,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['etre','Paul et moi, nous ___ en train de travailler.','sommes','Paul und ich arbeiten gerade.','Paul and I are working right now.'],
       ['elision','Léa est en train ___écrire.','d’','Léa schreibt gerade. Ergänze de in der passenden Form.','Léa is writing right now. Insert the correct form of de.'],
       ['routine','À sept heures, je prends le ___.','petit-déjeuner','Ich frühstücke um sieben Uhr. Ergänze das fehlende Nomen.','I have breakfast at seven. Insert the missing noun.'],
-      ['sequence','D’abord, je me lève. Ensuite, je me douche. ___, je pars.','Enfin','Zuerst aufstehen, danach duschen, zum Schluss aufbrechen.','First get up, then shower, finally leave.']
+      ['sequence','D’abord, je me lève. Ensuite, je me douche. ___, je pars.','Enfin','Zuerst aufstehen, danach duschen, zum Schluss aufbrechen.','First get up, then shower, finally leave.',['Finalement']]
     ],
     12:[
       ['douleur','J’ai mal ___ dos depuis hier.','au','Ich habe seit gestern Rückenschmerzen.','My back has hurt since yesterday.'],
@@ -2066,7 +2066,7 @@ window.FR_A1_MASTERY_SPECS = {
       ['passe','Je suis arrivé ___ une semaine.','il y a','Ich bin vor einer Woche angekommen, männlicher Sprecher.','I arrived a week ago, male speaker.']
     ],
     23:[
-      ['partitif','Pour la soupe, il faut ___ farine.','de la','Ergänze den Teilungsartikel für eine unbestimmte Menge Mehl.','Insert the partitive article for an unspecified amount of flour.'],
+      ['partitif','Pour le gâteau, il faut ___ farine.','de la','Ergänze den Teilungsartikel für eine unbestimmte Menge Mehl.','Insert the partitive article for an unspecified amount of flour.'],
       ['partitif','Pour la soupe, il faut ___ lait.','du','Ergänze den Teilungsartikel für eine unbestimmte Menge Milch.','Insert the partitive article for an unspecified amount of milk.'],
       ['elision','Pour la soupe, il faut ___ eau.','de l’','Ergänze den Teilungsartikel für eine unbestimmte Menge Wasser.','Insert the partitive article for an unspecified amount of water.'],
       ['quantite','Trois cents grammes ___ légumes.','de','Dreihundert Gramm Gemüse.','Three hundred grams of vegetables.'],

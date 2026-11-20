@@ -201,102 +201,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „¿Cómo se escribe?“?",
           "o": [
-            "Ich fahre mit dem Bus zur Arbeit.",
+            "Wie spricht man das aus?",
             "Wie schreibt man das?",
-            "Ich verstehe nicht."
+            "Wie heißt du?"
           ],
           "a": 1,
-          "audio": "¿Cómo se escribe?"
+          "audio": "¿Cómo se escribe?",
+          "explanation": "Escribir = schreiben; ¿Cómo se escribe? = Wie schreibt man das? Nach der Aussprache fragt man mit ¿Cómo se pronuncia?, nach dem Namen mit ¿Cómo te llamas?"
         },
         {
           "q": "Was bedeutet „¿Puedes deletrearlo?“?",
           "o": [
             "Kannst du das buchstabieren?",
-            "Meine Eltern wohnen in Berlin.",
-            "Ich habe keine Kinder."
+            "Kannst du das wiederholen?",
+            "Kannst du das aufschreiben?"
           ],
           "a": 0,
-          "audio": "¿Puedes deletrearlo?"
+          "audio": "¿Puedes deletrearlo?",
+          "explanation": "Deletrear = buchstabieren; das angehängte -lo bedeutet „es/das“. Wiederholen heißt repetir, aufschreiben escribir."
         },
         {
           "q": "Was bedeutet „La letra h no se pronuncia.“?",
           "o": [
-            "Ich habe einen Bruder.",
+            "Der Buchstabe h wird wie j ausgesprochen.",
             "Der Buchstabe h wird nicht ausgesprochen.",
-            "ein kleines Haus"
+            "Der Buchstabe h wird kräftig ausgesprochen."
           ],
           "a": 1,
-          "audio": "La letra h no se pronuncia."
+          "audio": "La letra h no se pronuncia.",
+          "explanation": "No se pronuncia = wird nicht ausgesprochen. Deshalb klingt hola wie „ola“."
         },
         {
           "q": "Was bedeutet „La jota suena fuerte.“?",
           "o": [
-            "Wohnung zu vermieten.",
+            "Das j wird nicht ausgesprochen.",
             "Das j wird kräftig ausgesprochen.",
-            "Ich möchte ein Zimmer reservieren."
+            "Das j klingt wie ein deutsches j."
           ],
           "a": 1,
-          "audio": "La jota suena fuerte."
+          "audio": "La jota suena fuerte.",
+          "explanation": "Suena fuerte = klingt kräftig. Das spanische j ist ein rauer Reibelaut wie ch in „Bach“, nicht wie das deutsche j in „ja“."
         },
         {
           "q": "Was bedeutet „Mi apellido es Müller.“?",
           "o": [
-            "Ich möchte einen Salat.",
-            "Ich bevorzuge Fisch.",
+            "Mein Vorname ist Müller.",
+            "Sein Nachname ist Müller.",
             "Mein Nachname ist Müller."
           ],
           "a": 2,
-          "audio": "Mi apellido es Müller."
+          "audio": "Mi apellido es Müller.",
+          "explanation": "Apellido = Nachname, nombre = Vorname. Mi = mein, su = sein/ihr."
         },
         {
           "q": "Wie sagst du „Man schreibt M-U-L-L-E-R.“ auf Spanisch?",
           "o": [
-            "¿Cómo te llamas?",
+            "Se llama M-U-L-L-E-R.",
             "Se escribe M-U-L-L-E-R.",
-            "Comemos a las dos."
+            "Se pronuncia M-U-L-L-E-R."
           ],
           "a": 1,
-          "audio": "Se escribe M-U-L-L-E-R."
+          "audio": "Se escribe M-U-L-L-E-R.",
+          "explanation": "Se escribe = man schreibt. Se llama = er/sie heißt, se pronuncia = man spricht es aus."
         },
         {
           "q": "Wie sagst du „Mit b oder mit v?“ auf Spanisch?",
           "o": [
             "¿Con b o con v?",
-            "Desayuno café y pan.",
-            "Bebo agua."
+            "¿Con b y con v?",
+            "¿De b o de v?"
           ],
           "a": 0,
-          "audio": "¿Con b o con v?"
+          "audio": "¿Con b o con v?",
+          "explanation": "Con = mit, o = oder; y hieße „und“. Diese Nachfrage ist wichtig, weil b und v im Spanischen gleich klingen."
         },
         {
           "q": "Wie sagst du „Wiederholen Sie bitte.“ auf Spanisch?",
           "o": [
-            "unas vacaciones bonitas",
+            "Repite, por favor.",
             "Repita, por favor.",
-            "¿Dónde vives?"
+            "Escriba, por favor."
           ],
           "a": 1,
-          "audio": "Repita, por favor."
+          "audio": "Repita, por favor.",
+          "explanation": "Repita ist die höfliche Aufforderung (usted) von repetir. Repite richtet sich an tú („Wiederhole“), escriba bedeutet „Schreiben Sie“."
         },
         {
           "q": "Wie sagst du „Wie schreibt man das?“ auf Spanisch?",
           "o": [
             "¿Cómo se escribe?",
-            "¿Puede repetirlo?",
-            "Escribimos un mensaje."
+            "¿Cómo se pronuncia?",
+            "¿Qué significa?"
           ],
           "a": 0,
-          "audio": "¿Cómo se escribe?"
+          "audio": "¿Cómo se escribe?",
+          "explanation": "¿Cómo se escribe? fragt nach der Schreibweise. ¿Cómo se pronuncia? fragt nach der Aussprache, ¿Qué significa? nach der Bedeutung."
         },
         {
           "q": "Wie sagst du „Kannst du das buchstabieren?“ auf Spanisch?",
           "o": [
-            "un libro nuevo",
+            "¿Puede deletrearlo?",
             "¿Puedes deletrearlo?",
-            "El alquiler es de 700 euros."
+            "¿Puedes repetirlo?"
           ],
           "a": 1,
-          "audio": "¿Puedes deletrearlo?"
+          "audio": "¿Puedes deletrearlo?",
+          "explanation": "Puedes = du kannst (tú). ¿Puede…? ist die höfliche Form „Können Sie…?“. Repetirlo heißt „es wiederholen“."
         }
       ]
     },
@@ -371,102 +381,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „uno, dos, tres“?",
           "o": [
-            "Ich spreche Spanisch.",
+            "zwei, drei, vier",
             "eins, zwei, drei",
-            "Hallo, hier ist Ana."
+            "eins, drei, fünf"
           ],
           "a": 1,
-          "audio": "uno, dos, tres"
+          "audio": "uno, dos, tres",
+          "explanation": "uno = 1, dos = 2, tres = 3. Cuatro ist 4, cinco ist 5."
         },
         {
           "q": "Was bedeutet „veinte, treinta, cuarenta“?",
           "o": [
             "zwanzig, dreißig, vierzig",
-            "Wie lange dauert die Reise?",
-            "Hören Sie zweimal."
+            "zwölf, dreizehn, vierzehn",
+            "zwanzig, dreizehn, vierzehn"
           ],
           "a": 0,
-          "audio": "veinte, treinta, cuarenta"
+          "audio": "veinte, treinta, cuarenta",
+          "explanation": "veinte = 20, treinta = 30, cuarenta = 40. Die Zehner ab 30 enden auf -enta; 12–14 heißen doce, trece, catorce."
         },
         {
           "q": "Was bedeutet „Mi número es el 902 555 1840.“?",
           "o": [
             "Meine Nummer ist 902 555 1840.",
-            "Heute ist es sonnig.",
-            "Freut mich."
+            "Meine Postleitzahl ist 902 555 1840.",
+            "Deine Nummer ist 902 555 1840."
           ],
           "a": 0,
-          "audio": "Mi número es el 902 555 1840."
+          "audio": "Mi número es el 902 555 1840.",
+          "explanation": "Mi número (de teléfono) = meine Telefonnummer. Die Postleitzahl heißt código postal; tu = dein."
         },
         {
           "q": "Was bedeutet „Nací el 17 de abril.“?",
           "o": [
             "Ich bin am 17. April geboren.",
-            "eins, zwei, drei",
-            "Ich bin seit gestern krank."
+            "Ich bin am 17. August geboren.",
+            "Ich bin am 7. April geboren."
           ],
           "a": 0,
-          "audio": "Nací el 17 de abril."
+          "audio": "Nací el 17 de abril.",
+          "explanation": "Nací = ich bin geboren (nacer). Abril = April, agosto = August; diecisiete = 17, siete = 7."
         },
         {
           "q": "Was bedeutet „Tengo treinta y un años.“?",
           "o": [
             "Ich bin einunddreißig Jahre alt.",
-            "Welche Telefonnummer hast du?",
-            "Ruf mich heute Nachmittag an."
+            "Ich bin dreizehn Jahre alt.",
+            "Ich bin dreiundzwanzig Jahre alt."
           ],
           "a": 0,
-          "audio": "Tengo treinta y un años."
+          "audio": "Tengo treinta y un años.",
+          "explanation": "Treinta y uno = 31; vor años wird uno zu un. Das Alter steht mit tener. Trece = 13, veintitrés = 23."
         },
         {
           "q": "Wie sagst du „Es sind fünfzehn Euro.“ auf Spanisch?",
           "o": [
-            "Escribimos un mensaje.",
+            "Son cincuenta euros.",
             "Son quince euros.",
-            "Te mando un mensaje."
+            "Es quince euros."
           ],
           "a": 1,
-          "audio": "Son quince euros."
+          "audio": "Son quince euros.",
+          "explanation": "Quince = 15, cincuenta = 50. Bei mehreren Euro steht der Plural: son … euros."
         },
         {
           "q": "Wie sagst du „Meine Postleitzahl ist 28013.“ auf Spanisch?",
           "o": [
-            "la mano derecha",
+            "Mi número de teléfono es 28013.",
             "Mi código postal es 28013.",
-            "Para mí, agua, por favor."
+            "Mi dirección es 28013."
           ],
           "a": 1,
-          "audio": "Mi código postal es 28013."
+          "audio": "Mi código postal es 28013.",
+          "explanation": "Código postal = Postleitzahl. Número de teléfono ist die Telefonnummer, dirección die Adresse."
         },
         {
           "q": "Wie sagst du „Welche Telefonnummer hast du?“ auf Spanisch?",
           "o": [
-            "Gire a la derecha.",
+            "¿Qué número de teléfono tiene?",
             "¿Qué número de teléfono tienes?",
-            "Para mí, agua, por favor."
+            "¿Cuántos teléfonos tienes?"
           ],
           "a": 1,
-          "audio": "¿Qué número de teléfono tienes?"
+          "audio": "¿Qué número de teléfono tienes?",
+          "explanation": "Tienes = du hast (tú); tiene hieße „haben Sie / hat er“. ¿Cuántos…? fragt nach einer Anzahl."
         },
         {
           "q": "Wie sagst du „eins, zwei, drei“ auf Spanisch?",
           "o": [
-            "Escucho música todos los días.",
+            "dos, tres, cuatro",
             "uno, dos, tres",
-            "Estamos casados."
+            "uno, doce, tres"
           ],
           "a": 1,
-          "audio": "uno, dos, tres"
+          "audio": "uno, dos, tres",
+          "explanation": "uno = 1, dos = 2, tres = 3. Doce ist 12, cuatro ist 4."
         },
         {
           "q": "Wie sagst du „zwanzig, dreißig, vierzig“ auf Spanisch?",
           "o": [
             "veinte, treinta, cuarenta",
-            "Quiero abrir una cuenta.",
-            "Prefiero pescado."
+            "doce, trece, catorce",
+            "veinte, trece, cuarenta"
           ],
           "a": 0,
-          "audio": "veinte, treinta, cuarenta"
+          "audio": "veinte, treinta, cuarenta",
+          "explanation": "veinte = 20, treinta = 30, cuarenta = 40. Trece (13) und treinta (30) klingen ähnlich – achte auf die Endung -enta."
         }
       ]
     },
@@ -516,102 +536,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Soy estudiante.“?",
           "o": [
-            "Nimm einen Regenschirm mit.",
+            "Ich bin müde.",
             "Ich bin Student/in.",
-            "Das Haus ist groß."
+            "Ich bin in der Schule."
           ],
           "a": 1,
-          "audio": "Soy estudiante."
+          "audio": "Soy estudiante.",
+          "explanation": "Soy kommt von ser und nennt hier eine Identität bzw. Tätigkeit. „Ich bin müde“ wäre estoy cansado/a (estar = Zustand)."
         },
         {
           "q": "Was bedeutet „Estoy cansado.“?",
           "o": [
-            "Von neun bis zwölf.",
+            "Ich bin verheiratet.",
             "Ich bin müde.",
-            "Ich arbeite in einem Büro."
+            "Ich bin Student."
           ],
           "a": 1,
-          "audio": "Estoy cansado."
+          "audio": "Estoy cansado.",
+          "explanation": "Estoy cansado = ich bin müde (Zustand mit estar). Verwechsle cansado (müde) nicht mit casado (verheiratet)."
         },
         {
           "q": "Was bedeutet „Madrid está en España.“?",
           "o": [
-            "Lesen Sie zuerst die Frage.",
-            "Was machst du beruflich?",
+            "Ich bin in Madrid.",
+            "Madrid ist groß.",
             "Madrid liegt in Spanien."
           ],
           "a": 2,
-          "audio": "Madrid está en España."
+          "audio": "Madrid está en España.",
+          "explanation": "Está (estar) gibt hier die Lage an: Madrid liegt in Spanien. „Ich bin in Madrid“ wäre Estoy en Madrid."
         },
         {
           "q": "Was bedeutet „Hay un banco aquí.“?",
           "o": [
-            "zwanzig, dreißig, vierzig",
-            "Ich schicke dir eine Nachricht.",
+            "Die Bank ist hier.",
+            "Hier gibt es keine Bank.",
             "Hier gibt es eine Bank."
           ],
           "a": 2,
-          "audio": "Hay un banco aquí."
+          "audio": "Hay un banco aquí.",
+          "explanation": "Hay = es gibt; die Bank wird mit un banco erst eingeführt. „Die Bank ist hier“ wäre El banco está aquí, „keine Bank“ No hay banco."
         },
         {
           "q": "Was bedeutet „La casa es grande.“?",
           "o": [
-            "Ich habe keine Kinder.",
-            "Rufen Sie 600 123 456 an.",
+            "Das Haus ist klein.",
+            "Das Haus ist hier.",
             "Das Haus ist groß."
           ],
           "a": 2,
-          "audio": "La casa es grande."
+          "audio": "La casa es grande.",
+          "explanation": "Es grande beschreibt eine Eigenschaft mit ser. Grande = groß, pequeña = klein; „ist hier“ wäre está aquí."
         },
         {
           "q": "Wie sagst du „Die Tür ist offen.“ auf Spanisch?",
           "o": [
             "La puerta está abierta.",
-            "Me levanto a las siete.",
-            "¿Qué número de teléfono tienes?"
+            "La puerta es abierta.",
+            "La puerta está cerrada."
           ],
           "a": 0,
-          "audio": "La puerta está abierta."
+          "audio": "La puerta está abierta.",
+          "explanation": "Offen ist hier ein Zustand, daher estar: está abierta. Cerrada heißt geschlossen."
         },
         {
           "q": "Wie sagst du „Wo ist das Hotel?“ auf Spanisch?",
           "o": [
-            "Me pongo una chaqueta.",
-            "¿Cuándo puedo visitar el piso?",
+            "¿Dónde es el hotel?",
+            "¿Dónde hay el hotel?",
             "¿Dónde está el hotel?"
           ],
           "a": 2,
-          "audio": "¿Dónde está el hotel?"
+          "audio": "¿Dónde está el hotel?",
+          "explanation": "Nach dem Ort einer bestimmten Sache fragt man mit estar: ¿Dónde está…? Hay steht nicht mit dem bestimmten Artikel el."
         },
         {
           "q": "Wie sagst du „Es gibt keine Apotheke in der Nähe.“ auf Spanisch?",
           "o": [
-            "¿Dónde está el hotel?",
+            "No está farmacia cerca.",
             "No hay farmacia cerca.",
-            "¿Qué tiempo hace mañana?"
+            "No es farmacia cerca."
           ],
           "a": 1,
-          "audio": "No hay farmacia cerca."
+          "audio": "No hay farmacia cerca.",
+          "explanation": "„Es gibt (keine)“ heißt (no) hay. Hay bleibt unverändert und steht ohne bestimmten Artikel."
         },
         {
           "q": "Wie sagst du „Ich bin Student/in.“ auf Spanisch?",
           "o": [
-            "Está cerca del centro.",
-            "Necesito mi documento de identidad.",
+            "Estoy estudiante.",
+            "Hay estudiante.",
             "Soy estudiante."
           ],
           "a": 2,
-          "audio": "Soy estudiante."
+          "audio": "Soy estudiante.",
+          "explanation": "Für Beruf oder Tätigkeit steht ser: soy estudiante. Estar beschreibt Zustand oder Ort."
         },
         {
           "q": "Wie sagst du „Ich bin müde.“ auf Spanisch?",
           "o": [
             "Estoy cansado.",
-            "¿Cómo eres?",
-            "Vivo en Halifax."
+            "Soy cansado.",
+            "Estoy casado."
           ],
           "a": 0,
-          "audio": "Estoy cansado."
+          "audio": "Estoy cansado.",
+          "explanation": "Müdigkeit ist ein vorübergehender Zustand, daher estar. Casado heißt verheiratet. Als Frau sagst du estoy cansada."
         }
       ]
     },
@@ -663,101 +693,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Esta es mi madre.“?",
           "o": [
             "Das ist meine Mutter.",
-            "Nehmen Sie diese Tabletten.",
-            "Dieses Wochenende ruhe ich mich aus."
+            "Das ist mein Vater.",
+            "Das ist deine Mutter."
           ],
           "a": 0,
-          "audio": "Esta es mi madre."
+          "audio": "Esta es mi madre.",
+          "explanation": "Madre = Mutter, padre = Vater. Mi = mein/meine, tu = dein/deine."
         },
         {
           "q": "Was bedeutet „Tengo un hermano.“?",
           "o": [
             "Ich habe einen Bruder.",
-            "das Problem ist schwierig",
-            "Ich arbeite montags."
+            "Ich habe eine Schwester.",
+            "Ich habe einen Sohn."
           ],
           "a": 0,
-          "audio": "Tengo un hermano."
+          "audio": "Tengo un hermano.",
+          "explanation": "Hermano = Bruder, hermana = Schwester, hijo = Sohn. Tengo kommt von tener (haben)."
         },
         {
           "q": "Was bedeutet „Mis padres viven en Berlín.“?",
           "o": [
-            "Warum lernst du Spanisch?",
-            "Unterschreiben Sie hier, bitte.",
+            "Mein Vater wohnt in Berlin.",
+            "Meine Eltern arbeiten in Berlin.",
             "Meine Eltern wohnen in Berlin."
           ],
           "a": 2,
-          "audio": "Mis padres viven en Berlín."
+          "audio": "Mis padres viven en Berlín.",
+          "explanation": "Padres (Plural) bedeutet „Eltern“, deshalb auch mis. Viven = sie wohnen; „arbeiten“ wäre trabajan."
         },
         {
           "q": "Was bedeutet „Su nombre es Carlos.“?",
           "o": [
             "Sein/Ihr Name ist Carlos.",
-            "Ich arbeite montags.",
-            "Es gibt keine Apotheke in der Nähe."
+            "Mein Name ist Carlos.",
+            "Dein Name ist Carlos."
           ],
           "a": 0,
-          "audio": "Su nombre es Carlos."
+          "audio": "Su nombre es Carlos.",
+          "explanation": "Su = sein/ihr (bei usted auch „Ihr“). Mi = mein, tu = dein."
         },
         {
           "q": "Was bedeutet „Estamos casados.“?",
           "o": [
-            "Von neun bis zwölf.",
+            "Wir sind müde.",
             "Wir sind verheiratet.",
-            "Kannst du das buchstabieren?"
+            "Sie sind verheiratet."
           ],
           "a": 1,
-          "audio": "Estamos casados."
+          "audio": "Estamos casados.",
+          "explanation": "Estamos = wir sind (estar). Casados = verheiratet, cansados = müde. „Sie sind“ wäre están."
         },
         {
           "q": "Wie sagst du „Ich habe keine Kinder.“ auf Spanisch?",
           "o": [
             "No tengo hijos.",
-            "¿Con b o con v?",
-            "La cocina es pequeña."
+            "No tengo hermanos.",
+            "Tengo hijos."
           ],
           "a": 0,
-          "audio": "No tengo hijos."
+          "audio": "No tengo hijos.",
+          "explanation": "Hijos = Kinder, hermanos = Geschwister. Die Verneinung no steht vor dem Verb."
         },
         {
           "q": "Wie sagst du „Meine Schwester ist fünfundzwanzig Jahre alt.“ auf Spanisch?",
           "o": [
-            "Soy estudiante.",
-            "Quiero pagar con tarjeta.",
+            "Mi hermana es veinticinco años.",
+            "Mi hermano tiene veinticinco años.",
             "Mi hermana tiene veinticinco años."
           ],
           "a": 2,
-          "audio": "Mi hermana tiene veinticinco años."
+          "audio": "Mi hermana tiene veinticinco años.",
+          "explanation": "Das Alter steht mit tener: tiene … años. Hermana = Schwester, hermano = Bruder."
         },
         {
           "q": "Wie sagst du „Hast du Geschwister?“ auf Spanisch?",
           "o": [
-            "unas vacaciones bonitas",
-            "Está cerca del centro.",
+            "¿Tienes hijos?",
+            "¿Tiene hermanos?",
             "¿Tienes hermanos?"
           ],
           "a": 2,
-          "audio": "¿Tienes hermanos?"
+          "audio": "¿Tienes hermanos?",
+          "explanation": "Hermanos kann Brüder oder allgemein Geschwister bedeuten. Tienes = du hast; tiene wäre „haben Sie / hat er“. Hijos = Kinder."
         },
         {
           "q": "Wie sagst du „Das ist meine Mutter.“ auf Spanisch?",
           "o": [
             "Esta es mi madre.",
-            "Voy al trabajo en autobús.",
-            "Mañana tengo clase."
+            "Esta es mis madre.",
+            "Esta es tu madre."
           ],
           "a": 0,
-          "audio": "Esta es mi madre."
+          "audio": "Esta es mi madre.",
+          "explanation": "Bei einem Besitz im Singular steht mi: mi madre. Mis steht nur vor einem Plural (mis padres); tu = dein."
         },
         {
           "q": "Wie sagst du „Ich habe einen Bruder.“ auf Spanisch?",
           "o": [
-            "Quiero abrir una cuenta.",
-            "Llame al 600 123 456.",
+            "Tengo una hermana.",
+            "Soy un hermano.",
             "Tengo un hermano."
           ],
           "a": 2,
-          "audio": "Tengo un hermano."
+          "audio": "Tengo un hermano.",
+          "explanation": "Familienmitglieder „hat“ man: tengo (tener). Una hermana = eine Schwester."
         }
       ]
     },
@@ -807,102 +847,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Me levanto a las siete.“?",
           "o": [
-            "Mit b oder mit v?",
-            "Ich studiere Ingenieurwesen.",
+            "Ich gehe um sieben ins Bett.",
+            "Ich stehe um elf auf.",
             "Ich stehe um sieben auf."
           ],
           "a": 2,
-          "audio": "Me levanto a las siete."
+          "audio": "Me levanto a las siete.",
+          "explanation": "Levantarse = aufstehen, acostarse = ins Bett gehen. Siete = 7, once = 11."
         },
         {
           "q": "Was bedeutet „Me ducho por la mañana.“?",
           "o": [
             "Ich dusche morgens.",
-            "Ich komme aus Deutschland.",
-            "Morgen habe ich Unterricht."
+            "Ich dusche abends.",
+            "Ich frühstücke morgens."
           ],
           "a": 0,
-          "audio": "Me ducho por la mañana."
+          "audio": "Me ducho por la mañana.",
+          "explanation": "Ducharse = duschen. Por la mañana = morgens, por la noche = abends; desayunar = frühstücken."
         },
         {
           "q": "Was bedeutet „Desayuno café y pan.“?",
           "o": [
-            "Hallo!",
-            "Wann beginnt es?",
+            "Ich trinke Tee und esse Brot.",
+            "Zum Abendessen gibt es Kaffee und Brot.",
             "Ich frühstücke Kaffee und Brot."
           ],
           "a": 2,
-          "audio": "Desayuno café y pan."
+          "audio": "Desayuno café y pan.",
+          "explanation": "Desayunar = frühstücken; desayuno = ich frühstücke. Cenar wäre zu Abend essen. Café = Kaffee, té = Tee."
         },
         {
           "q": "Was bedeutet „Trabajo de ocho a cuatro.“?",
           "o": [
-            "die langen Straßen",
+            "Ich arbeite von vier bis acht.",
             "Ich arbeite von acht bis vier.",
-            "Meine Schwester ist fünfundzwanzig Jahre alt."
+            "Ich arbeite acht Stunden."
           ],
           "a": 1,
-          "audio": "Trabajo de ocho a cuatro."
+          "audio": "Trabajo de ocho a cuatro.",
+          "explanation": "De … a … = von … bis …. Die erste Zahl ist der Beginn, die zweite das Ende."
         },
         {
           "q": "Was bedeutet „Vuelvo a casa a las cinco.“?",
           "o": [
-            "Wie heißt du?",
+            "Ich gehe um fünf aus dem Haus.",
             "Ich komme um fünf nach Hause.",
-            "Heute ist es sonnig."
+            "Ich komme um sechs nach Hause."
           ],
           "a": 1,
-          "audio": "Vuelvo a casa a las cinco."
+          "audio": "Vuelvo a casa a las cinco.",
+          "explanation": "Volver a casa = nach Hause zurückkommen; salir de casa = das Haus verlassen. Cinco = 5, seis = 6."
         },
         {
           "q": "Wie sagst du „Ich esse mit meiner Familie zu Abend.“ auf Spanisch?",
           "o": [
-            "Mi apellido es Müller.",
+            "Como con mi familia.",
             "Ceno con mi familia.",
-            "Me llevo este."
+            "Desayuno con mi familia."
           ],
           "a": 1,
-          "audio": "Ceno con mi familia."
+          "audio": "Ceno con mi familia.",
+          "explanation": "Cenar = zu Abend essen. Comer = (zu Mittag) essen, desayunar = frühstücken."
         },
         {
           "q": "Wie sagst du „Ich gehe um elf ins Bett.“ auf Spanisch?",
           "o": [
-            "Quiero pagar con tarjeta.",
+            "Me levanto a las once.",
             "Me acuesto a las once.",
-            "La letra h no se pronuncia."
+            "Acuesto a las once."
           ],
           "a": 1,
-          "audio": "Me acuesto a las once."
+          "audio": "Me acuesto a las once.",
+          "explanation": "Acostarse ist reflexiv: me acuesto. Ohne me fehlt das Reflexivpronomen; me levanto heißt „ich stehe auf“."
         },
         {
           "q": "Wie sagst du „Sonntags ruhe ich mich aus.“ auf Spanisch?",
           "o": [
-            "Sé un poco de español.",
+            "Los domingos trabajo.",
             "Los domingos descanso.",
-            "¿Qué número de teléfono tienes?"
+            "Los sábados descanso."
           ],
           "a": 1,
-          "audio": "Los domingos descanso."
+          "audio": "Los domingos descanso.",
+          "explanation": "Los domingos = sonntags (regelmäßig), sábado = Samstag. Descansar = sich ausruhen."
         },
         {
           "q": "Wie sagst du „Ich stehe um sieben auf.“ auf Spanisch?",
           "o": [
             "Me levanto a las siete.",
-            "Voy al gimnasio.",
-            "El desayuno está incluido."
+            "Levanto a las siete.",
+            "Me levanto a la siete."
           ],
           "a": 0,
-          "audio": "Me levanto a las siete."
+          "audio": "Me levanto a las siete.",
+          "explanation": "Levantarse braucht das Reflexivpronomen me. Bei Uhrzeiten ab zwei Uhr steht der Plural: a las siete."
         },
         {
           "q": "Wie sagst du „Ich dusche morgens.“ auf Spanisch?",
           "o": [
-            "Hoy hace sol.",
-            "Tengo que cambiar de metro.",
+            "Me ducho por la noche.",
+            "Me ducho mañana.",
             "Me ducho por la mañana."
           ],
           "a": 2,
-          "audio": "Me ducho por la mañana."
+          "audio": "Me ducho por la mañana.",
+          "explanation": "Por la mañana = morgens. Mañana allein bedeutet „morgen“ (der nächste Tag); por la noche = abends."
         }
       ]
     },
@@ -946,109 +996,119 @@ window.ES_A1_DATA = {
         ],
         [
           "Llego un poco tarde.",
-          "Ich komme etwas später."
+          "Ich komme etwas zu spät."
         ]
       ],
       "quiz": [
         {
           "q": "Was bedeutet „¿Qué hora es?“?",
           "o": [
-            "Ich fahre mit dem Bus zur Arbeit.",
-            "Wie schreibt man das?",
+            "Wann beginnt es?",
+            "Wie lange dauert es?",
             "Wie spät ist es?"
           ],
           "a": 2,
-          "audio": "¿Qué hora es?"
+          "audio": "¿Qué hora es?",
+          "explanation": "¿Qué hora es? fragt nach der aktuellen Uhrzeit. „Um wie viel Uhr…?“ heißt ¿A qué hora…?"
         },
         {
           "q": "Was bedeutet „Son las cuatro y media.“?",
           "o": [
-            "Stellen Sie dem Prüfer zwei Fragen.",
-            "Lesen Sie zuerst die Frage.",
+            "Es ist halb vier.",
+            "Es ist Viertel nach vier.",
             "Es ist halb fünf."
           ],
           "a": 2,
-          "audio": "Son las cuatro y media."
+          "audio": "Son las cuatro y media.",
+          "explanation": "Las cuatro y media = 4:30, also „halb fünf“. Y cuarto wäre Viertel nach. Im Deutschen bezieht sich „halb“ auf die nächste Stunde."
         },
         {
           "q": "Was bedeutet „La cita es el miércoles.“?",
           "o": [
-            "Ich verstehe nicht.",
+            "Der Termin ist am Montag.",
             "Der Termin ist am Mittwoch.",
-            "Mit b oder mit v?"
+            "Der Termin ist jeden Mittwoch."
           ],
           "a": 1,
-          "audio": "La cita es el miércoles."
+          "audio": "La cita es el miércoles.",
+          "explanation": "Miércoles = Mittwoch, lunes = Montag. El miércoles meint einen bestimmten Mittwoch, los miércoles „jeden Mittwoch“."
         },
         {
           "q": "Was bedeutet „Nos vemos a las diez.“?",
           "o": [
             "Wir sehen uns um zehn.",
-            "Man schreibt M-U-L-L-E-R.",
-            "Wann öffnet das Büro?"
+            "Wir sehen uns in zehn Minuten.",
+            "Wir sehen uns um zwei."
           ],
           "a": 0,
-          "audio": "Nos vemos a las diez."
+          "audio": "Nos vemos a las diez.",
+          "explanation": "A las diez = um zehn Uhr. Diez = 10, dos = 2."
         },
         {
           "q": "Was bedeutet „Hoy es lunes.“?",
           "o": [
-            "Stellen Sie sich ein bis zwei Minuten vor.",
-            "ein neues Buch",
+            "Morgen ist Montag.",
+            "Heute ist Dienstag.",
             "Heute ist Montag."
           ],
           "a": 2,
-          "audio": "Hoy es lunes."
+          "audio": "Hoy es lunes.",
+          "explanation": "Hoy = heute, mañana = morgen. Lunes = Montag, martes = Dienstag."
         },
         {
           "q": "Wie sagst du „Morgen habe ich Unterricht.“ auf Spanisch?",
           "o": [
-            "Quiero reservar una habitación.",
-            "¿Qué hora es?",
+            "Hoy tengo clase.",
+            "Por la mañana tengo clase.",
             "Mañana tengo clase."
           ],
           "a": 2,
-          "audio": "Mañana tengo clase."
+          "audio": "Mañana tengo clase.",
+          "explanation": "Mañana = morgen. Por la mañana bedeutet „am Morgen/vormittags“, hoy „heute“."
         },
         {
           "q": "Wie sagst du „Von neun bis zwölf.“ auf Spanisch?",
           "o": [
-            "¿Dónde está el hotel?",
+            "De nueve y doce.",
             "De nueve a doce.",
-            "¿Cuánto cuesta?"
+            "De nueve a dos."
           ],
           "a": 1,
-          "audio": "De nueve a doce."
+          "audio": "De nueve a doce.",
+          "explanation": "„Von … bis …“ heißt de … a …. Doce = 12, dos = 2."
         },
         {
-          "q": "Wie sagst du „Ich komme etwas später.“ auf Spanisch?",
+          "q": "Wie sagst du „Ich komme etwas zu spät.“ auf Spanisch?",
           "o": [
             "Llego un poco tarde.",
-            "¿Dónde está la caja?",
-            "Correo electrónico"
+            "Llego un poco temprano.",
+            "Llego muy tarde."
           ],
           "a": 0,
-          "audio": "Llego un poco tarde."
+          "audio": "Llego un poco tarde.",
+          "explanation": "Llego = ich komme an, un poco = etwas, tarde = spät. Temprano bedeutet früh, muy tarde „sehr spät“."
         },
         {
           "q": "Wie sagst du „Wie spät ist es?“ auf Spanisch?",
           "o": [
-            "Está cerca del centro.",
-            "El alquiler es de 700 euros.",
+            "¿A qué hora es?",
+            "¿Qué tiempo hace?",
             "¿Qué hora es?"
           ],
           "a": 2,
-          "audio": "¿Qué hora es?"
+          "audio": "¿Qué hora es?",
+          "explanation": "¿Qué hora es? fragt nach der aktuellen Uhrzeit. ¿A qué hora…? fragt „um wie viel Uhr“, ¿Qué tiempo hace? nach dem Wetter."
         },
         {
           "q": "Wie sagst du „Es ist halb fünf.“ auf Spanisch?",
           "o": [
-            "Trabajo los lunes.",
+            "Son las cinco y media.",
             "Son las cuatro y media.",
-            "Bajo en la próxima parada."
+            "Es las cuatro y media."
           ],
           "a": 1,
-          "audio": "Son las cuatro y media."
+          "audio": "Son las cuatro y media.",
+          "explanation": "Halb fünf = 4:30 = las cuatro y media. Ab zwei Uhr heißt es son las …; es la una nur bei ein Uhr."
         }
       ]
     },
@@ -1098,102 +1158,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Me gusta el café.“?",
           "o": [
-            "Wann fährt der Zug ab?",
+            "Ich möchte einen Kaffee.",
             "Ich mag Kaffee.",
-            "Ich verstehe nicht."
+            "Ich mag keinen Kaffee."
           ],
           "a": 1,
-          "audio": "Me gusta el café."
+          "audio": "Me gusta el café.",
+          "explanation": "Me gusta = mir gefällt / ich mag. „Ich möchte einen Kaffee“ wäre Quiero/Quisiera un café; die Verneinung wäre No me gusta."
         },
         {
           "q": "Was bedeutet „No me gusta la carne.“?",
           "o": [
-            "Wohnung zu vermieten.",
-            "Madrid liegt in Spanien.",
+            "Ich mag Fisch nicht.",
+            "Ich mag Fleisch.",
             "Ich mag Fleisch nicht."
           ],
           "a": 2,
-          "audio": "No me gusta la carne."
+          "audio": "No me gusta la carne.",
+          "explanation": "No vor me gusta verneint die Aussage. Carne = Fleisch, pescado = Fisch."
         },
         {
           "q": "Was bedeutet „Quiero una ensalada.“?",
           "o": [
-            "Ich habe zwei Geschwister.",
-            "Ich fahre nach Madrid.",
+            "Ich mag Salat.",
+            "Ich möchte eine Suppe.",
             "Ich möchte einen Salat."
           ],
           "a": 2,
-          "audio": "Quiero una ensalada."
+          "audio": "Quiero una ensalada.",
+          "explanation": "Quiero = ich möchte. Me gusta la ensalada hieße „Ich mag Salat“; sopa = Suppe."
         },
         {
           "q": "Was bedeutet „Para mí, agua, por favor.“?",
           "o": [
             "Für mich Wasser, bitte.",
-            "Wie viel kostet es?",
-            "Ich heiße Laura."
+            "Für dich Wasser, bitte.",
+            "Für mich Wein, bitte."
           ],
           "a": 0,
-          "audio": "Para mí, agua, por favor."
+          "audio": "Para mí, agua, por favor.",
+          "explanation": "Para mí = für mich, para ti = für dich. Agua = Wasser, vino = Wein."
         },
         {
           "q": "Was bedeutet „La cuenta, por favor.“?",
           "o": [
-            "Ich mag Kaffee.",
+            "Die Speisekarte, bitte.",
             "Die Rechnung, bitte.",
-            "Haben Sie eine größere Größe?"
+            "Noch ein Wasser, bitte."
           ],
           "a": 1,
-          "audio": "La cuenta, por favor."
+          "audio": "La cuenta, por favor.",
+          "explanation": "La cuenta = die Rechnung. Die Speisekarte heißt la carta (oder el menú)."
         },
         {
           "q": "Wie sagst du „Was möchtest du essen?“ auf Spanisch?",
           "o": [
-            "¿Dónde está el ayuntamiento?",
-            "La letra h no se pronuncia.",
+            "¿Qué quieres beber?",
+            "¿Qué quiere comer?",
             "¿Qué quieres comer?"
           ],
           "a": 2,
-          "audio": "¿Qué quieres comer?"
+          "audio": "¿Qué quieres comer?",
+          "explanation": "Comer = essen, beber = trinken. Quieres richtet sich an tú; quiere wäre „möchten Sie / möchte er“."
         },
         {
           "q": "Wie sagst du „Ich bevorzuge Fisch.“ auf Spanisch?",
           "o": [
-            "Madrid está en España.",
-            "Hable de tres aspectos.",
+            "Prefiero carne.",
+            "Prefieres pescado.",
             "Prefiero pescado."
           ],
           "a": 2,
-          "audio": "Prefiero pescado."
+          "audio": "Prefiero pescado.",
+          "explanation": "Prefiero = ich bevorzuge (preferir, e → ie). Prefieres = du bevorzugst; carne = Fleisch."
         },
         {
           "q": "Wie sagst du „Es schmeckt sehr gut.“ auf Spanisch?",
           "o": [
-            "Empiezo a las ocho.",
-            "Hay un banco aquí.",
+            "Es muy rico.",
+            "Está muy caro.",
             "Está muy rico."
           ],
           "a": 2,
-          "audio": "Está muy rico."
+          "audio": "Está muy rico.",
+          "explanation": "Über den Geschmack sagt man está rico. Es rico bedeutet „ist reich“; caro heißt teuer."
         },
         {
           "q": "Wie sagst du „Ich mag Kaffee.“ auf Spanisch?",
           "o": [
-            "Quiero una ensalada.",
-            "Juego al fútbol.",
+            "Me gustan el café.",
+            "Yo gusto el café.",
             "Me gusta el café."
           ],
           "a": 2,
-          "audio": "Me gusta el café."
+          "audio": "Me gusta el café.",
+          "explanation": "Bei gustar ist der Kaffee grammatisch das Subjekt: me gusta el café. Gustan steht nur vor einem Plural."
         },
         {
           "q": "Wie sagst du „Ich mag Fleisch nicht.“ auf Spanisch?",
           "o": [
             "No me gusta la carne.",
-            "Madrid está en España.",
-            "Para dos noches."
+            "Me no gusta la carne.",
+            "No me gustan la carne."
           ],
           "a": 0,
-          "audio": "No me gusta la carne."
+          "audio": "No me gusta la carne.",
+          "explanation": "No steht vor dem Pronomen me. La carne ist Singular, daher gusta."
         }
       ]
     },
@@ -1244,102 +1314,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „¿Cuánto cuesta?“?",
           "o": [
-            "Ich komme aus Deutschland.",
+            "Wie viele sind es?",
             "Wie viel kostet das?",
-            "Ich gehe um elf ins Bett."
+            "Wo ist die Kasse?"
           ],
           "a": 1,
-          "audio": "¿Cuánto cuesta?"
+          "audio": "¿Cuánto cuesta?",
+          "explanation": "¿Cuánto cuesta? fragt nach dem Preis (costar = kosten). ¿Cuántos son? fragt nach einer Anzahl."
         },
         {
           "q": "Was bedeutet „Cuesta veinte euros.“?",
           "o": [
-            "Ich verstehe nicht.",
+            "Es kostet zwölf Euro.",
             "Es kostet zwanzig Euro.",
-            "Stellen Sie dem Prüfer zwei Fragen."
+            "Es kostet zweihundert Euro."
           ],
           "a": 1,
-          "audio": "Cuesta veinte euros."
+          "audio": "Cuesta veinte euros.",
+          "explanation": "Veinte = 20; doce = 12, doscientos = 200."
         },
         {
           "q": "Was bedeutet „Busco una chaqueta.“?",
           "o": [
-            "Die Rechnung, bitte.",
-            "Ruf mich heute Nachmittag an.",
+            "Ich kaufe eine Jacke.",
+            "Ich suche ein Hemd.",
             "Ich suche eine Jacke."
           ],
           "a": 2,
-          "audio": "Busco una chaqueta."
+          "audio": "Busco una chaqueta.",
+          "explanation": "Buscar = suchen, comprar = kaufen. Chaqueta = Jacke, camisa = Hemd."
         },
         {
           "q": "Was bedeutet „¿Tiene una talla más grande?“?",
           "o": [
-            "Meine Postleitzahl ist 28013.",
-            "Wie schreibt man das?",
+            "Haben Sie eine kleinere Größe?",
+            "Haben Sie eine andere Farbe?",
             "Haben Sie eine größere Größe?"
           ],
           "a": 2,
-          "audio": "¿Tiene una talla más grande?"
+          "audio": "¿Tiene una talla más grande?",
+          "explanation": "Talla = (Kleider-)Größe; más grande = größer, más pequeña = kleiner. Farbe heißt color."
         },
         {
           "q": "Was bedeutet „Quiero pagar con tarjeta.“?",
           "o": [
             "Ich möchte mit Karte bezahlen.",
-            "Ich trinke Wasser.",
-            "Ich bin am 17. April geboren."
+            "Ich möchte bar bezahlen.",
+            "Kann ich mit Karte bezahlen?"
           ],
           "a": 0,
-          "audio": "Quiero pagar con tarjeta."
+          "audio": "Quiero pagar con tarjeta.",
+          "explanation": "Pagar con tarjeta = mit Karte bezahlen; bar heißt en efectivo. Quiero = ich möchte – das ist eine Aussage, keine Frage."
         },
         {
           "q": "Wie sagst du „Es ist zu teuer.“ auf Spanisch?",
           "o": [
-            "Me ducho por la mañana.",
+            "Es muy barato.",
             "Es demasiado caro.",
-            "He recibido tu correo."
+            "Es demasiado barato."
           ],
           "a": 1,
-          "audio": "Es demasiado caro."
+          "audio": "Es demasiado caro.",
+          "explanation": "Demasiado = zu (sehr). Caro = teuer, barato = billig."
         },
         {
           "q": "Wie sagst du „Ich nehme diesen.“ auf Spanisch?",
           "o": [
-            "Está a cinco minutos a pie.",
+            "Me pongo este.",
             "Me llevo este.",
-            "Trabajo los lunes."
+            "Me llevo esta."
           ],
           "a": 1,
-          "audio": "Me llevo este."
+          "audio": "Me llevo este.",
+          "explanation": "Me llevo … = ich nehme (kaufe) …. Este passt zu einem maskulinen Wort (z. B. el abrigo), esta zu einem femininen; me pongo heißt „ich ziehe an“."
         },
         {
           "q": "Wie sagst du „Wo ist die Kasse?“ auf Spanisch?",
           "o": [
             "¿Dónde está la caja?",
-            "He recibido tu correo.",
-            "Mis padres viven en Berlín."
+            "¿Dónde hay la caja?",
+            "¿Dónde está la cuenta?"
           ],
           "a": 0,
-          "audio": "¿Dónde está la caja?"
+          "audio": "¿Dónde está la caja?",
+          "explanation": "Nach dem Ort einer bestimmten Sache fragt man mit ¿Dónde está…? La caja = die Kasse, la cuenta = die Rechnung."
         },
         {
           "q": "Wie sagst du „Wie viel kostet das?“ auf Spanisch?",
           "o": [
-            "Su nombre es Carlos.",
-            "una casa pequeña",
+            "¿Cuántos cuesta?",
+            "¿Cuánto cuestan?",
             "¿Cuánto cuesta?"
           ],
           "a": 2,
-          "audio": "¿Cuánto cuesta?"
+          "audio": "¿Cuánto cuesta?",
+          "explanation": "Für eine Sache steht cuesta, für mehrere cuestan. Cuánto bleibt hier unverändert."
         },
         {
           "q": "Wie sagst du „Es kostet zwanzig Euro.“ auf Spanisch?",
           "o": [
-            "Llego un poco tarde.",
-            "¿Qué tiempo hace mañana?",
+            "Cuestan veinte euros.",
+            "Cuesta veinte euro.",
             "Cuesta veinte euros."
           ],
           "a": 2,
-          "audio": "Cuesta veinte euros."
+          "audio": "Cuesta veinte euros.",
+          "explanation": "„Es kostet“ = cuesta (eine Sache). Bei mehr als einem Euro steht euros im Plural."
         }
       ]
     },
@@ -1390,102 +1470,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Busco un piso.“?",
           "o": [
-            "Wie viel kostet es?",
-            "Ich komme aus Deutschland.",
+            "Ich habe eine Wohnung.",
+            "Ich suche ein Zimmer.",
             "Ich suche eine Wohnung."
           ],
           "a": 2,
-          "audio": "Busco un piso."
+          "audio": "Busco un piso.",
+          "explanation": "Buscar = suchen. Piso = Wohnung (in Spanien), habitación = Zimmer; tengo = ich habe."
         },
         {
           "q": "Was bedeutet „El piso tiene dos dormitorios.“?",
           "o": [
-            "Ich möchte ein Zimmer reservieren.",
+            "Die Wohnung hat zwei Bäder.",
             "Die Wohnung hat zwei Schlafzimmer.",
-            "Es regnet."
+            "Die Wohnung liegt im zweiten Stock."
           ],
           "a": 1,
-          "audio": "El piso tiene dos dormitorios."
+          "audio": "El piso tiene dos dormitorios.",
+          "explanation": "Dormitorio = Schlafzimmer, baño = Bad. Tiene = hat."
         },
         {
           "q": "Was bedeutet „Hay un balcón.“?",
           "o": [
-            "Wir sind verheiratet.",
+            "Es gibt keinen Balkon.",
             "Es gibt einen Balkon.",
-            "Ich möchte ein Zimmer reservieren."
+            "Der Balkon ist groß."
           ],
           "a": 1,
-          "audio": "Hay un balcón."
+          "audio": "Hay un balcón.",
+          "explanation": "Hay = es gibt. Die Verneinung wäre no hay balcón."
         },
         {
           "q": "Was bedeutet „El alquiler es de 700 euros.“?",
           "o": [
             "Die Miete beträgt 700 Euro.",
-            "Hier gibt es eine Bank.",
-            "Stellen Sie sich ein bis zwei Minuten vor."
+            "Die Kaution beträgt 700 Euro.",
+            "Die Miete beträgt 70 Euro."
           ],
           "a": 0,
-          "audio": "El alquiler es de 700 euros."
+          "audio": "El alquiler es de 700 euros.",
+          "explanation": "El alquiler = die Miete. Setecientos = 700, setenta = 70."
         },
         {
           "q": "Was bedeutet „Está cerca del centro.“?",
           "o": [
-            "Ich möchte mit Karte bezahlen.",
+            "Sie ist weit vom Zentrum entfernt.",
             "Sie ist nahe am Zentrum.",
-            "Du lernst schnell."
+            "Sie ist im Zentrum."
           ],
           "a": 1,
-          "audio": "Está cerca del centro."
+          "audio": "Está cerca del centro.",
+          "explanation": "Cerca de = in der Nähe von, lejos de = weit weg von. De + el wird zu del."
         },
         {
           "q": "Wie sagst du „Die Küche ist klein.“ auf Spanisch?",
           "o": [
             "La cocina es pequeña.",
-            "Escucho música todos los días.",
-            "Necesito una cita con el médico."
+            "La cocina es pequeño.",
+            "La cocina está pequeña."
           ],
           "a": 0,
-          "audio": "La cocina es pequeña."
+          "audio": "La cocina es pequeña.",
+          "explanation": "Cocina ist feminin, daher pequeña. Eine bleibende Eigenschaft beschreibt man mit ser: es."
         },
         {
           "q": "Wie sagst du „Wann kann ich die Wohnung besichtigen?“ auf Spanisch?",
           "o": [
-            "Nací el 17 de abril.",
-            "¿Puede hablar más despacio?",
+            "¿Dónde puedo visitar el piso?",
+            "¿Cuándo puedes visitar el piso?",
             "¿Cuándo puedo visitar el piso?"
           ],
           "a": 2,
-          "audio": "¿Cuándo puedo visitar el piso?"
+          "audio": "¿Cuándo puedo visitar el piso?",
+          "explanation": "Cuándo = wann, dónde = wo. Puedo = ich kann, puedes = du kannst."
         },
         {
           "q": "Wie sagst du „Ganzjährig zu vermieten.“ auf Spanisch?",
           "o": [
-            "En mi tiempo libre…",
-            "No tengo hijos.",
+            "Se vende todo el año.",
+            "Se alquila todo el mes.",
             "Se alquila todo el año."
           ],
           "a": 2,
-          "audio": "Se alquila todo el año."
+          "audio": "Se alquila todo el año.",
+          "explanation": "Se alquila = zu vermieten, se vende = zu verkaufen. Todo el año = das ganze Jahr."
         },
         {
           "q": "Wie sagst du „Ich suche eine Wohnung.“ auf Spanisch?",
           "o": [
-            "Mucho gusto.",
-            "Preséntese durante uno o dos minutos.",
+            "Busca un piso.",
+            "Tengo un piso.",
             "Busco un piso."
           ],
           "a": 2,
-          "audio": "Busco un piso."
+          "audio": "Busco un piso.",
+          "explanation": "Busco = ich suche (yo). Busca hieße „er/sie sucht“, tengo „ich habe“."
         },
         {
           "q": "Wie sagst du „Die Wohnung hat zwei Schlafzimmer.“ auf Spanisch?",
           "o": [
-            "Hay un banco aquí.",
-            "¿A qué te dedicas?",
+            "El piso hay dos dormitorios.",
+            "El piso tiene dos baños.",
             "El piso tiene dos dormitorios."
           ],
           "a": 2,
-          "audio": "El piso tiene dos dormitorios."
+          "audio": "El piso tiene dos dormitorios.",
+          "explanation": "Mit einem Subjekt (el piso) steht tiene. Hay benutzt man ohne Subjekt: En el piso hay dos dormitorios."
         }
       ]
     },
@@ -1536,102 +1626,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „¿Dónde está la estación?“?",
           "o": [
-            "Wie viel kostet das?",
-            "Was machst du beruflich?",
+            "Wann fährt der Zug?",
+            "Wo ist die Haltestelle?",
             "Wo ist der Bahnhof?"
           ],
           "a": 2,
-          "audio": "¿Dónde está la estación?"
+          "audio": "¿Dónde está la estación?",
+          "explanation": "Estación = Bahnhof, parada = Haltestelle. ¿Dónde está…? fragt nach dem Ort."
         },
         {
           "q": "Was bedeutet „Siga todo recto.“?",
           "o": [
             "Gehen Sie geradeaus.",
-            "Wann beginnt es?",
-            "Ich esse mit meiner Familie zu Abend."
+            "Biegen Sie rechts ab.",
+            "Gehen Sie zurück."
           ],
           "a": 0,
-          "audio": "Siga todo recto."
+          "audio": "Siga todo recto.",
+          "explanation": "Siga todo recto = immer geradeaus. Gire a la derecha = biegen Sie rechts ab."
         },
         {
           "q": "Was bedeutet „Gire a la derecha.“?",
           "o": [
             "Biegen Sie rechts ab.",
-            "Die Bank ist neben dem Hotel.",
-            "Wann fährt der Zug ab?"
+            "Biegen Sie links ab.",
+            "Gehen Sie geradeaus."
           ],
           "a": 0,
-          "audio": "Gire a la derecha."
+          "audio": "Gire a la derecha.",
+          "explanation": "Derecha = rechts, izquierda = links. Gire ist die höfliche Aufforderung von girar (abbiegen)."
         },
         {
           "q": "Was bedeutet „Tome el autobús número ocho.“?",
           "o": [
             "Nehmen Sie den Bus Nummer acht.",
-            "Wo ist das Hotel?",
-            "Ich esse mit meiner Familie zu Abend."
+            "Nehmen Sie die U-Bahn Nummer acht.",
+            "Nehmen Sie den Bus um acht Uhr."
           ],
           "a": 0,
-          "audio": "Tome el autobús número ocho."
+          "audio": "Tome el autobús número ocho.",
+          "explanation": "Autobús = Bus, metro = U-Bahn. Número ocho = Nummer acht; a las ocho wäre „um acht Uhr“."
         },
         {
           "q": "Was bedeutet „Tengo que cambiar de metro.“?",
           "o": [
-            "Lesen Sie Ihre Notizen nicht ab.",
+            "Ich muss mit der U-Bahn fahren.",
             "Ich muss die U-Bahn wechseln.",
-            "Ich lese gern."
+            "Ich muss Geld wechseln."
           ],
           "a": 1,
-          "audio": "Tengo que cambiar de metro."
+          "audio": "Tengo que cambiar de metro.",
+          "explanation": "Tener que + Infinitiv = müssen. Cambiar de metro = die U-Bahn wechseln (umsteigen)."
         },
         {
           "q": "Wie sagst du „Der Zug kommt verspätet.“ auf Spanisch?",
           "o": [
-            "De nueve a doce.",
-            "Empiezo a las ocho.",
+            "El tren sale tarde.",
+            "El tren llega temprano.",
             "El tren llega tarde."
           ],
           "a": 2,
-          "audio": "El tren llega tarde."
+          "audio": "El tren llega tarde.",
+          "explanation": "Llegar = ankommen, salir = abfahren. Tarde = spät, temprano = früh."
         },
         {
           "q": "Wie sagst du „Ich steige an der nächsten Haltestelle aus.“ auf Spanisch?",
           "o": [
-            "Empiezo a las ocho.",
+            "Subo en la próxima parada.",
             "Bajo en la próxima parada.",
-            "Viven en Valencia."
+            "Bajo en la última parada."
           ],
           "a": 1,
-          "audio": "Bajo en la próxima parada."
+          "audio": "Bajo en la próxima parada.",
+          "explanation": "Bajar = aussteigen, subir = einsteigen. Próxima = nächste, última = letzte."
         },
         {
           "q": "Wie sagst du „Es ist fünf Minuten zu Fuß.“ auf Spanisch?",
           "o": [
-            "Estoy enfermo desde ayer.",
+            "Está a cinco minutos en coche.",
             "Está a cinco minutos a pie.",
-            "Me levanto a las siete."
+            "Es cinco minutos a pie."
           ],
           "a": 1,
-          "audio": "Está a cinco minutos a pie."
+          "audio": "Está a cinco minutos a pie.",
+          "explanation": "Entfernungen gibt man mit estar a … an. A pie = zu Fuß, en coche = mit dem Auto."
         },
         {
           "q": "Wie sagst du „Wo ist der Bahnhof?“ auf Spanisch?",
           "o": [
-            "Nombre y apellidos",
+            "¿Dónde es la estación?",
             "¿Dónde está la estación?",
-            "Quiero pagar con tarjeta."
+            "¿Dónde está el estación?"
           ],
           "a": 1,
-          "audio": "¿Dónde está la estación?"
+          "audio": "¿Dónde está la estación?",
+          "explanation": "Für den Ort einer bestimmten Sache steht estar. Estación ist feminin: la estación."
         },
         {
           "q": "Wie sagst du „Gehen Sie geradeaus.“ auf Spanisch?",
           "o": [
-            "Hable de tres aspectos.",
-            "Lea primero la pregunta.",
+            "Sigue todo recto.",
+            "Gire a la izquierda.",
             "Siga todo recto."
           ],
           "a": 2,
-          "audio": "Siga todo recto."
+          "audio": "Siga todo recto.",
+          "explanation": "Siga ist die höfliche Aufforderung (usted). Sigue richtet sich an tú („Geh geradeaus“); gire a la izquierda = biegen Sie links ab."
         }
       ]
     },
@@ -1682,102 +1782,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Trabajo en una oficina.“?",
           "o": [
-            "Ich stehe um sieben auf.",
-            "Ich steige an der nächsten Haltestelle aus.",
+            "Ich suche Arbeit in einem Büro.",
+            "Ich arbeite in einer Schule.",
             "Ich arbeite in einem Büro."
           ],
           "a": 2,
-          "audio": "Trabajo en una oficina."
+          "audio": "Trabajo en una oficina.",
+          "explanation": "Trabajo = ich arbeite, oficina = Büro, escuela = Schule. Busco trabajo hieße „ich suche Arbeit“."
         },
         {
           "q": "Was bedeutet „Estudio ingeniería.“?",
           "o": [
-            "Ich kann mit Karte bezahlen.",
-            "Morgen habe ich Unterricht.",
+            "Ich bin Ingenieur.",
+            "Ich studiere Informatik.",
             "Ich studiere Ingenieurwesen."
           ],
           "a": 2,
-          "audio": "Estudio ingeniería."
+          "audio": "Estudio ingeniería.",
+          "explanation": "Estudio = ich studiere. „Ich bin Ingenieur“ wäre Soy ingeniero; Informatik heißt informática."
         },
         {
           "q": "Was bedeutet „Empiezo a las ocho.“?",
           "o": [
-            "schöne Ferien",
+            "Ich höre um acht auf.",
             "Ich fange um acht an.",
-            "Es kostet zwanzig Euro."
+            "Ich fange um elf an."
           ],
           "a": 1,
-          "audio": "Empiezo a las ocho."
+          "audio": "Empiezo a las ocho.",
+          "explanation": "Empezar = anfangen (e → ie: empiezo); terminar = aufhören. Ocho = 8, once = 11."
         },
         {
           "q": "Was bedeutet „Mis compañeros son simpáticos.“?",
           "o": [
             "Meine Kollegen sind nett.",
-            "Hast du Geschwister?",
-            "einige spanische Freunde"
+            "Meine Kollegen sind müde.",
+            "Meine Freunde sind nett."
           ],
           "a": 0,
-          "audio": "Mis compañeros son simpáticos."
+          "audio": "Mis compañeros son simpáticos.",
+          "explanation": "Compañeros = Kollegen/Mitschüler, amigos = Freunde. Simpáticos = nett; als Eigenschaft steht ser (son)."
         },
         {
           "q": "Was bedeutet „Tengo clase por la tarde.“?",
           "o": [
-            "Dieses Wochenende ruhe ich mich aus.",
+            "Ich habe morgens Unterricht.",
             "Ich habe nachmittags Unterricht.",
-            "Guten Morgen."
+            "Ich habe heute keinen Unterricht."
           ],
           "a": 1,
-          "audio": "Tengo clase por la tarde."
+          "audio": "Tengo clase por la tarde.",
+          "explanation": "Por la tarde = nachmittags, por la mañana = morgens. Clase = Unterricht."
         },
         {
           "q": "Wie sagst du „Ich suche Arbeit.“ auf Spanisch?",
           "o": [
-            "Quiero aprender español.",
-            "Necesito una cita con el médico.",
+            "Trabajo mucho.",
+            "Busca trabajo.",
             "Busco trabajo."
           ],
           "a": 2,
-          "audio": "Busco trabajo."
+          "audio": "Busco trabajo.",
+          "explanation": "Busco = ich suche, busca = er/sie sucht. Trabajo kann „Arbeit“ oder „ich arbeite“ bedeuten."
         },
         {
           "q": "Wie sagst du „Was machst du beruflich?“ auf Spanisch?",
           "o": [
-            "Marque la opción correcta.",
+            "¿Qué haces hoy?",
             "¿A qué te dedicas?",
-            "Tome estas pastillas."
+            "¿A qué se dedica?"
           ],
           "a": 1,
-          "audio": "¿A qué te dedicas?"
+          "audio": "¿A qué te dedicas?",
+          "explanation": "¿A qué te dedicas? fragt nach dem Beruf und richtet sich an tú; ¿A qué se dedica? ist die höfliche Form. ¿Qué haces hoy? fragt nach heutigen Plänen."
         },
         {
           "q": "Wie sagst du „Heute habe ich frei.“ auf Spanisch?",
           "o": [
-            "Quiero aprender español.",
+            "Hoy tengo mucho trabajo.",
             "Hoy tengo el día libre.",
-            "Mañana tengo clase."
+            "Mañana tengo el día libre."
           ],
           "a": 1,
-          "audio": "Hoy tengo el día libre."
+          "audio": "Hoy tengo el día libre.",
+          "explanation": "Tener el día libre = einen freien Tag haben. Hoy = heute, mañana = morgen."
         },
         {
           "q": "Wie sagst du „Ich arbeite in einem Büro.“ auf Spanisch?",
           "o": [
             "Trabajo en una oficina.",
-            "Tome estas pastillas.",
-            "el problema es difícil"
+            "Trabajo a una oficina.",
+            "Soy en una oficina."
           ],
           "a": 0,
-          "audio": "Trabajo en una oficina."
+          "audio": "Trabajo en una oficina.",
+          "explanation": "Für den Arbeitsort steht en: trabajo en una oficina. A zeigt eine Richtung."
         },
         {
           "q": "Wie sagst du „Ich studiere Ingenieurwesen.“ auf Spanisch?",
           "o": [
-            "No me gusta la carne.",
+            "Estudias ingeniería.",
             "Estudio ingeniería.",
-            "Hay un banco aquí."
+            "Soy ingeniería."
           ],
           "a": 1,
-          "audio": "Estudio ingeniería."
+          "audio": "Estudio ingeniería.",
+          "explanation": "Estudio = ich studiere, estudias = du studierst. Ingeniería ist das Studienfach, nicht der Beruf."
         }
       ]
     },
@@ -1827,102 +1937,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Juego al fútbol.“?",
           "o": [
-            "Wo gibt es eine Apotheke?",
+            "Ich sehe Fußball.",
             "Ich spiele Fußball.",
-            "Es kostet zwanzig Euro."
+            "Ich spiele Tennis."
           ],
           "a": 1,
-          "audio": "Juego al fútbol."
+          "audio": "Juego al fútbol.",
+          "explanation": "Jugar a + Sportart: juego al fútbol (a + el = al). Fußball schauen hieße ver el fútbol."
         },
         {
           "q": "Was bedeutet „Voy al gimnasio.“?",
           "o": [
-            "Wir essen um zwei.",
-            "Sie wohnen in Valencia.",
+            "Ich gehe ins Kino.",
+            "Ich gehe ins Schwimmbad.",
             "Ich gehe ins Fitnessstudio."
           ],
           "a": 2,
-          "audio": "Voy al gimnasio."
+          "audio": "Voy al gimnasio.",
+          "explanation": "Gimnasio = Fitnessstudio, cine = Kino, piscina = Schwimmbad. Voy al … = ich gehe zum/ins …."
         },
         {
           "q": "Was bedeutet „Me gusta leer.“?",
           "o": [
-            "Samstags gehe ich mit Freunden aus.",
-            "Mit b oder mit v?",
+            "Ich schreibe gern.",
+            "Ich lese nicht gern.",
             "Ich lese gern."
           ],
           "a": 2,
-          "audio": "Me gusta leer."
+          "audio": "Me gusta leer.",
+          "explanation": "Me gusta + Infinitiv = etwas gern tun. Leer = lesen, escribir = schreiben."
         },
         {
           "q": "Was bedeutet „Los sábados salgo con amigos.“?",
           "o": [
-            "die langen Straßen",
+            "Sonntags gehe ich mit Freunden aus.",
             "Samstags gehe ich mit Freunden aus.",
-            "Hallo!"
+            "Samstags bleibe ich mit Freunden zu Hause."
           ],
           "a": 1,
-          "audio": "Los sábados salgo con amigos."
+          "audio": "Los sábados salgo con amigos.",
+          "explanation": "Los sábados = samstags (regelmäßig), domingo = Sonntag. Salir = ausgehen."
         },
         {
           "q": "Was bedeutet „A veces voy al cine.“?",
           "o": [
             "Manchmal gehe ich ins Kino.",
-            "Ich kann mit Karte bezahlen.",
-            "Wir kommen am Freitag an."
+            "Ich gehe oft ins Kino.",
+            "Ich gehe nie ins Kino."
           ],
           "a": 0,
-          "audio": "A veces voy al cine."
+          "audio": "A veces voy al cine.",
+          "explanation": "A veces = manchmal. A menudo = oft, nunca = nie."
         },
         {
           "q": "Wie sagst du „Ich höre jeden Tag Musik.“ auf Spanisch?",
           "o": [
             "Escucho música todos los días.",
-            "Mañana tengo clase.",
-            "veinte, treinta, cuarenta"
+            "Escucho música todo el día.",
+            "Toco música todos los días."
           ],
           "a": 0,
-          "audio": "Escucho música todos los días."
+          "audio": "Escucho música todos los días.",
+          "explanation": "Todos los días = jeden Tag; todo el día = den ganzen Tag. Escuchar = hören, tocar = (ein Instrument) spielen."
         },
         {
           "q": "Wie sagst du „Was machst du in deiner Freizeit?“ auf Spanisch?",
           "o": [
-            "Vengo de casa.",
-            "Haga dos preguntas al entrevistador.",
+            "¿Qué hace en su tiempo libre?",
+            "¿Qué haces en tu trabajo?",
             "¿Qué haces en tu tiempo libre?"
           ],
           "a": 2,
-          "audio": "¿Qué haces en tu tiempo libre?"
+          "audio": "¿Qué haces en tu tiempo libre?",
+          "explanation": "Haces und tu richten sich an tú. Mit usted hieße es ¿Qué hace en su tiempo libre? Tiempo libre = Freizeit."
         },
         {
           "q": "Wie sagst du „Dieses Wochenende ruhe ich mich aus.“ auf Spanisch?",
           "o": [
-            "Empiezo a las ocho.",
+            "Este fin de semana trabajo.",
             "Este fin de semana descanso.",
-            "Tome el autobús número ocho."
+            "Cada fin de semana descanso."
           ],
           "a": 1,
-          "audio": "Este fin de semana descanso."
+          "audio": "Este fin de semana descanso.",
+          "explanation": "Este fin de semana = dieses Wochenende, cada = jedes. Descansar = sich ausruhen."
         },
         {
           "q": "Wie sagst du „Ich spiele Fußball.“ auf Spanisch?",
           "o": [
-            "¿Cuánto cuesta?",
-            "No hay farmacia cerca.",
+            "Juega al fútbol.",
+            "Hago al fútbol.",
             "Juego al fútbol."
           ],
           "a": 2,
-          "audio": "Juego al fútbol."
+          "audio": "Juego al fútbol.",
+          "explanation": "Juego = ich spiele (jugar, u → ue); juega = er/sie spielt. Bei Ballsportarten steht jugar a, nicht hacer."
         },
         {
           "q": "Wie sagst du „Ich gehe ins Fitnessstudio.“ auf Spanisch?",
           "o": [
-            "Está lloviendo.",
-            "Madrid está en España.",
+            "Voy a el gimnasio.",
+            "Vengo del gimnasio.",
             "Voy al gimnasio."
           ],
           "a": 2,
-          "audio": "Voy al gimnasio."
+          "audio": "Voy al gimnasio.",
+          "explanation": "A + el wird immer zu al. Vengo del gimnasio heißt „ich komme vom Fitnessstudio“."
         }
       ]
     },
@@ -1973,102 +2093,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Hoy hace sol.“?",
           "o": [
-            "Guten Morgen.",
-            "Mein Handy funktioniert nicht.",
+            "Heute ist es kalt.",
+            "Morgen ist es sonnig.",
             "Heute ist es sonnig."
           ],
           "a": 2,
-          "audio": "Hoy hace sol."
+          "audio": "Hoy hace sol.",
+          "explanation": "Hace sol = es ist sonnig, hace frío = es ist kalt. Hoy = heute, mañana = morgen."
         },
         {
           "q": "Was bedeutet „Hace frío y viento.“?",
           "o": [
-            "Im Sommer ist es heiß.",
+            "Es ist warm und windig.",
             "Es ist kalt und windig.",
-            "Wie schreibt man das?"
+            "Es ist kalt und es regnet."
           ],
           "a": 1,
-          "audio": "Hace frío y viento."
+          "audio": "Hace frío y viento.",
+          "explanation": "Hace frío = es ist kalt, hace viento = es ist windig. Hace calor = es ist heiß, llueve = es regnet."
         },
         {
           "q": "Was bedeutet „Está lloviendo.“?",
           "o": [
             "Es regnet.",
-            "Mein Handy funktioniert nicht.",
-            "Ich habe Kopfschmerzen."
+            "Es schneit.",
+            "Es ist bewölkt."
           ],
           "a": 0,
-          "audio": "Está lloviendo."
+          "audio": "Está lloviendo.",
+          "explanation": "Está lloviendo = es regnet (gerade). Nieva = es schneit, está nublado = es ist bewölkt."
         },
         {
           "q": "Was bedeutet „Necesito un abrigo.“?",
           "o": [
             "Ich brauche einen Mantel.",
-            "Was machst du beruflich?",
-            "Es regnet."
+            "Ich habe einen Mantel.",
+            "Ich brauche einen Regenschirm."
           ],
           "a": 0,
-          "audio": "Necesito un abrigo."
+          "audio": "Necesito un abrigo.",
+          "explanation": "Necesito = ich brauche, tengo = ich habe. Abrigo = Mantel, paraguas = Regenschirm."
         },
         {
           "q": "Was bedeutet „Lleva un paraguas.“?",
           "o": [
-            "Madrid liegt in Spanien.",
-            "Guten Morgen.",
+            "Ich nehme einen Regenschirm mit.",
+            "Kauf einen Regenschirm.",
             "Nimm einen Regenschirm mit."
           ],
           "a": 2,
-          "audio": "Lleva un paraguas."
+          "audio": "Lleva un paraguas.",
+          "explanation": "Lleva ist hier die Aufforderung an tú von llevar (mitnehmen). „Ich nehme mit“ wäre llevo; kaufen heißt comprar."
         },
         {
           "q": "Wie sagst du „Im Sommer ist es heiß.“ auf Spanisch?",
           "o": [
-            "¿Puede hablar más despacio?",
-            "Está muy rico.",
+            "En invierno hace calor.",
+            "En verano es calor.",
             "En verano hace calor."
           ],
           "a": 2,
-          "audio": "En verano hace calor."
+          "audio": "En verano hace calor.",
+          "explanation": "Wetter steht mit hacer: hace calor. Verano = Sommer, invierno = Winter."
         },
         {
           "q": "Wie sagst du „Wie wird das Wetter morgen?“ auf Spanisch?",
           "o": [
-            "Hablo español.",
+            "¿Qué hora es mañana?",
             "¿Qué tiempo hace mañana?",
-            "Tengo que cambiar de metro."
+            "¿Qué tiempo hace hoy?"
           ],
           "a": 1,
-          "audio": "¿Qué tiempo hace mañana?"
+          "audio": "¿Qué tiempo hace mañana?",
+          "explanation": "Tiempo bedeutet hier „Wetter“; ¿Qué hora…? fragt nach der Uhrzeit. Mañana = morgen, hoy = heute."
         },
         {
           "q": "Wie sagst du „Ich ziehe eine Jacke an.“ auf Spanisch?",
           "o": [
-            "Prefiero pescado.",
-            "Los domingos descanso.",
+            "Me llevo una chaqueta.",
+            "Pongo una chaqueta.",
             "Me pongo una chaqueta."
           ],
           "a": 2,
-          "audio": "Me pongo una chaqueta."
+          "audio": "Me pongo una chaqueta.",
+          "explanation": "Ponerse = sich etwas anziehen, daher me pongo. Me llevo una chaqueta bedeutet beim Einkaufen „ich nehme eine Jacke“."
         },
         {
           "q": "Wie sagst du „Heute ist es sonnig.“ auf Spanisch?",
           "o": [
             "Hoy hace sol.",
-            "las calles largas",
-            "¿Cuánto dura el viaje?"
+            "Hoy es sol.",
+            "Hoy hace frío."
           ],
           "a": 0,
-          "audio": "Hoy hace sol."
+          "audio": "Hoy hace sol.",
+          "explanation": "Viele Wetterangaben stehen mit hacer: hace sol, hace frío. Es sol ist falsch."
         },
         {
           "q": "Wie sagst du „Es ist kalt und windig.“ auf Spanisch?",
           "o": [
-            "He recibido tu correo.",
-            "En verano hace calor.",
+            "Es frío y viento.",
+            "Tengo frío y viento.",
             "Hace frío y viento."
           ],
           "a": 2,
-          "audio": "Hace frío y viento."
+          "audio": "Hace frío y viento.",
+          "explanation": "Wetter: hace frío. Tengo frío heißt „mir ist kalt“ (persönliches Empfinden)."
         }
       ]
     },
@@ -2120,101 +2250,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Quiero reservar una habitación.“?",
           "o": [
             "Ich möchte ein Zimmer reservieren.",
-            "Die Küche ist klein.",
-            "Madrid liegt in Spanien."
+            "Ich möchte ein Zimmer bezahlen.",
+            "Ich möchte einen Tisch reservieren."
           ],
           "a": 0,
-          "audio": "Quiero reservar una habitación."
+          "audio": "Quiero reservar una habitación.",
+          "explanation": "Reservar = reservieren, pagar = bezahlen. Habitación = Zimmer, mesa = Tisch."
         },
         {
           "q": "Was bedeutet „Para dos noches.“?",
           "o": [
             "Für zwei Nächte.",
-            "Wo ist die Kasse?",
-            "Ich ziehe eine Jacke an."
+            "Für zwei Personen.",
+            "Um zwei Uhr nachts."
           ],
           "a": 0,
-          "audio": "Para dos noches."
+          "audio": "Para dos noches.",
+          "explanation": "Noches = Nächte. „Für zwei Personen“ hieße para dos personas."
         },
         {
           "q": "Was bedeutet „¿A qué hora sale el tren?“?",
           "o": [
-            "Ich brauche einen Arzttermin.",
+            "Wann kommt der Zug an?",
             "Wann fährt der Zug ab?",
-            "Stellen Sie sich ein bis zwei Minuten vor."
+            "Wo fährt der Zug ab?"
           ],
           "a": 1,
-          "audio": "¿A qué hora sale el tren?"
+          "audio": "¿A qué hora sale el tren?",
+          "explanation": "Salir = abfahren, llegar = ankommen. ¿A qué hora…? fragt nach der Uhrzeit, ¿De dónde…? nach dem Ort."
         },
         {
           "q": "Was bedeutet „Llegamos el viernes.“?",
           "o": [
-            "Lesen Sie Ihre Notizen nicht ab.",
-            "Sie öffnen um neun.",
+            "Wir fahren am Freitag ab.",
+            "Wir kommen am Donnerstag an.",
             "Wir kommen am Freitag an."
           ],
           "a": 2,
-          "audio": "Llegamos el viernes."
+          "audio": "Llegamos el viernes.",
+          "explanation": "Llegamos = wir kommen an; abfahren heißt salir. Viernes = Freitag, jueves = Donnerstag."
         },
         {
           "q": "Was bedeutet „El desayuno está incluido.“?",
           "o": [
             "Das Frühstück ist inklusive.",
-            "Gute Besserung.",
-            "Es ist kalt und windig."
+            "Das Abendessen ist inklusive.",
+            "Das Frühstück kostet extra."
           ],
           "a": 0,
-          "audio": "El desayuno está incluido."
+          "audio": "El desayuno está incluido.",
+          "explanation": "Desayuno = Frühstück, cena = Abendessen. Está incluido = ist inbegriffen."
         },
         {
           "q": "Wie sagst du „Ich brauche meinen Reisepass.“ auf Spanisch?",
           "o": [
-            "una casa pequeña",
+            "Necesito tu pasaporte.",
             "Necesito mi pasaporte.",
-            "unos amigos españoles"
+            "Tengo mi pasaporte."
           ],
           "a": 1,
-          "audio": "Necesito mi pasaporte."
+          "audio": "Necesito mi pasaporte.",
+          "explanation": "Necesito = ich brauche, tengo = ich habe. Mi = mein, tu = dein."
         },
         {
           "q": "Wie sagst du „Wir fahren in den Norden in Urlaub.“ auf Spanisch?",
           "o": [
-            "Para mí, agua, por favor.",
+            "Vamos de vacaciones al sur.",
             "Vamos de vacaciones al norte.",
-            "Lea primero la pregunta."
+            "Voy de vacaciones al norte."
           ],
           "a": 1,
-          "audio": "Vamos de vacaciones al norte."
+          "audio": "Vamos de vacaciones al norte.",
+          "explanation": "Vamos = wir fahren (ir), voy = ich fahre. Ir de vacaciones = in Urlaub fahren; norte = Norden, sur = Süden."
         },
         {
           "q": "Wie sagst du „Wie lange dauert die Reise?“ auf Spanisch?",
           "o": [
-            "Quiero aprender español.",
+            "¿Cuánto cuesta el viaje?",
             "¿Cuánto dura el viaje?",
-            "Quiero una ensalada."
+            "¿Cuándo es el viaje?"
           ],
           "a": 1,
-          "audio": "¿Cuánto dura el viaje?"
+          "audio": "¿Cuánto dura el viaje?",
+          "explanation": "Durar = dauern, costar = kosten. ¿Cuándo…? fragt nach dem Zeitpunkt, nicht nach der Dauer."
         },
         {
           "q": "Wie sagst du „Ich möchte ein Zimmer reservieren.“ auf Spanisch?",
           "o": [
             "Quiero reservar una habitación.",
-            "Cuesta veinte euros.",
-            "veinte, treinta, cuarenta"
+            "Quiero reservar un habitación.",
+            "Quiero reservo una habitación."
           ],
           "a": 0,
-          "audio": "Quiero reservar una habitación."
+          "audio": "Quiero reservar una habitación.",
+          "explanation": "Habitación ist feminin: una habitación. Nach quiero steht der Infinitiv reservar."
         },
         {
           "q": "Wie sagst du „Für zwei Nächte.“ auf Spanisch?",
           "o": [
             "Para dos noches.",
-            "Tengo dos hermanos.",
-            "¿A qué hora sale el tren?"
+            "Para dos días.",
+            "Para dos noche."
           ],
           "a": 0,
-          "audio": "Para dos noches."
+          "audio": "Para dos noches.",
+          "explanation": "Noche = Nacht, im Plural noches. Día = Tag."
         }
       ]
     },
@@ -2266,101 +2406,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Me duele la cabeza.“?",
           "o": [
             "Ich habe Kopfschmerzen.",
-            "Schreiben Sie zwischen 30 und 40 Wörtern.",
-            "Ich suche Arbeit."
+            "Ich habe Bauchschmerzen.",
+            "Ich habe Fieber."
           ],
           "a": 0,
-          "audio": "Me duele la cabeza."
+          "audio": "Me duele la cabeza.",
+          "explanation": "Me duele la cabeza = mir tut der Kopf weh. Bauchschmerzen wären me duele el estómago; tengo fiebre = ich habe Fieber."
         },
         {
           "q": "Was bedeutet „Tengo fiebre.“?",
           "o": [
-            "Stellen Sie sich ein bis zwei Minuten vor.",
-            "Ich spreche Spanisch.",
+            "Ich habe Husten.",
+            "Mir ist kalt.",
             "Ich habe Fieber."
           ],
           "a": 2,
-          "audio": "Tengo fiebre."
+          "audio": "Tengo fiebre.",
+          "explanation": "Fiebre = Fieber, tos = Husten. „Mir ist kalt“ hieße tengo frío."
         },
         {
           "q": "Was bedeutet „Estoy enfermo desde ayer.“?",
           "o": [
-            "Gute Besserung.",
-            "Ich studiere Ingenieurwesen.",
+            "Ich bin seit heute krank.",
+            "Ich war gestern krank.",
             "Ich bin seit gestern krank."
           ],
           "a": 2,
-          "audio": "Estoy enfermo desde ayer."
+          "audio": "Estoy enfermo desde ayer.",
+          "explanation": "Desde ayer = seit gestern (und immer noch). Estoy enfermo beschreibt den aktuellen Zustand mit estar."
         },
         {
           "q": "Was bedeutet „Necesito una cita con el médico.“?",
           "o": [
             "Ich brauche einen Arzttermin.",
-            "Können Sie das wiederholen?",
-            "Ich bin seit gestern krank."
+            "Ich brauche ein Medikament.",
+            "Ich habe einen Arzttermin."
           ],
           "a": 0,
-          "audio": "Necesito una cita con el médico."
+          "audio": "Necesito una cita con el médico.",
+          "explanation": "Cita = Termin, médico = Arzt. Necesito = ich brauche, tengo = ich habe; Medikament = medicamento."
         },
         {
           "q": "Was bedeutet „Tome estas pastillas.“?",
           "o": [
             "Nehmen Sie diese Tabletten.",
-            "Ich möchte Spanisch lernen.",
-            "Ich arbeite von acht bis vier."
+            "Kaufen Sie diese Tabletten.",
+            "Nehmen Sie diese Tropfen."
           ],
           "a": 0,
-          "audio": "Tome estas pastillas."
+          "audio": "Tome estas pastillas.",
+          "explanation": "Tome ist die höfliche Aufforderung von tomar (nehmen). Pastillas = Tabletten, gotas = Tropfen; kaufen = comprar."
         },
         {
           "q": "Wie sagst du „Trinken Sie viel Wasser.“ auf Spanisch?",
           "o": [
             "Beba mucha agua.",
-            "Me acuesto a las once.",
-            "Madrid está en España."
+            "Bebe mucha agua.",
+            "Beba mucho agua."
           ],
           "a": 0,
-          "audio": "Beba mucha agua."
+          "audio": "Beba mucha agua.",
+          "explanation": "Beba ist die höfliche Aufforderung (usted), bebe richtet sich an tú. Agua ist feminin (el agua nur wegen des betonten a-), daher mucha."
         },
         {
           "q": "Wie sagst du „Wo gibt es eine Apotheke?“ auf Spanisch?",
           "o": [
             "¿Dónde hay una farmacia?",
-            "Bajo en la próxima parada.",
-            "Tome el autobús número ocho."
+            "¿Dónde es una farmacia?",
+            "¿Cuándo hay una farmacia?"
           ],
           "a": 0,
-          "audio": "¿Dónde hay una farmacia?"
+          "audio": "¿Dónde hay una farmacia?",
+          "explanation": "„Es gibt“ heißt hay; mit ¿Dónde hay…? fragst du nach irgendeiner Apotheke. Für eine bestimmte Apotheke sagt man ¿Dónde está la farmacia?"
         },
         {
           "q": "Wie sagst du „Gute Besserung.“ auf Spanisch?",
           "o": [
-            "Estudio ingeniería.",
+            "Que aproveche.",
             "Que te mejores.",
-            "El tren llega tarde."
+            "Buena suerte."
           ],
           "a": 1,
-          "audio": "Que te mejores."
+          "audio": "Que te mejores.",
+          "explanation": "Que te mejores = gute Besserung (an tú). Que aproveche = guten Appetit, buena suerte = viel Glück."
         },
         {
           "q": "Wie sagst du „Ich habe Kopfschmerzen.“ auf Spanisch?",
           "o": [
-            "Trabajo en una oficina.",
+            "Me duelen la cabeza.",
             "Me duele la cabeza.",
-            "Sé un poco de español."
+            "Me duele el pie."
           ],
           "a": 1,
-          "audio": "Me duele la cabeza."
+          "audio": "Me duele la cabeza.",
+          "explanation": "Doler richtet sich nach dem Körperteil: la cabeza ist Singular, daher duele. Pie = Fuß. Auch möglich ist Tengo dolor de cabeza."
         },
         {
           "q": "Wie sagst du „Ich habe Fieber.“ auf Spanisch?",
           "o": [
-            "unos amigos españoles",
-            "El desayuno está incluido.",
+            "Soy fiebre.",
+            "Me duele fiebre.",
             "Tengo fiebre."
           ],
           "a": 2,
-          "audio": "Tengo fiebre."
+          "audio": "Tengo fiebre.",
+          "explanation": "Fieber „hat“ man: tengo fiebre. Doler verwendet man nur mit Körperteilen."
         }
       ]
     },
@@ -2411,102 +2561,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Hola, soy Ana.“?",
           "o": [
-            "die langen Straßen",
+            "Hallo, ist Ana da?",
             "Hallo, hier ist Ana.",
-            "Ich brauche einen Arzttermin."
+            "Hallo, ich rufe Ana an."
           ],
           "a": 1,
-          "audio": "Hola, soy Ana."
+          "audio": "Hola, soy Ana.",
+          "explanation": "Am Telefon stellt man sich mit soy + Name vor. ¿Está Ana? fragt, ob Ana da ist."
         },
         {
           "q": "Was bedeutet „Llámame esta tarde.“?",
           "o": [
-            "Ich fange um acht an.",
+            "Ich rufe dich heute Nachmittag an.",
             "Ruf mich heute Nachmittag an.",
-            "Ich bin Student/in."
+            "Ruf mich morgen an."
           ],
           "a": 1,
-          "audio": "Llámame esta tarde."
+          "audio": "Llámame esta tarde.",
+          "explanation": "Llámame = ruf mich an (Aufforderung an tú, me ist angehängt). Te llamo = ich rufe dich an; esta tarde = heute Nachmittag, mañana = morgen."
         },
         {
           "q": "Was bedeutet „Te mando un mensaje.“?",
           "o": [
-            "Es ist zu teuer.",
-            "Es gibt einen Balkon.",
+            "Schick mir eine Nachricht.",
+            "Ich habe deine Nachricht bekommen.",
             "Ich schicke dir eine Nachricht."
           ],
           "a": 2,
-          "audio": "Te mando un mensaje."
+          "audio": "Te mando un mensaje.",
+          "explanation": "Mando = ich schicke, te = dir. „Schick mir“ wäre mándame; bekommen heißt recibir."
         },
         {
           "q": "Was bedeutet „He recibido tu correo.“?",
           "o": [
             "Ich habe deine E-Mail erhalten.",
-            "Ich bin seit gestern krank.",
-            "Können Sie das wiederholen?"
+            "Ich habe dir eine E-Mail geschickt.",
+            "Ich schreibe dir eine E-Mail."
           ],
           "a": 0,
-          "audio": "He recibido tu correo."
+          "audio": "He recibido tu correo.",
+          "explanation": "He recibido = ich habe erhalten (recibir). Tu correo = deine E-Mail; schicken = mandar, schreiben = escribir."
         },
         {
           "q": "Was bedeutet „Mi móvil no funciona.“?",
           "o": [
             "Mein Handy funktioniert nicht.",
-            "ein neues Buch",
-            "Ich bin seit gestern krank."
+            "Mein Handy ist neu.",
+            "Ich habe kein Handy."
           ],
           "a": 0,
-          "audio": "Mi móvil no funciona."
+          "audio": "Mi móvil no funciona.",
+          "explanation": "Móvil = Handy, funciona = funktioniert. Die Verneinung no steht vor dem Verb."
         },
         {
           "q": "Wie sagst du „Können Sie langsamer sprechen?“ auf Spanisch?",
           "o": [
             "¿Puede hablar más despacio?",
-            "Busco una chaqueta.",
-            "¿A qué hora abre la oficina?"
+            "¿Puede hablar más alto?",
+            "¿Puedes hablar más despacio?"
           ],
           "a": 0,
-          "audio": "¿Puede hablar más despacio?"
+          "audio": "¿Puede hablar más despacio?",
+          "explanation": "Puede = können Sie (usted), puedes = kannst du. Más despacio = langsamer, más alto = lauter."
         },
         {
           "q": "Wie sagst du „Ich verstehe nicht.“ auf Spanisch?",
           "o": [
-            "Tome estas pastillas.",
-            "Nací el 17 de abril.",
+            "No entiendes.",
+            "Entiendo.",
             "No entiendo."
           ],
           "a": 2,
-          "audio": "No entiendo."
+          "audio": "No entiendo.",
+          "explanation": "Entiendo = ich verstehe (entender, e → ie); entiendes = du verstehst. No steht vor dem Verb."
         },
         {
           "q": "Wie sagst du „Können Sie das wiederholen?“ auf Spanisch?",
           "o": [
-            "¿Cuánto cuesta?",
-            "Llegamos el viernes.",
+            "¿Puede escribirlo?",
+            "¿Puedo repetirlo?",
             "¿Puede repetirlo?"
           ],
           "a": 2,
-          "audio": "¿Puede repetirlo?"
+          "audio": "¿Puede repetirlo?",
+          "explanation": "Puede = können Sie, puedo = kann ich. Repetir = wiederholen, escribir = schreiben; lo bedeutet „es/das“."
         },
         {
           "q": "Wie sagst du „Hallo, hier ist Ana.“ auf Spanisch?",
           "o": [
-            "Quiero reservar una habitación.",
-            "¿Tienes hermanos?",
+            "Hola, estoy Ana.",
+            "Hola, ¿está Ana?",
             "Hola, soy Ana."
           ],
           "a": 2,
-          "audio": "Hola, soy Ana."
+          "audio": "Hola, soy Ana.",
+          "explanation": "Am Telefon nennst du dich mit soy + Name. Estar steht nicht für die Identität; ¿Está Ana? fragt, ob Ana da ist."
         },
         {
           "q": "Wie sagst du „Ruf mich heute Nachmittag an.“ auf Spanisch?",
           "o": [
-            "Estamos casados.",
-            "Viven en Valencia.",
+            "Te llamo esta tarde.",
+            "Llámame esta noche.",
             "Llámame esta tarde."
           ],
           "a": 2,
-          "audio": "Llámame esta tarde."
+          "audio": "Llámame esta tarde.",
+          "explanation": "Llámame = ruf mich an, te llamo = ich rufe dich an. Esta tarde = heute Nachmittag, esta noche = heute Abend."
         }
       ]
     },
@@ -2557,102 +2717,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Quiero enviar este paquete.“?",
           "o": [
-            "die rechte Hand",
+            "Ich möchte dieses Paket abholen.",
             "Ich möchte dieses Paket schicken.",
-            "Manchmal gehe ich ins Kino."
+            "Ich möchte diesen Brief schicken."
           ],
           "a": 1,
-          "audio": "Quiero enviar este paquete."
+          "audio": "Quiero enviar este paquete.",
+          "explanation": "Enviar = schicken, recoger = abholen. Paquete = Paket, carta = Brief."
         },
         {
           "q": "Was bedeutet „Necesito un sello.“?",
           "o": [
             "Ich brauche eine Briefmarke.",
-            "Ich komme von zu Hause.",
-            "Ich mag Kaffee."
+            "Ich brauche einen Umschlag.",
+            "Ich brauche ein Formular."
           ],
           "a": 0,
-          "audio": "Necesito un sello."
+          "audio": "Necesito un sello.",
+          "explanation": "Sello = Briefmarke. Sobre = Umschlag, formulario = Formular."
         },
         {
           "q": "Was bedeutet „¿Dónde está el ayuntamiento?“?",
           "o": [
-            "Sprechen Sie über drei Aspekte.",
-            "Ich mag Kaffee.",
+            "Wo ist die Post?",
+            "Wann öffnet das Rathaus?",
             "Wo ist das Rathaus?"
           ],
           "a": 2,
-          "audio": "¿Dónde está el ayuntamiento?"
+          "audio": "¿Dónde está el ayuntamiento?",
+          "explanation": "Ayuntamiento = Rathaus, Correos = Post. ¿Dónde…? fragt nach dem Ort, ¿A qué hora abre…? nach der Öffnungszeit."
         },
         {
           "q": "Was bedeutet „Quiero abrir una cuenta.“?",
           "o": [
             "Ich möchte ein Konto eröffnen.",
-            "Ich komme etwas später.",
-            "Das Haus ist groß."
+            "Ich möchte die Rechnung bezahlen.",
+            "Ich möchte ein Konto schließen."
           ],
           "a": 0,
-          "audio": "Quiero abrir una cuenta."
+          "audio": "Quiero abrir una cuenta.",
+          "explanation": "Cuenta bedeutet bei der Bank „Konto“, im Restaurant „Rechnung“. Abrir = öffnen/eröffnen, cerrar = schließen."
         },
         {
           "q": "Was bedeutet „Rellene este formulario.“?",
           "o": [
-            "Ich brauche eine Briefmarke.",
-            "Ich fahre nach Madrid.",
+            "Unterschreiben Sie dieses Formular.",
+            "Lesen Sie dieses Formular.",
             "Füllen Sie dieses Formular aus."
           ],
           "a": 2,
-          "audio": "Rellene este formulario."
+          "audio": "Rellene este formulario.",
+          "explanation": "Rellenar = ausfüllen, firmar = unterschreiben, leer = lesen."
         },
         {
           "q": "Wie sagst du „Unterschreiben Sie hier, bitte.“ auf Spanisch?",
           "o": [
-            "Me gusta leer.",
-            "Bebo agua.",
+            "Firma aquí, por favor.",
+            "Escriba aquí, por favor.",
             "Firme aquí, por favor."
           ],
           "a": 2,
-          "audio": "Firme aquí, por favor."
+          "audio": "Firme aquí, por favor.",
+          "explanation": "Firme ist die höfliche Aufforderung (usted) von firmar; firma richtet sich an tú. Escriba = schreiben Sie."
         },
         {
           "q": "Wie sagst du „Ich brauche meinen Ausweis.“ auf Spanisch?",
           "o": [
             "Necesito mi documento de identidad.",
-            "¿Tienes hermanos?",
-            "Voy al trabajo en autobús."
+            "Necesito mi pasaporte.",
+            "Necesito tu documento de identidad."
           ],
           "a": 0,
-          "audio": "Necesito mi documento de identidad."
+          "audio": "Necesito mi documento de identidad.",
+          "explanation": "Documento de identidad = Personalausweis, pasaporte = Reisepass. Mi = mein, tu = dein."
         },
         {
           "q": "Wie sagst du „Wann öffnet das Büro?“ auf Spanisch?",
           "o": [
-            "Busco trabajo.",
-            "Hay un banco aquí.",
+            "¿A qué hora cierra la oficina?",
+            "¿Dónde abre la oficina?",
             "¿A qué hora abre la oficina?"
           ],
           "a": 2,
-          "audio": "¿A qué hora abre la oficina?"
+          "audio": "¿A qué hora abre la oficina?",
+          "explanation": "Abrir = öffnen, cerrar = schließen. ¿A qué hora…? fragt nach der Uhrzeit."
         },
         {
           "q": "Wie sagst du „Ich möchte dieses Paket schicken.“ auf Spanisch?",
           "o": [
             "Quiero enviar este paquete.",
-            "un libro nuevo",
-            "Siga todo recto."
+            "Quiero enviar esta paquete.",
+            "Quiero recibir este paquete."
           ],
           "a": 0,
-          "audio": "Quiero enviar este paquete."
+          "audio": "Quiero enviar este paquete.",
+          "explanation": "Paquete ist maskulin, daher este. Enviar = schicken, recibir = bekommen."
         },
         {
           "q": "Wie sagst du „Ich brauche eine Briefmarke.“ auf Spanisch?",
           "o": [
-            "Cuesta veinte euros.",
-            "Tome estas pastillas.",
+            "Necesito una sello.",
+            "Necesito un sobre.",
             "Necesito un sello."
           ],
           "a": 2,
-          "audio": "Necesito un sello."
+          "audio": "Necesito un sello.",
+          "explanation": "Sello ist maskulin: un sello. Sobre = Umschlag."
         }
       ]
     },
@@ -2702,102 +2872,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „Hablo español.“?",
           "o": [
-            "Wie schreibt man das?",
-            "Der Zug kommt verspätet.",
+            "Du sprichst Spanisch.",
+            "Wir sprechen Spanisch.",
             "Ich spreche Spanisch."
           ],
           "a": 2,
-          "audio": "Hablo español."
+          "audio": "Hablo español.",
+          "explanation": "Die Endung -o zeigt yo: hablo. Hablas = du sprichst, hablamos = wir sprechen."
         },
         {
           "q": "Was bedeutet „Comemos a las dos.“?",
           "o": [
-            "Was möchtest du essen?",
+            "Sie essen um zwei.",
             "Wir essen um zwei.",
-            "Wann fährt der Zug ab?"
+            "Wir essen um zwölf."
           ],
           "a": 1,
-          "audio": "Comemos a las dos."
+          "audio": "Comemos a las dos.",
+          "explanation": "-emos ist bei -er-Verben die Endung für nosotros: comemos. Comen = sie essen; dos = 2, doce = 12."
         },
         {
           "q": "Was bedeutet „Viven en Valencia.“?",
           "o": [
             "Sie wohnen in Valencia.",
-            "Ich spiele Fußball.",
-            "Die Miete beträgt 700 Euro."
+            "Wir wohnen in Valencia.",
+            "Er wohnt in Valencia."
           ],
           "a": 0,
-          "audio": "Viven en Valencia."
+          "audio": "Viven en Valencia.",
+          "explanation": "Die Endung -en zeigt ellos/ellas/ustedes: viven. Vivimos = wir wohnen, vive = er/sie wohnt."
         },
         {
           "q": "Was bedeutet „Trabajo los lunes.“?",
           "o": [
-            "Ich mag Fleisch nicht.",
+            "Ich arbeite am Dienstag.",
             "Ich arbeite montags.",
-            "Ich suche eine Jacke."
+            "Er arbeitet montags."
           ],
           "a": 1,
-          "audio": "Trabajo los lunes."
+          "audio": "Trabajo los lunes.",
+          "explanation": "Trabajo = ich arbeite (-o). Los lunes = montags (regelmäßig); martes = Dienstag."
         },
         {
           "q": "Was bedeutet „Aprendes rápido.“?",
           "o": [
-            "Ich studiere Ingenieurwesen.",
+            "Ich lerne schnell.",
             "Du lernst schnell.",
-            "Wo wohnst du?"
+            "Du lernst langsam."
           ],
           "a": 1,
-          "audio": "Aprendes rápido."
+          "audio": "Aprendes rápido.",
+          "explanation": "-es ist bei -er-Verben die tú-Endung: aprendes. Aprendo = ich lerne; rápido = schnell, despacio = langsam."
         },
         {
           "q": "Wie sagst du „Wir schreiben eine Nachricht.“ auf Spanisch?",
           "o": [
             "Escribimos un mensaje.",
-            "Para dos noches.",
-            "Los domingos descanso."
+            "Escribemos un mensaje.",
+            "Escriben un mensaje."
           ],
           "a": 0,
-          "audio": "Escribimos un mensaje."
+          "audio": "Escribimos un mensaje.",
+          "explanation": "Escribir ist ein -ir-Verb: nosotros escribimos (nicht -emos). Escriben = sie schreiben."
         },
         {
           "q": "Wie sagst du „Ich trinke Wasser.“ auf Spanisch?",
           "o": [
-            "¿Dónde vives?",
-            "Tengo fiebre.",
+            "Bebe agua.",
+            "Bebes agua.",
             "Bebo agua."
           ],
           "a": 2,
-          "audio": "Bebo agua."
+          "audio": "Bebo agua.",
+          "explanation": "Beber: yo bebo, tú bebes, él/ella bebe."
         },
         {
           "q": "Wie sagst du „Sie öffnen um neun.“ auf Spanisch?",
           "o": [
-            "¿Dónde hay una farmacia?",
+            "Abre a las nueve.",
             "Abren a las nueve.",
-            "Me levanto a las siete."
+            "Abrimos a las nueve."
           ],
           "a": 1,
-          "audio": "Abren a las nueve."
+          "audio": "Abren a las nueve.",
+          "explanation": "Abrir: ellos/ellas abren (Plural). Abre = er/sie öffnet, abrimos = wir öffnen."
         },
         {
           "q": "Wie sagst du „Ich spreche Spanisch.“ auf Spanisch?",
           "o": [
             "Hablo español.",
-            "Vengo de casa.",
-            "¿Puede repetirlo?"
+            "Habla español.",
+            "Hablas español."
           ],
           "a": 0,
-          "audio": "Hablo español."
+          "audio": "Hablo español.",
+          "explanation": "Hablo = ich spreche, habla = er/sie spricht, hablas = du sprichst. Sprachnamen schreibt man klein: español."
         },
         {
           "q": "Wie sagst du „Wir essen um zwei.“ auf Spanisch?",
           "o": [
-            "Trabajo de ocho a cuatro.",
+            "Comen a las dos.",
             "Comemos a las dos.",
-            "Que te mejores."
+            "Comemos a la dos."
           ],
           "a": 1,
-          "audio": "Comemos a las dos."
+          "audio": "Comemos a las dos.",
+          "explanation": "Comemos = wir essen, comen = sie essen. Uhrzeiten ab zwei Uhr stehen im Plural: a las dos."
         }
       ]
     },
@@ -2848,101 +3028,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Tengo dos hermanos.“?",
           "o": [
             "Ich habe zwei Geschwister.",
-            "Freut mich.",
-            "Das Haus ist groß."
+            "Ich habe zwei Schwestern.",
+            "Ich habe zwei Kinder."
           ],
           "a": 0,
-          "audio": "Tengo dos hermanos."
+          "audio": "Tengo dos hermanos.",
+          "explanation": "Hermanos = Geschwister (oder Brüder); zwei Schwestern hieße dos hermanas, Kinder hijos. Tengo ist die unregelmäßige Ich-Form von tener."
         },
         {
           "q": "Was bedeutet „Voy al trabajo en autobús.“?",
           "o": [
-            "Ich esse mit meiner Familie zu Abend.",
+            "Ich fahre mit dem Zug zur Arbeit.",
             "Ich fahre mit dem Bus zur Arbeit.",
-            "Wir schreiben eine Nachricht."
+            "Ich komme mit dem Bus von der Arbeit."
           ],
           "a": 1,
-          "audio": "Voy al trabajo en autobús."
+          "audio": "Voy al trabajo en autobús.",
+          "explanation": "Voy = ich gehe/fahre (ir), al trabajo = zur Arbeit, en autobús = mit dem Bus, en tren = mit dem Zug. Vengo del trabajo = ich komme von der Arbeit."
         },
         {
           "q": "Was bedeutet „Hago deporte los martes.“?",
           "o": [
             "Ich mache dienstags Sport.",
-            "Ich möchte mit Karte bezahlen.",
-            "Ich fahre mit dem Bus zur Arbeit."
+            "Ich mache donnerstags Sport.",
+            "Ich mache heute Sport."
           ],
           "a": 0,
-          "audio": "Hago deporte los martes."
+          "audio": "Hago deporte los martes.",
+          "explanation": "Hago ist die unregelmäßige Ich-Form von hacer. Los martes = dienstags, jueves = Donnerstag."
         },
         {
           "q": "Was bedeutet „Vengo de Alemania.“?",
           "o": [
             "Ich komme aus Deutschland.",
-            "Können Sie das wiederholen?",
-            "Ich verstehe nicht."
+            "Ich fahre nach Deutschland.",
+            "Ich wohne in Deutschland."
           ],
           "a": 0,
-          "audio": "Vengo de Alemania."
+          "audio": "Vengo de Alemania.",
+          "explanation": "Vengo de = ich komme aus/von (venir). Voy a = ich fahre nach, vivo en = ich wohne in."
         },
         {
           "q": "Was bedeutet „Puedo pagar con tarjeta.“?",
           "o": [
-            "Mein Nachname ist Müller.",
+            "Ich muss mit Karte bezahlen.",
             "Ich kann mit Karte bezahlen.",
-            "Heute ist es sonnig."
+            "Kannst du mit Karte bezahlen?"
           ],
           "a": 1,
-          "audio": "Puedo pagar con tarjeta."
+          "audio": "Puedo pagar con tarjeta.",
+          "explanation": "Puedo = ich kann (poder, o → ue). Müssen hieße tengo que; puedes = du kannst."
         },
         {
           "q": "Wie sagst du „Ich möchte Spanisch lernen.“ auf Spanisch?",
           "o": [
             "Quiero aprender español.",
-            "La jota suena fuerte.",
-            "Hago deporte los martes."
+            "Quiero aprendo español.",
+            "Puedo aprender español."
           ],
           "a": 0,
-          "audio": "Quiero aprender español."
+          "audio": "Quiero aprender español.",
+          "explanation": "Nach quiero steht der Infinitiv: aprender. Puedo = ich kann."
         },
         {
           "q": "Wie sagst du „Ich kann ein bisschen Spanisch.“ auf Spanisch?",
           "o": [
-            "Los domingos descanso.",
+            "Soy un poco de español.",
             "Sé un poco de español.",
-            "Necesito un abrigo."
+            "Puedo un poco de español."
           ],
           "a": 1,
-          "audio": "Sé un poco de español."
+          "audio": "Sé un poco de español.",
+          "explanation": "Für Kenntnisse benutzt man saber: sé = ich weiß/kann. Ebenso richtig: Hablo un poco de español. Puedo braucht einen Infinitiv."
         },
         {
           "q": "Wie sagst du „Ich sage meinen Namen.“ auf Spanisch?",
           "o": [
             "Digo mi nombre.",
-            "¿Tienes hermanos?",
-            "¿Qué número de teléfono tienes?"
+            "Dice mi nombre.",
+            "Digo mis nombre."
           ],
           "a": 0,
-          "audio": "Digo mi nombre."
+          "audio": "Digo mi nombre.",
+          "explanation": "Digo ist die unregelmäßige Ich-Form von decir; dice = er/sie sagt. Nombre ist Singular: mi nombre."
         },
         {
           "q": "Wie sagst du „Ich habe zwei Geschwister.“ auf Spanisch?",
           "o": [
             "Tengo dos hermanos.",
-            "No entiendo.",
-            "¿Qué número de teléfono tienes?"
+            "Tiengo dos hermanos.",
+            "Tengo dos hermanas."
           ],
           "a": 0,
-          "audio": "Tengo dos hermanos."
+          "audio": "Tengo dos hermanos.",
+          "explanation": "Tener ist unregelmäßig: yo tengo, tú tienes. Für gemischte Geschwister steht die maskuline Pluralform hermanos; hermanas = Schwestern."
         },
         {
           "q": "Wie sagst du „Ich fahre mit dem Bus zur Arbeit.“ auf Spanisch?",
           "o": [
-            "Los sábados salgo con amigos.",
+            "Voy a el trabajo en autobús.",
             "Voy al trabajo en autobús.",
-            "¡Hola!"
+            "Voy al trabajo con autobús."
           ],
           "a": 1,
-          "audio": "Voy al trabajo en autobús."
+          "audio": "Voy al trabajo en autobús.",
+          "explanation": "A + el wird zu al. Verkehrsmittel stehen mit en: en autobús, en tren."
         }
       ]
     },
@@ -2992,102 +3182,112 @@ window.ES_A1_DATA = {
         {
           "q": "Was bedeutet „un libro nuevo“?",
           "o": [
-            "Können Sie das wiederholen?",
-            "Ich schicke dir eine Nachricht.",
+            "ein altes Buch",
+            "neue Bücher",
             "ein neues Buch"
           ],
           "a": 2,
-          "audio": "un libro nuevo"
+          "audio": "un libro nuevo",
+          "explanation": "Un = ein (maskulin Singular), nuevo = neu, viejo = alt. Der Plural wäre unos libros nuevos."
         },
         {
           "q": "Was bedeutet „una casa pequeña“?",
           "o": [
             "ein kleines Haus",
-            "Ich möchte dieses Paket schicken.",
-            "Wie viel kostet das?"
+            "ein großes Haus",
+            "die kleinen Häuser"
           ],
           "a": 0,
-          "audio": "una casa pequeña"
+          "audio": "una casa pequeña",
+          "explanation": "Una casa ist feminin Singular, daher pequeña. Grande = groß; der Plural wäre las casas pequeñas."
         },
         {
           "q": "Was bedeutet „los coches rojos“?",
           "o": [
-            "Heute ist es sonnig.",
+            "das rote Auto",
             "die roten Autos",
-            "Die Bank ist neben dem Hotel."
+            "die roten Häuser"
           ],
           "a": 1,
-          "audio": "los coches rojos"
+          "audio": "los coches rojos",
+          "explanation": "Los … -os zeigt maskulin Plural. Der Singular wäre el coche rojo; casa = Haus."
         },
         {
           "q": "Was bedeutet „las calles largas“?",
           "o": [
-            "Das Frühstück ist inklusive.",
+            "die breiten Straßen",
             "die langen Straßen",
-            "Madrid liegt in Spanien."
+            "die lange Straße"
           ],
           "a": 1,
-          "audio": "las calles largas"
+          "audio": "las calles largas",
+          "explanation": "Largo/a bedeutet „lang“ (nicht „breit“ oder „groß“). Las … -as zeigt feminin Plural."
         },
         {
           "q": "Was bedeutet „el problema es difícil“?",
           "o": [
-            "Nimm einen Regenschirm mit.",
+            "das Problem ist einfach",
             "das Problem ist schwierig",
-            "Lesen Sie zuerst die Frage."
+            "die Probleme sind schwierig"
           ],
           "a": 1,
-          "audio": "el problema es difícil"
+          "audio": "el problema es difícil",
+          "explanation": "Problema ist trotz -a maskulin: el problema. Difícil = schwierig, fácil = einfach."
         },
         {
           "q": "Wie sagst du „die rechte Hand“ auf Spanisch?",
           "o": [
-            "Gire a la derecha.",
-            "unos amigos españoles",
+            "el mano derecho",
+            "la mano izquierda",
             "la mano derecha"
           ],
           "a": 2,
-          "audio": "la mano derecha"
+          "audio": "la mano derecha",
+          "explanation": "Mano ist trotz -o feminin: la mano derecha. Izquierda = links."
         },
         {
           "q": "Wie sagst du „einige spanische Freunde“ auf Spanisch?",
           "o": [
             "unos amigos españoles",
-            "Me duele la cabeza.",
-            "Tengo dos hermanos."
+            "unos amigos españolas",
+            "unas amigos españoles"
           ],
           "a": 0,
-          "audio": "unos amigos españoles"
+          "audio": "unos amigos españoles",
+          "explanation": "Amigos ist maskulin Plural: unos … españoles. Artikel und Adjektiv passen sich an."
         },
         {
           "q": "Wie sagst du „schöne Ferien“ auf Spanisch?",
           "o": [
             "unas vacaciones bonitas",
-            "La cuenta, por favor.",
-            "Soy estudiante."
+            "unos vacaciones bonitos",
+            "una vacación bonita"
           ],
           "a": 0,
-          "audio": "unas vacaciones bonitas"
+          "audio": "unas vacaciones bonitas",
+          "explanation": "Vacaciones ist feminin und steht in der Bedeutung „Ferien/Urlaub“ im Plural: unas vacaciones bonitas."
         },
         {
           "q": "Wie sagst du „ein neues Buch“ auf Spanisch?",
           "o": [
             "un libro nuevo",
-            "El desayuno está incluido.",
-            "Los sábados salgo con amigos."
+            "una libro nueva",
+            "un nuevo libros"
           ],
           "a": 0,
-          "audio": "un libro nuevo"
+          "audio": "un libro nuevo",
+          "explanation": "Libro ist maskulin Singular: un libro nuevo. Das Adjektiv steht meist nach dem Nomen."
         },
         {
           "q": "Wie sagst du „ein kleines Haus“ auf Spanisch?",
           "o": [
-            "Vivo en Halifax.",
-            "¿Cómo te llamas?",
+            "un casa pequeño",
+            "una casa pequeño",
             "una casa pequeña"
           ],
           "a": 2,
-          "audio": "una casa pequeña"
+          "audio": "una casa pequeña",
+          "explanation": "Casa ist feminin: una casa pequeña. Artikel und Adjektiv richten sich nach dem Nomen."
         }
       ]
     },
@@ -3138,101 +3338,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „¿Dónde vives?“?",
           "o": [
             "Wo wohnst du?",
-            "Ich habe einen Bruder.",
-            "Es ist kalt und windig."
+            "Woher kommst du?",
+            "Wohin gehst du?"
           ],
           "a": 0,
-          "audio": "¿Dónde vives?"
+          "audio": "¿Dónde vives?",
+          "explanation": "Dónde = wo. ¿De dónde eres? = Woher kommst du?, ¿A dónde vas? = Wohin gehst du?"
         },
         {
           "q": "Was bedeutet „¿Cuándo empieza?“?",
           "o": [
-            "Meine Postleitzahl ist 28013.",
+            "Wann endet es?",
             "Wann beginnt es?",
-            "Manchmal gehe ich ins Kino."
+            "Wo beginnt es?"
           ],
           "a": 1,
-          "audio": "¿Cuándo empieza?"
+          "audio": "¿Cuándo empieza?",
+          "explanation": "Cuándo = wann, dónde = wo. Empezar = beginnen, terminar = enden."
         },
         {
           "q": "Was bedeutet „¿Por qué estudias español?“?",
           "o": [
-            "Ich fange um acht an.",
-            "Hören Sie zweimal.",
+            "Wo lernst du Spanisch?",
+            "Weil ich Spanisch lerne.",
             "Warum lernst du Spanisch?"
           ],
           "a": 2,
-          "audio": "¿Por qué estudias español?"
+          "audio": "¿Por qué estudias español?",
+          "explanation": "Por qué (getrennt, mit Akzent) = warum. Porque (zusammen) = weil."
         },
         {
           "q": "Was bedeutet „¿Con quién vas?“?",
           "o": [
             "Mit wem gehst du?",
-            "Ich nehme diesen.",
-            "Mit b oder mit v?"
+            "Wohin gehst du?",
+            "Wann gehst du?"
           ],
           "a": 0,
-          "audio": "¿Con quién vas?"
+          "audio": "¿Con quién vas?",
+          "explanation": "Con quién = mit wem. A dónde = wohin, cuándo = wann."
         },
         {
           "q": "Was bedeutet „¿Cuánto cuesta?“?",
           "o": [
-            "Ich spiele Fußball.",
+            "Wie viele gibt es?",
             "Wie viel kostet es?",
-            "Hören Sie zweimal."
+            "Wie lange dauert es?"
           ],
           "a": 1,
-          "audio": "¿Cuánto cuesta?"
+          "audio": "¿Cuánto cuesta?",
+          "explanation": "Cuánto = wie viel, costar = kosten. ¿Cuánto dura? fragt nach der Dauer."
         },
         {
           "q": "Wie sagst du „Ich fahre nach Madrid.“ auf Spanisch?",
           "o": [
             "Voy a Madrid.",
-            "Mi hermana tiene veinticinco años.",
-            "Escucho música todos los días."
+            "Voy en Madrid.",
+            "Vengo de Madrid."
           ],
           "a": 0,
-          "audio": "Voy a Madrid."
+          "audio": "Voy a Madrid.",
+          "explanation": "Ziel: ir a + Ort. En steht für den Ort, an dem man ist; vengo de = ich komme aus."
         },
         {
           "q": "Wie sagst du „Ich komme von zu Hause.“ auf Spanisch?",
           "o": [
-            "Repita, por favor.",
+            "Voy a casa.",
             "Vengo de casa.",
-            "¿Tienes hermanos?"
+            "Vengo a casa."
           ],
           "a": 1,
-          "audio": "Vengo de casa."
+          "audio": "Vengo de casa.",
+          "explanation": "Venir de = kommen von. Voy a casa = ich gehe nach Hause."
         },
         {
           "q": "Wie sagst du „Die Bank ist neben dem Hotel.“ auf Spanisch?",
           "o": [
-            "¿Dónde está la estación?",
+            "El banco está al lado de el hotel.",
             "El banco está al lado del hotel.",
-            "¿Cómo se escribe?"
+            "El banco es al lado del hotel."
           ],
           "a": 1,
-          "audio": "El banco está al lado del hotel."
+          "audio": "El banco está al lado del hotel.",
+          "explanation": "De + el wird zu del. Für die Lage steht estar."
         },
         {
           "q": "Wie sagst du „Wo wohnst du?“ auf Spanisch?",
           "o": [
             "¿Dónde vives?",
-            "Me duele la cabeza.",
-            "Correo electrónico"
+            "¿De dónde vives?",
+            "¿Dónde vive?"
           ],
           "a": 0,
-          "audio": "¿Dónde vives?"
+          "audio": "¿Dónde vives?",
+          "explanation": "Nach dem Wohnort fragt man ¿Dónde…?; de dónde fragt nach der Herkunft. Vive hieße „wohnen Sie / wohnt er“."
         },
         {
           "q": "Wie sagst du „Wann beginnt es?“ auf Spanisch?",
           "o": [
-            "Quiero enviar este paquete.",
+            "¿Cuánto empieza?",
             "¿Cuándo empieza?",
-            "Necesito una cita con el médico."
+            "¿Cuándo empiezas?"
           ],
           "a": 1,
-          "audio": "¿Cuándo empieza?"
+          "audio": "¿Cuándo empieza?",
+          "explanation": "Cuándo = wann (cuánto = wie viel). Empieza = es beginnt, empiezas = du beginnst."
         }
       ]
     },
@@ -3263,7 +3473,7 @@ window.ES_A1_DATA = {
         ],
         [
           "¿Cómo eres?",
-          "Wie bist du?"
+          "Wie bist du (als Person)?"
         ],
         [
           "En mi tiempo libre…",
@@ -3283,101 +3493,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Nombre y apellidos“?",
           "o": [
             "Vor- und Nachname",
-            "Lesen Sie zuerst die Frage.",
-            "Trinken Sie viel Wasser."
+            "Name und Alter",
+            "Name und Adresse"
           ],
           "a": 0,
-          "audio": "Nombre y apellidos"
+          "audio": "Nombre y apellidos",
+          "explanation": "Nombre = Vorname, apellidos = Nachname(n). Viele Menschen in spanischsprachigen Ländern haben zwei Nachnamen."
         },
         {
           "q": "Was bedeutet „Correo electrónico“?",
           "o": [
-            "Nimm einen Regenschirm mit.",
+            "Postanschrift",
             "E-Mail-Adresse",
-            "Das ist meine Mutter."
+            "Telefonnummer"
           ],
           "a": 1,
-          "audio": "Correo electrónico"
+          "audio": "Correo electrónico",
+          "explanation": "Correo electrónico = E-Mail (im Formular: E-Mail-Adresse). Die Postanschrift ist la dirección."
         },
         {
           "q": "Was bedeutet „Dirección“?",
           "o": [
             "Adresse",
-            "Ich brauche einen Mantel.",
-            "einige spanische Freunde"
+            "Geburtsort",
+            "Staatsangehörigkeit"
           ],
           "a": 0,
-          "audio": "Dirección"
+          "audio": "Dirección",
+          "explanation": "Im Formular bedeutet dirección „Adresse“. Geburtsort = lugar de nacimiento, Staatsangehörigkeit = nacionalidad."
         },
         {
           "q": "Was bedeutet „¿Cómo eres?“?",
           "o": [
-            "Wie bist du?",
-            "Manchmal gehe ich ins Kino.",
-            "Was machst du beruflich?"
+            "Wie bist du (als Person)?",
+            "Wie geht es dir?",
+            "Wie heißt du?"
           ],
           "a": 0,
-          "audio": "¿Cómo eres?"
+          "audio": "¿Cómo eres?",
+          "explanation": "¿Cómo eres? (ser) fragt nach Charakter oder Aussehen. ¿Cómo estás? (estar) fragt, wie es dir geht; ¿Cómo te llamas? nach dem Namen."
         },
         {
           "q": "Was bedeutet „¿A qué te dedicas?“?",
           "o": [
             "Was machst du beruflich?",
-            "Füllen Sie dieses Formular aus.",
-            "eins, zwei, drei"
+            "Was machst du gern?",
+            "Wo arbeitest du?"
           ],
           "a": 0,
-          "audio": "¿A qué te dedicas?"
+          "audio": "¿A qué te dedicas?",
+          "explanation": "¿A qué te dedicas? fragt nach Beruf oder Tätigkeit. ¿Dónde trabajas? fragt nach dem Arbeitsort, ¿Qué te gusta hacer? nach Vorlieben."
         },
         {
           "q": "Wie sagst du „In meiner Freizeit…“ auf Spanisch?",
           "o": [
-            "Madrid está en España.",
+            "En mi trabajo…",
             "En mi tiempo libre…",
-            "un libro nuevo"
+            "En tu tiempo libre…"
           ],
           "a": 1,
-          "audio": "En mi tiempo libre…"
+          "audio": "En mi tiempo libre…",
+          "explanation": "Tiempo libre = Freizeit. Mi = mein, tu = dein."
         },
         {
           "q": "Wie sagst du „Wohnung zu vermieten.“ auf Spanisch?",
           "o": [
-            "Son las cuatro y media.",
+            "Se vende piso.",
             "Se alquila piso.",
-            "Hola, soy Ana."
+            "Se busca piso."
           ],
           "a": 1,
-          "audio": "Se alquila piso."
+          "audio": "Se alquila piso.",
+          "explanation": "Se alquila = zu vermieten, se vende = zu verkaufen, se busca = gesucht."
         },
         {
           "q": "Wie sagst du „Rufen Sie 600 123 456 an.“ auf Spanisch?",
           "o": [
             "Llame al 600 123 456.",
-            "Está a cinco minutos a pie.",
-            "Madrid está en España."
+            "Llama al 600 123 456.",
+            "Llamo al 600 123 456."
           ],
           "a": 0,
-          "audio": "Llame al 600 123 456."
+          "audio": "Llame al 600 123 456.",
+          "explanation": "Llame ist die höfliche Aufforderung (usted). Llama richtet sich an tú, llamo heißt „ich rufe an“."
         },
         {
           "q": "Wie sagst du „Vor- und Nachname“ auf Spanisch?",
           "o": [
             "Nombre y apellidos",
-            "Vamos de vacaciones al norte.",
-            "Voy al gimnasio."
+            "Nombre y dirección",
+            "Nombre y edad"
           ],
           "a": 0,
-          "audio": "Nombre y apellidos"
+          "audio": "Nombre y apellidos",
+          "explanation": "Apellidos = Nachname(n). Dirección = Adresse, edad = Alter."
         },
         {
           "q": "Wie sagst du „E-Mail-Adresse“ auf Spanisch?",
           "o": [
-            "Me duele la cabeza.",
+            "Dirección postal",
             "Correo electrónico",
-            "Quiero aprender español."
+            "Número de teléfono"
           ],
           "a": 1,
-          "audio": "Correo electrónico"
+          "audio": "Correo electrónico",
+          "explanation": "Correo electrónico = E-Mail-Adresse. Dirección postal = Postanschrift, número de teléfono = Telefonnummer."
         }
       ]
     },
@@ -3406,7 +3626,7 @@ window.ES_A1_DATA = {
         ],
         [
           "Escriba entre treinta y cuarenta palabras.",
-          "Schreiben Sie zwischen 30 und 40 Wörtern."
+          "Schreiben Sie 30 bis 40 Wörter."
         ],
         [
           "Preséntese durante uno o dos minutos.",
@@ -3430,101 +3650,111 @@ window.ES_A1_DATA = {
           "q": "Was bedeutet „Lea primero la pregunta.“?",
           "o": [
             "Lesen Sie zuerst die Frage.",
-            "Ich brauche einen Arzttermin.",
-            "Ich wohne in Halifax."
+            "Lesen Sie zuerst den Text.",
+            "Beantworten Sie zuerst die Frage."
           ],
           "a": 0,
-          "audio": "Lea primero la pregunta."
+          "audio": "Lea primero la pregunta.",
+          "explanation": "Lea = lesen Sie (usted-Aufforderung von leer). Primero = zuerst, la pregunta = die Frage, el texto = der Text."
         },
         {
           "q": "Was bedeutet „Escuche dos veces.“?",
           "o": [
             "Hören Sie zweimal.",
-            "Ich bin müde.",
-            "Können Sie langsamer sprechen?"
+            "Hören Sie einmal.",
+            "Schreiben Sie zweimal."
           ],
           "a": 0,
-          "audio": "Escuche dos veces."
+          "audio": "Escuche dos veces.",
+          "explanation": "Escuche = hören Sie. Dos veces = zweimal, una vez = einmal."
         },
         {
           "q": "Was bedeutet „Marque la opción correcta.“?",
           "o": [
             "Markieren Sie die richtige Antwort.",
-            "Rufen Sie 600 123 456 an.",
-            "Lesen Sie zuerst die Frage."
+            "Markieren Sie die falsche Antwort.",
+            "Schreiben Sie die richtige Antwort."
           ],
           "a": 0,
-          "audio": "Marque la opción correcta."
+          "audio": "Marque la opción correcta.",
+          "explanation": "Marque = markieren/kreuzen Sie an. Correcta = richtig, incorrecta = falsch."
         },
         {
           "q": "Was bedeutet „Escriba entre treinta y cuarenta palabras.“?",
           "o": [
-            "Ich bin Student/in.",
-            "Schreiben Sie zwischen 30 und 40 Wörtern.",
-            "Wohnung zu vermieten."
+            "Schreiben Sie 13 bis 14 Wörter.",
+            "Schreiben Sie 30 bis 40 Wörter.",
+            "Lesen Sie 30 bis 40 Wörter."
           ],
           "a": 1,
-          "audio": "Escriba entre treinta y cuarenta palabras."
+          "audio": "Escriba entre treinta y cuarenta palabras.",
+          "explanation": "Escriba = schreiben Sie. Treinta = 30, cuarenta = 40; trece/catorce wären 13/14. Entre … y … = zwischen … und …."
         },
         {
           "q": "Was bedeutet „Preséntese durante uno o dos minutos.“?",
           "o": [
-            "Madrid liegt in Spanien.",
+            "Stellen Sie sich zwei bis drei Minuten vor.",
             "Stellen Sie sich ein bis zwei Minuten vor.",
-            "Samstags gehe ich mit Freunden aus."
+            "Sprechen Sie zehn Minuten über sich."
           ],
           "a": 1,
-          "audio": "Preséntese durante uno o dos minutos."
+          "audio": "Preséntese durante uno o dos minutos.",
+          "explanation": "Preséntese = stellen Sie sich vor. Durante uno o dos minutos = ein bis zwei Minuten lang."
         },
         {
           "q": "Wie sagst du „Sprechen Sie über drei Aspekte.“ auf Spanisch?",
           "o": [
             "Hable de tres aspectos.",
-            "Tengo fiebre.",
-            "Me pongo una chaqueta."
+            "Hable de dos aspectos.",
+            "Habla de tres aspectos."
           ],
           "a": 0,
-          "audio": "Hable de tres aspectos."
+          "audio": "Hable de tres aspectos.",
+          "explanation": "Hable ist die usted-Aufforderung von hablar; habla richtet sich an tú. Tres = drei, dos = zwei."
         },
         {
           "q": "Wie sagst du „Stellen Sie dem Prüfer zwei Fragen.“ auf Spanisch?",
           "o": [
-            "Quiero aprender español.",
-            "Vengo de Alemania.",
+            "Responda dos preguntas del entrevistador.",
+            "Haga tres preguntas al entrevistador.",
             "Haga dos preguntas al entrevistador."
           ],
           "a": 2,
-          "audio": "Haga dos preguntas al entrevistador."
+          "audio": "Haga dos preguntas al entrevistador.",
+          "explanation": "Hacer una pregunta = eine Frage stellen; haga = stellen Sie. Responder = antworten."
         },
         {
           "q": "Wie sagst du „Lesen Sie Ihre Notizen nicht ab.“ auf Spanisch?",
           "o": [
-            "Son quince euros.",
-            "los coches rojos",
+            "Lea sus notas.",
+            "No escriba sus notas.",
             "No lea sus notas."
           ],
           "a": 2,
-          "audio": "No lea sus notas."
+          "audio": "No lea sus notas.",
+          "explanation": "No vor dem Verb verneint die Aufforderung. Lea = lesen Sie, escriba = schreiben Sie; sus = Ihre."
         },
         {
           "q": "Wie sagst du „Lesen Sie zuerst die Frage.“ auf Spanisch?",
           "o": [
-            "Nombre y apellidos",
+            "Lee primero la pregunta.",
             "Lea primero la pregunta.",
-            "Tengo clase por la tarde."
+            "Lea primero la respuesta."
           ],
           "a": 1,
-          "audio": "Lea primero la pregunta."
+          "audio": "Lea primero la pregunta.",
+          "explanation": "Lea = lesen Sie (usted), lee = lies (tú). Pregunta = Frage, respuesta = Antwort."
         },
         {
           "q": "Wie sagst du „Hören Sie zweimal.“ auf Spanisch?",
           "o": [
-            "¿A qué te dedicas?",
-            "La cocina es pequeña.",
+            "Escucha dos veces.",
+            "Escuche dos horas.",
             "Escuche dos veces."
           ],
           "a": 2,
-          "audio": "Escuche dos veces."
+          "audio": "Escuche dos veces.",
+          "explanation": "Escuche ist die usted-Form, escucha die tú-Form. Veces = Male, horas = Stunden."
         }
       ]
     }
@@ -3596,9 +3826,9 @@ window.ES_A1_DATA = {
         "q": "¿A qué hora sale el tren?",
         "speech": "El tren a Sevilla sale a las seis y cuarto, no a las seis.",
         "o": [
-          "18:15",
-          "18:00",
-          "18:30"
+          "6:15",
+          "6:00",
+          "6:30"
         ],
         "a": 0,
         "audio": "El tren a Sevilla sale a las seis y cuarto, no a las seis."
@@ -3851,7 +4081,7 @@ window.ES_A1_DATA = {
         "speech": "Dos cafés y un cruasán, por favor.",
         "o": [
           "En una cafetería",
-          "En una estación de policía",
+          "En una comisaría",
           "En un hospital"
         ],
         "a": 0,
@@ -4103,7 +4333,7 @@ window.ES_A1_DATA = {
       },
       {
         "id": "h4-3",
-        "q": "A Paco le gusta…",
+        "q": "A la persona que habla le gusta…",
         "speech": "A mí me gusta el Museo de Arte que está en el centro.",
         "o": [
           "el museo",
@@ -4870,7 +5100,7 @@ window.ES_A1_DATA = {
       {
         "id": "r4-9",
         "text": "TREN: Madrid-Sevilla 08:00, 10:30, 14:15, 18:00.",
-        "q": "¿Qué tren sale después de las 14 h primero?",
+        "q": "¿Cuál es el primer tren después de las 14 h?",
         "o": [
           "14:15",
           "18:00",
@@ -4946,7 +5176,8 @@ window.ES_A1_DATA = {
           "answers": [
             "mujer",
             "femenino",
-            "m"
+            "m",
+            "f"
           ]
         },
         {
@@ -4975,28 +5206,36 @@ window.ES_A1_DATA = {
           "answers": [
             "Soy simpática, tranquila y responsable.",
             "Soy simpática y tranquila."
-          ]
+          ],
+          "free": true,
+          "minWords": 5
         },
         {
           "label": "¿A qué te dedicas?",
           "answers": [
             "Soy diseñadora.",
             "Trabajo como diseñadora."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         },
         {
           "label": "¿Qué haces en tu tiempo libre? (5–10 palabras)",
           "answers": [
             "Me gusta leer y hacer deporte.",
             "Leo y hago deporte."
-          ]
+          ],
+          "free": true,
+          "minWords": 5
         },
         {
           "label": "Personas que quieres conocer (10–15 palabras)",
           "answers": [
             "Quiero conocer personas de 25 a 35 años que viajan y estudian idiomas.",
             "Personas de 25 a 35 años que quieren viajar y aprender idiomas."
-          ]
+          ],
+          "free": true,
+          "minWords": 10
         }
       ]
     },
@@ -5034,14 +5273,18 @@ window.ES_A1_DATA = {
           "answers": [
             "Soy tranquilo.",
             "Tranquilo."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         },
         {
           "label": "Tiempo libre",
           "answers": [
             "Juego al fútbol.",
             "Me gusta jugar al fútbol."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         }
       ]
     },
@@ -5119,7 +5362,9 @@ window.ES_A1_DATA = {
           "answers": [
             "Para viajar.",
             "Viajar."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         },
         {
           "label": "Días",
@@ -5388,28 +5633,36 @@ window.ES_A1_DATA = {
           "answers": [
             "Soy simpático y deportista.",
             "Simpático y deportista."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         },
         {
           "label": "¿A qué te dedicas?",
           "answers": [
             "Soy informático.",
             "Informático."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         },
         {
           "label": "Tiempo libre",
           "answers": [
             "Me gusta caminar y cocinar.",
             "Camino y cocino."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         },
         {
           "label": "Personas que quieres conocer",
           "answers": [
             "Personas de 25 a 35 años a las que les gusta viajar.",
             "Personas de 25 a 35 años que quieren viajar."
-          ]
+          ],
+          "free": true,
+          "minWords": 1
         }
       ]
     }
@@ -5610,7 +5863,7 @@ window.ES_A1_DATA = {
     },
     {
       "q": "¿Qué haces cuando no entiendes?",
-      "a": "Pido que repitan más despacio."
+      "a": "Digo: «¿Puede repetir, por favor?»"
     }
   ],
   "infoCards": [
@@ -6762,7 +7015,7 @@ window.ES_A1_DATA = {
           ],
           "a": 0,
           "audio": "¿Cuántos años tienes?",
-          "explanation": "Edad (Alter) fragt man mit ¿Cuántos años tienes? Das Fragewort cuántos steht im maskulinen Plural zu años."
+          "explanation": "Nach dem Alter fragt man mit ¿Cuántos años tienes? Cuántos steht im maskulinen Plural, weil es sich auf años bezieht."
         },
         {
           "q": "___ prefieres, té o café?",
@@ -6922,7 +7175,7 @@ window.ES_A1_DATA = {
           "explanation": "Im Restaurant bittet man mit la cuenta, por favor um die Rechnung. Cuenta ist die Rechnung; puerta ist Tür."
         },
         {
-          "q": "Du hast nicht verstanden:",
+          "q": "Du hast etwas nicht verstanden und möchtest es noch einmal hören:",
           "o": [
             "¿Puede repetirlo?",
             "¿Puede explicarlo?",
@@ -6930,7 +7183,7 @@ window.ES_A1_DATA = {
           ],
           "a": 0,
           "audio": "¿Puede repetirlo?",
-          "explanation": "Mit ¿Puede repetirlo? bittet man höflich darum, etwas zu wiederholen. Puede ist die Höflichkeitsform."
+          "explanation": "Mit ¿Puede repetirlo? bittest du höflich darum, etwas noch einmal zu sagen. ¿Puede explicarlo? bittet um eine Erklärung, ¿Puede escribirlo? darum, es aufzuschreiben."
         },
         {
           "q": "Du fragst nach dem Weg:",
@@ -6974,7 +7227,7 @@ window.ES_A1_DATA = {
           ],
           "a": 0,
           "audio": "Llego un poco tarde.",
-          "explanation": "Llego un poco tarde bedeutet „Ich komme etwas später/verspätet“. Tarde bezeichnet den späten Zeitpunkt."
+          "explanation": "Llego un poco tarde bedeutet „Ich komme etwas zu spät“. Tarde = spät, temprano = früh, a tiempo = pünktlich."
         },
         {
           "q": "Ergänze die höfliche Bitte: « Un café, ___ »",
