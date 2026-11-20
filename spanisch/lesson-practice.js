@@ -93,6 +93,17 @@
     const d=state.lessonWork?.[id]?.deepening||{};
     return `<details class="lesson-explanation es-deepening" open><summary><strong>Vertiefung üben</strong> <small class="muted">${deepeningProgress(state,id).done}/${topics.length} Themen geübt</small></summary>${topics.map(t=>`<section class="es-deepening-topic" data-es-topic="${t.key}"><h4>${esc(t.title)}</h4><p>${esc(t.rule)}</p>${t.pairs.map(([es,de])=>`<div class="phrase-row"><div><strong>${esc(es)}</strong><small>${esc(de)}</small></div>${speakBtn(es)}</div>`).join('')}<div class="es-deepening-panel"><div class="between"><strong>Direkt üben</strong><small class="es-topic-status">${d[t.key]?.done?`✓ geübt · bestes Ergebnis ${d[t.key].best}/${t.tasks.length}`:t.tasks.length+' Aufgaben'}</small></div><button type="button" class="soft-btn exercise-start-btn es-topic-start ${d[t.key]?.done?'is-completed':''}">${d[t.key]?.session?'Übung fortsetzen':d[t.key]?.done?'Übung wiederholen':'Intensiv üben'}</button><div class="es-deepening-stage grammar-drill-stage"></div></div></section>`).join('')}</details>`;
   }
+  function topicDone(state,id,index){const t=deepeningTopics(id)[index];return !!t&&state.lessonWork?.[id]?.deepening?.[t.key]?.done===true;}
+  function topicHtml(id,state,speakBtn,index){
+    const t=deepeningTopics(id)[index];if(!t)return '';
+    const d=state.lessonWork?.[id]?.deepening?.[t.key]||{};
+    return `<section class="es-deepening-topic es-deepening-page" data-es-topic="${t.key}"><h3 class="lesson-content-heading">${esc(t.title)}</h3><p>${esc(t.rule)}</p>${t.pairs.map(([es,de])=>`<div class="phrase-row"><div><strong>${esc(es)}</strong><small>${esc(de)}</small></div>${speakBtn(es)}</div>`).join('')}<div class="es-deepening-panel"><div class="between"><strong>Direkt üben</strong><small class="es-topic-status">${d.done?`✓ geübt · bestes Ergebnis ${d.best}/${t.tasks.length}`:t.tasks.length+' Aufgaben'}</small></div><button type="button" class="primary-btn exercise-start-btn es-topic-start ${d.done?'is-completed':''}">${d.session?'Übung fortsetzen':d.done?'Übung wiederholen':'Intensiv üben'}</button><div class="es-deepening-stage grammar-drill-stage"></div></div></section>`;
+  }
+  function checkSummaryHtml(id,state){
+    const tasks=checkTasks(id),store=state.lessonWork?.[id]?.check||{};
+    const best=store.best!=null?Number(store.best):null,passed=best!=null&&best>=PASS;
+    return `<h3 class="lesson-content-heading">Lektions-Check</h3><p>${tasks.length} neue Aufgaben zu den Zielen dieser Lektion: Alltagssituationen, Hörfragen und Formen zum Eintippen. Zum Bestehen brauchst du mindestens ${PASS} %.</p><div class="es-check-summary"><span class="pill ${passed?'green':best!=null?'amber':'gray'}">${passed?'✓ Bestanden':best!=null?'Noch nicht bestanden':'Noch offen'}</span>${best!=null?`<span class="muted">Bester Wert: ${best} %</span>`:''}</div>`;
+  }
   function wireDeepening(root,{lesson,state,save,speak,onUpdate}){
     const topics=deepeningTopics(lesson.id);
     const charBar=window.A1ExerciseEngine?.charBar('es','de')||'',wireChars=(input,c)=>window.A1ExerciseEngine?.wireChars(input,'es',c);
@@ -112,7 +123,7 @@
     });
   }
 
-  function runCheck({view,lesson,state,save,speak,onBack,onContinue}){
+  function runCheck({view,lesson,state,save,speak,onBack,onContinue,direct=false}){
     const tasks=checkTasks(lesson.id),w=work(state,lesson.id),store=w.check||={};
     const charBar=window.A1ExerciseEngine?.charBar('es','de')||'',wireChars=(input,c)=>window.A1ExerciseEngine?.wireChars(input,'es',c);
     function intro(){
@@ -123,7 +134,7 @@
     }
     function start(){
       view.innerHTML=`<div class="between"><button class="tiny-btn" id="esCheckBack">← Lektionscheck</button><span class="pill">LEKTIONSCHECK</span></div><section class="card lesson-flow es-check" style="margin-top:12px"><div class="es-check-stage"></div></section>`;
-      document.getElementById('esCheckBack').onclick=intro;
+      document.getElementById('esCheckBack').onclick=direct?onBack:intro;
       const stage=view.querySelector('.es-check-stage');
       runSequence(stage,tasks,{store,save,speak,charBar,wireChars,label:'Lektionscheck',onFinish:(score,total,wrong)=>{
         const pct=total?Math.round(score/total*100):0;
@@ -132,11 +143,11 @@
         stage.innerHTML=`<div class="center"><span class="pill ${passed?'green':'amber'}">${passed?'BESTANDEN':'NOCH NICHT BESTANDEN'}</span><div class="score">${pct}%</div><h3>${score}/${total} richtig</h3><p class="muted">${passed?'Du kannst die Ziele dieser Lektion anwenden.':`Zum Bestehen brauchst du ${PASS} %. Wiederhole die Vertiefung und versuche es noch einmal.`}</p></div>${wrong.length?`<p><strong>Das solltest du wiederholen:</strong></p>${wrong.map(t=>`<p>• ${esc(t.kind==='type'?fill(t.sentence,t.answer):t.answer)}</p>`).join('')}`:''}<div class="button-row">${wrong.length?'<button class="secondary-btn" id="esCheckReview">Fehler noch einmal üben</button>':''}<button class="secondary-btn" id="esCheckAgain">Neuer Versuch</button><button class="primary-btn" id="esCheckContinue">Weiter zu Sprechen & Schreiben</button></div>`;
         document.getElementById('esCheckAgain').onclick=start;document.getElementById('esCheckContinue').onclick=onContinue;
         const review=document.getElementById('esCheckReview');
-        if(review)review.onclick=()=>runReview(stage,wrong,{speak,charBar,wireChars,onDone:intro});
+        if(review)review.onclick=()=>runReview(stage,wrong,{speak,charBar,wireChars,onDone:direct?onBack:intro});
       }});
       window.scrollTo({top:0,behavior:'instant'});
     }
-    intro();
+    if(direct)start();else intro();
   }
-  window.ES_A1_PRACTICE={deepeningTopics,checkTasks,deepeningProgress,checkBest,checkPassed,deepeningHtml,wireDeepening,runCheck,PASS,_grade:{plain,noAccent}};
+  window.ES_A1_PRACTICE={topicDone,topicHtml,checkSummaryHtml,checkStarted:(state,id)=>!!state.lessonWork?.[id]?.check?.session,deepeningTopics,checkTasks,deepeningProgress,checkBest,checkPassed,deepeningHtml,wireDeepening,runCheck,PASS,_grade:{plain,noAccent}};
 })();
