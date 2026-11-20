@@ -293,10 +293,10 @@
     const R={
       '10:u0':{drop:[['Ich bin Arzt. Welche Aussage passt?','Je suis médecin.']],add:[
         n('Je suis ___.','étudiante',['étudiant','étudiants'],'Ich bin Studentin.','I am a (female) student.','Bei einer Frau erhält der Beruf meist ein e: étudiant → étudiante.','For a woman, the job title usually adds e: étudiant → étudiante.')]},
-      '10:u1':{drop:[['Je ___ dans un bureau.','travaille']]},
+      '10:u1':{patch:[[['Nous ___ à huit heures.','commençons'],{o:['commençons','commencons','commencez'],explanation:'Nous commençons à huit heures. — Vor -ons steht ç, damit das c weich bleibt.',explanationEn:'Nous commençons à huit heures. — Before -ons, write ç so that the c stays soft.'}]]},
       '10:u2':{patch:[[['Welche Form passt?','Je travaille à Halifax.'],{q:'Welche Antwort passt?'}]],add:[
         n('J’___ mon travail.','aime',['aimes','aiment'],'Ich mag meine Arbeit.','I like my job.')]},
-      '11:r0':{drop:[['Nous nous ___.','levons'],['Vous vous ___.','levez'],['Ils se ___.','lèvent']],add:[
+      '11:r0':{drop:[['Nous nous ___.','levons'],['Vous vous ___.','levez'],['Ils se ___.','lèvent'],['Je me ___ à sept heures.','lève'],['Il se ___ à sept heures.','lève']],add:[
         n('Je me ___.','douche',['douches','douchez'],'Ich dusche.','I take a shower.'),
         n('Je me ___ vers vingt-trois heures.','couche',['couches','couchez'],'Ich gehe gegen 23 Uhr ins Bett.','I go to bed around 11 pm.','Se coucher = ins Bett gehen; vers = gegen.','Se coucher = to go to bed; vers = around.'),
         n('Je ___ vers midi.','déjeune',['déjeunes','déjeunez'],'Ich esse gegen Mittag zu Mittag.','I have lunch around noon.'),
@@ -378,6 +378,8 @@
         n('Nous ne mangeons ___ de viande.','jamais',['toujours','non'],'Wir essen nie Fleisch.','We never eat meat.','Ne … jamais = nie; danach steht wie bei pas meist de.','Ne … jamais = never; as with pas, de usually follows.')]},
       '21:r0':{drop:[['Welches Fragewort bedeutet „wo“?','où'],['Welches Fragewort bedeutet „wann“?','quand'],['Welches Fragewort bedeutet „wie viel“?','combien']],add:[
         n('___ est votre adresse ?','Quelle',['Quel','Quels'],'Wie lautet Ihre Adresse?','What is your address?','Adresse ist weiblich: quelle.','Adresse is feminine: quelle.')]},
+      // Lesson 5 already drills all 18 possessive cells; lesson 21 keeps only the hard contrasts.
+      '21:r3':{drop:[['C’est ___ père.','mon'],['C’est ___ mère.','ma'],['Ce sont ___ parents.','mes'],['C’est ___ père.','ton'],['C’est ___ mère.','ta'],['Ce sont ___ parents.','tes'],['C’est ___ père.','notre'],['C’est ___ père.','votre'],['C’est ___ amie.','ton'],['C’est ___ sœur.','leur']]},
       '22:r0':{drop:[['Hier, j’___ travaillé.','ai']],patch:[[['Hier, ils ___ travaillé.','ont'],{o:['ont','a','avons']}]],add:[
         n('Tu as ___ un film.','regardé',['regarder','regarde'],'Du hast einen Film gesehen.','You watched a film.','Partizip: regarder → regardé.','Past participle: regarder → regardé.'),
         n('Ils ont ___ une pizza.','mangé',['manger','mange'],'Sie haben eine Pizza gegessen.','They ate a pizza.','Partizip: manger → mangé.','Past participle: manger → mangé.')]},

@@ -1201,7 +1201,7 @@
       ],
       "titles": {
         "grammar:0": "Beruf & Studium",
-        "grammar:1": "Regelmäßige Verben anwenden",
+        "grammar:1": "Wann beginnt etwas?",
         "grammar:2": "Drei Fragen & vier Antworten"
       }
     },

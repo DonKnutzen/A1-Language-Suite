@@ -6,8 +6,8 @@ function environment(){
  w.esc=s=>{const el=w.document.createElement('span');el.textContent=s;return el.innerHTML;};const app=read('francais/app.js');w.eval(app.slice(app.indexOf('const GRAMMAR_GUIDES='),app.indexOf('function renderGrammarIntro('))+'window.grammarHtml=lessonGrammarHtml;');
  return {dom,w,view:w.document.querySelector('main')};
 }
-test('both possessive topics cover all eighteen cells plus vowel and leur/leurs transfers',()=>{
- const e=environment();for(const id of [5,21]){
+test('the lesson 5 possessive topic covers all eighteen cells plus vowel and leur/leurs transfers',()=>{
+ const e=environment();for(const id of [5]){
   const lesson=e.w.FR_A1_DATA.lessons.find(l=>l.id===id),html=e.w.FR_A1_DEEPENING.enrich(lesson,e.w.grammarHtml(lesson)),pool=e.w.FR_A1_DEEPENING.pools(lesson,html).find(p=>p.tasks.some(t=>t.coverage==='je:0'));
   assert(pool);assert.equal(pool.tasks.length,24);for(const owner of ['je','tu','il/elle','nous','vous','ils/elles'])for(let c=0;c<3;c++)assert(pool.tasks.some(t=>t.coverage===owner+':'+c));
   const selected=e.w.FR_A1_GRAMMAR_PRACTICE.select(pool.tasks,a=>a);assert.equal(selected.length,24);assert.equal(new Set(selected.map(t=>t.coverage)).size,24);
@@ -80,5 +80,24 @@ test('review L10–L24: no correct-French distractors for ne … pas, key phrase
  assert.equal(tasks(15).filter(t=>/réserver une chambre\.$/.test(t.q)&&t.answer!=='voudrais').length,0);
  assert.equal(pools(24).find(p=>p.key==='r0').tasks.filter(t=>t.q==='Je vais ___ France.').length,1);
  const leur=pools(21).find(p=>p.key==='r3').tasks.find(t=>t.q==='C’est ___ père.'&&t.answer==='leur');assert.deepEqual([...leur.o],['leur','leurs','son']);
+ e.dom.window.close();
+});
+test('lesson 21 repeats only the hard possessive contrasts from lesson 5',()=>{
+ const e=environment(),lesson=e.w.FR_A1_DATA.lessons.find(l=>l.id===21),html=e.w.FR_A1_DEEPENING.enrich(lesson,e.w.grammarHtml(lesson)),pool=e.w.FR_A1_DEEPENING.pools(lesson,html).find(p=>p.key==='r3');
+ assert.equal(pool.tasks.length,14);for(const answer of ['son','sa','ses','leur','leurs','nos','vos'])assert(pool.tasks.some(t=>t.answer===answer),answer);
+ assert(!pool.tasks.some(t=>['ton','ta','tes'].includes(t.answer)));assert(pool.tasks.some(t=>t.q==='C’est ___ amie.'&&t.answer==='mon'));e.dom.window.close();
+});
+test('from lesson 10 on, deepening pages explain each topic once',()=>{
+ const e=environment();
+ for(let id=10;id<=24;id++){
+  const lesson=e.w.FR_A1_DATA.lessons.find(l=>l.id===id),root=e.w.document.createElement('div');root.innerHTML=e.w.FR_A1_DEEPENING.enrich(lesson,e.w.grammarHtml(lesson));
+  for(const body of root.querySelectorAll('[data-deepening-key] > .grammar-detail-body')){
+   if(body.querySelector('.deepening-preparation'))assert.equal(body.querySelectorAll(':scope > p:not(.grammar-lemma-line)').length,0,`L${id}: reference intro and prepared rule both shown`);
+   assert(!/Für die (?:Schreib|Sprech|Hotel)aufgabe|Für die Praxis|Für fünf/.test(body.textContent),`L${id}: task instruction inside the grammar topic`);
+  }
+  assert(!root.querySelector('.deepening-background')||id===12||id===17&&root.querySelectorAll('.deepening-background').length===1,`L${id}: background note repeats the rule`);
+ }
+ const l11=e.w.FR_A1_DATA.lessons.find(l=>l.id===11),root=e.w.document.createElement('div');root.innerHTML=e.w.FR_A1_DEEPENING.enrich(l11,e.w.grammarHtml(l11));
+ assert(![...root.querySelectorAll('.deepening-form-example strong')].some(s=>s.textContent==='Nous nous levons.'),'conjugation rows are not repeated as sentences');
  e.dom.window.close();
 });

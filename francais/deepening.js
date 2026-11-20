@@ -18,8 +18,12 @@
     return [...new Set(values)].filter(v=>v!==answer).sort((a,b)=>distance(answer,a)-distance(answer,b));
   }
   // r = original reference page; u = new preparation page. Keep the existing checks.
-  const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],12:['u0'],13:['u0'],14:['u0'],16:['r0'],17:['u0','u1'],22:['r0'],23:['r4']};
-  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u1','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
+  // 'drop' removes a background note that only repeats the topic's own rule or examples.
+  const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],12:['drop'],13:['drop'],14:['drop'],16:['drop'],17:['u0','drop'],22:['drop'],23:['drop']};
+  // From lesson 10 on, a prepared rule replaces the reference page's own intro text (it said the same twice).
+  // A reference table listed here is also hidden because an earlier lesson already showed it.
+  const LEAN_FROM=10,hiddenReferenceTables={22:['r1']};
+  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u0','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
   const families=[['trente','treize','quarante'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
   // A distractor must not be ruled out by elision alone (je ___ + vowel, j’___ + consonant, l’/d’ before a consonant).
   const fitsElision=(q,v)=>{const s=String(q||''),x=String(v||''),next=/___\s+(\p{L})/u.exec(s)?.[1];
@@ -122,6 +126,7 @@
       unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.emphasis=prepared.emphasis;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;unit.conjugationTable=prepared.conjugationTable;
     }
     [...host.querySelectorAll('.lesson-topic-detail')].forEach((note,i)=>{
+      if(noteRoutes[lesson.id]?.[i]==='drop'){note.remove();return;}
       const unit=units.find(u=>u.key===noteRoutes[lesson.id]?.[i])||units[0];
       if(unit){unit.notes=(unit.notes||[]);unit.notes.push(note.querySelector('.grammar-detail-body')?.innerHTML||'');}
       note.remove();
@@ -150,6 +155,22 @@
     });
     body.querySelectorAll('.deepening-examples,.deepening-form-examples').forEach(el=>{if(!el.children.length)el.remove();});
   }
+  // Lesson 10+: a tested pattern is shown once. Skip examples that only repeat a conjugation table
+  // row, an example sentence already listed above, or one more person of the same sentence.
+  function leanExamples(lesson,body,tasks){
+    if(lesson.id<LEAN_FROM)return tasks;
+    const norm=s=>String(s).replace(/\s*\([^)]*\)/g,'').replace(/([’'])\s+/g,'$1').replace(/[.!?]/g,'').replace(/\s+/g,' ').trim().toLowerCase();
+    const personTable=[...body.querySelectorAll('table')].some(t=>{const cells=[...t.querySelectorAll('th,td')].map(c=>c.textContent.replace(/🔊/g,'').trim());return cells.some(c=>/^nous\b/.test(c))&&cells.some(c=>/^vous\b/.test(c));});
+    const phrases=[...body.querySelectorAll('.deepening-examples .phrase-row strong')].map(x=>norm(x.textContent));
+    const tails=new Map(),sentence=t=>t.prompt.replace('___',t.answer).replace('l’ eau','l’eau');
+    return tasks.filter(t=>{
+      const s=norm(sentence(t)),tail=s.split(' ').slice(2).join(' ');
+      if(personTable&&/^(?:je|j’|tu|il|elle|on|nous|vous|ils|elles)\b/.test(s))return false;
+      if(phrases.some(p=>p===s||p.includes(s)||s.includes(p)))return false;
+      if(tail){tails.set(tail,(tails.get(tail)||0)+1);if(tails.get(tail)>1)return false;}
+      return true;
+    });
+  }
   function enrich(lesson,html){
     if(!content[lesson.id])return html;
     const {root,host,units}=definitions(lesson,html);
@@ -158,6 +179,10 @@
       if(!el){el=document.createElement('details');el.className='grammar-detail';el.innerHTML=`<summary>${esc(unit.title)}</summary><div class="grammar-detail-body"></div>`;host.append(el);}
       el.dataset.deepeningKey=unit.key;
       const body=el.querySelector('.grammar-detail-body')||el;
+      if(lesson.id>=LEAN_FROM&&unit.element&&unit.rule){
+        body.querySelectorAll(':scope > p:not(.grammar-lemma-line)').forEach(p=>p.remove());
+        if(hiddenReferenceTables[lesson.id]?.includes(unit.key)){body.querySelectorAll(':scope > .grammar-table-wrap').forEach(t=>t.remove());const summary=el.querySelector('summary');if(summary&&unit.preparedTitle)summary.textContent=unit.preparedTitle;}
+      }
       const closedSeries=lesson.id===4&&['Wochentage','Monate & Datum'].includes(unit.preparedTitle||unit.title)?unit.pairs.filter(([fr])=>/^[a-zéûôî]+$/u.test(fr)):[];
       const series=closedSeries.length?`<div class="between"><strong>Die Reihe anhören</strong><button type="button" class="speak-btn" data-speak="${encodeURIComponent(closedSeries.map(p=>p[0]).join(', '))}" aria-label="${esc((unit.preparedTitle||unit.title)+' als Reihe anhören')}">🔊</button></div>`:'';
       // A conjugation is shown as a table; its single forms are not repeated as a word list.
@@ -168,7 +193,7 @@
       if(unit.rule)body.insertAdjacentHTML('beforeend',`<div class="deepening-preparation">${explanation}${table}${series}<div class="deepening-examples">${pairs}</div></div>`);
       if(unit.notes?.length)body.insertAdjacentHTML('beforeend',`<div class="deepening-background">${unit.notes.join('')}</div>`);
       const relevant=(specs[lesson.id]?.tasks||[]).filter((t,i)=>routes[lesson.id]?.[i]===unit.key);
-      const examples=relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau')))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
+      const examples=leanExamples(lesson,body,relevant.filter(t=>t.prompt&&(lesson.id!==2||!body.textContent.includes(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))))).map(t=>`<div class="deepening-form-example"><strong>${esc(t.prompt.replace('___',t.answer).replace('l’ eau','l’eau'))}</strong>${t.context?`<small>${esc(t.context)}</small>`:''}</div>`).join('');
       // The exact patterns tested in the final check are taught before the inline drill.
       if(examples)body.insertAdjacentHTML('beforeend',`<div class="deepening-form-examples">${examples}</div>`);
       removeDuplicateExamples(body);

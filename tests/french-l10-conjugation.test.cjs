@@ -1,17 +1,17 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),{coursePage}=require('./helpers/course-guide-page.cjs');
-test('lesson 10 shows travailler and commencer as a conjugation table with its pronunciation note',()=>{
+test('lesson 10 shows commencer as a conjugation table with its pronunciation note',()=>{
  const e=coursePage('francais'),{w}=e;try{
   w.localStorage.setItem('a1suite.uiLang','de');
   const api=w.FR_A1_GUIDED_AUDIO,original=api.mount;let captured;api.mount=o=>{captured=o;original(o);};
   w.renderLesson(10);
-  const page=captured.grammarPages.find(p=>p.title==='Regelmäßige Verben anwenden'),root=w.document.createElement('div');root.innerHTML=page.html;
+  const page=captured.grammarPages.find(p=>p.title==='Wann beginnt etwas?'),root=w.document.createElement('div');root.innerHTML=page.html;
   const table=root.querySelector('.deepening-conjugation table');assert(table,'conjugation table');
-  assert.deepEqual([...table.querySelectorAll('tbody tr')].map(r=>r.cells[1].querySelector('[aria-hidden]').textContent),['travaille','travailles','travaille','travaillons','travaillez','travaillent']);
-  assert.equal(table.querySelectorAll('tbody tr')[3].cells[2].querySelector('strong').textContent,'ons');
-  assert(!root.querySelector('.deepening-examples').textContent.includes('tu travailles'),'forms are not repeated as a word list');
+  assert.deepEqual([...table.querySelectorAll('tbody tr')].map(r=>r.cells[1].querySelector('[aria-hidden]').textContent),['commence','commences','commence','commençons','commencez','commencent']);
+  assert.equal(table.querySelectorAll('tbody tr')[3].cells[1].querySelector('strong').textContent,'ons');
+  assert(!root.querySelector('.deepening-examples').textContent.includes('tu commences,'),'forms are not repeated as a word list');
   assert(root.querySelector('.lesson-pronunciation-bonus'),'pronunciation note sits under the table');
   const last=captured.grammarPages.at(-1);assert(!last.html.includes('lesson-pronunciation-bonus'));
   const spoken=api.plan({...captured,scope:'part',step:'grammar',root}).map(p=>p.text).join(' | ');
-  assert.match(spoken,/je travaille, je commence/);assert(!/travaill e/.test(spoken));
+  assert.match(spoken,/je commence,/);assert(!/commenc e/.test(spoken));
  }finally{e.close();}
 });

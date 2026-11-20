@@ -1830,8 +1830,8 @@ window.FR_A1_DATA = {
         "explanation": "Nach être steht ein Beruf normalerweise ohne Artikel: Je suis médecin = „Ich bin Arzt/Ärztin.“"
       },
       "pronunciation": {
-        "focus": "travaille / travaillent / travaillez",
-        "explanation": "Je travaille, tu travailles, il travaille und ils travaillent klingen gleich: Die Endungen -e, -es und -ent sind stumm. Anders klingen nur nous travaillons und vous travaillez.",
+        "focus": "commence / commencent / commencez",
+        "explanation": "Je commence, tu commences, il commence und ils commencent klingen gleich: Die Endungen -e, -es und -ent sind stumm. Anders klingen nur nous commençons und vous commencez.",
         "page": "u1"
       },
       "dialogue": [

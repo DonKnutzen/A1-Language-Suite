@@ -848,7 +848,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "10": [
     {
       "title": "Beruf & Studium",
-      "rule": "Bei être + Beruf steht gewöhnlich kein Artikel: Je suis médecin. Je suis étudiant / étudiante bedeutet „Ich bin Student / Studentin“. Für die Schreibaufgabe kannst du Beruf, Arbeitsort, Arbeitstage und eine Vorliebe je in einem Satz nennen.",
+      "rule": "Nach être steht der Beruf ohne Artikel: je suis médecin. Für eine Frau bekommt die Berufsbezeichnung oft ein e: étudiant → étudiante.",
       "pairs": [
         [
           "Je suis médecin.",
@@ -876,91 +876,70 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "être + Beruf",
-        "kein Artikel",
-        "Je suis étudiant / étudiante",
-        "Beruf, Arbeitsort, Arbeitstage und eine Vorliebe"
+        "ohne Artikel",
+        "étudiant → étudiante"
       ]
     },
     {
-      "title": "Regelmäßige Verben anwenden",
-      "rule": "Nimm die Grundform, streiche -er und hänge die Endung an: travailler → je travaille, nous travaillons. Die Endungen -e, -es, -e, -ons, -ez und -ent sind in der Tabelle fett gedruckt. Bei commencer steht vor -ons ein ç: nous commençons. So bleibt das c weich wie ein s. Mon cours ist Singular, deshalb heißt es mon cours commence.",
+      "title": "Wann beginnt etwas?",
+      "rule": "Travailler und commencer bilden ihre Formen wie habiter und parler aus Lektion 1. Neu: nous commençons mit ç, und ein Nomen als Subjekt nimmt die il- oder ils-Form.",
       "pairs": [
         [
-          "je travaille",
-          "ich arbeite"
-        ],
-        [
-          "tu travailles",
-          "du arbeitest"
-        ],
-        [
-          "il travaille",
-          "er arbeitet"
-        ],
-        [
-          "nous travaillons",
-          "wir arbeiten"
-        ],
-        [
-          "vous travaillez",
-          "Sie arbeiten / ihr arbeitet"
-        ],
-        [
-          "ils travaillent",
-          "sie arbeiten"
-        ],
-        [
           "Je commence à huit heures.",
-          "Ich beginne um acht Uhr."
+          "Ich fange um acht Uhr an."
+        ],
+        [
+          "Tu commences à quelle heure ?",
+          "Um wie viel Uhr fängst du an?"
+        ],
+        [
+          "Nous commençons à huit heures.",
+          "Wir fangen um acht Uhr an."
         ],
         [
           "Mon cours commence à neuf heures.",
           "Mein Kurs beginnt um neun Uhr."
         ],
         [
-          "Nous commençons à huit heures.",
-          "Wir beginnen um acht Uhr."
+          "Le travail commence à sept heures.",
+          "Die Arbeit beginnt um sieben Uhr."
+        ],
+        [
+          "Les cours commencent lundi.",
+          "Die Kurse beginnen am Montag."
         ]
       ],
       "emphasis": [
-        "-er",
-        "-e, -es, -e, -ons, -ez und -ent",
-        "nous commençons",
-        "mon cours commence"
+        "habiter und parler",
+        "ç",
+        "mon cours commence",
+        "le travail commence",
+        "les cours commencent"
       ],
       "blocks": [
         [
-          "So bildest du die Formen",
-          "Nimm die Grundform, streiche -er und hänge die Endung an: travailler → je travaille, nous travaillons. Die Endungen -e, -es, -e, -ons, -ez und -ent sind in der Tabelle fett gedruckt."
+          "Bekannt aus Lektion 1",
+          "Travailler und commencer bilden ihre Formen wie habiter und parler."
         ],
         [
-          "Besonderheit bei commencer",
-          "Vor -ons steht ein ç: nous commençons. So bleibt das c weich wie ein s."
+          "Neu: nous commençons",
+          "Vor -ons steht ein ç. So bleibt das c weich wie ein s."
         ],
         [
-          "Singular oder Plural?",
-          "Mon cours ist Singular, deshalb heißt es mon cours commence."
+          "Neu: Kurs oder Arbeit als Subjekt",
+          "Ein Nomen im Singular nimmt die il/elle-Form: mon cours commence, le travail commence. Im Plural die ils/elles-Form: les cours commencent."
         ]
       ],
       "conjugationTable": {
         "verbs": [
           [
-            "travailler",
-            "arbeiten"
-          ],
-          [
             "commencer",
-            "anfangen"
+            "anfangen, beginnen"
           ]
         ],
         "rows": [
           [
             "je",
-            [
-              "travaill",
-              "e"
-            ],
             [
               "commenc",
               "e"
@@ -969,20 +948,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           [
             "tu",
             [
-              "travaill",
-              "es"
-            ],
-            [
               "commenc",
               "es"
             ]
           ],
           [
             "il / elle",
-            [
-              "travaill",
-              "e"
-            ],
             [
               "commenc",
               "e"
@@ -991,10 +962,6 @@ window.FR_A1_DEEPENING_CONTENT = {
           [
             "nous",
             [
-              "travaill",
-              "ons"
-            ],
-            [
               "commenç",
               "ons"
             ]
@@ -1002,20 +969,12 @@ window.FR_A1_DEEPENING_CONTENT = {
           [
             "vous",
             [
-              "travaill",
-              "ez"
-            ],
-            [
               "commenc",
               "ez"
             ]
           ],
           [
             "ils / elles",
-            [
-              "travaill",
-              "ent"
-            ],
             [
               "commenc",
               "ent"
@@ -1026,7 +985,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Drei Fragen & vier Antworten",
-      "rule": "Für die Sprechaufgabe brauchst du je eine Frage zu Beruf, Ort und Tagen. Wiederhole die Wochentage aus Lektion 4. Beim Schreiben kannst du die Fragen für dich beantworten und mit J’aime … eine vierte Aussage ergänzen.",
+      "rule": "Mit Quel est votre métier ?, Où travaillez-vous ? und Vous travaillez quels jours ? fragst du nach Beruf, Ort und Tagen. Du … au … verbindet zwei Wochentage: du lundi au vendredi.",
       "pairs": [
         [
           "Quel est votre métier ?",
@@ -1054,15 +1013,17 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Beruf, Ort und Tagen",
-        "J’aime …"
+        "Quel est votre métier ?",
+        "Où travaillez-vous ?",
+        "Vous travaillez quels jours ?",
+        "du lundi au vendredi"
       ]
     }
   ],
   "11": [
     {
       "title": "Morgendliche Tätigkeiten",
-      "rule": "Bei se lever steht ein Reflexivpronomen: je me lève. Für den eigenen Morgen kannst du die fertigen Bausteine je me lève, je me douche und je prends … verbinden. Direkte Zeitangaben stehen mit à; vers bedeutet „gegen / ungefähr“.",
+      "rule": "Bei se lever gehört das Reflexivpronomen zur Person: je me lève, tu te lèves, nous nous levons. Genauso: je me douche, je me couche. Eine genaue Uhrzeit steht mit à, eine ungefähre mit vers.",
       "pairs": [
         [
           "Je me lève à sept heures.",
@@ -1087,17 +1048,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Reflexivpronomen",
         "je me lève",
-        "je me douche",
-        "je prends …",
-        "à",
+        "tu te lèves",
+        "nous nous levons",
         "vers"
       ]
     },
     {
       "title": "Was passiert gerade?",
-      "rule": "Être en train de + Grundform beschreibt eine Handlung, die gerade läuft. Bei je steht suis, bei nous sommes. Vor einem Vokal wird de zu d’: en train d’écrire. Maintenant bedeutet „jetzt“.",
+      "rule": "Être en train de + Grundform beschreibt, was gerade jetzt passiert. Nur être ändert sich: je suis, nous sommes. Vor Vokal wird de zu d’: en train d’écrire.",
       "pairs": [
         [
           "Maintenant, je suis en train de travailler.",
@@ -1115,15 +1074,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 1,
       "emphasis": [
         "Être en train de + Grundform",
-        "gerade läuft",
-        "suis",
-        "sommes",
-        "de zu d’"
+        "je suis",
+        "nous sommes",
+        "d’écrire"
       ]
     },
     {
       "title": "Einen Tagesablauf verbinden",
-      "rule": "D’abord, ensuite, puis und enfin ordnen Tätigkeiten. Et verbindet zwei Aussagen. Für fünf Sätze kannst du Aufstehen, Frühstück, Duschen, Arbeit und eine Tätigkeit am Abend auswählen.",
+      "rule": "D’abord (zuerst), puis oder ensuite (dann) und enfin (schließlich) ordnen Tätigkeiten. Le matin und le soir sagen, wann etwas regelmäßig passiert.",
       "pairs": [
         [
           "d’abord",
@@ -1156,16 +1114,19 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 2,
       "emphasis": [
-        "D’abord, ensuite, puis und enfin",
-        "Et",
-        "fünf Sätze"
+        "D’abord",
+        "puis",
+        "ensuite",
+        "enfin",
+        "Le matin",
+        "le soir"
       ]
     }
   ],
   "12": [
     {
       "title": "Symptome nennen",
-      "rule": "J’ai mal à … bedeutet „Mir tut … weh“. Vor le wird à + le zu au: au dos. Fièvre steht mit de la. Für die Aufgabe reicht ein Symptom und eine Bitte; medizinische Einzelheiten sind nicht nötig.",
+      "rule": "J’ai mal à … bedeutet „… tut mir weh“. à + le wird zu au (au dos), à + les zu aux (aux dents); à la bleibt (à la tête). Fieber: j’ai de la fièvre.",
       "pairs": [
         [
           "Je suis malade.",
@@ -1194,14 +1155,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "J’ai mal à …",
-        "à + le zu au",
-        "de la",
-        "ein Symptom und eine Bitte"
+        "au dos",
+        "aux dents",
+        "à la tête",
+        "j’ai de la fièvre"
       ]
     },
     {
       "title": "Hilfe erbitten & krankmelden",
-      "rule": "Pouvez-vous m’aider ? ist eine Bitte um Hilfe; répéter fragt nach Wiederholung. Depuis quand fragt „seit wann“. Für die Schreibaufgabe verbindest du Begrüßung, Krankheit, Absage und Gruß. Ne … pas umschließt peux; venir bleibt in der Grundform.",
+      "rule": "Pouvez-vous m’aider ? bittet um Hilfe. Depuis quand … ? fragt „seit wann“. Bei einer Absage umschließen ne … pas das Verb: je ne peux pas venir.",
       "pairs": [
         [
           "Pouvez-vous m’aider ?",
@@ -1231,17 +1193,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "Pouvez-vous m’aider ?",
-        "Depuis quand",
-        "Begrüßung, Krankheit, Absage und Gruß",
-        "Ne … pas",
-        "Grundform"
+        "Depuis quand … ?",
+        "je ne peux pas venir"
       ]
     }
   ],
   "13": [
     {
       "title": "Wetter & Jahreszeiten",
-      "rule": "Für Wetter stehen Il fait … und Il pleut. Demain, il va faire … verwendet aller + Grundform für morgen. Für eine Beschreibung genügen drei Aussagen: Jahreszeit oder Wetter, Temperatur und Kleidung.",
+      "rule": "Wetter beschreibst du mit il fait (il fait beau, il fait froid), mit il y a + Nomen (il y a du vent) oder mit einem eigenen Verb (il pleut). Für morgen: il va faire …",
       "pairs": [
         [
           "Il fait beau.",
@@ -1269,15 +1229,15 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Il fait …",
-        "Il pleut",
-        "aller + Grundform",
-        "Jahreszeit oder Wetter, Temperatur und Kleidung"
+        "il fait",
+        "il y a + Nomen",
+        "il pleut",
+        "il va faire …"
       ]
     },
     {
       "title": "Dieses Kleidungsstück",
-      "rule": "Ce, cet, cette und ces richten sich nach dem Nomen. Cet steht vor einem männlichen Nomen mit Vokal oder stummem h. Die Größe lässt sich als fester Baustein ergänzen: taille M.",
+      "rule": "Ce, cet, cette und ces richten sich nach dem Nomen. Cet steht vor einem männlichen Nomen mit Vokal oder stummem h: cet hôtel.",
       "pairs": [
         [
           "ce pantalon",
@@ -1303,13 +1263,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "Ce, cet, cette und ces",
-        "Cet",
-        "männlichen Nomen mit Vokal oder stummem h"
+        "cet hôtel"
       ]
     },
     {
       "title": "Farben & Kleidung",
-      "rule": "Viele Farben erhalten bei einem weiblichen Nomen ein e: bleu → bleue, noir → noire. Im Plural kommt meist s hinzu. Porte bedeutet „trage“ in je porte. Für die Sprechaufgabe nennst du Kleidungsstück, Farbe und Größe.",
+      "rule": "Farben passen sich an das Nomen an: bleu → bleue, noir → noire, im Plural mit s. Endet die Farbe schon auf -e, bleibt sie im Femininum gleich: rouge, jaune.",
       "pairs": [
         [
           "rouge / bleu / vert / jaune",
@@ -1338,16 +1297,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "weiblichen Nomen ein e",
         "bleu → bleue",
         "noir → noire",
-        "Plural kommt meist s",
-        "Kleidungsstück, Farbe und Größe"
+        "rouge, jaune"
       ]
     },
     {
       "title": "Klein, blau & Größe M",
-      "rule": "Petit steht meist vor dem Nomen, eine Farbe dahinter: une petite veste bleue. Passe beide Adjektive an veste an. Die Frage nach einem Wunsch kannst du mit Je cherche … formulieren.",
+      "rule": "Petit steht meist vor dem Nomen, eine Farbe dahinter: une petite veste bleue. Beide Adjektive passen sich an das Nomen an.",
       "pairs": [
         [
           "une petite veste bleue",
@@ -1365,17 +1322,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 2,
       "emphasis": [
         "Petit",
-        "vor dem Nomen",
-        "Farbe dahinter",
-        "une petite veste bleue",
-        "Je cherche …"
+        "une petite veste bleue"
       ]
     }
   ],
   "14": [
     {
       "title": "Aktivitäten & Vorlieben",
-      "rule": "Jouer au + Sport bedeutet „… spielen“, aller au cinéma „ins Kino gehen“. Nach aimer, adorer oder préférer kann eine Grundform stehen: J’aime cuisiner. Bei einer allgemeinen Vorliebe für eine Sache steht oft der bestimmte Artikel: J’aime le football.",
+      "rule": "Jouer au + Sport: je joue au tennis. Nach aimer, adorer und préférer steht eine Grundform (j’aime cuisiner) oder ein Nomen mit le / la / les (j’aime le football).",
       "pairs": [
         [
           "Je joue au football.",
@@ -1412,14 +1366,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "Jouer au + Sport",
-        "Nach aimer, adorer oder préférer",
-        "Grundform",
-        "bestimmte Artikel"
+        "j’aime cuisiner",
+        "j’aime le football"
       ]
     },
     {
       "title": "Fragen & Wochenende beschreiben",
-      "rule": "Mit Qu’est-ce que tu fais … ? fragst du nach einer Tätigkeit, mit Tu aimes … ? nach einer Vorliebe. Le week-end und le dimanche können regelmäßige Gewohnheiten meinen. Für eine Verneinung umschließen ne / n’ und pas das Verb.",
+      "rule": "Qu’est-ce que tu fais … ? fragt nach einer Tätigkeit, Tu aimes … ? nach einer Vorliebe. Le week-end und le dimanche beschreiben Gewohnheiten: am Wochenende, sonntags.",
       "pairs": [
         [
           "Qu’est-ce que tu fais le week-end ?",
@@ -1449,15 +1402,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       "emphasis": [
         "Qu’est-ce que tu fais … ?",
         "Tu aimes … ?",
-        "regelmäßige Gewohnheiten",
-        "ne / n’ und pas"
+        "Le week-end",
+        "le dimanche"
       ]
     }
   ],
   "15": [
     {
       "title": "Eine Reise planen",
-      "rule": "Aller + Grundform kündigt einen Plan an: je vais visiter. Wenn ein Ziel folgt, heißt je vais à Paris „Ich fahre nach Paris“. Für die Hotelaufgabe ist réserver „reservieren“ wichtig; pour nennt Personen oder Nächte.",
+      "rule": "Aller + Grundform beschreibt einen Plan: je vais visiter Paris. Ohne Grundform heißt aller „fahren“: je vais à Paris.",
       "pairs": [
         [
           "Je vais visiter Paris.",
@@ -1487,14 +1440,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "Aller + Grundform",
-        "je vais à Paris",
-        "réserver",
-        "pour"
+        "je vais visiter Paris",
+        "je vais à Paris"
       ]
     },
     {
       "title": "Zimmer buchen & schriftlich anfragen",
-      "rule": "Eine Reservierung nennt Zimmer, Personen, Zeitraum und eine Frage. Du 10 au 12 juillet meint „vom 10. bis zum 12. Juli“. Zwei Nächte umfassen die Nächte vom 10. auf den 11. und vom 11. auf den 12. La disponibilité = Verfügbarkeit, le prix = Preis.",
+      "rule": "Eine Reservierung nennt Zimmer, Personen und Zeitraum: du 10 au 12 juillet = vom 10. bis zum 12. Juli.",
       "pairs": [
         [
           "Je voudrais réserver une chambre pour deux personnes du 10 au 12 juillet.",
@@ -1518,18 +1470,15 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Zimmer, Personen, Zeitraum und eine Frage",
-        "Du 10 au 12 juillet",
-        "Zwei Nächte",
-        "La disponibilité",
-        "le prix"
+        "Zimmer, Personen und Zeitraum",
+        "du 10 au 12 juillet"
       ]
     }
   ],
   "16": [
     {
       "title": "Einladen, zusagen & absagen",
-      "rule": "Tu veux … ? ist eine vertraute Einladung. Mit pouvoir sagst du, ob jemand kommen kann. Eine Absage hat je ne peux pas venir. Si tu ne peux pas heißt „falls du nicht kannst“ und kann als fertiger Baustein verwendet werden.",
+      "rule": "Tu veux … ? lädt ein. Mit pouvoir + Grundform sagst du zu oder ab: je peux venir, je ne peux pas venir.",
       "pairs": [
         [
           "Tu veux venir chez moi samedi à 19 h ?",
@@ -1555,14 +1504,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "Tu veux … ?",
-        "pouvoir",
-        "je ne peux pas venir",
-        "Si tu ne peux pas"
+        "pouvoir + Grundform",
+        "je peux venir",
+        "je ne peux pas venir"
       ]
     },
     {
       "title": "Telefon, Glückwünsche & Nachricht",
-      "rule": "Beim Telefonieren nennst du dich mit Allô, c’est … . Für eine Einladung schreibst du Gruß, Ort, Tag, Zeit und Schlussgruß. Bon anniversaire und Félicitations sind vollständige Glückwünsche; ein Kompliment kann C’est très joli ! lauten.",
+      "rule": "Am Telefon meldest du dich mit Allô, c’est … Bon anniversaire und Félicitations sind feste Glückwünsche.",
       "pairs": [
         [
           "Allô, c’est Anna.",
@@ -1595,7 +1544,6 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "Allô, c’est …",
-        "Gruß, Ort, Tag, Zeit und Schlussgruß",
         "Bon anniversaire",
         "Félicitations"
       ]
@@ -1604,7 +1552,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "17": [
     {
       "title": "Formularfelder verstehen",
-      "rule": "Nom ist in einem Formular der Nachname, prénom der Vorname. Frage nach einem fehlenden Feld mit Que dois-je écrire ici ? oder Quelle est votre … ? Quel passt zu einem männlichen, quelle zu einem weiblichen Nomen. Trage kurze Angaben ein; vollständige Sätze sind nicht nötig.",
+      "rule": "Im Formular ist nom der Nachname und prénom der Vorname. Quel steht vor männlichen, quelle vor weiblichen Nomen: quel nom, quelle adresse.",
       "pairs": [
         [
           "Nom / Prénom",
@@ -1644,20 +1592,15 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Nom",
-        "Nachname",
+        "nom",
         "prénom",
-        "Vorname",
-        "Que dois-je écrire ici ?",
-        "Quelle est votre … ?",
-        "Quel",
-        "quelle",
-        "kurze Angaben"
+        "quel nom",
+        "quelle adresse"
       ]
     },
     {
       "title": "Eine Nachricht mit 40 Wörtern aufbauen",
-      "rule": "Baue die Nachricht aus sechs Teilen: Begrüßung, Anlass, zwei konkrete Fragen oder Angaben, Bitte um Antwort und Dank. Wiederhole dafür bekannte Bausteine; neue komplizierte Sätze sind nicht nötig. Les horaires = Unterrichtszeiten, le prix = Preis, la date de début = Startdatum. Die Formularangaben ersetzen die geforderte Nachricht nicht.",
+      "rule": "Eine kurze Anfrage hat Begrüßung, Anlass, Fragen, eine Bitte um Antwort und Dank. Les horaires = Unterrichtszeiten, la date de début = Startdatum.",
       "pairs": [
         [
           "Bonjour, je voudrais des informations sur votre cours de français.",
@@ -1689,16 +1632,16 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "sechs Teilen",
-        "Begrüßung, Anlass, zwei konkrete Fragen oder Angaben, Bitte um Antwort und Dank",
-        "Formularangaben ersetzen die geforderte Nachricht nicht"
+        "Begrüßung, Anlass, Fragen, eine Bitte um Antwort und Dank",
+        "Les horaires",
+        "la date de début"
       ]
     }
   ],
   "18": [
     {
       "title": "Nicht verstehen & nachfragen",
-      "rule": "Ne / n’ … pas umschließt das Verb. Nach einer verneinten unbestimmten Menge steht meist de: Je n’ai pas de voiture. Bei einem Verständnisproblem kannst du erst Je ne comprends pas sagen und dann um Wiederholung bitten.",
+      "rule": "Ne / n’ … pas umschließt das Verb. Nach der Verneinung wird un / une / des zu de, vor Vokal zu d’: je n’ai pas de voiture, je n’ai pas d’enfants.",
       "pairs": [
         [
           "Je ne comprends pas.",
@@ -1716,13 +1659,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "Ne / n’ … pas",
-        "de",
-        "Je ne comprends pas"
+        "je n’ai pas de voiture",
+        "je n’ai pas d’enfants"
       ]
     },
     {
       "title": "Hilfe & langsames Sprechen",
-      "rule": "Du kannst Pouvez-vous … ? und Vous pouvez … ? als ganze Frage lernen. Die Verben répéter, parler und aider bleiben danach in der Grundform. Plus lentement bedeutet „langsamer“.",
+      "rule": "Nach Pouvez-vous … ? bleibt das zweite Verb in der Grundform: répéter, parler plus lentement, m’aider.",
       "pairs": [
         [
           "Pouvez-vous répéter, s’il vous plaît ?",
@@ -1744,14 +1687,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 1,
       "emphasis": [
         "Pouvez-vous … ?",
-        "Vous pouvez … ?",
-        "Grundform",
-        "Plus lentement"
+        "Grundform"
       ]
     },
     {
       "title": "Höfliche Bitte & Informationsanfrage",
-      "rule": "Pourriez-vous ist höflicher als pouvez-vous. J’aimerais und je voudrais bedeuten hier „ich hätte gern“. Auf A1 lernst du diese Formen als Bausteine. Eine Anfrage zu einem Kurs kann Unterrichtszeiten, Preis und Startdatum nennen; beginne mit Bonjour und ende mit einem Dank.",
+      "rule": "Pourriez-vous (könnten Sie) ist höflicher als pouvez-vous. J’aimerais und je voudrais heißen „ich hätte gern“. Diese Formen lernst du als feste Wendungen.",
       "pairs": [
         [
           "Pourriez-vous répéter, s’il vous plaît ?",
@@ -1786,16 +1727,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       "emphasis": [
         "Pourriez-vous",
         "J’aimerais",
-        "je voudrais",
-        "als Bausteine",
-        "Unterrichtszeiten, Preis und Startdatum"
+        "je voudrais"
       ]
     }
   ],
   "19": [
     {
       "title": "Nomen mit Artikel lernen",
-      "rule": "Un / une = ein / eine; le / la = der bestimmte Artikel. Vor Vokal oder stummem h steht l’. Lerne nicht nur „livre“, sondern un livre. Wähle für die Sprechaufgabe fünf Dinge aus dieser Übersicht.",
+      "rule": "Lerne jedes Nomen mit Artikel: un livre, une clé. Vor Vokal oder stummem h steht l’: l’hôtel.",
       "pairs": [
         [
           "un café",
@@ -1836,16 +1775,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Un / une",
-        "le / la",
-        "l’",
-        "Wähle",
-        "fünf Dinge"
+        "mit Artikel",
+        "l’hôtel"
       ]
     },
     {
       "title": "Zwei Dinge in den Plural setzen",
-      "rule": "Im regelmäßigen Plural wird un oder une zu des; das Nomen erhält meist s. Das s am Wortende hört man meistens nicht. Bei C’est → Ce sont wechselt auch das Verb.",
+      "rule": "Im Plural wird un / une zu des, das Nomen bekommt meist ein stummes s. Wörter auf -s oder -x bleiben gleich, Wörter auf -eau bekommen -x.",
       "pairs": [
         [
           "un livre → des livres",
@@ -1866,14 +1802,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "un oder une zu des",
-        "Nomen erhält meist s",
-        "C’est → Ce sont"
+        "un / une zu des",
+        "stummes s",
+        "-eau bekommen -x"
       ]
     },
     {
       "title": "Geschlecht merken",
-      "rule": "Das grammatische Geschlecht lässt sich nicht zuverlässig aus dem Deutschen ableiten. Une clé ist weiblich, obwohl „Schlüssel“ im Deutschen männlich ist. Wiederhole Wort und Artikel gemeinsam.",
+      "rule": "Das Geschlecht lässt sich nicht aus dem Deutschen ableiten: une clé ist weiblich, obwohl es „der Schlüssel“ heißt.",
       "pairs": [
         [
           "le livre / la clé",
@@ -1890,13 +1826,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 2,
       "emphasis": [
-        "nicht zuverlässig aus dem Deutschen",
-        "Wort und Artikel gemeinsam"
+        "nicht aus dem Deutschen ableiten",
+        "une clé"
       ]
     },
     {
       "title": "Gegenstände zeigen & beschreiben",
-      "rule": "C’est + Singular, ce sont + Plural. Voici weist auf etwas hier hin, voilà auf etwas dort. Für drei kurze Sätze kannst du einen Gegenstand mit c’est, mehrere mit ce sont und einen weiteren mit voici vorstellen.",
+      "rule": "C’est + Singular, ce sont + Plural. Voici zeigt auf etwas hier, voilà auf etwas dort.",
       "pairs": [
         [
           "C’est un ordinateur.",
@@ -1927,7 +1863,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "20": [
     {
       "title": "Positive Alltagssätze",
-      "rule": "Im Präsens steht meistens Subjekt + Verb + Ergänzung. Für regelmäßiges parler gelten die bekannten -er-Endungen. Zum freien Schreiben kannst du dieselbe Tätigkeit positiv und negativ formulieren.",
+      "rule": "Die Endungen kennst du aus Lektion 1. Hier wendest du sie mit verschiedenen Personen und Verben an: tu habites, nous aimons, vous avez, ils sont.",
       "pairs": [
         [
           "Je travaille aujourd’hui.",
@@ -1944,14 +1880,16 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Subjekt + Verb + Ergänzung",
-        "-er-Endungen",
-        "positiv und negativ"
+        "Lektion 1",
+        "tu habites",
+        "nous aimons",
+        "vous avez",
+        "ils sont"
       ]
     },
     {
       "title": "Mit ne … pas verneinen",
-      "rule": "Ne / n’ steht vor dem konjugierten Verb, pas danach. Vor Vokal wird ne zu n’. Bei einer unbestimmten Menge steht nach der Verneinung de: Je n’ai pas de voiture.",
+      "rule": "Ne steht vor dem konjugierten Verb, pas danach. Vor Vokal oder stummem h wird ne zu n’.",
       "pairs": [
         [
           "Je ne travaille pas aujourd’hui.",
@@ -1972,16 +1910,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Ne / n’",
-        "vor dem konjugierten Verb",
+        "Ne steht vor dem konjugierten Verb",
         "pas danach",
-        "ne zu n’",
-        "de"
+        "n’"
       ]
     },
     {
       "title": "Nie statt nicht",
-      "rule": "Jamais bedeutet „nie“ und ersetzt in dieser Verneinung pas. Ne … jamais umschließt das Verb. Le dimanche kann eine regelmäßige Gewohnheit meinen.",
+      "rule": "Ne … jamais (nie) funktioniert wie ne … pas: jamais steht an der Stelle von pas.",
       "pairs": [
         [
           "Je ne regarde jamais la télévision.",
@@ -1998,15 +1934,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 2,
       "emphasis": [
-        "Jamais",
-        "ersetzt",
-        "pas",
-        "Ne … jamais"
+        "Ne … jamais",
+        "ne … pas"
       ]
     },
     {
       "title": "Regeln & Verbote",
-      "rule": "Il faut + Grundform heißt „man muss / soll“. Il ne faut pas + Grundform heißt „man darf nicht“. Für die Praxis nennst du drei positive und drei negative Alltagssätze; beim Sprechen ergänzt du eine Regel.",
+      "rule": "Il faut + Grundform = man muss. Il ne faut pas + Grundform = man darf nicht.",
       "pairs": [
         [
           "Il faut réserver.",
@@ -2024,15 +1958,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 3,
       "emphasis": [
         "Il faut + Grundform",
-        "Il ne faut pas + Grundform",
-        "drei positive und drei negative Alltagssätze"
+        "Il ne faut pas + Grundform"
       ]
     }
   ],
   "21": [
     {
       "title": "Gezielt Informationen erfragen",
-      "rule": "Fragewörter helfen dir, Ort, Zeit, Person, Art oder Menge zu erfragen. Für fünf Fragen wählst du fünf unterschiedliche Fragewörter. Wiederhole die Bausteine der ersten Lektionen und ersetze die persönlichen Angaben.",
+      "rule": "Das Fragewort steht am Anfang. In der Sie-Form folgt oft Verb + Subjekt: Où habitez-vous ?",
       "pairs": [
         [
           "Où habitez-vous ?",
@@ -2061,13 +1994,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Ort, Zeit, Person, Art oder Menge",
-        "fünf unterschiedliche Fragewörter"
+        "Fragewort",
+        "Verb + Subjekt"
       ]
     },
     {
       "title": "Einfache Frageformen",
-      "rule": "Est-ce que + Aussage bildet eine Ja/Nein-Frage. Qu’est-ce que bedeutet „was“. Du kannst die Form mit Inversion wie Où habitez-vous ? als fertiges Muster lernen; für neue Fragen ist Est-ce que oft einfacher.",
+      "rule": "Est-ce que + Aussage macht daraus eine Ja/Nein-Frage. Mit Fragewort davor: Où est-ce que vous habitez ? Qu’est-ce que bedeutet „was“.",
       "pairs": [
         [
           "Est-ce que vous travaillez ?",
@@ -2089,9 +2022,8 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 1,
       "emphasis": [
         "Est-ce que + Aussage",
-        "Ja/Nein-Frage",
-        "Qu’est-ce que",
-        "Inversion"
+        "Où est-ce que vous habitez ?",
+        "Qu’est-ce que"
       ]
     },
     {
@@ -2121,7 +2053,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Besitz angeben",
-      "rule": "Mon, ma und mes richten sich nach dem folgenden Nomen. Votre gehört zu Sie / ihr; vos ist der Plural. Vor einem weiblichen Nomen mit Vokal steht mon statt ma.",
+      "rule": "Die Possessivbegleiter kennst du aus Lektion 5. Hier geht es um die schwierigen Fälle: son / sa richtet sich nach dem Nomen, nicht nach dem Besitzer; leur / leurs steht bei mehreren Besitzern; vor Vokal heißt es mon amie.",
       "pairs": [
         [
           "mon frère / ma sœur / mes parents",
@@ -2142,16 +2074,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 3,
       "emphasis": [
-        "Mon, ma und mes",
-        "folgenden Nomen",
-        "Votre",
-        "vos",
-        "mon statt ma"
+        "Lektion 5",
+        "son / sa",
+        "leur / leurs",
+        "mon amie"
       ]
     },
     {
       "title": "Betonte Pronomen",
-      "rule": "Die betonten Formen stehen zum Beispiel nach et oder einer Präposition: Et toi ? = Und du? Moi hebt „ich“ hervor. Moi, toi, lui, elle, nous, vous, eux, elles gehören zu je, tu, il, elle, nous, vous, ils, elles.",
+      "rule": "Betonte Pronomen stehen allein, nach et oder nach einer Präposition: Et toi ? Avec lui. Avec eux.",
       "pairs": [
         [
           "Moi, j’habite ici. Et toi ?",
@@ -2168,15 +2099,16 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 4,
       "emphasis": [
-        "nach et oder einer Präposition",
-        "Moi, toi, lui, elle, nous, vous, eux, elles"
+        "allein",
+        "nach et",
+        "nach einer Präposition"
       ]
     }
   ],
   "22": [
     {
       "title": "Gestern: passé composé mit avoir",
-      "rule": "Das passé composé besteht aus avoir im Präsens + Partizip. Bei regelmäßigen -er-Verben wird -er zu -é: visiter → visité. Das Partizip bleibt in diesen Beispielen gleich, die Form von avoir wechselt.",
+      "rule": "Passé composé = avoir im Präsens + Partizip. Bei -er-Verben wird -er zu -é: visiter → visité.",
       "pairs": [
         [
           "Hier, j’ai visité un musée.",
@@ -2198,13 +2130,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "avoir im Präsens + Partizip",
-        "-er zu -é",
-        "Form von avoir wechselt"
+        "-er zu -é"
       ]
     },
     {
       "title": "Zeit & Reihenfolge",
-      "rule": "Hier = gestern, aujourd’hui = heute und demain = morgen. Mit d’abord, ensuite, puis und enfin ordnest du mehrere Aktivitäten. Für die Schreibaufgabe kannst du je einen Satz über gestern, heute, morgen und zwei weitere Zeitangaben schreiben.",
+      "rule": "Hier, aujourd’hui und demain ordnen Ereignisse in der Zeit. D’abord, ensuite und enfin kennst du aus Lektion 11.",
       "pairs": [
         [
           "hier / aujourd’hui / demain",
@@ -2221,15 +2152,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Hier",
-        "aujourd’hui",
-        "demain",
-        "d’abord, ensuite, puis und enfin"
+        "Hier, aujourd’hui und demain",
+        "Lektion 11"
       ]
     },
     {
       "title": "Passé composé mit être",
-      "rule": "Aller, arriver und partir verwenden hier être. Das Partizip erhält bei einer weiblichen Person e und im Plural s. Je suis allé ist männlich, je suis allée weiblich. Die Schreibweise allé(e) zeigt beide Varianten; in deinem eigenen Satz wählst du eine.",
+      "rule": "Aller, arriver und partir bilden das passé composé mit être. Das Partizip passt sich an: allé (Mann), allée (Frau), partis oder parties (Plural).",
       "pairs": [
         [
           "Je suis allé au cinéma.",
@@ -2256,14 +2185,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "emphasis": [
         "Aller, arriver und partir",
         "être",
-        "weiblichen Person e",
-        "Plural s",
-        "je suis allée"
+        "partis oder parties"
       ]
     },
     {
       "title": "Gerade eben: venir de",
-      "rule": "Venir de + Grundform bedeutet „gerade etwas getan haben“. Die Form von venir richtet sich nach der Person. Vor Vokal steht d’: Je viens d’arriver.",
+      "rule": "Venir de + Grundform heißt „gerade etwas getan haben“: je viens de manger. Vor Vokal steht d’: je viens d’arriver.",
       "pairs": [
         [
           "Je viens de manger.",
@@ -2281,14 +2208,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 3,
       "emphasis": [
         "Venir de + Grundform",
-        "gerade etwas getan haben",
-        "Person",
-        "d’"
+        "je viens d’arriver"
       ]
     },
     {
       "title": "Vor, in oder seit?",
-      "rule": "Il y a nennt einen vergangenen Zeitpunkt, dans einen zukünftigen. Depuis nennt die Dauer eines noch andauernden Zustands und steht hier mit Präsens. Für einen Plan für morgen verwendest du aller + Grundform.",
+      "rule": "Il y a = vor (Vergangenheit), dans = in (Zukunft), depuis = seit (dauert noch an, mit Präsens).",
       "pairs": [
         [
           "Je suis arrivé il y a trois jours.",
@@ -2310,20 +2235,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 4,
       "emphasis": [
         "Il y a",
-        "vergangenen Zeitpunkt",
         "dans",
-        "zukünftigen",
-        "Depuis",
-        "Dauer",
-        "Präsens",
-        "aller + Grundform"
+        "depuis"
       ]
     }
   ],
   "23": [
     {
       "title": "Zutaten & Teilungsartikel",
-      "rule": "Ohne genaue Menge verwendest du du, de la, de l’ oder des. Für eine Zutatenliste sind die Nomen œufs (Eier), farine (Mehl), lait (Milch) und sucre (Zucker) wichtig.",
+      "rule": "Ohne genaue Menge steht du, de la, de l’ oder des: du pain, de la farine, des œufs.",
       "pairs": [
         [
           "du pain",
@@ -2348,17 +2268,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Ohne genaue Menge",
-        "du, de la, de l’ oder des",
-        "œufs",
-        "farine",
-        "lait",
-        "sucre"
+        "du, de la, de l’ oder des"
       ]
     },
     {
       "title": "Zutaten mit genauer Menge",
-      "rule": "Nach einer genauen Menge steht de / d’. Zahlen schreibst du auf einer Liste oft als Ziffern. Zum Vorlesen benötigst du grammes, kilo und litre.",
+      "rule": "Nach einer genauen Menge steht nur de / d’: un kilo de pommes, une bouteille d’eau. Nach einer Zahl steht das Nomen direkt: trois œufs.",
       "pairs": [
         [
           "deux cents grammes de farine",
@@ -2379,13 +2294,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Nach einer genauen Menge steht de / d’",
-        "grammes, kilo und litre"
+        "nur de / d’",
+        "trois œufs"
       ]
     },
     {
       "title": "Zutaten weglassen",
-      "rule": "Nach ne … pas wird der Teilungsartikel meist zu de / d’. Das gilt etwa für pas de sucre; eine festgelegte genaue Menge ist hier nicht gemeint.",
+      "rule": "Nach ne … pas wird du / de la / des zu de / d’: je n’ai pas de sucre.",
       "pairs": [
         [
           "Je n’ai pas de sucre.",
@@ -2402,13 +2317,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 2,
       "emphasis": [
-        "Nach ne … pas",
+        "ne … pas",
         "de / d’"
       ]
     },
     {
       "title": "Ein wenig & zu viel",
-      "rule": "Auch nach un peu, beaucoup und trop steht de. Trop de sel bedeutet „zu viel Salz“. Diese Wendungen helfen dir, Mengen ohne genaue Zahl auszudrücken.",
+      "rule": "Auch nach un peu, beaucoup und trop steht nur de: un peu de lait, trop de sel.",
       "pairs": [
         [
           "un peu de lait",
@@ -2426,13 +2341,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 3,
       "emphasis": [
         "un peu, beaucoup und trop",
-        "de",
-        "Trop de sel"
+        "nur de"
       ]
     },
     {
       "title": "Zweck & zwei Zubereitungsschritte",
-      "rule": "Pour + Grundform nennt einen Zweck: un couteau pour couper. Ein höflicher Imperativ verwendet die vous-Form ohne vous: Ajoutez, Mélangez. Für die Schreibaufgabe notierst du zuerst Zutaten und dann zwei wirkliche Handlungsschritte, zum Beispiel Ajoutez le lait. Mélangez avec une cuillère.",
+      "rule": "Pour + Grundform nennt einen Zweck: un couteau pour couper. In Rezepten steht die vous-Form ohne vous: Ajoutez, Mélangez.",
       "pairs": [
         [
           "J’utilise un couteau pour couper les légumes.",
@@ -2458,18 +2372,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 4,
       "emphasis": [
         "Pour + Grundform",
-        "Zweck",
-        "vous-Form ohne vous",
-        "Ajoutez, Mélangez",
-        "Zutaten",
-        "zwei wirkliche Handlungsschritte"
+        "vous-Form ohne vous"
       ]
     }
   ],
   "24": [
     {
       "title": "Zielort nennen",
-      "rule": "Für Städte steht à. Bei Ländern stehen en (weiblich oder mit Vokal), au (männlich mit Konsonant) und aux (Plural). Lerne den Ländernamen mit seiner Form; pour nennt beim billet ein Reiseziel.",
+      "rule": "Für Städte steht à, für Länder en, au oder aux – je nach Geschlecht und Zahl des Landes.",
       "pairs": [
         [
           "Je vais à Paris.",
@@ -2490,16 +2400,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Städte steht à",
-        "en",
-        "au",
-        "aux",
-        "Ländernamen mit seiner Form"
+        "à",
+        "en, au oder aux"
       ]
     },
     {
       "title": "Herkunft nennen",
-      "rule": "Für eine Herkunft verwendest du de, d’, du oder des. Vor Vokal steht d’. Die Herkunftsform ist nicht dieselbe wie die Form für ein Ziel.",
+      "rule": "Für die Herkunft steht de (vor Vokal d’), du oder des. Das ist ein anderes Muster als beim Ziel: en France, aber de France.",
       "pairs": [
         [
           "Je viens de France.",
@@ -2520,14 +2427,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "de, d’, du oder des",
-        "Vor Vokal steht d’",
-        "nicht dieselbe"
+        "du oder des",
+        "en France, aber de France"
       ]
     },
     {
       "title": "Abfahrt & Verkehrsmittel",
-      "rule": "Devoir + Grundform bedeutet „müssen“. Bei einer Reise nennst du Zeitpunkt und Verkehrsmittel: en train, en bus oder en voiture. Rester = bleiben, partir = abfahren, rentrer = zurückkommen.",
+      "rule": "Devoir + Grundform = müssen: je dois partir. Verkehrsmittel stehen mit en: en train, en bus.",
       "pairs": [
         [
           "Je dois partir à huit heures.",
@@ -2553,16 +2459,12 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 2,
       "emphasis": [
         "Devoir + Grundform",
-        "Zeitpunkt und Verkehrsmittel",
-        "en train, en bus oder en voiture",
-        "Rester",
-        "partir",
-        "rentrer"
+        "en train, en bus"
       ]
     },
     {
       "title": "Eine Reisenachricht aufbauen",
-      "rule": "Für mindestens 40 Wörter brauchst du mehrere einfache Sätze. Plane Ziel, Monat, Begleitung, Verkehrsmittel, Dauer, Aktivitäten und Rückkehr. Mit nous partons, nous restons und nous voulons sagst du „wir fahren ab / bleiben / möchten“. Verbinde Aktivitäten mit et; beginne und ende mit einem Gruß.",
+      "rule": "Mit nous partons, nous restons und nous voulons beschreibst du eine gemeinsame Reise. Verbinde Aktivitäten mit et.",
       "pairs": [
         [
           "En juillet, je vais à Paris avec un ami.",
@@ -2598,10 +2500,7 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "mindestens 40 Wörter",
-        "Ziel, Monat, Begleitung, Verkehrsmittel, Dauer, Aktivitäten und Rückkehr",
-        "nous partons, nous restons und nous voulons",
-        "et"
+        "nous partons, nous restons und nous voulons"
       ]
     }
   ]
