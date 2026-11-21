@@ -848,7 +848,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "B",
-        "text": "Non, à sept heures. Après, je prends le petit déjeuner."
+        "text": "Non, à sept heures. Après, je prends le petit-déjeuner."
       },
       {
         "speaker": "A",
@@ -880,11 +880,11 @@ window.A1_COMPREHENSION_CONTENT = {
       {
         "label": "Danach",
         "options": [
-          "je prends le petit déjeuner",
+          "je prends le petit-déjeuner",
           "je vais au travail",
           "je fais du sport"
         ],
-        "answer": "je prends le petit déjeuner"
+        "answer": "je prends le petit-déjeuner"
       },
       {
         "label": "Schlafenszeit",
@@ -1188,7 +1188,7 @@ window.A1_COMPREHENSION_CONTENT = {
       },
       {
         "speaker": "A",
-        "text": "Trois nuits. Le petit déjeuner est compris ?"
+        "text": "Trois nuits. Le petit-déjeuner est inclus ?"
       },
       {
         "speaker": "B",
@@ -2032,11 +2032,11 @@ window.A1_COMPREHENSION_CONTENT = {
     8:[['A','Bonjour. L’appartement a combien de pièces ?'],['B','Deux pièces, une cuisine et une salle de bains.'],['A','Il est près du centre ?'],['B','Oui. Le loyer est de six cents euros par mois.'],['A','Quelle est l’adresse ?'],['B','Douze, rue Victor-Hugo.'],['A','Sur la photo du salon, où est la lampe ?'],['B','La lampe est sur la table.']],
     9:[['A','Bonjour. Pour aller à la pharmacie, s’il vous plaît ?'],['B','Allez tout droit, puis à droite.'],['A','C’est loin à pied ?'],['B','Non, c’est à cinq minutes.'],['A','Merci. Et pour aller à la gare, quel bus faut-il prendre ?'],['B','Prenez la ligne huit.'],['A','Le train part à l’heure ?'],['B','Non, le train a dix minutes de retard.']],
     10:[['A','Vous travaillez dans une école ?'],['B','Oui, je suis professeur.'],['A','Vous commencez à huit heures ?'],['B','Non, à neuf heures. Je travaille du lundi au vendredi.'],['A','Vous aimez votre travail ?'],['B','Oui, j’aime mon travail.'],['A','Et le soir, vous avez cours ?'],['B','Oui, j’étudie le français. Mon cours commence à dix-huit heures.']],
-    11:[['A','Tu te lèves à six heures ?'],['B','Non, à sept heures. Après, je prends le petit déjeuner.'],['A','Et le soir, tu fais quoi ?'],['B','Je regarde la télé, puis je me couche à vingt-deux heures.'],['A','Et maintenant, qu’est-ce que tu fais ?'],['B','Je suis en train de prendre le petit-déjeuner. Ensuite, je vais au travail en bus.'],['A','D’accord. Bonne journée !'],['B','Merci, à bientôt !']],
-    12:[['A','Bonjour. Je voudrais un médicament. J’ai mal à la gorge.'],['B','Depuis quand ?'],['A','Depuis hier soir.'],['B','D’accord. La consigne pour ce médicament est : deux fois par jour, pendant trois jours.'],['A','Je ne peux pas venir au travail aujourd’hui. J’ai aussi un rendez-vous chez le médecin.'],['B','Votre rendez-vous est aujourd’hui ?'],['A','Non, demain matin. Merci pour votre aide.'],['B','Au revoir.']],
+    11:[['A','Tu te lèves à six heures ?'],['B','Non, à sept heures. Après, je prends le petit-déjeuner.'],['A','Et le soir, tu fais quoi ?'],['B','Je regarde la télé, puis je me couche à vingt-deux heures.'],['A','Et maintenant, qu’est-ce que tu fais ?'],['B','Je suis en train de prendre le petit-déjeuner. Ensuite, je vais au travail en bus.'],['A','D’accord. Bonne journée !'],['B','Merci, à bientôt !']],
+    12:[['A','Bonjour. Je voudrais un médicament. J’ai mal à la gorge.'],['B','Depuis quand ?'],['A','Depuis hier soir.'],['B','D’accord. Prenez ce médicament deux fois par jour, pendant trois jours.'],['A','Je ne peux pas venir au travail aujourd’hui. J’ai aussi un rendez-vous chez le médecin.'],['B','Votre rendez-vous est aujourd’hui ?'],['A','Non, demain matin. Merci pour votre aide.'],['B','Au revoir.']],
     13:[['A','Vous cherchez une veste pour votre voyage ?'],['B','Oui, une petite veste bleue, en taille quarante. C’est l’hiver, il fait froid aujourd’hui.'],['A','Voici deux vestes. Vous voulez essayer la noire ?'],['B','Non, la bleue, s’il vous plaît.'],['A','D’accord. Et demain, quel temps va-t-il faire ?'],['B','Il va faire dix degrés. Je vais prendre cette veste pour le voyage.']],
     14:[['A','Tu aimes le football ?'],['B','Je préfère le tennis. Je joue le samedi matin au parc.'],['A','Et le dimanche, tu fais aussi du sport ?'],['B','Non, je lis à la maison.'],['A','Tu aimes courir ou cuisiner ?'],['B','Je n’aime pas courir, mais j’adore cuisiner.'],['A','Alors, on peut manger ensemble dimanche ?'],['B','Oui, avec plaisir !']],
-    15:[['A','Bonjour, je voudrais réserver une chambre pour deux personnes, du dix au treize juillet.'],['B','Pour combien de nuits ?'],['A','Trois nuits. Le petit déjeuner est compris ?'],['B','Oui, à partir de sept heures. La chambre coûte soixante-dix euros par nuit.'],['A','Merci. Nous allons visiter Paris. Le train pour Paris part à quelle heure ?'],['B','À dix heures.'],['A','Très bien, merci pour les informations.'],['B','Avec plaisir. À bientôt !']],
+    15:[['A','Bonjour, je voudrais réserver une chambre pour deux personnes, du dix au treize juillet.'],['B','Pour combien de nuits ?'],['A','Trois nuits. Le petit-déjeuner est inclus ?'],['B','Oui, à partir de sept heures. La chambre coûte soixante-dix euros par nuit.'],['A','Merci. Nous allons visiter Paris. Le train pour Paris part à quelle heure ?'],['B','À dix heures.'],['A','Très bien, merci pour les informations.'],['B','Avec plaisir. À bientôt !']],
     16:[['A','Allô, c’est Anna. Tu veux venir dîner samedi à dix-neuf heures ?'],['B','Samedi, je ne peux pas. J’ai déjà un rendez-vous. Dimanche, ça te va ?'],['A','Oui, à dix-huit heures, chez moi. On fête mon anniversaire.'],['B','D’accord, dimanche à dix-huit heures.'],['A','Merci pour ta réponse !'],['B','Bon anniversaire ! À dimanche !']],
     17:[['A','Bonjour, je voudrais des informations sur le cours de français. Quel est le prix ?'],['B','Quarante euros. Vous pouvez remplir le formulaire. Quel est votre nom ?'],['A','Mon nom est Martin, mon prénom est Léa. Je suis allemande.'],['B','Votre date de naissance ?'],['A','Le dix-sept avril. Je suis disponible le soir. Quels sont les horaires ?'],['B','Le cours commence mardi à dix-huit heures. Merci de signer le formulaire.'],['A','Mardi soir, c’est bien pour moi. Merci !'],['B','À mardi !']],
     18:[['A','Bonjour. Je voudrais des informations sur votre cours.'],['B','Bonjour. Vous voulez un thé ?'],['A','Excusez-moi, je ne comprends pas. Vous pouvez répéter plus lentement ?'],['B','Vous voulez un thé ?'],['A','Oui, un thé sans sucre, s’il vous plaît.'],['B','D’accord. Un thé sans sucre.'],['A','Merci. Pour le cours, pourriez-vous me donner les horaires ?'],['B','Bien sûr. Le cours commence à dix-huit heures.']],

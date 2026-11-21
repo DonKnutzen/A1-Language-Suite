@@ -1202,7 +1202,7 @@
       "titles": {
         "grammar:0": "Beruf & Studium",
         "grammar:1": "Wann beginnt etwas?",
-        "grammar:2": "Drei Fragen & vier Antworten"
+        "grammar:2": "Nach der Arbeit fragen"
       }
     },
     "11": {
@@ -1213,8 +1213,7 @@
           "lire"
         ],
         "grammar:2": [
-          "préparer",
-          "tout / toute / tous / toutes"
+          "préparer"
         ],
         "comprehension": [
           "à bientôt"
@@ -1321,7 +1320,7 @@
         "vendredi"
       ],
       "titles": {
-        "grammar:0": "se lever – Konjugation",
+        "grammar:0": "Aufstehen: je me lève",
         "grammar:1": "être en train de + Infinitiv",
         "grammar:2": "Zeit- und Reihenfolgewörter"
       }
@@ -1332,17 +1331,15 @@
           "le dos"
         ],
         "grammar:0": [
-          "jamais",
-          "toujours"
+          "la dent"
         ],
         "grammar:1": [
-          "la dent",
-          "le fils"
+          "jamais",
+          "toujours"
         ],
         "comprehension": [
           "hier",
           "l’aide",
-          "la consigne",
           "la gorge",
           "pendant",
           "pendant trois jours"
@@ -1461,8 +1458,8 @@
         "voici"
       ],
       "titles": {
-        "grammar:0": "Höflich nachfragen",
-        "grammar:1": "Symptome nennen"
+        "grammar:0": "Symptome nennen",
+        "grammar:1": "Um Hilfe bitten & absagen"
       }
     },
     "13": {
@@ -1581,9 +1578,9 @@
         "tu"
       ],
       "titles": {
-        "grammar:0": "ce / cet / cette / ces",
-        "grammar:1": "Adjektiv-Kongruenz",
-        "grammar:2": "Adjektivstellung",
+        "grammar:0": "Dieser, diese, dieses: ce / cette / ces",
+        "grammar:1": "Farben passen sich an",
+        "grammar:2": "Klein vor, Farbe nach dem Nomen",
         "grammar:3": "Wetter & Jahreszeiten"
       }
     },
@@ -1702,8 +1699,6 @@
         "listen": [],
         "grammar:0": [],
         "grammar:1": [
-          "complet / complète",
-          "gratuit / gratuite",
           "arriver"
         ],
         "comprehension": [
@@ -1726,7 +1721,6 @@
         "bonjour",
         "combien",
         "combien de",
-        "complet / complète",
         "comprendre",
         "confirmer",
         "coûter",
@@ -1739,7 +1733,6 @@
         "elle",
         "et",
         "être",
-        "gratuit / gratuite",
         "il",
         "ils / elles",
         "inclus / incluse",
@@ -1824,7 +1817,7 @@
         "votre / vos"
       ],
       "titles": {
-        "grammar:0": "aller – nahe Zukunft",
+        "grammar:0": "Pläne: je vais + Grundform",
         "grammar:1": "Zimmer buchen & schriftlich anfragen"
       }
     },
@@ -1839,7 +1832,6 @@
           "car",
           "garder",
           "l’année (f.)",
-          "nécessaire",
           "possible",
           "si"
         ],
@@ -1901,7 +1893,6 @@
         "mais",
         "merci",
         "mon / ma / mes",
-        "nécessaire",
         "nous",
         "on",
         "oui",
@@ -1969,7 +1960,7 @@
         "un dessert"
       ],
       "titles": {
-        "grammar:0": "pouvoir – Konjugation",
+        "grammar:0": "Einladen und antworten: vouloir & pouvoir",
         "grammar:1": "Telefon, Glückwünsche & Nachricht"
       }
     },
@@ -2109,7 +2100,7 @@
       ],
       "titles": {
         "grammar:0": "Formularfelder verstehen",
-        "grammar:1": "Eine Nachricht mit 40 Wörtern aufbauen"
+        "grammar:1": "Eine kurze Anfrage schreiben"
       }
     },
     "18": {
@@ -2255,9 +2246,9 @@
         "un peu"
       ],
       "titles": {
-        "grammar:0": "ne … pas und „de“ nach Verneinung",
+        "grammar:0": "Sagen, dass man etwas nicht versteht",
         "grammar:1": "Höflich nachfragen",
-        "grammar:2": "Höflicher Conditionnel"
+        "grammar:2": "Besonders höflich bitten"
       }
     },
     "19": {
@@ -2366,8 +2357,8 @@
       "titles": {
         "grammar:0": "Artikelübersicht",
         "grammar:1": "Pluralregeln",
-        "grammar:2": "Genus richtig lernen",
-        "grammar:3": "Voici / voilà"
+        "grammar:2": "Männlich oder weiblich?",
+        "grammar:3": "Zeigen: c’est, ce sont, voici, voilà"
       }
     },
     "20": {
@@ -2492,8 +2483,8 @@
         "votre / vos"
       ],
       "titles": {
-        "grammar:0": "Grundmuster der Satzstellung",
-        "grammar:1": "Negation",
+        "grammar:0": "Verben im Präsens: die Endungen",
+        "grammar:1": "Verneinen: ne … pas",
         "grammar:2": "ne … jamais",
         "grammar:3": "il faut / il ne faut pas"
       }
@@ -2640,11 +2631,11 @@
         "voyager"
       ],
       "titles": {
-        "grammar:0": "Wichtige Fragewörter",
+        "grammar:0": "Fragewörter: wo, wann, wie …",
         "grammar:1": "est-ce que und qu’est-ce que",
         "grammar:2": "Qui est-ce ? / Qu’est-ce que c’est ?",
-        "grammar:3": "Possessivbegleiter – Übersicht",
-        "grammar:4": "Betonte Personalpronomen"
+        "grammar:3": "mein, dein, sein: mon / ma / mes",
+        "grammar:4": "moi, toi, lui …"
       }
     },
     "22": {
@@ -2768,11 +2759,11 @@
         "son / sa / ses"
       ],
       "titles": {
-        "grammar:0": "Passé composé mit avoir",
+        "grammar:0": "Gestern: j’ai + Partizip",
         "grammar:1": "Zeit- und Reihenfolgewörter",
-        "grammar:2": "Passé composé mit être",
-        "grammar:3": "Passé récent: venir de + Infinitiv",
-        "grammar:4": "il y a / dans / depuis"
+        "grammar:2": "Gestern mit être: je suis allé(e)",
+        "grammar:3": "Gerade eben: je viens de …",
+        "grammar:4": "Vor, in, seit: il y a / dans / depuis"
       }
     },
     "23": {
@@ -2784,7 +2775,6 @@
         "grammar:3": [],
         "grammar:4": [
           "cuire",
-          "la pomme de terre",
           "une pomme de terre"
         ],
         "comprehension": [],
@@ -2865,11 +2855,11 @@
         "tout / toute / tous / toutes"
       ],
       "titles": {
-        "grammar:0": "Teilungsartikel",
+        "grammar:0": "Etwas Brot, etwas Mehl: du / de la / des",
         "grammar:1": "Mengen + de",
         "grammar:2": "Verneinung bei Mengen",
         "grammar:3": "un peu de und weitere Mengen",
-        "grammar:4": "pour + Infinitiv / il faut"
+        "grammar:4": "Wozu? pour + Grundform & Rezepte"
       }
     },
     "24": {
@@ -2978,9 +2968,9 @@
         "tout / toute / tous / toutes"
       ],
       "titles": {
-        "grammar:0": "Ziel: à / en / au / aux",
-        "grammar:1": "Herkunft: de / d’ / du / des",
-        "grammar:2": "devoir – Konjugation",
+        "grammar:0": "Wohin? à / en / au / aux",
+        "grammar:1": "Woher? de / d’ / du / des",
+        "grammar:2": "Abfahrt planen: devoir & partir",
         "grammar:3": "Eine Reisenachricht aufbauen"
       }
     }

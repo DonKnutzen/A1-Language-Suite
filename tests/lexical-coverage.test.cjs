@@ -16,9 +16,11 @@ for(const[course,code]of [['francais','fr'],['deutsch','de']]){
    const labels=[...el.querySelectorAll('dt')].map(e=>e.textContent);
    const regular=f.w.A1LessonVocabularyPlan[code][l.id].regular;
    const entries=bank.filter(e=>e.lessons.includes(l.id)&&regular.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e));
-   const expected=[...new Map(entries.map(e=>[JSON.stringify([e.target,e.meaning]),e.target])).values()];
+   let expected=[...new Map(entries.map(e=>[JSON.stringify([e.target,e.meaning]),e.target])).values()];
+   // French lists show one row per word; several meanings are joined in that row.
+   if(code==='fr'){const base=t=>t.replace(/\s*\([^)]*\)\s*$/,'').trim(),count=new Map();expected.forEach(t=>count.set(base(t),(count.get(base(t))||0)+1));expected=[...new Set(expected.map(t=>count.get(base(t))>1?base(t):t))];}
    assert.deepEqual([...labels].sort(),expected.sort(),`L${l.id}: complete regular overview`);
-   for(const entry of entries){const row=[...el.querySelectorAll('dl>div')].find(row=>row.querySelector('dt').textContent===entry.target&&row.querySelector('dd').textContent===entry.meaning);assert(row,`${l.id}: ${entry.target} → ${entry.meaning}`);}
+   for(const entry of entries){const row=[...el.querySelectorAll('dl>div')].find(row=>(row.querySelector('dt').textContent===entry.target&&row.querySelector('dd').textContent===entry.meaning)||(code==='fr'&&row.querySelector('dt').textContent===entry.target.replace(/\s*\([^)]*\)\s*$/,'').trim()&&row.querySelector('dd').textContent.split(' / ').join('\n').includes(entry.meaning.split(' / ').join('\n'))));assert(row,`${l.id}: ${entry.target} → ${entry.meaning}`);}
    if(labels.length){assert(!el.querySelector('details').open);assert(el.textContent.includes(code==='fr'?'Wortliste der Lektion':'Liste de mots de la leçon'));}else assert.equal(html,'');
 
 

@@ -1827,7 +1827,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Nach être steht ein Beruf normalerweise ohne Artikel: Je suis médecin = „Ich bin Arzt/Ärztin.“"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "commence / commencent / commencez",
@@ -1873,7 +1873,7 @@ window.FR_A1_DATA = {
         ],
         [
           "Je déjeune vers midi.",
-          "Ich esse gegen Mittag zu Mittag."
+          "Ich esse gegen zwölf Uhr zu Mittag."
         ],
         [
           "Je rentre à dix-huit heures.",
@@ -1939,7 +1939,7 @@ window.FR_A1_DATA = {
           "explanation": "se lever ist reflexiv: mit je heißt es je me lève."
         },
         {
-          "q": "Lies den Dialog: Tu te lèves à quelle heure ? / À sept heures. / Et après ? / Je prends le petit déjeuner, puis je vais au travail.\nDie Person steht auf um …",
+          "q": "Lies den Dialog: Tu te lèves à quelle heure ? / À sept heures. / Et après ? / Je prends le petit-déjeuner, puis je vais au travail.\nDie Person steht auf um …",
           "o": [
             "7 Uhr",
             "8 Uhr",
@@ -2006,7 +2006,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "être en train de + Infinitiv beschreibt eine Handlung, die gerade im Moment läuft: Je suis en train de travailler."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "je me lève / je m’appelle",
@@ -2017,7 +2017,7 @@ window.FR_A1_DATA = {
         "Tu te lèves à quelle heure ?",
         "À sept heures.",
         "Et après ?",
-        "Je prends le petit déjeuner, puis je vais au travail."
+        "Je prends le petit-déjeuner, puis je vais au travail."
       ],
       "transfer": {
         "speaking": "Erzähle deinen Morgen mit drei Tätigkeiten und sage zusätzlich, was du gerade machst.",
@@ -2249,7 +2249,7 @@ window.FR_A1_DATA = {
         ],
         [
           "Demain, il va faire vingt degrés.",
-          "Morgen wird es zwanzig Grad."
+          "Morgen wird es zwanzig Grad warm."
         ],
         [
           "le printemps, l’été, l’automne, l’hiver",
@@ -2345,7 +2345,7 @@ window.FR_A1_DATA = {
           "audio": "Il fait froid."
         },
         {
-          "q": "Wie sagst du „Morgen wird es zwanzig Grad“ mit futur proche?",
+          "q": "Wie sagst du „Morgen wird es zwanzig Grad warm“?",
           "o": [
             "Demain, il va faire vingt degrés.",
             "Demain, il va faire dix degrés.",
@@ -2370,7 +2370,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für einen nahen Plan oder eine Vorhersage auf A1: aller + Infinitiv, z. B. Demain, il va faire vingt degrés. Adjektive richten sich nach dem Nomen; einige stehen davor (une petite veste), Farben meist danach (une veste bleue)."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "beau / chaud / froid",
@@ -2651,7 +2651,7 @@ window.FR_A1_DATA = {
           "explanation": "Für den nahen Plan steht aller + Infinitiv: je vais visiter. Va gehört zu il/elle, vas zu tu."
         },
         {
-          "q": "Lies den Dialog: Bonjour, une chambre pour deux nuits, s’il vous plaît. / Pour une personne ? / Oui. Le petit déjeuner est compris ? / Oui, à partir de sept heures.\nDas Zimmer wird gebraucht für …",
+          "q": "Lies den Dialog: Bonjour, une chambre pour deux nuits, s’il vous plaît. / Pour une personne ? / Oui. Le petit-déjeuner est inclus ? / Oui, à partir de sept heures.\nDas Zimmer wird gebraucht für …",
           "o": [
             "eine Nacht",
             "drei Nächte",
@@ -2717,7 +2717,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für Hotel und Reise sind außerdem feste Wendungen wie J’ai une réservation und Je voudrais un billet… besonders nützlich."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "chambre / je voudrais",
@@ -2726,7 +2726,7 @@ window.FR_A1_DATA = {
       "dialogue": [
         "Bonjour, une chambre pour deux nuits, s’il vous plaît.",
         "Pour une personne ?",
-        "Oui. Le petit déjeuner est compris ?",
+        "Oui. Le petit-déjeuner est inclus ?",
         "Oui, à partir de sept heures."
       ],
       "transfer": {
@@ -2919,7 +2919,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "vouloir („wollen“) steht vor einem Infinitiv: Tu veux venir ? = „Willst du kommen?“"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "tu peux / vous pouvez",
@@ -2930,7 +2930,7 @@ window.FR_A1_DATA = {
         "Tu veux venir dîner samedi ?",
         "Oui, avec plaisir. À quelle heure ?",
         "À dix-neuf heures.",
-        "D’accord. Et si nécessaire, on peut reporter le rendez-vous à dimanche."
+        "D’accord, à samedi !"
       ],
       "transfer": {
         "speaking": "Lade jemanden ein, verschiebe bei Bedarf den Termin und formuliere einen Glückwunsch oder ein einfaches Kompliment.",
@@ -2981,7 +2981,7 @@ window.FR_A1_DATA = {
         ],
         [
           "Merci de me répondre.",
-          "Bitte antworte mir."
+          "Bitte antworten Sie mir."
         ]
       ],
       "quiz": [
@@ -3079,7 +3079,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Nationalité",
-          "explanation": "Nationalité bedeutet Nationalität. Das Wort wird mit -ité geschrieben und trägt einen accent aigu."
+          "explanation": "Nationalité bedeutet Nationalität."
         },
         {
           "q": "Wie sagst du „E-Mail-Adresse“ auf Französisch?",
@@ -3098,7 +3098,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "quel / quelle bedeutet „welcher / welche“ und richtet sich nach dem Nomen: quel nom, quelle adresse."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "adresse / e-mail",
@@ -3205,7 +3205,7 @@ window.FR_A1_DATA = {
           "explanation": "Je voudrais … bedeutet höflich „Ich hätte gern …“. Die Wendung ist bei Bitten, Bestellungen und Anfragen üblich."
         },
         {
-          "q": "„Pouvez-vous répéter?“ =",
+          "q": "„Pouvez-vous répéter ?“ =",
           "o": [
             "Können Sie warten?",
             "Können Sie wiederholen?",
@@ -3293,7 +3293,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Für besonders höfliche Bitten begegnen dir auf A1 feste Conditionnel-Formen: je voudrais, j’aimerais, pourriez-vous und on pourrait."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "s’il vous plaît / pardon",
@@ -3397,18 +3397,18 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "la gare",
-          "explanation": "La gare ist der Bahnhof. Le quai ist der Bahnsteig; une gare kann mehrere quais haben."
+          "explanation": "La gare ist der Bahnhof."
         },
         {
-          "q": "Das sind Bücher (geschriebener Standard): ___ des livres.",
+          "q": "Das sind Bücher: ___ des livres.",
           "o": [
-            "C’est",
+            "Il est",
             "Ils sont",
             "Ce sont"
           ],
           "a": 2,
           "audio": "Ce sont des livres.",
-          "explanation": "Im Plural heißt es im geschriebenen Standard ce sont: Ce sont des livres. C’est des livres ist umgangssprachlich; ils sont steht nicht vor des + Nomen."
+          "explanation": "Vor des + Nomen im Plural steht ce sont: Ce sont des livres."
         },
         {
           "q": "Lies den Dialog: C’est un livre ? / Oui, c’est mon livre. / Et ce sont tes clés ? / Oui, merci !\nDie Schlüssel gehören …",
@@ -3478,7 +3478,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "C’est / ce sont identifizieren etwas. Voici bedeutet „hier ist/sind“, voilà „da ist/sind“."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "les amis / les livres",
@@ -3661,7 +3661,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "ne…pas = nicht; ne…jamais = nie. il faut + Infinitiv bedeutet „man muss/soll“, il ne faut pas + Infinitiv „man darf/soll nicht“."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "parle / parles / parlent",
@@ -3852,7 +3852,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Qui est-ce ? fragt nach einer Person; Qu’est-ce que c’est ? nach einer Sache. Betonte Pronomen wie moi, toi, lui/elle stehen z. B. nach et oder zur Hervorhebung: Et toi ? Moi, j’habite ici."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "Où habitez-vous ?",
@@ -3981,7 +3981,7 @@ window.FR_A1_DATA = {
           ],
           "a": 2,
           "audio": "Hier, j’ai visité un musée.",
-          "explanation": "Das passé composé steht hier mit avoir + Partizip: j’ai visité."
+          "explanation": "Vergangenheit mit avoir + Partizip: j’ai visité."
         },
         {
           "q": "Lies den Dialog: Tu as fait quoi hier ? / J’ai travaillé le matin. / Et le soir ? / J’ai regardé un film à la maison.\nAm Abend hat die Person …",
@@ -3995,7 +3995,7 @@ window.FR_A1_DATA = {
           "audio": "J’ai regardé un film à la maison."
         },
         {
-          "q": "Welche Form verwendet passé composé mit être korrekt?",
+          "q": "Wie sagst du „Ich bin ins Kino gegangen“?",
           "o": [
             "Je suis allé(e) au cinéma.",
             "J’ai allé au cinéma.",
@@ -4003,7 +4003,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Je suis allé(e) au cinéma.",
-          "explanation": "Einige Bewegungsverben bilden das passé composé mit être."
+          "explanation": "Aller bildet die Vergangenheit mit être: je suis allé(e)."
         },
         {
           "q": "Was bedeutet „d’abord“?",
@@ -4024,7 +4024,7 @@ window.FR_A1_DATA = {
           ],
           "a": 1,
           "audio": "Je pars dans deux jours.",
-          "explanation": "Dans deux jours bedeutet „in zwei Tagen“ (zukünftig), nicht „seit zwei Tagen“. Je pars heißt „ich fahre/​reise ab“."
+          "explanation": "Dans deux jours bedeutet „in zwei Tagen“ (Zukunft), nicht „seit zwei Tagen“. Je pars heißt „ich fahre ab“."
         },
         {
           "q": "Welche Reihenfolge ist logisch?",
@@ -4045,7 +4045,7 @@ window.FR_A1_DATA = {
           ],
           "a": 0,
           "audio": "Je viens de manger.",
-          "explanation": "venir de + Infinitiv bezeichnet das passé récent."
+          "explanation": "Je viens de + Grundform = ich habe gerade … getan."
         }
       ],
       "canDo": [
@@ -4053,7 +4053,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Passé composé: häufig avoir + Partizip; einige Bewegungsverben verwenden être, z. B. je suis allé(e), elle est arrivée. Passé récent: venir de + Infinitiv = gerade etwas getan haben. Zeit: il y a = vor, dans = in, depuis = seit."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "manger / mangé",
@@ -4248,7 +4248,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Mengen wie beaucoup de, un peu de und pas de stehen mit de. pour + Infinitiv nennt einen Zweck: pour couper. il faut / il ne faut pas + Infinitiv drückt eine notwendige bzw. zu vermeidende Handlung aus."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "du lait / les œufs",

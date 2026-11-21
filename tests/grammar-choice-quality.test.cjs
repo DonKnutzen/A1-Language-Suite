@@ -14,7 +14,8 @@ test('every French grammar topic uses complete solutions and targeted contrasts,
    if(q.coverage?.startsWith('phrase:')){generated++;if(q.q.includes('___'))assert.equal(q.q.replace('___',q.answer).replace(/([’'])\s+/g,'$1'),q.audio,`L${l.id}: ${q.q}`);assert(q.meaning);}
   }
  }
- assert(topics>=70);assert(generated>=150);e.dom.window.close();
+ // The 2026-11 clean-up of lessons 10–24 removed examples that only repeated a rule, so the floor is 140.
+ assert(topics>=70);assert(generated>=140);e.dom.window.close();
 });
 test('reported lesson-seven tasks compare quantities, cents, price degree and card-payment grammar',()=>{
  const e=fixture(),p=e.pools(e.w.FR_A1_DATA.lessons[6]),quantity=p.find(x=>x.key==='r0'),price=p.find(x=>x.key==='r1');assert.equal(quantity.tasks.length,9);assert.equal(price.tasks.length,7);

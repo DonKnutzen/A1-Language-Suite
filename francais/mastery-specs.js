@@ -749,7 +749,7 @@ window.FR_A1_MASTERY_SPECS = {
         "prompt": "Demain, il ___ faire vingt degrés.",
         "answer": "va",
         "tag": "futur proche",
-        "context": "Morgen werden es zwanzig Grad sein."
+        "context": "Morgen wird es zwanzig Grad warm."
       }
     ]
   },
@@ -1773,16 +1773,16 @@ window.FR_A1_MASTERY_SPECS = {
     ],
     19:[
       ['reference','« Voici un hôtel. L’hôtel est près de la gare. » Worauf bezieht sich l’hôtel?','Auf das zuvor genannte Hotel.','Auf den Bahnhof.','Auf mehrere Hotels.','Der bestimmte Artikel greift das bereits eingeführte Hotel auf.',false],
-      ['pluriel','Du möchtest mehrere Baguettes nennen. Welche Form ist im geschriebenen Standard richtig?','Des baguettes.','Des baguette.','Une baguettes.','Im Plural tragen Artikel und Nomen die passende Form.'],
-      ['identifier','Du zeigst auf mehrere Freunde. Welche Form passt im geschriebenen Standard?','Ce sont des amis.','C’est des amis.','Ce sont un ami.','Ce sont passt zum Plural des amis; c’est des… ist umgangssprachlich.'],
+      ['pluriel','Du möchtest mehrere Baguettes nennen. Welche Form ist richtig?','Des baguettes.','Des baguette.','Une baguettes.','Im Plural tragen Artikel und Nomen die passende Form.'],
+      ['identifier','Du zeigst auf mehrere Freunde. Welche Form passt?','Ce sont des amis.','Ils sont des amis.','Ce sont un ami.','Vor des + Nomen im Plural steht ce sont.'],
       ['sens','« La gare est derrière le musée. » Was liegt hinter dem Museum?','Der Bahnhof.','Das Hotel.','Das Café.','Gare ist der Bahnhof.',false],
       ['voici','Du reichst deinen Pass und sagst „Hier ist mein Pass“.','Voici mon passeport.','Voici mon billet.','Voici mes passeports.','Passeport ist der Pass, billet die Fahrkarte.'],
       ['genre','Du bestellst ein Baguette und einen Kaffee. Welche Kombination ist korrekt?','Une baguette et un café.','Un baguette et une café.','Une baguette et une café.','Baguette ist feminin, café maskulin.'],
       ['possesseur','« C’est ton livre ? — Oui, et ce sont mes clés. » Wem gehören die Schlüssel laut Antwort?','Der antwortenden Person.','Der fragenden Person.','Beiden Personen gemeinsam.','Mes ist in der Antwort aus Sicht der antwortenden Person zu verstehen.',false],
-      ['elision','Du setzt den bestimmten Artikel vor hôtel.','L’hôtel.','Le hôtel.','La hôtel.','Vor dem stummen h wird der bestimmte Artikel elidiert.']
+      ['elision','Du setzt den bestimmten Artikel vor hôtel.','L’hôtel.','Le hôtel.','La hôtel.','Vor stummem h werden le und la zu l’.']
     ],
     20:[
-      ['negation','Du möchtest „Ich arbeite heute nicht“ im geschriebenen Standard sagen.','Je ne travaille pas aujourd’hui.','Je ne travaille jamais le dimanche.','Je travaille aujourd’hui.','Ne…pas verneint die heutige Tätigkeit; jamais würde nie ausdrücken.'],
+      ['negation','Du möchtest „Ich arbeite heute nicht“ sagen.','Je ne travaille pas aujourd’hui.','Je ne travaille jamais le dimanche.','Je travaille aujourd’hui.','Ne…pas verneint die heutige Tätigkeit; jamais würde nie ausdrücken.'],
       ['habitude','« Je travaille du lundi au jeudi. Le vendredi, je ne travaille pas. » Was stimmt?','Freitags arbeitet die Person nicht.','Donnerstags arbeitet die Person nicht.','Die Person arbeitet nur freitags.','Le vendredi, je ne travaille pas nennt die Ausnahme.',false],
       ['jamais','Du möchtest sagen, dass du sonntags nie fernsiehst.','Je ne regarde jamais la télévision le dimanche.','Je ne regarde pas la télévision aujourd’hui.','Je regarde la télévision le dimanche.','Jamais beschreibt nie; aujourd’hui wäre nur heute.'],
       ['interdiction','Ein Schild verbietet das Essen, sagt aber nichts über Trinken.','Il ne faut pas manger ici.','Il ne faut pas boire ici.','Il faut manger ici.','Manger ist essen; ne faut pas formuliert das Verbot.'],

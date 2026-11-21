@@ -172,8 +172,8 @@
       f('Welche Form passt?','Je suis en train de manger.',['Je suis en train manger.','Je suis en train de mange.'],'Ich esse gerade. Achte auf den vollständigen Baustein und die Grundform.','I am eating right now. Check the complete expression and the infinitive.')
     ];
     if(lessonId===13&&unit.key==='r2')return [
-      f('Welche Form passt?','une petite veste bleue',['une petit veste bleue','une petite veste bleu'],'eine kleine blaue Jacke · schriftlicher Standard','a small blue jacket · standard written French'),
-      f('Welche Form passt?','un petit pantalon noir',['un petite pantalon noir','un petit pantalon noire'],'eine kleine schwarze Hose · schriftlicher Standard','small black trousers · standard written French'),
+      f('Welche Form passt?','une petite veste bleue',['une petit veste bleue','une petite veste bleu'],'eine kleine blaue Jacke','a small blue jacket'),
+      f('Welche Form passt?','un petit pantalon noir',['un petite pantalon noir','un petit pantalon noire'],'eine kleine schwarze Hose','small black trousers'),
       f('Une ___ veste bleue.','petite',['petit','petits'],'Eine kleine blaue Jacke.','A small blue jacket.'),
       f('Une petite veste ___.','bleue',['bleu','bleus'],'Eine kleine blaue Jacke.','A small blue jacket.'),
       f('Welche Form passt?','une petite robe noire',['une robe petite noire','une noire petite robe'],'die übliche neutrale Reihenfolge: ein kleines schwarzes Kleid','the usual neutral order: a small black dress')
@@ -201,10 +201,10 @@
     ];
     if(lessonId===19&&unit.key==='r3')return [
       f('___ une clé.','C’est',['Ce sont','Elle est'],'Das ist ein Schlüssel.','This is a key.','Vor un/une + Nomen im Singular steht c’est, nicht il/elle est.','Before un/une + a singular noun, use c’est, not il/elle est.'),
-      f('___ des livres.','Ce sont',['C’est','Ils sont'],'Das sind Bücher · schriftlicher Standard','These are books · standard written French','Vor des + Plural steht im geschriebenen Standard ce sont; c’est des … ist umgangssprachlich.','Before des + a plural noun, written standard French uses ce sont; c’est des … is colloquial.'),
+      f('___ des livres.','Ce sont',['Il est','Ils sont'],'Das sind Bücher.','These are books.','Vor des + Nomen im Plural steht ce sont.','Before des + a plural noun, use ce sont.'),
       f('Welche Form passt?','Voici mon passeport.',['Voici est mon passeport.','Voici sont mon passeport.'],'Du reichst deinen Pass: Hier ist mein Pass.','Hand over your passport: Here is my passport.','Nach voici steht direkt die Nominalgruppe.','Voici is followed directly by the noun phrase.'),
       f('Welche Form passt?','Voilà le musée.',['Voilà est le musée.','Voilà sont le musée.'],'Dort ist das Museum.','There is the museum.','Nach voilà steht direkt die Nominalgruppe.','Voilà is followed directly by the noun phrase.'),
-      f('Welche Form passt?','Ce sont mes clés.',['C’est mes clés.','Ce sont ma clé.'],'Das sind meine Schlüssel · schriftlicher Standard','These are my keys · standard written French')
+      f('Welche Form passt?','Ce sont mes clés.',['Elles sont mes clés.','Ce sont ma clé.'],'Das sind meine Schlüssel.','These are my keys.')
     ];
     if(lessonId===21&&unit.key==='r1')return [
       f('Welche Form passt?','Est-ce que vous travaillez ?',['Où est-ce que vous travaillez ?','Quand est-ce que vous travaillez ?'],'Du fragst nur, ob die Person arbeitet.','Ask only whether the person works.'),
@@ -241,10 +241,10 @@
     ];
     if(lessonId===23&&unit.key==='r4')return [
       f('Un couteau pour ___ les tomates.','couper',['coupe','coupé'],'Ein Messer, um die Tomaten zu schneiden.','A knife to cut the tomatoes.'),
-      f('Une cuillère pour ___ la soupe.','mélanger',['mélange','mélangé'],'Ein Löffel, um die Suppe zu mischen.','A spoon to mix the soup.'),
+      f('Une cuillère pour ___ la soupe.','mélanger',['mélange','mélangé'],'Ein Löffel, um die Suppe umzurühren.','A spoon to stir the soup.'),
       f('Il faut ___ le lait.','ajouter',['ajoute','ajouté'],'Man muss die Milch hinzufügen.','You need to add the milk.'),
       f('___ les tomates, puis ajoutez le fromage.','Coupez',['Couper','Coupé'],'Schneiden Sie die Tomaten, dann geben Sie den Käse dazu.','Cut the tomatoes, then add the cheese.'),
-      f('___ avec une cuillère.','Mélangez',['Mélanger','Mélangé'],'Mischen Sie mit einem Löffel.','Mix with a spoon.')
+      f('___ avec une cuillère.','Mélangez',['Mélanger','Mélangé'],'Rühren Sie mit einem Löffel um.','Stir with a spoon.')
     ];
     if(lessonId===7&&unit.key==='r0')return [
       f('Un kilo ___ pommes, s’il vous plaît.','de',['du','des'],'Ein Kilo Äpfel, bitte.','A kilo of apples, please.','Nach einer konkreten Menge steht de.','Use de after a specified quantity.'),
@@ -299,7 +299,7 @@
       '11:r0':{drop:[['Nous nous ___.','levons'],['Vous vous ___.','levez'],['Ils se ___.','lèvent'],['Je me ___ à sept heures.','lève'],['Il se ___ à sept heures.','lève']],add:[
         n('Je me ___.','douche',['douches','douchez'],'Ich dusche.','I take a shower.'),
         n('Je me ___ vers vingt-trois heures.','couche',['couches','couchez'],'Ich gehe gegen 23 Uhr ins Bett.','I go to bed around 11 pm.','Se coucher = ins Bett gehen; vers = gegen.','Se coucher = to go to bed; vers = around.'),
-        n('Je ___ vers midi.','déjeune',['déjeunes','déjeunez'],'Ich esse gegen Mittag zu Mittag.','I have lunch around noon.'),
+        n('Je ___ vers midi.','déjeune',['déjeunes','déjeunez'],'Ich esse gegen zwölf Uhr zu Mittag.','I have lunch around noon.'),
         n('Je ___ à dix-huit heures.','rentre',['rentres','rentrez'],'Ich komme um 18 Uhr nach Hause.','I get home at 6 pm.'),
         n('Le week-end, je ___ du sport.','fais',['fait','font'],'Am Wochenende mache ich Sport.','At the weekend I do sport.','Faire: je fais, il fait, ils font.','Faire: je fais, il fait, ils font.')]},
       '11:r2':{drop:[['Welches Wort bedeutet „zuerst“?','d’abord'],['Welches Wort bedeutet „schließlich“?','enfin']],add:[
@@ -313,8 +313,8 @@
         n('Où est la ___ ?','pharmacie',['boulangerie','gare'],'Wo ist die Apotheke?','Where is the pharmacy?'),
         n('Prenez ce médicament deux ___ par jour.','fois',['heures','jours'],'Nehmen Sie dieses Medikament zweimal täglich.','Take this medicine twice a day.','Deux fois par jour = zweimal täglich.','Deux fois par jour = twice a day.')]},
       '13:r1':{drop:[['des pantalons ___.','verts'],['des vestes ___.','vertes'],['des pantalons ___.','noirs'],['des vestes ___.','bleues']],add:[
-        n('une veste ___.','rouge',['rouges','rougee'],'rot · eine Jacke','red · a jacket','Endet ein Adjektiv schon auf -e, bleibt es im Femininum gleich: rouge, jaune.','If an adjective already ends in -e, the feminine stays the same: rouge, jaune.'),
-        n('des chaussures ___.','jaunes',['jaune','jaunees'],'gelb · Schuhe','yellow · shoes','Im Plural kommt s hinzu: jaune → jaunes.','In the plural, add s: jaune → jaunes.')]},
+        n('une veste ___.','rouge',['rouges','bleue'],'rot · eine Jacke','red · a jacket','Endet ein Adjektiv schon auf -e, bleibt es im Femininum gleich: rouge, jaune.','If an adjective already ends in -e, the feminine stays the same: rouge, jaune.'),
+        n('des chaussures ___.','jaunes',['jaune','vertes'],'gelb · Schuhe','yellow · shoes','Im Plural kommt s hinzu: jaune → jaunes.','In the plural, add s: jaune → jaunes.')]},
       '13:r2':{drop:[['Une petite veste ___.','bleue']]},
       '13:u0':{add:[
         n('Quel temps ___-il aujourd’hui ?','fait',['fais','font'],'Wie ist das Wetter heute?','What is the weather like today?','Nach dem Wetter fragt man mit Quel temps fait-il ?','You ask about the weather with Quel temps fait-il ?'),

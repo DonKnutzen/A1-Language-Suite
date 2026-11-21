@@ -1,6 +1,10 @@
 const{test}=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),{fixture}=require('./helpers/a1-fixture.cjs');
 const read=p=>fs.readFileSync(p,'utf8');
-function shown(f,code,targets){const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});return [...new Map(bank.filter(e=>targets.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e)).map(p=>[JSON.stringify([p.target,p.meaning]),p.target])).values()];}
+function shown(f,code,targets){const bank=f.w.A1Vocabulary.buildBank({course:code,lessons:f.lessons,units:code==='fr'?f.w.FR_A1_DEEPENING_CONTENT:f.w.DE_A1_STUDY.content});const rows=[...new Map(bank.filter(e=>targets.includes(e.target)).flatMap(e=>f.w.A1Vocabulary.displayPairs(code,e)).map(p=>[JSON.stringify([p.target,p.meaning]),p.target])).values()];
+ if(code!=='fr')return rows;
+ // French lists show one row per word; several meanings are joined (terminer – beenden / aufhören).
+ const base=t=>t.replace(/\s*\([^)]*\)\s*$/,'').trim(),count=new Map();rows.forEach(t=>count.set(base(t),(count.get(base(t))||0)+1));
+ return [...new Set(rows.map(t=>count.get(base(t))>1?base(t):t))];}
 function load(f){for(const file of ['shared/lesson-vocabulary-plan.js','shared/lesson-lexicon.js','shared/vocabulary-content.js','shared/vocabulary-trainer.js'])f.w.eval(read(file));}
 for(const[course,code]of [['francais','fr'],['deutsch','de']]){
  test(course+': all 24 lesson sequences put their supplementary words at the intended activity, with a quiet complete overview',()=>{

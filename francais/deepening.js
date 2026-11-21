@@ -19,11 +19,13 @@
   }
   // r = original reference page; u = new preparation page. Keep the existing checks.
   // 'drop' removes a background note that only repeats the topic's own rule or examples.
-  const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],12:['drop'],13:['drop'],14:['drop'],16:['drop'],17:['u0','drop'],22:['drop'],23:['drop']};
+  const noteRoutes={2:['u0'],3:['u0','u0','u1'],4:['u0'],6:['u0'],7:['r1'],9:['r0'],12:['drop'],13:['drop'],14:['drop'],16:['drop'],17:['drop','drop'],22:['drop'],23:['drop']};
   // From lesson 10 on, a prepared rule replaces the reference page's own intro text (it said the same twice).
   // A reference table listed here is also hidden because an earlier lesson already showed it.
   const LEAN_FROM=10,hiddenReferenceTables={22:['r1']};
-  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u0','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r4','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
+  // Display order of the topic pages when it differs from the source order. Keys (and saved progress) stay the same.
+  const pageOrder={12:['u0','r0']};
+  const routes={2:['r1','u0','u0','u0','u0'],3:['r0','r0','u0','r0','u0','u0','u0'],4:['u3','u2','u0','u0'],5:['r0','r0','r0','r0','r1','r1'],6:['r0','r0','r0','r0','u0'],7:['r0','r0','r1','r1'],8:['u0','r0','r0','r0','r1','r1','r1'],9:['r0','r0','r0','r1'],10:['u0','u0','u1','u1'],11:['r0','r0','r0','r0','r0','r0','r1','r1','r2','r2'],12:['u0','r0','u0'],13:['r0','r0','r0','r0','r1','r2','u0'],14:['u0','u0','u0','u1'],15:['r0','r0','r0','r0','r0','r0'],16:['r0','r0','r0','r0','r0','r0','r0'],17:['u0','u0','u1'],18:['r0','r0','r2','r2','r2','r2'],19:['r0','r0','r0','r0','r0','r0','r0','r1','r3','r3'],20:['r0','r0','r0','r0','r0','r0','r1','r2','r3','r3'],21:['r0','r0','r0','r2','r2','r3','r3','r3','r4','r4'],22:['r0','r0','r0','r0','r2','r2','r2','r3','r4','r4','r4'],23:['r0','r0','r0','r1','r2','r3','r4','r1','r4'],24:['r0','r0','r0','r0','r1','r1','r1','r1','r2','r2','r2','r2','r2','r2']};
   const families=[['trente','treize','quarante'],['suis','es','est','sommes','êtes','sont'],['ai','as','a','avons','avez','ont'],['vais','vas','va','allons','allez','vont'],['peux','peut','pouvons','pouvez','peuvent'],['dois','doit','devons','devez','doivent'],['viens','vient','venons','venez','viennent'],['me','te','se','nous','vous'],['mon','ma','mes'],['ton','ta','tes'],['son','sa','ses'],['ce','cet','cette','ces'],['quel','quelle','quels','quelles'],['du','de la','de l’','des','de'],['à','au','aux','en','de','d’','du','des'],['travaille','travailles','travaillons','travaillez','travaillent'],['parle','parles','parlons','parlez','parlent'],['commence','commences','commençons','commencez','commencent'],['levons','levez','lèvent','lève','lèves'],['aime','aimes','aimons','aimez','aiment'],['préfère','préfères','préférons','préférez','préfèrent'],['pas','jamais','toujours'],['faut','fais','fait'],['Allez','Tournez','Prenez'],['où','quand','comment','combien','pourquoi'],['toi','moi','lui','eux','elle','elles'],['épeler','répéter','parler'],['prénom','nom','adresse','famille','nom de famille','surnom'],['visité','visiter','visite'],['travaillé','travailler','travaille'],['regardé','regarder','regarde'],['arrivée','arrivé','arriver'],['partis','parties','partir'],['Ce','Ces','Cet'],['Depuis','Dans','Après'],['couper','coupe','coupé'],['fumer','fume','fumé'],['un','une','des'],['le','la','les','l’'],['Il','Elle','Ce'],['Où','Quand','Comment'],['aimerais','aimerait','aimerions'],['voudrais','voudrait','voudrions'],['pourrait','pourraient','pourrions']];
   // A distractor must not be ruled out by elision alone (je ___ + vowel, j’___ + consonant, l’/d’ before a consonant).
   const fitsElision=(q,v)=>{const s=String(q||''),x=String(v||''),next=/___\s+(\p{L})/u.exec(s)?.[1];
@@ -53,7 +55,8 @@
   function tableTasks(el){
     if(!el)return [];
     const tasks=[],clean=cell=>{const copy=cell.cloneNode(true);copy.querySelectorAll('button').forEach(b=>b.remove());return copy.textContent.trim();};
-    const title=el.querySelector('summary')?.textContent||'';
+    // A renamed page keeps its original reference title for task generation.
+    const title=el.dataset.referenceTitle||el.querySelector('summary')?.textContent||'';
     const personLabel=s=>/^(?:je|j[’']|tu|il|elle|on|nous|vous|ils|elles)(?:\s*\/.*)?$/i.test(s);
     const subject=s=>s.split(/\s*\//)[0].replace(/^j[’']$/i,'je').toLowerCase();
     const complete=(q,answer)=>q.replace('___',answer).replace(/([’'])\s+/g,'$1');
@@ -117,13 +120,13 @@
     const root=document.createElement('div');root.innerHTML=html;
     const host=root.querySelector('.lesson-deepening')||root;
     const refs=[...host.querySelectorAll('details.grammar-detail:not(.lesson-topic-detail)')],units=[];
-    refs.forEach((el,i)=>units.push({key:el.dataset.deepeningKey||`r${i}`,title:el.querySelector('summary')?.textContent||'',rule:'',pairs:[],element:el}));
+    refs.forEach((el,i)=>units.push({key:el.dataset.deepeningKey||`r${i}`,title:el.dataset.referenceTitle||el.querySelector('summary')?.textContent||'',rule:'',pairs:[],element:el}));
     let added=0;
     for(const prepared of content[lesson.id]||[]){
       const key=prepared.attach!==undefined?`r${prepared.attach}`:`u${added++}`;
       let unit=units.find(u=>u.key===key);
       if(!unit){unit={key,title:prepared.title,rule:'',pairs:[],element:null};units.push(unit);}
-      unit.rule=prepared.rule;unit.blocks=prepared.blocks;unit.emphasis=prepared.emphasis;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;unit.conjugationTable=prepared.conjugationTable;
+      unit.rule=prepared.rule;unit.heading=prepared.heading;unit.blocks=prepared.blocks;unit.emphasis=prepared.emphasis;unit.pairs=prepared.pairs;unit.preparedTitle=prepared.title;unit.conjugationTable=prepared.conjugationTable;
     }
     [...host.querySelectorAll('.lesson-topic-detail')].forEach((note,i)=>{
       if(noteRoutes[lesson.id]?.[i]==='drop'){note.remove();return;}
@@ -162,11 +165,13 @@
     const norm=s=>String(s).replace(/\s*\([^)]*\)/g,'').replace(/([’'])\s+/g,'$1').replace(/[.!?]/g,'').replace(/\s+/g,' ').trim().toLowerCase();
     const personTable=[...body.querySelectorAll('table')].some(t=>{const cells=[...t.querySelectorAll('th,td')].map(c=>c.textContent.replace(/🔊/g,'').trim());return cells.some(c=>/^nous\b/.test(c))&&cells.some(c=>/^vous\b/.test(c));});
     const phrases=[...body.querySelectorAll('.deepening-examples .phrase-row strong')].map(x=>norm(x.textContent));
+    const cells=new Set([...body.querySelectorAll('table td')].map(c=>norm(c.textContent.replace(/🔊/g,''))));
     const tails=new Map(),sentence=t=>t.prompt.replace('___',t.answer).replace('l’ eau','l’eau');
     return tasks.filter(t=>{
       const s=norm(sentence(t)),tail=s.split(' ').slice(2).join(' ');
       if(personTable&&/^(?:je|j’|tu|il|elle|on|nous|vous|ils|elles)\b/.test(s))return false;
       if(phrases.some(p=>p===s||p.includes(s)||s.includes(p)))return false;
+      if(cells.has(s))return false;
       if(tail){tails.set(tail,(tails.get(tail)||0)+1);if(tails.get(tail)>1)return false;}
       return true;
     });
@@ -178,6 +183,8 @@
       let el=unit.element;
       if(!el){el=document.createElement('details');el.className='grammar-detail';el.innerHTML=`<summary>${esc(unit.title)}</summary><div class="grammar-detail-body"></div>`;host.append(el);}
       el.dataset.deepeningKey=unit.key;
+      // heading: a plainer visible title for a reference page; the original title still drives the drills.
+      if(unit.element&&unit.heading){if(!el.dataset.referenceTitle)el.dataset.referenceTitle=unit.title;const summary=el.querySelector('summary');if(summary)summary.textContent=unit.heading;}
       const body=el.querySelector('.grammar-detail-body')||el;
       if(lesson.id>=LEAN_FROM&&unit.element&&unit.rule){
         body.querySelectorAll(':scope > p:not(.grammar-lemma-line)').forEach(p=>p.remove());
@@ -199,6 +206,7 @@
       removeDuplicateExamples(body);
       body.insertAdjacentHTML('beforeend',`<div class="deepening-practice" data-deepening-practice="${unit.key}"></div>`);
     }
+    if(pageOrder[lesson.id])for(const key of pageOrder[lesson.id]){const page=host.querySelector(`:scope > details.grammar-detail[data-deepening-key="${key}"]`);if(page)host.append(page);}
     // Reference explanations keep their existing emphasis; supplement plain text nodes only.
     const terms=(content[lesson.id]||[]).flatMap(unit=>unit.emphasis||[]);
     host.querySelectorAll('p,li').forEach(paragraph=>{

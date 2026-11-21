@@ -92,7 +92,8 @@ test('French L9 explains the purpose and actual transformation of the imperative
 });
 test('French negation and the German irregular forms still precede their relevant practice',()=>{
  const fr=fixture('francais'),de=fixture('deutsch'),text=(f,lang,n,title)=>f.w.A1LessonFoundations.enhance(lang,n,title,'<div class="grammar-detail-body"><div class="deepening-practice"></div></div>');
- for(const[n,title,needle]of [[1,'Grundlagen','Ne … pas'],[4,'Einen Termin vereinbaren & bestätigen','Il n’y a pas de cours.'],[8,'Räume & il y a','il n’y a pas de + Nomen'],[16,'pouvoir','nous voulons'],[22,'Passé composé mit avoir','J’ai pris le bus.']])assert(text(fr,'fr',n,title).includes(needle));
+ for(const[n,title,needle]of [[1,'Grundlagen','Ne … pas'],[4,'Einen Termin vereinbaren & bestätigen','Il n’y a pas de cours.'],[8,'Räume & il y a','il n’y a pas de + Nomen'],[16,'Einladen und antworten: vouloir & pouvoir','nous voulons']])assert(text(fr,'fr',n,title).includes(needle));
+ assert(fr.w.FR_A1_DEEPENING_CONTENT[22][0].pairs.some(([target])=>target==='J’ai pris le bus.'),'L22: irregular participle example on the avoir page');
  for(const[n,title,needle]of [[6,'Commander un repas','wir hätten'],[9,'Expliquer un chemin','Nimm'],[11,'Apprendre et demander de l’aide','du liest'],[16,'Lire panneaux et restrictions','ich darf']])assert(text(de,'de',n,title).includes(needle));
  fr.dom.window.close();de.dom.window.close();
 });

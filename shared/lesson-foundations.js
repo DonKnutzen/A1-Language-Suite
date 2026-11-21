@@ -793,8 +793,8 @@
             "Me is part of se lever"
           ],
           "rule": [
-            "Se lever heißt aufstehen. Wenn du über dich selbst sprichst, heißt es je me lève: me gehört hier zum Verb und steht zwischen je und lève.",
-            "Se lever means to get up. For yourself use je me lève: me is part of the construction and comes between je and lève."
+            "Se lever heißt aufstehen. Für „ich“ sagst du je me lève: Das me gehört dazu.",
+            "Se lever means to get up. For “I” say je me lève: the me belongs to it."
           ],
           "examples": [
             [
@@ -806,25 +806,6 @@
         }
       ],
       "topics": {
-        "se lever": [
-          {
-            "title": [
-              "Se coucher: das gleiche Reflexivmuster",
-              "Se coucher: the same reflexive pattern"
-            ],
-            "rule": [
-              "Se coucher bedeutet ins Bett gehen. Wie bei se lever gehört das Pronomen me zur Form für ich.",
-              "Se coucher means to go to bed. As with se lever, me is part of the form for I."
-            ],
-            "examples": [
-              [
-                "Je me couche à vingt-trois heures.",
-                "Ich gehe um 23 Uhr ins Bett.",
-                "I go to bed at eleven p.m."
-              ]
-            ]
-          }
-        ],
         "Zeit- und Reihenfolgewörter": [
           {
             "title": [
@@ -917,8 +898,8 @@
             "This dress"
           ],
           "rule": [
-            "Vor einem weiblichen Nomen wie robe oder veste steht cette für diese. Die anderen Formen lernst du in der Vertiefung.",
-            "Use cette for this before a feminine noun such as robe or veste. The other forms follow in the grammar section."
+            "Vor einem weiblichen Nomen wie robe heißt „diese / dieses“ cette.",
+            "Before a feminine noun such as robe, “this” is cette."
           ],
           "examples": [
             [
@@ -934,39 +915,19 @@
             "Tomorrow’s weather"
           ],
           "rule": [
-            "Für einen Wetterausblick verwendest du il va + Grundform. Bei faire ergibt das il va faire.",
-            "Use il va + infinitive for a weather forecast. With faire this gives il va faire."
+            "Das Wetter von morgen sagst du mit il va faire.",
+            "Tomorrow’s weather uses il va faire."
           ],
           "examples": [
             [
               "Demain, il va faire vingt degrés.",
-              "Morgen wird es zwanzig Grad.",
+              "Morgen wird es zwanzig Grad warm.",
               "It will be twenty degrees tomorrow."
             ]
           ]
         }
       ],
-      "topics": {
-        "Wetter & Jahreszeiten": [
-          {
-            "title": [
-              "Il va mit anderen Grundformen verbinden",
-              "Using il va with other infinitives"
-            ],
-            "rule": [
-              "Im Einstieg hast du il va faire für das Wetter morgen kennengelernt. Das gleiche Muster funktioniert mit y avoir (es geben): Die Wortgruppe bleibt nach va unverändert.",
-              "The introduction used il va faire for tomorrow’s weather. The same pattern works with y avoir (there to be): keep that phrase unchanged after va."
-            ],
-            "examples": [
-              [
-                "Il va y avoir du vent.",
-                "Es wird Wind geben.",
-                "It is going to be windy."
-              ]
-            ]
-          }
-        ]
-      },
+      "topics": {},
       "words": [
         [
           "le printemps",
@@ -1024,12 +985,12 @@
         "Aktivitäten & Vorlieben": [
           {
             "title": [
-              "Die weiteren Formen von faire",
-              "The other forms of faire"
+              "faire: alle Formen",
+              "faire: all forms"
             ],
             "rule": [
-              "Je fais und vous faites kennst du aus dem Einstieg. Für andere Personen brauchst du die übrigen Formen; diese sind unregelmäßig.",
-              "The introduction used je fais and vous faites. Other subjects need these forms; faire is irregular."
+              "Faire (machen) ist unregelmäßig. Alle Formen:",
+              "Faire (to do) is irregular. All forms:"
             ],
             "examples": [
               [
@@ -1046,23 +1007,18 @@
           },
           {
             "title": [
-              "Der Akzent bei préférer",
-              "The accent in préférer"
+              "préférer: é wird zu è",
+              "préférer: é becomes è"
             ],
             "rule": [
-              "Der Stamm hat bei je, tu, il/elle und ils/elles ein è. Nur bei nous und vous bleibt é. Die Personenendungen entsprechen den bekannten -er-Endungen.",
-              "The stem has è with je, tu, il/elle and ils/elles. Nous and vous keep é. The person endings follow the familiar -er pattern."
+              "Bei préférer wird é zu è – nur bei nous und vous nicht.",
+              "In préférer, é becomes è – except with nous and vous."
             ],
             "examples": [
               [
-                "je préfère · tu préfères · il/elle préfère",
-                "ich bevorzuge · du bevorzugst · er/sie bevorzugt",
-                "I prefer · you prefer · he/she prefers"
-              ],
-              [
-                "nous préférons · vous préférez · ils/elles préfèrent",
-                "wir bevorzugen · ihr bevorzugt/Sie bevorzugen · sie bevorzugen",
-                "we prefer · you prefer · they prefer"
+                "je préfère · nous préférons · ils préfèrent",
+                "ich mag lieber · wir mögen lieber · sie mögen lieber",
+                "I prefer · we prefer · they prefer"
               ]
             ]
           }
@@ -1074,7 +1030,7 @@
               "Suggesting an activity with on"
             ],
             "rule": [
-              "On bedeutet im Alltag oft wir, verwendet aber die Verbform der dritten Person Einzahl. On va … ? ist deshalb ein einfacher Vorschlag an eine andere Person.",
+              "On heißt im Alltag oft „wir“, hat aber die Verbform von il: on va. Mit On va … ? schlägst du etwas vor.",
               "In everyday speech on often means we but takes a third-person singular verb. On va … ? is a simple way to suggest an activity."
             ],
             "examples": [
@@ -1147,15 +1103,15 @@
     "16": {
       "intro": [],
       "topics": {
-        "pouvoir": [
+        "Einladen und antworten: vouloir & pouvoir": [
           {
             "title": [
-              "Wollen und können unterscheiden",
-              "Distinguishing want and can"
+              "vouloir (wollen): alle Formen",
+              "vouloir (to want): all forms"
             ],
             "rule": [
-              "Die Einladung Tu veux … ? verwendet vouloir (wollen), nicht pouvoir (können). Beide Verben stehen hier mit einem zweiten Verb in der Grundform.",
-              "The invitation Tu veux … ? uses vouloir (want), not pouvoir (can). Here both verbs are followed by another verb in the infinitive."
+              "Vouloir ist unregelmäßig:",
+              "Vouloir is irregular:"
             ],
             "examples": [
               [
@@ -1167,11 +1123,6 @@
                 "nous voulons · vous voulez · ils/elles veulent",
                 "wir wollen · ihr wollt/Sie wollen · sie wollen",
                 "we want · you want · they want"
-              ],
-              [
-                "Tu veux venir ? Je peux venir.",
-                "Willst du kommen? Ich kann kommen.",
-                "Do you want to come? I can come."
               ]
             ]
           }
@@ -1208,8 +1159,8 @@
             "Asking for information"
           ],
           "rule": [
-            "Quel richtet sich nach dem erfragten Nomen. Adresse ist weiblich: Deshalb beginnt die Frage mit quelle. Bei einem männlichen Nomen steht quel.",
-            "Quel agrees with the noun you ask about. Adresse is feminine, so the question begins with quelle. Use quel with a masculine noun."
+            "Quel / quelle heißt welcher / welche. Vor weiblichen Wörtern wie adresse steht quelle, vor männlichen quel.",
+            "Quel / quelle means which / what. Use quelle before feminine words such as adresse, quel before masculine ones."
           ],
           "examples": [
             [
@@ -1229,12 +1180,12 @@
         "Formularfelder verstehen": [
           {
             "title": [
-              "Quel auch im Plural verwenden",
-              "Using quel in the plural"
+              "Bei mehreren: quels / quelles",
+              "Several items: quels / quelles"
             ],
             "rule": [
-              "Bei mehreren Angaben steht quels vor männlichen oder gemischten Nomen und quelles vor weiblichen. Weil es mehrere sind, heißt es sont statt est.",
-              "For several items use quels with masculine or mixed nouns and quelles with feminine nouns. The plural uses sont instead of est."
+              "Bei mehreren Angaben: quels / quelles + sont.",
+              "For several items: quels / quelles + sont."
             ],
             "examples": [
               [
@@ -1307,27 +1258,7 @@
     },
     "19": {
       "intro": [],
-      "topics": {
-        "Pluralregeln": [
-          {
-            "title": [
-              "Nomen, die im Plural gleich bleiben",
-              "Nouns with an unchanged plural"
-            ],
-            "rule": [
-              "Endet ein Nomen schon auf s, x oder z, kommt kein weiteres s hinzu. Am Artikel erkennst du, ob Einzahl oder Mehrzahl gemeint ist.",
-              "A noun already ending in s, x or z does not add another s. Its article shows whether it is singular or plural."
-            ],
-            "examples": [
-              [
-                "un prix → des prix",
-                "ein Preis → Preise",
-                "a price → prices"
-              ]
-            ]
-          }
-        ]
-      },
+      "topics": {},
       "words": [
         [
           "un prix",
@@ -1403,32 +1334,7 @@
           ]
         }
       ],
-      "topics": {
-        "Passé composé mit avoir": [
-          {
-            "title": [
-              "Zwei unregelmäßige Partizipien",
-              "Two irregular past participles"
-            ],
-            "rule": [
-              "Nicht jedes Partizip endet auf -é. Prendre hat pris, faire hat fait. Die Form von avoir zeigt weiterhin die Person.",
-              "Not every past participle ends in -é. Prendre has pris and faire has fait. The form of avoir still indicates the subject."
-            ],
-            "examples": [
-              [
-                "J’ai pris le bus.",
-                "Ich habe den Bus genommen.",
-                "I took the bus."
-              ],
-              [
-                "Tu as fait quoi hier ?",
-                "Was hast du gestern gemacht?",
-                "What did you do yesterday?"
-              ]
-            ]
-          }
-        ]
-      },
+      "topics": {},
       "words": [
         [
           "prendre",
@@ -1529,15 +1435,15 @@
         }
       ],
       "topics": {
-        "Eine Reisenachricht aufbauen": [
+        "Abfahrt planen: devoir & partir": [
           {
             "title": [
-              "Partir: abfahren oder losgehen",
-              "Partir: leaving"
+              "partir (abfahren): alle Formen",
+              "partir (to leave): all forms"
             ],
             "rule": [
-              "Partir ist unregelmäßig. Rester und rentrer verwendest du dagegen mit den bekannten -er-Endungen. So kannst du Abreise, Aufenthalt und Rückkehr getrennt beschreiben.",
-              "Partir is irregular. Rester and rentrer use the familiar -er endings. This lets you describe departure, a stay and return separately."
+              "Partir ist unregelmäßig:",
+              "Partir is irregular:"
             ],
             "examples": [
               [
@@ -2923,7 +2829,14 @@
       const pairs=window.A1Vocabulary.displayPairs?.(course,word)||[{target:display(word.target),meaning:display(word.meaning)}];
       for(const pair of pairs)rows.set(JSON.stringify([pair.target,pair.meaning]),pair);
     }
-    return `<dl data-i18n-ignore>${[...rows.values()].map(pair=>`<div><dt lang="${course}"><span>${esc(pair.target)}</span>${wordAudioButton(course,pair.target)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(pair.meaning)}</dd></div>`).join('')}</dl>`;
+    // French course: one word with several meanings is one row (terminer – beenden / aufhören).
+    let list=[...rows.values()];
+    if(course==='fr'){
+      const merged=new Map(),base=t=>t.replace(/\s*\([^)]*\)\s*$/,'').trim();
+      for(const pair of list){const key=base(pair.target),row=merged.get(key);if(!row)merged.set(key,{...pair,count:1});else{row.target=key;row.count++;if(!row.meaning.split(' / ').includes(pair.meaning))row.meaning+=' / '+pair.meaning;}}
+      list=[...merged.values()];
+    }
+    return `<dl data-i18n-ignore>${list.map(pair=>`<div><dt lang="${course}"><span>${esc(pair.target)}</span>${wordAudioButton(course,pair.target)}</dt><dd lang="${course==='fr'?'de':'fr'}">${esc(pair.meaning)}</dd></div>`).join('')}</dl>`;
   }
   function vocabularyHtml(course,id){
     const bank=vocabularyBank(course).filter(word=>word.lessons.includes(Number(id)));

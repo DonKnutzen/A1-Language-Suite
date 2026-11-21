@@ -503,7 +503,7 @@ function renderLesson(id){
   A1LessonFlow.render({
     renderVocabulary:()=>renderVocab(id,()=>renderLesson(id)),vocabularyLabel:A1Vocabulary.label('fr','lessonLink'),
     lesson:l,content:c,view,state,save,resume:true,lessonCount:lessons.length,targetLang:'fr',uiLang:'de',
-    goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:A1Pronunciation.render(c,'fr','de'),
+    goalsHtml,grammarHtml,masteryHtml,masteryCount:FR_A1_MASTERY.testCount(id),dialogueHtml,pronunciationHtml:id<10?A1Pronunciation.render(c,'fr','de'):'',
     renderMastery:({onBack,onResult})=>FR_A1_MASTERY.renderLessonTest({lesson:l,view,state,save,onBack,speak,onResult}),
     renderHardMode:({onBack})=>FR_A1_HARD_MODE.render({lesson:l,view,state,save,onBack}),
     renderGrammarCheck:id===1?({onBack})=>FR_A1_LESSON1.renderGrammarCheck({view,state,save,onBack,speak}):null,
