@@ -96,7 +96,10 @@
         if(alphabet){
           const panel=document.createElement('div');panel.innerHTML=bonus;
           const details=panel.querySelector('details');
-          if(details){details.querySelector('summary')?.remove();alphabet.html=alphabet.html.replace('<div class="grammar-detail-body">','<div class="grammar-detail-body"><div class="lesson-pronunciation-bonus"><div class="pronunciation-alphabet">'+details.innerHTML+'</div></div>');}
+          if(details){details.querySelector('summary')?.remove();details.querySelector(':scope > p')?.remove();
+            // Rule first, then the alphabet tool, then the examples.
+            const tool='<div class="lesson-pronunciation-bonus"><div class="pronunciation-alphabet">'+details.innerHTML+'</div></div>',rule=/(<div class="deepening-preparation">(?:<p>[\s\S]*?<\/p>))/;
+            alphabet.html=rule.test(alphabet.html)?alphabet.html.replace(rule,'$1'+tool):alphabet.html.replace('<div class="grammar-detail-body">','<div class="grammar-detail-body">'+tool);}
           grammarPages.splice(grammarPages.indexOf(alphabet),1);grammarPages.unshift(alphabet);
         }
       }else{

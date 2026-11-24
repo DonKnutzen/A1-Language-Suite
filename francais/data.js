@@ -362,7 +362,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Beim Buchstabieren heißt épeler „buchstabieren“. Comment ça s’écrit ? bedeutet „Wie schreibt man das?“"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "u / ou : tu, vous",
@@ -564,7 +564,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Das Alter steht im Französischen mit avoir („haben“): J’ai vingt ans = „Ich bin 20 Jahre alt.“"
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "vingt / trente / cent",
@@ -933,7 +933,7 @@ window.FR_A1_DATA = {
       ],
       "grammar": {
         "title": "Sprachbaustein",
-        "explanation": "Vor einem femininen Wort mit Vokal steht mon: mon amie. Beim Beschreiben bekommt ein Adjektiv in der femininen Form oft -e: petit → petite."
+        "explanation": ""
       },
       "pronunciation": {
         "focus": "petit / petite",

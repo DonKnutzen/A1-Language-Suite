@@ -634,8 +634,8 @@
         "très"
       ],
       "titles": {
-        "grammar:0": "Possessivbegleiter – Übersicht",
-        "grammar:1": "C’est / Ce sont"
+        "grammar:0": "mein, dein, sein: mon / ma / mes",
+        "grammar:1": "Personen beschreiben"
       }
     },
     "6": {
@@ -750,7 +750,7 @@
         "une glace"
       ],
       "titles": {
-        "grammar:0": "Teilungsartikel",
+        "grammar:0": "Etwas Brot: du / de la / de l’",
         "grammar:1": "Höflich bestellen"
       }
     },

@@ -13,8 +13,8 @@
               "Learning a noun with its article"
             ],
             "rule": [
-              "Un steht vor einem männlichen, une vor einem weiblichen Nomen. Mehrere werden meist mit des und einem s am Nomen bezeichnet. Die bestimmten Artikel sind le, la und les; vor Vokal oder stummem h steht l’.",
-              "Use un before a masculine noun and une before a feminine noun. The plural usually uses des and adds s to the noun. Definite articles are le, la and les; before a vowel or silent h use l’."
+              "un / une = ein / eine, des = mehrere. le / la / les = der, die, das; vor Vokal l’.",
+              "un / une = a, des = several. le / la / les = the; before a vowel l’."
             ],
             "examples": [
               [
@@ -35,8 +35,8 @@
               "Making a statement negative"
             ],
             "rule": [
-              "Ne … pas bedeutet nicht. Ne steht vor der Verbform, pas dahinter. Vor einem Vokal wird ne zu n’. Fürs Erste erkennst du damit, ob eine Aussage positiv oder negativ ist.",
-              "Ne … pas means not. Put ne before the verb form and pas after it. Before a vowel ne becomes n’. For now, use this pattern to recognise whether a statement is positive or negative."
+              "Ne … pas = nicht. Ne steht vor dem Verb, pas dahinter; vor Vokal wird ne zu n’.",
+              "ne … pas = not. ne goes before the verb, pas after it; before a vowel ne becomes n’."
             ],
             "examples": [
               [
@@ -54,8 +54,8 @@
               "Learning origin as a phrase"
             ],
             "rule": [
-              "Die Präposition gehört zur Ortsangabe. Bei den ersten Ländern lernst du die ganze Verbindung; die vollständige Regel kommt in Lektion 24.",
-              "Learn the preposition together with the place. For these first countries, learn the whole phrase; the full rule comes in lesson 24."
+              "Lerne die Herkunft als feste Wendung: de France, d’Allemagne, du Canada.",
+              "Learn the origin as a fixed phrase: de France, d’Allemagne, du Canada."
             ],
             "examples": [
               [
@@ -83,8 +83,8 @@
               "Naming a language"
             ],
             "rule": [
-              "Nach parler steht die Sprache in diesen Sätzen ohne Artikel. Das gilt auch, wenn du einen Teil mit un peu (ein bisschen) einschränkst.",
-              "Use the language without an article after parler in these sentences. This also applies when you add un peu (a little)."
+              "Nach parler steht die Sprache ohne Artikel: je parle allemand.",
+              "After parler the language has no article: je parle allemand."
             ],
             "examples": [
               [
@@ -139,8 +139,8 @@
               "Checking information"
             ],
             "rule": [
-              "Diese Frage kannst du nach dem Buchstabieren oder nach einer Adresse als ganze Wendung verwenden.",
-              "Use this complete question to check information after spelling a name or giving an address."
+              "Damit fragst du, ob alles richtig notiert ist.",
+              "Use it to ask whether everything was noted correctly."
             ],
             "examples": [
               [
@@ -198,8 +198,8 @@
               "Correcting a number"
             ],
             "rule": [
-              "Pas direkt vor einer Zahl bedeutet nicht diese Zahl. So kann jemand eine zuvor genannte Zahl verbessern, ohne einen ganzen verneinten Satz zu wiederholen.",
-              "Pas directly before a number rejects that number. A speaker can correct an earlier number this way without repeating a whole negative sentence."
+              "Mit pas vor einer Zahl korrigierst du sie:",
+              "pas before a number corrects it:"
             ],
             "examples": [
               [
@@ -272,8 +272,8 @@
               "Saying there is no appointment"
             ],
             "rule": [
-              "Il y a heißt es gibt. Für die Verneinung steht n’ vor y a und pas dahinter. Aus un, une oder des wird dabei de; vor Vokal d’. Nach être bleibt der Artikel dagegen erhalten.",
-              "Il y a means there is/are. In the negative put n’ before y a and pas after it. Un, une and des become de, or d’ before a vowel. After être the article stays."
+              "Il n’y a pas de … = es gibt kein … . Nach pas wird un / une / des zu de (vor Vokal d’). Aber nach être nicht: ce n’est pas un cours.",
+              "Il n’y a pas de … = there is no … . After pas, un / une / des become de (before a vowel d’). But not after être: ce n’est pas un cours."
             ],
             "examples": [
               [
@@ -301,8 +301,8 @@
               "Giving a time range"
             ],
             "rule": [
-              "De … à … nennt den Anfang und das Ende einer Zeitspanne. Verwende dabei dieselben Uhrzeiten wie beim Ablesen der Uhr.",
-              "De … à … introduces the start and end of a time range. Use the same time expressions as when telling the time."
+              "de … à … = von … bis …",
+              "de … à … = from … to …"
             ],
             "examples": [
               [
@@ -362,32 +362,7 @@
           ]
         }
       ],
-      "topics": {
-        "C’est / Ce sont": [
-          {
-            "title": [
-              "Eine Person beschreiben",
-              "Describing a person"
-            ],
-            "rule": [
-              "Bei marié und divorcé bekommt die weibliche Form ein e. Calme und sympa bleiben im weiblichen Singular dagegen gleich. Lerne neue Beschreibungen deshalb mit ihrer Form für eine Frau und einen Mann.",
-              "Marié and divorcé add e in the feminine form. Calme and sympa stay unchanged in the feminine singular. Learn new descriptions with their forms for a woman and a man."
-            ],
-            "examples": [
-              [
-                "Il est marié. Elle est mariée.",
-                "Er ist verheiratet. Sie ist verheiratet.",
-                "He is married. She is married."
-              ],
-              [
-                "Il est calme. Elle est calme.",
-                "Er ist ruhig. Sie ist ruhig.",
-                "He is calm. She is calm."
-              ]
-            ]
-          }
-        ]
-      },
+      "topics": {},
       "words": [
         [
           "célibataire",
@@ -449,8 +424,8 @@
               "Prendre: taking or ordering"
             ],
             "rule": [
-              "Prendre ist unregelmäßig. Wenn sich die Person ändert, brauchst du diese Formen. Im Restaurant bedeutet prendre häufig bestellen oder nehmen.",
-              "Prendre is irregular. These forms change with the subject. In a restaurant prendre often means to order or to have."
+              "prendre (nehmen, bestellen) ist unregelmäßig:",
+              "prendre (to take, to order) is irregular:"
             ],
             "examples": [
               [
@@ -471,8 +446,8 @@
               "Would you like …?"
             ],
             "rule": [
-              "Diese Frage ist ein höflicher Baustein im Gespräch mit einem Gast. Die vollständigen vouloir-Formen folgen in Lektion 16.",
-              "Use this complete polite question with a guest. The full vouloir forms follow in lesson 16."
+              "So bietest du einem Gast etwas an.",
+              "Use it to offer something to a guest."
             ],
             "examples": [
               [
@@ -483,15 +458,15 @@
             ]
           }
         ],
-        "Teilungsartikel": [
+        "Etwas Brot: du / de la / de l’": [
           {
             "title": [
               "Eine Menge verneinen",
               "Negating an amount"
             ],
             "rule": [
-              "Die Verneinung aus Lektion 4 gilt auch für Teilungsartikel: Aus du, de la, de l’ oder des wird nach ne … pas meist de, vor Vokal d’.",
-              "The negative pattern from lesson 4 also applies to partitive articles: after ne … pas, du, de la, de l’ or des usually becomes de, or d’ before a vowel."
+              "Nach ne … pas wird du / de la / des zu de (vor Vokal d’).",
+              "After ne … pas, du / de la / des become de (before a vowel d’)."
             ],
             "examples": [
               [
@@ -559,8 +534,8 @@
               "Pointing to a specific item"
             ],
             "rule": [
-              "Ce und cette bedeuten hier dieser oder diese. Die Form richtet sich nach dem Nomen: pantalon ist männlich, taille weiblich. Die vollständige Übersicht folgt in Lektion 13.",
-              "Here ce and cette mean this. The form agrees with the noun: pantalon is masculine, taille feminine. The full table follows in lesson 13."
+              "ce (männlich) / cette (weiblich) = dieser / diese.",
+              "ce (masculine) / cette (feminine) = this."
             ],
             "examples": [
               [
@@ -578,8 +553,8 @@
               "Cent with and without s"
             ],
             "rule": [
-              "Wenn cent vervielfacht wird und am Ende der Zahl steht, erhält es ein s. Folgt noch eine weitere Zahl, bleibt cent ohne s.",
-              "Cent takes s when multiplied and at the end of the number. If another number follows, cent stays without s."
+              "deux cents = 200 (mit s). Folgt noch eine Zahl, fällt das s weg: six cent cinquante.",
+              "deux cents = 200 (with s). If another number follows, the s is dropped: six cent cinquante."
             ],
             "examples": [
               [
@@ -643,12 +618,12 @@
         "Räume & il y a": [
           {
             "title": [
-              "Die Verneinung aus Lektion 4 anwenden",
-              "Applying the negative from lesson 4"
+              "Was es nicht gibt",
+              "What there is not"
             ],
             "rule": [
-              "Für eine fehlende Ausstattung verwendest du dieselbe Form wie für einen ausfallenden Kurs: il n’y a pas de + Nomen. Mais verbindet hier vorhandene und fehlende Ausstattung.",
-              "For a missing feature use the pattern you learned for a class that is not available: il n’y a pas de + noun. Here mais links a feature that exists with one that does not."
+              "Was fehlt: il n’y a pas de + Nomen. mais = aber.",
+              "What is missing: il n’y a pas de + noun. mais = but."
             ],
             "examples": [
               [
@@ -703,8 +678,8 @@
               "Asking which transport to take"
             ],
             "rule": [
-              "In einer Wegauskunft kannst du diese Frage als ganzen Baustein verstehen. Faut-il prendre heißt hier muss man nehmen; die allgemeine Regel zu il faut folgt in Lektion 20.",
-              "In directions, learn this question as a complete phrase. Here faut-il prendre means should one take; the general il faut rule follows in lesson 20."
+              "faut-il prendre = muss man nehmen. Lerne die Frage als Ganzes.",
+              "faut-il prendre = do you have to take. Learn the question as a whole."
             ],
             "examples": [
               [
@@ -754,8 +729,8 @@
               "Stating an obligation"
             ],
             "rule": [
-              "Die Wendung je dois faire mes devoirs bedeutet ich muss Hausaufgaben machen. Lerne sie hier als ganzen Baustein; die vollständigen devoir-Formen folgen in Lektion 24.",
-              "Learn je dois faire mes devoirs as the complete phrase I must do my homework. The full devoir forms follow in lesson 24."
+              "je dois … = ich muss … . Lerne den Satz als Ganzes.",
+              "je dois … = I must … . Learn the sentence as a whole."
             ],
             "examples": [
               [
@@ -813,8 +788,8 @@
               "Leaving and going to work"
             ],
             "rule": [
-              "Für deinen Tagesablauf kannst du diese beiden Wendungen als ganze Bausteine verwenden. Die genaue Uhrzeit ergänzt du mit à.",
-              "Use these two complete phrases for your routine. Add a specific time with à."
+              "je pars = ich gehe los. Die Uhrzeit steht mit à.",
+              "je pars = I leave. The time goes with à."
             ],
             "examples": [
               [
@@ -989,8 +964,8 @@
               "faire: all forms"
             ],
             "rule": [
-              "Faire (machen) ist unregelmäßig. Alle Formen:",
-              "Faire (to do) is irregular. All forms:"
+              "Faire (machen) ist unregelmäßig:",
+              "Faire (to do) is irregular:"
             ],
             "examples": [
               [

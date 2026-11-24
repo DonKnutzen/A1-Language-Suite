@@ -2411,3 +2411,8 @@ window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
   "Vor des + Nomen im Plural steht ce sont.":"Before des + a plural noun, use ce sont.",
   "Vor stummem h werden le und la zu l’.":"Before a silent h, le and la become l’."
 });
+// Lesson 9 imperative rule (2026-11 clean-up), translated in its emphasised parts.
+window.FR_A1_EN=Object.freeze({...window.FR_A1_EN,
+  "Mit dem Imperativ gibst du eine Anweisung, z. B. eine Wegbeschreibung: Du nimmst die vous-Form und lässt vous weg:":"The imperative gives an instruction, e.g. directions: take the vous form and leave out vous:",
+  ". Genauso: vous tournez → Tournez, vous prenez → Prenez.":". Likewise, vous tournez → Tournez, vous prenez → Prenez."
+});

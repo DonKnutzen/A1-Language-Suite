@@ -1027,3 +1027,15 @@ html.dark-mode .primary-btn.lesson-finale-btn{background:linear-gradient(110deg,
 
 /* One clear destination for the audio examples, in the same position on each page. */
 .lesson-audio-pager .lesson-audio-switch{width:100%;min-height:48px;padding:14px 18px;font-size:1rem;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
+
+/* Clear page style (2026-11): one example list, quiet extra boxes. */
+#lessonGrammarPage .deepening-examples .deepening-form-example{border-left:0;padding-left:0;font-size:inherit}
+#lessonGrammarPage .deepening-examples .phrase-row:not(.deepening-word){border-bottom:1px solid var(--line)}
+#lessonGrammarPage .deepening-examples .phrase-row:not(.deepening-word):last-child{border-bottom:0}
+#lessonGrammarPage .deepening-series{margin:10px 0 4px;font-size:.9rem}
+#lessonGrammarPage .lesson-foundations.is-topic{margin:16px 0;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(59,130,246,.07)}
+#lessonGrammarPage .lesson-foundations.is-topic .lesson-foundation-rule h4{margin-top:0}
+#lessonGrammarPage .lesson-foundations.is-topic .lesson-foundation-example{border-left:0;padding-left:0}
+#lessonGrammarPage .grammar-table td:has(.speak-btn){white-space:nowrap}
+#lessonGrammarPage .grammar-table .speak-btn{display:inline-grid}
+#lessonGrammarPage .grammar-table td:has(.grammar-audio-btn){white-space:nowrap}

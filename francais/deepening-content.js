@@ -3,7 +3,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "2": [
     {
       "title": "Alphabet & Buchstabieren",
-      "rule": "Im Französischen klingen besonders E, G, J und U anders als im Deutschen. Höre die Buchstaben oben in der Alphabetübersicht; notiere sie der Reihe nach. é heißt e accent aigu, ç heißt c cédille.",
+      "rule": "E, G, J und U klingen anders als im Deutschen. Beim Buchstabieren nennst du die Namen der Buchstaben: G = gé, J = ji, H = hache. é heißt e accent aigu, ç heißt c cédille.",
       "pairs": [
         [
           "Mon prénom est Léa.",
@@ -32,13 +32,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "E, G, J und U",
+        "G = gé",
+        "J = ji",
         "é",
         "ç"
       ]
     },
     {
       "title": "Buchstabieren lassen & nachfragen",
-      "rule": "Nach pouvez steht die Grundform: épeler, répéter oder parler. Die höfliche Frage kann mit Vous pouvez … ? oder Pouvez-vous … ? beginnen. Ergänze s’il vous plaît. Für deine Sprechaufgabe nennst du erst deinen Namen, dann die einzelnen Buchstaben und bittest um langsameres Sprechen.",
+      "rule": "Nach Vous pouvez … ? oder Pouvez-vous … ? kommt das Verb in der Grundform: épeler, répéter, parler. Höflich wird es mit s’il vous plaît.",
       "pairs": [
         [
           "Vous pouvez épeler, s’il vous plaît ?",
@@ -55,9 +57,9 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Nach pouvez steht die Grundform",
         "Vous pouvez … ?",
         "Pouvez-vous … ?",
+        "Grundform",
         "s’il vous plaît"
       ]
     }
@@ -65,31 +67,19 @@ window.FR_A1_DEEPENING_CONTENT = {
   "3": [
     {
       "title": "Alter & avoir",
-      "rule": "Ein Alter sagst du mit avoir + Zahl + ans, nicht mit être. J’ai trente ans heißt wörtlich „Ich habe dreißig Jahre“. Vor ai wird je zu j’. Die Tabelle zeigt auch nous avons und ils ont.",
+      "rule": "Das Alter sagst du mit avoir + Zahl + ans: J’ai trente ans = Ich bin dreißig (wörtlich: Ich habe dreißig Jahre). Vor ai wird je zu j’.",
       "pairs": [
         [
           "J’ai trente ans.",
           "Ich bin dreißig Jahre alt."
         ],
         [
-          "Tu as vingt ans.",
-          "Du bist zwanzig Jahre alt."
-        ],
-        [
           "Elle a vingt-six ans.",
           "Sie ist sechsundzwanzig Jahre alt."
         ],
         [
-          "Nous avons trente ans.",
-          "Wir sind dreißig Jahre alt."
-        ],
-        [
           "Vous avez quel âge ?",
           "Wie alt sind Sie?"
-        ],
-        [
-          "Ils ont vingt ans.",
-          "Sie sind zwanzig Jahre alt."
         ]
       ],
       "attach": 0,
@@ -187,7 +177,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Telefon & Formular",
-      "rule": "Du kannst eine Telefonnummer zum Üben Ziffer für Ziffer nennen; bei französischen Nummern hört man häufig Zweiergruppen. In der Schreibaufgabe genügt ein Wert pro Feld. Übertrage in der Schreibaufgabe die vorgegebenen erfundenen Angaben. Eine E-Mail darfst du unverändert eintragen; @ heißt arobase, ein Punkt heißt point.",
+      "rule": "Französische Telefonnummern hört man meist in Zweiergruppen: 06 12 … = zéro six, douze … In einer E-Mail-Adresse heißt @ arobase und der Punkt point.",
       "pairs": [
         [
           "Mon numéro de téléphone est le …",
@@ -227,9 +217,7 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Ziffer für Ziffer",
         "Zweiergruppen",
-        "ein Wert pro Feld",
         "arobase",
         "point"
       ]
@@ -238,7 +226,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "4": [
     {
       "title": "Uhrzeiten verstehen & sagen",
-      "rule": "Nach der Uhrzeit fragst du mit Quelle heure est-il ? Die Antwort beginnt mit Il est. Une heure steht im Singular; deux heures im Plural. Et quart bedeutet Viertel nach, et demie halb und moins le quart Viertel vor der genannten Stunde. Französisch zählt bei „halb“ von der vorherigen vollen Stunde: quatre heures et demie = 4:30, auf Deutsch halb fünf. Für Termine ist die 24-Stunden-Angabe eindeutig.",
+      "rule": "Frage: Quelle heure est-il ? Antwort: Il est … heures. et quart = Viertel nach, et demie = halb, moins le quart = Viertel vor. Achtung: quatre heures et demie = 4:30 (halb fünf). Für Termine nimmt man oft die 24-Stunden-Zeit.",
       "pairs": [
         [
           "Il est une heure.",
@@ -266,20 +254,14 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Quelle heure est-il ?",
-        "Il est",
-        "Une heure",
-        "deux heures",
-        "Et quart",
+        "et quart",
         "et demie",
-        "moins le quart",
-        "vorherigen vollen Stunde",
-        "24-Stunden-Angabe"
+        "moins le quart"
       ]
     },
     {
       "title": "Wochentage",
-      "rule": "Wochentage werden klein geschrieben. Mardi à quinze heures heißt „Dienstag um 15 Uhr“. Le mardi kann eine Wiederholung bedeuten: dienstags. Du lundi au vendredi heißt von Montag bis Freitag. Le matin, l’après-midi und le soir unterscheiden Morgen, Nachmittag und Abend.",
+      "rule": "Wochentage schreibt man klein. le mardi = dienstags (jede Woche). du lundi au vendredi = von Montag bis Freitag.",
       "pairs": [
         [
           "lundi",
@@ -319,15 +301,14 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "klein geschrieben",
-        "Le mardi",
-        "Du lundi au vendredi",
-        "Le matin, l’après-midi und le soir"
+        "klein",
+        "le mardi",
+        "du lundi au vendredi"
       ]
     },
     {
       "title": "Monate & Datum",
-      "rule": "Monate werden ebenfalls klein geschrieben. Ein Datum hat le + Tageszahl + Monat: le cinq octobre. Für den ersten Tag heißt es le premier: le premier juillet. Mit en + Monat sagst du „im …“: en juillet. Nous sommes le … ist eine feste Wendung für das heutige Datum.",
+      "rule": "Monate schreibt man klein. Ein Datum: le + Zahl + Monat (le cinq octobre). Der Erste heißt le premier. en juillet = im Juli.",
       "pairs": [
         [
           "janvier",
@@ -387,15 +368,15 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "le + Tageszahl + Monat",
+        "klein",
+        "le + Zahl + Monat",
         "le premier",
-        "en + Monat",
-        "Nous sommes le …"
+        "en juillet"
       ]
     },
     {
       "title": "Einen Termin vereinbaren & bestätigen",
-      "rule": "Du brauchst drei Bausteine: Tag + à + Uhrzeit + Treffpunkt. Frage mit Vous êtes disponible … ? oder On se voit … ?; bestätige mit D’accord. Devant bedeutet „vor“, la bibliothèque „die Bibliothek“ und la gare „der Bahnhof“. Schreibe die Zeit kurz als 15 h. À partir de = ab; plus tard = später.",
+      "rule": "Ein Termin hat: Tag + à + Uhrzeit + Treffpunkt (mardi à quinze heures devant la gare). Zusagen mit D’accord. à partir de = ab, plus tard = später.",
       "pairs": [
         [
           "À quelle heure ?",
@@ -428,10 +409,8 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "Tag + à + Uhrzeit + Treffpunkt",
-        "Vous êtes disponible … ?",
-        "On se voit … ?",
         "D’accord",
-        "À partir de",
+        "à partir de",
         "plus tard"
       ]
     }
@@ -439,7 +418,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "5": [
     {
       "title": "Familie & Besitz",
-      "rule": "Mon, ma und mes richten sich nach dem folgenden Nomen, nicht nach dem Geschlecht der sprechenden Person. Vor einem weiblichen Nomen mit Vokal steht mon: mon amie. Für zwei Personen kannst du nacheinander dieselben Muster mit il oder elle benutzen.",
+      "rule": "mon / ma / mes richtet sich nach dem Nomen, nicht nach dir: mon frère, ma sœur, mes parents. Vor Vokal steht immer mon: mon amie.",
       "pairs": [
         [
           "mon père / ma mère",
@@ -460,22 +439,21 @@ window.FR_A1_DEEPENING_CONTENT = {
         [
           "Ma sœur s’appelle Emma.",
           "Meine Schwester heißt Emma."
-        ],
-        [
-          "Mon père s’appelle Marc.",
-          "Mein Vater heißt Marc."
         ]
       ],
       "attach": 0,
       "emphasis": [
-        "Mon, ma und mes",
-        "folgenden Nomen",
-        "Vokal steht mon"
-      ]
+        "nach dem Nomen",
+        "mon frère",
+        "ma sœur",
+        "mes parents",
+        "mon amie"
+      ],
+      "heading": "mein, dein, sein: mon / ma / mes"
     },
     {
       "title": "Personen beschreiben",
-      "rule": "Mit s’appeler nennst du den Namen, mit avoir + ans das Alter und mit être eine Eigenschaft. Sympa und calme bleiben hier bei männlichen und weiblichen Personen gleich. Petit wird bei einem weiblichen Nomen petite. Vier Sätze reichen für eine erste Familienbeschreibung; du musst nicht alle Angaben in einen Satz packen.",
+      "rule": "Name: elle s’appelle …, Alter: elle a … ans, Eigenschaft: elle est … . Viele Eigenschaften bekommen für Frauen ein -e: petit → petite. calme und sympa bleiben gleich.",
       "pairs": [
         [
           "Elle a vingt-six ans.",
@@ -508,18 +486,19 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "s’appeler",
-        "avoir + ans",
-        "être",
-        "Petit",
-        "petite"
-      ]
+        "s’appelle",
+        "a … ans",
+        "est",
+        "-e",
+        "petit → petite"
+      ],
+      "heading": "Personen beschreiben"
     }
   ],
   "6": [
     {
       "title": "Essen, Trinken & Artikel",
-      "rule": "Bei einer unbestimmten Menge verwendest du du, de la oder de l’. Bei zählbaren Dingen steht un oder une: un café, un croissant. Der Plural lautet des. Lerne die Speisen mit ihrem Artikel; so kannst du deine Bestellung selbst zusammenstellen.",
+      "rule": "Ohne genaue Menge steht du, de la oder de l’ (vor Vokal): du pain, de la soupe, de l’eau. Ein einzelnes Ding: un / une (un café). Mehrere: des.",
       "pairs": [
         [
           "du pain / du riz / du fromage",
@@ -548,15 +527,15 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "unbestimmten Menge",
         "du, de la oder de l’",
-        "un oder une",
+        "un / une",
         "des"
-      ]
+      ],
+      "heading": "Etwas Brot: du / de la / de l’"
     },
     {
       "title": "Höflich bestellen",
-      "rule": "Je voudrais ist ein fertiger höflicher Baustein: „Ich hätte gern“. Du musst dafür noch keine ganze neue Zeitform lernen. Verbinde zwei Wünsche mit et. Deine Schreibaufgabe hat Begrüßung, Bestellung, s’il vous plaît und Merci. Beim Sprechen ergänzt du die Preisfrage.",
+      "rule": "Je voudrais … = Ich hätte gern … . Zwei Wünsche verbindest du mit et. Bitte heißt s’il vous plaît.",
       "pairs": [
         [
           "Bonjour, je voudrais un café et un croissant, s’il vous plaît.",
@@ -584,17 +563,16 @@ window.FR_A1_DEEPENING_CONTENT = {
         ]
       ],
       "emphasis": [
-        "Je voudrais",
+        "Je voudrais …",
         "et",
-        "Begrüßung, Bestellung, s’il vous plaît und Merci",
-        "Preisfrage"
+        "s’il vous plaît"
       ]
     }
   ],
   "7": [
     {
       "title": "Mengen & Einkaufsliste",
-      "rule": "Nach einer konkreten Menge steht de, vor Vokal d’: un kilo de pommes, une bouteille d’eau. Eine Einkaufsliste braucht keine vollständigen Sätze. Du kannst kg, g und l schreiben; beim Vorlesen sagst du kilo, grammes und litre.",
+      "rule": "Nach einer Menge steht nur de (vor Vokal d’): un kilo de pommes, une bouteille d’eau. kg, g und l sprichst du kilo, grammes und litre.",
       "pairs": [
         [
           "un kilo de pommes",
@@ -619,15 +597,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Nach einer konkreten Menge steht de",
-        "vor Vokal d’",
-        "keine vollständigen Sätze",
+        "nur de",
+        "d’",
         "kilo, grammes und litre"
       ]
     },
     {
       "title": "Preis, Gesamtpreis & Bezahlen",
-      "rule": "Combien fragt nach dem Preis. Au total ergänzt „insgesamt“. Ein Preis wie 19,50 € kann als dix-neuf euros cinquante gesprochen werden. Für zwei Produkte verbindest du die Mengen mit et. Celui-ci ist hier ein fester Baustein für „dieses hier“. Trop cher heißt „zu teuer“, très cher „sehr teuer“ und peu cher „preiswert“.",
+      "rule": "Combien ça coûte ? fragt nach dem Preis, au total heißt insgesamt. Preise sagt man Euro + Cent: dix-neuf euros cinquante = 19,50 €. trop cher = zu teuer.",
       "pairs": [
         [
           "C’est combien au total ?",
@@ -656,17 +633,17 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Combien",
-        "Au total",
+        "Combien ça coûte ?",
+        "au total",
         "dix-neuf euros cinquante",
-        "Celui-ci"
+        "trop cher"
       ]
     }
   ],
   "8": [
     {
       "title": "Räume & il y a",
-      "rule": "Il y a bedeutet „es gibt“; es bleibt bei einem oder mehreren Dingen gleich. Beginne mit Dans mon appartement, il y a … und verbinde Räume mit et. La chambre ist ein Schlafzimmer, le salon ein Wohnzimmer. Wenn du über einen bestimmten Gegenstand sprichst, verwendest du anschließend est.",
+      "rule": "Il y a = es gibt, für eins und für mehrere: Dans mon appartement, il y a une cuisine et une chambre. la chambre = das Schlafzimmer, le salon = das Wohnzimmer.",
       "pairs": [
         [
           "un salon",
@@ -695,14 +672,14 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "emphasis": [
         "Il y a",
-        "bleibt bei einem oder mehreren Dingen gleich",
-        "Dans mon appartement, il y a …",
-        "est"
+        "für eins und für mehrere",
+        "la chambre",
+        "le salon"
       ]
     },
     {
       "title": "Wo steht der Gegenstand?",
-      "rule": "Für eine Position brauchst du Gegenstand + est + Lagewort + Ort. Die Artikel gehören zu den Nomen: la lampe, la table, le lit. Avec balcon = mit Balkon; près du centre = nahe dem Zentrum.",
+      "rule": "Wo ist etwas? Gegenstand + est + Lagewort + Ort: La lampe est sur la table.",
       "pairs": [
         [
           "La lampe est sur la table.",
@@ -731,27 +708,13 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
-        "Gegenstand + est + Lagewort + Ort",
-        "Avec balcon",
-        "près du centre"
+        "Gegenstand + est + Lagewort + Ort"
       ]
     },
     {
       "title": "Adresse & Besichtigung",
-      "rule": "Bei konkreten Orten werden à + le zu au und à + les zu aux. À la bleibt getrennt. Eine Hausnummer kommt vor dem Straßennamen. Die Fragen nach Miete und Besichtigung kannst du als ganze Satzmuster lernen.",
+      "rule": "à + le wird zu au, à + les zu aux, à la bleibt: au musée, aux toilettes, à la gare. Die Hausnummer steht vor der Straße: 12, rue Victor-Hugo.",
       "pairs": [
-        [
-          "au musée",
-          "im / zum Museum"
-        ],
-        [
-          "à la gare",
-          "am / zum Bahnhof"
-        ],
-        [
-          "aux toilettes",
-          "auf / zu den Toiletten"
-        ],
         [
           "L’adresse est 12, rue Victor-Hugo.",
           "Die Adresse ist 12, rue Victor-Hugo."
@@ -767,17 +730,17 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "à + le zu au",
-        "à + les zu aux",
-        "À la bleibt getrennt",
-        "Hausnummer kommt vor dem Straßennamen"
+        "au",
+        "aux",
+        "à la bleibt",
+        "Hausnummer steht vor der Straße"
       ]
     }
   ],
   "9": [
     {
       "title": "Einen Weg in zwei Schritten erklären",
-      "rule": "Mit dem Imperativ gibst du eine Anweisung, etwa eine Wegbeschreibung. Für die höfliche Form nimmst du die Verbform zu vous und lässt das Wort vous weg: vous allez → Allez. Genauso werden aus vous tournez → Tournez und aus vous prenez → Prenez. Aller und prendre sind unregelmäßig; ihre vous-Formen lernst du deshalb mit. Die Bildung der Anweisung bleibt gleich.",
+      "rule": "Mit dem Imperativ gibst du eine Anweisung, z. B. eine Wegbeschreibung: Du nimmst die vous-Form und lässt vous weg: vous allez → Allez. Genauso: vous tournez → Tournez, vous prenez → Prenez.",
       "pairs": [
         [
           "Allez tout droit.",
@@ -788,31 +751,18 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Biegen Sie dann links ab."
         ],
         [
-          "Tournez à droite.",
-          "Biegen Sie rechts ab."
-        ],
-        [
-          "Prenez la ligne 8.",
-          "Nehmen Sie die Linie 8."
-        ],
-        [
           "Le café est à droite.",
           "Das Café ist rechts."
         ]
       ],
       "attach": 0,
       "emphasis": [
-        "Pronomen vous weg",
-        "vous allez → Allez",
-        "Tout droit",
-        "à gauche",
-        "à droite",
-        "puis"
+        "vous allez → Allez"
       ]
     },
     {
       "title": "Nach Weg & Verkehr fragen",
-      "rule": "Beginne höflich mit Excusez-moi und frage mit Où est … ? À pied heißt „zu Fuß“, un arrêt de bus „eine Bushaltestelle“ und un quai „ein Bahnsteig“. Eine Wegauskunft kann kurz sein.",
+      "rule": "Höflich fragen: Excusez-moi, où est … ? = Entschuldigung, wo ist …? à pied = zu Fuß.",
       "pairs": [
         [
           "Excusez-moi, où est la gare ?",
@@ -837,11 +787,8 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Excusez-moi",
-        "Où est … ?",
-        "À pied",
-        "un arrêt de bus",
-        "un quai"
+        "Excusez-moi, où est … ?",
+        "à pied"
       ]
     }
   ],
@@ -1006,7 +953,7 @@ window.FR_A1_DEEPENING_CONTENT = {
   "11": [
     {
       "title": "Morgendliche Tätigkeiten",
-      "rule": "Bei manchen Verben macht man etwas mit sich selbst: je me lève = ich stehe auf (wörtlich: ich erhebe mich). Das me/te/se steht immer vor dem Verb: tu te lèves, il se lève. Genauso: je me douche (ich dusche), je me couche (ich gehe ins Bett). à sept heures = um sieben Uhr, vers midi = gegen Mittag.",
+      "rule": "Bei manchen Verben steht vor dem Verb noch me / te / se („mich, dich, sich“): je me lève = ich stehe auf, tu te lèves, il se lève. Genauso: je me douche, je me couche. vers = gegen (vers midi).",
       "pairs": [
         [
           "Je me lève à sept heures.",
@@ -1031,11 +978,9 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 0,
       "emphasis": [
+        "me / te / se",
         "je me lève",
-        "me/te/se",
-        "vor dem Verb",
-        "à sept heures",
-        "vers midi"
+        "vers"
       ],
       "heading": "Aufstehen: je me lève"
     },
@@ -1178,10 +1123,8 @@ window.FR_A1_DEEPENING_CONTENT = {
       "attach": 0,
       "emphasis": [
         "Pouvez-vous …?",
-        "Grundform",
         "Depuis quand …?",
-        "ne … pas",
-        "je ne peux pas venir"
+        "ne … pas"
       ],
       "heading": "Um Hilfe bitten & absagen"
     }
@@ -1233,16 +1176,8 @@ window.FR_A1_DEEPENING_CONTENT = {
           "diese Hose"
         ],
         [
-          "cet hôtel",
-          "dieses Hotel"
-        ],
-        [
           "cette veste",
           "diese Jacke"
-        ],
-        [
-          "ces chaussures",
-          "diese Schuhe"
         ]
       ],
       "attach": 0,
@@ -1320,10 +1255,6 @@ window.FR_A1_DEEPENING_CONTENT = {
       "title": "Aktivitäten & Vorlieben",
       "rule": "Sport spielen: jouer au + Sport (je joue au tennis). Etwas gern tun: j’aime + Grundform (j’aime lire). Etwas mögen: j’aime + le / la / les + Nomen (j’aime le football). Genauso: j’adore (sehr gern), je préfère (lieber).",
       "pairs": [
-        [
-          "Je joue au football.",
-          "Ich spiele Fußball."
-        ],
         [
           "Je joue au tennis.",
           "Ich spiele Tennis."
@@ -1686,10 +1617,6 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Könnten Sie bitte wiederholen?"
         ],
         [
-          "J’aimerais des informations sur le cours.",
-          "Ich hätte gern Informationen zum Kurs."
-        ],
-        [
           "Je voudrais un café.",
           "Ich hätte gern einen Kaffee."
         ],
@@ -2028,14 +1955,6 @@ window.FR_A1_DEEPENING_CONTENT = {
           "Wann arbeiten Sie?"
         ],
         [
-          "Comment vous appelez-vous ?",
-          "Wie heißen Sie?"
-        ],
-        [
-          "Quel est votre métier ?",
-          "Was sind Sie von Beruf?"
-        ],
-        [
           "Combien ça coûte ?",
           "Wie viel kostet das?"
         ],
@@ -2091,10 +2010,6 @@ window.FR_A1_DEEPENING_CONTENT = {
         [
           "Qu’est-ce que c’est ? — C’est un livre.",
           "Was ist das? — Das ist ein Buch."
-        ],
-        [
-          "Qui est-ce ? — C’est Paul.",
-          "Wer ist das? — Das ist Paul."
         ]
       ],
       "attach": 2,
@@ -2202,7 +2117,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     },
     {
       "title": "Zeit & Reihenfolge",
-      "rule": "Hier, aujourd’hui und demain ordnen Ereignisse in der Zeit. D’abord, ensuite und enfin kennst du aus Lektion 11.",
+      "rule": "hier = gestern, aujourd’hui = heute, demain = morgen. Mit d’abord, ensuite und enfin ordnest du, was nacheinander passiert.",
       "pairs": [
         [
           "hier / aujourd’hui / demain",
@@ -2219,8 +2134,10 @@ window.FR_A1_DEEPENING_CONTENT = {
       ],
       "attach": 1,
       "emphasis": [
-        "Hier, aujourd’hui und demain",
-        "Lektion 11"
+        "hier",
+        "aujourd’hui",
+        "demain",
+        "d’abord, ensuite und enfin"
       ]
     },
     {
@@ -2483,24 +2400,7 @@ window.FR_A1_DEEPENING_CONTENT = {
     {
       "title": "Herkunft nennen",
       "rule": "Für die Herkunft steht de (vor Vokal d’), du oder des: Je viens de France. Achtung: Wohin heißt en France, woher heißt de France.",
-      "pairs": [
-        [
-          "Je viens de France.",
-          "Ich komme aus Frankreich."
-        ],
-        [
-          "Je viens d’Allemagne.",
-          "Ich komme aus Deutschland."
-        ],
-        [
-          "Je viens du Canada.",
-          "Ich komme aus Kanada."
-        ],
-        [
-          "Je viens des États-Unis.",
-          "Ich komme aus den USA."
-        ]
-      ],
+      "pairs": [],
       "attach": 1,
       "emphasis": [
         "de",
