@@ -48,7 +48,7 @@ test('changed exercise text never matches a stale recording; unrelated speech re
 test('recorded radio playback also works when the entire speech synthesis API is absent',()=>{
  const e=fixture('francais-a2','fr-FR');try{delete e.w.speechSynthesis;delete e.w.SpeechSynthesisUtterance;let ended=0;assert.equal(e.w.A1Voice.speakDialogue(e.helper.turns(1,e.content[1],0),{lang:'fr-FR',onEnd:()=>ended++}),true);e.media.at(-1).onplaying();e.media.at(-1).onended();assert.equal(ended,1);assert.equal(e.spoken.length,0);}finally{e.dom.window.close();}
 });
-for(const [course,lang]of courses.slice(0,3))test(`${course}: every lesson's radio buttons recover failed plays and keep the two-play limit`,()=>{
+for(const [course,lang]of courses.slice(0,3))test(`${course}: every lesson's radio buttons recover failed plays and keep the three-play limit`,()=>{
  const e=fixture(course,lang);try{
   for(const file of ['shared/vocabulary-content.js','shared/quiz-show.js','francais/hard-mode-arcade.js','shared/game-hard-mode.js',course+'/hard-mode.js'])e.load(file);
   const w=e.w,view=w.document.querySelector('main');
@@ -57,7 +57,7 @@ for(const [course,lang]of courses.slice(0,3))test(`${course}: every lesson's rad
    [...view.querySelectorAll('[data-games-start-at]')].at(-1).click();const attempt=state.lessonWork[id].hardMode.games.attempt;
    for(let b=0;b<2;b++){
     const button=view.querySelector(`[data-games-listen="${b}"]`);button.click();assert.equal(attempt.plays[b],1);e.media.at(-1).onerror();assert.equal(attempt.plays[b],0);assert.equal(button.disabled,false);assert(view.querySelector('[data-games-audio-error]').textContent);
-    for(let n=1;n<=2;n++){button.click();const audio=e.media.at(-1);audio.onplaying();audio.onended();assert.equal(attempt.plays[b],n);assert.equal(button.disabled,n===2);}
+    for(let n=1;n<=3;n++){button.click();const audio=e.media.at(-1);audio.onplaying();audio.onended();assert.equal(attempt.plays[b],n);assert.equal(button.disabled,n===3);}
    }
   }
   assert.equal(e.spoken.length,0);
