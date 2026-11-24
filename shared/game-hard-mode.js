@@ -17,6 +17,9 @@ const en=()=>window.A1Profile?.getUiLang?.()==='en';
 // Interface text: German for the French course, French for the German course, English when chosen.
 const T=(de,english,fr)=>en()?english:C().ui==='fr'?fr:de;
 const LEARN=new Set(['memory','numbers','spell','clock']);
+const MAX_MAGIC_GAPS=6;
+// Radio quiz without typing: numbers and times use an on-screen keypad (no phone keyboard), everything else answer cards.
+const keypadKind=q=>q.type!=='listen-text'?null:q.policy?.format==='time'?'time':['number','phone'].includes(q.policy?.format)||q.answers.every(x=>/^\d+$/.test(String(x).trim()))?'digits':null;
 const GAMES={
  memory:{icon:'🃏',name:()=>T('Karten-Memory','Card memory','Memory des cartes'),rule:()=>T('Decke Paare auf: Wort und Bedeutung gehören zusammen.','Flip pairs: word and meaning belong together.','Retourne des paires : le mot et son sens vont ensemble.')},
  numbers:{icon:'🔐',name:()=>T('Zahlen-Tresor','Number safe','Le coffre aux nombres'),rule:()=>T('Hör die Zahl und tipp sie in den Tresor – dann springt er auf.','Listen to the number and key it into the safe – then it opens.','Écoute le nombre et tape-le sur le coffre – il s’ouvre.')},
@@ -164,8 +167,9 @@ function build(courseKey,id){course=courseKey;const data=COURSES[courseKey].cont
  // String game: six pairs from the lesson's own category (see STRINGS); the test's gaps all stay in the other games.
  const strings=stringGame(courseKey,id);if(strings){pages.push({key:'match',ids:[tasks.length]});tasks.push(strings);}
  if(orderIds.length)pages.push({key:'order',ids:orderIds});
- // Magic gaps: every remaining gap of the test, in its own sentence.
- const textIds=[];data.gaps.forEach((g,n)=>{if(used.has(n))return;const s=sentences.find(x=>gapIds(x).includes(n));if(!s)return;textIds.push(tasks.length);tasks.push({type:'text',sentence:fill(s,data,n),hint:g.hint||'',answers:g.answers,policy:{strictAccents:!!g.strictAccents},gaps:[n],title:['Lücke füllen','Fill the gap','Complète le trou'],skills:[g.hint].filter(Boolean)});});
+ // Magic gaps: at most MAX_MAGIC_GAPS of the remaining gaps (3 sheets with 2 gaps), each in its own sentence.
+ const open=data.gaps.map((_,n)=>n).filter(n=>!used.has(n)&&sentences.some(x=>gapIds(x).includes(n))),picked=new Set(shuffle(open).slice(0,MAX_MAGIC_GAPS));
+ const textIds=[];data.gaps.forEach((g,n)=>{if(!picked.has(n))return;const s=sentences.find(x=>gapIds(x).includes(n));if(!s)return;textIds.push(tasks.length);tasks.push({type:'text',sentence:fill(s,data,n),hint:g.hint||'',answers:g.answers,policy:{strictAccents:!!g.strictAccents},gaps:[n],title:['Lücke füllen','Fill the gap','Complète le trou'],skills:[g.hint].filter(Boolean)});});
  for(let k=0;k<textIds.length;k+=2)pages.push({key:'text',ids:textIds.slice(k,k+2)});
  // Radio quiz: all recordings on one page.
  const listenIds=[];(data.listening||[]).forEach((block,b)=>block.questions.forEach(q=>{listenIds.push(tasks.length);tasks.push(q.options?{type:'choice',block:b,q:q.q,options:q.options,answers:q.answers,title:[q.q],skills:q.skills||[]}:{type:'listen-text',block:b,q:q.q,answers:q.answers,policy:{format:q.format,strictAccents:!!q.strictAccents},title:[q.q],skills:q.skills||[]});}));
@@ -188,6 +192,18 @@ function render({course:courseKey,lesson,view,state,save,onBack,onLegacy}){
  let a=p.attempt,root=null,playing=null,run=0,timer=null,error='',notice='',storageError='',arcadeView=null,stopGame=null,memoryDismiss=null,resize=null;
  // Saved attempts: a string game not yet checked that still pairs pieces of the cloze text gets the lesson's own pairs.
  (a?.content?.tasks||[]).forEach((q,i)=>{if(q.type!=='match'||!q.gaps?.length||a.checked?.[i])return;const fresh=stringGame(courseKey,id);if(!fresh)return;Object.assign(q,fresh);a.answers[i]=fresh.labels.map(()=>'');a.orders[i]=shuffle(fresh.answers);});
+ if(a?.content?.tasks&&a.phase==='running'){
+  const T0=a.content.tasks,textIdx=T0.map((q,i)=>q.type==='text'?i:-1).filter(i=>i>=0),kept=textIdx.filter(i=>a.checked?.[i]);
+  for(const i of textIdx)if(!a.checked?.[i]&&kept.length<MAX_MAGIC_GAPS)kept.push(i);
+  const drop=textIdx.filter(i=>!kept.includes(i)).sort((x,y)=>y-x);
+  for(const k of drop){for(const key of ['answers','checked','solved','firstCorrect','hints','orders'])a[key]?.splice(k,1);T0.splice(k,1);
+   const game={};for(const [g,v] of Object.entries(a.game||{}))if(Number(g)!==k)game[Number(g)>k?Number(g)-1:g]=v;a.game=game;
+   a.retryIds=(a.retryIds||[]).filter(i=>i!==k).map(i=>i>k?i-1:i);
+   a.content.pages=a.content.pages.map(pg=>({...pg,ids:pg.ids.filter(i=>i!==k).map(i=>i>k?i-1:i)})).filter(pg=>pg.ids.length);}
+  const data=cfg.content()[id],seen={};
+  T0.forEach((q,i)=>{if(q.block===undefined)return;const n=seen[q.block]=(seen[q.block]??-1)+1,fresh=data?.listening?.[q.block]?.questions?.[n];
+   if(q.type!=='listen-text'||a.checked?.[i]||!fresh?.options)return;
+   Object.assign(q,{type:'choice',q:fresh.q,options:fresh.options,answers:fresh.answers,title:[fresh.q]});delete q.policy;a.orders[i]=shuffle(fresh.options);a.answers[i]='';});}
  if(a?.content?.pages){const old=a.content.pages,anchor=old[a.page]?.ids[0],ids=old.filter(pg=>pg.key==='text').flatMap(pg=>pg.ids);let inserted=false;
   a.content.pages=old.flatMap(pg=>{if(pg.key!=='text')return [pg];if(inserted)return [];inserted=true;return Array.from({length:Math.ceil(ids.length/2)},(_,n)=>({key:'text',ids:ids.slice(n*2,n*2+2)}));});
   a.page=Math.max(0,a.content.pages.findIndex(pg=>pg.ids.includes(anchor)));}
@@ -234,6 +250,8 @@ function render({course:courseKey,lesson,view,state,save,onBack,onLegacy}){
   if(q.type==='order')return `<div class="game-train ${locked&&a.solved[i]?'is-departing':''}"><span class="game-loco" aria-hidden="true">🚂</span>${a.answers[i].map((n,k)=>`<button type="button" class="game-wagon" data-games-wagon="${i}" data-pos="${k}" style="--hue:${n*67%360}" lang="${cfg.target}" ${locked?'disabled':''}>${E(q.tokens[n])}</button>`).join('')||`<span class="game-train-empty">${T('Wähle die passenden Waggons in der richtigen Reihenfolge. Einige bleiben übrig.','Choose the right wagons in the right order. Some are left over.','Choisis les bons wagons dans le bon ordre. Certains restent.')}</span>`}</div><div class="challenge-word-bank game-depot">${a.orders[i].map(n=>`<button type="button" data-pilot-token="${i}" data-games-token="${i}" data-token="${n}" style="--hue:${n*67%360}" lang="${cfg.target}" ${locked||a.answers[i].includes(n)?'disabled':''}>${E(q.tokens[n])}</button>`).join('')}<button type="button" class="game-undo" data-games-undo="${i}" ${locked?'disabled':''}>↶ ${T('Zurücknehmen','Undo','Annuler')}</button></div>`;
   if(q.type==='text'){const [before,...rest]=q.sentence.split('___');return `<div class="game-bubble"><span class="game-speaker" aria-hidden="true">${['🧑‍🎓','👩‍🏫','🧑‍🍳','👩‍🎨','🧑‍✈️'][i%5]}</span><div><label class="pilot-field game-gap-line"><span lang="${cfg.target}">${E(before)}<input type="text" class="game-gap" data-games-input="${i}" value="${E(a.answers[i])}" lang="${cfg.target}" ${locked?'readonly':''} aria-label="${E(q.hint||T('Lücke','Gap','Trou'))}" autocomplete="off" spellcheck="false" autocapitalize="off">${E(rest.join('___'))}</span></label>${q.hint?`<p class="game-gap-hint">💡 ${E(q.hint)}</p>`:''}</div></div>${locked?'':accentKeys(i)}`;}
   if(q.type==='choice')return `<fieldset class="challenge-options game-quiz" ${locked?'disabled':''}><legend class="challenge-sr">${E(q.q)}</legend>${a.orders[i].map((v,n)=>`<label class="hard-option game-quiz-card ${locked&&q.answers.includes(v)?'is-answer':''}" style="--hue:${[330,200,45,150][n%4]}"><input type="radio" name="games-${i}" data-games-choice="${i}" value="${E(v)}" ${a.answers[i]===v?'checked':''}><b class="game-letter" aria-hidden="true">${'ABCD'[n]||n+1}</b><span lang="${cfg.target}">${E(v)}</span></label>`).join('')}</fieldset>`;
+  const kind=keypadKind(q);
+  if(kind)return `<div class="game-radio-keys" data-games-keys="${i}"><span class="game-keys-label">${T('Deine Antwort','Your answer','Ta réponse')}</span><output class="games-safe-display game-keys-display" data-games-keys-display="${i}" aria-live="polite" lang="${cfg.target}">${E(a.answers[i])||'&nbsp;'}</output>${locked?'':`<div class="games-keypad">${['1','2','3','4','5','6','7','8','9',kind==='time'?':':'','0','⌫'].map(k=>k?`<button type="button" data-games-radio-key="${i}" data-key="${k}" ${k==='⌫'?`class="is-back" aria-label="${T('Löschen','Delete','Effacer')}"`:''}>${k}</button>`:'<span aria-hidden="true"></span>').join('')}</div>`}</div>`;
   if(q.type==='listen-text')return `<label class="pilot-field game-wand">${T('Deine Antwort','Your answer','Ta réponse')}<input type="${q.policy.format==='number'?'text" inputmode="numeric':'text'}" data-games-input="${i}" value="${E(a.answers[i])}" lang="${cfg.target}" ${locked?'readonly':''} autocomplete="off" spellcheck="false" autocapitalize="off"></label>`;
   return '';}
  const shown=(q,i)=>q.type==='order'?a.answers[i].map(n=>q.tokens[n]).join(' '):Array.isArray(a.answers[i])?a.answers[i].join(' / '):a.answers[i];
@@ -251,6 +269,7 @@ function render({course:courseKey,lesson,view,state,save,onBack,onLegacy}){
   root.querySelector('[data-games-next]')?.addEventListener('click',next);
   root.querySelectorAll('[data-games-input]').forEach(el=>{const write=()=>{const i=Number(el.dataset.gamesInput);if(!a.checked[i]){a.answers[i]=el.value;persist();}};el.oninput=write;el.onchange=write;el.addEventListener('focus',()=>{last[el.dataset.gamesInput]=el;});});
   const last={};root.querySelectorAll('[data-games-accent]').forEach(el=>{el.onmousedown=e=>e.preventDefault();el.onclick=()=>{const i=el.dataset.gamesAccent;const input=last[i]||root.querySelector(`[data-games-input="${i}"]`);if(!input||a.checked[Number(i)])return;const s=input.selectionStart??input.value.length,e=input.selectionEnd??s;input.value=input.value.slice(0,s)+el.dataset.char+input.value.slice(e);input.focus();input.setSelectionRange?.(s+1,s+1);input.dispatchEvent(new Event('input',{bubbles:true}));};});
+  root.querySelectorAll('[data-games-radio-key]').forEach(el=>el.onclick=()=>{const i=Number(el.dataset.gamesRadioKey);if(a.checked[i])return;const k=el.dataset.key;let v=String(a.answers[i]||'');v=k==='⌫'?v.slice(0,-1):v.length<14?v+k:v;a.answers[i]=v;persist();const d=root.querySelector(`[data-games-keys-display="${i}"]`);if(d)d.textContent=v||'\u00a0';});
   root.querySelectorAll('[data-games-choice]').forEach(el=>el.onchange=()=>{const i=Number(el.dataset.gamesChoice);if(!a.checked[i]){a.answers[i]=el.value;persist();}});
   root.querySelectorAll('[data-games-token]').forEach(el=>el.onclick=()=>{const i=Number(el.dataset.gamesToken),n=Number(el.dataset.token);if(a.checked[i]||a.answers[i].includes(n))return;a.answers[i].push(n);persist();scene();});
   root.querySelectorAll('[data-games-wagon]').forEach(el=>el.onclick=()=>{const i=Number(el.dataset.gamesWagon);if(a.checked[i])return;a.answers[i].splice(Number(el.dataset.pos),1);persist();scene();});

@@ -42,3 +42,9 @@
 .hard-pilot .game-gap-pages>*{min-width:0;width:auto;min-height:44px}
 .hard-pilot .game-gap-pages>span{display:flex;align-items:center;justify-content:center;white-space:nowrap}
 .hard-pilot .game-gap-pages>button{padding:8px;font-size:inherit}
+
+/* Radio quiz keypad: numbers and times without the phone keyboard */
+.game-radio-keys{display:grid;gap:10px;max-width:320px;margin-top:6px}
+.game-keys-label{font-size:.85rem;opacity:.85}
+.game-keys-display{display:block;min-height:50px;font-size:1.6rem}
+.hard-pilot .game-radio-keys .games-keypad button{min-height:44px;font-size:1.2rem}

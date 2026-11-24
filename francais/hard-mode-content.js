@@ -627,6 +627,77 @@
     }
     d.taskCount=d.gaps.length+d.listening.reduce((n,b)=>n+b.questions.length,0)+1;
   }
+  // Radio quiz without typing (2026-11): word answers become three answer cards; numbers and times use the
+  // on-screen keypad in shared/game-hard-mode.js. Distractors come from the same recording where possible.
+  // Key: lesson:recording:question → [answer card, wrong, wrong] and optionally a question without "Écris".
+  const radioChoices={
+    '2:0:0':[['Zoé','Chloé','Noé'],'Comment s’écrit le prénom ?'],
+    '2:0:1':[['Morel','Moret','Maurel'],'Comment s’écrit le nom de famille ?'],
+    '2:1:0':[['François','Francis','Franck'],'Comment s’écrit le prénom ?'],
+    '2:1:1':[['Paris','Lille','Lyon'],'Dans quelle ville habite la personne ?'],
+    '2:1:3':[['Blanc','Blanche','Leblanc'],'Comment s’écrit le nom de famille ?'],
+    '3:0:3':[['B3V1L2','B3V2L1','B8V1L2'],'Quel est le code postal ?'],
+    '4:0:0':[['mercredi','mardi','jeudi']],
+    '4:1:0':[['janvier','juin','juillet']],
+    '5:0:1':[['Montréal','Lyon','Paris'],'Où habitent ses parents ?'],
+    '5:1:0':[['Anna','Marie','Julie']],
+    '5:1:3':[['calme et très sympa','triste et fatiguée','grande et timide'],'Comment est la femme de Paul ?'],
+    '6:0:0':[['une soupe','une salade','des frites'],'Quel plat chaud demande la personne ?'],
+    '6:0:1':[['de l’eau','du café','du thé']],
+    '6:0:3':[['la pizza','la salade','les pâtes']],
+    '7:0:4':[['par carte','en espèces','par chèque']],
+    '8:1:0':[['jeudi','mardi','samedi']],
+    '8:1:1':[['la cuisine','la chambre','le salon'],'Où est la table ?'],
+    '8:1:3':[['sous la table','sur la table','à côté de la table']],
+    '9:0:0':[['la pharmacie','la gare','le musée']],
+    '10:0:0':[['samedi','lundi','vendredi']],
+    '10:0:3':[['dans un café','dans un bureau','dans une école']],
+    '10:1:0':[['médecin','professeur','vendeur']],
+    '12:0:0':[['mardi','lundi','mercredi']],
+    '12:0:1':[['jeudi','vendredi','lundi']],
+    '12:1:0':[['le rhume','la fièvre','le mal de tête']],
+    '13:0:1':[['un parapluie','un sac','un livre']],
+    '13:1:0':[['bleue','rouge','verte']],
+    '13:1:1':[['le printemps','l’hiver','l’été']],
+    '13:1:3':[['noir','rouge','gris']],
+    '14:0:0':[['le tennis','le football','la natation']],
+    '14:0:1':[['le dimanche','le samedi','le vendredi']],
+    '14:1:0':[['la cuisine','le football','la lecture']],
+    '14:1:1':[['avec son frère','avec ses collègues','avec Julie']],
+    '16:0:0':[['samedi','dimanche','vendredi']],
+    '16:0:3':[['un dessert','une boisson','des fleurs']],
+    '16:1:0':[['dimanche','vendredi','samedi']],
+    '16:1:1':[['demain','aujourd’hui','vendredi']],
+    '17:0:0':[['le nom de famille','le prénom','la signature']],
+    '17:0:1':[['lundi','mardi','vendredi']],
+    '17:0:3':[['en bas','en haut','au milieu']],
+    '17:1:0':[['3 mai','13 mai','3 mars'],'Quelle est la date de naissance ?'],
+    '17:1:1':[['lea.martin@exemple.fr','lea.martine@exemple.fr','lea.marin@exemple.fr'],'Quelle est l’adresse électronique ?'],
+    '17:1:3':[['Martin','Martine','Marin'],'Comment s’écrit le nom de famille ?'],
+    '18:0:0':[['un stylo','un livre','un téléphone']],
+    '18:0:1':[['la première phrase','le dernier mot','tout le texte']],
+    '19:0:0':[['un hôtel','le musée','la gare']],
+    '19:1:1':[['la baguette','les croissants','les cafés']],
+    '20:0:0':[['vendredi','lundi','jeudi']],
+    '20:0:1':[['le bus','la voiture','le train']],
+    '20:1:1':[['dehors','dans la salle','au bureau']],
+    '21:0:0':[['septembre','décembre','mai']],
+    '21:0:1':[['à sa sœur','à son frère','à Julie']],
+    '21:1:0':[['son collègue','son frère','son père']],
+    '21:1:1':[['son passeport','son livre','son billet']],
+    '22:0:0':[['au restaurant','au musée','à la maison']],
+    '22:0:1':[['avec Paul','avec Marc','avec sa sœur']],
+    '23:1:1':[['une cuillère','un couteau','une fourchette']],
+    '24:0:0':[['du Canada','des États-Unis','d’Allemagne']],
+    '24:0:1':[['vendredi','jeudi','lundi']],
+    '24:0:3':[['en France','en Italie','en Allemagne']],
+    '24:1:0':[['des États-Unis','d’Allemagne','du Canada']]
+  };
+  for(const [key,[options,question]] of Object.entries(radioChoices)){
+    const [id,b,i]=key.split(':').map(Number),q=content[id]?.listening?.[b]?.questions?.[i];
+    if(!q||!q.answers.includes(options[0]))continue;
+    q.options=options;q.answers=[options[0],...q.answers.filter(x=>x!==options[0])];if(question)q.q=question;
+  }
   window.FR_A1_HARD_AUDIO={turns:recordingTurns};
   window.FR_A1_HARD_CONTENT=content;
 })();
