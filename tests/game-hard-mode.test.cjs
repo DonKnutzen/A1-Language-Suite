@@ -4,7 +4,7 @@ function env(course,id,{mastery=80,state,a2=false}={}){
  const dom=new JSDOM('<main id="view"></main>',{url:`https://example.test/${course==='de'?'deutsch':'francais'}/`,runScripts:'outside-only',virtualConsole:new VirtualConsole()}),w=dom.window;
  if(a2)w.A1_APP_META={course:'francais-a2'};const french=a2?'francais-a2':'francais';
  const spoken=[];let audio=null;w.scrollTo=()=>{};w.A1Profile={getUiLang:()=>course==='de'?'fr':'de'};w.A1Voice={cancel(){},speak:t=>spoken.push(t),speakSequence:l=>spoken.push(l.join('')),speakDialogue:(turns,o)=>{audio=o;return true;}};
- const files=['shared/vocabulary-content.js',course==='de'?'deutsch/hard-mode-content.js':french+'/hard-mode-content.js','shared/quiz-show.js','francais/hard-mode-arcade.js','shared/game-hard-mode.js',course==='de'?'deutsch/hard-mode.js':french+'/hard-mode.js'];
+ const files=['shared/vocabulary-content.js','shared/game-strings-notes.js',course==='de'?'deutsch/hard-mode-content.js':french+'/hard-mode-content.js','shared/quiz-show.js','francais/hard-mode-arcade.js','shared/game-hard-mode.js',course==='de'?'deutsch/hard-mode.js':french+'/hard-mode.js'];
  if(course==='fr')files.unshift(french+'/data.js');for(const f of files)w.eval(read(f));
  state||={lessonMasteryBest:{[id]:mastery},lessonWork:{}};let completions=0;const view=w.document.querySelector('main'),M=course==='de'?w.DE_A1_HARD_MODE:w.FR_A1_HARD_MODE;
  const lesson=course==='de'?{id,title:'Test'}:w.FR_A1_DATA.lessons.find(l=>l.id===id);
@@ -102,3 +102,10 @@ test('magic gaps and the word train explain right and wrong answers in both cour
  e.dom.window.close();}});
 test('German course radio quiz: the explanation quotes the recording in French UI',()=>{const e=explainEnv('de',7);e.render();e.click('[data-games-begin]');const page=e.a.content.pages.findIndex(p=>p.key==='listening');e.click(`[data-games-goto="${page}"]`);const ids=e.a.content.pages[page].ids;solvePage(e,ids);
  for(const i of ids){const t=why(e,i);assert.match(t,/Ce que tu entends|L’enregistrement/);assert.match(t,/Ta réponse/);}e.dom.window.close();});
+test('string game: every pair of every group has a note, and the 💡 button explains the whole game with wrong links marked',()=>{
+ const e=env('fr',3),S=e.w.A1_GAME_HARD.STRINGS,N=e.w.A1_STRING_NOTES;
+ for(const key of Object.keys(S))for(const [id,groups] of Object.entries(S[key])){assert.equal(N[key]?.[id]?.length,groups.length,key+id);groups.forEach((g,k)=>{assert.equal(N[key][id][k].length,g.length,`${key} ${id} group ${k}`);assert(N[key][id][k].every(x=>String(x).trim()),`${key} ${id} ${k} empty note`);});}
+ assert.deepEqual(Object.keys(N).sort(),Object.keys(S).sort());e.dom.window.close();
+ for(const course of ['fr','de']){const g=env(course,5);g.render();g.click('[data-games-begin]');const page=g.a.content.pages.findIndex(p=>p.key==='match');g.click(`[data-games-goto="${page}"]`);const i=g.a.content.pages[page].ids[0],q=g.a.content.tasks[i];q.answers.forEach((v,n)=>{const value=n===0?q.answers[1]:n===1?q.answers[0]:v;g.click(`[data-games-connect="${i}"] [data-match-left="${n}"]`);g.click(`[data-games-connect="${i}"] [data-match-right="${g.a.orders[i].indexOf(value)}"]`);});g.click('[data-games-check]');
+  const btn=g.view.querySelector(`[data-games-why="${i}"]`);assert(btn);const panel=g.view.querySelector('#'+btn.getAttribute('aria-controls'));assert(panel.hidden);btn.click();assert(!panel.hidden);
+  assert.equal(panel.querySelectorAll('tbody tr').length,g.a.content.tasks[i].labels.length);assert.equal(panel.querySelectorAll('tr.gx-hl').length,2);assert.match(panel.textContent,course==='fr'?/Vater – Mutter|Bruder – Schwester/:/le père – la mère|le frère – la sœur/);g.dom.window.close();}});
