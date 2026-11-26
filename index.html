@@ -104,7 +104,7 @@ html.dark-mode .theme-toggle{
   </div>
 
   <div class="hero">
-    <h2 id="heroTitle">Ein Profil. Fünf A1-Kurse, ein B1-Kurs, ein A2-Kurs und ein C1-Kurs.</h2>
+    <h2 id="heroTitle">Ein Profil. Fünf A1-Kurse, zwei B1-Kurse, ein A2-Kurs und ein C1-Kurs.</h2>
     <p id="heroText"></p>
   </div>
 
@@ -151,6 +151,13 @@ html.dark-mode .theme-toggle{
       <span class="pill" id="enFrCoursePill"></span>
     </a>
 
+    <a class="course" href="anglais-b1/">
+      <div class="flag">🇫🇷 → 🇬🇧</div>
+      <h2>English B1 · Français</h2>
+      <p id="enB1FrCourseText"></p>
+      <span class="pill" id="enB1FrCoursePill"></span>
+    </a>
+
     <a class="course" href="spanisch/">
       <div class="flag">🇪🇸</div>
       <h2>Español A1</h2>
@@ -175,7 +182,7 @@ html.dark-mode .theme-toggle{
 const UI={
   en:{
   "title": "Language trainer",
-  "heroTitle": "One profile. Five A1 courses, one B1 course, one A2 course and one C1 course.",
+  "heroTitle": "One profile. Five A1 courses, two B1 courses, one A2 course and one C1 course.",
   "heroText": "Choose the language you want to learn. Progress is saved separately for each profile and course.",
   "deText": "Focused preparation for the Goethe-Zertifikat A1, with explanations in French.",
   "dePill": "Learn German",
@@ -192,7 +199,7 @@ const UI={
 },
   de:{
     title:'Sprachtrainer',
-    heroTitle:'Ein Profil. Fünf A1-Kurse, ein B1-Kurs, ein A2-Kurs und ein C1-Kurs.',
+    heroTitle:'Ein Profil. Fünf A1-Kurse, zwei B1-Kurse, ein A2-Kurs und ein C1-Kurs.',
     heroText:'Wähle, welche Sprache du lernen möchtest. Dein Fortschritt wird pro Profil und Kurs getrennt gespeichert.',
     deText:'Gezielte Vorbereitung auf das Goethe-Zertifikat A1 – mit französischen Erklärungen.',dePill:'Deutsch lernen',
     frText:'Gezielte Vorbereitung auf die DELF-A1-Prüfung.',frPill:'Französisch lernen',
@@ -204,7 +211,7 @@ const UI={
   },
   fr:{
     title:'Entraîneur de langues',
-    heroTitle:'Un profil. Cinq cours A1, un cours B1, un cours A2 et un cours C1.',
+    heroTitle:'Un profil. Cinq cours A1, deux cours B1, un cours A2 et un cours C1.',
     heroText:'Choisis la langue que tu veux apprendre. Ta progression est enregistrée séparément pour chaque profil et chaque cours.',
     deText:'Préparation ciblée au Goethe-Zertifikat A1, avec des explications en français.',dePill:"Apprendre l’allemand",
     frText:'Préparation ciblée au DELF A1.',frPill:'Apprendre le français',
@@ -216,7 +223,7 @@ const UI={
   },
   tr:{
     title:'Dil eğitmeni',
-    heroTitle:'Bir profil. Beş A1 kursu, bir B1 kursu, bir A2 kursu ve bir C1 kursu.',
+    heroTitle:'Bir profil. Beş A1 kursu, iki B1 kursu, bir A2 kursu ve bir C1 kursu.',
     heroText:'Öğrenmek istediğin dili seç. İlerlemen her profil ve kurs için ayrı kaydedilir.',
     deText:'Fransızca açıklamalarla Goethe-Zertifikat A1 sınavına hedefli hazırlık.',dePill:'Almanca öğren',
     frText:'DELF A1 sınavına hedefli hazırlık.',frPill:'Fransızca öğren',
@@ -254,6 +261,9 @@ function renderUi(){
   const englishFr={de:['Englisch A1 für Erwachsene mit französischen Erklärungen, 24 Lektionen, Hörübungen und Alltagssituationen.','Englisch lernen'],en:['Adult A1 English with French explanations, 24 lessons, listening practice and everyday situations.','Learn English'],fr:['Anglais A1 pour adultes, avec des explications en français, 24 leçons, des écoutes et des situations quotidiennes.','Apprendre l’anglais'],tr:['Fransızca açıklamalarla yetişkinler için İngilizce A1: 24 ders ve günlük durumlar.','İngilizce öğren']}[l]||['English A1','Apprendre l’anglais'];
   document.getElementById('enFrCourseText').textContent=englishFr[0];
   document.getElementById('enFrCoursePill').textContent=englishFr[1];
+  const englishB1Fr={de:['Englisch B1 für Erwachsene mit französischen Erklärungen, 24 Lektionen und Cambridge-orientiertem B1-Training.','Englisch lernen'],en:['Adult B1 English with French explanations, 24 lessons and Cambridge-oriented B1 practice.','Learn English'],fr:['Anglais B1 pour adultes, avec des explications en français, 24 leçons et un entraînement B1 inspiré de Cambridge.','Apprendre l’anglais'],tr:['Fransızca açıklamalarla yetişkinler için İngilizce B1: 24 ders ve Cambridge odaklı B1 alıştırmaları.','İngilizce öğren']}[l]||['English B1','Apprendre l’anglais'];
+  document.getElementById('enB1FrCourseText').textContent=englishB1Fr[0];
+  document.getElementById('enB1FrCoursePill').textContent=englishB1Fr[1];
   document.getElementById('esCourseText').textContent=t.esText;
   document.getElementById('esCoursePill').textContent=t.esPill;
   document.getElementById('trDeCourseText').textContent=t.trDeText;
