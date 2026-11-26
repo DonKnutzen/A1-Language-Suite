@@ -2,7 +2,8 @@
   "name": "a1-language-suite",
   "private": true,
   "scripts": {
-    "test": "node --test --test-concurrency=4 tests/*.test.cjs francais/tests/*.test.cjs deutsch/tests/*.test.cjs englisch/tests/b1.test.cjs",
+    "test": "node --test --test-concurrency=4 tests/*.test.cjs francais/tests/*.test.cjs deutsch/tests/*.test.cjs englisch/tests/b1.test.cjs anglais/tests/*.test.cjs",
+    "test:anglais": "node --test anglais/tests/*.test.cjs",
     "test:english": "node --test englisch/tests/b1.test.cjs"
   },
   "devDependencies": {
