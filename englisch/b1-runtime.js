@@ -148,6 +148,6 @@
   window.EN_A1_HARD_AUDIO={turns:(_id,data,i)=>data.listening[i].turns};
   window.A1_COMPREHENSION_CONTENT=comprehension;window.EN_A1_READING=reading;
   window.EN_A1_VOCABULARY={plan,entries,meanings};window.A1_VOCABULARY_CONTENT=entries;
-  window.A1LessonVocabularyPlan={en:plan};window.A1LessonLexicon={entries:{en:entries}};
+  window.A1LessonVocabularyPlan={en:plan};window.A1LessonLexicon={entries:{en:entries.map(e=>[e.en,e.enLessons,[],e.de])}};
   window.EN_A1_FOUNDATIONS={en:Object.fromEntries(lessons.map(l=>[l.id,{words:l.vocabulary}]))};
 })();

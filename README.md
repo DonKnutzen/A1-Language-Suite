@@ -11,6 +11,7 @@ Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen 
 | Deutsch → Griechisch | A1 ab Schrift-Einstieg | `griechisch/` |
 | Deutsch → Englisch | **B1** | `englisch/` |
 | Französisch → Englisch | A1 | `anglais/` |
+| Französisch → Englisch | **B1** | `anglais-b1/` |
 | Deutsch → Spanisch | A1 | `spanisch/` |
 | Türkisch → Deutsch | **C1** | `turkisch-deutsch/` |
 
@@ -34,6 +35,7 @@ Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen 
 - `francais/` – Deutsch → Französisch A1
 - `griechisch/` – Deutsch → Neugriechisch A1, 24 Lektionen, Schrifttrainer, Eingabehilfe und eigene A1-Lernstandskontrollen; siehe [Lehrplan](griechisch/LEHRPLAN-A1.md)
 - `englisch/` – Deutsch → Englisch B1 für Erwachsene (A2 vorausgesetzt)
+- `anglais-b1/` – Französisch → Englisch B1, 24 Lektionen mit französischen Erklärungen (Kopie von `englisch/`)
 - `anglais/` – Französisch → Englisch A1, 24 Lektionen mit französischen Erklärungen (wiederhergestellter früherer Englisch-A1-Kurs)
 - `spanisch/` – Deutsch → Spanisch A1
 - `turkisch-deutsch/` – Türkisch → Deutsch **C1**
@@ -57,3 +59,7 @@ Der bisherige Englisch-Platz enthält den neuen B1-Kurs mit 24 Lektionen, 72 Hö
 ## English A1 · Français
 
 Der frühere Englisch-A1-Kurs (vor dem Umbau zu B1) ist unter `anglais/` wiederhergestellt und vollständig auf französische Erklärungen umgestellt: Regeln, Übersetzungen, Aufgaben, Hörfragen, Vokabelbedeutungen und Oberfläche. Die Grammatikerklärungen gehen auf typische Fehlerquellen französischsprachiger Lernender ein (z. B. Alter mit be, his/her nach dem Besitzer, Adjektivstellung). Eigene Kennung `anglais-a1`, Profilcode `en-fr`, Speicherstand `anglaisA1State_v1`. Tests: `npm run test:anglais`. Den Vokabelbestand erzeugt `node anglais/tests/helpers/build-vocabulary.cjs`.
+
+## English B1 · Français
+
+`anglais-b1/` ist der English-B1-Kurs aus `englisch/` mit französischen Erklärungen: Lektionen, Grammatik, Aufgabenstellungen, Prüfungstraining, Finale, Arcade, Audio-Guide (französische Stimme) und Oberfläche. Eigene Kennung `anglais-b1`, Profilcode `en-b1-fr`, Speicherstand `anglaisB1State_v1`. Tests: `npm run test:anglais-b1`.

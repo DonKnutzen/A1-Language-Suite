@@ -18,7 +18,7 @@
       }
     }
     copy.querySelectorAll('.phrase-row strong,.deepening-form-example > strong,.lesson1-pronoun-grid b').forEach(el=>el.lang='en');
-    const englishColumns=/^(Form|Englisch|English|Beispiel|Example|Verb|Wort|Plural)$/;
+    const englishColumns=/^(Form|Forme|Englisch|English|Anglais|Beispiel|Example|Exemple|Verb|Verbe|Wort|Mot|Plural|Pluriel)$/;
     for(const table of copy.querySelectorAll('table')){
       const headers=[...table.querySelectorAll('thead th')].map(el=>clean(el.textContent));
       for(const row of table.querySelectorAll('tbody tr'))[...row.cells].forEach((cell,i)=>{if(englishColumns.test(headers[i]||''))cell.lang='en';});
@@ -26,10 +26,10 @@
     copy.querySelectorAll('.en-rule-table td[lang="en"]').forEach(el=>el.lang='en');
     copy.querySelectorAll(ignore).forEach(el=>el.remove());
     function add(text,lang){text=clean(text);if(!text)return;const last=parts[parts.length-1];if(last&&last.lang===lang)last.text+=' '+text;else parts.push({text,lang});}
-    function walk(node,lang='de-DE'){
+    function walk(node,lang='fr-FR'){
       if(node.nodeType===3){add(node.textContent,lang);return;}
       if(node.nodeType!==1)return;
-      const own=node.getAttribute('lang');if(own)lang=own.startsWith('en')?'en-GB':'de-DE';
+      const own=node.getAttribute('lang');if(own)lang=own.startsWith('en')?'en-GB':'fr-FR';
       for(const child of node.childNodes)walk(child,lang);
       if(/^(P|LI|H[1-6]|TD|TH|DT|DD|DIV|SECTION|TR)$/.test(node.tagName)&&parts.length)parts[parts.length-1].text+='.';
     }
@@ -38,23 +38,23 @@
     return parts.flatMap(part=>(part.text.match(/[^.!?]+[.!?]*/g)||[]).map(text=>({text:clean(text),lang:part.lang})).filter(p=>/[\p{L}\p{N}]/u.test(p.text)));
   }
   function plan({lesson,step,title,root,goals,masteryCount}){
-    const de=text=>({text,lang:'de-DE'});
-    const parts=[de(`Lektion ${lesson.id}. ${lesson.title}. ${title}.`)];
+    const de=text=>({text,lang:'fr-FR'});
+    const parts=[de(`Leçon ${lesson.id}. ${lesson.title}. ${title}.`)];
     if(step==='listen'){
-      parts.push(de('Höre zuerst die englischen Wörter und Sätze mit ihrer deutschen Übersetzung.'));
+      parts.push(de('Écoute d’abord les mots et les phrases en anglais, avec leur traduction en français.'));
       lesson.phrases.forEach(([fr,native],index)=>parts.push({text:fr,lang:'en-GB',phrase:index},{...de(native),sourcePhrase:index}));
       parts.push(...readContent(goals));
       if(root){const copy=root.cloneNode(true);copy.querySelectorAll('.lesson-core-phrases').forEach(el=>el.remove());parts.push(...readContent(copy));}
-      parts.push(de('Jetzt bist du dran. Zehn Fragen zum Wortschatz dieser Lektion. Drücke auf Vokabel-Check starten, wenn du bereit bist.'));
+      parts.push(de('À toi de jouer. Dix questions sur le vocabulaire de cette leçon. Appuie sur Commencer le test de vocabulaire quand tu es prêt.'));
     }else if(step==='grammar'){
       parts.push(...readContent(root));
-      parts.push(de('Jetzt bist du dran. Bearbeite die Übungen auf dieser Seite. Danach kannst du zur nächsten Seite wechseln und den Audiomodus wieder starten.'));
+      parts.push(de('À toi de jouer. Fais les exercices de cette page. Ensuite, tu peux passer à la page suivante et relancer le mode audio.'));
     }else if(step==='comprehension'){
-      parts.push(de('Jetzt bist du dran. Höre den englischen Hörtext mit dem Abspielknopf der Hörübung an. Beantworte anschließend die Fragen.'));
+      parts.push(de('À toi de jouer. Écoute le texte anglais avec le bouton de lecture de l’exercice d’écoute. Réponds ensuite aux questions.'));
     }else if(step==='grammar-check'){
-      parts.push(de('Jetzt bist du dran. Zwölf gemischte Fragen. Drücke auf zwölf Fragen starten, wenn du bereit bist.'));
+      parts.push(de('À toi de jouer. Douze questions mélangées. Appuie sur Commencer les 12 questions quand tu es prêt.'));
     }else{
-      parts.push(de(`Jetzt bist du dran. ${Number(masteryCount)||'Mehrere'} Fragen im Lektionscheck. Starte den Lektionscheck, wenn du bereit bist.`));
+      parts.push(de(`À toi de jouer. ${Number(masteryCount)||'Plusieurs'} questions dans le test de leçon. Commence le test de leçon quand tu es prêt.`));
     }
     return parts;
   }
@@ -62,8 +62,8 @@
     disposeCurrent();
     if(!['listen','grammar'].includes(options.step))return;
     const {view}=options,voice=window.A1Voice,synth=window.speechSynthesis;
-    const host=document.createElement('section');host.className='guided-audio guide-menu';host.setAttribute('aria-label','Geführter Audiomodus');
-    host.innerHTML='<button type="button" class="guide-icon" data-guided-play data-icon="▶" aria-label="Seite vorlesen" title="Audio-Guide">▶ Seite vorlesen</button><button type="button" class="guide-icon" data-guide-toggle aria-label="Audiosteuerung" aria-expanded="false" hidden>⋯</button><div class="guide-panel" data-guide-panel hidden><div class="guide-toolbar"><strong>Audio-Guide</strong><div class="button-row"><button type="button" class="secondary-btn" data-guided-stop disabled>■</button></div></div><p data-guided-status role="status" aria-live="polite" hidden>Bereit</p></div>';
+    const host=document.createElement('section');host.className='guided-audio guide-menu';host.setAttribute('aria-label','Mode audio guidé');
+    host.innerHTML='<button type="button" class="guide-icon" data-guided-play data-icon="▶" aria-label="Lire la page" title="Guide audio">▶ Lire la page</button><button type="button" class="guide-icon" data-guide-toggle aria-label="Commandes audio" aria-expanded="false" hidden>⋯</button><div class="guide-panel" data-guide-panel hidden><div class="guide-toolbar"><strong>Guide audio</strong><div class="button-row"><button type="button" class="secondary-btn" data-guided-stop disabled>■</button></div></div><p data-guided-status role="status" aria-live="polite" hidden>Prêt</p></div>';
     const header=view.querySelector('.lesson-step-header');let menu=view.querySelector('.lesson-back-row,.guide-menu-row');if(!menu&&header){menu=document.createElement('div');menu.className='guide-menu-row';header.before(menu);}menu?.append(host);
     if(!host.isConnected)return;
     const play=host.querySelector('[data-guided-play]'),stop=host.querySelector('[data-guided-stop]'),status=host.querySelector('[data-guided-status]');
@@ -74,13 +74,13 @@
     host.onkeydown=e=>{if(e.key==='Escape'){closePanel();toggle.focus();}};
     const reader=window.A1GuideFollow?.create(view,{targetLang:'en-GB'});
     let parts=[],index=0,run=0,playing=false,paused=false,utterance=null,disposed=false;
-    function reset(message='Bereit'){
+    function reset(message='Prêt'){
       reader?.clear();run++;playing=false;paused=false;utterance=null;voice?.cancel();index=0;
-      play.textContent='▶ Seite vorlesen';stop.disabled=true;status.textContent=message;status.hidden=message==='Bereit';controls();
+      play.textContent='▶ Lire la page';stop.disabled=true;status.textContent=message;status.hidden=message==='Prêt';controls();
     }
     function next(token){
       if(disposed||token!==run||!playing)return;
-      if(index>=parts.length){reset('Fertig. Jetzt bist du dran.');return;}
+      if(index>=parts.length){reset('Terminé. À toi de jouer.');return;}
       const part=parts[index];status.hidden=true;
       if(part.phrase!==undefined)options.onPhraseStart?.(part.phrase);
       reader?.follow(part);
@@ -89,11 +89,11 @@
       let handled=false;
       u.onboundary=e=>{if(token===run&&!disposed&&playing&&(!e.name||e.name==='word'))reader?.word(u.text,e.charIndex,e.charLength);};
       u.onend=()=>{if(handled||token!==run||disposed)return;handled=true;reader?.clearWord();if(part.phrase!==undefined)options.onPhraseEnd?.(part.phrase);index++;next(token);};
-      u.onerror=()=>{if(handled||token!==run||disposed)return;handled=true;reset('Vorlesen unterbrochen. Bitte erneut auf Play drücken.');};
+      u.onerror=()=>{if(handled||token!==run||disposed)return;handled=true;reset('Lecture interrompue. Appuie de nouveau sur Lecture.');};
       try{voice.playUtterance(u,part.lang);}catch{u.onerror();}
     }
     play.onclick=()=>{
-      if(playing){reader?.clearWord();run++;playing=false;paused=true;voice.cancel();utterance=null;play.textContent='▶ Fortsetzen';status.textContent='Pausiert. Fortsetzen wiederholt den aktuellen Satz.';controls();return;}
+      if(playing){reader?.clearWord();run++;playing=false;paused=true;voice.cancel();utterance=null;play.textContent='▶ Reprendre';status.textContent='En pause. Reprendre relit la phrase en cours.';controls();return;}
       if(!paused){parts=plan(options);index=0;}
       voice.cancel();playing=true;paused=false;stop.disabled=false;play.textContent='Ⅱ Pause';controls();next(++run);
     };
@@ -105,7 +105,7 @@
     const observer=new MutationObserver(()=>{if(!host.isConnected)dispose();});observer.observe(view,{childList:true,subtree:true});
     function dispose(){if(disposed)return;disposed=true;reset();observer.disconnect();doc.removeEventListener('click',externalClick,true);window.removeEventListener('pagehide',leave);host.remove();}
     disposeCurrent=dispose;
-    if(!synth||!window.SpeechSynthesisUtterance||!voice?.playUtterance){play.disabled=true;status.textContent='Vorlesen ist in diesem Browser nicht verfügbar.';}
+    if(!synth||!window.SpeechSynthesisUtterance||!voice?.playUtterance){play.disabled=true;status.textContent='La lecture à voix haute n’est pas disponible dans ce navigateur.';}
   }
   window.EN_B1_GUIDED_AUDIO={mount,plan,readContent};
 })();

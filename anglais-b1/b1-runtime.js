@@ -33,7 +33,7 @@
   };
   const task=(r,l,t,i)=>{
     const [prompt,answer,b,c,meaning]=r,audio=prompt.replace('___',answer);
-    return {type:'choice',kind:'form',q:'Ergänze: '+prompt,prompt,answer,o:[answer,b,c],a:0,context:meaning,meaning,audio,hint:t.rule.split('\n')[0],answerLang:'en',
+    return {type:'choice',kind:'form',q:'Complète : '+prompt,prompt,answer,o:[answer,b,c],a:0,context:meaning,meaning,audio,hint:t.rule.split('\n')[0],answerLang:'en',
       accept:[...variants(answer),...(equivalents[`${l.id}-${t.key}-${i}`]||[]),...((l.id===8||l.id===12)&&['who','which','that'].includes(answer)?(answer==='who'?['that']:answer==='which'?['that']:['which']):[])],
       family:`b1-${l.id}-${t.key}`,checkKey:`b1-${l.id}-${t.key}-${i}`,explanation:`${audio} = ${meaning} ${t.rule.split('\n')[0]}`};
   };
@@ -63,45 +63,45 @@
     24:{0:['Explaining a grammar rule','Following a conversation in class'],3:['Preparing a complete script','Remembering words for familiar situations']}
   };
   const formTables={
-    1:[['Gewohnheit / Zustand','present simple','She works. / Does she work?'],['Jetzt / vorübergehend','am/is/are + -ing','She is working. / Is she working?']],
-    2:[['Abgeschlossener Zeitpunkt','past simple','I worked there last year.'],['Erfahrung bis jetzt','have/has + Partizip','I have worked abroad.'],['Dauer bis jetzt','for + Dauer / since + Beginn','I have lived here for two years / since 2024.']],
-    5:[['Pflicht','must / have to','You must pay.'],['Verbot','must not / mustn’t','You mustn’t enter.'],['Nicht nötig','do not have to','You don’t have to pay.']],
-    13:[['Früher, heute anders','used to + Grundform','I used to write letters.'],['Frage / Verneinung','did + use to','Did you use to write? / I didn’t use to write.'],['An etwas gewöhnt','be used to + -ing','I am used to writing emails.']],
-    16:[['Direkte Frage','Fragewort + Hilfsverb + Subjekt','Where does the train stop?'],['Indirekte Frage','Fragewort + Subjekt + Verb','Do you know where the train stops?'],['Ja/Nein indirekt','if/whether + Subjekt + Verb','Do you know if it stops here?']],
-    17:[['Hintergrund','was/were + -ing','I was waiting.'],['Ereignis','past simple','The bus arrived.'],['Noch früher','had + Partizip','I had bought a ticket.']]
+    1:[['Habitude / état','present simple','She works. / Does she work?'],['Maintenant / temporaire','am/is/are + -ing','She is working. / Is she working?']],
+    2:[['Moment terminé','past simple','I worked there last year.'],['Expérience jusqu’à maintenant','have/has + participe','I have worked abroad.'],['Durée jusqu’à maintenant','for + durée / since + point de départ','I have lived here for two years / since 2024.']],
+    5:[['Obligation','must / have to','You must pay.'],['Interdiction','must not / mustn’t','You mustn’t enter.'],['Pas nécessaire','do not have to','You don’t have to pay.']],
+    13:[['Avant, mais plus maintenant','used to + forme de base','I used to write letters.'],['Question / négation','did + use to','Did you use to write? / I didn’t use to write.'],['Être habitué à','be used to + -ing','I am used to writing emails.']],
+    16:[['Question directe','mot interrogatif + auxiliaire + sujet','Where does the train stop?'],['Question indirecte','mot interrogatif + sujet + verbe','Do you know where the train stops?'],['Question fermée indirecte','if/whether + sujet + verbe','Do you know if it stops here?']],
+    17:[['Arrière-plan','was/were + -ing','I was waiting.'],['Événement','past simple','The bus arrived.'],['Encore avant','had + participe','I had bought a ticket.']]
   };
   const speakingTasks=[
-    'Erzähle Alex von deinem Alltag und einem neuen Hobby. Nenne Gewohnheiten, eine aktuelle Aktivität und deine Gründe.',
-    'Berichte einer Sprachpartnerin von deiner Lern- und Arbeitserfahrung. Nenne ein Ereignis mit Zeitpunkt, eine Dauer und dein nächstes Ziel.',
-    'Plane mit Jamie ein Abendessen. Schlage Essen vor, beachte die Nussallergie und kläre Einkauf oder Reservierung.',
-    'Erzähle eine Geschichte, die mit „I was waiting for the bus when I heard my name.“ beginnt. Beschreibe die Begegnung und ihr Ende.',
-    'Gib einer Freundin vor ihrer ersten Reise allein Rat zu Geld, Regeln und einem sinnvollen Budget.',
-    'Vergleiche zwei Möglichkeiten, aktiver zu werden, und empfiehl eine davon.',
-    'Gib einem Gast Empfehlungen für einen Stadtbesuch. Berücksichtige Regen, Verkehr und eine mögliche Planänderung.',
-    'Beschreibe einen nützlichen Gegenstand: Material, Funktion, Herkunft und persönlichen Wert.',
-    'Entschuldige dich bei einer Freundin für einen verpassten Termin. Erkläre den Grund und vereinbare einen neuen Termin.',
-    'Bitte an einer Hotelrezeption um eine Buchungsänderung. Nenne alte und neue Daten, frage nach Ausstattung und Kosten.',
-    'Vergleiche zwei Wohnungen nach Lage und Kosten. Sage, was du bei mehr Geld wählen würdest, und bitte um Rat.',
-    'Erzähle von einer Person, die dich inspiriert. Beschreibe ihren Lebensweg, eine Leistung und dein eigenes Ziel.',
-    'Erkläre einem Freund, wie sich deine Kommunikation seit der Kindheit verändert hat. Gib eine Nachricht einer anderen Person weiter.',
-    'Diskutiere, ob Autos im Stadtzentrum eingeschränkt werden sollten. Wäge beide Seiten ab und schlage einen Kompromiss vor.',
-    'Reagiere auf eine Freundin, die nach langen Arbeitstagen erschöpft ist. Frage nach ihrer Belastung, mache vorsichtige Vorschläge und biete Hilfe an.',
-    'Frage bei einer Reiseauskunft höflich nach Abfahrt, Umstieg und Gültigkeit deiner Fahrkarte.',
-    'Erzähle eine Geschichte mit dem Anfang „By the time we arrived, everyone had gone.“ Gib auch eine Bitte oder Anweisung weiter.',
-    'Stelle einen Vorschlag zur Abfallvermeidung vor. Erkläre Maßnahme, Beteiligte, erwartete Wirkung und eine Schwierigkeit.',
-    'Lade eine Freundin zu einem Gemeinschaftsprojekt ein. Erkläre Ziel, Aufgaben und wie ihr einander helfen könnt.',
-    'Beschwere dich sachlich über eine beschädigte Lieferung. Nenne Bestellung, Schaden, Beleg und gewünschte Lösung.',
-    'Berate eine Freundin bei der Kurswahl. Vergleiche zwei Angebote nach Zeit, Preis und ihren Bedürfnissen.',
-    'Antworte Alex auf die Einladung zu einem Sprachwochenende. Wähle eine Aktivität mit Begründung und frage nach Unterkunft.',
-    'Alex schlägt ein Konzert am Samstag vor. Vergleiche Park, Museum und Konzert. Reagiere auf seinen Vorschlag, vergleiche Optionen und bitte um seine Meinung.',
-    'Ziehe mit deiner Lernpartnerin Bilanz: Belege deinen Fortschritt, nenne eine Schwierigkeit und vereinbare einen konkreten Übungsplan.'
+    'Parle à Alex de ton quotidien et d’un nouveau loisir. Cite des habitudes, une activité actuelle et tes raisons.',
+    'Raconte à une partenaire d’échange ton expérience d’études et de travail. Cite un événement daté, une durée et ton prochain objectif.',
+    'Organise un dîner avec Jamie. Propose un repas, tiens compte de l’allergie aux noix et règle les courses ou la réservation.',
+    'Raconte une histoire qui commence par « I was waiting for the bus when I heard my name. ». Décris la rencontre et sa fin.',
+    'Conseille une amie avant son premier voyage seule : argent, règles et budget raisonnable.',
+    'Compare deux façons d’être plus actif et recommandes-en une.',
+    'Fais des recommandations à un invité pour visiter la ville. Tiens compte de la pluie, de la circulation et d’un éventuel changement de programme.',
+    'Décris un objet utile : matériau, fonction, origine et valeur personnelle.',
+    'Excuse-toi auprès d’une amie pour un rendez-vous manqué. Explique la raison et fixe un nouveau rendez-vous.',
+    'À la réception d’un hôtel, demande à modifier ta réservation. Indique les anciennes et les nouvelles dates, pose des questions sur les équipements et le prix.',
+    'Compare deux appartements selon l’emplacement et le coût. Dis ce que tu choisirais avec plus d’argent et demande conseil.',
+    'Parle d’une personne qui t’inspire. Décris son parcours, une réussite et ton propre objectif.',
+    'Explique à un ami comment ta façon de communiquer a changé depuis ton enfance. Transmets le message d’une autre personne.',
+    'Discute de la question : faut-il limiter les voitures en centre-ville ? Présente les deux côtés et propose un compromis.',
+    'Réagis face à une amie épuisée par de longues journées de travail. Demande-lui ce qui lui pèse, fais des suggestions prudentes et propose ton aide.',
+    'Demande poliment à un service d’information voyageurs l’heure de départ, la correspondance et la validité de ton billet.',
+    'Raconte une histoire qui commence par « By the time we arrived, everyone had gone. ». Rapporte aussi une demande ou une consigne.',
+    'Présente une proposition pour réduire les déchets. Explique la mesure, les personnes concernées, l’effet attendu et une difficulté.',
+    'Invite une amie à un projet collectif. Explique le but, les tâches et comment vous pouvez vous entraider.',
+    'Fais une réclamation factuelle au sujet d’une livraison endommagée. Cite la commande, les dégâts, la preuve et la solution souhaitée.',
+    'Conseille une amie qui choisit un cours. Compare deux offres selon l’horaire, le prix et ses besoins.',
+    'Réponds à Alex, qui t’invite à un week-end linguistique. Choisis une activité en justifiant et pose une question sur l’hébergement.',
+    'Alex propose un concert samedi. Compare le parc, le musée et le concert. Réagis à sa proposition, compare les options et demande-lui son avis.',
+    'Fais le bilan avec ta partenaire d’apprentissage : illustre tes progrès, cite une difficulté et convenez d’un plan d’entraînement concret.'
   ];
   for(const l of lessons){
-    if(formTables[l.id])l.topics[0].formTable={caption:'Form und Bedeutung im Vergleich',headings:['Verwendung','Form','Beispiel'],rows:formTables[l.id]};
-    l.transfer.speaking='Sprich 1–2 Minuten: '+speakingTasks[l.id-1]+' Ergänze ein Beispiel und eine passende Rückfrage. Weitere Angaben darfst du passend erfinden.';
+    if(formTables[l.id])l.topics[0].formTable={caption:'Forme et sens comparés',headings:['Emploi','Forme','Exemple'],rows:formTables[l.id]};
+    l.transfer.speaking='Parle 1 à 2 minutes : '+speakingTasks[l.id-1]+' Ajoute un exemple et une question en retour. Tu peux inventer les autres informations.';
     l.speakingModel=l.model.replace(/^(?:Hi [^,]+|Dear [^,]+),\s*/, '').replace(/ (?:Best wishes|Kind regards), [^.]+$/, '').replace(/I'm writing about/, "I'd like to ask about").replace(/I have attached a copy of my receipt/, 'I have a copy of my receipt');
-    l.transfer.writing='Schreibe 90–110 Wörter (Ziel: ungefähr 100). '+l.writingTask+' Weitere Angaben (z. B. Namen, Daten und Orte) darfst du passend erfinden.';
-    l.quiz=l.phraseRows.map(([target,meaning,b,c])=>({q:`Was bedeutet „${target}“?`,o:[meaning,b,c],a:0,audio:target,explanation:meaning}));
+    l.transfer.writing='Écris 90 à 110 mots (objectif : environ 100). '+l.writingTask+' Tu peux inventer les autres informations (par ex. noms, dates et lieux).';
+    l.quiz=l.phraseRows.map(([target,meaning,b,c])=>({q:`Que veut dire « ${target} » ?`,o:[meaning,b,c],a:0,audio:target,explanation:meaning}));
     const check=l.contexts.map(([q,answer,b,c],i)=>({type:'choice',q,answer,o:[answer,b,c],audio:answer,explanation:answer,family:`b1-${l.id}-communication-${i}`}));
     l.topics.forEach((t,ti)=>{
       t.key='t'+ti;t.practice=t.rows.slice(0,6).map((r,i)=>task(r,l,t,i));
@@ -139,7 +139,7 @@
   old8.listening[0].questions[0].q='Where had the table been used?';
   old8.listening[0].questions[0].answers=['a café','in a café'];
   const old23=JSON.parse(JSON.stringify(hard[23]));
-  old23.writing.situation=old23.writing.situation.replace('Alex schlägt ein Konzert am Samstag vor. Vergleiche Park, Museum und Konzert, reagiere auf seinen Vorschlag', 'Vergleiche Park, Museum und Konzert, reagiere auf seine Idee');
+  old23.writing.situation=old23.writing.situation.replace('Alex propose un concert samedi. Compare le parc, le musée et le concert, réagis à sa proposition', 'Compare le parc, le musée et le concert, réagis à son idée');
   window.EN_A1_HARD_VERSIONS={1:{8:old8,19:old19,23:old23}};
   hard[23].version=2;hard[23].compatibleVersions=[1];
   hard[8].version=2;hard[8].compatibleVersions=[1];
@@ -148,6 +148,6 @@
   window.EN_A1_HARD_AUDIO={turns:(_id,data,i)=>data.listening[i].turns};
   window.A1_COMPREHENSION_CONTENT=comprehension;window.EN_A1_READING=reading;
   window.EN_A1_VOCABULARY={plan,entries,meanings};window.A1_VOCABULARY_CONTENT=entries;
-  window.A1LessonVocabularyPlan={en:plan};window.A1LessonLexicon={entries:{en:entries}};
+  window.A1LessonVocabularyPlan={en:plan};window.A1LessonLexicon={entries:{en:entries.map(e=>[e.en,e.enLessons,[],e.de])}};
   window.EN_A1_FOUNDATIONS={en:Object.fromEntries(lessons.map(l=>[l.id,{words:l.vocabulary}]))};
 })();

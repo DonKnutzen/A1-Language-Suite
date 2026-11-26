@@ -7,13 +7,13 @@
   const scene=(speech,questions)=>({turns:speech.split('\n').map(line=>({speaker:line[0]==='f'?'A':'B',gender:line[0]==='f'?'female':'male',text:line.slice(2)})),fields:fields(questions)});
   function add(id,task,points,model,text,questions,...audio){
     const l=lessons.find(l=>l.id===id);l.points=points.split('|');l.model=model;
-    l.transfer={speaking:'Sprich 1–2 Minuten: '+task+' Begründe deine Antwort und ergänze ein Beispiel.',writing:'Schreibe ungefähr 100 Wörter. '+task};
+    l.transfer={speaking:'Parle 1 à 2 minutes : '+task+' Justifie ta réponse et ajoute un exemple.',writing:'Écris environ 100 mots. '+task};
     l.writingTask=task;
     scenes[id]=[scene(audio[0],audio[1]),scene(audio[2],audio[3]),scene(audio[4],audio[5])];
     reading.push({id,text,fields:fields(questions)});
   }
-  add(1,'Antworte Alex auf die Frage nach deinem Alltag und einem neuen Hobby. Beschreibe deine übliche Woche, eine vorübergehende Aktivität und deine Gründe dafür.',
-  'Beschreibe mindestens eine Gewohnheit.|Nenne eine aktuelle oder vorübergehende Aktivität.|Begründe dein Interesse und stelle eine passende Rückfrage.',
+  add(1,'Réponds à Alex, qui te pose des questions sur ton quotidien et un nouveau loisir. Décris ta semaine habituelle, une activité temporaire et tes raisons.',
+  'Décris au moins une habitude.|Cite une activité actuelle ou temporaire.|Justifie ton intérêt et pose une question en retour.',
   `Hi Alex, Thanks for asking about my week. I usually work in a small office near my home, so I walk there most mornings. At weekends, I enjoy meeting friends and listening to music. This month, however, I'm taking a photography course. I'm learning how to take pictures outdoors, although the weather isn't always helpful. I chose it because I want to notice more about the place where I live. Our group is friendly, and we sometimes practise together after class. What do you usually do in your free time? Would you like to join us for a walk? Best wishes, Robin`,
   `Nora joined a local choir because she wanted to meet people after moving house. She expected singing lessons, but the group spends most evenings preparing for community performances. At first she was disappointed: she wanted help with her voice rather than a busy calendar. Now she enjoys the shared purpose, although she still takes a separate singing lesson once a month. She says the choir hasn't made her a great singer, but it has made the new town feel like home. She recommends trying a group twice before deciding whether it suits you.`,
   `Why did Nora originally join?|To meet people|To prepare for a professional audition|To teach singing
@@ -35,8 +35,8 @@
   How are books selected?|members take turns~by taking turns|by voting|by the librarian
   What will the speaker do next time?|lead the discussion~lead it|choose every book|repair the building`);
 
-  add(2,'Antworte einer Sprachpartnerin über deine Lern- und Arbeitserfahrung. Nenne eine Erfahrung, ein Ereignis mit Zeitpunkt und dein nächstes Ziel.',
-  'Nenne Erfahrung mit Gegenwartsbezug.|Ergänze ein abgeschlossenes Beispiel und Dauer.|Erkläre ein Ziel und frage nach der Erfahrung der anderen Person.',
+  add(2,'Réponds à une partenaire d’échange linguistique au sujet de ton expérience d’études et de travail. Cite une expérience, un événement daté et ton prochain objectif.',
+  'Cite une expérience liée au présent.|Ajoute un exemple terminé et une durée.|Explique un objectif et demande à l’autre personne son expérience.',
   `Hi Sara, I've worked in customer service for three years, and I've learned a lot about communicating with different people. Last September, I helped a visitor who couldn't find his hotel. We spoke in English, and I managed to explain the route without using my phone. That experience encouraged me to study more regularly. I've attended an evening course since January, but I haven't taken an exam yet. My next goal is to speak more naturally in meetings. I'm planning to practise with a colleague during lunch. Have you ever needed English at work? I'd love to hear about your experience. Best wishes, Lee`,
   `When Ben lost his job, he signed up for an online design course. He had expected the videos to be the most useful part. Instead, the weekly feedback from other learners helped him improve fastest. He completed the course in June and applied for several jobs, but he didn't find work immediately. He now works part time for a small company while building a portfolio. He doesn't regret the course, though he warns people not to expect a certificate alone to guarantee a job. Practical examples of your work matter too.`,
   `What helped Ben most?|Feedback from other learners|Watching videos alone|Getting a certificate quickly
@@ -58,8 +58,8 @@
   What helped him relax?|describing a real project~a real example|reading a prepared speech|asking about the salary
   What does he still need to arrange?|accommodation~a place to live|another interview|a reference`);
 
-  add(3,'Schreibe Jamie eine E-Mail zur Planung eines gemeinsamen Abendessens: schlage Essen vor, berücksichtige eine Nussallergie und kläre Einkauf oder Reservierung.',
-  'Schlage eine Mahlzeit oder ein Lokal vor.|Berücksichtige die Nussallergie ausdrücklich.|Vereinbare einen praktischen nächsten Schritt mit Rückfrage.',
+  add(3,'Écris un e-mail à Jamie pour organiser un dîner ensemble : propose un repas, tiens compte d’une allergie aux noix et règle les courses ou la réservation.',
+  'Propose un repas ou un restaurant.|Tiens explicitement compte de l’allergie aux noix.|Convenez d’une prochaine étape concrète et pose une question.',
   `Hi Jamie, How about having dinner at my place on Saturday? I'd rather cook together than go to an expensive restaurant. We could make a vegetable curry with rice, although we should check every ingredient because of your nut allergy. I already have some rice and a few vegetables, but there isn't much milk left. Could you bring a bottle and perhaps some fruit for dessert? I'll buy the other ingredients on Friday. If you'd prefer to eat out, we can call the new café and ask about their allergy information before booking. Would six o'clock suit you? Let me know what you think. Best wishes, Morgan`,
   `Green Table now offers two evening menus. The cheaper menu includes a main course and tap water, while dessert costs extra. The second menu includes a main course, dessert and a hot drink. Both have vegetarian choices. Customers with allergies are asked to contact the café before booking because ingredients may change daily. Groups of more than six cannot use the online form and must phone instead. A reviewer liked the friendly staff but said the room became noisy after eight. She recommends an early table if you want a quiet conversation.`,
   `What is included in both menus?|A main course|Dessert|A hot drink
@@ -86,8 +86,8 @@ m:Yes. We don't need dessert; Maya has offered to bring a cake.`,
   What did the teacher encourage?|tasting and adjusting seasoning~tasting the food|measuring every gram|following a video
   What would she bring next time?|a container~container|a recipe book|her own knife`);
 
-  add(4,'Schreibe eine Geschichte, die mit „I was waiting for the bus when I heard my name.“ beginnt. Erzähle die Begegnung und ihr Ende.',
-  'Übernimm den vorgegebenen Anfang und entwickle ihn sinnvoll.|Verbinde Hintergrund und Ereignisse mit passenden Zeiten.|Erzähle ein nachvollziehbares Ende.',
+  add(4,'Écris une histoire qui commence par « I was waiting for the bus when I heard my name. ». Raconte la rencontre et sa fin.',
+  'Reprends le début imposé et développe-le de façon cohérente.|Relie l’arrière-plan et les événements avec les temps adaptés.|Raconte une fin compréhensible.',
   `I was waiting for the bus when I heard my name. At first I didn't recognise the woman across the road, but then she waved and I realised it was my old school friend, Emma. We hadn't spoken for years. While we were talking, my bus arrived, but I decided to take the next one. Emma was visiting her parents and had a free afternoon. We went to a nearby café and shared stories about our lives. Suddenly, I remembered an appointment and checked the time. Fortunately, I still had twenty minutes. We exchanged numbers before leaving and promised to meet again soon.`,
   `A delayed train brought two strangers together last month. Oliver offered his spare phone charger to a woman whose battery had died. As they talked, they discovered that both had grown up in the same small village. They didn't know each other, but their parents had been neighbours. Oliver later described the conversation as a reminder that an inconvenience can have an unexpected benefit. He still dislikes train delays, he says, but now he is less likely to put on his headphones immediately when plans go wrong.`,
   `Why did the conversation begin?|Oliver offered a charger|The woman asked about his village|They recognised each other
@@ -109,8 +109,8 @@ m:Yes. We don't need dessert; Maya has offered to bring a cake.`,
   What made the bags particularly similar?|a green ribbon~green ribbons|different labels|orange straps
   What does the speaker use now?|an orange strap~a bright orange strap|a green suitcase|a larger label`);
 
-  add(5,'Gib einer Freundin, die zum ersten Mal allein reist, per E-Mail Rat zu Geld, Regeln und einem sinnvollen Budget.',
-  'Nenne eine Pflicht und ein Verbot eindeutig.|Gib mindestens zwei begründete Ratschläge.|Ergänze eine praktische Möglichkeit und eine Rückfrage.',
+  add(5,'Par e-mail, donne des conseils à une amie qui voyage seule pour la première fois : argent, règles et budget raisonnable.',
+  'Cite clairement une obligation et une interdiction.|Donne au moins deux conseils justifiés.|Ajoute une possibilité pratique et une question.',
   `Hi Eva, It's exciting that you're travelling on your own. You should check your bank's charges before you leave, because withdrawing small amounts abroad can be expensive. You must keep your PIN secret, and you shouldn't carry all your cash in one place. At our local museum, you don't have to pay for entry, although special exhibitions cost extra. I'd suggest setting a daily budget for food and transport so that you can enjoy the trip without worrying. You can borrow my small travel bag if you need one. Have you checked whether your card works abroad? Let me know if I can help. Best wishes, Chris`,
   `City Museum has changed its ticket system. General admission remains free, but visitors must reserve a time online. There is no need to print the confirmation; showing it on a phone is enough. Photography is permitted in the main collection, but flash must not be used. Large bags have to be left in lockers, which require a refundable coin deposit. A donation box stands near the exit, but giving money is entirely optional. Staff say the new system is intended to reduce queues rather than limit the number of free places.`,
   `What must every visitor do?|Reserve a time|Print a ticket|Make a donation
@@ -137,8 +137,8 @@ m:Yes, in case you need proof of payment.`,
   What solution was offered?|a replacement~replacement|a paid upgrade|a loan device only
   What had she failed to do earlier?|back up her files~make a backup|charge the battery|register her address`);
 
-  add(6,'Schreibe einen kurzen Artikel für einen Freizeitblog: Vergleiche zwei Möglichkeiten, aktiver zu werden, und empfehle eine mit Gründen.',
-  'Vergleiche mindestens zwei Optionen sinnvoll.|Verwende einen Vergleich und eine Aussage mit too oder enough.|Begründe eine Empfehlung mit einem konkreten Beispiel.',
+  add(6,'Écris un court article pour un blog de loisirs : compare deux façons d’être plus actif et recommande-en une avec des raisons.',
+  'Compare au moins deux options de façon pertinente.|Utilise une comparaison et une phrase avec too ou enough.|Justifie une recommandation avec un exemple concret.',
   `A Better Way to Get Moving. Would you like to become more active without spending much money? I've tried both a gym and a local walking group. The gym has more equipment, but the membership is too expensive for my budget. The walking group is much cheaper and less crowded than I expected. You don't need to be fit enough for a long hike at the beginning; there is a short route for new members. I prefer exercising outdoors because I feel more relaxed afterwards. Last week we walked by the river and stopped for tea. If you enjoy conversation as well as exercise, I'd recommend giving it a try.`,
   `Aisha compared three fitness centres before joining one. The nearest was the most expensive, while the cheapest had no evening classes. She chose a centre farther away because its swimming pool opened early. After a month, however, she realised that the long journey discouraged her from going. She now pays slightly more for the nearest centre and attends twice as often. She says choosing the best equipment matters less than finding a routine you can maintain. Her advice is to try a journey at the time you would actually travel, rather than judge only by distance.`,
   `Why did Aisha first choose the distant centre?|It had an early-opening pool|It was the nearest|It had the cheapest evening classes

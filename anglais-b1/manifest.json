@@ -1,7 +1,7 @@
 {
-  "name": "English B1 – Deutsch nach Englisch",
-  "short_name": "English B1",
-  "lang": "de",
+  "name": "English B1 – du français vers l’anglais",
+  "short_name": "English B1 FR",
+  "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -248,7 +248,7 @@ const resumable=g=>!!g&&Array.isArray(g.qs)&&g.qs.length===LADDER.length&&g.qs.e
 
 /* ---------- The show ---------- */
 function mount(host,{pool=[],course='fr',lessonLabel=null,audioBase='audio/quiz/',best=0,saved=null,onSave,onEnd,onExit,backLabel=null}={}){
- ui=course==='de'?'fr':'de';
+ ui='fr';
  const target=COURSES[course]?.target||'fr';
  const S={level:0,qs:pickSet(pool),jokers:{cut:true,hint:true},removed:[],showHint:false,selected:null,phase:'intro',won:0,order:null};
  let timers=[],dead=false;const snd=quizAudio(audioBase);
@@ -295,5 +295,5 @@ function mount(host,{pool=[],course='fr',lessonLabel=null,audioBase='audio/quiz/
  function exit(){stop();onExit?.();}
  intro();return stop;
 }
-window.A1_QUIZ_SHOW={mount,generate,pickSet,starsFor,WORD_SETS,rhyme,money:(n,course)=>{if(course)ui=course==='de'?'fr':'de';return money(n);},LADDER,SAFE,SOUNDS};
+window.A1_QUIZ_SHOW={mount,generate,pickSet,starsFor,WORD_SETS,rhyme,money:(n,course)=>{if(course)ui='fr';return money(n);},LADDER,SAFE,SOUNDS};
 })();

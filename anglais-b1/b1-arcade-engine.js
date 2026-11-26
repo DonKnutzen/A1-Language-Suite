@@ -3,7 +3,7 @@
 (() => {
 'use strict';
 // German interface for the French course, French for the German course (FR_UI), English when chosen.
-const en=()=>false,fr=()=>!en()&&cur().course==='de';
+const en=()=>false,fr=()=>true;
 const t=(de,english)=>en()?english:fr()?(FR_UI[de]??de):de,tx=p=>Array.isArray(p)?(en()?p[1]:fr()?(p[2]??FR_UI[p[0]]??p[0]):p[0]):p;
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pick=xs=>xs[Math.floor(Math.random()*xs.length)];
@@ -94,7 +94,7 @@ function misspell(text,course){const s=String(text),out=new Set();
 // Throw and catch use the lesson's cloze sentences with the quiz show's look-alike options; balloons the lesson's words;
 // the sorter asks for the article and for right or wrong forms.
 function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,target:'fr',meaning:'de',lessons:'frLessons',voice:'fr-FR'},en:{H:window.EN_A1_HARD_CONTENT,target:'en',meaning:'de',lessons:'enLessons',voice:'en-GB'},de:{H:window.DE_A1_HARD_CONTENT,target:'de',meaning:'fr',lessons:'deLessons',voice:'de-DE'}}[course],data=cfg?.H?.[id];if(!data)return null;
- const ui=(de,english,f)=>course==='de'?[de,english,f]:[de,english];
+ const ui=(de,english,f)=>[de,english,f];
  const rounds=[];for(const q of window.A1_QUIZ_SHOW?.generate(course,id)||[]){if(!String(q.kind).startsWith('gap')||!String(q.q[0]).includes('___'))continue;const m=String(q.q[0]).match(/^(.*?)(?: \(([^)]*)\))?$/),[before,after]=m[1].split('___');if(rounds.some(r=>r.before===before&&r.after===after))continue;rounds.push({before,after,context:q.context,verb:m[2]||'…',answer:q.o[0],others:q.o.slice(1),own:!String(q.src||'').includes('/'),sentence:(before+q.o[0]+after).replace(/([’'])\s+/g,'$1')});}
  if(rounds.filter(r=>r.own).length>=4)rounds.splice(0,rounds.length,...rounds.filter(r=>r.own));
  if(!rounds.length)data.gaps.forEach((g,n)=>{const text=String(data.text);const s=(text.match(/[^.!?\n]*\{\{\d+\}\}[^.!?\n]*[.!?]?/g)||[]).find(x=>x.includes('{{'+n+'}}'));if(!s)return;const filled=s.replace(/\{\{(\d+)\}\}/g,(_,k)=>Number(k)===n?'___':data.gaps[Number(k)].answers[0]).trim(),[before,after]=filled.split('___');rounds.push({before,after,verb:g.hint||'…',answer:g.answers[0],others:shuffle(data.gaps.map(x=>x.answers[0]).filter(x=>lnorm(x)!==lnorm(g.answers[0]))).slice(0,3),sentence:before+g.answers[0]+after});});
@@ -109,7 +109,7 @@ function lessonContent(course,id){const cfg={fr:{H:window.FR_A1_HARD_CONTENT,tar
  // Wrong is on the left (red), right on the right (green) – like swiping yes to the right.
  const hint=r=>r.verb&&r.verb!=='…'?' ('+r.verb+')':'';
  const forms=shuffle(rounds).slice(0,12).flatMap(r=>[[r.sentence,1,r.sentence+hint(r),r.context],[(r.before+r.others[0]+r.after).replace(/([’'])\s+/g,'$1'),0,r.sentence+hint(r),r.context]]);
- if(forms.length>=10)SORTSL.push({kind:course==='en'?'meaning':'forms',title:course==='en'?['Passt zur deutschen Bedeutung?','Matches the German meaning?']:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✗ falsch','✗ wrong','✗ faux'],['✓ richtig','✓ right','✓ juste']],colors:['#ff5d8f','#06d6a0'],cards:forms});
+ if(forms.length>=10)SORTSL.push({kind:course==='en'?'meaning':'forms',title:course==='en'?['Passt zur deutschen Bedeutung?','Matches the French meaning?','Correspond au sens en français ?']:['Richtig oder falsch?','Right or wrong?','Juste ou faux ?'],sides:[['✗ falsch','✗ wrong','✗ faux'],['✓ richtig','✓ right','✓ juste']],colors:['#ff5d8f','#06d6a0'],cards:forms});
  if(!SORTSL.length)SORTSL.push(...SORTS);
  return {course,voice:cfg.voice,formRound:rounds.length?formRoundL:formRound,PHRASES:PHRASESL.length>=4?PHRASESL:PHRASES,SORTS:SORTSL,tags:{throw:ui('Formen aus dem Lückentext','Forms from the cloze text','Les formes du texte à trous'),balloons:ui('Wörter der Lektion hören','Hear the lesson’s words','Écouter les mots de la leçon'),catch:ui('Das Wort für die Lücke','The word for the gap','Le mot pour le trou'),sort:ui(SORTSL.map(x=>x.title[0]).join(' · '),SORTSL.map(x=>x.title[1]).join(' · '),SORTSL.map(x=>x.title[2]??x.title[0]).join(' · '))}};}
 function lessonGames(course,id){L=lessonContent(course,id);const tags=L?.tags;const list=GAMES.map(g=>({id:g.id,icon:g.icon,theme:g.theme,title:tx(g.name),tagline:tags?tx(tags[g.id]):tx(g.tag)}));L=null;return list;}
@@ -257,7 +257,7 @@ function createSort(api){
  function deal(){const SORTS=cur().SORTS;if(S.n>0&&S.n%8===0)S.set=(S.set+1)%SORTS.length;if(!S.queue.length||S.qset!==S.set){S.queue=shuffle(SORTS[S.set].cards);S.qset=S.set;}const [text,side,full,context]=S.queue.pop(),limit=cur().course==='en'?Math.max(6,10-S.n*.09):Math.max(2,5-S.n*.09);api.prompt?.(text,context);S.card={text,side,full,t:limit,limit,x:0,state:'live',flash:0,dir:0,enter:0};S.n++;}
  // Every decision goes into the review shown at the end: what you chose, what was right and the correct form.
  function note(cd,chosen){const set=cur().SORTS[S.set],side=s=>tx(set.sides[s]),ok=chosen===cd.side;
-  const why=set.kind==='meaning'?(cd.side===1?'Der Satz passt zur deutschen Bedeutung.':'Zur deutschen Bedeutung passt: '+cd.full):set.kind==='forms'?(cd.side===1?t('Der Satz ist korrekt.','The sentence is correct.'):t('Richtig heißt es:','Correct:')+' '+cd.full):cd.full||'';
+  const why=set.kind==='meaning'?(cd.side===1?'La phrase correspond au sens en français.':'Ce qui correspond au sens en français : '+cd.full):set.kind==='forms'?(cd.side===1?t('Der Satz ist korrekt.','The sentence is correct.'):t('Richtig heißt es:','Correct:')+' '+cd.full):cd.full||'';
   S.log.push({ok,text:cd.text,said:chosen==null?t('Zu langsam','Too slow'):side(chosen),right:side(cd.side),why,fix:['forms','meaning'].includes(set.kind)?cd.full.replace(/ \([^)]*\)$/,''):cd.full?.split(' – ')[0]});}
  function choose(side){const cd=S.card;if(!cd||cd.state!=='live')return;cd.dir=side?1:-1;note(cd,side);
   if(side===cd.side){S.combo++;const pts=10+Math.min(20,S.combo*2)+Math.round(cd.t/cd.limit*8);S.score+=pts;cd.state='out';api.burst(side?api.w*.8:api.w*.2,api.h*.45,pick(COLORS),20);api.float(api.w/2,api.h*.3,'+'+pts);api.sfx.hit();}
@@ -289,7 +289,7 @@ const GAMES=[
  {id:'catch',icon:'🧺',theme:'match',name:['Wort-Fänger','Word catcher'],tag:['Verbformen im Satz','Verb forms in sentences'],rule:['Fang mit dem Korb nur das Wort, das in die Lücke passt. Ein falsches Wort im Korb oder ein verpasstes richtiges kostet ein Leben. 3 Leben.','Catch only the word that fits the gap. A wrong word in the basket or a missed right one costs a life. 3 lives.'],stars:[50,130,220],create:createCatch},
  {id:'sort',icon:'⚡',theme:'text',name:['Blitz-Sortierer','Lightning sort'],tag:['Herkunft/Wohnort · tu/vous · être/venir','Origin/home · tu/vous · être/venir'],rule:['Wisch jede Karte blitzschnell auf die richtige Seite. Die Zeit wird immer knapper! 3 Leben. Am Ende siehst du, was falsch war.','Swipe each card to the right side – fast. Time gets shorter and shorter! 3 lives. At the end you see what went wrong.'],stars:[60,150,260],create:createSort}
 ];
-const QUIZ={id:'quiz',icon:'💎',theme:'memory',name:['Millionen-Turm','Million tower'],tag:['12 Fragen · 4 Antworten · 2 Joker','12 questions · 4 answers · 2 jokers'],stars:[1000,100000,1000000]};
+const QUIZ={id:'quiz',icon:'💎',theme:'memory',name:['Millionen-Turm','Million tower','La tour du million'],tag:['12 Fragen · 4 Antworten · 2 Joker','12 questions · 4 answers · 2 jokers','12 questions · 4 réponses · 2 jokers'],stars:[1000,100000,1000000]};
 const starsFor=(def,score)=>def.stars.filter(s=>score>=s).length;
 
 // End-of-game review: mistakes first (what you did, what was right and why), then what you got right.
@@ -383,7 +383,7 @@ const QUESTIONS=[
 ];
 // Lesson 1 uses the hand-written questions above; the show itself lives in shared/quiz-show.js. Old saves stored question numbers.
 function runQuiz(host,opts={}){const show=window.A1_QUIZ_SHOW;if(!show)return ()=>{};const old=opts.saved;const saved=old&&!old.qs&&Array.isArray(old.set)?{...old,qs:old.set.map(n=>QUESTIONS[n])}:old;
- return show.mount(host,{...opts,saved,pool:[...show.generate('fr',1).filter(q=>q.l<=5),...QUESTIONS.flatMap((q,n)=>RUNGS[q.l].map(l=>({...q,id:'q'+n,src:q.s,l})))],course:'fr',lessonLabel:t('Lektion 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
+ return show.mount(host,{...opts,saved,pool:[...show.generate('fr',1).filter(q=>q.l<=5),...QUESTIONS.flatMap((q,n)=>RUNGS[q.l].map(l=>({...q,id:'q'+n,src:q.s,l})))],course:'fr',lessonLabel:t('Leçon 1','Lesson 1'),backLabel:opts.backLabel||t('Spielhalle','Arcade')});}
 
 function mount(host,id,opts={}){L=opts.course&&opts.lesson?lessonContent(opts.course,opts.lesson):null;if(id==='quiz')return runQuiz(host,opts);const def=GAMES.find(g=>g.id===id);return def?run(host,def,opts):()=>{};}
 const engines={throw:createThrow,balloons:createBalloons,catch:createCatch,sort:createSort};

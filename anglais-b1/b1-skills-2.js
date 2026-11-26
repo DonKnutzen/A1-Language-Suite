@@ -1,7 +1,7 @@
 (() => {
 const {add}=window.EN_B1_SKILLS;
-add(7,'Antworte einem Gast mit Empfehlungen für einen Stadtbesuch. Berücksichtige Regen, Verkehr und eine mögliche Planänderung.',
-'Empfiehl einen Ort und begründe die Wahl.|Beschreibe einen realistischen Plan mit Bedingung.|Ergänze eine unsichere Vorhersage und praktische Information.',
+add(7,'Réponds à un invité avec des recommandations pour visiter la ville. Tiens compte de la pluie, de la circulation et d’un éventuel changement de programme.',
+'Recommande un lieu et justifie ton choix.|Décris un plan réaliste avec une condition.|Ajoute une prévision incertaine et une information pratique.',
 `Hi Luca, I'm glad you're visiting next weekend. I recommend starting at the harbour because the market is interesting and you can walk there from the station. If the weather is dry, we'll have lunch outside. It might rain in the afternoon, though, so we should keep the museum as an alternative. You won't need a car; the centre is small and parking is expensive. The buses are likely to be busy on Saturday, but we can leave early. As soon as you know your arrival time, send me a message. What would you most like to see? Best wishes, Erin`,
 `Residents were surprised when the council removed parking spaces to create a small park. Shopkeepers feared losing customers who drove into town. Six months later, several cafés report more afternoon visitors, although the furniture shop still misses convenient loading space. The council will review delivery arrangements before deciding whether to repeat the project elsewhere. A resident who opposed the change now enjoys the quieter street but says that the experience shows why one successful feature cannot solve every local problem.`,
 `What worried shopkeepers?|Losing customers who arrived by car|Having too many delivery spaces|The cost of café furniture
@@ -22,8 +22,8 @@ What will he request?|clearer signs~better signs|more garages|a new bridge`,
 What could change the route?|hot weather~the heat|the ticket price|a closed library
 Where does it start now?|the town hall~town hall|the library|the station
 What proof is accepted?|phone confirmation~confirmation on a phone|only a printed ticket|a passport`);
-add(8,'Schreibe einen Artikel über einen nützlichen Gegenstand: beschreibe Material, Funktion, Herkunft und warum er dir wichtig ist.',
-'Beschreibe den Gegenstand mit Material und Funktion.|Nutze Passiv und einen passenden Relativsatz.|Erkläre den persönlichen Wert mit Beispiel.',
+add(8,'Écris un article sur un objet utile : décris son matériau, sa fonction, son origine et pourquoi il compte pour toi.',
+'Décris l’objet avec son matériau et sa fonction.|Utilise le passif et une proposition relative adaptée.|Explique sa valeur personnelle avec un exemple.',
 `A Small Thing with a Long History. The most useful object in my kitchen is a wooden box which belonged to my grandmother. It was made by her brother many years ago, and it is still in good condition. The box is used for keeping recipes, although it originally held sewing tools. Inside, there are handwritten notes from people who cooked together at family celebrations. I like it because it connects ordinary meals with memories of those people. Last weekend I used one of the recipes to make soup for friends. A modern recipe app would be quicker, but it wouldn't mean nearly as much to me.`,
 `The town's repair café opens once a month. Volunteers help visitors mend household objects, but they don't promise that everything can be fixed. Visitors remain involved rather than simply leaving a broken item and collecting it later. Organisers say learning how an object works is as valuable as avoiding waste. The most memorable repair was a child's toy whose owner had tried several shops without success. It needed only a new wire. The child was delighted, and her father learned how to replace it himself next time.`,
 `What is expected of visitors?|They take part in the repair|They leave items for a month|They buy new equipment
@@ -44,8 +44,8 @@ What did the seller request?|a photo~a photograph|an extra payment|the table bac
 What is it made from?|clay pots~two clay pots|metal boxes|wooden boards
 What went wrong first?|it leaked~a leak|it used too much power|it melted
 What was especially useful?|learning from failure~the failed attempt|inventing an entirely new device|finishing without changes`);
-add(9,'Entschuldige dich per E-Mail bei einer Freundin für einen verpassten Termin. Erkläre, was passiert ist, und biete einen neuen Plan an.',
-'Entschuldige dich und benenne den verpassten Termin.|Erkläre den Grund und deine Gefühle.|Schlage eine konkrete Wiedergutmachung oder neuen Termin vor.',
+add(9,'Excuse-toi par e-mail auprès d’une amie pour un rendez-vous manqué. Explique ce qui s’est passé et propose un nouveau plan.',
+'Excuse-toi et précise le rendez-vous manqué.|Explique la raison et ce que tu ressens.|Propose une façon concrète de te rattraper ou un nouveau rendez-vous.',
 `Hi Nina, I'm really sorry I missed our meeting yesterday. I had written the wrong time in my calendar, and I only realised my mistake when I saw your message. I know you had travelled across town, so you must have felt annoyed. I was embarrassed when I understood what had happened. I've just checked my calendar carefully so that it won't happen again. Could we meet at the same café on Saturday at two? I'd like to buy you lunch to apologise for keeping you waiting. Please let me know whether that suits you. I hope your afternoon wasn't completely spoiled. Best wishes, Ali`,
 `Leah was delighted when her friend organised a surprise party, but her first reaction looked different. She had expected a quiet meal and felt overwhelmed by the crowded room. Her friend initially thought she was disappointed and almost apologised. Once they talked, they realised they had misunderstood each other. Leah says she enjoyed the evening after a short break outside. She now tells friends that she loves seeing people but prefers to know about large gatherings beforehand. Being grateful, she explains, doesn't mean enjoying every kind of surprise.`,
 `Why did Leah look uncomfortable?|The unexpected crowd overwhelmed her|She disliked every guest|She wanted a more expensive meal
@@ -70,8 +70,8 @@ Where was the invitation?|the unwanted messages folder~spam folder~junk folder|a
 How did the audience behave?|they asked friendly questions~friendly questions|they left immediately|they refused to listen
 What technical problem occurred?|the slides stopped working~slides failed|the microphone was missing|the room had no lights
 How did the manager compare the talk with rehearsal?|clearer~it was clearer|much less clear|exactly the same`);
-add(10,'Bitte ein Hotel per E-Mail um eine Änderung deiner Buchung: neue Reisedaten, eine Frage zur Ausstattung und Bestätigung der Kosten.',
-'Nenne bisherige und gewünschte Daten eindeutig.|Frage nach einer benötigten Leistung.|Bitte höflich um Preis und Bestätigung.',
+add(10,'Par e-mail, demande à un hôtel de modifier ta réservation : nouvelles dates, une question sur les équipements et confirmation du prix.',
+'Indique clairement les anciennes et les nouvelles dates.|Demande un service dont tu as besoin.|Demande poliment le prix et une confirmation.',
 `Dear Reception Team, I'm writing about my booking for a single room from 12 to 14 June. Our train arrangements have changed, so would it be possible to move the reservation to 13 to 15 June instead? I'm travelling for a course and will probably arrive after eight in the evening. Could you confirm whether late check-in is available? I would also like to know if breakfast is included, as I need to leave early each morning. Please let me know whether there is any extra charge for changing the dates. I would be grateful for a reply by Friday. Kind regards, Taylor Green`,
 `The Lakeside Hotel allows guests to change flexible bookings without a fee up to three days before arrival. Cheaper advance bookings cannot normally be changed. However, guests whose transport has been cancelled should contact reception to discuss possible alternatives. Breakfast is included in both room rates, but parking is charged separately. Late arrivals must be arranged in advance because reception closes at ten. The hotel advises guests to phone rather than rely on a message sent while travelling, as staff may not see emails immediately.`,
 `Which booking can usually be changed without a fee?|A flexible booking changed in time|Any booking at any time|Only a parking reservation
@@ -92,8 +92,8 @@ What may affect her journey home?|the weather~bad weather|the menu|the number of
 Was a refund offered?|no|yes|only for meals
 What alternative was allowed?|change the booking date~move the booking|transfer it to any stranger|cancel without paying
 What did he learn?|asking politely can help~it is worth asking|cheap bookings always include refunds|never contact reception`);
-add(11,'Schreibe einer Freundin über zwei Wohnungen: wäge Lage und Kosten ab und beschreibe, was du bei mehr Geld wählen würdest.',
-'Vergleiche konkrete Vor- und Nachteile.|Formuliere einen hypothetischen Wunsch.|Begründe eine realistische Entscheidung und frage nach Rat.',
+add(11,'Écris à une amie au sujet de deux appartements : compare l’emplacement et le coût, et décris ce que tu choisirais avec plus d’argent.',
+'Compare des avantages et des inconvénients concrets.|Formule un souhait hypothétique.|Justifie une décision réaliste et demande conseil.',
 `Hi Dana, I've seen two flats this week and can't quite decide. The first is near the station, so the journey to work would be easy. However, the bedroom faces a busy road and the rent is high. The second flat is smaller and on the outskirts, but it has a lovely view and costs much less. If I had more money, I'd choose a quiet flat in the centre with a balcony. For now, I think the second place is more sensible because I could save every month. What would you do if you were me? I'd appreciate your advice. Best wishes, Pat`,
 `A couple moved from a large suburban house to a small central flat. Friends assumed the change was mainly about saving money. In fact, the flat costs almost as much because of its location. The couple wanted less time spent on housework and more opportunities to walk to events. They miss their garden, especially in summer, but use a nearby public space instead. They warn that smaller living isn't automatically simpler: they had to agree carefully about which possessions to keep. The move suited their priorities, rather than being a solution for everyone.`,
 `What mainly motivated the move?|More time and easier access to activities|A much lower rent|The need for a private garden
@@ -114,8 +114,8 @@ What has he requested?|a second viewing~another viewing|immediate keys|a larger 
 What concerned some residents?|noise~too much noise|the colour of the plants|the rent
 What compromise was agreed?|quiet hours and a trial~a trial with quiet hours|permanent closure|unlimited parties
 How have doubtful residents responded?|they have helped~they helped with plants|they moved away|they removed the table`);
-add(12,'Schreibe für einen Blog über eine Person, die dich inspiriert: ihr Lebensweg, eine Leistung und dein eigenes Ziel.',
-'Beschreibe die Person und eine konkrete Leistung.|Erkläre ihren Einfluss auf dich.|Nenne dein Ziel und einen praktischen nächsten Schritt.',
+add(12,'Écris pour un blog au sujet d’une personne qui t’inspire : son parcours, une réussite et ton propre objectif.',
+'Décris la personne et une réussite concrète.|Explique son influence sur toi.|Cite ton objectif et une prochaine étape concrète.',
 `Someone Who Inspired Me. My aunt is a person whose determination I really admire. She left school early, but later decided to train as a nurse while raising two children. It wasn't easy, and she sometimes considered giving up. However, she managed to finish the course and now helps people in a community clinic. Her example taught me that learning doesn't have to stop when you become an adult. I hope to improve my English so that I can volunteer with visitors in our town. Next month I'm joining a conversation group. I know I'll make mistakes, but I want to keep trying, just as she did.`,
 `Ravi grew up in a coastal town and expected to work in the family shop. A school project introduced him to environmental science, and he decided to study it at university. He didn't enjoy every part of the course, particularly writing long reports. Nevertheless, fieldwork convinced him that he had chosen well. He now works with local fishing communities, explaining changes in water quality. He says his most useful skill isn't remembering scientific terms but listening carefully enough to understand people's concerns before offering advice.`,
 `What changed Ravi's plans?|A school project|An offer to buy the family shop|A television interview
