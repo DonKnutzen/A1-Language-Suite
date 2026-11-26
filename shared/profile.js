@@ -320,6 +320,7 @@ applyTheme();
     if(course === 'en-b1' || course === 'englisch-b1') return 'en-b1';
     if(course === 'en' || course === 'englisch-a1') return 'en';
     if(course === 'en-fr' || course === 'anglais-a1') return 'en-fr';
+    if(course === 'en-b1-fr' || course === 'anglais-b1') return 'en-b1-fr';
     if(course === 'es' || course === 'spanisch-a1') return 'es';
     if(course === 'de-tr' || course === 'deutsch-a1-tr') return 'de-tr';
     if(course === 'de-c1-tr' || course === 'deutsch-c1-tr') return 'de-c1-tr';
@@ -511,7 +512,7 @@ applyTheme();
         localEpoch>remoteEpoch?percent:Math.max(remote?.percent||0,percent));
       // Current course identities have fixed curricula; derive the union's true
       // percentage rather than keeping the larger of two partial percentages.
-      const total={'de':24,'fr':24,'fr-a2':24,'el':24,'en-b1':24,'en-fr':24,'es':24,'de-c1-tr':40}[code];
+      const total={'de':24,'fr':24,'fr-a2':24,'el':24,'en-b1':24,'en-fr':24,'en-b1-fr':24,'es':24,'de-c1-tr':40}[code];
       if(total&&Array.isArray(merged.doneLessons))pct=clampPercent(new Set(merged.doneLessons.filter(id=>Number.isInteger(id)&&id>0&&id<=total)).size/total*100);
       const storageCode=code==='de'?'de':'fr',storageRow=remote?._storage?.row||(code==='de'?remote:null);
       const now=new Date(Math.max(Date.now(),Date.parse(storageRow?.updated_at||'')+1||0)).toISOString();
@@ -1055,6 +1056,7 @@ applyTheme();
           en:{flag:'🇬🇧',title:'English A1'},
           'en-b1':{flag:'🇬🇧',title:'English B1'},
           'en-fr':{flag:'🇬🇧',title:'English A1 · Français'},
+          'en-b1-fr':{flag:'🇬🇧',title:'English B1 · Français'},
           es:{flag:'🇪🇸',title:'Español'},
           'de-tr':{flag:'🇩🇪',title:'Deutsch A1 · Türkçe'},
           'de-c1-tr':{flag:'🇩🇪',title:'Deutsch C1 · Türkçe'}
