@@ -10,6 +10,7 @@ Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen 
 | Deutsch → Französisch | A1 | `francais/` |
 | Deutsch → Griechisch | A1 ab Schrift-Einstieg | `griechisch/` |
 | Deutsch → Englisch | **B1** | `englisch/` |
+| Französisch → Englisch | A1 | `anglais/` |
 | Deutsch → Spanisch | A1 | `spanisch/` |
 | Türkisch → Deutsch | **C1** | `turkisch-deutsch/` |
 
@@ -33,6 +34,7 @@ Browserbasierte Sprachlern-App mit A1-, A2-, Englisch-B1- und Deutsch-C1-Kursen 
 - `francais/` – Deutsch → Französisch A1
 - `griechisch/` – Deutsch → Neugriechisch A1, 24 Lektionen, Schrifttrainer, Eingabehilfe und eigene A1-Lernstandskontrollen; siehe [Lehrplan](griechisch/LEHRPLAN-A1.md)
 - `englisch/` – Deutsch → Englisch B1 für Erwachsene (A2 vorausgesetzt)
+- `anglais/` – Französisch → Englisch A1, 24 Lektionen mit französischen Erklärungen (wiederhergestellter früherer Englisch-A1-Kurs)
 - `spanisch/` – Deutsch → Spanisch A1
 - `turkisch-deutsch/` – Türkisch → Deutsch **C1**
 
@@ -51,3 +53,7 @@ Fortschritt wird pro Profil und Kurs getrennt gespeichert. Der neue Türkisch→
 ## Englisch B1
 
 Der bisherige Englisch-Platz enthält den neuen B1-Kurs mit 24 Lektionen, 72 Hörtexten, 480 Grammatikaufgaben, lektionsbezogenen Hard Modes und vier Arcade-Spielarten. Lehrplan, Quellen, Cambridge-Abgleich und Grenzen sind in [englisch/LEHRPLAN-B1.md](englisch/LEHRPLAN-B1.md) dokumentiert. Der B1-Kurs nutzt eine eigene lokale und Cloud-Kennung. A1-Fortschritt bleibt erhalten und wird nicht übernommen. Mit `npm run test:english` werden die B1-Integrationstests ausgeführt.
+
+## English A1 · Français
+
+Der frühere Englisch-A1-Kurs (vor dem Umbau zu B1) ist unter `anglais/` wiederhergestellt und vollständig auf französische Erklärungen umgestellt: Regeln, Übersetzungen, Aufgaben, Hörfragen, Vokabelbedeutungen und Oberfläche. Die Grammatikerklärungen gehen auf typische Fehlerquellen französischsprachiger Lernender ein (z. B. Alter mit be, his/her nach dem Besitzer, Adjektivstellung). Eigene Kennung `anglais-a1`, Profilcode `en-fr`, Speicherstand `anglaisA1State_v1`. Tests: `npm run test:anglais`. Den Vokabelbestand erzeugt `node anglais/tests/helpers/build-vocabulary.cjs`.

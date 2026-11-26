@@ -30,7 +30,7 @@
     const finalDone=finals.some(a=>a.result.passed===true&&a.result.correct*100>=a.result.total*50);
     const step=(label,value,done)=>`<span class="lesson-list-step ${done?'done':''}"><small>${esc(label)}</small>${value?`<strong>${esc(value)}</strong>`:''}</span>`;
     const mark=(label,done)=>step(label,done?'✓':'',done);
-    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${mark(L.listenStep,audioDone)}${mark(({fr:'Approfondissement',tr:'Pekiştirme'})[uiLang]||'Vertiefung',deepeningDone)}${mark(({fr:'Bilan',tr:'Ders kontrolü'})[uiLang]||'Lektionscheck',masteryDone)}${step(({fr:'Finale',tr:'Final'})[uiLang]||'Finaler Abschluss',finalBest===null?'—':finalBest+' %',finalDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Wissenscheck bestanden">✓</span>':''}</div>`;
+    return `<div class="lesson-list-progress" aria-label="${esc(L.plan)}">${mark(L.listenStep,audioDone)}${mark(({fr:'Approfondissement',tr:'Pekiştirme'})[uiLang]||'Vertiefung',deepeningDone)}${mark(({fr:'Bilan',tr:'Ders kontrolü'})[uiLang]||'Lektionscheck',masteryDone)}${step(({fr:'Finale',tr:'Final'})[uiLang]||'Finaler Abschluss',finalBest===null?'—':finalBest+' %',finalDone)}${complete&&masteryDone?'<span class="lesson-list-complete" aria-label="Test de leçon réussi">✓</span>':''}</div>`;
   }
   function continuation(lessons,state){
     const last=lessons.find(l=>l.id===state.lastLessonId),position=last&&state.lessonWork?.[last.id]?.resume;
@@ -71,7 +71,7 @@
     let comparedText=null;
     const checkReady=()=>complete()||masteryAttempted()||(passed()&&p.comprehension?.done===true);
     const optionalTitle='Finale & Arcade';
-    const steps=[['listen','Hören & Verstehen'],['grammar','Vertiefung'],...(lesson1?[['grammar-check','Abschluss-Test']]:[]),['comprehension','Hörverstehen'],...(hasMastery?[['check','Lektions-Check']]:[])];
+    const steps=[['listen','Écouter & comprendre'],['grammar','Approfondissement'],...(lesson1?[['grammar-check','Test final']]:[]),['comprehension','Compréhension orale'],...(hasMastery?[['check','Test de leçon']]:[])];
     let activeStep='listen',grammarIndex=0,audioPage=0,audioLayoutObserver=null;
     const audioPageCount=l.phrases.length<=8?1:Math.ceil(l.phrases.length/6);
     const audioPageFor=index=>Math.floor(index*audioPageCount/Math.max(1,l.phrases.length));
@@ -87,7 +87,7 @@
       const firstBody=grammarTopics[0].querySelector('.grammar-detail-body')||grammarTopics[0];
       firstBody.insertAdjacentHTML('afterbegin',intro);
     }
-    const grammarPages=[...(lesson1||!grammarTopics.length?[{title:'Grundlagen',html:grammarBasics}]:[]),...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammatik',html:el.outerHTML,practiceKey:el.dataset.deepeningKey||null}))];
+    const grammarPages=[...(lesson1||!grammarTopics.length?[{title:'Les bases',html:grammarBasics}]:[]),...grammarTopics.map(el=>({title:el.querySelector('summary')?.textContent.trim().replace(/ – .*/, '')||'Grammaire',html:el.outerHTML,practiceKey:el.dataset.deepeningKey||null}))];
     const pronunciation=opts.pronunciationHtml||'';
     function remember(mode='overview'){
       p.resume={step:activeStep,grammarIndex,audioPage,mode,topicTitle:activeStep==='grammar'?grammarPages[grammarIndex]?.title:null,practiceKey:activeStep==='grammar'?(grammarPages[grammarIndex]?.practiceKey||grammarPracticeKey(grammarIndex)||null):null};
@@ -118,7 +118,7 @@
       return {listen:audioTargets().length>0&&heardCount()===audioTargets().length&&passed(),grammar:grammarPages.every((_,i)=>grammarTopicDone(i)),'grammar-check':lesson1&&EN_A1_LESSON1.grammarCheckTried(state),comprehension:p.comprehension?.done===true,speak:p.speakingDone===true,write:p.writingDone===true,check:masteryPassed()}[key];
     }
     function stepNav(){
-      return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)?.[1]||optionalTitle)}</strong><small>${['speak','write'].includes(activeStep)?esc(activeStep==='speak'?L.speak:L.write):(steps.findIndex(([key])=>key===activeStep)+1)+' / '+steps.length}</small></div><nav class="lesson-step-nav" aria-label="Lernschritte">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · erledigt':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
+      return `<div class="lesson-step-context"><strong>${esc(steps.find(([key])=>key===activeStep)?.[1]||optionalTitle)}</strong><small>${['speak','write'].includes(activeStep)?esc(activeStep==='speak'?L.speak:L.write):(steps.findIndex(([key])=>key===activeStep)+1)+' / '+steps.length}</small></div><nav class="lesson-step-nav" aria-label="Étapes de la leçon">${steps.map(([key,label],i)=>`<button type="button" class="lesson-step ${activeStep===key?'active':''} ${stepDone(key)?'done':''}" data-lesson-step="${key}" aria-label="${i+1}. ${esc(label)}${stepDone(key)?' · terminé':''}" title="${esc(label)}" ${activeStep===key?'aria-current="step"':''}><span class="lesson-step-number">${stepDone(key)?'✓':i+1}</span><span class="lesson-step-label">${esc(label)}</span></button>`).join('')}</nav>`;
     }
     function stepHead(){
       return `<div class="lesson-back-row"><button class="tiny-btn lesson-back-link" id="backLearn">${esc(L.back)}</button></div><header class="lesson-step-header" data-bug-lesson="${l.id}"><h2>${l.id}. ${esc(l.title)}</h2>${stepNav()}</header>`;
@@ -130,8 +130,8 @@
     function vocabCheckHtml(){
       const done=passed(),paused=!!p.session,attempted=p.quizDone===true;
       const status=paused?'paused':done?'passed':attempted?'retry':'new';
-      const title=paused?'Vokabel-Check fortsetzen':done?'Vokabel-Check bestanden':attempted?'Vokabel-Check erneut üben':'Vokabel-Check starten';
-      const detail=done?`Bestwert: ${best()} % · ${paused?'Runde fortsetzen':'Übung wiederholen ↻'}`:attempted?`Bestwert: ${best()} % · ab 70 % bestanden`:'10 kurze Fragen';
+      const title=paused?'Reprendre le test de vocabulaire':done?'Test de vocabulaire réussi':attempted?'Refaire le test de vocabulaire':'Commencer le test de vocabulaire';
+      const detail=done?`Meilleur score : ${best()} % · ${paused?'Reprendre la série':'Refaire l’exercice ↻'}`:attempted?`Meilleur score : ${best()} % · réussi dès 70 %`:'10 questions courtes';
       return `<div class="lesson-listening-practice"><button class="primary-btn exercise-start-btn en-check-button ${done?'is-completed':'en-action-current'}" id="startQuiz" data-action-state="${status}">${done?'<span class="exercise-completed-mark" aria-hidden="true">✓</span>':''}<span class="exercise-entry-copy"><span>${title}</span><small>${detail}</small></span></button></div>`;
     }
     function refreshSteps(){
@@ -140,16 +140,16 @@
       view.querySelectorAll('[data-grammar-progress]').forEach(segment=>{
         const i=Number(segment.dataset.grammarProgress),done=grammarTopicDone(i);
         segment.classList.toggle('done',done);segment.querySelector('.lesson-topic-number').textContent=done?'✓':'';
-        segment.setAttribute('aria-label',`${grammarPages[i].title}${done?' · erledigt':''}${i===grammarIndex?' · aktuell':''}`);
+        segment.setAttribute('aria-label',`${grammarPages[i].title}${done?' · terminé':''}${i===grammarIndex?' · en cours':''}`);
       });
     }
     function wireStepNav(){view.querySelectorAll('[data-lesson-step]').forEach(btn=>btn.onclick=()=>goStep(btn.dataset.lessonStep));}
     function stepFooter(){
       const i=steps.findIndex(([key])=>key===activeStep),next=steps[i+1];
-      if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Zum Lektionscheck</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;
-      if(activeStep==='comprehension')return '<div class="lesson-step-footer"><button class="secondary-btn" id="previousLessonStep">← Zurück</button></div>';
-      if(activeStep==='grammar')return `<div class="lesson-step-footer">${grammarIndex?`<button class="secondary-btn" id="previousGrammarTopic">← Zurück</button>`:'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>'}${grammarIndex<grammarPages.length-1?`<button class="primary-btn" id="nextGrammarTopic">Weiter: ${esc(grammarPages[grammarIndex+1].title)} →</button>`:next?`<button class="primary-btn" id="nextLessonStep">Weiter: ${esc(next[1])} →</button>`:''}</div>`;
-      return `<div class="lesson-step-footer">${i?'<button class="secondary-btn" id="previousLessonStep">← Zurück</button>':''}${next?`<button class="primary-btn" id="nextLessonStep">Weiter: ${esc(next[1])} →</button>`:''}</div>`;
+      if(['speak','write'].includes(activeStep))return `<div class="lesson-step-footer"><button class="secondary-btn" data-lesson-step="check">← Vers le test de leçon</button><button class="secondary-btn" data-lesson-step="${activeStep==='speak'?'write':'speak'}">${esc(activeStep==='speak'?L.write:L.speak)} →</button></div>`;
+      if(activeStep==='comprehension')return '<div class="lesson-step-footer"><button class="secondary-btn" id="previousLessonStep">← Retour</button></div>';
+      if(activeStep==='grammar')return `<div class="lesson-step-footer">${grammarIndex?`<button class="secondary-btn" id="previousGrammarTopic">← Retour</button>`:'<button class="secondary-btn" id="previousLessonStep">← Retour</button>'}${grammarIndex<grammarPages.length-1?`<button class="primary-btn" id="nextGrammarTopic">Suite : ${esc(grammarPages[grammarIndex+1].title)} →</button>`:next?`<button class="primary-btn" id="nextLessonStep">Suite : ${esc(next[1])} →</button>`:''}</div>`;
+      return `<div class="lesson-step-footer">${i?'<button class="secondary-btn" id="previousLessonStep">← Retour</button>':''}${next?`<button class="primary-btn" id="nextLessonStep">Suite : ${esc(next[1])} →</button>`:''}</div>`;
     }
     function wireStepFooter(){
       document.getElementById('backLearn').onclick=opts.renderLearn;wireStepNav();refreshNextAction();
@@ -179,16 +179,16 @@
       if(masteryBest()>=80&&!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);
       opts.save(completed);
     }
-    function statuses(){const rows=[[lesson1?'Hör-/Satzübung':L.quiz,passed()],[L.speak,p.speakingDone===true],[L.write,p.writingDone===true]];if(hasMastery)rows.push([lesson1?'Lektions-Check':'Abschlusstest',masteryPassed()]);return `<div class="lesson-part-status" aria-label="${esc(L.apply)}">${rows.map(([label,done])=>`<span class="pill ${done?'green':'gray'}">${done?'✓':'○'} ${esc(label)}</span>`).join('')}</div>`;}
+    function statuses(){const rows=[[lesson1?'Écoute et phrases':L.quiz,passed()],[L.speak,p.speakingDone===true],[L.write,p.writingDone===true]];if(hasMastery)rows.push([lesson1?'Test de leçon':'Test final',masteryPassed()]);return `<div class="lesson-part-status" aria-label="${esc(L.apply)}">${rows.map(([label,done])=>`<span class="pill ${done?'green':'gray'}">${done?'✓':'○'} ${esc(label)}</span>`).join('')}</div>`;}
     function audioTargets(){return [...new Set((l.phrases||[]).map(x=>x?.[0]).filter(Boolean))];}
     function heardCount(){const heard=new Set(p.heardPhrases);return audioTargets().filter(x=>heard.has(x)).length;}
     function taskPrompt(text,kind){
       let html=esc(text);
       if(lesson1){
-        const highlights=kind==='speak'?['Stelle dich in drei Sätzen vor','Fragen nach Name und Wohnort']:['Name, Wohnort und eine Sprache','drei einfachen Sätzen'];
+        const highlights=kind==='speak'?['Présente-toi en trois phrases','Demande le nom et le lieu d’habitation']:['nom, lieu d’habitation et une langue','trois phrases simples'];
         for(const part of highlights)html=html.replace(esc(part),`<strong>${esc(part)}</strong>`);
       }
-      return `<span class="lesson-task-label">Aufgabe:</span> ${html}`;
+      return `<span class="lesson-task-label">Consigne :</span> ${html}`;
     }
     function dialogueHelp(){
       const raw=String(opts.dialogueHtml||'');
@@ -224,7 +224,7 @@
       document.getElementById('lessonCompletion').textContent=complete()?L.complete:optionalTitle;
       document.getElementById('continueWriting').hidden=true;
       const oralGood=document.getElementById('oralGood');
-      if(p.speakingDone)oralGood.textContent='Weiter zur Schreibaufgabe →';
+      if(p.speakingDone)oralGood.textContent='Passer à la tâche écrite →';
       for(const [id,done] of [['oralStatus',p.speakingDone],['writingStatus',p.writingDone]]){
         const e=document.getElementById(id);e.textContent=done===true?'✓ '+L.done:L.open;e.className='pill '+(done===true?'green':'gray');
       }
@@ -236,15 +236,15 @@
       window.A1Voice?.cancel();
       if(p.heardPhrases.some(v=>typeof v!=='string')){p.heardPhrases=p.heardPhrases.filter(v=>typeof v==='string');save();}
       const heardSet=new Set(p.heardPhrases);
-      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} gehört</small></div><div class="lesson-audio-rows" id="lessonAudioRows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="primary-btn lesson-audio-switch" id="switchAudioPage" aria-controls="lessonAudioRows"></button></div>`:''}</section>`;
+      const corePhrases=`<section class="lesson-core-phrases"><div class="between"><h3>${esc(L.audioExamples)}</h3><small class="lesson-audio-page">${heardCount()} / ${l.phrases.length} écoutés</small></div><div class="lesson-audio-rows" id="lessonAudioRows">${l.phrases.map(([target,native],i)=>{return `<div class="phrase-row lesson-core-phrase ${heardSet.has(target)?'is-heard':''}" data-core-row="${i}"><div><strong>${esc(target)}</strong><small>${esc(native)}</small></div>${opts.speakBtn(target).replace('<button ',`<button data-core-phrase-index="${i}" `)}</div>`;}).join('')}</div>${audioPageCount>1?`<div class="lesson-audio-pager"><button type="button" class="primary-btn lesson-audio-switch" id="switchAudioPage" aria-controls="lessonAudioRows"></button></div>`:''}</section>`;
       let body='';
       if(activeStep==='listen')body=`${opts.goalsHtml||opts.introHtml||''}<section class="card lesson-step-content">${corePhrases}${window.A1LessonFoundations?.render('en',l.id)||''}${pronunciation}${window.A1LessonFoundations?.preparationHtml('en',l.id,'listen')||''}${vocabCheckHtml()}${window.A1LessonFoundations?.vocabularyHtml('en',l.id,l.phrases)||''}</section>`;
-      if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Fortschritt der Vertiefung">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · erledigt':''}${i===grammarIndex?' · aktuell':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thema ${grammarIndex+1} von ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${window.A1LessonFoundations?.enhance('en',l.id,grammarPages[grammarIndex].title,grammarPages[grammarIndex].html,grammarIndex)||grammarPages[grammarIndex].html}</div></section>`;
-      if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Abschluss-Test</h3><p class="muted">12 gemischte Fragen aus être, habiter/parler, venir und s’appeler.</p>${EN_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Bestwert: ${EN_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${EN_A1_LESSON1.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${EN_A1_LESSON1.grammarCheckTried(state)?'Abschluss-Test wiederholen':'12 Fragen starten'}</button></section>`;
-      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryPassed()?'is-completed':checkReady()?'en-action-current':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryPassed()?'Lektions-Check bestanden · wiederholen':masteryAttempted()?'Lektions-Check erneut üben':'Lektions-Check starten'}</button>${!checkReady()?`<p class="muted">Bearbeite zuerst die Lektionsübungen und das Hörverstehen, um den Lektionscheck zu starten.</p>`:''}${complete()?`<div class="spacer"></div><button class="primary-btn lesson-next-ready" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)} →</button>`:''}</section>`;
+      if(activeStep==='grammar')body=`<section class="card lesson-step-content"><div class="lesson-grammar-position"><nav class="lesson-grammar-progress" aria-label="Progression de l’approfondissement">${grammarPages.map((page,i)=>`<button type="button" class="lesson-grammar-segment ${i===grammarIndex?'active':''} ${grammarTopicDone(i)?'done':''}" data-grammar-progress="${i}" aria-controls="lessonGrammarPage" aria-label="${esc(page.title)}${grammarTopicDone(i)?' · terminé':''}${i===grammarIndex?' · en cours':''}" ${i===grammarIndex?'aria-current="step"':''}><span class="lesson-topic-number" aria-hidden="true">${grammarTopicDone(i)?'✓':''}</span></button>`).join('')}</nav><small aria-label="Thème ${grammarIndex+1} sur ${grammarPages.length}">${grammarIndex+1} / ${grammarPages.length}</small></div><div id="lessonGrammarPage">${window.A1LessonFoundations?.enhance('en',l.id,grammarPages[grammarIndex].title,grammarPages[grammarIndex].html,grammarIndex)||grammarPages[grammarIndex].html}</div></section>`;
+      if(activeStep==='grammar-check')body=`<section class="card lesson-step-content"><h3>Test final</h3><p class="muted">12 questions mélangées.</p>${EN_A1_LESSON1.grammarCheckTried(state)?`<p class="muted">Meilleur score : ${EN_A1_LESSON1.grammarCheckBest(state)} %</p>`:''}<button class="primary-btn exercise-start-btn ${EN_A1_LESSON1.grammarCheckTried(state)?'is-completed':''}" id="startGrammarCheck">${EN_A1_LESSON1.grammarCheckTried(state)?'Refaire le test final':'Commencer les 12 questions'}</button></section>`;
+      if(activeStep==='check')body=`<section class="card lesson-step-content">${opts.masteryHtml||''}<button class="primary-btn lesson-finale-btn ${masteryPassed()?'is-completed':checkReady()?'en-action-current':''}" id="startMasteryOverview" ${!checkReady()?'disabled':''}>${masteryPassed()?'Test de leçon réussi · recommencer':masteryAttempted()?'Refaire le test de leçon':'Commencer le test de leçon'}</button>${!checkReady()?`<p class="muted">Fais d’abord les exercices de la leçon et la compréhension orale pour commencer le test de leçon.</p>`:''}${complete()?`<div class="spacer"></div><button class="primary-btn lesson-next-ready" id="nextLessonFromCheck">${esc(l.id<opts.lessonCount?L.next:L.all)} →</button>`:''}</section>`;
       if(activeStep==='comprehension')body=`${window.A1LessonFoundations?.preparationHtml('en',l.id,'comprehension')||''}<div id="lessonComprehension"></div>`;
       view.innerHTML=`${stepHead()}${body}${stepFooter()}`;
-      if(activeStep==='check'){const panel=document.createElement('div');panel.className='en-practice-links';panel.innerHTML='<button class="secondary-btn" data-lesson-step="speak">Sprechen üben</button><button class="secondary-btn" data-lesson-step="write">Schreiben üben</button>';renderExtras();const footer=view.querySelector(':scope > .lesson-step-footer');if(footer)view.append(footer);view.append(panel);}
+      if(activeStep==='check'){const panel=document.createElement('div');panel.className='en-practice-links';panel.innerHTML='<button class="secondary-btn" data-lesson-step="speak">S’entraîner à l’oral</button><button class="secondary-btn" data-lesson-step="write">S’entraîner à l’écrit</button>';renderExtras();const footer=view.querySelector(':scope > .lesson-step-footer');if(footer)view.append(footer);view.append(panel);}
       wireStepFooter();
       if(activeStep==='listen'){
         const updateAudioPage=()=>{
@@ -253,7 +253,7 @@
           if(button){
             const returning=audioPage===audioPageCount-1;
             const destination=returning?0:audioPage+1;
-            const label=opts.uiLang==='en'?`Audio examples · page ${destination+1}`:`Hörbeispiele · Seite ${destination+1}`;
+            const label=opts.uiLang==='en'?`Audio examples · page ${destination+1}`:`Exemples audio · page ${destination+1}`;
             button.textContent=returning?`← ${label}`:`${label} →`;
           }
         };
@@ -291,7 +291,7 @@
       opts.wireSpeakButtons();window.A1Pronunciation?.wire(view);
       view.querySelectorAll('[data-core-phrase-index]').forEach(btn=>btn.addEventListener('click',()=>{
         const i=Number(btn.dataset.corePhraseIndex),phraseKey=l.phrases[i]?.[0];if(!phraseKey)return;
-        if(!p.heardPhrases.includes(phraseKey)){p.heardPhrases.push(phraseKey);save();refreshSteps();const counter=view.querySelector('.lesson-audio-page');if(counter)counter.textContent=`${heardCount()} / ${l.phrases.length} gehört`;}
+        if(!p.heardPhrases.includes(phraseKey)){p.heardPhrases.push(phraseKey);save();refreshSteps();const counter=view.querySelector('.lesson-audio-page');if(counter)counter.textContent=`${heardCount()} / ${l.phrases.length} écoutés`;}
         view.querySelector(`.lesson-core-phrase[data-core-row="${i}"]`)?.classList.add('is-heard');
       }));
       window.scrollTo({top:0,behavior:'instant'});
@@ -300,7 +300,7 @@
       remember('exercise');
       window.A1BugReports?.setContext({lessonId:l.id,step:'listen-exercise',grammarIndex:activeStep==='grammar'?grammarIndex:null});
       window.A1Voice?.cancel();
-      A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Weiter zur Vertiefung',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.EN_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
+      A1ExerciseEngine.run({answerAudioAfterResponse:true,lesson:l,view,exercises:A1ExerciseEngine.makeAuthored(l),progress:p,finishLabel:'Passer à l’approfondissement',selectionOnly:true,exerciseVersion:97,saveProgress:()=>{window.EN_A1_REVIEW?.captureSession(state,l.id,p.session);save();},targetLang:opts.targetLang,uiLang:opts.uiLang,playAudio:t=>opts.speak(t,true),playFeedbackAudio:opts.playFeedbackAudio,onBack:()=>goStep('listen'),onFinish:(score,total)=>{
         const pct=total?Math.round(score/total*100):0;
         state.lessonQuizBest[l.id]=Math.max(best(),pct);p.quizDone=true;p.quizLast=pct;
         save(true);goStep('listen');
@@ -317,9 +317,9 @@
       const formHtml=miniForm?`<div class="lesson-mini-form">${formFields.map(([key,label,type])=>`<label for="lessonField-${key}">${label}<input class="text-input" id="lessonField-${key}" data-writing-field="${key}" type="${type}" ${key==='age'?'inputmode="numeric"':''} maxlength="160" value="${esc(p.writingFields?.[key]||'')}" autocomplete="off"></label>`).join('')}</div>`:'';
       const appHead=stepHead()+`<div id="lessonPartStatus" hidden>${statuses()}</div>`;
       view.innerHTML=`${appHead}
-        <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${taskPrompt(c.transfer.speaking,'speak')}</p>${opts.recorderHtml(recId)}${dialogueHelp()}<button class="soft-btn exercise-start-btn" id="showSpeakingModel">Laut beantwortet · Beispiel vergleichen</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><p class="muted">Prüfe mit dem Beispiel, ob deine Antwort die Aufgabe erfüllt.</p><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>✓ Geprüft · Sprechaufgabe abschließen</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
+        <section class="card lesson-flow" id="lessonSpeaking"><div class="between"><h3>🎤 ${esc(L.speak)}</h3><span id="oralStatus"></span></div><p class="lesson-task-prompt">${taskPrompt(c.transfer.speaking,'speak')}</p>${opts.recorderHtml(recId)}${dialogueHelp()}<button class="soft-btn exercise-start-btn" id="showSpeakingModel">J’ai répondu à voix haute · comparer avec l’exemple</button><div id="speakingModel" ${p.speakingDone?'':'hidden'}><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(model).replace(/\n/g,'<br>')}</p></div><button class="soft-btn" data-speak="${encodeURIComponent(model)}">🔊 ${esc(L.listen)}</button><p class="muted">Vérifie avec l’exemple si ta réponse respecte la consigne.</p><div class="button-row"><button class="secondary-btn" id="oralAgain">${esc(L.again)}</button><button class="primary-btn" id="oralGood" ${p.speakingDone?'':'disabled'}>✓ Vérifié · terminer la tâche orale</button></div><div id="oralFeedback" role="status"></div></div><button class="secondary-btn" id="continueWriting" hidden>${esc(L.writeNext)}</button></section>
         <section class="card lesson-flow" id="lessonWritingSection"><div class="between"><h3>✍️ ${esc(L.write)}</h3><span id="writingStatus"></span></div><label class="lesson-task-prompt" for="${miniForm?'lessonField-name':'lessonWriting'}">${taskPrompt(c.transfer.writing,'write')}</label>${false?`<p class="muted">${esc(L.dictateTip)}</p><button class="soft-btn" data-pron-spell="${esc(writingModel.toUpperCase())}" data-pron-lang="en">🔊 ${esc(L.dictate)}</button>`:''}${Array.isArray(opts.writingHints)&&opts.writingHints.length?`<button class="soft-btn lesson-help-toggle" id="writingHelpBtn" aria-expanded="false" aria-controls="writingHelp">💡 ${esc(L.writeHelp)}</button><div class="lesson-writing-help lesson-help-content" id="writingHelp" hidden><p class="muted">${esc(opts.writingHelpText||L.writeHelpText)}</p>${opts.writingHints.map(h=>{const target=Array.isArray(h)?h[0]:h,native=Array.isArray(h)?h[1]:'';return `<div class="phrase-row"><div><strong>${esc(target)}</strong>${native?`<small>${esc(native)}</small>`:''}</div></div>`;}).join('')}</div>`:''}${formHtml}<textarea ${miniForm?'hidden':''} class="text-area lesson-writing" id="lessonWriting" placeholder="${esc(opts.placeholder||L.placeholder)}">${esc(p.writingDraft||'')}</textarea>${A1ExerciseEngine.charBar(opts.targetLang,opts.uiLang)}<p class="muted" id="writingCount"></p><button class="soft-btn" id="showWritingModel">${esc(L.compare)}</button><div id="writingModel" role="status"></div></section>
-        <section class="card lesson-flow-finish"><div id="lessonCompletion" class="lesson-completion" role="status"></div>${hasMastery?`<button class="primary-btn" id="startMasteryFromApplication" ${lesson1?'':'disabled'}>🏁 ${lesson1?'Lektions-Check':'Abschlusstest starten'} · ${opts.masteryCount||''} Fragen</button><div class="spacer"></div>`:''}<div class="button-row"><button class="secondary-btn" id="repeatQuiz">${esc(lesson1?'10 Hör-/Satzübungen wiederholen':L.quizAgain)}</button><button class="primary-btn" id="nextLesson" disabled>${esc(l.id<opts.lessonCount?L.next:L.all)}</button></div></section>`;
+        <section class="card lesson-flow-finish"><div id="lessonCompletion" class="lesson-completion" role="status"></div>${hasMastery?`<button class="primary-btn" id="startMasteryFromApplication" ${lesson1?'':'disabled'}>🏁 ${lesson1?'Test de leçon':'Commencer le test final'} · ${opts.masteryCount||''} questions</button><div class="spacer"></div>`:''}<div class="button-row"><button class="secondary-btn" id="repeatQuiz">${esc(lesson1?'Refaire les 10 exercices d’écoute':L.quizAgain)}</button><button class="primary-btn" id="nextLesson" disabled>${esc(l.id<opts.lessonCount?L.next:L.all)}</button></div></section>`;
       document.getElementById('lessonSpeaking').hidden=activeStep!=='speak';
       document.getElementById('lessonWritingSection').hidden=activeStep!=='write';
       view.querySelector('.lesson-flow-finish').hidden=true;
@@ -352,11 +352,11 @@
       A1ExerciseEngine.wireChars(input,opts.targetLang,document.getElementById('lessonWritingSection'));
       document.getElementById('showWritingModel').onclick=()=>{
         const text=input.value.trim();
-        if(miniForm&&fields.some(f=>!f.value.trim())){writing.innerHTML='<p class="feedback bad">Fülle bitte alle Felder aus.</p>';return;}
+        if(miniForm&&fields.some(f=>!f.value.trim())){writing.innerHTML='<p class="feedback bad">Remplis tous les champs, s’il te plaît.</p>';return;}
         if(!miniForm&&A1Learning.countWords(text)<minWords){writing.innerHTML=`<p class="feedback bad">${esc(L.short)} (${minWords})</p>`;return;}
         input.readOnly=true;lockFields(true);const bar=document.getElementById('lessonWritingSection').querySelector('.mixed-char-wrap');if(bar)bar.hidden=true;
         comparedText=text;p.writingDraft=input.value.slice(0,12000);save();
-        writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p data-i18n-ignore>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Prüfe, ob du alle Punkte bearbeitet und deine Antwort mit dem Beispiel verglichen hast.</p><button class="secondary-btn" id="editWriting">Antwort bearbeiten</button><button class="primary-btn" id="writingGood">✓ Geprüft · Schreibaufgabe abschließen</button><div id="writingSelfFeedback"></div>`;
+        writing.innerHTML=`<div class="solution"><strong>${esc(L.answer)}:</strong><p data-i18n-ignore>${esc(text).replace(/\n/g,'<br>')}</p></div><div class="solution"><strong>${esc(opts.fullModel?L.example:L.blocks)}:</strong><p>${esc(writingModel).replace(/\n/g,'<br>')}</p></div><p class="muted">Vérifie que tu as traité tous les points et comparé ta réponse avec l’exemple.</p><button class="secondary-btn" id="editWriting">Modifier la réponse</button><button class="primary-btn" id="writingGood">✓ Vérifié · terminer la tâche écrite</button><div id="writingSelfFeedback"></div>`;
         document.getElementById('editWriting').onclick=()=>{input.readOnly=false;lockFields(false);const bar=document.getElementById('lessonWritingSection').querySelector('.mixed-char-wrap');if(bar)bar.hidden=miniForm;writing.replaceChildren();comparedText=null;(miniForm?fields[0]:input).focus();};
         const btn=document.getElementById('writingGood');
         btn.onclick=()=>{if(comparedText!==input.value.trim())return;p.writingDone=true;p.writingAnswer=text.slice(0,12000);save(true);document.getElementById('writingSelfFeedback').textContent=L.saved;refresh();};

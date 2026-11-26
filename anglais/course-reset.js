@@ -1,12 +1,12 @@
-/* Course reset stays inside the English course profile menu. */
+/* Course reset stays inside the French-explained English course profile menu. */
 (() => {
   const words={
-    de:{button:'Kurs zurücksetzen',title:'Englisch A1 zurücksetzen?',detail:'Alle Lektionen, Übungen, Testergebnisse und Schreibentwürfe in diesem Kurs werden gelöscht. Dein Profil bleibt bestehen.',cloud:'Das gilt auch für deinen synchronisierten Kursstand.',cancel:'Abbrechen',confirm:'Zurücksetzen',busy:'Wird zurückgesetzt…',error:'Zurücksetzen fehlgeschlagen. Bitte versuche es erneut.'},
-    fr:{button:'Réinitialiser le cours',title:'Réinitialiser English A1 ?',detail:'Toutes les leçons, les exercices, les résultats et les brouillons de ce cours seront effacés. Ton profil sera conservé.',cloud:'La progression synchronisée sera aussi réinitialisée.',cancel:'Annuler',confirm:'Réinitialiser',busy:'Réinitialisation…',error:'Échec de la réinitialisation. Réessaie.'},
-    tr:{button:'Kursu sıfırla',title:'English A1 sıfırlansın mı?',detail:'Bu kurstaki tüm dersler, alıştırmalar, sonuçlar ve yazı taslakları silinecek. Profilin korunacak.',cloud:'Senkronize edilen kurs ilerlemesi de sıfırlanacak.',cancel:'Vazgeç',confirm:'Sıfırla',busy:'Sıfırlanıyor…',error:'Sıfırlama başarısız oldu. Tekrar dene.'}
+    de:{button:'Kurs zurücksetzen',title:'English A1 · Français zurücksetzen?',detail:'Alle Lektionen, Übungen, Testergebnisse und Schreibentwürfe in diesem Kurs werden gelöscht. Dein Profil bleibt bestehen.',cloud:'Das gilt auch für deinen synchronisierten Kursstand.',cancel:'Abbrechen',confirm:'Zurücksetzen',busy:'Wird zurückgesetzt…',error:'Zurücksetzen fehlgeschlagen. Bitte versuche es erneut.'},
+    fr:{button:'Réinitialiser le cours',title:'Réinitialiser English A1 · Français ?',detail:'Toutes les leçons, les exercices, les résultats et les brouillons de ce cours seront effacés. Ton profil sera conservé.',cloud:'La progression synchronisée sera aussi réinitialisée.',cancel:'Annuler',confirm:'Réinitialiser',busy:'Réinitialisation…',error:'Échec de la réinitialisation. Réessaie.'},
+    tr:{button:'Kursu sıfırla',title:'English A1 · Français sıfırlansın mı?',detail:'Bu kurstaki tüm dersler, alıştırmalar, sonuçlar ve yazı taslakları silinecek. Profilin korunacak.',cloud:'Senkronize edilen kurs ilerlemesi de sıfırlanacak.',cancel:'Vazgeç',confirm:'Sıfırla',busy:'Sıfırlanıyor…',error:'Sıfırlama başarısız oldu. Tekrar dene.'}
   };
   window.addEventListener('a1suite:profilemenu',event=>{
-    const {root,lang,close}=event.detail,W=words[lang]||words.de;
+    const {root,lang,close}=event.detail,W=words[lang]||words.fr;
     const actions=root.querySelector('.profile-menu-actions');if(!actions)return;
     const area=document.createElement('div');area.className='course-reset-area';actions.append(area);
     function showButton(){

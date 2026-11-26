@@ -1,298 +1,298 @@
 [
   [
     "England",
-    "England"
+    "Angleterre"
   ],
   [
     "isn't",
-    "ist nicht (is not)"
+    "n’est pas (is not)"
   ],
   [
     "aren't",
-    "bist nicht / seid nicht / sind nicht (are not)"
+    "n’es pas / n’êtes pas / ne sommes pas / ne sont pas (are not)"
   ],
   [
     "a",
-    "ein / eine (vor einem Konsonantenlaut)"
+    "un / une (devant un son de consonne)"
   ],
   [
     "an",
-    "ein / eine (vor einem Vokallaut)"
+    "un / une (devant un son de voyelle)"
   ],
   [
     "fourteen",
-    "vierzehn"
+    "quatorze"
   ],
   [
     "fifteen",
-    "fünfzehn"
+    "quinze"
   ],
   [
     "woman",
-    "Frau"
+    "femme"
   ],
   [
     "man",
-    "Mann"
+    "homme"
   ],
   [
     "it",
-    "es"
+    "il / elle (chose, animal)"
   ],
   [
     "my",
-    "mein / meine"
+    "mon / ma / mes"
   ],
   [
     "me",
-    "mich / mir"
+    "me / moi"
   ],
   [
     "us",
-    "uns"
+    "nous (complément)"
   ],
   [
     "them",
-    "sie / ihnen (Objektform)"
+    "les / leur / eux (complément)"
   ],
   [
     "him",
-    "ihn / ihm"
+    "le / lui (complément)"
   ],
   [
     "yours",
-    "deiner / deine / deines (ohne folgendes Nomen)"
+    "le tien / la tienne / le vôtre (sans nom après)"
   ],
   [
     "ours",
-    "unserer / unsere / unseres (ohne folgendes Nomen)"
+    "le nôtre / la nôtre / les nôtres (sans nom après)"
   ],
   [
     "French",
-    "Französisch / französisch"
+    "français"
   ],
   [
     "to",
-    "zu / nach (Ziel); vor der Grundform eines Verbs"
+    "à / vers (destination) ; devant la forme de base d’un verbe"
   ],
   [
     "course",
-    "Kurs"
+    "cours"
   ],
   [
     "past",
-    "nach (bei Uhrzeiten)"
+    "après (pour l’heure : et …)"
   ],
   [
     "for",
-    "für"
+    "pour"
   ],
   [
     "cannot",
-    "kann nicht / darf nicht"
+    "ne peut pas / ne sait pas / n’a pas le droit"
   ],
   [
     "of",
-    "von; verbindet Mengenangabe und Inhalt"
+    "de ; relie une quantité et son contenu"
   ],
   [
     "would",
-    "würde; in höflichen Wünschen"
+    "conditionnel ; dans les souhaits polis"
   ],
   [
     "wouldn't",
-    "würde nicht (would not)"
+    "ne … pas au conditionnel (would not)"
   ],
   [
     "much",
-    "viel (nicht zählbar)"
+    "beaucoup (indénombrable)"
   ],
   [
     "many",
-    "viele (zählbare Mehrzahl)"
+    "beaucoup de (pluriel dénombrable)"
   ],
   [
     "also",
-    "auch / außerdem"
+    "aussi / en plus"
   ],
   [
     "or",
-    "oder"
+    "ou"
   ],
   [
     "more",
-    "mehr / -er (Vergleich)"
+    "plus (comparaison)"
   ],
   [
     "too",
-    "zu (z. B. too big = zu groß)"
+    "trop (par ex. too big = trop grand)"
   ],
   [
     "large",
-    "groß"
+    "grand"
   ],
   [
     "then",
-    "dann / danach"
+    "puis / ensuite"
   ],
   [
     "as",
-    "wie / als"
+    "comme"
   ],
   [
     "very",
-    "sehr"
+    "très"
   ],
   [
     "leave",
-    "abfahren / verlassen"
+    "partir / quitter"
   ],
   [
     "which",
-    "welcher / welche / welches"
+    "quel / quelle / lequel"
   ],
   [
     "get on",
-    "einsteigen"
+    "monter (dans un véhicule)"
   ],
   [
     "get off",
-    "aussteigen"
+    "descendre (d’un véhicule)"
   ],
   [
     "get",
-    "bekommen"
+    "obtenir / recevoir"
   ],
   [
     "let us",
-    "lass uns"
+    "allons… / faisons… (proposition)"
   ],
   [
     "only",
-    "nur"
+    "seulement"
   ],
   [
     "question",
-    "Frage"
+    "question"
   ],
   [
     "sky",
-    "Himmel"
+    "ciel"
   ],
   [
     "young",
-    "jung"
+    "jeune"
   ],
   [
     "have got",
-    "haben (besonders britisches Englisch)"
+    "avoir (surtout en anglais britannique)"
   ],
   [
     "hasn't",
-    "hat nicht (has not)"
+    "n’a pas (has not)"
   ],
   [
     "haven't",
-    "habe nicht / haben nicht (have not)"
+    "n’ai pas / n’avons pas / n’ont pas (have not)"
   ],
   [
     "last",
-    "letzter / letzte / letztes"
+    "dernier / dernière"
   ],
   [
     "see",
-    "sehen"
+    "voir"
   ],
   [
     "call",
-    "anrufen"
+    "appeler (au téléphone)"
   ],
   [
     "sound",
-    "klingen"
+    "sembler / avoir l’air"
   ],
   [
     "confirm",
-    "bestätigen"
+    "confirmer"
   ],
   [
     "price",
-    "Preis"
+    "prix"
   ],
   [
     "travel",
-    "reisen"
+    "voyager"
   ],
   [
     "card",
-    "Karte; beim Bezahlen: Bankkarte"
+    "carte ; pour payer : carte bancaire"
   ],
   [
     "book a room",
-    "ein Zimmer buchen"
+    "réserver une chambre"
   ],
   [
     "by",
-    "mit (Verkehrsmittel oder Zahlungsart)"
+    "en / par (moyen de transport ou de paiement)"
   ],
   [
     "straight",
-    "gerade / geradeaus"
+    "droit / tout droit"
   ],
   [
     "hi",
-    "hallo (informell)"
+    "salut"
   ],
   [
     "quiet",
-    "leise / ruhig"
+    "silencieux / calme"
   ],
   [
     "show",
-    "zeigen"
+    "montrer"
   ],
   [
     "on time",
-    "pünktlich"
+    "à l’heure"
   ],
   [
     "at work",
-    "bei der Arbeit"
+    "au travail"
   ],
   [
     "in the evening",
-    "am Abend"
+    "le soir"
   ],
   [
     "phone number",
-    "Telefonnummer"
+    "numéro de téléphone"
   ],
   [
     "by card",
-    "mit Karte"
+    "par carte"
   ],
   [
     "in cash",
-    "bar / mit Bargeld"
+    "en espèces"
   ],
   [
     "see you",
-    "bis dann"
+    "à plus tard"
   ],
   [
     "three times",
-    "dreimal"
+    "trois fois"
   ],
   [
     "not fine",
-    "nicht gut (Befinden)"
+    "pas bien (pour dire comment on va)"
   ],
   [
     "a.m.",
-    "vor Mittag (00:00 bis vor 12:00 Uhr)"
+    "du matin (de 0 h à avant 12 h)"
   ],
   [
     "p.m.",
-    "ab Mittag (12:00 bis vor 24:00 Uhr)"
+    "de l’après-midi / du soir (de 12 h à avant 24 h)"
   ]
 ]

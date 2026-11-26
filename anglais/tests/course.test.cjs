@@ -81,7 +81,7 @@ test('grammar errors are saved against the actual topic and only grammar enters 
 test('English listening uses English voices and explicit genders, with stop and replay',()=>{
   const f=fixture(),{w,view}=f;w.EN_A1_APP.renderLesson(1,{step:'comprehension'});view.querySelector('#dialoguePlay').click();
   assert.equal(f.spoken.at(-1).lang,'en-GB');assert.equal(f.spoken.at(-1).voice.name,'English Female');
-  view.querySelector('#dialoguePlay').click();assert(view.querySelector('#dialoguePlay').textContent.includes('anhören'));
+  view.querySelector('#dialoguePlay').click();assert(view.querySelector('#dialoguePlay').textContent.includes('Écouter'));
   w.EN_A1_APP.renderLesson(2,{step:'comprehension'});view.querySelector('#dialoguePlay').click();assert.equal(f.spoken.at(-1).voice.name,'English Male');
   assert(!view.querySelector('.comprehension-transcript').open);
   f.close();
@@ -109,7 +109,7 @@ test('writing can be saved, locked, edited and resumed without an English specia
 });
 test('vocabulary directions, lesson decks and course progress stay English-specific',()=>{
   const f=fixture(),{w,view}=f;w.EN_A1_APP.setRoute('practice');assert(view.textContent.includes('ENGLISH'));assert(view.querySelector('#vtDirection').textContent.includes('EN → DE'));
-  const bank=w.A1Vocabulary.buildBank({course:'en',lessons:w.EN_A1_DATA.lessons});assert(bank.length>400);assert(bank.every(e=>e.target&&e.meaning));assert(bank.some(e=>e.target==='would like'&&e.meaning.includes('möchte')));
+  const bank=w.A1Vocabulary.buildBank({course:'en',lessons:w.EN_A1_DATA.lessons});assert(bank.length>400);assert(bank.every(e=>e.target&&e.meaning));assert(bank.some(e=>e.target==='would like'&&e.meaning.includes('voudrais')));
   const select=view.querySelector('#vtLesson');select.value='4';select.dispatchEvent(new w.Event('change'));assert(view.querySelectorAll('.vt-entry').length>=20);
   view.querySelector('#vtStart').click();view.querySelector('#vtReveal').click();view.querySelector('#vtAgain').click();assert(w.EN_A1_APP.state.vocabularyTrainer.lessonItems[4]);
   assert(!w.localStorage.getItem('francaisA1DelfState_v1::profile:test'));
@@ -181,8 +181,8 @@ function finishGrammar(f,id,key,correct=10){
 test('home highlights Continue and the tree only explains growth',()=>{
   const f=fixture(),{view}=f,button=view.querySelector('#continueLesson');
   assert(button.classList.contains('home-continue-btn'));assert(button.classList.contains('en-action-current'));assert(!button.classList.contains('continue-btn'));
-  const tree=view.querySelector('.en-course-summary');assert(tree.textContent.includes('Mit jeder bestandenen Lektion wächst dein Baum.'));assert.equal(tree.querySelectorAll('button').length,0);
-  assert(!tree.textContent.includes('deutsche Erklärungen'));assert(view.textContent.includes('So lernst du'));
+  const tree=view.querySelector('.en-course-summary');assert(tree.textContent.includes('Ton arbre grandit à chaque leçon réussie.'));assert.equal(tree.querySelectorAll('button').length,0);
+  assert(!tree.textContent.includes('explications en français'));assert(view.textContent.includes('Comment tu apprends'));
   f.close();
 });
 test('passing the vocabulary check leaves a distinct result and focuses the glowing next step',()=>{
@@ -190,7 +190,7 @@ test('passing the vocabulary check leaves a distinct result and focuses the glow
   assert.equal(view.querySelector('#startQuiz').dataset.actionState,'new');assert(view.querySelector('#startQuiz.en-action-current'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
   view.querySelector('#startQuiz').click();for(let i=0;i<10;i++)chooseCorrect(f);
   const result=view.querySelector('#startQuiz'),next=view.querySelector('#nextLessonStep');
-  assert.equal(result.dataset.actionState,'passed');assert(result.textContent.includes('Vokabel-Check bestanden'));assert(result.textContent.includes('100 %'));assert(result.classList.contains('is-completed'));assert(!result.classList.contains('en-action-current'));
+  assert.equal(result.dataset.actionState,'passed');assert(result.textContent.includes('Test de vocabulaire réussi'));assert(result.textContent.includes('100 %'));assert(result.classList.contains('is-completed'));assert(!result.classList.contains('en-action-current'));
   assert(next.classList.contains('lesson-next-ready'));assert.equal(w.document.activeElement,next);next.click();
   assert(view.querySelector('[data-grammar-start].en-action-current'));assert(!view.querySelector('#nextGrammarTopic.lesson-next-ready'));
   f.close();
@@ -198,15 +198,15 @@ test('passing the vocabulary check leaves a distinct result and focuses the glow
 test('an unsuccessful vocabulary attempt is a retry, not a passed check or a highlighted next step',()=>{
   const f=fixture(),{w,view}=f;w.EN_A1_APP.renderLesson(1,{step:'listen'});view.querySelector('#startQuiz').click();
   for(let i=0;i<10;i++){const s=w.EN_A1_APP.state.lessonWork[1].session,q=s.ex[s.i];view.querySelector(`[data-o="${(q.a+1)%q.o.length}"]`).click();view.querySelector('#mixedNext').click();}
-  const button=view.querySelector('#startQuiz');assert.equal(button.dataset.actionState,'retry');assert(!button.classList.contains('is-completed'));assert(button.classList.contains('en-action-current'));assert(button.textContent.includes('erneut üben'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
+  const button=view.querySelector('#startQuiz');assert.equal(button.dataset.actionState,'retry');assert(!button.classList.contains('is-completed'));assert(button.classList.contains('en-action-current'));assert(button.textContent.includes('Refaire'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
   assert.equal(w.A1LessonFlow.resumePosition(w.EN_A1_DATA.lessons[0],w.EN_A1_APP.state).step,'listen');
   f.close();
 });
 test('passed grammar topics offer direct next-topic and listening navigation; earlier bests survive a retry',()=>{
   const f=fixture(),{w,view}=f;w.EN_A1_APP.renderLesson(2,{step:'grammar',grammarIndex:0});view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t0');
-  let next=view.querySelector('#grammarNext');assert(next.classList.contains('lesson-next-ready'));assert(next.textContent.includes('Verneinen'));next.click();
+  let next=view.querySelector('#grammarNext');assert(next.classList.contains('lesson-next-ready'));assert(next.textContent.includes('Dire non'));next.click();
   assert(view.querySelector('.en-rule').textContent.includes('not'));assert(!view.querySelector('#nextLessonStep.lesson-next-ready'));
-  view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t1');next=view.querySelector('#grammarNext');assert(next.textContent.includes('Hörverstehen'));next.click();assert(view.querySelector('#dialoguePlay'));
+  view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t1');next=view.querySelector('#grammarNext');assert(next.textContent.includes('Compréhension orale'));next.click();assert(view.querySelector('#dialoguePlay'));
   w.EN_A1_APP.renderLesson(2,{step:'grammar',grammarIndex:0});assert(view.querySelector('[data-grammar-start].is-completed'));assert(view.querySelector('#nextGrammarTopic.lesson-next-ready'));
   view.querySelector('[data-grammar-start]').click();finishGrammar(f,2,'t0',0);assert.equal(w.EN_A1_APP.state.lessonWork[2].deepening.t0.best,100);assert(w.EN_A1_APP.state.lessonWork[2].deepening.t0.done);assert(view.querySelector('#grammarNext'));
   f.close();
@@ -216,17 +216,17 @@ test('word teaching is staged, audio is opt-in and the glossary appears only at 
  const f=fixture(),{w,view}=f;const start=f.spoken.length;
  for(const l of w.EN_A1_DATA.lessons){
   const p=w.EN_A1_VOCABULARY.plan[l.id];
-  w.EN_A1_APP.renderLesson(l.id,{step:'listen'});assert(!view.querySelector('#lessonVocabulary'));assert(!view.querySelector('.en-glossary').open);assert(view.querySelector('.en-glossary').textContent.includes('nicht vorab auswendig'));
+  w.EN_A1_APP.renderLesson(l.id,{step:'listen'});assert(!view.querySelector('#lessonVocabulary'));assert(!view.querySelector('.en-glossary').open);assert(view.querySelector('.en-glossary').textContent.includes('par cœur avant'));
   assert.equal(view.querySelectorAll('[data-vocabulary-stage="listen"] .phrase-row').length,p.stages.listen.length);
   for(let i=0;i<2;i++){w.EN_A1_APP.renderLesson(l.id,{step:'grammar',grammarIndex:i});assert.equal(view.querySelectorAll('[data-vocabulary-stage] .phrase-row').length,p.stages['grammar:'+i].length);}
   w.EN_A1_APP.renderLesson(l.id,{step:'comprehension'});assert(!view.querySelector('.en-glossary'));assert(!view.querySelector('[data-vocabulary-stage]'));
  }
- assert.equal(f.spoken.length,start);w.EN_A1_APP.renderLesson(3,{step:'listen'});assert(view.textContent.includes('Zahlen hören und unterscheiden'));const b=view.querySelector('.en-glossary [data-speak]');const text=decodeURIComponent(b.dataset.speak);b.click();assert.equal(f.spoken.at(-1).text,text);assert.equal(f.spoken.at(-1).lang,'en-GB');f.close();
+ assert.equal(f.spoken.length,start);w.EN_A1_APP.renderLesson(3,{step:'listen'});assert(view.textContent.includes('Écouter et distinguer les nombres'));const b=view.querySelector('.en-glossary [data-speak]');const text=decodeURIComponent(b.dataset.speak);b.click();assert.equal(f.spoken.at(-1).text,text);assert.equal(f.spoken.at(-1).lang,'en-GB');f.close();
 });
-test('expanded vocabulary keeps old saved card identities and supplies German meanings for contractions',()=>{
+test('expanded vocabulary keeps old saved card identities and supplies French meanings for contractions',()=>{
  const f=fixture(),{w}=f,bank=w.A1Vocabulary.buildBank({course:'en',lessons:w.EN_A1_DATA.lessons});
  for(const l of w.EN_A1_DATA.lessons)for(const [target,meaning]of l.vocabulary){const id=JSON.stringify(['word',target.replace(/[’‘]/g,"'"),meaning.replace(/[’‘]/g,"'")]);assert(bank.some(e=>e.id===id),id);}
- const cant=bank.find(e=>e.target==='can’t');assert(w.A1Vocabulary.displayPairs('en',cant)[0].meaning.includes('kann nicht'));assert(bank.some(e=>e.target==='quiet'&&e.lessons.includes(20)));f.close();
+ const cant=bank.find(e=>e.target==='can’t');assert(w.A1Vocabulary.displayPairs('en',cant)[0].meaning.includes('ne peut pas'));assert(bank.some(e=>e.target==='quiet'&&e.lessons.includes(20)));f.close();
 });
 test('equivalent full negatives are accepted in every typed lesson-check gap',()=>{
  const f=fixture(),{w}=f;let count=0;
@@ -250,7 +250,7 @@ test('the mixed final shows the German context required to disambiguate grammar 
 test('a completed English daily round returns to a visibly completed home card and remains repeatable',()=>{
  const f=fixture(),{w,view}=f,s=w.EN_A1_APP.state;s.doneLessons=[1];w.EN_A1_APP.setRoute('home');assert(view.querySelector('.daily-review-card.is-due'));view.querySelector('#homeReview').click();view.querySelector('#reviewStart').click();
  while(s.reviewPractice.session){const session=s.reviewPractice.session,q=session.tasks[session.index];view.querySelector(`[data-review-option="${session.order.indexOf(q.answer)}"]`).click();view.querySelector('#reviewCheck').click();view.querySelector('#reviewNext').click();}
- assert.equal(s.reviewPractice.daily.rounds,1);w.EN_A1_APP.setRoute('home');assert(view.querySelector('.daily-review-card.is-complete'));assert(view.querySelector('.daily-review-completed').textContent.includes('Eine Runde abgeschlossen'));assert.equal(view.querySelector('#homeReview').textContent,'Weitere Runde üben');f.close();
+ assert.equal(s.reviewPractice.daily.rounds,1);w.EN_A1_APP.setRoute('home');assert(view.querySelector('.daily-review-card.is-complete'));assert(view.querySelector('.daily-review-completed').textContent.includes('Une série terminée'));assert.equal(view.querySelector('#homeReview').textContent,'Continuer à réviser');f.close();
 });
 test('extra listening and final listening keep both speaker roles rather than flattening their audio',()=>{
  const f=fixture(),{w,view}=f;let turns;w.A1Voice.speakDialogue=t=>{turns=t;return true;};w.EN_A1_APP.renderTraining();view.querySelector('[data-skill="listening"]').click();view.querySelector('#mixedListen').click();assert.equal(turns.length,2);assert.deepEqual([...new Set(turns.map(t=>t.gender))].sort(),['female','male']);w.EN_A1_APP.renderExam();view.querySelector('#finalMock').click();for(const q of w.EN_A1_APP.state.training.final.session.ex.filter(q=>q.type==='listening'))assert(q.turns.length>=2);f.close();
@@ -274,7 +274,7 @@ test('all grammar pages place supplementary words between translated examples an
   const table=view.querySelector('.en-rule-table');
   assert.equal(table.querySelectorAll('thead th[scope="col"]').length,3);
   assert.deepEqual([...table.querySelectorAll('tbody tr')].map(row=>[...row.children].map(cell=>cell.textContent)),[
-    ['ich bin','I am','I’m'],['du bist / ihr seid / Sie sind','you are','you’re'],['er ist','he is','he’s'],['sie ist','she is','she’s'],['es ist','it is','it’s'],['wir sind','we are','we’re'],['sie sind (Mehrzahl)','they are','they’re']
+    ['je suis','I am','I’m'],['tu es / vous êtes','you are','you’re'],['il est','he is','he’s'],['elle est','she is','she’s'],['il/elle est (chose, animal)','it is','it’s'],['nous sommes','we are','we’re'],['ils/elles sont','they are','they’re']
   ]);
   assert.equal(table.querySelectorAll('tbody th[scope="row"]').length,7);
   f.close();
@@ -288,9 +288,9 @@ test('all English audio example pages use one reversible button and retain every
   assert.equal(view.querySelectorAll('.lesson-audio-pager button').length,1);
   const rows=()=>[...view.querySelectorAll('[data-core-row]')].filter(r=>!r.hidden).map(r=>Number(r.dataset.coreRow));
   const first=rows(),button=view.querySelector('#switchAudioPage');
-  assert.equal(button.textContent,'Hörbeispiele · Seite 2 →');button.click();
+  assert.equal(button.textContent,'Exemples audio · page 2 →');button.click();
   const second=rows();assert.equal(new Set([...first,...second]).size,w.EN_A1_DATA.lessons[id-1].phrases.length);
-  assert.equal(button.textContent,'← Hörbeispiele · Seite 1');
+  assert.equal(button.textContent,'← Exemples audio · page 1');
   assert.equal(w.EN_A1_APP.state.lessonWork[id].resume.audioPage,1);
   button.click();assert.deepEqual(rows(),first);
  }

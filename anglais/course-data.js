@@ -7,19 +7,19 @@
   function rowTask(row,lessonId,topicIndex,index,rule){
     const [prompt,answer,b,c,meaning]=row;
     const audio=prompt.replace('___',answer);
-    return {type:'choice',kind:'form',q:'Ergänze: '+prompt,answer,o:[answer,b,c],a:0,context:meaning,meaning,accept:fullForms[answer]?[fullForms[answer]]:[],
+    return {type:'choice',kind:'form',q:'Complète : '+prompt,answer,o:[answer,b,c],a:0,context:meaning,meaning,accept:fullForms[answer]?[fullForms[answer]]:[],
       audio,answerLang:'en',family:`L${lessonId}-t${topicIndex}`,checkKey:`en-${lessonId}-${topicIndex}-${index}`,
       explanation:`${audio} = ${meaning} ${window.EN_A1_FEEDBACK[lessonId][topicIndex]}`};
   }
   for(const l of lessons){
-    l.quiz=l.phraseRows.map(([target,meaning,b,c])=>({q:`Was bedeutet „${target}“?`,o:[meaning,b,c],a:0,audio:target,explanation:meaning}));
+    l.quiz=l.phraseRows.map(([target,meaning,b,c])=>({q:`Que veut dire « ${target} » ?`,o:[meaning,b,c],a:0,audio:target,explanation:meaning}));
     const check=l.contexts.map(([q,answer,b,c],i)=>({type:'choice',q,answer,o:[answer,b,c],audio:answer,explanation:answer,family:`L${l.id}-situation-${i}`}));
     l.topics.forEach((t,ti)=>{
       t.key='t'+ti;
       t.practice=t.rows.slice(0,10).map((r,i)=>rowTask(r,l.id,ti,i,t.rule));
       t.transfer=t.rows.slice(10).map((r,i)=>rowTask(r,l.id,ti,i+10,t.rule));
       // Half of the independent grammar transfer items require production.
-      check.push(...t.transfer.map((q,i)=>i%2?{...q,type:'gap',prompt:q.q.replace(/^Ergänze: /,''),o:undefined}:q));
+      check.push(...t.transfer.map((q,i)=>i%2?{...q,type:'gap',prompt:q.q.replace(/^Complète : /,''),o:undefined}:q));
     });
     specs[l.id]={goals:l.goals,checkTasks:check,tasks:l.topics.flatMap(t=>t.transfer),checkTransfers:[]};
     const gaps=[];

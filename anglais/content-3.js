@@ -1,370 +1,370 @@
 (() => {
   'use strict';
   const {add,topic}=window.EN_A1_AUTHORING;
-  add(13,'Essen & Einkaufen',
-    ['Lebensmittel und Mengen nennen','Zählbare und nicht zählbare Nomen unterscheiden','Some und any verwenden'],
-    'food=Essen;milk=Milch;rice=Reis;cheese=Käse;meat=Fleisch;fish=Fisch;vegetable=Gemüse (einzelne Sorte / Stück);potato=Kartoffel;egg=Ei;tomato=Tomate;banana=Banane;some=etwas / einige;any=etwas / welche (Fragen und Verneinungen);bottle=Flasche;glass=Glas;cup=Tasse;kilo=Kilo;litre=Liter;need=brauchen;buy=kaufen;shopping=Einkaufen',
-    `I need some milk.|Ich brauche etwas Milch.|Ich brauche etwas Reis.|Ich habe etwas Milch.
-Do you have any eggs?|Hast du Eier?|Hast du Milch?|Brauchst du Eier?
-We don't have any rice.|Wir haben keinen Reis.|Wir brauchen keinen Reis.|Wir haben etwas Reis.
-Two bottles of water, please.|Zwei Flaschen Wasser, bitte.|Zwei Gläser Wasser, bitte.|Eine Flasche Wasser, bitte.
-A kilo of potatoes.|Ein Kilo Kartoffeln.|Ein Kilo Tomaten.|Zwei Kilo Kartoffeln.
-I eat fish and vegetables.|Ich esse Fisch und Gemüse.|Ich esse Fleisch und Gemüse.|Ich kaufe Fisch und Gemüse.
-There is some cheese.|Es gibt etwas Käse.|Es gibt keinen Käse.|Es gibt etwas Fleisch.
-There are some tomatoes.|Es gibt einige Tomaten.|Es gibt einige Kartoffeln.|Es gibt keine Tomaten.
-A cup of tea.|Eine Tasse Tee.|Ein Glas Tee.|Eine Tasse Kaffee.
-I don't eat meat.|Ich esse kein Fleisch.|Ich esse keinen Fisch.|Ich kaufe kein Fleisch.`,
-    [topic('Zählbar oder nicht zählbar','Zählbare Nomen haben Einzahl und Mehrzahl: an egg, two eggs.\n\nMilk, water, rice und bread gelten in der üblichen Lebensmittelbedeutung als nicht zählbar: kein a milk oder two rices.\n\nZum Zählen brauchst du eine Einheit: a bottle of milk, two cups of tea.\n\nSome milk steht mit is, some eggs mit are.\n\nNo kann vor einem Nomen „kein/keine“ bedeuten: no rice = kein Reis.',
-      `an egg / two eggs|ein Ei / zwei Eier
-some rice|etwas Reis
-two bottles of water|zwei Flaschen Wasser`,
-      `I need two ___.|eggs|egg|an egg|Ich brauche zwei Eier.
-There ___ some milk.|is|are|am|Es gibt etwas Milch.
-There ___ some eggs.|are|is|am|Es gibt einige Eier.
-Two bottles ___ water.|of|for|at|Zwei Flaschen Wasser.
-A cup ___ tea.|of|on|in|Eine Tasse Tee.
-I need ___ apple.|an|a|the|Ich brauche einen Apfel.
-We need some ___.|rice|rices|a rice|Wir brauchen etwas Reis.
-Two ___ of milk.|litres|litre|milks|Zwei Liter Milch.
-I need ___ egg.|an|a|the|Ich brauche ein Ei.
-Three ___ of tea.|cups|cup|cup of tea|Drei Tassen Tee.
-There ___ some cheese.|is|are|am|Es gibt etwas Käse.
-There ___ some bananas.|are|is|am|Es gibt einige Bananen.
-Four glasses ___ water.|of|at|on|Vier Gläser Wasser.
-We buy two ___.|tomatoes|a tomato|tomato|Wir kaufen zwei Tomaten.
-I need a bottle ___ milk.|of|in|on|Ich brauche eine Flasche Milch.
-She eats some ___.|bread|breads|a bread|Sie isst etwas Brot.`),
-    topic('Some und any','In bejahten Aussagen steht meistens some. In neutralen Fragen und Verneinungen steht meistens any.\n\nDas gilt für nicht zählbare Nomen und Mehrzahl: some milk, any eggs. Nicht beide Wörter gleichzeitig.\n\nBei Angeboten und Bitten kann some auch in Fragen stehen; solche höflichen Muster lernst du in der nächsten Lektion.\n\nSome und any können je nach Erwartung beide in einer Frage vorkommen. Hier wählst du für ausdrücklich neutrale Fragen die übliche Form any; für „überhaupt keine“ ebenfalls any.',
-      `We have some eggs.|Wir haben einige Eier.
-Do you have any milk?|Hast du Milch?
-We don't have any rice.|Wir haben keinen Reis.`,
-      `We have ___ milk.|some|any|an|Wir haben etwas Milch. Bejahte Aussage über unseren Vorrat.
-We don't have ___ milk.|any|some|an|Wir haben überhaupt keine Milch.
-Do you have ___ eggs?|any|some|an|Hast du Eier? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
-There are ___ tomatoes.|some|any|an|Es gibt einige Tomaten. Bejahte Aussage über den Vorrat.
-There aren't ___ potatoes.|any|some|an|Es gibt überhaupt keine Kartoffeln.
-Is there ___ cheese?|any|some|an|Gibt es Käse? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
-I need ___ rice.|some|any|an|Ich brauche etwas Reis. Eine unbestimmte Menge ist gemeint.
-He doesn't eat ___ meat.|any|some|an|Er isst überhaupt kein Fleisch.
-Are there ___ bananas?|any|some|an|Gibt es Bananen? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
-She buys ___ vegetables.|some|any|an|Sie kauft etwas Gemüse. Bejahte Aussage über ihren Einkauf.
-There is ___ bread.|some|any|an|Es gibt etwas Brot. Bejahte Aussage über den Vorrat.
-We don't need ___ water.|any|some|an|Wir brauchen überhaupt kein Wasser.
-Does she have ___ oranges?|any|some|an|Hat sie Orangen? Wähle die übliche Form für eine neutrale Frage ohne erwartete Ja-Antwort.
-They buy ___ fish.|some|any|an|Sie kaufen etwas Fisch zum Essen. Eine unbestimmte Menge, keine einzelnen Tiere.
-There isn't ___ tea.|any|some|an|Es gibt überhaupt keinen Tee.
-I have ___ apples.|some|any|an|Ich habe einige Äpfel. Bejahte Aussage über meinen Vorrat.`)],
-    'Schreibe eine Einkaufsliste als kurze Nachricht. Nenne Lebensmittel, eine Menge und etwas, das fehlt.',
-    ['Nenne drei Lebensmittel.','Nenne eine Menge mit einer Einheit.','Sage, was nicht vorhanden ist.'],
+  add(13,'Nourriture et courses',
+    ['Nommer des aliments et des quantités','Distinguer les noms dénombrables et indénombrables','Utiliser some et any'],
+    'food=nourriture;milk=lait;rice=riz;cheese=fromage;meat=viande;fish=poisson;vegetable=légume;potato=pomme de terre;egg=œuf;tomato=tomate;banana=banane;some=du / de la / des / quelques;any=du / des (questions et négations);bottle=bouteille;glass=verre;cup=tasse;kilo=kilo;litre=litre;need=avoir besoin de;buy=acheter;shopping=courses',
+    `I need some milk.|J’ai besoin de lait.|J’ai besoin de riz.|J’ai du lait.
+Do you have any eggs?|Tu as des œufs ?|Tu as du lait ?|Tu as besoin d’œufs ?
+We don't have any rice.|Nous n’avons pas de riz.|Nous n’avons pas besoin de riz.|Nous avons du riz.
+Two bottles of water, please.|Deux bouteilles d’eau, s’il vous plaît.|Deux verres d’eau, s’il vous plaît.|Une bouteille d’eau, s’il vous plaît.
+A kilo of potatoes.|Un kilo de pommes de terre.|Un kilo de tomates.|Deux kilos de pommes de terre.
+I eat fish and vegetables.|Je mange du poisson et des légumes.|Je mange de la viande et des légumes.|J’achète du poisson et des légumes.
+There is some cheese.|Il y a du fromage.|Il n’y a pas de fromage.|Il y a de la viande.
+There are some tomatoes.|Il y a quelques tomates.|Il y a quelques pommes de terre.|Il n’y a pas de tomates.
+A cup of tea.|Une tasse de thé.|Un verre de thé.|Une tasse de café.
+I don't eat meat.|Je ne mange pas de viande.|Je ne mange pas de poisson.|Je n’achète pas de viande.`,
+    [topic('Dénombrable ou indénombrable','Les noms dénombrables ont un singulier et un pluriel : an egg, two eggs.\n\nMilk, water, rice et bread sont indénombrables dans leur sens alimentaire habituel : pas de a milk ni de two rices. Le français dit « du lait, du riz » ; l’anglais dit some milk, some rice.\n\nPour compter, il faut une unité : a bottle of milk, two cups of tea.\n\nSome milk s’emploie avec is, some eggs avec are.\n\nDevant un nom, no peut vouloir dire « pas de » : no rice = pas de riz.',
+      `an egg / two eggs|un œuf / deux œufs
+some rice|du riz
+two bottles of water|deux bouteilles d’eau`,
+      `I need two ___.|eggs|egg|an egg|J’ai besoin de deux œufs.
+There ___ some milk.|is|are|am|Il y a du lait.
+There ___ some eggs.|are|is|am|Il y a quelques œufs.
+Two bottles ___ water.|of|for|at|Deux bouteilles d’eau.
+A cup ___ tea.|of|on|in|Une tasse de thé.
+I need ___ apple.|an|a|the|J’ai besoin d’une pomme.
+We need some ___.|rice|rices|a rice|Nous avons besoin de riz.
+Two ___ of milk.|litres|litre|milks|Deux litres de lait.
+I need ___ egg.|an|a|the|J’ai besoin d’un œuf.
+Three ___ of tea.|cups|cup|cup of tea|Trois tasses de thé.
+There ___ some cheese.|is|are|am|Il y a du fromage.
+There ___ some bananas.|are|is|am|Il y a quelques bananes.
+Four glasses ___ water.|of|at|on|Quatre verres d’eau.
+We buy two ___.|tomatoes|a tomato|tomato|Nous achetons deux tomates.
+I need a bottle ___ milk.|of|in|on|J’ai besoin d’une bouteille de lait.
+She eats some ___.|bread|breads|a bread|Elle mange du pain.`),
+    topic('Some et any','Dans une phrase affirmative, on met le plus souvent some. Dans une question neutre et dans une phrase négative, on met le plus souvent any.\n\nCela vaut pour les indénombrables et pour le pluriel : some milk, any eggs. Jamais les deux mots ensemble.\n\nDans les offres et les demandes, some peut aussi apparaître dans une question ; tu verras ces formules polies dans la leçon suivante.\n\nSelon ce qu’on attend, some et any peuvent tous les deux apparaître dans une question. Ici, pour une question explicitement neutre, tu choisis la forme habituelle any ; pour « pas du tout », any aussi.',
+      `We have some eggs.|Nous avons quelques œufs.
+Do you have any milk?|Tu as du lait ?
+We don't have any rice.|Nous n’avons pas de riz.`,
+      `We have ___ milk.|some|any|an|Nous avons du lait. Phrase affirmative sur nos provisions.
+We don't have ___ milk.|any|some|an|Nous n’avons pas du tout de lait.
+Do you have ___ eggs?|any|some|an|Tu as des œufs ? Choisis la forme habituelle pour une question neutre, sans réponse « oui » attendue.
+There are ___ tomatoes.|some|any|an|Il y a quelques tomates. Phrase affirmative sur les provisions.
+There aren't ___ potatoes.|any|some|an|Il n’y a pas du tout de pommes de terre.
+Is there ___ cheese?|any|some|an|Il y a du fromage ? Choisis la forme habituelle pour une question neutre, sans réponse « oui » attendue.
+I need ___ rice.|some|any|an|J’ai besoin de riz. Une quantité indéterminée.
+He doesn't eat ___ meat.|any|some|an|Il ne mange pas du tout de viande.
+Are there ___ bananas?|any|some|an|Il y a des bananes ? Choisis la forme habituelle pour une question neutre, sans réponse « oui » attendue.
+She buys ___ vegetables.|some|any|an|Elle achète des légumes. Phrase affirmative sur ses achats.
+There is ___ bread.|some|any|an|Il y a du pain. Phrase affirmative sur les provisions.
+We don't need ___ water.|any|some|an|Nous n’avons pas du tout besoin d’eau.
+Does she have ___ oranges?|any|some|an|Elle a des oranges ? Choisis la forme habituelle pour une question neutre, sans réponse « oui » attendue.
+They buy ___ fish.|some|any|an|Ils achètent du poisson à manger. Une quantité indéterminée, pas des animaux entiers.
+There isn't ___ tea.|any|some|an|Il n’y a pas du tout de thé.
+I have ___ apples.|some|any|an|J’ai quelques pommes. Phrase affirmative sur mes provisions.`)],
+    'Écris une liste de courses sous forme de court message. Nomme des aliments, une quantité et quelque chose qui manque.',
+    ['Nomme trois aliments.','Donne une quantité avec une unité.','Dis ce qui manque.'],
     "We need some milk, rice and eggs. Please buy two bottles of water and a kilo of potatoes. We don't have any cheese. Do we have any tomatoes?",
-    'We need {some|etwas} milk. There {are|be: Mehrzahl} some eggs, but there {is|be: nicht zählbar} no rice. We do not have {any|welche: Verneinung} tomatoes. Please buy two bottles {of|Flaschen von} water and three {cups|cup: Mehrzahl} of tea. I need {an|ein: egg} egg and {some|etwas: bread} bread.',
-    `Du brauchst zwei Flaschen Wasser.|I need two bottles of water.|I need two glasses of water.|I need a bottle of water.
-Du sagst, dass kein Reis da ist.|We don't have any rice.|We don't need any rice.|We have some rice.
-Du fragst neutral nach Eiern.|Do you have any eggs?|Do you need any eggs?|Do you have any milk?
-Du nennst ein Kilo Tomaten.|A kilo of tomatoes.|A kilo of potatoes.|Two kilos of tomatoes.`);
-  add(14,'Im Café & Restaurant',
-    ['Eine Bestellung höflich formulieren','Mit how much und how many nach Mengen fragen','Preise und die Rechnung verstehen'],
-    'would like=möchte (höflich);menu=Speisekarte;bill=Rechnung;order=bestellen;restaurant=Restaurant;café=Café;soup=Suppe;salad=Salat;sandwich=Sandwich;chicken=Hähnchen;dessert=Nachspeise;without=ohne;with=mit;how much=wie viel;how many=wie viele;pound=Pfund (Währung);euro=Euro;dollar=Dollar;cost=kosten;pay=bezahlen;cash=Bargeld;lunch=Mittagessen',
-    `I'd like a coffee, please.|Ich hätte gern einen Kaffee.|Ich hätte gern einen Tee.|Ich mag Kaffee.
-Would you like some water?|Möchtest du etwas Wasser?|Trinkst du manchmal Wasser?|Brauchst du kein Wasser?
-How much is the soup?|Wie viel kostet die Suppe?|Wie viel Suppe gibt es?|Wie viel kostet der Salat?
-How many sandwiches do you need?|Wie viele Sandwiches brauchst du?|Wie viele Sandwiches hast du?|Wie viel Brot brauchst du?
-Without meat, please.|Ohne Fleisch, bitte.|Mit Fleisch, bitte.|Ohne Fisch, bitte.
-The bill, please.|Die Rechnung, bitte.|Die Speisekarte, bitte.|Die Bestellung, bitte.
-Can I have the menu, please?|Kann ich bitte die Speisekarte haben?|Kann ich bitte die Rechnung haben?|Kann ich bitte bestellen?
-It is twelve pounds.|Es kostet zwölf Pfund.|Es kostet zwanzig Pfund.|Es kostet zwölf Euro.
-I'd like some soup.|Ich hätte gern etwas Suppe.|Ich mag Suppe.|Ich hätte gern etwas Salat.
-Can I pay by card?|Kann ich mit Karte bezahlen?|Kann ich bar bezahlen?|Kann ich später bezahlen?`,
-    [topic('Would like für Wünsche','I would like oder I’d like bedeutet ich möchte / ich hätte gern.\n\nEs ist eine höfliche Bestellung.\n\nI like beschreibt dagegen eine allgemeine Vorliebe.\n\nWould bleibt für alle Personen gleich.\n\nFragen beginnen mit Would: Would you like …?\n\nBei Angeboten ist some üblich: Would you like some tea?',
-      `I'd like a sandwich, please.|Ich hätte gern ein Sandwich.
-I like sandwiches.|Ich mag Sandwiches allgemein.
-Would you like some tea?|Möchtest du etwas Tee?`,
-      `I ___ like a coffee.|would|am|do|Ich hätte gern einen Kaffee.
-She would ___ a salad.|like|likes|to like|Sie hätte gern einen Salat.
-___ you like some tea?|Would|Do|Are|Möchtest du etwas Tee? Höfliches Angebot.
-I'd ___ some soup.|like|likes|to like|Ich hätte gern etwas Suppe.
-He ___ like a sandwich.|would|does|is would|Er hätte gern ein Sandwich.
-I ___ tea.|like|would like|am like|Ich mag Tee allgemein.
-We ___ like the bill, please.|would|are|do|Wir hätten gern die Rechnung.
-Would she ___ some water?|like|likes|to like|Möchte sie etwas Wasser?
-I ___ like meat in my soup.|wouldn't|don't would|am not would|Ich möchte kein Fleisch in meiner Suppe. Wouldn't = would not.
-They would ___ two coffees.|like|likes|to like|Sie hätten gern zwei Kaffee. Hier: zwei Tassen Kaffee.
-Mia ___ like a dessert.|would|does|is|Mia hätte gern eine Nachspeise.
-___ you like a sandwich?|Would|Are|Have|Möchtest du ein Sandwich? Höfliches Angebot.
-Leo would ___ some rice.|like|likes|to like|Leo hätte gern etwas Reis.
-I ___ coffee.|like|would like|am like|Ich mag Kaffee im Allgemeinen.
-We'd ___ the menu, please.|like|likes|to like|Wir hätten gern die Speisekarte.
-Would your friends ___ some soup?|like|likes|to like|Möchten deine Freunde etwas Suppe?`),
-    topic('How much und how many','How many steht vor zählbarer Mehrzahl: How many eggs?\n\nHow much steht vor nicht zählbaren Nomen: How much water?\n\nFür Preise: How much is it? / How much are they?\n\nTwo coffees bedeutet im Café zwei Tassen Kaffee.\n\nCard = Karte; cash = Bargeld. By card = mit Karte, in cash = bar.\n\nWouldn’t like bedeutet „möchte nicht“; die Verneinung gehört zu would.',
-      `How many sandwiches?|Wie viele Sandwiches?
-How much water?|Wie viel Wasser?
-How much is the salad?|Wie viel kostet der Salat?`,
-      `How ___ sandwiches do you need?|many|much|any|Wie viele Sandwiches brauchst du?
-How ___ water do you drink?|much|many|some|Wie viel Wasser trinkst du?
-How ___ is the soup?|much|many|any|Wie viel kostet die Suppe?
-How much ___ the sandwich?|is|are|do|Wie viel kostet das Sandwich?
-How much ___ the two salads?|are|is|does|Wie viel kosten die zwei Salate?
-How ___ eggs do we need?|many|much|some|Wie viele Eier brauchen wir?
-How ___ rice is there?|much|many|any|Wie viel Reis gibt es?
-How ___ cups do you need?|many|much|any|Wie viele Tassen brauchst du?
-How ___ milk is there?|much|many|some|Wie viel Milch gibt es?
-How much ___ it cost?|does|do|is|Wie viel kostet es?
-How ___ bottles do we need?|many|much|any|Wie viele Flaschen brauchen wir?
-How ___ cheese do you want?|much|many|some|Wie viel Käse möchtest du? Want = wollen.
-How much ___ the desserts?|are|is|does|Wie viel kosten die Nachspeisen?
-How ___ bread is there?|much|many|any|Wie viel Brot gibt es?
-How ___ tomatoes does she need?|many|much|some|Wie viele Tomaten braucht sie?
-How much ___ the sandwich cost?|does|do|is|Wie viel kostet das Sandwich?`)],
-    'Bestelle ein Essen und ein Getränk. Nenne einen Wunsch und frage nach dem Preis oder der Rechnung.',
-    ['Bestelle mit would like.','Nenne einen Wunsch mit with oder without.','Frage nach Preis oder Rechnung.'],
+    'We need {some|du / de la} milk. There {are|be : pluriel} some eggs, but there {is|be : indénombrable} no rice. We do not have {any|des : négation} tomatoes. Please buy two bottles {of|bouteilles de} water and three {cups|cup : pluriel} of tea. I need {an|un : egg} egg and {some|du : bread} bread.',
+    `Tu as besoin de deux bouteilles d’eau.|I need two bottles of water.|I need two glasses of water.|I need a bottle of water.
+Tu dis qu’il n’y a pas de riz.|We don't have any rice.|We don't need any rice.|We have some rice.
+Tu demandes de façon neutre s’il y a des œufs.|Do you have any eggs?|Do you need any eggs?|Do you have any milk?
+Tu demandes un kilo de tomates.|A kilo of tomatoes.|A kilo of potatoes.|Two kilos of tomatoes.`);
+  add(14,'Au café et au restaurant',
+    ['Commander poliment','Demander une quantité avec how much et how many','Comprendre les prix et l’addition'],
+    'would like=voudrais (poli);menu=carte / menu;bill=addition;order=commander;restaurant=restaurant;café=café (lieu);soup=soupe;salad=salade;sandwich=sandwich;chicken=poulet;dessert=dessert;without=sans;with=avec;how much=combien (indénombrable / prix);how many=combien (dénombrable);pound=livre (monnaie);euro=euro;dollar=dollar;cost=coûter;pay=payer;cash=espèces / liquide;lunch=déjeuner',
+    `I'd like a coffee, please.|Je voudrais un café, s’il vous plaît.|Je voudrais un thé, s’il vous plaît.|J’aime le café.
+Would you like some water?|Tu veux de l’eau ?|Tu bois parfois de l’eau ?|Tu n’as pas besoin d’eau ?
+How much is the soup?|Combien coûte la soupe ?|Il y a combien de soupe ?|Combien coûte la salade ?
+How many sandwiches do you need?|Tu as besoin de combien de sandwichs ?|Tu as combien de sandwichs ?|Tu as besoin de combien de pain ?
+Without meat, please.|Sans viande, s’il vous plaît.|Avec de la viande, s’il vous plaît.|Sans poisson, s’il vous plaît.
+The bill, please.|L’addition, s’il vous plaît.|La carte, s’il vous plaît.|La commande, s’il vous plaît.
+Can I have the menu, please?|Je peux avoir la carte, s’il vous plaît ?|Je peux avoir l’addition, s’il vous plaît ?|Je peux commander, s’il vous plaît ?
+It is twelve pounds.|Ça coûte douze livres.|Ça coûte vingt livres.|Ça coûte douze euros.
+I'd like some soup.|Je voudrais de la soupe.|J’aime la soupe.|Je voudrais de la salade.
+Can I pay by card?|Je peux payer par carte ?|Je peux payer en espèces ?|Je peux payer plus tard ?`,
+    [topic('Would like pour exprimer un souhait','I would like ou I’d like veut dire « je voudrais ».\n\nC’est une façon polie de commander.\n\nI like, en revanche, exprime un goût général : j’aime.\n\nWould reste identique pour toutes les personnes.\n\nLes questions commencent par Would : Would you like …?\n\nDans une offre, on utilise souvent some : Would you like some tea?',
+      `I'd like a sandwich, please.|Je voudrais un sandwich, s’il vous plaît.
+I like sandwiches.|J’aime les sandwichs en général.
+Would you like some tea?|Tu veux du thé ?`,
+      `I ___ like a coffee.|would|am|do|Je voudrais un café.
+She would ___ a salad.|like|likes|to like|Elle voudrait une salade.
+___ you like some tea?|Would|Do|Are|Tu veux du thé ? Offre polie.
+I'd ___ some soup.|like|likes|to like|Je voudrais de la soupe.
+He ___ like a sandwich.|would|does|is would|Il voudrait un sandwich.
+I ___ tea.|like|would like|am like|J’aime le thé en général.
+We ___ like the bill, please.|would|are|do|Nous voudrions l’addition.
+Would she ___ some water?|like|likes|to like|Elle veut de l’eau ?
+I ___ like meat in my soup.|wouldn't|don't would|am not would|Je ne voudrais pas de viande dans ma soupe. Wouldn't = would not.
+They would ___ two coffees.|like|likes|to like|Ils voudraient deux cafés. Ici : deux tasses de café.
+Mia ___ like a dessert.|would|does|is|Mia voudrait un dessert.
+___ you like a sandwich?|Would|Are|Have|Tu veux un sandwich ? Offre polie.
+Leo would ___ some rice.|like|likes|to like|Leo voudrait du riz.
+I ___ coffee.|like|would like|am like|J’aime le café en général.
+We'd ___ the menu, please.|like|likes|to like|Nous voudrions la carte.
+Would your friends ___ some soup?|like|likes|to like|Tes amis veulent de la soupe ?`),
+    topic('How much et how many','Le français dit toujours « combien » ; l’anglais distingue. How many se place devant un pluriel dénombrable : How many eggs?\n\nHow much se place devant un nom indénombrable : How much water?\n\nPour les prix : How much is it? / How much are they?\n\nAu café, two coffees veut dire deux tasses de café.\n\nCard = carte ; cash = espèces. By card = par carte, in cash = en espèces.\n\nWouldn’t like veut dire « ne voudrait pas » ; la négation va avec would.',
+      `How many sandwiches?|Combien de sandwichs ?
+How much water?|Combien d’eau ?
+How much is the salad?|Combien coûte la salade ?`,
+      `How ___ sandwiches do you need?|many|much|any|Tu as besoin de combien de sandwichs ?
+How ___ water do you drink?|much|many|some|Tu bois combien d’eau ?
+How ___ is the soup?|much|many|any|Combien coûte la soupe ?
+How much ___ the sandwich?|is|are|do|Combien coûte le sandwich ?
+How much ___ the two salads?|are|is|does|Combien coûtent les deux salades ?
+How ___ eggs do we need?|many|much|some|Nous avons besoin de combien d’œufs ?
+How ___ rice is there?|much|many|any|Il y a combien de riz ?
+How ___ cups do you need?|many|much|any|Tu as besoin de combien de tasses ?
+How ___ milk is there?|much|many|some|Il y a combien de lait ?
+How much ___ it cost?|does|do|is|Combien ça coûte ?
+How ___ bottles do we need?|many|much|any|Nous avons besoin de combien de bouteilles ?
+How ___ cheese do you want?|much|many|some|Tu veux combien de fromage ? Want = vouloir.
+How much ___ the desserts?|are|is|does|Combien coûtent les desserts ?
+How ___ bread is there?|much|many|any|Il y a combien de pain ?
+How ___ tomatoes does she need?|many|much|some|Elle a besoin de combien de tomates ?
+How much ___ the sandwich cost?|does|do|is|Combien coûte le sandwich ?`)],
+    'Commande un plat et une boisson. Exprime un souhait et demande le prix ou l’addition.',
+    ['Commande avec would like.','Exprime un souhait avec with ou without.','Demande le prix ou l’addition.'],
     "Hello! I'd like some soup without meat and a sandwich, please. I'd also like a glass of water. How much is the soup? Can I pay by card?",
-    'I {would|höflicher Wunsch} like a sandwich. My friend would {like|Grundform} some soup. How {much|Preis} is the soup? How {many|zählbare Mehrzahl} sandwiches do we need? We would like two glasses {of|Gläser von} water. The soup is {without|ohne} meat. Can I {pay|bezahlen} by card? The {bill|Rechnung}, please.',
-    `Du bestellst höflich einen Tee.|I'd like a tea, please.|I like tea.|Would you like a tea?
-Du möchtest die Rechnung.|The bill, please.|The menu, please.|The soup, please.
-Du fragst nach dem Preis von zwei Salaten.|How much are the two salads?|How many salads are there?|How much is one salad?
-Du möchtest eine Suppe ohne Fleisch.|I'd like soup without meat.|I'd like soup with meat.|I'd like soup without fish.`);
-  add(15,'Kleidung & Vergleiche',
-    ['Nach Größe und Preis fragen','Kurze Adjektive steigern','More und unregelmäßige Vergleiche verwenden'],
-    'clothes=Kleidung;trousers=Hose;shoes=Schuhe;coat=Mantel;jacket=Jacke;dress=Kleid;size=Größe;cheap=günstig;expensive=teuer;long=lang;short=kurz;warm=warm;cold=kalt;good=gut;bad=schlecht;better=besser;worse=schlechter;than=als (Vergleich);try on=anprobieren;cash=Bargeld',
-    `Do you have this in size ten?|Haben Sie das in Größe zehn?|Haben Sie das in Größe zwölf?|Haben Sie zehn davon?
-Can I try this on?|Kann ich das anprobieren?|Kann ich das kaufen?|Kann ich das zurückbringen?
-This coat is cheaper.|Dieser Mantel ist günstiger.|Dieser Mantel ist teurer.|Diese Jacke ist günstiger.
-Those shoes are more expensive.|Jene Schuhe sind teurer.|Jene Schuhe sind günstiger.|Dieser Schuh ist teurer.
-This jacket is warmer than that one.|Diese Jacke ist wärmer als jene.|Diese Jacke ist kälter als jene.|Dieser Mantel ist wärmer als jener.
-The blue shirt is smaller.|Das blaue Hemd ist kleiner.|Das blaue Hemd ist größer.|Das grüne Hemd ist kleiner.
-This size is better.|Diese Größe ist besser.|Diese Größe ist schlechter.|Diese Farbe ist besser.
-It is too big.|Es ist zu groß.|Es ist zu klein.|Es ist groß genug.
-I'd like the smaller one.|Ich hätte gern das kleinere.|Ich hätte gern das größere.|Ich hätte gern das günstigere.
-I can pay in cash.|Ich kann bar bezahlen.|Ich kann mit Karte bezahlen.|Ich kann nicht bar bezahlen.`,
-    [topic('Kurze Adjektive: -er und than','Für einen Vergleich bekommt ein kurzes Adjektiv meistens -er: small → smaller, cheap → cheaper.\n\nNach End-e nur -r: large → larger.\n\nBei kurzem betontem Vokal + Endkonsonant wird der Konsonant oft verdoppelt: big → bigger.\n\nKonsonant + y wird -ier: happy → happier.\n\nThan bedeutet als. Kein more zusammen mit -er.',
-      `This bag is smaller than that bag.|Diese Tasche ist kleiner als jene.
-The red coat is cheaper.|Der rote Mantel ist günstiger.
-This room is bigger.|Dieses Zimmer ist größer.`,
-      `This bag is ___ than that bag.|smaller|small|more small|Diese Tasche ist kleiner als jene.
-The red coat is ___.|cheaper|cheap|more cheap|Der rote Mantel ist günstiger.
-This room is ___.|bigger|big|more big|Dieses Zimmer ist größer.
-The jacket is ___ than the shirt.|warmer|warm|more warm|Die Jacke ist wärmer als das Hemd.
-This dress is ___.|longer|long|more long|Dieses Kleid ist länger.
-These trousers are ___.|shorter|short|more short|Diese Hose ist kürzer.
-This room is larger ___ that room.|than|then|as|Dieses Zimmer ist größer als jenes Zimmer.
-The water is ___.|colder|cold|more cold|Das Wasser ist kälter.
-This house is ___.|older|old|more old|Dieses Haus ist älter.
-The shirt is ___.|newer|new|more new|Das Hemd ist neuer.
-This chair is ___ than that chair.|smaller|small|more small|Dieser Stuhl ist kleiner als jener.
-The blue bag is ___.|bigger|big|more big|Die blaue Tasche ist größer.
-These shoes are ___.|cheaper|cheap|more cheap|Diese Schuhe sind günstiger.
-This coat is ___ than my coat.|warmer|warm|more warm|Dieser Mantel ist wärmer als mein Mantel.
-Her jacket is ___.|longer|long|more long|Ihre Jacke ist länger.
-This phone is newer ___ my phone.|than|then|as|Dieses Telefon ist neuer als mein Telefon.`),
-    topic('More, better und worse','Längere Adjektive bilden den Vergleich meistens mit more: expensive → more expensive.\n\nGood wird better, bad wird worse.\n\nDiese Formen nicht mit more kombinieren.\n\nToo heißt zu: too big = zu groß.\n\nOne kann ein bereits genanntes Nomen ersetzen: the smaller one = das kleinere Exemplar.\n\nOurs steht ohne folgendes Nomen für „unseres/unsere“: our coats → ours.',
-      `This coat is more expensive.|Dieser Mantel ist teurer.
-This size is better.|Diese Größe ist besser.
-I'd like the smaller one.|Ich hätte gern das kleinere Exemplar.`,
-      `This coat is ___ expensive.|more|most|very more|Dieser Mantel ist teurer.
-This size is ___.|better|good|more good|Diese Größe ist besser.
-That phone is ___.|worse|bad|more bad|Jenes Telefon ist schlechter.
-These shoes are ___ expensive than those.|more|most|expensive|Diese Schuhe sind teurer als jene.
-This coat is ___ big.|too|two|to|Dieser Mantel ist zu groß.
-I'd like the smaller ___.|one|ones|a|Ich hätte gern das kleinere Exemplar.
-The blue shirt is ___ than the red shirt.|better|good|more better|Das blaue Hemd ist besser als das rote.
-This jacket is more expensive ___ that coat.|than|then|as|Diese Jacke ist teurer als jener Mantel.
-These trousers are ___ short.|too|to|two|Diese Hose ist zu kurz.
-That bag is ___ than this bag.|worse|more worse|bad|Jene Tasche ist schlechter als diese.
-Her dress is ___ expensive.|more|most|expensive|Ihr Kleid ist teurer.
-These shoes are ___ than my shoes.|better|more better|good|Diese Schuhe sind besser als meine.
-This size is ___ small.|too|to|two|Diese Größe ist zu klein.
-The red phone is ___.|worse|more worse|bad|Das rote Telefon ist schlechter.
-I'd like the cheaper ___.|one|ones|a|Ich hätte gern das günstigere Exemplar.
-Their coats are more expensive ___ ours.|than|then|as|Ihre Mäntel sind teurer als unsere. Ours = unsere.`)],
-    'Vergleiche zwei Kleidungsstücke. Nenne Größe oder Farbe und frage nach Preis oder Anprobe.',
-    ['Nenne die gewünschten Kleidungsstücke.','Formuliere einen Vergleich.','Frage nach Preis oder Anprobe.'],
+    'I {would|souhait poli} like a sandwich. My friend would {like|forme de base} some soup. How {much|prix} is the soup? How {many|pluriel dénombrable} sandwiches do we need? We would like two glasses {of|verres de} water. The soup is {without|sans} meat. Can I {pay|payer} by card? The {bill|addition}, please.',
+    `Tu commandes poliment un thé.|I'd like a tea, please.|I like tea.|Would you like a tea?
+Tu veux l’addition.|The bill, please.|The menu, please.|The soup, please.
+Tu demandes le prix de deux salades.|How much are the two salads?|How many salads are there?|How much is one salad?
+Tu veux une soupe sans viande.|I'd like soup without meat.|I'd like soup with meat.|I'd like soup without fish.`);
+  add(15,'Les vêtements et les comparaisons',
+    ['Demander la taille et le prix','Former le comparatif des adjectifs courts','Utiliser more et les comparatifs irréguliers'],
+    'clothes=vêtements;trousers=pantalon;shoes=chaussures;coat=manteau;jacket=veste;dress=robe;size=taille;cheap=bon marché / pas cher;expensive=cher;long=long;short=court;warm=chaud;cold=froid;good=bon;bad=mauvais;better=meilleur / mieux;worse=pire / moins bon;than=que (comparaison);try on=essayer (un vêtement);cash=espèces / liquide',
+    `Do you have this in size ten?|Vous avez ça en taille dix ?|Vous avez ça en taille douze ?|Vous en avez dix ?
+Can I try this on?|Je peux l’essayer ?|Je peux l’acheter ?|Je peux le rapporter ?
+This coat is cheaper.|Ce manteau est moins cher.|Ce manteau est plus cher.|Cette veste est moins chère.
+Those shoes are more expensive.|Ces chaussures-là sont plus chères.|Ces chaussures-là sont moins chères.|Cette chaussure-ci est plus chère.
+This jacket is warmer than that one.|Cette veste-ci est plus chaude que celle-là.|Cette veste-ci est plus froide que celle-là.|Ce manteau-ci est plus chaud que celui-là.
+The blue shirt is smaller.|La chemise bleue est plus petite.|La chemise bleue est plus grande.|La chemise verte est plus petite.
+This size is better.|Cette taille est meilleure.|Cette taille est moins bonne.|Cette couleur est meilleure.
+It is too big.|C’est trop grand.|C’est trop petit.|C’est assez grand.
+I'd like the smaller one.|Je voudrais le plus petit.|Je voudrais le plus grand.|Je voudrais le moins cher.
+I can pay in cash.|Je peux payer en espèces.|Je peux payer par carte.|Je ne peux pas payer en espèces.`,
+    [topic('Adjectifs courts : -er et than','Pour comparer, un adjectif court prend le plus souvent -er : small → smaller, cheap → cheaper. Le français dit « plus petit » ; l’anglais ajoute une terminaison.\n\nAprès un e final, seulement -r : large → larger.\n\nAprès une voyelle courte accentuée + consonne finale, la consonne est souvent doublée : big → bigger.\n\nConsonne + y devient -ier : happy → happier.\n\nThan veut dire « que ». Pas de more avec -er.',
+      `This bag is smaller than that bag.|Ce sac-ci est plus petit que celui-là.
+The red coat is cheaper.|Le manteau rouge est moins cher.
+This room is bigger.|Cette pièce est plus grande.`,
+      `This bag is ___ than that bag.|smaller|small|more small|Ce sac-ci est plus petit que celui-là.
+The red coat is ___.|cheaper|cheap|more cheap|Le manteau rouge est moins cher.
+This room is ___.|bigger|big|more big|Cette pièce est plus grande.
+The jacket is ___ than the shirt.|warmer|warm|more warm|La veste est plus chaude que la chemise.
+This dress is ___.|longer|long|more long|Cette robe est plus longue.
+These trousers are ___.|shorter|short|more short|Ce pantalon est plus court.
+This room is larger ___ that room.|than|then|as|Cette pièce-ci est plus grande que cette pièce-là.
+The water is ___.|colder|cold|more cold|L’eau est plus froide.
+This house is ___.|older|old|more old|Cette maison est plus vieille.
+The shirt is ___.|newer|new|more new|La chemise est plus neuve.
+This chair is ___ than that chair.|smaller|small|more small|Cette chaise-ci est plus petite que celle-là.
+The blue bag is ___.|bigger|big|more big|Le sac bleu est plus grand.
+These shoes are ___.|cheaper|cheap|more cheap|Ces chaussures sont moins chères.
+This coat is ___ than my coat.|warmer|warm|more warm|Ce manteau est plus chaud que mon manteau.
+Her jacket is ___.|longer|long|more long|Sa veste (à elle) est plus longue.
+This phone is newer ___ my phone.|than|then|as|Ce téléphone est plus récent que mon téléphone.`),
+    topic('More, better et worse','Les adjectifs plus longs forment le plus souvent le comparatif avec more : expensive → more expensive.\n\nGood devient better, bad devient worse. C’est comme « bon → meilleur » en français.\n\nNe combine pas ces formes avec more.\n\nToo veut dire « trop » : too big = trop grand.\n\nOne peut remplacer un nom déjà mentionné : the smaller one = le plus petit (de ceux-là).\n\nOurs s’emploie sans nom après lui pour dire « le nôtre / les nôtres » : our coats → ours.',
+      `This coat is more expensive.|Ce manteau est plus cher.
+This size is better.|Cette taille est meilleure.
+I'd like the smaller one.|Je voudrais le plus petit.`,
+      `This coat is ___ expensive.|more|most|very more|Ce manteau est plus cher.
+This size is ___.|better|good|more good|Cette taille est meilleure.
+That phone is ___.|worse|bad|more bad|Ce téléphone-là est moins bon.
+These shoes are ___ expensive than those.|more|most|expensive|Ces chaussures-ci sont plus chères que celles-là.
+This coat is ___ big.|too|two|to|Ce manteau est trop grand.
+I'd like the smaller ___.|one|ones|a|Je voudrais le plus petit.
+The blue shirt is ___ than the red shirt.|better|good|more better|La chemise bleue est meilleure que la rouge.
+This jacket is more expensive ___ that coat.|than|then|as|Cette veste est plus chère que ce manteau-là.
+These trousers are ___ short.|too|to|two|Ce pantalon est trop court.
+That bag is ___ than this bag.|worse|more worse|bad|Ce sac-là est moins bon que celui-ci.
+Her dress is ___ expensive.|more|most|expensive|Sa robe (à elle) est plus chère.
+These shoes are ___ than my shoes.|better|more better|good|Ces chaussures sont meilleures que les miennes.
+This size is ___ small.|too|to|two|Cette taille est trop petite.
+The red phone is ___.|worse|more worse|bad|Le téléphone rouge est moins bon.
+I'd like the cheaper ___.|one|ones|a|Je voudrais le moins cher.
+Their coats are more expensive ___ ours.|than|then|as|Leurs manteaux sont plus chers que les nôtres. Ours = les nôtres.`)],
+    'Compare deux vêtements. Dis la taille ou la couleur et demande le prix ou si tu peux essayer.',
+    ['Nomme les vêtements souhaités.','Formule une comparaison.','Demande le prix ou si tu peux essayer.'],
     "I'd like a blue jacket in size ten. This jacket is warmer than the red jacket, but it is more expensive. Can I try it on? How much is it?",
-    'This coat is {cheaper|cheap: Vergleich} than that coat. The blue jacket is {warmer|warm: Vergleich}. These shoes are {more|Vergleich vor expensive} expensive. This size is {better|good: Vergleich}. That shirt is {too|zu} small. I would like the smaller {one|Exemplar}. This bag is bigger {than|als} my bag. That phone is {worse|bad: Vergleich}.',
-    `Du möchtest eine Jacke anprobieren.|Can I try this jacket on?|Can I buy this jacket?|Can I wash this jacket?
-Du möchtest die günstigeren Schuhe.|I'd like the cheaper shoes.|I'd like the more expensive shoes.|I'd like the smaller shoes.
-Du fragst nach Größe zwölf.|Do you have this in size twelve?|Do you have twelve of these?|Do you have this in size twenty?
-Du sagst, dass der Mantel zu klein ist.|This coat is too small.|This coat is smaller.|This coat is too big.`);
-  add(16,'Unterwegs: Wege & Verkehr',
-    ['Einfache Wegbeschreibungen geben','Aufforderungen und Verbote bilden','Verkehrsmittel und Haltestellen verstehen'],
-    'station=Bahnhof;stop=Haltestelle;train=Zug;bus=Bus;airport=Flughafen;platform=Bahnsteig;street=Straße;left=links;right=rechts;straight on=geradeaus;turn=abbiegen;cross=überqueren;road=Straße;traffic lights=Ampel;next=nächster;first=erster;second=zweiter;third=dritter;on foot=zu Fuß;by bus=mit dem Bus;taxi=Taxi',
-    `Go straight on.|Geh geradeaus.|Biege links ab.|Biege rechts ab.
-Turn left at the traffic lights.|Biege an der Ampel links ab.|Biege an der Ampel rechts ab.|Gehe bis zur Ampel zurück.
-Don't cross here.|Überquere hier nicht die Straße.|Überquere hier die Straße.|Warte hier nicht.
-Take bus eight.|Nimm Bus acht.|Nimm Bus achtzehn.|Nimm Bus drei.
-The train leaves at ten.|Der Zug fährt um zehn ab.|Der Zug kommt um zehn an.|Der Bus fährt um zehn ab.
-Which platform?|Welcher Bahnsteig?|Welche Haltestelle?|Welche Straße?
-The station is on the right.|Der Bahnhof ist rechts.|Der Bahnhof ist links.|Die Haltestelle ist rechts.
-I go to work on foot.|Ich gehe zu Fuß zur Arbeit.|Ich fahre mit dem Bus zur Arbeit.|Ich fahre mit dem Zug zur Arbeit.
-Get off at the next stop.|Steig an der nächsten Haltestelle aus.|Steig an der ersten Haltestelle ein.|Warte an der nächsten Haltestelle.
-Is this bus for the airport?|Fährt dieser Bus zum Flughafen?|Fährt dieser Bus zum Bahnhof?|Ist das der Flughafen?`,
-    [topic('Aufforderungen und Verbote','Für eine Aufforderung steht die Grundform ohne Subjekt: Go straight on.\n\nEin Verbot beginnt mit don’t: Don’t cross here.\n\nIn Bitten wie Repeat, please. hast du diese Grundform schon als feste Wendung kennengelernt.\n\nPlease macht die Aufforderung höflicher.\n\nLet’s + Grundform schlägt etwas Gemeinsames vor: Let’s take the bus.\n\nGet on = einsteigen, get off = aussteigen.',
-      `Turn right, please.|Biege bitte rechts ab.
-Don't cross here.|Überquere hier nicht die Straße.
-Let's take the train.|Nehmen wir den Zug.`,
-      `___ straight on.|Go|Goes|Going|Geh geradeaus.
-___ left.|Turn|Turns|To turn|Biege links ab.
-___ cross here.|Don't|Doesn't|Not|Überquere hier nicht die Straße.
-___ bus eight.|Take|Takes|Taking|Nimm Bus acht.
-___ at the station, please.|Wait|Waits|To wait|Warte bitte am Bahnhof.
-Let's ___ the train.|take|takes|to take|Nehmen wir den Zug.
-Don't ___ here.|sit|sits|to sit|Setz dich nicht hierhin.
-___ off at the next stop.|Get|Gets|To get|Steig an der nächsten Haltestelle aus.
-Don't ___ left.|turn|turns|to turn|Biege nicht links ab.
-Let's ___ on foot.|go|goes|to go|Gehen wir zu Fuß.
-___ right at the station.|Turn|Turns|To turn|Biege am Bahnhof rechts ab.
-Don't ___ the road here.|cross|crosses|to cross|Überquere die Straße hier nicht.
-___ the next bus.|Take|Takes|To take|Nimm den nächsten Bus.
-Let's ___ here.|wait|waits|to wait|Warten wir hier.
-___ on at this stop.|Get|Gets|To get|Steig an dieser Haltestelle ein.
-Don't ___ the door.|open|opens|to open|Öffne die Tür nicht.`),
-    topic('Ort, Richtung und Verkehrsmittel','To bezeichnet ein Ziel: go to the station.\n\nAt bezeichnet einen Ort: wait at the station.\n\nVerkehrsmittel meist mit by ohne Artikel: by bus, by train; zu Fuß heißt on foot.\n\nFür Bahnsteige: from platform three.\n\nFirst/second/third benennen die Reihenfolge. Which fragt nach einer Auswahl: „welcher“, „welche“ oder „welches“.',
-      `I go to work by bus.|Ich fahre mit dem Bus zur Arbeit.
-Wait at the station.|Warte am Bahnhof.
-The train leaves from platform three.|Der Zug fährt von Bahnsteig drei ab.`,
-      `I go to work ___ bus.|by|on|at|Ich fahre mit dem Bus zur Arbeit.
-We go ___ foot.|on|by|in|Wir gehen zu Fuß.
-Go ___ the station.|to|at|on|Geh zum Bahnhof.
-Wait ___ the station.|at|to|by|Warte am Bahnhof.
-The train leaves ___ platform three.|from|to|on|Der Zug fährt von Bahnsteig drei ab.
-The shop is on the ___.|right|straight|third|Der Laden ist rechts.
-Take the ___ street on the left.|second|two|twice|Nimm die zweite Straße links.
-I go ___ train.|by|on|at|Ich fahre mit dem Zug.
-___ platform is it?|Which|Who|Why|Welcher Bahnsteig ist es?
-Turn right ___ the traffic lights.|at|to|by|Biege an der Ampel rechts ab.
-She goes to school ___ bus.|by|on|at|Sie fährt mit dem Bus zur Schule.
-They go to the shop ___ foot.|on|by|in|Sie gehen zu Fuß zum Laden.
-Come ___ the airport.|to|at|on|Komm zum Flughafen.
-We are ___ the bus stop.|at|to|by|Wir sind an der Bushaltestelle.
-The train leaves ___ platform five.|from|to|on|Der Zug fährt von Bahnsteig fünf ab.
-Take the ___ street on the right.|third|three|thirty|Nimm die dritte Straße rechts.`)],
-    'Erkläre den Weg vom Bahnhof zu einem Treffpunkt. Nenne zwei Richtungsangaben und eine Busnummer oder Gehzeit.',
-    ['Nenne den Treffpunkt.','Gib zwei Anweisungen in Reihenfolge.','Nenne Verkehrsmittel oder Gehzeit.'],
+    'This coat is {cheaper|cheap : comparatif} than that coat. The blue jacket is {warmer|warm : comparatif}. These shoes are {more|comparatif devant expensive} expensive. This size is {better|good : comparatif}. That shirt is {too|trop} small. I would like the smaller {one|celui-là}. This bag is bigger {than|que} my bag. That phone is {worse|bad : comparatif}.',
+    `Tu veux essayer une veste.|Can I try this jacket on?|Can I buy this jacket?|Can I wash this jacket?
+Tu veux les chaussures les moins chères.|I'd like the cheaper shoes.|I'd like the more expensive shoes.|I'd like the smaller shoes.
+Tu demandes la taille douze.|Do you have this in size twelve?|Do you have twelve of these?|Do you have this in size twenty?
+Tu dis que le manteau est trop petit.|This coat is too small.|This coat is smaller.|This coat is too big.`);
+  add(16,'En route : chemins et transports',
+    ['Indiquer un chemin simple','Donner des consignes et des interdictions','Comprendre les moyens de transport et les arrêts'],
+    'station=gare;stop=arrêt;train=train;bus=bus;airport=aéroport;platform=quai;street=rue;left=gauche;right=droite;straight on=tout droit;turn=tourner;cross=traverser;road=route / rue;traffic lights=feux (de circulation);next=prochain;first=premier;second=deuxième;third=troisième;on foot=à pied;by bus=en bus;taxi=taxi',
+    `Go straight on.|Va tout droit.|Tourne à gauche.|Tourne à droite.
+Turn left at the traffic lights.|Tourne à gauche aux feux.|Tourne à droite aux feux.|Retourne jusqu’aux feux.
+Don't cross here.|Ne traverse pas ici.|Traverse ici.|N’attends pas ici.
+Take bus eight.|Prends le bus huit.|Prends le bus dix-huit.|Prends le bus trois.
+The train leaves at ten.|Le train part à dix heures.|Le train arrive à dix heures.|Le bus part à dix heures.
+Which platform?|Quel quai ?|Quel arrêt ?|Quelle rue ?
+The station is on the right.|La gare est à droite.|La gare est à gauche.|L’arrêt est à droite.
+I go to work on foot.|Je vais au travail à pied.|Je vais au travail en bus.|Je vais au travail en train.
+Get off at the next stop.|Descends au prochain arrêt.|Monte au premier arrêt.|Attends au prochain arrêt.
+Is this bus for the airport?|Ce bus va à l’aéroport ?|Ce bus va à la gare ?|C’est l’aéroport ?`,
+    [topic('Consignes et interdictions','Pour donner une consigne, on utilise la forme de base sans sujet : Go straight on. C’est l’impératif.\n\nUne interdiction commence par don’t : Don’t cross here.\n\nTu connais déjà cette forme de base dans des demandes figées comme Repeat, please.\n\nPlease rend la consigne plus polie.\n\nLet’s + forme de base propose de faire quelque chose ensemble : Let’s take the bus. = Prenons le bus.\n\nGet on = monter (dans un véhicule), get off = descendre.',
+      `Turn right, please.|Tourne à droite, s’il te plaît.
+Don't cross here.|Ne traverse pas ici.
+Let's take the train.|Prenons le train.`,
+      `___ straight on.|Go|Goes|Going|Va tout droit.
+___ left.|Turn|Turns|To turn|Tourne à gauche.
+___ cross here.|Don't|Doesn't|Not|Ne traverse pas ici.
+___ bus eight.|Take|Takes|Taking|Prends le bus huit.
+___ at the station, please.|Wait|Waits|To wait|Attends à la gare, s’il te plaît.
+Let's ___ the train.|take|takes|to take|Prenons le train.
+Don't ___ here.|sit|sits|to sit|Ne t’assieds pas ici.
+___ off at the next stop.|Get|Gets|To get|Descends au prochain arrêt.
+Don't ___ left.|turn|turns|to turn|Ne tourne pas à gauche.
+Let's ___ on foot.|go|goes|to go|Allons-y à pied.
+___ right at the station.|Turn|Turns|To turn|Tourne à droite à la gare.
+Don't ___ the road here.|cross|crosses|to cross|Ne traverse pas la rue ici.
+___ the next bus.|Take|Takes|To take|Prends le prochain bus.
+Let's ___ here.|wait|waits|to wait|Attendons ici.
+___ on at this stop.|Get|Gets|To get|Monte à cet arrêt.
+Don't ___ the door.|open|opens|to open|N’ouvre pas la porte.`),
+    topic('Lieu, direction et moyens de transport','To indique une destination : go to the station.\n\nAt indique un lieu : wait at the station. En français, « à la gare » couvre les deux ; en anglais, il faut choisir.\n\nLes moyens de transport se disent souvent avec by sans article : by bus, by train ; à pied se dit on foot.\n\nPour les quais : from platform three.\n\nFirst/second/third indiquent l’ordre. Which demande un choix : « quel », « quelle », « lequel ».',
+      `I go to work by bus.|Je vais au travail en bus.
+Wait at the station.|Attends à la gare.
+The train leaves from platform three.|Le train part du quai trois.`,
+      `I go to work ___ bus.|by|on|at|Je vais au travail en bus.
+We go ___ foot.|on|by|in|Nous y allons à pied.
+Go ___ the station.|to|at|on|Va à la gare.
+Wait ___ the station.|at|to|by|Attends à la gare.
+The train leaves ___ platform three.|from|to|on|Le train part du quai trois.
+The shop is on the ___.|right|straight|third|Le magasin est à droite.
+Take the ___ street on the left.|second|two|twice|Prends la deuxième rue à gauche.
+I go ___ train.|by|on|at|J’y vais en train.
+___ platform is it?|Which|Who|Why|C’est quel quai ?
+Turn right ___ the traffic lights.|at|to|by|Tourne à droite aux feux.
+She goes to school ___ bus.|by|on|at|Elle va à l’école en bus.
+They go to the shop ___ foot.|on|by|in|Ils vont au magasin à pied.
+Come ___ the airport.|to|at|on|Viens à l’aéroport.
+We are ___ the bus stop.|at|to|by|Nous sommes à l’arrêt de bus.
+The train leaves ___ platform five.|from|to|on|Le train part du quai cinq.
+Take the ___ street on the right.|third|three|thirty|Prends la troisième rue à droite.`)],
+    'Explique le chemin de la gare à un lieu de rendez-vous. Donne deux indications de direction et un numéro de bus ou un temps de marche.',
+    ['Nomme le lieu de rendez-vous.','Donne deux consignes dans l’ordre.','Nomme le moyen de transport ou le temps de marche.'],
     'The café is near the station. Go straight on and turn left at the traffic lights. The café is on the right. You can take bus eight or go on foot.',
-    '{Go|gehen: Aufforderung} straight on. {Turn|abbiegen: Aufforderung} left at the traffic lights. Do not {cross|überqueren, Grundform} here. {Take|nehmen: Aufforderung} bus eight. Get {off|aussteigen: get …} at the next stop. We go {to|zum Ziel} the station. We can go {by|mit dem Bus} bus or {on|zu Fuß} foot.',
-    `Du sagst: zweite Straße rechts.|Take the second street on the right.|Take the third street on the right.|Take the second street on the left.
-Du möchtest die Bahnsteignummer wissen.|Which platform?|Which bus stop?|What time?
-Du sagst jemandem, wo er aussteigen soll.|Get off at the next stop.|Get on at the next stop.|Wait at the next stop.
-Du beschreibst einen Fußweg.|Go on foot.|Go by bus.|Go by train.`);
-  add(17,'Was passiert gerade?',
-    ['Laufende Tätigkeiten beschreiben','Present Continuous mit be + -ing bilden','Aktuelle Handlungen erfragen und verneinen'],
-    'now=jetzt;at the moment=im Moment;write=schreiben;make=machen / herstellen;run=laufen;wear=tragen (Kleidung);talk=sprechen;wait for=warten auf;look at=ansehen;send=senden;message=Nachricht;email=E-Mail;picture=Bild;phone call=Telefonanruf;clean=putzen;rain=regnen;outside=draußen;inside=drinnen;busy=beschäftigt;right now=genau jetzt',
-    `I am writing a message.|Ich schreibe gerade eine Nachricht.|Ich lese gerade eine Nachricht.|Ich schreibe jeden Tag Nachrichten.
-She is making dinner.|Sie macht gerade Abendessen.|Sie isst gerade Abendessen.|Sie macht immer Abendessen.
-They are waiting for the bus.|Sie warten gerade auf den Bus.|Sie fahren gerade mit dem Bus.|Sie warten gerade auf den Zug.
-He is wearing a blue shirt.|Er trägt gerade ein blaues Hemd.|Er trägt gerade ein grünes Hemd.|Er kauft gerade ein blaues Hemd.
-Are you working now?|Arbeitest du gerade?|Arbeitest du jeden Tag?|Arbeitet sie gerade?
-I am not watching television.|Ich sehe gerade nicht fern.|Ich sehe nie fern.|Ich habe keinen Fernseher.
-What are you doing?|Was machst du gerade?|Was machst du normalerweise?|Wo bist du gerade?
-We are cleaning the kitchen.|Wir putzen gerade die Küche.|Wir putzen gerade das Badezimmer.|Wir kochen gerade in der Küche.
-It is raining.|Es regnet gerade.|Es ist kalt.|Es regnet oft.
-She is talking on the phone.|Sie telefoniert gerade.|Sie schreibt gerade auf dem Telefon.|Sie hört gerade Musik.`,
-    [topic('Be + Verb mit -ing','Das Present Continuous beschreibt etwas, das gerade geschieht.\n\nDu brauchst am/is/are + -ing: I am working.\n\nEin End-e fällt meist weg: write → writing, make → making.\n\nBei run und sit wird der letzte Konsonant verdoppelt: running, sitting.\n\nVerwechsle dies nicht mit einer Gewohnheit im Present Simple.',
-      `I am working now.|Ich arbeite gerade.
-She is writing a message.|Sie schreibt gerade eine Nachricht.
-They are running.|Sie laufen gerade.`,
-      `I ___ writing a message.|am|is|are|Ich schreibe gerade eine Nachricht.
-She ___ making dinner.|is|am|are|Sie macht gerade Abendessen.
-They ___ waiting for the bus.|are|is|am|Sie warten gerade auf den Bus.
-He is ___.|running|run|runs|Er läuft gerade.
-We are ___.|sitting|sit|sits|Wir sitzen gerade.
-Anna is ___ an email.|writing|write|writes|Anna schreibt gerade eine E-Mail.
-Ben is ___ dinner.|making|make|makes|Ben macht gerade Abendessen.
-You ___ wearing a blue shirt.|are|am|is|Du trägst gerade ein blaues Hemd.
-It ___ raining.|is|are|am|Es regnet gerade.
-We are ___ the kitchen.|cleaning|clean|cleans|Wir putzen gerade die Küche.
-Mia ___ talking on the phone.|is|are|am|Mia telefoniert gerade.
-Leo and I ___ reading.|are|is|am|Leo und ich lesen gerade.
-My sister is ___ outside.|running|run|runs|Meine Schwester läuft gerade draußen.
-They are ___ a message.|sending|send|sends|Sie senden gerade eine Nachricht.
-He is ___ at the picture.|looking|look|looks|Er sieht sich gerade das Bild an.
-I ___ waiting at the station.|am|are|is|Ich warte gerade am Bahnhof.`),
-    topic('Fragen und Verneinungen im Continuous','Bei Fragen steht be vor dem Subjekt: Are you working?\n\nDas Verb behält -ing.\n\nZum Verneinen steht not nach be: She isn’t working.\n\nDu benutzt dabei kein do/does.\n\nAuch swim verdoppelt den Endkonsonanten: swimming.\n\nWhat are you doing? fragt nach der gerade ausgeführten Tätigkeit.',
-      `Are you waiting?|Wartest du gerade?
-She isn't working now.|Sie arbeitet gerade nicht.
-What are they doing?|Was machen sie gerade?`,
-      `___ you working now?|Are|Do|Does|Arbeitest du gerade?
-___ she writing?|Is|Does|Do|Schreibt sie gerade?
-What ___ they doing?|are|do|does|Was machen sie gerade?
-He ___ not watching television.|is|does|do|Er sieht gerade nicht fern.
-We ___ not waiting for the train.|are|do|does|Wir warten gerade nicht auf den Zug.
-Is Anna ___ dinner?|making|make|makes|Macht Anna gerade Abendessen?
-Are they ___ the kitchen?|cleaning|clean|cleans|Putzen sie gerade die Küche?
-Is he reading? Yes, he ___.|is|does|are|Ja, er liest gerade.
-Are you working? No, I ___ not.|am|do|are|Nein, ich arbeite gerade nicht.
-She ___ wearing a coat.|isn't|doesn't|don't|Sie trägt gerade keinen Mantel.
-___ Leo talking on the phone?|Is|Does|Do|Telefoniert Leo gerade?
-What ___ Mia writing?|is|does|do|Was schreibt Mia gerade?
-They ___ not running.|are|do|does|Sie laufen gerade nicht.
-Are we waiting here? Yes, we ___.|are|do|is|Ja, wir warten gerade hier.
-Is she swimming? No, she ___.|isn't|doesn't|don't|Nein, sie schwimmt gerade nicht.
-Why ___ you sitting here?|are|do|does|Warum sitzt du gerade hier?`)],
-    'Beschreibe, was du und zwei andere Personen gerade tun. Stelle eine Frage zu einer aktuellen Tätigkeit.',
-    ['Beschreibe deine aktuelle Tätigkeit.','Beschreibe zwei andere Personen.','Stelle eine Frage mit be + -ing.'],
+    '{Go|aller : impératif} straight on. {Turn|tourner : impératif} left at the traffic lights. Do not {cross|traverser, forme de base} here. {Take|prendre : impératif} bus eight. Get {off|descendre : get …} at the next stop. We go {to|vers la destination} the station. We can go {by|en bus} bus or {on|à pied} foot.',
+    `Tu dis : deuxième rue à droite.|Take the second street on the right.|Take the third street on the right.|Take the second street on the left.
+Tu veux connaître le numéro du quai.|Which platform?|Which bus stop?|What time?
+Tu dis à quelqu’un où descendre.|Get off at the next stop.|Get on at the next stop.|Wait at the next stop.
+Tu décris un trajet à pied.|Go on foot.|Go by bus.|Go by train.`);
+  add(17,'Qu’est-ce qui se passe en ce moment ?',
+    ['Décrire des actions en cours','Former le présent continu avec be + -ing','Poser des questions et dire non sur une action en cours'],
+    'now=maintenant;at the moment=en ce moment;write=écrire;make=faire / préparer;run=courir;wear=porter (des vêtements);talk=parler;wait for=attendre;look at=regarder;send=envoyer;message=message;email=e-mail;picture=image / photo;phone call=appel téléphonique;clean=nettoyer;rain=pleuvoir;outside=dehors;inside=dedans / à l’intérieur;busy=occupé;right now=tout de suite / à l’instant même',
+    `I am writing a message.|Je suis en train d’écrire un message.|Je suis en train de lire un message.|J’écris des messages tous les jours.
+She is making dinner.|Elle est en train de préparer le dîner.|Elle est en train de dîner.|Elle prépare toujours le dîner.
+They are waiting for the bus.|Ils sont en train d’attendre le bus.|Ils sont en train de prendre le bus.|Ils sont en train d’attendre le train.
+He is wearing a blue shirt.|Il porte une chemise bleue en ce moment.|Il porte une chemise verte en ce moment.|Il est en train d’acheter une chemise bleue.
+Are you working now?|Tu es en train de travailler ?|Tu travailles tous les jours ?|Elle est en train de travailler ?
+I am not watching television.|Je ne suis pas en train de regarder la télévision.|Je ne regarde jamais la télévision.|Je n’ai pas de télévision.
+What are you doing?|Qu’est-ce que tu es en train de faire ?|Qu’est-ce que tu fais d’habitude ?|Où es-tu en ce moment ?
+We are cleaning the kitchen.|Nous sommes en train de nettoyer la cuisine.|Nous sommes en train de nettoyer la salle de bains.|Nous sommes en train de cuisiner dans la cuisine.
+It is raining.|Il pleut en ce moment.|Il fait froid.|Il pleut souvent.
+She is talking on the phone.|Elle est au téléphone en ce moment.|Elle est en train d’écrire sur son téléphone.|Elle est en train d’écouter de la musique.`,
+    [topic('Be + verbe en -ing','Le présent continu décrit ce qui se passe en ce moment. En français, on dit « je suis en train de … » ; en anglais, cette forme est très fréquente.\n\nIl faut am/is/are + -ing : I am working.\n\nUn e final tombe en général : write → writing, make → making.\n\nAvec run et sit, la dernière consonne est doublée : running, sitting.\n\nNe confonds pas avec une habitude au présent simple.',
+      `I am working now.|Je suis en train de travailler.
+She is writing a message.|Elle est en train d’écrire un message.
+They are running.|Ils sont en train de courir.`,
+      `I ___ writing a message.|am|is|are|Je suis en train d’écrire un message.
+She ___ making dinner.|is|am|are|Elle est en train de préparer le dîner.
+They ___ waiting for the bus.|are|is|am|Ils sont en train d’attendre le bus.
+He is ___.|running|run|runs|Il est en train de courir.
+We are ___.|sitting|sit|sits|Nous sommes assis en ce moment.
+Anna is ___ an email.|writing|write|writes|Anna est en train d’écrire un e-mail.
+Ben is ___ dinner.|making|make|makes|Ben est en train de préparer le dîner.
+You ___ wearing a blue shirt.|are|am|is|Tu portes une chemise bleue en ce moment.
+It ___ raining.|is|are|am|Il pleut en ce moment.
+We are ___ the kitchen.|cleaning|clean|cleans|Nous sommes en train de nettoyer la cuisine.
+Mia ___ talking on the phone.|is|are|am|Mia est au téléphone en ce moment.
+Leo and I ___ reading.|are|is|am|Leo et moi sommes en train de lire.
+My sister is ___ outside.|running|run|runs|Ma sœur est en train de courir dehors.
+They are ___ a message.|sending|send|sends|Ils sont en train d’envoyer un message.
+He is ___ at the picture.|looking|look|looks|Il est en train de regarder l’image.
+I ___ waiting at the station.|am|are|is|Je suis en train d’attendre à la gare.`),
+    topic('Questions et négations au présent continu','Dans une question, be se place devant le sujet : Are you working?\n\nLe verbe garde -ing.\n\nPour dire non, not se place après be : She isn’t working.\n\nOn n’utilise pas do/does ici.\n\nSwim double aussi la consonne finale : swimming.\n\nWhat are you doing? demande ce que la personne est en train de faire.',
+      `Are you waiting?|Tu es en train d’attendre ?
+She isn't working now.|Elle n’est pas en train de travailler.
+What are they doing?|Qu’est-ce qu’ils sont en train de faire ?`,
+      `___ you working now?|Are|Do|Does|Tu es en train de travailler ?
+___ she writing?|Is|Does|Do|Elle est en train d’écrire ?
+What ___ they doing?|are|do|does|Qu’est-ce qu’ils sont en train de faire ?
+He ___ not watching television.|is|does|do|Il n’est pas en train de regarder la télévision.
+We ___ not waiting for the train.|are|do|does|Nous ne sommes pas en train d’attendre le train.
+Is Anna ___ dinner?|making|make|makes|Anna est en train de préparer le dîner ?
+Are they ___ the kitchen?|cleaning|clean|cleans|Ils sont en train de nettoyer la cuisine ?
+Is he reading? Yes, he ___.|is|does|are|Oui, il est en train de lire.
+Are you working? No, I ___ not.|am|do|are|Non, je ne suis pas en train de travailler.
+She ___ wearing a coat.|isn't|doesn't|don't|Elle ne porte pas de manteau en ce moment.
+___ Leo talking on the phone?|Is|Does|Do|Leo est au téléphone en ce moment ?
+What ___ Mia writing?|is|does|do|Qu’est-ce que Mia est en train d’écrire ?
+They ___ not running.|are|do|does|Ils ne sont pas en train de courir.
+Are we waiting here? Yes, we ___.|are|do|is|Oui, nous sommes en train d’attendre ici.
+Is she swimming? No, she ___.|isn't|doesn't|don't|Non, elle n’est pas en train de nager.
+Why ___ you sitting here?|are|do|does|Pourquoi es-tu assis ici en ce moment ?`)],
+    'Décris ce que toi et deux autres personnes êtes en train de faire. Pose une question sur une action en cours.',
+    ['Décris ce que tu es en train de faire.','Décris deux autres personnes.','Pose une question avec be + -ing.'],
     'I am waiting for the bus. Anna is writing a message. Ben is talking on the phone. We are not working now. What are you doing? Are you coming here?',
-    'I {am|be: I} waiting for the bus. Anna {is|be: she} writing a message. Ben and Tom {are|be: they} talking. My sister is {making|make: -ing} dinner. I am not {watching|watch: -ing} television. {Are|Frage: you} you working? What is Emma {doing|do: -ing}? She is {running|run: -ing} in the park.',
-    `Du fragst nach einer aktuellen Tätigkeit.|What are you doing?|What do you do on Sunday?|Where do you work?
-Ben telefoniert gerade.|Ben is talking on the phone.|Ben talks on the phone every day.|Ben is writing a message.
-Du wartest gerade auf den Zug.|I am waiting for the train.|I am waiting for the bus.|I wait for the train every day.
-Du sagst, dass Anna gerade nicht arbeitet.|Anna isn't working now.|Anna doesn't work on Monday.|Anna isn't at work every day.`);
-  add(18,'Gewohnheit oder gerade jetzt?',
-    ['Present Simple und Continuous unterscheiden','Zeitangaben als Hilfe nutzen','Like, want und need einfach verwenden'],
-    'usually=normalerweise;every morning=jeden Morgen;right now=genau jetzt;at the moment=im Moment;want=wollen;need=brauchen;know=wissen / kennen;understand=verstehen;believe=glauben;remember=sich erinnern;prefer=bevorzugen;different=anders;same=gleich;each=jeder;this week=diese Woche;every week=jede Woche;break=Pause;tonight=heute Abend;normally=normalerweise;again=noch einmal',
-    `I usually work at home.|Ich arbeite normalerweise zu Hause.|Ich arbeite gerade zu Hause.|Ich arbeite nie zu Hause.
-Today I am working in the office.|Heute arbeite ich gerade im Büro.|Heute arbeite ich nicht im Büro.|Ich arbeite jeden Tag im Büro.
-She drinks tea every morning.|Sie trinkt jeden Morgen Tee.|Sie trinkt gerade Tee.|Sie trinkt jeden Abend Tee.
-She is drinking coffee now.|Sie trinkt gerade Kaffee.|Sie trinkt immer Kaffee.|Sie trinkt gerade Tee.
-I like this book.|Ich mag dieses Buch.|Ich lese dieses Buch gerade.|Ich brauche dieses Buch.
-I don't understand.|Ich verstehe nicht.|Ich weiß nicht.|Ich erinnere mich nicht.
-Do you know her name?|Kennst du ihren Namen?|Kennst du seinen Namen?|Verstehst du ihren Namen?
-We need a break.|Wir brauchen eine Pause.|Wir machen gerade eine Pause.|Wir wollen keine Pause.
-What do you want?|Was möchtest du?|Was brauchst du?|Was weißt du?
-He is wearing a coat today.|Er trägt heute gerade einen Mantel.|Er trägt immer einen Mantel.|Er kauft heute einen Mantel.`,
-    [topic('Gewohnheit und laufende Handlung','Present Simple beschreibt Gewohnheiten: every day, usually, often.\n\nPresent Continuous beschreibt laufende oder vorübergehende Handlungen: now, at the moment.\n\nEine Zeitangabe allein ist keine starre Regel; lies die Situation.\n\nI work here heißt ich arbeite hier grundsätzlich, I am working heißt ich bin gerade am Arbeiten.',
-      `I read every evening.|Ich lese jeden Abend.
-I am reading now.|Ich lese gerade.
-She usually walks, but today she is taking the bus.|Sie geht normalerweise zu Fuß, nimmt heute aber gerade den Bus.`,
-      `I ___ at home every day.|work|am working|working|Meine normale tägliche Arbeit ist zu Hause.
-I ___ in the office right now.|am working|work|works|Ich bin gerade jetzt im Büro am Arbeiten.
-She ___ tea every morning.|drinks|is drinking|drink|Das ist ihre tägliche Gewohnheit.
-She ___ coffee at the moment.|is drinking|drinks|drink|Sie ist gerade jetzt beim Kaffeetrinken.
-They ___ on Sundays.|swim|are swimming|swims|Das ist ihre regelmäßige Sonntagsaktivität.
-They ___ in the park now.|are running|run|runs|Sie sind gerade jetzt am Laufen.
-He usually ___ to work.|walks|is walking|walk|Das ist sein normaler Arbeitsweg.
-He ___ the bus right now.|is taking|takes|take|Er steigt gerade in den Bus und fährt damit.
-We ___ books every evening.|read|are reading|reads|Das ist unsere regelmäßige Abendaktivität.
-We ___ television at the moment.|are watching|watch|watches|Wir sehen gerade jetzt fern.
-Mia ___ in a shop every Saturday.|works|is working|work|Das ist Mias regelmäßiger Samstagsjob.
-Leo ___ dinner right now.|is making|makes|make|Leo bereitet gerade jetzt Abendessen zu.
-My parents usually ___ tea.|drink|are drinking|drinks|Das ist ihre normale Gewohnheit.
-Our daughter ___ an email now.|is writing|writes|write|Sie ist gerade jetzt am Schreiben.
-Ben often ___ his friends.|visits|is visiting|visit|Ben besucht regelmäßig seine Freunde.
-Anna ___ for the train at the moment.|is waiting|waits|wait|Anna wartet gerade jetzt auf den Zug.`),
-    topic('Zustände: like, know, want und need','Einige häufige Verben beschreiben Zustände, Wünsche oder Wissen.\n\nIn ihrer gewöhnlichen A1-Bedeutung nutzt du meist das Present Simple: I like it, I know, I want water, I need help.\n\nAuch wenn der Wunsch jetzt besteht: I need help, nicht I am needing help.\n\nHe/she/it behält -s; Fragen und Verneinungen verwenden do/does.\n\nHim ist die Objektform von he: help him = ihm helfen.\n\nNeed to help heißt „helfen müssen“; need help heißt „Hilfe brauchen“.',
-      `I need help now.|Ich brauche jetzt Hilfe.
-She knows my name.|Sie kennt meinen Namen.
-Do you understand?|Verstehst du?`,
-      `I ___ this book.|like|am liking|likes|Ich mag dieses Buch.
-She ___ your name.|knows|is knowing|know|Sie kennt deinen Namen.
-I ___ some water now.|want|am wanting|wants|Ich möchte jetzt etwas Wasser.
-We ___ help.|need|are needing|needs|Wir brauchen Hilfe.
-___ you understand?|Do|Are|Does|Verstehst du?
-He ___ know her name.|doesn't|isn't|don't|Er kennt ihren Namen nicht.
-She ___ a break.|needs|is needing|need|Sie braucht eine Pause.
-I ___ remember.|don't|am not|doesn't|Ich erinnere mich nicht.
-___ she like coffee?|Does|Is|Do|Mag sie Kaffee?
-They ___ tea.|prefer|are preferring|prefers|Sie bevorzugen Tee.
-Mia ___ this colour.|likes|is liking|like|Mia mag diese Farbe.
-Leo ___ a new phone.|wants|is wanting|want|Leo möchte ein neues Telefon.
-We ___ the question.|understand|are understanding|understands|Wir verstehen die Frage.
-Does your sister ___ his name?|know|knows|knowing|Kennt deine Schwester seinen Namen?
-I ___ a ticket now.|need|am needing|needs|Ich brauche jetzt eine Fahrkarte.
-They ___ want coffee.|don't|aren't|doesn't|Sie möchten keinen Kaffee.`)],
-    'Vergleiche deinen normalen Alltag mit dem, was du gerade machst. Nenne auch einen Wunsch oder Bedarf.',
-    ['Nenne eine normale Gewohnheit.','Beschreibe eine aktuelle Handlung.','Sage, was du brauchst oder möchtest.'],
+    'I {am|be : I} waiting for the bus. Anna {is|be : she} writing a message. Ben and Tom {are|be : they} talking. My sister is {making|make : -ing} dinner. I am not {watching|watch : -ing} television. {Are|question : you} you working? What is Emma {doing|do : -ing}? She is {running|run : -ing} in the park.',
+    `Tu demandes ce que quelqu’un est en train de faire.|What are you doing?|What do you do on Sunday?|Where do you work?
+Ben est au téléphone en ce moment.|Ben is talking on the phone.|Ben talks on the phone every day.|Ben is writing a message.
+Tu es en train d’attendre le train.|I am waiting for the train.|I am waiting for the bus.|I wait for the train every day.
+Tu dis qu’Anna n’est pas en train de travailler.|Anna isn't working now.|Anna doesn't work on Monday.|Anna isn't at work every day.`);
+  add(18,'Habitude ou en ce moment ?',
+    ['Distinguer le présent simple et le présent continu','Se servir des indications de temps','Utiliser simplement like, want et need'],
+    'usually=d’habitude;every morning=tous les matins;right now=à l’instant même;at the moment=en ce moment;want=vouloir;need=avoir besoin de;know=savoir / connaître;understand=comprendre;believe=croire;remember=se souvenir;prefer=préférer;different=différent;same=même / pareil;each=chaque;this week=cette semaine;every week=chaque semaine;break=pause;tonight=ce soir;normally=normalement;again=encore une fois',
+    `I usually work at home.|D’habitude, je travaille à la maison.|En ce moment, je travaille à la maison.|Je ne travaille jamais à la maison.
+Today I am working in the office.|Aujourd’hui, je travaille au bureau.|Aujourd’hui, je ne travaille pas au bureau.|Je travaille au bureau tous les jours.
+She drinks tea every morning.|Elle boit du thé tous les matins.|Elle est en train de boire du thé.|Elle boit du thé tous les soirs.
+She is drinking coffee now.|Elle est en train de boire du café.|Elle boit toujours du café.|Elle est en train de boire du thé.
+I like this book.|J’aime ce livre.|Je suis en train de lire ce livre.|J’ai besoin de ce livre.
+I don't understand.|Je ne comprends pas.|Je ne sais pas.|Je ne me souviens pas.
+Do you know her name?|Tu connais son nom (à elle) ?|Tu connais son nom (à lui) ?|Tu comprends son nom (à elle) ?
+We need a break.|Nous avons besoin d’une pause.|Nous sommes en train de faire une pause.|Nous ne voulons pas de pause.
+What do you want?|Qu’est-ce que tu veux ?|De quoi as-tu besoin ?|Qu’est-ce que tu sais ?
+He is wearing a coat today.|Il porte un manteau aujourd’hui.|Il porte toujours un manteau.|Il achète un manteau aujourd’hui.`,
+    [topic('Habitude et action en cours','Le présent simple décrit des habitudes : every day, usually, often.\n\nLe présent continu décrit des actions en cours ou temporaires : now, at the moment.\n\nEn français, « je travaille » peut vouloir dire les deux ; en anglais, il faut choisir.\n\nUne indication de temps seule n’est pas une règle rigide ; lis la situation.\n\nI work here = je travaille ici (en général) ; I am working = je suis en train de travailler.',
+      `I read every evening.|Je lis tous les soirs.
+I am reading now.|Je suis en train de lire.
+She usually walks, but today she is taking the bus.|D’habitude, elle marche, mais aujourd’hui elle prend le bus.`,
+      `I ___ at home every day.|work|am working|working|Mon travail habituel, chaque jour, se fait à la maison.
+I ___ in the office right now.|am working|work|works|Je suis en train de travailler au bureau, à l’instant même.
+She ___ tea every morning.|drinks|is drinking|drink|C’est son habitude quotidienne.
+She ___ coffee at the moment.|is drinking|drinks|drink|Elle est en train de boire un café, à l’instant même.
+They ___ on Sundays.|swim|are swimming|swims|C’est leur activité régulière du dimanche.
+They ___ in the park now.|are running|run|runs|Ils sont en train de courir, à l’instant même.
+He usually ___ to work.|walks|is walking|walk|C’est son trajet habituel pour aller au travail.
+He ___ the bus right now.|is taking|takes|take|Il est en train de prendre le bus.
+We ___ books every evening.|read|are reading|reads|C’est notre activité régulière du soir.
+We ___ television at the moment.|are watching|watch|watches|Nous sommes en train de regarder la télévision.
+Mia ___ in a shop every Saturday.|works|is working|work|C’est le travail régulier de Mia le samedi.
+Leo ___ dinner right now.|is making|makes|make|Leo est en train de préparer le dîner.
+My parents usually ___ tea.|drink|are drinking|drinks|C’est leur habitude normale.
+Our daughter ___ an email now.|is writing|writes|write|Elle est en train d’écrire, à l’instant même.
+Ben often ___ his friends.|visits|is visiting|visit|Ben rend régulièrement visite à ses amis.
+Anna ___ for the train at the moment.|is waiting|waits|wait|Anna est en train d’attendre le train.`),
+    topic('États : like, know, want et need','Certains verbes fréquents décrivent des états, des souhaits ou des connaissances.\n\nDans leur sens courant au niveau A1, tu les utilises le plus souvent au présent simple : I like it, I know, I want water, I need help.\n\nMême si le besoin existe maintenant : I need help, et non I am needing help.\n\nHe/she/it garde le -s ; les questions et les négations utilisent do/does.\n\nHim est la forme complément de he : help him = l’aider.\n\nNeed to help veut dire « devoir aider » ; need help veut dire « avoir besoin d’aide ».',
+      `I need help now.|J’ai besoin d’aide maintenant.
+She knows my name.|Elle connaît mon nom.
+Do you understand?|Tu comprends ?`,
+      `I ___ this book.|like|am liking|likes|J’aime ce livre.
+She ___ your name.|knows|is knowing|know|Elle connaît ton nom.
+I ___ some water now.|want|am wanting|wants|Je veux de l’eau maintenant.
+We ___ help.|need|are needing|needs|Nous avons besoin d’aide.
+___ you understand?|Do|Are|Does|Tu comprends ?
+He ___ know her name.|doesn't|isn't|don't|Il ne connaît pas son nom (à elle).
+She ___ a break.|needs|is needing|need|Elle a besoin d’une pause.
+I ___ remember.|don't|am not|doesn't|Je ne me souviens pas.
+___ she like coffee?|Does|Is|Do|Elle aime le café ?
+They ___ tea.|prefer|are preferring|prefers|Ils préfèrent le thé.
+Mia ___ this colour.|likes|is liking|like|Mia aime cette couleur.
+Leo ___ a new phone.|wants|is wanting|want|Leo veut un nouveau téléphone.
+We ___ the question.|understand|are understanding|understands|Nous comprenons la question.
+Does your sister ___ his name?|know|knows|knowing|Ta sœur connaît son nom (à lui) ?
+I ___ a ticket now.|need|am needing|needs|J’ai besoin d’un billet maintenant.
+They ___ want coffee.|don't|aren't|doesn't|Ils ne veulent pas de café.`)],
+    'Compare ton quotidien habituel avec ce que tu es en train de faire. Dis aussi un souhait ou un besoin.',
+    ['Dis une habitude normale.','Décris une action en cours.','Dis ce dont tu as besoin ou ce que tu veux.'],
     'I usually work at home, but today I am working in the office. I drink tea every morning. Right now I am drinking water. I need a break. What are you doing?',
-    'I usually {work|arbeiten, Gewohnheit} at home. Today I {am|be: I} working in an office. Anna {drinks|trinken: she, Gewohnheit} tea every morning. She is {drinking|drink: -ing} coffee now. I {like|mögen, Zustand} coffee. We {need|brauchen, Zustand} a break. Ben {knows|wissen: he} my name. Do you {understand|verstehen, Grundform}?',
-    `Du fragst nach einer regelmäßigen Tätigkeit.|What do you do on Sundays?|What are you doing now?|Where are you right now?
-Du brauchst jetzt Hilfe.|I need help now.|I am helping now.|I need to help him now.
-Du beschreibst dein übliches Getränk.|I usually drink tea.|I am drinking tea now.|I don't drink tea.
-Du beschreibst Bens aktuelle Tätigkeit.|Ben is writing an email now.|Ben writes emails every day.|Ben reads emails every day.`);
+    'I usually {work|travailler, habitude} at home. Today I {am|be : I} working in an office. Anna {drinks|boire : she, habitude} tea every morning. She is {drinking|drink : -ing} coffee now. I {like|aimer, état} coffee. We {need|avoir besoin, état} a break. Ben {knows|savoir : he} my name. Do you {understand|comprendre, forme de base}?',
+    `Tu demandes une activité régulière.|What do you do on Sundays?|What are you doing now?|Where are you right now?
+Tu as besoin d’aide maintenant.|I need help now.|I am helping now.|I need to help him now.
+Tu décris ta boisson habituelle.|I usually drink tea.|I am drinking tea now.|I don't drink tea.
+Tu décris ce que Ben est en train de faire.|Ben is writing an email now.|Ben writes emails every day.|Ben reads emails every day.`);
 })();

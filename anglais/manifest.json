@@ -1,7 +1,7 @@
 {
-  "name": "English A1 – Deutsch nach Englisch",
-  "short_name": "English A1",
-  "lang": "de",
+  "name": "English A1 – du français vers l’anglais",
+  "short_name": "English A1 FR",
+  "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
